@@ -30,12 +30,12 @@ The direct H39 sources inspected for this audit are:
 - [geometry-bridge.md](../geometry-bridge/geometry-bridge.md)
 - [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.md](../geometry-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.md)
 - [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md](../geometry-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md)
-- [theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs](../../../scripts/neutral-swarm/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs)
-- [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs)
+- [theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs](../../../scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs)
+- [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs)
 - [h39-shared-domain-primitive-replay.mjs](../../../scripts/solver-audits/h39-shared-domain-primitive-replay.mjs)
 - [h39-terminal-graph-remainder-budget-replay.mjs](../../../scripts/solver-audits/h39-terminal-graph-remainder-budget-replay.mjs)
-- [neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js](../../../tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js)
-- [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js)
+- [neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js](../../../tests/neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js)
+- [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js)
 - [solver-h39-shared-domain-primitive-replay.test.js](../../../tests/solver-h39-shared-domain-primitive-replay.test.js)
 - [solver-h39-terminal-graph-remainder-budget-replay.test.js](../../../tests/solver-h39-terminal-graph-remainder-budget-replay.test.js)
 
@@ -49,6 +49,8 @@ The H39/H38 source-covariance wrap-up records the live blocker as the missing sa
 - a certified correction law from $A_G^{\mathrm{terminal}}$ to $A_P=P_- - P_+$.
 
 The central solver can improve root, path-history, precision, replay, and ledger discipline. It does not currently define the H39 same-domain provider-object branch schema, projection map, pushforward identity, or directed-rounded proof-certificate backend needed to manufacture the missing $P_b$ object.
+
+Foundation/dynamics impact 2026-06-21: the new [Assembly Topological Charge](../../../content/markdown/aaa/dynamics/assembly-topological-charge.md) chapter sharpens solver ledger vocabulary through $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$, but it does not change the H39 blocker. H39 can consume signed-root and assembly topological charge diagnostics as replay metadata, yet the live closure still requires the same-domain provider-object branch schema and upstream producer rows before aggregate $P$ is formed. Classification remains `h39_no_material_effect` for final H39 closure unless that provider-object surface is explicitly reopened.
 
 Provisional classification before executable replay: `h39_same_result_faster`, bounded by `h39_no_material_effect` for final closure. The likely effect is sharper and faster diagnosis of solver-like subproblems, not automatic H39 closure.
 

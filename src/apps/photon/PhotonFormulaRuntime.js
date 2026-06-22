@@ -112,10 +112,10 @@ export function resolvePhotonMeasurementParameters(state) {
   };
 }
 
-function getPhotonSwarmCenterX(state, swarmId) {
+function getPhotonBraidCenterX(state, braidId) {
   const fallbackSeparation = getPhotonSeparationReferenceRadius(state);
   const separation = Math.max(0, Number(state?.pair?.pairSeparation) || fallbackSeparation);
-  return swarmId === "left" ? -separation / 2 : separation / 2;
+  return braidId === "left" ? -separation / 2 : separation / 2;
 }
 
 function subtractVector(a, b) {
@@ -167,8 +167,8 @@ function safeDirectionVector(delta) {
 }
 
 function getPhotonSourceMaxDelay(state, sourceRef, measurement) {
-  const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
-  const centerX = getPhotonSwarmCenterX(state, sourceRef.swarmId);
+  const layer = getPhotonLayer(state, sourceRef.braidId, sourceRef.layerId);
+  const centerX = getPhotonBraidCenterX(state, sourceRef.braidId);
   const observer = measurement.virtualObserver;
   const dx = observer.x - centerX;
   const transverseObserverRadius = Math.hypot(observer.y, observer.z);
@@ -224,7 +224,7 @@ export function createPhotonCircularSourceCausalRootRequest(
   options = {}
 ) {
   const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
-  const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
+  const layer = getPhotonLayer(state, sourceRef.braidId, sourceRef.layerId);
   const hitTime = Number(observationTime) || 0;
   const maxDelay = normalizeNonnegativeSolverNumber(
     options.maxDelay,
@@ -245,8 +245,8 @@ export function createPhotonCircularSourceCausalRootRequest(
     )
   );
   const radius = Number(layer.radius) || 0;
-  const centerX = getPhotonSwarmCenterX(state, sourceRef.swarmId);
-  const angularVelocity = getPhotonDirectionSign(state, sourceRef.swarmId) *
+  const centerX = getPhotonBraidCenterX(state, sourceRef.braidId);
+  const angularVelocity = getPhotonDirectionSign(state, sourceRef.braidId) *
     TWO_PI *
     (Number(layer.frequencyHz) || 0);
 
@@ -260,7 +260,7 @@ export function createPhotonCircularSourceCausalRootRequest(
       angularVelocity,
       phaseAtEpoch: getPhotonLayerAngleRadians(
         state,
-        sourceRef.swarmId,
+        sourceRef.braidId,
         sourceRef.layerId,
         0,
         sourceRef.chargeType
@@ -493,17 +493,17 @@ function formatSolverIdNumber(value) {
   return String(Number(value) || 0).replaceAll(".", "_").replaceAll("-", "neg_");
 }
 
-export function getPhotonArchitrinoKinematics(state, swarmId, layerId, chargeType, timeSeconds) {
-  const layer = getPhotonLayer(state, swarmId, layerId);
-  const directionSign = getPhotonDirectionSign(state, swarmId);
-  const angle = getPhotonLayerAngleRadians(state, swarmId, layerId, timeSeconds, chargeType);
+export function getPhotonArchitrinoKinematics(state, braidId, layerId, chargeType, timeSeconds) {
+  const layer = getPhotonLayer(state, braidId, layerId);
+  const directionSign = getPhotonDirectionSign(state, braidId);
+  const angle = getPhotonLayerAngleRadians(state, braidId, layerId, timeSeconds, chargeType);
   const angularVelocity = directionSign * TWO_PI * layer.frequencyHz;
   const radius = layer.radius;
   const cos = Math.cos(angle);
   const sin = Math.sin(angle);
-  const centerX = getPhotonSwarmCenterX(state, swarmId);
+  const centerX = getPhotonBraidCenterX(state, braidId);
   return {
-    swarmId,
+    braidId,
     layerId,
     chargeType,
     chargeSign: PHOTON_CHARGE_SIGN[chargeType] ?? 0,
@@ -538,11 +538,11 @@ function getPhotonAbsoluteObserverPositionAtTime(measurement, timeSeconds) {
 }
 
 function createPhotonAbsoluteMovingCircularSourceHistory(state, sourceRef, measurement) {
-  const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
+  const layer = getPhotonLayer(state, sourceRef.braidId, sourceRef.layerId);
   const radius = Number(layer.radius) || 0;
   return {
     centerAtEpoch: {
-      x: getPhotonSwarmCenterX(state, sourceRef.swarmId),
+      x: getPhotonBraidCenterX(state, sourceRef.braidId),
       y: 0,
       z: 0,
     },
@@ -554,12 +554,12 @@ function createPhotonAbsoluteMovingCircularSourceHistory(state, sourceRef, measu
     radiusU: { x: 0, y: radius, z: 0 },
     radiusV: { x: 0, y: 0, z: radius },
     angularVelocity:
-      getPhotonDirectionSign(state, sourceRef.swarmId) *
+      getPhotonDirectionSign(state, sourceRef.braidId) *
       TWO_PI *
       (Number(layer.frequencyHz) || 0),
     phaseAtEpoch: getPhotonLayerAngleRadians(
       state,
-      sourceRef.swarmId,
+      sourceRef.braidId,
       sourceRef.layerId,
       0,
       sourceRef.chargeType
@@ -584,18 +584,18 @@ function createPhotonAbsoluteVirtualObserverHistory(measurement) {
 function buildPhotonSelfHitLayerDescriptors(state, measurement = resolvePhotonMeasurementParameters(state)) {
   const signalSpeed = Math.max(EPSILON, Number(measurement.emissionSpeedCf) || 1);
   const photonSpeedCf = Math.max(0, Number(measurement.photonSpeedCf) || 0);
-  return ["left", "right"].flatMap((swarmId) =>
+  return ["left", "right"].flatMap((braidId) =>
     PHOTON_LAYER_ORDER.flatMap((layerId) => {
-      if (!getPhotonLayerEnabled(state, swarmId, layerId)) {
+      if (!getPhotonLayerEnabled(state, braidId, layerId)) {
         return [];
       }
-      const layer = getPhotonLayer(state, swarmId, layerId);
+      const layer = getPhotonLayer(state, braidId, layerId);
       const orbitalSpeedCf = Math.abs(TWO_PI * layer.radius * layer.frequencyHz);
       const absoluteSpeedCf = Math.hypot(photonSpeedCf, orbitalSpeedCf);
       const fieldSpeedRatio = absoluteSpeedCf / signalSpeed;
       return [{
-        swarmId,
-        role: state?.pair?.[swarmId]?.role ?? swarmId,
+        braidId,
+        role: state?.pair?.[braidId]?.role ?? braidId,
         layerId,
         frequencyHz: layer.frequencyHz,
         radius: layer.radius,
@@ -856,7 +856,7 @@ function summarizePhotonHelicalSelfHitPhaseFamilies(helicalRows = []) {
       const sourceCycleIndex = Number.isFinite(Number(phase.sourcePhaseCycleIndex))
         ? Number(phase.sourcePhaseCycleIndex)
         : 0;
-      const role = row.role ?? phase.sourceRole ?? row.swarmId ?? "source";
+      const role = row.role ?? phase.sourceRole ?? row.braidId ?? "source";
       const layerId = row.layerId ?? phase.sourceLayerId ?? "?";
       const chargeType = row.chargeType ?? phase.sourceChargeType ?? "?";
       const chargeSign = Number.isFinite(Number(row.chargeSign))
@@ -975,7 +975,7 @@ function summarizePhotonSelfHitRows(rows = [], status = "ok", message = "", heli
 }
 
 function createPhotonHelicalSelfHitRootRequest(state, sourceRef, measurement, hitTime, options = {}) {
-  const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
+  const layer = getPhotonLayer(state, sourceRef.braidId, sourceRef.layerId);
   const frequency = Math.max(EPSILON, Math.abs(Number(layer.frequencyHz) || 0));
   const historyCycles = normalizePositiveSolverNumber(
     options.helicalSelfHitHistoryCycles ?? options.selfHitHistoryCycles,
@@ -1019,7 +1019,7 @@ function getPhotonSelfHitRegime(fieldSpeedRatio) {
 
 async function createPhotonHelicalSelfHitRow(state, descriptor, chargeType, itemIndex, measurement, options = {}) {
   const sourceRef = {
-    swarmId: descriptor.swarmId,
+    braidId: descriptor.braidId,
     layerId: descriptor.layerId,
     chargeType,
   };
@@ -1095,9 +1095,9 @@ async function createPhotonHelicalSelfHitRows(state, measurement, descriptors, o
 }
 
 function rowsIndexForPhotonSelfHit(descriptor, chargeIndex) {
-  const swarmOffset = descriptor.swarmId === "right" ? PHOTON_LAYER_ORDER.length * PHOTON_CHARGE_TYPES.length : 0;
+  const braidOffset = descriptor.braidId === "right" ? PHOTON_LAYER_ORDER.length * PHOTON_CHARGE_TYPES.length : 0;
   const layerOffset = Math.max(0, PHOTON_LAYER_ORDER.indexOf(descriptor.layerId)) * PHOTON_CHARGE_TYPES.length;
-  return swarmOffset + layerOffset + chargeIndex;
+  return braidOffset + layerOffset + chargeIndex;
 }
 
 export async function computePhotonSelfHitDiagnosticsWithSolverBridge(state, options = {}) {
@@ -1173,8 +1173,8 @@ export async function computePhotonSelfHitDiagnosticsWithSolverBridge(state, opt
 }
 
 function getPhotonAbsoluteSourceMaxDelay(state, sourceRef, measurement) {
-  const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
-  const centerX = getPhotonSwarmCenterX(state, sourceRef.swarmId);
+  const layer = getPhotonLayer(state, sourceRef.braidId, sourceRef.layerId);
+  const centerX = getPhotonBraidCenterX(state, sourceRef.braidId);
   const observerX = measurement.virtualObserver.x;
   const longitudinalGap = Math.abs(observerX - centerX);
   const transverseGap =
@@ -1254,7 +1254,7 @@ export function createPhotonAbsoluteMovingCircularCausalRootRequest(
   const sourceEndTime = Number.isFinite(Number(options.sourceEndTime))
     ? Number(options.sourceEndTime)
     : hitTime;
-  const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
+  const layer = getPhotonLayer(state, sourceRef.braidId, sourceRef.layerId);
   const frequency = Math.max(0, Math.abs(Number(layer.frequencyHz) || 0));
   const scanSubdivisions = normalizePositiveSolverInteger(
     options.scanSubdivisions,
@@ -1283,7 +1283,7 @@ function createPhotonPhaseAtHitRecord(state, sourceRef, emissionTime, sourcePhas
     ? Number(sourcePhase.rawRadians)
     : getPhotonLayerAngleRadians(
       state,
-      sourceRef.swarmId,
+      sourceRef.braidId,
       sourceRef.layerId,
       emissionTime,
       sourceRef.chargeType
@@ -1293,8 +1293,8 @@ function createPhotonPhaseAtHitRecord(state, sourceRef, emissionTime, sourcePhas
     : ((rawPhase % TWO_PI) + TWO_PI) % TWO_PI;
   return {
     rootKind: "source-to-virtual-observer",
-    sourceRole: state?.pair?.[sourceRef.swarmId]?.role ?? sourceRef.swarmId,
-    sourceSwarmId: sourceRef.swarmId,
+    sourceRole: state?.pair?.[sourceRef.braidId]?.role ?? sourceRef.braidId,
+    sourceBraidId: sourceRef.braidId,
     sourceLayerId: sourceRef.layerId,
     sourceChargeType: sourceRef.chargeType,
     sourceChargeSign: PHOTON_CHARGE_SIGN[sourceRef.chargeType] ?? 0,
@@ -1325,7 +1325,7 @@ function createPhotonSelfHitPhaseAtHitRecord(
     ? Number(receiverPhase.rawRadians)
     : getPhotonLayerAngleRadians(
       state,
-      sourceRef.swarmId,
+      sourceRef.braidId,
       sourceRef.layerId,
       hitTime,
       sourceRef.chargeType
@@ -1338,7 +1338,7 @@ function createPhotonSelfHitPhaseAtHitRecord(
     rootKind: "same-source",
     receiverKind: "same-source",
     receiverRole: sourceRecord.sourceRole,
-    receiverSwarmId: sourceRef.swarmId,
+    receiverBraidId: sourceRef.braidId,
     receiverLayerId: sourceRef.layerId,
     receiverChargeType: sourceRef.chargeType,
     receiverChargeSign: PHOTON_CHARGE_SIGN[sourceRef.chargeType] ?? 0,
@@ -1369,7 +1369,7 @@ function mapPhotonMovingCircularRootToDelayedRoot(state, sourceRef, measurement,
   const { distance, direction } = safeDirectionVector(delta);
   const coMovingKinematics = getPhotonArchitrinoKinematics(
     state,
-    sourceRef.swarmId,
+    sourceRef.braidId,
     sourceRef.layerId,
     sourceRef.chargeType,
     emissionTime
@@ -1430,7 +1430,7 @@ function mapPhotonLinearSegmentRootToDelayedRoot(state, sourceRef, measurement, 
   const { distance, direction } = safeDirectionVector(delta);
   const coMovingKinematics = getPhotonArchitrinoKinematics(
     state,
-    sourceRef.swarmId,
+    sourceRef.braidId,
     sourceRef.layerId,
     sourceRef.chargeType,
     emissionTime
@@ -1604,12 +1604,12 @@ async function computePhotonAbsoluteObserverFieldContributionsWithSolverBridge(
 }
 
 export function buildPhotonArchitrinoSourceRefs(state = null) {
-  return ["left", "right"].flatMap((swarmId) =>
+  return ["left", "right"].flatMap((braidId) =>
     PHOTON_LAYER_ORDER.flatMap((layerId) => {
-      if (state && !getPhotonLayerEnabled(state, swarmId, layerId)) {
+      if (state && !getPhotonLayerEnabled(state, braidId, layerId)) {
         return [];
       }
-      return PHOTON_CHARGE_TYPES.map((chargeType) => ({ swarmId, layerId, chargeType }));
+      return PHOTON_CHARGE_TYPES.map((chargeType) => ({ braidId, layerId, chargeType }));
     })
   );
 }
@@ -1622,7 +1622,7 @@ function mapPhotonCircularSourceRootToDelayedRoot(state, sourceRef, measurement,
     : Math.max(0, hitTime - emissionTime);
   const kinematics = getPhotonArchitrinoKinematics(
     state,
-    sourceRef.swarmId,
+    sourceRef.braidId,
     sourceRef.layerId,
     sourceRef.chargeType,
     emissionTime

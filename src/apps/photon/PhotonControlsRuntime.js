@@ -29,7 +29,7 @@ const ZERO_SNAP_STEP_COUNT = 2;
 const ZERO_SNAP_TRACK_RATIO = 0.0125;
 const PHOTON_SEPARATION_LOG_TICK_EPSILON = 1e-10;
 const PHOTON_SEPARATION_MANTISSAS = Object.freeze([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-const PHOTON_CONTROL_SWARM_ORDER = Object.freeze(["right", "left"]);
+const PHOTON_CONTROL_BRAID_ORDER = Object.freeze(["right", "left"]);
 const PHOTON_PLAYBACK_SPEED_RANGE = Object.freeze({
   min: PHOTON_CONTROL_RANGES.speedMultiplier.min,
   max: PHOTON_CONTROL_RANGES.speedMultiplier.max,
@@ -893,11 +893,11 @@ function setRangeControlDisabled(control, disabled) {
   control.row.classList.toggle("is-disabled", disabled);
 }
 
-function syncRadiusRange(control, state, swarmId, layerId) {
-  const bounds = getPhotonLayerRadiusBounds(state, swarmId, layerId);
+function syncRadiusRange(control, state, braidId, layerId) {
+  const bounds = getPhotonLayerRadiusBounds(state, braidId, layerId);
   control.input.min = String(bounds.min);
   control.input.max = String(bounds.max);
-  syncRange(control, getPhotonLayer(state, swarmId, layerId).radius);
+  syncRange(control, getPhotonLayer(state, braidId, layerId).radius);
 }
 
 function syncToggleButton(button, isActive, activeLabel, inactiveLabel) {
@@ -1090,26 +1090,26 @@ export function createPhotonControlsRuntime({
     controls.push(control);
     measurementControls.append(control.row);
   });
-  PHOTON_CONTROL_SWARM_ORDER.forEach((swarmId) => {
-    const swarm = state.pair[swarmId];
-    const section = addSection(documentLike, container, `${swarm.role} ${swarm.direction.toUpperCase()}`);
+  PHOTON_CONTROL_BRAID_ORDER.forEach((braidId) => {
+    const braid = state.pair[braidId];
+    const section = addSection(documentLike, container, `${braid.role} ${braid.direction.toUpperCase()}`);
     PHOTON_LAYER_ORDER.forEach((layerId) => {
-      const layer = getPhotonLayer(state, swarmId, layerId);
+      const layer = getPhotonLayer(state, braidId, layerId);
       const layerLabel = PHOTON_LAYER_META[layerId]?.label ?? layerId;
       const group = createElement(documentLike, "div", "photon-layer-group");
       group.append(createElement(documentLike, "h3", "", layerLabel));
       const enabledControl = createCheckboxControl(documentLike, {
-        label: `${swarm.role} ${layerLabel} binary enabled`,
+        label: `${braid.role} ${layerLabel} binary enabled`,
         checked: layer.enabled !== false,
         onChange: (checked) => {
           const nextState = getState();
           const separationLog10Ratio = getPhotonSeparationLog10Ratio(nextState);
-          setPhotonLayerEnabled(nextState, swarmId, layerId, checked);
+          setPhotonLayerEnabled(nextState, braidId, layerId, checked);
           setPhotonPairSeparationLog10Ratio(nextState, separationLog10Ratio);
           onStateChange();
         },
       });
-      binaryControls.push({ ...enabledControl, swarmId, layerId });
+      binaryControls.push({ ...enabledControl, braidId, layerId });
       group.append(enabledControl.row);
       [
         ["frequencyHz", "f", PHOTON_CONTROL_RANGES.frequencyHz, 4],
@@ -1118,7 +1118,7 @@ export function createPhotonControlsRuntime({
       ].forEach(([key, label, range, digits]) => {
         const handleLayerInput = (value) => {
           const nextState = getState();
-          setPhotonLayerValue(nextState, swarmId, layerId, key, value);
+          setPhotonLayerValue(nextState, braidId, layerId, key, value);
           if (key === "radius") {
             onStateChange({ syncControls: true, drawNow: false });
             return;
@@ -1195,12 +1195,12 @@ export function createPhotonControlsRuntime({
     syncRange(controls[index], speedSettings.photonSpeedCf);
     setRangeControlDisabled(controls[index], speedSettings.speedMode !== "direct");
     index += 1;
-    PHOTON_CONTROL_SWARM_ORDER.forEach((swarmId) => {
+    PHOTON_CONTROL_BRAID_ORDER.forEach((braidId) => {
       PHOTON_LAYER_ORDER.forEach((layerId) => {
-        const layer = getPhotonLayer(nextState, swarmId, layerId);
+        const layer = getPhotonLayer(nextState, braidId, layerId);
         ["frequencyHz", "radius", "phaseDeg"].forEach((key) => {
           if (key === "radius") {
-            syncRadiusRange(controls[index], nextState, swarmId, layerId);
+            syncRadiusRange(controls[index], nextState, braidId, layerId);
           } else {
             syncRange(controls[index], layer[key]);
           }
@@ -1209,7 +1209,7 @@ export function createPhotonControlsRuntime({
       });
     });
     binaryControls.forEach((control) => {
-      control.input.checked = getPhotonLayer(nextState, control.swarmId, control.layerId).enabled !== false;
+      control.input.checked = getPhotonLayer(nextState, control.braidId, control.layerId).enabled !== false;
     });
     absoluteHistoryControl.input.checked = nextState.measurement?.sourceHistoryMode === "absolute_history";
     speedModeControl.sync(speedSettings.speedMode);

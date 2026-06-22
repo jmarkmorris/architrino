@@ -10,13 +10,13 @@ This chapter is a working emergence map from Noether sea and assembly language t
 
 In standard QFT, the vacuum is represented by quantum fields and their ground-state structure. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that language is retained only as an observer-level comparison. The physical medium is the Noether sea, while the fixed container remains the Euclidean void.
 
-In this chapter, the Noether sea means the dense, permeating medium of coupled, neutral Noether swarms occupying the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md); see [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md). It is not empty space and is not the Euclidean void itself.
+In this chapter, the Noether sea means the dense, permeating medium of coupled, neutral Noether braids occupying the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md); see [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md). It is not empty space and is not the Euclidean void itself.
 
-- **Occupancy:** Nonzero occupancy of pro/anti Noether swarm assemblies.
+- **Occupancy:** Nonzero occupancy of pro/anti Noether braid assemblies.
 - **Net properties:** Balanced charge and angular-momentum bookkeeping at the medium scale, schematically $\sum q = 0$ and $\sum S = 0$ over neutral coarse windows.
 - **Medium response:** The Noether sea is the working source for the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. These are not fundamental constants of the void but derived measures of Noether sea response, including resistance to polarization and density-like occupation.
 
-One useful assembly-level picture is that long-lived Noether sea units arise when complementary pro/anti swarms pair in anti-parallel fashion so that exposed axial circulation is mutually plugged rather than left open. In that reading, Noether sea transparency is not emptiness but a successful cancellation strategy: the Noether sea remains quiet because its local pole leakage is internally routed and its large-scale moments stay near zero.
+One useful assembly-level picture is that long-lived Noether sea units arise when complementary pro/anti braids pair in anti-parallel fashion so that exposed axial circulation is mutually plugged rather than left open. In that reading, Noether sea transparency is not emptiness but a successful cancellation strategy: the Noether sea remains quiet because its local pole leakage is internally routed and its large-scale moments stay near zero.
 
 ### Field Language as Effective Bookkeeping
 
@@ -27,11 +27,11 @@ The relevant distinction is between the $\mathbb{U}_{\text{now}}$ universe-state
 - **Complete-state view:** The $\mathbb{U}_{\text{now}}$ universe-state perspective records architrinos with polarity bookkeeping labels $q=\pm\epsilon$ and their causal-wake histories. There are no primitive continuous gauge fields, only effective potential summaries reconstructed from causal-wake contributions.
 - **Physical Observer view:** A Physical Observer lacks direct resolution of individual architrinos and instead measures collective observables such as the effective potential gradient $\nabla\Phi$ at a point.
   - **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of Jacobian-weighted causal-flux density and circulation/vorticity in the Noether sea.
-  - **Gauge potentials ($A_\mu$)** correspond to local twists, strains, or density gradients in the Noether swarm assembly network.
+  - **Gauge potentials ($A_\mu$)** correspond to local twists, strains, or density gradients in the Noether braid assembly network.
 
 ### Symmetry Groups as Geometric Deformations
 
-We map the abstract gauge groups of the Standard Model to physical deformations of the Noether sea and its Noether swarms:
+We map the abstract gauge groups of the Standard Model to physical deformations of the Noether sea and its Noether braids:
 
 1.  **U(1) (Electromagnetism):**
     *   *SM View:* Phase rotation of the complex field.
@@ -39,7 +39,7 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
 
 2.  **SU(2) (Weak Interaction):**
     *   *SM View:* Non-Abelian rotation in isospin space.
-    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A **chiral twist** or structural strain in Noether swarm assemblies. Because the assemblies have internal handedness, deformations can be order-dependent, mirroring the non-Abelian nature of $SU(2)$ at the effective level.
+    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A **chiral twist** or structural strain in Noether braid assemblies. Because the assemblies have internal handedness, deformations can be order-dependent, mirroring the non-Abelian nature of $SU(2)$ at the effective level.
 
 The emergence claim in this chapter is therefore a mapping target with four required parts. The mechanism is delayed causal-wake coupling through Noether sea state and axial-layer deformation. The mapping is from closure labels, axial inventories, exposed weak-coupling triads, and medium-response variables to the observer-level symbols $U(1)_Y$, $SU(2)_L$, $g_1$, $g_2$, $\theta_W$, and the charge table. The regime is the low-energy observer sector where stable assemblies, weak gradients, and resolved apparatus records make the coarse variables meaningful. The breakdown occurs at root-ledger changes, unstable axial inventories, unresolved Noether sea updates, or any branch that predicts extra low-energy partners or transport modes.
 
@@ -206,14 +206,14 @@ General Relativity predicts that an accelerating observer sees a thermal bath of
 **The $\mathbb{A}\mathbb{A}\mathbb{A}$ resolution:**
 - **Objective existence:** To the $\mathbb{U}_{\text{now}}$ universe-state perspective, assemblies have a definite substrate status. Their existence is not frame-dependent.
 - **Acceleration-conditioned detector response:** The warm bath detected by the accelerating Physical Observer is an effective response of the detector's assembly state to accelerated coupling with the Noether sea.
-- **Mechanism:** Acceleration through the Noether sea ($\vec{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether swarms). The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
+- **Mechanism:** Acceleration through the Noether sea ($\vec{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether braids). The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
 
 ### Quantization from Stability (Selection Rules)
 
 Why do observer-level electric charges appear in units of $e/3$?
 *   The Standard Model asserts this; $\mathbb{A}\mathbb{A}\mathbb{A}$ treats it as a stability-selection closure target grounded in six-site axial bookkeeping.
 *   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $\epsilon$ polarity units are likely unstable. They either collapse into an unstable self-hit branch or disperse.
-*   **The Survivors:** Specific geometric configurations (the six-pole axial patterns) are candidate stable resonances where attractive and repulsive forces balance via the nested shell swarm structure. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
+*   **The Survivors:** Specific geometric configurations (the six-pole axial patterns) are candidate stable resonances where attractive and repulsive forces balance via the nested shell braid structure. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
 
 **SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six $\epsilon$ Axial Architrinos)**
 
@@ -769,7 +769,7 @@ These are theory-level falsifiers for this chapter's bridge.
 ### The Mass Hypothesis: Inertia as Medium Interaction
 
 #### Core Thesis
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, **mass is not a fundamental property** of individual architrinos. There is no intrinsic particle-specific "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass, especially **inertial resistance to acceleration**, is treated as an emergent response of stable assemblies embedded in the surrounding [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), the physical medium composed of neutral Noether swarm assemblies.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, **mass is not a fundamental property** of individual architrinos. There is no intrinsic particle-specific "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass, especially **inertial resistance to acceleration**, is treated as an emergent response of stable assemblies embedded in the surrounding [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), the physical medium composed of neutral Noether braid assemblies.
 
 The conservative thesis is:
 
@@ -855,7 +855,7 @@ E_{\text{CM}}
 \gamma_{\text{eff}}M_0c_{\text{eff}}^2
 $$
 
-Here $M_0$ remains the rest/internal invariant of the accepted branch, while $\gamma_{\text{eff}}$ belongs to the moving center-of-mass readout. Thus the theory does not need a velocity-dependent rest mass. It needs a proof that translating assemblies retune their causal-root ledger, shielding, clock channel, and Noether sea response so that the same $\gamma_{\text{eff}}$ controls energy, momentum, clock, and ruler channels. The detailed energy statement is the effective closure test in [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure), and the clock-side cross-check is in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#effective-energy-momentum-closure-test).
+Here $M_0$ remains the rest/internal invariant of the accepted branch, while $\gamma_{\text{eff}}$ belongs to the moving center-of-mass readout. Thus the theory does not need a velocity-dependent rest mass. It needs a proof that translating assemblies retune their causal-root ledger, shielding, clock channel, and Noether sea response so that the same $\gamma_{\text{eff}}$ controls energy, momentum, clock, and ruler channels. The detailed energy statement is the effective closure test in [Energy](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure), and the clock-side cross-check is in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#effective-energy-momentum-closure-test).
 
 ##### Exposed Inertial-Response Trace
 
@@ -1162,21 +1162,21 @@ $$
 
 This does not mean dense matter stops responding to pressure. It means the scalar density channel stops carrying that response when packing headroom closes; any remaining response must appear in exposed-source drift, envelope ratios $\lambda$ and $\xi$, trace-free strain, reversible wake/contact stiffness, tensor response, or a threshold/branch event.
 
-#### The Noether Swarm as Causal Ledger Closure
+#### The Noether Braid as Causal Ledger Closure
 
-A Noether swarm can be read as a stable closure of delayed path-history relations. The inner, middle, and outer binaries continually exchange partner-hit, self-hit, and inter-layer wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.
+A Noether braid can be read as a stable closure of delayed path-history relations. The inner, middle, and outer binaries continually exchange partner-hit, self-hit, and inter-layer wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.
 
-When the swarm moves or is placed under a gradient, the closure does not remain a static set of circular binaries. The inner, middle, and outer binary planes are drawn into a coupled spiral-helical pattern: pitch, radius, phase, and inter-layer timing retune together so delayed wakes still return to the correct partners and layers. This spiral-helical relocking is the geometric carrier of inertia in the present thesis.
+When the braid moves or is placed under a gradient, the closure does not remain a static set of circular binaries. The inner, middle, and outer binary planes are drawn into a coupled spiral-helical pattern: pitch, radius, phase, and inter-layer timing retune together so delayed wakes still return to the correct partners and layers. This spiral-helical relocking is the geometric carrier of inertia in the present thesis.
 
-In this view, rest energy is the energy stored in the closed causal ledger, and mass is the externally exposed response of that ledger when the swarm is accelerated, perturbed, or placed in a Noether sea gradient. Shielding determines how much of the internal closure couples to the far field.
+In this view, rest energy is the energy stored in the closed causal ledger, and mass is the externally exposed response of that ledger when the braid is accelerated, perturbed, or placed in a Noether sea gradient. Shielding determines how much of the internal closure couples to the far field.
 
 #### Mechanism Stack
 
 Apparent inertial mass is expected to arise from a connected stack of effects:
 
 ##### Internal Energy Shielding ($\zeta$-Factor)
-- **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested binary rotations. For a nested shell swarm, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
-- **Shielding:** The pro/anti structure of the [Noether swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
+- **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested binary rotations. For a nested shell braid, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
+- **Shielding:** The pro/anti structure of the [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
 - **Result:** When an external force attempts to accelerate the assembly, the effective far-field response couples only to the exposed, shielded part of the internal ledger:
   $$
   m_{\text{apparent}}c_{\text{eff}}^2 \sim \zeta(A)\,E_{\text{internal}}(A)
@@ -1184,7 +1184,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
 - **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because outer or middle shielding tiers are depleted on the branch lifetime window. With fewer coherent support layers, more of the inner high-energy core is exposed, increasing $\zeta$ and thus the apparent mass. This is a shielding-coherence statement, not a deletion of the H/M/L axial frame that carries color and electroweak bookkeeping.
 
 ##### Medium-Dressed Inertial Response
-- **The Medium:** The Noether sea is not empty space; it is a dynamic population of neutral Noether swarm assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to the Noether sea.
+- **The Medium:** The Noether sea is not empty space; it is a dynamic population of neutral Noether braid assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to the Noether sea.
 - **The Response:** The assembly resists acceleration because its internal path-history exchange must relock under a biased causal geometry. This should be modeled as a medium-dressed response tensor, not as ordinary dissipative friction.
 - **Velocity Dependence:** In the homogeneous weak-field limit, the same closure geometry should recover the effective relativistic response without changing the rest/internal invariant $M_0$:
   $$
@@ -1459,7 +1459,7 @@ $$
 \frac{(r_e+r_\mu+r_\tau)^2}{r_e^2+r_\mu^2+r_\tau^2}=\frac{3}{2}
 $$
 
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same core-plus-axial-layer architecture viewed through three shielding tiers, then a mass-root relation may be an external clue that the exposure map from nested shell swarm, bi-binary, and uni-binary cores is more constrained than a generic monotone hierarchy.
+Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same core-plus-axial-layer architecture viewed through three shielding tiers, then a mass-root relation may be an external clue that the exposure map from nested shell braid, bi-binary, and uni-binary cores is more constrained than a generic monotone hierarchy.
 
 The conservative use of Koide here is therefore:
 
@@ -1488,7 +1488,7 @@ That means a Koide-like benchmark, if it is useful at all, belongs first to the 
 
 To advance from qualitative thesis to quantitative mass prediction, the active mass program must close five linked steps.
 
-1. **Stable nested shell swarm attractor:** derive one robust Noether swarm attractor family with radii, frequencies, branch data, and stability diagnostics.
+1. **Stable nested shell braid attractor:** derive one robust Noether braid attractor family with radii, frequencies, branch data, and stability diagnostics.
 2. **Internal energy ledger:** compute the dimensionless internal energy stored in that attractor without assuming the particle mass being derived.
 3. **Shielding extraction:** derive $\zeta(A)$ from far-field wake cancellation and exposed coupling geometry.
 4. **Medium-dressed response:** derive the response tensor that turns shielded internal energy into inertial and gravitational response in the weak-field regime.
@@ -1496,7 +1496,7 @@ To advance from qualitative thesis to quantitative mass prediction, the active m
 
 #### Reference Attractor Gate
 
-The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral, rest-branch nested shell swarm in a weak homogeneous Noether sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation.
+The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral, rest-branch nested shell braid in a weak homogeneous Noether sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation.
 
 This attractor should not be pictured as three independent circular binaries. The inner, middle, and outer binaries occupy different causal-speed regimes: the inner binary is self-hit and super-field-speed on the active branch, the middle binary sits near the $v = c_f$ separator, and the outer binary remains sub-field-speed as the shielding and boundary-coupling interface. Circular or elliptic pictures can still be useful as carrier charts, but only after the coupled root ledger, phase lock, and stability diagnostics are respected.
 
@@ -1506,7 +1506,7 @@ The minimal $A_0$ output contract is:
 
 | Output class | Required content | Why it matters |
 | --- | --- | --- |
-| Geometry and winding | $R_I,R_M,R_O$, binary-plane normals, handedness, phase offsets, layer windings, and inter-layer closure integers | fixes the attractor as an integer-labeled Noether swarm state rather than a loose configuration sketch |
+| Geometry and winding | $R_I,R_M,R_O$, binary-plane normals, handedness, phase offsets, layer windings, and inter-layer closure integers | fixes the attractor as an integer-labeled Noether braid state rather than a loose configuration sketch |
 | Root ledger and stability | partner-hit counts, self-hit counts, inter-layer hit channels, closure residuals, return-map residuals, and the non-symmetry Floquet gap $\Delta_{\mathbf{k}}$ | separates stable closed cycles from integer-looking but dynamically unstable candidates |
 | Internal energy ledger | $E_I,E_M,E_O$, interaction and wake terms, total $E_{\text{internal}}(A_0)$, and action per closed cycle | supplies the unshielded reservoir in the mass-map roadmap formula |
 | Group-velocity anisotropy | declared $\mathbf{V}_{\text{cm}}$, causal speed $c_\star$, $\beta_\star$, envelope ratio, forward/backward delay ratio, and anisotropy tensor $\mathcal{A}_{\mathrm{gv}}^{ij}$ | keeps motion-induced deformation separate from far-field shielding leakage |
@@ -1527,8 +1527,8 @@ The canonical chapter should carry this interface but not the detailed simulatio
 
 #### Critical Unknowns
 1. **What sets $d_0$?** The minimum binary radius is a fundamental length scale. Can it be derived from $\epsilon$, $c_f$, and $\kappa$, or is it an independent postulate?
-2. **Is the reference Noether swarm density fixed?** Is $\rho_{\text{NS},0}$ universal, or does $\rho_{\text{NS}}(\mathbf{x},t)$ vary with cosmological epoch, gravitational field strength, or local matter density?
-3. **Why do neutrinos have mass at all?** If a neutrino is a near-photon pro/anti swarm pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
+2. **Is the reference Noether braid density fixed?** Is $\rho_{\text{NS},0}$ universal, or does $\rho_{\text{NS}}(\mathbf{x},t)$ vary with cosmological epoch, gravitational field strength, or local matter density?
+3. **Why do neutrinos have mass at all?** If a neutrino is a near-photon pro/anti braid pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
 
 #### Potential Falsifications
 - **If $\zeta(A)E_{\text{internal}}(A)$ cannot reproduce $m(A)c_{\text{eff}}^2$ after the response tensor is fixed:** The shielding-based mass map is wrong.
@@ -1541,15 +1541,15 @@ The canonical chapter should carry this interface but not the detailed simulatio
 
 ### Color Charge SU3
 
-This chapter gives the current assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and nested shell swarm scaffold geometry are meant to fit together before the full topological confinement derivation is closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../../../../markdown/aaa/assemblies/bosons/gluons.md) and [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md).
+This chapter gives the current assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and nested shell braid scaffold geometry are meant to fit together before the full topological confinement derivation is closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../../../../markdown/aaa/assemblies/bosons/gluons.md) and [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md).
 
 ---
 
 #### Ontology, Notation, and Generations
 
-##### Nested Shell Swarm Scaffold
+##### Nested Shell Braid Scaffold
 
-Each fermion is built on a **nested shell swarm scaffold**: three nested electrino:positrino binaries sharing a center. We use **Noether swarm** for the broader class of conserved-quantity-bearing swarms; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
+Each fermion is built on a **nested shell braid scaffold**: three nested electrino:positrino binaries sharing a center. We use **Noether braid** for the broader class of conserved-quantity-bearing braids; see [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md).
 
 We label the three binaries by their dynamical regime:
 
@@ -1573,7 +1573,7 @@ Each binary defines one **axis** with two **polar sites**, each occupied by eith
 - Electrino (−e/6), or
 - Positrino (+e/6).
 
-So each Noether swarm has 3 axes (H, M, L) × 2 poles = **6 polar sites**.
+So each Noether braid has 3 axes (H, M, L) × 2 poles = **6 polar sites**.
 
 We distinguish:
 
@@ -1592,11 +1592,11 @@ For a Gen‑I baryon (3 quarks):
 - 18 axial architrinos
 - **36 architrinos** total.
 
-We use “nested shell swarm” for the three-binary structure and “Noether swarm” when emphasizing the broader conserved-quantity-bearing class.
+We use “nested shell braid” for the three-binary structure and “Noether braid” when emphasizing the broader conserved-quantity-bearing class.
 
 ##### Generational excitation states
 
-Standard Model “generations” are interpreted as **excitation states** of the same nested shell swarm topology:
+Standard Model “generations” are interpreted as **excitation states** of the same nested shell braid topology:
 
 - **Gen‑I (ground‑state assembly)**
   - All three binaries assembled: [H, M, L].
@@ -1618,15 +1618,15 @@ In this section, color is defined on the ordered axial frame $\{D_H,D_M,D_L\}$, 
 
 Beyond which binaries are present, their **precession order** defines a braid orientation:
 
-- **Matter** nested shell swarm branch: precession order $H \to M \to L$ in time (one chirality).
-- **Antimatter** nested shell swarm branch: precession order $H \to L \to M$ (opposite chirality).
+- **Matter** nested shell braid branch: precession order $H \to M \to L$ in time (one chirality).
+- **Antimatter** nested shell braid branch: precession order $H \to L \to M$ (opposite chirality).
 
 This **braid chirality** will underpin our distinction between particles and antiparticles across all sectors and will later feed into CP‑related questions. Here, we keep **color** as a vector‑like degree of freedom: it does **not** depend on braid chirality.
 
 #### Colorless Fermions: Axis Uniformity
 
 **Core rule:**
-Color charge appears only when the nested shell swarm axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
+Color charge appears only when the nested shell braid axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
 
 ##### Stealth and color neutrality
 
@@ -1638,7 +1638,7 @@ for which
 $$
 1+e^{i2\pi/3}+e^{i4\pi/3}=0
 $$
-This does not derive the full color algebra by itself, but it gives a clean geometric reason why three-way closure is special: three balanced phase channels can hide the leading dipole signal. In that heuristic sense, color-singlet organization is not just algebraic neutrality but a **stealth condition** that helps the Noether swarm survive without strong radiative leakage.
+This does not derive the full color algebra by itself, but it gives a clean geometric reason why three-way closure is special: three balanced phase channels can hide the leading dipole signal. In that heuristic sense, color-singlet organization is not just algebraic neutrality but a **stealth condition** that helps the Noether braid survive without strong radiative leakage.
 
 ##### Electron and positron
 
@@ -1656,7 +1656,7 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 ##### Neutrinos: near-photon colorless neutral pairs
 
-Neutrinos are now treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether swarm pairing close to the photon channel, but not fully locked into the photon mode.
+Neutrinos are now treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether braid pairing close to the photon channel, but not fully locked into the photon mode.
 
 This makes the color statement sharper:
 
@@ -1688,7 +1688,7 @@ Let each axis pattern be coarse‑classified as:
 - **P+**: pure positrino $(+\!/+)$
 - **Pm**: mixed $(-\!/+)$ (net neutral, dipolar)
 
-The key structural rule for **admissible, stable quark‑like Noether swarms** is:
+The key structural rule for **admissible, stable quark‑like Noether braids** is:
 
 > Exactly **two axes share the same axial class**, and the third is **different in kind** (P− vs P+ vs Pm).
 
@@ -1731,7 +1731,7 @@ $\mathcal{H}^{\text{color}}_u = \mathrm{span}\{|u_H\rangle,|u_M\rangle,|u_L\rang
 
 Pole assignment inside the exceptional axis (which pole hosts the electrino) changes local dipole structure but not which axis is exceptional; at the level of color it’s a **gauge‑like internal redundancy**.
 
-Anti-up quarks use an anti-nested shell swarm with 5 electrinos, 1 positrino (and reversed braid), forming the conjugate triplet **3̄** with basis $|\bar u_H\rangle,|\bar u_M\rangle,|\bar u_L\rangle$.
+Anti-up quarks use an anti-nested shell braid with 5 electrinos, 1 positrino (and reversed braid), forming the conjugate triplet **3̄** with basis $|\bar u_H\rangle,|\bar u_M\rangle,|\bar u_L\rangle$.
 
 ##### Down‑type quarks (4e, 2p)
 
@@ -1927,7 +1927,7 @@ for the standard SU(3) structure constants in this basis.
 
 ##### Eightfold-way recovery residual
 
-The historical Eightfold Way lesson is useful here only as an algebraic recovery target: $SU(3)$ first classified hadrons by triplet, conjugate-triplet, and adjoint/octet representations before supplying the underlying strong-sector dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the axis-exceptionality construction must recover the representation bookkeeping while keeping the Noether swarm as the ontology.
+The historical Eightfold Way lesson is useful here only as an algebraic recovery target: $SU(3)$ first classified hadrons by triplet, conjugate-triplet, and adjoint/octet representations before supplying the underlying strong-sector dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the axis-exceptionality construction must recover the representation bookkeeping while keeping the Noether braid as the ontology.
 
 The branch condition is:
 $$
@@ -1972,7 +1972,7 @@ It continuously rotates exceptionality between H and M while leaving L unchanged
 
 A Gen‑I baryon (e.g., proton or neutron) consists of:
 
-- 3 quarks → 3 Noether swarms
+- 3 quarks → 3 Noether braids
 - Each with H, M, L axes
 - Total of **9 axes**: H₁,M₁,L₁; H₂,M₂,L₂; H₃,M₃,L₃.
 - 18 scaffold architrinos + 18 axial architrinos → **36 architrinos**.
@@ -1983,7 +1983,7 @@ In SU(3):
 
 - Baryon color state: $3 \otimes 3 \otimes 3 \supset 1$ (fully antisymmetric singlet).
 
-In nested shell swarm geometry:
+In nested shell braid geometry:
 
 - A color singlet baryon is a configuration where each of H, M, L is exceptional **once** across the three quarks, and the 9 axes form a **closed coupling network** (a closed braid).
 - Example proton (uud, schematic):
@@ -1997,7 +1997,7 @@ At large distances, axis‑dependent multipoles from each regime cancel:
 - H‑exceptionality from one quark is compensated by M and L exceptionality from others in the composite singlet combination.
 - Net color flux into the surrounding Noether sea is zero; only isotropic monopole fields (charge, baryon number, mass) remain.
 
-This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether swarms: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
+This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether braids: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
 
 #### Residual Strong Force and Nuclear Binding
 
@@ -2071,7 +2071,7 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../../../markd
 
 #### Summary and Interfaces
 
-- A **nested shell swarm** is the current three-axis $(H,M,L)$, six-site axial candidate for carrying conserved charge labels via internal symmetries; delayed-dynamics minimality remains a theorem target.
+- A **nested shell braid** is the current three-axis $(H,M,L)$, six-site axial candidate for carrying conserved charge labels via internal symmetries; delayed-dynamics minimality remains a theorem target.
 - **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon pro/anti neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
   - Up‑type: two P+ axes, one Pm axis.
@@ -2088,11 +2088,11 @@ This chapter defines the current electron-assembly target for $\mathbb{A}\mathbb
 
 #### Current framing
 
-The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md), and [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
+The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md), and [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
 
 #### Axial Inventory and Generation Core
 
-The electron uses the charged-fermion axial-layer rule in its lowest shielding-coherence class. The $e^-$ branch has a pro-nested shell swarm with full inner/middle/outer shielding support and a six-site axial inventory of $6E$. The $e^+$ branch is the charge-conjugate branch with axial inventory $6P$. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
+The electron uses the charged-fermion axial-layer rule in its lowest shielding-coherence class. The $e^-$ branch has a pro-nested shell braid with full inner/middle/outer shielding support and a six-site axial inventory of $6E$. The $e^+$ branch is the charge-conjugate branch with axial inventory $6P$. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
 
 The generation-core record is therefore not a new charge pattern. It is the shielding-coherence class of the same charged-lepton axial inventory:
 
@@ -2116,7 +2116,7 @@ The equality is a constraint on the mass-facing causal ledger: complete polarity
 
 #### Assembly and Detection Map
 
-The electron is not treated as a literal ontic-probability distribution. It is a coherent fermion assembly: a Noether swarm plus axial layer whose internal causal ledger remains localized enough to preserve identity, charge bookkeeping, and spin-statistical behavior. The diffuse object used in ordinary atomic language is an effective detection map for where that coherent assembly can resolve a record under a declared nuclear, apparatus, and Noether sea environment.
+The electron is not treated as a literal ontic-probability distribution. It is a coherent fermion assembly: a Noether braid plus axial layer whose internal causal ledger remains localized enough to preserve identity, charge bookkeeping, and spin-statistical behavior. The diffuse object used in ordinary atomic language is an effective detection map for where that coherent assembly can resolve a record under a declared nuclear, apparatus, and Noether sea environment.
 
 A compact local target is
 
@@ -2143,7 +2143,7 @@ Atomic orbitals are therefore recovery targets for coherent electron resonance, 
 
 An electron-level calculation should not begin with a fitted orbital probability density. The minimum native variables are:
 
-- the electron internal branch record $\mathcal{B}_e$, including Noether swarm geometry and axial-layer state;
+- the electron internal branch record $\mathcal{B}_e$, including Noether braid geometry and axial-layer state;
 - the nuclear source ledger $\mathcal{A}_{\mathrm{nuc}}$ and its causal-wake envelope;
 - the local Noether sea record $\theta_{\mathrm{sea}}^{(\ell)}$, including density, delay, cadence, and medium-response data at the chosen atomic window;
 - the apparatus or environmental projection $\Pi_{\mathrm{det}}$ that turns the branch ensemble into a finite record;
@@ -2151,11 +2151,11 @@ An electron-level calculation should not begin with a fitted orbital probability
 
 #### Weak-Reaction Provenance
 
-In weak reactions the electron is an outgoing or incoming charged assembly whose axial inventory and Noether swarm provenance must be accounted for explicitly. For a beta-family channel such as $d\to u\,e^-\,\bar\nu_e$, the $W^-$ corridor records the charged weak-coupling-triad transaction. It does not by itself identify the full source of the outgoing electron core and $6E$ axial inventory.
+In weak reactions the electron is an outgoing or incoming charged assembly whose axial inventory and Noether braid provenance must be accounted for explicitly. For a beta-family channel such as $d\to u\,e^-\,\bar\nu_e$, the $W^-$ corridor records the charged weak-coupling-triad transaction. It does not by itself identify the full source of the outgoing electron core and $6E$ axial inventory.
 
 A closed event record must therefore state:
 
-- which incoming assembly, local Noether sea content, or recruited neutral swarm material supplies the electron's Noether swarm provenance;
+- which incoming assembly, local Noether sea content, or recruited neutral braid material supplies the electron's Noether braid provenance;
 - how the $6E$ axial inventory is routed without violating charge, energy, momentum, angular momentum, or identity bookkeeping;
 - how the associated antineutrino branch inherits the neutral near-photon weak ledger rather than a charged-fermion axial layer;
 - and whether the observer-level beta rate and nuclear form factors are recovered without redefining the weak-coupling-triad exposure domain.
@@ -2188,7 +2188,7 @@ For the electron branch, the gate is conservative: any finite-size or Noether se
 
 #### Related Chapters
 
-- [noether-swarm.md](../../../../markdown/aaa/noether-swarm/noether-swarm.md)
+- [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md)
 - [particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md)
 - [quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md)
 - [muon-tau.md](../../../../markdown/aaa/assemblies/fermions/muon-tau.md)
@@ -2203,16 +2203,16 @@ This page now records the electron ontology target needed by the atomic, quantum
 
 ### Neutrinos
 
-This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. A neutrino is modeled as a near-planar pro/anti [Noether swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to explain why neutrinos are neutral, weakly coupled, oscillatory, and hard to detect while keeping the discussion tied to internal geometry rather than to elementary point-particle axioms.
+This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. A neutrino is modeled as a near-planar pro/anti [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to explain why neutrinos are neutral, weakly coupled, oscillatory, and hard to detect while keeping the discussion tied to internal geometry rather than to elementary point-particle axioms.
 
-The opening section states the working geometry and the plain-language interpretation. The later closure program records how PMNS-style mixing is meant to arise from residual internal-binary exposure in a pro/anti swarm pair. The exact locked geometry remains open; "near-photon" is the current controlled descriptor, not a finished derivation.
+The opening section states the working geometry and the plain-language interpretation. The later closure program records how PMNS-style mixing is meant to arise from residual internal-binary exposure in a pro/anti braid pair. The exact locked geometry remains open; "near-photon" is the current controlled descriptor, not a finished derivation.
 
 #### Near-Photon Neutral-Core Pairing
 
-Definition (geometric, working): A neutrino is a near-planar pro/anti Noether swarm pairing adjacent to the photon geometry. The photon is the fully locked **coaxial contra-rotating pro/anti planar pair**. A neutrino is nearly snapped into that state, but keeps a residual internal-binary mismatch that prevents it from becoming the photon transport channel.
+Definition (geometric, working): A neutrino is a near-planar pro/anti Noether braid pairing adjacent to the photon geometry. The photon is the fully locked **coaxial contra-rotating pro/anti planar pair**. A neutrino is nearly snapped into that state, but keeps a residual internal-binary mismatch that prevents it from becoming the photon transport channel.
 
 - Core structure and shielding:
-  - The pro-swarm and anti-swarm contributions cancel charge-like exposure, with $q_{\text{net}} = 0$.
+  - The pro-braid and anti-braid contributions cancel charge-like exposure, with $q_{\text{net}} = 0$.
   - The assembly does not carry a stable charged-fermion-style six-site axial layer. Balanced $3P,3E$ language is weak-coupling bookkeeping for how the neutral channel is read during interaction, not a bound constituent inventory.
   - Near-planarity hides most of the internal ledger from exterior coupling. The remaining signal is a tiny phase and energy residue from the internal binaries.
 
@@ -2259,7 +2259,7 @@ H_{\mathrm{geo}}=
 \Omega_{13}e^{i\phi_{13}} & \Omega_{23}e^{i\phi_{23}} & \epsilon_3
 \end{pmatrix}
 $$
-with $(\epsilon_i,\Omega_{ij},\phi_{ij})$ derived from near-planar pro/anti swarm-pair geometry, residual internal-binary exposure, and Noether sea coupling.
+with $(\epsilon_i,\Omega_{ij},\phi_{ij})$ derived from near-planar pro/anti braid-pair geometry, residual internal-binary exposure, and Noether sea coupling.
 
 Here $H_{\mathrm{geo}}$ is the operator that supplies the relativistic propagation phase, not an ordinary energy Hamiltonian. In natural units, $\epsilon_i$ and $\Omega_{ij}$ carry mass-squared-response units. Diagonalization defines the mixing matrix and the effective mass-squared-response eigenvalues:
 $$
@@ -2318,16 +2318,16 @@ paired with a suppressed neutrinoless double-beta rate and a sterile or right-ha
 
 ### Quantum Number Mapping
 
-This chapter is the canonical dictionary from assembly geometry to Standard Model quantum numbers. Its purpose is to tell the reader which structural features of the Noether swarm and axial layer are supposed to map to charge, weak labels, color labels, generation, and related bookkeeping categories.
+This chapter is the canonical dictionary from assembly geometry to Standard Model quantum numbers. Its purpose is to tell the reader which structural features of the Noether braid and axial layer are supposed to map to charge, weak labels, color labels, generation, and related bookkeeping categories.
 
 #### Purpose
-This document establishes the canonical dictionary translating **Nested Shell Swarm Assembly Geometry** into **Standard Model (SM) Quantum Numbers**.
+This document establishes the canonical dictionary translating **Nested Shell Braid Assembly Geometry** into **Standard Model (SM) Quantum Numbers**.
 
-For charged fermions and quarks, it adopts the **Noether swarm + axial layer** model:
-1.  **The Noether swarm:** A neutral, rotating nested shell swarm structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
-2.  **The Axial Layer:** A layer of 6 axial architrinos occupying polar sites on the Noether swarm, defining the effective electric-charge bookkeeping, weak isospin, and color-sector pattern.
+For charged fermions and quarks, it adopts the **Noether braid + axial layer** model:
+1.  **The Noether braid:** A neutral, rotating nested shell braid structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
+2.  **The Axial Layer:** A layer of 6 axial architrinos occupying polar sites on the Noether braid, defining the effective electric-charge bookkeeping, weak isospin, and color-sector pattern.
 
-Neutrinos are the current exception to this inventory model. They are treated as near-photon neutral pro/anti swarm pairings; balanced $3P,3E$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
+Neutrinos are the current exception to this inventory model. They are treated as near-photon neutral pro/anti braid pairings; balanced $3P,3E$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 
 Note: **Mass is derived**, not a quantum number here; it comes from shielded internal causal history and medium-dressed Noether sea response. See [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) for the mass thesis and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) for metric-level translation.
 
@@ -2341,61 +2341,61 @@ Note: **Mass is derived**, not a quantum number here; it comes from shielded int
     *   **Positrino ($P$):** positive-polarity architrino, labeled $+1\epsilon$ in electric bookkeeping.
     *   **Electrino ($E$):** negative-polarity architrino, labeled $-1\epsilon$ in electric bookkeeping.
 
-##### The Noether Swarm
+##### The Noether Braid
 Every fermion contains a central engine composed of nested binary pairs.
 *   **Composition:** Each binary contains 1 Positrino + 1 Electrino (Neutral).
-*   **Generation-I Noether swarm (nested shell swarm):** 3 nested binaries (inner, middle, outer). Total 6 architrinos (3P, 3E).
+*   **Generation-I Noether braid (nested shell braid):** 3 nested binaries (inner, middle, outer). Total 6 architrinos (3P, 3E).
 *   **Nested-scale picture:** The three binaries should be read as a genuine radial hierarchy, not just as three items in a list. The middle binary sits inside the shielding domain of the outer binary, and the inner binary sits inside the shielding domains of both. In that sense, the higher-generation core may be viewed as what is revealed when the outer shielding tier is removed and the assembly is read further inward.
 *   **Chirality (Matter vs. Antimatter):**
-    *   **Pro-Swarm:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
-    *   **Anti-Swarm:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
+    *   **Pro-Braid:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
+    *   **Anti-Braid:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
 *   **Net Charge:** Always $0$.
 
 ##### The Axial Layer
 *   **Sites:** 6 polar sites available for axial occupancy.
 *   **Occupancy:** Stable charged leptons and quarks have all 6 sites filled. Neutrinos do not carry a stable charged-fermion-style axial layer in the current architecture.
 *   **Function:** This layer interacts through external effective-field channels (EM, Weak).
-*   **Association picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials associate with the Noether swarm scaffold.
+*   **Association picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials associate with the Noether braid scaffold.
 
 ##### Why Polar Sites Are Plausible Dwell Regions
 
-The current geometric picture needs a reason that the axial layer prefers the poles rather than wandering arbitrarily around the Noether swarm. The most conservative working hypothesis is that each binary axis creates a **polar calm region**: a local saddle or relative minimum in the rapidly varying superposed potential generated by the surrounding binary circulation.
+The current geometric picture needs a reason that the axial layer prefers the poles rather than wandering arbitrarily around the Noether braid. The most conservative working hypothesis is that each binary axis creates a **polar calm region**: a local saddle or relative minimum in the rapidly varying superposed potential generated by the surrounding binary circulation.
 
 In plain terms, most of the core volume is a storm of whipping delayed potentials. Near the axis-defined poles, opposing contributions from the rotating binaries can partially cancel in the transverse directions while still preserving axial attachment. That does not mean the poles are force-free. It means they are the places where an axial architrino can remain phase-locked to the core with the least continual lateral correction.
 
 This gives a provisional dwelling mechanism for polar sites:
 
-- the Noether swarm supplies the neutral rotating scaffold,
+- the Noether braid supplies the neutral rotating scaffold,
 - the binary axes define candidate attachment directions,
 - and the polar saddle structure selects six metastable docking regions for the axial layer.
 
 This remains a geometric hypothesis rather than a finished derivation. Its value is that it ties the six-site axial architecture to the already-existing delayed superposition picture, instead of treating the polar sites as unexplained labels pasted onto the core.
 
 ##### Total Constituent Count (Charged Gen I)
-*   **Noether swarm (6) + axial layer (6) = 12 architrinos.**
+*   **Noether braid (6) + axial layer (6) = 12 architrinos.**
 
 ---
 
 #### The Fermion Mapping (Generation I)
 
-Charged Generation I leptons and quarks utilize the full **nested shell swarm** (3 binaries). The neutrino entry records the active weak-sector mapping while deferring the physical neutral-pair geometry to [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
+Charged Generation I leptons and quarks utilize the full **nested shell braid** (3 binaries). The neutrino entry records the active weak-sector mapping while deferring the physical neutral-pair geometry to [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 
 ##### Leptons
 
 **The Electron ($e^-$)**
-*   **Core:** Pro-Nested Shell Swarm (3P, 3E, Neutral, Matter-chirality).
+*   **Core:** Pro-Nested Shell Braid (3P, 3E, Neutral, Matter-chirality).
 *   **Axial Layer:** 6 Electrinos ($6E$).
 *   **Net Charge:** $0 (\text{core}) - 6\epsilon (\text{axial}) = -6\epsilon = -1e$.
 *   **Total Count:** 12 architrinos.
 
 **The Positron ($e^+$)**
-*   **Core:** Anti-Nested Shell Swarm (3P, 3E, Neutral, Antimatter-chirality).
+*   **Core:** Anti-Nested Shell Braid (3P, 3E, Neutral, Antimatter-chirality).
 *   **Axial Layer:** 6 Positrinos ($6P$).
 *   **Net Charge:** $0 + 6\epsilon = +1e$.
 *   **Note:** Antimatter is a geometric inversion of *both* the core braiding and the axial polarity.
 
 **The Electron Neutrino ($\nu_e$)**
-*   **Geometry:** Near-planar pro/anti Noether swarm pairing, close to the fully locked photon channel modeled as a coaxial contra-rotating pro/anti planar pair but not fully locked into it.
+*   **Geometry:** Near-planar pro/anti Noether braid pairing, close to the fully locked photon channel modeled as a coaxial contra-rotating pro/anti planar pair but not fully locked into it.
 *   **Stable Axial Layer:** None in the charged-fermion sense.
 *   **Weak Bookkeeping:** During charged-current coupling, the exposed neutral ledger can be represented as a balanced $3P,3E$ weak-coupling projection.
 *   **Net Charge:** $0$.
@@ -2404,12 +2404,12 @@ Charged Generation I leptons and quarks utilize the full **nested shell swarm** 
 ##### Quarks
 
 **The Up Quark ($u$)**
-*   **Core:** Pro-Nested Shell Swarm.
+*   **Core:** Pro-Nested Shell Braid.
 *   **Axial Layer:** 5 Positrinos, 1 Electrino ($5P, 1E$).
 *   **Net Charge:** $+5\epsilon - 1\epsilon = +4\epsilon = +2/3e$.
 
 **The Down Quark ($d$)**
-*   **Core:** Pro-Nested Shell Swarm.
+*   **Core:** Pro-Nested Shell Braid.
 *   **Axial Layer:** 2 Positrinos, 4 Electrinos ($2P, 4E$).
 *   **Net Charge:** $+2\epsilon - 4\epsilon = -2\epsilon = -1/3e$.
 
@@ -2417,11 +2417,11 @@ Charged Generation I leptons and quarks utilize the full **nested shell swarm** 
 
 | Particle | Core Type | Axial Layer | Net Charge ($e$) | Total Architrinos |
 | :--- | :--- | :--- | :--- | :--- |
-| **Electron** ($e^-$) | Pro-Nested Shell Swarm | 6E | -1 | 12 |
-| **Positron** ($e^+$) | Anti-Nested Shell Swarm | 6P | +1 | 12 |
-| **Neutrino** ($\nu_e$) | Near-planar pro/anti swarm pair | no stable axial layer; effective $3P,3E$ weak ledger | 0 | geometry-dependent |
-| **Up Quark** ($u$) | Pro-Nested Shell Swarm | 5P, 1E | +2/3 | 12 |
-| **Down Quark** ($d$) | Pro-Nested Shell Swarm | 2P, 4E | -1/3 | 12 |
+| **Electron** ($e^-$) | Pro-Nested Shell Braid | 6E | -1 | 12 |
+| **Positron** ($e^+$) | Anti-Nested Shell Braid | 6P | +1 | 12 |
+| **Neutrino** ($\nu_e$) | Near-planar pro/anti braid pair | no stable axial layer; effective $3P,3E$ weak ledger | 0 | geometry-dependent |
+| **Up Quark** ($u$) | Pro-Nested Shell Braid | 5P, 1E | +2/3 | 12 |
+| **Down Quark** ($d$) | Pro-Nested Shell Braid | 2P, 4E | -1/3 | 12 |
 
 ---
 
@@ -2430,11 +2430,11 @@ Charged Generation I leptons and quarks utilize the full **nested shell swarm** 
 In the Standard Model, the Weak Force only acts on "Left-Handed" particles. It transforms members of a doublet (e.g., $e^- \leftrightarrow \nu_e$) into each other. We map this to the **weak-coupling-triad hypothesis**.
 
 ##### The Weak-Coupling Triad Geometry
-For charged leptons and quarks, every charged-fermion axial layer consists of 6 polar sites. We hypothesize that these are organized into two groups based on the nested shell swarm rotation axis:
+For charged leptons and quarks, every charged-fermion axial layer consists of 6 polar sites. We hypothesize that these are organized into two groups based on the nested shell braid rotation axis:
 1.  **The Shielded Triad (3 sites):** Geometrically locked or obscured by the binary precession. These axial occupancies *cannot* be swapped without destroying the particle.
 2.  **The weak-coupling triad (3 sites):** Exposed to the Noether sea. These are the "switchable bits."
 
-For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon pro/anti swarm pair, not as a literal inventory of six bound axial sites.
+For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon pro/anti braid pair, not as a literal inventory of six bound axial sites.
 
 **Weak-coupling exposure diagnostic (hypothesis)**
 For an assembly $A$ with propagation direction $\hat{\mathbf p}$, the exposed triad should be selected by an operator rather than by a raw verbal claim. Let $\mathcal{S}_{\mathrm{ax}}(A)$ be the six polar sites and let $w_a(A,\hat{\mathbf p})$ be the local $W$-corridor docking weight of site $a$. Define
@@ -2543,7 +2543,7 @@ Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
 
 #### Color Charge and Strong Confinement
 
-In the Standard Model, quarks carry one of three color labels, while leptons are color singlets. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping, color is the **axis-exceptionality state** of a Noether swarm with an axial layer: one axis is distinguished relative to the other two, and the three possible choices span the quark color triplet.
+In the Standard Model, quarks carry one of three color labels, while leptons are color singlets. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping, color is the **axis-exceptionality state** of a Noether braid with an axial layer: one axis is distinguished relative to the other two, and the three possible choices span the quark color triplet.
 
 ##### The Definition of Color
 Use the ordered-frame axes $(H,M,L)$.
@@ -2605,7 +2605,7 @@ for every tested baryon-violating channel $\mathcal{C}_{\Delta B\ne0}$, while th
 
 At the representation and charge-bookkeeping layer, the current dictionary recovers the Standard Model labels as:
 
-- **$SU(3)_c$ (color):** axis-exceptionality of the Noether swarm plus axial layer. Quarks occupy the triplet basis $|q_H\rangle, |q_M\rangle, |q_L\rangle$ (conventionally Red, Green, Blue), while charged leptons remain axis-uniform singlets and neutrinos remain singlets by the near-photon neutral-pair route. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
+- **$SU(3)_c$ (color):** axis-exceptionality of the Noether braid plus axial layer. Quarks occupy the triplet basis $|q_H\rangle, |q_M\rangle, |q_L\rangle$ (conventionally Red, Green, Blue), while charged leptons remain axis-uniform singlets and neutrinos remain singlets by the near-photon neutral-pair route. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
 - **$SU(2)_L$ (weak isospin):** polarity of the **weak-coupling triad** (three exposed polar sites, or the effective near-photon weak projection for neutrinos). Left-handed fermions are doublets; right-handed fermions are singlets (weak-coupling triad hidden).
 - **$U(1)_Y$ (weak hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
 - **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving weak-coupling-triad charge/phase; see [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md).
@@ -2623,7 +2623,7 @@ This is not yet a derivation of local gauge dynamics. The remaining closure targ
 
 | Field | SU(3) | SU(2) | $Y$ | $Q = T_3 + Y/2$ | Geometric handle |
 | --- | --- | --- | --- | --- | --- |
-| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | weak-coupling triad P- or E-dominant on Noether swarm; axis exceptionality sets color |
+| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | weak-coupling triad P- or E-dominant on Noether braid; axis exceptionality sets color |
 | $u_R$ | 3 | 1 | +4/3 | +2/3 | weak-coupling triad hidden; asymmetry 5P/1E fixes $Q$ |
 | $d_R$ | 3 | 1 | -2/3 | -1/3 | weak-coupling triad hidden; asymmetry 2P/4E |
 | $\ell_L = (\nu_L, e_L)$ | 1 | 2 | -1 | $(0, -1)$ | neutrino uses effective near-photon weak ledger; electron uses axial-layer weak-coupling triad; both colorless |
@@ -2694,7 +2694,7 @@ The geometrical interpretation is:
 - charge conjugation mirrors the pattern across the same bookkeeping plane,
 - handedness selects whether the weak-coupling triad is exposed or hidden.
 
-The neutral sector is now separated from the charged-fermion inventory rule. The left-handed neutrino branch fits the electroweak doublet as an effective weak ledger, but its physical assembly is a near-photon pro/anti swarm pair rather than an ordinary charged-fermion axial layer. The fate of $\nu_R$, $\bar\nu_R$, and $\bar\nu_L$ still depends on whether the model ultimately selects:
+The neutral sector is now separated from the charged-fermion inventory rule. The left-handed neutrino branch fits the electroweak doublet as an effective weak ledger, but its physical assembly is a near-photon pro/anti braid pair rather than an ordinary charged-fermion axial layer. The fate of $\nu_R$, $\bar\nu_R$, and $\bar\nu_L$ still depends on whether the model ultimately selects:
 
 - no right-handed neutrino in the minimal architecture,
 - a sterile singlet branch,
@@ -2722,8 +2722,8 @@ For elementary fermions, the clean geometric bookkeeping is:
   $$
   s_{\text{core}}=
   \begin{cases}
-  +1,& \text{pro-swarm},\\
-  -1,& \text{anti-swarm}.
+  +1,& \text{pro-braid},\\
+  -1,& \text{anti-braid}.
   \end{cases}
   $$
 
@@ -2734,7 +2734,7 @@ B = s_{\text{core}}\frac{\chi_q}{3},
 L = s_{\text{core}}(1-\chi_q)
 $$
 
-This keeps matter/antimatter distinct from baryon/lepton labels: the pro/anti swarm sets the sign, while the quark-vs-lepton sector sets whether the unit is $1/3$ or $1$.
+This keeps matter/antimatter distinct from baryon/lepton labels: the pro/anti braid sets the sign, while the quark-vs-lepton sector sets whether the unit is $1/3$ or $1$.
 
 Using the left-chiral one-generation SM content
 $$
@@ -2825,12 +2825,12 @@ while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restore
 - **Current stance:** We do **not** include a $\nu_R$ in the minimal architecture. Left-handed neutrinos are the only active SU(2) doublet partners; omitting $\nu_R$ preserves the usual anomaly cancellation pattern.
 - **If added:** A $\nu_R$ would be a colorless, SU(2)-singlet, $Y=0$ sterile branch of the near-photon neutral-pair sector; it would couple only via mixing terms (Dirac/Majorana choice left open).
 - **Empirical gate:** Precision bounds on $\sum_i m_i$, the lightest-neutrino mass, direct kinematic mass, and neutrinoless double-beta searches are allowed to revise the neutral sector, not the charged-fermion axial-layer rule. A positive $0\nu\beta\beta$ result would force a lepton-number-violating neutral-pair provenance channel; null results tighten the allowed Majorana-like or sterile mixing channel without canonizing a separate interpretation.
-- **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be a near-photon pro/anti swarm pair whose residual internal-binary exposure defines three nearby mass modes. Oscillation is the changing weak projection of those modes over propagation. Other fermions have much stiffer charged axial-layer architectures, so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
-- **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by Noether swarm shielding/exposure and axial pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (weak-coupling-triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
+- **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be a near-photon pro/anti braid pair whose residual internal-binary exposure defines three nearby mass modes. Oscillation is the changing weak projection of those modes over propagation. Other fermions have much stiffer charged axial-layer architectures, so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
+- **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by Noether braid shielding/exposure and axial pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (weak-coupling-triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
 
 #### The Generation Mechanism (Mass Hierarchy)
 
-For charged fermions and quarks, generations are defined by the depletion of coherent shielding support in the nested Noether swarm. The axial layer remains a six-site gauge-facing record, so generation changes exposed mass response and lifetime without deleting the H/M/L axial frame that carries color and electroweak bookkeeping.
+For charged fermions and quarks, generations are defined by the depletion of coherent shielding support in the nested Noether braid. The axial layer remains a six-site gauge-facing record, so generation changes exposed mass response and lifetime without deleting the H/M/L axial frame that carries color and electroweak bookkeeping.
 
 Equivalently, the generation ladder can be read as a nested shielding hierarchy:
 
@@ -3015,8 +3015,8 @@ The explicit shared fitting packet lives in [Particle Masses](../../../../markdo
 
 ##### Core Depletion, Axial Vortices, and Lifetime (plain view)
 
-- **What the binaries do:** Each coherent shielding tier supplies axial-vortex support that helps hold the six axial architrinos in phase with the Noether swarm and shares load into the Noether sea.
-- **Gen I (nested shell swarm):** Three coherent shielding tiers give a stiff 3D support scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
+- **What the binaries do:** Each coherent shielding tier supplies axial-vortex support that helps hold the six axial architrinos in phase with the Noether braid and shares load into the Noether sea.
+- **Gen I (nested shell braid):** Three coherent shielding tiers give a stiff 3D support scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
 - **Gen II (bi-binary shielding branch):** The outer support tier is depleted. The H/M/L axial frame persists as a delayed branch record, but small perturbations reach the weakly bound axial layer more easily after causal propagation and relocking cycles. Lifetime drops.
 - **Gen III (uni-binary shielding branch):** Outer and middle support are depleted. The axial layer is metastable around the exposed inner engine, almost no outer screening remains for the deepest core energy, and the reaction corridor opens quickly. Very short-lived.
 - **Takeaway:** Fewer coherent shielding tiers means higher exposed mass response and shorter lifetime, not fewer color states.
@@ -3032,7 +3032,7 @@ Because the **Axial Layer** (which dictates charge bookkeeping and isospin for c
 Baryons are bound states of 3 quarks held together by shared flux/gluon planar assemblies.
 
 *   **Proton ($uud$):**
-    *   3 Pro-Swarms (Gen I).
+    *   3 Pro-Braids (Gen I).
     *   Axial layers: $(5P,1E) + (5P,1E) + (2P,4E)$.
     *   Total axial P: $5+5+2 = 12$.
     *   Total axial E: $1+1+4 = 6$.
@@ -3040,7 +3040,7 @@ Baryons are bound states of 3 quarks held together by shared flux/gluon planar a
     *   Total Architrinos: $3 \times 6 \text{ (Cores)} + 18 \text{ (Axial)} = 36$.
 
 *   **Neutron ($udd$):**
-    *   3 Pro-Swarms (Gen I).
+    *   3 Pro-Braids (Gen I).
     *   Axial layers: $(5P,1E) + (2P,4E) + (2P,4E)$.
     *   Total axial P: $5+2+2 = 9$.
     *   Total axial E: $1+4+4 = 9$.
@@ -3064,16 +3064,16 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the weak-coupling triad.** The net charge state of the 3 exposed polar sites. (+1/2 = P-dominant, -1/2 = E-dominant). |
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any core offset. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which core axis is exceptional relative to the other two. |
-| **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-frame spinor topology.** The nested shell swarm is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
+| **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-frame spinor topology.** The nested shell braid is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
 | **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The same ordered-frame spinor/exposure record exposes the weak-coupling triad to the ambient Noether sea (interaction allowed).<br>• **Right ($R$):** The same record hides the weak-coupling triad in the particle's wake or shield (interaction blocked). Spin-projection language is observer-level shorthand until the $SU(2)\to SO(3)$ lift and $\Delta_{\mathrm{WCT}}$ row pass. |
-| **Generation** | I, II, III | Mass hierarchy (Flavor). | **Noether Swarm Shielding Level.**<br>• **Gen I:** Nested Shell Swarm (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (exposed Noether swarm). |
-| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-swarm vs anti-swarm orientation. |
+| **Generation** | I, II, III | Mass hierarchy (Flavor). | **Noether Braid Shielding Level.**<br>• **Gen I:** Nested Shell Braid (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (exposed Noether braid). |
+| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-braid vs anti-braid orientation. |
 
 For the **Elementary Fermions** (Quarks and Leptons), this table is complete at the quantum-number bookkeeping layer. The neutrino's internal geometry remains delegated to the near-photon closure program.
 
 ##### Spin and the $4\pi$ Rule
 
-This is a closure target, not a completed proof. The nested shell swarm has three non-coplanar binary planes with ordered normals. Keeping the conserved angular-momentum ledger fixed, the visible ordered frame projects to $SO(3)$, while the causal-root and phase history may carry an additional sheet label.
+This is a closure target, not a completed proof. The nested shell braid has three non-coplanar binary planes with ordered normals. Keeping the conserved angular-momentum ledger fixed, the visible ordered frame projects to $SO(3)$, while the causal-root and phase history may carry an additional sheet label.
 
 The target is that a $2\pi$ spatial rotation returns the visible ordered frame but transports the history-lifted state to the opposite sheet, while a $4\pi$ rotation restores the full state. If this lift exists, it supplies the geometric route to spin-$\tfrac{1}{2}$ behavior through the $SU(2)\to SO(3)$ double cover. If the history lift closes after $2\pi$, the ordered-frame route does not derive fermion spinor behavior.
 
@@ -3090,7 +3090,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, these symbols are not separate primitive ob
 Across the repo, the working geometric rule is that the spin label tracks the **kind of orientation data** the excitation carries:
 
 - **Spin-$0$ (scalar):** purely radial or isotropic breathing, with no preferred direction attached to the mode itself.
-- **Spin-$\tfrac{1}{2}$ (fermionic spinor):** an ordered nested shell swarm core whose history-lifted state changes sheet under a $2\pi$ turn and closes only after $4\pi$.
+- **Spin-$\tfrac{1}{2}$ (fermionic spinor):** an ordered nested shell braid core whose history-lifted state changes sheet under a $2\pi$ turn and closes only after $4\pi$.
 - **Spin-$1$ (vector):** an excitation with one distinguished axis plus transverse/helical structure around that axis.
 - **Spin-$2$ (tensor):** a transverse-traceless shape disturbance carrying quadrupolar deformation data rather than a single axis alone.
 
@@ -3107,8 +3107,8 @@ Two qualifications remain useful without adding new rows to the taxonomy:
 2.  **Intrinsic Parity ($P$):**
     *   By convention, quarks have parity $P = +1$ and antiquarks have $P = -1$.
     *   **Mapping:** This is covered by the **Baryon/Lepton Number (Core Topology)** row.
-        *   Pro-Swarm (Matter) = $+$.
-        *   Anti-Swarm (Antimatter) = $-$.
+        *   Pro-Braid (Matter) = $+$.
+        *   Anti-Braid (Antimatter) = $-$.
     *   So, we have this covered implicitly.
 
 **Verdict:**
@@ -3119,14 +3119,14 @@ The table is sufficient. It connects the geometry to every parameter needed to c
 This chapter is a dictionary layer; the primary derivations live elsewhere. The closure interfaces are:
 
 - **Quark mixing (CKM):** weak-basis vs mass-basis overlap and holonomy closure in [theory-bridges/weak-mixing-ckm.md](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).
-- **Lepton mixing (PMNS):** near-photon pro/anti swarm-pair phase operator and oscillation map in [assemblies/fermions/neutrinos.md](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
+- **Lepton mixing (PMNS):** near-photon pro/anti braid-pair phase operator and oscillation map in [assemblies/fermions/neutrinos.md](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 - **Topological spin/confinement closure:** bundle/topology and causal-locus invariants in [dynamics/causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md) and [assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md).
 
 The weak-sector handoff now uses one shared exposure problem. The weak-coupling triad is not only the bookkeeping source of $T_3$; it is also the domain on which three later closure tasks must agree:
 
 - the left-channel selection rule must expose the triad for left-handed charged-current coupling and hide it for right-handed charged-current coupling,
 - CKM and PMNS closure must use the same exposed domain when defining weak-basis states,
-- weak-reaction provenance must record how the charged corridor routes the triad payload and whether final-state Noether swarm provenance is supplied by the corridor or by the local Noether sea.
+- weak-reaction provenance must record how the charged corridor routes the triad payload and whether final-state Noether braid provenance is supplied by the corridor or by the local Noether sea.
 
 The first concrete test case is the $d\to u$ beta-reaction exposure operator in [Weak-Mixing CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md). It uses the same weak-coupling-triad domain to gate left-handed docking, apply the $3E\to3P$ active-triad change, attach the $V_{ud}$ overlap factor, and hand the opposite $W^-$ transaction to the reaction ledger.
 
@@ -3143,7 +3143,7 @@ Spin closure target (formal, not yet proven):
 $$
 \widetilde{R}:SU(2)\simeq \mathrm{Spin}(3)\to SO(3)
 $$
-with nested shell swarm ordered-frame evolution transforming on the double cover so that $2\pi$ and $4\pi$ rotations are distinguished at the internal phase level.
+with nested shell braid ordered-frame evolution transforming on the double cover so that $2\pi$ and $4\pi$ rotations are distinguished at the internal phase level.
 
 #### Weak-Mixing and Composite-Observable Closure Hooks
 
@@ -3171,7 +3171,7 @@ with $Z_e$ fixed by canonical field normalization when mapping to observer-level
 
 ##### Inertial response and magnetic-moment interface
 
-Mass, inertial response, and magnetic moment are not additional quantum-number rows in this dictionary. A rigid-body inertia tensor is a useful comparison object because it maps angular velocity to angular momentum for a fixed mass distribution. The fermion assembly is not treated as that kind of rigid body. Its observer-level response is derived from a closed internal causal-history ledger, shielding, Noether sea coupling, and the orientation of the Noether swarm plus axial layer.
+Mass, inertial response, and magnetic moment are not additional quantum-number rows in this dictionary. A rigid-body inertia tensor is a useful comparison object because it maps angular velocity to angular momentum for a fixed mass distribution. The fermion assembly is not treated as that kind of rigid body. Its observer-level response is derived from a closed internal causal-history ledger, shielding, Noether sea coupling, and the orientation of the Noether braid plus axial layer.
 
 For a fermion assembly $A$, write the local response maps as
 $$
@@ -3255,9 +3255,9 @@ $$
 
 #### Overview
 
-This chapter collects the current quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in one place. The aim is narrower than a full QCD derivation. It is to state, in a single canonical reference, how the six quark flavors are built from the nested shell swarm program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state.
+This chapter collects the current quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in one place. The aim is narrower than a full QCD derivation. It is to state, in a single canonical reference, how the six quark flavors are built from the nested shell braid program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state.
 
-At the substrate level, a quark is a Noether swarm assembly with an axial layer. The core fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
+At the substrate level, a quark is a Noether braid assembly with an axial layer. The core fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
 
 Illustrative diagrams can be added later. For now the chapter uses axis strings and tables so the catalog is explicit without waiting on artwork.
 
@@ -3265,14 +3265,14 @@ Illustrative diagrams can be added later. For now the chapter uses axis strings 
 
 ##### Core and axial split
 
-The quark construction used here follows the same Noether swarm-plus-axial split already used in the fermion mapping chapters:
+The quark construction used here follows the same Noether braid-plus-axial split already used in the fermion mapping chapters:
 
-- The **Noether swarm** is the neutral binary scaffold.
+- The **Noether braid** is the neutral binary scaffold.
 - The **axial layer** is the six-site organization carrying the visible charge pattern.
 
-For matter quarks, the core is a **pro-swarm**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame:
+For matter quarks, the core is a **pro-braid**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame:
 
-- **Generation I:** nested shell swarm shielding branch, 6 coherent scaffold architrinos.
+- **Generation I:** nested shell braid shielding branch, 6 coherent scaffold architrinos.
 - **Generation II:** bi-binary shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
 - **Generation III:** uni-binary shielding branch, 2 coherent scaffold architrinos; the outer and middle support tiers are depleted on the branch lifetime window.
 
@@ -3362,7 +3362,7 @@ Both families satisfy the same structural rule: two axes are in one class and on
 
 ##### Right-handed singlet bookkeeping
 
-The image-level implementation candidate for right-handed pro-swarm couplings matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
+The image-level implementation candidate for right-handed pro-braid couplings matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
 
 For right-handed quarks:
 
@@ -3388,7 +3388,7 @@ The same count logic is what makes the right-handed quark sector look naturally 
 
 ##### Left-handed doublet bookkeeping (conjectural implementation candidate)
 
-The corresponding left-handed image suggests a useful implementation candidate for pro-swarm weak couplings:
+The corresponding left-handed image suggests a useful implementation candidate for pro-braid weak couplings:
 
 - the left-handed quark states are the exposed-coupling branches of the same six-site axial inventories,
 - the up-type and down-type quarks then sit on the same electroweak doublet arc,
@@ -3423,9 +3423,9 @@ The value of this conjecture is that it places the quark doublet in the same six
 
 That makes the quark sector look less like a separate lookup table and more like a continuous family of exposed coupling postures on the same axial-inventory wheel. At present this should be treated as a unifying implementation candidate, not a closed proof of weak-sector geometry.
 
-##### Anti-swarm mirror bookkeeping (conjectural reverse-engineered candidate)
+##### Anti-braid mirror bookkeeping (conjectural reverse-engineered candidate)
 
-The two anti-swarm images suggest a clean mirror rule that is worth recording explicitly.
+The two anti-braid images suggest a clean mirror rule that is worth recording explicitly.
 
 Start by charge-conjugating the quark axial inventories:
 
@@ -3440,8 +3440,8 @@ Start by charge-conjugating the quark axial inventories:
 
 The conjectural rule then reads:
 
-- **right-handed anti-swarm branches** behave as the electroweak mirrors of the pro-swarm left-handed doublets,
-- **left-handed anti-swarm branches** behave as the electroweak mirrors of the pro-swarm right-handed singlets.
+- **right-handed anti-braid branches** behave as the electroweak mirrors of the pro-braid left-handed doublets,
+- **left-handed anti-braid branches** behave as the electroweak mirrors of the pro-braid right-handed singlets.
 
 This is structurally attractive because it matches the Standard-Model statement already used elsewhere in the repo: charged-current weak interactions act on left-handed quarks and, equivalently, on right-handed antiquarks.
 At a broader bookkeeping level, it also suggests a compact charged-fermion rule: pro-left doublets mirror anti-right doublets, while pro-right singlets mirror anti-left singlets.
@@ -3450,12 +3450,12 @@ At a broader bookkeeping level, it also suggests a compact charged-fermion rule:
 
 In this reverse-engineered candidate:
 
-| State family | Axial count | Electric charge $Q$ | Right-handed anti-swarm assignment |
+| State family | Axial count | Electric charge $Q$ | Right-handed anti-braid assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^R,\bar c^R,\bar t^R$ | $1P,5E$ | $-2/3$ | $T_3=-1/2,\ Y=-1/3$ |
 | $\bar d^R,\bar s^R,\bar b^R$ | $4P,2E$ | $+1/3$ | $T_3=+1/2,\ Y=-1/3$ |
 
-These are exactly the charge-conjugate mirrors of the pro-swarm left-handed quark doublet:
+These are exactly the charge-conjugate mirrors of the pro-braid left-handed quark doublet:
 $$
 \left(+\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(-\frac{1}{2},-\frac{1}{3}\right),\qquad
 \left(-\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(+\frac{1}{2},-\frac{1}{3}\right)
@@ -3463,20 +3463,20 @@ $$
 
 ###### Left-handed antiquark bookkeeping
 
-For the left-handed anti-swarm branch, the same mirror logic gives:
+For the left-handed anti-braid branch, the same mirror logic gives:
 
-| State family | Axial count | Electric charge $Q$ | Left-handed anti-swarm assignment |
+| State family | Axial count | Electric charge $Q$ | Left-handed anti-braid assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^L,\bar c^L,\bar t^L$ | $1P,5E$ | $-2/3$ | $T_3=0,\ Y=-4/3$ |
 | $\bar d^L,\bar s^L,\bar b^L$ | $4P,2E$ | $+1/3$ | $T_3=0,\ Y=+2/3$ |
 
-These are the charge-conjugate mirrors of the pro-swarm right-handed singlets:
+These are the charge-conjugate mirrors of the pro-braid right-handed singlets:
 $$
 \left(0,+\frac{4}{3}\right)\mapsto \left(0,-\frac{4}{3}\right),\qquad
 \left(0,-\frac{2}{3}\right)\mapsto \left(0,+\frac{2}{3}\right)
 $$
 
-The practical advantage of this rule is that it closes the quark-sector wheel without inventing a separate anti-swarm lookup system. Once the pro-swarm sector is specified, the anti-swarm sector follows by charge conjugation plus the handedness swap in weak exposure.
+The practical advantage of this rule is that it closes the quark-sector wheel without inventing a separate anti-braid lookup system. Once the pro-braid sector is specified, the anti-braid sector follows by charge conjugation plus the handedness swap in weak exposure.
 
 This remains a conjectural bookkeeping layer derived by reverse engineering from the current weak-coupling pictures. It should not yet be treated as a proved weak-sector theorem.
 
@@ -3519,8 +3519,8 @@ This should still be treated cautiously. The image supports a candidate mapping 
 
 | Flavor | Type | Generation | Core architecture | Core architrinos | Axial pattern | Net charge | Total architrinos | Axis template |
 | --- | --- | --- | --- | ---: | --- | ---: | ---: | --- |
-| $u$ | up-type | I | pro nested shell swarm | 6 | $5P,1E$ | $+2/3$ | 12 | permutations of $(P^{m},P^+,P^+)$ |
-| $d$ | down-type | I | pro nested shell swarm | 6 | $2P,4E$ | $-1/3$ | 12 | selected family $F_\star$: permutations of $(P^+,P^-,P^-)$ if $F_\star=I$, or $(P^-,P^{m},P^{m})$ if $F_\star=II$ |
+| $u$ | up-type | I | pro nested shell braid | 6 | $5P,1E$ | $+2/3$ | 12 | permutations of $(P^{m},P^+,P^+)$ |
+| $d$ | down-type | I | pro nested shell braid | 6 | $2P,4E$ | $-1/3$ | 12 | selected family $F_\star$: permutations of $(P^+,P^-,P^-)$ if $F_\star=I$, or $(P^-,P^{m},P^{m})$ if $F_\star=II$ |
 | $c$ | up-type | II | pro bi-binary | 4 | $5P,1E$ | $+2/3$ | 10 | same up-type color template on a Generation-II core |
 | $s$ | down-type | II | pro bi-binary | 4 | $2P,4E$ | $-1/3$ | 10 | same selected-family rule on a Generation-II core |
 | $t$ | up-type | III | pro uni-binary | 2 | $5P,1E$ | $+2/3$ | 8 | same up-type color template on a Generation-III core |
@@ -3530,11 +3530,11 @@ This should still be treated cautiously. The image supports a candidate mapping 
 
 ###### Up quark
 
-The up quark is the ground-state up-type quark. It uses the full pro nested shell swarm core and the $5P,1E$ axial layer. Its defining axis geometry is one mixed axis against two positrino-rich axes.
+The up quark is the ground-state up-type quark. It uses the full pro nested shell braid core and the $5P,1E$ axial layer. Its defining axis geometry is one mixed axis against two positrino-rich axes.
 
 ###### Down quark
 
-The down quark is the ground-state down-type quark. It also uses the full pro nested shell swarm core, but with the $2P,4E$ axial layer. Its color structure comes from a single exceptional axis within the selected Family-I or Family-II sector, not from both families appearing as independent down-like species.
+The down quark is the ground-state down-type quark. It also uses the full pro nested shell braid core, but with the $2P,4E$ axial layer. Its color structure comes from a single exceptional axis within the selected Family-I or Family-II sector, not from both families appearing as independent down-like species.
 
 ###### Charm quark
 
@@ -3542,7 +3542,7 @@ The charm quark keeps the up-type axial pattern but sheds the outer shielding bi
 
 ###### Strange quark
 
-The strange quark is the Generation-II down-type partner of charm. It keeps the $2P,4E$ axial pattern but lives on a bi-binary core rather than a nested shell swarm core, with the same selected-family branch rule applied after the shielding tier is fixed.
+The strange quark is the Generation-II down-type partner of charm. It keeps the $2P,4E$ axial pattern but lives on a bi-binary core rather than a nested shell braid core, with the same selected-family branch rule applied after the shielding tier is fixed.
 
 ###### Top quark
 
@@ -3608,7 +3608,7 @@ $$
 $$
 on the exceptional axis should be treated as two micro-configurations within the same color sector unless a later derivation shows that one of them carries an additional observable phase, helicity bias, or stability difference. At present they are best regarded as implementation-level variants of the same color assignment.
 
-The corresponding antiquark is obtained by charge conjugation of the axial pattern together with anti-swarm braid orientation, giving the anti-red, anti-green, and anti-blue states.
+The corresponding antiquark is obtained by charge conjugation of the axial pattern together with anti-braid braid orientation, giving the anti-red, anti-green, and anti-blue states.
 
 ##### Down-type color tables
 
@@ -3637,13 +3637,13 @@ A single quark is never colorless. Color neutrality appears only in composite st
 - **Mesons:** $3 \otimes \bar 3 \supset 1$.
 - **Baryons:** $3 \otimes 3 \otimes 3 \supset 1$.
 
-In the baryon picture used elsewhere in the repo, a color singlet is a closed 9-axis braid in which $H$, $M$, and $L$ exceptionality each appear once across the three Noether swarms.
+In the baryon picture used elsewhere in the repo, a color singlet is a closed 9-axis braid in which $H$, $M$, and $L$ exceptionality each appear once across the three Noether braids.
 
 #### Coupling rules to gluons
 
 ##### What a gluon is in this catalog
 
-In this framework, a gluon is not treated as a primitive point particle added on top of the quarks. It is an emergent axis-reconfiguration ribbon or braid segment running along a color flux tube in the Noether sea. Its job is to transfer color phase and axis exceptionality between Noether swarms while preserving the quark inventory that defines flavor and electric charge.
+In this framework, a gluon is not treated as a primitive point particle added on top of the quarks. It is an emergent axis-reconfiguration ribbon or braid segment running along a color flux tube in the Noether sea. Its job is to transfer color phase and axis exceptionality between Noether braids while preserving the quark inventory that defines flavor and electric charge.
 
 The more detailed strong-sector picture remains in [gluons.md](../../../../markdown/aaa/assemblies/bosons/gluons.md) and [color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md). The present chapter only states the coupling rules required by the quark catalog.
 
@@ -3651,7 +3651,7 @@ The more detailed strong-sector picture remains in [gluons.md](../../../../markd
 
 A useful geometric refinement is to treat the gluon not as the flux tube alone but as the full local coupling complex built from:
 
-- the coupled flux-tube segment between Noether swarms,
+- the coupled flux-tube segment between Noether braids,
 - the energetic source binaries whose motion generates the axial wake vortices,
 - and any captive axial potentials that are temporarily locked into that coupled vortex channel.
 
@@ -3714,7 +3714,7 @@ The following parts of the quark catalog are already fixed strongly enough to be
 
 - up-type axial count $5P,1E$,
 - down-type axial count $2P,4E$,
-- generation as Noether swarm shielding level,
+- generation as Noether braid shielding level,
 - architrino counts $12$, $10$, and $8$ for Generations I, II, and III,
 - color as axis exceptionality in the three-state $(H,M,L)$ basis,
 - gluon action as an $SU(3)$ color reconfiguration that preserves flavor inventory.
@@ -3753,7 +3753,7 @@ The Weinberg angle $\theta_W$ is the electroweak mixing angle of the Standard Mo
 
 This note records a constrained geometric hypothesis for fermion assemblies in $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
-- the **Noether swarm axes remain fixed** as the reference scaffold,
+- the **Noether braid axes remain fixed** as the reference scaffold,
 - the **axial distribution** is allowed to rotate relative to that scaffold,
 - stable quark-like states may occupy a **discrete set of misalignment angles**,
 - the candidate branch increment for those angles is hypothesized, not derived here, to satisfy the existing six-pole electroweak value
@@ -3765,7 +3765,7 @@ $$
 \theta_{\mathrm{inc}}=\frac{\pi}{6}=30^\circ
 $$
 
-This is intentionally narrower than a claim that the H/M/L axes themselves tilt or precess into new orientations. The nested shell swarm scaffold remains the kinematic frame. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **weak-coupling triad** relative to the fixed core frame.
+This is intentionally narrower than a claim that the H/M/L axes themselves tilt or precess into new orientations. The nested shell braid scaffold remains the kinematic frame. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **weak-coupling triad** relative to the fixed core frame.
 
 ---
 
@@ -3775,7 +3775,7 @@ We separate two structures that are often spoken about together but should not b
 
 ##### 1. Core frame
 
-The [Noether swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md) is the neutral nested shell swarm scaffold. It defines:
+The [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) is the neutral nested shell braid scaffold. It defines:
 
 - generation via shielding level,
 - matter/antimatter braid orientation,
@@ -3904,7 +3904,7 @@ The following are allowed to rotate relative to the fixed core frame:
 
 The following are **not** rotating in this note:
 
-- the H/M/L Noether swarm scaffold itself,
+- the H/M/L Noether braid scaffold itself,
 - the binary nesting order that defines generation,
 - the matter/antimatter braid orientation,
 - the topological structure used to motivate spin-$\tfrac{1}{2}$ behavior.
@@ -3969,7 +3969,7 @@ For $2P,4E$:
 
 This suggests that down-type quarks need not minimize the same effective angle as up-type quarks. They may occupy a different branch even when the color azimuth is held fixed.
 
-This gives a possible path for distinguishing quark flavors geometrically without rotating the Noether swarm itself.
+This gives a possible path for distinguishing quark flavors geometrically without rotating the Noether braid itself.
 
 ---
 
@@ -4019,7 +4019,7 @@ For the weak-sector closure route, this note owns the first gate: selecting the 
 
 The useful theorem target is:
 
-1. define the admissible axial-layer configuration space for a fixed Noether swarm,
+1. define the admissible axial-layer configuration space for a fixed Noether braid,
 2. quotient by color-basis relabeling and pole symmetries,
 3. minimize $E_{\text{eff}}(\alpha,\phi_c)$ on the quotient space,
 4. pass the surviving branches to the weak-coupling-triad exposure calculation.
@@ -4128,7 +4128,7 @@ The fourth point matters. The discrete-angle idea is only worthwhile if it expla
 
 The sharpened hypothesis is:
 
-- the **Noether swarm stays fixed**,
+- the **Noether braid stays fixed**,
 - the **axial frame** may rotate relative to that fixed core,
 - the electron sits at the symmetric limit $\alpha=0$,
 - quarks occupy nonzero misalignment branches because their axial layers are both charge-imbalanced and axis-exceptional,
@@ -4161,7 +4161,7 @@ The photon is the canonical electromagnetic transport channel. Unlike Standard M
 
 #### Geometric Unit: The Coaxial Contra-Rotating Pro/Anti Planar Pair
 At the finest scale, the photon unit is a composite assembly:
-*   **Planar cores:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether swarm assemblies.
+*   **Planar cores:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether braid assemblies.
 *   **The pair:** Two planar cores form a pro/anti pair stacked **coaxially** on the propagation axis $\hat{\mathbf{e}}$.
 *   **Dynamics:** The pair is **contra-rotating** (clockwise / counter-clockwise).
 *   **Canonical description:** A photon is a **coaxial contra-rotating pro/anti planar pair**.
@@ -4173,7 +4173,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Burst vs. continuous:**
     *   **Packet (particle-like):** A discrete atomic transition releases a short burst train—a finite segment of the planar-mode train.
     *   **Beam (classical-like):** A continuous drive (antenna) releases a continuous stream of units, creating a long-range coherent beam.
-*   **Photon-channel speed:** The planar (edge-on) orientation minimizes interaction with the ambient Noether swarm assembly network. In weak homogeneous Noether sea conditions the local photon-channel speed $c_\gamma$ approaches the primitive wake speed $c_f$; in material media or strong Noether sea gradients, $c_\gamma < c_f$ is the observer-level transport summary.
+*   **Photon-channel speed:** The planar (edge-on) orientation minimizes interaction with the ambient Noether braid assembly network. In weak homogeneous Noether sea conditions the local photon-channel speed $c_\gamma$ approaches the primitive wake speed $c_f$; in material media or strong Noether sea gradients, $c_\gamma < c_f$ is the observer-level transport summary.
 
 #### Interaction Rules: Capture and Release
 *   **Emission (Planar-Mode Release):** Driven when a source residual routes an accepted action ledger into planar-mode nucleation. Acceleration is a common trigger geometry, but the event record must still name source depletion, recoil, wake, handoff, medium, and remnant rows.
@@ -4184,7 +4184,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
     *   If a photon-side event produces different outgoing assemblies, it is a Gate C reaction or pair channel. That record must separately state which target or Noether sea content supplies the identity-routed inventory for the new assemblies.
 
 #### Environmental Coupling (Ambient Noether Sea)
-*   **Ambient Noether sea:** The ambient Noether sea is populated by neutral assemblies (Noether swarms).
+*   **Ambient Noether sea:** The ambient Noether sea is populated by neutral assemblies (Noether braids).
 *   **Attenuation & Refraction:**
     *   As the photon train passes through regions of varying density (dielectric media or dense Noether sea), the planar mode **re-couples** transiently with ambient assemblies.
     *   **Refraction:** This transient recoupling and delay response lowers the effective photon-channel speed $c_\gamma$ relative to its weak homogeneous value.
@@ -4200,17 +4200,17 @@ The photon description above is the ontology-level target. The theorem-level pro
 
 | Gate | Closure target | Required recovery |
 | :--- | :--- | :--- |
-| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating pro/anti planar-pair branch from Noether swarm and Noether sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
+| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating pro/anti planar-pair branch from Noether braid and Noether sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
 | **Gate B: polarization and spin** | Derive the transverse ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
 | **Gate C: vertices and transitions** | Map emission, absorption, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
 
-Gate C treats blackbody behavior as an ensemble theorem target. It should not be read as a property of a single photon, a single excited Noether swarm, or a local source event by itself; the blackbody route requires repeated emission, capture, scattering, pair-channel exchange, and medium exchange to recover detailed balance for a photon bath.
+Gate C treats blackbody behavior as an ensemble theorem target. It should not be read as a property of a single photon, a single excited Noether braid, or a local source event by itself; the blackbody route requires repeated emission, capture, scattering, pair-channel exchange, and medium exchange to recover detailed balance for a photon bath.
 
 The Aharonov-Bohm item in Gate C inherits the observer-level benchmark from [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md#aharonov-bohm-holonomy-benchmark). The photon and effective U(1) ledgers must recover a relative phase proportional to enclosed flux while the local force channel on the interferometer arms vanishes. This is a phase-ledger recovery target, not a claim that the gauge potential is a separate substrate object.
 
 ##### Gate A Theorem Scaffold: Kinematics and Optics
 
-Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar core $L$ and trailing planar core $T$, separated by $d$ along the propagation axis $\hat{\mathbf{e}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf{x})$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#two-way-signal-speed-criterion).
+Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar core $L$ and trailing planar core $T$, separated by $d$ along the propagation axis $\hat{\mathbf{e}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf{x})$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#two-way-signal-speed-criterion).
 
 The axial communication budget is asymmetric:
 $$
@@ -4240,7 +4240,7 @@ $$
 with finite branch constant $\Lambda_\gamma$. This branch keeps $\omega d/(c_f-c_\gamma)=O(1)$ while forcing $d\to0$ as $c_\gamma\to c_f$. A fixed-$d$ branch would generally make the photon channel frequency-dependent and is therefore a failure mode unless a separate cancellation is derived.
 
 Gate A is closed only when this branch proves the following recoveries in the same speed convention:
-- The planar-pair mode has no rest-state volumetric clock and therefore imports no rest proper-time branch from massive Noether swarm assemblies.
+- The planar-pair mode has no rest-state volumetric clock and therefore imports no rest proper-time branch from massive Noether braid assemblies.
 - The kinematic mass shell is null in the photon channel: $E_\gamma^2-\|\mathbf{p}_\gamma\|^2c_\gamma^2=0$, with $E_\gamma=h\nu$ and $p=h/\lambda$ recovered from the phase-cycle ledger.
 - The weak homogeneous branch identifies the measured photon speed with the same low-gradient limit used by clock-and-ruler synchronization, while keeping $c_f$ as the primitive wake speed rather than the directly measured observer speed.
 - The residual leakage terms for dispersion, birefringence, static charge exposure, and preferred-frame anisotropy fall below the empirical bounds before Gate B and Gate C add polarization and interaction vertices.
@@ -4571,13 +4571,13 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
 
 #### Weak-Corridor Provenance
 
-The weak corridor is an event record, not a permanent container that owns the outgoing fermion inventory. Its provenance rows must identify which architrinos participate, which neutral Noether swarms supply the scaffold, which payload moves through the corridor, and where the balancing recoil is stored.
+The weak corridor is an event record, not a permanent container that owns the outgoing fermion inventory. Its provenance rows must identify which architrinos participate, which neutral Noether braids supply the scaffold, which payload moves through the corridor, and where the balancing recoil is stored.
 
-| Corridor event | Participating architrinos | Neutral Noether swarm provenance | Corridor payload | Required ledger closure |
+| Corridor event | Participating architrinos | Neutral Noether braid provenance | Corridor payload | Required ledger closure |
 | --- | --- | --- | --- | --- |
-| Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3P$ and active $3E$; the shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral core provenance; the corridor does not manufacture a new Noether swarm. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3P\to3E$, while emitting $W^-$ balances a source-side $3E\to3P$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether sea recoil must close across the source assembly, target assembly or reaction products, corridor, and ambient Noether sea. |
-| Quark charged current, $d_L \leftrightarrow u_L$ within a CKM-weighted weak basis | The active quark weak-coupling triad changes $3E\leftrightarrow3P$ while color axis-exceptionality and generation bookkeeping remain separate ledgers. | Source and product quark Noether swarms provide the neutral scaffold and color record; CKM weighting belongs to overlap between weak basis and mass/branch basis, not to a new corridor inventory. | The corridor transports the compensating $\pm 6\epsilon$ payload for the active-triad swap and carries the energy-momentum needed for the branch transition. | Charge/polarity, baryon number, color-singlet embedding, spin/angular momentum, energy, momentum, and Noether sea recoil must all be accounted for in the full reaction ledger. |
-| Neutral current, $Z^0$ exchange | The weak-coupling-triad and shielded-triad records are read or rephased without a $3P\leftrightarrow3E$ swap. | The participating assemblies keep their neutral Noether swarm provenance; no charged axial inventory is imported from the corridor. | No net charge payload; the corridor carries energy, momentum, phase, and vector angular-momentum transfer. | The event must close energy, momentum, spin/angular momentum, phase, wake, and Noether sea recoil while preserving electric charge and axial inventory. |
+| Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3P$ and active $3E$; the shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral core provenance; the corridor does not manufacture a new Noether braid. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3P\to3E$, while emitting $W^-$ balances a source-side $3E\to3P$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether sea recoil must close across the source assembly, target assembly or reaction products, corridor, and ambient Noether sea. |
+| Quark charged current, $d_L \leftrightarrow u_L$ within a CKM-weighted weak basis | The active quark weak-coupling triad changes $3E\leftrightarrow3P$ while color axis-exceptionality and generation bookkeeping remain separate ledgers. | Source and product quark Noether braids provide the neutral scaffold and color record; CKM weighting belongs to overlap between weak basis and mass/branch basis, not to a new corridor inventory. | The corridor transports the compensating $\pm 6\epsilon$ payload for the active-triad swap and carries the energy-momentum needed for the branch transition. | Charge/polarity, baryon number, color-singlet embedding, spin/angular momentum, energy, momentum, and Noether sea recoil must all be accounted for in the full reaction ledger. |
+| Neutral current, $Z^0$ exchange | The weak-coupling-triad and shielded-triad records are read or rephased without a $3P\leftrightarrow3E$ swap. | The participating assemblies keep their neutral Noether braid provenance; no charged axial inventory is imported from the corridor. | No net charge payload; the corridor carries energy, momentum, phase, and vector angular-momentum transfer. | The event must close energy, momentum, spin/angular momentum, phase, wake, and Noether sea recoil while preserving electric charge and axial inventory. |
 
 #### Massless Photon Versus Massive Weak Corridor
 
@@ -4623,7 +4623,7 @@ This is not a new substrate interaction. It is the low-energy observer limit of 
 The Higgs comparison is modeled here as a candidate resonance of the Noether sea structure rather than as a propagating assembly *through* the ambient Noether sea. That identification remains a closure target until the same branch record predicts the observed scalar mass, channel rates, and coupling pattern.
 
 #### Geometric Structure
-*   **The Substrate:** The Noether sea is a coupled population of neutral nested shell swarm units ($1P, 1E$).
+*   **The Substrate:** The Noether sea is a coupled population of neutral nested shell braid units ($1P, 1E$).
 *   **Scalar Target:** The candidate Higgs channel is a **radial breathing mode** ($r \to r + \delta r$) of these Noether sea units.
 *   **Spin-$0$:** The oscillation is purely radial (scalar), possessing no vector orientation.
 
@@ -4673,10 +4673,10 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 ### Pair production (note)
 
 - This note covers photon-triggered conversion, not ordinary atomic or material absorption. Consuming the incoming photon means closing the free planar-pair ledger; it does not automatically mean that the outgoing fermion identities are inherited from the photon constituents.
-- A neutral Noether Pair should be treated as the local source architecture for spontaneous pro-anti fermion pair production. With sufficient energy input, a pair-conversion mode can unpack that neutral pair into a fermion and antifermion while returning the Noether swarm bookkeeping to overall neutrality.
-- In this framing, the key point is not limited to the electron channel. A Noether Pair can furnish the neutral swarm content needed for any pro-anti fermion pair, provided the supplied energy and axial-bookkeeping conditions match the target pair.
+- A neutral Noether Pair should be treated as the local source architecture for spontaneous pro-anti fermion pair production. With sufficient energy input, a pair-conversion mode can unpack that neutral pair into a fermion and antifermion while returning the Noether braid bookkeeping to overall neutrality.
+- In this framing, the key point is not limited to the electron channel. A Noether Pair can furnish the neutral braid content needed for any pro-anti fermion pair, provided the supplied energy and axial-bookkeeping conditions match the target pair.
 - In photon-photon pair production, the photons supply the energy; the Sea contributes the neutral Noether Pair, and the axial excess arranges into the outgoing pro/anti fermion inventories. Electric bookkeeping and architrino counts stay balanced because the Noether-pair source remains neutral after the conversion bookkeeping closes.
-- The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon pro/anti swarm pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
+- The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon pro/anti braid pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
 - Sketch model: energy in -> pair-conversion mode forms using a neutral Noether Pair plus the required axial split -> fermion + antifermion -> the neutral Noether-pair bookkeeping relaxes back into the Sea.
 
 ### Closure Interface: Corridor Operators for Mixing
@@ -4710,13 +4710,13 @@ This chapter should be read together with [Quarks](../../../../markdown/aaa/asse
 
 ### The Geometric Origin of Color Charge
 
-In the Standard Model, color is an abstract $SU(3)$ label. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether swarm with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md).
+In the Standard Model, color is an abstract $SU(3)$ label. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether braid with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md).
 
-#### The Noether Swarm Substrate
+#### The Noether Braid Substrate
 
-The [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) is populated by high-energy, small-scale Noether swarms, often in tightly bound pro/anti groups. These form an ambient Noether sea of color-singlet swarms.
+The [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) is populated by high-energy, small-scale Noether braids, often in tightly bound pro/anti groups. These form an ambient Noether sea of color-singlet braids.
 
-A Noether swarm also has three ordered axes $(H,M,L)$, each carrying two polar sites.
+A Noether braid also has three ordered axes $(H,M,L)$, each carrying two polar sites.
 
 - **Axial layer:** 6 polar sites total, 2 per axis.
 - **Symmetry breaking:** quarks do not keep the three axes equivalent.
@@ -4750,19 +4750,19 @@ The conventional labels Red, Green, and Blue are therefore basis names for the t
 
 ### The Gluon: Emergent Vortex Dynamics
 
-In this model, the gluon is not a fundamental point particle but an emergent meta-assembly: a dynamic link formed by the coupling of potential vortices between Noether swarms.
+In this model, the gluon is not a fundamental point particle but an emergent meta-assembly: a dynamic link formed by the coupling of potential vortices between Noether braids.
 
 #### Polar Vortices and Flux Tubes
 
-- **Source:** each circulating binary within the Noether swarm generates a pair of persistent, high-intensity polar vortices along its rotation axis.
-- **Coupling:** when colored quarks interact, these vortices do not terminate in empty space. Instead, they twist the surrounding Noether sea into a **flux tube**, a coherent bundle of ambient nested shell swarms carrying the open color corridor between exceptional-axis sectors.
+- **Source:** each circulating binary within the Noether braid generates a pair of persistent, high-intensity polar vortices along its rotation axis.
+- **Coupling:** when colored quarks interact, these vortices do not terminate in empty space. Instead, they twist the surrounding Noether sea into a **flux tube**, a coherent bundle of ambient nested shell braids carrying the open color corridor between exceptional-axis sectors.
 - **The glue:** the strong force is the tension of these coupled vortices trying to shorten and restore the surrounding Noether sea to its isotropic ground state.
 
 This can also be read as the strong-force version of the pole problem. Rotational averaging can blur equatorial structure, but it does not fully hide axial leakage. Colored cores therefore remain open at their poles unless another core accepts the flux. A gluon tube is the Noether sea's way of routing that exposed axial traffic into a partner assembly rather than letting it radiate away incoherently.
 
 #### The Gluon as an Axis-Reconfiguration Braid
 
-A gluon is a propagating disturbance in the Noether swarm assembly network that reconfigures axis exceptionality within the quark color basis.
+A gluon is a propagating disturbance in the Noether braid assembly network that reconfigures axis exceptionality within the quark color basis.
 
 - **The operator:** when a Red quark $|q_H\rangle$ interacts with a Green quark $|q_M\rangle$, the gluon acts as a bridge that mixes or swaps the exceptional-axis state between $H$ and $M$.
 - **The braid:** geometrically, this is realized as a twisting of the Noether sea flux tube: a braid segment that propagates between the cores and carries the topology required to move exceptionality from one axis sector to another.
@@ -4788,18 +4788,18 @@ At the Standard Model level, gluons are spin-1 gauge bosons. Because color is co
 
 - **Vector channel:** the open color corridor selects a spatial axis and transverse twist data. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that geometry is the candidate substrate for the observer-level spin-1 representation; it is not a derivation merely from the fact that a flux tube has a direction.
 - **Helicity limit:** in the massless short-distance gauge-boson limit, the physical gluon polarizations are transverse helicity states. The vortex-bundle twist must reproduce those helicity degrees of freedom where QCD treats gluons as propagating internal degrees of freedom.
-- **Angular-momentum ledger:** during exchange, the rotating vortex link is the candidate carrier of spin and orbital angular momentum between Noether swarms. The full hadron accounting must still include Noether swarm spinor structure, color-corridor circulation, and flux-network response, but that accounting remains open until the reusable angular-momentum ledger has been derived.
+- **Angular-momentum ledger:** during exchange, the rotating vortex link is the candidate carrier of spin and orbital angular momentum between Noether braids. The full hadron accounting must still include Noether braid spinor structure, color-corridor circulation, and flux-network response, but that accounting remains open until the reusable angular-momentum ledger has been derived.
 
 ---
 
 ### Confinement and Energetics
 
-Quarks are confined because an open color corridor stores energy in the surrounding Noether swarm assembly network.
+Quarks are confined because an open color corridor stores energy in the surrounding Noether braid assembly network.
 
 #### Energy Density Calculation
 
 - **Noether sea coherence scale:** the confinement scaffold uses a candidate coherence length $L_{\mathrm{coh}}$, provisionally of order $1\;\mathrm{fm}$, rather than a discretization scale of the Euclidean void.
-- **Cost of coherent ordering:** forcing a line of ambient Noether sea swarms to align with an open color corridor costs an energy $E_{\mathrm{coh}}$ per coherence length.
+- **Cost of coherent ordering:** forcing a line of ambient Noether sea braids to align with an open color corridor costs an energy $E_{\mathrm{coh}}$ per coherence length.
 - **String tension ($\sigma$):**
   $$
   \sigma \sim \frac{E_{\mathrm{coh}}}{L_{\mathrm{coh}}}
@@ -4829,7 +4829,7 @@ in the confining window. At the assembly level, this says that an open color cor
 
 #### The Color Singlet (White)
 
-A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md) and [Transient Hadrons: Mesons and Δ Resonances](../../../../markdown/aaa/assemblies/mesons/mesons.md).
+A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md) and [Mesons](../../../../markdown/aaa/assemblies/mesons/mesons.md).
 
 1. Red: H-exceptional
 2. Green: M-exceptional
@@ -4849,7 +4849,7 @@ Unlike photons, gluons carry color structure themselves because they represent r
 
 #### The 3-Gluon Vertex
 
-- **Mechanism:** since a gluon is a polarized distortion of the Noether swarm assembly network, two gluon braids can interact when they cross or share corridor structure.
+- **Mechanism:** since a gluon is a polarized distortion of the Noether braid assembly network, two gluon braids can interact when they cross or share corridor structure.
 - **Topology:** flux tubes can merge or split. Geometrically, this is the tangling of Noether sea vortices, the strong-sector origin of non-Abelian self-interaction.
 
 #### Glueballs
@@ -4873,7 +4873,7 @@ Key properties of hadrons:
 
 Protons and neutrons are the most familiar hadrons; they make up atomic nuclei. Mesons are typically unstable and mediate strong-force effects in nuclear processes.
 
-While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of [Noether swarms](../../../../markdown/aaa/noether-swarm/noether-swarm.md) connected by color flux tubes.
+While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of [Noether braids](../../../../markdown/aaa/noether-braid/noether-braid.md) connected by color flux tubes.
 
 Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations.
 
@@ -4882,7 +4882,7 @@ The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic resp
 * **Stability criterion:** An assembly is stable while its trajectory in configuration space remains inside a basin where the binding action is a **local minimum**. **Dissociation** means the trajectory reaches a region where that action loses its minimum, so gradient flow carries the system toward another basin and into a new assembly pattern.
 
 **Confinement as topological shear (nonlinear elasticity lens)**
-* **Topological definition:** A lone color charge is a monopole defect in the Noether swarm assembly network, inducing a shear field that diverges if unscreened. Mesons (dipoles) and baryons (tripoles) are closed configurations where the shear of each core is canceled by the geometry of the others. The “flux tube” is the locus of maximal medium shear connecting these cores—a line defect, not a separate object.
+* **Topological definition:** A lone color charge is a monopole defect in the Noether braid assembly network, inducing a shear field that diverges if unscreened. Mesons (dipoles) and baryons (tripoles) are closed configurations where the shear of each core is canceled by the geometry of the others. The “flux tube” is the locus of maximal medium shear connecting these cores—a line defect, not a separate object.
 * **Color exchange as shear waves:** [Gluons](../../../../markdown/aaa/assemblies/bosons/gluons.md) are the propagated redistributions of this shear along the defect; the lens preserves SU(3) bookkeeping while framing it as Noether sea response.
 
 ---
@@ -4892,18 +4892,18 @@ The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic resp
 **Standard Model Role:**
 Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the **residual strong force** (nuclear force) that binds protons and neutrons into atomic nuclei. At the Standard Model level, their spin-0 bosonic role means they can be populated and absorbed in great numbers without satisfying the fermionic Pauli occupancy restriction.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, that bosonic-statistics statement is a downstream target of [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/quantum-statistics.md) and [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). The pion section may use the observer-level boson label, but it does not independently derive Pauli exclusion or spin-statistics closure.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, that bosonic-statistics statement is a downstream target of [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md) and [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). The pion section may use the observer-level boson label, but it does not independently derive Pauli exclusion or spin-statistics closure.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A pion is a **two-swarm (quark + antiquark) assembly**: one Generation‑I Noether swarm (matter chirality) and one Generation‑I antiquark Noether swarm (antimatter chirality) linked by a shared flux tube.
+A pion is a **two-braid (quark + antiquark) assembly**: one Generation‑I Noether braid (matter chirality) and one Generation‑I antiquark Noether braid (antimatter chirality) linked by a shared flux tube.
 
 *   **Structure:** $u\bar{d}$ ($\pi^+$), $d\bar{u}$ ($\pi^-$), or a superposition of $u\bar{u}/d\bar{d}$ ($\pi^0$).
-*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the pro-swarm and anti-swarm achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark is destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether sea.
+*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the pro-braid and anti-braid achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark is destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether sea.
 
 **Dynamical Role:**
 In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether sea between them.
-*   **Mechanism:** A proton interacts with the Noether sea, associating a local nested shell swarm into a transient $u\bar{d}$ assembly (a $\pi^+$), sustained by the binding-energy deficit of the nucleus. The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the effective pion-like loop spans the neighboring baryon record. The local Noether sea configuration relaxes once the loop dissociates or re-associates into the surrounding nuclear assemblies.
-*   **Topology:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger nested shell swarm baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
+*   **Mechanism:** A proton interacts with the Noether sea, associating a local nested shell braid into a transient $u\bar{d}$ assembly (a $\pi^+$), sustained by the binding-energy deficit of the nucleus. The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the effective pion-like loop spans the neighboring baryon record. The local Noether sea configuration relaxes once the loop dissociates or re-associates into the surrounding nuclear assemblies.
+*   **Topology:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger nested shell braid baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 **The Yukawa Mechanism (Assembly Tension):**
 *   **Range vs. mass:** The force range scales as $R \sim \hbar/mc$ because heavier assemblies (higher internal curvature) expose stronger Noether sea response and decohere over shorter distances. The pion’s low mass/low curvature lets the binding signal span a femtometer.
@@ -4925,19 +4925,19 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 Kaons are the lightest mesons containing a **strange quark** (Generation II). They are critical because they exhibit **CP violation** (matter-antimatter asymmetry) and, in Standard Model language, decay relatively slowly via the Weak interaction. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the assembly dissociates only through comparatively weak reaction corridors, proving that "flavor" is not conserved in weak processes.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A Kaon connects a **Generation I core** (nested shell swarm, e.g., $u$ or a selected $d$ branch) with a selected **Generation II shielding branch** (bi-binary, observer-level $s$); this is the mesonic-side version of the generation-bridging problem treated more abstractly in [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md). The down-type family-selection target is upstream of this meson shorthand: the kaon label assumes the relevant $d$ or $s$ branch has already survived the branch-selection criterion, rather than adding another observed down-type species.
+A Kaon connects a **Generation I core** (nested shell braid, e.g., $u$ or a selected $d$ branch) with a selected **Generation II shielding branch** (bi-binary, observer-level $s$); this is the mesonic-side version of the generation-bridging problem treated more abstractly in [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md). The down-type family-selection target is upstream of this meson shorthand: the kaon label assumes the relevant $d$ or $s$ branch has already survived the branch-selection criterion, rather than adding another observed down-type species.
 
 *   **Structure:** $u\bar{s}$ ($K^+$), $d\bar{s}$ ($K^0$), etc.
-*   **Shielding Mismatch / Geometric torsion ($\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$):** The Gen I core presents a nested shell swarm boundary ($S^1\!\times\!S^1\!\times\!S^1$); the Gen II core presents a bi-binary boundary ($S^1\!\times\!S^1$). Connecting these mismatched boundaries forces the flux manifold to twist. The induced torsion breaks reflection symmetry along the tube: unlike the pion (net $\int \tau\,ds=0$), the kaon carries non-zero twist charge $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ that sets the CP-odd asymmetry and keeps the tube from relaxing to a straight, cancellation-friendly lock.
+*   **Shielding Mismatch / Geometric torsion ($\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$):** The Gen I core presents a nested shell braid boundary ($S^1\!\times\!S^1\!\times\!S^1$); the Gen II core presents a bi-binary boundary ($S^1\!\times\!S^1$). Connecting these mismatched boundaries forces the flux manifold to twist. The induced torsion breaks reflection symmetry along the tube: unlike the pion (net $\int \tau\,ds=0$), the kaon carries non-zero twist charge $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ that sets the CP-odd asymmetry and keeps the tube from relaxing to a straight, cancellation-friendly lock.
 *   **Torsion energy:** The 3-ring ↔ 2-ring boundary mismatch forces a twisted mapping of the flux tube cross-section. The integrated torsion along the tube is the phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, storing potential energy that is *not* symmetric under $\phi\to-\phi$ when the geometry is chiral. The $K^0\!\leftrightarrow\!\bar K^0$ wobble is the system oscillating between two local minima of this torsion energy landscape, with the unaligned weak-coupling triads setting the barrier height.
 *   **Boundary-value framing:** The Gen I/Gen II interface is a boundary condition mismatch on the flux tube cross-section. A smooth solution requires non-zero torsion; $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}} = \int_0^L \tau(s)\,ds$ is that required torsion integrated along the tube. CP-even pieces track $\tau^2$; CP-odd pieces track $\text{sign}(\tau)$, so the asymmetry is geometric, not inserted.
 
 **Dynamical Role:**
-Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether swarm assembly network. The corkscrew twist keeps the quark and antiquark **weak-coupling triads** from locking into a neutralizing plane; that persistent misalignment is the $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of the CKM weak phase for $s\!\to\! d$ transitions. When torsion energy pushes the system out of its local minimum, the stability criterion triggers the flip.
+Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether braid assembly network. The corkscrew twist keeps the quark and antiquark **weak-coupling triads** from locking into a neutralizing plane; that persistent misalignment is the $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of the CKM weak phase for $s\!\to\! d$ transitions. When torsion energy pushes the system out of its local minimum, the stability criterion triggers the flip.
 
 #### CP/phase hook (Kaons)
-- The Gen-I (nested shell swarm) ↔ selected Gen-II (bi-binary) shielding mismatch introduces a flux **twist phase**. Denote it $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, defined as the relative axial rotation needed to mate the exposed Gen-II ring to a nested shell swarm slot.
-- $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the geometric analogue of the SM weak phase that enters $s\to d$ transitions (e.g., the CKM combination relevant to $\epsilon_K$). $\mathbb{A}\mathbb{A}\mathbb{A}$ predicts CP violation magnitude tracks the size of this twist; setting $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}\to 0$ would suppress $K^0$–$\bar K^0$ mixing. In practice, $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ would be estimated by the twist angle (or integer twist count) required to align a Gen-II bi-binary ring onto a nested shell swarm docking site—and the residual unaligned portion is the torque that drives the oscillatory flip.
+- The Gen-I (nested shell braid) ↔ selected Gen-II (bi-binary) shielding mismatch introduces a flux **twist phase**. Denote it $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, defined as the relative axial rotation needed to mate the exposed Gen-II ring to a nested shell braid slot.
+- $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the geometric analogue of the SM weak phase that enters $s\to d$ transitions (e.g., the CKM combination relevant to $\epsilon_K$). $\mathbb{A}\mathbb{A}\mathbb{A}$ predicts CP violation magnitude tracks the size of this twist; setting $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}\to 0$ would suppress $K^0$–$\bar K^0$ mixing. In practice, $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ would be estimated by the twist angle (or integer twist count) required to align a Gen-II bi-binary ring onto a nested shell braid docking site—and the residual unaligned portion is the torque that drives the oscillatory flip.
 
 #### Transient/effective exchange records ($\mathbb{A}\mathbb{A}\mathbb{A}$ strings)
 - **Nuclear charge swap:** $p(uud)\;\otimes\;\pi^-(d\bar u)\ \rightarrow\ n(udd)$ is an in-medium residual-strong exchange record. The effective pion-like flux loop carries axial-layer charge and phase between coupled baryon assemblies, while the full event ledger keeps baryon identities, recoil, and medium response explicit. The loop relaxes or re-associates into the surrounding nuclear assembly once the charge-state handoff closes; it is not a free pion propagation story.
@@ -4972,13 +4972,13 @@ In the current hadron-level shorthand, if the Pion is the ground state of the $q
 These are excited states of the nucleon. At the observer-level Standard Model description, the $\Delta^{++}$ ($uuu$) is particularly famous because it consists of three identical fermions in the same state, which required the **color** quantum number so the total baryon state can satisfy Pauli exclusion. They are spin-$\tfrac{3}{2}$.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A Delta baryon is a standard Noether swarm assembly (like a proton) but with the three cores treated in a **parallel spin alignment** (spin-$\tfrac{3}{2}$) rather than the Proton's mixed alignment (spin-$\tfrac{1}{2}$); compare the ground-state nucleon picture in [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md). This is a downstream hadron-spin shorthand, not a substitute for the ordered-frame spinor proof.
+A Delta baryon is a standard Noether braid assembly (like a proton) but with the three cores treated in a **parallel spin alignment** (spin-$\tfrac{3}{2}$) rather than the Proton's mixed alignment (spin-$\tfrac{1}{2}$); compare the ground-state nucleon picture in [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md). This is a downstream hadron-spin shorthand, not a substitute for the ordered-frame spinor proof.
 
-*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To satisfy the observer-level Pauli constraint without geometric collapse, the hadron-level target is that they occupy the three distinct color sectors, so the exceptional-axis labels H, M, and L each appear once across the nested shell swarm. This is a color-singlet mapping target until the spin-statistics proof supplies the exclusion rule.
+*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To satisfy the observer-level Pauli constraint without geometric collapse, the hadron-level target is that they occupy the three distinct color sectors, so the exceptional-axis labels H, M, and L each appear once across the nested shell braid. This is a color-singlet mapping target until the spin-statistics proof supplies the exclusion rule.
 *   **Dissociation:** The Delta dissociates rapidly ($\sim 10^{-24}$ s) via the strong force into a nucleon ($\pi N$). This corresponds to the spin alignment being mechanically unstable; once compression/spin lifts it off its local minimum, the assembly follows the gradient to the nucleon basin and sheds a pion.
 
 **Deltas in Dense Matter (EoS)**
-*   **Geometric compression:** In neutron-star cores, the nucleon Fermi energy can exceed the $N\!-\!\Delta$ gap ($\sim 300$ MeV). Noether swarm assemblies are forced so close that mixed-spin nucleons become less favorable than parallel-spin Deltas or superpositions.
+*   **Geometric compression:** In neutron-star cores, the nucleon Fermi energy can exceed the $N\!-\!\Delta$ gap ($\sim 300$ MeV). Noether braid assemblies are forced so close that mixed-spin nucleons become less favorable than parallel-spin Deltas or superpositions.
 *   **Packing topology phase transition:** Overlapping exclusion volumes of spin-mixed nucleons create the candidate jamming pressure. Parallel-spin Deltas, though higher in internal energy, may admit a crystalline packing symmetry inaccessible to nucleons. The $N\!\to\!\Delta$ conversion at high density is therefore a dense-matter validation target for the later spin and Pauli proof: gravitational work would be diverted into internal rotational energy instead of degeneracy pressure, effectively softening the EoS and lowering the maximum neutron-star mass by enthalpy minimization (energy + pressure × volume).
 
 ---
@@ -4991,7 +4991,7 @@ Rows that mention spin alignment are shorthand targets for the downstream angula
 | SM family | Ground $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry | First excited $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry | Geometric change vs. SM mass gap |
 | --- | --- | --- | --- |
 | $\pi \rightarrow \rho$ | $q\bar q$ with anti-aligned spins / relaxed flux | $q\bar q$ with aligned spins / twisted or tighter flux | Spin alignment + higher flux mode → $m_\rho \sim 770$ MeV |
-| $N(p,n) \rightarrow \Delta$ | Nested shell swarm with mixed spins; axis permutations for color | Nested shell swarm with parallel spins; same axis permutations | All spins parallel raises rotational energy → $m_\Delta \sim 1232$ MeV |
+| $N(p,n) \rightarrow \Delta$ | Nested shell braid with mixed spins; axis permutations for color | Nested shell braid with parallel spins; same axis permutations | All spins parallel raises rotational energy → $m_\Delta \sim 1232$ MeV |
 
 ---
 
@@ -5014,11 +5014,11 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 - **Rho mesons:** Candidate spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.
 
 **Reading SM quantum numbers inside $\mathbb{A}\mathbb{A}\mathbb{A}$**
-- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Anti-swarm flips signs. Meson pairs cancel most axes; nested shell swarm permutations give $p=+1$, $n=0$.
-- **Baryon number $B$:** +1/3 per matter core, −1/3 per anti-swarm. Mesons sum to 0; baryons sum to 1.
+- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Anti-braid flips signs. Meson pairs cancel most axes; nested shell braid permutations give $p=+1$, $n=0$.
+- **Baryon number $B$:** +1/3 per matter core, −1/3 per anti-braid. Mesons sum to 0; baryons sum to 1.
 - **Strangeness $S$ (and heavier flavors):** Observer-level flavor tags are assigned after branch selection: a selected strange shielding branch gives $S=-1$, and its anti-branch gives $S=+1$. This does not assert that every down-type axial family is an additional observed species.
 - **Isospin $I_3$:** Swap $u\leftrightarrow d$ within the shared axis ordering; each swap flips $I_3$ by 1/2. The $\pi/\rho$ triplets and $K$ doublet follow directly.
-- **Spin/parity $J^P$:** Provisional bridge from core spin alignment + flux mode. Spin‑0 mesons = anti‑aligned cores (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned cores or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state nested shell swarms).
+- **Spin/parity $J^P$:** Provisional bridge from core spin alignment + flux mode. Spin‑0 mesons = anti‑aligned cores (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned cores or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state nested shell braids).
 - **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs (π^0) or over‑twist (ρ, Δ, kaon torsion) dissociate fast; non-inverse pairs that require a weak corridor (π±, $K$) live longer.
 
 #### SM quantum numbers (cheat sheet for particles discussed)
@@ -5045,9 +5045,9 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 
 **Notation**
 
-* An overbar on the quark symbol denotes an anti-swarm.
+* An overbar on the quark symbol denotes an anti-braid.
 * Constituents are concatenated with $\otimes$ to show distinct cores (baryons chain three cores; mesons pair a quark with an antiquark).
-* Each matrix lists the three nested shell swarm axes; the ordering is arbitrary, but all constituents in the same row use the **same** ordering.
+* Each matrix lists the three nested shell braid axes; the ordering is arbitrary, but all constituents in the same row use the **same** ordering.
 * Axis strings are **3×1 column matrices**: $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ `+` = positrino pair, `-` = electrino pair, `0` = mixed positrino/electrino.
 * When two patterns are allowed, they appear as a **3×2 matrix** whose columns are the options: $\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$.
 * Down-type rows with two matrix columns are branch-selection placeholders for candidate axial families with the same total inventory. They should not be read as two simultaneous observed species; a physical meson row assumes the declared $d$, $s$, or heavier down-type branch has already passed the single-family branch-selection target.
@@ -5060,25 +5060,25 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 
 **Color/flux neutrality schematics**
 
-*Baryon nested shell swarm (proton-like permutations)*
+*Baryon nested shell braid (proton-like permutations)*
 $u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d:\left[\begin{smallmatrix}0\\+\\+\end{smallmatrix}\right]\;\;\Rightarrow\;$ axes permuted across cores $\Rightarrow$ net color 0.
 
 *Meson quark–antiquark pairing*
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
 
-**Matrix key:** Each bracketed column is a core’s three binary axes (order shared within the row). `+` = positrino pair, `-` = electrino pair, `0` = mixed pair. An overbar on the quark letter denotes an anti-swarm.
+**Matrix key:** Each bracketed column is a core’s three binary axes (order shared within the row). `+` = positrino pair, `-` = electrino pair, `0` = mixed pair. An overbar on the quark letter denotes an anti-braid.
 
 | Particle | PDG symbol | SM class | SM quark content | $\mathbb{A}\mathbb{A}\mathbb{A}$ axis string per constituent | $\mathbb{A}\mathbb{A}\mathbb{A}$ highlight |
 | --- | --- | --- | --- | --- | --- |
-| Proton (p) | $p$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Color-neutral nested shell swarm, ground state. |
-| Neutron (n) | $n$ | baryon | $udd$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Nested shell swarm with net charge 0, stable. |
+| Proton (p) | $p$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Color-neutral nested shell braid, ground state. |
+| Neutron (n) | $n$ | baryon | $udd$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Nested shell braid with net charge 0, stable. |
 | Pion + | $\pi^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Non-inverse cores lack the fast inverse-pair radiative route; free dissociation uses a $W^+$ corridor, while in-medium exchange is residual strong. |
 | Pion 0 | $\pi^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Isospin-triplet superposition; inverse matrices open the Gate C two-photon route $\pi^0\to\gamma\gamma$ and a very short lifetime. |
 | Pion - | $\pi^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Mirror of $\pi^+$: non-inverse cores, weak $W^-$ dissociation corridor. |
 | Kaon + | $K^{+}$ | meson | $u\bar s$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Gen-I↔Gen-II bridge; torsion phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ drives CP/oscillation. |
 | Kaon 0 | $K^{0}$ | meson | $d\bar s$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Neutral kaon oscillations set by torsion energy. |
 | Kaon - | $K^{-}$ | meson | $\bar u s$ | $\bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Charge −1 kaon; roles swapped vs $K^+$. |
-| $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; flips core/anti-swarm. |
+| $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; flips core/anti-braid. |
 | Rho + | $\rho^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Spin-$1$ mapping target for an excited pion mode. |
 | Rho 0 | $\rho^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Spin-$1$ mapping target for an excited neutral pion superposition; same axes, tighter flux. |
 | Rho - | $\rho^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Spin-$1$ mapping target for an excited pion mode. |

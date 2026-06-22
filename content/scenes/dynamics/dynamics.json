@@ -31,8 +31,16 @@
         "scenePath": "content/scenes/dynamics/binary_dynamics.json"
       },
       {
+        "nodeId": "tri_binary_configuration_space",
+        "scenePath": "content/scenes/dynamics/tri_binary_configuration_space.json"
+      },
+      {
         "nodeId": "dyadic_resonance_lock",
         "scenePath": "content/scenes/dynamics/dyadic_resonance_lock.json"
+      },
+      {
+        "nodeId": "assembly_topological_charge",
+        "scenePath": "content/scenes/dynamics/assembly_topological_charge.json"
       },
       {
         "nodeId": "causal_action_functional",
@@ -51,18 +59,18 @@
   "objects": [
     {
       "id": "master_equation_of_motion",
-      "title": "Master Equation of Motion",
+      "title": "Master Equation",
       "radius": 2.688,
       "color": "#1c2a4f",
-      "labelTitle": "Master Equation of Motion",
+      "labelTitle": "Master Equation",
       "labelBadge": "doc"
     },
     {
       "id": "kinetic_and_potential_energy",
-      "title": "Kinetic and Potential Energy",
+      "title": "Energy",
       "radius": 2.688,
       "color": "#4b0082",
-      "labelTitle": "Kinetic and Potential Energy",
+      "labelTitle": "Energy",
       "labelBadge": "doc"
     },
     {
@@ -74,10 +82,10 @@
     },
     {
       "id": "entropy_and_record_coarse_graining",
-      "title": "Entropy and Record Coarse-Graining",
+      "title": "Entropy",
       "radius": 2.688,
       "color": "#7a4b2a",
-      "labelTitle": "Entropy and Record Coarse-Graining",
+      "labelTitle": "Entropy",
       "labelBadge": "doc"
     },
     {
@@ -89,11 +97,27 @@
       "labelBadge": "doc"
     },
     {
+      "id": "tri_binary_configuration_space",
+      "title": "Tri-Binary Configuration Space",
+      "radius": 2.688,
+      "color": "#3f6658",
+      "labelTitle": "Tri-Binary Configuration Space",
+      "labelBadge": "doc"
+    },
+    {
       "id": "dyadic_resonance_lock",
       "title": "Dyadic Resonance Lock",
       "radius": 2.688,
       "color": "#6c4f8d",
       "labelTitle": "Dyadic Resonance Lock",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "assembly_topological_charge",
+      "title": "Assembly Topological Charge",
+      "radius": 2.688,
+      "color": "#315f4d",
+      "labelTitle": "Assembly Topological Charge",
       "labelBadge": "doc"
     },
     {

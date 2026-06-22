@@ -144,7 +144,7 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate.mjs). It emits:
 
 - directed-rounded $h_{21}$ branch-row solves over the $128$ speed cells;
 - $F_\varepsilon$ source coefficient containment through $y^{25}$ after the seed solve;
@@ -152,4 +152,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - the correlated coefficient identity interval $Q_{D,21}+22Q_{G,21}\ni0$;
 - explicit open finite-root-tail-tube, full quotient, scaled-remainder, `I1`, and retention rows.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate.test.js) validates schema, no-fixed-speed-window discipline, $h_{21}$ and $Q_{G,21},Q_{D,21}$ intervals, the $Q_D+22Q_G$ identity interval, finite-tube overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate.test.js) validates schema, no-fixed-speed-window discipline, $h_{21}$ and $Q_{G,21},Q_{D,21}$ intervals, the $Q_D+22Q_G$ identity interval, finite-tube overclaim rejection, and CLI write/validate behavior.

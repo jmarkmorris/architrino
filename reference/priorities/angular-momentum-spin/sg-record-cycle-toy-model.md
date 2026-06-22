@@ -2,7 +2,7 @@
 
 Status. Priority toy model for `measurement_response`, downstream of [sg-apparatus-substrate-response-packet.md](sg-apparatus-substrate-response-packet.md) and [ideal-analyzer-and-sg-residual-instance.md](ideal-analyzer-and-sg-residual-instance.md). This file isolates the record-cycle measure row in a reduced Stern-Gerlach-like chart. It is priority material only and does not prove apparatus coupling, effective spinor-coordinate derivation, pair provenance, or Bell recovery.
 
-Claim level. Reduced toy model / defer with blocker. The model shows how the record-cycle partition row can reproduce a half-angle basin measure once $p_{+}$ is supplied. It does not derive $p_{+}$ from a Noether swarm ledger or a concrete apparatus impulse.
+Claim level. Reduced toy model / defer with blocker. The model shows how the record-cycle partition row can reproduce a half-angle basin measure once $p_{+}$ is supplied. It does not derive $p_{+}$ from a Noether braid ledger or a concrete apparatus impulse.
 
 Promotion decision. Priority-only until a substrate apparatus model and effective spinor coordinate exist. The toy model is useful as a consistency target for the record-cycle row, but it is not reader-facing measurement ontology.
 

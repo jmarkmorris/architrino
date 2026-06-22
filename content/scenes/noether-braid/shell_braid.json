@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "noether_braid__shell_braid",
+    "title": "Shell Braid",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    }
+  },
+  "objects": []
+}

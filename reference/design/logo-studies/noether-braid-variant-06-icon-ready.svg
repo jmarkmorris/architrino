@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="title desc">
+  <title id="title">Noether Braid flat logo study 06 - icon ready</title>
+  <desc id="desc">Flat two-dimensional Noether Braid logo variation with three identical ellipses at 120 degree offsets, red positrinos, blue electrinos, and clockwise 180 degree history trails.</desc>
+  <defs>
+    <linearGradient id="p0" gradientUnits="userSpaceOnUse" x1="512" y1="132" x2="512" y2="892"><stop offset="0" stop-color="#ff0000"/><stop offset=".52" stop-color="#a70050"/><stop offset="1" stop-color="#4b0082"/></linearGradient>
+    <linearGradient id="e0" gradientUnits="userSpaceOnUse" x1="512" y1="892" x2="512" y2="132"><stop offset="0" stop-color="#0000ff"/><stop offset=".52" stop-color="#2600c2"/><stop offset="1" stop-color="#4b0082"/></linearGradient>
+    <linearGradient id="p120" gradientUnits="userSpaceOnUse" x1="841.09" y1="702" x2="182.91" y2="322"><stop offset="0" stop-color="#ff0000"/><stop offset=".52" stop-color="#a70050"/><stop offset="1" stop-color="#4b0082"/></linearGradient>
+    <linearGradient id="e120" gradientUnits="userSpaceOnUse" x1="182.91" y1="322" x2="841.09" y2="702"><stop offset="0" stop-color="#0000ff"/><stop offset=".52" stop-color="#2600c2"/><stop offset="1" stop-color="#4b0082"/></linearGradient>
+    <linearGradient id="p240" gradientUnits="userSpaceOnUse" x1="182.91" y1="702" x2="841.09" y2="322"><stop offset="0" stop-color="#ff0000"/><stop offset=".52" stop-color="#a70050"/><stop offset="1" stop-color="#4b0082"/></linearGradient>
+    <linearGradient id="e240" gradientUnits="userSpaceOnUse" x1="841.09" y1="322" x2="182.91" y2="702"><stop offset="0" stop-color="#0000ff"/><stop offset=".52" stop-color="#2600c2"/><stop offset="1" stop-color="#4b0082"/></linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="#4b0082"/>
+  <g fill="none" stroke="#8752b0" stroke-width="20" stroke-linecap="round" opacity=".38">
+    <ellipse cx="512" cy="512" rx="132" ry="380"/><ellipse cx="512" cy="512" rx="132" ry="380" transform="rotate(120 512 512)"/><ellipse cx="512" cy="512" rx="132" ry="380" transform="rotate(240 512 512)"/>
+  </g>
+  <g fill="none" stroke="#2a0048" stroke-width="42" stroke-linecap="round" stroke-linejoin="round" opacity=".22">
+    <path d="M512 132 A132 380 0 0 0 512 892"/><path d="M512 892 A132 380 0 0 0 512 132"/>
+    <path d="M512 132 A132 380 0 0 0 512 892" transform="rotate(120 512 512)"/><path d="M512 892 A132 380 0 0 0 512 132" transform="rotate(120 512 512)"/>
+    <path d="M512 132 A132 380 0 0 0 512 892" transform="rotate(240 512 512)"/><path d="M512 892 A132 380 0 0 0 512 132" transform="rotate(240 512 512)"/>
+  </g>
+  <g fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M512 132 A132 380 0 0 0 512 892" stroke="url(#p0)"/><path d="M512 892 A132 380 0 0 0 512 132" stroke="url(#e0)"/>
+    <path d="M512 132 A132 380 0 0 0 512 892" transform="rotate(120 512 512)" stroke="url(#p120)"/><path d="M512 892 A132 380 0 0 0 512 132" transform="rotate(120 512 512)" stroke="url(#e120)"/>
+    <path d="M512 132 A132 380 0 0 0 512 892" transform="rotate(240 512 512)" stroke="url(#p240)"/><path d="M512 892 A132 380 0 0 0 512 132" transform="rotate(240 512 512)" stroke="url(#e240)"/>
+  </g>
+  <g stroke="#d9b7ff" stroke-width="10">
+    <circle cx="512" cy="132" r="49" fill="#ff0000"/><circle cx="841.09" cy="702" r="49" fill="#ff0000"/><circle cx="182.91" cy="702" r="49" fill="#ff0000"/>
+    <circle cx="512" cy="892" r="49" fill="#0000ff"/><circle cx="182.91" cy="322" r="49" fill="#0000ff"/><circle cx="841.09" cy="322" r="49" fill="#0000ff"/>
+  </g>
+</svg>

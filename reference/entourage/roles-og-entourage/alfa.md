@@ -16,11 +16,11 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 
 - Treat `dynamics/master-equation.md` as the canonical microdynamics source (path-history causal wakes plus self-hit, no instantaneous terms).
 - Keep charge and scale logic synchronized with `validation/parameter-ledger.md` (A1-A6, B1-B2).
-- Use `assemblies/noether-swarm.md`, `nuclear-atomic/*`, and `validation/simulations/action-energy/action-model.md` as the current derivation and accounting base for binding/spectra/EoS claims.
+- Use `assemblies/noether-braid.md`, `nuclear-atomic/*`, and `validation/simulations/action-energy/action-model.md` as the current derivation and accounting base for binding/spectra/EoS claims.
 - Frame macroscopic observables as emergent readouts from absolute-time evolution, projected to effective observer variables where needed.
 
 **Matter vs. Noether sea Distinction**
-- **Noether sea**: The ambient substrate contents composed of neutral Noether swarm assemblies; the hypothesized **2 pro + 2 anti** Helium-like coupling remains a mechanism target until derived.
+- **Noether sea**: The ambient substrate contents composed of neutral Noether braid assemblies; the hypothesized **2 pro + 2 anti** Helium-like coupling remains a mechanism target until derived.
 - **Matter**: Localized, energetic excitations (quarks, leptons) composed of single or coupled tri-binary assemblies with specific axial-architrino structure.
 
 **Nucleon and Nuclear Coupling**
@@ -50,7 +50,7 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 - **Alpha Particle ($^{4}\text{He}$)**: Derive its unique stability as a consequence of optimal nucleon-nucleon coupling geometry, distinct from the background Noether sea topology. Explore duality to coupling of two pro and two anti tri-binaries as hypothesized.
 - Map the **Valley of Stability** and define the nuclear drip lines. 
 
-Given **everything** is architrino assemblies, consider dynamics of tri-binaries, axial architrinos, photons, neutrinos, Noether swarm assemblies, and incoming causal wakes as a single coupled system—this framework explains Atomic, Nuclear & Condensed Matter Physics. For the "**Valley of Stability**" in strong gradients: as Noether swarm assembly energy increases, low/medium orbit radii shrink and the exclusion surface becomes more oblate; equatorial orbit stays near-circular while meridional planes become elliptical and the axis precesses toward the gravitating center (idealized, relative frame).
+Given **everything** is architrino assemblies, consider dynamics of tri-binaries, axial architrinos, photons, neutrinos, Noether braid assemblies, and incoming causal wakes as a single coupled system—this framework explains Atomic, Nuclear & Condensed Matter Physics. For the "**Valley of Stability**" in strong gradients: as Noether braid assembly energy increases, low/medium orbit radii shrink and the exclusion surface becomes more oblate; equatorial orbit stays near-circular while meridional planes become elliptical and the axis precesses toward the gravitating center (idealized, relative frame).
 
 **Nuclear Synthesis and Reactions**
 - Provide cross-sections for fusion/fission as topological assembly reconfigurations.

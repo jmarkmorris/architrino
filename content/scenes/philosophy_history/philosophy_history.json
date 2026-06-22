@@ -14,6 +14,10 @@
     },
     "children": [
       {
+        "nodeId": "philosophy_history_overview",
+        "scenePath": "content/scenes/philosophy_history/overview.json"
+      },
+      {
         "nodeId": "philosophy_of_science",
         "scenePath": "content/scenes/philosophy_history/philosophy_of_science.json"
       },
@@ -61,6 +65,14 @@
   },
   "objects": [
     {
+      "id": "philosophy_history_overview",
+      "title": "Philosophy and History",
+      "radius": 2.688,
+      "color": "#4f5d75",
+      "labelTitle": "Overview",
+      "labelBadge": "doc"
+    },
+    {
       "id": "philosophy_of_science",
       "title": "Philosophy of Science",
       "radius": 2.688,
@@ -76,10 +88,10 @@
     },
     {
       "id": "unknowns_paradoxes_scene",
-      "title": "Unknowns & Paradoxes",
+      "title": "Unknowns and Paradoxes",
       "radius": 2.688,
       "color": "#5a3f73",
-      "labelTitle": "Unknowns & Paradoxes"
+      "labelTitle": "Unknowns and Paradoxes"
     },
     {
       "id": "inherited_theory_interface",
@@ -98,7 +110,7 @@
     },
     {
       "id": "substance_structure_potential",
-      "title": "Substance, Structure, and the Plenum of Potential",
+      "title": "Substance Structure and Potential",
       "radius": 2.688,
       "color": "#7a5430",
       "labelTitle": "Substance / Structure",

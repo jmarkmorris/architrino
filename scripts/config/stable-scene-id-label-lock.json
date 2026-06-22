@@ -51,8 +51,8 @@
         "binary_dynamics": "Binary Dynamics",
         "causal_action_functional": "Causal Action Functional",
         "effective_lagrangian": "Effective Lagrangian",
-        "kinetic_and_potential_energy": "Kinetic and Potential Energy",
-        "master_equation_of_motion": "Master Equation of Motion",
+        "kinetic_and_potential_energy": "Energy",
+        "master_equation_of_motion": "Master Equation",
         "proof_programs": "Proof Programs",
         "dyadic_resonance_lock": "Dyadic Resonance Lock"
       }
@@ -69,7 +69,7 @@
         "constructing_the_absolute_frame": "Constructing the Absolute Frame",
         "emergence_of_structure": "Emergence of Structure",
         "euclidean_void": "Euclidean Void",
-        "foundational_ontology": "Foundational Ontology"
+        "foundational_ontology": "Ontology"
       }
     },
     "content/scenes/archie/archie.json": {
@@ -101,11 +101,11 @@
       "sceneId": "quantum",
       "sceneName": "Quantum",
       "objects": {
-        "algorithmic_resonance": "Algorithmic Resonance and Shor's Algorithm",
+        "algorithmic_resonance": "Algorithmic Resonance",
         "measurement_ontology": "Measurement Ontology",
         "quantum_summary": "Quantum Summary",
         "quantum_statistics": "Fermi-Dirac & Bose-Einstein Statistics",
-        "reality_causality_and_navigation": "Reality, Causality, and Navigation",
+        "reality_causality_and_navigation": "Reality Quantum Causality",
         "wavefunction_ontology": "Wavefunction Ontology"
       }
     },
@@ -118,9 +118,9 @@
         "entanglement_nonlocality": "Entanglement and Nonlocality",
         "klein_gordon_scalar_fields": "Relativistic Scalar Fields and the Klein-Gordon Equation",
         "pilot_wave_character": "Pilot-Wave Character",
-        "planck_scale_nested_shell_swarm_alignment": "Planck Scale Nested Shell Swarm Alignment",
+        "planck_scale_nested_shell_braid_alignment": "Planck Scale Nested Shell Braid Alignment",
         "quantum_operator_mapping": "Quantum Operator Mapping",
-        "special_relativity_noether_swarm": "Special Relativity and Deformable Noether Swarms",
+        "special_relativity_noether_braid": "Special Relativity and Deformable Noether Braids",
         "superposition_mechanism": "Superposition Mechanism",
         "weak_mixing_ckm": "Weak Mixing CKM"
       }
@@ -170,7 +170,7 @@
       "sceneId": "philosophy_history",
       "sceneName": "Philosophy-History",
       "objects": {
-        "unknowns_paradoxes_scene": "Unknowns & Paradoxes",
+        "unknowns_paradoxes_scene": "Unknowns and Paradoxes",
         "agency_and_internal_causation": "Agency and Internal Causation",
         "crisis_in_physics": "Crisis in Physics",
         "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",

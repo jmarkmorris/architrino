@@ -8,7 +8,7 @@ Its natural companion notes are [Nucleon Structure](../../../../markdown/aaa/nuc
 
 The note remains provisional. It should be read as a compact orientation to the intended architecture of atomic structure rather than as a theorem-backed final chapter.
 
-Angular momentum and spin enter this chapter only through downstream closure targets. Atomic orbital labels, spin-orbit coupling, hyperfine structure, Pauli filling, and exclusion-volume packing should inherit the single-assembly angular-momentum ledger and ordered-frame spinor proof from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), together with the exchange-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/quantum-statistics.md). They should not be used here as independent explanations of angular momentum, spin, or Pauli behavior.
+Angular momentum and spin enter this chapter only through downstream closure targets. Atomic orbital labels, spin-orbit coupling, hyperfine structure, Pauli filling, and exclusion-volume packing should inherit the single-assembly angular-momentum ledger and ordered-frame spinor proof from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), together with the exchange-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md). They should not be used here as independent explanations of angular momentum, spin, or Pauli behavior.
 
 ### Multi-Body Assembly Structure
 
@@ -22,7 +22,7 @@ The Noether sea enters this picture as ambient substrate contents, not as the fi
 
 The Noether sea transport picture is useful for separating reversible medium response from dissipative resistance. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
 
-For the underlying assembly carrier of the Noether sea, see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
+For the underlying assembly carrier of the Noether sea, see [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md).
 
 ### Hydrogen as a Four-Fermion Boundary Test
 
@@ -36,9 +36,9 @@ e^-
 \left(uud\right)_{\mathrm{color\ singlet}}
 $$
 
-Each of those four fermions carries a Noether swarm plus an axial layer. The proton's three Noether swarms should not be read as three free objects floating independently in the Noether sea; they are joined by the color-singlet strong-sector closure of the proton. The electron assembly is external to that proton closure and occupies an atomic resonance envelope determined by the nuclear causal-wake envelope, local Noether sea state, and its own assembly ledger.
+Each of those four fermions carries a Noether braid plus an axial layer. The proton's three Noether braids should not be read as three free objects floating independently in the Noether sea; they are joined by the color-singlet strong-sector closure of the proton. The electron assembly is external to that proton closure and occupies an atomic resonance envelope determined by the nuclear causal-wake envelope, local Noether sea state, and its own assembly ledger.
 
-The local spacetime description is therefore not the four Noether swarms themselves. It is the coarse-grained Noether sea response around, between, and outside the four matter assemblies. At a chosen resolution $\ell$, write schematically
+The local spacetime description is therefore not the four Noether braids themselves. It is the coarse-grained Noether sea response around, between, and outside the four matter assemblies. At a chosen resolution $\ell$, write schematically
 
 $$
 \theta_{\mathrm{sea}}^{(\ell)}(\mathbf{x},t)
@@ -53,7 +53,7 @@ S_{ij}
 \right)
 $$
 
-where the convolution averages ambient Noether sea variables over a window $W_\ell$. For atomic orbital recovery, $\ell$ should be large enough to average many ambient Noether sea swarms and small enough not to erase the electron resonance envelope. For proton-internal work, $\ell$ must be reduced and the three quark assemblies must be treated as resolved color-sector constituents rather than as a point proton.
+where the convolution averages ambient Noether sea variables over a window $W_\ell$. For atomic orbital recovery, $\ell$ should be large enough to average many ambient Noether sea braids and small enough not to erase the electron resonance envelope. For proton-internal work, $\ell$ must be reduced and the three quark assemblies must be treated as resolved color-sector constituents rather than as a point proton.
 
 On the outskirts of the solar system, the useful weak-gradient decomposition is
 
@@ -67,7 +67,7 @@ $$
 \delta\theta_{\mathrm{H}}^{(\ell)}(\mathbf{x},t)
 $$
 
-where $\theta_0$ is the weak homogeneous reference state, $\delta\theta_{\odot}^{(\ell)}$ is the gentle solar-system background bias, and $\delta\theta_{\mathrm{H}}^{(\ell)}$ is the localized hydrogen disturbance. This is the sense in which local effective-spacetime behavior is reconstructed from Noether sea response, not the four matter Noether swarms themselves.
+where $\theta_0$ is the weak homogeneous reference state, $\delta\theta_{\odot}^{(\ell)}$ is the gentle solar-system background bias, and $\delta\theta_{\mathrm{H}}^{(\ell)}$ is the localized hydrogen disturbance. This is the sense in which local effective-spacetime behavior is reconstructed from Noether sea response, not the four matter Noether braids themselves.
 
 The exact boundary between a fermion and the Noether sea is a closure-ledger boundary before it is a surface in space. Let $\Lambda_f(t)$ denote the reduced closure label of a fermion assembly and let $\mathcal{A}_f(t)$ denote the architrinos and bound wake-exchange records phase-locked to that label. The exact inventory boundary is
 
@@ -106,7 +106,7 @@ S(t)\big|_{\Omega_{\mathrm{H}}}
 \mathcal{A}_{\mathrm{H}}(t)
 $$
 
-The spatial boundary used in effective modeling is the dynamic exclusion envelope generated by an assembly. For a fermion $f$, define a local dominance diagnostic by inheriting the channel kernel from [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic):
+The spatial boundary used in effective modeling is the dynamic exclusion envelope generated by an assembly. For a fermion $f$, define a local dominance diagnostic by inheriting the channel kernel from [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic):
 
 $$
 D_{f,X}(\mathbf{x},t)
@@ -149,7 +149,7 @@ D_{\mathrm{penetration}}
 1
 $$
 
-The clock threshold marks where weak locked-wake tails can bias local rates. The corridor threshold marks where an oriented exchange path can remain coherent. The packing threshold marks where a neighboring Noether swarm or assembly can remain stably adjacent without persistent phase disruption. The penetration threshold marks where a trajectory enters wake dominance strong enough to destabilize transit through the fermion envelope. These are different cuts through one diagnostic, not four different definitions of a fermion.
+The clock threshold marks where weak locked-wake tails can bias local rates. The corridor threshold marks where an oriented exchange path can remain coherent. The packing threshold marks where a neighboring Noether braid or assembly can remain stably adjacent without persistent phase disruption. The penetration threshold marks where a trajectory enters wake dominance strong enough to destabilize transit through the fermion envelope. These are different cuts through one diagnostic, not four different definitions of a fermion.
 
 In the hydrogen case, the branch weights are therefore ledger projectors rather than electron-envelope probabilities or fitted radial profiles:
 
@@ -244,7 +244,7 @@ $$
 \right]
 $$
 
-where $\Delta_{\mathrm{cad,H}}$ compares the branch cadence $\nu_j(t_0)$ with the smoothed ambient Noether sea cadence $\bar\nu_{\mathrm{sea,H}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$ in $\Omega_{\mathrm H}$, and $\Delta_{\mathrm{bal,H}}$ measures the remaining neutral-pairing and orientation-balance residual after the electron, quark, and strong-sector ledgers are removed. A branch locked to the electron, to any of the three quark assemblies, or to the proton's color-singlet corridor is therefore rejected from the ambient denominator even when it lies inside the same spatial coarse window. A neighboring neutral Noether swarm in the same window is retained when it is not phase-locked to those matter ledgers and matches the local equilibrium record.
+where $\Delta_{\mathrm{cad,H}}$ compares the branch cadence $\nu_j(t_0)$ with the smoothed ambient Noether sea cadence $\bar\nu_{\mathrm{sea,H}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$ in $\Omega_{\mathrm H}$, and $\Delta_{\mathrm{bal,H}}$ measures the remaining neutral-pairing and orientation-balance residual after the electron, quark, and strong-sector ledgers are removed. A branch locked to the electron, to any of the three quark assemblies, or to the proton's color-singlet corridor is therefore rejected from the ambient denominator even when it lies inside the same spatial coarse window. A neighboring neutral Noether braid in the same window is retained when it is not phase-locked to those matter ledgers and matches the local equilibrium record.
 
 The strong-sector ledger $\mathcal{L}_{\mathrm{strong}}^{uud}$ is part of the proton/hydrogen matter record for corridor calculations. It is not counted as ambient Noether sea merely because it lies between the three quark assemblies. Channel intensity then follows the same sector-exposure rule,
 
@@ -272,7 +272,7 @@ At hydrogen resolution the four first projectors have distinct jobs:
 | $\Pi_{\mathrm{packing}}$ | Exclusion magnitude, exclusion-stress tensor, and envelope scale/shape entries | Determines stable adjacency and coarse excluded volume without treating signs of force as a packing criterion |
 | $\Pi_{\mathrm{penetration}}$ | Signed branch acceleration, path-tangent acceleration, and phase-disruption entries | Determines whether a trial path through the fermion envelope remains dynamically stable |
 
-The corresponding first norm packet for hydrogen is inherited from the channel norms in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). In an atomic window, define the channel exposure scan
+The corresponding first norm packet for hydrogen is inherited from the channel norms in [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic). In an atomic window, define the channel exposure scan
 
 $$
 \mathfrak N_{\mathrm H,X}^{(\ell)}(f)
@@ -354,10 +354,10 @@ This resolves the scale question in layered form:
 
 | Layer | What is being resolved | Boundary meaning |
 | --- | --- | --- |
-| Fermion core | One Noether swarm plus axial layer | Closure-ledger membership and dynamic exclusion envelope |
+| Fermion core | One Noether braid plus axial layer | Closure-ledger membership and dynamic exclusion envelope |
 | Proton | Three quark fermion assemblies in color-singlet closure | Shared strong-sector envelope, not three isolated quark surfaces |
 | Hydrogen atom | Proton closure plus electron assembly resonance | Electron orbital envelope around the nuclear causal-wake source |
-| Local spacetime | Coarse-grained Noether sea response | Medium variables averaged over ambient Noether swarms, with matter assemblies acting as defects and sources |
+| Local spacetime | Coarse-grained Noether sea response | Medium variables averaged over ambient Noether braids, with matter assemblies acting as defects and sources |
 
 The corresponding resolution hierarchy is
 
@@ -369,13 +369,13 @@ R_{u,d}\lesssim R_p,
 R_p\ll R_{\mathrm{orb}}
 $$
 
-where $R_{\mathrm{NC},f}$ is the Noether swarm envelope scale of fermion $f$, $R_f$ is the fermion's effective exclusion scale including axial-layer exposure, $R_p$ is the proton color-singlet envelope scale, and $R_{\mathrm{orb}}$ is the electron resonance-envelope scale. Atomic medium calculations should use a window satisfying
+where $R_{\mathrm{NC},f}$ is the Noether braid envelope scale of fermion $f$, $R_f$ is the fermion's effective exclusion scale including axial-layer exposure, $R_p$ is the proton color-singlet envelope scale, and $R_{\mathrm{orb}}$ is the electron resonance-envelope scale. Atomic medium calculations should use a window satisfying
 
 $$
 d_N\ll \ell_{\mathrm{atom}}\ll R_{\mathrm{orb}}
 $$
 
-where $d_N$ is the ambient Noether sea swarm spacing. Proton-internal calculations require a finer window that still averages ambient Noether sea swarms but does not erase the quark-sector structure:
+where $d_N$ is the ambient Noether sea braid spacing. Proton-internal calculations require a finer window that still averages ambient Noether sea braids but does not erase the quark-sector structure:
 
 $$
 d_N\ll \ell_{\mathrm{proton}}\ll R_p
@@ -428,7 +428,7 @@ The proof route has four candidate lemmas:
 
 1. **Ledger-complement lemma:** if $\mathcal A_{\mathrm H}(t)$ is the exact hydrogen matter ledger, then $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(t)$ contains no architrino, bound wake-exchange record, or strong-sector corridor record phase-locked to $\mathcal A_{\mathrm H}(t)$.
 2. **Proton-envelope lemma:** the $uud$ color-singlet ledger projects to a stable $\mathcal W_{p,X}^{\mathrm{locked}}$ at atomic resolution, while changes below $\ell_{\mathrm{proton}}$ affect only retained multipole, shielding, or corridor coefficients.
-3. **Electron-envelope lemma:** the electron assembly remains external to the proton closure and contributes through $\mathcal B_e$ and $D_{e,X}$, not by redefining the electron's Noether swarm boundary as the orbital envelope.
+3. **Electron-envelope lemma:** the electron assembly remains external to the proton closure and contributes through $\mathcal B_e$ and $D_{e,X}$, not by redefining the electron's Noether braid boundary as the orbital envelope.
 4. **Response-consistency lemma:** the same $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(t)$ and locked-wake records determine the density, delay, cadence, envelope, and response-tensor entries of $\Theta_{\mathrm H,X}^{(\ell)}$ without separate fitted rules for spectra, clocks, or transport.
 
 The first computable test is therefore a channel-by-channel scan in which $X$ is chosen, $\ell$ is varied inside the admissible window, and the extracted pair
@@ -441,7 +441,7 @@ D_{p,X},D_{e,X}
 \Theta_{\mathrm H,X}^{(\ell)}
 $$
 
-remains stable under refinement up to the declared sensitivity of the channel. The theorem target fails if a matter Noether swarm is counted as ambient Noether sea, if the three proton quark assemblies are treated as free Noether swarms, if the electron resonance envelope is treated as the electron's core boundary, if $n$ and $\chi_{\text{sea}}$ are merged, or if different response maps must be fitted independently for the same hydrogen branch.
+remains stable under refinement up to the declared sensitivity of the channel. The theorem target fails if a matter Noether braid is counted as ambient Noether sea, if the three proton quark assemblies are treated as free Noether braids, if the electron resonance envelope is treated as the electron's core boundary, if $n$ and $\chi_{\text{sea}}$ are merged, or if different response maps must be fitted independently for the same hydrogen branch.
 
 ### Hydrogen Channel-Scan Proof Target
 
@@ -528,7 +528,7 @@ where $I_X$ is the selected admissible window and $\Delta_X^{\mathrm{tol}}$ is t
 The scan should report failures in a form that identifies which proof obligation broke:
 
 1. **Ledger failure:** a source branch contributes both to the locked hydrogen ledger and to $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(t)$.
-2. **Window failure:** the scan uses an $\ell$ that erases the electron envelope, resolves the proton as free quarks at atomic resolution, or fails to average many ambient Noether sea swarms.
+2. **Window failure:** the scan uses an $\ell$ that erases the electron envelope, resolves the proton as free quarks at atomic resolution, or fails to average many ambient Noether sea braids.
 3. **Density-delay failure:** $n(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$ are not independently recoverable from $\Theta_{\mathrm H,X}^{(\ell)}$.
 4. **Source-envelope failure:** $\mathcal W_{p,X}^{\mathrm{locked}}$ cannot be recovered as a color-singlet proton envelope after proton-sensitive resolution.
 5. **Readout-fit failure:** two channels require independently fitted response maps for the same hydrogen branch instead of different projections of the same ledger and Noether sea record.
@@ -617,7 +617,7 @@ S_{ij},\,
 \right)^{(\ell)}_E
 $$
 
-where $\Gamma_N$ is the local Noether sea cadence-stretch diagnostic, $(\lambda,\xi)$ are the envelope scale and shape records inherited from Noether swarm geometry, and $\mathcal M_{\text{sea}}^{ab}$ is the medium-response tensor that later connects inertial and gradient response. Nuclear terms first determine the coarse source envelope $\mathcal W_{\text{nuc}}$; electron-envelope terms then determine resonance, exclusion, and spectral response as in [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md); lattice and pressure terms enter only when a material environment supplies bonding corridors or transport constraints, as in [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md). Ambient density and delay remain separate baseline variables rather than element properties.
+where $\Gamma_N$ is the local Noether sea cadence-stretch diagnostic, $(\lambda,\xi)$ are the envelope scale and shape records inherited from Noether braid geometry, and $\mathcal M_{\text{sea}}^{ab}$ is the medium-response tensor that later connects inertial and gradient response. Nuclear terms first determine the coarse source envelope $\mathcal W_{\text{nuc}}$; electron-envelope terms then determine resonance, exclusion, and spectral response as in [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md); lattice and pressure terms enter only when a material environment supplies bonding corridors or transport constraints, as in [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md). Ambient density and delay remain separate baseline variables rather than element properties.
 
 For directional or pressure-sensitive comparisons, use the tensor version of the same split:
 
@@ -663,7 +663,7 @@ n,P,T,\mathcal B_Y
 \right)
 $$
 
-The hypothesis behind dense iron-bearing phases is then not that the element symbol `Fe` directly sources a denser Noether sea. It is that the realized nuclear inventory, electron branch, metallic bonding branch, and pressure state may make the iron-rich branch more compatible with high normalized Noether swarm density than a silicate branch:
+The hypothesis behind dense iron-bearing phases is then not that the element symbol `Fe` directly sources a denser Noether sea. It is that the realized nuclear inventory, electron branch, metallic bonding branch, and pressure state may make the iron-rich branch more compatible with high normalized Noether braid density than a silicate branch:
 
 $$
 \frac{\partial}{\partial n}
@@ -683,9 +683,9 @@ This map imposes four local failure tests:
 
 ### Angular-Momentum Handoff
 
-The immediate atomic target is to recover observer-level orbital quantum numbers from electron assemblies moving in an external nuclear and Noether sea environment. That target is separate from the internal rotational action of the electron's Noether swarm assembly. A later atomic-spin pass must show how spin-orbit and hyperfine structure arise when the external resonance envelope couples to the completed internal spin ledger and to the measurement-response model. Until then, this chapter should treat shell filling and exclusion language as effective atomic bookkeeping inherited from the spin-statistics proof program.
+The immediate atomic target is to recover observer-level orbital quantum numbers from electron assemblies moving in an external nuclear and Noether sea environment. That target is separate from the internal rotational action of the electron's Noether braid assembly. A later atomic-spin pass must show how spin-orbit and hyperfine structure arise when the external resonance envelope couples to the completed internal spin ledger and to the measurement-response model. Until then, this chapter should treat shell filling and exclusion language as effective atomic bookkeeping inherited from the spin-statistics proof program.
 
-The foundation-up version begins with the nucleus and its constituent Noether swarm ledgers. A proton-electron hydrogen comparison is the cleanest first case, but the same level distinction applies to all atoms: the electron assembly responds to the combined causal-wake envelope of the nucleus, the local Noether sea, and other electron assemblies. The proof direction is therefore downstream. First derive the integer-closed Noether swarm ledgers of the nuclear constituents, then coarse-grain their emitted causal wakes into an effective envelope, and only then recover the observer-level orbital labels $(n,\ell,m)$ as resonance labels of the external electron envelope. Those labels should not be used backward as proof of the electron's internal Noether swarm spinor state or of the nuclear core ledger.
+The foundation-up version begins with the nucleus and its constituent Noether braid ledgers. A proton-electron hydrogen comparison is the cleanest first case, but the same level distinction applies to all atoms: the electron assembly responds to the combined causal-wake envelope of the nucleus, the local Noether sea, and other electron assemblies. The proof direction is therefore downstream. First derive the integer-closed Noether braid ledgers of the nuclear constituents, then coarse-grain their emitted causal wakes into an effective envelope, and only then recover the observer-level orbital labels $(n,\ell,m)$ as resonance labels of the external electron envelope. Those labels should not be used backward as proof of the electron's internal Noether braid spinor state or of the nuclear core ledger.
 
 A schematic handoff is
 
@@ -699,7 +699,7 @@ $$
 R_{n\ell}(r)Y_\ell^m(\theta,\phi)
 $$
 
-Here $\bigl(k_I,k_M,k_O,\mathcal R\bigr)_{\text{nuc}}$ abbreviates the integer winding and causal-root bookkeeping of the relevant nuclear Noether swarm ledgers, while $\mathcal W_{\text{nuc}}$ denotes the effective nuclear causal-wake envelope after coarse-graining those ledgers. The right-hand side is the standard observer-level recovery form that the electron assembly must reproduce in central-potential limits.
+Here $\bigl(k_I,k_M,k_O,\mathcal R\bigr)_{\text{nuc}}$ abbreviates the integer winding and causal-root bookkeeping of the relevant nuclear Noether braid ledgers, while $\mathcal W_{\text{nuc}}$ denotes the effective nuclear causal-wake envelope after coarse-graining those ledgers. The right-hand side is the standard observer-level recovery form that the electron assembly must reproduce in central-potential limits.
 
 For central-potential comparisons, the specific orbital recovery gate is ordinary $2\pi$ azimuthal closure and angular regularity:
 
@@ -711,7 +711,7 @@ $$
 m\in\{-\ell,\ldots,\ell\}
 $$
 
-Those labels describe the effective electron-assembly envelope around the nucleus. They should not be read as the internal Noether swarm spinor ledger of the electron itself.
+Those labels describe the effective electron-assembly envelope around the nucleus. They should not be read as the internal Noether braid spinor ledger of the electron itself.
 
 The sharper recovery target is a residual on the declared envelope extractor. For an electron assembly branch $\mathcal B_e$, local Noether sea record $\theta_{\mathrm{sea}}^{(\ell)}$, central-potential approximation $V_{\mathrm{eff}}$, and record window $W$, write
 
@@ -758,11 +758,11 @@ $$
 }
 $$
 
-tests azimuthal single-valuedness, $\Delta_{\Omega}$ tests the angular operator against $\ell(\ell+1)$ and $m$, $\Delta_{\ell m}$ enforces $\ell\in\mathbb N_0$, $m\in\mathbb Z$, and $|m|\le\ell$, and $\Delta_{\mathrm{int}}$ checks that the observer-level orbital envelope has not been mistaken for the internal Noether swarm spin ledger. The orbital row is promotable only when all five residuals pass for the same envelope branch.
+tests azimuthal single-valuedness, $\Delta_{\Omega}$ tests the angular operator against $\ell(\ell+1)$ and $m$, $\Delta_{\ell m}$ enforces $\ell\in\mathbb N_0$, $m\in\mathbb Z$, and $|m|\le\ell$, and $\Delta_{\mathrm{int}}$ checks that the observer-level orbital envelope has not been mistaken for the internal Noether braid spin ledger. The orbital row is promotable only when all five residuals pass for the same envelope branch.
 
 ## Nucleon Structure
 
-This chapter fixes the current proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time. It is the baryon-side bridge between [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Transient Hadrons: Mesons and Δ Resonances](../../../../markdown/aaa/assemblies/mesons/mesons.md).
+This chapter fixes the current proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time. It is the baryon-side bridge between [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Mesons](../../../../markdown/aaa/assemblies/mesons/mesons.md).
 
 ### Purpose
 
@@ -770,18 +770,18 @@ This chapter fixes the canonical proton and neutron picture used by the nuclear 
 
 ### Core Claim
 
-A nucleon is a confined three-quark color-singlet assembly built from three Generation-I Noether swarms linked by shared strong-sector flux structure. In the present architecture:
+A nucleon is a confined three-quark color-singlet assembly built from three Generation-I Noether braids linked by shared strong-sector flux structure. In the present architecture:
 
-- a **proton** is the ground-state `uud` nested shell swarm,
-- a **neutron** is the ground-state `udd` nested shell swarm.
+- a **proton** is the ground-state `uud` nested shell braid,
+- a **neutron** is the ground-state `udd` nested shell braid.
 
-Each constituent quark is itself a Noether swarm assembly with an axial layer of the kind cataloged in [quarks.md](../../../../markdown/aaa/assemblies/fermions/quarks.md).
+Each constituent quark is itself a Noether braid assembly with an axial layer of the kind cataloged in [quarks.md](../../../../markdown/aaa/assemblies/fermions/quarks.md).
 
 ### Constituents and Counting
 
 For Generation-I quarks:
 
-- each Noether swarm contributes 6 scaffold architrinos,
+- each Noether braid contributes 6 scaffold architrinos,
 - each quark axial layer contributes 6 axial architrinos,
 - so each Generation-I quark contributes 12 architrinos total.
 
@@ -789,7 +789,7 @@ Therefore a nucleon contains
 $$
 3\times 12 = 36
 $$
-architrinos at the Noether swarm bookkeeping level, before adding any effective mesonic or medium-level dressing.
+architrinos at the Noether braid bookkeeping level, before adding any effective mesonic or medium-level dressing.
 
 The constituent content is:
 $$
@@ -813,7 +813,7 @@ $$
 
 ### Color-Singlet Closure
 
-The nucleon is not three independent quarks sitting side by side. It is a color-closed nested shell swarm braid, with the strong-sector closure picture matching the corridor and flux descriptions in [Gluons and the Strong Force: Geometric Origins](../../../../markdown/aaa/assemblies/bosons/gluons.md).
+The nucleon is not three independent quarks sitting side by side. It is a color-closed nested shell braid braid, with the strong-sector closure picture matching the corridor and flux descriptions in [Gluons and the Strong Force: Geometric Origins](../../../../markdown/aaa/assemblies/bosons/gluons.md).
 
 At the bookkeeping level, each constituent quark occupies one of the three color sectors
 $$
@@ -829,7 +829,7 @@ $$
 In the present geometric language:
 
 - each quark contributes one exceptional axis,
-- the three exceptional axes occur once each across the nested shell swarm,
+- the three exceptional axes occur once each across the nested shell braid,
 - the shared flux structure closes the color braid into a singlet.
 
 That color closure is what makes the proton and neutron long-lived hadronic attractors rather than open-color transients.
@@ -916,7 +916,7 @@ C_{\ell_{\mathrm{atom}},X}
 \Delta_{p,X}^{\mathrm{env,tol}}
 $$
 
-This is the nucleon-side handoff used by the hydrogen response map in [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md#hydrogen-boundary-theorem-target). It lets the atomic calculation see a proton source envelope with retained charge, multipole, shielding, and corridor coefficients, while preventing the three quark Noether swarms from being counted as free atomic sources.
+This is the nucleon-side handoff used by the hydrogen response map in [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md#hydrogen-boundary-theorem-target). It lets the atomic calculation see a proton source envelope with retained charge, multipole, shielding, and corridor coefficients, while preventing the three quark Noether braids from being counted as free atomic sources.
 
 The proton boundary tolerance inherited by hydrogen is therefore an admissible-source condition, not a fitted proton radius. For channel $X$,
 
@@ -949,11 +949,11 @@ The source-envelope closure fails if any of the following occurs:
 4. **Projection failure:** proton-sensitive refinements do not converge to one atomic-window envelope after $C_{\ell_{\mathrm{atom}},X}$ is applied.
 5. **Channel-retuning failure:** spectral, clock, packing, or corridor calculations require different proton ledgers instead of different projections of the same color-singlet branch.
 
-### Proton and Neutron as Ground-State Nested Shell Swarms
+### Proton and Neutron as Ground-State Nested Shell Braids
 
 #### Proton
 
-The proton is the lowest stable nested shell swarm with quark content `uud`.
+The proton is the lowest stable nested shell braid with quark content `uud`.
 
 Using the current quark templates:
 
@@ -971,7 +971,7 @@ $$
 
 #### Neutron
 
-The neutron is the lowest stable nested shell swarm with quark content `udd`.
+The neutron is the lowest stable nested shell braid with quark content `udd`.
 
 Its total axial count is
 $$
@@ -988,7 +988,7 @@ The neutron is therefore not neutral because it lacks internal charge structure,
 
 The strong-CP comparison problem enters this chapter through the neutron electric dipole moment. The retained observable is a spin-aligned electric first moment of the neutron assembly, not the ontology of any particular Standard-Model repair. This section supplies the nucleon-side scaffold used by [The Strong CP Problem](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md#the-strong-cp-problem).
 
-Let the neutron's axial sites carry polarity signs $\sigma_a\in\{+1,-1\}$ and positions $\mathbf{r}_a$ relative to the nested shell swarm center, with each site carrying polarity magnitude $\epsilon=|e|/6$. The axial contribution to the neutron dipole is
+Let the neutron's axial sites carry polarity signs $\sigma_a\in\{+1,-1\}$ and positions $\mathbf{r}_a$ relative to the nested shell braid center, with each site carrying polarity magnitude $\epsilon=|e|/6$. The axial contribution to the neutron dipole is
 $$
 \mathbf{d}_{n,\mathrm{ax}}
 =
@@ -1030,23 +1030,23 @@ $$
 \right\rangle_T
 =0
 $$
-up to bounded CP-odd perturbations in the same branch record that recovers the neutron magnetic moment and proton-neutron mass splitting. A proof should use the explicit `udd` color-singlet ledger: one $u$ core, two $d$ cores, one $H$, one $M$, and one $L$ exceptional axis across the nested shell swarm, with the two down-type branches paired by the same strong-sector closure map. If that quotient leaves a nonzero time-averaged spin-aligned first moment above $d_n^{\max}$, the strong-CP assembly repair fails.
+up to bounded CP-odd perturbations in the same branch record that recovers the neutron magnetic moment and proton-neutron mass splitting. A proof should use the explicit `udd` color-singlet ledger: one $u$ core, two $d$ cores, one $H$, one $M$, and one $L$ exceptional axis across the nested shell braid, with the two down-type branches paired by the same strong-sector closure map. If that quotient leaves a nonzero time-averaged spin-aligned first moment above $d_n^{\max}$, the strong-CP assembly repair fails.
 
 ### Effective Internal Geometry
 
 The current nucleon picture has three structural layers.
 
-#### 1. Noether swarms
+#### 1. Noether braids
 
 Each constituent quark carries:
 
-- one Generation-I pro-swarm,
+- one Generation-I pro-braid,
 - one six-site axial layer,
 - one color-sector assignment.
 
 #### 2. Shared strong-sector corridor
 
-The three quarks are joined by a shared strong-sector flux network. At coarse level this can be treated as a Y-junction or closed nested shell swarm braid. The important point is not the exact visual motif. The important point is that the strong-sector energy is stored in the shared closure of the three cores, not in any one quark alone.
+The three quarks are joined by a shared strong-sector flux network. At coarse level this can be treated as a Y-junction or closed nested shell braid braid. The important point is not the exact visual motif. The important point is that the strong-sector energy is stored in the shared closure of the three cores, not in any one quark alone.
 
 #### 3. External nucleon envelope
 
@@ -1067,15 +1067,15 @@ The nucleon ground state is taken to have observer-level total spin quantum numb
 $$
 J=\frac{1}{2}
 $$
-for the coupled nested shell swarm configuration. Here $J$ names the total hadronic angular-momentum channel, not the spin of one isolated constituent. A useful standard-physics comparison is the proton-spin decomposition: the measured spin-$\tfrac{1}{2}$ nucleon is not explained by simply adding three valence-quark spin arrows.
+for the coupled nested shell braid configuration. Here $J$ names the total hadronic angular-momentum channel, not the spin of one isolated constituent. A useful standard-physics comparison is the proton-spin decomposition: the measured spin-$\tfrac{1}{2}$ nucleon is not explained by simply adding three valence-quark spin arrows.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same bookkeeping pressure appears as three coupled contributions:
 
-- **Noether swarm spinor structure**, the analogue of observer-level constituent spin;
+- **Noether braid spinor structure**, the analogue of observer-level constituent spin;
 - **strong-sector orbital circulation**, the analogue of quark and core orbital angular momentum inside the bound state;
 - **flux-network angular momentum**, the analogue of gluon or strong-field angular momentum in the standard QCD spin budget.
 
-The closure target is therefore not to assign $1/2$ to one piece of the nucleon. The target is to show how the coupled Noether swarm assembly, its orbital circulation, and its strong-sector flux network combine into one stable spin-$\tfrac{1}{2}$ hadronic channel.
+The closure target is therefore not to assign $1/2$ to one piece of the nucleon. The target is to show how the coupled Noether braid assembly, its orbital circulation, and its strong-sector flux network combine into one stable spin-$\tfrac{1}{2}$ hadronic channel.
 
 Until the single-assembly angular-momentum ledger, ordered-frame spinor closure, and color-corridor vector ledger are derived, the three contributions above should be read as required accounting channels. They should not be treated as a closed proton-spin decomposition.
 
@@ -1086,7 +1086,7 @@ Even before a quantitative derivation, the sign structure is already constrained
 - the proton should have a positive magnetic moment,
 - the neutron should have a nonzero negative magnetic moment.
 
-Those sign expectations follow naturally from the dominance of up-type positive charge circulation in the proton and the residual uncompensated internal charge circulation in the neutron. A future derivation should turn this into a computed nested shell swarm moment rather than a qualitative sign check.
+Those sign expectations follow naturally from the dominance of up-type positive charge circulation in the proton and the residual uncompensated internal charge circulation in the neutron. A future derivation should turn this into a computed nested shell braid moment rather than a qualitative sign check.
 
 ### Proton-Neutron Mass Difference
 
@@ -1104,7 +1104,7 @@ where:
 
 - $\Delta E_{\text{down-up}}$ is the core/axial-layer energy shift from replacing one up-type branch with one down-type branch,
 - $\Delta E_{\text{Coul}}$ is the electromagnetic self-energy difference,
-- $\Delta E_{\text{flux}}$ is the strong-sector closure difference between the two Noether swarm assemblies.
+- $\Delta E_{\text{flux}}$ is the strong-sector closure difference between the two Noether braid assemblies.
 
 The lattice QCD plus QED neutron-proton benchmark is a downstream acceptance test for this decomposition, not an input to any one term. A promoted comparison must compute the down/up, electromagnetic, and flux rows from the same proton and neutron branch ledgers before comparing their sum with the observed splitting.
 
@@ -1116,7 +1116,7 @@ The nucleon is the object that enters nuclear physics. The residual nuclear forc
 
 - polarization of the surrounding Noether sea,
 - meson-like exchange channels,
-- and geometric locking between the outer hadronic envelopes of neighboring Noether swarm assemblies.
+- and geometric locking between the outer hadronic envelopes of neighboring Noether braid assemblies.
 
 That is why this chapter feeds directly into [nuclear-binding.md](../../../../markdown/aaa/nuclear-atomic/nuclear-binding.md) and [mesons.md](../../../../markdown/aaa/assemblies/mesons/mesons.md).
 
@@ -1212,7 +1212,7 @@ for separations in the nuclear window, with the attraction strongest where meson
 
 #### Short-range exclusion
 
-Nucleons are not point masses. Each is a structured Noether swarm assembly with an exclusion volume and a strong internal stress network. If two nucleons are pushed too close together, the cost rises sharply:
+Nucleons are not point masses. Each is a structured Noether braid assembly with an exclusion volume and a strong internal stress network. If two nucleons are pushed too close together, the cost rises sharply:
 $$
 V_{\text{excl}}(r)\to +\infty
 \quad\text{as}\quad
@@ -1368,10 +1368,10 @@ Spin-sensitive spectral structure is downstream of the angular-momentum proof pr
 
 Electron orbitals are treated here as stable resonance patterns of electron assemblies coupled to the local Noether sea. This is an effective atomic model, not yet a derivation from the constituent master equation.
 
-The foundation-up route treats those resonance patterns as responses to structured causal-wake boundary data. In a completed derivation, the integer-closed Noether swarm ledgers of the nuclear constituents should determine an effective causal-wake envelope $\mathcal W_{\text{nuc}}$, and the electron assembly should occupy stable envelope basins labeled by the recovered quantum numbers $(n,\ell,m)$. The route is one-way:
+The foundation-up route treats those resonance patterns as responses to structured causal-wake boundary data. In a completed derivation, the integer-closed Noether braid ledgers of the nuclear constituents should determine an effective causal-wake envelope $\mathcal W_{\text{nuc}}$, and the electron assembly should occupy stable envelope basins labeled by the recovered quantum numbers $(n,\ell,m)$. The route is one-way:
 
 $$
-\text{integer-closed Noether swarm ledgers}
+\text{integer-closed Noether braid ledgers}
 \longrightarrow
 \text{effective causal-wake envelope}
 \longrightarrow
@@ -1380,7 +1380,7 @@ $$
 \text{observer-level labels }(n,\ell,m)
 $$
 
-The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether swarm ledgers have already been derived.
+The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether braid ledgers have already been derived.
 
 The direct angular consumer is the effective angular-envelope recovery lemma from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma). Once the native extractor supplies a central record-facing envelope whose angular part is a regular single-valued function on $S^2$, the angular step is
 
@@ -1396,7 +1396,7 @@ $$
 
 Atomic spectra then consume $(n,\ell,m)$ as envelope labels for energy gaps and line strengths. The spectral burden remains the native extraction of the electron-envelope basin, its radial energy functional, and the local clock/rate conversion; the angular lemma does not by itself derive the Rydberg constant or spin-sensitive splittings.
 
-The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether swarm density $\rho_{\text{NS}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, the Noether sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, and the local clock/rate response encoded by $\Gamma_N(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
+The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether braid density $\rho_{\text{NS}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, the Noether sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, and the local clock/rate response encoded by $\Gamma_N(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
 
 Spectral lines should then be recovered as transitions between effective envelope basins:
 
@@ -1683,7 +1683,7 @@ The recoil-free spectral line is the branch with $\Delta N_s(\mathbf k)=0$ for t
 
 ### Spin-Sensitive Spectral Targets
 
-After the base resonance and clock/rate program is stable, the spin-sensitive spectrum should be revisited as a validation surface for the completed angular-momentum ledger. Fine-structure and spin-orbit terms must distinguish observer-level orbital angular momentum from internal Noether swarm spinor behavior. Hyperfine terms must add the nuclear spin ledger without treating proton or neutron spin decomposition as already closed. Zeeman and related analyzer-response cases must use the finite-time measurement-response model rather than inserting preassigned spin labels.
+After the base resonance and clock/rate program is stable, the spin-sensitive spectrum should be revisited as a validation surface for the completed angular-momentum ledger. Fine-structure and spin-orbit terms must distinguish observer-level orbital angular momentum from internal Noether braid spinor behavior. Hyperfine terms must add the nuclear spin ledger without treating proton or neutron spin decomposition as already closed. Zeeman and related analyzer-response cases must use the finite-time measurement-response model rather than inserting preassigned spin labels.
 
 The orbital part of this recovery should match the standard effective labels $\ell$ and $m$, including $L^2\to\ell(\ell+1)\hbar^2$ and chosen-axis projection $L_z\to m\hbar$. The spin-sensitive part is a separate validation target: it must couple that orbital envelope to the completed internal spinor ledger rather than treating atomic orbital quantization as a proof of fermion spin.
 
@@ -1776,30 +1776,30 @@ In the Hyde artwork used in this project, small numeric annotations and labels a
 
 #### Genealogy of the Hyde form
 
-The Benfey (2009) analysis gives an explicit lineage for the Hyde table.[2]
+The Benfey (2009) analysis gives an explicit lineage for the Hyde table.
 
-1. Clark (1933): early oval/spiral periodic chart architecture.[3]
-2. Life (1949): high-visibility oval adaptation for a broad scientific audience.[4]
-3. Benfey/Jacobs Chemistry spiral (1964): the recognizable “snail” rendering, first used in Seaborg’s plutonium context.[2][8]
-4. Hyde (1976): axis-modified refinement with H-C-Si central alignment.[7]
+1. Clark (1933): early oval/spiral periodic chart architecture.
+2. Life (1949): high-visibility oval adaptation for a broad scientific audience.
+3. Benfey/Jacobs Chemistry spiral (1964): the recognizable “snail” rendering, first used in Seaborg’s plutonium context.
+4. Hyde (1976): axis-modified refinement with H-C-Si central alignment.
 
 Therefore Hyde did not originate the spiral family; he modified an existing spiral lineage with a specific structural emphasis.
 
 #### Shape evolution: protrusions and speculative extensions
 
-The same source records two distinct geometric modifications over time.[2]
+The historical account records two distinct geometric modifications over time.
 
 1. First protrusion: introduced to avoid severe lanthanide compression in the earlier oval/spiral form.
 2. Later protrusion logic: associated with superactinide-era shell-filling discussions, including the Weiner-Seaborg exchange.
-3. Historical extension argument: a 50-element period expectation based on $2+6+10+14+18$ was explicitly discussed in that speculative context.[2][10][11]
+3. Historical extension argument: a 50-element period expectation based on $2+6+10+14+18$ was explicitly discussed in later superheavy-period speculation.
 
 #### Hyde’s conceptual intervention
 
-Hyde’s specific move was to place a horizontal axis through H, C, and Si, emphasizing C/Si centrality between electropositive and electronegative regions, with explicit biosphere/lithosphere framing in the historical account.[2][7]
+Hyde’s specific move was to place a horizontal axis through H, C, and Si, emphasizing C/Si centrality between electropositive and electronegative regions, with explicit biosphere/lithosphere framing in the historical account.
 
 #### Historical intent statement
 
-In Benfey’s own account, the spiral was designed to improve visibility of periodic pattern structure relative to fragmented rectangular presentations; it was not presented as a replacement for the underlying periodic law.[2]
+In Benfey’s own account, the spiral was designed to improve visibility of periodic pattern structure relative to fragmented rectangular presentations; it was not presented as a replacement for the underlying periodic law.
 
 ---
 
@@ -1819,13 +1819,13 @@ The two-lobed (peanut/lemniscate-like) morphology separates strongly electroposi
 
 #### Carbon-silicon axis emphasis
 
-Hyde’s explicit H-C-Si axis emphasizes group-14 centrality between electropositive and electronegative domains and links carbon-rich and silicon-rich materials regimes.[2][7]
+Hyde’s explicit H-C-Si axis emphasizes group-14 centrality between electropositive and electronegative domains and links carbon-rich and silicon-rich materials regimes.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ working interpretation, this axis corresponds to the radial tier where four outer nested shell swarms can achieve a near-symmetric tetrahedral docking arrangement with maximally exposed neutral axes, giving a geometric route to catenation and directional covalency.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ working interpretation, this axis corresponds to the radial tier where four outer nested shell braids can achieve a near-symmetric tetrahedral docking arrangement with maximally exposed neutral axes, giving a geometric route to catenation and directional covalency.
 
 #### Branches and heavy-series treatment
 
-Historical Hyde-lineage forms use protrusions to avoid severe compression of lanthanides and to depict speculative superheavy continuations in a geometrically attached manner.[2]
+Historical Hyde-lineage forms use protrusions to avoid severe compression of lanthanides and to depict speculative superheavy continuations in a geometrically attached manner.
 
 ---
 
@@ -1844,41 +1844,41 @@ The points below are collected as a framework-internal research program, not as 
 
 #### Central Claim
 
-- The 1976 Hyde periodic chart abandons the rigid Cartesian block structure of the Mendeleev-style table in favor of a continuous spiral topology, and this topology is proposed to map directly to geometric packing constraints of Noether swarm assemblies.
+- The 1976 Hyde periodic chart abandons the rigid Cartesian block structure of the Mendeleev-style table in favor of a continuous spiral topology, and this topology is proposed to map directly to geometric packing constraints of Noether braid assemblies.
 
 #### Assumptions
 
-- The $s, p, d, f$ orbitals are treated not as abstract probability distributions, but as emergent volume-exclusion zones of oblate spheroidal electron nested shell swarm envelopes carrying six axial architrinos.
-- Electron nested shell swarms are assumed to couple to a central nuclear Noether swarm through local Noether sea density gradients.
+- The $s, p, d, f$ orbitals are treated not as abstract probability distributions, but as emergent volume-exclusion zones of oblate spheroidal electron nested shell braid envelopes carrying six axial architrinos.
+- Electron nested shell braids are assumed to couple to a central nuclear Noether braid through local Noether sea density gradients.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 
 #### Mechanism and Derivation Sketch
 
-- Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology on the nuclear Noether swarm, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
-- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether sea pressure gradient drops enough to stabilize an additional shell of precessing nested shell swarms.
-- In this view, the 8/18/32 shell periodicity emerges from finite-volume packing limits of Noether swarm assemblies under these boundary conditions.
-- Volume-exclusion mechanism: each electron nested shell swarm displaces the local Noether sea, and overlap of two precessing oblate spheroidal exclusion envelopes generates a sharply rising displacement-pressure gradient.
+- Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology on the nuclear Noether braid, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
+- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether sea pressure gradient drops enough to stabilize an additional shell of precessing nested shell braids.
+- In this view, the 8/18/32 shell periodicity emerges from finite-volume packing limits of Noether braid assemblies under these boundary conditions.
+- Volume-exclusion mechanism: each electron nested shell braid displaces the local Noether sea, and overlap of two precessing oblate spheroidal exclusion envelopes generates a sharply rising displacement-pressure gradient.
 - Dynamical resolution rule: when exclusion volumes intersect, assemblies must either separate into orthogonal precession phases or move to a larger-radius tier.
 - Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by Noether sea displacement pressure rather than only an abstract occupancy postulate.
 - Subshell branching hypothesis ($s, p, d, f$): branching reflects the number and symmetry of available neutral-axis docking geometries permitted by six polar sites.
-- Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are interpreted as shared exposed neutral-axis geometry in outer nested shell swarms, which controls preferred bonding directions.
+- Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are interpreted as shared exposed neutral-axis geometry in outer nested shell braids, which controls preferred bonding directions.
 - Carbon-silicon centrality hypothesis: the H-C-Si axis is identified with the first tier permitting a symmetric four-site tetrahedral outer-docking pattern, giving a direct structural basis for group-14 bonding behavior.
 
 #### Predictions and Observables
 
 - If shell structure is a packing phenomenon, ionization-energy trends along Hyde’s spiral should show systematic high-$Z$ deviations from idealized Dirac-limit expectations.
-- Mechanism for the deviation: increasing nuclear mass steepens the local Noether sea density gradient, geometrically compressing inner-shell nested shell swarms and driving middle-binary velocities toward field-speed limits.
-- This inner-shell geometric strain changes the effective shielding potential seen by valence nested shell swarms, producing measurable departures from standard relativistic-correction-only trends.
+- Mechanism for the deviation: increasing nuclear mass steepens the local Noether sea density gradient, geometrically compressing inner-shell nested shell braids and driving middle-binary velocities toward field-speed limits.
+- This inner-shell geometric strain changes the effective shielding potential seen by valence nested shell braids, producing measurable departures from standard relativistic-correction-only trends.
 
 #### Failure Modes and Falsification Criteria
 
-- If multi-body simulations of nested shell swarms with axial layers do not spontaneously produce discrete 8/18/32 packing regimes, the geometric-periodicity derivation fails.
+- If multi-body simulations of nested shell braids with axial layers do not spontaneously produce discrete 8/18/32 packing regimes, the geometric-periodicity derivation fails.
 - If the model collapses into continuous charge distributions with no discrete angular nodes, the orbital-geometry mapping is falsified.
 - If predicted high-$Z$ ionization-energy deviations are absent beyond uncertainty and known correction terms, the proposed finite-volume mechanism is disfavored.
 
 #### Geometric-Periodicity Closure Program
 
-The Hyde hypothesis becomes useful only if it can be converted into a closure program with explicit geometric tests. The first step is to translate Hyde's 2D spiral ordering into a 3D close-packing algorithm for oblate spheroidal electron Noether swarm assemblies.
+The Hyde hypothesis becomes useful only if it can be converted into a closure program with explicit geometric tests. The first step is to translate Hyde's 2D spiral ordering into a 3D close-packing algorithm for oblate spheroidal electron Noether braid assemblies.
 
 The first constrained benchmark should be the Neon core ($Z=10$), with explicit boundary conditions:
 
@@ -1891,44 +1891,13 @@ The outer-shell success criterion is that the eight outer assemblies converge to
 
 Only after Neon stability and node discreteness are established should the program extend to higher-$Z$ shells. At that point, the predicted high-$Z$ ionization-energy deviations can be compared against known relativistic, QED, and finite-nuclear-size corrections.
 
----
-
-### References
-
-[1] Science History Institute Digital Collections, *The Chemical Elements and Their Periodic Relationships* (J. F. Hyde, 1975):<br>
-https://digital.sciencehistory.org/works/8p58pf13g
-
-[2] O. T. Benfey, *The Biography of a Periodic Spiral: From Chemistry Magazine, via Industry, to a Foucault Pendulum*, *Bull. Hist. Chem.* 34(2), 141-145 (2009). Local copy:<br>
-`content/assets/bhc2009v034p141.pdf`
-
-[3] J. D. Clark, “A New Periodic Chart,” *J. Chem. Educ.* 10 (1933) 675-677.
-
-[4] “The Atom: A Layman’s Primer on what the World is made of,” *Life*, May 16, 1949, 26(20), 68-88.
-
-[5] IUPAC, *Periodic Table of Elements* (policy context: group conventions, naming, updates):<br>
-https://iupac.org/what-we-do/periodic-table-of-elements/
-
-[6] IUPAC Recommendations on naming superheavy elements and naming procedures:<br>
-https://iupac.org/recommendation/names-and-symbols-of-the-elements-with-atomic-numbers-113-115-117-and-118/<br>
-https://iupac.org/recommendation/how-to-name-new-chemical-elements/
-
-[7] J. F. Hyde, “A Newly Arranged Periodic Chart,” *Chemistry*, Sept 1976, 49(7), 15-18.
-
-[8] G. T. Seaborg, “Plutonium: the Ornery Element,” *Chemistry*, June 1964, 37(6), 12-17.
-
-[9] G. T. Seaborg, “Progress beyond Plutonium,” *Chem. Eng. News* 44(25) (1966), 76-88.
-
-[10] H. Weiner, Letter to the editor with Seaborg response and revised spiral, *Chemistry*, March 1967, 40(3), 42.
-
-[11] G. T. Seaborg, “From Mendeleev to Mendelevium and Beyond,” *Chemistry*, Jan 1970, 43(1), 6-9.
-
 ## Molecular Geometry
 
 This chapter states the molecular-geometry closure target within the assembly framework. Its purpose is to identify what molecular shape depends on in this ontology so the eventual detailed derivation has a stable launch point.
 
 It should be connected to [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), and [Molecular Exclusion and Noether Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md), which together supply the atomic constituents, resonance behavior, medium response, and exclusion geometry that molecular shapes must reconcile.
 
-Spin and Pauli language in this chapter is downstream of [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/quantum-statistics.md). Molecular singlet/triplet labels, bonding selection rules, electron-pair exclusion, and orbital-hybridization language should be treated as validation targets for those lower proofs, not as separate explanations.
+Spin and Pauli language in this chapter is downstream of [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md). Molecular singlet/triplet labels, bonding selection rules, electron-pair exclusion, and orbital-hybridization language should be treated as validation targets for those lower proofs, not as separate explanations.
 
 ### Purpose
 
@@ -2487,7 +2456,7 @@ $$
 
 where $\theta_{\mathrm{sea}}$ denotes the local Noether sea state record, including $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, $\mathcal{M}_{\text{sea}}^{ab}$, and strain data. The term $M_{\mathrm{sh}}(A_{\mathrm{Fe}};\theta_{\mathrm{sea}})$ is the medium-dressed exposed mass response of an iron assembly, not a new nuclear species. In this form the reason iron sinks is not that the center creates iron, but that existing iron-bearing assemblies minimize the relevant chemical, gravitational, and medium-response potential in dense planetary interiors.
 
-The sharper equilibrium hypothesis is that the iron-rich metallic branch is compatible with higher normalized Noether swarm density than a silicate branch at the same pressure and temperature. Let
+The sharper equilibrium hypothesis is that the iron-rich metallic branch is compatible with higher normalized Noether braid density than a silicate branch at the same pressure and temperature. Let
 
 $$
 \Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}
@@ -2515,7 +2484,7 @@ $$
 0
 $$
 
-along the planetary-interior branch, with $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$. This does not say that Noether sea density creates iron. It says that, after iron already exists, the metallic iron branch may reduce relative chemical and medium-response cost as ambient Noether swarm density increases. In ordinary terms, iron-rich material sinks because it is dense; in the native theory, density must eventually be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether sea coupling.
+along the planetary-interior branch, with $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$. This does not say that Noether sea density creates iron. It says that, after iron already exists, the metallic iron branch may reduce relative chemical and medium-response cost as ambient Noether braid density increases. In ordinary terms, iron-rich material sinks because it is dense; in the native theory, density must eventually be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether sea coupling.
 
 A local sufficient condition can be stated by differentiating the packing ceiling rather than treating it as a fixed phase label. For a material branch $X$, let
 
@@ -2637,6 +2606,6 @@ The source term enforces the no-new-iron guardrail, the segregation and phase te
 
 #### Threshold Crossing and Failure Modes
 
-Crossing $\mathcal{R}_{\text{tr},*}$ is the point at which reversible transport stops being the adequate description. Above threshold, some transported energy or action must route into an explicit channel: medium excitation, radiation-like transport, local heating, action shedding, or branch transition. For the dynamical bookkeeping of those channels, see [Energy](../../../../markdown/aaa/dynamics/energy.md) and [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md).
+Crossing $\mathcal{R}_{\text{tr},*}$ is the point at which reversible transport stops being the adequate description. Above threshold, some transported energy or action must route into an explicit channel: medium excitation, radiation-like transport, local heating, action shedding, or branch transition. For the dynamical bookkeeping of those channels, see [Energy](../../../../markdown/aaa/dynamics/energy.md) and [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md).
 
 The main failure modes are therefore sharp. If $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ still produces ordinary dissipative drag in stable atoms, the framework loses chemical stability. If $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ occurs without a logged excitation, radiation, heating, or branch-transition channel, the energy ledger is incomplete. If the threshold cannot be expressed in terms of assembly motion, local Noether sea state, medium response, and stability gap data, the medium-transport picture has not matured into a usable transport closure.

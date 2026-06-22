@@ -522,6 +522,20 @@ function delay(milliseconds) {
   });
 }
 
+async function removePathWithRetries(targetPath, attempts = 8) {
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    try {
+      fs.rmSync(targetPath, { recursive: true, force: true });
+      return;
+    } catch (error) {
+      if (attempt === attempts - 1) {
+        throw error;
+      }
+      await delay(250 * (attempt + 1));
+    }
+  }
+}
+
 async function waitForStableFile(outputPath, timeoutMs) {
   const startedAt = Date.now();
   let lastSize = -1;
@@ -554,7 +568,7 @@ async function runBrowserPrint({ browserPath, htmlPath, pdfPath }) {
   const absoluteHtmlPath = path.join(rootDir, htmlPath);
   const absolutePdfPath = path.join(rootDir, pdfPath);
   const profileDir = path.join(rootDir, ".tmp", "textbook-review-pdf-profile", slugFromTitle(pdfPath));
-  fs.rmSync(profileDir, { recursive: true, force: true });
+  await removePathWithRetries(profileDir);
   fs.mkdirSync(path.dirname(absolutePdfPath), { recursive: true });
   fs.rmSync(absolutePdfPath, { force: true });
 
@@ -578,7 +592,9 @@ async function runBrowserPrint({ browserPath, htmlPath, pdfPath }) {
   const stderrChunks = [];
   const child = spawn(browserPath, browserArgs, {
     stdio: ["ignore", "ignore", "pipe"],
+    detached: true,
   });
+  let childExited = false;
 
   child.stderr.on("data", (chunk) => {
     if (stderrChunks.length < 200) {
@@ -588,15 +604,31 @@ async function runBrowserPrint({ browserPath, htmlPath, pdfPath }) {
 
   const exitPromise = new Promise((resolve, reject) => {
     child.once("error", reject);
-    child.once("exit", (code, signal) => resolve({ code, signal }));
+    child.once("exit", (code, signal) => {
+      childExited = true;
+      resolve({ code, signal });
+    });
   });
+
+  function signalBrowserProcessGroup(signal) {
+    if (child.pid) {
+      try {
+        process.kill(-child.pid, signal);
+        return;
+      } catch {
+        // Fall back to the parent process below when the platform does not
+        // expose a usable process group for this browser launch.
+      }
+    }
+    child.kill(signal);
+  }
 
   try {
     await Promise.race([
       waitForStableFile(absolutePdfPath, timeoutMs),
       exitPromise.then(({ code, signal }) => {
         if (code === 0 && fs.existsSync(absolutePdfPath) && fs.statSync(absolutePdfPath).size > 0) {
-          return;
+          return waitForStableFile(absolutePdfPath, Math.min(timeoutMs, 30000));
         }
         const detail = stderrChunks.join("").trim();
         throw new Error(
@@ -607,14 +639,18 @@ async function runBrowserPrint({ browserPath, htmlPath, pdfPath }) {
   } catch (error) {
     errors.push(`${pdfPath}: browser PDF export failed (${error.message})`);
   } finally {
-    if (!child.killed) {
-      child.kill("SIGTERM");
+    if (!childExited && !child.killed) {
+      signalBrowserProcessGroup("SIGTERM");
     }
-    const exitResult = await Promise.race([exitPromise, delay(1500).then(() => null)]);
-    if (exitResult === null) {
-      child.kill("SIGKILL");
+    const exitResult = await Promise.race([exitPromise, delay(3000).then(() => null)]);
+    if (exitResult === null && !childExited) {
+      signalBrowserProcessGroup("SIGKILL");
+      await Promise.race([exitPromise, delay(1000).then(() => null)]);
     }
-    fs.rmSync(profileDir, { recursive: true, force: true });
+    if (fs.existsSync(absolutePdfPath) && fs.statSync(absolutePdfPath).size > 0) {
+      await waitForStableFile(absolutePdfPath, Math.min(timeoutMs, 30000));
+    }
+    await removePathWithRetries(profileDir);
   }
 }
 

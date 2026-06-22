@@ -485,7 +485,7 @@ $$
 
 where $\theta_{\mathrm{sea}}$ denotes the local Noether sea state record, including $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, $\mathcal{M}_{\text{sea}}^{ab}$, and strain data. The term $M_{\mathrm{sh}}(A_{\mathrm{Fe}};\theta_{\mathrm{sea}})$ is the medium-dressed exposed mass response of an iron assembly, not a new nuclear species. In this form the reason iron sinks is not that the center creates iron, but that existing iron-bearing assemblies minimize the relevant chemical, gravitational, and medium-response potential in dense planetary interiors.
 
-The sharper equilibrium hypothesis is that the iron-rich metallic branch is compatible with higher normalized Noether swarm density than a silicate branch at the same pressure and temperature. Let
+The sharper equilibrium hypothesis is that the iron-rich metallic branch is compatible with higher normalized Noether braid density than a silicate branch at the same pressure and temperature. Let
 
 $$
 \Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}
@@ -513,7 +513,7 @@ $$
 0
 $$
 
-along the planetary-interior branch, with $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$. This does not say that Noether sea density creates iron. It says that, after iron already exists, the metallic iron branch may reduce relative chemical and medium-response cost as ambient Noether swarm density increases. In ordinary terms, iron-rich material sinks because it is dense; in the native theory, density must eventually be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether sea coupling.
+along the planetary-interior branch, with $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$. This does not say that Noether sea density creates iron. It says that, after iron already exists, the metallic iron branch may reduce relative chemical and medium-response cost as ambient Noether braid density increases. In ordinary terms, iron-rich material sinks because it is dense; in the native theory, density must eventually be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether sea coupling.
 
 A local sufficient condition can be stated by differentiating the packing ceiling rather than treating it as a fixed phase label. For a material branch $X$, let
 
@@ -635,6 +635,6 @@ The source term enforces the no-new-iron guardrail, the segregation and phase te
 
 ### Threshold Crossing and Failure Modes
 
-Crossing $\mathcal{R}_{\text{tr},*}$ is the point at which reversible transport stops being the adequate description. Above threshold, some transported energy or action must route into an explicit channel: medium excitation, radiation-like transport, local heating, action shedding, or branch transition. For the dynamical bookkeeping of those channels, see [Energy](../dynamics/energy.md) and [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md).
+Crossing $\mathcal{R}_{\text{tr},*}$ is the point at which reversible transport stops being the adequate description. Above threshold, some transported energy or action must route into an explicit channel: medium excitation, radiation-like transport, local heating, action shedding, or branch transition. For the dynamical bookkeeping of those channels, see [Energy](../dynamics/energy.md) and [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md).
 
 The main failure modes are therefore sharp. If $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ still produces ordinary dissipative drag in stable atoms, the framework loses chemical stability. If $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ occurs without a logged excitation, radiation, heating, or branch-transition channel, the energy ledger is incomplete. If the threshold cannot be expressed in terms of assembly motion, local Noether sea state, medium response, and stability gap data, the medium-transport picture has not matured into a usable transport closure.

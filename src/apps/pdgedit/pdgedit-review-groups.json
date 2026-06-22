@@ -21,18 +21,18 @@
       "rows": [
         [
           "noether",
-          "pro-noether-swarm-glyph",
-          "anti-noether-swarm-glyph",
+          "pro-noether-braid-glyph",
+          "anti-noether-braid-glyph",
           "sea"
         ]
       ]
     },
     {
-      "key": "pro-noether-swarm",
-      "title": "Pro Noether swarm",
+      "key": "pro-noether-braid",
+      "title": "Pro Noether braid",
       "rows": [
         [
-          "pro-noether-swarm",
+          "pro-noether-braid",
           "binary-bare-br-none",
           "binary-bare-br-none",
           "binary-bare-br-none"
@@ -40,11 +40,11 @@
       ]
     },
     {
-      "key": "anti-noether-swarm",
-      "title": "Anti Noether swarm",
+      "key": "anti-noether-braid",
+      "title": "Anti Noether braid",
       "rows": [
         [
-          "anti-noether-swarm",
+          "anti-noether-braid",
           "binary-bare-rb-none",
           "binary-bare-rb-none",
           "binary-bare-rb-none"
@@ -53,7 +53,7 @@
     },
     {
       "key": "pro-bi-binary",
-      "title": "Pro Nested Shell Swarm",
+      "title": "Pro Nested Shell Braid",
       "rows": [
         [
           "pro-bi-binary",
@@ -65,7 +65,7 @@
     },
     {
       "key": "anti-bi-binary",
-      "title": "Anti Nested Shell Swarm",
+      "title": "Anti Nested Shell Braid",
       "rows": [
         [
           "anti-bi-binary",
@@ -77,7 +77,7 @@
     },
     {
       "key": "pro-uni-binary",
-      "title": "Pro Shell Swarm",
+      "title": "Pro Shell Braid",
       "rows": [
         [
           "pro-uni-binary",
@@ -89,7 +89,7 @@
     },
     {
       "key": "anti-uni-binary",
-      "title": "Anti Shell Swarm",
+      "title": "Anti Shell Braid",
       "rows": [
         [
           "anti-uni-binary",
@@ -468,13 +468,13 @@
       "title": "Photon",
       "rows": [
         [
-          "pro-noether-swarm",
+          "pro-noether-braid",
           "binary-bare-br-none",
           "binary-bare-br-none",
           "binary-bare-br-none"
         ],
         [
-          "anti-noether-swarm",
+          "anti-noether-braid",
           "binary-bare-rb-none",
           "binary-bare-rb-none",
           "binary-bare-rb-none"
@@ -486,13 +486,13 @@
       "title": "Noether Pair",
       "rows": [
         [
-          "pro-noether-swarm",
+          "pro-noether-braid",
           "binary-bare-br-none",
           "binary-bare-br-none",
           "binary-bare-br-none"
         ],
         [
-          "anti-noether-swarm",
+          "anti-noether-braid",
           "binary-bare-rb-none",
           "binary-bare-rb-none",
           "binary-bare-rb-none"
@@ -504,25 +504,25 @@
       "title": "Noether Quad",
       "rows": [
         [
-          "pro-noether-swarm",
+          "pro-noether-braid",
           "binary-bare-br-none",
           "binary-bare-br-none",
           "binary-bare-br-none"
         ],
         [
-          "anti-noether-swarm",
+          "anti-noether-braid",
           "binary-bare-rb-none",
           "binary-bare-rb-none",
           "binary-bare-rb-none"
         ],
         [
-          "pro-noether-swarm",
+          "pro-noether-braid",
           "binary-bare-br-none",
           "binary-bare-br-none",
           "binary-bare-br-none"
         ],
         [
-          "anti-noether-swarm",
+          "anti-noether-braid",
           "binary-bare-rb-none",
           "binary-bare-rb-none",
           "binary-bare-rb-none"

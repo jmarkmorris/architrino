@@ -7,15 +7,15 @@ export function formatPhotonFixed(value, digits = 3) {
   return value.toFixed(digits);
 }
 
-function computeSwarmActionProxy(state, swarmId) {
+function computeBraidActionProxy(state, braidId) {
   return PHOTON_LAYER_ORDER.reduce((sum, layerId) => {
-    const layer = getPhotonLayer(state, swarmId, layerId);
+    const layer = getPhotonLayer(state, braidId, layerId);
     return sum + Math.abs(layer.radius * layer.frequencyHz);
   }, 0);
 }
 
-function computePhaseLockSpread(state, swarmId) {
-  const phases = PHOTON_LAYER_ORDER.map((layerId) => getPhotonLayer(state, swarmId, layerId).phaseDeg);
+function computePhaseLockSpread(state, braidId) {
+  const phases = PHOTON_LAYER_ORDER.map((layerId) => getPhotonLayer(state, braidId, layerId).phaseDeg);
   const sorted = phases.slice().sort((a, b) => a - b);
   const gaps = sorted.map((phase, index) => {
     const next = sorted[(index + 1) % sorted.length] + (index === sorted.length - 1 ? 360 : 0);
@@ -210,8 +210,8 @@ function requirePhotonFormulaSummary(formulaSummary) {
 
 export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = null) {
   const formula = requirePhotonFormulaSummary(formulaSummary);
-  const leftAction = computeSwarmActionProxy(state, "left");
-  const rightAction = computeSwarmActionProxy(state, "right");
+  const leftAction = computeBraidActionProxy(state, "left");
+  const rightAction = computeBraidActionProxy(state, "right");
   const exposureBalance = Math.abs(leftAction - rightAction) / (leftAction + rightAction + 1e-9);
   const helicityEstimate = state?.pair?.left?.direction === "ccw" && state?.pair?.right?.direction === "cw"
     ? 1

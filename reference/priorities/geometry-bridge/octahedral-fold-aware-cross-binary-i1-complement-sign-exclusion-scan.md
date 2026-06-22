@@ -150,7 +150,7 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan.mjs). It emits:
 
 - compact complement scan summaries for the left positive and right compact negative rows;
 - preserved source-root counts and term root-count signatures;
@@ -158,7 +158,7 @@ The executable packet is [octahedral-fold-aware-cross-binary-i1-complement-sign-
 - an imported $\theta_{3-}^{-}$ fold-collar transport check;
 - explicit non-retention and non-interval claim boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan.test.js) validates the sampled signs, source-root signatures, fold-collar import, no-fixed-speed-window discipline, CLI write/validate path, and overclaim rejection.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan.test.js) validates the sampled signs, source-root signatures, fold-collar import, no-fixed-speed-window discipline, CLI write/validate path, and overclaim rejection.
 
 ## Result
 

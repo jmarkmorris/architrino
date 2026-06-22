@@ -195,7 +195,7 @@ identity.
 ## Executable Artifact
 
 The executable packet is
-[octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.mjs).
+[octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.mjs).
 It emits:
 
 - directed-rounded $\operatorname{Shift}_{31}$ endpoint signs on $3840$
@@ -207,7 +207,7 @@ It emits:
   quadrature, and retention rows.
 
 The companion test
-[neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.test.js)
+[neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.test.js)
 validates schema, no-fixed-speed-window discipline, endpoint signs,
 monotonicity, predecessor containment, overclaim rejection, and CLI validation
 behavior.

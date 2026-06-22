@@ -212,14 +212,14 @@
       ]
     },
     {
-      "id": "anti_noether_swarm_row_6",
-      "type": "anti-noether-swarm-assembly",
+      "id": "anti_noether_braid_row_6",
+      "type": "anti-noether-braid-assembly",
       "x": 2,
       "y": 5,
-      "title": "Anti Noether Swarm Row 6",
+      "title": "Anti Noether Braid Row 6",
       "role": "intermediate",
       "tiles": [
-        "anti-noether-swarm",
+        "anti-noether-braid",
         "binary-bare-rb-none",
         "binary-bare-rb-none",
         "binary-bare-rb-none"
@@ -262,8 +262,8 @@
       "role": "intermediate",
       "tiles": [
         "noether",
-        "pro-noether-swarm-glyph",
-        "anti-noether-swarm-glyph",
+        "pro-noether-braid-glyph",
+        "anti-noether-braid-glyph",
         "sea"
       ]
     },
@@ -282,14 +282,14 @@
       ]
     },
     {
-      "id": "pro_noether_swarm_row_8",
-      "type": "pro-noether-swarm-assembly",
+      "id": "pro_noether_braid_row_8",
+      "type": "pro-noether-braid-assembly",
       "x": 2,
       "y": 7,
-      "title": "Pro Noether Swarm Row 8",
+      "title": "Pro Noether Braid Row 8",
       "role": "intermediate",
       "tiles": [
-        "pro-noether-swarm",
+        "pro-noether-braid",
         "binary-bare-br-none",
         "binary-bare-br-none",
         "binary-bare-br-none"

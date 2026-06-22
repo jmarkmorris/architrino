@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="title desc">
+  <title id="title">Noether Braid flat three-ellipse clockwise logo study</title>
+  <desc id="desc">A flat two-dimensional logo study with three identical centered ellipses at 120 degree offsets. Each ellipse carries one red positrino and one blue electrino. Clockwise motion is indicated by a constant-width trailing half-ellipse in the particle color fading into purple.</desc>
+  <defs>
+    <linearGradient id="p-trail-0" gradientUnits="userSpaceOnUse" x1="512" y1="132" x2="512" y2="892">
+      <stop offset="0" stop-color="#ff0000"/>
+      <stop offset=".55" stop-color="#9b004f"/>
+      <stop offset="1" stop-color="#4b0082"/>
+    </linearGradient>
+    <linearGradient id="e-trail-0" gradientUnits="userSpaceOnUse" x1="512" y1="892" x2="512" y2="132">
+      <stop offset="0" stop-color="#0000ff"/>
+      <stop offset=".55" stop-color="#2500bd"/>
+      <stop offset="1" stop-color="#4b0082"/>
+    </linearGradient>
+
+    <linearGradient id="p-trail-120" gradientUnits="userSpaceOnUse" x1="841.09" y1="702" x2="182.91" y2="322">
+      <stop offset="0" stop-color="#ff0000"/>
+      <stop offset=".55" stop-color="#9b004f"/>
+      <stop offset="1" stop-color="#4b0082"/>
+    </linearGradient>
+    <linearGradient id="e-trail-120" gradientUnits="userSpaceOnUse" x1="182.91" y1="322" x2="841.09" y2="702">
+      <stop offset="0" stop-color="#0000ff"/>
+      <stop offset=".55" stop-color="#2500bd"/>
+      <stop offset="1" stop-color="#4b0082"/>
+    </linearGradient>
+
+    <linearGradient id="p-trail-240" gradientUnits="userSpaceOnUse" x1="182.91" y1="702" x2="841.09" y2="322">
+      <stop offset="0" stop-color="#ff0000"/>
+      <stop offset=".55" stop-color="#9b004f"/>
+      <stop offset="1" stop-color="#4b0082"/>
+    </linearGradient>
+    <linearGradient id="e-trail-240" gradientUnits="userSpaceOnUse" x1="841.09" y1="322" x2="182.91" y2="702">
+      <stop offset="0" stop-color="#0000ff"/>
+      <stop offset=".55" stop-color="#2500bd"/>
+      <stop offset="1" stop-color="#4b0082"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1024" height="1024" fill="#4b0082"/>
+
+  <!-- Shared full-orbit guide: flat 2D ellipses only, no depth or crossing hierarchy. -->
+  <g fill="none" stroke="#6f2ca3" stroke-width="24" stroke-linecap="round" opacity=".55">
+    <ellipse cx="512" cy="512" rx="132" ry="380"/>
+    <ellipse cx="512" cy="512" rx="132" ry="380" transform="rotate(120 512 512)"/>
+    <ellipse cx="512" cy="512" rx="132" ry="380" transform="rotate(240 512 512)"/>
+  </g>
+
+  <!-- Clockwise convention: each particle's displayed arc is the trailing half-orbit behind it. -->
+  <g fill="none" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M512 132 A132 380 0 0 0 512 892" stroke="url(#p-trail-0)"/>
+    <path d="M512 892 A132 380 0 0 0 512 132" stroke="url(#e-trail-0)"/>
+
+    <path d="M512 132 A132 380 0 0 0 512 892" transform="rotate(120 512 512)" stroke="url(#p-trail-120)"/>
+    <path d="M512 892 A132 380 0 0 0 512 132" transform="rotate(120 512 512)" stroke="url(#e-trail-120)"/>
+
+    <path d="M512 132 A132 380 0 0 0 512 892" transform="rotate(240 512 512)" stroke="url(#p-trail-240)"/>
+    <path d="M512 892 A132 380 0 0 0 512 132" transform="rotate(240 512 512)" stroke="url(#e-trail-240)"/>
+  </g>
+
+  <g stroke="#d9b7ff" stroke-width="8">
+    <circle cx="512" cy="132" r="42" fill="#ff0000"/>
+    <circle cx="841.09" cy="702" r="42" fill="#ff0000"/>
+    <circle cx="182.91" cy="702" r="42" fill="#ff0000"/>
+
+    <circle cx="512" cy="892" r="42" fill="#0000ff"/>
+    <circle cx="182.91" cy="322" r="42" fill="#0000ff"/>
+    <circle cx="841.09" cy="322" r="42" fill="#0000ff"/>
+  </g>
+</svg>

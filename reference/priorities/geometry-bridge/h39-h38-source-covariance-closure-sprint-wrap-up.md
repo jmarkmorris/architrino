@@ -19,6 +19,28 @@ The path should be resumed only if the upstream source-map provider
 construction can emit, derive, or certify a same-domain branch-bearing provider
 object before aggregate $P$ is summed.
 
+## Foundation/Dynamics Impact 2026-06-21
+
+The 2026-06-21 foundation and dynamics updates do not restart this H39/H38
+path. They reinforce the pause decision. The new non-degeneracy, branch-fold,
+joint path-history, and phase-bundle language makes the missing object more
+specific: a future H39 provider schema cannot be aggregate-only if it is meant
+to feed an assembly-response or tri-binary branch chart. Before aggregate $P$
+is formed, the provider row must preserve same-domain branch identity, root
+stratum, branch-Jacobian or fold status, signed root-degree contribution,
+projection or pushforward weights, and any assembly-level framing, linking, or
+holonomy labels the consuming branch chart declares.
+
+The Master Equation causal-root sheaf framing makes the same condition sharper:
+the future provider must preserve the local section or stalk identity of each
+branch row, its overlap or gluing provenance, and the finite continuation
+cardinality needed by a consuming branch chart. That is a schema-strengthening
+condition, not a new proof result. Existing H39 diagnostics and blocker
+classifications remain valid. The resume condition is still the same-domain
+branch-bearing provider object before aggregate $P$, now with the explicit
+warning that later branch-fold, gluing, finite-continuation, or phase-bundle
+data cannot be recovered after aggregation has erased provenance.
+
 ## What Was Proven By Execution
 
 The following claims are supported by executable artifacts and focused tests:
@@ -115,11 +137,11 @@ replays remain nonadmissible wrappers around an aggregate-only provider object.
 
 Primary diagnostic file:
 
-- `scripts/neutral-swarm/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs`
+- `scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs`
 
 Focused test file:
 
-- `tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js`
+- `tests/neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js`
 
 Most relevant packet builders:
 
@@ -145,10 +167,10 @@ field groups needed to materialize $P_b$.
 The latest focused validation passed:
 
 ```bash
-node --check scripts/neutral-swarm/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs
-node --check tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js
-node --test --test-name-pattern "h39 terminal affine-zeta endpoint provider replay crosses the provider boundary" tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js
-node --test --test-name-pattern "h39 h38 expression-level N38 terminal graph remainder budget bridges the symmetric cross-fold window" tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js
+node --check scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs
+node --check tests/neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js
+node --test --test-name-pattern "h39 terminal affine-zeta endpoint provider replay crosses the provider boundary" tests/neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js
+node --test --test-name-pattern "h39 h38 expression-level N38 terminal graph remainder budget bridges the symmetric cross-fold window" tests/neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
 git diff --check

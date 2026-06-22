@@ -22,8 +22,8 @@
         "scenePath": "content/scenes/validation/sim_bell_family_record_measure.json"
       },
       {
-        "nodeId": "sim_nested_shell_swarm_action_increment_protocol",
-        "scenePath": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json"
+        "nodeId": "sim_nested_shell_braid_action_increment_protocol",
+        "scenePath": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json"
       },
       {
         "nodeId": "sim_retuning_map_toy_model",
@@ -49,11 +49,11 @@
       "labelBadge": "doc"
     },
     {
-      "id": "sim_nested_shell_swarm_action_increment_protocol",
-      "title": "Nested Shell Swarm Action-Increment Protocol",
+      "id": "sim_nested_shell_braid_action_increment_protocol",
+      "title": "Nested Shell Braid Action-Increment Protocol",
       "radius": 2.688,
       "color": "#4f5d75",
-      "labelTitle": "Nested Shell Swarm Action",
+      "labelTitle": "Nested Shell Braid Action",
       "labelBadge": "doc"
     },
     {

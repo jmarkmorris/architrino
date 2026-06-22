@@ -102,28 +102,28 @@ function validateSlotNode(node, errors) {
   }
 }
 
-function validateNoetherSwarmNode(node, errors) {
+function validateNoetherBraidNode(node, errors) {
   if (isExoticStructureNode(node)) {
     return;
   }
   const children = getStructureNodeChildren(node);
   const slotChildren = children.filter((child) => child?.kind === STRUCTURE_KINDS.SLOT);
   if (slotChildren.length !== 3) {
-    pushError(errors, "noether_swarm.slot_count", "Canonical Noether swarms must contain three slots.", node);
+    pushError(errors, "noether_braid.slot_count", "Canonical Noether braids must contain three slots.", node);
     return;
   }
   const seen = new Set();
   slotChildren.forEach((slotNode) => {
     const slotName = String(getStructureTrait(slotNode, "slot", "")).trim();
     if (seen.has(slotName)) {
-      pushError(errors, "noether_swarm.slot_duplicate", `Duplicate ${slotName} slot.`, node);
+      pushError(errors, "noether_braid.slot_duplicate", `Duplicate ${slotName} slot.`, node);
       return;
     }
     seen.add(slotName);
   });
   STRUCTURE_SLOT_ORDER.forEach((slotName) => {
     if (!seen.has(slotName)) {
-      pushError(errors, "noether_swarm.slot_missing", `Missing ${slotName} slot.`, node);
+      pushError(errors, "noether_braid.slot_missing", `Missing ${slotName} slot.`, node);
     }
   });
 }
@@ -155,8 +155,8 @@ export function validateStructureTree(root) {
       validateSlotNode(node, errors);
       return;
     }
-    if (node.kind === STRUCTURE_KINDS.NOETHER_SWARM) {
-      validateNoetherSwarmNode(node, errors);
+    if (node.kind === STRUCTURE_KINDS.NOETHER_BRAID) {
+      validateNoetherBraidNode(node, errors);
     }
   });
   return {

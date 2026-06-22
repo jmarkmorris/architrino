@@ -78,7 +78,7 @@ The direct successor [octahedral-fold-aware-cross-binary-interval-bridge-predica
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-bridge-predicate-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-bridge-predicate-certificate.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-bridge-predicate-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-bridge-predicate-certificate.mjs) emits:
 
 - predecessor validation for the source-atlas interval implication and forcing sign-bracket certificate;
 - no-fixed-speed-window bridge parameters;
@@ -88,7 +88,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-bridge-predicate-c
 - three sampled bridge-predicate certificate rows;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-bridge-predicate-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-bridge-predicate-certificate.test.js) verifies predecessor validation, speed-window removal, the three monotone sign-transport statements, sampled bridge endpoint signs, sampled bridge-predicate closure, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-bridge-predicate-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-bridge-predicate-certificate.test.js) verifies predecessor validation, speed-window removal, the three monotone sign-transport statements, sampled bridge endpoint signs, sampled bridge-predicate closure, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

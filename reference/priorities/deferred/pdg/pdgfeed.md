@@ -179,7 +179,7 @@ Each emitted `pdgsolve-request/v1` candidate should:
 - `source.kind` set to `pdgfeed`;
 - `source.sourceDocumentId` pointing back to the originating `pdg-proposal:<proposalId>` record;
 - `reactants` and `products` emitted as explicit request occurrences with stable `id`, `assemblyId`, and `title` fields;
-- when boundary completion requires omitted medium-side material, add explicit `pro_noether_swarm_I` and `anti_noether_swarm_I` rows on the reactant or product side before handoff;
+- when boundary completion requires omitted medium-side material, add explicit `pro_noether_braid_I` and `anti_noether_braid_I` rows on the reactant or product side before handoff;
 - when a completed boundary still leaves an explicit primitive residue below one full Noether pair, emit one product-side `Unbound Architrinos` occurrence carrying exact `electrinoCount` and `positrinoCount`;
 - set `policy` explicitly;
 - keep `allowedBoundaryAugmentations` at `["none"]` for `pdgfeed`-emitted v1 requests because boundary completion is upstream, not a solver choice;
@@ -287,9 +287,9 @@ Current compact AAA notation:
 | `W+`         | `W+` boson                       | two-character token                                                | `W+`             |
 | `W-`         | `W-` boson                       | two-character token                                                | `W-`             |
 | `Z`          | `Z` boson                        | direct match                                                       | `Z`              |
-| `h`          | Noether swarm                     | base core symbol                                                   | `n/a`            |
-| `h2`         | Bi Binary                        | reduced `Noether swarm` form                                        | `n/a`            |
-| `h3`         | Uni Binary                       | reduced `Noether swarm` form                                        | `n/a`            |
+| `h`          | Noether braid                     | base core symbol                                                   | `n/a`            |
+| `h2`         | Bi Binary                        | reduced `Noether braid` form                                        | `n/a`            |
+| `h3`         | Uni Binary                       | reduced `Noether braid` form                                        | `n/a`            |
 | `hp`         | Noether Pair or Photon           | mixed-core shorthand for `h.ah`                                    | `gamma`          |
 | `hq`         | Noether Quad (aka Higgs Cluster) | mixed-core shorthand for `h.ah.h.ah`                               | `n/a`            |
 | `e:p@`       | `Unbound Architrinos` ledger     | explicit electrino:positrino count, with both sides always present | `n/a`            |
@@ -319,8 +319,8 @@ Examples:
 | `ae2`    | anti muon           |
 | `v`      | pro neutrino        |
 | `av3`    | anti tau neutrino   |
-| `h`      | pro `Noether swarm`  |
-| `ah`     | anti `Noether swarm` |
+| `h`      | pro `Noether braid`  |
+| `ah`     | anti `Noether braid` |
 
 `Unbound Architrinos` are the exception to that anti-ness rule. They use explicit ledger tokens of the form `e:p@` with no anti form.
 
@@ -337,7 +337,7 @@ The choice of `@` for `Unbound Architrinos` is intentional. It works well at the
 
 This direction is simpler for the intended audience because it avoids a large inventory of unrelated one-letter symbols. A small set of family letters plus generation indices covers the fermion families cleanly, while `h`, `ah`, and explicit `e:p@` ledgers preserve the assembly-side intuition.
 
-For the `W` bosons, the preferred notation is the explicit two-character form `W+` and `W-` rather than encoding charge through case. That keeps the shorthand physically legible and consistent with the authored labels already used in the app and docs. `W+` and `W-` should be treated as atomic two-character tokens. Anti weak-boson forms should remain forbidden in this grammar: `W+` and `W-` already stand in antiparticle relation to each other, and `Z` is self-conjugate, so `aW+`, `aW-`, and `aZ` should not be introduced. For v1, the boson-core convention is fixed: `W+` carries anti `Noether swarm` provenance and `W-` carries pro `Noether swarm` provenance.
+For the `W` bosons, the preferred notation is the explicit two-character form `W+` and `W-` rather than encoding charge through case. That keeps the shorthand physically legible and consistent with the authored labels already used in the app and docs. `W+` and `W-` should be treated as atomic two-character tokens. Anti weak-boson forms should remain forbidden in this grammar: `W+` and `W-` already stand in antiparticle relation to each other, and `Z` is self-conjugate, so `aW+`, `aW-`, and `aZ` should not be introduced. For v1, the boson-core convention is fixed: `W+` carries anti `Noether braid` provenance and `W-` carries pro `Noether braid` provenance.
 
 ### Compact Grammar
 
@@ -357,7 +357,7 @@ Current token families:
 | fermion | `a? [eudv] [123]?` | `1` may be omitted only for generation I |
 | nucleon | `a? P` or `a? N` | anti allowed for nucleons |
 | weak boson | `W+`, `W-`, `Z` | `W+` and `W-` are atomic two-character tokens |
-| core form | `a? h`, `a? h2`, `a? h3` | anti allowed only on these `Noether swarm` forms |
+| core form | `a? h`, `a? h2`, `a? h3` | anti allowed only on these `Noether braid` forms |
 | named core composite | `hp`, `hq` | atomic mixed-core shorthand for Noether Pair and Noether Quad |
 | unbound-architrino ledger | `[0-9]+:[0-9]+@` | explicit electrino:positrino ledger, both sides required |
 
@@ -382,7 +382,7 @@ count          := digit { digit }
 Interpretation rules:
 
 - `a` binds only to the single token immediately following it;
-- `a` is currently valid for fermions, nucleons, and `Noether swarm` forms `h`, `h2`, and `h3`;
+- `a` is currently valid for fermions, nucleons, and `Noether braid` forms `h`, `h2`, and `h3`;
 - generation digits belong only to the fermion families `e`, `u`, `d`, and `v`;
 - `hp` and `hq` are dedicated atomic tokens for the Noether Pair and Noether Quad, rather than prefix-count variants of `h`;
 - `Unbound Architrinos` use a dedicated two-sided ledger token `e:p@`;
@@ -433,14 +433,14 @@ For composites, the `AAA Notation` column uses the current atomic shorthand when
 
 #### Assemblies
 
-| Canonical ID | Full Name | PDG Notation | AAA Notation | Type | Breakdown into AAA notation at Noether swarm and unbound architrinos layer | Total architrinos | Family | Generation | Pro or Anti | Transforms to pdgsolve rows |
+| Canonical ID | Full Name | PDG Notation | AAA Notation | Type | Breakdown into AAA notation at Noether braid and unbound architrinos layer | Total architrinos | Family | Generation | Pro or Anti | Transforms to pdgsolve rows |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `pro_noether_swarm_I` | Pro Noether Swarm | `n/a` | `h` | assembly | `h` | `3:3@` | Noether swarm | I | pro | yes |
-| `anti_noether_swarm_I` | Anti Noether Swarm | `n/a` | `ah` | assembly | `ah` | `3:3@` | Noether swarm | I | anti | yes |
-| `pro_noether_swarm_II` | Pro Bi-Binary | `n/a` | `h2` | assembly | `h2` | `2:2@` | Noether swarm | II | pro | yes |
-| `anti_noether_swarm_II` | Anti Bi-Binary | `n/a` | `ah2` | assembly | `ah2` | `2:2@` | Noether swarm | II | anti | yes |
-| `pro_noether_swarm_III` | Pro Uni-Binary | `n/a` | `h3` | assembly | `h3` | `1:1@` | Noether swarm | III | pro | yes |
-| `anti_noether_swarm_III` | Anti Uni-Binary | `n/a` | `ah3` | assembly | `ah3` | `1:1@` | Noether swarm | III | anti | yes |
+| `pro_noether_braid_I` | Pro Noether Braid | `n/a` | `h` | assembly | `h` | `3:3@` | Noether braid | I | pro | yes |
+| `anti_noether_braid_I` | Anti Noether Braid | `n/a` | `ah` | assembly | `ah` | `3:3@` | Noether braid | I | anti | yes |
+| `pro_noether_braid_II` | Pro Bi-Binary | `n/a` | `h2` | assembly | `h2` | `2:2@` | Noether braid | II | pro | yes |
+| `anti_noether_braid_II` | Anti Bi-Binary | `n/a` | `ah2` | assembly | `ah2` | `2:2@` | Noether braid | II | anti | yes |
+| `pro_noether_braid_III` | Pro Uni-Binary | `n/a` | `h3` | assembly | `h3` | `1:1@` | Noether braid | III | pro | yes |
+| `anti_noether_braid_III` | Anti Uni-Binary | `n/a` | `ah3` | assembly | `ah3` | `1:1@` | Noether braid | III | anti | yes |
 | `pro_electron_I` | Electron | `e-` | `e` | assembly | `h + 6:0@` | `9:3@` | charged lepton | I | pro | yes |
 | `anti_electron_I` | Positron | `e+` | `ae` | assembly | `ah + 0:6@` | `3:9@` | charged lepton | I | anti | yes |
 | `pro_electron_neutrino_I` | Electron Neutrino | `nu_e` | `v` | assembly | `h + 3:3@` | `6:6@` | neutrino | I | pro | yes |
@@ -468,7 +468,7 @@ For composites, the `AAA Notation` column uses the current atomic shorthand when
 
 #### Composites
 
-| Canonical ID           | Full Name            | PDG Notation | AAA Notation  | Type      | Breakdown into AAA notation at Noether swarm and unbound architrinos layer | Total architrinos | Family     | Generation | Pro or Anti    | Transforms to pdgsolve rows |
+| Canonical ID           | Full Name            | PDG Notation | AAA Notation  | Type      | Breakdown into AAA notation at Noether braid and unbound architrinos layer | Total architrinos | Family     | Generation | Pro or Anti    | Transforms to pdgsolve rows |
 | ---------------------- | -------------------- | ------------ | ------------- | --------- | ------------------------------------------------------------------------- | ----------------- | ---------- | ---------- | -------------- | ---------------------- |
 | `proton`               | Proton               | `p`          | `P`           | composite | `u.u.d = (h + 1:5@).(h + 1:5@).(h + 4:2@)`                                | `15:21@`          | baryon     | I          | pro            | yes                    |
 | `anti_proton`          | Anti Proton          | `anti-p`     | `aP`          | composite | `au.au.ad = (ah + 5:1@).(ah + 5:1@).(ah + 2:4@)`                          | `21:15@`          | baryon     | I          | anti           | yes                    |

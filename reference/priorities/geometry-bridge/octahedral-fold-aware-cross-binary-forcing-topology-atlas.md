@@ -100,7 +100,7 @@ The direct successor [octahedral-fold-aware-cross-binary-forcing-sign-bracket-ce
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-forcing-topology-atlas.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-forcing-topology-atlas.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-forcing-topology-atlas.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-forcing-topology-atlas.mjs) emits:
 
 - predecessor validation for the forcing-derivative atlas;
 - no-fixed-speed-window topology parameters;
@@ -111,7 +111,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-forcing-topology-a
 - the primitive candidate set recovered from topology;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-forcing-topology-atlas.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-forcing-topology-atlas.test.js) verifies predecessor validation, speed-window removal, topology-rule emission, three-cell topology classes, sampled zero isolation, candidate-set recovery, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-forcing-topology-atlas.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-forcing-topology-atlas.test.js) verifies predecessor validation, speed-window removal, topology-rule emission, three-cell topology classes, sampled zero isolation, candidate-set recovery, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

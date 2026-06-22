@@ -4,7 +4,7 @@
 Provide a **high-level structural language** (categories, functors, moduli spaces) to organize the zoo of architrino assemblies, their symmetries, and their deformations in a fixed Euclidean void with absolute time.
 
 **Current theory alignment**:
-- Structural objects must map to canonical dynamics in `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, and `noether-swarm/nested-shell-swarm-dynamics.md`.
+- Structural objects must map to canonical dynamics in `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, and `noether-braid/nested-shell-braid-dynamics.md`.
 - Parameter-dependent constructions should track `validation/parameter-ledger.md`.
 - Any proposed classification that supports phenomenology should cross-reference `validation/constraint-ledger.md` and `validation/failure-criteria.md`.
 
@@ -12,10 +12,10 @@ Provide a **high-level structural language** (categories, functors, moduli space
 
 1. **Category of assemblies**
    - Define a **category $\mathcal{A}$ of assemblies**:
-     - Objects: stable or metastable architrino configurations (binaries, tri-binaries, Noether swarm assemblies, composite particles).
+     - Objects: stable or metastable architrino configurations (binaries, tri-binaries, Noether braid assemblies, composite particles).
      - Morphisms: physically allowed processes (continuous deformations, association, dissociation, reconfiguration, scattering).
    - Introduce **subcategories** for:
-     - Noether swarm / Noether sea assemblies,
+     - Noether braid / Noether sea assemblies,
      - Fermionic-like tri-binaries,
      - Bosonic-like planar assemblies.
 

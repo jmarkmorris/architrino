@@ -61,7 +61,7 @@ The direct successor [octahedral-fold-aware-cross-binary-forcing-interval-sign-e
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.mjs) emits:
 
 - predecessor validation for the forcing sign-bracket certificate, forcing-topology atlas, and finite-candidate reduction;
 - no-fixed-speed-window margin parameters;
@@ -73,7 +73,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-forcing-sign-topol
 - bottleneck summary rows;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.test.js) verifies predecessor validation, speed-window removal, candidate order, core margins, bottleneck identification, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.test.js) verifies predecessor validation, speed-window removal, candidate order, core margins, bottleneck identification, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

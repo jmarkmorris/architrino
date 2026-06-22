@@ -126,19 +126,35 @@ Sentence guidance:
 
 Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space or ground-state associations; `aether` imports a historical debate that is not quite the same as the present ontology; `medium` is often too generic to do the constitutive work by itself. `Noether sea` is therefore valuable not because novelty is desirable, but because it is specific enough to name the ontological substrate contents without silently borrowing the wrong metaphysics from neighboring frameworks.
 
+## Noether Braid Usage
+
+Use `Noether braid` as the canonical reader-facing term for the neutral six-architrino assembly scaffold made from three positrinos and three electrinos. The term is broader than exact tri-binary motion: it names the retained six-worldline branch and its causal-return ledger before exact binary grouping, shell support, or nested ordering has been certified.
+
+| When you mean... | Prefer | Avoid by default | Example |
+| --- | --- | --- | --- |
+| the broad six-architrino neutral assembly class | `Noether braid` | `Noether braid` in reader-facing prose | "The Noether braid supplies the neutral scaffold." |
+| the base six-body case before shell or binary reductions | `neutral braid` | `neutral braid` | "A neutral braid may have no certified binary partition." |
+| a one-band radial-support case | `shell braid` | `shell braid` | "The shell braid carries a controlled radial support band." |
+| the three-band nested exact-binary candidate | `nested shell braid` | `nested shell braid` | "The nested shell braid is the main current fermion scaffold." |
+| a mathematically protected braid, link, or framing class | `protected braid class`, `linking class`, `framing class`, or the specific invariant | treating every Noether braid as already topologically protected | "A protected braid class is certified only after the assembly topological charge row closes." |
+
+The word `braid` is chosen because the object is a collection of persistent worldline strands whose delayed histories remain coupled. It should not be overread. A Noether braid is not automatically a braid-group invariant, a knot invariant, or a proof of fermionic exchange behavior. Those are additional theorem targets. When a sentence needs that stronger claim, name the actual invariant, such as a linking number, framed self-linking parity, flat phase-bundle holonomy, or the full assembly topological charge.
+
+Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid` during the notation migration. Treat those strings as stable implementation identifiers, not as preferred prose or source-title guidance. Do not invent alternate synonyms such as `Noether nucleus`, `Noether cluster`, or `Noether core` unless a later canon decision explicitly changes the taxonomy.
+
 ## Oblate Spheroidal Envelope, Spheroid, and Ellipsoid
 
-Use `oblate spheroidal envelope` for the Noether swarm boundary when the text is naming the project geometry precisely. Use `oblate spheroidal exclusion envelope` when exclusion, packing, or overlap is the active point. After a local paragraph has established that object, `spheroid` or `oblate spheroid` may be used as a short ordinary-geometry phrase, but the full project term should anchor the passage first.
+Use `oblate spheroidal envelope` for the Noether braid boundary when the text is naming the project geometry precisely. Use `oblate spheroidal exclusion envelope` when exclusion, packing, or overlap is the active point. After a local paragraph has established that object, `spheroid` or `oblate spheroid` may be used as a short ordinary-geometry phrase, but the full project term should anchor the passage first.
 
 | When you mean... | Prefer | Use with caution | Example |
 | --- | --- | --- | --- |
-| the Noether swarm boundary with two equal transverse axes and one contraction axis | `oblate spheroidal envelope` | `spheroid` only after the full term is established | "The app displays an oblate spheroidal envelope with $\xi=R_{\parallel}/R_{\perp}$." |
+| the Noether braid boundary with two equal transverse axes and one contraction axis | `oblate spheroidal envelope` | `spheroid` only after the full term is established | "The app displays an oblate spheroidal envelope with $\xi=R_{\parallel}/R_{\perp}$." |
 | the same geometry as an exclusion or packing boundary | `oblate spheroidal exclusion envelope` | generic `surface` if it hides the exclusion role | "Packing calculations use the oblate spheroidal exclusion envelope." |
 | ordinary geometry shorthand inside a local derivation | `oblate spheroid` | `spheroid` without context | "The oblate spheroid has semiaxes $(R_{\perp},R_{\perp},R_{\parallel})$." |
 | a generic quadric or comparison class | `ellipsoid` | only when the geometry is generic, triaxial, or comparative | "Maclaurin spheroids and Jacobi ellipsoids belong to the broader ellipsoid comparison family." |
-| Lorentz-linked Noether swarm display geometry | `oblate spheroidal envelope` with the Lorentz axis ratio stated separately | `Lorentz spheroid`, `Lorentz-spheroid` | "The Lorentz lesson displays an oblate spheroidal envelope whose zero-extra-scale target is $\xi=1/\gamma$." |
+| Lorentz-linked Noether braid display geometry | `oblate spheroidal envelope` with the Lorentz axis ratio stated separately | `Lorentz spheroid`, `Lorentz-spheroid` | "The Lorentz lesson displays an oblate spheroidal envelope whose zero-extra-scale target is $\xi=1/\gamma$." |
 
-The reason for the distinction is mathematical as well as stylistic. `Ellipsoid` is a broad class and can suggest three independent semiaxes. The Noether swarm Lorentz lesson uses an axisymmetric oblate spheroid: two equal transverse semiaxes and one shortened longitudinal semiaxis. The Lorentz content is not in the name of the surface; it is in the closure target that relates the axis ratio to $\gamma$. Keep that burden explicit by writing the geometry term and the Lorentz law as separate claims.
+The reason for the distinction is mathematical as well as stylistic. `Ellipsoid` is a broad class and can suggest three independent semiaxes. The Noether braid Lorentz lesson uses an axisymmetric oblate spheroid: two equal transverse semiaxes and one shortened longitudinal semiaxis. The Lorentz content is not in the name of the surface; it is in the closure target that relates the axis ratio to $\gamma$. Keep that burden explicit by writing the geometry term and the Lorentz law as separate claims.
 
 ## Spacetime, Void, and Timespace
 
@@ -176,7 +192,7 @@ Usage examples:
 
 | Instead of... | Prefer... | Why |
 | --- | --- | --- |
-| "Spacetime is filled with Noether swarms." | "The Euclidean void is populated by Noether swarms." | The sentence is about contents occupying the fixed container, not about emergent geometry. |
+| "Spacetime is filled with Noether braids." | "The Euclidean void is populated by Noether braids." | The sentence is about contents occupying the fixed container, not about emergent geometry. |
 | "Spacetime contains the Noether sea." | "The Noether sea occupies the Euclidean void." | `Spacetime` should not stand in for the ontological background here. |
 | "Timespace bends around matter." | "Effective spacetime curvature appears around matter-rich regions." | The claim is observer-level and geometric, not about the fixed substrate. |
 | "The timespace medium slows clocks." | "The Noether sea slows physical clocks." | The sentence is about substrate contents, not the formal product background. |
@@ -235,17 +251,17 @@ Sentence guidance:
 
 This is not a mere relabeling of the old paradox. The explanatory burden is being repartitioned. Localization, counting, and stable identity are assigned to assembly structure, while distributed propagation, phase transport, and interference are assigned to wake structure. The gain is that the reader is no longer asked to imagine one ontic thing flipping between incompatible metaphors. Instead, the theory says that two coupled but distinct aspects of one causal process were previously being compressed into the same vocabulary.
 
-## Core and Assembly Usage
+## Noether Braid and Assembly Usage
 
-Use `Noether swarm` for the central swarm scaffold. Use `particle` mainly at the effective or comparative level.
+Use `Noether braid` for the neutral six-architrino scaffold. Use `particle` mainly at the effective or comparative level.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
-| the central neutral scaffold of a fermion | `Noether swarm`, `core` | vague central-structure wording when the scaffold itself is meant | "The axial layer is bound to the Noether swarm." |
+| the neutral six-architrino scaffold of a fermion | `Noether braid` | `core` or vague central-structure wording when the scaffold itself is meant | "The axial layer is bound to the Noether braid." |
 | $\mathbb{A}\mathbb{A}\mathbb{A}$ compositional object | `assembly` | `particle` as default ontology word | "The assembly remains stable under delayed feedback." |
 | Standard Model or observer-facing language | `particle` | not applicable | "The particle is observed as electrically neutral." |
 
-This distinction prevents a common scale-collapse in exposition. The `Noether swarm` is one structural component inside a larger fermion assembly; it is not the whole object. Meanwhile `particle` remains useful for experimental, asymptotic, and Standard Model-facing prose. Keeping these nouns separated lets the text move between internal architecture and observer-level phenomenology without silently conflating scaffold, whole assembly, and measurement label.
+This distinction prevents a common scale-collapse in exposition. The `Noether braid` is one structural component inside a larger fermion assembly; it is not the whole object. Meanwhile `particle` remains useful for experimental, asymptotic, and Standard Model-facing prose. Keeping these nouns separated lets the text move between internal architecture and observer-level phenomenology without silently conflating scaffold, whole assembly, and measurement label.
 
 ## Spontaneous Assembly and Pair Production
 
@@ -259,7 +275,7 @@ The canonical local source architecture for this phenomenon is a `Noether Pair`.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
-| an auxiliary assembly entering a channel without being listed as a primary boundary input | `spontaneous assembly` | `support assembly` when the quantum-production linkage matters | "The beta-family law admits two spontaneous assemblies of Noether swarm type." |
+| an auxiliary assembly entering a channel without being listed as a primary boundary input | `spontaneous assembly` | `support assembly` when the quantum-production linkage matters | "The beta-family law admits two spontaneous assemblies of Noether braid type." |
 | a particle-antiparticle creation event described in $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology | `spontaneous assembly-pair production`, `spontaneous pro-anti fermion pair production` | bare `vacuum fluctuation` language as ontology | "A Noether Pair can open a spontaneous pro-anti fermion pair-production channel when sufficient energy is supplied." |
 | an observer-level description that keeps the trigger unresolved but not uncaused | `spontaneous` plus explicit causal qualification | wording that implies acausal creation from nothing | "The pair appears spontaneous at observer level, but the local Noether Pair supplies the neutral source architecture." |
 
@@ -294,7 +310,7 @@ This point is worth stating explicitly because the ontology is causal, not magic
 | an apparently spontaneous threshold event affecting one assembly | `reaction`, `spontaneous reaction` | the sentence needs to emphasize that the trigger is unresolved at observer level rather than absent in ontology | "The excited assembly undergoes a spontaneous reaction when a threshold pulse opens a dissociation corridor." |
 | a transient sub-assembly or corridor forming during a reaction | `associate`, `association` | not applicable | "A charged corridor associates during the weak interaction." |
 | a transient or unstable assembly breaking apart into other assemblies or released channels | `dissociate`, `dissociation` | not applicable | "The meson dissociates into lighter assemblies." |
-| a stable relation, equilibrium hold, or energy term | `bind`, `binding`, `bound state` | the sentence is about sustained structure, binding energy, or equilibrium rather than the reaction event itself | "The axial layer is bound to the Noether swarm." |
+| a stable relation, equilibrium hold, or energy term | `bind`, `binding`, `bound state` | the sentence is about sustained structure, binding energy, or equilibrium rather than the reaction event itself | "The axial layer is bound to the Noether braid." |
 | a Standard Model comparative label or fixed historical name | quoted legacy label plus native replacement, for example `beta reaction` (SM label: `beta decay`) | the sentence is explicitly introducing a mainstream canonical label or quoting a source | "At first mention, write `beta reaction` (SM label: `beta decay`)." |
 | a non-assembly quantity such as trajectory loss, amplitude falloff, or a measured rate label | `orbital decay`, `geometric decay`, `decay rate` | the sentence is not using `decay` as an ontological event verb for assemblies | "The observed orbital decay constrains extra drag." |
 

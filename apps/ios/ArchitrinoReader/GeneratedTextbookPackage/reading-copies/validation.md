@@ -18,7 +18,7 @@ The note is therefore a gatekeeping document. It should tell the reader what has
 #### Null Tests for Absolute-Frame Drift
 * **Simulation Protocol:** Run a simulated Michelson-Morley experiment through a declared Noether sea state.
 * **Success Criterion:** The observer-level interference pattern must remain invariant, within the declared leakage bound, as the assembly is rotated relative to the Euclidean-void rest frame.
-* **Mechanism to Verify:** Check that the Noether swarm naturally contracts by $\gamma^{-1}$ due to its internal architrino trajectories being compressed by motion through the Noether sea state.
+* **Mechanism to Verify:** Check that the Noether braid naturally contracts by $\gamma^{-1}$ due to its internal architrino trajectories being compressed by motion through the Noether sea state.
 
 #### Precision Atomic Comparison
 * **Protocol:** Compare the predicted shift in the 1S-2S Hydrogen transition for a system moving relative to the Euclidean-void rest frame vs. one at rest.
@@ -28,7 +28,7 @@ The note is therefore a gatekeeping document. It should tell the reader what has
 
 This chapter examines how the modern SI system interfaces with $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to ask which defining constants might be derivable, which remain primitive, and what kinds of constant-relations the theory should eventually explain if its geometric closure program succeeds.
 
-It should be read together with [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), [Energy](../../../../markdown/aaa/dynamics/energy.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md).
+It should be read together with [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Energy](../../../../markdown/aaa/dynamics/energy.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md).
 
 ### Executive Summary
 
@@ -107,13 +107,13 @@ In this framework, the candidate substrate-level quantities are:
 - **Causal wake interaction kernel** (inverse-square line-of-action weighting over causal wake surfaces, with regularized coincidence handling)
 
 #### Category C: Assembly Geometry (Emergent but Calculable)
-- **Nested shell swarm radius ratios** (inner/middle/outer scales)
+- **Nested shell braid radius ratios** (inner/middle/outer scales)
 - **Maximum curvature binary radius** $r_{\text{max-curv}}$ (where $v \gg c_f$)
-- **Reference Noether swarm density** $\rho_{\text{NS},0}$ (the normalization scale for $n(\mathbf{x},t)$)
+- **Reference Noether braid density** $\rho_{\text{NS},0}$ (the normalization scale for $n(\mathbf{x},t)$)
 
 **Everything else** (masses, coupling constants, cosmological parameters) should be **derivable** from these via:
 - Self-hit dynamics (non-Markovian evolution)
-- Nested shell swarm stability conditions (quantization)
+- Nested shell braid stability conditions (quantization)
 - Noether sea coupling (emergent metric, inertia)
 
 #### Primitive-to-Derived Measure Ladder
@@ -140,14 +140,14 @@ $$
 **Architrino Interpretation:**
 
 The hyperfine transition is caused by:
-- Interaction between the **outer electron's nested shell swarm** (magnetic moment from its Middle Binary orbital motion at $v \approx c_f$)
+- Interaction between the **outer electron's nested shell braid** (magnetic moment from its Middle Binary orbital motion at $v \approx c_f$)
 - The **nuclear spin** (magnetic moment from proton/neutron Middle Binary configurations)
 
 This is an atomic-clock validation target, not a closed spin derivation. The electron magnetic moment, nuclear spin ledger, and hyperfine coupling must inherit [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), and [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md) before $\Delta \nu_{\text{Cs}}$ can be claimed from first principles.
 
 **What we must derive:**
 $$
-\Delta \nu_{\text{Cs}} = f(\text{nested shell swarm geometry, } c_f, \epsilon, \text{ Noether sea coupling})
+\Delta \nu_{\text{Cs}} = f(\text{nested shell braid geometry, } c_f, \epsilon, \text{ Noether sea coupling})
 $$
 
 **Challenge:** The frequency is determined by:
@@ -208,7 +208,7 @@ via the Kibble balance (relating mechanical power to electromagnetic power).
 
 **Architrino Interpretation:**
 
-The Planck constant $h$ is the observer-level benchmark for a quantum of **closed-cycle action**. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation target is to recover this scale from nested shell swarm geometry and the lower recordable basin-measure scale, not to assume it as a primitive input. In the target reduction, $h$ is related to the radian-normalized **outer-binary rotational action** by $\hbar=h/(2\pi)$:
+The Planck constant $h$ is the observer-level benchmark for a quantum of **closed-cycle action**. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation target is to recover this scale from nested shell braid geometry and the lower recordable basin-measure scale, not to assume it as a primitive input. In the target reduction, $h$ is related to the radian-normalized **outer-binary rotational action** by $\hbar=h/(2\pi)$:
 $$
 L_{\text{outer}} = n \hbar = n \frac{h}{2\pi}
 $$
@@ -219,16 +219,16 @@ $$
 \qquad
 h = 2\pi\hbar
 $$
-where $r_{\text{outer}}$ is the characteristic radius of the outer binary in the hydrogen ground-state assembly. This is an internal nested shell swarm action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state.
+where $r_{\text{outer}}$ is the characteristic radius of the outer binary in the hydrogen ground-state assembly. This is an internal nested shell braid action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state.
 
 **Derivation pathway:**
 1. Calculate the outer-binary radius for the hydrogen ground-state assembly (energy minimization + self-hit constraints).
 2. Show that closed-cycle action quantization ($\oint p\,dq = n h$) and the equivalent radian-normalized relation ($I=n\hbar$) arise from geometric quantization of the internal binary orbit.
-3. Relate $h$ and $\hbar$ to $\epsilon$, $c_f$, and nested shell swarm geometry.
+3. Relate $h$ and $\hbar$ to $\epsilon$, $c_f$, and nested shell braid geometry.
 
 **Target relation:**
 $$
-h \propto \epsilon \cdot c_f \cdot (\text{geometric factor from nested shell swarm})
+h \propto \epsilon \cdot c_f \cdot (\text{geometric factor from nested shell braid})
 $$
 
 ---
@@ -250,7 +250,7 @@ $$
 **What we must explain:**
 - Why only integer multiples of $\epsilon$ appear in stable observer-level electric-charge inventories (charge quantization)
 - Why we observe $0, \pm |e|/3, \pm 2|e|/3, \pm |e|$ in nature, never an isolated $\pm\epsilon$ polarity unit
-- Candidate answer: **confinement or dynamical suppression**. The $\epsilon$ polarity units are bound in nested shell swarms (quarks) or assemblies (leptons). Isolated $\pm\epsilon$ polarity units are not observed as stable observer-level particles, so the suppression mechanism remains a closure target rather than a completed infinite-energy theorem.
+- Candidate answer: **confinement or dynamical suppression**. The $\epsilon$ polarity units are bound in nested shell braids (quarks) or assemblies (leptons). Isolated $\pm\epsilon$ polarity units are not observed as stable observer-level particles, so the suppression mechanism remains a closure target rather than a completed infinite-energy theorem.
 
 ---
 
@@ -271,17 +271,17 @@ $$
 \langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T
 $$
 
-For a neutral Noether swarm assembly in the Noether sea:
+For a neutral Noether braid assembly in the Noether sea:
 - 6 degrees of freedom (3 translational + 3 rotational)
 - Mean energy: $\langle E \rangle = 3 k_B T$
 
 **What we must derive:**
 $$
-k_B = f(\text{neutral Noether swarm assembly mass, } c_f, \text{ thermal equilibrium distribution})
+k_B = f(\text{neutral Noether braid assembly mass, } c_f, \text{ thermal equilibrium distribution})
 $$
 
 **Pathway:**
-1. Calculate the **effective mass** of a neutral Noether swarm assembly (from nested shell swarm dynamics)
+1. Calculate the **effective mass** of a neutral Noether braid assembly (from nested shell braid dynamics)
 2. Assume **thermal equilibrium** (Maxwell-Boltzmann distribution in the Noether sea)
 3. Relate the width of the velocity distribution to $k_B T$
 
@@ -309,7 +309,7 @@ N_A = \frac{1 \text{ g}}{1 \text{ amu}} = \frac{1 \text{ g}}{m_{\text{proton}}/1
 $$
 
 **What we must derive:**
-- The proton mass $m_p$ from nested shell swarm geometry (3 quarks = 3 nested shell swarms + gluon wake structure + Noether sea coupling)
+- The proton mass $m_p$ from nested shell braid geometry (3 quarks = 3 nested shell braids + gluon wake structure + Noether sea coupling)
 
 ---
 
@@ -356,8 +356,8 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 #### Candidate Substrate Inputs (Architrino SI)
 1. **Architrino polarity-unit magnitude** $\epsilon=|e|/6$ (with observer charge benchmark $|e|=6\epsilon$)
 2. **Field speed** $c_f$ (replaces $c$)
-3. **Nested shell swarm geometry parameter** (e.g., outer radius $r_{\text{outer}}$ or max-curvature radius) (replaces $h$)
-4. **Neutral Noether swarm assembly mass** $m_{\text{NS}}$ (replaces $k_B$ when combined with $c_f$)
+3. **Nested shell braid geometry parameter** (e.g., outer radius $r_{\text{outer}}$ or max-curvature radius) (replaces $h$)
+4. **Neutral Noether braid assembly mass** $m_{\text{NS}}$ (replaces $k_B$ when combined with $c_f$)
 
 **Everything else is intended to be derived after closure:**
 - $|e| = 6\epsilon$
@@ -365,14 +365,14 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 - $h \stackrel{\text{target}}{=} 2\pi \epsilon \cdot c_f \cdot r_{\text{outer}}$ after the action-closure derivation, not by definition
 - $k_B = f(m_{\text{NS}}, c_f)$
 - $N_A = f(m_p / m_{\text{NS}})$
-- $\Delta \nu_{\text{Cs}} = f(\text{Cs nested shell swarm geometry})$
+- $\Delta \nu_{\text{Cs}} = f(\text{Cs nested shell braid geometry})$
 
 **Result target:** If the closure program succeeds, the seven SI constants reduce to **3-4 fundamental parameters**, with the rest emergent.
 
 ---
 
 #### Tier 1 (Must Answer)
-1. **Derive $h$ from nested shell swarm geometry**
+1. **Derive $h$ from nested shell braid geometry**
    - Show that Outer Binary quantization yields $L = n\hbar$
    - Calculate $r_{\text{outer}}$ for hydrogen 1s
    - Predict $h$ and compare to SI value
@@ -388,17 +388,17 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 
 #### Tier 2 (High Priority)
 4. **Calculate $\Delta \nu_{\text{Cs}}$ from first principles**
-   - Map Cs atomic structure to Noether swarm assemblies
+   - Map Cs atomic structure to Noether braid assemblies
    - Derive hyperfine coupling strength
    - Compare to 9,192,631,770 Hz
 
 5. **Derive $k_B$ from Noether sea thermodynamics**
-   - Calculate neutral Noether swarm assembly effective mass
+   - Calculate neutral Noether braid assembly effective mass
    - Show thermal equilibrium reproduces Maxwell-Boltzmann
    - Predict $k_B$ value
 
 #### Tier 3 (Refinement)
-6. **Map all SM particles to nested shell swarm recipes**
+6. **Map all SM particles to nested shell braid recipes**
    - Create "particle cookbook" (analogous to chemical formulas)
    - Show charge, spin, statistics all emerge from geometry
 
@@ -627,16 +627,16 @@ These symbols belong to the delayed microscopic law itself.
 
 ### Layer II: Assembly-Geometry Closure Targets
 
-These quantities belong to Noether swarm architecture, shielding, branch structure, and assembly response.
+These quantities belong to Noether braid architecture, shielding, branch structure, and assembly response.
 
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
-| G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch Noether swarm reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md) |
+| G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch Noether braid reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [Energy](../../../../markdown/aaa/dynamics/energy.md) |
 | G0a | $\mathcal{P}_{A_0}$ | Geometric closure target | Open; compact finite-coordinate no-go recorded, branch-chart revision required before Tier 1 continuation | certificate packet tying the finite closure graph $\mathcal{G}_{A_0}$, active root ledger, quotient Floquet gap $\Delta_{\mathbf{k}}$, shielding extraction, and $\mathcal{M}_{\text{sea}}^{ab}$ response probe into one promotion sequence | [simulations/a0-branch-certificate-protocol.md](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), [simulations/a0-tier0-result-interpretation.md](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
-| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether swarm | [../noether-swarm/noether-swarm.md](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [../noether-swarm/nested-shell-swarm-geometry.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) |
-| G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [../noether-swarm/nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
-| G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md) |
-| G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md) |
+| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether braid | [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) |
+| G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) |
+| G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md) |
+| G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md) |
 | G5 | $\zeta(A)$ | Geometric closure target | Open | shielding or leakage factor of assembly $A$, defined by far-field suppression relative to naive constituent exposure | [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
 | G6 | $\alpha$ | Geometric closure target | Open | axial-frame misalignment angle used in the weak-mixing / quark-geometry program | [../assemblies/fermions/weak-mixing-angle.md](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md) |
 | G7 | $\phi_c$ | Geometric closure target | Open | color-sector azimuth selecting the exceptional axial-frame orientation | [../assemblies/fermions/weak-mixing-angle.md](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md) |
@@ -647,8 +647,8 @@ These symbols control the handoff from the Euclidean substrate plus Noether sea 
 
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
-| C1 | $\rho_{\text{NS},0}$ | Constitutive closure target | Open | reference Noether swarm density used to normalize the Noether sea | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
-| C2 | $n(\mathbf{x},t)$ | State variable / field | Derived field | normalized Noether swarm density, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
+| C1 | $\rho_{\text{NS},0}$ | Constitutive closure target | Open | reference Noether braid density used to normalize the Noether sea | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
+| C2 | $n(\mathbf{x},t)$ | State variable / field | Derived field | normalized Noether braid density, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
 | C3 | $\Omega(\mathbf{x}),\xi(\mathbf{x})$ | Constitutive closure target | Open | clock-channel and ruler-channel response functions in the effective metric subclass | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/lorentz-kinematics.md](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) |
 | C4 | $\Phi_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | constitutive effective potential defined from the clock channel | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
 | C5 | $c_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | Noether sea dressed assembly-channel propagation speed used for clock/ruler closure and effective-metric comparisons, with $c_{\text{eff}}\to c_f$ in weak homogeneous conditions; separate from photon-channel speed $c_\gamma$ unless Gate A closes that identification | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
@@ -665,8 +665,8 @@ These quantities are where closure is tested. They are not substrate inputs.
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | O1 | $e$ | Observable benchmark | Derived target | elementary charge reconstructed from substrate charge and normalization map | [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md), [../assemblies/gauge-structure-emergence.md](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md) |
-| O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | full-cycle action quantum and radian-normalized angular-momentum quantum to be related to nested shell swarm alignment, orbital closure, and any lower recordable basin-measure scale derived by quantum closure | [../philosophy-history/theory-bridges/angular-momentum-and-spin.md](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), [architrino-si-base-units.md](../../../../markdown/aaa/validation/architrino-si-base-units.md) |
-| O3 | $G$ or $G_{\text{eff}}$ | Observable benchmark / constitutive target | Open | effective gravitational coupling emerging from medium compliance and alignment geometry | [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) |
+| O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | full-cycle action quantum and radian-normalized angular-momentum quantum to be related to nested shell braid alignment, orbital closure, and any lower recordable basin-measure scale derived by quantum closure | [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Architrino SI Base Units](../../../../markdown/aaa/validation/architrino-si-base-units.md) |
+| O3 | $G$ or $G_{\text{eff}}$ | Observable benchmark / constitutive target | Open | effective gravitational coupling emerging from medium compliance and alignment geometry | [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) |
 | O4 | $m_{\text{inertial}}(A)$ | Derived output | Open | inertial mass of assembly $A$, extracted operationally from shielding and medium response | [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
 | O5 | $\theta_W^{\text{bare}}$ and $\theta_W$ | Geometric target / observable benchmark | Open | bare geometric weak-mixing increment and the measured electroweak mixing angle it must eventually inform | [../assemblies/fermions/weak-mixing-angle.md](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [../assemblies/gauge-structure-emergence.md](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md) |
 | O6 | $(\alpha_1,\alpha_2,\alpha_3)$ | Observable benchmark | Open | standard PPN preferred-frame coefficients derived from $(\Xi_1,\Xi_2,\Xi_3)$ | [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
@@ -722,7 +722,7 @@ $$
 c_f^2\ln\!\big(\Omega(\mathbf{x})\xi(\mathbf{x})\big)
 $$
 
-Here $\xi$ is the Noether swarm envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed.
+Here $\xi$ is the Noether braid envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed.
 
 This is the cleanest current statement of the Noether sea-to-metric handoff:
 $$
@@ -841,7 +841,7 @@ The current corpus supports the following conservative closure assessment.
 - $\epsilon$ is treated consistently as the potential polarity-unit magnitude.
 - The exact bare two-body kernel admits the canonical nondimensionalization by $R_*=\kappa\epsilon^2/c_f^2$ and $T_*=R_*/c_f$, so branch thresholds and residual equations are parameter-free once a branch chart is declared.
 - $\rho_{\text{NS},0}$ is the reference density symbol for the Noether sea.
-- $\Phi_{\text{eff}}=c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition for the exponential metric subclass, with $\xi$ retained as a geometry-first Noether swarm shape ratio.
+- $\Phi_{\text{eff}}=c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition for the exponential metric subclass, with $\xi$ retained as a geometry-first Noether braid shape ratio.
 
 #### Still genuinely open
 
@@ -849,7 +849,7 @@ The current corpus supports the following conservative closure assessment.
 - whether $\eta$ should disappear entirely from physical statements after the weak limit is taken,
 - whether any specific maximum-curvature binary branch exists and is stable under the full signed-root, finite-window two-body dynamics,
 - the $A_0$ reference-attractor output packet,
-- the actual nested shell swarm radii/frequency ladder,
+- the actual nested shell braid radii/frequency ladder,
 - the shielding map $\zeta(A)$ across the fermion spectrum,
 - the medium-response tensor $\mathcal{M}_{\text{sea}}^{ab}$ that turns shielded internal energy into inertial and gradient response,
 - the constitutive functions $(\Omega,\xi)$ and the weak-field coefficient set $(\gamma_{\text{eff}},C_2,\Xi_i)$,
@@ -888,14 +888,14 @@ where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive se
 - [../dynamics/master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md)
 - [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md)
 - [../philosophy-history/theory-bridges/angular-momentum-and-spin.md](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md)
-- [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md)
+- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md)
 - [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md)
 - [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md)
 - [../assemblies/fermions/weak-mixing-angle.md](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md)
 
 ## Reaction Ledger
 
-This ledger records how reaction channels should account for constituent architrinos, Noether swarms, axial layers, energy, momentum, charge, polarity, and path-history provenance. Its purpose is not to replace Standard Model reaction notation. Its purpose is to state what an $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must conserve before a reaction map can be treated as more than a provisional diagram.
+This ledger records how reaction channels should account for constituent architrinos, Noether braids, axial layers, energy, momentum, charge, polarity, and path-history provenance. Its purpose is not to replace Standard Model reaction notation. Its purpose is to state what an $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must conserve before a reaction map can be treated as more than a provisional diagram.
 
 For radiative channels, use this ledger together with [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema). For cosmology-facing radiation and thermalization channels, use it together with [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 
@@ -918,8 +918,8 @@ Each reaction record should state:
 
 1. **Observer channel:** the standard reaction label, including historical labels such as `beta decay` only when immediately translated into native reaction language.
 2. **Active assemblies:** which incoming assemblies actually reconfigure, and which are spectators.
-3. **Noether sea participation:** whether local Noether swarms, neutral binaries, axial layers, or medium excitations are consumed, split, reconfigured, or returned.
-4. **Constituent inventory:** total $E$ and $P$ counts before and after, separated into swarm and axial-layer contributions where the distinction matters.
+3. **Noether sea participation:** whether local Noether braids, neutral binaries, axial layers, or medium excitations are consumed, split, reconfigured, or returned.
+4. **Constituent inventory:** total $E$ and $P$ counts before and after, separated into braid and axial-layer contributions where the distinction matters.
 5. **Polarity and charge accounting:** how observer-level charge bookkeeping emerges from the $E/P$ routing.
 6. **Energy-momentum and angular-momentum accounting:** where kinetic energy, internal binding energy, photon assemblies, recoil, medium excitation, spin/vector ledger terms, and wake-carried angular momentum enter and exit.
 7. **Path-history provenance:** which emitted causal wakes, source identities, and delayed interactions are needed to make the reaction deterministic in absolute time.
@@ -932,8 +932,8 @@ Each reaction record should state:
 | Field | Required content |
 | --- | --- |
 | Observer channel | Standard reaction notation and native reaction label |
-| Active assembly change | Swarm and axial-layer changes for the transformed assembly |
-| Noether sea input/output | Neutral swarms, axial material, or medium excitations recruited or returned |
+| Active assembly change | Braid and axial-layer changes for the transformed assembly |
+| Noether sea input/output | Neutral braids, axial material, or medium excitations recruited or returned |
 | Conserved inventory | $E/P$ totals and charge/polarity balance |
 | Energy-momentum and angular-momentum ledger | Internal energy, recoil, emitted assemblies, spin/vector ledger terms, wake-carried angular momentum, and medium excitation |
 | Radiation event record, when applicable | Source assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, photon Gate B event residual when $E_\gamma\ne0$, and closure status |
@@ -953,7 +953,7 @@ $$
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}
 $$
 
-Here $\mathcal{R}$ is the replayable residual computed from the local assembly state, path-history ledger, Noether swarm density, Noether sea delay factor, and any named sector variables. The set $\{B_i\}$ is the finite list of admissible output channels, such as retuning, bound excitation, radiation, recoil, medium heating, weak or nuclear reaction, record formation, release channel, or branch transition. The event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the balance object that must close after all selected outputs are named.
+Here $\mathcal{R}$ is the replayable residual computed from the local assembly state, path-history ledger, Noether braid density, Noether sea delay factor, and any named sector variables. The set $\{B_i\}$ is the finite list of admissible output channels, such as retuning, bound excitation, radiation, recoil, medium heating, weak or nuclear reaction, record formation, release channel, or branch transition. The event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the balance object that must close after all selected outputs are named.
 
 For a reaction attempt, the input state should be recorded as:
 
@@ -1220,7 +1220,7 @@ A reaction record may be promoted beyond a provisional map only when all of the 
 4. **Ledger closure:** $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}$ after adding the sector-required charge, polarity, architrino-inventory, identity-routing, path-history, Noether sea, and remnant rows.
 5. **Benchmark compatibility:** the promoted event recovers the sector benchmark without breaking any required weak, quantum, gravity, hadronic, radiation, cosmology, conservation-law, or direct-observation acceptance gate.
 
-This is a promotion criterion, not a completed theorem. Worked sector cases remain open until at least one channel supplies a named residual, a named threshold or separatrix, a channel decision, a complete $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger, a benchmark recovery, and a failure diagnostic in one record. The free-neutron beta reaction, the $t\to b+W^+$ channel, radiation-coupled pair channels, and nuclear reaction examples therefore remain provisional where their sector records still lack closed residual routing, outgoing swarm provenance, angular-momentum balance, rate recovery, or quantitative benchmark closure.
+This is a promotion criterion, not a completed theorem. Worked sector cases remain open until at least one channel supplies a named residual, a named threshold or separatrix, a channel decision, a complete $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger, a benchmark recovery, and a failure diagnostic in one record. The free-neutron beta reaction, the $t\to b+W^+$ channel, radiation-coupled pair channels, and nuclear reaction examples therefore remain provisional where their sector records still lack closed residual routing, outgoing braid provenance, angular-momentum balance, rate recovery, or quantitative benchmark closure.
 
 #### Failure Modes
 
@@ -1239,16 +1239,16 @@ This is a promotion criterion, not a completed theorem. Worked sector cases rema
 
 Weak reactions now require an explicit corridor-provenance stance. The current corpus supports two live possibilities:
 
-1. **Transaction-payload corridor:** $W^\pm$ carries the charged triad payload and phase relation, while final-state pro/anti Noether swarm material is supplied by the local Noether sea or by explicitly identified incoming assemblies.
-2. **Provenance-carrying corridor:** $W^\pm$ carries not only the charged transaction payload but also enough pro/anti Noether swarm provenance to seed some final-state lepton or antilepton swarm content.
+1. **Transaction-payload corridor:** $W^\pm$ carries the charged triad payload and phase relation, while final-state pro/anti Noether braid material is supplied by the local Noether sea or by explicitly identified incoming assemblies.
+2. **Provenance-carrying corridor:** $W^\pm$ carries not only the charged transaction payload but also enough pro/anti Noether braid provenance to seed some final-state lepton or antilepton braid content.
 
-The ledger should not choose between these silently. For each serious weak record, add a row or note that states which stance is being used, which Noether swarm material enters and exits, and what would falsify the accounting. This gate is coupled to the weak-coupling-triad exposure problem: the same geometry that permits left-handed charged-current docking must also determine which corridor payload can be transferred and where the outgoing lepton swarms come from.
+The ledger should not choose between these silently. For each serious weak record, add a row or note that states which stance is being used, which Noether braid material enters and exits, and what would falsify the accounting. This gate is coupled to the weak-coupling-triad exposure problem: the same geometry that permits left-handed charged-current docking must also determine which corridor payload can be transferred and where the outgoing lepton braids come from.
 
 Minimum weak-channel records should therefore include:
 
 - the active weak-coupling-triad swap,
 - the corridor provenance stance,
-- all Noether sea or incoming-assembly swarm material used for charged lepton and neutrino outputs,
+- all Noether sea or incoming-assembly braid material used for charged lepton and neutrino outputs,
 - the CKM/PMNS overlap weight when a flavor or generation branch is selected,
 - and the energy, angular momentum, polarity, and path-history terms needed for deterministic replay.
 
@@ -1270,17 +1270,17 @@ $$
 
 Equivalently, the active quark sector requires a $+3E,-3P$ axial exchange. In observer language this is the $W^+$ channel. In substrate language it is a transient payload and coupling event whose geometry, chirality selection, and energy routing still need closure.
 
-The lepton products cannot be asserted as creation from nothing. Their swarm and axial-layer material must be drawn from a local Noether sea reservoir or from explicitly identified incoming assemblies. The provisional ledger target is:
+The lepton products cannot be asserted as creation from nothing. Their braid and axial-layer material must be drawn from a local Noether sea reservoir or from explicitly identified incoming assemblies. The provisional ledger target is:
 
 | Component | Ledger requirement | Status |
 | --- | --- | --- |
 | Top-to-bottom axial exchange | Route the $+3E,-3P$ change through a weak-channel coupling event | Provisional |
-| Positron assembly | Identify the Noether swarm and axial material used to form the charged lepton output | Provisional |
-| Electron-neutrino assembly | Identify neutral swarm and axial-layer routing, including chirality/orientation | Provisional |
+| Positron assembly | Identify the Noether braid and axial material used to form the charged lepton output | Provisional |
+| Electron-neutrino assembly | Identify neutral braid and axial-layer routing, including chirality/orientation | Provisional |
 | Energy-momentum | Account for quark mass difference, lepton energies, recoil, and medium excitation | Derivation target |
 | Weak geometry | Derive the left-handed selection rule and allowed coupling operator | Derivation target |
 
-This channel should not be presented as a completed architrino derivation until the inventory table balances $E/P$ counts, swarm orientation, axial-layer routing, and energy-momentum in one consistent record.
+This channel should not be presented as a completed architrino derivation until the inventory table balances $E/P$ counts, braid orientation, axial-layer routing, and energy-momentum in one consistent record.
 
 ### Free Neutron Beta Reaction
 
@@ -1326,16 +1326,16 @@ This gate inherits the unresolved spinor/helicity proof in [Angular Momentum and
 | CKM weight | $V_{ud}$, interpreted as the same-tier weak-basis to shielding-eigenstate overlap |
 | Provenance stance | Transaction-payload corridor unless a later derivation proves provenance-carrying corridor content is required |
 
-This record keeps the beta reaction from becoming two separate stories. The same exposed triad must explain the left-handed selection rule, supply the $V_{ud}$ overlap domain, and identify what the $W^-$ corridor transfers. The remaining open work is to identify the electron and antineutrino swarm provenance and then attach the energy, angular momentum, recoil, and path-history terms.
+This record keeps the beta reaction from becoming two separate stories. The same exposed triad must explain the left-handed selection rule, supply the $V_{ud}$ overlap domain, and identify what the $W^-$ corridor transfers. The remaining open work is to identify the electron and antineutrino braid provenance and then attach the energy, angular momentum, recoil, and path-history terms.
 
 The conservative ledger is:
 
 | Component | Required provenance statement | Closure status |
 | --- | --- | --- |
 | Active $d \to u$ assembly | Route $3E$ out of the active axial layer and route $3P$ into it | Provisional map |
-| Electron assembly | Combine the ejected $3E$ contribution with additional local Noether sea material and a suitable swarm | Provisional map |
-| Antineutrino assembly | Identify neutral swarm orientation, axial-layer routing, and weak-channel phase relation | Open derivation target |
-| Noether sea | Record every neutral swarm, axial layer, or medium excitation consumed or returned | Required |
+| Electron assembly | Combine the ejected $3E$ contribution with additional local Noether sea material and a suitable braid | Provisional map |
+| Antineutrino assembly | Identify neutral braid orientation, axial-layer routing, and weak-channel phase relation | Open derivation target |
+| Noether sea | Record every neutral braid, axial layer, or medium excitation consumed or returned | Required |
 | Energy and angular momentum | Track mass difference, recoil, electron kinetic energy, antineutrino energy, and medium response | Required |
 
 This map supports a strong but bounded claim: beta reaction charge bookkeeping can be interpreted as local separation and rerouting of neutral Noether sea material plus active quark axial reconfiguration. It does not yet establish a full weak-interaction derivation, because chirality selection, antineutrino routing, and quantitative rate closure still belong to the weak-sector closure program.
@@ -1344,9 +1344,9 @@ This map supports a strong but bounded claim: beta reaction charge bookkeeping c
 
 The reaction ledger needs at least four tables for each serious channel:
 
-1. **Constituent inventory table:** swarm and axial-layer $E/P$ counts for every input, output, Noether sea contribution, and returned medium product.
+1. **Constituent inventory table:** braid and axial-layer $E/P$ counts for every input, output, Noether sea contribution, and returned medium product.
 2. **Energy-momentum table:** internal energy changes, kinetic output, recoil, photon assemblies, neutrino channel, and medium excitation.
-3. **Geometry table:** axial frame, swarm orientation, chirality, polarity routing, and allowed coupling/docking geometry.
+3. **Geometry table:** axial frame, braid orientation, chirality, polarity routing, and allowed coupling/docking geometry.
 4. **Path-history table:** causal-root branches, source identities, emission times, and local Noether sea state variables needed for deterministic replay.
 
 Radiative or photon-coupled channels also need the shared radiation event-record table. The polarization handoff in that table remains inherited from Gate B; this ledger records the required transverse and capture/rejection fields but does not derive photon spin locally.
@@ -1354,14 +1354,14 @@ Radiative or photon-coupled channels also need the shared radiation event-record
 ### Validation Links
 
 - Weak-sector geometry and chirality closure remain tied to [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Weak-Mixing CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).
-- Radiative and pair-production provenance should use [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), and [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
+- Radiative and pair-production provenance should use [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), and [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 - Parameter closure belongs in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
 
 ## Reaction-Cosmology Provenance Ledger
 
 This ledger connects local reaction provenance to cosmology-facing radiation, thermalization, and source-history claims. It is the bridge record for channels where synchrotron cascades, bremsstrahlung, pair production, BBN photon loading, and CMB thermalization all depend on the same underlying bookkeeping.
 
-Use it with [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md), and [CMB](../../../../markdown/aaa/cosmology/CMB.md).
+Use it with [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md), and [CMB](../../../../markdown/aaa/cosmology/CMB.md).
 
 ### Purpose
 
@@ -1369,14 +1369,14 @@ Cosmology-facing reaction claims need more than a source story. They need a reco
 
 This ledger separates four levels:
 
-- **Ontology:** architrinos, Noether swarms, axial layers, photon assemblies, and Noether sea state variables.
+- **Ontology:** architrinos, Noether braids, axial layers, photon assemblies, and Noether sea state variables.
 - **Reaction mechanics:** association, dissociation, planar-mode nucleation, pair production, recoil, and medium excitation.
 - **Transport and thermalization:** opacity, scattering, cascade depth, diffusion, cooling, path-history redshift, and signed photon-frequency exchange.
 - **Effective observables:** emissivity, light-element yield, blackbody spectrum, anisotropy, polarization, and inferred cosmological parameters.
 
 ### Leap Opportunity Record
 
-The opportunity tracked here is a possible unification of four previously separate bookkeeping problems: radiative planar-mode nucleation, pair-production provenance, BBN photon loading, and CMB thermalization. The shared claim is not that these channels are already derived from one equation. The disciplined claim is that they may need one common provenance ledger because each asks the same question at a different scale: which assemblies, Noether swarm material, energy-momentum terms, and Noether sea state variables enter and exit the channel?
+The opportunity tracked here is a possible unification of four previously separate bookkeeping problems: radiative planar-mode nucleation, pair-production provenance, BBN photon loading, and CMB thermalization. The shared claim is not that these channels are already derived from one equation. The disciplined claim is that they may need one common provenance ledger because each asks the same question at a different scale: which assemblies, Noether braid material, energy-momentum terms, and Noether sea state variables enter and exit the channel?
 
 #### Current Claim Status
 
@@ -1407,11 +1407,11 @@ The minimal useful first path is BBN photon loading: identify a source-zone radi
 
 | Field | What must be recorded | Why it matters |
 | --- | --- | --- |
-| Architrino inventory | $E/P$ counts, swarm/axial-layer separation, and identity routing for recruited or returned substrate content | Prevents creation-from-nothing wording in pair and weak channels |
+| Architrino inventory | $E/P$ counts, braid/axial-layer separation, and identity routing for recruited or returned substrate content | Prevents creation-from-nothing wording in pair and weak channels |
 | Noether sea state | $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, and excitation state | Keeps density, delay, and transport variables distinct |
 | Radiation event record | Source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, and closure status | Provides the local event schema that can be propagated into source-zone, transport, and observer-level cosmology claims |
 | Photon assembly channel | Planar-mode nucleation threshold, emitted energy, direction, polarization basis, and transverse angular-momentum ledger | Links bremsstrahlung, synchrotron, and CMB photon-bath claims |
-| Pair channel | Incoming photon assemblies, identity-routed recruited Noether swarm content, final $e^+e^-$ assemblies, and recoil/medium excitation | Keeps pair production as association from local substrate content, not ex nihilo creation |
+| Pair channel | Incoming photon assemblies, identity-routed recruited Noether braid content, final $e^+e^-$ assemblies, and recoil/medium excitation | Keeps pair production as association from local substrate content, not ex nihilo creation |
 | Energy-momentum ledger | Internal energy, kinetic energy, recoil, emitted assemblies, and medium excitation | Required for observer-rate and spectrum recovery |
 | Thermalization path | scattering depth, coupling time, cooling time, and escape time | Determines when local reactions can feed BBN or CMB background claims |
 | Observer handoff | emissivity, opacity, redshift kernel, effective temperature, $N_{\text{eff}}$, and $C_\ell$ inputs | Keeps standard comparison variables useful without treating them as ontology |
@@ -1435,8 +1435,8 @@ These gates are not separate ontologies. They are bookkeeping filters that preve
 | Channel | Source document | Provenance target | Current status |
 | --- | --- | --- | --- |
 | Bremsstrahlung planar-mode nucleation | [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md) | Record electron assembly energy loss, target recoil, photon assembly output, and medium excitation | Provisional map |
-| Synchrotron planar-mode nucleation | [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md) | Derive photon output from curved charged-assembly transport in anisotropic Noether sea states | Provisional map |
-| Breit-Wheeler pair channel | [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md) | Record incoming photon assemblies, recruited Noether swarm content, and final $e^+e^-$ assemblies | Derivation target |
+| Synchrotron planar-mode nucleation | [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md) | Derive photon output from curved charged-assembly transport in anisotropic Noether sea states | Provisional map |
+| Breit-Wheeler pair channel | [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md) | Record incoming photon assemblies, recruited Noether braid content, and final $e^+e^-$ assemblies | Derivation target |
 | BBN photon bath | [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md) | Show that pair, bremsstrahlung, synchrotron, and related channels maintain effective $\eta\approx6\times10^{-10}$ during the bottleneck window | Closure target |
 | CMB thermal spectrum | [CMB](../../../../markdown/aaa/cosmology/CMB.md) | Show that source emission, transport, and thermalization produce a near-blackbody photon bath with allowed anisotropy and damping structure | Closure target |
 | Redshift and clock handoff | [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md) | Map photon transport through $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, and clock-rate comparison | Effective summary with open derivation |
@@ -1474,7 +1474,7 @@ The event record must avoid creation-from-nothing wording. Incoming photon assem
 
 - incoming photon assembly energies and directions,
 - incoming photon polarization handoffs as inherited Gate B records,
-- local Noether swarm material recruited or reconfigured, including identity routing for the architrinos assigned to the final charged assemblies,
+- local Noether braid material recruited or reconfigured, including identity routing for the architrinos assigned to the final charged assemblies,
 - final charged assembly inventories,
 - recoil and medium-excitation terms,
 - causal-wake ledger and closure status,
@@ -1573,8 +1573,8 @@ The provenance program fails for a channel if a source story cannot survive the 
 
 | Failure mode | What fails | Diagnostic consequence |
 | --- | --- | --- |
-| Single Noether swarm temperature mistake | A single excited Noether swarm is treated as thermodynamically hot rather than internally excited, closure-mismatched, or metastable | Temperature is being used before an ensemble distribution or entropy-energy relation has been established |
-| Inventory gap | Architrino inventory, Noether swarm recruitment, recoil, or returned medium content cannot be balanced without unrecorded substrate creation | Pair and radiation channels cannot be promoted beyond provisional maps |
+| Single Noether braid temperature mistake | A single excited Noether braid is treated as thermodynamically hot rather than internally excited, closure-mismatched, or metastable | Temperature is being used before an ensemble distribution or entropy-energy relation has been established |
+| Inventory gap | Architrino inventory, Noether braid recruitment, recoil, or returned medium content cannot be balanced without unrecorded substrate creation | Pair and radiation channels cannot be promoted beyond provisional maps |
 | Per-observable refit | The same Noether sea state variables must be re-fit independently for photon loading, blackbody recovery, damping, redshift, or growth observables | The cosmology interpretation loses its shared Noether sea state map |
 | Standard-limit violation | Pair, Compton-like, bremsstrahlung, synchrotron, or photon propagation channels violate validated limits in regimes where those limits are already measured | The proposed substrate route fails before it can claim new deviations |
 | Insufficient thermalization depth | $\mathcal{D}_{\mathrm{th}}$ is too small, or its channel decomposition is not tied to event records | Source photons need not relax to a Planck bath, and a nonzero effective photon chemical potential or spectral distortion remains |
@@ -1701,10 +1701,10 @@ This constraint explains how apparent metric deviations (Shapiro delay and light
 
 #### Gravitational Time Dilation
 
-We require that the proposed mechanical slowing induced by Noether swarm density aligns quantitatively with geodetic and redshift observations such as GPS offsets and the Pound–Rebka experiment, offering a concrete mapping between the new microphysics and the classical time-dilation effects.
+We require that the proposed mechanical slowing induced by Noether braid density aligns quantitatively with geodetic and redshift observations such as GPS offsets and the Pound–Rebka experiment, offering a concrete mapping between the new microphysics and the classical time-dilation effects.
 
 * **Constraint** – reproduce GPS clock offsets (38 μs/day), the Pound–Rebka redshift, and height-resolved optical-clock redshift with $\Delta\nu/\nu\approx gL/c_0^2$; this includes the approximate scales $1.1\times10^{-19}$ across $1\,\mathrm{mm}$ and $3.6\times10^{-17}$ across $33\,\mathrm{cm}$ near Earth's surface.
-* **Mechanism** – mechanical slowing of nested shell swarm orbital frequencies couples to the local Noether swarm density and Noether sea delay factor, generating the observed dilation without changing the constitutive map used for other weak-field observables.
+* **Mechanism** – mechanical slowing of nested shell braid orbital frequencies couples to the local Noether braid density and Noether sea delay factor, generating the observed dilation without changing the constitutive map used for other weak-field observables.
 
 #### Massive-Superposition Gravitational Distinguishability
 
@@ -1763,7 +1763,7 @@ Use this ledger as the acceptance layer for the six integrated closure programs:
 | Program | Primary chapters | Ledger gate |
 | --- | --- | --- |
 | CKM holonomy closure | [theory-bridges/weak-mixing-ckm.md](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md) | CKM hierarchy and CP-phase consistency with propagated uncertainty |
-| PMNS neutral swarm closure | [assemblies/fermions/neutrinos.md](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) | Oscillation pattern consistency across $L/E$ and medium regimes |
+| PMNS neutral braid closure | [assemblies/fermions/neutrinos.md](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) | Oscillation pattern consistency across $L/E$ and medium regimes |
 | Emergent metric / PPN closure | [spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md), [spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Lorentz leakage, PPN, redshift, Shapiro, GW-speed bounds |
 | Non-relativistic Schrödinger + Born closure | [theory-bridges/pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md), [quantum/wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [theory-bridges/superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md) | Effective fixed-particle-number wave equation + statistical outcome consistency |
 | Photon Gate A/B/C closure | [assemblies/bosons/electroweak-bosons.md](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), [theory-bridges/angular-momentum-and-spin.md](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [validation/reaction-cosmology-provenance-ledger.md](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md), [spacetime/lorentz-kinematics.md](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) | Gate A massless nondispersive photon kinematics, Gate B polarization and squared-amplitude capture as a downstream spin/helicity ledger, and Gate C Maxwell/QED vertices, pair/radiation provenance, and $\alpha$ recovery |
@@ -1990,7 +1990,7 @@ The current benchmark scale is already severe: PDG 2024 summaries give $\tau/B(p
 | $\mathcal{C}_{\mathrm{weak}}$ | One weak-coupling-triad exposure record $\mathcal{E}_{\mathrm{weak}}(A)=Q_{\mathrm{weak}}[\Pi_{\mathrm{weak}}\mathcal{L}_A]$ supplies `V-A`, CKM/PMNS overlap, and weak-corridor provenance without redefining $\Pi_{\mathrm{weak}}$, $Q_{\mathrm{weak}}$, or the exposed domain. | $\mathcal{B}_{\mathrm{weak}}(\theta)$ lies in the observed charged-current handedness, mixing, and provenance region within $\epsilon_{\mathrm{weak}}$. | Right-handed charged-current coupling is not strongly suppressed in the validated regime, or the weak exposure domain changes between chirality, mixing, and provenance. |
 | $\mathcal{C}_{\mathrm{quantum}}$ | A transfer operator or return map $\mathcal{T}_{\Delta t}$, basin partition $\{B_i\}$, invariant or metastable measure $\mu_*$, and detector kernel produce $p_i=\mu_*(B_i)$ from $\Gamma$ and $\mathcal{H}$ without assigning probabilities as an external rule. | $\mathcal{B}_{\mathrm{quantum}}(\theta)$ lies in the Born-rule, Bell/CHSH/Tsirelson/GHZ/Hardy, Leggett-Garg temporal-correlation, detector-record, and no-signaling benchmark region within $\epsilon_{\mathrm{quantum}}$. | The validated regime gives non-Born weights, a classical-axis linear-correlation failure, untracked temporal-measurement disturbance, superluminal signal transfer, or a detector kernel not derived from the recorded causal state. |
 | $\mathcal{C}_{\mathrm{gravity}}$ | One Noether sea response map $\mathcal{M}_{\mathrm{sea}}^{ab}$ supplies clock, ruler, effective signal-speed, weak-field metric, and PPN channels without changing coefficients per observable. | $\mathcal{B}_{\mathrm{gravity}}(\theta)$ lies in the redshift, Shapiro-delay, lensing, orbital, gravitational-wave-speed, PPN, and preferred-frame bound region within $\epsilon_{\mathrm{gravity}}$. | Clock, ruler, signal, or metric coefficients must be tuned independently, ordinary dissipative drag appears in stable motion, or preferred-frame leakage exceeds the recorded bounds. |
-| $\mathcal{C}_{\mathrm{hadronic}}$ | An accepted branch family $A$, exposure quotient, color/topology ledger, residual strong channel set, and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ close confinement, quark mass, baryon-stability, and nuclear-binding rows. | $\mathcal{B}_{\mathrm{hadronic}}(\theta)$ lies in the confinement, quark-hierarchy, proton-stability, deuteron, saturation, and alpha-like benchmark region within $\epsilon_{\mathrm{hadronic}}$. | The sector predicts generic fast proton decay, unphysical nuclear binding signs, missing color/topology closure, or an unbalanced architrino / Noether swarm inventory. |
+| $\mathcal{C}_{\mathrm{hadronic}}$ | An accepted branch family $A$, exposure quotient, color/topology ledger, residual strong channel set, and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ close confinement, quark mass, baryon-stability, and nuclear-binding rows. | $\mathcal{B}_{\mathrm{hadronic}}(\theta)$ lies in the confinement, quark-hierarchy, proton-stability, deuteron, saturation, and alpha-like benchmark region within $\epsilon_{\mathrm{hadronic}}$. | The sector predicts generic fast proton decay, unphysical nuclear binding signs, missing color/topology closure, or an unbalanced architrino / Noether braid inventory. |
 | $\mathcal{C}_{\mathrm{radiation}}$ | A radiation residual $\mathcal{R}_{\Theta}$ selects admissible channels from $\{B_i\}$ and closes $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ with photon output, recoil, medium update, signed photon-frequency exchange, non-radiative remnant, or reaction rows explicitly recorded. | $\mathcal{B}_{\mathrm{radiation}}(\theta)$ lies in the Larmor/Lienard, bremsstrahlung, synchrotron, pair-threshold, Compton-like, SZ-like transfer, and blackbody benchmark region within $\epsilon_{\mathrm{radiation}}$. | Any benchmark requires per-observable retuning, untracked energy loss or gain, a missing recoil/provenance row, a free longitudinal photon mode, or a blackbody fit not tied to the event ledger. |
 | $\mathcal{C}_{\mathrm{cosmology}}$ | One source, transport, signed photon-frequency-transfer, thermalization, and clock-rate record uses the same $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, and reaction provenance ledger across local source channels and observer-level cosmology. | $\mathcal{B}_{\mathrm{cosmology}}(\theta)$ lies in the BBN, CMB blackbody, damping, anisotropy, polarization handoff, redshift-budget, $H(z)$, BAO, and growth benchmark region within $\epsilon_{\mathrm{cosmology}}$. | BBN photon loading, CMB thermalization, redshift handoff, frequency-exchange closure, or structure growth requires unbalanced substrate creation, unlogged photon energy transfer, per-source retuning, or Noether sea variables incompatible with local reaction / radiation ledgers. |
 
@@ -2076,7 +2076,7 @@ The witness empties the target gate when $\mathcal{C}_T\!\mid c=\varnothing$. It
 | Null-result violation | $\mathcal{R}_{\mathrm{null}}(\theta)>0$ for a predicted added channel in a validated comparison regime. | [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) |
 | Missing conservation/provenance field | $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)$ has an undefined or nonzero required row after all claimed outputs, recoil, medium updates, remnants, polarity / charge, architrino inventory, source identity, emission time, causal-root branch, and branch-Jacobian records are included. | [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) |
 | Benchmark-only fitting | A target benchmark in $\mathfrak{B}^{\mathrm{obs}}_S$ is used as an input to $\mathcal{L}_A$, $\Pi_S$, $Q_S$, $\mathcal{R}$, $\{B_i\}$, a branch-chart revision, an equality map, a root-coordinate split, or $\mathcal{M}_{\mathrm{sea}}^{ab}$ rather than as an output of a replayable closure record. | [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md) |
-| Incompatible effective limits | Two sectors require asymptotic maps whose overlap is empty, for example incompatible weak-field metric limits, photon / radiation limits, blackbody / BBN transport limits, or quantum no-signaling / gravity causal limits. | [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md), [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) |
+| Incompatible effective limits | Two sectors require asymptotic maps whose overlap is empty, for example incompatible weak-field metric limits, photon / radiation limits, blackbody / BBN transport limits, or quantum no-signaling / gravity causal limits. | [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md), [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) |
 
 ### Preferred-Frame Hiding Stop Condition
 
@@ -2139,7 +2139,7 @@ The class is `direct` when the theorem's assumptions are accepted or effective i
 | Frauchiger-Renner / Wigner-friend observed-observer consistency | `replacement constraint` | The standard no-go setup assumes that quantum state descriptions can be applied to other theory-users, that one observer may import another observer's certified certainty, and that one declared record channel cannot certify mutually exclusive outcomes. $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects an external classical-observer cut, but it also rejects importing another observer's conclusion without a physical record channel, access region, apparatus kernel, and boundary-data model. | A measurement closure that includes observed Physical Observers must derive every imported statement from the same substrate flow, record-autonomy test, and finite communication channel used for ordinary apparatus records. Failure occurs if a model needs a hidden external observer, lets a Physical Observer import certainty without a durable record, treats an unbuildable reference/readout setup as a completed experiment, or allows two mutually exclusive outcomes to be certified inside one declared record channel. If the reference or readout channel cannot satisfy the physical record criteria, the thought experiment is blocked by realizability rather than promoted into ontology. |
 | Groenewold-van Hove / global quantization map | `replacement constraint` | A global quantization map from all classical observables $C^\infty(M)$ to Hilbert-space operators, preserving every Poisson bracket as a commutator, is not a substrate assumption. The protected benchmark is narrower: in validated quantum regimes, the selected observer-level observables must recover the tested commutator algebra on the calibrated record domain. | Derive an admissible observable set from the same coarse-graining, apparatus kernel, retained path-history data, and record window used for the effective operator model, then bound the quantization-domain residual in [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#admissible-quantization-domain-guardrail). Failure occurs if a closure claims bracket-to-commutator recovery for all smooth classical functions, uses a choice of polarization or representation as hidden ontology, or changes the observable domain per benchmark without recording the physical apparatus and coarse-graining that justify the restriction. |
 | Lorentz invariance and preferred-frame tests | `direct` | Observer-level clock, ruler, two-way signal, PPN, and spectral bounds apply directly to any candidate effective metric or transport map. | Bound $\epsilon_{\mathrm{LV}}$, $\Delta_{\mathrm{tw}}(\beta)$, PPN parameters, spectra, and gravitational-wave-speed differences within recorded limits. Failure occurs when absolute motion is detectable above the accepted thresholds. |
-| Spin-statistics / exchange | `replacement constraint` | Local Lorentz-QFT axioms are not fundamental substrate assumptions, but matter stability and exchange classes are validated effective constraints. | Derive the ordered-frame lift, $4\pi$ spinor behavior, and bosonic/fermionic exchange classes from Noether swarm topology and angular-momentum ledger. Failure occurs if the lift cannot separate fermionic and bosonic closure classes. |
+| Spin-statistics / exchange | `replacement constraint` | Local Lorentz-QFT axioms are not fundamental substrate assumptions, but matter stability and exchange classes are validated effective constraints. | Derive the ordered-frame lift, $4\pi$ spinor behavior, and bosonic/fermionic exchange classes from Noether braid topology and angular-momentum ledger. Failure occurs if the lift cannot separate fermionic and bosonic closure classes. |
 | CPT theorem / local relativistic QFT assumptions | `replacement constraint` | Local relativistic QFT assumptions are not substrate assumptions for absolute time, Euclidean void, and delayed causal wakes. This includes local field operators, microcausal commutation structure, fundamental Poincare symmetry, and a Lorentz-invariant vacuum as primitive assumptions. The protected benchmarks remain observer-level particle/antiparticle mass degeneracy, charge-conjugate reaction bookkeeping, neutral-meson and lepton-sector CPT bounds, Lorentz-leakage bounds, and the absence of unobserved baryon/lepton channels. | Recover the tested CPT-facing benchmarks from architrino polarity, pro/anti assembly mapping, delayed dynamics, effective Lorentz closure, and the existing null-result ledger. A candidate record should publish a residual vector such as $\mathcal{R}_{\mathrm{CPT}}(\theta)=(\Delta m_{p\bar p},\Delta q_{p\bar p},\Delta\Gamma_{\mathrm{conj}},\epsilon_{\mathrm{LV}},\mathcal{R}_{\mathrm{null}})$ and show that each component stays within the declared experimental or closure bound. Failure occurs if the record hides rejected local-QFT assumptions inside the proof, predicts CPT-violating mass or reaction asymmetries above bounds, or restores the symmetry only by adding untracked channels outside $\mathcal{R}_{\mathrm{null}}$. |
 | Exact global architrino flips or permutations | `assumption mismatch` with replacement constraint when effective indistinguishability is claimed | Substrate architrinos are provenance-bearing entities with path-history and causal-wake records. A global flip, polarity reassignment, or label permutation is not exact unless it preserves those records and all causal-root relations, not merely the instantaneous exposed properties. | State whether the symmetry is a kernel/background symmetry, a full-history symmetry on a special state, or an effective coarse-grained equivalence. Effective exchange, gauge, flavor, or charge bookkeeping may be used only after the suppressed provenance data and replacement recovery target are named. Failure occurs if a closure treats provenance-suppressed interchangeability as substrate identity, or if an effective symmetry claim cannot recover the validated observer-level degeneracies, conservation laws, and exchange classes. |
 | Coleman-Mandula / gauge unification constraints | `assumption mismatch` with replacement constraint when effective scattering is claimed | Exact Lorentz-invariant analytic S-matrix assumptions are not substrate assumptions for delayed absolute-time dynamics. Compact internal symmetry, unitarity, positive-energy particle states, and effective gauge-sector factorization become benchmarks when Standard-Model-facing scattering or mixing is claimed. A pre-effective symmetry container may evade the theorem's literal hypotheses only before observer-level spacetime, scattering states, and gauge factors have been recovered; after that recovery, the same record must reproduce the validated factorization and may not use mixed spacetime/internal generators to create observed-sector shortcuts. | State which assumptions are effective, recover compact internal gauge behavior in the tested regime, and derive gauge-like symmetries without contradicting observed factorization. Failure occurs if a claimed unification predicts forbidden effective-sector mixing, hides added channels outside $\mathcal{R}_{\mathrm{null}}$, uses gauge covariance as an unexplained fit, or suppresses non-baseline sectors with a record different from the positive recovery record. |
@@ -2275,13 +2275,13 @@ This page is not a dumping ground for vague uncertainty. Each tension should ide
 | Tier | Issue | Why it matters | Current repo status | Closure target | Failure condition |
 | --- | --- | --- | --- | --- | --- |
 | 1 | Weak `V-A` selection rule | The weak interaction must distinguish left-chiral fermions from right-chiral ones. | [quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md) gives a geometric lock-out story, and [weak-mixing-ckm.md](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md) now identifies this as part of the shared weak-coupling-triad exposure problem, but no operator derivation is complete. | Derive a docking or coupling operator that exposes the weak-coupling triad for left-handed charged-current coupling, hides it for right-handed charged-current coupling, and then reuses the same domain for CKM/PMNS overlap and weak-reaction provenance. | If right-handed neutrino or right-handed charged-fermion coupling to `W` is not strongly suppressed in the same regime, or if the exposure domain must be redefined separately for mixing and provenance, the current weak-sector picture fails. |
-| 1 | Preferred-frame leakage | The ontology has absolute time and a medium, so observer-level Lorentz hiding must be quantitative. | The requirement is clear in [constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) now states the moving-assembly coefficient targets plus the translating-binary residual test, but the full attractor proof is not complete. | First solve the translating two-body branch and test $T_u/T_0=\gamma_f$ and $L_{\parallel}/L_{\perp}=1/\gamma_f$ on the same causal-root ledger; then show that nested shell swarm clocks, rulers, and signal transport suppress measurable preferred-frame effects below current experimental bounds through coupled shape, clock, and two-way anisotropy closure. | Any robust preferred-frame signal above the recorded bounds, a non-Lorentzian binary residual that cannot be traced to a controlled branch feature, or any need to tune clock and ruler coefficients independently falsifies the observer-level spacetime closure. |
+| 1 | Preferred-frame leakage | The ontology has absolute time and a medium, so observer-level Lorentz hiding must be quantitative. | The requirement is clear in [constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) now states the moving-assembly coefficient targets plus the translating-binary residual test, but the full attractor proof is not complete. | First solve the translating two-body branch and test $T_u/T_0=\gamma_f$ and $L_{\parallel}/L_{\perp}=1/\gamma_f$ on the same causal-root ledger; then show that nested shell braid clocks, rulers, and signal transport suppress measurable preferred-frame effects below current experimental bounds through coupled shape, clock, and two-way anisotropy closure. | Any robust preferred-frame signal above the recorded bounds, a non-Lorentzian binary residual that cannot be traced to a controlled branch feature, or any need to tune clock and ruler coefficients independently falsifies the observer-level spacetime closure. |
 | 1 | Born-rule derivation | Quantum replacement claims are not credible without a basin-measure or equivalent statistical closure. | [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md) fix the ontology; [quantum-operator-mapping.md](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) now states the finite-time invariant-measure, thermodynamic ensemble consistency, and admissible quantization-domain targets, but the derivation is still open. | Derive outcome weights from deterministic basin measures in the same regime that yields the effective wave equation, show that the same finite-window measure projects to the thermodynamic summaries used for apparatus irreversibility, decoherence, and record formation, and restrict effective operators to a physically declared observable domain rather than a global quantization of all classical functions. | If the deterministic closure produces a non-Born weighting in validated regimes, if Born weights and thermodynamic summaries require incompatible measures, or if the operator map requires ad hoc observable-domain changes per benchmark, the current quantum story fails. |
-| 1 | Weak-field GR recovery | Redshift, Shapiro delay, lensing, and orbital tests must come from one constitutive map. | The interface now exists in [gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md) and [ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md), but the shared fit is incomplete. | Produce one reusable parameter set for the weak-field metric map. | If different observables require incompatible constitutive coefficients, the emergent-metric program fails. |
-| 2 | Low-energy quantum-gravity EFT recovery | Quantized metric methods are not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, but their long-distance effective predictions are fixed by known low-energy degrees of freedom. | [gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md) and [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) state the classical weak-field map; they need an explicit observer-level GR-EFT recovery gate. | Recover the standard long-distance quantum correction to the Newtonian potential using the same weak-field constitutive record that supports PPN, redshift, Shapiro delay, lensing, and gravitational-wave speed. | If the calculable low-energy quantum correction requires an independent coefficient set, spacetime closure is incomplete even if the classical observables are matched. |
+| 1 | Weak-field GR recovery | Redshift, Shapiro delay, lensing, and orbital tests must come from one constitutive map. | The interface now exists in [general-relativity.md](../../../../markdown/aaa/spacetime/general-relativity.md) and [ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md), but the shared fit is incomplete. | Produce one reusable parameter set for the weak-field metric map. | If different observables require incompatible constitutive coefficients, the emergent-metric program fails. |
+| 2 | Low-energy quantum-gravity EFT recovery | Quantized metric methods are not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, but their long-distance effective predictions are fixed by known low-energy degrees of freedom. | [general-relativity.md](../../../../markdown/aaa/spacetime/general-relativity.md) and [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) state the classical weak-field map; they need an explicit observer-level GR-EFT recovery gate. | Recover the standard long-distance quantum correction to the Newtonian potential using the same weak-field constitutive record that supports PPN, redshift, Shapiro delay, lensing, and gravitational-wave speed. | If the calculable low-energy quantum correction requires an independent coefficient set, spacetime closure is incomplete even if the classical observables are matched. |
 | 2 | Parameter non-closure | Too many symbols remain geometric promises rather than fixed quantities. | [parameter-ledger.md](../../../../markdown/aaa/validation/parameter-ledger.md) now organizes them, but most are still open. | Close $\kappa$, the mass prefactor, the metric constitutive coefficients, and the weak-mixing datum without per-observable retuning. | If the same symbol has to be re-fit independently across chapters, the closure claim weakens sharply. |
 | 2 | Null-result closure for added channels | A unification claim can fail even while matching known positive benchmarks if it predicts extra channels that experiments have not seen. | [failure-criteria.md](../../../../markdown/aaa/validation/failure-criteria.md) now defines $\mathcal{R}_{\mathrm{null}}(\theta)$ for predicted non-baseline channels, but the main sector ledgers have not all routed their null-result bounds through that residual. The concrete comparison cases are mirror matter, superpartners, proton-instability channels, extra gauge bosons, hidden transport modes, sterile or neutral partner branches, and preferred-frame leakage channels. | For every added partner family, unstable baryon channel, extra gauge or transport mode, preferred-frame leakage channel, or other non-baseline output, compute $O_e(\theta)$ and show $O_e(\theta)\le O_e^{\max}$ from the same shared closure record used for the positive benchmarks. A symmetry container that includes the Standard Model as a subcase passes only when the added channels are proven absent, exactly redundant, or below bounds by the same branch record that recovers the observed sector. | If unobserved channels are hidden only by sector-specific masses, thresholds, compactification-like assumptions, or disconnected suppression factors, the framework has reproduced the failure pattern of overextended unification rather than closing it. |
-| 2 | Thermodynamic-gravity closure | If the metric is an emergent equation of state, the repo needs more than constitutive rhetoric. | [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) now states the Noether sea-first picture, defines a local-horizon residual $\mathcal{R}_{\mathrm{thermo}}(\theta)$, and links the proof scaffold to [Thermodynamic Residual Protocol](../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md); [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md) frames horizon entropy as a block-density count over horizon-compatible reduced Noether swarm closure labels. No run has yet driven the residual small from a simulated Noether sea record. | Show that the Noether sea admits an area-scaling entropy channel $S_H=k_B\log\lvert\mathcal{B}_H\rvert$ whose local coefficient is recovered as a block entropy density, a local Rindler/Unruh recovery in the appropriate limit, a Jacobson-style $dQ=T_UdS$ residual for boundary-wake data, Page-curve-compatible information release through horizon-interface channels, and a controlled nonequilibrium regime where distinctive departures are predicted. | If GR-like recovery requires thermodynamic language but the Noether sea cannot supply area scaling, local horizon temperature, a shared stress/entropy/temperature record, Page-curve-compatible information accounting, or a coherent nonequilibrium boundary, the present gravity interpretation loses depth and may be mislocated. |
+| 2 | Thermodynamic-gravity closure | If the metric is an emergent equation of state, the repo needs more than constitutive rhetoric. | [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) now states the Noether sea-first picture, defines a local-horizon residual $\mathcal{R}_{\mathrm{thermo}}(\theta)$, and links the proof scaffold to [Thermodynamic Residual](../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md); [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md) frames horizon entropy as a block-density count over horizon-compatible reduced Noether braid closure labels. No run has yet driven the residual small from a simulated Noether sea record. | Show that the Noether sea admits an area-scaling entropy channel $S_H=k_B\log\lvert\mathcal{B}_H\rvert$ whose local coefficient is recovered as a block entropy density, a local Rindler/Unruh recovery in the appropriate limit, a Jacobson-style $dQ=T_UdS$ residual for boundary-wake data, Page-curve-compatible information release through horizon-interface channels, and a controlled nonequilibrium regime where distinctive departures are predicted. | If GR-like recovery requires thermodynamic language but the Noether sea cannot supply area scaling, local horizon temperature, a shared stress/entropy/temperature record, Page-curve-compatible information accounting, or a coherent nonequilibrium boundary, the present gravity interpretation loses depth and may be mislocated. |
 | 2 | Reaction-cosmology provenance closure | The local-reaction story and the cosmology-source story now meet at photon loading, pair production, signed photon-frequency exchange, and thermalization. | [reaction-cosmology-provenance-ledger.md](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) defines the shared ledger, including path-frequency exchange, but no full source-to-background path has been closed. | Produce one conserved provenance path from a radiation, pair, or Compton/SZ-like transfer channel through thermalization to a BBN or CMB observable, using the same Noether sea state variables throughout. | If BBN photon loading, CMB blackbody recovery, or redshift-budget reconstruction requires unbalanced substrate creation, unlogged photon energy transfer, per-source retuning, or incompatible thermalization assumptions, the local-recycling cosmology branch fails. |
 | 2 | Shared cosmology state closure | Dark-energy, $H_0$, $S_8$, CMB, BBN, BAO, weak-lensing, redshift-budget, and pre-BBN comparison claims all consume overlapping Noether sea state variables. | [cosmology-ontology.md](../../../../markdown/aaa/cosmology/cosmology-ontology.md), [dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md), and [hubble-s8-tensions.md](../../../../markdown/aaa/cosmology/hubble-s8-tensions.md) now state the shared-state requirement; [inflation-model.md](../../../../markdown/aaa/cosmology/inflation-model.md#pre-bbn-comparison-gate), [BBN-constraints.md](../../../../markdown/aaa/cosmology/BBN-constraints.md#pre-bbn-handoff-gate), [structure-formation.md](../../../../markdown/aaa/cosmology/structure-formation.md#cmb-lensing-and-acoustic-peaks), and [gravitational-waves.md](../../../../markdown/aaa/spacetime/gravitational-waves.md#early-universe-stochastic-background-gate) now route pre-BBN branch projections through the same record; [simulations/cosmology-shared-residual-fit.md](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md) supplies the first mock residual-packet scaffold; and [dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md) now gives a thermodynamic $\Lambda_{\mathrm{eff}}$ conjugacy target, but no empirical joint residual fit exists. | Produce one $\theta_{\mathrm{sea}}$ and projection family that keeps SN, BAO, CMB, WL, RSD, BBN, $H_0$, $S_8$, signed path-frequency-transfer rows, pre-BBN branch projections, and stochastic-background bounds inside tolerance without per-pipeline retuning; if $\Lambda_{\mathrm{eff}}$ is treated thermodynamically, derive it as a conjugate to an effective observer-level four-volume functional of the same $\theta_{\mathrm{sea}}$. | If distance, growth, early-universe, calibration, path-frequency-transfer, pre-BBN branch, stochastic-background, or thermodynamic-$\Lambda_{\mathrm{eff}}$ observables require incompatible Noether sea state records, the cosmology branch has hidden the tension rather than closed it. |
 | 2 | Radiation Gate C benchmark closure | Radiation must recover standard electromagnetic and QED-like benchmarks before Noether sea-dependent deviations or cosmology source claims are credible. | [radiation.md](../../../../markdown/aaa/reactions/radiation.md) now carries a classified closure-target ledger, with channel scaffolds in [bremsstrahlung.md](../../../../markdown/aaa/reactions/bremsstrahlung.md), [synchrotron.md](../../../../markdown/aaa/reactions/synchrotron.md), and [reaction-cosmology-provenance-ledger.md](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md), but no unified Gate C derivation is complete. | Close Larmor/Lienard recovery, free-free emissivity, synchrotron $\gamma^2B$ and power scaling, pair thresholds, Compton-like scattering, and blackbody detailed balance through one event record, while treating free photon polarization as a Gate B handoff only. | If any benchmark requires per-observable retuning, violates validated limits, or derives free photon polarization outside Gate B, radiation Gate C does not close. |
@@ -2321,7 +2321,7 @@ Several tensions are linked and should not be treated as isolated tasks.
 
 #### Weak sector cluster
 
-The weak-selection problem, right-handed neutrino stance, CKM/PMNS closure, weak-corridor provenance, and the quark misalignment parameter $\alpha$ all belong to the same electroweak geometry stack. The current synthesis is that these are readouts of one weak-coupling-triad exposure problem: axial-frame branch selection determines what can be exposed, the `V-A` operator determines which handedness can dock, the overlap integrals determine mixing weights, and the reaction ledger determines where the corridor payload and outgoing Noether swarm provenance enter and exit. A clean derivation of one should now constrain the others rather than leaving them as independent stories.
+The weak-selection problem, right-handed neutrino stance, CKM/PMNS closure, weak-corridor provenance, and the quark misalignment parameter $\alpha$ all belong to the same electroweak geometry stack. The current synthesis is that these are readouts of one weak-coupling-triad exposure problem: axial-frame branch selection determines what can be exposed, the `V-A` operator determines which handedness can dock, the overlap integrals determine mixing weights, and the reaction ledger determines where the corridor payload and outgoing Noether braid provenance enter and exit. A clean derivation of one should now constrain the others rather than leaving them as independent stories.
 
 The neutrino branch of this cluster has four empirical decision handles: the lightest-neutrino mass, the mass sum $\sum_i m_i$, neutrinoless double-beta limits or detection, and any evidence for a sterile or right-handed singlet. These data products should decide between the current minimal near-photon neutral-pair stance, a sterile $\nu_R$ branch, or a lepton-number-violating provenance channel. They should not be used to rewrite the charged-fermion axial-layer rule or to import a sterile dark-matter interpretation before the PMNS, reaction, BBN, CMB, and structure-formation gates are simultaneously satisfied.
 
@@ -2363,7 +2363,7 @@ Radiation Gate C closure is validated only if the same event record passes the f
 | Larmor/Lienard recovery | derivation target | Recover $P\propto\|\mathbf{a}\|^2$ in the weak nonrelativistic limit and the Larmor/Lienard observer-level power/angular behavior after clock conversion. | Low-speed power is not quadratic in acceleration, or relativistic recovery needs a separate fit. |
 | Bremsstrahlung emissivity | derivation target | Recover $d\sigma/dk$, screening/form-factor corrections, $\epsilon_{\nu}^{\mathrm{ff}}\propto Z^2 n_e n_i T^{-1/2}e^{-h\nu/(k_B T)}g_{\mathrm{ff}}$, and $\epsilon_{\mathrm{ff}}\propto Z^2 n_e n_i T^{1/2}$ in LTE. | Cross-section and emissivity require incompatible Noether sea variables or plasma-specific hidden fits. |
 | Synchrotron $\gamma^2B$ scaling | derivation target | Recover $\nu_c\propto\gamma^2B$, $P_{\mathrm{syn}}\propto U_B\gamma^2$, and cooling breaks from one effective magnetic-state map. | The $\gamma^2$ frequency scaling is absent, or the $B$ map changes between curvature and emission. |
-| Pair thresholds | derivation target | Recover $s\ge4m_e^2c^4$ and the angle-dependent photon-photon threshold while preserving architrino inventory and pair provenance. | Pair channels imply creation from nothing, wrong thresholds, or unbalanced Noether swarm recruitment. |
+| Pair thresholds | derivation target | Recover $s\ge4m_e^2c^4$ and the angle-dependent photon-photon threshold while preserving architrino inventory and pair provenance. | Pair channels imply creation from nothing, wrong thresholds, or unbalanced Noether braid recruitment. |
 | Compton-like scattering | derivation target | Recover the Compton shift, Thomson limit, Klein-Nishina correction, recoil, and outgoing photon provenance in one Gate C vertex. | The channel becomes phenomenological frequency loss without a closed recoil and photon ledger. |
 | Aharonov-Bohm phase | derivation target | Recover a relative phase proportional to enclosed magnetic flux while the local force channel on the interferometer arms vanishes, using the same effective U(1) connection and photon/action ledger as the rest of Gate C. | The phase requires a local force on the arms, an independent phase fit, or a literal gauge-potential ontology rather than a derived effective connection. |
 | Blackbody recovery | derivation target | Recover Planck occupation, zero effective photon chemical potential, thermalization depth, damping, anisotropy, polarization handoff, and redshift handoff without retuning the Noether sea map. | The CMB or thermal branch needs unbalanced photon loading, per-observable retuning, or incompatible transport assumptions. |
@@ -2375,11 +2375,11 @@ Radiation Gate C closure is validated only if the same event record passes the f
 The foundational ontology hub now keeps only stable commitments. Open questions that used to live there are tracked here or in the relevant branch chapters:
 
 - **Deterministic branch selection:** close the rule for active causal roots, weighted sums, phase-sensitive thresholding, and basin selection in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md). The working hypothesis remains deterministic multistability, with apparent randomness coming from chaotic sensitivity to microstate and wake history.
-- **Polarity unit and coupling scale:** explain $\epsilon=|e|/6$ and close $\kappa$ through [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), [Architrino SI Base Units](../../../../markdown/aaa/validation/architrino-si-base-units.md), and the charge-mapping chapters. The unresolved question is whether six-site nested shell swarm organization derives the $\epsilon$ unit, and whether $\kappa$ is related to $\epsilon$, $c_f$, $\hbar$, or Planck-alignment quantities rather than being independently postulated.
+- **Polarity unit and coupling scale:** explain $\epsilon=|e|/6$ and close $\kappa$ through [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), [Architrino SI Base Units](../../../../markdown/aaa/validation/architrino-si-base-units.md), and the charge-mapping chapters. The unresolved question is whether six-site nested shell braid organization derives the $\epsilon$ unit, and whether $\kappa$ is related to $\epsilon$, $c_f$, $\hbar$, or Planck-alignment quantities rather than being independently postulated.
 - **Quantum ontology:** keep wavefunction status, decoherence, and Born-rule recovery in [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), and the Born-rule tension above. Decoherence still needs a stance on whether its irreversibility is fundamental in the Noether sea environment or practical because reversal is dynamically inaccessible to Physical Observers.
 - **Symmetry and conservation:** close CPT stance, baryon-number status, and proton-stability regime through the particle and interaction chapters. The unresolved CPT issue is treated as a replacement constraint in [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md#applicability-map): the standard proof assumes local relativistic QFT, while this framework uses absolute time and delayed substrate dynamics, so the corpus must preserve tested CPT-facing observables without importing those assumptions as ontology.
 - **Cosmological history:** keep beginning/eternity and initial-condition questions in [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md), [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), and related cosmology modules. If the background is eternal, the theory still owes a large-scale homogeneity and isotropy account, including a scale-neutral residual comparing dimensionless pair-separation distributions across large windows; if it has an initialization boundary, it owes an architrino-distribution account.
-- **Unification claim:** treat "all forces from nested shell swarm geometry and Noether sea dynamics" as a closure program, not as a primitive ontology statement. The qualitative structure exists across interaction chapters, but quantitative derivations remain the acceptance gate.
+- **Unification claim:** treat "all forces from nested shell braid geometry and Noether sea dynamics" as a closure program, not as a primitive ontology statement. The qualitative structure exists across interaction chapters, but quantitative derivations remain the acceptance gate.
 
 ### Acceptance Principle
 
@@ -2406,7 +2406,7 @@ If that intersection becomes empty after quantitative work is done, the present 
 - [constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md)
 - [closure-scorecard.md](../../../../markdown/aaa/validation/closure-scorecard.md)
 - [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md)
-- [../spacetime/gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md)
+- [../spacetime/general-relativity.md](../../../../markdown/aaa/spacetime/general-relativity.md)
 - [../quantum/measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md)
 
 ## Massive Superposition Gravity
@@ -2995,10 +2995,10 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 ---
 
-#### Assembly grammar -> nested shell swarm and flux tubes
+#### Assembly grammar -> nested shell braid and flux tubes
 
 - What we assume:
-  - Binary orbits are the base motif; binaries can nest with wide scale separation; a nested shell swarm is dynamically robust.
+  - Binary orbits are the base motif; binaries can nest with wide scale separation; a nested shell braid is dynamically robust.
   - Polar regions of fast binaries host persistent axial structures (vortex-like loci in the delayed wake geometry), which couple between assemblies.
 
 - Why it matters:
@@ -3183,7 +3183,7 @@ Plain language: we can test the framework by checking order effects, interferenc
 
 This note is the launch overview for the simulation branch. It explains the common simulation frame, the role of the virtual $\mathbb{U}_{\text{now}}$ universe-state perspective, and the separation between raw microstate logging and detector-level synthetic observables.
 
-Use it as the top orientation document before reading the more specialized [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md), convergence checks, action-energy notes, the [$A_0$ branch certificate protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), the [$A_0$ Tier 0 result interpretation](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), the [Nested Shell Swarm Action-Increment Protocol](../../../../markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md), the [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md), the [Cosmology Shared Residual Fit Protocol](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md), the [Redshift-Budget Toy Model](../../../../markdown/aaa/validation/simulations/redshift-budget-toy-model.md), the [Static Response Vector Toy Model](../../../../markdown/aaa/validation/simulations/static-response-vector-toy-model.md), and the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md).
+Use it as the top orientation document before reading the more specialized [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md), convergence checks, action-energy notes, the [$A_0$ branch certificate protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), the [$A_0$ Tier 0 result interpretation](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), the [Nested Shell Braid Action-Increment Protocol](../../../../markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md), the [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md), the [Cosmology Shared Residual Fit Protocol](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md), the [Redshift-Budget Toy Model](../../../../markdown/aaa/validation/simulations/redshift-budget-toy-model.md), the [Static Response Vector Toy Model](../../../../markdown/aaa/validation/simulations/static-response-vector-toy-model.md), and the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md).
 
 #### Simulation Frame: Virtual $\mathbb{U}_{\text{now}}$ Perspective
 
@@ -3237,7 +3237,7 @@ The opening gives the top-level simulation rule set; the later sections unpack t
 1. **Coordinate Anchor**: All simulations run on a fixed Cartesian grid chosen as the coordinate scaffold for the Euclidean void. `Grid[x][y][z]` is a chart address, not an intrinsic label in the void.
 2. **Clock Rate**: The simulator uses a global `Time` counter (absolute $t$). No relativistic scaling is applied to the integration step itself.
 3. **$\mathbb{U}_{\text{now}}$ universe-state interface**: Every run must instantiate an array of fixed virtual sensors to log $\Phi$ and $\nabla\Phi$ at declared absolute-frame grid addresses.
-4. **Noether sea Initialization**: Low-excitation Noether sea runs must pre-populate the grid with a lattice of coupled pro/anti Noether swarms to simulate Noether sea influence on test particles.
+4. **Noether sea Initialization**: Low-excitation Noether sea runs must pre-populate the grid with a lattice of coupled pro/anti Noether braids to simulate Noether sea influence on test particles.
 5. **Convergence**: $\Delta t$ refinement must be accompanied by "History Resolution" refinement to ensure self-hit calculations are numerically stable.
 6. **Campaign Packet**: Any run used for a proof certificate, branch-certificate gate, or promoted validation claim must emit a machine-checkable packet rather than only plots or summaries.
 
@@ -3516,7 +3516,7 @@ All simulations integrate dynamics in the absolute Euclidean frame:
 
 ##### Void and Noether Sea Terminology (Simulation-Facing)
 - "Euclidean void" = the fixed spatial container represented by the chosen coordinate chart / grid indices
-- "Noether sea" = coupled pro/anti swarms instantiated as objects or response variables in the void
+- "Noether sea" = coupled pro/anti braids instantiated as objects or response variables in the void
 
 ##### Mandatory $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) grid
 Every run must instantiate $\mathbb{U}_{\text{now}}$ sensors:
@@ -3546,7 +3546,7 @@ No major physical claim is accepted without:
 
 ##### $\mathbb{U}_{\text{now}}$ universe-state perspective Implementation & Grid Protocols
 
-1. **Grid Initialization**: All simulations run on a rigid Cartesian grid chosen as the coordinate scaffold for the **Euclidean void**. The grid is pre-loaded with a lattice of coupled Noether swarms to instantiate the Noether sea.
+1. **Grid Initialization**: All simulations run on a rigid Cartesian grid chosen as the coordinate scaffold for the **Euclidean void**. The grid is pre-loaded with a lattice of coupled Noether braids to instantiate the Noether sea.
 2. **Fiducial Sensor Array**: Instantiate a grid of virtual sensors at fixed chart locations $(x,y,z)$. Each records $\Phi$ and $\nabla\Phi$.
 3. **Causal Time Lookup**: When a causal isochron intersects a sensor, the simulator uses the grid history to "look back" to the emitter's position at $t_{history}$.
 4. **Logging Standard**: All runs must log $\mathbb{U}_{\text{now}}$ channels ($\Phi$, $\nabla\Phi$, provenance tables) to allow cross-run convergence auditing.
@@ -3554,13 +3554,13 @@ No major physical claim is accepted without:
 ##### $\mathbb{U}_{\text{now}}$ universe-state perspective Grid
 
 * **Grid:** Initialize rigid Cartesian `Grid[x][y][z]` as the chosen chart for the Euclidean void.
-* **Sea Initialization:** Pre-load the grid with coupled Noether swarms for low-excitation Noether sea runs.
+* **Sea Initialization:** Pre-load the grid with coupled Noether braids for low-excitation Noether sea runs.
 * **Logging:** Record $\Phi$ and $\nabla\Phi$ at fixed nodes ($\mathbb{U}_{\text{now}}$ universe-state sensors).
 * **Time:** Global step $\Delta t$ (absolute time).
 
 ### A0 Branch Certificate Protocol
 
-This protocol defines the simulation-facing handoff for the $A_0$ reference attractor described in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#reference-attractor-gate), [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), and [Energy](../../../../markdown/aaa/dynamics/energy.md). It specializes the general [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) to the first neutral rest-branch nested shell swarm mass-map target.
+This protocol defines the simulation-facing handoff for the $A_0$ reference attractor described in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#reference-attractor-gate), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), and [Energy](../../../../markdown/aaa/dynamics/energy.md). It specializes the general [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) to the first neutral rest-branch nested shell braid mass-map target.
 
 The protocol does not treat $A_0$ as a particle label. It treats $A_0$ as a calibration-free branch certificate problem: find a finite, stable, multi-scale causal-root ledger before energy, shielding, Noether sea response, or mass comparisons enter.
 
@@ -3581,7 +3581,7 @@ An auditable $A_0$ branch certificate should preserve one top-level packet shape
 | `branch_label` | layer windings, inter-layer closure integers, handedness, carrier ellipticity, and active root-branch summary | identifies the branch being certified |
 | `z_lambda` | quotient-coordinate row $z_\Lambda$: $\varepsilon_{IM}$, $\varepsilon_{MO}$, $T_I/T_M$, $T_M/T_O$, $\delta_M$, layer ellipticities, $G_{\ell m}$, $\chi_N$, $H_I,H_M,H_O$, $\Phi_{\text{rel}}$, removed gauges $SO(3)$, $S^1_{\mathbf{k}}$, $\Gamma_\Lambda$, branch class $[\Lambda]$, and quotient-degeneracy status | records the reduced moduli coordinate rather than an unquotiented carrier representative |
 | `branch_chart_revision` | conditional pre-rerun record for any revised reduced branch coordinate, including source fields, equality map, equation and coefficient counts, held-out residual rule, phase-origin rule when a phase split is used, symmetry or quotient behavior, locked-key exclusion, benchmark exclusion, and `accepted_history_boundary: false` | prevents residual-selected coordinates or post-fit added columns from masquerading as branch geometry |
-| `state_vector` | six architrino labels, polarities, reduced geometry, frequencies, phase offsets, carrier chart, history segment, and center gauge | gives the reduced Noether swarm state vector |
+| `state_vector` | six architrino labels, polarities, reduced geometry, frequencies, phase offsets, carrier chart, history segment, and center gauge | gives the reduced Noether braid state vector |
 | `closure_system` | active variables, causal-root equations, layer phase closure, inter-layer closure, center-gauge closure, speed-ordering inequalities, and tolerances | ties closure labels to equations rather than only to names |
 | `root_ledger` | active and raw partner, self, and inter-layer root classes with delays, branch Jacobians, separator flags, parity events, and excluded near-zero self roots separated | verifies finite causal-root bookkeeping |
 | `term_classification` | terms assigned to averaging, locking, and leakage channels, with measured or derived residual size | prevents internal corrections from being hidden before promotion |
@@ -3639,7 +3639,7 @@ Q^{ij}_{A_0}
 =
 Q^{ij}_{A_0}-\frac{1}{3}h^{ij}
 $$
-This tensor measures motion-induced or probe-induced Noether swarm deformation. It is not the same object as the far-field leakage residue $\mathcal{L}_{\text{aniso}}$, which is extracted from cycle-averaged wake coefficients in Tier 2.
+This tensor measures motion-induced or probe-induced Noether braid deformation. It is not the same object as the far-field leakage residue $\mathcal{L}_{\text{aniso}}$, which is extracted from cycle-averaged wake coefficients in Tier 2.
 
 #### Tier 0: Algebraic Branch Search
 
@@ -3841,7 +3841,7 @@ A $\mathbb{U}_{\text{now}}$ is defined by:
 ##### Mapping: $\mathbb{U}_{\text{now}}$ data → Physical observables
 Synthetic observables must be generated by post-processing $\mathbb{U}_{\text{now}}$ logs with a model of a *physical* observer (assembly clock/detector):
 1. Extract local Noether sea state along detector worldline $X_{\text{det}}(t)$
-2. Compute proper time $\tau_{\text{det}}$ via $d\tau = F(\text{Noether sea state}, v_{\text{det}}, \Phi, \nabla\Phi, \dots)\,dt$ (from proper-time-derivation.md)
+2. Compute derived detector clock time $\tau_{\text{det}}$ via the declared clock map $d\tau = F(\text{Noether sea state}, v_{\text{det}}, \Phi, \nabla\Phi, \dots)\,dt$ from [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md)
 3) Generate detector-like outputs:
    - clock readings $\tau(t)$
    - photon arrival times and frequency shifts, with signed exchange rows separated from endpoint cadence and launch geometry
@@ -4040,7 +4040,7 @@ until thresholds are met.
 1. **Definition**: A $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) is a non-physical bookkeeping operator acting on the full microstate $S(t)$.
 2. **Synthetic Observables**:
     - **Raw Data**: Time series of $\Phi(x,t)$ at fixed points.
-    - **Post-Processing**: To simulate a physical detector, we act on the raw data by integrating the proper time $\tau$ of a "clock assembly" moving through the $\mathbb{U}_{\text{now}}$ grid.
+    - **Post-Processing**: To simulate a physical detector, we act on the raw data by integrating the derived clock time $\tau$ of a "clock assembly" moving through the $\mathbb{U}_{\text{now}}$ grid.
 3. **Separation of Concerns**: This explicitly separates Ontology (simulation state/$\mathbb{U}_{\text{now}}$ data) from Phenomenology (synthetic detector data).
 
 ##### Virtual Sensor & Data Extraction
@@ -4055,7 +4055,7 @@ until thresholds are met.
 
 This note explains how to read the first reduced $A_0$ branch-search artifact. It is a companion to the [$A_0$ Branch Certificate Protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), the general [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md), and the convergence standards in [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md).
 
-The Tier 0 artifact is not an attractor proof. It is a certificate-facing filter that decides whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta > 0$ continuation. Its output should be read together with the mass thesis in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../../../markdown/aaa/dynamics/energy.md), the dynamics baseline in [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), and the closure bookkeeping in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
+The Tier 0 artifact is not an attractor proof. It is a certificate-facing filter that decides whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta > 0$ continuation. Its output should be read together with the mass thesis in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../../../markdown/aaa/dynamics/energy.md), the dynamics baseline in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), and the closure bookkeeping in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
 
 ##### Output Status
 
@@ -4480,11 +4480,11 @@ A future closure packet becomes promotable only if:
 5. the product-screening audit does not collapse the completed hidden-variable record into $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$;
 6. failure cases are reported when the model reduces to classical-axis response, separable pair measure, product-screened pair provenance, context-independent GHZ values, forbidden Hardy events, setting-dependent provenance, or signaling marginals.
 
-#### Nested Shell Swarm Action-Increment Protocol
+#### Nested Shell Braid Action-Increment Protocol
 
-This protocol defines the simulation-facing test for deriving or falsifying the one-cycle action increment used by the quantum closure program. It specializes [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) and [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md) to the question left open by [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), and [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md).
+This protocol defines the simulation-facing test for deriving or falsifying the one-cycle action increment used by the quantum closure program. It specializes [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) and [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md) to the question left open by [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), and [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
 
-The target is narrow. The run must compute the smallest accepted Master-Equation projected action increment from candidate nested shell swarm branch transitions whose stability rows pass. It may compare the resulting scale to the observer-level `$h,\hbar$` benchmark after the computation. It may not insert $\hbar$ as an input step size.
+The target is narrow. The run must compute the smallest accepted Master-Equation projected action increment from candidate nested shell braid branch transitions whose stability rows pass. It may compare the resulting scale to the observer-level `$h,\hbar$` benchmark after the computation. It may not insert $\hbar$ as an input step size.
 
 ##### Closure Question
 
@@ -4494,7 +4494,7 @@ $$
 \quad\Longrightarrow\quad
 \Delta\Gamma_{\text{cell}}=h^n
 $$
-for $n$ record-facing action-angle channels. This protocol tests the missing premise. It asks whether accepted nested shell swarm dynamics select a positive increment $\Delta I_*$ such that
+for $n$ record-facing action-angle channels. This protocol tests the missing premise. It asks whether accepted nested shell braid dynamics select a positive increment $\Delta I_*$ such that
 $$
 h_{\mathbb{A}\mathbb{A}\mathbb{A}}=2\pi\Delta I_*
 $$
@@ -4504,7 +4504,7 @@ Passing this protocol would not complete quantum theory. It would only promote t
 
 ##### Accepted Transition Class
 
-Let $B_q$ and $B_{q'}$ denote candidate nested shell swarm branch states with passed stability rows, layer radii, frequencies, speeds, plane normals, active causal-root ledger, and wake ledger. A candidate accepted transition belongs to
+Let $B_q$ and $B_{q'}$ denote candidate nested shell braid branch states with passed stability rows, layer radii, frequencies, speeds, plane normals, active causal-root ledger, and wake ledger. A candidate accepted transition belongs to
 
 $$
 \mathcal{T}_{\mathrm{acc}}=\varnothing
@@ -4670,7 +4670,7 @@ This protocol preserves the level distinction. A passing action-increment packet
 
 #### Retuning-Map Toy Model
 
-This protocol documents the first arithmetic fixture for the cadence-scale retuning map introduced in [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#cadence-scale-retuning-closure). The fixture is not a delayed-dynamics proof. It replays the constrained branch bookkeeping for an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction and reports whether the resulting increment can be treated as a same-branch retuning.
+This protocol documents the first arithmetic fixture for the cadence-scale retuning map introduced in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#cadence-scale-retuning-closure). The fixture is not a delayed-dynamics proof. It replays the constrained branch bookkeeping for an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction and reports whether the resulting increment can be treated as a same-branch retuning.
 
 The purpose is narrow: turn the retuning scaffold into a machine-readable packet that outputs $(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$ and the corresponding first estimate for the cadence-space current $J_\nu$.
 
@@ -4679,13 +4679,13 @@ The purpose is narrow: turn the retuning scaffold into a machine-readable packet
 Run the default mock packet with:
 
 ```text
-node scripts/nested-shell-swarm/retuning-map-toy-model.mjs --pretty
+node scripts/nested-shell-braid/retuning-map-toy-model.mjs --pretty
 ```
 
 The script consumes:
 
 ```text
-scripts/nested-shell-swarm/retuning-map-mock.json
+scripts/nested-shell-braid/retuning-map-mock.json
 ```
 
 and emits one result row per scenario. The packet is dimensionless: action increments are in units of $h$, speeds are compared to the declared $c_f$, and radius/cadence changes are reported as logarithmic increments plus reconstructed component changes.
@@ -4737,7 +4737,7 @@ $$
 \ell\in\{I,M,O\}
 $$
 
-The script applies the ordinary nested shell swarm speed gates:
+The script applies the ordinary nested shell braid speed gates:
 
 $$
 s_I'>c_f,
@@ -4747,7 +4747,7 @@ s_I'>c_f,
 s_O'<c_f
 $$
 
-The representative Noether swarm cadence increment is
+The representative Noether braid cadence increment is
 
 $$
 \Delta\ln\nu_N
@@ -4761,7 +4761,7 @@ w_O\Delta\ln\nu_O,
 w_I+w_M+w_O=1
 $$
 
-For a local rate density $r_\sigma$ of accepted $\sigma$ transactions per swarm, the first current estimate is
+For a local rate density $r_\sigma$ of accepted $\sigma$ transactions per braid, the first current estimate is
 
 $$
 J_\nu
@@ -4783,7 +4783,7 @@ Each scenario supplies:
 | `compliance_diagonal` | diagonal version of $\mathbf{K}^{\mathrm{ret}}_q$ |
 | `action_gradient_h_per_log` | linearized $D A_{\mathrm{cyc},q}$ row in $h$ units per log variable |
 | `constraints` | linearized branch constraints, each with coefficients and target |
-| `f_N` | local Noether swarm cadence-state distribution value |
+| `f_N` | local Noether braid cadence-state distribution value |
 | `partial_nu_f_N` | local slope used only to estimate the higher-order current remainder |
 | `transactions` | accepted or control $\sigma$ transactions with wake action increment and local rate density |
 
@@ -4813,7 +4813,7 @@ The default mock packet has two rows.
 | `same_branch_plus_minus_balance` | Plus and minus one-$h$ retunings both pass the speed gates. Unequal local rates leave a small signed current, `net_J_nu.value` near `0.0017019`. |
 | `middle_hinge_violation_control` | The linear action constraint solves, but the middle layer leaves the declared hinge tolerance. The row fails with `middle-hinge-violation`. |
 
-These numbers are fixture expectations only. They validate arithmetic, packet shape, branch-gate reporting, and the current estimate. They do not validate a physical Noether swarm branch.
+These numbers are fixture expectations only. They validate arithmetic, packet shape, branch-gate reporting, and the current estimate. They do not validate a physical Noether braid branch.
 
 ##### Failure Reading
 
@@ -5737,7 +5737,7 @@ The executable packet reports:
 
 The packet succeeds only when its declared expectations are met. A failure witness should therefore have `status: "fail"` but `expectation_status: "pass"` when it fails for the intended reason.
 
-#### Thermodynamic Residual Protocol
+#### Thermodynamic Residual
 
 This protocol turns the local-horizon target in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target) into a validation scaffold. It does not assume that gravity is thermodynamic at the substrate level. It tests whether one Noether sea state and observer-channel record can supply the three observer-level quantities used in the Jacobson comparison: boundary entropy, local temperature, and boost-energy flux.
 
@@ -6281,7 +6281,7 @@ The runtime packet should preserve this shape even when a later empirical packet
 | `gates` | pass/fail records for coverage, residual total, projection penalty, projection overlap, and total shared residual | turns the comparison into an auditable decision surface |
 | `failure_code` | null on pass, otherwise the first failed gate | gives follow-up work a stable repair target |
 
-The current mock packet uses normalized comparison coordinates such as `H_norm`, `w_eff`, `n`, `chi_sea`, `G_growth`, `Y_BBN`, `Delta_N_eff`, `lambda_fs`, `Omega_GW`, `Z_total`, `Y_path`, and `frequency_exchange_residual`. These are not new ontology. They are dimensionless placeholders for observer-level expansion, equation-of-state, normalized Noether swarm density, Noether sea delay, growth-response, BBN-yield, relativistic-species, free-streaming, stochastic-gravitational-wave, total redshift-budget, path-frequency-transfer, and exchange-ledger comparison channels.
+The current mock packet uses normalized comparison coordinates such as `H_norm`, `w_eff`, `n`, `chi_sea`, `G_growth`, `Y_BBN`, `Delta_N_eff`, `lambda_fs`, `Omega_GW`, `Z_total`, `Y_path`, and `frequency_exchange_residual`. These are not new ontology. They are dimensionless placeholders for observer-level expansion, equation-of-state, normalized Noether braid density, Noether sea delay, growth-response, BBN-yield, relativistic-species, free-streaming, stochastic-gravitational-wave, total redshift-budget, path-frequency-transfer, and exchange-ledger comparison channels.
 
 ##### Pre-BBN Branch Packet
 
@@ -6820,7 +6820,7 @@ The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb
 | UV/IR+Regularization Completion | 6 | Ultraviolet and infrared completion quality, including cutoff dependence, singular behavior, regularization limits, horizon/singularity issues, and asymptotics. | 70 | 35 | 30 | 49 | -21 |
 | Master EOM+Local Dynamics | 10 | Certified closure of the core equations of motion: local field/effective equations in modern physics and delayed path-history dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 96 | 75 | 60 | 80 | -16 |
 | Cross-Regime Bridge | 8 | Mathematical consistency across regimes: micro to macro, quantum to classical, particle to cosmology, weak to strong gravity, and thermodynamics. | 82 | 48 | 42 | 69 | -13 |
-| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and nested shell swarm/Noether swarm dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 50 | 55 | 78 | -4 |
+| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and nested shell braid/Noether braid dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 50 | 55 | 78 | -4 |
 | Falsification Gates | 4 | Explicitness and enforceability of falsification thresholds, stop conditions, validation gates, and failure criteria. | 98 | 88 | 80 | 95 | -3 |
 | Coverage+Interface Readiness | 2 | Coverage completeness across mathematics/geometry-relevant domains, including interface consistency and minimally developed sections. | 99 | 82 | 72 | 96 | -3 |
 | Axiom+Notation | 4 | Canonical symbols, definitions, and cross-chapter mathematical language consistency. | 96 | 82 | 92 | 99 | 3 |
@@ -6829,7 +6829,7 @@ The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb
 
 ### 2026-06-20 Assessment Notes
 
-The 2026-06-20 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `65` after a full read of the `163` markdown files under `content/markdown/aaa`. The score is concentrated in mathematical scaffolding, validation discipline, and interface coverage rather than in final recovery of observed coefficients. The corpus now has a much stronger causal-action and energy/conservation spine: the scalar causal-hit functional has a regularized theorem spine and finite-memory bounds, the energy chapter separates finite-window wake-history balances from particle-only conservation, and nested shell swarm dynamics states a shared causal-closure certificate target that ties causal-root ledgers, Jacobian floors, mass response, observer exports, event ledgers, and stability rows to the same retained branch.
+The 2026-06-20 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `65` after a full read of the `163` markdown files under `content/markdown/aaa`. The score is concentrated in mathematical scaffolding, validation discipline, and interface coverage rather than in final recovery of observed coefficients. The corpus now has a much stronger causal-action and energy/conservation spine: the scalar causal-hit functional has a regularized theorem spine and finite-memory bounds, the energy chapter separates finite-window wake-history balances from particle-only conservation, and nested shell braid dynamics states a shared causal-closure certificate target that ties causal-root ledgers, Jacobian floors, mass response, observer exports, event ledgers, and stability rows to the same retained branch.
 
 The score increase is deliberately limited by the validated-closure lens. Many of the strongest new artifacts are still explicitly theorem targets, mock packets, replay fixtures, or rejection diagnostics. The hydrogen $\Gamma_N$ spectral scan now keeps density, Noether sea delay, scale, envelope, and core rows separate and uses a shared coefficient row, but it does not yet derive hydrogen envelope gaps, real observer frequencies, or the static response vector from the master dynamics. The cosmology shared-residual fit, Bell-family record-measure harness, radiation ledgers, massive-superposition gravity packet, and thermodynamic residual protocol improve falsification-readiness and benchmark shape, but they do not yet supply empirical joint fits or accepted branch-derived coefficients.
 
@@ -6841,7 +6841,7 @@ Falsification and coverage now score near modern-operational levels because the 
 
 The 2026-05-22 assessment raises the weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score from `59` to `61`. The increase is concentrated in notation, internal constituent dynamics, cross-regime bridge quality, and falsification discipline. It is not a coefficient-recovery jump: the central benchmark rows still lack a retained branch that recovers masses, Lorentz / PPN coefficients, photon-channel coefficients, Born/Bell measures, weak mixing, Standard Model masses, or cosmological residuals from one accepted native record.
 
-The largest corpus-side improvement is the Noether swarm taxonomy. The corpus now separates the broad neutral swarm, shell swarm, and nested shell swarm cases; treats exact binaries as a proof assumption rather than a naming axiom; and routes dynamic exclusion-envelope geometry into a dedicated nested shell swarm geometry chapter. That chapter adds a computable assembly/Noether sea interface diagnostic,
+The largest corpus-side improvement is the Noether braid taxonomy. The corpus now separates the broad neutral braid, shell braid, and nested shell braid cases; treats exact binaries as a proof assumption rather than a naming axiom; and routes dynamic exclusion-envelope geometry into a dedicated nested shell braid geometry chapter. That chapter adds a computable assembly/Noether sea interface diagnostic,
 
 $$
 D_{a,X}(\mathbf{x},t)
@@ -6882,7 +6882,7 @@ $$
 
 This is a concrete mathematical advance because it prevents isolated seed charts from being read as physical branch closure unless Noether sea, assembly, and boundary residuals are statused. It supports modest increases in Master EOM+Local Dynamics, Potential+Action Closure, Conservation+Invariant Closure, Parameter+Scale Closure, and UV/IR+Regularization Completion.
 
-Executable neutral-swarm diagnostics add negative evidence and sharper first-failure semantics. The current sampled octahedral root-ledger diagnostic passes the all-pairs sampled root/Jacobian screen, while the rigid zero-offset fixed-speed row is rejected by a nonzero tangential residual witness and an ordinary same-source positive-delay no-go. These artifacts improve falsification readiness and empirical/simulation discipline because they report `not_retained` rather than converting a failed seed into branch evidence. The score increase is deliberately small because sampled diagnostics, no-go witnesses for one rigid seed, and finite-mode search schemas do not yet replace an interval-certified all-pairs root ledger, action/Noether row, event ledger, stability certificate, or observer-export recovery.
+Executable neutral-braid diagnostics add negative evidence and sharper first-failure semantics. The current sampled octahedral root-ledger diagnostic passes the all-pairs sampled root/Jacobian screen, while the rigid zero-offset fixed-speed row is rejected by a nonzero tangential residual witness and an ordinary same-source positive-delay no-go. These artifacts improve falsification readiness and empirical/simulation discipline because they report `not_retained` rather than converting a failed seed into branch evidence. The score increase is deliberately small because sampled diagnostics, no-go witnesses for one rigid seed, and finite-mode search schemas do not yet replace an interval-certified all-pairs root ledger, action/Noether row, event ledger, stability certificate, or observer-export recovery.
 
 The total remains far below modern operational closure for the same reason as the prior assessments. The theory stack has stronger taxonomy, residual surfaces, and fail-closed diagnostics, but not the decisive retained branch. Until a single native record supplies $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz/PPN recovery, photon-channel recovery, quantum source measures, Standard Model mapping coefficients, and shared cosmology fits, architecture and auditability must not inflate the validated-closure total.
 

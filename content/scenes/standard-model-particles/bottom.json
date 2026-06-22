@@ -42,7 +42,7 @@
   "objects": [
     {
       "id": "quark_core",
-      "label": "Shell swarm",
+      "label": "Shell braid",
       "radius": 1.08,
       "color": "PURPLE",
       "position": [
@@ -54,7 +54,7 @@
         "inner"
       ],
       "renderStyle": "binarySphere",
-      "labelTitle": "Shell swarm"
+      "labelTitle": "Shell braid"
     },
     {
       "id": "electrino_1",

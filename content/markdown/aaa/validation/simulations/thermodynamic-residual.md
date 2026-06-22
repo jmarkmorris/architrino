@@ -1,4 +1,4 @@
-# Thermodynamic Residual Protocol
+# Thermodynamic Residual
 
 This protocol turns the local-horizon target in [Emergent Metric](../../spacetime/emergent-metric.md#local-horizon-recovery-target) into a validation scaffold. It does not assume that gravity is thermodynamic at the substrate level. It tests whether one Noether sea state and observer-channel record can supply the three observer-level quantities used in the Jacobson comparison: boundary entropy, local temperature, and boost-energy flux.
 

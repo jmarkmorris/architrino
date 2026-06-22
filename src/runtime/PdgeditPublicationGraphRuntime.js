@@ -22,7 +22,7 @@ const OPERATOR_SIDE_BY_STAGE = Object.freeze({
 const COMPOSITE_LABEL_SEQUENCE_SPECS = Object.freeze([
   {
     type: "noether-quad-composite",
-    recipeSequence: ["pro_noether_swarm", "anti_noether_swarm", "pro_noether_swarm", "anti_noether_swarm"],
+    recipeSequence: ["pro_noether_braid", "anti_noether_braid", "pro_noether_braid", "anti_noether_braid"],
   },
   {
     type: "pro-proton-composite",
@@ -94,12 +94,12 @@ const COMPOSITE_LABEL_OCCURRENCE_SPECS = Object.freeze([
   {
     canonicalId: "photon",
     type: "photon-composite",
-    recipeSequence: ["pro_noether_swarm", "anti_noether_swarm"],
+    recipeSequence: ["pro_noether_braid", "anti_noether_braid"],
   },
   {
     canonicalId: "noether_pair",
     type: "noether-pair-composite",
-    recipeSequence: ["pro_noether_swarm", "anti_noether_swarm"],
+    recipeSequence: ["pro_noether_braid", "anti_noether_braid"],
   },
   {
     canonicalId: "proton",

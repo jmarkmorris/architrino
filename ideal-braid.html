@@ -1,0 +1,1162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#080b12" />
+    <title>Ideal Noether Braid: Lorentz Geometry App</title>
+    <link
+      rel="stylesheet"
+      href="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css"
+    />
+    <script defer src="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js"></script>
+    <script src="./vendor/markdown-it/markdown-it.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #080b12;
+        color: #eef3ff;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      #ideal-braid-app {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(circle at center, rgba(42, 54, 79, 0.5), rgba(8, 11, 18, 0) 44%),
+          linear-gradient(180deg, #111722 0%, #070a11 100%);
+      }
+
+      #ideal-braid-canvas {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        outline: none;
+      }
+
+      .ideal-braid-title {
+        position: absolute;
+        left: 50%;
+        top: 18px;
+        transform: translateX(-50%);
+        color: rgba(238, 243, 255, 0.92);
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-align: center;
+        pointer-events: none;
+      }
+
+      .ideal-braid-panel {
+        position: absolute;
+        width: 292px;
+        padding: 12px;
+        border: 1px solid rgba(148, 163, 184, 0.24);
+        border-radius: 8px;
+        background: rgba(8, 11, 18, 0.78);
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+        backdrop-filter: blur(10px);
+      }
+
+      .ideal-braid-panel h2 {
+        margin: 0 0 10px;
+        color: rgba(238, 243, 255, 0.95);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      .ideal-braid-panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin: 0 0 10px;
+      }
+
+      .ideal-braid-panel-header h2 {
+        margin: 0;
+      }
+
+      .ideal-braid-home-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        border-radius: 999px;
+        background: rgba(17, 24, 39, 0.85);
+        color: rgba(238, 243, 255, 0.88);
+        cursor: pointer;
+      }
+
+      .ideal-braid-home-button:hover,
+      .ideal-braid-home-button:focus-visible {
+        border-color: rgba(125, 211, 252, 0.58);
+        outline: none;
+      }
+
+      .ideal-braid-home-button svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .ideal-braid-panel.is-upper-left {
+        left: 16px;
+        top: 16px;
+        width: 296px;
+      }
+
+      .ideal-braid-panel.is-upper-right {
+        right: 16px;
+        top: 16px;
+      }
+
+      .ideal-braid-panel.is-lower-left {
+        left: 16px;
+        bottom: 16px;
+        width: 296px;
+      }
+
+      .ideal-braid-panel.is-lower-right {
+        right: 16px;
+        bottom: 16px;
+        width: 352px;
+      }
+
+      .ideal-braid-button {
+        min-height: 32px;
+        padding: 0 8px;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        border-radius: 6px;
+        background: rgba(17, 24, 39, 0.85);
+        color: rgba(238, 243, 255, 0.88);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 650;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .ideal-braid-button:hover {
+        border-color: rgba(125, 211, 252, 0.58);
+      }
+
+      .ideal-braid-button.is-active {
+        border-color: rgba(251, 191, 36, 0.85);
+        background: rgba(40, 34, 20, 0.92);
+        color: #fff8e6;
+      }
+
+      .ideal-braid-control-stack {
+        display: grid;
+        gap: 10px;
+      }
+
+      .ideal-braid-action-grid,
+      .ideal-braid-range-row {
+        display: grid;
+        gap: 8px;
+      }
+
+      .ideal-braid-action-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .ideal-braid-range-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .ideal-braid-doc-row {
+        display: grid;
+        grid-template-columns: 0.82fr 1.1fr 1.25fr;
+        gap: 8px;
+      }
+
+      .ideal-braid-control-icon {
+        position: relative;
+        flex: 0 0 auto;
+        width: 12px;
+        height: 12px;
+        color: currentColor;
+      }
+
+      .ideal-braid-control-icon.is-pause::before,
+      .ideal-braid-control-icon.is-pause::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 3px;
+        height: 12px;
+        border-radius: 1px;
+        background: currentColor;
+      }
+
+      .ideal-braid-control-icon.is-pause::before {
+        left: 2px;
+      }
+
+      .ideal-braid-control-icon.is-pause::after {
+        right: 2px;
+      }
+
+      .ideal-braid-control-icon.is-play::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-left: 10px solid currentColor;
+      }
+
+      .ideal-braid-button.is-doc-button {
+        gap: 4px;
+        padding: 0 5px;
+        font-size: 11px;
+      }
+
+      .ideal-braid-md-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        width: 16px;
+        height: 16px;
+        opacity: 0.9;
+      }
+
+      .ideal-braid-md-icon svg {
+        display: block;
+        width: 15px;
+        height: 15px;
+      }
+
+      .ideal-braid-button-label {
+        min-width: 0;
+        white-space: nowrap;
+      }
+
+      .ideal-braid-range-row {
+        grid-template-columns: 72px 1fr 46px;
+        align-items: center;
+      }
+
+      .ideal-braid-range-row label {
+        color: rgba(203, 213, 225, 0.76);
+        font-size: 12px;
+      }
+
+      .ideal-braid-range-row output {
+        color: rgba(238, 243, 255, 0.92);
+        font-size: 12px;
+        text-align: right;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        accent-color: #fbbf24;
+      }
+
+      .ideal-braid-factor-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+        margin-top: 10px;
+      }
+
+      .ideal-braid-factor-card {
+        min-height: 64px;
+        padding: 6px;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 7px;
+        background: rgba(15, 23, 42, 0.72);
+        display: grid;
+        align-content: space-between;
+        gap: 4px;
+      }
+
+      .ideal-braid-factor-card.is-time {
+        border-color: rgba(125, 211, 252, 0.34);
+      }
+
+      .ideal-braid-factor-card.is-length {
+        border-color: rgba(45, 212, 191, 0.34);
+      }
+
+      .ideal-braid-factor-card span {
+        color: rgba(203, 213, 225, 0.82);
+        font-size: 10px;
+        line-height: 1.2;
+      }
+
+      .ideal-braid-factor-card strong {
+        color: #fef3c7;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .ideal-braid-factor-card small {
+        color: rgba(203, 213, 225, 0.7);
+        font-size: 8px;
+        line-height: 1.18;
+        overflow-wrap: anywhere;
+        white-space: nowrap;
+      }
+
+      .ideal-braid-energy-ledger {
+        margin-top: 10px;
+        padding: 9px;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 7px;
+        background: rgba(2, 6, 23, 0.5);
+      }
+
+      .ideal-braid-energy-ledger header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 7px;
+      }
+
+      .ideal-braid-energy-ledger h3 {
+        margin: 0;
+        color: rgba(238, 243, 255, 0.95);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .ideal-braid-energy-ledger small {
+        color: rgba(203, 213, 225, 0.62);
+        font-size: 9px;
+        text-align: right;
+      }
+
+      .ideal-braid-energy-rows {
+        display: grid;
+        gap: 5px;
+      }
+
+      .ideal-braid-energy-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+        align-items: baseline;
+        color: rgba(203, 213, 225, 0.78);
+        font-size: 10px;
+        line-height: 1.25;
+      }
+
+      .ideal-braid-energy-row span {
+        white-space: nowrap;
+      }
+
+      .ideal-braid-energy-row output {
+        color: #fef3c7;
+        font-size: 11px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      #ideal-braid-potential-strip {
+        width: 100%;
+        height: 84px;
+        border: 1px solid rgba(148, 163, 184, 0.16);
+        border-radius: 6px;
+        background: rgba(2, 6, 23, 0.55);
+      }
+
+      .ideal-braid-chart-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+        color: rgba(203, 213, 225, 0.78);
+        font-size: 11px;
+      }
+
+      .ideal-braid-chart-legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .ideal-braid-chart-legend i {
+        display: inline-block;
+        width: 16px;
+        height: 3px;
+        border-radius: 999px;
+      }
+
+      .ideal-braid-equation-stack {
+        display: grid;
+        gap: 9px;
+        color: rgba(203, 213, 225, 0.78);
+        font-size: 12px;
+      }
+
+      .ideal-braid-equation-row,
+      .ideal-braid-cycle-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        min-height: 24px;
+      }
+
+      .ideal-braid-equation-row code,
+      .ideal-braid-cycle-row code {
+        color: rgba(238, 243, 255, 0.9);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+      }
+
+      .ideal-braid-equation-row output,
+      .ideal-braid-cycle-row output {
+        color: #fef3c7;
+        font-size: 12px;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .ideal-braid-equation-divider {
+        height: 1px;
+        background: rgba(148, 163, 184, 0.16);
+      }
+
+      .ideal-braid-closure-detail {
+        display: none;
+      }
+
+      .ideal-braid-status {
+        margin-top: 2px;
+        padding: 7px 8px;
+        border: 1px solid rgba(45, 212, 191, 0.28);
+        border-radius: 6px;
+        background: rgba(20, 83, 80, 0.18);
+        color: rgba(204, 251, 241, 0.88);
+        font-size: 11px;
+      }
+
+      .ideal-braid-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+      }
+
+      .ideal-braid-table th,
+      .ideal-braid-table td {
+        padding: 6px 5px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .ideal-braid-table th:first-child,
+      .ideal-braid-table td:first-child {
+        text-align: left;
+        color: rgba(203, 213, 225, 0.78);
+      }
+
+      .ideal-braid-table th {
+        color: rgba(238, 243, 255, 0.9);
+        font-weight: 700;
+      }
+
+      #markdown-panel {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        bottom: 18px;
+        width: min(760px, calc(100vw - 36px));
+        z-index: 20;
+        display: none;
+        overflow: hidden;
+        border: 1px solid rgba(148, 163, 184, 0.28);
+        border-radius: 14px;
+        background: rgba(75, 0, 130, 1);
+        color: #eef3ff;
+        box-shadow: 0 26px 80px rgba(0, 0, 0, 0.42);
+        backdrop-filter: blur(14px);
+      }
+
+      #markdown-panel.is-open {
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+      }
+
+      .ideal-braid-markdown-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 12px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+        background: rgba(8, 10, 18, 0.75);
+      }
+
+      #markdown-title {
+        min-width: 0;
+        color: rgba(238, 243, 255, 0.95);
+        font-size: 13px;
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .ideal-braid-markdown-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        flex: 0 0 auto;
+      }
+
+      .ideal-braid-icon-button {
+        width: 30px;
+        height: 30px;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        border-radius: 6px;
+        background: rgba(17, 24, 39, 0.86);
+        color: rgba(238, 243, 255, 0.86);
+        cursor: pointer;
+      }
+
+      .ideal-braid-icon-button:hover {
+        border-color: rgba(125, 211, 252, 0.58);
+      }
+
+      .ideal-braid-icon-button svg {
+        width: 16px;
+        height: 16px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      #markdown-content {
+        min-height: 0;
+        overflow: auto;
+        padding: 18px 22px 24px;
+        font-size: 15px;
+        line-height: 1.72;
+      }
+
+      #markdown-body {
+        display: contents;
+      }
+
+      #markdown-content h1,
+      #markdown-content h2,
+      #markdown-content h3,
+      #markdown-content h4,
+      #markdown-content h5,
+      #markdown-content h6 {
+        margin: 16px 0 8px;
+        color: rgba(238, 243, 255, 0.96);
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      #markdown-content h1 {
+        font-size: 22px;
+      }
+
+      #markdown-content h1:first-of-type {
+        display: none;
+      }
+
+      #markdown-content h2 {
+        font-size: 20px;
+      }
+
+      #markdown-content h3 {
+        font-size: 17px;
+      }
+
+      #markdown-content p {
+        margin: 8px 0;
+        color: rgba(226, 232, 240, 0.88);
+      }
+
+      #markdown-content ul,
+      #markdown-content ol {
+        margin: 10px 0 10px 24px;
+        padding: 0;
+        color: rgba(226, 232, 240, 0.88);
+      }
+
+      #markdown-content li {
+        margin: 5px 0;
+      }
+
+      #markdown-content a {
+        color: #7dd3fc;
+        text-decoration-color: rgba(125, 211, 252, 0.5);
+      }
+
+      #markdown-content code {
+        padding: 1px 4px;
+        border-radius: 4px;
+        background: rgba(15, 23, 42, 0.82);
+        color: #fef3c7;
+      }
+
+      #markdown-content pre {
+        overflow: auto;
+        padding: 10px 12px;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 7px;
+        background: rgba(2, 6, 23, 0.74);
+      }
+
+      #markdown-content pre code {
+        padding: 0;
+        background: transparent;
+        color: rgba(238, 243, 255, 0.9);
+      }
+
+      #markdown-content blockquote {
+        margin: 12px 0;
+        padding: 8px 12px;
+        border-left: 3px solid rgba(45, 212, 191, 0.5);
+        background: rgba(20, 83, 80, 0.15);
+        color: rgba(204, 251, 241, 0.9);
+      }
+
+      #markdown-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+      }
+
+      #markdown-content th,
+      #markdown-content td {
+        padding: 7px 8px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+        text-align: left;
+      }
+
+      #markdown-panel.multi-columns #markdown-content {
+        column-count: var(--markdown-column-count, 2);
+        column-gap: 32px;
+        column-fill: balance;
+      }
+
+      #markdown-panel.multi-columns #markdown-content h1,
+      #markdown-panel.multi-columns #markdown-content pre,
+      #markdown-panel.multi-columns #markdown-content blockquote,
+      #markdown-panel.multi-columns #markdown-content table,
+      #markdown-panel.multi-columns #markdown-content .markdown-math-block,
+      #markdown-panel.multi-columns #markdown-content .katex-display {
+        column-span: all;
+        break-inside: avoid;
+      }
+
+      @media (max-width: 900px), (max-height: 680px) {
+        .ideal-braid-title {
+          display: none;
+        }
+
+        .ideal-braid-panel {
+          width: calc(50vw - 18px);
+          padding: 8px;
+        }
+
+        .ideal-braid-panel.is-upper-left,
+        .ideal-braid-panel.is-upper-right {
+          width: calc(50vw - 15px);
+        }
+
+        .ideal-braid-panel h2 {
+          margin-bottom: 7px;
+          font-size: 11px;
+        }
+
+        .ideal-braid-panel-header {
+          margin-bottom: 7px;
+        }
+
+        .ideal-braid-home-button {
+          width: 28px;
+          height: 28px;
+        }
+
+        .ideal-braid-panel.is-upper-left {
+          left: 10px;
+          top: 10px;
+        }
+
+        .ideal-braid-panel.is-upper-right {
+          right: 10px;
+          top: 10px;
+        }
+
+        .ideal-braid-panel.is-lower-left {
+          display: none;
+        }
+
+        .ideal-braid-panel.is-lower-right {
+          left: 10px;
+          right: 10px;
+          bottom: 10px;
+          width: auto;
+        }
+
+        #ideal-braid-potential-strip {
+          height: 48px;
+        }
+
+        .ideal-braid-chart-legend,
+        .ideal-braid-equation-stack,
+        .ideal-braid-factor-card span,
+        .ideal-braid-factor-card small,
+        .ideal-braid-energy-ledger h3,
+        .ideal-braid-energy-ledger small,
+        .ideal-braid-energy-row,
+        .ideal-braid-status {
+          font-size: 10px;
+        }
+
+        .ideal-braid-factor-grid {
+          grid-template-columns: 1fr;
+          gap: 5px;
+          margin-top: 8px;
+        }
+
+        .ideal-braid-factor-card {
+          min-height: 58px;
+          gap: 2px;
+          padding: 6px;
+        }
+
+        .ideal-braid-factor-card strong {
+          font-size: 16px;
+        }
+
+        .ideal-braid-energy-ledger {
+          margin-top: 7px;
+          padding: 6px;
+        }
+
+        .ideal-braid-energy-ledger header {
+          display: block;
+          margin-bottom: 5px;
+        }
+
+        .ideal-braid-energy-ledger small {
+          display: block;
+          margin-top: 2px;
+          text-align: left;
+        }
+
+        .ideal-braid-energy-rows {
+          gap: 3px;
+        }
+
+        .ideal-braid-action-grid,
+        .ideal-braid-doc-row {
+          gap: 5px;
+        }
+
+        .ideal-braid-button {
+          min-height: 28px;
+          font-size: 11px;
+        }
+
+        .ideal-braid-range-row {
+          grid-template-columns: 48px 1fr 36px;
+          gap: 5px;
+        }
+
+        .ideal-braid-range-row label,
+        .ideal-braid-range-row output,
+        .ideal-braid-table {
+          font-size: 10px;
+        }
+
+        .ideal-braid-table th,
+        .ideal-braid-table td {
+          padding: 4px 3px;
+        }
+
+        #markdown-panel {
+          left: 10px;
+          right: 10px;
+          top: 10px;
+          bottom: 10px;
+          width: auto;
+        }
+
+        #markdown-panel.multi-columns #markdown-content {
+          column-count: 1;
+        }
+      }
+
+      @media print {
+        #ideal-braid-canvas,
+        .ideal-braid-title,
+        .ideal-braid-panel,
+        .ideal-braid-markdown-header {
+          display: none !important;
+        }
+
+        #ideal-braid-app {
+          position: static;
+          height: auto;
+          background: #ffffff !important;
+        }
+
+        #markdown-panel.is-open {
+          position: static !important;
+          display: block !important;
+          width: auto !important;
+          height: auto !important;
+          border: 0 !important;
+          background: #ffffff !important;
+          color: #111111 !important;
+          overflow: visible !important;
+          box-shadow: none !important;
+        }
+
+        #markdown-content {
+          overflow: visible !important;
+          padding: 0 !important;
+          color: #111111 !important;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+          font-size: 11pt !important;
+          line-height: 1.5 !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="ideal-braid-app">
+      <canvas id="ideal-braid-canvas" tabindex="0" aria-label="Noether braid Lorentz map stage"></canvas>
+      <div class="ideal-braid-title">Ideal Noether Braid: Lorentz Geometry App</div>
+
+      <section class="ideal-braid-panel is-upper-left" aria-label="Graph zone">
+        <h2>Lorentz Map</h2>
+        <canvas id="ideal-braid-potential-strip" width="536" height="168" aria-hidden="true"></canvas>
+        <div class="ideal-braid-chart-legend" aria-hidden="true">
+          <span><i style="background:#fbbf24"></i>&gamma; time</span>
+          <span><i style="background:#2dd4bf"></i>&xi; length</span>
+          <span><i style="background:#f472b6"></i>&beta; = v / c<sub>f</sub></span>
+        </div>
+        <div class="ideal-braid-factor-grid" aria-label="Time and length factors">
+          <div class="ideal-braid-factor-card is-time">
+            <span>Relative time</span>
+            <strong id="ideal-braid-time-label">1.000</strong>
+            <small>&Delta;t=&Delta;&tau;/&radic;(1-&beta;<sup>2</sup>)</small>
+          </div>
+          <div class="ideal-braid-factor-card is-length">
+            <span>Relative length</span>
+            <strong id="ideal-braid-length-label">1.000</strong>
+            <small>L<sub>&parallel;</sub>=L<sub>0</sub>&radic;(1-&beta;<sup>2</sup>)</small>
+          </div>
+        </div>
+        <div class="ideal-braid-energy-ledger" aria-label="Energy and mass ledger">
+          <header>
+            <h3>Energy ledger</h3>
+            <small>m<sub>0</sub> = 1, c<sub>f</sub> = 1</small>
+          </header>
+          <div class="ideal-braid-energy-rows">
+            <div class="ideal-braid-energy-row">
+              <span>Rest mass m<sub>0</sub></span>
+              <output id="ideal-braid-rest-mass-label">1.000</output>
+            </div>
+            <div class="ideal-braid-energy-row">
+              <span>Rest energy E<sub>0</sub> = m<sub>0</sub>c<sub>f</sub><sup>2</sup></span>
+              <output id="ideal-braid-rest-energy-label">1.000</output>
+            </div>
+            <div class="ideal-braid-energy-row">
+              <span>Bulk-motion energy &Delta;E<sub>CM</sub> = (&gamma; - 1)m<sub>0</sub>c<sub>f</sub><sup>2</sup></span>
+              <output id="ideal-braid-movement-energy-label">0.000</output>
+            </div>
+            <div class="ideal-braid-energy-row">
+              <span>Bulk-motion mass equivalent &Delta;E<sub>CM</sub> / c<sub>f</sub><sup>2</sup></span>
+              <output id="ideal-braid-movement-mass-label">0.000</output>
+            </div>
+            <div class="ideal-braid-energy-row">
+              <span>Total energy E<sub>CM</sub> = &gamma;m<sub>0</sub>c<sub>f</sub><sup>2</sup></span>
+              <output id="ideal-braid-total-energy-label">1.000</output>
+            </div>
+            <div class="ideal-braid-energy-row">
+              <span>Total mass equivalent E<sub>CM</sub> / c<sub>f</sub><sup>2</sup></span>
+              <output id="ideal-braid-total-mass-label">1.000</output>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ideal-braid-panel is-upper-right" aria-label="Control panel">
+        <div class="ideal-braid-panel-header">
+          <h2>Controls</h2>
+          <button
+            id="ideal-braid-home-button"
+            class="ideal-braid-home-button"
+            type="button"
+            aria-label="Go to main webapp"
+            title="Main webapp"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div class="ideal-braid-control-stack">
+          <div class="ideal-braid-action-grid">
+            <button id="ideal-braid-path-toggle" class="ideal-braid-button is-active" type="button">Paths</button>
+            <button id="ideal-braid-surface-toggle" class="ideal-braid-button is-active" type="button">Surface</button>
+            <button id="ideal-braid-axes-toggle" class="ideal-braid-button is-active" type="button">Axes</button>
+            <button
+              id="ideal-braid-freeze-toggle"
+              class="ideal-braid-button"
+              type="button"
+              aria-label="Pause animation"
+            >
+              <span class="ideal-braid-control-icon is-pause" aria-hidden="true"></span>
+              <span class="ideal-braid-control-label">Pause</span>
+            </button>
+            <button id="ideal-braid-reset-button" class="ideal-braid-button" type="button">Reset</button>
+            <button id="ideal-braid-focus-button" class="ideal-braid-button" type="button">Focus</button>
+          </div>
+          <div class="ideal-braid-range-row">
+            <label for="ideal-braid-radius-input">Outer orbit</label>
+            <input id="ideal-braid-radius-input" type="range" min="1.1" max="2.2" step="0.02" value="1.62" />
+            <output id="ideal-braid-radius-output" for="ideal-braid-radius-input">1.62</output>
+          </div>
+          <div class="ideal-braid-range-row">
+            <label for="ideal-braid-beta-input">&beta; = v / c<sub>f</sub></label>
+            <input id="ideal-braid-beta-input" type="range" min="0" max="1" step="0.005" value="0" />
+            <output id="ideal-braid-beta-output" for="ideal-braid-beta-input">0.000</output>
+          </div>
+          <div class="ideal-braid-range-row">
+            <label for="ideal-braid-speed-input">Cycle</label>
+            <input id="ideal-braid-speed-input" type="range" min="0.2" max="2.4" step="0.05" value="1" />
+            <output id="ideal-braid-speed-output" for="ideal-braid-speed-input">1.00</output>
+          </div>
+          <div class="ideal-braid-doc-row" aria-label="Lorentz documentation">
+            <button
+              id="ideal-braid-notes-doc-button"
+              class="ideal-braid-button is-doc-button"
+              type="button"
+              aria-label="Open Ideal Braid Guide document"
+            >
+              <span class="ideal-braid-md-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M5 3H14L19 8V21H5Z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linejoin="miter"
+                  ></path>
+                  <path d="M14 3V8H19Z" fill="currentColor"></path>
+                  <path
+                    d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="butt"
+                  ></path>
+                </svg>
+              </span>
+              <span class="ideal-braid-button-label">Guide</span>
+            </button>
+            <button
+              id="ideal-braid-lorentz-doc-button"
+              class="ideal-braid-button is-doc-button"
+              type="button"
+              aria-label="Open Lorentz Kinematics document"
+            >
+              <span class="ideal-braid-md-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M5 3H14L19 8V21H5Z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linejoin="miter"
+                  ></path>
+                  <path d="M14 3V8H19Z" fill="currentColor"></path>
+                  <path
+                    d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="butt"
+                  ></path>
+                </svg>
+              </span>
+              <span class="ideal-braid-button-label">Kinematics</span>
+            </button>
+            <button
+              id="ideal-braid-return-cycle-doc-button"
+              class="ideal-braid-button is-doc-button"
+              type="button"
+              aria-label="Open Return-Cycle Lorentz Quantization document"
+            >
+              <span class="ideal-braid-md-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M5 3H14L19 8V21H5Z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linejoin="miter"
+                  ></path>
+                  <path d="M14 3V8H19Z" fill="currentColor"></path>
+                  <path
+                    d="M7.5 12.6H16.5M7.5 16.1H16.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="butt"
+                  ></path>
+                </svg>
+              </span>
+              <span class="ideal-braid-button-label">Return-Cycle</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="ideal-braid-panel is-lower-left" aria-label="Lorentz equation zone">
+        <h2>Noether Braid Equations</h2>
+        <div class="ideal-braid-equation-stack">
+          <div class="ideal-braid-equation-row">
+            <code>&gamma; = 1 / sqrt(1 - (v/c<sub>f</sub>)<sup>2</sup>)</code>
+            <output id="ideal-braid-gamma-equation">1.000</output>
+          </div>
+          <div class="ideal-braid-equation-row">
+            <code>&xi; = R<sub>&parallel;</sub> / R<sub>&perp;</sub> = 1 / &gamma;</code>
+            <output id="ideal-braid-xi-equation">1.000</output>
+          </div>
+          <div class="ideal-braid-equation-row">
+            <code>R<sub>&parallel;</sub> = R<sub>&perp;</sub> / &gamma;</code>
+            <output id="ideal-braid-rparallel-equation">1.620</output>
+          </div>
+          <div class="ideal-braid-equation-divider ideal-braid-closure-detail"></div>
+          <div class="ideal-braid-cycle-row ideal-braid-closure-detail">
+            <code>T<sub>&parallel;</sub> = R<sub>&parallel;</sub>/(c<sub>f</sub> - v) + R<sub>&parallel;</sub>/(c<sub>f</sub> + v)</code>
+            <output id="ideal-braid-tparallel-equation">3.240</output>
+          </div>
+          <div class="ideal-braid-cycle-row ideal-braid-closure-detail">
+            <code>T<sub>&perp;</sub> = 2 R<sub>&perp;</sub>&gamma; / c<sub>f</sub></code>
+            <output id="ideal-braid-tperp-equation">3.240</output>
+          </div>
+          <div class="ideal-braid-cycle-row ideal-braid-closure-detail">
+            <code>T<sub>&parallel;</sub> - T<sub>&perp;</sub></code>
+            <output id="ideal-braid-closure-equation">0.00</output>
+          </div>
+          <div class="ideal-braid-status">
+            Closure target: the app shows the candidate shared geometry for mass, clock, and ruler response; it is not a proof by itself.
+          </div>
+        </div>
+      </section>
+
+      <section class="ideal-braid-panel is-lower-right" aria-label="Binary measures table">
+        <h2>Binary Measures</h2>
+        <table class="ideal-braid-table">
+          <thead>
+            <tr>
+              <th>Measure</th>
+              <th>Inner</th>
+              <th>Middle</th>
+              <th>Outer</th>
+            </tr>
+          </thead>
+          <tbody id="ideal-braid-table-body"></tbody>
+        </table>
+      </section>
+
+      <aside id="markdown-panel" aria-hidden="true" inert>
+        <div class="ideal-braid-markdown-header">
+          <div id="markdown-title"></div>
+          <div class="ideal-braid-markdown-actions">
+            <button
+              id="markdown-layout-toggle"
+              class="ideal-braid-icon-button"
+              type="button"
+              aria-label="Switch markdown layout"
+              title="Layout"
+              hidden
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 5h6v14H4z"></path>
+                <path d="M14 5h6v14h-6z"></path>
+              </svg>
+            </button>
+            <button
+              id="markdown-pdf-button"
+              class="ideal-braid-icon-button"
+              type="button"
+              aria-label="Print current document"
+              title="Print"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 8V4h10v4"></path>
+                <path d="M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"></path>
+                <path d="M7 14h10v6H7z"></path>
+              </svg>
+            </button>
+            <button
+              id="markdown-close"
+              class="ideal-braid-icon-button"
+              type="button"
+              aria-label="Close document"
+              title="Close"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6l12 12"></path>
+                <path d="M18 6L6 18"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div id="markdown-content">
+          <div id="markdown-body"></div>
+        </div>
+      </aside>
+    </main>
+    <script type="module" src="./src/apps/ideal-braid/main.js"></script>
+  </body>
+</html>

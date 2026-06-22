@@ -253,7 +253,7 @@ const detailTitle = document.getElementById("detail-title");
 const detailBody = document.getElementById("detail-body");
 const detailClose = document.getElementById("detail-close");
 const homeButton = document.getElementById("home-button");
-const docButton = document.getElementById("doc-button");
+const textbookTocButton = document.getElementById("textbook-toc-button");
 const archieButton = document.getElementById("archie-button");
 const elementLegend = document.getElementById("element-legend");
 const elementLegendItems = elementLegend
@@ -8243,7 +8243,7 @@ function updateNavButton() {
     appSceneChromeRuntime.updateDetailInfoButton(false, {
       transitionActive: transitionState.active,
     });
-    appSceneChromeRuntime.updateDocButton(currentLevel, {
+    appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
       textbookTocScenePath,
       transitionActive: transitionState.active,
     });
@@ -8260,7 +8260,7 @@ function updateNavButton() {
   appSceneChromeRuntime.updateDetailInfoButton(canReopenInfo, {
     transitionActive: transitionState.active,
   });
-  appSceneChromeRuntime.updateDocButton(currentLevel, {
+  appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
     textbookTocScenePath,
     transitionActive: transitionState.active,
   });
@@ -8452,7 +8452,7 @@ const { animatorUiRuntime } = animatorAppRuntime;
 
 const appSceneChromeRuntime = createAppSceneChromeRuntime({
   sceneLabel,
-  docButton,
+  textbookTocButton,
   archieButton,
   markdownDocButton,
   markdownPdfButton,
@@ -8485,7 +8485,7 @@ const elementNavigationRuntime = createElementNavigationRuntime({
 function updateSceneLabel() {
   sceneStateHashService.syncSceneHash(currentLevel?.id ?? null);
   appSceneChromeRuntime.updateSceneLabel(currentLevel);
-  appSceneChromeRuntime.updateDocButton(currentLevel, {
+  appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
     textbookTocScenePath,
     transitionActive: transitionState.active,
   });
@@ -8579,7 +8579,7 @@ const sceneSearchUiRuntime = createSceneSearchUiRuntime({
   sceneSearchCoordinator,
 });
 const scenePanelUiRuntime = createScenePanelUiRuntime({
-  docButton,
+  textbookTocButton,
   detailClose,
   markdownClose,
   markdownDocButton,

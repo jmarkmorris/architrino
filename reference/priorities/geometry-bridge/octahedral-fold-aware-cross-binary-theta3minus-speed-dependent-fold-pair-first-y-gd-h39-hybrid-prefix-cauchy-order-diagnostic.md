@@ -622,7 +622,7 @@ the branch $G$ construction.
 ## Executable Hooks
 
 The helper
-[theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.mjs](../../../scripts/neutral-swarm/theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.mjs)
+[theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.mjs](../../../scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.mjs)
 now exports:
 
 - `computeCauchyShiftedPrefixTailMajorant`, which combines a retained shifted
@@ -669,7 +669,7 @@ now exports:
   without granting certificate status.
 
 The companion test
-[neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js](../../../tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js)
+[neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js](../../../tests/neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js)
 checks the hybrid function-tail, derivative-tail, quotient-floor,
 unshifted-function, coefficient-prefix Cauchy floor, denominator-clearance,
 candidate $M_G$, and

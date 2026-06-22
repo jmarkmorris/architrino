@@ -8,12 +8,12 @@
 
 ## Purpose
 
-This packet records the first executable form of the terminal-alignment transfer-matrix route in [strong-field-closure](strong-field-closure.md) and [Nested Shell Swarm Dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#terminal-alignment-label-count-target). It is a success marker under the existing horizon entropy proof route, not a new gate.
+This packet records the first executable form of the terminal-alignment transfer-matrix route in [strong-field-closure](strong-field-closure.md) and [Nested Shell Braid Dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#terminal-alignment-label-count-target). It is a success marker under the existing horizon entropy proof route, not a new gate.
 
 The implemented script is:
 
 ```text
-node scripts/nested-shell-swarm/terminal-alignment-enumerator.mjs
+node scripts/nested-shell-braid/terminal-alignment-enumerator.mjs
 ```
 
 It enumerates reduced circular terminal labels, delayed inter-layer roots, active intra-layer circular-root rows, branch Jacobian transversality, diagnostic branch-action rows, receiver-side and source-recoil ledger residuals, per-branch stationarity residuals, branch-summed action-variation residuals, cycle-residual adapters, observer-quotiented edge-map multisets, area-normalized finite-block coefficients, and the resulting transfer proxies.
@@ -23,7 +23,7 @@ It enumerates reduced circular terminal labels, delayed inter-layer roots, activ
 The first reduced run used:
 
 ```text
-node scripts/nested-shell-swarm/terminal-alignment-enumerator.mjs \
+node scripts/nested-shell-braid/terminal-alignment-enumerator.mjs \
   --max-n 5 \
   --phase-samples 8 \
   --delta-samples 160 \

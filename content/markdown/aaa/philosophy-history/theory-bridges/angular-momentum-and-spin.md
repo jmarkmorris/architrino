@@ -4,15 +4,15 @@ This bridge explains how angular momentum, spin, helicity, and the constants $h$
 
 - At the primitive architrino level, neither angular momentum nor spin is an additional substance or intrinsic property.
 - Angular momentum becomes a conserved history functional when architrino motion is organized inside the rotationally symmetric Euclidean void.
-- Spin becomes an effective transformation class of stable assemblies, especially ordered nested shell swarm and planar vector-channel structures.
+- Spin becomes an effective transformation class of stable assemblies, especially ordered nested shell braid and planar vector-channel structures.
 
 The result is not that angular momentum and spin are unreal. The result is that their ontological status is emergent. They are indispensable higher-level ledgers and measurement labels, but the fundamental ontology still consists of architrinos, polarity, position, velocity, absolute time, Euclidean void, causal wakes, and path history.
 
 The related material is best read as an ordered path rather than as a flat list of adjacent chapters:
 
-1. Start with primitive ontology in [Architrino](../../foundations/architrino.md) and [Foundational Ontology](../../foundations/ontology.md).
+1. Start with primitive ontology in [Architrino](../../foundations/architrino.md) and [Ontology](../../foundations/ontology.md).
 2. Use [Master Equation](../../dynamics/master-equation.md) and [Causal Action Functional](../../dynamics/causal-action-functional.md) for delayed conservation and wake-history bookkeeping.
-3. Use [Nested Shell Swarm Dynamics](../../noether-swarm/nested-shell-swarm-dynamics.md) for the nested shell swarm mechanics that spin must descend from.
+3. Use [Nested Shell Braid Dynamics](../../noether-braid/nested-shell-braid-dynamics.md) for the nested shell braid mechanics that spin must descend from.
 4. Treat [Measurement Ontology](../../quantum/measurement-ontology.md), [Electroweak Bosons](../../assemblies/bosons/electroweak-bosons.md), and [Bell's Theorem](./bell-theorem.md) as downstream tests rather than source derivations.
 
 ## Primitive Status
@@ -193,15 +193,15 @@ Near the self-hit onset, $J_s\to0^+$ and the unregularized response develops a s
 
 If a stable maximum-curvature binary exists, it may define a fundamental length and cycle scale for the architecture. It still does not make spin primitive. It gives a reproducible planar circulation standard. The step from that standard to spin requires additional structure: at minimum, a stable orientation frame, a representation under rotations, and a measurement response that recovers standard spin projections.
 
-## Nested Shell Swarm Spin Scaffold
+## Nested Shell Braid Spin Scaffold
 
-The nested shell swarm is the first place where the spin question becomes native to the assembly rather than imported from standard quantum notation. A nested shell swarm contains three coupled shell binaries:
+The nested shell braid is the first place where the spin question becomes native to the assembly rather than imported from standard quantum notation. A nested shell braid contains three coupled shell binaries:
 
 | Layer | Dynamics role | Angular-momentum role | Spin relevance |
 | --- | --- | --- | --- |
 | Inner | Self-hit engine, smallest radius, highest frequency, super-field-speed history-supported branch. | Deep internal rotational-action store and strongest self-wake feedback. | Supplies the high-curvature memory channel that can make orientation transport history-sensitive. |
 | Middle | Hinge near $v=c_f$, with shell scale and cadence retuning. | Mediates redistribution between inner memory and outer coupling. | Controls branch sensitivity and phase-lock transitions. |
-| Outer | Sub-field-speed interface in ordinary regimes, shielding and external coupling layer. | First receiver of many external action transactions and main far-field exposure channel. | Supplies the apparatus-facing handle by which a measurement can deform the swarm ledger. |
+| Outer | Sub-field-speed interface in ordinary regimes, shielding and external coupling layer. | First receiver of many external action transactions and main far-field exposure channel. | Supplies the apparatus-facing handle by which a measurement can deform the braid ledger. |
 
 Let $\ell\in\{I,M,O\}$ label inner, middle, and outer. In a reduced action-angle chart define
 
@@ -257,7 +257,7 @@ again as a reduced action-angle statement rather than a completed derivation. Th
 
 ## Delayed Three-Layer Functional Scaffold
 
-The nested shell swarm ledger can now be written in a form that is concrete enough for proof work and simulation checks. This is still a scaffold: the wake term must be derived from the regularized nonlocal causal action before it can be claimed as a closed theorem.
+The nested shell braid ledger can now be written in a form that is concrete enough for proof work and simulation checks. This is still a scaffold: the wake term must be derived from the regularized nonlocal causal action before it can be claimed as a closed theorem.
 
 For each layer $\ell\in\{I,M,O\}$, let $R_\ell(t)$ be the layer radius, $\omega_\ell(t)$ its angular frequency, $\hat{\mathbf n}_\ell(t)$ its plane normal, and
 
@@ -580,7 +580,7 @@ $$
 
 It is stronger than the scalar $\hbar$ bookkeeping equation because it keeps the transaction axis, layer normals, wake recoil, and source recoil in the same vector ledger.
 
-The scalar partition used in the nested shell swarm bookkeeping is obtained only after projecting onto the accepted transaction axis $\hat{\mathbf a}$. Define
+The scalar partition used in the nested shell braid bookkeeping is obtained only after projecting onto the accepted transaction axis $\hat{\mathbf a}$. Define
 
 $$
 \Delta I_\ell
@@ -729,7 +729,7 @@ $$
 \Delta E_{\ell,\text{root}}
 $$
 
-Together, these equations are the nested shell swarm total-angular-momentum partition system. The four-substep branch below is a solved certificate inside this system, not the general solution of the branch-selection problem.
+Together, these equations are the nested shell braid total-angular-momentum partition system. The four-substep branch below is a solved certificate inside this system, not the general solution of the branch-selection problem.
 
 ## Worked Outer-Coupled Transition
 
@@ -1332,7 +1332,7 @@ This is a consistency theorem for the finite branch-selection law, not another v
 
 ## Ordered-Frame Spinor Target
 
-Spin-$\tfrac{1}{2}$ should not be modeled as a tiny literal orbit. The nested shell swarm has a richer object available: an ordered, non-coplanar internal frame together with root-ledger history. A compact way to name the data is
+Spin-$\tfrac{1}{2}$ should not be modeled as a tiny literal orbit. The nested shell braid has a richer object available: an ordered, non-coplanar internal frame together with root-ledger history. A compact way to name the data is
 
 $$
 \mathcal{F}_{\text{core}}(t)
@@ -1346,7 +1346,7 @@ $$
 
 where $\phi_\ell$ are layer phases and $\mathcal{R}$ records the active causal-root and self-hit branch data. A spatial rotation acts on the normals, but it need not return the full ordered phase-and-root history to itself after the same rotation that returns an ordinary rigid body.
 
-The corresponding reduced nested shell swarm state vector is
+The corresponding reduced nested shell braid state vector is
 
 $$
 \Gamma_C(t)
@@ -1394,7 +1394,7 @@ $$
 \mathbf u_a(t)\times\mathbf v_a(t)=\hat{\mathbf n}_a(t)
 $$
 
-The reduced closure-label version of the same target keeps only the data needed to compare closed nested shell swarm branches. The dynamics sections use $\ell\in\{I,M,O\}$ for inner, middle, and outer. The ordered-frame and chirality literature also uses $\{H,M,L\}$, where $H$ is high / inner, $M$ is middle, and $L$ is low / outer. These are aliases for the same three binary roles, not two different triads.
+The reduced closure-label version of the same target keeps only the data needed to compare closed nested shell braid branches. The dynamics sections use $\ell\in\{I,M,O\}$ for inner, middle, and outer. The ordered-frame and chirality literature also uses $\{H,M,L\}$, where $H$ is high / inner, $M$ is middle, and $L$ is low / outer. These are aliases for the same three binary roles, not two different triads.
 
 For a closed ordered frame, use the reduced branch label
 
@@ -1731,7 +1731,7 @@ $$
 
 If this identity fails, the consumer label is chart-dependent and cannot be promoted as spinor, weak, exchange, or metric evidence. This proposition remains a theorem target until a non-coplanar retained row with quotient witness, doubled-path restoration, and angular-momentum residuals is populated.
 
-The Lorentz-sector extension is a separate but connected theorem target. Once the relativistic observer sector has been recovered, the same ordered nested shell swarm frame must admit an effective spinor response compatible with the double cover
+The Lorentz-sector extension is a separate but connected theorem target. Once the relativistic observer sector has been recovered, the same ordered nested shell braid frame must admit an effective spinor response compatible with the double cover
 
 $$
 \widetilde{\Lambda}_{\mathrm{eff}}:
@@ -1752,7 +1752,7 @@ $$
 m\in\mathbb{Z}
 $$
 
-That is a $2\pi$ single-valuedness rule on an observer-level orbital envelope. A fermion spinor target cannot reuse that ordinary closure rule. It must explain why the visible $SO(3)$ orientation closes after $2\pi$ while the history-lifted nested shell swarm state changes sheet and only restores after $4\pi$.
+That is a $2\pi$ single-valuedness rule on an observer-level orbital envelope. A fermion spinor target cannot reuse that ordinary closure rule. It must explain why the visible $SO(3)$ orientation closes after $2\pi$ while the history-lifted nested shell braid state changes sheet and only restores after $4\pi$.
 
 For a central external envelope, the full observer-level orbital gate also includes angular regularity:
 
@@ -1842,7 +1842,7 @@ The component action table makes the proof obligation explicit:
 | $\mathsf{s}_{\mathrm{sh}}$ | preserve generation shielding class unless the reaction ledger changes it | preserve generation shielding class | preserve generation shielding class | commute with $T_{\mathrm{gen}}$ up to the generation residual |
 | $\mathcal{P}$ | conjugate source and product provenance rows | reverse the observer chart, not the substrate history | compare the reversed effective process with the admissible history record | keep energy, $\mathbf{p}$, $\mathbf{J}$, polarity, and remnant rows balanced |
 
-The local proof target is therefore not just a $4\pi$ lift. It is a lifted nested shell swarm state whose coarse spinor chart admits effective $C_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, and $T_{\mathrm{eff}}$ operations compatible with weak chirality, charge conjugation, and the generation/mixing ledgers. If no such effective operations can be derived from $\Lambda_{\text{NS}}$, then the ordered-frame route may reproduce a rotation double cover while still failing the fermion symmetry benchmark.
+The local proof target is therefore not just a $4\pi$ lift. It is a lifted nested shell braid state whose coarse spinor chart admits effective $C_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, and $T_{\mathrm{eff}}$ operations compatible with weak chirality, charge conjugation, and the generation/mixing ledgers. If no such effective operations can be derived from $\Lambda_{\text{NS}}$, then the ordered-frame route may reproduce a rotation double cover while still failing the fermion symmetry benchmark.
 
 ### Spinor-to-Metric Compatibility Residual
 
@@ -1882,7 +1882,7 @@ Wr_c[\gamma]
 \mathrm{sign}\!\big(\mathbf{v}(t)\times\mathbf{v}(t')\cdot\mathbf{r}\big)\,d\tau
 $$
 
-which measures handedness of the self-interaction pattern. The open problem is to lift that kind of causal-locus invariant from one worldline or branch family to the full ordered nested shell swarm frame and then prove the $4\pi$ return behavior.
+which measures handedness of the self-interaction pattern. The open problem is to lift that kind of causal-locus invariant from one worldline or branch family to the full ordered nested shell braid frame and then prove the $4\pi$ return behavior.
 
 ## The $h$ and $\hbar$ Convention
 
@@ -1964,7 +1964,7 @@ Here $N_{\mathrm{basin}}(D)$ counts independently recordable basin alternatives 
 
 The action-angle chart should therefore be treated as a comparison chart selected after the recordable basin family has been fixed, not as a free quantization rule. In ordinary Bohr-Sommerfeld language one counts integral action leaves. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure route, the corresponding count is accepted only when the same Master-Equation branch record, root-ledger admissibility, and apparatus channel already identify the leaves as independently recordable alternatives. A singular or representation-dependent action-angle chart that changes the count without changing those physical records is a failed effective chart, not a new state sector.
 
-For a nested shell swarm transaction, the compact bookkeeping statement is
+For a nested shell braid transaction, the compact bookkeeping statement is
 
 $$
 \Delta A_{\text{cycle}}=h,
@@ -1984,9 +1984,9 @@ only after choosing the relevant projected action-angle channel. That scalar sta
 
 ## Foundation-Up Closure Route
 
-The orbital lesson should be used as a method, not merely as a dictionary. In ordinary atomic-orbital theory, one chooses the angular configuration space, imposes single-valuedness and finite angular behavior, and then reads the surviving labels as quantum numbers. The clean generalization is that ordinary orbital labels come from closure and regularity on an effective angular envelope, while nested shell swarm labels should come from closure, root-ledger admissibility, normal-triad holonomy, and stability of the three shell binaries. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this style of reasoning begins one layer lower: first classify the stable nested shell swarm closures, then ask which causal-wake envelopes and observer-level orbital labels they support.
+The orbital lesson should be used as a method, not merely as a dictionary. In ordinary atomic-orbital theory, one chooses the angular configuration space, imposes single-valuedness and finite angular behavior, and then reads the surviving labels as quantum numbers. The clean generalization is that ordinary orbital labels come from closure and regularity on an effective angular envelope, while nested shell braid labels should come from closure, root-ledger admissibility, normal-triad holonomy, and stability of the three shell binaries. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this style of reasoning begins one layer lower: first classify the stable nested shell braid closures, then ask which causal-wake envelopes and observer-level orbital labels they support.
 
-For a nested shell swarm, the first closure object is the three-shell phase and root ledger over a stable return period $T$. A useful theorem-target form is
+For a nested shell braid, the first closure object is the three-shell phase and root ledger over a stable return period $T$. A useful theorem-target form is
 
 $$
 \Theta_a(T)
@@ -2030,11 +2030,11 @@ $$
 \bigl(\Delta k_I,\Delta k_M,\Delta k_O,\Delta\mathcal R\bigr)
 $$
 
-subject to the energy, angular-momentum, phase-closure, and root-admissibility equations above. This is the foundation-up version of the quantization question: energy levels are not added as external quantum labels; they are the stable return classes of the delayed nested shell swarm geometry.
+subject to the energy, angular-momentum, phase-closure, and root-admissibility equations above. This is the foundation-up version of the quantization question: energy levels are not added as external quantum labels; they are the stable return classes of the delayed nested shell braid geometry.
 
-When the only question is energy-level closure, the schematic integer-and-root ledger above is enough. When the question is spin, ordered-frame chirality, weak chirality, or any broader quantum-number recovery, the branch must instead be tracked by the reduced legacy label $\Lambda_{\text{NS}}$. That label keeps the integer windings, causal-root ledgers, inter-layer phase-lock data, and candidate chirality branch in one proof object. It does not prove the holonomy or chirality claim by definition; it prevents later quantum-number language from floating free of the swarm closure data that would have to derive it.
+When the only question is energy-level closure, the schematic integer-and-root ledger above is enough. When the question is spin, ordered-frame chirality, weak chirality, or any broader quantum-number recovery, the branch must instead be tracked by the reduced legacy label $\Lambda_{\text{NS}}$. That label keeps the integer windings, causal-root ledgers, inter-layer phase-lock data, and candidate chirality branch in one proof object. It does not prove the holonomy or chirality claim by definition; it prevents later quantum-number language from floating free of the braid closure data that would have to derive it.
 
-The candidate nested shell swarm closure labels are therefore:
+The candidate nested shell braid closure labels are therefore:
 
 - Layer winding vector $(k_I,k_M,k_O)$, generated by phase closure.
 - Inter-layer lock integers $k_{IM},k_{MO},k_{IO}$, generated by relative closure.
@@ -2096,12 +2096,12 @@ Y_L^M(\hat{\mathbf r})\,
 e^{-i\Omega_p(t-r/c_f)}
 $$
 
-where $\lambda_C$ abbreviates the selected nested shell swarm closure label, and $\mathbf k=(k_I,k_M,k_O,\mathcal R)$ is its energy-level reduction. This is not a new substrate field; it is an effective description of the superposed causal wakes after coarse-graining. The atomic-orbital program is then to show that an electron assembly in the nuclear and Noether sea environment locks to stable resonance basins whose angular part recovers $Y_\ell^m$.
+where $\lambda_C$ abbreviates the selected nested shell braid closure label, and $\mathbf k=(k_I,k_M,k_O,\mathcal R)$ is its energy-level reduction. This is not a new substrate field; it is an effective description of the superposed causal wakes after coarse-graining. The atomic-orbital program is then to show that an electron assembly in the nuclear and Noether sea environment locks to stable resonance basins whose angular part recovers $Y_\ell^m$.
 
 The resulting proof route is:
 
 $$
-\text{nested shell swarm integer closure}
+\text{nested shell braid integer closure}
 \longrightarrow
 \text{structured causal-wake envelope}
 \longrightarrow
@@ -2110,9 +2110,9 @@ $$
 \text{observer-level labels }(n,\ell,m)
 $$
 
-This route strengthens the distinction rather than weakening it. The internal nested shell swarm spinor closure still targets $4\pi$ fermion behavior, while the atomic orbital envelope still targets $2\pi$ observer-level angular closure. The possible unification is that both are selected by geometry, phase closure, and causal-root admissibility at different levels of description.
+This route strengthens the distinction rather than weakening it. The internal nested shell braid spinor closure still targets $4\pi$ fermion behavior, while the atomic orbital envelope still targets $2\pi$ observer-level angular closure. The possible unification is that both are selected by geometry, phase closure, and causal-root admissibility at different levels of description.
 
-The failure modes are part of the proof program. The route is disciplined or falsified if no candidate closure class has a positive non-symmetry Floquet gap, if root ledgers change continuously rather than through branch or fold events, if the ordered frame has trivial $2\pi$ holonomy where spinor closure is required, if the proposed lift fails to restore after $4\pi$, if group-velocity anisotropy behaves like dissipative drag in stable atoms, if far-zone coefficients fail to converge or fail to recover the spherical-harmonic central limit, or if a derivation conflates internal nested shell swarm rotational action with observer-level atomic orbital angular momentum.
+The failure modes are part of the proof program. The route is disciplined or falsified if no candidate closure class has a positive non-symmetry Floquet gap, if root ledgers change continuously rather than through branch or fold events, if the ordered frame has trivial $2\pi$ holonomy where spinor closure is required, if the proposed lift fails to restore after $4\pi$, if group-velocity anisotropy behaves like dissipative drag in stable atoms, if far-zone coefficients fail to converge or fail to recover the spherical-harmonic central limit, or if a derivation conflates internal nested shell braid rotational action with observer-level atomic orbital angular momentum.
 
 ## Bridge to Standard Quantum Mechanics
 
@@ -2185,17 +2185,17 @@ s=\frac{1}{2},
 m_s=\pm\frac{1}{2}
 $$
 
-The nested shell swarm burden is to supply the effective spinor coordinate whose apparatus projection gives the two Stern-Gerlach records $+\hbar/2$ and $-\hbar/2$. Those records should be basin outcomes of the full angular-momentum ledger, not evidence for a tiny pre-existing arrow inside the target.
+The nested shell braid burden is to supply the effective spinor coordinate whose apparatus projection gives the two Stern-Gerlach records $+\hbar/2$ and $-\hbar/2$. Those records should be basin outcomes of the full angular-momentum ledger, not evidence for a tiny pre-existing arrow inside the target.
 
 ## Orbital Angular Momentum
 
 Observer-level orbital angular momentum $\mathbf{L}$ belongs to spatial motion around a center or to an orbital degree of freedom in an effective wave description. It should not be conflated with internal binary action inside a particle assembly.
 
-The hydrogen $1s$ state is the warning case. In standard quantum numbers, the electron's atomic orbital quantum number is $\ell=0$. That statement concerns the observer-level atomic wavefunction. If the electron assembly contains internal nested shell swarm rotational action, that action is not the same object as the atomic $\mathbf{L}$. The atomic label describes the coarse motion of the electron assembly relative to the nucleus; the internal nested shell swarm ledger describes the assembly's own organized causal history.
+The hydrogen $1s$ state is the warning case. In standard quantum numbers, the electron's atomic orbital quantum number is $\ell=0$. That statement concerns the observer-level atomic wavefunction. If the electron assembly contains internal nested shell braid rotational action, that action is not the same object as the atomic $\mathbf{L}$. The atomic label describes the coarse motion of the electron assembly relative to the nucleus; the internal nested shell braid ledger describes the assembly's own organized causal history.
 
 The mapping target is therefore two-stage:
 
-1. derive internal rotational-action ledgers from architrino and nested shell swarm dynamics;
+1. derive internal rotational-action ledgers from architrino and nested shell braid dynamics;
 2. derive observer-level orbital quantum numbers from the effective envelope of an assembly in an external potential.
 
 Skipping that distinction would make internal circulation falsely appear as atomic orbital angular momentum.
@@ -2253,7 +2253,7 @@ The repo-wide spin taxonomy is:
 | Effective spin label | Geometry target |
 | --- | --- |
 | Spin-$0$ | Scalar or radial response with no attached orientation axis. |
-| Spin-$\tfrac{1}{2}$ | Ordered non-coplanar nested shell swarm frame with $4\pi$ spinor closure. |
+| Spin-$\tfrac{1}{2}$ | Ordered non-coplanar nested shell braid frame with $4\pi$ spinor closure. |
 | Spin-$1$ | Vector channel with one distinguished axis and transverse or helical structure. |
 | Spin-$2$ | Tensor-like transverse-traceless deformation data. |
 
@@ -2261,9 +2261,9 @@ This taxonomy is a bridge, not a proof. It tells the corpus where to look for th
 
 ## Downstream Use
 
-Downstream chapters should use this bridge as a dictionary, not as a completed proof. The nucleon spin budget in [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md), the gluon vector-channel account in [Gluons and the Strong Force: Geometric Origins](../../assemblies/bosons/gluons.md), the rho/Delta spin and Pauli discussions in [Transient Hadrons: Mesons and Δ Resonances](../../assemblies/mesons/mesons.md), the exchange-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../../quantum/quantum-statistics.md), atomic and molecular spin/exclusion language in [Atomic Structure](../../nuclear-atomic/atomic-structure.md), [Atomic Spectra](../../nuclear-atomic/atomic-spectra.md), and [Molecular Geometry](../../nuclear-atomic/molecular-geometry.md), and photon/vector-mode language in [Electroweak Bosons](../../assemblies/bosons/electroweak-bosons.md), [Mode Taxonomy](../../reactions/mode-taxonomy.md), and [Particle Masses](../../assemblies/particle-masses.md) all inherit the open single-assembly angular-momentum ledger and ordered-frame spinor closure target.
+Downstream chapters should use this bridge as a dictionary, not as a completed proof. The nucleon spin budget in [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md), the gluon vector-channel account in [Gluons and the Strong Force: Geometric Origins](../../assemblies/bosons/gluons.md), the rho/Delta spin and Pauli discussions in [Mesons](../../assemblies/mesons/mesons.md), the exchange-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../../quantum/fermi-dirac-and-bose-einstein-statistics.md), atomic and molecular spin/exclusion language in [Atomic Structure](../../nuclear-atomic/atomic-structure.md), [Atomic Spectra](../../nuclear-atomic/atomic-spectra.md), and [Molecular Geometry](../../nuclear-atomic/molecular-geometry.md), and photon/vector-mode language in [Electroweak Bosons](../../assemblies/bosons/electroweak-bosons.md), [Mode Taxonomy](../../reactions/mode-taxonomy.md), and [Particle Masses](../../assemblies/particle-masses.md) all inherit the open single-assembly angular-momentum ledger and ordered-frame spinor closure target.
 
-Second-ring consumers inherit the same limitation. Photon records in [Reaction Ledger](../../validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../../validation/reaction-cosmology-provenance-ledger.md), [Bremsstrahlung](../../reactions/bremsstrahlung.md), and [Synchrotron Cascades](../../reactions/synchrotron.md), weak helicity selection in [Weak Mixing and CKM](./weak-mixing-ckm.md), Bell/CHSH response claims in [Bell's Theorem](./bell-theorem.md), Cesium hyperfine clock claims in [Architrino and SI Base Units](../../validation/architrino-si-base-units.md), and boundary-helicity proxy language in [Horizon Chirality and Planar Spin](../../spacetime/horizon-chirality.md) may state observer-level labels and validation targets. They should not use those labels as independent derivations of spin, Pauli exclusion, spin-statistics closure, photon polarization, vector-mode spin, weak handedness, spin-measurement response, Bell correlations, or hyperfine spin coupling. The common discipline is same-record consumption: a downstream claim may use the spinor, helicity, or weak-handedness label only from the branch record that also carries the relevant angular-momentum, apparatus, event-balance, or exposure residuals.
+Second-ring consumers inherit the same limitation. Photon records in [Reaction Ledger](../../validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../../validation/reaction-cosmology-provenance-ledger.md), [Bremsstrahlung](../../reactions/bremsstrahlung.md), and [Synchrotron](../../reactions/synchrotron.md), weak helicity selection in [Weak Mixing and CKM](./weak-mixing-ckm.md), Bell/CHSH response claims in [Bell's Theorem](./bell-theorem.md), Cesium hyperfine clock claims in [Architrino and SI Base Units](../../validation/architrino-si-base-units.md), and boundary-helicity proxy language in [Horizon Chirality and Planar Spin](../../spacetime/horizon-chirality.md) may state observer-level labels and validation targets. They should not use those labels as independent derivations of spin, Pauli exclusion, spin-statistics closure, photon polarization, vector-mode spin, weak handedness, spin-measurement response, Bell correlations, or hyperfine spin coupling. The common discipline is same-record consumption: a downstream claim may use the spinor, helicity, or weak-handedness label only from the branch record that also carries the relevant angular-momentum, apparatus, event-balance, or exposure residuals.
 
 ## Helicity and Vector Modes
 
@@ -2863,7 +2863,7 @@ Horizon and planar-lock discussions should use narrower language unless the prop
 
 Spin measurement is not the reading of a pre-existing tiny arrow. It is a finite-time coupling between an apparatus and the full angular-momentum ledger of the target assembly. The measured value is the branch record produced by that coupling relative to the apparatus axis, not a primitive label that existed before the apparatus interaction.
 
-For a Stern-Gerlach-like measurement, the apparatus supplies an oriented interaction geometry $\hat{\mathbf{m}}$ and a spatial gradient. In effective language one writes a coupling to a spin projection along $\hat{\mathbf{m}}$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substrate-level description is a macroscopic apparatus assembly whose constituent architrinos and causal wakes create an axis-indexed potential environment for the target nested shell swarm. A useful reduced apparatus potential is
+For a Stern-Gerlach-like measurement, the apparatus supplies an oriented interaction geometry $\hat{\mathbf{m}}$ and a spatial gradient. In effective language one writes a coupling to a spin projection along $\hat{\mathbf{m}}$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substrate-level description is a macroscopic apparatus assembly whose constituent architrinos and causal wakes create an axis-indexed potential environment for the target nested shell braid. A useful reduced apparatus potential is
 
 $$
 U_{\text{app}}(\mathbf{x},t;\hat{\mathbf{m}})
@@ -2881,7 +2881,7 @@ $$
 
 The gradient must be strong enough and persistent enough to drive the coupled target-apparatus state toward a branch boundary, but not so violent that it dissociates the target instead of measuring it. A zero-duration projection is therefore not the substrate model. The observer-level abruptness is the coarse appearance of a finite threshold crossing and record lock.
 
-The target is not represented by one internal vector $\hat{\mathbf{n}}$. The substrate-facing object is the full nested shell swarm spin ledger
+The target is not represented by one internal vector $\hat{\mathbf{n}}$. The substrate-facing object is the full nested shell braid spin ledger
 
 $$
 \mathcal{J}_{\text{core}}(t)
@@ -3464,7 +3464,7 @@ P_{-}(\alpha\,|\,\text{rec})
 \sin^2\!\left(\frac{\alpha}{2}\right)
 $$
 
-This closes the single-assembly basin-volume arithmetic in the reduced spinor-record chart and identifies the Master-Equation origin of both ingredients external to the spinor coordinate: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $\dot{\mathbf{J}}_{C}^{\text{app}}$ is the angular impulse generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, derive the conditional record measure and physical separatrix from the apparatus dynamics, and evaluate the branch-sum impulse for a concrete nested shell swarm apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved swarm phases, that dependence belongs inside $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$ rather than inside a separate post-measurement probability rule.
+This closes the single-assembly basin-volume arithmetic in the reduced spinor-record chart and identifies the Master-Equation origin of both ingredients external to the spinor coordinate: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $\dot{\mathbf{J}}_{C}^{\text{app}}$ is the angular impulse generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, derive the conditional record measure and physical separatrix from the apparatus dynamics, and evaluate the branch-sum impulse for a concrete nested shell braid apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved braid phases, that dependence belongs inside $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$ rather than inside a separate post-measurement probability rule.
 
 Bell-pair tests require one more layer: the pair-provenance ledger and both local apparatus couplings must be included before comparing to the singlet correlation. A response that reduces to a sharp classical basin boundary over a preassigned local axis remains the known linear-correlation failure mode, not a successful spin-measurement model.
 
@@ -3518,7 +3518,7 @@ E_{\text{axis}}(\theta_{AB})
 -1+\frac{2\theta_{AB}}{\pi}
 $$
 
-which is linear in $\theta_{AB}$ and obeys the CHSH bound. Therefore angular-momentum conservation at creation is not enough. The response kernel must involve the full nested shell swarm ledger and finite-time detector coupling, not merely an opposite spin arrow carried by each daughter.
+which is linear in $\theta_{AB}$ and obeys the CHSH bound. Therefore angular-momentum conservation at creation is not enough. The response kernel must involve the full nested shell braid ledger and finite-time detector coupling, not merely an opposite spin arrow carried by each daughter.
 
 Bell's factorization condition is
 
@@ -3583,8 +3583,8 @@ Here $D_{\mathrm{TV}}$ is total-variation distance on the pair-provenance distri
 The correct development order is:
 
 1. derive the delayed total angular-momentum functional for architrino dynamics;
-2. evaluate the functional for changing-frequency nested shell swarms;
-3. validate the projected nested shell swarm partition equations and derive the branch-selection rule for accepted action transactions;
+2. evaluate the functional for changing-frequency nested shell braids;
+3. validate the projected nested shell braid partition equations and derive the branch-selection rule for accepted action transactions;
 4. prove or falsify ordered-frame spinor closure;
 5. derive a Stern-Gerlach-like measurement response from apparatus coupling;
 6. construct the pair-provenance ledger for singlet-like creation;
@@ -3612,17 +3612,17 @@ The following usage should be preferred across the corpus:
 This bridge leaves several derivations open beyond the partition scaffold above.
 
 1. Promote the delayed three-layer scaffold above into a conserved functional derived directly from the regularized nonlocal action.
-2. Validate that functional on a nested shell swarm with inner, middle, and outer binary radii, frequencies, plane normals, phases, active root branches, and self-hit history.
+2. Validate that functional on a nested shell braid with inner, middle, and outer binary radii, frequencies, plane normals, phases, active root branches, and self-hit history.
 3. Populate the finite candidate set $\mathcal A_N(B^-,\Gamma_{\text{coupl}},W)$, evaluate $\mathcal R_{\mathrm{sel}}$ on each retained branch candidate, and test whether $\operatorname{Sel}_{B,N}$ is chart-invariant, stable under retained-budget refinement $N\preceq N'$, unique, or a physical tie for an accepted $\Delta A_{\text{cycle}}=h$ transaction.
 4. Generalize the solved four-substep branch by deriving or fitting $a$, $b$, $w$, $\Delta R_\ell$, $\Delta\omega_\ell$, and $\Delta E_{\ell,\text{root}}$ from the master equation for non-minimal branches.
 5. Determine whether the partition is unique or branch-dependent for inner, middle, and outer binary layers.
-6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift for ordered non-coplanar nested shell swarms, then test whether the same lifted ordered-frame response extends to an effective $SL(2,\mathbb C)\to SO^+(1,3)$ spinor compatibility map in the recovered relativistic observer sector.
-7. Evaluate the Master-Equation apparatus branch-sum impulse $\dot{\mathbf{J}}_{C}^{\text{app}}$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal nested shell swarm apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
+6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift for ordered non-coplanar nested shell braids, then test whether the same lifted ordered-frame response extends to an effective $SL(2,\mathbb C)\to SO^+(1,3)$ spinor compatibility map in the recovered relativistic observer sector.
+7. Evaluate the Master-Equation apparatus branch-sum impulse $\dot{\mathbf{J}}_{C}^{\text{app}}$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal nested shell braid apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
 8. Derive the effective spinor coordinate and substrate preparation measures $\mu_{\alpha}$ whose pushforward into the reduced spinor-record chart gives the computed spin-$\tfrac{1}{2}$ half-angle law.
 9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, the sequential analyzer relocking map, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating pro/anti planar pair.
 10. Separate photon helicity closure from massive vector-boson spin closure.
-11. Derive integer phase-winding closure for nested shell swarm energy levels by computing the admissible ledgers $(k_I,k_M,k_O,\mathcal R)$ and their allowed changes under $\Delta A_{\text{cycle}}=h$ transactions.
-12. Derive the effective far-zone causal-wake envelope of an integer-closed nested shell swarm and decompose its angular content into recovery coefficients that can be compared with spherical-harmonic orbital modes.
+11. Derive integer phase-winding closure for nested shell braid energy levels by computing the admissible ledgers $(k_I,k_M,k_O,\mathcal R)$ and their allowed changes under $\Delta A_{\text{cycle}}=h$ transactions.
+12. Derive the effective far-zone causal-wake envelope of an integer-closed nested shell braid and decompose its angular content into recovery coefficients that can be compared with spherical-harmonic orbital modes.
 13. Derive the native effective envelope extractor $\mathcal E_{\mathrm{orb}}$ for an assembly in an external potential, then apply the angular-envelope lemma to recover $2\pi$ azimuthal single-valuedness, $\ell\in\mathbb N_0$, and $m\in\{-\ell,\ldots,\ell\}$ without importing internal spin data.
 14. Map observer-level orbital angular momentum, such as atomic $\ell$, to assembly-level internal rotational action without conflating the two.
 15. Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, and basin-measure law.

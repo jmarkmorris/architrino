@@ -1,4 +1,4 @@
-# BBN in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Framework
+# BBN Constraints
 
 This chapter states how big-bang nucleosynthesis constraints are to be read inside a fixed-void ontology. Its purpose is not to rewrite nuclear reaction physics, but to reinterpret where and when the relevant thermal histories occur and how those histories are projected into the standard BBN observable language.
 
@@ -15,7 +15,7 @@ This chapter states how big-bang nucleosynthesis constraints are to be read insi
 
 - **When:** No universal "beginning"; nucleosynthesis occurs locally and repeatedly in absolute time $t$ within the eternal Euclidean void.
 - **Where:** In high-density, high-temperature zones surrounding supermassive black hole (SMBH) cores and their release channels; see [Black Holes](../spacetime/black-holes.md).
-- **Why:** Noether swarms near SMBHs reach densities and temperatures sufficient for nuclear reactions; subsequent outward transport and cooling mimics expansion-driven freeze-out, using the same fixed-void expansion interface developed in [Expansion Mechanism](./expansion-mechanism.md).
+- **Why:** Noether braids near SMBHs reach densities and temperatures sufficient for nuclear reactions; subsequent outward transport and cooling mimics expansion-driven freeze-out, using the same fixed-void expansion interface developed in [Expansion Mechanism](./expansion-mechanism.md).
 - **Background:** Eternal void; no singularity; "BBN" is a recurring local process, not a singular cosmic event.
 
 ### What Remains Unchanged
@@ -52,8 +52,8 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, what standard cosmology calls "the first mi
 
 1. **Assembly Compression Zone (SMBH Interior/Near-Horizon):**
 
-Noether swarms compress toward maximum-curvature states.
-Proton/neutron assemblies (nucleon nested shell swarms; see [Nucleon Structure](../nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether sea density gradients.
+Noether braids compress toward maximum-curvature states.
+Proton/neutron assemblies (nucleon nested shell braids; see [Nucleon Structure](../nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether sea density gradients.
 Local "temperature" (kinetic energy distribution) and density mimic BBN conditions ($T \sim 10^9\,\mathrm{K},\ \rho \sim 10^{-3}\,\mathrm{g/cm^3}$).
 Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether sea saturation rather than scaling linearly with SMBH mass.
 
@@ -298,7 +298,7 @@ Standard BBN effectively behaves like a calibrated standard reactor: one paramet
 
 - **Variance consideration:** SMBHs span mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion-state diversity. If $T(t)$ and $\rho(t)$ inherit this variance directly, predicted yields, especially $Y_p$, should broaden.
 - **Observable target:** Keep consistency with tight helium clustering near $Y_p\approx0.245\pm0.003$.
-- **Goal:** Derive a **Universal Ejection Attractor** where near-horizon architrino compression saturates to medium-set conditions (Noether swarm saturation), with universal ceilings $T_{\max}$ and $\rho_{\max}$ and mass-insensitive $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$.
+- **Goal:** Derive a **Universal Ejection Attractor** where near-horizon architrino compression saturates to medium-set conditions (Noether braid saturation), with universal ceilings $T_{\max}$ and $\rho_{\max}$ and mass-insensitive $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$.
 - **Observable implication:** If this saturation holds, $^4$He yield is intrinsic to Noether sea state convergence and remains weakly dependent on SMBH mass class.
 
 ### 2. Freeze-Out Timing Goal: Weak-Rate vs Outflow Timescale
@@ -335,11 +335,11 @@ Lithium is treated here as a primary discriminator, not only a trace channel.
 - **Primary distinguishing prediction:** In SMBH-local reactor mappings, spatial inhomogeneity is a productive mechanism (not a nuisance), and lithium depletion emerges from transport-weighted integration across heterogeneous flow channels.
 - **Interpretive contrast:** Standard BBN uses near-homogeneous initial conditions, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ local-reactor mapping can use controlled inhomogeneity as an explanatory lever.
 
-### 6. Equation-of-State Goal: Specify Nested Shell Swarm Compression EoS
+### 6. Equation-of-State Goal: Specify Nested Shell Braid Compression EoS
 
 The model needs an explicit compression-zone equation of state (for example local $P(\rho)$ or effective $w$ behavior) to close dynamics.
 
-- **Goal:** Determine whether nested shell swarm matter stiffens near horizon compression (high effective sound speed), and whether that stiffness is sufficient to drive rapid radial expansion.
+- **Goal:** Determine whether nested shell braid matter stiffens near horizon compression (high effective sound speed), and whether that stiffness is sufficient to drive rapid radial expansion.
 - **Mapping task:** Connect the EoS choice directly to freeze-out timing, D quench, and final yield sensitivity.
 
 ### 7. Neutrino-Counting Goal: Recover Effective $N_{\text{eff}}$

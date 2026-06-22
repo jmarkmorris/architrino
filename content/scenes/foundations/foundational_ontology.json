@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "foundations__foundational_ontology",
-    "title": "Foundational Ontology",
+    "title": "Ontology",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

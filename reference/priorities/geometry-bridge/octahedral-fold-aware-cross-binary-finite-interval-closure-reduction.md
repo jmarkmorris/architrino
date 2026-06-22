@@ -97,7 +97,7 @@ Thus the bridge work is no longer the smallest-radius obstruction. The next math
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.mjs) emits:
 
 - predecessor validation for the source-atlas interval implication and interval bridge-predicate reduction;
 - no-fixed-speed-window finite interval parameters;
@@ -107,7 +107,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-finite-interval-cl
 - the thirty-three-family finite interval row census;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.test.js) verifies predecessor validation, speed-window removal, theorem statement, bridge endpoint separation, bridge derivative de-duplication, row census, global bottleneck preservation, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.test.js) verifies predecessor validation, speed-window removal, theorem statement, bridge endpoint separation, bridge derivative de-duplication, row census, global bottleneck preservation, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

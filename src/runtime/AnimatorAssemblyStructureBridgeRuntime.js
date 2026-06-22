@@ -143,15 +143,15 @@ function createMemberNode(member = {}, ownerId = "") {
   };
 }
 
-function buildNoetherSwarmNode(assemblyId, assembly, members) {
+function buildNoetherBraidNode(assemblyId, assembly, members) {
   const binaries = Array.isArray(assembly?.core?.binaries) ? assembly.core.binaries.filter(Boolean) : [];
   const personalityMembers = members
     .filter((member) => member?.slotKind === "personality" || Number.isFinite(Number(member?.slotIndex)))
     .sort((left, right) => Number(left?.slotIndex ?? 0) - Number(right?.slotIndex ?? 0));
   return {
     id: `${assemblyId}/core`,
-    kind: STRUCTURE_KINDS.NOETHER_SWARM,
-    species: "noether_swarm",
+    kind: STRUCTURE_KINDS.NOETHER_BRAID,
+    species: "noether_braid",
     label: `${String(assembly?.name ?? assemblyId).trim() || assemblyId} core`,
     traits: { polarity: "pro" },
     children: STRUCTURE_SLOT_ORDER.map((slotName, slotIndex) => {
@@ -231,7 +231,7 @@ export function buildAnimatorAssemblyStructure(assembly = null) {
       sourceAssemblyId: assembly.id,
     },
     children: [
-      ...(assembly?.core ? [buildNoetherSwarmNode(assemblyId, assembly, members)] : []),
+      ...(assembly?.core ? [buildNoetherBraidNode(assemblyId, assembly, members)] : []),
       ...subassemblies.map((entry) => buildSubassemblyNode(assemblyId, entry)),
       ...rootMembers.map((member) => createMemberNode(member, assemblyId)),
     ],
@@ -301,13 +301,13 @@ export function formatAnimatorAssemblyStructureStatus(summary = {}, assembly = n
   const memberCount = Array.isArray(assembly?.members) ? assembly.members.length : 0;
 
   let label = "Assembly structure";
-  if (slotCount > 0 || summary?.kindCounts?.noether_swarm > 0 || assembly?.core) {
+  if (slotCount > 0 || summary?.kindCounts?.noether_braid > 0 || assembly?.core) {
     if (slotCount > 0 && binarySlotCount === slotCount) {
-      label = "Noether swarm • full";
+      label = "Noether braid • full";
     } else if (slotCount > 0) {
-      label = `Noether swarm • ${binarySlotCount}/${slotCount} binaries`;
+      label = `Noether braid • ${binarySlotCount}/${slotCount} binaries`;
     } else {
-      label = "Noether swarm";
+      label = "Noether braid";
     }
   } else if (subassemblyCount > 0) {
     label = `Composite • ${subassemblyCount} group${subassemblyCount === 1 ? "" : "s"}`;

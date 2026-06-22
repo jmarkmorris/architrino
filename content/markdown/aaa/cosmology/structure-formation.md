@@ -8,7 +8,7 @@ Structure formation describes how the nearly homogeneous early universe develope
 
 The standard term **cosmological void** should be read as a low-galaxy-density region, not as ontological emptiness. Such regions still contain the Noether sea, photon and neutrino transport, sparse hydrogen, and possible rare reaction channels seeded by high-energy photons or other local sources.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ the same phenomenology is reinterpreted as **Noether sea and assembly co-evolution inside a fixed Euclidean void with absolute time**. The Noether sea, the dense coupled population of pro/anti Noether swarms, plays the role of the dynamical Noether sea substrate. Matter assemblies, baryonic composites plus any weakly coupled neutral assemblies serving the dark-matter role, are embedded in and coupled to the Noether sea. Growth of overdensities is governed by how the Noether sea transmits effective gravitational influence, how matter assemblies cluster under that influence, and how the Noether sea's own internal energy budget (playing the role of dark energy) modulates the expansion-equivalent dynamics.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ the same phenomenology is reinterpreted as **Noether sea and assembly co-evolution inside a fixed Euclidean void with absolute time**. The Noether sea, the dense coupled population of pro/anti Noether braids, plays the role of the dynamical Noether sea substrate. Matter assemblies, baryonic composites plus any weakly coupled neutral assemblies serving the dark-matter role, are embedded in and coupled to the Noether sea. Growth of overdensities is governed by how the Noether sea transmits effective gravitational influence, how matter assemblies cluster under that influence, and how the Noether sea's own internal energy budget (playing the role of dark energy) modulates the expansion-equivalent dynamics.
 
 No metric expansion of space occurs. The Euclidean void is static. What changes is the **internal state of the Noether sea**: assembly radii, oscillation frequencies, local number density, the Noether sea delay factor $\chi_{\text{sea}}$, and the resulting medium-dressed inertial response. All standard cosmological observables—power spectra, correlation functions, lensing maps—are recast as probes of this Noether sea and assembly history at different scales and epochs.
 
@@ -20,10 +20,10 @@ No metric expansion of space occurs. The Euclidean void is static. What changes 
 
 Define a spatially averaged Noether sea state at absolute time $t$:
 
-- $u_{\text{sea}}(t)$: mean energy density of the Noether sea, distinct from the Noether swarm number/mass-density proxy $\rho_{\text{NS}}(\mathbf{x},t)$,
+- $u_{\text{sea}}(t)$: mean energy density of the Noether sea, distinct from the Noether braid number/mass-density proxy $\rho_{\text{NS}}(\mathbf{x},t)$,
 - $\rho_m(t)$: mean energy density of matter assemblies (baryonic + neutral/dark),
-- $\bar{\rho}_{\text{NS}}(t)$: mean Noether swarm density in physical units,
-- $\bar{R}_{\text{core}}(t)$: mean outer-binary radius of Noether swarm assemblies in the Noether sea.
+- $\bar{\rho}_{\text{NS}}(t)$: mean Noether braid density in physical units,
+- $\bar{R}_{\text{core}}(t)$: mean outer-binary radius of Noether braid assemblies in the Noether sea.
 
 An effective Hubble-like parameter $H(t)$ is defined operationally through the rate of change of the Noether sea's bulk properties. Specifically, if one defines an effective scale variable $a(t)$ via the photon redshift relation (the ratio of photon assembly frequencies at emission and reception), then $H = \dot{a}/a$ summarizes how inter-assembly separations evolve as the Noether sea relaxes and dissipates energy. This $H$ is not the expansion rate of space but a bookkeeping variable for the Noether sea's thermodynamic and mechanical evolution.
 
@@ -37,10 +37,10 @@ $$
 
 Each symbol carries a specific medium-level meaning:
 
-- **$H(t)$**: the effective damping term arising from Noether sea bulk evolution. As Noether swarms in the Noether sea relax energetically (outer binaries expanding, frequencies decreasing), inter-assembly separations grow, diluting the gravitational source density. This acts as a friction-like term on the growth of perturbations, matching the role of the Hubble-like damping term in standard cosmology without identifying ordinary dissipative drag as the mass mechanism.
+- **$H(t)$**: the effective damping term arising from Noether sea bulk evolution. As Noether braids in the Noether sea relax energetically (outer binaries expanding, frequencies decreasing), inter-assembly separations grow, diluting the gravitational source density. This acts as a friction-like term on the growth of perturbations, matching the role of the Hubble-like damping term in standard cosmology without identifying ordinary dissipative drag as the mass mechanism.
 
 - **$G_{\text{eff}}(t, k)$**: the effective gravitational coupling, set by how efficiently a local matter overdensity perturbs the surrounding Noether sea and how that perturbation propagates to attract more matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $G_{\text{eff}}$ depends on:
-  - the local Noether swarm density $\bar{\rho}_{\text{NS}}(t)$, which sets Noether sea stiffness,
+  - the local Noether braid density $\bar{\rho}_{\text{NS}}(t)$, which sets Noether sea stiffness,
   - the outer-binary radius $\bar{R}_{\text{core}}(t)$, which controls the compliance of Noether sea assemblies to deformation,
   - potentially the wavenumber $k$, if the Noether sea response becomes scale-dependent at wavelengths comparable to internal assembly scales or at the transition between linear and self-hit regimes.
   The weak-field constitutive map behind this is the same one organized in [Emergent Metric](../spacetime/emergent-metric.md).
@@ -51,11 +51,11 @@ Each symbol carries a specific medium-level meaning:
 
 **Where the equation is valid.** This growth equation holds in the regime where:
 - perturbations are small ($|\delta| \ll 1$),
-- the wavelength of perturbations is much larger than the nested shell swarm scale,
-- the Noether sea response is quasi-static (perturbation timescale $\gg$ internal nested shell swarm oscillation period),
+- the wavelength of perturbations is much larger than the nested shell braid scale,
+- the Noether sea response is quasi-static (perturbation timescale $\gg$ internal nested shell braid oscillation period),
 - no internal velocity component of the matter assemblies approaches $c_f$ (the self-hit regime is not triggered by the perturbation dynamics themselves).
 
-**What breaks outside that regime.** At $|\delta| \sim 1$ (turnaround and collapse), the linear equation fails and must be replaced by the full nonlinear medium response—analogous to N-body or hydrodynamic treatment in standard cosmology. At very small scales, the finite size of Noether swarm assemblies and the discreteness of the Noether sea introduce a physical cutoff; the continuum growth equation is not valid below the mean inter-assembly spacing. At extremely high densities (approaching conditions near a maximum-curvature object), the self-hit regime is entered, Jacobian anisotropies become large, and the effective $G$ itself changes qualitatively.
+**What breaks outside that regime.** At $|\delta| \sim 1$ (turnaround and collapse), the linear equation fails and must be replaced by the full nonlinear medium response—analogous to N-body or hydrodynamic treatment in standard cosmology. At very small scales, the finite size of Noether braid assemblies and the discreteness of the Noether sea introduce a physical cutoff; the continuum growth equation is not valid below the mean inter-assembly spacing. At extremely high densities (approaching conditions near a maximum-curvature object), the self-hit regime is entered, Jacobian anisotropies become large, and the effective $G$ itself changes qualitatively.
 
 ### The Growth Factor
 
@@ -195,13 +195,13 @@ The last term is the important one. It prevents the model from behaving like CDM
 
 ### Baryonic Assemblies
 
-Baryons (protons, neutrons, and their composites) are Noether swarm assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. Before recombination, baryonic assemblies are tightly coupled to photon-channel packets carried by coaxial contra-rotating pro/anti planar pairs propagating through the Noether sea, producing acoustic oscillations. After decoupling, baryons fall into potential wells already established by the dark sector.
+Baryons (protons, neutrons, and their composites) are Noether braid assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. Before recombination, baryonic assemblies are tightly coupled to photon-channel packets carried by coaxial contra-rotating pro/anti planar pairs propagating through the Noether sea, producing acoustic oscillations. After decoupling, baryons fall into potential wells already established by the dark sector.
 
 ### Neutral Assemblies (Dark-Matter Candidates)
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ admits multiple dark-matter scenarios (detailed in [dark-matter.md](./dark-matter.md)). For structure formation the relevant properties are:
 
-- **Coupling to the Noether sea**: dark-matter assemblies must couple gravitationally (through the Noether sea) but not electromagnetically (no net charge, minimal dipole coupling). Neutral Noether swarm configurations with balanced axial layers (analogous to neutrino-like assemblies but more massive and stable) satisfy this requirement.
+- **Coupling to the Noether sea**: dark-matter assemblies must couple gravitationally (through the Noether sea) but not electromagnetically (no net charge, minimal dipole coupling). Neutral Noether braid configurations with balanced axial layers (analogous to neutrino-like assemblies but more massive and stable) satisfy this requirement.
 - **Thermal history**: if produced thermally in the early medium, their relic abundance and free-streaming length determine the small-scale cutoff of the matter power spectrum. Cold (non-relativistic at decoupling) neutral assemblies reproduce CDM-like behavior; warm candidates (lighter, with residual thermal velocity) suppress small-scale power.
 - **Self-interaction**: if neutral assemblies interact among themselves through residual short-range forces (e.g., van der Waals-like wake overlap at close range), this modifies halo profiles at small scales—a potential handle on the core-cusp and too-big-to-fail problems.
 
@@ -209,7 +209,7 @@ The effective growth equation accommodates both CDM-like and self-interacting sc
 
 ### Medium Energy (Dark-Energy Role)
 
-The baseline energy density of the Noether sea ($u_{\text{sea}}$) acts as an effective cosmological constant or dark energy. Its contribution enters the effective Hubble-like term $H(t)$. If the Noether sea has internal equation of state is $w_{\text{sea}} \approx -1$ (the Noether swarms in the Noether sea resist compression, exerting negative effective pressure), the late-time acceleration of the effective expansion follows directly. Any evolution of $w_{\text{sea}}(t)$ from slow Noether sea thermodynamic relaxation produces a dynamical dark-energy signature testable against supernova and BAO data.
+The baseline energy density of the Noether sea ($u_{\text{sea}}$) acts as an effective cosmological constant or dark energy. Its contribution enters the effective Hubble-like term $H(t)$. If the Noether sea has internal equation of state is $w_{\text{sea}} \approx -1$ (the Noether braids in the Noether sea resist compression, exerting negative effective pressure), the late-time acceleration of the effective expansion follows directly. Any evolution of $w_{\text{sea}}(t)$ from slow Noether sea thermodynamic relaxation produces a dynamical dark-energy signature testable against supernova and BAO data.
 
 ---
 
@@ -246,7 +246,7 @@ The growth module provides:
 
 This is an inference interface, not a direct ontology map. ACT/Planck-style CMB-lensing reconstructions first supply a lensing data product, compactly represented by $C_L^{\phi\phi}$. A valid medium-and-assembly growth model must then produce the same $C_L^{\phi\phi}$ from the same matter power spectrum, growth history, neutral-assembly loading, and Noether sea response variables used for galaxy clustering and low-redshift weak lensing. If the CMB-lensing fit requires one growth record while late-time shear or cluster offsets require another, the structure-formation branch has split the shared cosmology state rather than closed it.
 
-The kinematic Sunyaev-Zeldovich effect adds a force-law profile test to the same growth family. The retained observable is not a visual picture of dark matter, but the mean pairwise velocity of massive halos inferred from small CMB temperature shifts produced when CMB photons scatter from moving cluster electrons. In the ACT/SDSS comparison reported by Gallardo and collaborators, the fitted large-scale halo acceleration obeys $g(r)\propto r^{-n}$ with $n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales ([arXiv:2604.14327](https://arxiv.org/abs/2604.14327)).
+The kinematic Sunyaev-Zeldovich effect adds a force-law profile test to the same growth family. The retained observable is not a visual picture of dark matter, but the mean pairwise velocity of massive halos inferred from small CMB temperature shifts produced when CMB photons scatter from moving cluster electrons. In the retained ACT/SDSS-style halo-pair comparison, the fitted large-scale halo acceleration obeys $g(r)\propto r^{-n}$ with $n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales.
 
 For a candidate medium-and-assembly history $\theta$, define the projected halo-pair acceleration profile over that separation window by
 $$

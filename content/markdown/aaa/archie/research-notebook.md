@@ -8,6 +8,75 @@ Each dated section should preserve the reasoning of the moment closely enough th
 
 Entries are maintained in descending date order, with the newest `##` section first.
 
+## 2026-06-22: Noether Braid and General Tri-Binary Search Space
+
+Relevant files:
+
+- [Noether Braid](../noether-braid/noether-braid.md)
+- [Tri-Binary Configuration Space](../dynamics/tri-binary-configuration-space.md)
+- [Dyadic Resonance Lock](../dynamics/dyadic-resonance-lock.md)
+- [Assembly Topological Charge](../dynamics/assembly-topological-charge.md)
+
+The terminology shifted from `swarm` to `braid` because the older word suggested an unstructured collective. It described many objects in motion, but it did not carry the mathematical discipline now needed by the theory. The new word points directly at intertwined path histories, retained ordering, exchange, phase winding, and topological invariants. A Noether braid is not just a cloud of architrinos. It is a candidate six-body polarity-neutral retained branch, built from three positrinos and three electrinos, whose causal-root ledger, phase record, wake history, energy/action rows, and angular-momentum rows can be followed through delayed dynamics.
+
+The term also helps keep topology visible. A braid can be deformed without losing its identity until a fold, reconnection, branch loss, or other declared surgery event changes the retained record. That is the right mental model for assembly topological charge: the integers and signs attached to a branch should be stable under branch-preserving deformation, and should change only when the delayed dynamics force a discrete transition. In that sense, `Noether braid` is both more precise and less misleading than the previous label. It names a retained dynamical organization rather than a population metaphor.
+
+The same day also clarified that tri-binary notation must begin in the general, unordered configuration space. The raw search labels are $B_1:B_2:B_3$, not an assumed `I:M:O` hierarchy. For each retained binary row $a\in\{1,2,3\}$, the minimal state record is
+$$
+\mathcal{T}_{3B}
+=
+\left\{
+\left(
+f_a,\,
+r_a,\,
+E_a,\,
+s_a,\,
+\phi_a,\,
+\hat{\mathbf n}_a,\,
+\mathcal{L}_a
+\right)
+\right\}_{a=1}^{3}.
+$$
+Here $f_a$ is the layer frequency or return rate, $r_a$ is the characteristic radius or retained lever arm, $E_a$ is the retained branch-energy row, $s_a=\|\mathbf{v}_a\|$ is the scalar speed or speed statistic, $\phi_a$ is the phase offset, $\hat{\mathbf n}_a$ is the plane-normal or principal-direction row, and $\mathcal{L}_a$ is the active causal-root ledger. On a circular carrier chart one has $s_a=2\pi f_a r_a$, but that identity is only a chart relation. It does not make frequency, radius, speed, energy, phase, or ledger complexity subordinate to one fixed ordering.
+
+This generalization changes the search program. Instead of asking first whether the dyadic `4:2:1` pattern, the middle-hinge offset, or another named row is correct, the solver should search the labeled but unordered domain
+$$
+\widetilde{\mathcal C}_{3B}
+=
+\left\{
+(\mathcal T_1,\mathcal T_2,\mathcal T_3)
+\right\}
+$$
+and then attach any `I:M:O` role map only after a retained branch supplies the evidence for inner, middle, and outer roles. The symmetric group $S_3$ acts on the three binary records, so repeated solutions under relabeling are not waste. They are confirmation that the search has found a symmetric sector. A quotient-sector summary may be useful later, but the raw search should not discard a row simply because a permuted copy has already appeared.
+
+The practical output of this search should be an atlas rather than a single row. Each candidate region should report the unsorted ratios
+$$
+f_1:f_2:f_3,
+\qquad
+r_1:r_2:r_3,
+\qquad
+E_1:E_2:E_3,
+\qquad
+s_1:s_2:s_3,
+$$
+along with phase offsets, plane-orientation determinant, causal-root ledgers, response-center motion, group velocity, total momentum, total angular momentum, and assembly topological charge. Stable retained branches can then be compared by energy differentials $\Delta E_{ab}=E_a-E_b$, wake-history decomposition, sea stability, and accessory-architrino capture behavior. This is the beginning of a systematic periodic-table program for the Noether braid: classify stable six-body branches by topological labels and dynamical margins, then ask which architectures can bind additional architrinos without destroying the retained core ledger.
+
+The equal-frequency possibility became important in this wider space. A candidate can satisfy
+$$
+f_1=f_2=f_3
+$$
+without requiring equal radii, equal energies, equal speeds, equal phases, or equal root ledgers. In a circular comparison chart, different lever arms at common frequency give
+$$
+s_1:s_2:s_3
+=
+r_1:r_2:r_3
+$$
+when the same angular-frequency convention is used. Thus an equal-frequency branch can naturally contain one or more super-field-speed carrier rows if a retained lever arm is large enough, while the primitive causal wake speed remains $c_f$. That is not a signal-speed violation. It is a branch-geometry statement: the source trajectory can enter regimes with additional self-hit or partner-hit roots, Jacobian sign changes, folds, and caustic behavior.
+
+This insight changes how the current candidates should be read. Dyadic locks, middle-hinge offsets, and equal-frequency rows are subfamilies of $\widetilde{\mathcal C}_{3B}$, not definitions of the tri-binary architecture. The equal-frequency row is especially valuable because it separates a common clock or return-frequency condition from the energy, radius, velocity, phase, and ledger data that may actually distinguish the three binaries. If such a branch exists, the energy differentials and speed regimes would be consequences of branch energy placement and retained lever-arm geometry, not of an imposed frequency hierarchy.
+
+The milestone is therefore both terminological and mathematical. `Noether braid` gives the six-body retained branch a name that matches the topology the proof program needs, while the generalized tri-binary configuration space prevents the notation from prejudging the solution. The next honest work is systematic search: scan broad $B_1:B_2:B_3$ configurations, preserve $S_3$ repeats, identify stable retained branches in a sea of like assemblies, compare their energy differentials, and then test where accessory architrinos can attach.
+
 ## 2026-06-21: Causal Delay Feedback Visualization App
 
 Relevant files:
@@ -31,13 +100,13 @@ This milestone matters because it turns causal-delay language into an inspectabl
 Relevant files:
 
 - [Photon and Polarization Visualization App](../../../../photon.html)
-- [Ideal Noether Swarm Lorentz Geometry App](../../../../ideal-swarm.html)
+- [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-braid.html)
 - [Animator](../../../../animator.html)
 - [Causal Delay Feedback](../../../../causal-delay-feedback.html)
 
 The central solver workstream became the shared engineering and validation target for architrino motion, causal roots, delayed hits, and path-history geometry. Instead of letting each app carry an isolated solver grammar, the work defines a common request and response contract: model identity, equation or force-law version, constants, branch policy, precision path, path-history streams, indexed readback, diagnostics, and app adapters.
 
-This milestone matters because it changes app computation from local demonstration logic into a migration path. Photon, Ideal Swarm, Animator, and Causal Delay Feedback can ask the same solver bridge for causal-root, delayed-hit, geometry, dataset, and diagnostic outputs while their interfaces remain presentation surfaces. That separation is important: a visual surface can be solver-derived without pretending the solver has already closed every proof obligation behind the picture.
+This milestone matters because it changes app computation from local demonstration logic into a migration path. Photon, Ideal Braid, Animator, and Causal Delay Feedback can ask the same solver bridge for causal-root, delayed-hit, geometry, dataset, and diagnostic outputs while their interfaces remain presentation surfaces. That separation is important: a visual surface can be solver-derived without pretending the solver has already closed every proof obligation behind the picture.
 
 The benchmark side also became more disciplined. The widened emission-shell v0 stress envelope preserved oracle equality under larger replay pressure and introduced a threshold check that is not merely wall-clock timing. The result is developer-test readiness, not default replacement. In notebook terms, the accomplishment is the discipline: centralize the geometry solver, measure the bridge under stress, and keep opt-in strategies opt-in until breadth and parity evidence justify promotion.
 
@@ -46,8 +115,8 @@ The benchmark side also became more disciplined. The widened emission-shell v0 s
 Relevant files:
 
 - [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md)
-- [Kinetic and Potential Energy](../dynamics/energy.md)
-- [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md)
+- [Energy](../dynamics/energy.md)
+- [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md)
 
 The angular-momentum and spin proof route gained a sharper reduced candidate target around the tri-binary middle-hinge family. The work used canonical `(I,M,O)` frequency-triplet notation to compare the $(f+2,f,f-1)$ middle-hinge family against symmetric, dyadic, and finite integer-lock controls. The point was not to accept a retained branch; it was to narrow the proof burden by making the candidate and its competitors machine-readable.
 
@@ -65,7 +134,7 @@ Relevant files:
 - [Assessment table](../validation/closure-scorecard.md#assessment-table)
 - [2026-06-20 assessment notes](../validation/closure-scorecard.md#2026-06-20-assessment-notes)
 
-The strongest rows show where the corpus has become unusually coherent. Axiom+Notation and Theory Architecture+Ontic Logic both score `99`, Coverage+Interface Readiness scores `96`, Falsification Gates scores `95`, Master EOM+Local Dynamics scores `80`, and Internal Constituent Dynamics scores `78`. Those numbers reflect stable canonical language, broad interface coverage, explicit failure conditions, stronger delayed path-history dynamics, and a more developed nested shell swarm and Noether swarm account.
+The strongest rows show where the corpus has become unusually coherent. Axiom+Notation and Theory Architecture+Ontic Logic both score `99`, Coverage+Interface Readiness scores `96`, Falsification Gates scores `95`, Master EOM+Local Dynamics scores `80`, and Internal Constituent Dynamics scores `78`. Those numbers reflect stable canonical language, broad interface coverage, explicit failure conditions, stronger delayed path-history dynamics, and a more developed nested shell braid and Noether braid account.
 
 The same update keeps the main closure burdens visible. Empirical Precision+Benchmark Validation is `39` with $\Delta=-59$, Formula+Coefficient Recovery is `48` with $\Delta=-48$, Parameter+Scale Closure is `42` with $\Delta=-28$, Potential+Action Closure and Conservation+Invariant Closure are both `71` with $\Delta=-27$, and UV/IR+Regularization Completion is `49` with $\Delta=-21$. The scorecard therefore refuses to let architecture substitute for a retained native record that derives central constants, Lorentz/PPN coefficients, photon-channel coefficients, Born/Bell measures, Standard Model mass and mixing values, radiation benchmarks, and shared cosmology residual fits.
 
@@ -126,9 +195,9 @@ Relevant files:
 - [Quantum Summary](../quantum/quantum-summary.md)
 - [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md)
 
-The standalone [Photon and Polarization Visualization App](../../../../photon.html) became the workbench for one simple photon idea: a photon-like packet might be modeled as two flat Noether swarms moving together along $x$. The trailing swarm rotates counter-clockwise, the leading swarm rotates clockwise, and the app shows both a face-on view for inspection and a side view closer to the actual geometry.
+The standalone [Photon and Polarization Visualization App](../../../../photon.html) became the workbench for one simple photon idea: a photon-like packet might be modeled as two flat Noether braids moving together along $x$. The trailing braid rotates counter-clockwise, the leading braid rotates clockwise, and the app shows both a face-on view for inspection and a side view closer to the actual geometry.
 
-The app lets the reader change the candidate instead of only looking at a picture. Each swarm has `I`, `M`, and `O` binaries with enable switches, frequency, radius, and phase controls. The $\Delta x$ control changes the gap between the two swarms in the side view, while the Virtual Observer controls choose the $(x,y,z)$ point where the app calculates the displayed electric-field readout.
+The app lets the reader change the candidate instead of only looking at a picture. Each braid has `I`, `M`, and `O` binaries with enable switches, frequency, radius, and phase controls. The $\Delta x$ control changes the gap between the two braids in the side view, while the Virtual Observer controls choose the $(x,y,z)$ point where the app calculates the displayed electric-field readout.
 
 That electric-field readout is not hand-drawn. The runtime sums delayed contributions from the active architrinos, finds causal roots, weights them by the delay Jacobian, and reconstructs the transverse $\mathbf E$ signal at the Virtual Observer. The separate $\mathbf B$ graph is omitted because, in the plane-wave comparison case, $\mathbf B$ follows from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$.
 
@@ -136,20 +205,20 @@ The polarization panel asks what kind of field the candidate actually produces. 
 
 The supporting documents keep that boundary clear. [Photon Guide](photon-guide.md) explains how to use the app. [Mode Taxonomy](../reactions/mode-taxonomy.md), [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md), [Quantum Summary](../quantum/quantum-summary.md), and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) state what still has to be recovered: stable transverse behavior, polarization, helicity, analyzer response, and no free longitudinal photon mode.
 
-## 2026-06-10: Ideal Noether Swarm Lorentz Geometry App
+## 2026-06-10: Ideal Noether Braid Lorentz Geometry App
 
 Relevant files:
 
-- [Ideal Noether Swarm Lorentz Geometry App](../../../../ideal-swarm.html)
-- [Ideal Swarm Guide](ideal-swarm-guide.md)
+- [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-braid.html)
+- [Ideal Braid Guide](ideal-braid-guide.md)
 - [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
 
-The standalone [Ideal Noether Swarm Lorentz Geometry App](../../../../ideal-swarm.html) became the interactive inspection surface for the Noether swarm Lorentz-geometry lesson built around an oblate spheroidal envelope. Its purpose is to make one candidate Noether swarm deformation concrete: a nested swarm is shown inside a velocity-dependent envelope, the user adjusts $\beta=v/c_f$, and the app ties the visible flattening to $\gamma$, $\xi=R_{\parallel}/R_{\perp}$, relative time, relative length, and the normalized center-of-mass energy ledger. The controls also keep the lesson inspectable rather than merely illustrative: paths, surface, axes, orbit scale, cycle speed, and markdown overlays let the reader compare the moving geometry with the equations on the same screen.
+The standalone [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-braid.html) became the interactive inspection surface for the Noether braid Lorentz-geometry lesson built around an oblate spheroidal envelope. Its purpose is to make one candidate Noether braid deformation concrete: a nested braid is shown inside a velocity-dependent envelope, the user adjusts $\beta=v/c_f$, and the app ties the visible flattening to $\gamma$, $\xi=R_{\parallel}/R_{\perp}$, relative time, relative length, and the normalized center-of-mass energy ledger. The controls also keep the lesson inspectable rather than merely illustrative: paths, surface, axes, orbit scale, cycle speed, and markdown overlays let the reader compare the moving geometry with the equations on the same screen.
 
-The app deliberately does not claim to prove Lorentz kinematics from Noether swarm dynamics. It records the target geometry in a form that can be checked visually and algebraically: in the zero-extra-scale lesson case, the displayed oblate spheroidal envelope satisfies $R_{\parallel}=R_{\perp}/\gamma$ and $\xi=1/\gamma$. That makes the Lorentz factor more than a formula in a side panel; it becomes the aspect ratio of the displayed envelope. The app is therefore a dictionary between the formula, the return-cycle picture, and the geometry that a later branch-ledger derivation would have to recover.
+The app deliberately does not claim to prove Lorentz kinematics from Noether braid dynamics. It records the target geometry in a form that can be checked visually and algebraically: in the zero-extra-scale lesson case, the displayed oblate spheroidal envelope satisfies $R_{\parallel}=R_{\perp}/\gamma$ and $\xi=1/\gamma$. That makes the Lorentz factor more than a formula in a side panel; it becomes the aspect ratio of the displayed envelope. The app is therefore a dictionary between the formula, the return-cycle picture, and the geometry that a later branch-ledger derivation would have to recover.
 
-The three supporting documents divide the burden cleanly. [Ideal Swarm Guide](ideal-swarm-guide.md) is the app-facing explanation: it defines the lesson purpose, the control meanings, the geometry dictionary, the energy and mass-equivalent readouts, and the claim level of the surface. [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) gives the reader-facing bridge: the continuous observer-level Lorentz function is not replaced by a step function; the discrete object is the admissible material return-cycle branch whose longitudinal and transverse cycles close to the same period. [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) carries the deeper proof program, where the Lorentz laws must be derived from delayed substrate dynamics, stable translating branches, closure residuals, and bounded preferred-frame leakage.
+The three supporting documents divide the burden cleanly. [Ideal Braid Guide](ideal-braid-guide.md) is the app-facing explanation: it defines the lesson purpose, the control meanings, the geometry dictionary, the energy and mass-equivalent readouts, and the claim level of the surface. [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) gives the reader-facing bridge: the continuous observer-level Lorentz function is not replaced by a step function; the discrete object is the admissible material return-cycle branch whose longitudinal and transverse cycles close to the same period. [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) carries the deeper proof program, where the Lorentz laws must be derived from delayed substrate dynamics, stable translating branches, closure residuals, and bounded preferred-frame leakage.
 
 Together these four surfaces turned the Lorentz lesson into a governed research object. The app provides the visible target, the guide explains how to read it, the bridge names the branch-indexed mechanism, and the kinematics chapter states the mathematical work still required. That separation matters because it lets the project use the app pedagogically without mistaking a visualization for a completed theorem.
 
@@ -187,9 +256,9 @@ so the late comparison laws are no longer hiding qualitative path-history terms 
 
 This milestone also removed the last major vacuity risks. The chapter now contains an explicit symmetric planar seed packet in Jacobi variables, a delayed seed-margin persistence bridge from Coulomb-like proxy geometry to the exact delayed branch sums, and a seed-centered realization of the explicit convex tame core. That means the closed convex fixed-point domain is no longer only an abstract target: it is anchored to one concrete physical three-body seed configuration with positive leading margins and explicit slack.
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$ theory development, this milestone matters because it upgrades the master equation from a law written mainly for pair interactions into a realistic candidate law for composite architrino assemblies. The whole theory depends on the claim that stable particles, nested binaries, and Noether swarm-scale structures can survive the full delayed path-history dynamics rather than only reduced caricatures. This new planar three-body bridge is the first place where that claim is written in a mathematically serious many-body form. Delay hypergraphs, ancestry complexes, bounded caustic transit, and multi-channel recapture are exactly the structures needed once several interacting delayed source families are present at once. In other words, this is the first proof-program layer that begins to look like the delayed geometry actually required for emergent composite assemblies, rather than just for one protected binary toy model.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ theory development, this milestone matters because it upgrades the master equation from a law written mainly for pair interactions into a realistic candidate law for composite architrino assemblies. The whole theory depends on the claim that stable particles, nested binaries, and Noether braid-scale structures can survive the full delayed path-history dynamics rather than only reduced caricatures. This new planar three-body bridge is the first place where that claim is written in a mathematically serious many-body form. Delay hypergraphs, ancestry complexes, bounded caustic transit, and multi-channel recapture are exactly the structures needed once several interacting delayed source families are present at once. In other words, this is the first proof-program layer that begins to look like the delayed geometry actually required for emergent composite assemblies, rather than just for one protected binary toy model.
 
-It also sharpens the status of the master-equation program itself. The central promise of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that apparently singular or chaotic delayed effects, such as self-hit amplification, fold events, and long path-history memory, can still organize into stable physical assemblies with finite effective behavior. This chapter now shows, at the theorem-program level, how that could happen in the first genuine many-body setting: caustic spikes become finite impulses, deep-past memory becomes a finite ancestry count, and candidate scattering channels are forced into a finite recapture competition. That is directly relevant to the broader theory because the same mechanisms are supposed to underwrite the existence of higher assemblies, shielding, and eventually the dynamics of Noether swarm-like objects. The next phase is therefore no longer to invent more scaffold, but to prove that these delayed many-body control mechanisms really hold inside the master equation.
+It also sharpens the status of the master-equation program itself. The central promise of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that apparently singular or chaotic delayed effects, such as self-hit amplification, fold events, and long path-history memory, can still organize into stable physical assemblies with finite effective behavior. This chapter now shows, at the theorem-program level, how that could happen in the first genuine many-body setting: caustic spikes become finite impulses, deep-past memory becomes a finite ancestry count, and candidate scattering channels are forced into a finite recapture competition. That is directly relevant to the broader theory because the same mechanisms are supposed to underwrite the existence of higher assemblies, shielding, and eventually the dynamics of Noether braid-like objects. The next phase is therefore no longer to invent more scaffold, but to prove that these delayed many-body control mechanisms really hold inside the master equation.
 
 ## 2026-03-16: 1D Collinear Breather Scaffold Reaches Fixed-Point Closure
 
@@ -261,7 +330,7 @@ So even if one later tests the dyadic candidate $(m,n)=(2,4)$, the frequency loc
 
 The conceptual gain is that the note now separates three different burdens cleanly. Kinematics gives the exact identity above. Integer phase closure gives commensurate frequencies. The cancellation principle is then the extra ingredient that might select one preferred integer lock from the commensurate lattice.
 
-This mattered for the larger program because the nested shell swarm has to satisfy several closure burdens at once: frequency hierarchy, horizon behavior, radiation suppression, and eventually an effective stress-tensor story for higher assemblies. The revised note now reads as a live research surface with explicit assumptions and explicit non-assumptions.
+This mattered for the larger program because the nested shell braid has to satisfy several closure burdens at once: frequency hierarchy, horizon behavior, radiation suppression, and eventually an effective stress-tensor story for higher assemblies. The revised note now reads as a live research surface with explicit assumptions and explicit non-assumptions.
 
 ## 2026-03-12: Causal Jacobian Correction
 
@@ -349,12 +418,12 @@ The note gives a brief working taxonomy. `Scene-Index` is the structural organiz
 
 ## 2026-03-07 Hyde Periodic Table
 
-The Hyde periodic table became a meaningful part of the project’s reader-facing structure. The repo now includes both a dedicated [Hyde periodic-table scene config](../../../scenes/chemistry/hyde_periodic_table_scene.json) and a supporting [Hyde analysis note](../nuclear-atomic/hyde-info.md).
+The Hyde periodic table became a meaningful part of the project’s reader-facing structure. The repo now includes both a dedicated [Hyde periodic-table scene config](../../../scenes/chemistry/hyde_periodic_table_scene.json) and a supporting [Hyde analysis note](../nuclear-atomic/hyde-periodic-table.md).
 
 Relevant files:
 
-- [Hyde geometry and periodic structure](../nuclear-atomic/hyde-info.md#how-the-hyde-geometry-encodes-periodic-structure)
-- [Hyde working hypotheses](../nuclear-atomic/hyde-info.md)
+- [Hyde geometry and periodic structure](../nuclear-atomic/hyde-periodic-table.md#how-the-hyde-geometry-encodes-periodic-structure)
+- [Hyde working hypotheses](../nuclear-atomic/hyde-periodic-table.md)
 - [Periodic-table navigation and controls](navigation-and-controls.md#periodic-table-scene)
 
 What matters about the Hyde form is not only its historical novelty. It is a spiral layout that works well for intuitive thinkers because it preserves a near-continuous path through atomic number while making shell progression and family resemblance visually legible in one sweep. In the current writeup, the Hyde geometry is treated as a structural representation that reduces the topological breaks of the detached rectangular table and makes periodic recurrence feel spatially continuous rather than block-fragmented.

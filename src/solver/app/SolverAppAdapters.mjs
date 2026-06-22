@@ -2,7 +2,7 @@ export const SOLVER_APP_ADAPTERS_VERSION = "solver-app-adapters.v1";
 
 const DEFAULT_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const DEFAULT_STREAM_TARGET = "caller-buffer";
-const KNOWN_APP_IDS = new Set(["animator", "photon", "ideal-swarm", "causal-delay-feedback"]);
+const KNOWN_APP_IDS = new Set(["animator", "photon", "ideal-braid", "causal-delay-feedback"]);
 const KNOWN_RUN_KINDS = new Set([
   "motionSimulation",
   "pathHistory",
@@ -19,7 +19,7 @@ const DEFAULT_CONFIG_VERSION_BY_RUN_KIND = Object.freeze({
   pathHistory: "path-history-adapter.v1",
   causalRoots: "photon-causal-roots-adapter.v1",
   phaseDiagnostics: "photon-phase-diagnostics-adapter.v1",
-  delayedHits: "ideal-swarm-delayed-hits-adapter.v1",
+  delayedHits: "ideal-braid-delayed-hits-adapter.v1",
   sharedGeometry: "shared-geometry-adapter.v1",
   appPlayback: "animator-app-playback-adapter.v1",
   pairInteraction: "causal-delay-feedback-pair-interaction-adapter.v1",
@@ -97,33 +97,33 @@ export function createPhotonPhaseDiagnosticsRunRequest(input) {
   });
 }
 
-export function createIdealSwarmDelayedHitsRunRequest(input) {
-  requireObject(input, "ideal swarm delayed-hit adapter input");
+export function createIdealBraidDelayedHitsRunRequest(input) {
+  requireObject(input, "ideal braid delayed-hit adapter input");
   return createSolverRunRequest({
     ...input,
-    appId: "ideal-swarm",
+    appId: "ideal-braid",
     runKind: "delayedHits",
     claimLevel: input.claimLevel ?? "migration-parity",
-    configVersion: input.configVersion ?? "ideal-swarm-delayed-hits-adapter.v1",
+    configVersion: input.configVersion ?? "ideal-braid-delayed-hits-adapter.v1",
     config: {
-      appId: "ideal-swarm",
-      ...cloneRootRequestConfig(input, "ideal swarm delayed-hit adapter input", {
+      appId: "ideal-braid",
+      ...cloneRootRequestConfig(input, "ideal braid delayed-hit adapter input", {
         allowCircularSource: true,
       }),
     },
   });
 }
 
-export function createIdealSwarmSharedGeometryRunRequest(input) {
-  requireObject(input, "ideal swarm shared-geometry adapter input");
+export function createIdealBraidSharedGeometryRunRequest(input) {
+  requireObject(input, "ideal braid shared-geometry adapter input");
   return createSolverRunRequest({
     ...input,
-    appId: "ideal-swarm",
+    appId: "ideal-braid",
     runKind: "sharedGeometry",
     claimLevel: input.claimLevel ?? "migration-parity",
-    configVersion: input.configVersion ?? "ideal-swarm-shared-geometry-adapter.v1",
+    configVersion: input.configVersion ?? "ideal-braid-shared-geometry-adapter.v1",
     config: {
-      appId: "ideal-swarm",
+      appId: "ideal-braid",
       geometryRequest: cloneRequiredObject(input.geometryRequest, "geometryRequest"),
     },
   });

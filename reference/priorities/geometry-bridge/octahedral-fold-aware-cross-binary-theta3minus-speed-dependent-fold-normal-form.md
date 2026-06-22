@@ -315,7 +315,7 @@ Once this row proves $G<0$ and $D<0$ through the speed-dependent collar, the com
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form.mjs). It emits:
 
 - the speed-dependent $\theta_{3-}(\nu)$ fold rows;
 - sampled normal-form constants $F_\theta$, $F_{\delta\delta}$, $B_f$, $\alpha$, $\beta$, and $L$;
@@ -323,4 +323,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - the fixed-speed $D=G-yG_y$ transport identity;
 - explicit non-interval, non-retention, and non-overclaim boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form.test.js) validates schema, no-fixed-speed-window discipline, moving fold endpoint behavior, sampled $L<0$, sampled moving-collar $G,D<0$, root-signature preservation, open interval boundary, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form.test.js) validates schema, no-fixed-speed-window discipline, moving fold endpoint behavior, sampled $L<0$, sampled moving-collar $G,D<0$, root-signature preservation, open interval boundary, overclaim rejection, and CLI write/validate behavior.

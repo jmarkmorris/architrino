@@ -9,7 +9,7 @@ import { classifySolverBaselineResponse } from "./SolverBaselineComparison.mjs";
 
 export const SOLVER_APP_BRIDGE_API_VERSION = "solver-app-bridge.v1";
 
-const KNOWN_APP_IDS = ["animator", "photon", "ideal-swarm", "causal-delay-feedback"];
+const KNOWN_APP_IDS = ["animator", "photon", "ideal-braid", "causal-delay-feedback"];
 const DEFAULT_PRECISION_PATHS = [
   "auto",
   "scaled_f64_fast",
@@ -1346,7 +1346,7 @@ function createCapabilities(hasWasmModuleFactory) {
           runKinds: ["causalRoots", "phaseDiagnostics", "pathHistory", "sharedGeometry", "validationReplay"],
         },
         {
-          appId: "ideal-swarm",
+          appId: "ideal-braid",
           runKinds: ["delayedHits", "pathHistory", "sharedGeometry", "validationReplay"],
         },
         {

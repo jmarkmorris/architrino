@@ -896,8 +896,8 @@
       ]
     },
     {
-      "key": "pro-noether-swarm",
-      "title": "Pro Noether swarm",
+      "key": "pro-noether-braid",
+      "title": "Pro Noether braid",
       "borderColor": "purple",
       "lines": [
         {
@@ -912,14 +912,14 @@
         },
         {
           "type": "literal",
-          "text": "Swarm",
+          "text": "Braid",
           "color": "white"
         }
       ]
     },
     {
-      "key": "anti-noether-swarm",
-      "title": "Anti Noether swarm",
+      "key": "anti-noether-braid",
+      "title": "Anti Noether braid",
       "borderColor": "purple",
       "lines": [
         {
@@ -934,14 +934,14 @@
         },
         {
           "type": "literal",
-          "text": "Swarm",
+          "text": "Braid",
           "color": "white"
         }
       ]
     },
     {
-      "key": "pro-noether-swarm-glyph",
-      "title": "Pro Noether swarm glyph",
+      "key": "pro-noether-braid-glyph",
+      "title": "Pro Noether braid glyph",
       "type": "binary-glyph",
       "borderColor": "purple",
       "binaryGlyph": {
@@ -1053,8 +1053,8 @@
       }
     },
     {
-      "key": "anti-noether-swarm-glyph",
-      "title": "Anti Noether swarm glyph",
+      "key": "anti-noether-braid-glyph",
+      "title": "Anti Noether braid glyph",
       "type": "binary-glyph",
       "borderColor": "purple",
       "binaryGlyph": {
@@ -1167,7 +1167,7 @@
     },
     {
       "key": "pro-uni-binary",
-      "title": "Pro Shell Swarm",
+      "title": "Pro Shell Braid",
       "borderColor": "purple",
       "lines": [
         {
@@ -1182,14 +1182,14 @@
         },
         {
           "type": "literal",
-          "text": "Swarm",
+          "text": "Braid",
           "color": "white"
         }
       ]
     },
     {
       "key": "anti-uni-binary",
-      "title": "Anti Shell Swarm",
+      "title": "Anti Shell Braid",
       "borderColor": "purple",
       "lines": [
         {
@@ -1204,14 +1204,14 @@
         },
         {
           "type": "literal",
-          "text": "Swarm",
+          "text": "Braid",
           "color": "white"
         }
       ]
     },
     {
       "key": "pro-bi-binary",
-      "title": "Pro Nested Shell Swarm",
+      "title": "Pro Nested Shell Braid",
       "borderColor": "purple",
       "lines": [
         {
@@ -1226,14 +1226,14 @@
         },
         {
           "type": "literal",
-          "text": "Shell Swarm",
+          "text": "Shell Braid",
           "color": "white"
         }
       ]
     },
     {
       "key": "anti-bi-binary",
-      "title": "Anti Nested Shell Swarm",
+      "title": "Anti Nested Shell Braid",
       "borderColor": "purple",
       "lines": [
         {
@@ -1248,7 +1248,7 @@
         },
         {
           "type": "literal",
-          "text": "Shell Swarm",
+          "text": "Shell Braid",
           "color": "white"
         }
       ]

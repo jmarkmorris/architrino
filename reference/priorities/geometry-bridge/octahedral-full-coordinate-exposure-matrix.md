@@ -269,7 +269,7 @@ Thus the geometry bridge has split a former ambiguity into two different mathema
 
 ## Executable Diagnostic
 
-The executable diagnostic [octahedral-coordinate-exposure-matrix.mjs](../../../scripts/neutral-swarm/octahedral-coordinate-exposure-matrix.mjs) emits the nine-column matrix from the certified root-ledger helpers. It includes:
+The executable diagnostic [octahedral-coordinate-exposure-matrix.mjs](../../../scripts/neutral-braid/octahedral-coordinate-exposure-matrix.mjs) emits the nine-column matrix from the certified root-ledger helpers. It includes:
 
 - delayed endpoint transport;
 - source tangent transport;
@@ -301,7 +301,7 @@ D_{xy}^{\mathrm{coord}}Z_{\mathrm{oct}}^{ab}
 \end{pmatrix}.
 $$
 
-The companion test [neutral-swarm-octahedral-coordinate-exposure-matrix.test.js](../../../tests/neutral-swarm-octahedral-coordinate-exposure-matrix.test.js) checks the schema, all nine columns, all finite-difference comparisons, the distinction from the fixed-ledger trace probe, and the non-retention verdict.
+The companion test [neutral-braid-octahedral-coordinate-exposure-matrix.test.js](../../../tests/neutral-braid-octahedral-coordinate-exposure-matrix.test.js) checks the schema, all nine columns, all finite-difference comparisons, the distinction from the fixed-ledger trace probe, and the non-retention verdict.
 
 ## Retention Verdict
 

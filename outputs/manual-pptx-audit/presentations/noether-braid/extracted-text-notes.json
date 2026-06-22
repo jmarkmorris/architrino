@@ -1,0 +1,2272 @@
+[
+  {
+    "slide": 1,
+    "part": "ppt/slides/slide1.xml",
+    "title_guess": "Noether Braids",
+    "text": [
+      "Noether Braids"
+    ],
+    "blocks": [
+      {
+        "name": "TextBox 1",
+        "placeholder": null,
+        "text": [
+          "Noether Braids"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 2,
+    "part": "ppt/slides/slide2.xml",
+    "title_guess": "Binary Capture",
+    "text": [
+      "Binary Capture",
+      "Let’s say a binary axis can not be transited by the orbital of a captured binary.",
+      "At high energy, binaries can capture each other, i.e., each of their orbital axis pierce the orbit of the other.",
+      "When di-binaries form, there may be certain environments where they are semi stable assemblies.",
+      "Tri binary assemblies are very stable. They are the nucleus of all standard model particles including spacetime.",
+      "When outer binaries decay, the resulting di-binary and binary assemblies are not stable and are highly reactive.",
+      "+",
+      "−",
+      "−",
+      "+",
+      "−",
+      "+"
+    ],
+    "blocks": [
+      {
+        "name": "Rectangle 111",
+        "placeholder": null,
+        "text": [
+          "Binary Capture"
+        ]
+      },
+      {
+        "name": "TextBox 176",
+        "placeholder": null,
+        "text": [
+          "Let’s say a binary axis can not be transited by the orbital of a captured binary.",
+          "At high energy, binaries can capture each other, i.e., each of their orbital axis pierce the orbit of the other.",
+          "When di-binaries form, there may be certain environments where they are semi stable assemblies.",
+          "Tri binary assemblies are very stable. They are the nucleus of all standard model particles including spacetime.",
+          "When outer binaries decay, the resulting di-binary and binary assemblies are not stable and are highly reactive."
+        ]
+      },
+      {
+        "name": "Oval 88",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 87",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 134",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 136",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 138",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 140",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 3,
+    "part": "ppt/slides/slide3.xml",
+    "title_guess": "Noether Braid Generations",
+    "text": [
+      "Noether Braid Generations",
+      "J Mark Morris",
+      "−",
+      "+",
+      "−",
+      "+",
+      "−",
+      "+",
+      "Structure Architecture",
+      "6 : Total immutable point potentials",
+      "3 : electrinos at -e/6",
+      "3 : positrinos at +e/6",
+      "0 : Personality point potentials",
+      "1 : Generation I Noether energy core",
+      "Provides 3 dimensions of stability/containment",
+      "Implements SU(3) and the strong force",
+      "Spin determines chirality of the structure",
+      "3 : orbiting electrino : positrino binaries",
+      "binaries coupled at different energy scales",
+      "binaries tend to orthogonal at v << c.",
+      "Structure become increasingly oblate with velocity.",
+      "Gen II and Gen III binary energy shielding",
+      "Transacts energy in h-bar units",
+      "Conserves angular momentum in 3D",
+      "Auto synchronizes binary energy (Koide?)",
+      "Implements stretchy ruler, variable clock",
+      "Is an ideal black body",
+      "An essential emergent building block for the universe.",
+      "2D representations of coupled binariesat different energy scales.",
+      "−",
+      "+",
+      "+",
+      "−",
+      "Binary",
+      "I",
+      "II",
+      "III",
+      "Energy",
+      "EI << EII",
+      "EII << EIII",
+      "EIII",
+      "Frequency",
+      "fI << fII",
+      "fII << fIII",
+      "fIII",
+      "Radius",
+      "rI >> rII",
+      "rII >> rIII",
+      "rIII",
+      "KE",
+      "L",
+      "M",
+      "H",
+      "PE",
+      "H",
+      "M",
+      "L",
+      "+",
+      "−",
+      "Generation II Fermion Core",
+      "II",
+      "III",
+      "Generation III Fermion Core",
+      "III",
+      "Generation I Fermion Core",
+      "I",
+      "II",
+      "III"
+    ],
+    "blocks": [
+      {
+        "name": "Title 4",
+        "placeholder": "title",
+        "text": [
+          "Noether Braid Generations"
+        ]
+      },
+      {
+        "name": "Footer Placeholder 3",
+        "placeholder": "ftr",
+        "text": [
+          "J Mark Morris"
+        ]
+      },
+      {
+        "name": "Oval 168",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 169",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 170",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 171",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 172",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 173",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "TextBox 53",
+        "placeholder": null,
+        "text": [
+          "Structure Architecture",
+          "6 : Total immutable point potentials",
+          "3 : electrinos at -e/6",
+          "3 : positrinos at +e/6",
+          "0 : Personality point potentials",
+          "1 : Generation I Noether energy core",
+          "Provides 3 dimensions of stability/containment",
+          "Implements SU(3) and the strong force",
+          "Spin determines chirality of the structure",
+          "3 : orbiting electrino : positrino binaries",
+          "binaries coupled at different energy scales",
+          "binaries tend to orthogonal at v << c.",
+          "Structure become increasingly oblate with velocity.",
+          "Gen II and Gen III binary energy shielding",
+          "Transacts energy in h-bar units",
+          "Conserves angular momentum in 3D",
+          "Auto synchronizes binary energy (Koide?)",
+          "Implements stretchy ruler, variable clock",
+          "Is an ideal black body",
+          "An essential emergent building block for the universe."
+        ]
+      },
+      {
+        "name": "TextBox 54",
+        "placeholder": null,
+        "text": [
+          "2D representations of coupled binariesat different energy scales."
+        ]
+      },
+      {
+        "name": "Oval 57",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 58",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 60",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 61",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 74",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 75",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "TextBox 11",
+        "placeholder": null,
+        "text": [
+          "Generation II Fermion Core"
+        ]
+      },
+      {
+        "name": "TextBox 92",
+        "placeholder": null,
+        "text": [
+          "II"
+        ]
+      },
+      {
+        "name": "TextBox 93",
+        "placeholder": null,
+        "text": [
+          "III"
+        ]
+      },
+      {
+        "name": "TextBox 7",
+        "placeholder": null,
+        "text": [
+          "Generation III Fermion Core"
+        ]
+      },
+      {
+        "name": "TextBox 13",
+        "placeholder": null,
+        "text": [
+          "III"
+        ]
+      },
+      {
+        "name": "TextBox 15",
+        "placeholder": null,
+        "text": [
+          "Generation I Fermion Core"
+        ]
+      },
+      {
+        "name": "TextBox 16",
+        "placeholder": null,
+        "text": [
+          "I"
+        ]
+      },
+      {
+        "name": "TextBox 17",
+        "placeholder": null,
+        "text": [
+          "II"
+        ]
+      },
+      {
+        "name": "TextBox 18",
+        "placeholder": null,
+        "text": [
+          "III"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 4,
+    "part": "ppt/slides/slide4.xml",
+    "title_guess": "Tri Binaries Scale and are “Cloaked”",
+    "text": [
+      "Tri Binaries Scale and are “Cloaked”",
+      "(Superposition, Frequency, Emission = q/v)",
+      "scaling by orders of magnitude"
+    ],
+    "blocks": [
+      {
+        "name": "Title 4",
+        "placeholder": null,
+        "text": [
+          "Tri Binaries Scale and are “Cloaked”",
+          "(Superposition, Frequency, Emission = q/v)"
+        ]
+      },
+      {
+        "name": "TextBox 2",
+        "placeholder": null,
+        "text": [
+          "scaling by orders of magnitude"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 5,
+    "part": "ppt/slides/slide5.xml",
+    "title_guess": "The Noether Energy Core",
+    "text": [
+      "The Noether Energy Core",
+      "J Mark Morris",
+      "−",
+      "+",
+      "+",
+      "−",
+      "−",
+      "+",
+      "Structure Architecture",
+      "6 : Total immutable point potentials",
+      "3 : electrinos at -e/6",
+      "3 : positrinos at +e/6",
+      "0 : Personality point potentials",
+      "1 : Generation I Noether energy core",
+      "Provides 3 dimensions of stability/containment",
+      "Implements SU(3) and the strong force",
+      "Spin determines chirality of the structure",
+      "3 : orbiting electrino : positrino binaries",
+      "binaries coupled at different energy scales",
+      "binaries tend to orthogonal at v << c.",
+      "Structure become increasingly oblate with velocity.",
+      "Gen II and Gen III binary energy shielding",
+      "Transacts energy in h-bar units",
+      "Conserves angular momentum in 3D",
+      "Auto synchronizes binary energy (Koide?)",
+      "Implements stretchy ruler, variable clock",
+      "Is an ideal black body",
+      "An essential emergent building block for the universe.",
+      "2D representation of three coupled binariesat different energy scales."
+    ],
+    "blocks": [
+      {
+        "name": "Title 4",
+        "placeholder": "title",
+        "text": [
+          "The Noether Energy Core"
+        ]
+      },
+      {
+        "name": "Footer Placeholder 3",
+        "placeholder": "ftr",
+        "text": [
+          "J Mark Morris"
+        ]
+      },
+      {
+        "name": "Oval 168",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 169",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 171",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 172",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 170",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 173",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "TextBox 53",
+        "placeholder": null,
+        "text": [
+          "Structure Architecture",
+          "6 : Total immutable point potentials",
+          "3 : electrinos at -e/6",
+          "3 : positrinos at +e/6",
+          "0 : Personality point potentials",
+          "1 : Generation I Noether energy core",
+          "Provides 3 dimensions of stability/containment",
+          "Implements SU(3) and the strong force",
+          "Spin determines chirality of the structure",
+          "3 : orbiting electrino : positrino binaries",
+          "binaries coupled at different energy scales",
+          "binaries tend to orthogonal at v << c.",
+          "Structure become increasingly oblate with velocity.",
+          "Gen II and Gen III binary energy shielding",
+          "Transacts energy in h-bar units",
+          "Conserves angular momentum in 3D",
+          "Auto synchronizes binary energy (Koide?)",
+          "Implements stretchy ruler, variable clock",
+          "Is an ideal black body",
+          "An essential emergent building block for the universe."
+        ]
+      },
+      {
+        "name": "TextBox 54",
+        "placeholder": null,
+        "text": [
+          "2D representation of three coupled binariesat different energy scales."
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 6,
+    "part": "ppt/slides/slide6.xml",
+    "title_guess": "J Mark Morris",
+    "text": [
+      "J Mark Morris",
+      "Noether Braid Animation : Noether Braid Nested Tri-binary Gyroscopic Flywheel",
+      "−",
+      "+",
+      "−",
+      "+",
+      "−",
+      "+"
+    ],
+    "blocks": [
+      {
+        "name": "Footer Placeholder 3",
+        "placeholder": null,
+        "text": [
+          "J Mark Morris"
+        ]
+      },
+      {
+        "name": "TextBox 19",
+        "placeholder": null,
+        "text": [
+          "Noether Braid Animation : Noether Braid Nested Tri-binary Gyroscopic Flywheel"
+        ]
+      },
+      {
+        "name": "Oval 3",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 5",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 6",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 7",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 8",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 10",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 7,
+    "part": "ppt/slides/slide7.xml",
+    "title_guess": "J Mark Morris",
+    "text": [
+      "J Mark Morris",
+      "Important “Phases” May Occur When One of the Binaries is “Phase-Locked” at v = @",
+      "−",
+      "+",
+      "−",
+      "+",
+      "−",
+      "+",
+      "Generation I",
+      "Generation II",
+      "Generation III",
+      "Point Potential Velocity",
+      "Generation",
+      "Phase Hypothesis",
+      "I",
+      "II",
+      "III",
+      "Binary Max Curvature",
+      "?",
+      "?",
+      "max",
+      "Decay to binaries?",
+      "?",
+      "?",
+      "?",
+      "Inside a black hole",
+      ">@",
+      ">>@",
+      ">>>@",
+      "Spacetime assemblies",
+      "=@",
+      ">@",
+      ">>@",
+      "?",
+      "<@",
+      ">@",
+      ">>@",
+      "Typical Gen I fermion?",
+      "<@",
+      "=@",
+      ">@",
+      "?",
+      "<<@",
+      "<@",
+      ">@",
+      "?",
+      "<<@",
+      "<@",
+      "=@",
+      "?",
+      "<<<@",
+      "<<@",
+      "<@"
+    ],
+    "blocks": [
+      {
+        "name": "Footer Placeholder 3",
+        "placeholder": null,
+        "text": [
+          "J Mark Morris"
+        ]
+      },
+      {
+        "name": "TextBox 19",
+        "placeholder": null,
+        "text": [
+          "Important “Phases” May Occur When One of the Binaries is “Phase-Locked” at v = @"
+        ]
+      },
+      {
+        "name": "Oval 3",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 5",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 6",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 7",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 8",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 10",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "TextBox 20",
+        "placeholder": null,
+        "text": [
+          "Generation I",
+          "Generation II",
+          "Generation III"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 8,
+    "part": "ppt/slides/slide8.xml",
+    "title_guess": "J Mark Morris",
+    "text": [
+      "J Mark Morris",
+      "−",
+      "+",
+      "−",
+      "+",
+      "−",
+      "+",
+      "−",
+      "+",
+      "−",
+      "+",
+      "−",
+      "+",
+      "−",
+      "+",
+      "−",
+      "+",
+      "−",
+      "+",
+      "Low velocity Noether braid",
+      "3D fermion orientation with spin ½",
+      "Pauli exclusion principle",
+      "Fermi-Dirac statistics",
+      "Pro and anti orientations",
+      "Inertial mass = apparent energy",
+      "e.g., electrons, quarks",
+      "Velocity >= “c” Noether braid",
+      "2D boson shape, ~0 exclusion",
+      "Spin 1",
+      "Bose-Einstein statistics",
+      "e.g., photon",
+      "High velocity Noether braid",
+      "Pro and anti orientations of angular momentum vectors",
+      "Oscillating mass caused by fluctuating superposition",
+      "e.g., neutrino",
+      "Noether Braid : A Nested Tri-Binary Assembly of Point Potentials",
+      "GroupVelocity",
+      "GroupVelocity",
+      "GroupVelocity"
+    ],
+    "blocks": [
+      {
+        "name": "Footer Placeholder 3",
+        "placeholder": null,
+        "text": [
+          "J Mark Morris"
+        ]
+      },
+      {
+        "name": "Oval 26",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 27",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 28",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 29",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 30",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 31",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 65",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 66",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 67",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 68",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 69",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 70",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 85",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 86",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 87",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 88",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 89",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 90",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "TextBox 97",
+        "placeholder": null,
+        "text": [
+          "Low velocity Noether braid",
+          "3D fermion orientation with spin ½",
+          "Pauli exclusion principle",
+          "Fermi-Dirac statistics",
+          "Pro and anti orientations",
+          "Inertial mass = apparent energy",
+          "e.g., electrons, quarks"
+        ]
+      },
+      {
+        "name": "TextBox 98",
+        "placeholder": null,
+        "text": [
+          "Velocity >= “c” Noether braid",
+          "2D boson shape, ~0 exclusion",
+          "Spin 1",
+          "Bose-Einstein statistics",
+          "e.g., photon"
+        ]
+      },
+      {
+        "name": "TextBox 100",
+        "placeholder": null,
+        "text": [
+          "High velocity Noether braid",
+          "Pro and anti orientations of angular momentum vectors",
+          "Oscillating mass caused by fluctuating superposition",
+          "e.g., neutrino"
+        ]
+      },
+      {
+        "name": "Rectangle 111",
+        "placeholder": null,
+        "text": [
+          "Noether Braid : A Nested Tri-Binary Assembly of Point Potentials"
+        ]
+      },
+      {
+        "name": "Up Arrow Callout 4",
+        "placeholder": null,
+        "text": [
+          "GroupVelocity"
+        ]
+      },
+      {
+        "name": "Up Arrow Callout 5",
+        "placeholder": null,
+        "text": [
+          "GroupVelocity"
+        ]
+      },
+      {
+        "name": "Up Arrow Callout 6",
+        "placeholder": null,
+        "text": [
+          "GroupVelocity"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 9,
+    "part": "ppt/slides/slide9.xml",
+    "title_guess": "SLM",
+    "text": [
+      "SLM",
+      "SML",
+      "Distinct Angular Momentum Vector Orientation",
+      "M",
+      "S",
+      "L",
+      "M",
+      "S",
+      "L"
+    ],
+    "blocks": [
+      {
+        "name": "TextBox 25",
+        "placeholder": null,
+        "text": [
+          "SLM"
+        ]
+      },
+      {
+        "name": "TextBox 21",
+        "placeholder": null,
+        "text": [
+          "SML"
+        ]
+      },
+      {
+        "name": "Title 4",
+        "placeholder": null,
+        "text": [
+          "Distinct Angular Momentum Vector Orientation"
+        ]
+      },
+      {
+        "name": "TextBox 30",
+        "placeholder": null,
+        "text": [
+          "M"
+        ]
+      },
+      {
+        "name": "TextBox 31",
+        "placeholder": null,
+        "text": [
+          "S"
+        ]
+      },
+      {
+        "name": "TextBox 32",
+        "placeholder": null,
+        "text": [
+          "L"
+        ]
+      },
+      {
+        "name": "TextBox 33",
+        "placeholder": null,
+        "text": [
+          "M"
+        ]
+      },
+      {
+        "name": "TextBox 34",
+        "placeholder": null,
+        "text": [
+          "S"
+        ]
+      },
+      {
+        "name": "TextBox 35",
+        "placeholder": null,
+        "text": [
+          "L"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 10,
+    "part": "ppt/slides/slide10.xml",
+    "title_guess": "Tri Binary",
+    "text": [
+      "Tri Binary",
+      "Forms",
+      "Left",
+      "Right",
+      "Pro",
+      "Anti",
+      "♤",
+      "♧",
+      "♡",
+      "♢",
+      "Tri Binaries Have Four Forms",
+      "Place your virtual observer at (1,1,1) examining the angular momentum vectors of the three binaries.",
+      "Pro and anti are distinguished by the orientation of their angular momentum vectors — HML or HLM",
+      "Left or right is the orbital precession direction of the binaries.",
+      "The chart shows that tri-binaries have four geometrical variations.",
+      "Binaries scale by many orders of magnitude in energy, frequency, radius, and orbital velocity"
+    ],
+    "blocks": [
+      {
+        "name": "TextBox 887",
+        "placeholder": null,
+        "text": [
+          "♤"
+        ]
+      },
+      {
+        "name": "TextBox 876",
+        "placeholder": null,
+        "text": [
+          "♧"
+        ]
+      },
+      {
+        "name": "TextBox 866",
+        "placeholder": null,
+        "text": [
+          "♡"
+        ]
+      },
+      {
+        "name": "TextBox 855",
+        "placeholder": null,
+        "text": [
+          "♢"
+        ]
+      },
+      {
+        "name": "Title 4",
+        "placeholder": null,
+        "text": [
+          "Tri Binaries Have Four Forms"
+        ]
+      },
+      {
+        "name": "TextBox 10",
+        "placeholder": null,
+        "text": [
+          "Place your virtual observer at (1,1,1) examining the angular momentum vectors of the three binaries.",
+          "Pro and anti are distinguished by the orientation of their angular momentum vectors — HML or HLM",
+          "Left or right is the orbital precession direction of the binaries.",
+          "The chart shows that tri-binaries have four geometrical variations.",
+          "Binaries scale by many orders of magnitude in energy, frequency, radius, and orbital velocity"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 11,
+    "part": "ppt/slides/slide11.xml",
+    "title_guess": "Noether Braid’s Triply Nested Binaries with Personality Potentials",
+    "text": [
+      "Noether Braid’s Triply Nested Binaries with Personality Potentials",
+      "Various scales of energy and radii.",
+      "+",
+      "−",
+      "−",
+      "+",
+      "−",
+      "+"
+    ],
+    "blocks": [
+      {
+        "name": "Rectangle 111",
+        "placeholder": null,
+        "text": [
+          "Noether Braid’s Triply Nested Binaries with Personality Potentials"
+        ]
+      },
+      {
+        "name": "TextBox 176",
+        "placeholder": null,
+        "text": [
+          "Various scales of energy and radii."
+        ]
+      },
+      {
+        "name": "Oval 88",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 87",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 134",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 136",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      },
+      {
+        "name": "Oval 138",
+        "placeholder": null,
+        "text": [
+          "−"
+        ]
+      },
+      {
+        "name": "Oval 140",
+        "placeholder": null,
+        "text": [
+          "+"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 12,
+    "part": "ppt/slides/slide12.xml",
+    "title_guess": "Thank You",
+    "text": [
+      "Thank You",
+      "Questions?",
+      "J Mark Morris - Model of Nature"
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "ctrTitle",
+        "text": [
+          "Thank You"
+        ]
+      },
+      {
+        "name": "Subtitle 2",
+        "placeholder": "subTitle",
+        "text": [
+          "Questions?"
+        ]
+      },
+      {
+        "name": "Footer Placeholder 3",
+        "placeholder": "ftr",
+        "text": [
+          "J Mark Morris - Model of Nature"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 13,
+    "part": "ppt/slides/slide13.xml",
+    "title_guess": "Dynamics of Noether Braids",
+    "text": [
+      "Dynamics of Noether Braids",
+      "Noether Braids",
+      "Binary based assemblies transmit potential via their wave equation, i.e., the spiraling Dirac sphere streams.",
+      "The Noether braid displaces spatial volume, occupying a volume of Euclidean time and space.",
+      "The 3D space contained within a Noether braid is can only be breached if a decay occurs.",
+      "The volume displaced by a Noether braid depends on energy and group velocity.",
+      "At velocities far below field speed, Noether braids thus remain distinct from each other, in a Fermi-Dirac state.",
+      "Higgs clusters",
+      "The Noether braids that implement Einstein’s spacetime are extremely well shielded. Gen II is Higgs.",
+      "Higgs Noether braids may be so well shielded that they transmit very little energy.",
+      "Higgs Noether braids become excited by the unshielded energy emanating from standard model assemblies.",
+      "This increased energy causes the Higgs Noether braids to deflate and/or distort. (stretchy-curvy spacetime)",
+      "As standard matter becomes denser, the permeating Higgs Noether braids deflate even more.",
+      "The gradient in Noether braid energy and hence characteristics is the mechanism for gravity.",
+      "At extremes in energy standard model matter will react or decay and emerge as assemblies that are more stable at the higher, denser energies."
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "Dynamics of Noether Braids"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "Noether Braids",
+          "Binary based assemblies transmit potential via their wave equation, i.e., the spiraling Dirac sphere streams.",
+          "The Noether braid displaces spatial volume, occupying a volume of Euclidean time and space.",
+          "The 3D space contained within a Noether braid is can only be breached if a decay occurs.",
+          "The volume displaced by a Noether braid depends on energy and group velocity.",
+          "At velocities far below field speed, Noether braids thus remain distinct from each other, in a Fermi-Dirac state.",
+          "Higgs clusters",
+          "The Noether braids that implement Einstein’s spacetime are extremely well shielded. Gen II is Higgs.",
+          "Higgs Noether braids may be so well shielded that they transmit very little energy.",
+          "Higgs Noether braids become excited by the unshielded energy emanating from standard model assemblies.",
+          "This increased energy causes the Higgs Noether braids to deflate and/or distort. (stretchy-curvy spacetime)",
+          "As standard matter becomes denser, the permeating Higgs Noether braids deflate even more.",
+          "The gradient in Noether braid energy and hence characteristics is the mechanism for gravity.",
+          "At extremes in energy standard model matter will react or decay and emerge as assemblies that are more stable at the higher, denser energies."
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 14,
+    "part": "ppt/slides/slide14.xml",
+    "title_guess": "Dynamics of the Noether Braid",
+    "text": [
+      "Dynamics of the Noether Braid",
+      "As assembly group velocity increases towards local c (which approaches @),",
+      "The geometry of the Noether braid and overall assembly becomes more oblate",
+      "Transitioning towards near planar form at v = local c?",
+      "Does this map to Bose-Einstein statistics?",
+      "The magnitude of the preceding emissions transitions sharply.",
+      "What is the shape of a compressed Dirac sphere stream?",
+      "What about the closest approach and then as it continues on its group path?",
+      "These questions all remain to be pondered and simulated.",
+      "Standard model matter presents its generation I apparent energy (mass),",
+      "When standard model assemblies decay in a collider, they reveal more energy (mass) from the inner binaries",
+      "Naked generation II and III binaries appear to be highly reactive with Higgs aether assemblies.",
+      "Is there anything that can fly through a Noether braid without reacting? Through any orbital?",
+      "It would need to be extremely high velocity, perhaps greater than @, perhaps higher than the gen II or gen III binary.",
+      "My hunch is that non-shielded point potentials or assembly fragments would quickly react like we see in collider particle showers and their energy and point potentials would either become Noether braids of spacetime aether or standard model particle assemblies. It is a Monte-Carlo phase space. If that makes sense."
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "Dynamics of the Noether Braid"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "As assembly group velocity increases towards local c (which approaches @),",
+          "The geometry of the Noether braid and overall assembly becomes more oblate",
+          "Transitioning towards near planar form at v = local c?",
+          "Does this map to Bose-Einstein statistics?",
+          "The magnitude of the preceding emissions transitions sharply.",
+          "What is the shape of a compressed Dirac sphere stream?",
+          "What about the closest approach and then as it continues on its group path?",
+          "These questions all remain to be pondered and simulated.",
+          "Standard model matter presents its generation I apparent energy (mass),",
+          "When standard model assemblies decay in a collider, they reveal more energy (mass) from the inner binaries",
+          "Naked generation II and III binaries appear to be highly reactive with Higgs aether assemblies.",
+          "Is there anything that can fly through a Noether braid without reacting? Through any orbital?",
+          "It would need to be extremely high velocity, perhaps greater than @, perhaps higher than the gen II or gen III binary.",
+          "My hunch is that non-shielded point potentials or assembly fragments would quickly react like we see in collider particle showers and their energy and point potentials would either become Noether braids of spacetime aether or standard model particle assemblies. It is a Monte-Carlo phase space. If that makes sense."
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 15,
+    "part": "ppt/slides/slide15.xml",
+    "title_guess": "Dynamics of the Noether Braid",
+    "text": [
+      "Dynamics of the Noether Braid",
+      "All point potentials are constant rate emitters of potential.",
+      "Noether braids themselves present a very low energy wave equation.",
+      "High frequency, attenuated emission magnitude q/|v|",
+      "Binaries present a swirling field at each orbital pole.",
+      "Compared to Noether braids of spacetime, fermions are lower energy with larger orbital radii.",
+      "The architectural configuration for each fermion has significant apparent energy, i.e., mass.",
+      "Spacetime Noether braids are excited by the potential emitted by lower energy fermion assemblies.",
+      "The potential fields received by the point potentials in spacetime assemblies cause energy transfer",
+      "When binaries receive energy, point potential speed increases and the binary radius decreases.",
+      "Both PE and KE change in classical analysis.",
+      "Fermion assemblies are the basis for all “massy” matter.",
+      "Other standard model particles are ephemeral (Ws, Z, and exotics) or have very low mass (neutrino, photon).",
+      "A fermion has six lower energy point potentials in the poles of a triply nested binary Noether braid."
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "Dynamics of the Noether Braid"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "All point potentials are constant rate emitters of potential.",
+          "Noether braids themselves present a very low energy wave equation.",
+          "High frequency, attenuated emission magnitude q/|v|",
+          "Binaries present a swirling field at each orbital pole.",
+          "Compared to Noether braids of spacetime, fermions are lower energy with larger orbital radii.",
+          "The architectural configuration for each fermion has significant apparent energy, i.e., mass.",
+          "Spacetime Noether braids are excited by the potential emitted by lower energy fermion assemblies.",
+          "The potential fields received by the point potentials in spacetime assemblies cause energy transfer",
+          "When binaries receive energy, point potential speed increases and the binary radius decreases.",
+          "Both PE and KE change in classical analysis.",
+          "Fermion assemblies are the basis for all “massy” matter.",
+          "Other standard model particles are ephemeral (Ws, Z, and exotics) or have very low mass (neutrino, photon).",
+          "A fermion has six lower energy point potentials in the poles of a triply nested binary Noether braid."
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 16,
+    "part": "ppt/slides/slide16.xml",
+    "title_guess": "Dynamics of the Noether Braid - Ideation",
+    "text": [
+      "Dynamics of the Noether Braid - Ideation",
+      "A Higgs cluster has two pro and two anti Noether braids. Do they couple like a Helium nucleus?",
+      "Our photon model suggests that counter-rotating binaries strongly couple.",
+      "Let’s speculate we are coupling the two poles of the Gen III binary (highest energy binary).",
+      "There are 4 Gen III binaries in a Higgs cluster.",
+      "We have 8 poles to couple.",
+      "Pro1, Pro2, Anti1, Anti2, each with L or R angular momentum",
+      "Gen II binaries may also couple. Gen I binaries may also couple",
+      "To what degree, if any, do these Gen III axial couplings contribute to assembly shielding?",
+      "binary",
+      "polarvortices",
+      "pro",
+      "anti",
+      "pro",
+      "anti",
+      "Two pro and two anti Noether Braids coupled as a Higgs cluster.",
+      "Getty",
+      "Helium Nucleus",
+      "is two protons and",
+      "two neutrons",
+      "Two orbiting electrons"
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "Dynamics of the Noether Braid - Ideation"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "A Higgs cluster has two pro and two anti Noether braids. Do they couple like a Helium nucleus?",
+          "Our photon model suggests that counter-rotating binaries strongly couple.",
+          "Let’s speculate we are coupling the two poles of the Gen III binary (highest energy binary).",
+          "There are 4 Gen III binaries in a Higgs cluster.",
+          "We have 8 poles to couple.",
+          "Pro1, Pro2, Anti1, Anti2, each with L or R angular momentum",
+          "Gen II binaries may also couple. Gen I binaries may also couple",
+          "To what degree, if any, do these Gen III axial couplings contribute to assembly shielding?"
+        ]
+      },
+      {
+        "name": "TextBox 44",
+        "placeholder": null,
+        "text": [
+          "binary"
+        ]
+      },
+      {
+        "name": "TextBox 50",
+        "placeholder": null,
+        "text": [
+          "polarvortices"
+        ]
+      },
+      {
+        "name": "TextBox 67",
+        "placeholder": null,
+        "text": [
+          "pro"
+        ]
+      },
+      {
+        "name": "TextBox 68",
+        "placeholder": null,
+        "text": [
+          "anti"
+        ]
+      },
+      {
+        "name": "TextBox 69",
+        "placeholder": null,
+        "text": [
+          "pro"
+        ]
+      },
+      {
+        "name": "TextBox 70",
+        "placeholder": null,
+        "text": [
+          "anti"
+        ]
+      },
+      {
+        "name": "TextBox 77",
+        "placeholder": null,
+        "text": [
+          "Two pro and two anti Noether Braids coupled as a Higgs cluster."
+        ]
+      },
+      {
+        "name": "TextBox 75",
+        "placeholder": null,
+        "text": [
+          "Getty"
+        ]
+      },
+      {
+        "name": "TextBox 76",
+        "placeholder": null,
+        "text": [
+          "Helium Nucleus",
+          "is two protons and",
+          "two neutrons"
+        ]
+      },
+      {
+        "name": "TextBox 78",
+        "placeholder": null,
+        "text": [
+          "Two orbiting electrons"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": [
+      "ppt/slides/../media/image2.jpeg",
+      "ppt/slides/../media/image1.png"
+    ]
+  },
+  {
+    "slide": 17,
+    "part": "ppt/slides/slide17.xml",
+    "title_guess": "Noether Braid Geometry and the Lorentz Factor",
+    "text": [
+      "Noether Braid Geometry and the Lorentz Factor",
+      "At high velocity, Noether braids become more oblate. Do all Noether braids, pro and anti, left and right, fold the same?",
+      "In a standard matter particle? Yes. We are considering the positive quadrant only, given translation.",
+      "Therefore, they fold either LLL or RRR. Anti-ness disappears in the boson state because it was based on spin ½.",
+      "Standard matter particles are low total energy, but high apparent energy.",
+      "In a photon? Photons are bosonic planar. Photons are a pro and anti Noether braid, contra-rotating at an offset.",
+      "Approaching a black hole? At some point all that is left is",
+      "Photons which were already planar, but also biplanar.",
+      "Does the crossing of the event horizon separate the pro and anti Noether braids of a photon?",
+      "Noether braids. Getting smaller and more oblate and planar at the event horizon",
+      "Interior to the black hole",
+      "Everything is planar and photons (contra rotating pro and anti Noether braid) continue to deflate. Independent Noether braids are planar and deflate.",
+      "Orbitals perturb each other, causing orbit reversals all the way down. Approaching maximum curvature we have ring out until the core locks into one relative microstate, i.e., zero relative entropy.",
+      "All have mirror symmetry.",
+      "But this is occurring in a plane so CW and CCW are important factors.",
+      "Ok so let’s enumerate them LLL LLR LRL LRR RLL RLR RRL RRR (8, essentially it is binary).",
+      "Then it is emergence again",
+      "Note, when we are talking velocity here, it is usually transverse orbital velocity. Translational velocity is considered independent at this level of analysis)"
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "Noether Braid Geometry and the Lorentz Factor"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "At high velocity, Noether braids become more oblate. Do all Noether braids, pro and anti, left and right, fold the same?",
+          "In a standard matter particle? Yes. We are considering the positive quadrant only, given translation.",
+          "Therefore, they fold either LLL or RRR. Anti-ness disappears in the boson state because it was based on spin ½.",
+          "Standard matter particles are low total energy, but high apparent energy.",
+          "In a photon? Photons are bosonic planar. Photons are a pro and anti Noether braid, contra-rotating at an offset.",
+          "Approaching a black hole? At some point all that is left is",
+          "Photons which were already planar, but also biplanar.",
+          "Does the crossing of the event horizon separate the pro and anti Noether braids of a photon?",
+          "Noether braids. Getting smaller and more oblate and planar at the event horizon",
+          "Interior to the black hole",
+          "Everything is planar and photons (contra rotating pro and anti Noether braid) continue to deflate. Independent Noether braids are planar and deflate.",
+          "Orbitals perturb each other, causing orbit reversals all the way down. Approaching maximum curvature we have ring out until the core locks into one relative microstate, i.e., zero relative entropy.",
+          "All have mirror symmetry.",
+          "But this is occurring in a plane so CW and CCW are important factors.",
+          "Ok so let’s enumerate them LLL LLR LRL LRR RLL RLR RRL RRR (8, essentially it is binary).",
+          "Then it is emergence again",
+          "Note, when we are talking velocity here, it is usually transverse orbital velocity. Translational velocity is considered independent at this level of analysis)"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 18,
+    "part": "ppt/slides/slide18.xml",
+    "title_guess": "Noether Braid Geometry and the Lorentz Factor",
+    "text": [
+      "Noether Braid Geometry and the Lorentz Factor",
+      "What is the Lorentz factor describing?",
+      "It may be the oblateness, turning into pancaking of the orbitals in each Noether braid.",
+      "If we think of it from an action point of view, it would suggest that r is approaching zero.",
+      "We already know that v and r are related.",
+      "The symmetry breaking point occurs at v = @.",
+      "This appears to correspond to the Planck scale.",
+      "However, this is approaching the symmetry breaking point from only one side.",
+      "There is more beyond, “Plus Ultra” as the self-action begins and the deflation begins in earnest."
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "Noether Braid Geometry and the Lorentz Factor"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "What is the Lorentz factor describing?",
+          "It may be the oblateness, turning into pancaking of the orbitals in each Noether braid.",
+          "If we think of it from an action point of view, it would suggest that r is approaching zero.",
+          "We already know that v and r are related.",
+          "The symmetry breaking point occurs at v = @.",
+          "This appears to correspond to the Planck scale.",
+          "However, this is approaching the symmetry breaking point from only one side.",
+          "There is more beyond, “Plus Ultra” as the self-action begins and the deflation begins in earnest."
+        ]
+      }
+    ],
+    "notes": [],
+    "media": [
+      "ppt/slides/../media/image4.png",
+      "ppt/slides/../media/image3.png",
+      "ppt/slides/../media/image5.png"
+    ]
+  },
+  {
+    "slide": 19,
+    "part": "ppt/slides/slide19.xml",
+    "title_guess": "Brainstorming on Noether Braid Dynamics",
+    "text": [
+      "Brainstorming on Noether Braid Dynamics",
+      "Binary Architecture (unperturbed)",
+      "When v <= @ the physics is only due to partner emissions",
+      "When v > @ the physics is due to both partner emissions and self emissions.",
+      "Noether Braid Architecture",
+      "The three binaries have different relationships depending on energy regime of the assembly.",
+      "The relationship between generations is complex and depends on physics in each regime.",
+      "Higgs spacetime assembly clusters.",
+      "Does a Higgs Noether braid’s outer binary have v >= @.",
+      "Standard model assemblies",
+      "fermions, photons, (W’s and Z are ephemeral, another topic)",
+      "Does the middle binary have v = @",
+      "The quanta h-bar is observable. Therefore, the quanta must remain in the outer binary.",
+      "Or this could all be nonsense…. better to simulate"
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "Brainstorming on Noether Braid Dynamics"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "Binary Architecture (unperturbed)",
+          "When v <= @ the physics is only due to partner emissions",
+          "When v > @ the physics is due to both partner emissions and self emissions.",
+          "Noether Braid Architecture",
+          "The three binaries have different relationships depending on energy regime of the assembly.",
+          "The relationship between generations is complex and depends on physics in each regime.",
+          "Higgs spacetime assembly clusters.",
+          "Does a Higgs Noether braid’s outer binary have v >= @.",
+          "Standard model assemblies",
+          "fermions, photons, (W’s and Z are ephemeral, another topic)",
+          "Does the middle binary have v = @",
+          "The quanta h-bar is observable. Therefore, the quanta must remain in the outer binary.",
+          "Or this could all be nonsense…. better to simulate"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 20,
+    "part": "ppt/slides/slide20.xml",
+    "title_guess": "Brainstorming on Noether Braid Dynamics",
+    "text": [
+      "Brainstorming on Noether Braid Dynamics",
+      "Orbits are presumably elliptical in an assembly relative frame, with influences from translation, acceleration, gravitational gradient, precession, and self or external perturbations. Studying the ideal circular (e.g., elliptical) orbit is recommended.",
+      "It may be fruitful to examine the squashed Noether braid with modeled/simulated elliptical orbits.",
+      "Is velocity constant or varying in an elliptical orbit? In classical physics velocity varies. Intuitiion : varying.",
+      "Do truly exotic stable orbits occur? Are there cases where orbitals depart substantially from planar in the short term?",
+      "In an ellipse, the lengths of the semi-major axis ((a)) and the semi-minor axis ((b)) are different.",
+      "For an ellipse with semi-major axis ( a ) and semi-minor axis ( b ), there isn’t a simple exact formula for the circumference.",
+      "The approximation from Ramanujan is often quite accurate : [ C \\approx \\pi \\left[ 3(a + b) - \\sqrt{(3a + b)(a + 3b)} \\right] ]",
+      "A circle is technically a special case of an ellipse where the two axes are equal (a = b).",
+      "For a circle with radius ( r ), the circumference is given by the simple formula: C = 2 pi r",
+      "todo: check references and formulas"
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "Brainstorming on Noether Braid Dynamics"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "Orbits are presumably elliptical in an assembly relative frame, with influences from translation, acceleration, gravitational gradient, precession, and self or external perturbations. Studying the ideal circular (e.g., elliptical) orbit is recommended.",
+          "It may be fruitful to examine the squashed Noether braid with modeled/simulated elliptical orbits.",
+          "Is velocity constant or varying in an elliptical orbit? In classical physics velocity varies. Intuitiion : varying.",
+          "Do truly exotic stable orbits occur? Are there cases where orbitals depart substantially from planar in the short term?",
+          "In an ellipse, the lengths of the semi-major axis ((a)) and the semi-minor axis ((b)) are different.",
+          "For an ellipse with semi-major axis ( a ) and semi-minor axis ( b ), there isn’t a simple exact formula for the circumference.",
+          "The approximation from Ramanujan is often quite accurate : [ C \\approx \\pi \\left[ 3(a + b) - \\sqrt{(3a + b)(a + 3b)} \\right] ]",
+          "A circle is technically a special case of an ellipse where the two axes are equal (a = b).",
+          "For a circle with radius ( r ), the circumference is given by the simple formula: C = 2 pi r",
+          "todo: check references and formulas"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 21,
+    "part": "ppt/slides/slide21.xml",
+    "title_guess": "Brainstorming on Noether Braid Oblation",
+    "text": [
+      "Brainstorming on Noether Braid Oblation",
+      "A bare Noether braid is presumably orthogonal on the cartesian planes, with orbital axis coinciding with x, y, z axes",
+      "Electron similar but perhaps more chaotic? All personality electrinos acting upon each other.",
+      "An orthogonal core would orient to pi/4 in each orbital plan in the vector direction of the group velocity.",
+      "In other words, work performed on the Noether braid would cause it’s angular momentum vectors to face forward",
+      "As velocity increases an orthogonal core will become more oblate, and they will continue to converge symmetrically.",
+      "An asymmetric personality layer will distort the orbital planes (or more broadly path equations) at group velocity = 0.",
+      "A moving quark starts distorted and becomes more oblate with speed. Even the ideal scenario is complicated analytically.",
+      "They all end up with a planar Noether braid at v = @.",
+      "Personality charges decay along the way."
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "Brainstorming on Noether Braid Oblation"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "A bare Noether braid is presumably orthogonal on the cartesian planes, with orbital axis coinciding with x, y, z axes",
+          "Electron similar but perhaps more chaotic? All personality electrinos acting upon each other.",
+          "An orthogonal core would orient to pi/4 in each orbital plan in the vector direction of the group velocity.",
+          "In other words, work performed on the Noether braid would cause it’s angular momentum vectors to face forward",
+          "As velocity increases an orthogonal core will become more oblate, and they will continue to converge symmetrically.",
+          "An asymmetric personality layer will distort the orbital planes (or more broadly path equations) at group velocity = 0.",
+          "A moving quark starts distorted and becomes more oblate with speed. Even the ideal scenario is complicated analytically.",
+          "They all end up with a planar Noether braid at v = @.",
+          "Personality charges decay along the way."
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 22,
+    "part": "ppt/slides/slide22.xml",
+    "title_guess": "Some Fresh Thoughts on NC Operation",
+    "text": [
+      "Some Fresh Thoughts on NC Operation",
+      "Presuming self-powering spiral of the unperturbed binary. ( a sort of new thought dec 2024?)",
+      "that suggests that Gen III devolves to the maximal curvature binary. (also group v = max?)",
+      "there is a duality to maximally dense regions of black hole cores",
+      "it consumes all of its PE and converts it to KE.",
+      "its orbital velocity = pi @ / 2 on both zonal and meridional rotation axes",
+      "And if the Gen II binary has v = @ how is that related? Why would it form that way?",
+      "Then the Gen III binary has it’s arbitrary frequency and that’s it.",
+      "There would be no balance on either side of Gen II, or frequency relationships?",
+      "It is simpler, but would it work?"
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "Some Fresh Thoughts on NC Operation"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "Presuming self-powering spiral of the unperturbed binary. ( a sort of new thought dec 2024?)",
+          "that suggests that Gen III devolves to the maximal curvature binary. (also group v = max?)",
+          "there is a duality to maximally dense regions of black hole cores",
+          "it consumes all of its PE and converts it to KE.",
+          "its orbital velocity = pi @ / 2 on both zonal and meridional rotation axes",
+          "And if the Gen II binary has v = @ how is that related? Why would it form that way?",
+          "Then the Gen III binary has it’s arbitrary frequency and that’s it.",
+          "There would be no balance on either side of Gen II, or frequency relationships?",
+          "It is simpler, but would it work?"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 23,
+    "part": "ppt/slides/slide23.xml",
+    "title_guess": "Noether Braid Symmetry Balancing",
+    "text": [
+      "Noether Braid Symmetry Balancing",
+      "In an R4 continuous model, with forward moving time, and point potentials.",
+      "All the equations are smooth and continuously differentiable, so should be their superposition.",
+      "Local maxima superpositions of potential are like binary saddle points or even local hilltops with the same slope in any direction, or more exotic shapes in superposition.",
+      "Emergence (from natural laws) led to symmetry balancing point in every binary.",
+      "Emergence led to the Noether braid assembly which may balance its mid binary at field speed.",
+      "Why are Noether braid assemblies the dominant survivors?",
+      "High energy, shielding, mid-binary?",
+      "The |v| = @ binary creates a powerful rotor of potential spheres with travel between -1 and +1.",
+      "Is the point potential universe deterministic?",
+      "We don't know the initial state. That shouldn't matter.",
+      "Determinism vs. non-determinism is related to the free will question.",
+      "Does the time delay nature from point potential emission to action cause non-determinism?",
+      "What reactions could tip either way at the symmetry breaking point?",
+      "The two regions of geometry are asymmetrical.",
+      "Is there less energy per step for |v| > @ due to the self action?",
+      "How do tipping point situations resolve?",
+      "Is there variation in energy transfer accounting. Does this always leave some noise in the system?",
+      "It seems to come down to why the outcome of any reaction would not be predetermined.",
+      "If given the same starting conditions, why would two universes evolve differently?"
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "Noether Braid Symmetry Balancing"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "In an R4 continuous model, with forward moving time, and point potentials.",
+          "All the equations are smooth and continuously differentiable, so should be their superposition.",
+          "Local maxima superpositions of potential are like binary saddle points or even local hilltops with the same slope in any direction, or more exotic shapes in superposition.",
+          "Emergence (from natural laws) led to symmetry balancing point in every binary.",
+          "Emergence led to the Noether braid assembly which may balance its mid binary at field speed.",
+          "Why are Noether braid assemblies the dominant survivors?",
+          "High energy, shielding, mid-binary?",
+          "The |v| = @ binary creates a powerful rotor of potential spheres with travel between -1 and +1.",
+          "Is the point potential universe deterministic?",
+          "We don't know the initial state. That shouldn't matter.",
+          "Determinism vs. non-determinism is related to the free will question.",
+          "Does the time delay nature from point potential emission to action cause non-determinism?",
+          "What reactions could tip either way at the symmetry breaking point?",
+          "The two regions of geometry are asymmetrical.",
+          "Is there less energy per step for |v| > @ due to the self action?",
+          "How do tipping point situations resolve?",
+          "Is there variation in energy transfer accounting. Does this always leave some noise in the system?",
+          "It seems to come down to why the outcome of any reaction would not be predetermined.",
+          "If given the same starting conditions, why would two universes evolve differently?"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 24,
+    "part": "ppt/slides/slide24.xml",
+    "title_guess": "Neutrino Oscillation",
+    "text": [
+      "Neutrino Oscillation",
+      "Not sure if neutrino musings go here"
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "Neutrino Oscillation"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "Not sure if neutrino musings go here"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": [
+      "ppt/slides/../media/image6.png"
+    ]
+  },
+  {
+    "slide": 25,
+    "part": "ppt/slides/slide25.xml",
+    "title_guess": "Emergent Nature",
+    "text": [
+      "Emergent Nature",
+      "The Four “Forces”"
+    ],
+    "blocks": [
+      {
+        "name": "TextBox 1",
+        "placeholder": null,
+        "text": [
+          "Emergent Nature",
+          "The Four “Forces”"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 26,
+    "part": "ppt/slides/slide26.xml",
+    "title_guess": "The Four Forces of Nature",
+    "text": [
+      "The Four Forces of Nature",
+      "J Mark Morris - Model of Nature - March 2020",
+      "PERSONALITY",
+      "NOETHER CORE",
+      "NOETHER CORE",
+      "WEAK",
+      "ELECTRO",
+      "MAGNETIC",
+      "STRONGgluon",
+      "PERSONALITY",
+      "GRAVITY is caused by",
+      "Emitted potential exciting",
+      "Spacetime Noether braids",
+      "Which then change shape"
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "The Four Forces of Nature"
+        ]
+      },
+      {
+        "name": "Footer Placeholder 2",
+        "placeholder": "ftr",
+        "text": [
+          "J Mark Morris - Model of Nature - March 2020"
+        ]
+      },
+      {
+        "name": "Rectangle 5",
+        "placeholder": null,
+        "text": [
+          "PERSONALITY"
+        ]
+      },
+      {
+        "name": "Rectangle 6",
+        "placeholder": null,
+        "text": [
+          "NOETHER CORE"
+        ]
+      },
+      {
+        "name": "Rectangle 12",
+        "placeholder": null,
+        "text": [
+          "NOETHER CORE"
+        ]
+      },
+      {
+        "name": "TextBox 15",
+        "placeholder": null,
+        "text": [
+          "WEAK"
+        ]
+      },
+      {
+        "name": "TextBox 19",
+        "placeholder": null,
+        "text": [
+          "ELECTRO",
+          "MAGNETIC"
+        ]
+      },
+      {
+        "name": "TextBox 22",
+        "placeholder": null,
+        "text": [
+          "STRONGgluon"
+        ]
+      },
+      {
+        "name": "Rectangle 23",
+        "placeholder": null,
+        "text": [
+          "PERSONALITY"
+        ]
+      },
+      {
+        "name": "TextBox 17",
+        "placeholder": null,
+        "text": [
+          "GRAVITY is caused by",
+          "Emitted potential exciting",
+          "Spacetime Noether braids",
+          "Which then change shape"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 27,
+    "part": "ppt/slides/slide27.xml",
+    "title_guess": "The Gravitational Force",
+    "text": [
+      "The Gravitational Force",
+      "All particles are continuously and losslessly exchanging energy with neighbors. Frequently, the neighbors are low apparent energy spacetime aether particles, i.e., gravitons.",
+      "When standard matter exchanges energy with spacetime we call that the mass of standard matter.",
+      "Mass is based on the root mean squared of the interacting potential.",
+      "When standard matter provides RMS mass energy to the spacetime aether, it causes the spacetime energy to rise and the constituent Noether braids to deflate.",
+      "J Mark Morris - Model of Nature - May 2019"
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "The Gravitational Force"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "All particles are continuously and losslessly exchanging energy with neighbors. Frequently, the neighbors are low apparent energy spacetime aether particles, i.e., gravitons.",
+          "When standard matter exchanges energy with spacetime we call that the mass of standard matter.",
+          "Mass is based on the root mean squared of the interacting potential.",
+          "When standard matter provides RMS mass energy to the spacetime aether, it causes the spacetime energy to rise and the constituent Noether braids to deflate."
+        ]
+      },
+      {
+        "name": "Footer Placeholder 3",
+        "placeholder": "ftr",
+        "text": [
+          "J Mark Morris - Model of Nature - May 2019"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 28,
+    "part": "ppt/slides/slide28.xml",
+    "title_guess": "Unification of the Four Forces",
+    "text": [
+      "Unification of the Four Forces",
+      "Photons have a 6/6 composition of electrinos and positrinos.",
+      "Superfluid is mostly slow photons and neutrinos, around 2.7 Kelvin.",
+      "The chart shows gravity beginning near 10-32 Kelvin and 10-43 seconds.",
+      "It seems that the emergence of the spacetime aether is primarily due to redshifting photons and neutrinos.",
+      "J Mark Morris - Model of Nature - June 2019",
+      "Credit: Colby College"
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "title",
+        "text": [
+          "Unification of the Four Forces"
+        ]
+      },
+      {
+        "name": "Content Placeholder 2",
+        "placeholder": null,
+        "text": [
+          "Photons have a 6/6 composition of electrinos and positrinos.",
+          "Superfluid is mostly slow photons and neutrinos, around 2.7 Kelvin.",
+          "The chart shows gravity beginning near 10-32 Kelvin and 10-43 seconds.",
+          "It seems that the emergence of the spacetime aether is primarily due to redshifting photons and neutrinos."
+        ]
+      },
+      {
+        "name": "Footer Placeholder 3",
+        "placeholder": "ftr",
+        "text": [
+          "J Mark Morris - Model of Nature - June 2019"
+        ]
+      },
+      {
+        "name": "TextBox 5",
+        "placeholder": null,
+        "text": [
+          "Credit: Colby College"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": [
+      "ppt/slides/../media/image7.tiff"
+    ]
+  },
+  {
+    "slide": 29,
+    "part": "ppt/slides/slide29.xml",
+    "title_guess": "Quantum",
+    "text": [
+      "Quantum",
+      "Gravity",
+      "Inflation",
+      "Quark",
+      "Confinement",
+      "Neutrino",
+      "Transparency",
+      "Photon",
+      "Transparency"
+    ],
+    "blocks": [
+      {
+        "name": "TextBox 2",
+        "placeholder": null,
+        "text": [
+          "Quantum",
+          "Gravity"
+        ]
+      },
+      {
+        "name": "TextBox 3",
+        "placeholder": null,
+        "text": [
+          "Inflation"
+        ]
+      },
+      {
+        "name": "TextBox 4",
+        "placeholder": null,
+        "text": [
+          "Quark",
+          "Confinement"
+        ]
+      },
+      {
+        "name": "TextBox 5",
+        "placeholder": null,
+        "text": [
+          "Neutrino",
+          "Transparency"
+        ]
+      },
+      {
+        "name": "TextBox 6",
+        "placeholder": null,
+        "text": [
+          "Photon",
+          "Transparency"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": [
+      "ppt/slides/../media/image8.png"
+    ]
+  },
+  {
+    "slide": 30,
+    "part": "ppt/slides/slide30.xml",
+    "title_guess": "Thank You",
+    "text": [
+      "Thank You",
+      "Questions?",
+      "J Mark Morris - Model of Nature"
+    ],
+    "blocks": [
+      {
+        "name": "Title 1",
+        "placeholder": "ctrTitle",
+        "text": [
+          "Thank You"
+        ]
+      },
+      {
+        "name": "Subtitle 2",
+        "placeholder": "subTitle",
+        "text": [
+          "Questions?"
+        ]
+      },
+      {
+        "name": "Footer Placeholder 3",
+        "placeholder": "ftr",
+        "text": [
+          "J Mark Morris - Model of Nature"
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  },
+  {
+    "slide": 31,
+    "part": "ppt/slides/slide31.xml",
+    "title_guess": "J Mark Morris",
+    "text": [
+      "J Mark Morris",
+      "Noether Braid Symmetry Breaking Binary and Determinism",
+      "Hypothesis: The generation II dipole has velocity @, the symmetry breaking point.",
+      "v = @ corresponds to the Planck scale",
+      "2 𝜋 r fP = @, r = @ / (2 𝜋 fP)",
+      "Planck length lP = sqrt (h-bar G/ c3)",
+      "Perhaps some of the other Planck constants relate here as well? clues?",
+      "The symmetry breaking point is asymmetric",
+      "The v > @ AdS “quanta” g is larger than the v < @ CFT “quanta” h.",
+      "Does this relate to the frequency relationship of f(I) and f(III)?",
+      "In a NC, some kind of interplay occurs between gen I, II, and III where angular momentum does or does not get transferred from an external assembly."
+    ],
+    "blocks": [
+      {
+        "name": "Footer Placeholder 3",
+        "placeholder": null,
+        "text": [
+          "J Mark Morris"
+        ]
+      },
+      {
+        "name": "Rectangle 18",
+        "placeholder": null,
+        "text": [
+          "Noether Braid Symmetry Breaking Binary and Determinism"
+        ]
+      },
+      {
+        "name": "TextBox 1",
+        "placeholder": null,
+        "text": [
+          "Hypothesis: The generation II dipole has velocity @, the symmetry breaking point.",
+          "v = @ corresponds to the Planck scale",
+          "2 𝜋 r fP = @, r = @ / (2 𝜋 fP)",
+          "Planck length lP = sqrt (h-bar G/ c3)",
+          "Perhaps some of the other Planck constants relate here as well? clues?",
+          "The symmetry breaking point is asymmetric",
+          "The v > @ AdS “quanta” g is larger than the v < @ CFT “quanta” h.",
+          "Does this relate to the frequency relationship of f(I) and f(III)?",
+          "In a NC, some kind of interplay occurs between gen I, II, and III where angular momentum does or does not get transferred from an external assembly."
+        ]
+      }
+    ],
+    "notes": [],
+    "media": []
+  }
+]

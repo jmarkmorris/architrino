@@ -163,7 +163,7 @@ Validated WebAssembly and bridge pieces:
 - app bridge `native_c_abi_indexed_v0` emission-shell candidate query over `emission_shell_broad_phase_v0` index options;
 - Causal Delay Feedback pair-interaction app bridge manifest coverage;
 - baseline sandbox for 17 fixed cases;
-- migration parity for Photon, Ideal Swarm, and Animator across 17 cases.
+- migration parity for Photon, Ideal Braid, and Animator across 17 cases.
 
 ### Benchmarked Workloads
 

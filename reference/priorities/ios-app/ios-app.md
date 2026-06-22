@@ -28,7 +28,7 @@ Decision 1 (locked): `Xcode` scaffold for v1 lives at `apps/ios/ArchitrinoReader
 7. The v1 content package stores content as chapter-level markdown bundles plus required assets (images, CSS/JS), referenced directly by `textbook_toc.json` paths; there is no monolithic book file requirement in the app runtime.
 8. The v1 Xcode project path is `apps/ios/ArchitrinoReader/ArchitrinoReader.xcodeproj` (project name `ArchitrinoReader`).
 9. Default deployment policy: do not lower the first-release iOS/iPadOS floor if doing so adds compatibility code, layout compromises, or tool friction.
-10. HTML app links (for example `ideal-swarm.html`) in textbook markdown should route to `https://architrino.com/<slug>` in-app via explicit browser handoff rather than failing with missing local assets.
+10. HTML app links (for example `ideal-braid.html`) in textbook markdown should route to `https://architrino.com/<slug>` in-app via explicit browser handoff rather than failing with missing local assets.
 11. v1 rendering path is locked: native SwiftUI shell + local HTML shell (`WKWebView`) + generated per-chapter HTML reading copies, with chapter markdown retained as package fallback/source material.
 12. TOC entries that point to web-app scene nodes (for example `diagram`, `markdown-tree`, `markdown-split`) do not open chapter content in-app. They display a local banner notice and require an explicit Safari handoff action.
 13. Glossary access is provided through an explicit reader action and opens as a bundled in-app reference document when included in the textbook package.
@@ -195,10 +195,10 @@ Treat these as backlog tickets in execution order. Keep each ticket one engineer
 - First visualization candidate when resumed: Molecule Visualization.
 - Later visualization candidates:
   - Photon candidate planar pair and Virtual Observer diagnostic.
-  - Ideal Swarm layered trails and causal path-history intuition.
+  - Ideal Braid layered trails and causal path-history intuition.
   - Causal Delay Feedback App with one-pair path-history, partial/full wake modes, and orientation-adaptive iPhone/iPad layout.
   - Causal-root delay diagram for source time, observer time, distance, and branch weight.
-  - Noether swarm layer comparison with Inner, Middle, and Outer roles.
+  - Noether braid layer comparison with Inner, Middle, and Outer roles.
 - A visualization should have a clear textbook entry point: a chapter or section link that can open the relevant visual context.
 
 ## Nice To Haves

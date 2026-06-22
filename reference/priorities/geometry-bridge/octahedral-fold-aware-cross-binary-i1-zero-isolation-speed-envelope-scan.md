@@ -88,7 +88,7 @@ The burden-reduction successor [octahedral-fold-aware-cross-binary-i1-local-zero
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.mjs) emits:
 
 - no-fixed-speed-window scan parameters using $3.02156\le v_\ast\le3.02157$;
 - predecessor checks for the `I1.forcing-bracket` endpoint certificate and `I1.derivative-negative.full-cell` derivative scan;
@@ -97,7 +97,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-i1-zero-isolation-
 - a sampled root-theta envelope and monotone branch summary;
 - explicit non-interval, non-critical-exhaustion, non-quadrature, and non-retention claim boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.test.js) verifies schema validation, speed-window removal, predecessor composition, sampled root rows, root envelope and derivative envelope values, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.test.js) verifies schema validation, speed-window removal, predecessor composition, sampled root rows, root envelope and derivative envelope values, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
 
 ## Claim Boundary
 

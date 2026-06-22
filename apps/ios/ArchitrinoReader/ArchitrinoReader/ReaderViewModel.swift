@@ -38,7 +38,7 @@ final class ReaderViewModel: ObservableObject {
     private let webappTOCKinds: Set<String> = ["diagram", "markdown-tree", "markdown-split"]
     private let appTOCNodeIDs: Set<String> = [
         "archie__applications",
-        "ideal_swarm",
+        "ideal_braid",
         "photon",
         "hyde_periodic_table",
         "periodic_table",
@@ -48,7 +48,7 @@ final class ReaderViewModel: ObservableObject {
     ]
     private let appTOCScenePaths: Set<String> = [
         "content/scenes/archie/applications.json",
-        "content/scenes/archie/ideal_swarm.json",
+        "content/scenes/archie/ideal_braid.json",
         "content/scenes/archie/photon.json",
         "content/scenes/chemistry/hyde_periodic_table_scene.json",
         "content/scenes/chemistry/periodic_table_scene.json",

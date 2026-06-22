@@ -120,13 +120,13 @@ The strongest particle, strong-force, vacuum-pairing, black-hole-core, and toy-c
 
 ---
 
-The next subsection frames the tri-binary Noether swarm assembly as a candidate universal nucleus, emphasizing a proposed micro-macro correspondence between particles and black holes.
+The next subsection frames the tri-binary Noether braid assembly as a candidate universal nucleus, emphasizing a proposed micro-macro correspondence between particles and black holes.
 
 ---
 
 **Geometric Analysis of the Universal Generator: The Fractal Identity**
 
-Within this framework, the Noether Swarm is treated as a candidate **fundamental solution** (Green's-function-like generator) for physical structure.
+Within this framework, the Noether Braid is treated as a candidate **fundamental solution** (Green's-function-like generator) for physical structure.
 
 In geometric analysis, when a single structural definition (the tri-binary) appears at the microscopic scale (particles), the macroscopic scale (black holes), and the background scale (the Noether sea), we call this **Conformal Invariance** or **Self-Similarity**.
 
@@ -189,6 +189,6 @@ The remaining table is kept only as raw kinematic scratch work for the 1:2:4 clo
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
 - [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md)
-- [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
+- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md)
 - [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md)
 - [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md)

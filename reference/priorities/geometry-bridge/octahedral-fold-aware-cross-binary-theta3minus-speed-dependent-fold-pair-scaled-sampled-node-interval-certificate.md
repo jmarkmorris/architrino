@@ -186,11 +186,11 @@ The continuous-cell certificate should algebraically use the fold identities $F_
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.mjs). It emits:
 
 - directed-rounded sampled-node $z_\pm$ endpoint brackets;
 - sign-definite $J_\pm=F_\delta/y$ intervals on each bracket;
 - interval enclosures for $R_G^{\mathrm{pair}}/y^2$ and $R_D^{\mathrm{pair}}/y^2$ at the sampled nodes;
 - explicit open continuous-collar, regular-root, `I1`, quadrature, and retention rows.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.test.js) validates schema, no-fixed-speed-window discipline, endpoint brackets, $J$ signs, quotient budgets, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.test.js) validates schema, no-fixed-speed-window discipline, endpoint brackets, $J$ signs, quotient budgets, overclaim rejection, and CLI write/validate behavior.

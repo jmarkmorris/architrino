@@ -1,4 +1,4 @@
-# Simulations, Regularization, and Noether Swarm Numerics
+# Simulations, Regularization, and Noether Braid Numerics
 
 ## Workstream Metadata
 
@@ -23,7 +23,7 @@ This section collects the main open simulation-side questions that remain after 
 
 ### Planck-Scale Framing
 
-- Clarify how **event-horizon alignment conditions** (nested shell swarm coplanarity/co-linearity at $v=c_f$) map to conventional Planck units.
+- Clarify how **event-horizon alignment conditions** (nested shell braid coplanarity/co-linearity at $v=c_f$) map to conventional Planck units.
 - Identify observables that distinguish **alignment-driven strong-field effects** from inner-binary maximal-curvature dynamics.
 - Specify which parameters control alignment onset (Noether sea density, compression, external field gradients).
 
@@ -482,7 +482,7 @@ $$
 \sup_{t,i,j}B_{ij}^{\mathrm{active}}(t)\le B_0<\infty.
 $$
 
-Tier 0 accepts a speed-ordered nested shell swarm row only if the row declares the ordering inequalities used by the branch label and verifies them as strict inequalities, for example
+Tier 0 accepts a speed-ordered nested shell braid row only if the row declares the ordering inequalities used by the branch label and verifies them as strict inequalities, for example
 $$
 s_I>c_f,\qquad |s_M-c_f|\le \tau_{\mathrm{speed},0},\qquad s_O<c_f.
 $$
@@ -821,7 +821,7 @@ The promotion artifact `promotion_lemma_check.md` must list the exact priority-t
 
 - Use the collinear-breather finite certificate as the smallest solver benchmark for candidate-cycle input, root enumeration, $\eta > 0$ continuation, monodromy, returned-history residuals, and topology reporting, with every failed row assigned one element of $\mathcal{F}$ and the exact failed inequality.
 - Implement tier-0 and tier-1 simulations by instantiating $\mathcal{C}_{\mathrm{sim}}$ and satisfying the tier acceptance criteria above before any result is used in [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) or the `validation/simulations/action-energy/*` material.
-- Lock the maximum-curvature orbit, history resolution, and binary / nested shell swarm stability numerically only when the branch-root ledger is stable under $\Delta t$, $\Delta h$, and $\eta$ refinement.
+- Lock the maximum-curvature orbit, history resolution, and binary / nested shell braid stability numerically only when the branch-root ledger is stable under $\Delta t$, $\Delta h$, and $\eta$ refinement.
 - Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs only as promotion artifacts paired with `convergence_table.csv`, `u_now_provenance.*`, `failure_report.md`, and `promotion_lemma_check.md`.
 - Consolidate the formal $\eta > 0$ package by verifying $\mathsf{WP}_\eta$, $\mathsf{NR}_\eta$, $\mathsf{Cont}_\eta$, and $\partial\mathcal{A}_\eta$ for each promoted run family.
 - Tie the Planck mapping back to the master equation only through simulation-supported priority claims whose variables are present in $\mathcal{C}_{\mathrm{sim}}$ and whose regulator-dependence row passes.
@@ -841,4 +841,4 @@ The promotion artifact `promotion_lemma_check.md` must list the exact priority-t
 - [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md)
 - [synthetic-observables](../../../content/markdown/aaa/validation/simulations/synthetic-observables.md)
 - [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md)
-- [planck-scale-nested-shell-swarm-alignment](../../../content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md)
+- [planck-scale-nested-shell-braid-alignment](../../../content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md)

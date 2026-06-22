@@ -8,7 +8,7 @@ import { pathToFileURL } from "node:url";
 import {
   buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate,
   validateH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnostic,
-} from "../neutral-swarm/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs";
+} from "../neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs";
 
 export const H39_TERMINAL_GRAPH_REMAINDER_BUDGET_REPLAY_SCHEMA =
   "solver-h39-terminal-graph-remainder-budget-replay/v1";
@@ -19,9 +19,9 @@ export const H39_TERMINAL_GRAPH_REMAINDER_BUDGET_REPLAY_MANIFEST_SCHEMA =
 
 const AUDIT_ID = "h39_terminal_graph_remainder_budget_replay";
 const SOURCE_SCRIPT =
-  "scripts/neutral-swarm/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs";
+  "scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs";
 const SOURCE_TEST =
-  "tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js";
+  "tests/neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js";
 const AUDIT_DOC = "reference/priorities/solver/h39-solver-impact-audit.md";
 const UNIT_CONVENTION = "dimensionless-h39-h38-expression-n38-terminal-graph";
 const SCALE_NORMALIZATION =

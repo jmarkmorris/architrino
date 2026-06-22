@@ -205,7 +205,7 @@ constant coefficient.
 ## Executable Artifact
 
 The executable packet is
-[octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate.mjs).
+[octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate.mjs).
 It emits:
 
 - directed-rounded $h_{29}$ branch-row solves over the $128$ speed cells;
@@ -218,7 +218,7 @@ It emits:
   retention rows.
 
 The companion test
-[neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate.test.js)
+[neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-ninth-order-post-u-successor-coefficient-certificate.test.js)
 validates schema, no-fixed-speed-window discipline, $h_{29}$ and
 $Q_{G,29},Q_{D,29}$ intervals, the $Q_D+30Q_G$ identity interval, overclaim
 rejection, and CLI write/validate behavior.

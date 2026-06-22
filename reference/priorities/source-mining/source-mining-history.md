@@ -8,6 +8,7 @@ This file records completed source-mining targets. When a new source or source f
 
 | Source mined | Date mined |
 | --- | --- |
+| William Thurston-style review attachment, `# Review: Causal Action Functional & Assembly Topological Charge`, covering `causal-action-functional.md` and `assembly-topological-charge.md`; local attachment `/Users/markmorris/.codex/attachments/df1232bc-e7b3-4ceb-b517-a6c4d7787a69/pasted-text.txt` | June 21, 2026 |
 | Assumptions of Physics - The Research, [Open problems in Reverse Physics](https://www.youtube.com/watch?v=KxyH3mITjcE), fifth 2025 Summer School session covering classical field theory extension, process entropy and thermodynamics, quantum measurement as equilibration, QFT/degree-of-freedom counting, observer issues, and mathematical-methods gaps; transcript artifact `/tmp/KxyH3mITjcE.transcript.txt` | June 21, 2026 |
 | Assumptions of Physics - The Research, [Introduction to Reverse Physics](https://www.youtube.com/watch?v=EjP38CT46HQ), first 2025 Summer School session on reverse physics, physical mathematics, Hamiltonian mechanics, entropy/uncertainty, and model-assumption domains; transcript artifact `/tmp/EjP38CT46HQ.transcript.txt` | June 21, 2026 |
 | Xiyin Tang, [AI-generated QFT repository](https://github.com/xiyin137/QFT), especially `chapter19c_standard_model_hybrid_definition.tex`, `chapter08_lattice_to_continuum_local_qft.tex`, finite-regulator scripts, and accompanying TeX/source files for Standard Model hybrid-definition and finite-regulator/scaling-limit discipline | June 21, 2026 |
@@ -183,14 +184,14 @@ This file records completed source-mining targets. When a new source or source f
 | V. N. Gribov, [Quantization of non-Abelian gauge theories](https://doi.org/10.1016/0550-3213(78)90175-X) | May 19, 2026 |
 | Peter J. Olver, [Applications of Lie Groups to Differential Equations](https://doi.org/10.1007/978-1-4612-4350-2) | May 19, 2026 |
 | Henrique Gomes and Aldo Riello, [The quasilocal degrees of freedom of Yang-Mills theory](https://arxiv.org/abs/1910.04222) | May 19, 2026 |
-| Nested shell swarm review row: Richard P. Feynman, Space-Time Approach to Quantum Electrodynamics | May 19, 2026 |
-| Nested shell swarm review row: Freeman Dyson, The Radiation Theories of Tomonaga, Schwinger, and Feynman | May 19, 2026 |
-| Nested shell swarm review row: J. C. Ward, An Identity in Quantum Electrodynamics | May 19, 2026 |
-| Nested shell swarm review row: Y. Takahashi, On the Generalized Ward Identity | May 19, 2026 |
-| Nested shell swarm review row: Photon cross sections and attenuation coefficients | May 19, 2026 |
-| Nested shell swarm review row: Torbjörn Sjöstrand et al., An Introduction to PYTHIA 8.2 | May 19, 2026 |
-| Nested shell swarm review row: J. Allison et al., Recent developments in Geant4 | May 19, 2026 |
-| Nested shell swarm review row: Planck Collaboration, Planck 2018 CMB results | May 19, 2026 |
+| Nested shell braid review row: Richard P. Feynman, Space-Time Approach to Quantum Electrodynamics | May 19, 2026 |
+| Nested shell braid review row: Freeman Dyson, The Radiation Theories of Tomonaga, Schwinger, and Feynman | May 19, 2026 |
+| Nested shell braid review row: J. C. Ward, An Identity in Quantum Electrodynamics | May 19, 2026 |
+| Nested shell braid review row: Y. Takahashi, On the Generalized Ward Identity | May 19, 2026 |
+| Nested shell braid review row: Photon cross sections and attenuation coefficients | May 19, 2026 |
+| Nested shell braid review row: Torbjörn Sjöstrand et al., An Introduction to PYTHIA 8.2 | May 19, 2026 |
+| Nested shell braid review row: J. Allison et al., Recent developments in Geant4 | May 19, 2026 |
+| Nested shell braid review row: Planck Collaboration, Planck 2018 CMB results | May 19, 2026 |
 | Residual-routing review row: R. E. Cutkosky, Singularities and Discontinuities of Feynman Amplitudes | May 19, 2026 |
 | Residual-routing review row: Christian Bierlich et al., A comprehensive guide to the physics and usage of PYTHIA 8.3 | May 19, 2026 |
 | Residual-routing review row: T. Gleisberg et al., Event generation with SHERPA 1.1 | May 19, 2026 |

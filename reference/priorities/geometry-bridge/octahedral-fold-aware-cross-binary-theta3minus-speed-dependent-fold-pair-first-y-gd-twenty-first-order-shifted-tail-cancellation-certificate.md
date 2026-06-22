@@ -183,7 +183,7 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate.mjs). It emits:
 
 - directed-rounded shifted-source residual rows over the $128$ speed cells;
 - lower-coefficient zero-containment checks for $P-L-y^2A_{G,20}$ through $y^{22}$;
@@ -191,4 +191,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - the correlated shifted-tail identity $T_D^{(21)}=-22T_G^{(21)}-y\partial_yT_G^{(21)}$;
 - explicit open finite-tail, full quotient, scaled-remainder, `I1`, and retention rows.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate.test.js) validates schema, no-fixed-speed-window discipline, shifted-source lower-coefficient cancellation, shifted-tail identity containment, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate.test.js) validates schema, no-fixed-speed-window discipline, shifted-source lower-coefficient cancellation, shifted-tail identity containment, overclaim rejection, and CLI write/validate behavior.

@@ -6,7 +6,7 @@ This packet consumes [octahedral-exposure-derivative-adjoint](octahedral-exposur
 
 The packet does not claim the full retained branch derivative $D_YZ_B$. It works in the same fixed-ledger exposure-probe convention as [minimal-worked-branch-response](minimal-worked-branch-response.md): root delays respond through the simple-root scalar row, while branch labels, external exposure weights, cycle measure, tangent rows, and Jacobian rows are held fixed. The retained-branch derivative remains the stronger object because it must also differentiate delayed source endpoints, tangent rows, event rows, and $J_\rho$.
 
-The accompanying executable diagnostic [octahedral-affine-exposure-probe.mjs](../../../scripts/neutral-swarm/octahedral-affine-exposure-probe.mjs) emits this matrix numerically from the existing certified root-ledger helpers and verifies that the trace column reproduces the known coefficient $\zeta_{\delta Z}$.
+The accompanying executable diagnostic [octahedral-affine-exposure-probe.mjs](../../../scripts/neutral-braid/octahedral-affine-exposure-probe.mjs) emits this matrix numerically from the existing certified root-ledger helpers and verifies that the trace column reproduces the known coefficient $\zeta_{\delta Z}$.
 
 ## Affine Exposure Probe
 
@@ -309,7 +309,7 @@ This is the active-rotation convention. A passive readout-axis rotation reverses
 
 ## Executable Diagnostic
 
-The diagnostic script [octahedral-affine-exposure-probe.mjs](../../../scripts/neutral-swarm/octahedral-affine-exposure-probe.mjs) evaluates the displayed fixed-ledger operator using the exported rigid-octahedral root helpers. It declares the decomposition
+The diagnostic script [octahedral-affine-exposure-probe.mjs](../../../scripts/neutral-braid/octahedral-affine-exposure-probe.mjs) evaluates the displayed fixed-ledger operator using the exported rigid-octahedral root helpers. It declares the decomposition
 
 $$
 \operatorname{End}(\mathbb R^3)
@@ -351,7 +351,7 @@ D_IZ_{\mathrm{oct}}^{ab}
 \end{pmatrix},
 $$
 
-matching $D_IZ_{\mathrm{oct}}^{ab}=\zeta_{\delta Z}A^{ab}$ to the displayed numerical precision. The companion test [neutral-swarm-octahedral-affine-exposure-probe.test.js](../../../tests/neutral-swarm-octahedral-affine-exposure-probe.test.js) checks the schema, row count, nine-column decomposition, non-retention status, and trace-column coefficient.
+matching $D_IZ_{\mathrm{oct}}^{ab}=\zeta_{\delta Z}A^{ab}$ to the displayed numerical precision. The companion test [neutral-braid-octahedral-affine-exposure-probe.test.js](../../../tests/neutral-braid-octahedral-affine-exposure-probe.test.js) checks the schema, row count, nine-column decomposition, non-retention status, and trace-column coefficient.
 
 ## Bound And Support
 

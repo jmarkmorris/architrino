@@ -1,4 +1,4 @@
-# Reality, Causality, and Navigation
+# Reality Quantum Causality
 
 This chapter addresses the quantum branch at the level of ontology and epistemic navigation rather than formal operator mechanics. Its purpose is to separate absolute and operational descriptions cleanly enough that causality, effective randomness, and assembly-level decision language can be discussed without blurring microdynamics and observer-facing phenomenology.
 
@@ -8,7 +8,7 @@ This chapter addresses the quantum branch at the level of ontology and epistemic
 - Explain how deterministic microdynamics yield effective randomness at the operational level.
 - Define minimal dynamical requirements for agency/decision in assemblies.
 - Connect the **Decider** and **Switch** case studies to those requirements.
-- Tie the chapter to [Foundational Ontology](../foundations/ontology.md), [Observer Framework](../spacetime/observer-framework.md), and [Master Equation](../dynamics/master-equation.md).
+- Tie the chapter to [Ontology](../foundations/ontology.md), [Observer Framework](../spacetime/observer-framework.md), and [Master Equation](../dynamics/master-equation.md).
 
 **Scope note:** This chapter states current $\mathbb{A}\mathbb{A}\mathbb{A}$ working claims unless a passage is explicitly labeled as a toy model, phenomenological mapping, or closure target.
 
@@ -29,7 +29,7 @@ At the absolute level, any local neighborhood is crowded:
   - Continuously emitting spherically expanding **causal wakes** at speed $c_f$.
 
 - At a given absolute time $t$, the **net potential** at a point is the **vector sum** of:
-  - Wakes from local Noether swarm assemblies in the Noether sea,
+  - Wakes from local Noether braid assemblies in the Noether sea,
   - Wakes from bound matter in the vicinity,
   - Wakes from distant assemblies whose emission fronts are just arriving,
   - Self-hit structures from $v>c_f$ inner-binary motion.
@@ -42,7 +42,7 @@ At the absolute level, any local neighborhood is crowded:
 
 At the emergent level:
 
-- Observer language talks about "an electron," "a nucleus," and similar objects as if they were isolated. In this framework each such object is a **Noether swarm assembly** plus its coupling to the surrounding Noether sea wake background.
+- Observer language talks about "an electron," "a nucleus," and similar objects as if they were isolated. In this framework each such object is a **Noether braid assembly** plus its coupling to the surrounding Noether sea wake background.
 - Most of the time, the assembly’s internal state is robust against small variations in the net potential.
 - Occasionally, when the assembly’s configuration is **metastable** (near a threshold boundary; see [Metastability and Threshold Crossings](#metastability-and-threshold-crossings)), a particular combination of incoming wakes pushes it across a threshold:
   - Electron “jumps” orbital
@@ -106,7 +106,7 @@ So causality is **unbroken** at the substrate, but **opaque** and sometimes misl
 
 ### Metastability and Threshold Crossings
 
-At the assembly level (Noether swarms, atoms, etc.):
+At the assembly level (Noether braids, atoms, etc.):
 
 - There exist **metastable configurations** in phase space: regions where small perturbations determine whether the system:
   - Remains in its current attractor (no transition), or
@@ -439,7 +439,7 @@ The decision language in this chapter is not an additional ontology. It is a fut
 
 The controlled distinction is:
 
-- a bare Noether swarm may supply threshold-sensitive material;
+- a bare Noether braid may supply threshold-sensitive material;
 - a Switch must show a measurable basin-weight shift under fixed boundary context;
 - a Decider must also show feedback, hold time, and a nonzero work or dissipation ledger.
 

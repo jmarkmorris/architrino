@@ -94,7 +94,7 @@ export function createAnimatorAssemblyAuthoringRuntime(options = {}) {
     if (isChargeKind && hasCore) {
       if (getAnimatorAvailablePersonalitySlotCount(assembly) <= 0) {
         setAnimatorStatus(
-          `Personality layer is full for this Noether swarm. Capacity is ${getAnimatorPersonalitySlotCapacity(assembly)} charge slot${
+          `Personality layer is full for this Noether braid. Capacity is ${getAnimatorPersonalitySlotCapacity(assembly)} charge slot${
             getAnimatorPersonalitySlotCapacity(assembly) === 1 ? "" : "s"
           }.`
         );

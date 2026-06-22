@@ -5,7 +5,7 @@ Shape the **qualitative dynamical skeleton** of the architrino system--especiall
 
 **Current theory alignment**:
 - Phase-space and attractor work should be derived from `dynamics/master-equation.md`.
-- Bifurcation and regime-transition claims should stay synchronized with `noether-swarm/nested-shell-swarm-dynamics.md` and `dynamics/binary-dynamics.md`.
+- Bifurcation and regime-transition claims should stay synchronized with `noether-braid/nested-shell-braid-dynamics.md` and `dynamics/binary-dynamics.md`.
 - Numerical diagnostics should map to `validation/simulations/convergence-tests.md` and `validation/simulations/run-protocols.md`.
 
 **Core responsibilities**:
@@ -13,7 +13,7 @@ Shape the **qualitative dynamical skeleton** of the architrino system--especiall
 1. **Phase-space formulation & basins of attraction**
    - Define the relevant **state spaces**:
      - Few-body: positions/velocities of a small number of architrinos or effective "binary centers."
-     - Reduced models for tri-binaries and Noether swarm assemblies.
+     - Reduced models for tri-binaries and Noether braid assemblies.
    - Identify and classify:
      - **Fixed points**, **limit cycles**, **quasi-periodic tori**, and **strange attractors** corresponding to:
        - Isolated binaries
@@ -32,7 +32,7 @@ Shape the **qualitative dynamical skeleton** of the architrino system--especiall
    - Formulate self-hit as the appearance of **history-dependent forces** in the equations of motion (non-Markovian memory).
    - Classify:
      - **Bifurcations** associated with the onset of self-hit (Hopf, saddle-node, period-doubling, etc.) and the resulting **meta-stable branching** among coexisting attractors.
-     - Threshold-style transitions in **Noether swarm energy transfer** where outcomes are deterministic but microstate-sensitive.
+     - Threshold-style transitions in **Noether braid energy transfer** where outcomes are deterministic but microstate-sensitive.
      - Parameter regions where self-hit yields:
        - New limit cycles (candidate particle-like attractors),
        - Chaotic dynamics (effective stochasticity without fundamental randomness),

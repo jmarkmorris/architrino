@@ -2657,7 +2657,7 @@ The clearest limiting tension for Primordial Black Hole Dark Matter is that its 
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the retained compact-object observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. If a primordial-Noether swarm-defect or other neutral-assembly branch is proposed as the native analogue, it must recover the same mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result rows from one shared closure record. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the retained compact-object observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. If a primordial-Noether braid-defect or other neutral-assembly branch is proposed as the native analogue, it must recover the same mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result rows from one shared closure record. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 

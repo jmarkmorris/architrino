@@ -1,8 +1,8 @@
-# 1D Collinear Breather
+# Collinear Breather
 
 This chapter isolates the simplest reduced dynamical problem that can test a self-hit-assisted bounded-recapture mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
 
-The guiding idea is narrow: if delayed self-interaction can contribute to any bounded recapture mechanism at all, it should first be visible in a reflection-symmetric one-dimensional opposite-polarity binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, nested shell swarm locking, and assembly-level closure lose their cleanest analytic foothold.
+The guiding idea is narrow: if delayed self-interaction can contribute to any bounded recapture mechanism at all, it should first be visible in a reflection-symmetric one-dimensional opposite-polarity binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, nested shell braid locking, and assembly-level closure lose their cleanest analytic foothold.
 
 ## Overview
 
@@ -77,7 +77,7 @@ The full dynamics stack currently mixes several hard problems at once:
 - Jacobian amplification,
 - self-hit branch birth,
 - tangential drift in 2D and 3D,
-- and multi-scale coupling in nested shell swarms.
+- and multi-scale coupling in nested shell braids.
 
 This chapter strips away everything except the minimum ingredients needed to test a bounded delayed orbit:
 
@@ -10638,11 +10638,11 @@ The stability version is stronger:
 > **Further Target (Stable Breather).**
 > The Fréchet derivative $DP_\eta(\phi^\ast_\eta)$ has spectral radius $<1$ on the section modulo time-shift symmetry, so the fixed point attracts nearby admissible histories.
 
-This is the first clean theorem target for a self-hit-assisted bounded-recapture mechanism. It avoids the 2D circular tangential obstruction and does not require the full nested shell swarm architecture.
+This is the first clean theorem target for a self-hit-assisted bounded-recapture mechanism. It avoids the 2D circular tangential obstruction and does not require the full nested shell braid architecture.
 
 ## Why This Reduced Problem Comes First
 
-This model should be attacked before the full circular MCB or full nested shell swarm for three reasons.
+This model should be attacked before the full circular MCB or full nested shell braid for three reasons.
 
 ### 1. No tangential obstruction
 
@@ -10744,7 +10744,7 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 > a new self-hit branch is born. The number of active roots changes with the motion itself. Whatever one chooses to call a "closed form," it should not be expected to glide effortlessly across a dynamics in which the active branch structure changes as the trajectory passes through a causal fold.
 >
 > **4. The shadow of the three-body problem still hangs over the room.**
-> Even instantaneous inverse-square dynamics already taught us that explicit formulas are not to be expected in generic nonlinear few-body problems. Here the 1D breather may look like a two-body problem, but the delayed self-interaction makes it behave like a path-history problem with an effectively infinite swarm of past images. One should not expect such a system to become simpler merely because it lives on a line.
+> Even instantaneous inverse-square dynamics already taught us that explicit formulas are not to be expected in generic nonlinear few-body problems. Here the 1D breather may look like a two-body problem, but the delayed self-interaction makes it behave like a path-history problem with an effectively infinite braid of past images. One should not expect such a system to become simpler merely because it lives on a line.
 >
 > **The silver lining.**
 > This is why the present strategy is mathematically appropriate. It replaces the search for a global closed-form solution with a proof target that is stronger for the purpose of the chapter:

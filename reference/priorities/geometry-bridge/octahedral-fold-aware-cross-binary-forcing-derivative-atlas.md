@@ -175,7 +175,7 @@ The direct successor [octahedral-fold-aware-cross-binary-forcing-topology-atlas]
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-forcing-derivative-atlas.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-forcing-derivative-atlas.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-forcing-derivative-atlas.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-forcing-derivative-atlas.mjs) emits:
 
 - predecessor validation for the critical-value atlas;
 - predecessor validation for the fold-square limit atlas;
@@ -186,7 +186,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-forcing-derivative
 - two regular critical derivative rows;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-forcing-derivative-atlas.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-forcing-derivative-atlas.test.js) verifies predecessor validation, speed-window removal, derivative formula emission, witness agreement, finite-difference derivative agreement, regular critical nondegeneracy, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-forcing-derivative-atlas.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-forcing-derivative-atlas.test.js) verifies predecessor validation, speed-window removal, derivative formula emission, witness agreement, finite-difference derivative agreement, regular critical nondegeneracy, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

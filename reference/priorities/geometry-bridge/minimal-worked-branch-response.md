@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`.
 
-This packet supplies the first worked geometry-bridge calculation. It does not retain a specific shell swarm branch. It computes a symbolic response row that any root-regular branch chart must satisfy under an isotropic affine environment deformation. The point is to turn the new geometry bridge from a residual definition into a calculable derivative.
+This packet supplies the first worked geometry-bridge calculation. It does not retain a specific shell braid branch. It computes a symbolic response row that any root-regular branch chart must satisfy under an isotropic affine environment deformation. The point is to turn the new geometry bridge from a residual definition into a calculable derivative.
 
 ## Worked Probe
 
@@ -324,4 +324,4 @@ The theory advance is that an apparently isotropic assembly deformation can expo
 
 ## Status
 
-This packet gives a symbolic `response-passed` row for the isotropic affine probe on any branch chart satisfying the simple-root and fixed-ledger hypotheses. A specific shell swarm or nested shell swarm branch remains `response-open` until its actual root list, Jacobian signs, exposure weights, and interface gradient are inserted.
+This packet gives a symbolic `response-passed` row for the isotropic affine probe on any branch chart satisfying the simple-root and fixed-ledger hypotheses. A specific shell braid or nested shell braid branch remains `response-open` until its actual root list, Jacobian signs, exposure weights, and interface gradient are inserted.

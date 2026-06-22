@@ -173,7 +173,7 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.mjs). It emits:
 
 - scaled $p_\pm$ and $z_\pm$ rows for the two coalescing roots;
 - scaled denominator rows $J_\pm=F_\delta/y$;
@@ -182,4 +182,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - pair quadratic quotient rows $|R_G^{\mathrm{pair}}|/y^2$ and $|R_D^{\mathrm{pair}}|/y^2$;
 - explicit non-directed-rounded, non-`I1`, non-quadrature, and non-retention claim boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.test.js) validates schema, no-fixed-speed-window discipline, scaled $p,z,J$ rows, pair-root identification, quadratic quotient thresholds, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.test.js) validates schema, no-fixed-speed-window discipline, scaled $p,z,J$ rows, pair-root identification, quadratic quotient thresholds, overclaim rejection, and CLI write/validate behavior.

@@ -1,14 +1,14 @@
-# Kinetic and Potential Energy
+# Energy
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with architrinos and the causal wakes they generate. Architrinos carry primitive kinetic energy through motion and supply potential-energy bookkeeping through delayed interactions; the wake itself is not a standalone substance or vacuum reservoir. A **wake** is the source-dependent causal-isochron record of an architrino's emissions: motion changes its geometry, branch timing, and received potential, not the fact that an emission record exists. The term `wake` is the architrino-native description of what appears as a field at the effective level.
 
-This chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md), [Noether Swarm](../noether-swarm/noether-swarm.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Constructive Energy for Delay Dynamics](../validation/simulations/action-energy/delay-dynamics-energy.md).
+This chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md), [Noether Braid](../noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
 All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Forces and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and Jacobian-weighted magnitude, on this fixed background. We work in units with causal-wake propagation speed $c_f=1$.
 
 The chapter keeps four levels separate. At the substrate level, kinetic and potential terms are architrino and causal-wake records on absolute time and the Euclidean void. At the dynamical level, energy changes through Jacobian-weighted causal hits and radial power. At the effective level, assemblies acquire inertia, apparent energy, and effective metric response through Noether sea coupling. At the inference level, scalar masses, thermodynamic records, and cosmological inventories are accepted only after a window, boundary record, and residual are declared.
 
-Spacetime in this framework belongs to the effective level, not the ontological one. The ambient Noether sea is a **dense sea of scalable high-energy Noether swarm assemblies** occupying the Euclidean void. These Noether swarms are extremely small compared to ordinary Standard Model particles and constitute the Noether sea through which all other assemblies move and interact. The energetic state and configuration of this Noether swarm sea control how energy, inertia, and effective geometry appear at larger scales.
+Spacetime in this framework belongs to the effective level, not the ontological one. The ambient Noether sea is a **dense sea of scalable high-energy Noether braid assemblies** occupying the Euclidean void. These Noether braids are extremely small compared to ordinary Standard Model particles and constitute the Noether sea through which all other assemblies move and interact. The energetic state and configuration of this Noether braid sea control how energy, inertia, and effective geometry appear at larger scales.
 
 ---
 
@@ -22,7 +22,7 @@ An architrino in motion possesses kinetic energy and momentum.
   
   $$E_{k,a}(t) = K\big(\|\mathbf{v}_a(t)\|\big),$$
   
-  where $s$ denotes the speed argument and $K$ is a strictly convex, monotonically increasing function with $K(0)=0$. If an effective saturation proxy is being used, $K'(s)\to\infty$ at the saturation scale; in the primitive limit, $K$ grows unboundedly. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether swarms in the Noether sea. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $\|\mathbf{v}_a\|\to\infty$.
+  where $s$ denotes the speed argument and $K$ is a strictly convex, monotonically increasing function with $K(0)=0$. If an effective saturation proxy is being used, $K'(s)\to\infty$ at the saturation scale; in the primitive limit, $K$ grows unboundedly. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether braids in the Noether sea. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $\|\mathbf{v}_a\|\to\infty$.
 
 - **Momentum $\mathbf{p}_a$**
   
@@ -39,6 +39,12 @@ An architrino in motion possesses kinetic energy and momentum.
   P(s)=\int_0^s\frac{K'(u)}{u}\,du
   $$
   after choosing $P(0)=0$. If this condition is not imposed, $\mathbf{p}$ should be read as a momentum-like bookkeeping vector rather than the canonical momentum of $K$.
+
+  **Kinetic-scalar / closure compatibility.** The conjugacy relation above also prevents a hidden second speed scale. If the primitive kinetic scalar is modeled with a finite saturation scale $c_K$, meaning $K'(s)\to\infty$ as $s\to c_K^-$, then any effective assembly closure using a signal speed $c_{\text{eff}}$ is admissible on the declared comparison window only when
+  $$
+  \left|\frac{c_{\text{eff}}}{c_K}-1\right|\le\epsilon_{cK}
+  $$
+  with $\epsilon_{cK}$ declared before the comparison is promoted. If $K$ is instead kept in the primitive unbounded-speed limit, then $c_{\text{eff}}$ is wholly a Noether sea response quantity and no substrate-level particle speed cap may be invoked in the energy or mass-shell argument.
 
 **No fundamental mass:**
 
@@ -165,15 +171,25 @@ The force-as-gradient identity is valid only when taking the gradient at fixed c
 
 ### Macroscopic Cancellation and Localized Resonance
 
-Constant causal emission by many architrinos does not imply a large random macroscopic force. The net causal-wake potential is a superposition, and in a large, incoherent population the leading gradients arrive with many signs, distances, phases, and line-of-action directions. For a receiver sampling such a population, positive and negative gradient influences cancel statistically:
+Constant causal emission by many architrinos does not imply a large random macroscopic force. The net causal-wake potential is a superposition, and in a large, incoherent population the leading gradients arrive with many signs, distances, phases, and line-of-action directions. For a receiver sampling such a population, macroscopic quietness is a two-moment condition, not only a mean-zero statement:
 
 $$
-\left\langle \nabla \Phi_{\text{net}}\right\rangle_{\text{incoherent}}
-\approx
-\mathbf{0}
+\left\|
+\left\langle \nabla \Phi_{\text{net}}\right\rangle_W
+\right\|
+\le
+\epsilon_{\text{mean}},
+\qquad
+\frac{
+\operatorname{Var}_W\!\left(\nabla\Phi_{\text{net}}\right)
+}{
+\left\|\nabla\Phi_{\text{coh}}^{\text{bound}}\right\|^2
+}
+\le
+\epsilon_{\text{var}}
 $$
 
-This cancellation is one reason the Noether sea can be densely active while remaining macroscopically quiet. What standard prose may call a vacuum state is not empty Euclidean void; it is the effective limit in which the local Noether sea assemblies and their causal wakes balance so well that only small residual gradients remain available to ordinary probes.
+Both bounds must use the same horizon, screening, and summation prescription that makes the many-source wake sum converge. The variance bound is the load-bearing part: incoherent fluctuation must remain small compared with the coherent bound-state gradient that phase-locked assemblies preserve. This cancellation is one reason the Noether sea can be densely active while remaining macroscopically quiet. What standard prose may call a vacuum state is not empty Euclidean void; it is the effective limit in which the local Noether sea assemblies and their causal wakes balance so well that only small residual gradients remain available to ordinary probes.
 
 Phase-locked bound states are the important exception. In a localized assembly, nearby constituents do not sample random phases; their active causal roots are correlated, and the $1/r^2$ distance factor lets the nearest coherent branches dominate over the far incoherent background. A [collinear breather](../proof-programs/collinear-breather.md), for example, is precisely a reduced setting in which two opposite-polarity architrinos can form a localized, non-canceling causal resonance. The breather ansatz isolates this effect: instead of averaging away, the partner-hit and self-hit branches stay phase organized enough to exchange kinetic and potential energy across a bounded cycle.
 
@@ -198,6 +214,32 @@ and is constant in time for exact isolated solutions of the causal action. In mo
 
 Consistency rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ pairwise term is retained as an effective decomposition inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
 
+For a hybrid decomposition, the omission must be checkable on the same finite window. Let the near/far split be made with the same coarse-graining window $W_\ell$ used in the matter-to-sea source $S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)}$. Define the partition-overlap residual
+$$
+\mathcal{R}_{\mathrm{dbl},W}
+=
+\frac{
+\left|
+E_{\mathrm{wake},W}^{(\eta)}
+-
+\left(E_{\mathrm{wake},W}^{\mathrm{far}}+E_{\mathrm{wake},W}^{\mathrm{near}}\right)
+\right|
++
+\left|
+U_{\mathrm{int},W}
+-
+E_{\mathrm{wake},W}^{\mathrm{near}}
+\right|
+}{
+\left|E_{\mathrm{wake},W}^{(\eta)}\right|
++
+\left|U_{\mathrm{int},W}\right|
++
+\varepsilon_E
+}
+$$
+with $\varepsilon_E > 0$ a declared denominator floor. A retained $U_{\text{int}}+E_{\text{wake}}$ decomposition is admissible only when $\mathcal{R}_{\mathrm{dbl},W}\to0$ under refinement of the same window, boundary record, and regularized causal action.
+
 ### Conservation Status
 
 The conservation claim is a level-specific statement. For an isolated branch whose force law comes from a time-translation-invariant causal action,
@@ -216,7 +258,7 @@ $$
 
 This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_t$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.
 
-In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the force row and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Constructive Energy for Delay Dynamics](../validation/simulations/action-energy/delay-dynamics-energy.md).
+In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the force row and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
 The finite-$\eta$ pathology theorem target in [Master Equation](./master-equation.md#finite-eta-pathology-quarantine-theorem-target) uses this conservation status in a restricted way. The no-runaway conclusion is available only when the action-derived $E_{\text{wake}}^{(\eta)}$, or a compatible realized-trajectory reconstruction, has a declared lower bound on the same admissible branch chart. If the lower bound is absent, the run is not promoted as a closed solution; it is routed to the continuation boundary where collapse, missing wake-history bookkeeping, regulator dependence, or endpoint leakage must be resolved.
 
@@ -317,7 +359,7 @@ $$
 $$
 Here $\Pi^{ij}$ and $\Lambda^{ij}$ are finite-window flux diagnostics for retained causal wakes and assembly crossings, not new substrate fields. $\tau_{\mathrm{ext},W}^i$ is the external torque about the same origin $\mathbf{x}_0$. If the energy, momentum, and angular-momentum residuals can be made small only by changing the window measure, boundary wake record, or regularization separately for each observable, the calculation has fitted separate summaries rather than demonstrated one causal-history conservation law.
 
-Cosmological inventory comparisons add one more finite-window caution. A gravitational binding contribution is negative relative to dispersed matter in the declared window, but the sign is meaningful only after the boundary and coarse-graining are fixed. For a component inventory over $W$,
+Cosmological inventory comparisons add one more finite-window caution. A gravitational binding contribution is negative relative to dispersed matter in the declared window, but the sign is meaningful only after the boundary and coarse-graining are fixed. In this chapter, $G_{\mathrm{eff}}$ in the binding line is a provisional external comparison input until the mass map and Noether sea response tensor independently derive it. For a component inventory over $W$,
 $$
 E_{\mathrm{bind},W}^{\mathrm{grav}}
 =
@@ -344,7 +386,25 @@ E_{\mathrm{bind},W}^{\mathrm{obs}}
 +
 \frac{|\mathcal{B}_{\partial W}|}{\epsilon_{\partial W}}
 $$
-This keeps gravitational binding from being used as an adjustable bookkeeping sign that can repair the cosmic energy inventory without specifying the same window, boundary wake history, and effective $G_{\mathrm{eff}}$ used by the rest of the cosmology branch.
+The circularity check is the post-handoff residual
+$$
+\mathcal{R}_{G\text{-consist},W}
+=
+\frac{
+\left|
+G_{\mathrm{eff}}^{\mathrm{bind}}
+-
+G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}
+\right|
+}{
+\left|G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}\right|
++
+\varepsilon_G
+}
+\le
+\epsilon_G
+$$
+where $G_{\mathrm{eff}}^{\mathrm{bind}}$ is the value used in the inventory comparison and $G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}$ is the value derived from shielding, exposed response, and the Noether sea response tensor. Until $\mathcal{R}_{G\text{-consist},W}$ is reported on the same window, the cosmological binding line is comparison bookkeeping only, not a derived inventory contribution. This keeps gravitational binding from being used as an adjustable bookkeeping sign that can repair the cosmic energy inventory without specifying the same window, boundary wake history, and effective $G_{\mathrm{eff}}$ used by the rest of the cosmology branch.
 
 **Theorem target (center of response).** The standard center-of-mass theorem depends on equal-time internal force cancellation. In delayed causal dynamics that cancellation is not available as a particle-only statement on $\Sigma_t$: the reciprocal hit generally belongs to a different emission time, a different causal-root branch, or a boundary wake record not retained by the finite window. For an assembly window $W_A(t)$, the replacement target is to prove that there is a response center $\mathbf{X}_{\mathrm{resp}}(t)$ and an assembly response tensor $M_A^{ij}$ such that the finite-window momentum balance reduces, over resolved windows, to
 $$
@@ -356,7 +416,22 @@ F_{\mathrm{ext},W_A}^i
 +
 \mathcal{R}_{\mathrm{resp}}^i(\eta,\Delta t,W_A)
 $$
-Only when the wake-history boundary flux and residual vanish does this reduce to the familiar center-of-mass form. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously.
+The pair $(\mathbf{X}_{\mathrm{resp}},M_A^{ij})$ is not free to be chosen after the balance is fitted. The response center must be pinned independently by the exposed internal-energy ledger,
+$$
+\mathbf{X}_{\mathrm{resp}}(t)
+\equiv
+\frac{
+\displaystyle\int_{W_A}
+\mathbf{x}\,
+\zeta_{\mathrm{loc}}(\mathbf{x},t)\,
+e_{\text{internal}}(\mathbf{x},t)\,dV
+}{
+\displaystyle\int_{W_A}
+\zeta_{\mathrm{loc}}(\mathbf{x},t)\,
+e_{\text{internal}}(\mathbf{x},t)\,dV
+}
+$$
+whenever the denominator is positive and the window contains the exposed assembly record. The tensor $M_A^{ij}$ must then reduce to the independently extracted response tensor $\mathsf{I}_A^{ij}$ on the same branch chart. Only when these independently defined objects satisfy the balance with $\mathcal{R}_{\mathrm{resp}}^i\to0$ does it reduce to the familiar center-of-mass form. A non-vanishing irreducible residual means the exposed-energy center is not the inertial response center for that branch, rather than a license to redefine the center. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously.
 
 In practice, finite systems or simulation domains should monitor $E_W(t)$, $P_W^i(t)$, and $L_W^i(t)$ together with their boundary fluxes and residuals. $E_{\text{total}}(t)$ is the isolated-system limit when the declared window contains the full wake-history record and the boundary terms vanish.
 
@@ -411,9 +486,29 @@ dt
 $$
 where $[x]_+=\max(x,0)$ and $\mathcal D_{\mathcal Q}$ is the declared coherent-to-incoherent transfer rate, including viscous, thermal, wake-boundary, or Noether sea response channels retained by the packet. Passing this gate means only that the selected coarse record has not made entropy decrease after unresolved boundary leakage is accounted for. It does not prove a fundamental stochastic substrate.
 
-For the consolidated mapping from legacy entropy formulas into $\mathbb{A}\mathbb{A}\mathbb{A}$ record projections, see [Entropy and Record Coarse-Graining](entropy.md).
+For the consolidated mapping from legacy entropy formulas into $\mathbb{A}\mathbb{A}\mathbb{A}$ record projections, see [Entropy](entropy.md).
 
-In near-equilibrium comparison runs, response and fluctuation must also come from one record. If an observable $O_A$ has response kernel $\chi_{AB}(\omega)$ to a controlled source coupled to $O_B$, the causal-response check is that the dissipative part and the equilibrium fluctuation spectrum $S_{AB}(\omega)$ obey a declared classical or quantum fluctuation-dissipation row. A dimensionless packet residual can be written as
+In near-equilibrium comparison runs, response and fluctuation must also come from one record. The fluctuation-dissipation map may be invoked only after that same retained record supplies an admissible temperature channel. Concretely, the record $\theta_W$ that supplies $\chi_{AB}''$ and $S_{AB}^{\mathrm{meas}}$ must pass $\mathcal R_{S,W}$ and must yield consistent temperatures from at least two independent observable pairs:
+$$
+\mathcal{R}_{T,W}
+=
+\frac{
+\left|
+T_{\mathcal Q}^{(AB)}
+-
+T_{\mathcal Q}^{(A'B')}
+\right|
+}{
+\left|T_{\mathcal Q}^{(AB)}\right|
++
+\left|T_{\mathcal Q}^{(A'B')}\right|
++
+\varepsilon_T
+}
+\le
+\epsilon_T
+$$
+If this sea-temperature admissibility check fails, the packet may report the dissipative response $\chi_{AB}''$ alone, but it may not use an equilibrium fluctuation-dissipation map as closure evidence. If an observable $O_A$ has response kernel $\chi_{AB}(\omega)$ to a controlled source coupled to $O_B$, the causal-response check is that the dissipative part and the equilibrium fluctuation spectrum $S_{AB}(\omega)$ obey a declared classical or quantum fluctuation-dissipation row. A dimensionless packet residual can be written as
 $$
 \mathcal R_{\mathrm{FD}}(A,B)
 =
@@ -436,10 +531,10 @@ Here $\mathcal F_T$ is the packet's chosen fluctuation-dissipation map, and $\ch
 
 ## Noether Sea, Effective Spacetime, and Energy Storage
 
-At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy Noether swarm assemblies**:
+At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy Noether braid assemblies**:
 
-- These Noether swarms are extremely small compared to ordinary particles (electrons, protons, etc.).
-- Each nested shell swarm is itself a tightly bound architrino assembly with very high internal kinetic and potential energy.
+- These Noether braids are extremely small compared to ordinary particles (electrons, protons, etc.).
+- Each nested shell braid is itself a tightly bound architrino assembly with very high internal kinetic and potential energy.
 - As a sea, they form a **dense population of coupled assemblies** occupying the Euclidean void. This ambient Noether sea content carries non-zero assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, and medium-dressed inertial response) that deform the primitive architrino dynamics into effective relativistic kinematics, providing the bridge-level spacetime medium for:
   - Emergent inertia and mass,
   - Effective causal-cone behavior and Lorentz-like behavior,
@@ -457,12 +552,12 @@ Energy in this picture is distributed across:
 
 For composite systems such as Standard Model particles, nuclei, and composite bound states formed from architrinos and embedded in the Noether sea, we distinguish:
 
-- **Total internal energy**: energy retained by the assembly and by its immediate nested shell swarm environment,
+- **Total internal energy**: energy retained by the assembly and by its immediate nested shell braid environment,
 - **Apparent energy**: what leaks out as a long-range wake signature and governs how the assembly interacts with the outside world.
 
 ### Internal Energy of an Assembly
 
-For an assembly $A$ (e.g., nested shell swarm or higher structure), let $i\in A$ run over its constituent architrinos. Then:
+For an assembly $A$ (e.g., nested shell braid or higher structure), let $i\in A$ run over its constituent architrinos. Then:
 
 $$E_{\text{internal}}(A) = \sum_{i\in A} E_{k,i} + \frac{1}{2} \sum_{\substack{i,j\in A \\ i\neq j}} U_{ij} + E_{\text{coupling to sea}}(A),$$
 
@@ -478,8 +573,8 @@ This internal energy can be **very large**: accepted high-energy branches may re
 
 The surrounding Noether sea, and the arrangement of positive- and negative-polarity architrinos inside an assembly, can **shield** internal energy from the external world through:
 
-- **Polarity cancellation**: positive- and negative-polarity architrinos within the assembly (and in surrounding Noether swarms) emit wakes that interfere destructively at larger distances.
-- **Phase-structured far-field cancellation**: the geometry of internal orbits and Noether swarm polarization patterns generates cancellation of most multipoles at scales $r \gg$ assembly size.
+- **Polarity cancellation**: positive- and negative-polarity architrinos within the assembly (and in surrounding Noether braids) emit wakes that interfere destructively at larger distances.
+- **Phase-structured far-field cancellation**: the geometry of internal orbits and Noether braid polarization patterns generates cancellation of most multipoles at scales $r \gg$ assembly size.
 - **Nested shielding**: in multi-binary fermion cores, outer binaries partially screen the deeper binaries from the surrounding sea. Generation shifts can therefore be read as loss of shielding tiers, not only as loss of constituent count.
 
 At the reference-attractor level, define the **shielding (leakage) factor** as the leading isotropic projection of a larger far-field wake ledger:
@@ -495,7 +590,7 @@ $$
 \mathcal{L}_{\text{wake}}(A_0)-\Pi_0\mathcal{L}_{\text{wake}}(A_0)
 $$
 
-evaluated in a regime where the assembly appears as an effective point source. Here $\Pi_0$ extracts the monopole/isotropic component of the far-field wake ledger and $\mathcal{L}_{\text{aniso}}$ retains anisotropic leakage instead of hiding it inside a scalar error term. For a strongly shielded, neutral Noether swarm in the Noether sea, we expect $\zeta\ll 1$.
+evaluated in a regime where the assembly appears as an effective point source. Here $\Pi_0$ extracts the monopole/isotropic component of the far-field wake ledger and $\mathcal{L}_{\text{aniso}}$ retains anisotropic leakage instead of hiding it inside a scalar error term. For a strongly shielded, neutral Noether braid in the Noether sea, we expect $\zeta\ll 1$.
 Operationally, extract $\zeta(A)$ from a far-field fit of $\Phi_{\text{net}}$ (or hit amplitude) at $r \gg \text{size}(A)$: $\zeta \equiv A_{\text{measured}}/A_{\text{naive}}$, the ratio of the leading $1/r^2$ (or multipole) coefficient to the naive constituent sum, with anisotropic residuals reported separately.
 The scalar shielding summary is admissible only when anisotropic leakage is small enough for the comparison being made, for example
 $$
@@ -511,6 +606,40 @@ The scalar apparent-energy proxy that influences other assemblies at large dista
 $$E_{\text{apparent}}(A) \sim \zeta(A)\,E_{\text{internal}}(A),$$
 
 This is a roadmap relation, not a substrate identity; proportionality constants must be fixed by matching to effective low-energy theory (e.g. mapping to $mc^2$).
+
+The exposed energy cannot be counted twice as both the direct probe readout and the sea-retuning source. On a declared comparison window, split the exposed ledger into a probe channel and a sea-coupled channel:
+$$
+\zeta(A)E_{\text{internal}}(A)
+=
+E_{\text{probe}}(A)
++
+E_{\text{sea-coupled}}(A)
++
+E_{\text{unresolved}}(A),
+\qquad
+E_{\text{probe}}(A)+E_{\text{sea-coupled}}(A)
+\le
+\zeta(A)E_{\text{internal}}(A)
+$$
+with partition residual
+$$
+\mathcal R_{\text{part}}(A)
+=
+\frac{
+\left|
+\zeta(A)E_{\text{internal}}(A)
+-
+E_{\text{probe}}(A)
+-
+E_{\text{sea-coupled}}(A)
+\right|
+}{
+\left|\zeta(A)E_{\text{internal}}(A)\right|
++
+\varepsilon_{\text{part}}
+}
+$$
+The mass map couples distant probes to $E_{\text{probe}}$ through the retuned Noether sea; the matter-to-sea source uses $E_{\text{sea-coupled}}$. A calculation that uses the raw $\zeta E_{\text{internal}}$ in both roles must report $\mathcal R_{\text{part}}$ as unresolved rather than treating the two uses as independent evidence.
 
 ---
 
@@ -528,11 +657,11 @@ For an assembly $A$, define its inertial mass $m_{\text{inertial}}(A)$ operation
 
 $$m_{\text{inertial}}(A) \equiv \frac{\|\mathbf{F}_{\text{ext}}\|}{\|\mathbf{a}_{\text{cm}}\|}.$$
 
-Because the external wake couples mainly to the **apparent energy**, not the full internal circulation, the scalar roadmap limit is:
+Because the external wake couples mainly to the probe-facing exposed energy, not the full internal circulation, the scalar roadmap limit is:
 
-$$m_{\text{inertial}}(A) \approx \alpha_{\mathrm{m}}\,\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2}.$$
+$$m_{\text{inertial}}(A) \approx \alpha_{\mathrm{m}}\,\frac{E_{\text{probe}}(A)}{c_{\text{eff}}^2}.$$
 
-The tensor handoff is more precise. For a small center-of-mass velocity $V_{\text{cm},b}$ through a declared Noether sea response record,
+The tensor handoff is more precise. In the formulas below, $\mathcal{Z}_A^{ab}$ is the probe-channel exposure tensor after the exposed-energy partition has been declared; the sea-coupled channel enters through $S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)}$ and the resulting Noether sea response, not as a second direct inertial source. For a small center-of-mass velocity $V_{\text{cm},b}$ through a declared Noether sea response record,
 $$
 p_{\text{int}}^{a}
 \approx
@@ -604,6 +733,17 @@ $$
 
 Only in the homogeneous isotropic limit does the scalar mass formula above follow. The trace formula gives a stricter diagnostic: pure exposure anisotropy does not shift scalar mass in an isotropic medium, and pure trace-free medium response does not shift scalar mass for scalar exposure. A scalar mass shift from anisotropy appears only through the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}$; otherwise the residue remains directional inertia in $\mathsf{I}_{A}^{ab}$. Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta(A)$ names the small external leakage that survives cancellation and Noether sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch.
 
+This scalar trace is admissible as a positive inertial mass only inside the shielding window
+$$
+\zeta(A)(1+\delta\mathcal{M}_{0})
+>
+\frac{1}{3}
+\left|
+\mathcal{Z}_{\mathrm{tf},ab}(A)\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right|
+$$
+with the comparison sea state declared. If a certified $A_0$ branch reports $\zeta$ so small that this inequality fails for plausible $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$ in the accepted environment, the shielded-energy mass map is falsified for that branch. Thus $\zeta\ll1$ is a constrained exposure window, not an unconstrained way to suppress all long-range response.
+
 At the matter-to-medium interface, a Standard Model fermion assembly should therefore be treated as a localized source of exposed response, not as an unshielded transfer of all internal energy into the surrounding Noether sea. For a coarse cell $\Omega_\ell$, the source supplied by stable matter assemblies can be written schematically as
 
 $$
@@ -611,7 +751,7 @@ S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)}(\mathbf{x},t)
 =
 \sum_{A\subset\Omega_\ell}
 W_\ell(\mathbf{x}-\mathbf{X}_A(t))\,
-\zeta(A)E_{\text{internal}}(A)
+E_{\text{sea-coupled}}(A)
 +
 S_{\mathrm{aniso}}^{(\ell)}(\mathbf{x},t)
 $$
@@ -629,13 +769,42 @@ S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)},
 \right)
 $$
 
-with $\delta\theta_{\mathrm{sea}}^{(\ell)}$ projecting into $n$, $\chi_{\text{sea}}$, $\Gamma_N$, strain, orientation, cadence, and envelope-scale variables. In this language, saying that neighboring Noether swarms absorb the exposed potential means that they retune their branch state. Depending on the accepted branch, that retuning may appear as higher cadence, changed strain, stronger alignment, envelope-scale shift, or altered coupling to nearby Noether swarms; it should not be compressed into a generic statement that the cores simply gain energy and expand.
+with $\delta\theta_{\mathrm{sea}}^{(\ell)}$ projecting into $n$, $\chi_{\text{sea}}$, $\Gamma_N$, strain, orientation, cadence, and envelope-scale variables. In this language, saying that neighboring Noether braids absorb the exposed potential means that they retune their branch state. Depending on the accepted branch, that retuning may appear as higher cadence, changed strain, stronger alignment, envelope-scale shift, or altered coupling to nearby Noether braids; it should not be compressed into a generic statement that the cores simply gain energy and expand.
 
-This is the same shielding-based logic developed more directly in [Particle Masses](../assemblies/particle-masses.md). The matching factor $\alpha_{\mathrm{m}}$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, $\zeta$, and the medium-response map; it should not be fitted separately to each particle species.
+This is the same shielding-based logic developed more directly in [Particle Masses](../assemblies/particle-masses.md). The matching factor $\alpha_{\mathrm{m}}$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, $\zeta$, and the medium-response map; it should not be fitted separately to each particle species. Universality is a cross-species invariant, not a notation choice. For any certified assembly $A$, define the back-solved value
+$$
+\alpha_{\mathrm{m}}(A)
+\equiv
+\frac{
+m_{\mathrm{tr}}(A)c_{\text{eff},0}^2
+}{
+E_{\text{internal}}(A)
+\left[
+\zeta(A)(1+\delta\mathcal M_0)
++
+\frac{1}{3}\mathcal Z_{\mathrm{tf},ab}(A)\delta\mathcal M_{\mathrm{tf}}^{ab}
+\right]
+}
+$$
+on branches that pass the positivity gate above. For any pair $A,A'$ in the mass-map test set, require
+$$
+\mathcal R_{\alpha}(A,A')
+\equiv
+\frac{
+\left|\alpha_{\mathrm{m}}(A)-\alpha_{\mathrm{m}}(A')\right|
+}{
+\left|\alpha_{\mathrm{m}}(A)\right|
++
+\left|\alpha_{\mathrm{m}}(A')\right|
+}
+\le
+\epsilon_{\alpha}
+$$
+with $\epsilon_{\alpha}$ declared before promotion. If this residual cannot be held small without per-species tuning, the universality claim fails and the parameter count must be raised explicitly.
 
 Thermodynamic or entropic derivations of gravitational force are therefore comparison benchmarks for this chapter, not replacements for the mass mechanism. They may sharpen the observer-level equation-of-state target for gravity, but $m_{\text{inertial}}(A)$ is not closed until the same assembly ledger supplies its closed internal causal-history record, shielding extraction, Noether sea response tensor, and acceleration response.
 
-The immediate hand-off is the $A_0$ reference attractor gate. The energy chapter owns the internal-energy and apparent-energy definitions that $A_0$ must report: layer energies, interaction and wake terms, total $E_{\text{internal}}(A_0)$, far-field wake coefficients, and the exposed-energy combination $\zeta(A_0)E_{\text{internal}}(A_0)$. Those outputs are still closure targets until a stable branch, shielding extraction, and response tensor are computed. Compact finite-coordinate no-go records and branch-chart checker results cannot be consumed as energy-accounting inputs: a rejection blocks the chart path, and a clearance authorizes only a rerun candidate until Tier 2 shielding exists on an accepted branch.
+The immediate hand-off is the $A_0$ reference attractor gate. The energy chapter owns the internal-energy and apparent-energy definitions that $A_0$ must report: layer energies, interaction and wake terms, total $E_{\text{internal}}(A_0)$, far-field wake coefficients, $E_{\text{probe}}(A_0)$, $E_{\text{sea-coupled}}(A_0)$, and $\mathcal R_{\text{part}}(A_0)$. Those outputs are still closure targets until a stable branch, shielding extraction, and response tensor are computed. Compact finite-coordinate no-go records and branch-chart checker results cannot be consumed as energy-accounting inputs: a rejection blocks the chart path, and a clearance authorizes only a rerun candidate until Tier 2 shielding exists on an accepted branch.
 
 The multi-scale status of $A_0$ matters for this accounting. Fast internal corrections should not be removed until they are classified. Nonresonant inner-layer motion may average out of the leading apparent-energy fit, but corrections that change self-hit counts, the branch Jacobian near $c_f$, or the leakage tensor can change $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, or both. Apparent energy is therefore downstream of closure and stability, not an input used to force a convenient branch.
 
@@ -643,10 +812,10 @@ The multi-scale status of $A_0$ matters for this accounting. Fast internal corre
 
 ### Noether Sea and Effective Relativistic Behavior
 
-The nested shell swarm Noether sea adds an additional layer:
+The nested shell braid Noether sea adds an additional layer:
 
 - Moving assemblies must retune their internal causal ledger and reorganize local Noether sea coupling.
-- The effective resistance to high center-of-mass speed (near the internal nested shell swarm causal-wake propagation scale) increases steeply, producing an emergent "speed of light" scale $c_{\text{eff}}$ at which assemblies effectively saturate.
+- The effective resistance to high center-of-mass speed (near the internal nested shell braid causal-wake propagation scale) increases steeply, producing an emergent "speed of light" scale $c_{\text{eff}}$ at which assemblies effectively saturate.
 
 Thus:
 
@@ -669,7 +838,30 @@ $$
 Here:
 - $M_0$ is the assembly rest/internal invariant extracted at $v_{\text{CM}}=0$ in a locally homogeneous sea.
 - $E_{\text{CM}}$ and $p_{\text{CM}}$ are the total center-of-mass energy and momentum measured from trajectory dynamics.
-- $c_{\text{eff}}$ is the emergent signal speed of the local Noether sea response record; in weak-field isotropic conditions, $c_{\text{eff}}\to c_f$.
+- $c_{\text{eff}}$ is the isotropic projection of the local Noether sea response-speed record; in weak-field homogeneous and neutral conditions that also pass the two-moment quietness condition above, $c_{\text{eff}}\to c_f$.
+
+More precisely, the response-speed tensor may be written schematically as
+$$
+\left(c_{\text{eff}}^2\right)^{ab}
+=
+c_f^2
+\left[
+(1+\delta c_0)h^{ab}
++
+\delta c_{\mathrm{tf}}^{ab}
+\right],
+\qquad
+c_{\text{eff}}^2
+\equiv
+\frac{1}{3}h_{ab}\left(c_{\text{eff}}^2\right)^{ab}
+$$
+The scalar mass-shell closure is admissible only when the anisotropic propagation correction is bounded,
+$$
+\left\|\delta c_{\mathrm{tf}}\right\|
+\le
+\epsilon_{c,\mathrm{tf}}
+$$
+on the same comparison window. The scalar offset $\delta c_0\to0$ is not assumed by isotropy language alone; it must follow from the same homogeneous neutral summation and screening conditions that make the Noether sea macroscopically quiet.
 
 Equivalent parameterization:
 $$
@@ -690,8 +882,8 @@ Cross-links:
 
 In the **super-field-speed** regime ($\|\mathbf{v}_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether sea:
 
-- Self-hit repulsion acts as an internal **stiffening mechanism** for nested shell swarms and more complex assemblies, contributing to their stability.
-- Energy represented in an architrino's causal wake and local Noether sea response can be partially routed back through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and wake/medium energy associated with the local nested shell swarm configuration.
+- Self-hit repulsion acts as an internal **stiffening mechanism** for nested shell braids and more complex assemblies, contributing to their stability.
+- Energy represented in an architrino's causal wake and local Noether sea response can be partially routed back through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and wake/medium energy associated with the local nested shell braid configuration.
 
 At the exact causal-action level, global energy is conserved: self-hit just routes energy along more complex paths (architrino → causal isochron → local Noether sea → back to architrino/assembly). In dual-mollified local theorem models, the same statement should be read conditionally unless the mollified kernel is explicitly tied to an action-level regularization.
 
@@ -701,7 +893,7 @@ At the exact causal-action level, global energy is conserved: self-hit just rout
 
 Inside an assembly, large internal causal-history energy can circulate through many branch channels. Outside the assembly, distant probes couple only to the portion of that ledger that survives phase cancellation, shielding, and Noether sea response.
 
-Architrinos and their assemblies are where the energy bookkeeping lives. The Noether sea is a dense population of high-energy Noether swarm assemblies whose net long-range wake response is usually quiet because incoherent contributions cancel and shielded internal layers leak only weakly. In nested fermion cores, outer binaries screen deeper layers from the ambient Noether sea. The small residual exposure is what observer-level mass and gravitational response measure.
+Architrinos and their assemblies are where the energy bookkeeping lives. The Noether sea is a dense population of high-energy Noether braid assemblies whose net long-range wake response is usually quiet because incoherent contributions cancel and shielded internal layers leak only weakly. In nested fermion cores, outer binaries screen deeper layers from the ambient Noether sea. The small residual exposure is what observer-level mass and gravitational response measure.
 
 ## Summary and Role in the Larger Theory
 
@@ -721,12 +913,12 @@ Architrinos and their assemblies are where the energy bookkeeping lives. The Noe
 
 - **For spacetime and gravity:**
   
-  The sea of small, high-energy Noether swarms forms the Noether sea and, at coarse-grained level, the effective spacetime medium whose energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both Noether swarms in the Noether sea and "matter" assemblies contribute to:
+  The sea of small, high-energy Noether braids forms the Noether sea and, at coarse-grained level, the effective spacetime medium whose energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both Noether braids in the Noether sea and "matter" assemblies contribute to:
   - The effective Newton constant $G$,
   - The cosmological Noether sea energy density,
   - How strongly observer-level effective metric response is reconstructed from different kinds of energy.
   
-  Density-driven oblation is a candidate contribution to the effective gravitational-coupling closure: as the Noether sea encounters denser matter, local Noether swarms may scale down and oblate, creating a compliance gradient that must be mapped through the Noether sea response tensor before it can be read as part of $G$.
+  Density-driven oblation is a candidate contribution to the effective gravitational-coupling closure: as the Noether sea encounters denser matter, local Noether braids may scale down and oblate, creating a compliance gradient that must be mapped through the Noether sea response tensor before it can be read as part of $G$.
 
 ---
 
@@ -749,6 +941,26 @@ We adopt a **singular-boundary gauge**: on a certified branch chart with a decla
 $$U(r_{\min}) \equiv 0.$$
 
 In this gauge, $U(r)$ represents the **accumulated work** performed to separate the binary from its ground state to radius $r$. Total energy is thus partitioned into *kinetic* (motion) and *deformation* (separation) components, with fully separated (unbound) pairs carrying maximal deformation energy $U_{\max} \equiv B_{\max}$.
+
+When the active causal-root ledger changes, this gauge must be indexed by the branch ledger. For ledger cell $b$,
+$$
+U^{(b)}(r)
+\equiv
+B_{\max}^{(b)}-B^{(b)}(r),
+\qquad
+B_{\max}^{(b)}
+=
+B^{(b)}\!\left(r_{\min}^{(b)}\right)
+$$
+so a separator crossing that changes the effective inner wall cannot be counted once as a gauge-origin jump and again as an independent $h$-like energy quantum. At a crossing radius $r_\ast$ between ledger cells $b$ and $b'$, the physical bookkeeping must satisfy
+$$
+\left[E_{\text{total}}\right]_{b\to b'}
+=
+K^{(b)}(r_\ast)+U^{(b)}(r_\ast)
+=
+K^{(b')}(r_\ast)+U^{(b')}(r_\ast)+\Delta_{\text{ledger}}
+$$
+where $\Delta_{\text{ledger}}$ is the declared root-change energy routed through the table entries such as $\varepsilon_o$, $\varepsilon_w$, and the middle-channel adjustment. The visible step is the ledger/gauge matching term; it is not additional to that matching.
 
 ### Binding Energy and Total Energy
 
@@ -813,11 +1025,11 @@ Working bookkeeping hypothesis:
 
 This can read as an "amplified" response, but only because the inner binary is **releasing or reconfiguring retained internal energy** when the self-hit echo is engaged. It is **not** net energy creation; it is a redistribution between internal stores under a smooth $U(r)$.
 
-### Nested Shell Swarm as Routing/Locking Circuit (Analogy)
+### Nested Shell Braid as Routing/Locking Circuit (Analogy)
 
-It is useful (as a **bookkeeping analogy**) to think of the nested shell swarm as a **routing/locking circuit** rather than a simple reservoir. An incoming single-step transaction ($h$-like) couples most strongly to the **outer binary**, the **middle binary** acts as a buffer/fulcrum that maintains overall consistency, and the **inner binary** can respond with a two-step reconfiguration when the self-hit echo is engaged. The effective response can resemble a geared or ratcheted redistribution, but the mechanism is still deterministic energy routing, not creation.
+It is useful (as a **bookkeeping analogy**) to think of the nested shell braid as a **routing/locking circuit** rather than a simple reservoir. An incoming single-step transaction ($h$-like) couples most strongly to the **outer binary**, the **middle binary** acts as a buffer/fulcrum that maintains overall consistency, and the **inner binary** can respond with a two-step reconfiguration when the self-hit echo is engaged. The effective response can resemble a geared or ratcheted redistribution, but the mechanism is still deterministic energy routing, not creation.
 
-In this language, a discrete input can **lock in** a new nested shell swarm configuration: a threshold-triggered, history-dependent update that selects one stable branch over another. This is a **collapse-like** event in the phenomenological sense (a sudden, discrete state update), but in $\mathbb{A}\mathbb{A}\mathbb{A}$ it is treated as a **deterministic, microstate-sensitive bifurcation**, not an intrinsically stochastic collapse.
+In this language, a discrete input can **lock in** a new nested shell braid configuration: a threshold-triggered, history-dependent update that selects one stable branch over another. This is a **collapse-like** event in the phenomenological sense (a sudden, discrete state update), but in $\mathbb{A}\mathbb{A}\mathbb{A}$ it is treated as a **deterministic, microstate-sensitive bifurcation**, not an intrinsically stochastic collapse.
 
 ### Bookkeeping Table: One $h$ of Closed-Cycle Action (Outer $v < c_f$)
 
@@ -859,9 +1071,20 @@ Per-step increments (explicit, no deltas):
 
 Constraints to apply across the $f-1 \to f$ transition (bookkeeping level):
 
-- **Angular momentum / rotational action**: $\Delta I_{\text{out}} + \Delta I_{\text{mid}} + \Delta I_{\text{in}} + \Delta I_{\text{wake}} = +\hbar$. For a **net positive** transaction, all binaries should register **nonnegative** increments (no mixed signs): $\Delta I_{\text{out}}, \Delta I_{\text{mid}}, \Delta I_{\text{in}} \ge 0$ with $\Delta I_{\text{wake}} \approx 0$, and the distribution is left unspecified. For a **net negative** transaction, all three should be nonpositive. This preserves a consistent sign across the assemblies while still allowing arbitrary partitioning.
+- **Angular momentum / rotational action**: the sign rule is gauge-invariant only after declaring the allowed wake share:
+  $$
+  \Delta I_{\text{out}}+\Delta I_{\text{mid}}+\Delta I_{\text{in}}+\Delta I_{\text{wake}}
+  =
+  +\hbar,
+  \qquad
+  |\Delta I_{\text{wake}}|
+  \le
+  \epsilon_w\hbar
+  $$
+  For a **net positive** transaction, the layer increments must satisfy $\Delta I_k\ge-\epsilon_w\hbar$ for $k\in\{\text{out},\text{mid},\text{in}\}$. For a **net negative** transaction, the same bound applies with signs reversed. The nonnegative-increment claim is therefore an up-to-wake-tolerance statement, not a gauge-free statement that the wake channel carries exactly zero rotational action.
 - **Energy**: $(k_o+u_o) + (k_m+u_m) + 2(k_i+u_i) = \varepsilon_o + \varepsilon_w$. This is the explicit version of conservation using the per-step increments defined above.
 - **Root-ledger closure**: the transition must move from one admissible integer causal-root ledger to another and then close consistently over the full cycle. In a raw self-root table, separator crossings obey the parity rule $\Delta N\in 2\mathbb{Z}$ and $\Delta D=0$; in a grouped channel ledger, the same event may be recorded as one newly active channel.
+- **Cross-ledger gauge matching**: any jump in $r_{\min}^{(b)}$ and $B_{\max}^{(b)}$ is part of the declared $\Delta_{\text{ledger}}$ budget above. A table row may not count the same gauge-origin shift once in $U^{(b)}$ and again as an extra wake or oscillator energy.
 - **Smooth slope**: $dU/dr$ remains continuous across the graft; the discrete behavior comes from **state updates**, not a kink in $U(r)$.
 
 This table is intentionally explicit: every $h$ closed-cycle action transaction is represented by a radian-normalized $\hbar$ rotational-action increment, split into a kinetic part ($k$) and a potential part ($u$). The remaining freedom is **how** each binary partitions its step (the $\chi$ fractions) and how the middle, inner, and causal-wake channels redistribute the initial outer-binary coupling.
@@ -908,12 +1131,33 @@ T_a(\lambda(t))\,
 \right)
 \ll1
 $$
-and the path remains inside the same causal-root ledger cell, the theorem target is
+and the path remains a positive distance from the causal-root ledger-cell boundary,
+$$
+\operatorname{dist}\!\left(\gamma_a(\lambda),\partial\mathcal{G}_a\right)
+\ge
+\delta_{\text{cell}}
+>
+0
+$$
+the interior adiabatic theorem target is
 $$
 \frac{dI_a}{dt}
 =
 O(\epsilon_{\mathrm{ad},a})
 +
-\mathcal{R}_{\mathrm{branch},a}(t)
+\mathcal{R}_{\mathrm{int},a}(t)
 $$
-Here $\ell_{\lambda}$ is the declared scale over which the reduced Hamiltonian changes appreciably, and $\mathcal{R}_{\mathrm{branch},a}$ records branch folds, omitted wake-history exchange, non-characteristic boundary leakage, or failure of the reduced symplectic chart. Thus the action variable is expected to drift only adiabatically between separator crossings, while a root-ledger transition may produce the discrete $\Delta I$ recorded above. This turns the $h$-like bookkeeping into a branch invariant target rather than an assumption that energy itself is quantized at the primitive level.
+Here $\ell_{\lambda}$ is the declared scale over which the reduced Hamiltonian changes appreciably, and $\mathcal{R}_{\mathrm{int},a}$ records omitted wake-history exchange, non-characteristic boundary leakage, or small chart error while the branch stays inside one ledger cell. At a separator crossing or root-fold boundary, the interior estimate is void. The crossing rule is instead
+$$
+\Delta I_a\big|_{\mathrm{fold}}
+=
+\frac{1}{2\pi}
+\left(
+\oint_{\gamma_a'}\Pi_a\,dQ_a
+-
+\oint_{\gamma_a}\Pi_a\,dQ_a
+\right)
+=
+\Delta I_{\mathrm{ledger},a}
+$$
+where $\Delta I_{\mathrm{ledger},a}$ is the declared quantized ledger increment associated with the change in active causal-root multiplicity or branch chart. Thus the action variable is expected to drift only adiabatically inside a ledger cell, while a root-ledger transition may produce the discrete $\Delta I$ recorded above. This turns the $h$-like bookkeeping into a branch-boundary invariant target rather than an assumption that energy itself is quantized at the primitive level.

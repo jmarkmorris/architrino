@@ -36,7 +36,7 @@ The first runnable version uses a temporary mock replay adapter that matches the
 - Runtime target: focused modules under `src/apps/causal-delay-feedback/`.
 - Page structure: full-viewport canvas with a compact floating toolbar, small legend chips, and a hover label, not a dense side-panel app.
 - First runnable model: one representative positrino/electrino replay pair, internal retained path-history samples per path, and two live causal-wake series, one emitted by each architrino toward the other architrino's current path position.
-- Visual style: reuse Ideal Swarm-style architrino markers, orbit/path trails, purple-background canvas treatment, and emitter-colored causal-wake arcs where practical.
+- Visual style: reuse Ideal Braid-style architrino markers, orbit/path trails, purple-background canvas treatment, and emitter-colored causal-wake arcs where practical.
 - Interaction style: the canvas is the control surface. The first implementation prioritizes replay, preset selection, reset, wake selection, canvas-color settings, and compact speed settings. Solid paths are visible, but fixed retained path-history dots and numbers are not drawn or selectable.
 
 ## Visual And UI Conventions
@@ -57,13 +57,13 @@ Recent app work has several reusable design patterns for this app:
 
 - [Molecule Visualization](../../../molecule.html) provides the best compact app-shell reference: a full canvas, top floating title block, small toolbar, color legend chips, hover label, and compact bottom readout.
 - [MoleculeRuntime.js](../../../src/apps/molecule/MoleculeRuntime.js) has useful viewport-fit logic that keeps the main object clear of the readout. Reuse that idea so moving architrino paths and compact readouts do not collide at different canvas sizes.
-- [IdealSwarmRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmRuntime.js) remains the primary marker and trail grammar reference for architrino motion: glow-backed positrino/electrino markers, layered path ribbons, faded wake layers, and dark full-canvas atmosphere.
-- [PhotonSwarmVisualRuntime.js](../../../src/apps/photon/PhotonSwarmVisualRuntime.js) has a useful 2D arc-tail primitive: segmented curved arcs with width and alpha falloff. Adapt that pattern for causal-wake arcs and $1/r$ thinning.
-- Do not import Molecule's dense side preset rail or Ideal Swarm's four-corner panel layout into v1. The causal-delay app should keep the canvas-first, low-control direction already selected.
+- [IdealBraidRuntime.js](../../../src/apps/ideal-braid/IdealBraidRuntime.js) remains the primary marker and trail grammar reference for architrino motion: glow-backed positrino/electrino markers, layered path ribbons, faded wake layers, and dark full-canvas atmosphere.
+- [PhotonBraidVisualRuntime.js](../../../src/apps/photon/PhotonBraidVisualRuntime.js) has a useful 2D arc-tail primitive: segmented curved arcs with width and alpha falloff. Adapt that pattern for causal-wake arcs and $1/r$ thinning.
+- Do not import Molecule's dense side preset rail or Ideal Braid's four-corner panel layout into v1. The causal-delay app should keep the canvas-first, low-control direction already selected.
 
 ## V1 Product Direction
 
-The first build should feel simpler than Photon or Ideal Swarm:
+The first build should feel simpler than Photon or Ideal Braid:
 
 - one canvas-first scene;
 - one floating toolbar with a preset dropdown, play/pause, reset, and settings gear;

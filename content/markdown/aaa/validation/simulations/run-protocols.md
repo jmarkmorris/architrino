@@ -9,7 +9,7 @@ The opening gives the top-level simulation rule set; the later sections unpack t
 1. **Coordinate Anchor**: All simulations run on a fixed Cartesian grid chosen as the coordinate scaffold for the Euclidean void. `Grid[x][y][z]` is a chart address, not an intrinsic label in the void.
 2. **Clock Rate**: The simulator uses a global `Time` counter (absolute $t$). No relativistic scaling is applied to the integration step itself.
 3. **$\mathbb{U}_{\text{now}}$ universe-state interface**: Every run must instantiate an array of fixed virtual sensors to log $\Phi$ and $\nabla\Phi$ at declared absolute-frame grid addresses.
-4. **Noether sea Initialization**: Low-excitation Noether sea runs must pre-populate the grid with a lattice of coupled pro/anti Noether swarms to simulate Noether sea influence on test particles.
+4. **Noether sea Initialization**: Low-excitation Noether sea runs must pre-populate the grid with a lattice of coupled pro/anti Noether braids to simulate Noether sea influence on test particles.
 5. **Convergence**: $\Delta t$ refinement must be accompanied by "History Resolution" refinement to ensure self-hit calculations are numerically stable.
 6. **Campaign Packet**: Any run used for a proof certificate, branch-certificate gate, or promoted validation claim must emit a machine-checkable packet rather than only plots or summaries.
 
@@ -288,7 +288,7 @@ All simulations integrate dynamics in the absolute Euclidean frame:
 
 ### Void and Noether Sea Terminology (Simulation-Facing)
 - "Euclidean void" = the fixed spatial container represented by the chosen coordinate chart / grid indices
-- "Noether sea" = coupled pro/anti swarms instantiated as objects or response variables in the void
+- "Noether sea" = coupled pro/anti braids instantiated as objects or response variables in the void
 
 ### Mandatory $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) grid
 Every run must instantiate $\mathbb{U}_{\text{now}}$ sensors:
@@ -319,7 +319,7 @@ No major physical claim is accepted without:
 
 ### $\mathbb{U}_{\text{now}}$ universe-state perspective Implementation & Grid Protocols
 
-1. **Grid Initialization**: All simulations run on a rigid Cartesian grid chosen as the coordinate scaffold for the **Euclidean void**. The grid is pre-loaded with a lattice of coupled Noether swarms to instantiate the Noether sea.
+1. **Grid Initialization**: All simulations run on a rigid Cartesian grid chosen as the coordinate scaffold for the **Euclidean void**. The grid is pre-loaded with a lattice of coupled Noether braids to instantiate the Noether sea.
 2. **Fiducial Sensor Array**: Instantiate a grid of virtual sensors at fixed chart locations $(x,y,z)$. Each records $\Phi$ and $\nabla\Phi$.
 3. **Causal Time Lookup**: When a causal isochron intersects a sensor, the simulator uses the grid history to "look back" to the emitter's position at $t_{history}$.
 4. **Logging Standard**: All runs must log $\mathbb{U}_{\text{now}}$ channels ($\Phi$, $\nabla\Phi$, provenance tables) to allow cross-run convergence auditing.
@@ -328,6 +328,6 @@ No major physical claim is accepted without:
 ### $\mathbb{U}_{\text{now}}$ universe-state perspective Grid
 
 * **Grid:** Initialize rigid Cartesian `Grid[x][y][z]` as the chosen chart for the Euclidean void.
-* **Sea Initialization:** Pre-load the grid with coupled Noether swarms for low-excitation Noether sea runs.
+* **Sea Initialization:** Pre-load the grid with coupled Noether braids for low-excitation Noether sea runs.
 * **Logging:** Record $\Phi$ and $\nabla\Phi$ at fixed nodes ($\mathbb{U}_{\text{now}}$ universe-state sensors).
 * **Time:** Global step $\Delta t$ (absolute time).

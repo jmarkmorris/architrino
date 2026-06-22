@@ -109,7 +109,7 @@ export interface PhotonPhaseDiagnosticsRunAdapterInput extends SolverRunAdapterB
   phaseRequest: SolverPhaseAtHitF64Request;
 }
 
-export type IdealSwarmDelayedHitsRunAdapterInput = SolverRunAdapterBaseInput &
+export type IdealBraidDelayedHitsRunAdapterInput = SolverRunAdapterBaseInput &
   (
 	    | {
 	        rootRequest: SolverCausalRootsF64Request;
@@ -137,7 +137,7 @@ export type IdealSwarmDelayedHitsRunAdapterInput = SolverRunAdapterBaseInput &
 	      }
 	  );
 
-export interface IdealSwarmSharedGeometryRunAdapterInput extends SolverRunAdapterBaseInput {
+export interface IdealBraidSharedGeometryRunAdapterInput extends SolverRunAdapterBaseInput {
   geometryRequest: SolverSharedGeometryF64Request;
 }
 
@@ -315,12 +315,12 @@ export declare function createPhotonPhaseDiagnosticsRunRequest(
   input: PhotonPhaseDiagnosticsRunAdapterInput
 ): SolverRunRequest;
 
-export declare function createIdealSwarmDelayedHitsRunRequest(
-  input: IdealSwarmDelayedHitsRunAdapterInput
+export declare function createIdealBraidDelayedHitsRunRequest(
+  input: IdealBraidDelayedHitsRunAdapterInput
 ): SolverRunRequest;
 
-export declare function createIdealSwarmSharedGeometryRunRequest(
-  input: IdealSwarmSharedGeometryRunAdapterInput
+export declare function createIdealBraidSharedGeometryRunRequest(
+  input: IdealBraidSharedGeometryRunAdapterInput
 ): SolverRunRequest;
 
 export declare function createAnimatorMotionSimulationRunRequest(

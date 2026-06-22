@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "unknowns_paradoxes",
-    "title": "Unknowns & Paradoxes",
+    "title": "Unknowns and Paradoxes",
     "type": "Scene-Markdown-Tree",
     "units": "relative",
     "wrapLabels": true,

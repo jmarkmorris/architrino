@@ -91,13 +91,13 @@ No speed band, speed window, speed minimum, or speed maximum is imposed. The pac
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.mjs). It imports and validates the endpoint-sign packet and the derivative peak-budget packet, then emits the theorem summary:
+The executable packet is [octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.mjs). It imports and validates the endpoint-sign packet and the derivative peak-budget packet, then emits the theorem summary:
 
 $$
 \texttt{I1.f1.full-interval-zero-isolation-composition}.
 $$
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.test.js) validates schema boundaries, endpoint/derivative predecessor consumption, absence of speed-band fields, downstream overclaim rejection, and CLI validation. The test accepts `AAA_TEST_HEARTBEAT=0` to suppress long-run progress lines; by default it reports peak-budget parent-row progress while building the artifact.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.test.js) validates schema boundaries, endpoint/derivative predecessor consumption, absence of speed-band fields, downstream overclaim rejection, and CLI validation. The test accepts `AAA_TEST_HEARTBEAT=0` to suppress long-run progress lines; by default it reports peak-budget parent-row progress while building the artifact.
 
 ## Result
 

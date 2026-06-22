@@ -19,14 +19,14 @@ test("pdgedit scene no longer resolves to a standalone app path from the main we
   assert.equal(getStandaloneAppPathForScene("pdgedit"), null);
 });
 
-test("Ideal Swarm scene resolves to the standalone app path", () => {
-  assert.equal(getStandaloneAppPathForScene("archie__ideal_swarm"), "ideal-swarm.html");
+test("Ideal Braid scene resolves to the standalone app path", () => {
+  assert.equal(getStandaloneAppPathForScene("archie__ideal_braid"), "ideal-braid.html");
   assert.equal(
     resolveStandaloneAppHrefForScene(
-      "archie__ideal_swarm",
-      "http://127.0.0.1:5174/index.html#scene=content/scenes/archie/ideal_swarm.json"
+      "archie__ideal_braid",
+      "http://127.0.0.1:5174/index.html#scene=content/scenes/archie/ideal_braid.json"
     ),
-    "http://127.0.0.1:5174/ideal-swarm.html"
+    "http://127.0.0.1:5174/ideal-braid.html"
   );
 });
 

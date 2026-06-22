@@ -158,7 +158,7 @@ The remaining first-y blocker is no longer the root-tail tube. The next required
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift25-e-root-tail-tube-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift25-e-root-tail-tube-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift25-e-root-tail-tube-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift25-e-root-tail-tube-certificate.mjs). It emits:
 
 - the coefficient-shifted $R_{\varepsilon,25}=\operatorname{Shift}_{25}(F_\varepsilon)$ evaluator;
 - lower-coefficient zero-containment rows for $y^0$ through $y^{24}$;

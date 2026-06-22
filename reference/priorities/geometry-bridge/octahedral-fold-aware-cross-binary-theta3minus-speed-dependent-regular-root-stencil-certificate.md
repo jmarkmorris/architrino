@@ -131,7 +131,7 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-stencil-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-stencil-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-stencil-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-stencil-certificate.mjs). It emits:
 
 - a stricter sampled/stencil replay of the regular-root remainder split;
 - regular-root $R_G/y$ and $R_D/y^3$ scale summaries;
@@ -139,4 +139,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - directed-rounded backend target rows for regular-root interval closure;
 - explicit non-directed-rounded, non-`I1`, non-quadrature, and non-retention claim boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-stencil-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-stencil-certificate.test.js) validates schema, no-fixed-speed-window discipline, stricter grid shape, regular-root scaling thresholds, backend target emission, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-stencil-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-stencil-certificate.test.js) validates schema, no-fixed-speed-window discipline, stricter grid shape, regular-root scaling thresholds, backend target emission, overclaim rejection, and CLI write/validate behavior.

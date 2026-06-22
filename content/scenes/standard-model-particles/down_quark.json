@@ -42,7 +42,7 @@
   "objects": [
     {
       "id": "quark_core",
-      "label": "Nested shell swarm",
+      "label": "Nested shell braid",
       "radius": 2.4,
       "color": "PURPLE",
       "position": [
@@ -56,7 +56,7 @@
         "inner"
       ],
       "renderStyle": "binarySphere",
-      "labelTitle": "Nested shell swarm"
+      "labelTitle": "Nested shell braid"
     },
     {
       "id": "electrino_1",

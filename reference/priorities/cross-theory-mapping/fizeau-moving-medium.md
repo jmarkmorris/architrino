@@ -16,7 +16,7 @@ where $n$ is the refractive index of the material and $v$ is the medium velocity
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-This case is a guardrail against loose medium analogies. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Noether sea is not a simple mechanically dragged medium, and $n(\mathbf{x},t)$ is reserved for normalized Noether swarm density, not optical refractive index. The mapping must distinguish material-channel delay, Noether sea delay $\chi_{\text{sea}}$, and observer-level velocity addition.
+This case is a guardrail against loose medium analogies. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Noether sea is not a simple mechanically dragged medium, and $n(\mathbf{x},t)$ is reserved for normalized Noether braid density, not optical refractive index. The mapping must distinguish material-channel delay, Noether sea delay $\chi_{\text{sea}}$, and observer-level velocity addition.
 
 ## Task Queue
 
@@ -36,12 +36,12 @@ This case is a guardrail against loose medium analogies. In $\mathbb{A}\mathbb{A
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
 | This file | [mass-map/condensed-matter-medium-transport](../mass-map/condensed-matter-medium-transport.md) | Add moving material as a transport benchmark for medium-dressed propagation. |
-| This file | [swarm](../swarm/swarm.md) | Use Fizeau as a velocity-addition check tied to Lorentz closure. |
+| This file | [braid](../braid/braid.md) | Use Fizeau as a velocity-addition check tied to Lorentz closure. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Prevent material refractive behavior from being mistaken for substrate drag. |
 
 ## Failure Modes
 
 - `fizeau.drag_medium_leak`: Noether sea is treated as a simple mechanically dragged medium.
-- `fizeau.notation_collision`: optical refractive index is confused with normalized Noether swarm density $n(\mathbf{x},t)$.
+- `fizeau.notation_collision`: optical refractive index is confused with normalized Noether braid density $n(\mathbf{x},t)$.
 - `fizeau.coefficient_split`: moving-medium propagation requires a different velocity-addition rule from Lorentz closure.
 - `fizeau.material_no_ledger`: material recoil, heating, dispersion, and boundary handoff are not recorded.

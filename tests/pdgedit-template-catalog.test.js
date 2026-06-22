@@ -19,8 +19,8 @@ test("pdgedit template catalog derives one explicit assembly template per v1 ass
   assert.equal(templateCatalog.assemblyTemplateByType.has(deprecatedPhotonAssemblyType), false);
   assert.equal(templateCatalog.assemblyTemplateByType.has("photon-composite"), false);
   assert.equal(templateCatalog.assemblyTemplateByType.has("pro-proton-composite"), false);
-  assert.equal(templateCatalog.assemblyTemplateByType.has("pro-noether-swarm-assembly"), true);
-  assert.equal(templateCatalog.assemblyTemplateByType.has("anti-noether-swarm-assembly"), true);
+  assert.equal(templateCatalog.assemblyTemplateByType.has("pro-noether-braid-assembly"), true);
+  assert.equal(templateCatalog.assemblyTemplateByType.has("anti-noether-braid-assembly"), true);
   assert.equal(templateCatalog.assemblyTemplateByType.has("pro-bi-binary-assembly"), true);
   assert.equal(templateCatalog.assemblyTemplateByType.has("anti-bi-binary-assembly"), true);
   assert.equal(templateCatalog.assemblyTemplateByType.has("pro-uni-binary-assembly"), true);
@@ -50,6 +50,6 @@ test("pdgedit template catalog derives one explicit assembly template per v1 ass
     type: "noether-sea-assembly",
     title: "Noether Sea",
     displayTitle: "Noether Sea",
-    tiles: ["noether", "pro-noether-swarm-glyph", "anti-noether-swarm-glyph", "sea"],
+    tiles: ["noether", "pro-noether-braid-glyph", "anti-noether-braid-glyph", "sea"],
   });
 });

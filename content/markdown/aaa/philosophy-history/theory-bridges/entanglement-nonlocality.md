@@ -88,7 +88,7 @@ The crucial point is that the architrino trajectories, wake phases, and internal
 
 After separation, the two assemblies propagate through the Noether sea, each following its own lawful trajectory. No causal wake from $A$ can influence $B$ (or vice versa) faster than $c_f$. Once the assemblies are separated by a distance $d > c_f \Delta t$, they evolve **causally independently** in the sense that no new information passes between them.
 
-The correlations established at $t_0$ are carried forward in the **internal configuration** of each assembly: the relative phases of its constituent binaries, the orientation of its nested shell swarm, and the detailed structure of its wake history. These internal degrees of freedom are the **hidden variables** of the system. They are:
+The correlations established at $t_0$ are carried forward in the **internal configuration** of each assembly: the relative phases of its constituent binaries, the orientation of its nested shell braid, and the detailed structure of its wake history. These internal degrees of freedom are the **hidden variables** of the system. They are:
 
 - **Definite** at all times (no ontological indeterminacy),
 - **Inaccessible** to any Physical Observer who lacks the full microstate $\Gamma(t)$ (epistemic indeterminacy),
@@ -417,7 +417,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 - If the pair-provenance ledger plus local apparatus-response maps fail to reproduce the full spin-singlet joint law from the hidden-variable geometry, the specific Bell-closure mechanism is falsified, though the general ontological framework may admit repair.
 
 **Bell Closure Gate:**
-- Simulate a minimal correlated-pair source event (e.g., a parent assembly fragmenting into two daughter Noether swarms) under the Master Equation and extract the joint outcome statistics as a function of relative measurement angle.
+- Simulate a minimal correlated-pair source event (e.g., a parent assembly fragmenting into two daughter Noether braids) under the Master Equation and extract the joint outcome statistics as a function of relative measurement angle.
 - Derive the source-provenance distribution for a spin-singlet-like source event from the conservation constraints and verify the full joint law
   $$
   P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)

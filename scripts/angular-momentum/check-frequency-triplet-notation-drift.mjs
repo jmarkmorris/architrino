@@ -80,7 +80,7 @@ if (findings.length) {
 }
 
 console.log(
-  `[frequency-triplet-notation] scanned ${filesScanned} files; canonical I:M:O notation is clean`
+  `[frequency-triplet-notation] scanned ${filesScanned} files; legacy outer-normalized triplet notation is clean`
 );
 
 function createCanonicalSurfacePatterns() {

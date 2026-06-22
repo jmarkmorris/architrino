@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 520,
-      "edges": 1273,
-      "scenes": 343,
+      "nodes": 527,
+      "edges": 1281,
+      "scenes": 347,
       "markdownIndexes": 0,
-      "markdownDocs": 164,
+      "markdownDocs": 167,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1002,7 +1002,7 @@
     },
     {
       "id": "unknowns_paradoxes",
-      "name": "Unknowns & Paradoxes",
+      "name": "Unknowns and Paradoxes",
       "path": "content/scenes/philosophy_history/unknowns_paradoxes.json",
       "nodeType": "scene"
     },
@@ -1253,6 +1253,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "dynamics__tri_binary_configuration_space",
+      "name": "Tri-Binary Configuration Space",
+      "path": "content/scenes/dynamics/tri_binary_configuration_space.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "dynamics__dyadic_resonance_lock",
       "name": "Dyadic Resonance Lock",
       "path": "content/scenes/dynamics/dyadic_resonance_lock.json",
@@ -1266,13 +1272,13 @@
     },
     {
       "id": "dynamics__kinetic_and_potential_energy",
-      "name": "Kinetic and Potential Energy",
+      "name": "Energy",
       "path": "content/scenes/dynamics/kinetic_and_potential_energy.json",
       "nodeType": "scene"
     },
     {
       "id": "dynamics__master_equation_of_motion",
-      "name": "Master Equation of Motion",
+      "name": "Master Equation",
       "path": "content/scenes/dynamics/master_equation_of_motion.json",
       "nodeType": "scene"
     },
@@ -1308,7 +1314,7 @@
     },
     {
       "id": "foundations__foundational_ontology",
-      "name": "Foundational Ontology",
+      "name": "Ontology",
       "path": "content/scenes/foundations/foundational_ontology.json",
       "nodeType": "scene"
     },
@@ -1380,7 +1386,7 @@
     },
     {
       "id": "quantum__reality_causality_and_navigation",
-      "name": "Reality, Causality, and Navigation",
+      "name": "Reality Quantum Causality",
       "path": "content/scenes/quantum/reality_causality_and_navigation.json",
       "nodeType": "scene"
     },
@@ -1734,7 +1740,7 @@
     },
     {
       "id": "dynamics__collinear_breather",
-      "name": "1D Collinear Binary (Reduced Model)",
+      "name": "Collinear Breather",
       "path": "content/scenes/proof-programs/collinear_breather.json",
       "nodeType": "scene"
     },
@@ -1842,7 +1848,7 @@
     },
     {
       "id": "quantum__algorithmic_resonance",
-      "name": "Algorithmic Resonance and Shor's Algorithm",
+      "name": "Algorithmic Resonance",
       "path": "content/scenes/quantum/algorithmic_resonance.json",
       "nodeType": "scene"
     },
@@ -1878,7 +1884,7 @@
     },
     {
       "id": "reactions__synchrotron_cascades",
-      "name": "Synchrotron Cascades",
+      "name": "Synchrotron",
       "path": "content/scenes/reactions/synchrotron_cascades.json",
       "nodeType": "scene"
     },
@@ -1925,15 +1931,21 @@
       "nodeType": "scene"
     },
     {
+      "id": "theory_bridges__overview",
+      "name": "Theory Bridges",
+      "path": "content/scenes/philosophy_history/theory_bridges/overview.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "theory_bridges__pilot_wave_character",
       "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
       "path": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "nodeType": "scene"
     },
     {
-      "id": "theory_bridges__planck_scale_nested_shell_swarm_alignment",
-      "name": "Planck Scale Nested Shell Swarm Alignment",
-      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
+      "id": "theory_bridges__planck_scale_nested_shell_braid_alignment",
+      "name": "Planck Scale Nested Shell Braid Alignment",
+      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
       "nodeType": "scene"
     },
     {
@@ -1943,9 +1955,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "theory_bridges__special_relativity_noether_swarm",
-      "name": "Special Relativity and Deformable Noether Swarms",
-      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+      "id": "theory_bridges__special_relativity_noether_braid",
+      "name": "Special Relativity and Deformable Noether Braids",
+      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
       "nodeType": "scene"
     },
     {
@@ -1968,8 +1980,14 @@
     },
     {
       "id": "substance_structure_potential",
-      "name": "Substance, Structure, and the Plenum of Potential",
+      "name": "Substance Structure and Potential",
       "path": "content/scenes/philosophy_history/substance_structure_potential.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__overview",
+      "name": "Philosophy and History",
+      "path": "content/scenes/philosophy_history/overview.json",
       "nodeType": "scene"
     },
     {
@@ -1997,27 +2015,27 @@
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm__nested_shell_swarm",
-      "name": "Nested Shell Swarm",
-      "path": "content/scenes/noether-swarm/nested_shell_swarm.json",
+      "id": "noether_braid__nested_shell_braid",
+      "name": "Nested Shell Braid",
+      "path": "content/scenes/noether-braid/nested_shell_braid.json",
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm__neutral_swarm",
-      "name": "Neutral Swarm",
-      "path": "content/scenes/noether-swarm/neutral_swarm.json",
+      "id": "noether_braid__neutral_braid",
+      "name": "Neutral Braid",
+      "path": "content/scenes/noether-braid/neutral_braid.json",
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm",
-      "name": "Noether Swarm",
-      "path": "content/scenes/noether-swarm/noether_swarm.json",
+      "id": "noether_braid",
+      "name": "Noether Braid",
+      "path": "content/scenes/noether-braid/noether_braid.json",
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm__shell_swarm",
-      "name": "Shell Swarm",
-      "path": "content/scenes/noether-swarm/shell_swarm.json",
+      "id": "noether_braid__shell_braid",
+      "name": "Shell Braid",
+      "path": "content/scenes/noether-braid/shell_braid.json",
       "nodeType": "scene"
     },
     {
@@ -2039,21 +2057,21 @@
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm__nested_shell_swarm_dynamics",
-      "name": "Nested Shell Swarm Dynamics",
-      "path": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "id": "noether_braid__nested_shell_braid_dynamics",
+      "name": "Nested Shell Braid Dynamics",
+      "path": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm__overview",
-      "name": "Noether Swarm",
-      "path": "content/scenes/noether-swarm/noether_swarm_overview.json",
+      "id": "noether_braid__overview",
+      "name": "Noether Braid",
+      "path": "content/scenes/noether-braid/noether_braid_overview.json",
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm__nested_shell_swarm_geometry",
-      "name": "Nested Shell Swarm Geometry",
-      "path": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "id": "noether_braid__nested_shell_braid_geometry",
+      "name": "Nested Shell Braid Geometry",
+      "path": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
       "nodeType": "scene"
     },
     {
@@ -2063,14 +2081,14 @@
       "nodeType": "scene"
     },
     {
-      "id": "archie__ideal_swarm",
-      "name": "Ideal Noether Swarm: Lorentz Geometry App",
-      "path": "content/scenes/archie/ideal_swarm.json",
+      "id": "archie__ideal_braid",
+      "name": "Ideal Noether Braid: Lorentz Geometry App",
+      "path": "content/scenes/archie/ideal_braid.json",
       "nodeType": "scene"
     },
     {
       "id": "validation_action_energy__delay_dynamics_energy",
-      "name": "Constructive Energy for Delay Dynamics",
+      "name": "Delay Dynamics Energy",
       "path": "content/scenes/validation/delay_dynamics_energy.json",
       "nodeType": "scene"
     },
@@ -2088,7 +2106,7 @@
     },
     {
       "id": "dynamics__entropy_and_record_coarse_graining",
-      "name": "Entropy and Record Coarse-Graining",
+      "name": "Entropy",
       "path": "content/scenes/dynamics/entropy_and_record_coarse_graining.json",
       "nodeType": "scene"
     },
@@ -2177,9 +2195,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_swarm_action_increment_protocol",
-      "name": "Nested Shell Swarm Action-Increment Protocol",
-      "path": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
+      "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_braid_action_increment_protocol",
+      "name": "Nested Shell Braid Action-Increment Protocol",
+      "path": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
       "nodeType": "scene"
     },
     {
@@ -2202,8 +2220,14 @@
     },
     {
       "id": "validation_simulations__sim_metric_observer__sim_thermodynamic_residual",
-      "name": "Thermodynamic Residual Protocol",
+      "name": "Thermodynamic Residual",
       "path": "content/scenes/validation/sim_thermodynamic_residual.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "dynamics__assembly_topological_charge",
+      "name": "Assembly Topological Charge",
+      "path": "content/scenes/dynamics/assembly_topological_charge.json",
       "nodeType": "scene"
     },
     {
@@ -2231,15 +2255,21 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/archie/download-textbook-pdf.md",
+      "name": "Download Textbook PDF",
+      "path": "content/markdown/aaa/archie/download-textbook-pdf.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/archie/github-presence-and-community.md",
       "name": "GitHub Presence and Community",
       "path": "content/markdown/aaa/archie/github-presence-and-community.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/archie/ideal-swarm-guide.md",
-      "name": "Ideal Swarm Guide",
-      "path": "content/markdown/aaa/archie/ideal-swarm-guide.md",
+      "id": "content/markdown/aaa/archie/ideal-braid-guide.md",
+      "name": "Ideal Braid Guide",
+      "path": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2294,12 +2324,6 @@
       "id": "content/markdown/aaa/archie/terminology-usage.md",
       "name": "Terminology Usage",
       "path": "content/markdown/aaa/archie/terminology-usage.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
-      "name": "Download Textbook (pdf)",
-      "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2376,7 +2400,7 @@
     },
     {
       "id": "content/markdown/aaa/assemblies/mesons/mesons.md",
-      "name": "Transient Hadrons: Mesons and Δ Resonances",
+      "name": "Mesons",
       "path": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "nodeType": "markdown_doc"
     },
@@ -2388,7 +2412,7 @@
     },
     {
       "id": "content/markdown/aaa/cosmology/BBN-constraints.md",
-      "name": "BBN in the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Framework",
+      "name": "BBN Constraints",
       "path": "content/markdown/aaa/cosmology/BBN-constraints.md",
       "nodeType": "markdown_doc"
     },
@@ -2441,6 +2465,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+      "name": "Assembly Topological Charge",
+      "path": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/dynamics/binary-dynamics.md",
       "name": "Binary Dynamics",
       "path": "content/markdown/aaa/dynamics/binary-dynamics.md",
@@ -2466,20 +2496,26 @@
     },
     {
       "id": "content/markdown/aaa/dynamics/energy.md",
-      "name": "Kinetic and Potential Energy",
+      "name": "Energy",
       "path": "content/markdown/aaa/dynamics/energy.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/entropy.md",
-      "name": "Entropy and Record Coarse-Graining",
+      "name": "Entropy",
       "path": "content/markdown/aaa/dynamics/entropy.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/dynamics/master-equation.md",
-      "name": "Master Equation of Motion",
+      "name": "Master Equation",
       "path": "content/markdown/aaa/dynamics/master-equation.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "name": "Tri-Binary Configuration Space",
+      "path": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2519,9 +2555,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/foundations/emergence.md",
+      "id": "content/markdown/aaa/foundations/emergence-of-structure.md",
       "name": "Emergence of Structure",
-      "path": "content/markdown/aaa/foundations/emergence.md",
+      "path": "content/markdown/aaa/foundations/emergence-of-structure.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2532,26 +2568,26 @@
     },
     {
       "id": "content/markdown/aaa/foundations/ontology.md",
-      "name": "Foundational Ontology",
+      "name": "Ontology",
       "path": "content/markdown/aaa/foundations/ontology.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
-      "name": "Nested Shell Swarm Dynamics",
-      "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "id": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "name": "Nested Shell Braid Dynamics",
+      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
-      "name": "Nested Shell Swarm Geometry",
-      "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "id": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "name": "Nested Shell Braid Geometry",
+      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-swarm/noether-swarm.md",
-      "name": "Noether Swarm",
-      "path": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "id": "content/markdown/aaa/noether-braid/noether-braid.md",
+      "name": "Noether Braid",
+      "path": "content/markdown/aaa/noether-braid/noether-braid.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2573,9 +2609,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
-      "name": "Hyde Periodic Table: Structural Periodicity and Geometric Representation",
-      "path": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "id": "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
+      "name": "Hyde Periodic Table",
+      "path": "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2600,6 +2636,12 @@
       "id": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
       "name": "Agency and Internal Causation",
       "path": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+      "name": "Cosmic Censorship and Holography",
+      "path": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2633,15 +2675,15 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
-      "name": "Philosophy of Science",
-      "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+      "id": "content/markdown/aaa/philosophy-history/philosophy-history.md",
+      "name": "Philosophy and History",
+      "path": "content/markdown/aaa/philosophy-history/philosophy-history.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/README.md",
-      "name": "Philosophy and History",
-      "path": "content/markdown/aaa/philosophy-history/README.md",
+      "id": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+      "name": "Philosophy of Science",
+      "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2652,8 +2694,14 @@
     },
     {
       "id": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
-      "name": "Substance, Structure, and the Plenum of Potential",
+      "name": "Substance Structure and Potential",
       "path": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges.md",
+      "name": "Theory Bridges",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2669,12 +2717,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "name": "Measurement Problem and Collapse",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
       "name": "Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
@@ -2687,27 +2729,27 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "name": "Measurement Problem and Collapse",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
       "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
-      "name": "Mapping the Planck Scale to the Nested Shell Swarm Geometry",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "name": "Mapping the Planck Scale to the Nested Shell Braid Geometry",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
       "name": "Quantum Operator Mapping",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
-      "name": "Theory Bridges",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2723,9 +2765,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
-      "name": "Special Relativity and Deformable Noether Swarms",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
+      "name": "Special Relativity and Deformable Noether Braids",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2772,7 +2814,7 @@
     },
     {
       "id": "content/markdown/aaa/proof-programs/collinear-breather.md",
-      "name": "1D Collinear Breather",
+      "name": "Collinear Breather",
       "path": "content/markdown/aaa/proof-programs/collinear-breather.md",
       "nodeType": "markdown_doc"
     },
@@ -2790,20 +2832,20 @@
     },
     {
       "id": "content/markdown/aaa/quantum/algorithmic-resonance.md",
-      "name": "Algorithmic Resonance and Shor's Algorithm",
+      "name": "Algorithmic Resonance",
       "path": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "name": "Fermi-Dirac and Bose-Einstein Statistics",
+      "path": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/quantum/measurement-ontology.md",
       "name": "Measurement Ontology",
       "path": "content/markdown/aaa/quantum/measurement-ontology.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/quantum/quantum-statistics.md",
-      "name": "Fermi-Dirac and Bose-Einstein Statistics",
-      "path": "content/markdown/aaa/quantum/quantum-statistics.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2814,7 +2856,7 @@
     },
     {
       "id": "content/markdown/aaa/quantum/reality-quantum-causality.md",
-      "name": "Reality, Causality, and Navigation",
+      "name": "Reality Quantum Causality",
       "path": "content/markdown/aaa/quantum/reality-quantum-causality.md",
       "nodeType": "markdown_doc"
     },
@@ -2850,7 +2892,7 @@
     },
     {
       "id": "content/markdown/aaa/reactions/synchrotron.md",
-      "name": "Synchrotron Cascades",
+      "name": "Synchrotron",
       "path": "content/markdown/aaa/reactions/synchrotron.md",
       "nodeType": "markdown_doc"
     },
@@ -2867,9 +2909,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/spacetime/gr-phenomenology.md",
-      "name": "General Relativity Observables",
-      "path": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "id": "content/markdown/aaa/spacetime/general-relativity.md",
+      "name": "General Relativity",
+      "path": "content/markdown/aaa/spacetime/general-relativity.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3012,13 +3054,13 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
-      "name": "Delay-Only Formulations (Exact Statements)",
+      "name": "Analytic Baselines",
       "path": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
-      "name": "Opposite Charges From Rest at Large Separation",
+      "name": "Attraction",
       "path": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
       "nodeType": "markdown_doc"
     },
@@ -3036,7 +3078,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
-      "name": "Constructive Energy for Delay Dynamics",
+      "name": "Delay Dynamics Energy",
       "path": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
       "nodeType": "markdown_doc"
     },
@@ -3054,7 +3096,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
-      "name": "Radial Fall to Fixed Center (Test Particle)",
+      "name": "Radial Attraction",
       "path": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "nodeType": "markdown_doc"
     },
@@ -3131,9 +3173,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
-      "name": "Nested Shell Swarm Action-Increment Protocol",
-      "path": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "id": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+      "name": "Nested Shell Braid Action-Increment Protocol",
+      "path": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3180,7 +3222,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
-      "name": "Thermodynamic Residual Protocol",
+      "name": "Thermodynamic Residual",
       "path": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
       "nodeType": "markdown_doc"
     },
@@ -3265,12 +3307,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/ideal_swarm.json",
+      "nodeId": "scene:content/scenes/archie/ideal_braid.json",
       "nodeType": "scene",
-      "id": "archie__ideal_swarm",
-      "name": "Ideal Noether Swarm: Lorentz Geometry App",
-      "path": "content/scenes/archie/ideal_swarm.json",
-      "searchTarget": "content/scenes/archie/ideal_swarm.json",
+      "id": "archie__ideal_braid",
+      "name": "Ideal Noether Braid: Lorentz Geometry App",
+      "path": "content/scenes/archie/ideal_braid.json",
+      "searchTarget": "content/scenes/archie/ideal_braid.json",
       "implicit": false
     },
     {
@@ -3724,6 +3766,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/dynamics/assembly_topological_charge.json",
+      "nodeType": "scene",
+      "id": "dynamics__assembly_topological_charge",
+      "name": "Assembly Topological Charge",
+      "path": "content/scenes/dynamics/assembly_topological_charge.json",
+      "searchTarget": "content/scenes/dynamics/assembly_topological_charge.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/dynamics/binary_dynamics.json",
       "nodeType": "scene",
       "id": "dynamics__binary_dynamics",
@@ -3772,7 +3823,7 @@
       "nodeId": "scene:content/scenes/dynamics/entropy_and_record_coarse_graining.json",
       "nodeType": "scene",
       "id": "dynamics__entropy_and_record_coarse_graining",
-      "name": "Entropy and Record Coarse-Graining",
+      "name": "Entropy",
       "path": "content/scenes/dynamics/entropy_and_record_coarse_graining.json",
       "searchTarget": "content/scenes/dynamics/entropy_and_record_coarse_graining.json",
       "implicit": false
@@ -3781,7 +3832,7 @@
       "nodeId": "scene:content/scenes/dynamics/kinetic_and_potential_energy.json",
       "nodeType": "scene",
       "id": "dynamics__kinetic_and_potential_energy",
-      "name": "Kinetic and Potential Energy",
+      "name": "Energy",
       "path": "content/scenes/dynamics/kinetic_and_potential_energy.json",
       "searchTarget": "content/scenes/dynamics/kinetic_and_potential_energy.json",
       "implicit": false
@@ -3790,9 +3841,18 @@
       "nodeId": "scene:content/scenes/dynamics/master_equation_of_motion.json",
       "nodeType": "scene",
       "id": "dynamics__master_equation_of_motion",
-      "name": "Master Equation of Motion",
+      "name": "Master Equation",
       "path": "content/scenes/dynamics/master_equation_of_motion.json",
       "searchTarget": "content/scenes/dynamics/master_equation_of_motion.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/tri_binary_configuration_space.json",
+      "nodeType": "scene",
+      "id": "dynamics__tri_binary_configuration_space",
+      "name": "Tri-Binary Configuration Space",
+      "path": "content/scenes/dynamics/tri_binary_configuration_space.json",
+      "searchTarget": "content/scenes/dynamics/tri_binary_configuration_space.json",
       "implicit": false
     },
     {
@@ -4942,7 +5002,7 @@
       "nodeId": "scene:content/scenes/foundations/foundational_ontology.json",
       "nodeType": "scene",
       "id": "foundations__foundational_ontology",
-      "name": "Foundational Ontology",
+      "name": "Ontology",
       "path": "content/scenes/foundations/foundational_ontology.json",
       "searchTarget": "content/scenes/foundations/foundational_ontology.json",
       "implicit": false
@@ -4957,66 +5017,66 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "nodeId": "scene:content/scenes/noether-braid/nested_shell_braid_dynamics.json",
       "nodeType": "scene",
-      "id": "noether_swarm__nested_shell_swarm_dynamics",
-      "name": "Nested Shell Swarm Dynamics",
-      "path": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
-      "searchTarget": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "id": "noether_braid__nested_shell_braid_dynamics",
+      "name": "Nested Shell Braid Dynamics",
+      "path": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
+      "searchTarget": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "nodeId": "scene:content/scenes/noether-braid/nested_shell_braid_geometry.json",
       "nodeType": "scene",
-      "id": "noether_swarm__nested_shell_swarm_geometry",
-      "name": "Nested Shell Swarm Geometry",
-      "path": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
-      "searchTarget": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "id": "noether_braid__nested_shell_braid_geometry",
+      "name": "Nested Shell Braid Geometry",
+      "path": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
+      "searchTarget": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm.json",
+      "nodeId": "scene:content/scenes/noether-braid/nested_shell_braid.json",
       "nodeType": "scene",
-      "id": "noether_swarm__nested_shell_swarm",
-      "name": "Nested Shell Swarm",
-      "path": "content/scenes/noether-swarm/nested_shell_swarm.json",
-      "searchTarget": "content/scenes/noether-swarm/nested_shell_swarm.json",
+      "id": "noether_braid__nested_shell_braid",
+      "name": "Nested Shell Braid",
+      "path": "content/scenes/noether-braid/nested_shell_braid.json",
+      "searchTarget": "content/scenes/noether-braid/nested_shell_braid.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/neutral_swarm.json",
+      "nodeId": "scene:content/scenes/noether-braid/neutral_braid.json",
       "nodeType": "scene",
-      "id": "noether_swarm__neutral_swarm",
-      "name": "Neutral Swarm",
-      "path": "content/scenes/noether-swarm/neutral_swarm.json",
-      "searchTarget": "content/scenes/noether-swarm/neutral_swarm.json",
+      "id": "noether_braid__neutral_braid",
+      "name": "Neutral Braid",
+      "path": "content/scenes/noether-braid/neutral_braid.json",
+      "searchTarget": "content/scenes/noether-braid/neutral_braid.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/noether_swarm_overview.json",
+      "nodeId": "scene:content/scenes/noether-braid/noether_braid_overview.json",
       "nodeType": "scene",
-      "id": "noether_swarm__overview",
-      "name": "Noether Swarm",
-      "path": "content/scenes/noether-swarm/noether_swarm_overview.json",
-      "searchTarget": "content/scenes/noether-swarm/noether_swarm_overview.json",
+      "id": "noether_braid__overview",
+      "name": "Noether Braid",
+      "path": "content/scenes/noether-braid/noether_braid_overview.json",
+      "searchTarget": "content/scenes/noether-braid/noether_braid_overview.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/noether_swarm.json",
+      "nodeId": "scene:content/scenes/noether-braid/noether_braid.json",
       "nodeType": "scene",
-      "id": "noether_swarm",
-      "name": "Noether Swarm",
-      "path": "content/scenes/noether-swarm/noether_swarm.json",
-      "searchTarget": "content/scenes/noether-swarm/noether_swarm.json",
+      "id": "noether_braid",
+      "name": "Noether Braid",
+      "path": "content/scenes/noether-braid/noether_braid.json",
+      "searchTarget": "content/scenes/noether-braid/noether_braid.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/shell_swarm.json",
+      "nodeId": "scene:content/scenes/noether-braid/shell_braid.json",
       "nodeType": "scene",
-      "id": "noether_swarm__shell_swarm",
-      "name": "Shell Swarm",
-      "path": "content/scenes/noether-swarm/shell_swarm.json",
-      "searchTarget": "content/scenes/noether-swarm/shell_swarm.json",
+      "id": "noether_braid__shell_braid",
+      "name": "Shell Braid",
+      "path": "content/scenes/noether-braid/shell_braid.json",
+      "searchTarget": "content/scenes/noether-braid/shell_braid.json",
       "implicit": false
     },
     {
@@ -5200,6 +5260,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/overview.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__overview",
+      "name": "Philosophy and History",
+      "path": "content/scenes/philosophy_history/overview.json",
+      "searchTarget": "content/scenes/philosophy_history/overview.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "nodeType": "scene",
       "id": "philosophy_history",
@@ -5230,7 +5299,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
       "nodeType": "scene",
       "id": "substance_structure_potential",
-      "name": "Substance, Structure, and the Plenum of Potential",
+      "name": "Substance Structure and Potential",
       "path": "content/scenes/philosophy_history/substance_structure_potential.json",
       "searchTarget": "content/scenes/philosophy_history/substance_structure_potential.json",
       "implicit": false
@@ -5281,6 +5350,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/overview.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__overview",
+      "name": "Theory Bridges",
+      "path": "content/scenes/philosophy_history/theory_bridges/overview.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/overview.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "nodeType": "scene",
       "id": "theory_bridges__pilot_wave_character",
@@ -5290,12 +5368,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
       "nodeType": "scene",
-      "id": "theory_bridges__planck_scale_nested_shell_swarm_alignment",
-      "name": "Planck Scale Nested Shell Swarm Alignment",
-      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
-      "searchTarget": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
+      "id": "theory_bridges__planck_scale_nested_shell_braid_alignment",
+      "name": "Planck Scale Nested Shell Braid Alignment",
+      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
       "implicit": false
     },
     {
@@ -5326,12 +5404,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
       "nodeType": "scene",
-      "id": "theory_bridges__special_relativity_noether_swarm",
-      "name": "Special Relativity and Deformable Noether Swarms",
-      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
-      "searchTarget": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+      "id": "theory_bridges__special_relativity_noether_braid",
+      "name": "Special Relativity and Deformable Noether Braids",
+      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
       "implicit": false
     },
     {
@@ -5392,7 +5470,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
       "nodeType": "scene",
       "id": "unknowns_paradoxes",
-      "name": "Unknowns & Paradoxes",
+      "name": "Unknowns and Paradoxes",
       "path": "content/scenes/philosophy_history/unknowns_paradoxes.json",
       "searchTarget": "content/scenes/philosophy_history/unknowns_paradoxes.json",
       "implicit": false
@@ -5410,7 +5488,7 @@
       "nodeId": "scene:content/scenes/proof-programs/collinear_breather.json",
       "nodeType": "scene",
       "id": "dynamics__collinear_breather",
-      "name": "1D Collinear Binary (Reduced Model)",
+      "name": "Collinear Breather",
       "path": "content/scenes/proof-programs/collinear_breather.json",
       "searchTarget": "content/scenes/proof-programs/collinear_breather.json",
       "implicit": false
@@ -5446,7 +5524,7 @@
       "nodeId": "scene:content/scenes/quantum/algorithmic_resonance.json",
       "nodeType": "scene",
       "id": "quantum__algorithmic_resonance",
-      "name": "Algorithmic Resonance and Shor's Algorithm",
+      "name": "Algorithmic Resonance",
       "path": "content/scenes/quantum/algorithmic_resonance.json",
       "searchTarget": "content/scenes/quantum/algorithmic_resonance.json",
       "implicit": false
@@ -5491,7 +5569,7 @@
       "nodeId": "scene:content/scenes/quantum/reality_causality_and_navigation.json",
       "nodeType": "scene",
       "id": "quantum__reality_causality_and_navigation",
-      "name": "Reality, Causality, and Navigation",
+      "name": "Reality Quantum Causality",
       "path": "content/scenes/quantum/reality_causality_and_navigation.json",
       "searchTarget": "content/scenes/quantum/reality_causality_and_navigation.json",
       "implicit": false
@@ -5554,7 +5632,7 @@
       "nodeId": "scene:content/scenes/reactions/synchrotron_cascades.json",
       "nodeType": "scene",
       "id": "reactions__synchrotron_cascades",
-      "name": "Synchrotron Cascades",
+      "name": "Synchrotron",
       "path": "content/scenes/reactions/synchrotron_cascades.json",
       "searchTarget": "content/scenes/reactions/synchrotron_cascades.json",
       "implicit": false
@@ -5923,7 +6001,7 @@
       "nodeId": "scene:content/scenes/validation/delay_dynamics_energy.json",
       "nodeType": "scene",
       "id": "validation_action_energy__delay_dynamics_energy",
-      "name": "Constructive Energy for Delay Dynamics",
+      "name": "Delay Dynamics Energy",
       "path": "content/scenes/validation/delay_dynamics_energy.json",
       "searchTarget": "content/scenes/validation/delay_dynamics_energy.json",
       "implicit": false
@@ -6145,12 +6223,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
+      "nodeId": "scene:content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
       "nodeType": "scene",
-      "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_swarm_action_increment_protocol",
-      "name": "Nested Shell Swarm Action-Increment Protocol",
-      "path": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
-      "searchTarget": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
+      "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_braid_action_increment_protocol",
+      "name": "Nested Shell Braid Action-Increment Protocol",
+      "path": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
+      "searchTarget": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
       "implicit": false
     },
     {
@@ -6220,7 +6298,7 @@
       "nodeId": "scene:content/scenes/validation/sim_thermodynamic_residual.json",
       "nodeType": "scene",
       "id": "validation_simulations__sim_metric_observer__sim_thermodynamic_residual",
-      "name": "Thermodynamic Residual Protocol",
+      "name": "Thermodynamic Residual",
       "path": "content/scenes/validation/sim_thermodynamic_residual.json",
       "searchTarget": "content/scenes/validation/sim_thermodynamic_residual.json",
       "implicit": false
@@ -6316,6 +6394,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/download-textbook-pdf.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/download-textbook-pdf.md",
+      "name": "Download Textbook PDF",
+      "path": "content/markdown/aaa/archie/download-textbook-pdf.md",
+      "searchTarget": "content/markdown/aaa/archie/download-textbook-pdf.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/github-presence-and-community.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/github-presence-and-community.md",
@@ -6325,12 +6412,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-guide.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-braid-guide.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/ideal-swarm-guide.md",
-      "name": "Ideal Swarm Guide",
-      "path": "content/markdown/aaa/archie/ideal-swarm-guide.md",
-      "searchTarget": "content/markdown/aaa/archie/ideal-swarm-guide.md",
+      "id": "content/markdown/aaa/archie/ideal-braid-guide.md",
+      "name": "Ideal Braid Guide",
+      "path": "content/markdown/aaa/archie/ideal-braid-guide.md",
+      "searchTarget": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "implicit": false
     },
     {
@@ -6412,15 +6499,6 @@
       "name": "Terminology Usage",
       "path": "content/markdown/aaa/archie/terminology-usage.md",
       "searchTarget": "content/markdown/aaa/archie/terminology-usage.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/textbook-pdf-snapshots.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
-      "name": "Download Textbook (pdf)",
-      "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
-      "searchTarget": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
       "implicit": false
     },
     {
@@ -6535,7 +6613,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/assemblies/mesons/mesons.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/assemblies/mesons/mesons.md",
-      "name": "Transient Hadrons: Mesons and Δ Resonances",
+      "name": "Mesons",
       "path": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "searchTarget": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "implicit": false
@@ -6553,7 +6631,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/cosmology/BBN-constraints.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/cosmology/BBN-constraints.md",
-      "name": "BBN in the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Framework",
+      "name": "BBN Constraints",
       "path": "content/markdown/aaa/cosmology/BBN-constraints.md",
       "searchTarget": "content/markdown/aaa/cosmology/BBN-constraints.md",
       "implicit": false
@@ -6631,6 +6709,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/assembly-topological-charge.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+      "name": "Assembly Topological Charge",
+      "path": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+      "searchTarget": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/binary-dynamics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/binary-dynamics.md",
@@ -6670,7 +6757,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/energy.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/energy.md",
-      "name": "Kinetic and Potential Energy",
+      "name": "Energy",
       "path": "content/markdown/aaa/dynamics/energy.md",
       "searchTarget": "content/markdown/aaa/dynamics/energy.md",
       "implicit": false
@@ -6679,7 +6766,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/entropy.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/entropy.md",
-      "name": "Entropy and Record Coarse-Graining",
+      "name": "Entropy",
       "path": "content/markdown/aaa/dynamics/entropy.md",
       "searchTarget": "content/markdown/aaa/dynamics/entropy.md",
       "implicit": false
@@ -6688,9 +6775,18 @@
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/master-equation.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/master-equation.md",
-      "name": "Master Equation of Motion",
+      "name": "Master Equation",
       "path": "content/markdown/aaa/dynamics/master-equation.md",
       "searchTarget": "content/markdown/aaa/dynamics/master-equation.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "name": "Tri-Binary Configuration Space",
+      "path": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "searchTarget": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
       "implicit": false
     },
     {
@@ -6748,12 +6844,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/foundations/emergence.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/foundations/emergence-of-structure.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/foundations/emergence.md",
+      "id": "content/markdown/aaa/foundations/emergence-of-structure.md",
       "name": "Emergence of Structure",
-      "path": "content/markdown/aaa/foundations/emergence.md",
-      "searchTarget": "content/markdown/aaa/foundations/emergence.md",
+      "path": "content/markdown/aaa/foundations/emergence-of-structure.md",
+      "searchTarget": "content/markdown/aaa/foundations/emergence-of-structure.md",
       "implicit": false
     },
     {
@@ -6769,36 +6865,36 @@
       "nodeId": "markdown_doc:content/markdown/aaa/foundations/ontology.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/foundations/ontology.md",
-      "name": "Foundational Ontology",
+      "name": "Ontology",
       "path": "content/markdown/aaa/foundations/ontology.md",
       "searchTarget": "content/markdown/aaa/foundations/ontology.md",
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
-      "name": "Nested Shell Swarm Dynamics",
-      "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
-      "searchTarget": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "id": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "name": "Nested Shell Braid Dynamics",
+      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
-      "name": "Nested Shell Swarm Geometry",
-      "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
-      "searchTarget": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "id": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "name": "Nested Shell Braid Geometry",
+      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-swarm/noether-swarm.md",
-      "name": "Noether Swarm",
-      "path": "content/markdown/aaa/noether-swarm/noether-swarm.md",
-      "searchTarget": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "id": "content/markdown/aaa/noether-braid/noether-braid.md",
+      "name": "Noether Braid",
+      "path": "content/markdown/aaa/noether-braid/noether-braid.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/noether-braid.md",
       "implicit": false
     },
     {
@@ -6829,12 +6925,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
-      "name": "Hyde Periodic Table: Structural Periodicity and Geometric Representation",
-      "path": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
-      "searchTarget": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "id": "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
+      "name": "Hyde Periodic Table",
+      "path": "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
+      "searchTarget": "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
       "implicit": false
     },
     {
@@ -6871,6 +6967,15 @@
       "name": "Agency and Internal Causation",
       "path": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+      "name": "Cosmic Censorship and Holography",
+      "path": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
       "implicit": false
     },
     {
@@ -6919,21 +7024,21 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-history.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/philosophy-history.md",
+      "name": "Philosophy and History",
+      "path": "content/markdown/aaa/philosophy-history/philosophy-history.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/philosophy-history.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "name": "Philosophy of Science",
       "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/README.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/README.md",
-      "name": "Philosophy and History",
-      "path": "content/markdown/aaa/philosophy-history/README.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/README.md",
       "implicit": false
     },
     {
@@ -6949,9 +7054,18 @@
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
-      "name": "Substance, Structure, and the Plenum of Potential",
+      "name": "Substance Structure and Potential",
       "path": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges.md",
+      "name": "Theory Bridges",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges.md",
       "implicit": false
     },
     {
@@ -6973,15 +7087,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "name": "Measurement Problem and Collapse",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
@@ -7000,6 +7105,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "name": "Measurement Problem and Collapse",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
@@ -7009,12 +7123,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
-      "name": "Mapping the Planck Scale to the Nested Shell Swarm Geometry",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "name": "Mapping the Planck Scale to the Nested Shell Braid Geometry",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "implicit": false
     },
     {
@@ -7024,15 +7138,6 @@
       "name": "Quantum Operator Mapping",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/README.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
-      "name": "Theory Bridges",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
       "implicit": false
     },
     {
@@ -7054,12 +7159,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
-      "name": "Special Relativity and Deformable Noether Swarms",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
+      "name": "Special Relativity and Deformable Noether Braids",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
       "implicit": false
     },
     {
@@ -7129,7 +7234,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/proof-programs/collinear-breather.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/proof-programs/collinear-breather.md",
-      "name": "1D Collinear Breather",
+      "name": "Collinear Breather",
       "path": "content/markdown/aaa/proof-programs/collinear-breather.md",
       "searchTarget": "content/markdown/aaa/proof-programs/collinear-breather.md",
       "implicit": false
@@ -7156,9 +7261,18 @@
       "nodeId": "markdown_doc:content/markdown/aaa/quantum/algorithmic-resonance.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/quantum/algorithmic-resonance.md",
-      "name": "Algorithmic Resonance and Shor's Algorithm",
+      "name": "Algorithmic Resonance",
       "path": "content/markdown/aaa/quantum/algorithmic-resonance.md",
       "searchTarget": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "name": "Fermi-Dirac and Bose-Einstein Statistics",
+      "path": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "searchTarget": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
       "implicit": false
     },
     {
@@ -7168,15 +7282,6 @@
       "name": "Measurement Ontology",
       "path": "content/markdown/aaa/quantum/measurement-ontology.md",
       "searchTarget": "content/markdown/aaa/quantum/measurement-ontology.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/quantum/quantum-statistics.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/quantum/quantum-statistics.md",
-      "name": "Fermi-Dirac and Bose-Einstein Statistics",
-      "path": "content/markdown/aaa/quantum/quantum-statistics.md",
-      "searchTarget": "content/markdown/aaa/quantum/quantum-statistics.md",
       "implicit": false
     },
     {
@@ -7192,7 +7297,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/quantum/reality-quantum-causality.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/quantum/reality-quantum-causality.md",
-      "name": "Reality, Causality, and Navigation",
+      "name": "Reality Quantum Causality",
       "path": "content/markdown/aaa/quantum/reality-quantum-causality.md",
       "searchTarget": "content/markdown/aaa/quantum/reality-quantum-causality.md",
       "implicit": false
@@ -7246,7 +7351,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/reactions/synchrotron.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/reactions/synchrotron.md",
-      "name": "Synchrotron Cascades",
+      "name": "Synchrotron",
       "path": "content/markdown/aaa/reactions/synchrotron.md",
       "searchTarget": "content/markdown/aaa/reactions/synchrotron.md",
       "implicit": false
@@ -7270,12 +7375,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/general-relativity.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/spacetime/gr-phenomenology.md",
-      "name": "General Relativity Observables",
-      "path": "content/markdown/aaa/spacetime/gr-phenomenology.md",
-      "searchTarget": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "id": "content/markdown/aaa/spacetime/general-relativity.md",
+      "name": "General Relativity",
+      "path": "content/markdown/aaa/spacetime/general-relativity.md",
+      "searchTarget": "content/markdown/aaa/spacetime/general-relativity.md",
       "implicit": false
     },
     {
@@ -7489,7 +7594,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
-      "name": "Delay-Only Formulations (Exact Statements)",
+      "name": "Analytic Baselines",
       "path": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "implicit": false
@@ -7498,7 +7603,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/attraction.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
-      "name": "Opposite Charges From Rest at Large Separation",
+      "name": "Attraction",
       "path": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
       "implicit": false
@@ -7525,7 +7630,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
-      "name": "Constructive Energy for Delay Dynamics",
+      "name": "Delay Dynamics Energy",
       "path": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
       "implicit": false
@@ -7552,7 +7657,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
-      "name": "Radial Fall to Fixed Center (Test Particle)",
+      "name": "Radial Attraction",
       "path": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "implicit": false
@@ -7666,12 +7771,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
-      "name": "Nested Shell Swarm Action-Increment Protocol",
-      "path": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
-      "searchTarget": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "id": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+      "name": "Nested Shell Braid Action-Increment Protocol",
+      "path": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "implicit": false
     },
     {
@@ -7741,7 +7846,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
-      "name": "Thermodynamic Residual Protocol",
+      "name": "Thermodynamic Residual",
       "path": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
       "implicit": false
@@ -7810,21 +7915,21 @@
       "implicit": false
     },
     {
+      "nodeId": "asset:content/generated/pdf/textbook/review-copies/noether-braid.pdf",
+      "nodeType": "asset",
+      "id": "content/generated/pdf/textbook/review-copies/noether-braid.pdf",
+      "name": "Noether Braid",
+      "path": "content/generated/pdf/textbook/review-copies/noether-braid.pdf",
+      "searchTarget": "content/generated/pdf/textbook/review-copies/noether-braid.pdf",
+      "implicit": false
+    },
+    {
       "nodeId": "asset:content/generated/pdf/textbook/review-copies/noether-sea-and-effective-spacetime.pdf",
       "nodeType": "asset",
       "id": "content/generated/pdf/textbook/review-copies/noether-sea-and-effective-spacetime.pdf",
       "name": "Noether Sea And Effective Spacetime",
       "path": "content/generated/pdf/textbook/review-copies/noether-sea-and-effective-spacetime.pdf",
       "searchTarget": "content/generated/pdf/textbook/review-copies/noether-sea-and-effective-spacetime.pdf",
-      "implicit": false
-    },
-    {
-      "nodeId": "asset:content/generated/pdf/textbook/review-copies/noether-swarm.pdf",
-      "nodeType": "asset",
-      "id": "content/generated/pdf/textbook/review-copies/noether-swarm.pdf",
-      "name": "Noether Swarm",
-      "path": "content/generated/pdf/textbook/review-copies/noether-swarm.pdf",
-      "searchTarget": "content/generated/pdf/textbook/review-copies/noether-swarm.pdf",
       "implicit": false
     },
     {
@@ -7876,7 +7981,7 @@
   "edges": [
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/ideal_swarm.json",
+      "to": "scene:content/scenes/archie/ideal_braid.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[0]"
@@ -8093,7 +8198,7 @@
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
-      "to": "scene:content/scenes/noether-swarm/noether_swarm.json",
+      "to": "scene:content/scenes/noether-braid/noether_braid.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
       "field": "scene.children[2]"
@@ -8443,6 +8548,13 @@
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/assembly_topological_charge.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/binary_dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
@@ -8453,21 +8565,21 @@
       "to": "scene:content/scenes/dynamics/causal_action_functional.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/dyadic_resonance_lock.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/effective_lagrangian.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -8492,10 +8604,17 @@
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/tri_binary_configuration_space.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/proof-programs/proof_programs.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -11067,24 +11186,24 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
-      "to": "scene:content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/nested_shell_braid_dynamics.json",
       "edgeType": "subscene",
-      "source": "content/scenes/noether-swarm/noether_swarm.json",
+      "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[1]"
     },
     {
-      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
-      "to": "scene:content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/nested_shell_braid_geometry.json",
       "edgeType": "subscene",
-      "source": "content/scenes/noether-swarm/noether_swarm.json",
+      "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[2]"
     },
     {
-      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
-      "to": "scene:content/scenes/noether-swarm/noether_swarm_overview.json",
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/noether_braid_overview.json",
       "edgeType": "subscene",
-      "source": "content/scenes/noether-swarm/noether_swarm.json",
+      "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[0]"
     },
     {
@@ -11253,168 +11372,182 @@
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/geometry_and_ontology.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/overview.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/angular_momentum_and_spin.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[12]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/overview.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[8]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[9]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[7]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[13]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[10]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/proof-programs/proof_programs.json",
@@ -12006,7 +12139,7 @@
     },
     {
       "from": "scene:content/scenes/validation/sim_branch_quantum.json",
-      "to": "scene:content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
+      "to": "scene:content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/sim_branch_quantum.json",
       "field": "scene.children[2]"
@@ -12243,10 +12376,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/archie/ideal_swarm.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-guide.md",
+      "from": "scene:content/scenes/archie/ideal_braid.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/ideal-braid-guide.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/ideal_swarm.json",
+      "source": "content/scenes/archie/ideal_braid.json",
       "field": "scene.source.path"
     },
     {
@@ -12314,7 +12447,7 @@
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/textbook-pdf-snapshots.md",
+      "to": "markdown_doc:content/markdown/aaa/archie/download-textbook-pdf.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/textbook_pdf_snapshots.json",
       "field": "scene.source.path"
@@ -12412,7 +12545,7 @@
     },
     {
       "from": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
-      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/chemistry/hyde_periodic_table_scene.json",
       "field": "scene.source.path"
@@ -12481,6 +12614,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/dynamics/assembly_topological_charge.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/assembly-topological-charge.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/assembly_topological_charge.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/dynamics/binary_dynamics.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/binary-dynamics.md",
       "edgeType": "markdown_doc",
@@ -12530,6 +12670,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/dynamics/tri_binary_configuration_space.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/tri_binary_configuration_space.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/foundations/absolute_time_defense.json",
       "to": "markdown_doc:content/markdown/aaa/foundations/absolute-time-defense.md",
       "edgeType": "markdown_doc",
@@ -12573,7 +12720,7 @@
     },
     {
       "from": "scene:content/scenes/foundations/emergence_of_structure.json",
-      "to": "markdown_doc:content/markdown/aaa/foundations/emergence.md",
+      "to": "markdown_doc:content/markdown/aaa/foundations/emergence-of-structure.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/foundations/emergence_of_structure.json",
       "field": "scene.source.path"
@@ -12593,24 +12740,24 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "from": "scene:content/scenes/noether-braid/nested_shell_braid_dynamics.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "source": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "from": "scene:content/scenes/noether-braid/nested_shell_braid_geometry.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "source": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-swarm/noether_swarm_overview.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "from": "scene:content/scenes/noether-braid/noether_braid_overview.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-swarm/noether_swarm_overview.json",
+      "source": "content/scenes/noether-braid/noether_braid_overview.json",
       "field": "scene.source.path"
     },
     {
@@ -12664,7 +12811,7 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
       "field": "scene.source.path"
@@ -12705,6 +12852,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/overview.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-history.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/overview.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "edgeType": "markdown_doc",
@@ -12741,7 +12895,7 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
       "field": "scene.source.path"
@@ -12761,6 +12915,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/overview.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/overview.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
       "edgeType": "markdown_doc",
@@ -12768,10 +12929,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
+      "source": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
       "field": "scene.source.path"
     },
     {
@@ -12796,10 +12957,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+      "source": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
       "field": "scene.source.path"
     },
     {
@@ -12888,7 +13049,7 @@
     },
     {
       "from": "scene:content/scenes/quantum/quantum_statistics.json",
-      "to": "markdown_doc:content/markdown/aaa/quantum/quantum-statistics.md",
+      "to": "markdown_doc:content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/quantum/quantum_statistics.json",
       "field": "scene.source.path"
@@ -12965,7 +13126,7 @@
     },
     {
       "from": "scene:content/scenes/spacetime/general_relativity_observables.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/general-relativity.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/general_relativity_observables.json",
       "field": "scene.source.path"
@@ -13272,10 +13433,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "from": "scene:content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
+      "source": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
       "field": "scene.source.path"
     },
     {
@@ -16738,17 +16899,17 @@
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "asset:content/generated/pdf/textbook/review-copies/noether-braid.pdf",
+      "edgeType": "asset",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_noether_braid.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
       "to": "asset:content/generated/pdf/textbook/review-copies/noether-sea-and-effective-spacetime.pdf",
       "edgeType": "asset",
       "source": "content/scenes/archie/textbook_pdf_snapshots.json",
       "field": "pdf_snapshot_spacetime.source.path"
-    },
-    {
-      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
-      "to": "asset:content/generated/pdf/textbook/review-copies/noether-swarm.pdf",
-      "edgeType": "asset",
-      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
-      "field": "pdf_snapshot_noether_swarm.source.path"
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",

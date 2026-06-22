@@ -6,7 +6,7 @@
 
 Modern foundational physics carries a persistent tension between predictive success and conceptual clarity. The formal machinery is powerful, yet many of its deepest objects remain operationally effective without being ontologically settled.
 
-Companion bridge chapters for this map are [Theory Mapping](theory-mapping.md), [Theory Differentials](theory-differentials.md), [Substance, Structure, and the Plenum of Potential](substance-structure-and-potential.md), [Unknowns and Paradoxes](unknowns-paradoxes.md), and [No-Go Theorems](../validation/no-go-theorems.md).
+Companion bridge chapters for this map are [Theory Mapping](theory-mapping.md), [Theory Differentials](theory-differentials.md), [Substance Structure and Potential](substance-structure-and-potential.md), [Unknowns and Paradoxes](unknowns-paradoxes.md), and [No-Go Theorems](../validation/no-go-theorems.md).
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not a complaint about science failing. It is a diagnosis that several domains of modern physics may be mathematically mature while still being ontologically incomplete, mislocated, or over-interpreted.
 
@@ -390,7 +390,7 @@ S_{\mathrm{out}}^{(O)}(t)
 \right)
 $$
 
-where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf{x},t)$ is physical Noether swarm density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether sea state map
+where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf{x},t)$ is physical Noether braid density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether sea state map
 
 $$
 \mathcal{F}_{\mathrm{sea}}\!\left[\mathcal{Q}_{\mathrm{dS}}^{(O)}(t)\right]
@@ -486,7 +486,7 @@ Standard repairs include treating vacuum properties as field-theoretic state str
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether sea is the constitutive medium whose organized state is summarized as spacetime behavior at the observer level, and matter assemblies are higher-order organizations within the same constitutive world. The companion bridge [Substance, Structure, and the Plenum of Potential](substance-structure-and-potential.md) adds the further distinction between primitive architrino substance and causal wake structure. This does not recover an older medium theory by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, dynamical medium response, causal wake history, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether sea is the constitutive medium whose organized state is summarized as spacetime behavior at the observer level, and matter assemblies are higher-order organizations within the same constitutive world. The companion bridge [Substance Structure and Potential](substance-structure-and-potential.md) adds the further distinction between primitive architrino substance and causal wake structure. This does not recover an older medium theory by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, dynamical medium response, causal wake history, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
 
 ### What Would Count As Resolution
 

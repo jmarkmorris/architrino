@@ -504,7 +504,7 @@ The minimal branch is therefore the first calibration candidate for the selectio
 
 ## Proof Burden Left Open
 
-This packet supplies the deterministic residual law target, not the proof that delayed Noether swarm dynamics realizes it. The next proof burden is to compute at least one nontrivial finite candidate set $\mathcal A(B^-,\Gamma_{\text{coupl}},W)$ from retained branch-chart data, evaluate $\mathcal R_{\mathrm{sel}}$ on every candidate, and show either:
+This packet supplies the deterministic residual law target, not the proof that delayed Noether braid dynamics realizes it. The next proof burden is to compute at least one nontrivial finite candidate set $\mathcal A(B^-,\Gamma_{\text{coupl}},W)$ from retained branch-chart data, evaluate $\mathcal R_{\mathrm{sel}}$ on every candidate, and show either:
 
 $$
 \left|

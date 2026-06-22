@@ -79,6 +79,22 @@ W_a(s;t)
 $$
 In Euclidean three-space, a nondegenerate isochron support of this form has a unique center. Therefore, if $W_a(s;t)$ is known as a source-tagged support, its emission center $\mathbf{z}_a(s)$ is geometrically reconstructible without first assigning coordinates to the void.
 
+For a full spherical support, uniqueness is exact. A finite reconstruction usually sees only a partial support $U_a(s;t)\subset W_a(s;t)$, so the inverse-center problem needs its own conditioning floor. Let
+$$
+\omega_a(s;t)
+=
+\operatorname{area}_{S^2}
+\left\{
+\frac{\mathbf{y}-\mathbf{z}_a(s)}{\|\mathbf{y}-\mathbf{z}_a(s)\|}:
+\mathbf{y}\in U_a(s;t)
+\right\}
+$$
+The reconstructed center is admissible only when
+$$
+\omega_a(s;t)\ge \omega_{\min} > 0
+$$
+on the declared support window. Below that solid-angle floor, the center may remain formally unique in the full-support idealization while the finite inverse problem becomes ill-conditioned.
+
 For a target architrino $a$ and emission interval $I$, define the source-tagged center set
 $$
 Z_a(I)=\{\mathbf{z}_a(s):s\in I\}
@@ -94,6 +110,8 @@ D_a(I)=\operatorname{diam}Z_a(I)
 $$
 With exact complete-state access and source-independent propagation at $c_f$, $D_a(I)=0$ if and only if $\mathbf{z}_a(s)$ is constant on $I$, so the source is at absolute rest almost everywhere on that interval. For uniform motion, $D_a([t_0,t_0+T])=\|\mathbf{v}_a\|T$. This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the source-tagged centers of emitted causal isochrons occupy the same point in the Euclidean void.
 
+The velocity readout in the uniform case assumes $\mathbf{z}_a(s)=\mathbf{z}_0+\mathbf{v}_a(s-t_0)$ on the interval. For accelerated or curved source histories, $D_a(I)$ measures only the chord-span of the center curve and cannot determine the velocity history by itself. The faithful complete-state object is the full center curve $s\mapsto\mathbf{z}_a(s)$, including its tangent, curvature, and torsion where those derivatives exist; that curve is the geometric record the self-hit ledger later samples.
+
 If no architrino is stationary over the diagnostic interval, complete-state reconstruction may still recover the preferred rest-frame structure from the centers of source-tagged wake isochrons. A coordinate origin can then be chosen conventionally from any reconstructed emission center at a chosen time. The stationary architrino is therefore a convenient material origin, not the definition of the preferred frame.
 
 This distinction fixes the level of the claim. Ontologically, the preferred frame is defined by the propagation law in the Euclidean void. Inference-wise, the concentricity test reconstructs that rest condition from source-tagged wake records. At the effective observer level, the same fact need not be directly measurable, because assemblies use clocks, rulers, and signal channels that must themselves satisfy Lorentz-recovery closure.
@@ -107,7 +125,13 @@ The concentricity diagnostic connects directly to the geometry developed in [Sel
 - An architrino at rest ($\mathbf{v}=\mathbf{0}$) emits concentric causal isochrons, but it does not receive a delayed self-hit merely by being stationary. For $t_0<t$, the self-hit root condition would require $\|\mathbf{x}_i(t)-\mathbf{x}_i(t_0)\|=c_f(t-t_0)$; a stationary worldline has the left side equal to zero while the right side is positive.
 - An architrino in ordinary sub-field-speed straight motion emits non-concentric source-tagged isochrons, but that is still not enough by itself to create a self-hit. Self-hit is a source-identity root condition, not a synonym for nonzero absolute velocity.
 - Curved path history and super-field-speed history are the relevant self-hit ingredients. Once the source worldline folds through its own emitted causal isochrons, same-source roots can enter the causal-root ledger and produce non-Markovian feedback.
-- For bound assemblies, the corresponding closure problem is conditional: a translating nested shell swarm must retune its moving-assembly deformation, clock/ruler behavior, two-way signal synchronization, and preferred-frame leakage while its internal causal-root ledgers remain admissible. Failure of that shared closure would appear as phase loss, dissociation, or unacceptable preferred-frame leakage; the disruption claim is a theorem target, not an established consequence of the rest diagnostic alone.
+- In exact center-curve terms, a same-source root exists when the source re-enters its own forward isochron:
+  $$
+  \exists\,s < t:
+  \|\mathbf{z}_a(t)-\mathbf{z}_a(s)\|=c_f(t-s)
+  $$
+  For closed or recurrent framed branches, the protected topology row should be stated as a linking or framed self-linking record, such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when the branch supplies a nonsingular frame. Thus absolute rest and self-hit are distinct invariants: rest is concentricity of source-tagged centers, while self-hit is a source-identity root with a retained wake/worldline linking or framing record when such a record is part of the branch certificate.
+- For bound assemblies, the corresponding closure problem is conditional: a translating nested shell braid must retune its moving-assembly deformation, clock/ruler behavior, two-way signal synchronization, and preferred-frame leakage while its internal causal-root ledgers remain admissible. Failure of that shared closure would appear as phase loss, dissociation, or unacceptable preferred-frame leakage; the disruption claim is a theorem target, not an established consequence of the rest diagnostic alone.
 - This moving-assembly bias is one input to the medium-dressed inertial response of bound assemblies: acceleration skews the delayed causal ledger, while shielding determines how much of the internal energy is exposed to external probes.
 
 **The upshot:** Absolute velocity is not merely a kinematic label, but the direct rest diagnostic is geometric rather than an immediate self-hit claim. The dynamical burden belongs to the Lorentz-closure ladder: moving assemblies must show stable delayed-root closure, medium-dressed deformation, and bounded preferred-frame leakage before Physical Observers can recover ordinary relativistic behavior.
@@ -160,6 +184,8 @@ The diagnostic relies on a critical physical assumption:
 
 This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium. The wave does not follow the speaker if it moves. The analogy does not by itself answer Michelson-Morley-style null drift results; that burden is owned by the moving-assembly closure ladder, not by this complete-state diagnostic.
 
+The reason is structural rather than rhetorical. The complete-state diagnostic operates on source-tagged wake centers: source identity, emission time, and support geometry are part of its data. A Michelson-Morley-style interferometer samples a summed, untagged received potential through physical clocks, rulers, mirrors, and photon channels. Null drift constrains the observer-level shielding and common-channel closure of that untagged measurement system; it does not falsify the source-tagged center diagnostic unless the complete-state provenance ledger itself is inconsistent.
+
 ## Philosophical Context
 
 ### Relationalism vs. Substantivalism
@@ -202,3 +228,5 @@ This places the theory in the tradition of **Lorentz Ether Theory**:
 - Operational Lorentz invariance is compatible with fundamental absolute structure
 
 The next chapter, [Constructing the Absolute Frame](constructing-the-absolute-frame.md), uses this preferred-rest diagnostic as the starting point for constructing a complete coordinate frame.
+
+The risk-bearing claim is two-sided. The preferred-frame program fails at the complete-state level if source-tagged wake centers cannot define one consistent rest-frame structure. It fails at the observer level if physical clocks, rulers, or photon channels retain preferred-frame leakage above the declared cavity, two-way anisotropy, or PPN ceilings after moving-assembly closure is applied. The framework is therefore committed both to a real complete-state preferred frame and to a quantitatively hidden observer-sector leakage row.

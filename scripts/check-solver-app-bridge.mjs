@@ -40,8 +40,8 @@ import {
   createEmissionShellCandidatePacketQueryRequest,
   createEmissionShellCandidateQueryRequest,
   createEmissionShellRootRefinementRequest,
-  createIdealSwarmDelayedHitsRunRequest,
-  createIdealSwarmSharedGeometryRunRequest,
+  createIdealBraidDelayedHitsRunRequest,
+  createIdealBraidSharedGeometryRunRequest,
   createOpenStreamRequest,
   createPhotonCausalRootsRunRequest,
   createPhotonPhaseDiagnosticsRunRequest,
@@ -166,12 +166,12 @@ assert(
   "expected photon phase-diagnostics adapter capability"
 );
 assert(
-  findAppAdapter(initResponse.capabilities.appBridge, "ideal-swarm").runKinds.includes("delayedHits"),
-  "expected Ideal Swarm delayed-hit adapter capability"
+  findAppAdapter(initResponse.capabilities.appBridge, "ideal-braid").runKinds.includes("delayedHits"),
+  "expected Ideal Braid delayed-hit adapter capability"
 );
 assert(
-  findAppAdapter(initResponse.capabilities.appBridge, "ideal-swarm").runKinds.includes("sharedGeometry"),
-  "expected Ideal Swarm shared-geometry adapter capability"
+  findAppAdapter(initResponse.capabilities.appBridge, "ideal-braid").runKinds.includes("sharedGeometry"),
+  "expected Ideal Braid shared-geometry adapter capability"
 );
 assert(
   findAppAdapter(initResponse.capabilities.appBridge, "animator").runKinds.includes("motionSimulation") &&
@@ -5508,7 +5508,7 @@ assert(
 );
 assert(
   delayedHitRunHandle.response.manifest.runKind === "delayedHits" &&
-    delayedHitRunHandle.response.manifest.appId === "ideal-swarm" &&
+    delayedHitRunHandle.response.manifest.appId === "ideal-braid" &&
     delayedHitRunHandle.response.rootLedgerDetails.length >= 1 &&
     delayedHitRunHandle.response.manifest.buffers.length === 3,
   "expected delayed-hit run manifest"
@@ -5599,7 +5599,7 @@ assert(
 );
 assert(
   normalizedCircularSourceDelayedHitRunHandle.response.manifest.runKind === "delayedHits" &&
-    normalizedCircularSourceDelayedHitRunHandle.response.manifest.appId === "ideal-swarm" &&
+    normalizedCircularSourceDelayedHitRunHandle.response.manifest.appId === "ideal-braid" &&
     findBuffer(normalizedCircularSourceDelayedHitRunHandle.response, "delayed_hit_events.v1").rowCount === 1 &&
     normalizedCircularSourceDelayedHitRunHandle.response.manifest.precision.selectedNumericType === "f64",
   "expected normalized circular-source delayed-hit manifest and buffers"
@@ -6571,7 +6571,7 @@ function makeCausalDelayDelayedHitRunSimulationRequest() {
 
 function makeDelayedHitRunSimulationRequest() {
   const admission = makeAdmissionRequest();
-  return createIdealSwarmDelayedHitsRunRequest({
+  return createIdealBraidDelayedHitsRunRequest({
     requestId: "smoke-delayed-hit-run-request",
     runId: "smoke-delayed-hit-run",
     datasetId: "smoke-delayed-hit-run-dataset",
@@ -6594,7 +6594,7 @@ function makeDelayedHitRunSimulationRequest() {
 
 function makeNormalizedDelayedHitRunSimulationRequest() {
   const admission = makeAdmissionRequest();
-  return createIdealSwarmDelayedHitsRunRequest({
+  return createIdealBraidDelayedHitsRunRequest({
     requestId: "smoke-normalized-delayed-hit-run-request",
     runId: "smoke-normalized-delayed-hit-run",
     datasetId: "smoke-normalized-delayed-hit-run-dataset",
@@ -6617,7 +6617,7 @@ function makeNormalizedDelayedHitRunSimulationRequest() {
 
 function makeCircularSourceDelayedHitRunSimulationRequest() {
   const admission = makeAdmissionRequest();
-  return createIdealSwarmDelayedHitsRunRequest({
+  return createIdealBraidDelayedHitsRunRequest({
     requestId: "smoke-circular-source-delayed-hit-run-request",
     runId: "smoke-circular-source-delayed-hit-run",
     datasetId: "smoke-circular-source-delayed-hit-run-dataset",
@@ -6640,7 +6640,7 @@ function makeCircularSourceDelayedHitRunSimulationRequest() {
 
 function makeNormalizedCircularSourceDelayedHitRunSimulationRequest() {
   const admission = makeAdmissionRequest();
-  return createIdealSwarmDelayedHitsRunRequest({
+  return createIdealBraidDelayedHitsRunRequest({
     requestId: "smoke-normalized-circular-source-delayed-hit-run-request",
     runId: "smoke-normalized-circular-source-delayed-hit-run",
     datasetId: "smoke-normalized-circular-source-delayed-hit-run-dataset",
@@ -6665,7 +6665,7 @@ function makeNormalizedCircularSourceDelayedHitRunSimulationRequest() {
 
 function makeSharedGeometryRunSimulationRequest() {
   const admission = makeAdmissionRequest();
-  return createIdealSwarmSharedGeometryRunRequest({
+  return createIdealBraidSharedGeometryRunRequest({
     requestId: "smoke-shared-geometry-run-request",
     runId: "smoke-shared-geometry-run",
     datasetId: "smoke-shared-geometry-run-dataset",

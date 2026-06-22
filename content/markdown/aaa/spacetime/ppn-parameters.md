@@ -5,7 +5,7 @@ the spacetime constitutive map.
 
 ## Canonical Symbols
 
-- $n$: normalized Noether swarm density, with $\rho_{\text{NS}}=\rho_{\text{NS},0}n$.
+- $n$: normalized Noether braid density, with $\rho_{\text{NS}}=\rho_{\text{NS},0}n$.
 - $\chi_{\text{sea}}$: Noether sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field PPN comparisons.
 - $\Phi_N$: Newtonian benchmark potential.
@@ -31,7 +31,7 @@ Here, geodetic precession means the de Sitter precession of a carried gyroscope:
 
 ## Explicit Weak-Field Noether Sea Delay Map (PPN $\gamma$)
 
-Adopt a weak-field PPN-normalized Noether sea delay-factor ansatz for signal propagation in the Noether swarm medium:
+Adopt a weak-field PPN-normalized Noether sea delay-factor ansatz for signal propagation in the Noether braid medium:
 $$
 \bar{\chi}_{\text{sea}}(\mathbf{x})
 \equiv

@@ -292,7 +292,7 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.mjs). It emits:
 
 - directed-rounded $K_\varepsilon$ endpoint signs on each speed/y cell;
 - directed-rounded $H_\varepsilon$ endpoint signs on each speed/y cell;
@@ -300,4 +300,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - Taylor argument bounds for the $C_4,S_3,S_5$ remainder functions;
 - explicit open fold-pair remainder, regular-root remainder, `I1`, quadrature, and retention rows.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.test.js) validates schema, no-fixed-speed-window discipline, cell counts, $K$ endpoint signs, $H$ endpoint signs, $J$ signs, Taylor argument bounds, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.test.js) validates schema, no-fixed-speed-window discipline, cell counts, $K$ endpoint signs, $H$ endpoint signs, $J$ signs, Taylor argument bounds, overclaim rejection, and CLI write/validate behavior.

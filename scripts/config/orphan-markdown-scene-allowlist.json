@@ -1,12 +1,3 @@
 {
-  "paths": [
-    {
-      "path": "content/markdown/aaa/philosophy-history/README.md",
-      "reason": "Directory/index page; do not create a visible scene sphere."
-    },
-    {
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
-      "reason": "Directory/index page; do not create a visible scene sphere."
-    }
-  ]
+  "paths": []
 }

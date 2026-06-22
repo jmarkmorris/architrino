@@ -8,10 +8,10 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 
 - [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md): synthesis page for the effective wave picture, metastability, and substrate interpretation.
 - [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md): what a measurement event is at the ontological level.
-- [collapse-problem.md](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md): finite-time separatrix-crossing replacement for collapse.
+- [measurement-problem-and-collapse.md](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md): finite-time separatrix-crossing replacement for collapse.
 - [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md): wavefunction as effective basin-weight bookkeeping.
 - [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md): metastability, separatrices, and branch selection.
-- [quantum-statistics.md](../../../../markdown/aaa/quantum/quantum-statistics.md): Fermi-Dirac and Bose-Einstein statistics as a nested shell swarm geometry transition.
+- [fermi-dirac-and-bose-einstein-statistics.md](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md): Fermi-Dirac and Bose-Einstein statistics as a nested shell braid geometry transition.
 
 ### Correlation and No-Go Interfaces
 
@@ -24,11 +24,11 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 - **Born-rule basin-measure ledger:** [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md), [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), and [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md) own the transfer-operator, invariant-measure, finite-time separatrix, and effective wave-equation targets.
 - **Semi-classical and scattering ledger:** [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md) owns WKB, Airy turning-point, and tunneling-action envelope checks, while [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md) owns $S$-matrix unitarity, optical-theorem, resonance-pole, and Born-approximation recovery targets.
 - **Symmetry, holonomy, and index ledger:** [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) owns parity/time-reversal antiunitary benchmarks, Berry-phase/Chern-number holonomy checks, and supersymmetric-index comparison guardrails.
-- **Spin-statistics / exchange ledger:** [quantum-statistics.md](../../../../markdown/aaa/quantum/quantum-statistics.md), [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), and [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) own the route from 3D volumetric exclusion to fermionic antisymmetry and from coherent 2D support to bosonic symmetric occupation. Fermionic exchange may consume the spinor label only from the same retained non-gauge ordered-frame row that passes the $2\pi/4\pi$, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
+- **Spin-statistics / exchange ledger:** [fermi-dirac-and-bose-einstein-statistics.md](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md), [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), and [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) own the route from 3D volumetric exclusion to fermionic antisymmetry and from coherent 2D support to bosonic symmetric occupation. Fermionic exchange may consume the spinor label only from the same retained non-gauge ordered-frame row that passes the $2\pi/4\pi$, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 - **Spin, measurement, and Bell ledger:** [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md), and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md) own the lifted Stern-Gerlach response, pair-provenance joint law, measurement-independence, no-signaling, and product-screening audits. The current Bell no-go is sharper than a gate: two independent one-wing threshold-pullback kernels over a setting-independent source measure imply the CHSH bound, and exact singlet recovery requires $\Delta_{\mathrm{prod}}\ge(\sqrt2-1)/8$ in the per-cell residual normalization. Bell closure therefore requires a derived non-product joint response or non-restartable provenance compression, while spinor, exchange, weak, and fermion-metric consumers must share the same retained spinor-label pullback record.
 - **Photon Gate A/B/C ledger:** [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface) owns the photon-channel theorem scaffold, while [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md#photon-closure-gates) records the Gate A/B/C acceptance filters. Gate B is the quantum-facing bridge where planar-pair capture must recover Malus' law and the native squared-amplitude rule without replacing the broader Born-rule basin-measure program; it inherits the spin and helicity ledger from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and the source-depletion/recoil/wake/handoff event residual from [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md). Photon helicity is now an event-window projection of that same balance, with error controlled by $\|\mathbf B_{\gamma}^{0}\|/\hbar$. Gate A and Gate C constrain the same photon branch through kinematics, optics, transition vertices, Bose-Einstein occupation behavior, and validated QED limits.
 
-## Reality, Causality, and Navigation
+## Reality Quantum Causality
 
 This chapter addresses the quantum branch at the level of ontology and epistemic navigation rather than formal operator mechanics. Its purpose is to separate absolute and operational descriptions cleanly enough that causality, effective randomness, and assembly-level decision language can be discussed without blurring microdynamics and observer-facing phenomenology.
 
@@ -38,7 +38,7 @@ This chapter addresses the quantum branch at the level of ontology and epistemic
 - Explain how deterministic microdynamics yield effective randomness at the operational level.
 - Define minimal dynamical requirements for agency/decision in assemblies.
 - Connect the **Decider** and **Switch** case studies to those requirements.
-- Tie the chapter to [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md), [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), and [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
+- Tie the chapter to [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), and [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 **Scope note:** This chapter states current $\mathbb{A}\mathbb{A}\mathbb{A}$ working claims unless a passage is explicitly labeled as a toy model, phenomenological mapping, or closure target.
 
@@ -59,7 +59,7 @@ At the absolute level, any local neighborhood is crowded:
   - Continuously emitting spherically expanding **causal wakes** at speed $c_f$.
 
 - At a given absolute time $t$, the **net potential** at a point is the **vector sum** of:
-  - Wakes from local Noether swarm assemblies in the Noether sea,
+  - Wakes from local Noether braid assemblies in the Noether sea,
   - Wakes from bound matter in the vicinity,
   - Wakes from distant assemblies whose emission fronts are just arriving,
   - Self-hit structures from $v>c_f$ inner-binary motion.
@@ -72,7 +72,7 @@ At the absolute level, any local neighborhood is crowded:
 
 At the emergent level:
 
-- Observer language talks about "an electron," "a nucleus," and similar objects as if they were isolated. In this framework each such object is a **Noether swarm assembly** plus its coupling to the surrounding Noether sea wake background.
+- Observer language talks about "an electron," "a nucleus," and similar objects as if they were isolated. In this framework each such object is a **Noether braid assembly** plus its coupling to the surrounding Noether sea wake background.
 - Most of the time, the assembly’s internal state is robust against small variations in the net potential.
 - Occasionally, when the assembly’s configuration is **metastable** (near a threshold boundary; see [Metastability and Threshold Crossings](#metastability-and-threshold-crossings)), a particular combination of incoming wakes pushes it across a threshold:
   - Electron “jumps” orbital
@@ -136,7 +136,7 @@ So causality is **unbroken** at the substrate, but **opaque** and sometimes misl
 
 #### Metastability and Threshold Crossings
 
-At the assembly level (Noether swarms, atoms, etc.):
+At the assembly level (Noether braids, atoms, etc.):
 
 - There exist **metastable configurations** in phase space: regions where small perturbations determine whether the system:
   - Remains in its current attractor (no transition), or
@@ -469,7 +469,7 @@ The decision language in this chapter is not an additional ontology. It is a fut
 
 The controlled distinction is:
 
-- a bare Noether swarm may supply threshold-sensitive material;
+- a bare Noether braid may supply threshold-sensitive material;
 - a Switch must show a measurable basin-weight shift under fixed boundary context;
 - a Decider must also show feedback, hold time, and a nonzero work or dissipation ledger.
 
@@ -496,7 +496,7 @@ Concrete hardware sketches, including a Rydberg-like He-Rb-He Switch, are illust
 
 This chapter states what the wavefunction is and is not within the framework. Its purpose is to relocate $\psi$ from fundamental ontic field status to an effective epistemic description while still explaining why standard quantum formalism remains operationally useful.
 
-Its nearest companion notes are [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Collapse Problem](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md), [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
+Its nearest companion notes are [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Measurement Problem and Collapse](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md), [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
 
 ### Purpose and Scope
 
@@ -515,7 +515,7 @@ This requires a two-layer use of the word superposition. Substrate superposition
 The wavefunction encodes:
 *   **The superposed potential landscape:** A coarse-grained representation of the ambient causal wake intersections.
 *   **Informational ambiguity:** The integrated ignorance of exact source identities, distances, and path-history emission times.
-*   **Assembly resonance modes:** The allowed stable configuration limits of Noether swarm assemblies.
+*   **Assembly resonance modes:** The allowed stable configuration limits of Noether braid assemblies.
 
 When standard non-relativistic, fixed-particle-number quantum mechanics uses a unitary evolution equation (the Schrödinger equation), it is tracking the linear, idealized propagation of these coarse-grained potential distributions across the Noether sea.
 
@@ -641,7 +641,7 @@ When an architrino intersects a causal wake surface, it receives an instantaneou
 1.  The unoriented line of action.
 2.  The net force magnitude.
 
-The receiver cannot intrinsically distinguish between the attractive pull of an opposite polarity and the repulsive push of a like polarity located on the diametrically opposite side of the line of action. Furthermore, because the local potential is a dense superposition of hits from countless Noether sea swarms, the exact origin and path-history of any single perturbation is irretrievable.
+The receiver cannot intrinsically distinguish between the attractive pull of an opposite polarity and the repulsive push of a like polarity located on the diametrically opposite side of the line of action. Furthermore, because the local potential is a dense superposition of hits from countless Noether sea braids, the exact origin and path-history of any single perturbation is irretrievable.
 
 #### Measurement Back-Action and the $h$-Bracket
 Any attempt by a Physical Observer to resolve the microstate of an assembly requires an interaction (e.g., scattering a photon assembly modeled as a coaxial contra-rotating pro/anti planar pair). This interaction injects a discrete, minimum action increment (scaling with $h$) into the target assembly's causal history. This back-action continuously alters the boundary conditions of the state, placing a hard limit on simultaneously resolvable conjugate variables. The uncertainty principle brackets the physical action step associated with assembly transitions.
@@ -731,11 +731,11 @@ This is also the correct home for anomalous signed weak-probe averages. A weak-v
 
 The "collapse" of the wavefunction is not a spontaneous, non-physical violation of unitary evolution. It is the **deterministic crossing of a metastable phase-space boundary** (a separatrix) during an interaction.
 
-Assemblies such as Noether swarms possess internal slow variables that dictate their resonant states. When an assembly interacts with a measurement apparatus (a macroscopic complex of assemblies), the combined system enters a metastable configuration. The incoming potential sum drives the system toward a bifurcation threshold.
+Assemblies such as Noether braids possess internal slow variables that dictate their resonant states. When an assembly interacts with a measurement apparatus (a macroscopic complex of assemblies), the combined system enters a metastable configuration. The incoming potential sum drives the system toward a bifurcation threshold.
 
 Once the accumulated path-history forces push the assembly's action across the $h$-scale separatrix, the system falls into a new, distinct basin of attraction (e.g., transitioning from an excited orbital resonance to a ground state, or locking into a specific spatial trajectory).
 
-For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full nested shell swarm spin ledger rather than to a preassigned spin label.
+For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full nested shell braid spin ledger rather than to a preassigned spin label.
 
 The stronger deterministic statement is not that the formal wavefunction disappears from calculation. It is that a complete substrate state would already contain the realized path-history branch. The effective state must carry multiple amplitudes only because the retained observer chart has lost enough source identity, emission-time, and apparatus-kernel detail that several basin outcomes remain unresolved.
 
@@ -908,7 +908,7 @@ $$
 
 on the declared record regions. This keeps basin-space measures and effective wavefunction measures in their proper domains.
 
-This is the Born-rule basin-measure ledger. It should stay distinct from the spin-statistics / exchange ledger in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/quantum-statistics.md), which asks why effective states are antisymmetric or symmetric in the first place. Photon-channel squared-amplitude capture is a special measurement-channel bridge in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), not a replacement for the basin-measure derivation.
+This is the Born-rule basin-measure ledger. It should stay distinct from the spin-statistics / exchange ledger in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md), which asks why effective states are antisymmetric or symmetric in the first place. Photon-channel squared-amplitude capture is a special measurement-channel bridge in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), not a replacement for the basin-measure derivation.
 
 Spin and Bell records add stricter handoffs. Spin-$\tfrac{1}{2}$ probabilities consume the lifted Stern-Gerlach apparatus basins in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#spin--discrete-outcome-measurements), not an abstract eigenlabel by itself. Bell-pair probabilities consume the full joint response law from pair provenance, with measurement-independence, no-signaling, and product-screening audits before the correlation curve may be treated as recovered.
 
@@ -1688,9 +1688,9 @@ In this language, "spin up" and "spin down" are not tiny literal arrows hidden i
 
 For fermion spin-$\tfrac{1}{2}$, the standard Stern-Gerlach recovery target is a two-channel apparatus record with angular-momentum projections $+\hbar/2$ and $-\hbar/2$ along the apparatus axis. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that two-channel split must come from finite-time basin resolution of the target assembly plus apparatus, not from a primitive spin variable attached to an architrino.
 
-The spin operator is therefore a compact generator of the recovered record statistics and basis rotations, not a new substrate degree of freedom. Its eigenlabels are licensed only when the apparatus kernel maps the nested shell swarm spin ledger into stable basin records with the standard half-angle probabilities.
+The spin operator is therefore a compact generator of the recovered record statistics and basis rotations, not a new substrate degree of freedom. Its eigenlabels are licensed only when the apparatus kernel maps the nested shell braid spin ledger into stable basin records with the standard half-angle probabilities.
 
-The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full nested shell swarm spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins. In the reduced spinor-record chart, the concrete separatrix and unbiased record-phase measure supply the comparison target for spin-$\tfrac{1}{2}$ half-angle probabilities. The Master-Equation origin of the external apparatus terms is now explicit: the angular impulse is the swarm-centered torque of delayed apparatus cross-root hits, and the record-phase measure is the invariant measure of the locked apparatus record cycle. The remaining substrate closure target is to derive the effective spinor coordinate and verify when the record cycle and apparatus impulse reduce to the ideal chart.
+The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full nested shell braid spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins. In the reduced spinor-record chart, the concrete separatrix and unbiased record-phase measure supply the comparison target for spin-$\tfrac{1}{2}$ half-angle probabilities. The Master-Equation origin of the external apparatus terms is now explicit: the angular impulse is the braid-centered torque of delayed apparatus cross-root hits, and the record-phase measure is the invariant measure of the locked apparatus record cycle. The remaining substrate closure target is to derive the effective spinor coordinate and verify when the record cycle and apparatus impulse reduce to the ideal chart.
 
 For an apparatus axis $\hat{\mathbf m}$, let $Z_0\in\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}$ be the incoming target-plus-apparatus state, let $\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}$ be the finite interaction map, let $G_{\mathrm{rec}}$ be the successful-record gate, and let $\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}$ be the signed separatrix functional. The lifted plus basin is
 
@@ -2009,18 +2009,18 @@ for real record-forming interactions, even if that time becomes extremely short 
 
 ### Related Chapters
 
-- [collapse-problem.md](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md)
+- [measurement-problem-and-collapse.md](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md)
 - [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)
 - [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md)
 - [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
 
-## Algorithmic Resonance and Shor's Algorithm
+## Algorithmic Resonance
 
 ### Macroscopic Assembly Coherence
 
 This note treats quantum algorithmic speedup as a demanding coherence problem for many coupled assemblies. The immediate aim is not to rederive Shor's algorithm from the master equation. It is to identify which physical constraints a future derivation must satisfy if an effective quantum register is to remain coherent across many controlled operations.
 
-- **Ensemble phase-locking:** The closure problem is to maintain non-Markovian path-history coherence across a macroscopic array of Noether swarm assemblies.
+- **Ensemble phase-locking:** The closure problem is to maintain non-Markovian path-history coherence across a macroscopic array of Noether braid assemblies.
 - **Noether sea context:** The local Noether sea supplies the causal-wake background in which register-scale interference must remain stable. Any cavity analogy should be read as an effective description of bounded wake superposition, not as a new substrate ontology.
 - **Carrier and apparatus declaration:** An effective qubit is a calibrated two-record channel, not a substrate object by itself. A candidate hardware map must name the carrier assembly, the physical basis being controlled, the apparatus kernel $\mathcal{K}$, the retained access region $W$, and the record window $T$ before circuit notation is translated into dynamics. Photon path, polarization, photon-number, and spin encodings are useful comparison cases only after this carrier and record-channel declaration is fixed.
 
@@ -2083,7 +2083,7 @@ with the additional requirement that the correction operation closes its energy,
 
 This chapter states the $\mathbb{A}\mathbb{A}\mathbb{A}$ proof target for Fermi-Dirac and Bose-Einstein statistics. Its purpose is not to replace the standard counting rules at the observer level. Its purpose is to identify the assembly-level geometry that should determine which counting rule an effective excitation obeys once spin-statistics closure is derived.
 
-The working hypothesis is direct: the transition between Fermi-Dirac and Bose-Einstein behavior is controlled by the oblation of nested shell swarm orbits. A fully three-dimensional nested shell swarm envelope supplies the candidate basis for exclusion-like packing. A strongly oblated, effectively two-dimensional orbital support opens the candidate coherent shared-state regime associated with Bose-Einstein behavior.
+The working hypothesis is direct: the transition between Fermi-Dirac and Bose-Einstein behavior is controlled by the oblation of nested shell braid orbits. A fully three-dimensional nested shell braid envelope supplies the candidate basis for exclusion-like packing. A strongly oblated, effectively two-dimensional orbital support opens the candidate coherent shared-state regime associated with Bose-Einstein behavior.
 
 This hypothesis is downstream of the ordered-frame spinor program in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). Volume exclusion can explain why same-state packing becomes costly, but it does not by itself derive the fermionic exchange sign or the spin-statistics connection.
 
@@ -2095,11 +2095,11 @@ At the observer level, $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover those rules
 
 The substrate question is: what assembly geometry makes those two statistical packages appear?
 
-The answer must not erase substrate identity. Individual architrinos remain provenance-bearing entities, as stated in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#provenance-and-identity-through-time), and the exact symmetries of the master equation preserve full histories rather than arbitrary label swaps (see [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md#fundamental-symmetry-group)). The statistics problem is therefore an effective-state recovery problem: determine when finite observers may quotient inaccessible provenance into antisymmetric or symmetric bookkeeping without treating that quotient as ontic interchangeability.
+The answer must not erase substrate identity. Individual architrinos remain provenance-bearing entities, as stated in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#provenance-and-identity-through-time), and the exact symmetries of the master equation preserve full histories rather than arbitrary label swaps (see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#fundamental-symmetry-group)). The statistics problem is therefore an effective-state recovery problem: determine when finite observers may quotient inaccessible provenance into antisymmetric or symmetric bookkeeping without treating that quotient as ontic interchangeability.
 
-### Nested Shell Swarm Geometry Basis
+### Nested Shell Braid Geometry Basis
 
-The relevant object is the nested shell swarm described in [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). Its geometric footprint is the dynamic exclusion envelope described in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
+The relevant object is the nested shell braid described in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md). Its geometric footprint is the dynamic exclusion envelope described in [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md).
 
 In the low-apparent-energy matter regime, the three nested binaries maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
@@ -2107,16 +2107,16 @@ This is already a flattened object, but it remains genuinely three-dimensional. 
 
 ### Fermi-Dirac Regime: 3D Exclusion
 
-Fermi-Dirac behavior corresponds to nested shell swarm assemblies whose nested orbital support remains volumetric. Two such assemblies cannot be placed into the same effective state without forcing overlap of their dynamic exclusion envelopes.
+Fermi-Dirac behavior corresponds to nested shell braid assemblies whose nested orbital support remains volumetric. Two such assemblies cannot be placed into the same effective state without forcing overlap of their dynamic exclusion envelopes.
 
 The exclusion is not a hard material wall. It is a path-history and wake-geometry obstruction:
 
 - the constituent architrinos sweep out persistent causal-wake structure,
 - the outer binary defines the dominant envelope boundary,
 - the inner and middle binaries maintain internal stabilizing density,
-- and nearby swarms cannot share the same local state without disrupting those orbit closures.
+- and nearby braids cannot share the same local state without disrupting those orbit closures.
 
-At the effective quantum level, that obstruction must appear as antisymmetric exchange bookkeeping and Pauli exclusion. At the assembly level, it is the candidate inability of two volumetric nested shell swarm envelopes to occupy the same state without losing stable nested shell swarm identity. The exchange sign still has to come from the ordered-frame spinor proof, not from volume exclusion alone.
+At the effective quantum level, that obstruction must appear as antisymmetric exchange bookkeeping and Pauli exclusion. At the assembly level, it is the candidate inability of two volumetric nested shell braid envelopes to occupy the same state without losing stable nested shell braid identity. The exchange sign still has to come from the ordered-frame spinor proof, not from volume exclusion alone.
 
 The blocker can be stated directly. Fermionic exchange-sign recovery cannot be credited to the 3D exclusion envelope until the same ordered-frame program supplies a retained non-gauge row $r_\star$ with
 
@@ -2134,7 +2134,7 @@ In the pullback notation of [Angular Momentum and Spin](../../../../markdown/aaa
 
 ### Bose-Einstein Regime: 2D Coherence
 
-Bose-Einstein behavior corresponds to the regime where the relevant orbital support has been oblated toward an effectively two-dimensional structure. The key transition is not merely that the nested shell swarm envelope is somewhat flattened. Ordinary nested shell swarms are already oblate. The statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume.
+Bose-Einstein behavior corresponds to the regime where the relevant orbital support has been oblated toward an effectively two-dimensional structure. The key transition is not merely that the nested shell braid envelope is somewhat flattened. Ordinary nested shell braids are already oblate. The statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume.
 
 In that limit, the dominant motion is organized by a shared plane, phase channel, or coaxial sheet-like support. The assembly no longer presents the same volumetric exclusion envelope to nearby same-channel excitations. Multiple excitations can then occupy one coherent effective state because their assembly-level support is phase-compatible rather than volume-exclusive.
 
@@ -2144,11 +2144,11 @@ This is the proposed substrate basis for Bose-Einstein statistics:
 - exclusion-envelope overlap is replaced by phase-compatible shared support,
 - and many same-channel excitations can lock into a common mode without demanding separate volumetric envelopes.
 
-Photon-like channel behavior is the cleanest target for this mechanism. A bosonic mode is therefore not "less real" than a fermionic assembly. It is a different geometric regime: coherent 2D-supported channel behavior rather than 3D nested shell swarm exclusion behavior.
+Photon-like channel behavior is the cleanest target for this mechanism. A bosonic mode is therefore not "less real" than a fermionic assembly. It is a different geometric regime: coherent 2D-supported channel behavior rather than 3D nested shell braid exclusion behavior.
 
 ### The 3D-to-2D Transition
 
-The transition can be summarized by the canonical nested shell swarm shape ratio from [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
+The transition can be summarized by the canonical nested shell braid shape ratio from [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
 
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}
@@ -2156,7 +2156,7 @@ $$
 
 The Fermi-Dirac regime has $\xi$ bounded away from zero. The envelope is oblate but still volumetric. The Bose-Einstein regime is approached as $\xi\to 0$, where the active support becomes effectively two-dimensional.
 
-This ratio is not yet a final derivation of spin-statistics. It is a geometric control variable for the proof program. A complete closure must show how stable 3D nested shell swarm configurations inherit the ordered-frame spinor proof and produce the fermionic exchange sign, and how the 2D coherent channel limit produces symmetric occupation at the observer level.
+This ratio is not yet a final derivation of spin-statistics. It is a geometric control variable for the proof program. A complete closure must show how stable 3D nested shell braid configurations inherit the ordered-frame spinor proof and produce the fermionic exchange sign, and how the 2D coherent channel limit produces symmetric occupation at the observer level.
 
 ### Effective Exchange-State Contract
 
@@ -2229,7 +2229,7 @@ $$
 $$
 This does not replace the ordered-frame spinor proof. It prevents a purely geometric exclusion story from missing the experimentally important exchange-energy splitting that appears before full many-electron Hartree-Fock closure.
 
-The geometry hypothesis in this chapter can now be stated as a recovery residual. Let $\mathcal{E}_{N,\theta}$ be the effective $N$-assembly state extraction map, let $\mu_{\mathrm{3D}}$ be a retained ensemble of volumetric nested shell swarm configurations with $\xi\ge\xi_F$, and let $\mu_{\mathrm{2D}}$ be a retained ensemble of coherent planar-channel configurations with $\xi\le\xi_B$. The exchange closure target is
+The geometry hypothesis in this chapter can now be stated as a recovery residual. Let $\mathcal{E}_{N,\theta}$ be the effective $N$-assembly state extraction map, let $\mu_{\mathrm{3D}}$ be a retained ensemble of volumetric nested shell braid configurations with $\xi\ge\xi_F$, and let $\mu_{\mathrm{2D}}$ be a retained ensemble of coherent planar-channel configurations with $\xi\le\xi_B$. The exchange closure target is
 $$
 \mathcal{R}_{\mathrm{ex}}(\theta)
 =
@@ -2248,9 +2248,9 @@ For the fermionic branch, $\mathcal{R}_{\mathrm{ex}}$ is admissible only on reco
 
 This chapter depends on:
 
-- [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md) for the oblate spheroidal exclusion envelope,
-- [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md) for the swarm taxonomy and nested shell swarm scaffold,
-- [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) for the delayed-dynamics regime map,
+- [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md) for the oblate spheroidal exclusion envelope,
+- [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md) for the braid taxonomy and nested shell braid scaffold,
+- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) for the delayed-dynamics regime map,
 - [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
 - and [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) for the photon-channel case where coherent planar-pair modes must recover Bose-Einstein occupation behavior.
 
@@ -2260,10 +2260,10 @@ It also sets targets for [Quantum Operator Mapping](../../../../markdown/aaa/phi
 
 The next proof steps are:
 
-1. Extract $\xi$ from simulated or analytic nested shell swarm orbit data.
+1. Extract $\xi$ from simulated or analytic nested shell braid orbit data.
 2. Identify the stability threshold separating volumetric exclusion from coherent 2D support.
-3. Derive how exchange of two 3D nested shell swarm assemblies produces fermionic antisymmetry at the effective level, using the same retained non-gauge ordered-frame row that passes the $2\pi/4\pi$ spinor, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual).
+3. Derive how exchange of two 3D nested shell braid assemblies produces fermionic antisymmetry at the effective level, using the same retained non-gauge ordered-frame row that passes the $2\pi/4\pi$ spinor, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual).
 4. Derive how phase-compatible 2D-supported channel excitations produce bosonic symmetric occupation.
 5. Check that mixed regimes do not create forbidden intermediate statistics for ordinary low-energy matter.
 
-Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D nested shell swarm exclusion plus the ordered-frame spinor exchange phase on the same retained row; Bose-Einstein statistics are expected to arise when nested shell swarm orbital support is oblated into an effectively 2D coherent channel.
+Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D nested shell braid exclusion plus the ordered-frame spinor exchange phase on the same retained row; Bose-Einstein statistics are expected to arise when nested shell braid orbital support is oblated into an effectively 2D coherent channel.

@@ -25,6 +25,6 @@ The outreach path should therefore build many on-ramps: caregiver-led early lear
 Outreach language should preserve the core level distinctions:
 
 - substrate ontology: architrinos, absolute time, Euclidean void, causal wakes;
-- assembly and medium behavior: Noether swarms, Noether sea, branch dynamics;
+- assembly and medium behavior: Noether braids, Noether sea, branch dynamics;
 - effective descriptions: particles, fields, clocks, spacetime, gravity, and quantum behavior;
 - validation posture: proof programs, simulations, closure targets, and public critique.

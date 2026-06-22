@@ -1,14 +1,14 @@
 # Agency, Decision, and Decider Closure
 
-This detailed priority file supports [Quantum Closure](quantum-closure.md). It captures the theory opportunity in [Reality, Quantum Causality, and the Physical Observer](../../../content/markdown/aaa/quantum/reality-quantum-causality.md): the minimal bias-setting complex, or Decider, should become a concrete basin-control theorem target rather than a loose analogy.
+This detailed priority file supports [Quantum Closure](quantum-closure.md). It captures the theory opportunity in [Reality Quantum Causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md): the minimal bias-setting complex, or Decider, should become a concrete basin-control theorem target rather than a loose analogy.
 
 ## Core Opportunity
 
 The Decider idea can sharpen the quantum program because it asks for the smallest assembly topology that can alter its own transition probabilities before a perturbation arrives. The native object is a controlled change in basin geometry, not free will language and not primitive randomness.
 
-The new source signal is stronger than a generic threshold analogy: every Noether swarm already contains a middle binary at the field-speed hinge. That means metastability is not an accidental high-level feature added only in neural or biological systems. It is built into the assembly architecture. The open problem is therefore not whether nature has metastable threshold material; the open problem is which additional control topology turns a built-in metastable hinge into a Switch, and which still richer topology turns a Switch into a Decider.
+The new source signal is stronger than a generic threshold analogy: every Noether braid already contains a middle binary at the field-speed hinge. That means metastability is not an accidental high-level feature added only in neural or biological systems. It is built into the assembly architecture. The open problem is therefore not whether nature has metastable threshold material; the open problem is which additional control topology turns a built-in metastable hinge into a Switch, and which still richer topology turns a Switch into a Decider.
 
-Let $s_M(\gamma)$ be the characteristic middle-binary speed in a reduced Noether swarm state $\gamma$. A field-speed metastability slot over a window $T$ can be represented schematically as
+Let $s_M(\gamma)$ be the characteristic middle-binary speed in a reduced Noether braid state $\gamma$. A field-speed metastability slot over a window $T$ can be represented schematically as
 $$
 \mathcal{K}_M(\epsilon_M,T)
 =
@@ -108,7 +108,7 @@ The minimality question should be handled as a ladder rather than as a single ye
 
 | Level | Required structure | Status |
 | --- | --- | --- |
-| Bare Noether swarm | Inner self-hit engine, field-speed middle binary, outer coupling layer, and stable closure label. | Metastability substrate, not decision. |
+| Bare Noether braid | Inner self-hit engine, field-speed middle binary, outer coupling layer, and stable closure label. | Metastability substrate, not decision. |
 | Switch | A metastable target plus a bias-to-state mechanism that changes later basin access under fixed boundary context. | Candidate minimal decision event executor. |
 | Decider | A Switch family plus held bias state, feedback, memory-bearing update, work and dissipation ledger, and measurable basin-weight shift. | Candidate minimal agency architecture. |
 | Biological or neural assembly | A network of Switch/Decider-like elements with many coupled thresholds and record channels. | Possible applied regime, not primitive evidence for consciousness. |
@@ -266,7 +266,7 @@ This row format turns "the most primitive assembly that can make a decision" int
 | --- | --- |
 | $\Gamma(t)$ | Full microstate of the candidate decider assembly. |
 | $s_M$ | Characteristic middle-binary speed used to identify the field-speed metastability slot. |
-| $\mathcal{K}_M(\epsilon_M,T)$ | Noether swarm metastability window near $s_M=c_f$. |
+| $\mathcal{K}_M(\epsilon_M,T)$ | Noether braid metastability window near $s_M=c_f$. |
 | $c_\Omega$ | Fixed boundary context for testing whether internal preparation changes basin weights. |
 | $\mathcal{Q}_{\text{in}}$ | Declared perturbation or causal-wake input class used in the fixed-context test. |
 | $u$ | Bias configuration held by the controller or tuner subassembly. |
@@ -283,7 +283,7 @@ This row format turns "the most primitive assembly that can make a decision" int
 
 The minimal Decider claim should be accepted only after six tests:
 
-1. **Metastability:** identify the Noether swarm middle-binary hinge or other declared threshold slot and show that it remains in a metastable window long enough to matter.
+1. **Metastability:** identify the Noether braid middle-binary hinge or other declared threshold slot and show that it remains in a metastable window long enough to matter.
 2. **Topology:** identify the smallest architecture that contains sensor, threshold, bias, and memory roles without hiding a required role in the environment.
 3. **Fixed context:** hold $c_\Omega$ fixed while changing only the internal preparation or feedback state.
 4. **Energetics and hold time:** show that changing $u$ has a positive work or dissipation ledger,

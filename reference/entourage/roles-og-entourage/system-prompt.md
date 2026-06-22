@@ -20,7 +20,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - Theory/math-first drafting: prioritize formal derivations, definitions, geometry, and dynamics; minimize forward-looking TODO statements framed around future observations or experiments unless explicitly requested.
 
 ### Current canonical anchors
-- Dynamics canon: `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, `dynamics/binary-dynamics.md`, and `noether-swarm/nested-shell-swarm-dynamics.md`.
+- Dynamics canon: `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, `dynamics/binary-dynamics.md`, and `noether-braid/nested-shell-braid-dynamics.md`.
 - Ontology canon: `foundations/ontology.md`, `foundations/absolute-time-defense.md`, `foundations/detecting-the-absolute-frame.md`, and `foundations/constructing-the-absolute-frame.md`.
 - Parameter canon: `validation/parameter-ledger.md` (fundamental parameters, regulators, geometric closure targets, constitutive closure targets, state variables, and observer-level benchmarks are distinct classes).
 - Cosmology canon: `cosmology/cosmology-ontology.md`, `spacetime/noether-sea.md`, `spacetime/emergent-metric.md`, `spacetime/lorentz-kinematics.md`, and `spacetime/ppn-parameters.md` (fixed Euclidean container; Noether sea state variables; observer-level projection interfaces).
@@ -65,7 +65,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
   - $v<c_f$: expansion/contraction via energy transfer (outer binary)
   - $v=c_f$: symmetry-breaking threshold (effective Lorentz invariance; middle binary)
   - $v>c_f$: self-hit -> inflation/deflation forces and additional dynamics (inner binary)
-- **Strong Noether sea gradients** deform Noether swarm assemblies and must be treated as a closure target, not as a settled claim: low-gradient cores are approximately spherical/ellipsoidal, stronger gradients may drive oblate or planar response, and the metric/clock consequences must be derived through the declared state variables rather than inferred from visual analogy.
+- **Strong Noether sea gradients** deform Noether braid assemblies and must be treated as a closure target, not as a settled claim: low-gradient cores are approximately spherical/ellipsoidal, stronger gradients may drive oblate or planar response, and the metric/clock consequences must be derived through the declared state variables rather than inferred from visual analogy.
 
 ---
 
@@ -107,7 +107,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - PDG CKM (2024): $|V| \approx \begin{pmatrix}0.974&0.225&0.0037\\0.225&0.973&0.041\\0.0087&0.040&0.999\end{pmatrix}$; Wolfenstein ($\lambda\!\approx\!0.225,A\!\approx\!0.83,\rho\!\approx\!0.14,\eta\!\approx\!0.35$) matches to $\mathcal{O}(\lambda^3)$.
 - Overlap functional $\mathcal{O}$ concept: mixing amplitude scales with overlap of Weak-Coupling Triad exposure between initial and final assemblies (inner/mid/outer binaries tagged I/M/O).
 - Weak-Coupling Triad orientation: forward (leading-edge) vs rearward exposure; forward favored by wake coupling.
-- Provenance tables: track participating architrinos, Noether swarms, energy, charge, and polarity through weak reactions; corridor (W) assembled from interacting wakes, not a preexisting gauge-boson object.
+- Provenance tables: track participating architrinos, Noether braids, energy, charge, and polarity through weak reactions; corridor (W) assembled from interacting wakes, not a preexisting gauge-boson object.
 
 ### Energy accounting snapshot (`validation/simulations/action-energy/action-model.md`)
 - Kinetic energy: sum over architrinos with absolute-time velocities.
@@ -161,7 +161,7 @@ For concrete reference, the canonical `validation/parameter-ledger.md` table enu
   * **A4 (Polarity Balance)**: global neutrality $\sum q = 0$ on the initial slice (Sec 3.2).
   * **A5 (Particle Geometry)**: point-like $r=0$ architrinos as transceivers of continuous flux.
   * **A6 (Coupling Constant)**: $\kappa$ (pending derivation, likely tied to Coulomb constant) that scales every per-hit acceleration.
-  * **C1/C2 (Noether swarm density)**: $\rho_{\text{NS},0}$ and $n(\mathbf{x},t)$ define physical and normalized Noether swarm density for constitutive spacetime maps.
+  * **C1/C2 (Noether braid density)**: $\rho_{\text{NS},0}$ and $n(\mathbf{x},t)$ define physical and normalized Noether braid density for constitutive spacetime maps.
   * **G0/G0a ($A_0$ branch certificate)**: $A_0$ and $\mathcal{P}_{A_0}$ organize the first calibration-free neutral rest-branch mass-map program.
 If you introduce or adjust any ledger entry, update both this list and the dedicated `validation/parameter-ledger.md` table so the system prompt and the canonical reference stay in sync.
 

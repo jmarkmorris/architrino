@@ -103,7 +103,7 @@ The follow-on [octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.mjs) emits:
 
 - predecessor validation for the endpoint sign certificate and bracket derivative mesh barrier;
 - no-fixed-speed-window parameters using $3.02156\le v_\ast\le3.02157$;
@@ -113,7 +113,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-i1-bracket-local-z
 - source-root preservation and term root-count signature checks;
 - explicit non-interval, non-critical-exhaustion, non-quadrature, and non-retention boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.test.js) verifies schema validation, predecessor composition, speed-window removal, endpoint and derivative-barrier values, root clearances, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.test.js) verifies schema validation, predecessor composition, speed-window removal, endpoint and derivative-barrier values, root clearances, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
 
 ## Claim Boundary
 

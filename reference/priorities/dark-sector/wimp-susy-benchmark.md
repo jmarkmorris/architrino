@@ -17,7 +17,7 @@ The Jungman arXiv record exposes the abstract, metadata, table of contents, and 
 
 | Source signal | Safe $\mathbb{A}\mathbb{A}\mathbb{A}$ use | Do not promote without proof |
 | --- | --- | --- |
-| The exposed arXiv material frames neutralino/WIMP dark matter through relic abundance, direct detection, and indirect annihilation products. | Use as a WIMP benchmark vector for dark-sector and detector-facing closure tests. | Do not canonize supersymmetry as the middle/inner Noether swarm binary relation without a ledger-preserving transformation theorem. |
+| The exposed arXiv material frames neutralino/WIMP dark matter through relic abundance, direct detection, and indirect annihilation products. | Use as a WIMP benchmark vector for dark-sector and detector-facing closure tests. | Do not canonize supersymmetry as the middle/inner Noether braid binary relation without a ledger-preserving transformation theorem. |
 
 ## WIMP Benchmark Vector
 
@@ -38,9 +38,9 @@ $$
 
 This vector keeps relic abundance, direct detection, and indirect annihilation channels tied to one candidate assembly record. A native candidate should state which terms it predicts, which it only bounds, and which observed null results it must pass.
 
-## Supersymmetry And The Noether Swarm
+## Supersymmetry And The Noether Braid
 
-The operator hunch that supersymmetry is related to the middle and inner binaries of the Noether swarm should be staged as a transformation theorem target:
+The operator hunch that supersymmetry is related to the middle and inner binaries of the Noether braid should be staged as a transformation theorem target:
 
 $$
 \Pi_{\mathrm{gauge}}(A')=\Pi_{\mathrm{gauge}}(A),
@@ -61,6 +61,6 @@ The candidate transformation may act first on inner and middle ledger variables,
 
 ## Deferred Or Rejected Moves
 
-- Do not state that $\mathbb{A}\mathbb{A}\mathbb{A}$ derives supersymmetry from the Noether swarm. Use the transformation theorem target above.
+- Do not state that $\mathbb{A}\mathbb{A}\mathbb{A}$ derives supersymmetry from the Noether braid. Use the transformation theorem target above.
 - Do not promote neutralino or WIMP language as ontology. Use it as a benchmark vector for candidate assemblies and detector-facing closure.
 - Do not add new validation infrastructure merely because the source names many constraints. Promote only the residuals and benchmark vectors that have a concrete consumer in the current proof stack.

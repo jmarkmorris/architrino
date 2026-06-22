@@ -16,7 +16,7 @@ When using multiple Codex threads in parallel against repo priorities:
   - proof-program certificate work,
   - simulation continuation / convergence diagnostics,
   - mass-map / exposure / medium-response derivation,
-  - nested shell swarm causal closure / Lorentz / effective-metric recovery,
+  - nested shell braid causal closure / Lorentz / effective-metric recovery,
   - photon / angular-momentum / spin closure;
 - use app/UI, PDG, animator, or architecture splits only when they directly unblock the selected theory target or Op explicitly chooses that work;
 - avoid pairing tasks that are the same cut-over seen from two sides, for example Reaction solver-cut-over work with Solver external-cut-over work;

@@ -84,7 +84,7 @@ import {
   computePhotonStageLayout,
   getPhotonFieldPlotSampleCount,
   isPhotonPlotSampleInForwardGap,
-} from "../src/apps/photon/PhotonSwarmVisualRuntime.js";
+} from "../src/apps/photon/PhotonBraidVisualRuntime.js";
 import { createSolverBridgeLoopbackWorker } from "./solver-worker-loopback.mjs";
 
 function assertNear(actual, expected, epsilon = 1e-12) {
@@ -338,7 +338,7 @@ function buildSyntheticPolarizationSamples({ ampY = 1, ampZ = 0, phaseLag = 0, c
   });
 }
 
-test("default photon state encodes trailing and leading swarm convention", () => {
+test("default photon state encodes trailing and leading braid convention", () => {
   const state = createDefaultPhotonState();
 
   assert.equal(state.pair.left.role, "trailing");
@@ -357,10 +357,10 @@ test("default photon state encodes trailing and leading swarm convention", () =>
     ["I", "M", "O"].map((layerId) => state.pair.right.layers[layerId].frequencyHz),
     ["I", "M", "O"].map((layerId) => PHOTON_DEFAULT_LAYER_FREQUENCIES_HZ[layerId])
   );
-  ["left", "right"].forEach((swarmId) => {
+  ["left", "right"].forEach((braidId) => {
     ["I", "M", "O"].forEach((layerId) => {
       assertNear(
-        getPhotonLayerTangentialSpeedRatio(state, swarmId, layerId),
+        getPhotonLayerTangentialSpeedRatio(state, braidId, layerId),
         PHOTON_LAYER_SPEED_RATIO_TARGETS[layerId]
       );
     });
@@ -377,8 +377,8 @@ test("default photon state encodes trailing and leading swarm convention", () =>
   assert.equal(state.pair.pairSeparation, getPhotonSeparationReferenceRadius(state));
   assert.equal(getPhotonSeparationLog10Ratio(state), 0);
   assert.deepEqual(
-    ["left", "right"].flatMap((swarmId) =>
-      ["I", "M", "O"].map((layerId) => getPhotonLayerEnabled(state, swarmId, layerId))
+    ["left", "right"].flatMap((braidId) =>
+      ["I", "M", "O"].map((layerId) => getPhotonLayerEnabled(state, braidId, layerId))
     ),
     [true, true, true, true, true, true]
   );
@@ -417,7 +417,7 @@ test("photon plot duration spans three middle-layer cycles", () => {
   assertNear(bounds.end, (runDuration * 2) / 3);
 });
 
-test("left swarm angles advance counter-clockwise while right swarm angles advance clockwise", () => {
+test("left braid angles advance counter-clockwise while right braid angles advance clockwise", () => {
   const state = createDefaultPhotonState();
   const leftStart = getPhotonLayerAngleRadians(state, "left", "I", 0);
   const leftLater = getPhotonLayerAngleRadians(state, "left", "I", 1);
@@ -664,14 +664,14 @@ test("Photon circular-source solver request preserves source orbit geometry", ()
   state.measurement.signalSpeedCf = 0.72;
   state.measurement.emissionSpeedCf = 0.72;
   state.pair.photonSpeedCf = 0.72;
-  const sourceRef = { swarmId: "left", layerId: "O", chargeType: "electrino" };
+  const sourceRef = { braidId: "left", layerId: "O", chargeType: "electrino" };
   const observationTime = 0.75;
   const request = createPhotonCircularSourceCausalRootRequest(state, sourceRef, observationTime);
   const emissionTime = (request.source.startTime + request.source.endTime) / 2;
   const requestPosition = evaluateCircularSourceRequestPosition(request.source, emissionTime);
   const kinematics = getPhotonArchitrinoKinematics(
     state,
-    sourceRef.swarmId,
+    sourceRef.braidId,
     sourceRef.layerId,
     sourceRef.chargeType,
     emissionTime
@@ -696,7 +696,7 @@ test("Photon absolute-history segment requests move source and Virtual Observer 
   state.measurement.emissionSpeedCf = 0.85;
   state.pair.photonSpeedCf = 0.6;
   state.measurement.virtualObserver.x = 0.25;
-  const sourceRef = { swarmId: "left", layerId: "O", chargeType: "positrino" };
+  const sourceRef = { braidId: "left", layerId: "O", chargeType: "positrino" };
   const observationTime = 1.5;
   const requests = createPhotonAbsoluteSourceSegmentCausalRootRequests(
     state,
@@ -710,7 +710,7 @@ test("Photon absolute-history segment requests move source and Virtual Observer 
   const first = requests[0];
   const kinematics = getPhotonArchitrinoKinematics(
     state,
-    sourceRef.swarmId,
+    sourceRef.braidId,
     sourceRef.layerId,
     sourceRef.chargeType,
     first.source.startTime
@@ -737,7 +737,7 @@ test("Solver bridge exposes moving-circular absolute-history root methods withou
   state.measurement.signalSpeedCf = 0.9;
   state.measurement.emissionSpeedCf = 0.9;
   state.pair.photonSpeedCf = 0.5;
-  const sourceRef = { swarmId: "right", layerId: "O", chargeType: "positrino" };
+  const sourceRef = { braidId: "right", layerId: "O", chargeType: "positrino" };
   const request = createPhotonAbsoluteMovingCircularCausalRootRequest(
     state,
     sourceRef,
@@ -799,7 +799,7 @@ test("Photon absolute-history source roots route through the moving-circular sol
   state.measurement.signalSpeedCf = 0.9;
   state.measurement.emissionSpeedCf = 0.9;
   state.pair.photonSpeedCf = 0.5;
-  const sourceRef = { swarmId: "right", layerId: "O", chargeType: "electrino" };
+  const sourceRef = { braidId: "right", layerId: "O", chargeType: "electrino" };
   const client = createSolverAppBridgeClient();
   await client.init(createPhotonTestSolverInitRequest());
   let movingCalls = 0;
@@ -944,7 +944,7 @@ test("Photon self-hit diagnostics can fall back when only circular-source roots 
 
 test("Photon circular-source roots, hits, and ledger rows can be routed through the solver app bridge", async () => {
   const state = createDefaultPhotonState();
-  const sourceRef = { swarmId: "left", layerId: "O", chargeType: "positrino" };
+  const sourceRef = { braidId: "left", layerId: "O", chargeType: "positrino" };
   const observationTime = 0.75;
   const response = await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
     state,
@@ -1067,7 +1067,7 @@ test("Photon delayed emission field can use absolute-history moving circular sol
 
 test("Photon circular-source bridge can create and dispose a solver bridge client", async () => {
   const state = createDefaultPhotonState();
-  const sourceRef = { swarmId: "left", layerId: "O", chargeType: "positrino" };
+  const sourceRef = { braidId: "left", layerId: "O", chargeType: "positrino" };
   const observationTime = 0.75;
   let disposed = false;
 
@@ -1194,7 +1194,7 @@ test("plot helpers expose sample counts and the small forward now gap", () => {
   assert.equal(isPhotonPlotSampleInForwardGap(0.4, 0.94, 0.15), false);
 });
 
-test("photon stage keeps face-on swarm spacing fixed while side view separation changes", () => {
+test("photon stage keeps face-on braid spacing fixed while side view separation changes", () => {
   const state = createDefaultPhotonState();
   state.pair.pairSeparation = getPhotonPairSeparationFromLog10Ratio(state, -6);
   const base = computePhotonStageLayout(state, 933, 466);
@@ -1234,7 +1234,7 @@ test("photon stage keeps face-on swarm spacing fixed while side view separation 
   );
 });
 
-test("photon face-on radius edits move the edited orbit without rescaling the swarm", () => {
+test("photon face-on radius edits move the edited orbit without rescaling the braid", () => {
   const state = createDefaultPhotonState();
   const base = computePhotonStageLayout(state, 933, 466);
   const leadingInnerRadius = state.pair.right.layers.I.radius;
@@ -1360,7 +1360,7 @@ test("layer metadata exposes user-facing orbit names", () => {
   );
 });
 
-test("layer radius edits are scoped to the addressed swarm", () => {
+test("layer radius edits are scoped to the addressed braid", () => {
   const state = createDefaultPhotonState();
   const leadingInnerRadius = state.pair.right.layers.I.radius;
   const allowedInnerRadius =
@@ -1629,9 +1629,9 @@ test("configuration search results export and import full settings", async () =>
 
 test("separation reference radius follows the largest enabled radius", () => {
   const state = createDefaultPhotonState();
-  ["left", "right"].forEach((swarmId) => {
+  ["left", "right"].forEach((braidId) => {
     ["I", "M", "O"].forEach((layerId) => {
-      state.pair[swarmId].layers[layerId].radius = 0.2;
+      state.pair[braidId].layers[layerId].radius = 0.2;
     });
   });
 
@@ -1778,7 +1778,7 @@ test("derived solver-bridge polarization ellipse fit stays stable while the curr
   assert.notEqual(first.currentProgress.toFixed(6), second.currentProgress.toFixed(6));
 });
 
-test("photon animation keeps swarm time continuous while plot time wraps", () => {
+test("photon animation keeps braid time continuous while plot time wraps", () => {
   const state = createDefaultPhotonState();
   const runDuration = getPhotonRunDuration(state);
   const modelTime = advancePhotonModelTime(0, runDuration + 0.25, 1);

@@ -95,7 +95,7 @@ Z_{\hat{\mathbf m}}^{\mathrm{SG}}(t)
 \right),
 $$
 
-with $\theta_{\mathrm{rec}}$ and $\zeta_{\mathrm{rec}}$ supplied by the record-cycle section below. The effective spinor coordinate $\psi(Z)$ is not part of this input unless a separate spinor-closure artifact has derived it from the ordered Noether swarm history.
+with $\theta_{\mathrm{rec}}$ and $\zeta_{\mathrm{rec}}$ supplied by the record-cycle section below. The effective spinor coordinate $\psi(Z)$ is not part of this input unless a separate spinor-closure artifact has derived it from the ordered Noether braid history.
 
 ## Apparatus Branch-Sum Impulse
 
@@ -704,7 +704,7 @@ That inequality is a later Bell-family test requiring a populated source measure
 | Record-cycle measure | $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$, $\Delta_{\mathrm{rec}}^{\mathrm{SG}}$ | ready formula, blocked pass | No record-window quotient or invariant return measure has been emitted. |
 | Plus/reject basin | $\Delta_{+/\mathrm{rej}}^{\mathrm{SG}}$ | ready formula, blocked pass | No plus/reject basin filtration or null-boundary certificate exists. |
 | Event recoil/wake ledger | $\mathcal R_{\mathrm{event},o}^{\mathrm{SG}}$ | ready formula, blocked pass | No same-window event ledgers for core, apparatus, wake, and Noether sea recoil. |
-| Effective spinor coordinate | $\psi(Z)$, $p_+(Z;\hat{\mathbf m})$ | not supplied | Ordered Noether swarm spinor closure is still pending. |
+| Effective spinor coordinate | $\psi(Z)$, $p_+(Z;\hat{\mathbf m})$ | not supplied | Ordered Noether braid spinor closure is still pending. |
 | Half-angle residual | $\Delta_{\mathrm{half}}^{\mathrm{SG}}(\alpha)$ | consumer formula, blocked pass | Needs $\psi(Z)$, $\mu_\alpha$, record measure, basin rows, and branch-sum impulse from the same substrate model. |
 | Pair provenance | $\rho_{\mathrm{src}}$, $\Pi_{AB}^{\mathrm{sing}}$ | not supplied | Source-event and daughter-ledger rows belong to the pair-provenance packet. |
 | Bell success | $\Delta_{\mathrm{Bell}}^{\mathrm{SG}}$ | not claimed | Requires populated source measure, two local response rows, measurement independence, no-signaling, and product-screening audit. |

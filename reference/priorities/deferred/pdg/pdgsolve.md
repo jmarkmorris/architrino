@@ -103,7 +103,7 @@ The strip uses a deliberately limited grammar:
 - reactant-side operators and product-side operators contain operators only;
 - all normal solve progress moves from reactant side to product side through adjacent semantic stages only;
 - every solver-native assembly in those stages is one explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to Standard Model content;
-- `pdgfeed` may already have completed the boundary by adding explicit `pro_noether_swarm_I` and `anti_noether_swarm_I` rows on the reactant or product side;
+- `pdgfeed` may already have completed the boundary by adding explicit `pro_noether_braid_I` and `anti_noether_braid_I` rows on the reactant or product side;
 - `pdgfeed` may also emit one explicit counted `Unbound Architrinos` product occurrence for the sub-pair primitive residue that remains after full Noether-pair completion;
 - the intermediate stage may contain one and only one explicit counted `Unbound Architrinos` assembly, and multiple reactant-side `Dissociate` operators may route counts into that one ledger;
 - that intermediate `Unbound Architrinos` assembly acts as the common Electrino/Positrino ledger for all intermediate-to-product routing;
@@ -192,10 +192,10 @@ For `pdgsolve` v1, one emitted family should augment at most one boundary side, 
 
 After one augmentation choice $b$ is fixed:
 
-- every added Noether swarm is just one ordinary assembly occurrence;
+- every added Noether braid is just one ordinary assembly occurrence;
 - the pair is not carried through the interior search as a composite symbol;
 - `Dissociate` and `Associate` still act only on ordinary assembly laws, not on a special wildcard operator;
-- and emitted families list the added Noether swarms as assemblies in the chosen reactant or product boundary.
+- and emitted families list the added Noether braids as assemblies in the chosen reactant or product boundary.
 
 So the wildcard behavior is not a placeholder inside the solve core.
 
@@ -263,7 +263,7 @@ The assembly table should list the full Standard Model inventory:
 | neutrinos | electron neutrino, muon neutrino, tau neutrino, and their antineutrino variants | reactant assemblies, intermediate assemblies, and product assemblies | neutrino and antineutrino assemblies remain explicit ids |
 | up-type quarks | up, charm, top, and their antiquark variants | reactant assemblies, intermediate assemblies, and product assemblies | quark and antiquark assemblies remain explicit ids |
 | down-type quarks | down, strange, bottom, and their antiquark variants | reactant assemblies, intermediate assemblies, and product assemblies | quark and antiquark assemblies remain explicit ids |
-| Noether swarms | pro and anti variants | reactant assemblies, intermediate assemblies, and product assemblies | |
+| Noether braids | pro and anti variants | reactant assemblies, intermediate assemblies, and product assemblies | |
 
 The concrete conserved-content rows for every admitted assembly in that table should be written here rather than deferred to a later phase. The running beta-boundary bookkeeping values already used elsewhere in this document include:
 
@@ -293,7 +293,7 @@ It should be expressed as:
 - one universal `Pass Thru` identity law for every admitted assembly;
 - one family of generation-aware `Dissociate` laws;
 - one family of generation-aware `Associate` laws;
-- one family of Noether swarm ladder dissociation laws;
+- one family of Noether braid ladder dissociation laws;
 - and one shared counted `Unbound Architrinos` assembly in the intermediate stage.
 
 This section is the executable interpretation of $\Delta$ and $\Gamma$ for v1.
@@ -321,7 +321,7 @@ Every constructed candidate must satisfy:
 - Electrino count $\ge 0$;
 - Positrino count $\ge 0$;
 - routed counts may never drive either count below zero;
-- an `Associate` operator consumes `Unbound Architrinos` to populate the polar charges of a fermion rather than reading those polar charges directly from an intact Noether swarm;
+- an `Associate` operator consumes `Unbound Architrinos` to populate the polar charges of a fermion rather than reading those polar charges directly from an intact Noether braid;
 - and there may never be a second intermediate `Unbound Architrinos` assembly.
 
 #### Universal Identity Law
@@ -334,17 +334,17 @@ So `Pass Thru` is globally available and must be included in every local action 
 
 The first-pass executable law family should treat every visible Standard Model fermion assembly as:
 
-- one generation-matched `pro Noether swarm` or `anti Noether swarm`;
+- one generation-matched `pro Noether braid` or `anti Noether braid`;
 - plus the required Electrino and Positrino counts carried by the one shared intermediate `Unbound Architrinos` ledger.
 
-For v1, the generation-matched Noether swarms are:
+For v1, the generation-matched Noether braids are:
 
-- generation I matter: `pro_noether_swarm_I`;
-- generation I antimatter: `anti_noether_swarm_I`;
-- generation II matter: `pro_noether_swarm_II`;
-- generation II antimatter: `anti_noether_swarm_II`;
-- generation III matter: `pro_noether_swarm_III`;
-- generation III antimatter: `anti_noether_swarm_III`.
+- generation I matter: `pro_noether_braid_I`;
+- generation I antimatter: `anti_noether_braid_I`;
+- generation II matter: `pro_noether_braid_II`;
+- generation II antimatter: `anti_noether_braid_II`;
+- generation III matter: `pro_noether_braid_III`;
+- generation III antimatter: `anti_noether_braid_III`.
 
 The first-pass `Unbound Architrinos` count classes are:
 
@@ -360,78 +360,78 @@ The first-pass `Unbound Architrinos` count classes are:
 
 These count classes match the current primitive counts already present in the admitted assembly table:
 
-- `pro_electron_I = pro_noether_swarm_I + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
-- `anti_electron_I = anti_noether_swarm_I + Unbound Architrinos (0 Electrinos, 6 Positrinos)`;
-- `pro_electron_neutrino_I = pro_noether_swarm_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
-- `anti_electron_neutrino_I = anti_noether_swarm_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
-- `pro_down_quark_I = pro_noether_swarm_I + Unbound Architrinos (4 Electrinos, 2 Positrinos)`;
-- `anti_down_quark_I = anti_noether_swarm_I + Unbound Architrinos (2 Electrinos, 4 Positrinos)`;
-- `pro_up_quark_I = pro_noether_swarm_I + Unbound Architrinos (1 Electrino, 5 Positrinos)`;
-- `anti_up_quark_I = anti_noether_swarm_I + Unbound Architrinos (5 Electrinos, 1 Positrino)`.
+- `pro_electron_I = pro_noether_braid_I + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
+- `anti_electron_I = anti_noether_braid_I + Unbound Architrinos (0 Electrinos, 6 Positrinos)`;
+- `pro_electron_neutrino_I = pro_noether_braid_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `anti_electron_neutrino_I = anti_noether_braid_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `pro_down_quark_I = pro_noether_braid_I + Unbound Architrinos (4 Electrinos, 2 Positrinos)`;
+- `anti_down_quark_I = anti_noether_braid_I + Unbound Architrinos (2 Electrinos, 4 Positrinos)`;
+- `pro_up_quark_I = pro_noether_braid_I + Unbound Architrinos (1 Electrino, 5 Positrinos)`;
+- `anti_up_quark_I = anti_noether_braid_I + Unbound Architrinos (5 Electrinos, 1 Positrino)`.
 
-The same count classes should be reused across generations, with only the Noether swarm generation changing.
+The same count classes should be reused across generations, with only the Noether braid generation changing.
 
 So, for example:
 
-- `pro_muon_II = pro_noether_swarm_II + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
-- `anti_muon_II = anti_noether_swarm_II + Unbound Architrinos (0 Electrinos, 6 Positrinos)`;
-- `pro_muon_neutrino_II = pro_noether_swarm_II + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
-- `anti_muon_neutrino_II = anti_noether_swarm_II + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
-- `pro_strange_quark_II = pro_noether_swarm_II + Unbound Architrinos (4 Electrinos, 2 Positrinos)`;
-- `anti_strange_quark_II = anti_noether_swarm_II + Unbound Architrinos (2 Electrinos, 4 Positrinos)`;
-- `pro_charm_quark_II = pro_noether_swarm_II + Unbound Architrinos (1 Electrino, 5 Positrinos)`;
-- `anti_charm_quark_II = anti_noether_swarm_II + Unbound Architrinos (5 Electrinos, 1 Positrino)`;
-- `pro_tau_III = pro_noether_swarm_III + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
-- `anti_tau_III = anti_noether_swarm_III + Unbound Architrinos (0 Electrinos, 6 Positrinos)`;
-- `pro_tau_neutrino_III = pro_noether_swarm_III + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
-- `anti_tau_neutrino_III = anti_noether_swarm_III + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
-- `pro_bottom_quark_III = pro_noether_swarm_III + Unbound Architrinos (4 Electrinos, 2 Positrinos)`;
-- `anti_bottom_quark_III = anti_noether_swarm_III + Unbound Architrinos (2 Electrinos, 4 Positrinos)`;
-- `pro_top_quark_III = pro_noether_swarm_III + Unbound Architrinos (1 Electrino, 5 Positrinos)`;
-- `anti_top_quark_III = anti_noether_swarm_III + Unbound Architrinos (5 Electrinos, 1 Positrino)`.
+- `pro_muon_II = pro_noether_braid_II + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
+- `anti_muon_II = anti_noether_braid_II + Unbound Architrinos (0 Electrinos, 6 Positrinos)`;
+- `pro_muon_neutrino_II = pro_noether_braid_II + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `anti_muon_neutrino_II = anti_noether_braid_II + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `pro_strange_quark_II = pro_noether_braid_II + Unbound Architrinos (4 Electrinos, 2 Positrinos)`;
+- `anti_strange_quark_II = anti_noether_braid_II + Unbound Architrinos (2 Electrinos, 4 Positrinos)`;
+- `pro_charm_quark_II = pro_noether_braid_II + Unbound Architrinos (1 Electrino, 5 Positrinos)`;
+- `anti_charm_quark_II = anti_noether_braid_II + Unbound Architrinos (5 Electrinos, 1 Positrino)`;
+- `pro_tau_III = pro_noether_braid_III + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
+- `anti_tau_III = anti_noether_braid_III + Unbound Architrinos (0 Electrinos, 6 Positrinos)`;
+- `pro_tau_neutrino_III = pro_noether_braid_III + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `anti_tau_neutrino_III = anti_noether_braid_III + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `pro_bottom_quark_III = pro_noether_braid_III + Unbound Architrinos (4 Electrinos, 2 Positrinos)`;
+- `anti_bottom_quark_III = anti_noether_braid_III + Unbound Architrinos (2 Electrinos, 4 Positrinos)`;
+- `pro_top_quark_III = pro_noether_braid_III + Unbound Architrinos (1 Electrino, 5 Positrinos)`;
+- `anti_top_quark_III = anti_noether_braid_III + Unbound Architrinos (5 Electrinos, 1 Positrino)`.
 
-This Noether swarm-plus-`Unbound Architrinos` form is the first concrete v1 law-table basis.
+This Noether braid-plus-`Unbound Architrinos` form is the first concrete v1 law-table basis.
 
 #### Fermion Dissociation Laws
 
 For every admitted visible fermion assembly $f$, the executable dissociation table should contain exactly the inverse of the corresponding association recipe.
 
-In symbols, $\Delta(f) = \{\text{Noether swarm}(f) + \text{Unbound Architrinos counts}(f)\}$.
+In symbols, $\Delta(f) = \{\text{Noether braid}(f) + \text{Unbound Architrinos counts}(f)\}$.
 
 Concretely, the first-pass dissociation rules are:
 
 - charged leptons:
-  - `pro_electron_I -> pro_noether_swarm_I + Unbound Architrinos (6 Electrinos, 0 Positrinos)`
-  - `anti_electron_I -> anti_noether_swarm_I + Unbound Architrinos (0 Electrinos, 6 Positrinos)`
-  - `pro_muon_II -> pro_noether_swarm_II + Unbound Architrinos (6 Electrinos, 0 Positrinos)`
-  - `anti_muon_II -> anti_noether_swarm_II + Unbound Architrinos (0 Electrinos, 6 Positrinos)`
-  - `pro_tau_III -> pro_noether_swarm_III + Unbound Architrinos (6 Electrinos, 0 Positrinos)`
-  - `anti_tau_III -> anti_noether_swarm_III + Unbound Architrinos (0 Electrinos, 6 Positrinos)`
+  - `pro_electron_I -> pro_noether_braid_I + Unbound Architrinos (6 Electrinos, 0 Positrinos)`
+  - `anti_electron_I -> anti_noether_braid_I + Unbound Architrinos (0 Electrinos, 6 Positrinos)`
+  - `pro_muon_II -> pro_noether_braid_II + Unbound Architrinos (6 Electrinos, 0 Positrinos)`
+  - `anti_muon_II -> anti_noether_braid_II + Unbound Architrinos (0 Electrinos, 6 Positrinos)`
+  - `pro_tau_III -> pro_noether_braid_III + Unbound Architrinos (6 Electrinos, 0 Positrinos)`
+  - `anti_tau_III -> anti_noether_braid_III + Unbound Architrinos (0 Electrinos, 6 Positrinos)`
 - neutrinos:
-  - `pro_electron_neutrino_I -> pro_noether_swarm_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
-  - `anti_electron_neutrino_I -> anti_noether_swarm_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
-  - `pro_muon_neutrino_II -> pro_noether_swarm_II + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
-  - `anti_muon_neutrino_II -> anti_noether_swarm_II + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
-  - `pro_tau_neutrino_III -> pro_noether_swarm_III + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
-  - `anti_tau_neutrino_III -> anti_noether_swarm_III + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
+  - `pro_electron_neutrino_I -> pro_noether_braid_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
+  - `anti_electron_neutrino_I -> anti_noether_braid_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
+  - `pro_muon_neutrino_II -> pro_noether_braid_II + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
+  - `anti_muon_neutrino_II -> anti_noether_braid_II + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
+  - `pro_tau_neutrino_III -> pro_noether_braid_III + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
+  - `anti_tau_neutrino_III -> anti_noether_braid_III + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
 - down-type quarks:
-  - `pro_down_quark_I -> pro_noether_swarm_I + Unbound Architrinos (4 Electrinos, 2 Positrinos)`
-  - `anti_down_quark_I -> anti_noether_swarm_I + Unbound Architrinos (2 Electrinos, 4 Positrinos)`
-  - `pro_strange_quark_II -> pro_noether_swarm_II + Unbound Architrinos (4 Electrinos, 2 Positrinos)`
-  - `anti_strange_quark_II -> anti_noether_swarm_II + Unbound Architrinos (2 Electrinos, 4 Positrinos)`
-  - `pro_bottom_quark_III -> pro_noether_swarm_III + Unbound Architrinos (4 Electrinos, 2 Positrinos)`
-  - `anti_bottom_quark_III -> anti_noether_swarm_III + Unbound Architrinos (2 Electrinos, 4 Positrinos)`
+  - `pro_down_quark_I -> pro_noether_braid_I + Unbound Architrinos (4 Electrinos, 2 Positrinos)`
+  - `anti_down_quark_I -> anti_noether_braid_I + Unbound Architrinos (2 Electrinos, 4 Positrinos)`
+  - `pro_strange_quark_II -> pro_noether_braid_II + Unbound Architrinos (4 Electrinos, 2 Positrinos)`
+  - `anti_strange_quark_II -> anti_noether_braid_II + Unbound Architrinos (2 Electrinos, 4 Positrinos)`
+  - `pro_bottom_quark_III -> pro_noether_braid_III + Unbound Architrinos (4 Electrinos, 2 Positrinos)`
+  - `anti_bottom_quark_III -> anti_noether_braid_III + Unbound Architrinos (2 Electrinos, 4 Positrinos)`
 - up-type quarks:
-  - `pro_up_quark_I -> pro_noether_swarm_I + Unbound Architrinos (1 Electrino, 5 Positrinos)`
-  - `anti_up_quark_I -> anti_noether_swarm_I + Unbound Architrinos (5 Electrinos, 1 Positrino)`
-  - `pro_charm_quark_II -> pro_noether_swarm_II + Unbound Architrinos (1 Electrino, 5 Positrinos)`
-  - `anti_charm_quark_II -> anti_noether_swarm_II + Unbound Architrinos (5 Electrinos, 1 Positrino)`
-  - `pro_top_quark_III -> pro_noether_swarm_III + Unbound Architrinos (1 Electrino, 5 Positrinos)`
-  - `anti_top_quark_III -> anti_noether_swarm_III + Unbound Architrinos (5 Electrinos, 1 Positrino)`
+  - `pro_up_quark_I -> pro_noether_braid_I + Unbound Architrinos (1 Electrino, 5 Positrinos)`
+  - `anti_up_quark_I -> anti_noether_braid_I + Unbound Architrinos (5 Electrinos, 1 Positrino)`
+  - `pro_charm_quark_II -> pro_noether_braid_II + Unbound Architrinos (1 Electrino, 5 Positrinos)`
+  - `anti_charm_quark_II -> anti_noether_braid_II + Unbound Architrinos (5 Electrinos, 1 Positrino)`
+  - `pro_top_quark_III -> pro_noether_braid_III + Unbound Architrinos (1 Electrino, 5 Positrinos)`
+  - `anti_top_quark_III -> anti_noether_braid_III + Unbound Architrinos (5 Electrinos, 1 Positrino)`
 
 Each such rule emits:
 
-- exactly one Noether swarm row;
+- exactly one Noether braid row;
 - routed counts into the one shared intermediate `Unbound Architrinos` ledger;
 - and no hidden extra material.
 
@@ -439,22 +439,22 @@ Each such rule emits:
 
 For every admitted visible fermion assembly $f$, the executable association table should contain exactly the inverse gather law.
 
-In symbols, $\Gamma(f) = \{\text{Noether swarm}(f) + \text{Unbound Architrinos counts}(f)\}$.
+In symbols, $\Gamma(f) = \{\text{Noether braid}(f) + \text{Unbound Architrinos counts}(f)\}$.
 
 Concretely, `Associate` may create $f$ if and only if the gathered inputs are exactly:
 
-- the generation-matched Noether swarm row of $f$;
+- the generation-matched Noether braid row of $f$;
 - plus the required routed counts from the one shared intermediate `Unbound Architrinos` ledger.
 
 So, for example:
 
-- `Associate(pro_electron_I)` requires `pro_noether_swarm_I + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
-- `Associate(anti_electron_neutrino_I)` requires `anti_noether_swarm_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
-- `Associate(pro_muon_II)` requires `pro_noether_swarm_II + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
-- `Associate(pro_strange_quark_II)` requires `pro_noether_swarm_II + Unbound Architrinos (4 Electrinos, 2 Positrinos)`;
-- `Associate(anti_top_quark_III)` requires `anti_noether_swarm_III + Unbound Architrinos (5 Electrinos, 1 Positrino)`.
+- `Associate(pro_electron_I)` requires `pro_noether_braid_I + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
+- `Associate(anti_electron_neutrino_I)` requires `anti_noether_braid_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `Associate(pro_muon_II)` requires `pro_noether_braid_II + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
+- `Associate(pro_strange_quark_II)` requires `pro_noether_braid_II + Unbound Architrinos (4 Electrinos, 2 Positrinos)`;
+- `Associate(anti_top_quark_III)` requires `anti_noether_braid_III + Unbound Architrinos (5 Electrinos, 1 Positrino)`.
 
-An `Associate` operator consumes `Unbound Architrinos` to populate the polar charges of a fermion. It does not read those polar charges directly from an intact Noether swarm row.
+An `Associate` operator consumes `Unbound Architrinos` to populate the polar charges of a fermion. It does not read those polar charges directly from an intact Noether braid row.
 
 If a constructed candidate needs additional Electrinos or Positrinos in the ledger, it must first create them by lawful dissociation before the associated product is attempted.
 
@@ -462,22 +462,22 @@ The `Associate` tile should display the Electrino and Positrino counts it routes
 
 #### Noether-Core Ladder Laws
 
-The generation ladder should be executable through explicit Noether swarm dissociation rather than by invisible subtraction.
+The generation ladder should be executable through explicit Noether braid dissociation rather than by invisible subtraction.
 
-Specifically, this means a `Dissociate` operator may open a `pro Noether swarm` or `anti Noether swarm` into the next lower Noether swarm form while routing `1` Electrino and `1` Positrino into the one shared intermediate `Unbound Architrinos` ledger. At the bottom of the ladder, a generation III Noether swarm may dissociate into routed `1` Electrino and `1` Positrino with no lower Noether swarm output.
+Specifically, this means a `Dissociate` operator may open a `pro Noether braid` or `anti Noether braid` into the next lower Noether braid form while routing `1` Electrino and `1` Positrino into the one shared intermediate `Unbound Architrinos` ledger. At the bottom of the ladder, a generation III Noether braid may dissociate into routed `1` Electrino and `1` Positrino with no lower Noether braid output.
 
-Open point: this one-binary-at-a-time Noether swarm dissociation rule may not be sufficient to cover the full ready corpus. We still need to resolve whether lawful `Dissociate` behavior must also admit larger Noether swarm openings in a single operator step rather than only this stepwise ladder.
+Open point: this one-binary-at-a-time Noether braid dissociation rule may not be sufficient to cover the full ready corpus. We still need to resolve whether lawful `Dissociate` behavior must also admit larger Noether braid openings in a single operator step rather than only this stepwise ladder.
 
 For v1, the first-pass ladder laws are:
 
-- `pro_noether_swarm_I -> pro_noether_swarm_II + Unbound Architrinos (1 Electrino, 1 Positrino)`
-- `anti_noether_swarm_I -> anti_noether_swarm_II + Unbound Architrinos (1 Electrino, 1 Positrino)`
-- `pro_noether_swarm_II -> pro_noether_swarm_III + Unbound Architrinos (1 Electrino, 1 Positrino)`
-- `anti_noether_swarm_II -> anti_noether_swarm_III + Unbound Architrinos (1 Electrino, 1 Positrino)`
-- `pro_noether_swarm_III -> Unbound Architrinos (1 Electrino, 1 Positrino)`
-- `anti_noether_swarm_III -> Unbound Architrinos (1 Electrino, 1 Positrino)`
+- `pro_noether_braid_I -> pro_noether_braid_II + Unbound Architrinos (1 Electrino, 1 Positrino)`
+- `anti_noether_braid_I -> anti_noether_braid_II + Unbound Architrinos (1 Electrino, 1 Positrino)`
+- `pro_noether_braid_II -> pro_noether_braid_III + Unbound Architrinos (1 Electrino, 1 Positrino)`
+- `anti_noether_braid_II -> anti_noether_braid_III + Unbound Architrinos (1 Electrino, 1 Positrino)`
+- `pro_noether_braid_III -> Unbound Architrinos (1 Electrino, 1 Positrino)`
+- `anti_noether_braid_III -> Unbound Architrinos (1 Electrino, 1 Positrino)`
 
-These rules make the Noether swarm ladder explicit:
+These rules make the Noether braid ladder explicit:
 
 - tri-binary to bi-binary releases `1` Electrino and `1` Positrino into the shared intermediate `Unbound Architrinos` ledger;
 - bi-binary to uni-binary releases `1` Electrino and `1` Positrino into the shared intermediate `Unbound Architrinos` ledger;
@@ -495,7 +495,7 @@ The executable law table should impose the following explicit constraint:
 
 So the following are illegal:
 
-- treating an intact Noether swarm as a free polar source;
+- treating an intact Noether braid as a free polar source;
 - reading Electrino or Positrino counts directly from reactant-side support rows on the product side;
 - creating a second intermediate `Unbound Architrinos` assembly;
 - or routing counts from the intermediate ledger so that either Electrinos or Positrinos would go negative.
@@ -510,8 +510,8 @@ That means the current deterministic solver assumes:
 
 - one shared admitted assembly alphabet $\mathcal{A}_{\mathrm{v1}}$;
 - universal pass-thru over the admitted assemblies;
-- the Noether swarm-plus-`Unbound Architrinos` dissociate/associate family above;
-- the Noether swarm ladder dissociation laws above;
+- the Noether braid-plus-`Unbound Architrinos` dissociate/associate family above;
+- the Noether braid ladder dissociation laws above;
 - one shared intermediate `Unbound Architrinos` ledger, implemented as one residue accumulator with nonnegative counts;
 - and no hand-authored reaction-specific solves or hidden shortcuts.
 
@@ -533,7 +533,7 @@ Normalization should then do the following, in order:
 4. freeze the active primitive basis as $\mathcal{P}_{0}$ and the executable law table as `pdgsolve-laws/v1-standard-model`;
 5. build the requested multisets $R_{\mathrm{req}}$ and $T_{\mathrm{req}}$;
 6. normalize the finite Noether-pair boundary augmentation mode set implied by policy, defaulting to the singleton no-augmentation mode when augmentation is not allowed;
-7. freeze one deterministic augmentation occurrence order, appending each admitted pair in the order pro Noether swarm then anti Noether swarm, with pair indices ascending;
+7. freeze one deterministic augmentation occurrence order, appending each admitted pair in the order pro Noether braid then anti Noether braid, with pair indices ascending;
 8. emit one solver-native problem record whose content is fully sufficient for search without any presentation lookup, including the requested multisets and the finite augmentation modes to enumerate.
 
 ### Conserved Balance Equations
@@ -595,7 +595,7 @@ The current exact-family path proceeds in one fixed order:
 2. reject immediately when normalization yields blocking diagnostics or when the boundary primitive imbalance makes exact closure impossible;
 3. pair same-assembly reactant/product occurrences first as catalyst-style `Pass Thru` mappings;
 4. classify remaining product requirements into core-bearing closures and residue pass-through closures;
-5. compute how many Noether swarm rows must be carried directly, converted upward through the core ladder, or added as support occurrences;
+5. compute how many Noether braid rows must be carried directly, converted upward through the core ladder, or added as support occurrences;
 6. dissociate remaining non-core reactants either into one required core plus residue or into residue only when no core is still needed;
 7. allocate the single intermediate `Unbound Architrinos` accumulator across product-side `Associate` and residue `Pass Thru` operators;
 8. reject the candidate if any required core input is unavailable or if any residue remains unmatched;
@@ -849,7 +849,7 @@ Before `pdgsolve` implementation is considered trustworthy, the core regression 
 | `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark_I + pro_up_quark_I -> pro_down_quark_I + 2 pro_up_quark_I` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with $(\delta_E, \delta_P) = (3, -3)$; no exact family exists |
 | `pass_thru_row_beta_source` | `2 pro_down_quark_I + pro_up_quark_I -> 2 pro_down_quark_I + pro_up_quark_I` | default | three exact pass-thru assemblies; zero non-identity operators; zero ambiguity penalty |
 | `representative_multi_option_exact` | one mapped PDG request that yields at least two distinct exact solution families | default | at least two exact solution families remain after canonicalization, with stable score order and stable family representatives |
-| `noether_pair_boundary_augmentation_exact` | one curated assembly-native request whose only exact closure requires one Noether pair on one boundary side | `exactClosureRequired=true`, `allowedBoundaryAugmentations=["noether_pair"]`, `maxNoetherPairsPerSide=1` | at least one exact family exists; the emitted family lists the pro Noether swarm and anti Noether swarm as ordinary assemblies on the chosen boundary side, carries an explicit `boundaryAugmentation` summary, and introduces no composite or wildcard placeholder id |
+| `noether_pair_boundary_augmentation_exact` | one curated assembly-native request whose only exact closure requires one Noether pair on one boundary side | `exactClosureRequired=true`, `allowedBoundaryAugmentations=["noether_pair"]`, `maxNoetherPairsPerSide=1` | at least one exact family exists; the emitted family lists the pro Noether braid and anti Noether braid as ordinary assemblies on the chosen boundary side, carries an explicit `boundaryAugmentation` summary, and introduces no composite or wildcard placeholder id |
 
 Positive regression coverage for PDG-to-assembly translation and un-mappable classification belongs in [pdgfeed](pdgfeed.md), not in `pdgsolve`.
 
@@ -1152,7 +1152,7 @@ When `pdgsolve` emits more than one JSON artifact for a batch run, the preferred
 
 - own solve normalization, search, scoring, and output emission inside the explicit assembly-native ontology;
 - emit exact and no-exact families in explicit admitted assemblies only;
-- when Noether-pair augmentation is used, emit the added Noether swarms as explicit assemblies plus an explicit boundary augmentation summary;
+- when Noether-pair augmentation is used, emit the added Noether braids as explicit assemblies plus an explicit boundary augmentation summary;
 - include the scores and diagnostics for every emitted family;
 - freeze accepted solve structure before publication rather than asking downstream tools to infer it;
 - do not duplicate PDG normalization logic locally;

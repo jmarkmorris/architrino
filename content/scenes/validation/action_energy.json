@@ -125,11 +125,11 @@
     },
     {
       "id": "delay_dynamics_energy",
-      "title": "Constructive Energy for Delay Dynamics",
+      "title": "Delay Dynamics Energy",
       "radius": 2.688,
       "color": "#2c567a",
       "position": [-3.5, 3.5, 0],
-      "labelTitle": "Constructive Energy for Delay Dynamics",
+      "labelTitle": "Delay Dynamics Energy",
       "labelBadge": "doc"
     },
     {

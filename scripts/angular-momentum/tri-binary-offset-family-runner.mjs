@@ -14,6 +14,34 @@ const FIELD_SPEED_TOLERANCE = 0.015;
 const ROOT_TOLERANCE = 1e-13;
 const SELF_HIT_TOLERANCE = 1e-12;
 const CLOSURE_PERIOD = 2 * Math.PI;
+const LAYER_ROLES = ["inner", "middle", "outer"];
+const GENERIC_TRI_BINARY_LABELS = ["1", "2", "3"];
+const TRIADIC_120_PHASE_TURNS_BY_GENERIC_LABEL = {
+  1: 0,
+  2: 1 / 3,
+  3: 2 / 3,
+};
+const FIXED_SPEED_RATIOS = {
+  outer: 0.75,
+  middle: 1,
+  inner: 1.25,
+};
+const FOUR_SUBSTEP_ACTION_WEIGHTS = {
+  outer: 1,
+  middle: 1,
+  inner: 2,
+};
+const DEFAULT_PHASE_AT_EPOCH = {
+  outer: 0,
+  middle: Math.PI / 8,
+  inner: Math.PI / 5,
+};
+const TRIADIC_120_PHASE_AT_EPOCH = {
+  inner: 0,
+  middle: CLOSURE_PERIOD / 3,
+  outer: (2 * CLOSURE_PERIOD) / 3,
+};
+const EQUAL_FREQUENCY_PHASE_LATTICE_DENOMINATOR = 12;
 const TIME_WINDOW_TORQUE_SAMPLE_COUNT = 65;
 const TIME_WINDOW_TORQUE_RESIDUAL_TOLERANCE = 1e-8;
 const POINT_EVENT_TORQUE_RESIDUAL_TOLERANCE = 1e-12;
@@ -23,6 +51,20 @@ const ENDPOINT_LINEAR_SEGMENT_CONVERGENCE_COUNTS = [16, 32, 64, 128, 256];
 const FIXED_RECEIVER_POSITION = { x: 2.5, y: 0, z: 0 };
 const DEFAULT_OUTPUT_PATH =
   ".tmp/angular-momentum-spin/tri-binary-offset-family-solver-report.json";
+const GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL =
+  "tri-binary-noether-braid-velocity-deformation";
+const DEFORMATION_PROJECTION_CHART_FAMILY =
+  "tri-binary-noether-braid-deformation-projection-chart-family";
+const LOW_DRIFT_SPHERICAL_LATITUDE_CHART =
+  "spherical-envelope-retained-row-incidence-projection-chart";
+const MOVING_OBLATE_INCIDENCE_CHART =
+  "oblate-spheroidal-envelope-incidence-lever-arm-chart";
+const PLANAR_ALIGNMENT_LIMIT_CHART =
+  "flattened-limit-effective-lever-arm-projection-chart";
+const CURRENT_EXECUTABLE_GEOMETRY_CHART =
+  PLANAR_ALIGNMENT_LIMIT_CHART;
+const RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL =
+  "retained-tri-binary-noether-braid-deformation-branch";
 
 const args = parseArgs(process.argv.slice(2));
 if (args.help) {
@@ -72,7 +114,7 @@ const client = createSolverAppBridgeClient({
 });
 
   const initResponse = await client.init({
-  appId: "ideal-swarm",
+  appId: "ideal-braid",
   apiVersion: SOLVER_APP_BRIDGE_API_VERSION,
   requestedCapabilities: [
     "sharedGeometry",
@@ -101,6 +143,9 @@ try {
   for (const policy of policies) {
     for (const f of fValues) {
       for (const family of createFamilies(f, { integerLockPairs })) {
+        if (!shouldRunFamilyForPolicy(policy, family)) {
+          continue;
+        }
         cases.push(await runFamilyCase({ client, policy, f, family }));
       }
     }
@@ -119,22 +164,27 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-offset-family-solver-report.v1",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v27",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
     sourcePriorityFile:
-      "reference/priorities/angular-momentum-spin/swarm-partition-and-spinor.md",
+      "reference/priorities/angular-momentum-spin/braid-partition-and-spinor.md",
     frequencyTripletNotation: createFrequencyTripletNotation(),
+    layerRoleOrder: LAYER_ROLES,
+    solverGeometryPublicContract: createSolverGeometryPublicContract(),
+    triBinaryNoetherBraidGeometryModel: createTriBinaryNoetherBraidGeometryModel(),
+    triBinaryNoetherBraidBranchStateContract:
+      createTriBinaryNoetherBraidBranchStateContract(),
     solver: {
       apiVersion: SOLVER_APP_BRIDGE_API_VERSION,
       wasmLoaderPath: path.relative(rootDir, wasmLoaderPath),
       wasmBinaryPath: path.relative(rootDir, wasmBinaryPath),
       initStatus: initResponse.status,
     },
-    offsetFamilies: createFamilyDefinitions({ integerLockPairs }),
     frequencyTripletFamilies: createFamilyDefinitions({ integerLockPairs }),
     policies: createPolicyDefinitions(),
+    solverArchitecture: createSolverArchitectureSummary(),
     fValues,
     tolerances: {
       fieldSpeedTolerance: FIELD_SPEED_TOLERANCE,
@@ -148,6 +198,7 @@ try {
     comparisons,
     frequencyTripletSearch: createFrequencyTripletSearchSummary(cases),
     closure: createClosureSummary(cases, retainedLineagePhaseProbe),
+    retainedBranchClaim: false,
   };
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
@@ -172,33 +223,244 @@ function createIntegerLockPairs({ mMax, nMax }) {
 
 function createFrequencyTripletNotation() {
   return {
-    canonicalOrder: "I:M:O",
-    canonicalMeaning: "inner:middle:outer",
-    outerNormalizedOrder: "f_O:f_M:f_I",
-    outerNormalizedMeaning: "outer:middle:inner with the outer frequency normalized first",
-    conversion:
-      "If an outer-normalized row is written as f_O:f_M:f_I=a:b:c, the canonical I:M:O triplet is c:b:a.",
+    rawSearchLabels: "B_1:B_2:B_3",
+    rawSearchMeaning: "generic tri-binary rows before retained role assignment",
+    roleAssignedOrder: "I:M:O",
+    roleAssignedMeaning: "inner:middle:outer after a retained branch supplies the role map",
+    displayOrder: "role-assigned I:M:O",
+    compatibility:
+      "Raw search rows are generic B_1:B_2:B_3 rows. I:M:O is a role-assigned chart projection after branch evidence supplies the role map. Outer-normalized forms are translation metadata only.",
+    legacyOuterNormalized: {
+      order: "outer:middle:inner",
+      notation: "f_O:f_M:f_I",
+      meaning: "outer:middle:inner with the outer frequency normalized first",
+      conversion:
+        "If a legacy outer-normalized row is written as f_O:f_M:f_I=a:b:c, the role-assigned I:M:O triplet is c:b:a.",
+    },
+  };
+}
+
+function createSolverGeometryPublicContract() {
+  return {
+    schema: "aaa-tri-binary-solver-geometry-public-contract.v8",
+    rawSearchLayerLabels: GENERIC_TRI_BINARY_LABELS,
+    roleAssignedChartOrder: "I:M:O",
+    layerRoleOrder: LAYER_ROLES,
+    baseGeometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    primaryBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    branchStateContractSchema:
+      createTriBinaryNoetherBraidBranchStateContract().schema,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    physicsFacingLeverArmField: "layers[].effectiveLeverArm",
+    solverGeometryChartCoordinateField:
+      "layers[].solverGeometry.effectiveLeverArmChartCoordinate",
+    removedAmbiguousFields: [
+      "layers[].radius",
+      "layers[].solverGeometry.circularSourceRadius",
+      "layers[].solverGeometryRadius",
+    ],
+    roleAssignmentPolicy:
+      "The retained tri-binary search starts from generic binary labels. I:M:O is the role-assigned chart order used after a branch supplies the inner/middle/outer or fast/hinge/slow role map.",
+    branchFirstRule:
+      "The retained tri-binary Noether braid branch state is the primary object. Frequency triples, phase profiles, effective lever arms, and coupling rows must be evaluated as branch-state data before any projection chart is read.",
+    deformationFamilyRule:
+      "All reduced chart rows must be read as coordinate projections of the same velocity-deformation family: low-drift spherical or near-spherical support with retained angular-momentum/principal-direction rows, moving oblate spheroidal envelope, and flattened alignment limit.",
+    frequencyExtractionRule:
+      "A retained noncircular or deformed branch must certify frequency from the branch return period or a declared locked harmonic. The current reduced circular chart may compare omega with s/rho only because effectiveLeverArm and speed are explicitly defined chart rows.",
+    phaseTopologyRule:
+      "A 120-degree phase identity is only a phase-row identity until plane normals, phase-bundle holonomy, and a sector discriminator classify the retained branch as coplanar cyclic or near-orthogonal tri-binary.",
+    rule:
+      "Read effectiveLeverArm as the speed-row projection of the general tri-binary Noether braid branch state; read solverGeometry.effectiveLeverArmChartCoordinate only as the flattened-limit chart coordinate used by the current reduced solver.",
+    fixedSphereOrbitClaim: false,
+    nestedShellRadiusClaim: false,
+    compatibility:
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v27 reports.",
+  };
+}
+
+function createTriBinaryNoetherBraidBranchStateContract() {
+  return {
+    schema: "aaa-tri-binary-noether-braid-branch-state-contract.v4",
+    model: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    primaryBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    primaryObject:
+      "retained tri-binary Noether braid branch state B_3B(q,v)",
+    modelingRule:
+      "Every frequency-triplet family is a hypothesis about one retained tri-binary Noether braid branch. Spherical, oblate, and flattened rows are projections of that branch state, not competing source models.",
+    branchStateCoordinates: [
+      "generic_binary_labels_B1_B2_B3",
+      "frequency_or_action_variables_omega_a_J_a",
+      "phase_offsets_phi_a_and_phase_bundle_holonomy",
+      "retained_plane_normals_or_bivectors_N_a",
+      "branch_return_periods_or_locked_harmonic_frequency_rows",
+      "plane_topology_sector_discriminator",
+      "low_drift_spherical_envelope_retained_row_coordinates",
+      "envelope_axes_R_parallel_R_perp_and_xi(v)",
+      "effective_lever_arm_projection_map_rho_a(B_3B,v)",
+      "speed_rows_s_a=rho_a_omega_a",
+      "causal_root_ledger",
+      "wake_ledger",
+      "branch_energy_or_action_state",
+      "branch_total_momentum_and_angular_momentum_ledgers",
+      "role_assignment_map_to_I_M_O_or_fast_hinge_slow",
+      "coupling_rows_to_external_assemblies_fields_or_events",
+    ],
+    deformationSequence: [
+      {
+        regime: "low_drift_or_rest_branch",
+        branchGeometry:
+          "spherical_or_near_spherical_envelope_with_retained_angular_momentum_principal_direction_rows",
+      },
+      {
+        regime: "moving_branch",
+        branchGeometry:
+          "oblate_spheroidal_envelope_with_velocity_deformation_coordinate_xi",
+      },
+      {
+        regime: "field_speed_alignment_limit",
+        branchGeometry:
+          "flattened_or_planar_limit_of_the_same_retained_branch_state",
+      },
+    ],
+    projectionRule:
+      "A projection chart may emit rho_a, reduced chart coordinates, root rows, or phase diagnostics only as a view of B_3B(q,v). It may not define B_3B(q,v).",
+    frequencyRule:
+      "The retained branch frequency is certified by return-period or locked-harmonic data on the retained history record. A quotient such as s_a/rho_a is admissible only after the branch has independently supplied the effective speed and effective lever-arm rows.",
+    phaseTopologyRule:
+      "The planar Z3 identity 1+exp(i2pi/3)+exp(i4pi/3)=0 is a coplanar cyclic-sector test unless a retained plane-normal and holonomy ledger lifts it to the selected tri-binary sector.",
+    couplingRule:
+      "Rows for whatever couples to the tri-binary Noether braid must attach to the same retained event or positive-width retained domain as the branch state, with shared phase, root, wake, momentum, angular-momentum, and energy ledgers.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createTriBinaryNoetherBraidGeometryModel() {
+  return {
+    schema: "aaa-tri-binary-noether-braid-velocity-deformation-model.v6",
+    model: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    primaryBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    branchStateContractSchema:
+      createTriBinaryNoetherBraidBranchStateContract().schema,
+    primaryObject: "retained tri-binary Noether braid branch state B_3B(q,v)",
+    claimLevel:
+      "primary retained branch geometry target; current runner evaluates only a reduced projection chart",
+    inputBinaryLabels: ["1", "2", "3"],
+    roleAssignedChartOrder: "I:M:O",
+    roleAssignmentPolicy:
+      "Retained rows are generic tri-binary rows until a branch role map assigns inner/middle/outer or fast/hinge/slow roles; S3-related rows remain valid evidence unless an explicit quotient-sector view is requested.",
+    layerRoles: LAYER_ROLES,
+    velocityDeformationSequence: [
+      {
+        regime: "low_drift_or_rest_branch",
+        envelope:
+          "spherical_or_near_spherical_three_dimensional_support_with_retained_angular_momentum_principal_direction_rows",
+      },
+      {
+        regime: "moving_branch",
+        envelope: "oblate_spheroidal_envelope",
+        shapeChannel: "xi=R_parallel/R_perp",
+      },
+      {
+        regime: "field_speed_alignment_limit",
+        envelope: "planar_or_flattened_limit",
+      },
+    ],
+    requiredStateVariables: [
+      "drift_velocity_vector",
+      "envelope_axes_R_parallel_R_perp",
+      "layer_effective_lever_arms",
+      "layer_angular_frequencies",
+      "layer_speed_rows",
+      "retained_plane_normals_or_angular_momentum_bivectors",
+      "phase_bundle_holonomy",
+      "branch_return_periods_or_locked_harmonics",
+      "plane_topology_sector_discriminator",
+      "causal_root_ledger",
+      "wake_ledger",
+      "branch_energy_or_action_state",
+      "role_assignment_map",
+      "coupling_rows_to_external_assemblies",
+    ],
+    projectionChartFamily: createTriBinaryNoetherBraidProjectionChartFamily(),
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    chartRole:
+      "currently executable flattened-limit projection view of the retained velocity-deforming tri-binary Noether braid branch; it populates causal roots, self-hit spans, phase rows, and lever-arm speed projections but is not the retained branch model",
+    projectionCharts:
+      createTriBinaryNoetherBraidProjectionChartFamily().projectionCharts,
+    retainedBranchClaim: false,
+  };
+}
+
+function createTriBinaryNoetherBraidProjectionChartFamily() {
+  return {
+    schema: "aaa-tri-binary-noether-braid-projection-chart-family.v5",
+    family: DEFORMATION_PROJECTION_CHART_FAMILY,
+    baseGeometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    primaryBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    branchStateContractSchema:
+      createTriBinaryNoetherBraidBranchStateContract().schema,
+    deformationCoordinate: "xi(v)=R_parallel(v)/R_perp(v)",
+    governingRule:
+      "The solver must model the retained tri-binary Noether braid branch state first, then evaluate deformation-regime projection charts as reduced views. No spherical, oblate, or flattened chart is allowed to become the source model by itself.",
+    projectionCharts: [
+      {
+        chart: LOW_DRIFT_SPHERICAL_LATITUDE_CHART,
+        deformationRegime: "low_drift_or_rest_branch",
+        envelope:
+          "spherical_or_near_spherical_three_dimensional_support_with_retained_angular_momentum_principal_direction_rows",
+        leverArmFormula:
+          "rho_a = Pi_lever(B_3B, retained_row_a, xi=1), e.g. rho_a = R_sph sin(theta_a) in a small-circle projection of a retained principal-direction row",
+        currentStatus: "audited_kinematic_support_row",
+        retainedBranchClaim: false,
+      },
+      {
+        chart: MOVING_OBLATE_INCIDENCE_CHART,
+        deformationRegime: "moving_branch",
+        envelope: "oblate_spheroidal_envelope",
+        leverArmFormula:
+          "rho_l^2 = R_parallel^2 cos^2(alpha_l) + R_perp^2 sin^2(alpha_l)",
+        currentStatus: "audited_kinematic_support_row",
+        retainedBranchClaim: false,
+      },
+      {
+        chart: PLANAR_ALIGNMENT_LIMIT_CHART,
+        deformationRegime: "field_speed_alignment_limit",
+        envelope: "flattened_or_planar_limit",
+        leverArmFormula: "rho_l = effectiveLeverArmChartCoordinate_l",
+        currentStatus: "current_executable_solver_chart",
+        retainedBranchClaim: false,
+      },
+    ],
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    retainedReplayRequirement:
+      "A retained replay must solve the branch state and deformation-regime selection or branch-continuation map, then bind the selected projection rows to phase identity, causal-root ledgers, wake ledgers, branch energy/action, momentum, angular momentum, and coupling rows on the same retained row set.",
+    retainedBranchClaim: false,
   };
 }
 
 function createFrequencyTriplet(indices) {
-  const canonicalValues = {
+  const roleAssignedValues = {
     inner: indices.inner,
     middle: indices.middle,
     outer: indices.outer,
   };
-  const outerNormalizedValues = {
+  const legacyOuterNormalizedValues = {
     outer: indices.outer,
     middle: indices.middle,
     inner: indices.inner,
   };
   return {
-    canonicalOrder: "I:M:O",
-    canonicalValues,
-    canonicalLabel: `${indices.inner}:${indices.middle}:${indices.outer}`,
-    outerNormalizedOrder: "f_O:f_M:f_I",
-    outerNormalizedValues,
-    outerNormalizedLabel: `${indices.outer}:${indices.middle}:${indices.inner}`,
+    rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
+    roleAssignedOrder: "I:M:O",
+    roleAssignedValues,
+    roleAssignedLabel: `${indices.inner}:${indices.middle}:${indices.outer}`,
+    legacyOuterNormalized: {
+      order: "outer:middle:inner",
+      notation: "f_O:f_M:f_I",
+      values: legacyOuterNormalizedValues,
+      label: `${indices.outer}:${indices.middle}:${indices.inner}`,
+    },
   };
 }
 
@@ -207,23 +469,26 @@ function createFamilies(f, { integerLockPairs = [] } = {}) {
     {
       id: "middle-hinge-offset",
       label: "I:M:O=(f+2,f,f-1)",
-      canonicalRelation: "(I,M,O)=(f+2,f,f-1)",
-      outerNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+2)",
+      roleAssignedRelation: "(I,M,O)=(f+2,f,f-1)",
+      legacyOuterNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+2)",
       priorityCandidate: true,
       candidateClass: "middle_hinge_offset",
+      searchLanes: ["offset-index-family"],
       indices: {
         outer: f - 1,
         middle: f,
         inner: f + 2,
       },
     },
+    ...createEqualFrequencyPhaseFamilies(f),
     {
       id: "symmetric-control",
       label: "I:M:O=(f+1,f,f-1)",
-      canonicalRelation: "(I,M,O)=(f+1,f,f-1)",
-      outerNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+1)",
+      roleAssignedRelation: "(I,M,O)=(f+1,f,f-1)",
+      legacyOuterNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+1)",
       priorityCandidate: false,
       candidateClass: "symmetric_offset_control",
+      searchLanes: ["offset-index-family"],
       indices: {
         outer: f - 1,
         middle: f,
@@ -234,13 +499,14 @@ function createFamilies(f, { integerLockPairs = [] } = {}) {
   families.push({
     id: "dyadic-lock-4-2-1",
     label: "I:M:O=(4f,2f,f)",
-    canonicalRelation: "(I,M,O)=(4f,2f,f)",
-    outerNormalizedRelation: "f_O:f_M:f_I=f:2f:4f",
+    roleAssignedRelation: "(I,M,O)=(4f,2f,f)",
+    legacyOuterNormalizedRelation: "f_O:f_M:f_I=f:2f:4f",
     priorityCandidate: false,
     candidateClass: "dyadic_lock_control",
+    searchLanes: ["offset-index-family", "integer-lock-family"],
     integerLock: {
-      outerNormalized: "1:2:4",
-      canonicalTriplet: "4:2:1",
+      legacyOuterNormalized: "1:2:4",
+      roleAssignedTriplet: "4:2:1",
       m: 2,
       n: 4,
     },
@@ -254,13 +520,14 @@ function createFamilies(f, { integerLockPairs = [] } = {}) {
     families.push({
       id: `integer-lock-m${m}-n${n}`,
       label: `I:M:O=(${n}f,${m}f,f)`,
-      canonicalRelation: `(I,M,O)=(${n}f,${m}f,f)`,
-      outerNormalizedRelation: `f_O:f_M:f_I=f:${m}f:${n}f`,
+      roleAssignedRelation: `(I,M,O)=(${n}f,${m}f,f)`,
+      legacyOuterNormalizedRelation: `f_O:f_M:f_I=f:${m}f:${n}f`,
       priorityCandidate: false,
       candidateClass: "general_integer_lock_control",
+      searchLanes: ["offset-index-family", "integer-lock-family"],
       integerLock: {
-        outerNormalized: `1:${m}:${n}`,
-        canonicalTriplet: `${n}:${m}:1`,
+        legacyOuterNormalized: `1:${m}:${n}`,
+        roleAssignedTriplet: `${n}:${m}:1`,
         m,
         n,
       },
@@ -274,65 +541,321 @@ function createFamilies(f, { integerLockPairs = [] } = {}) {
   return families;
 }
 
+function createEqualFrequencyPhaseFamilies(f) {
+  return createEqualFrequencyPhaseProfiles().map((phaseProfile) => ({
+    id:
+      phaseProfile.id === "triadic-120"
+        ? "equal-frequency-energy-radius"
+        : `equal-frequency-energy-radius-${phaseProfile.id}`,
+    label: `I:M:O=(f,f,f), phase=${phaseProfile.label}`,
+    roleAssignedRelation: "(I,M,O)=(f,f,f)",
+    legacyOuterNormalizedRelation: "f_O:f_M:f_I=f:f:f",
+    priorityCandidate: phaseProfile.priorityPhaseProfile === true,
+    candidateClass: "equal_frequency_energy_radius_candidate",
+    equalFrequencyCandidate: true,
+    searchLanes: ["equal-frequency-energy-radius"],
+    phaseProfile,
+    indices: {
+      outer: f,
+      middle: f,
+      inner: f,
+    },
+  }));
+}
+
+function createEqualFrequencyPhaseProfiles() {
+  return [
+    createPhaseProfile({
+      id: "triadic-120",
+      label: "triadic-120",
+      role: "priority",
+      priorityPhaseProfile: true,
+      phaseTurnsByLayer: { inner: 0, middle: 1 / 3, outer: 2 / 3 },
+      rationale:
+        "Uses the obvious 360/3 separation under one common binary clock.",
+    }),
+    createPhaseProfile({
+      id: "aligned-0",
+      label: "aligned-0",
+      role: "phase control",
+      phaseTurnsByLayer: { inner: 0, middle: 0, outer: 0 },
+      rationale:
+        "Tests the degenerate same-phase control under the same equal-frequency speed rows.",
+    }),
+    createPhaseProfile({
+      id: "quadrature-90",
+      label: "quadrature-90",
+      role: "phase control",
+      phaseTurnsByLayer: { inner: 0, middle: 1 / 4, outer: 1 / 2 },
+      rationale:
+        "Tests a quarter-turn / half-turn stagger against the triadic equal-spacing profile.",
+    }),
+    createPhaseProfile({
+      id: "opposed-middle-180",
+      label: "opposed-middle-180",
+      role: "phase control",
+      phaseTurnsByLayer: { inner: 0, middle: 1 / 2, outer: 0 },
+      rationale:
+        "Tests whether putting the middle binary opposite the aligned inner/outer pair is merely a control or a later hinge candidate.",
+    }),
+    createPhaseProfile({
+      id: "middle-outer-opposed-180",
+      label: "middle-outer-opposed-180",
+      role: "phase control",
+      phaseTurnsByLayer: { inner: 0, middle: 1 / 2, outer: 1 / 2 },
+      rationale:
+        "Tests the exact phase-vector balance for the target 2:1:1 root/action weights by putting the middle and outer rows opposite the doubled inner row.",
+    }),
+  ];
+}
+
+function createPhaseProfile({
+  id,
+  label,
+  role,
+  phaseTurnsByLayer,
+  rationale,
+  priorityPhaseProfile = false,
+}) {
+  const phaseAtEpochByLayer = Object.fromEntries(
+    LAYER_ROLES.map((layer) => [
+      layer,
+      normalizeTurn(phaseTurnsByLayer[layer] ?? 0) * CLOSURE_PERIOD,
+    ])
+  );
+  const phaseTurns = Object.fromEntries(
+    LAYER_ROLES.map((layer) => [
+      layer,
+      normalizeTurn(phaseTurnsByLayer[layer] ?? 0),
+    ])
+  );
+  return {
+    id,
+    label,
+    role,
+    priorityPhaseProfile,
+    claimLevel: "candidate phase profile; not retained phase-lock proof",
+    phaseTurnsByLayer: phaseTurns,
+    phaseAtEpochByLayer,
+    phaseOffsetsTurns: createCanonicalForwardTurnSpacings(phaseTurns),
+    rationale,
+  };
+}
+
+function createTriadic120PhaseProfile() {
+  return {
+    id: "triadic-120",
+    label: "triadic-120",
+    role: "priority",
+    priorityPhaseProfile: true,
+    claimLevel: "candidate phase profile; not retained phase-lock proof",
+    phaseAtEpochByLayer: TRIADIC_120_PHASE_AT_EPOCH,
+    phaseTurnsByLayer: { inner: 0, middle: 1 / 3, outer: 2 / 3 },
+    phaseOffsetsTurns: {
+      innerToMiddle: 1 / 3,
+      middleToOuter: 1 / 3,
+      outerToInner: 1 / 3,
+    },
+    rationale:
+      "Uses the obvious 360/3 separation under one common binary clock.",
+  };
+}
+
 function createFamilyDefinitions({ integerLockPairs = [] } = {}) {
   const definitions = [
     {
       id: "middle-hinge-offset",
-      canonicalRelation: "(I,M,O)=(f+2,f,f-1)",
-      outerNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+2)",
+      roleAssignedRelation: "(I,M,O)=(f+2,f,f-1)",
+      legacyOuterNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+2)",
       role: "priority candidate",
+      searchLanes: ["offset-index-family"],
       rationale:
         "Tests whether the inner layer's doubled self-hit burden echoes the populated 1:1:2 action partition around the middle field-speed hinge.",
     },
+    ...createEqualFrequencyPhaseProfiles().map((phaseProfile) => ({
+      id:
+        phaseProfile.id === "triadic-120"
+          ? "equal-frequency-energy-radius"
+          : `equal-frequency-energy-radius-${phaseProfile.id}`,
+      roleAssignedRelation: "(I,M,O)=(f,f,f)",
+      legacyOuterNormalizedRelation: "f_O:f_M:f_I=f:f:f",
+      role:
+        phaseProfile.priorityPhaseProfile === true
+          ? "priority candidate"
+          : "phase-control candidate",
+      searchLanes: ["equal-frequency-energy-radius"],
+      phaseProfile,
+      rationale:
+        phaseProfile.priorityPhaseProfile === true
+          ? "Tests whether a common binary frequency can still support distinct outer, middle, and inner effective lever-arm/speed rows through branch energy and a triadic 120-degree phase profile inside the retained velocity-deforming tri-binary Noether braid projection family."
+          : `Controls the equal-frequency phase hypothesis with ${phaseProfile.label} while keeping frequency and effective lever-arm speed rows fixed.`,
+    })),
     {
       id: "symmetric-control",
-      canonicalRelation: "(I,M,O)=(f+1,f,f-1)",
-      outerNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+1)",
+      roleAssignedRelation: "(I,M,O)=(f+1,f,f-1)",
+      legacyOuterNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+1)",
       role: "control",
+      searchLanes: ["offset-index-family"],
       rationale:
         "Tests whether a symmetric one-step inner offset passes the same solver rows with equal or better evidence.",
     },
   ];
   definitions.push({
     id: "dyadic-lock-4-2-1",
-    canonicalRelation: "(I,M,O)=(4f,2f,f)",
-    outerNormalizedRelation: "f_O:f_M:f_I=f:2f:4f",
+    roleAssignedRelation: "(I,M,O)=(4f,2f,f)",
+    legacyOuterNormalizedRelation: "f_O:f_M:f_I=f:2f:4f",
     role: "dyadic 4:2:1 control",
+    searchLanes: ["offset-index-family", "integer-lock-family"],
     rationale:
       "Tests the older dyadic lock hypothesis in the same reduced angular runner, without treating the lock as theorem-grade retained branch selection.",
   });
   for (const { m, n } of integerLockPairs) {
     definitions.push({
       id: `integer-lock-m${m}-n${n}`,
-      canonicalRelation: `(I,M,O)=(${n}f,${m}f,f)`,
-      outerNormalizedRelation: `f_O:f_M:f_I=f:${m}f:${n}f`,
+      roleAssignedRelation: `(I,M,O)=(${n}f,${m}f,f)`,
+      legacyOuterNormalizedRelation: `f_O:f_M:f_I=f:${m}f:${n}f`,
       role: "general 1:m:n integer-lock control",
+      searchLanes: ["offset-index-family", "integer-lock-family"],
       rationale:
-        "Samples the broader outer-normalized integer-lock lattice f_O:f_M:f_I=1:m:n under the canonical I:M:O reporting order n:m:1.",
+        "Samples the broader integer-lock lattice in role-assigned I:M:O order n:m:1; f_O:f_M:f_I=1:m:n is retained only as legacy translation metadata.",
     });
   }
   return definitions;
 }
 
 function createPolicyDefinitions() {
+  return createPolicyCatalog().map((policy) => ({
+    id: policy.id,
+    description: policy.description,
+    theoremStatus: policy.theoremStatus,
+    compatibleSearchLanes: policy.compatibleSearchLanes,
+    frequencyModel: policy.frequencyModel,
+    speedModel: policy.speedModel,
+    phaseModel: policy.phaseModel,
+    geometryModel: policy.geometryModel,
+    geometryChart: policy.geometryChart ?? null,
+    retainedBranchModel: policy.retainedBranchModel ?? null,
+    auditRows: policy.auditRows,
+  }));
+}
+
+function createSolverArchitectureSummary() {
+  return {
+    schema: "aaa-tri-binary-frequency-runner-architecture.v14",
+    status:
+      "retained_branch_state_primary_velocity_deformation_projection_family_policy_family_layers",
+    designRule:
+      "New frequency candidates enter as family descriptors and policy descriptors under the primary retained velocity-deforming tri-binary Noether braid branch-state model; raw search rows are generic B_1:B_2:B_3 rows, I:M:O is emitted only as a role-assigned chart after role assignment, and legacy outer-normalized forms are translation metadata only.",
+    familyLayer:
+      "Families declare role-assigned I:M:O indices only as candidate role-map projections, plus search lanes, candidate class, and optional phase profile; equal-frequency families include a priority triadic-120 phase profile plus phase-control profiles, including a weighted-action opposition control surfaced by the finite phase-lattice audit.",
+    policyLayer:
+      "Policies declare compatible search lanes plus frequency, speed, phase, geometry, and audit-row models.",
+    layerModel:
+      "Layer specs are generated as branch-state projection rows from policy models and family indices before invoking the shared reduced circular-path and self-hit solver calls.",
+    geometryModel:
+      "The base geometry model is the retained tri-binary Noether braid branch state: low-drift spherical or near-spherical support with retained angular-momentum/principal-direction rows, moving oblate spheroidal envelope, and flattened alignment limit. The current executable geometry is one reduced flattened-limit projection view in that deformation family, not the primary model.",
+    primaryBranchModel:
+      "The retained tri-binary Noether braid branch state is the object being modeled; projection charts only supply reduced executable views until the full retained branch replay exists.",
+    branchStateContract: createTriBinaryNoetherBraidBranchStateContract(),
+    projectionChartFamily: createTriBinaryNoetherBraidProjectionChartFamily(),
+    publicGeometryContract:
+      "Report rows emit effectiveLeverArm for physics-facing speed rows and solverGeometry.effectiveLeverArmChartCoordinate for the flattened-limit chart coordinate; ambiguous radius and circular-source public fields are intentionally removed.",
+    requiredGeneralCase:
+      "A retained replay must solve the all-layer branch state, velocity deformation from spherical or near-spherical support with retained angular-momentum/principal-direction rows through oblate spheroidal envelope toward flattened limit, phase bundle, causal-root ledger, wake ledger, branch energy/action state, total momentum/angular-momentum ledgers, and coupling rows to whatever interacts with the tri-binary Noether braid.",
+    retainedRowSetRule:
+      "Specialized candidates such as I:M:O=(f,f,f) must expose a named retained row-set scaffold before acceptance checks. Frequency, deformation, phase, plane-sector, energy/action, wake, coupling, total-momentum, and total-angular-momentum rows cannot be mixed from different retained branch charts.",
+    frequencyCertificationLayer:
+      "For deformed or noncircular retained branches, the solver architecture must certify frequency through branch return periods or declared locked harmonics before using any s/rho comparison. Effective lever arms and speeds are current chart rows, not primitive frequency definitions.",
+    phaseTopologyLayer:
+      "Triadic 120-degree phase rows require a plane-normal, phase-bundle holonomy, and sector-discriminator payload before they can be interpreted as coplanar cyclic stealth, near-orthogonal tri-binary locking, or another retained branch sector.",
+    projectionLayer:
+      "Branch-chart projection rows are shared, with policy-declared audit rows added for specialized hypotheses such as equal frequency.",
+    rankingLayer:
+      "Offset-family branch-certificate proximity ranking remains separate from equal-frequency energy-radius-phase auditing.",
+    supportedSearchLanes: [
+      "offset-index-family",
+      "integer-lock-family",
+      "equal-frequency-energy-radius",
+    ],
+    retainedBranchClaim: false,
+  };
+}
+
+function createPolicyCatalog() {
   return [
     {
       id: "phase-lock",
       description:
-        "Treats offsets as integer phase-lock labels. Angular frequencies are proportional to indices; radii are retuned so outer, middle, and inner speeds remain sub-field, field-speed, and super-field respectively.",
+        "Treats offsets as integer phase-lock labels. Angular frequencies are proportional to indices; retained effective lever-arm rows are retuned so inner, middle, and outer speeds remain super-field, field-speed, and sub-field respectively inside the deformation projection family.",
       theoremStatus: "closest to the priority note; still a reduced solver probe",
+      compatibleSearchLanes: ["offset-index-family", "integer-lock-family"],
+      frequencyModel: "index-proportional",
+      speedModel: "fixed-speed-regime",
+      phaseModel: "default-offsets",
+      geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+      geometryChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+      retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+      auditRows: ["offset-family-branch-certificate-proxy"],
     },
     {
       id: "index-ratio",
       description:
         "Stress test that maps speed ratios to n_layer/n_middle. This directly probes the hinge intuition, but is not a theorem premise because indices are not raw speeds in the priority note.",
       theoremStatus: "diagnostic stress test only",
+      compatibleSearchLanes: ["offset-index-family", "integer-lock-family"],
+      frequencyModel: "index-proportional",
+      speedModel: "index-ratio-to-middle",
+      phaseModel: "default-offsets",
+      geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+      geometryChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+      retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+      auditRows: ["offset-family-branch-certificate-proxy"],
+    },
+    {
+      id: "equal-frequency",
+      description:
+        "Tests the equal-frequency energy-radius candidate. All three binary angular frequencies are equal, speed rows remain sub-field, field-speed, and super-field through distinct retained effective lever-arm projections inside the velocity-deforming tri-binary Noether braid, and phase-profile families include the priority 0/120/240 degree triadic profile plus controls.",
+      theoremStatus:
+        "priority-only energy-radius-phase probe; not a retained phase-lock or hbar derivation",
+      compatibleSearchLanes: ["equal-frequency-energy-radius"],
+      frequencyModel: "common-middle-index",
+      speedModel: "fixed-speed-regime",
+      phaseModel: "family-profile-or-triadic-120",
+      geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+      geometryChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+      retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+      auditRows: [
+        "equal_frequency_common_clock",
+        "equal_frequency_lever_arm_speed_relation",
+        "triadic_120_phase_profile",
+        "equal_frequency_transaction_frequency_collapse",
+      ],
     },
   ];
 }
 
+function shouldRunFamilyForPolicy(policy, family) {
+  return familyMatchesPolicyLanes(family, getPolicyDefinition(policy));
+}
+
+function getPolicyDefinition(policyId) {
+  const policy = createPolicyCatalog().find((item) => item.id === policyId);
+  if (!policy) {
+    throw new Error(`Unknown policy: ${policyId}`);
+  }
+  return policy;
+}
+
+function familyMatchesPolicyLanes(family, policyDefinition) {
+  const familyLanes = family.searchLanes ?? [];
+  return familyLanes.some((lane) =>
+    policyDefinition.compatibleSearchLanes.includes(lane)
+  );
+}
+
 async function runFamilyCase({ client, policy, f, family }) {
-  const layers = createLayerSpecs({ policy, family });
+  const policyDefinition = getPolicyDefinition(policy);
+  const layers = createLayerSpecs({ policyDefinition, family });
   const selfHitRows = await runSelfHitRows(client, layers);
   const layerRows = [];
   for (const layer of layers) {
@@ -362,6 +885,7 @@ async function runFamilyCase({ client, policy, f, family }) {
   const rowVerdicts = evaluateRows(layerRows);
   const branchChartProjection = createBranchChartProjection({
     policy,
+    policyModel: projectPolicyModel(getPolicyDefinition(policy)),
     f,
     family,
     layers: layerRows,
@@ -372,10 +896,14 @@ async function runFamilyCase({ client, policy, f, family }) {
     policy,
     familyId: family.id,
     familyLabel: family.label,
-    familyCanonicalRelation: family.canonicalRelation ?? null,
-    familyOuterNormalizedRelation: family.outerNormalizedRelation ?? null,
+    familyRoleAssignedRelation: family.roleAssignedRelation ?? null,
+    legacyOuterNormalizedRelation: family.legacyOuterNormalizedRelation ?? null,
     candidateClass: family.candidateClass ?? null,
     integerLock: family.integerLock ?? null,
+    searchLanes: family.searchLanes ?? [],
+    policyModel: projectPolicyModel(policyDefinition),
+    equalFrequencyCandidate: family.equalFrequencyCandidate === true,
+    phaseProfile: family.phaseProfile ?? null,
     priorityCandidate: family.priorityCandidate,
     f,
     indices: family.indices,
@@ -387,45 +915,88 @@ async function runFamilyCase({ client, policy, f, family }) {
   };
 }
 
-function createLayerSpecs({ policy, family }) {
-  const indices = family.indices;
-  const baseOmega = 1;
-  const fixedSpeedRatios = {
-    outer: 0.75,
-    middle: 1,
-    inner: 1.25,
+function projectPolicyModel(policyDefinition) {
+  return {
+    id: policyDefinition.id,
+    compatibleSearchLanes: policyDefinition.compatibleSearchLanes,
+    frequencyModel: policyDefinition.frequencyModel,
+    speedModel: policyDefinition.speedModel,
+    phaseModel: policyDefinition.phaseModel,
+    geometryModel: policyDefinition.geometryModel,
+    geometryChart: policyDefinition.geometryChart ?? null,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    retainedBranchModel: policyDefinition.retainedBranchModel ?? null,
+    auditRows: policyDefinition.auditRows ?? [],
   };
-  return [
-    createLayerSpec({
-      role: "outer",
-      index: indices.outer,
-      angularVelocity: indices.outer * baseOmega,
-      speedRatio:
-        policy === "index-ratio" ? indices.outer / indices.middle : fixedSpeedRatios.outer,
-      phaseAtEpoch: 0,
-    }),
-    createLayerSpec({
-      role: "middle",
-      index: indices.middle,
-      angularVelocity: indices.middle * baseOmega,
-      speedRatio:
-        policy === "index-ratio" ? indices.middle / indices.middle : fixedSpeedRatios.middle,
-      phaseAtEpoch: Math.PI / 8,
-    }),
-    createLayerSpec({
-      role: "inner",
-      index: indices.inner,
-      angularVelocity: indices.inner * baseOmega,
-      speedRatio:
-        policy === "index-ratio" ? indices.inner / indices.middle : fixedSpeedRatios.inner,
-      phaseAtEpoch: Math.PI / 5,
-    }),
-  ];
 }
 
-function createLayerSpec({ role, index, angularVelocity, speedRatio, phaseAtEpoch }) {
+function createLayerSpecs({ policyDefinition, family }) {
+  const indices = family.indices;
+  const baseOmega = 1;
+  return LAYER_ROLES.map((role) =>
+    createLayerSpec({
+      role,
+      index: indices[role],
+      angularVelocity: getLayerAngularVelocity({
+        policyDefinition,
+        indices,
+        role,
+        baseOmega,
+      }),
+      speedRatio: getLayerSpeedRatio({ policyDefinition, indices, role }),
+      phaseAtEpoch: getLayerPhaseAtEpoch({ policyDefinition, family, role }),
+      geometryModel: policyDefinition.geometryModel,
+      geometryChart: policyDefinition.geometryChart ?? null,
+      retainedBranchModel: policyDefinition.retainedBranchModel ?? null,
+    })
+  );
+}
+
+function getLayerAngularVelocity({ policyDefinition, indices, role, baseOmega }) {
+  if (policyDefinition.frequencyModel === "index-proportional") {
+    return indices[role] * baseOmega;
+  }
+  if (policyDefinition.frequencyModel === "common-middle-index") {
+    return indices.middle * baseOmega;
+  }
+  throw new Error(`Unsupported frequency model: ${policyDefinition.frequencyModel}`);
+}
+
+function getLayerSpeedRatio({ policyDefinition, indices, role }) {
+  if (policyDefinition.speedModel === "fixed-speed-regime") {
+    return FIXED_SPEED_RATIOS[role];
+  }
+  if (policyDefinition.speedModel === "index-ratio-to-middle") {
+    return indices[role] / indices.middle;
+  }
+  throw new Error(`Unsupported speed model: ${policyDefinition.speedModel}`);
+}
+
+function getLayerPhaseAtEpoch({ policyDefinition, family, role }) {
+  if (policyDefinition.phaseModel === "default-offsets") {
+    return DEFAULT_PHASE_AT_EPOCH[role];
+  }
+  if (policyDefinition.phaseModel === "family-profile-or-triadic-120") {
+    return (
+      family.phaseProfile?.phaseAtEpochByLayer?.[role] ??
+      TRIADIC_120_PHASE_AT_EPOCH[role]
+    );
+  }
+  throw new Error(`Unsupported phase model: ${policyDefinition.phaseModel}`);
+}
+
+function createLayerSpec({
+  role,
+  index,
+  angularVelocity,
+  speedRatio,
+  phaseAtEpoch,
+  geometryModel,
+  geometryChart = null,
+  retainedBranchModel = null,
+}) {
   const omega = Math.max(Math.abs(angularVelocity), Number.EPSILON);
-  const radius = (speedRatio * FIELD_SPEED) / omega;
+  const effectiveLeverArm = (speedRatio * FIELD_SPEED) / omega;
   const phaseAdvance = angularVelocity * CLOSURE_PERIOD;
   const cycleCount = phaseAdvance / (2 * Math.PI);
   const integerCycleResidual = phaseAdvance - 2 * Math.PI * Math.round(cycleCount);
@@ -434,12 +1005,66 @@ function createLayerSpec({ role, index, angularVelocity, speedRatio, phaseAtEpoc
     index,
     angularVelocity,
     phaseAtEpoch,
-    radius,
+    effectiveLeverArm,
+    leverArmInterpretation: "retained_effective_lever_arm_projection",
+    effectiveLeverArmChartCoordinate: effectiveLeverArm,
+    solverGeometry: {
+      model: geometryModel,
+      projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+      executableChart: geometryChart,
+      retainedBranchModel,
+      effectiveLeverArmChartCoordinate: effectiveLeverArm,
+      effectiveLeverArmChartCoordinateInterpretation:
+        "flattened-limit chart coordinate for the retained effective lever arm; not a nested shell radius or retained geometry by itself",
+      nestedShellRadiusClaim: false,
+    },
+    geometryModel,
+    geometryChart,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    retainedBranchModel,
     speedRatio,
-    speed: radius * omega,
+    speed: effectiveLeverArm * omega,
     phaseAdvance,
     cycleCount,
     integerCycleResidual,
+  };
+}
+
+function getEffectiveLeverArmChartCoordinate(layer) {
+  const coordinate =
+    layer?.solverGeometry?.effectiveLeverArmChartCoordinate ??
+    layer?.effectiveLeverArmChartCoordinate ??
+    layer?.effectiveLeverArm ??
+    null;
+  return Number.isFinite(coordinate) ? coordinate : null;
+}
+
+function getLayerEffectiveLeverArm(layer) {
+  const leverArm =
+    layer?.effectiveLeverArm ?? getEffectiveLeverArmChartCoordinate(layer);
+  return Number.isFinite(leverArm) ? leverArm : null;
+}
+
+function getLayerSolverGeometry(layer) {
+  if (!layer) {
+    return null;
+  }
+  return {
+    model: layer.geometryModel ?? layer.solverGeometry?.model ?? null,
+    executableChart:
+      layer.geometryChart ?? layer.solverGeometry?.executableChart ?? null,
+    retainedBranchModel:
+      layer.retainedBranchModel ?? layer.solverGeometry?.retainedBranchModel ?? null,
+    projectionChartFamily:
+      layer.projectionChartFamily ??
+      layer.solverGeometry?.projectionChartFamily ??
+      null,
+    effectiveLeverArmChartCoordinate: getEffectiveLeverArmChartCoordinate(layer),
+    effectiveLeverArmChartCoordinateInterpretation:
+      layer.solverGeometry?.effectiveLeverArmChartCoordinateInterpretation ??
+      "flattened-limit chart coordinate for the retained effective lever arm; not a nested shell radius or retained geometry by itself",
+    nestedShellRadiusClaim:
+      layer.solverGeometry?.nestedShellRadiusClaim === true,
   };
 }
 
@@ -570,13 +1195,15 @@ async function runSelfHitRows(client, layers) {
 }
 
 function createCircularSourceRequest({ policy, f, family, layer, hitTime = CLOSURE_PERIOD }) {
+  const effectiveLeverArmChartCoordinate =
+    getEffectiveLeverArmChartCoordinate(layer);
   return {
     source: {
       startTime: -CLOSURE_PERIOD,
       endTime: CLOSURE_PERIOD,
       center: { x: 0, y: 0, z: 0 },
-      radiusU: { x: layer.radius, y: 0, z: 0 },
-      radiusV: { x: 0, y: layer.radius, z: 0 },
+      radiusU: { x: effectiveLeverArmChartCoordinate, y: 0, z: 0 },
+      radiusV: { x: 0, y: effectiveLeverArmChartCoordinate, z: 0 },
       angularVelocity: layer.angularVelocity,
       phaseAtEpoch: layer.phaseAtEpoch,
       epochTime: 0,
@@ -614,7 +1241,14 @@ function projectLayerSolverRow({ layer, rootLedgerResponse, phaseDiagnostics }) 
     index: layer.index,
     angularVelocity: layer.angularVelocity,
     phaseAtEpoch: layer.phaseAtEpoch,
-    radius: layer.radius,
+    effectiveLeverArm: layer.effectiveLeverArm,
+    leverArmInterpretation: layer.leverArmInterpretation,
+    effectiveLeverArmChartCoordinate:
+      getEffectiveLeverArmChartCoordinate(layer),
+    solverGeometry: getLayerSolverGeometry(layer),
+    geometryModel: layer.geometryModel,
+    geometryChart: layer.geometryChart,
+    retainedBranchModel: layer.retainedBranchModel,
     speedRatio: layer.speedRatio,
     speed: layer.speed,
     phaseAdvance: layer.phaseAdvance,
@@ -808,9 +1442,16 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
   const torqueWakeDiagnosticProbe = createTorqueWakeDiagnosticProbe({
     activeRowLineageProbe,
   });
+  const equalFrequencyProjectionRows = createEqualFrequencyProjectionRows({
+    policy,
+    family,
+    layers,
+    rowVerdicts,
+    byLayer,
+  });
 
   return {
-    schema: "aaa-tri-binary-retained-branch-chart-projection.v1",
+    schema: "aaa-tri-binary-retained-branch-chart-projection.v4",
     claimLevel: "reduced solver projection; retained branch-chart certificate remains blocked",
     retainedBranchClaim: false,
     promotionReady: false,
@@ -818,8 +1459,8 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
     f,
     familyId: family.id,
     familyLabel: family.label,
-    familyCanonicalRelation: family.canonicalRelation ?? null,
-    familyOuterNormalizedRelation: family.outerNormalizedRelation ?? null,
+    familyRoleAssignedRelation: family.roleAssignedRelation ?? null,
+    legacyOuterNormalizedRelation: family.legacyOuterNormalizedRelation ?? null,
     candidateClass: family.candidateClass ?? null,
     integerLock: family.integerLock ?? null,
     frequencyTriplet: createFrequencyTriplet(family.indices),
@@ -836,7 +1477,7 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
         mapsTo: ["root_chart"],
         status: rootChartProxyPass ? "reduced_proxy_pass" : "reduced_proxy_fail",
         evidence:
-          "Every sampled layer has a central-solver circular source root, active root-ledger detail, and positive sampled Jacobian floor.",
+          "Every sampled layer has a central-solver reduced circular-path root, active root-ledger detail, and positive sampled Jacobian floor.",
         value: {
           rootLedgerPopulation: rowVerdicts.rootLedgerPopulation.value,
           jacobianFloor: rowVerdicts.jacobianFloor.value,
@@ -916,6 +1557,7 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
         retainedLimitation:
           "The receiver is still the fixed probe clock, so this does not prove binary-to-binary retained phase lock.",
       }),
+      ...equalFrequencyProjectionRows,
       createProjectionRow({
         id: "self_root_parity_index_proxy",
         mapsTo: ["self_root_parity"],
@@ -1010,6 +1652,273 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
   };
 }
 
+function createEqualFrequencyProjectionRows({
+  policy,
+  family,
+  layers,
+  rowVerdicts,
+  byLayer,
+}) {
+  const policyDefinition = getPolicyDefinition(policy);
+  const emitsEqualFrequencyAudit =
+    policyDefinition.auditRows?.includes("equal_frequency_common_clock") === true;
+  if (
+    !emitsEqualFrequencyAudit ||
+    !familyMatchesPolicyLanes(family, policyDefinition)
+  ) {
+    return [];
+  }
+  const omegaSummary = createEqualFrequencyOmegaSummary(layers);
+  const leverArmSpeedSummary = createEqualFrequencyLeverArmSpeedSummary({
+    layers,
+    rowVerdicts,
+  });
+  const phaseSummary = createTriadic120PhaseSummary(layers);
+  const transactionFrequencySummary = createEqualFrequencyTransactionFrequencySummary({
+    byLayer,
+    commonAngularVelocity: omegaSummary.commonAngularVelocity,
+  });
+
+  return [
+    createProjectionRow({
+      id: "equal_frequency_common_clock",
+      mapsTo: ["frequency_triplet", "phase_lock"],
+      status: omegaSummary.pass ? "common_clock_pass" : "common_clock_mismatch",
+      evidence:
+        "All three sampled binary layers use one angular frequency under the equal-frequency policy.",
+      value: omegaSummary,
+      retainedLimitation:
+        "Common sampled omega is not a retained phase-lock proof across binary-to-binary active rows.",
+    }),
+    createProjectionRow({
+      id: "equal_frequency_lever_arm_speed_relation",
+      mapsTo: ["speed_lever_arm_relation", "middle_hinge"],
+      status: leverArmSpeedSummary.pass ? "lever_arm_speed_rows_pass" : "lever_arm_speed_rows_fail",
+      evidence:
+        "With one omega, the distinct sub-field, field-speed, and super-field speed rows imply distinct retained effective lever-arm projections.",
+      value: leverArmSpeedSummary,
+      retainedLimitation:
+        "The effective lever arms are local projection-chart rows; this does not yet prove the branch energy law, deformation-continuation map, or global nested-shell radius relation.",
+    }),
+    createProjectionRow({
+      id: "triadic_120_phase_profile",
+      mapsTo: ["phase_lock", "triadic_phase"],
+      status: phaseSummary.pass ? "triadic_120_profile_pass" : "triadic_120_profile_mismatch",
+      evidence:
+        "The equal-frequency candidate is initialized with role-assigned inner, middle, and outer phases separated by one third of a turn; raw search rows remain generic B_1:B_2:B_3 rows until the role map is retained.",
+      value: phaseSummary,
+      retainedLimitation:
+        "A phase-at-epoch profile is only an initial condition until retained root-continuation, geometric phase, and wake-return delay are solved.",
+    }),
+    createProjectionRow({
+      id: "equal_frequency_transaction_frequency_collapse",
+      mapsTo: ["energy_frequency", "hbar_unit_candidate"],
+      status: transactionFrequencySummary.pass
+        ? "omega_star_equals_common_frequency"
+        : "omega_star_mismatch",
+      evidence:
+        "For I:M:O=(f,f,f), the weighted target omega_*=(omega_O+omega_M+2 omega_I)/4 collapses to the same common binary frequency.",
+      value: transactionFrequencySummary,
+      retainedLimitation:
+        "This supports the hbar-unit investigation only as a frequency identity; it does not prove the action scale, energy carrier, or same-event angular-momentum ledger.",
+    }),
+  ];
+}
+
+function createEqualFrequencyOmegaSummary(layers) {
+  const angularVelocities = Object.fromEntries(
+    layers.map((row) => [row.layer, row.angularVelocity])
+  );
+  const omegaValues = Object.values(angularVelocities).filter(Number.isFinite);
+  const minOmega = omegaValues.length > 0 ? Math.min(...omegaValues) : null;
+  const maxOmega = omegaValues.length > 0 ? Math.max(...omegaValues) : null;
+  const commonFrequencyResidual =
+    Number.isFinite(minOmega) && Number.isFinite(maxOmega) ? maxOmega - minOmega : null;
+  const commonAngularVelocity =
+    Number.isFinite(commonFrequencyResidual) &&
+    Math.abs(commonFrequencyResidual) <= ROOT_TOLERANCE
+      ? omegaValues[0]
+      : null;
+  return {
+    pass:
+      omegaValues.length === 3 &&
+      Number.isFinite(commonFrequencyResidual) &&
+      Math.abs(commonFrequencyResidual) <= ROOT_TOLERANCE,
+    angularVelocities,
+    commonAngularVelocity,
+    commonFrequencyResidual,
+    required: "omega_I = omega_M = omega_O",
+  };
+}
+
+function createEqualFrequencyLeverArmSpeedSummary({ layers, rowVerdicts }) {
+  const byLayer = new Map(layers.map((row) => [row.layer, row]));
+  const effectiveLeverArms = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      getLayerEffectiveLeverArm(byLayer.get(role)),
+    ])
+  );
+  const speedRatios = Object.fromEntries(
+    LAYER_ROLES.map((role) => [role, byLayer.get(role)?.speedRatio ?? null])
+  );
+  const leverArmSpeedResiduals = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      (() => {
+        const row = byLayer.get(role);
+        const effectiveLeverArm = getLayerEffectiveLeverArm(row);
+        return row && Number.isFinite(effectiveLeverArm)
+          ? Math.abs(row.speed - effectiveLeverArm * Math.abs(row.angularVelocity))
+          : null;
+      })(),
+    ])
+  );
+  const maxLeverArmSpeedResidual = maxFinite(Object.values(leverArmSpeedResiduals));
+  const outer = byLayer.get("outer");
+  const middle = byLayer.get("middle");
+  const inner = byLayer.get("inner");
+  const speedRegimeLeverArmOrderPass =
+    Number.isFinite(getLayerEffectiveLeverArm(outer)) &&
+    Number.isFinite(getLayerEffectiveLeverArm(middle)) &&
+    Number.isFinite(getLayerEffectiveLeverArm(inner)) &&
+    getLayerEffectiveLeverArm(inner) > getLayerEffectiveLeverArm(middle) &&
+    getLayerEffectiveLeverArm(middle) > getLayerEffectiveLeverArm(outer);
+  const nestedShellRadiusOrderPass =
+    Number.isFinite(getLayerEffectiveLeverArm(outer)) &&
+    Number.isFinite(getLayerEffectiveLeverArm(middle)) &&
+    Number.isFinite(getLayerEffectiveLeverArm(inner)) &&
+    getLayerEffectiveLeverArm(inner) < getLayerEffectiveLeverArm(middle) &&
+    getLayerEffectiveLeverArm(middle) < getLayerEffectiveLeverArm(outer);
+  const speedRowsPass =
+    rowVerdicts.outerSpeed.pass === true &&
+    rowVerdicts.middleHinge.pass === true &&
+    rowVerdicts.innerSpeed.pass === true;
+  const leverArmEquationPass =
+    Number.isFinite(maxLeverArmSpeedResidual) &&
+    maxLeverArmSpeedResidual <= ROOT_TOLERANCE;
+  return {
+    pass: speedRowsPass && leverArmEquationPass && speedRegimeLeverArmOrderPass,
+    speedRowsPass,
+    leverArmEquationPass,
+    speedRegimeLeverArmOrderPass,
+    nestedShellRadiusOrderPass,
+    nestedShellRadiusInterpretation:
+      nestedShellRadiusOrderPass
+        ? "compatible_with_nested_shell_radius_order"
+        : "incompatible_with_nested_shell_radius_order_for_equal_frequency_speed_rows",
+    effectiveLeverArms,
+    leverArmInterpretation: "retained_effective_lever_arm_projection",
+    geometryModel: layers[0]?.geometryModel ?? null,
+    geometryChart: layers[0]?.geometryChart ?? null,
+    projectionChartFamily: layers[0]?.projectionChartFamily ?? null,
+    retainedBranchModel: layers[0]?.retainedBranchModel ?? null,
+    speedRatios,
+    leverArmSpeedResiduals,
+    maxLeverArmSpeedResidual,
+    relation:
+      "s_layer = rho_layer * omega_f, where rho_layer is the retained effective lever-arm projection",
+    required:
+      "role-assigned I:M:O lever-arm order rho_I > rho_M > rho_O under common omega_f and speed rows s_I > c_f, s_M = c_f, s_O < c_f",
+  };
+}
+
+function createTriadic120PhaseSummary(layers) {
+  const byLayer = new Map(layers.map((row) => [row.layer, row]));
+  const phaseTurns = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      normalizeTurn((byLayer.get(role)?.phaseAtEpoch ?? NaN) / CLOSURE_PERIOD),
+    ])
+  );
+  const forwardSpacings = createCanonicalForwardTurnSpacings(phaseTurns);
+  const spacingResiduals = Object.fromEntries(
+    Object.entries(forwardSpacings).map(([key, value]) => [
+      key,
+      Number.isFinite(value) ? Math.abs(value - 1 / 3) : null,
+    ])
+  );
+  const maxSpacingResidual = maxFinite(Object.values(spacingResiduals));
+  return {
+    pass:
+      Number.isFinite(maxSpacingResidual) &&
+      maxSpacingResidual <= ROOT_TOLERANCE,
+    phaseAtEpochRadians: Object.fromEntries(
+      layers.map((row) => [row.layer, row.phaseAtEpoch])
+    ),
+    phaseTurns,
+    forwardSpacings,
+    spacingResiduals,
+    maxSpacingResidual,
+    required: "role-assigned I:M:O phase offsets 0, 1/3, 2/3 turns",
+  };
+}
+
+function createCanonicalForwardTurnSpacings(phaseTurns) {
+  const spacings = {};
+  for (let index = 0; index < LAYER_ROLES.length; index += 1) {
+    const fromRole = LAYER_ROLES[index];
+    const toRole = LAYER_ROLES[(index + 1) % LAYER_ROLES.length];
+    spacings[`${fromRole}To${capitalizeAscii(toRole)}`] = turnSpacing(
+      phaseTurns[fromRole],
+      phaseTurns[toRole]
+    );
+  }
+  return spacings;
+}
+
+function createEqualFrequencyTransactionFrequencySummary({
+  byLayer,
+  commonAngularVelocity,
+}) {
+  const energyFrequencyTarget = computeEnergyFrequencyTarget(byLayer);
+  const omegaStar = energyFrequencyTarget?.omegaStar ?? null;
+  const residual =
+    Number.isFinite(omegaStar) && Number.isFinite(commonAngularVelocity)
+      ? omegaStar - commonAngularVelocity
+      : null;
+  const residualAbs = Number.isFinite(residual) ? Math.abs(residual) : null;
+  return {
+    pass:
+      Number.isFinite(residualAbs) &&
+      residualAbs <= ROOT_TOLERANCE,
+    commonAngularVelocity,
+    omegaStar,
+    residual,
+    residualAbs,
+    energyFrequencyTarget,
+    formula: "omega_*=(omega_O+omega_M+2 omega_I)/4",
+    required: "omega_* = omega_f when omega_I = omega_M = omega_O",
+  };
+}
+
+function normalizeTurn(value) {
+  if (!Number.isFinite(value)) {
+    return null;
+  }
+  const remainder = value % 1;
+  return remainder < 0 ? remainder + 1 : remainder;
+}
+
+function normalizeSignedTurnDelta(value) {
+  if (!Number.isFinite(value)) {
+    return null;
+  }
+  const normalized = normalizeTurn(value + 0.5);
+  return Number.isFinite(normalized) ? normalized - 0.5 : null;
+}
+
+function turnSpacing(fromTurn, toTurn) {
+  if (!Number.isFinite(fromTurn) || !Number.isFinite(toTurn)) {
+    return null;
+  }
+  return normalizeTurn(toTurn - fromTurn);
+}
+
+function capitalizeAscii(value) {
+  return `${value.slice(0, 1).toUpperCase()}${value.slice(1)}`;
+}
+
 function createActiveRowLineageProbe({ caseId, layers }) {
   const activeRows = [];
   for (const layer of layers) {
@@ -1019,11 +1928,18 @@ function createActiveRowLineageProbe({ caseId, layers }) {
         rowId: `${caseId}:${layer.layer}:root-${root.rootId}`,
         layer: layer.layer,
         sourceLineage: {
-          kind: "circular-source-layer",
+          kind: "flattened-effective-lever-arm-layer",
           layer: layer.layer,
           index: layer.index,
           angularVelocity: layer.angularVelocity,
-          radius: layer.radius,
+          effectiveLeverArm: layer.effectiveLeverArm,
+          leverArmInterpretation: layer.leverArmInterpretation,
+          effectiveLeverArmChartCoordinate:
+            getEffectiveLeverArmChartCoordinate(layer),
+          solverGeometry: getLayerSolverGeometry(layer),
+          geometryModel: layer.geometryModel,
+          geometryChart: layer.geometryChart,
+          retainedBranchModel: layer.retainedBranchModel,
           phaseAtEpoch: layer.phaseAtEpoch,
           sourceClock: layer.phaseDiagnostics.sourceClock,
         },
@@ -1917,9 +2833,14 @@ function computeCircularSourcePoint(sourceLineage, time) {
     return null;
   }
   const phase = sourceLineage.angularVelocity * time + sourceLineage.phaseAtEpoch;
+  const effectiveLeverArmChartCoordinate =
+    getEffectiveLeverArmChartCoordinate(sourceLineage);
+  if (!Number.isFinite(effectiveLeverArmChartCoordinate)) {
+    return null;
+  }
   return {
-    x: sourceLineage.radius * Math.cos(phase),
-    y: sourceLineage.radius * Math.sin(phase),
+    x: effectiveLeverArmChartCoordinate * Math.cos(phase),
+    y: effectiveLeverArmChartCoordinate * Math.sin(phase),
     z: 0,
   };
 }
@@ -1977,11 +2898,7 @@ function computeEnergyFrequencyTarget(byLayer) {
       middle: middle.angularVelocity,
       inner: inner.angularVelocity,
     },
-    actionWeights: {
-      outer: 1,
-      middle: 1,
-      inner: 2,
-    },
+    actionWeights: { ...FOUR_SUBSTEP_ACTION_WEIGHTS },
   };
 }
 
@@ -2107,9 +3024,9 @@ function createMinimalBranchTransactionFrequencyCertificate({
     selectedCaseId: selectedCase?.caseId ?? null,
     familyId: selectedCase?.familyId ?? null,
     familyLabel: selectedCase?.familyLabel ?? null,
-    familyCanonicalRelation: selectedCase?.familyCanonicalRelation ?? null,
-    familyOuterNormalizedRelation:
-      selectedCase?.familyOuterNormalizedRelation ?? null,
+    familyRoleAssignedRelation: selectedCase?.familyRoleAssignedRelation ?? null,
+    legacyOuterNormalizedRelation:
+      selectedCase?.legacyOuterNormalizedRelation ?? null,
     frequencyTriplet: selectedCase?.frequencyTriplet ?? null,
     indices: selectedCase?.indices ?? null,
     indexOffset,
@@ -2124,7 +3041,7 @@ function createMinimalBranchTransactionFrequencyCertificate({
     geometryTransportPass,
     acceptanceBlockers,
     retainedLimitation:
-      "The four-substep weighted frequency is exact for the selected reduced canonical I:M:O=(f+2,f,f-1) middle-hinge branch, but it is only an omega_tx source after the same route has an accepted retained point-event or positive-width retained domain, geometrically continuous branch transport, and same-event energy carrier population.",
+      "The four-substep weighted frequency is exact for the selected reduced role-assigned I:M:O=(f+2,f,f-1) middle-hinge branch, but it is only an omega_tx source after the same route has an accepted retained point-event or positive-width retained domain, geometrically continuous branch transport, and same-event energy carrier population.",
   };
 }
 
@@ -9712,9 +10629,14 @@ function createSameSourceEmissionClockTransportRow({ routeRow, layerByName }) {
     incomingChartPoint && outgoingChartPoint
       ? vectorNorm(subtractVectors(incomingChartPoint, outgoingChartPoint))
       : null;
+  const effectiveLeverArmChartCoordinate =
+    getEffectiveLeverArmChartCoordinate(layer);
   const circularChordFromClock =
-    layer && Number.isFinite(wrappedPhaseJump)
-      ? Math.abs(2 * layer.radius * Math.sin(wrappedPhaseJump / 2))
+    Number.isFinite(effectiveLeverArmChartCoordinate) &&
+    Number.isFinite(wrappedPhaseJump)
+      ? Math.abs(
+          2 * effectiveLeverArmChartCoordinate * Math.sin(wrappedPhaseJump / 2)
+        )
       : null;
   const chartChordResidual =
     Number.isFinite(chartChord) && Number.isFinite(circularChordFromClock)
@@ -9822,7 +10744,9 @@ function createSameSourceEmissionClockTransportRow({ routeRow, layerByName }) {
     chartEmissionClockTransportPass,
     endpointEmissionClockTransportPass,
     angularVelocity: layer?.angularVelocity ?? null,
-    radius: layer?.radius ?? null,
+    effectiveLeverArmChartCoordinate,
+    effectiveLeverArm: getLayerEffectiveLeverArm(layer),
+    leverArmInterpretation: layer?.leverArmInterpretation ?? null,
     incomingClockTime,
     outgoingClockTime,
     clockTimeJump,
@@ -9976,7 +10900,7 @@ function createSameSourceExactCircularEndpointReplacementTarget({
     acceptedExactEndpointReplayPass: false,
     exactCircularReplacementTransportPass,
     endpointProviderRequirement:
-      "curved exact-circular source path-history endpoint provider or retained-domain transport law on the same route",
+      "curved exact circular-path endpoint provider or retained-domain transport law on the same route",
     blockingPayloads: [
       "physical_endpoint_replacement_law",
       "retained_domain_transport_law",
@@ -10105,7 +11029,11 @@ function createSameSourceReducedCircularEndpointProviderLawCandidate({
     acceptedRetainedEndpointProviderPass: false,
     exactCircularReplacementTransportPass,
     layer: layer?.layer ?? null,
-    radius: finiteOrNull(layer?.radius),
+    effectiveLeverArmChartCoordinate: finiteOrNull(
+      getEffectiveLeverArmChartCoordinate(layer)
+    ),
+    effectiveLeverArm: finiteOrNull(getLayerEffectiveLeverArm(layer)),
+    leverArmInterpretation: layer?.leverArmInterpretation ?? null,
     angularVelocity: finiteOrNull(layer?.angularVelocity),
     phaseAtEpoch: finiteOrNull(layer?.phaseAtEpoch),
     incomingClockTime,
@@ -18888,7 +19816,10 @@ function createMiddleFieldSpeedHingeCapture({
       ? {
           index: middleLayer.index,
           angularVelocity: middleLayer.angularVelocity,
-          radius: middleLayer.radius,
+          effectiveLeverArmChartCoordinate:
+            getEffectiveLeverArmChartCoordinate(middleLayer),
+          effectiveLeverArm: getLayerEffectiveLeverArm(middleLayer),
+          leverArmInterpretation: middleLayer.leverArmInterpretation,
           speedRatio: middleLayer.speedRatio,
           speed: middleLayer.speed,
           fieldSpeedResidual,
@@ -21310,8 +22241,12 @@ function createBranchTransportClockContinuity({
   const wrappedPhaseJump = wrapAngleToPi(phaseJump);
   const phaseCycleFraction = phaseJump / CLOSURE_PERIOD;
   const wrappedPhaseCycleFraction = wrappedPhaseJump / CLOSURE_PERIOD;
+  const effectiveLeverArmChartCoordinate =
+    getEffectiveLeverArmChartCoordinate(layer);
   const circularChordFromWrappedPhase =
-    Math.abs(2 * layer.radius * Math.sin(wrappedPhaseJump / 2));
+    Math.abs(
+      2 * effectiveLeverArmChartCoordinate * Math.sin(wrappedPhaseJump / 2)
+    );
   const pass = Math.abs(clockTimeJump) <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
   return {
     status: pass
@@ -21322,7 +22257,9 @@ function createBranchTransportClockContinuity({
     clockTimeKind,
     tolerance: POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
     angularVelocity: layer.angularVelocity,
-    radius: layer.radius,
+    effectiveLeverArmChartCoordinate,
+    effectiveLeverArm: getLayerEffectiveLeverArm(layer),
+    leverArmInterpretation: layer.leverArmInterpretation,
     incomingClockTime,
     outgoingClockTime,
     clockTimeJump,
@@ -21405,7 +22342,9 @@ function createBranchTransportHingeChartContinuity({
     causalEndpointPointKind,
     tolerance: POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
     angularVelocity: layer.angularVelocity,
-    radius: layer.radius,
+    effectiveLeverArmChartCoordinate: getEffectiveLeverArmChartCoordinate(layer),
+    effectiveLeverArm: getLayerEffectiveLeverArm(layer),
+    leverArmInterpretation: layer.leverArmInterpretation,
     incomingHitTime: incomingEndpoint.hitTime,
     outgoingHitTime: outgoingEndpoint.hitTime,
     hitTimeJump,
@@ -22059,18 +22998,28 @@ function computeCircularLayerAngularMomentum(layer, time) {
 
 function computeCircularLayerVelocity(layer, time) {
   const phase = layer.angularVelocity * time + layer.phaseAtEpoch;
+  const effectiveLeverArmChartCoordinate =
+    getEffectiveLeverArmChartCoordinate(layer);
   return {
-    x: -layer.radius * layer.angularVelocity * Math.sin(phase),
-    y: layer.radius * layer.angularVelocity * Math.cos(phase),
+    x:
+      -effectiveLeverArmChartCoordinate *
+      layer.angularVelocity *
+      Math.sin(phase),
+    y:
+      effectiveLeverArmChartCoordinate *
+      layer.angularVelocity *
+      Math.cos(phase),
     z: 0,
   };
 }
 
 function computeCircularLayerPoint(layer, time) {
   const phase = layer.angularVelocity * time + layer.phaseAtEpoch;
+  const effectiveLeverArmChartCoordinate =
+    getEffectiveLeverArmChartCoordinate(layer);
   return {
-    x: layer.radius * Math.cos(phase),
-    y: layer.radius * Math.sin(phase),
+    x: effectiveLeverArmChartCoordinate * Math.cos(phase),
+    y: effectiveLeverArmChartCoordinate * Math.sin(phase),
     z: 0,
   };
 }
@@ -22084,11 +23033,13 @@ function computeCircularLayerPathSegmentErrorBound(
     layer && Number.isFinite(layer.angularVelocity)
       ? Math.abs(layer.angularVelocity * step)
       : null;
+  const effectiveLeverArmChartCoordinate =
+    getEffectiveLeverArmChartCoordinate(layer);
   const errorBound =
     layer &&
-    Number.isFinite(layer.radius) &&
+    Number.isFinite(effectiveLeverArmChartCoordinate) &&
     Number.isFinite(angularSpan)
-      ? Math.abs(layer.radius) *
+      ? Math.abs(effectiveLeverArmChartCoordinate) *
           Math.max(0, 1 - Math.cos(Math.min(angularSpan, Math.PI) / 2)) +
         1e-12
       : null;
@@ -22181,7 +23132,7 @@ function createReportBranchChartProjection(cases, retainedLineagePhaseProbe) {
     populatedRowCounts,
     blockedRowCounts,
     nextCertificateObject:
-      "Retained Noether swarm branch chart with common active-row lineage, phase continuation, torque, wake pullback, vector partition, energy routing, and section-stability rows.",
+      "Retained Noether braid branch chart with common active-row lineage, phase continuation, torque, wake pullback, vector partition, energy routing, and section-stability rows.",
   };
 }
 
@@ -38633,6 +39584,9 @@ function compareBranchCertificateFamilyRank(left, right) {
 }
 
 function classifyBranchCertificateFamilyRank(bucket) {
+  if (bucket.candidateClass === "equal_frequency_energy_radius_candidate") {
+    return "equal_frequency_candidate_requires_energy_radius_phase_audit_not_offset_proxy";
+  }
   if (
     bucket.priorityCandidate === true &&
     bucket.selfRootParityTargetPassCount === bucket.caseCount &&
@@ -38656,11 +39610,17 @@ function classifyBranchCertificateFamilyRank(bucket) {
 }
 
 function createNonMinimalCompetitorAudit(branchCertificateFamilyRanking) {
-  const candidate = branchCertificateFamilyRanking.find(
+  const priorityCandidates = branchCertificateFamilyRanking.filter(
     (family) => family.priorityCandidate === true
   );
+  const candidate =
+    priorityCandidates.find((family) => family.candidateClass === "middle_hinge_offset") ??
+    priorityCandidates[0] ??
+    null;
   const competitors = branchCertificateFamilyRanking.filter(
-    (family) => family.priorityCandidate !== true
+    (family) =>
+      family.priorityCandidate !== true &&
+      family.candidateClass !== "equal_frequency_energy_radius_candidate"
   );
   const retainedCompetitors = competitors.filter(
     (family) => family.retainedBranchClaim === true
@@ -38692,6 +39652,7 @@ function createNonMinimalCompetitorAudit(branchCertificateFamilyRanking) {
         : "finite_reduced_competitor_families_populated_retained_competitors_not_evaluable",
     candidateFamilyId: candidate?.familyId ?? null,
     candidateRank: candidate?.rank ?? null,
+    priorityCandidateFamilyIds: priorityCandidates.map((family) => family.familyId),
     competitorFamilyCount: competitors.length,
     competitorCaseCount,
     reducedCompetitorCaseCount,
@@ -38719,6 +39680,4075 @@ function createNonMinimalCompetitorAudit(branchCertificateFamilyRanking) {
   };
 }
 
+function createEqualFrequencyEnergyRadiusAudit(cases) {
+  const equalFrequencyCases = cases
+    .filter(
+      (item) =>
+        item.candidateClass === "equal_frequency_energy_radius_candidate" &&
+        item.policy === "equal-frequency"
+    )
+    .sort((left, right) => {
+      const fCompare = left.f - right.f;
+      if (fCompare !== 0) {
+        return fCompare;
+      }
+      return (left.phaseProfile?.id ?? "").localeCompare(
+        right.phaseProfile?.id ?? ""
+      );
+    });
+  const caseSummaries = equalFrequencyCases.map((item) => {
+    const commonClockRow = findProjectionRow(item, "equal_frequency_common_clock");
+    const leverArmSpeedRow = findProjectionRow(
+      item,
+      "equal_frequency_lever_arm_speed_relation"
+    );
+    const triadicPhaseRow = findProjectionRow(item, "triadic_120_phase_profile");
+    const omegaStarRow = findProjectionRow(
+      item,
+      "equal_frequency_transaction_frequency_collapse"
+    );
+    const rowPasses = {
+      commonClock: commonClockRow?.status === "common_clock_pass",
+      leverArmSpeedRelation: leverArmSpeedRow?.status === "lever_arm_speed_rows_pass",
+      triadic120Phase:
+        item.phaseProfile?.priorityPhaseProfile === true
+          ? triadicPhaseRow?.status === "triadic_120_profile_pass"
+          : "control_not_required",
+      transactionFrequencyCollapse:
+        omegaStarRow?.status === "omega_star_equals_common_frequency",
+      reducedRows: item.branchChartProjection?.reducedRowsPass === true,
+    };
+    return {
+      caseId: item.caseId,
+      f: item.f,
+      frequencyTriplet: item.frequencyTriplet,
+      phaseProfile: item.phaseProfile,
+      phaseProfileId: item.phaseProfile?.id ?? null,
+      phaseProfileRole: item.phaseProfile?.role ?? null,
+      priorityPhaseProfile: item.phaseProfile?.priorityPhaseProfile === true,
+      rowPasses,
+      allAuditRowsPass: Object.values(rowPasses).every(
+        (value) => value === true || value === "control_not_required"
+      ),
+      commonClock: commonClockRow?.value ?? null,
+      leverArmSpeedRelation: leverArmSpeedRow?.value ?? null,
+      triadic120Phase: triadicPhaseRow?.value ?? null,
+      transactionFrequencyCollapse: omegaStarRow?.value ?? null,
+      phaseResponse: createEqualFrequencyPhaseResponseSummary(item),
+      retainedBranchClaim: false,
+    };
+  });
+  const priorityCaseSummaries = caseSummaries.filter(
+    (summary) => summary.priorityPhaseProfile === true
+  );
+  const controlCaseSummaries = caseSummaries.filter(
+    (summary) => summary.priorityPhaseProfile !== true
+  );
+  const allAuditRowsPass =
+    priorityCaseSummaries.length > 0 &&
+    priorityCaseSummaries.every((summary) => summary.allAuditRowsPass === true);
+  const allControlRowsPopulated =
+    controlCaseSummaries.length > 0 &&
+    controlCaseSummaries.every((summary) => summary.allAuditRowsPass === true);
+  const phaseProfileRanking = createEqualFrequencyPhaseProfileRanking(caseSummaries);
+  const phaseResponseDiscrimination =
+    createEqualFrequencyPhaseResponseDiscrimination(phaseProfileRanking);
+  const phaseLatticeAudit =
+    createEqualFrequencyPhaseLatticeAudit(priorityCaseSummaries);
+  const retainedReplayTarget = createEqualFrequencyRetainedReplayTarget({
+    phaseProfileRanking,
+    phaseResponseDiscrimination,
+    phaseLatticeAudit,
+  });
+  const roleAssignmentAudit = createEqualFrequencyRoleAssignmentAudit();
+  const deformationRegimeAudit =
+    createEqualFrequencyDeformationRegimeAudit(priorityCaseSummaries);
+  const deformationContinuationAudit =
+    createEqualFrequencyDeformationContinuationAudit(deformationRegimeAudit.rows);
+  const actionLedgerAudit =
+    createEqualFrequencyActionLedgerAudit(priorityCaseSummaries);
+  const energyAngularMomentumClosureAudit =
+    createEqualFrequencyEnergyAngularMomentumClosureAudit({
+      priorityCaseSummaries,
+      actionLedgerAudit,
+    });
+  const phaseDeformationBalanceAudit =
+    createEqualFrequencyPhaseDeformationBalanceAudit(caseSummaries);
+  const returnPeriodFrequencyAudit =
+    createEqualFrequencyReturnPeriodFrequencyAudit(caseSummaries);
+  const planeSectorDiscriminatorAudit =
+    createEqualFrequencyPlaneSectorDiscriminatorAudit(caseSummaries);
+  const retainedRowSetScaffold =
+    createEqualFrequencyRetainedRowSetScaffold({
+      priorityCaseSummaries,
+      roleAssignmentAudit,
+      deformationContinuationAudit,
+      actionLedgerAudit,
+      energyAngularMomentumClosureAudit,
+      phaseDeformationBalanceAudit,
+      returnPeriodFrequencyAudit,
+      planeSectorDiscriminatorAudit,
+    });
+  const retainedEventDomainLiftTarget =
+    createEqualFrequencyRetainedEventDomainLiftTarget({
+      priorityCaseSummaries,
+      retainedRowSetScaffold,
+      actionLedgerAudit,
+      energyAngularMomentumClosureAudit,
+      phaseDeformationBalanceAudit,
+      returnPeriodFrequencyAudit,
+      planeSectorDiscriminatorAudit,
+    });
+  const firstRetainedPacketTemplate =
+    createEqualFrequencyFirstRetainedPacketTemplate({
+      priorityCaseSummaries,
+      retainedRowSetScaffold,
+      returnPeriodFrequencyAudit,
+      planeSectorDiscriminatorAudit,
+    });
+  const retainedFrequencyPhasePacket =
+    createEqualFrequencyRetainedFrequencyPhasePacket({
+      priorityCaseSummaries,
+      retainedRowSetScaffold,
+      returnPeriodFrequencyAudit,
+      planeSectorDiscriminatorAudit,
+    });
+  const retainedEventDomainSelector =
+    createEqualFrequencyRetainedEventDomainSelector({
+      priorityCaseSummaries,
+      retainedRowSetScaffold,
+      retainedEventDomainLiftTarget,
+      retainedFrequencyPhasePacket,
+    });
+  const retainedReplayAcceptanceBlueprint =
+    createEqualFrequencyRetainedReplayAcceptanceBlueprint({
+      priorityCaseSummaries,
+      retainedRowSetScaffold,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+      deformationContinuationAudit,
+      actionLedgerAudit,
+      energyAngularMomentumClosureAudit,
+      phaseDeformationBalanceAudit,
+      returnPeriodFrequencyAudit,
+      planeSectorDiscriminatorAudit,
+      firstRetainedPacketTemplate,
+      retainedFrequencyPhasePacket,
+    });
+  return {
+    schema: "aaa-equal-frequency-energy-radius-audit.v26",
+    claimLevel:
+      "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
+    priority: "high",
+    canonicalFamily: "I:M:O=(f,f,f)",
+    status:
+      caseSummaries.length === 0
+        ? "equal_frequency_cases_not_run"
+        : allAuditRowsPass && allControlRowsPopulated
+          ? "equal_frequency_phase_catalog_populated_priority_triadic_pass_acceptance_blocked"
+          : allAuditRowsPass
+            ? "equal_frequency_priority_triadic_rows_populated_controls_incomplete"
+          : "equal_frequency_energy_radius_phase_rows_incomplete",
+    caseCount: caseSummaries.length,
+    priorityCaseCount: priorityCaseSummaries.length,
+    controlCaseCount: controlCaseSummaries.length,
+    allAuditRowsPass,
+    allControlRowsPopulated,
+    caseSummaries,
+    priorityCaseSummaries,
+    controlCaseSummaries,
+    phaseProfileRanking,
+    phaseResponseDiscrimination,
+    phaseLatticeAudit,
+    retainedReplayTarget,
+    roleAssignmentAudit,
+    deformationRegimeAudit,
+    deformationContinuationAudit,
+    actionLedgerAudit,
+    energyAngularMomentumClosureAudit,
+    phaseDeformationBalanceAudit,
+    returnPeriodFrequencyAudit,
+    planeSectorDiscriminatorAudit,
+    retainedRowSetScaffold,
+    retainedEventDomainLiftTarget,
+    retainedEventDomainSelector,
+    firstRetainedPacketTemplate,
+    retainedFrequencyPhasePacket,
+    retainedReplayAcceptanceBlueprint,
+    solverGeometryPublicContract: createSolverGeometryPublicContract(),
+    branchStateContract: createTriBinaryNoetherBraidBranchStateContract(),
+    projectionChartFamily: createTriBinaryNoetherBraidProjectionChartFamily(),
+    oldOffsetProxyIssue:
+      "The legacy self_root_parity_index_proxy checks n_I-n_M=2, so it is not the acceptance score for I:M:O=(f,f,f).",
+    executableChartScope:
+      "The current executable rows are evaluated in the flattened-limit projection view of the velocity-deformation projection-chart family. Equal-frequency audit rows interpret the reduced chart coordinate as an effective lever-arm projection of the retained tri-binary Noether braid branch state, not as a global shell radius or the complete retained geometry.",
+    generalTriBinaryBraidGeometryTarget:
+      "A retained tri-binary Noether braid replay must solve the general branch state and deformation-continuation map first, then declare how each effective lever arm is produced from low-drift spherical-envelope retained-row coordinates, moving oblate envelope, flattened alignment limit, shell-radius map, retained plane incidence, retained energy-radius branch map, or coupling-dependent projection map.",
+    returnPeriodFrequencyTarget:
+      "The equal-frequency claim must be certified by retained branch return periods or declared locked harmonics. The current circular chart compares omega_f with speed/effective-lever-arm rows only because those rows are explicitly defined in the chart.",
+    phaseTopologySectorTarget:
+      "The triadic 120-degree identity is only a phase-only planar cyclic cancellation until retained plane normals, phase-bundle holonomy, and sector data classify the row as coplanar cyclic, near-orthogonal tri-binary, or another branch sector.",
+    hbarUnitInterpretation:
+      "When omega_O=omega_M=omega_I, the sampled four-substep target omega_*=(omega_O+omega_M+2 omega_I)/4 collapses to the common binary frequency. The equal-frequency J/E audit makes the hbar-unit burden an explicit same-clock ledger equation, not an action-scale proof.",
+    retainedBlockers: [
+      "energy_law_for_effective_lever_arm_speed_relation",
+      "same_event_angular_momentum_ledger",
+      "accepted_action_scale_or_sigma_hbar_row",
+      "branch_return_period_or_locked_harmonic_frequency_certificate",
+      "retained_binary_to_binary_phase_lock",
+      "phase_deformation_weight_balance",
+      "plane_topology_sector_discriminator",
+      "row_set_identity",
+      "torque_consistency",
+      "tail_wake_pullback",
+      "section_stability",
+    ],
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedReplayTarget({
+  phaseProfileRanking,
+  phaseResponseDiscrimination,
+  phaseLatticeAudit,
+}) {
+  return {
+    schema: "aaa-equal-frequency-retained-tri-binary-replay-target.v15",
+    claimLevel:
+      "retained replay target for the equal-frequency candidate; not an accepted energy-radius law",
+    canonicalFamily: "I:M:O=(f,f,f)",
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    branchStateContract: createTriBinaryNoetherBraidBranchStateContract(),
+    primaryBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    roleAssignmentPolicy:
+      "Start from generic binary labels (1,2,3). Attach I:M:O only as a retained role map or chart projection, not as a pre-search ordering assumption.",
+    retainedBranchState:
+      "B_3B(q,v)=(B_1,B_2,B_3; omega_a,J_a,phi_a,N_a; R_parallel,R_perp,xi; rho_a; L_root; L_wake; E_branch; P_branch,J_branch; role_map; coupling_rows)_q",
+    retainedRowSetTarget: {
+      rowSetId: "S_eq",
+      claimLevel:
+        "one retained finite branch chart for the same six-body polarity-neutral Noether braid",
+      requiredSameRecordRows: [
+        "raw_labeled_B_1_B_2_B_3_rows",
+        "six_body_polarity_neutral_inventory",
+        "path_history_rows",
+        "causal_root_ledger",
+        "wake_tail_rows",
+        "energy_action_rows",
+        "momentum_and_angular_momentum_rows",
+        "phase_rows",
+        "retained_plane_orientation_rows",
+        "response_center_and_group_velocity_rows",
+        "Noether_sea_record",
+      ],
+    },
+    deformationMapTarget:
+      "D_v(B_3B): spherical_or_near_spherical support with retained angular-momentum/principal-direction rows -> oblate_spheroidal_envelope -> flattened_or_planar_limit, with rho_a(v) emitted only as a projection of the retained branch state.",
+    closureEquations: [
+      {
+        id: "same_retained_event_or_positive_width_domain",
+        expression:
+          "all S_eq rows are evaluated on one accepted retained point event or on one positive-width retained time domain",
+        currentChartStatus:
+          "fixed_receiver_reduced_chart_rows_populated_retained_event_domain_missing",
+      },
+      {
+        id: "common_binary_clock",
+        expression: "omega_I=omega_M=omega_O=omega_f",
+        currentChartStatus:
+          "populated_in_reduced_circular_chart_retained_return_period_certificate_missing",
+      },
+      {
+        id: "branch_return_frequency_identity",
+        expression:
+          "omega_a=2pi/P_a or omega_a=k_a(2pi/P_branch) with declared locked harmonic k_a on the retained history record",
+        currentChartStatus:
+          "missing_retained_return_period_or_locked_harmonic_certificate",
+      },
+      {
+        id: "effective_lever_arm_speed_rows",
+        expression: "s_l=rho_l omega_f with s_O<c_f, s_M=c_f, s_I>c_f",
+        currentChartStatus:
+          "populated_as_planar_limit_projection_rows_under_deformation_family",
+      },
+      {
+        id: "velocity_deformation_branch_continuation",
+        expression:
+          "rho_a(xi)=R_perp sqrt(xi^2 u_a^2 + (1-xi^2) q_a), 0 <= xi <= 1; current reduced witness uses u_a=1 as a restricted chart",
+        currentChartStatus:
+          "kinematic_continuation_witness_populated_retained_dynamics_missing",
+      },
+      {
+        id: "middle_hinge_lever_arm",
+        expression: "rho_M omega_f=c_f",
+        currentChartStatus: "populated",
+      },
+      {
+        id: "branch_energy_radius_stationarity",
+        expression:
+          "partial_{rho_l} E_branch(q,v,rho,omega,phi,L_wake)=0 for l in {I,M,O}",
+        currentChartStatus: "missing_retained_energy_radius_law",
+      },
+      {
+        id: "one_unit_angular_momentum_ledger",
+        expression:
+          "L_retained=sum_l mu_l rho_l^2 omega_f + L_wake + L_coupling = hbar_unit",
+        currentChartStatus:
+          "circular_kinetic_action_proxy_populated_retained_ledger_missing",
+      },
+      {
+        id: "retained_phase_row_set_identity",
+        expression:
+          "Phi_{ij}^{hit}(phi_I,phi_M,phi_O;q,v) closes on the same retained binary-to-binary row set",
+        currentChartStatus: "fixed_receiver_phase_response_only",
+      },
+      {
+        id: "plane_topology_sector_discriminator",
+        expression:
+          "N_I,N_M,N_O plus phase-bundle holonomy and D_plane classify coplanar Z3 cyclic sector versus near-orthogonal tri-binary sector",
+        currentChartStatus:
+          "triadic_phase_identity_populated_plane_sector_discriminator_missing",
+      },
+      {
+        id: "phase_deformation_weight_balance",
+        expression:
+          "sum_a W_a(B_3B) exp(i phi_a)=0, with W_a chosen by the retained momentum/action/coupling ledger",
+        currentChartStatus:
+          "phase_only_balance_populated_for_triadic_120_weighted_balance_missing",
+      },
+    ],
+    phaseTarget: {
+      priorityPhaseProfileId: phaseProfileRanking[0]?.phaseProfileId ?? null,
+      priorityPhaseReason:
+        "triadic-120 is the chosen orientation of the exact equal-spacing unit-clock profile; the phase lattice separates this phase-only cyclic balance from the target 2:1:1 weighted-action opposition control.",
+      currentPhaseResponseStatus: phaseResponseDiscrimination.status,
+      responseSignatureDistinguished:
+        phaseResponseDiscrimination.responseSignatureDistinguished,
+      phaseDeltaMeanDistinguished:
+        phaseResponseDiscrimination.phaseDeltaMeanDistinguished,
+      phaseDeltaMeanRangeByLayer:
+        phaseResponseDiscrimination.phaseDeltaMeanRangeByLayer,
+      phaseLatticeAuditSchema: phaseLatticeAudit?.schema ?? null,
+      phaseLatticeStatus: phaseLatticeAudit?.status ?? null,
+      phaseLatticeDenominator: phaseLatticeAudit?.denominator ?? null,
+      phaseOnlyExactRowCount: phaseLatticeAudit?.phaseOnlyExactRowCount ?? null,
+      rootWeightedActionExactRowCount:
+        phaseLatticeAudit?.rootWeightedActionExactRowCount ?? null,
+      rootWeightedActionProfileRowId:
+        phaseLatticeAudit?.rootWeightedActionProfileRowId ?? null,
+      phaseOnlyAndRootWeightedOverlapCount:
+        phaseLatticeAudit?.phaseOnlyAndRootWeightedOverlapCount ?? null,
+      retainedLimitation:
+        "The current chart compares fixed-receiver phase response. It does not yet prove binary-to-binary retained phase row-set identity.",
+    },
+    requiredRetainedRows: [
+      "same_retained_row_set_identity_S_eq",
+      "same_retained_event_or_positive_width_domain",
+      "raw_labeled_B_1_B_2_B_3_rows",
+      "six_body_polarity_neutral_inventory",
+      "envelope_axes_R_parallel_R_perp",
+      "retained_plane_normals_or_angular_momentum_bivectors",
+      "velocity_deformation_branch_continuation_map",
+      "deformation_regime_selection_or_branch_continuation_map",
+      "branch_return_period_or_locked_harmonic_frequency_certificate",
+      "role_assignment_map_or_quotient_sector_policy",
+      "effective_lever_arm_projection_map",
+      "branch_energy_radius_stationarity",
+      "effective_inertia_or_wake_coupling_action_partition",
+      "root_multiplicity_weighted_inverse_square_effective_inertia_law",
+      "binary_to_binary_phase_row_set_identity",
+      "plane_normals_phase_bundle_holonomy_sector_discriminator",
+      "planar_z3_vs_near_orthogonal_tri_binary_sector_disposition",
+      "phase_deformation_weight_balance_or_wake_coupling",
+      "root_multiplicity_or_branch_incidence",
+      "same_event_angular_momentum_ledger",
+      "wake_energy_routing",
+      "section_stability",
+    ],
+    failureModes: [
+      "retained_energy_radius_law_forces_equal_lever_arms_under_common_omega",
+      "speed_over_lever_arm_frequency_inferred_without_retained_return_period_certificate",
+      "spherical_latitude_or_oblate_projection_remains_kinematic_without_energy_stationarity",
+      "phase_profiles_fail_binary_to_binary_row_set_identity",
+      "fixed_receiver_proxy_rows_are_misread_as_full_retained_event_or_domain_rows",
+      "triadic_120_phase_identity_misread_as_near_orthogonal_tri_binary_lock_without_plane_sector_data",
+      "triadic_phase_balances_only_unweighted_clock_not_weighted_deformation_rows",
+      "angular_momentum_unit_requires_unaccounted_wake_or_coupling_slack",
+      "offset_family_closes_same_retained_rows_with_lower_branch_cost_before_equal_frequency_closes",
+    ],
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRoleAssignmentAudit() {
+  const roleMaps = createPermutations(GENERIC_TRI_BINARY_LABELS).map(
+    (genericLabelsForRoles) => {
+      const roleToGenericLabel = Object.fromEntries(
+        LAYER_ROLES.map((role, index) => [role, genericLabelsForRoles[index]])
+      );
+      const genericToRole = Object.fromEntries(
+        Object.entries(roleToGenericLabel).map(([role, label]) => [label, role])
+      );
+      const phaseTurnsByRole = Object.fromEntries(
+        LAYER_ROLES.map((role) => [
+          role,
+          TRIADIC_120_PHASE_TURNS_BY_GENERIC_LABEL[roleToGenericLabel[role]],
+        ])
+      );
+      const forwardSpacings = createCanonicalForwardTurnSpacings(phaseTurnsByRole);
+      const plus120Residuals = Object.fromEntries(
+        Object.entries(forwardSpacings).map(([key, value]) => [
+          key,
+          Number.isFinite(value) ? Math.abs(value - 1 / 3) : null,
+        ])
+      );
+      const minus120Residuals = Object.fromEntries(
+        Object.entries(forwardSpacings).map(([key, value]) => [
+          key,
+          Number.isFinite(value) ? Math.abs(value - 2 / 3) : null,
+        ])
+      );
+      const maxPlus120Residual = maxFinite(Object.values(plus120Residuals));
+      const maxMinus120Residual = maxFinite(Object.values(minus120Residuals));
+      const orientationClass =
+        Number.isFinite(maxPlus120Residual) &&
+        maxPlus120Residual <= ROOT_TOLERANCE
+          ? "orientation_preserving_plus_120"
+          : Number.isFinite(maxMinus120Residual) &&
+              maxMinus120Residual <= ROOT_TOLERANCE
+            ? "orientation_reversing_minus_120"
+            : "non_triadic_role_order";
+      return {
+        roleMapId: `role-map-${genericLabelsForRoles.join("")}`,
+        roleToGenericLabel,
+        genericToRole,
+        quotientSectorKey: "equal_frequency_triadic_120_unordered_s3",
+        phaseTurnsByGenericLabel: TRIADIC_120_PHASE_TURNS_BY_GENERIC_LABEL,
+        phaseTurnsByRole,
+        forwardSpacings,
+        plus120Residuals,
+        minus120Residuals,
+        maxPlus120Residual,
+        maxMinus120Residual,
+        orientationClass,
+        currentChartRepresentative:
+          genericLabelsForRoles.join(":") === GENERIC_TRI_BINARY_LABELS.join(":"),
+        retainedRoleMapClaim: false,
+      };
+    }
+  );
+  const orientationPreservingCount = roleMaps.filter(
+    (row) => row.orientationClass === "orientation_preserving_plus_120"
+  ).length;
+  const orientationReversingCount = roleMaps.filter(
+    (row) => row.orientationClass === "orientation_reversing_minus_120"
+  ).length;
+  return {
+    schema: "aaa-equal-frequency-role-assignment-s3-audit.v1",
+    claimLevel:
+      "unquotiented role-assignment audit for equal-frequency triadic phase; not retained role-map selection",
+    genericInputLabels: GENERIC_TRI_BINARY_LABELS,
+    roleAssignedChartOrder: "I:M:O",
+    quotientSectorPolicy:
+      "Keep all six S3 role maps as valid solver evidence; quotient-sector collapse is analysis-only until a retained role map is selected.",
+    phaseProfile: {
+      id: "triadic-120",
+      phaseTurnsByGenericLabel: TRIADIC_120_PHASE_TURNS_BY_GENERIC_LABEL,
+      unorderedSeparation: "all generic binaries separated by one third of a turn",
+    },
+    roleMapCount: roleMaps.length,
+    quotientSectorCount: 1,
+    orientationPreservingCount,
+    orientationReversingCount,
+    currentChartRepresentativeRoleMapId:
+      roleMaps.find((row) => row.currentChartRepresentative)?.roleMapId ?? null,
+    status:
+      roleMaps.length === 6 &&
+      orientationPreservingCount === 3 &&
+      orientationReversingCount === 3
+        ? "s3_role_maps_populated_triadic_quotient_sector_one_plus_and_minus_orientations"
+        : "s3_role_map_population_incomplete",
+    roleMaps,
+    retainedReplayImplication:
+      "A retained equal-frequency replay must either preserve the six unquotiented rows or declare the quotient-sector policy, then attach I:M:O only through a retained role-assignment map.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyDeformationRegimeAudit(priorityCaseSummaries) {
+  const rows = priorityCaseSummaries.map((summary) =>
+    createEqualFrequencyDeformationRegimeRow(summary)
+  );
+  const commonSphereLatitudePassCount = rows.filter(
+    (row) => row.commonSphereLatitudeSupport.pass === true
+  ).length;
+  const commonGreatCirclePassCount = rows.filter(
+    (row) => row.commonSphereGreatCircleControl.pass === true
+  ).length;
+  const oblateEnvelopeProjectionCandidateCount = rows.filter(
+    (row) => row.oblateEnvelopeProjectionCandidate.pass === true
+  ).length;
+  const planarProjectionPassCount = rows.filter(
+    (row) => row.planarProjectionSupport.pass === true
+  ).length;
+  const allRowsHaveDeformationCandidates =
+    rows.length > 0 &&
+    commonSphereLatitudePassCount === rows.length &&
+    oblateEnvelopeProjectionCandidateCount === rows.length &&
+    planarProjectionPassCount === rows.length;
+  const allGreatCircleControlsFail =
+    rows.length > 0 && commonGreatCirclePassCount === 0;
+  return {
+    schema: "aaa-equal-frequency-deformation-regime-audit.v2",
+    claimLevel:
+      "reduced deformation-regime support audit; not retained branch deformation proof",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    executableProjectionChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    auditedCaseCount: rows.length,
+    commonSphereLatitudePassCount,
+    commonGreatCirclePassCount,
+    oblateEnvelopeProjectionCandidateCount,
+    planarProjectionPassCount,
+    status:
+      allRowsHaveDeformationCandidates && allGreatCircleControlsFail
+        ? "deformation_regime_audit_populated_latitude_oblate_and_planar_support_great_circle_control_fails"
+        : allRowsHaveDeformationCandidates
+          ? "deformation_regime_audit_populated_great_circle_control_not_excluded"
+          : rows.length > 0
+            ? "deformation_regime_audit_incomplete"
+            : "deformation_regime_audit_no_priority_rows",
+    rows,
+    interpretation:
+      "At common omega, different speeds can be represented by different retained effective lever-arm projections. Low-drift spherical-envelope retained-row and moving oblate-envelope incidence rows are kinematically populated as branch-state projection views, while the common-sphere great-circle control fails because it would force equal lever arms and equal speed magnitudes.",
+    retainedReplayBurden:
+      "The retained replay must derive the branch-continuation map across the velocity-deformation family, select the regime/incidence/projection map by branch energy/action, then bind it to phase row-set identity, wake routing, external coupling rows, and the one-unit angular-momentum ledger.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyDeformationRegimeRow(summary) {
+  const leverArms = summary.leverArmSpeedRelation?.effectiveLeverArms ?? {};
+  const speedRatios = summary.leverArmSpeedRelation?.speedRatios ?? {};
+  const phaseTurns = summary.triadic120Phase?.phaseTurns ?? {};
+  const commonOmega = summary.commonClock?.commonAngularVelocity ?? null;
+  const leverArmValues = LAYER_ROLES.map((role) => leverArms[role]).filter(
+    Number.isFinite
+  );
+  const minLeverArm = minFinite(leverArmValues);
+  const maxLeverArm = maxFinite(leverArmValues);
+  const leverArmRange =
+    Number.isFinite(minLeverArm) && Number.isFinite(maxLeverArm)
+      ? maxLeverArm - minLeverArm
+      : null;
+  const commonSphereLatitudeSupport =
+    createCommonSphereLatitudeSupportRow({
+      commonOmega,
+      leverArms,
+      maxLeverArm,
+      phaseTurns,
+      speedRatios,
+    });
+  const commonSphereGreatCircleControl =
+    createCommonSphereGreatCircleControlRow({
+      leverArmRange,
+      commonOmega,
+      maxLeverArm,
+    });
+  const oblateEnvelopeProjectionCandidate =
+    createOblateEnvelopeProjectionCandidateRow({
+      leverArms,
+      minLeverArm,
+      maxLeverArm,
+      phaseTurns,
+      speedRatios,
+    });
+  const planarProjectionSupport = {
+    pass: summary.leverArmSpeedRelation?.pass === true,
+    chart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    effectiveLeverArms: leverArms,
+    speedRatios,
+    phaseTurns,
+    interpretation:
+      "The current executable flattened-limit view directly uses the effective lever arms as reduced circular-path coordinates for root and phase diagnostics. This is a projection row of the branch-state deformation family, not the retained branch geometry.",
+  };
+  return {
+    caseId: summary.caseId,
+    f: summary.f,
+    phaseProfileId: summary.phaseProfileId,
+    commonOmega,
+    effectiveLeverArms: leverArms,
+    speedRatios,
+    phaseTurns,
+    leverArmRange,
+    commonSphereLatitudeSupport,
+    commonSphereGreatCircleControl,
+    oblateEnvelopeProjectionCandidate,
+    planarProjectionSupport,
+    retainedBranchClaim: false,
+  };
+}
+
+function createCommonSphereLatitudeSupportRow({
+  commonOmega,
+  leverArms,
+  maxLeverArm,
+  phaseTurns,
+  speedRatios,
+}) {
+  const supportRows = LAYER_ROLES.map((role) => {
+    const effectiveLeverArm = leverArms[role];
+    const sinTheta =
+      Number.isFinite(effectiveLeverArm) && Number.isFinite(maxLeverArm) && maxLeverArm > 0
+        ? effectiveLeverArm / maxLeverArm
+        : null;
+    const thetaRadians = Number.isFinite(sinTheta)
+      ? Math.asin(clampFinite(sinTheta, -1, 1))
+      : null;
+    const latitudeFromEquatorRadians = Number.isFinite(thetaRadians)
+      ? Math.PI / 2 - thetaRadians
+      : null;
+    const speed =
+      Number.isFinite(effectiveLeverArm) && Number.isFinite(commonOmega)
+        ? effectiveLeverArm * commonOmega
+        : null;
+    return {
+      role,
+      effectiveLeverArm,
+      commonSphereRadius: maxLeverArm,
+      sinTheta,
+      thetaRadians,
+      latitudeFromEquatorRadians,
+      speed,
+      speedRatio: speedRatios[role] ?? null,
+      phaseTurn: phaseTurns[role] ?? null,
+    };
+  });
+  const pass =
+    Number.isFinite(maxLeverArm) &&
+    maxLeverArm > 0 &&
+    supportRows.every(
+      (row) =>
+        Number.isFinite(row.sinTheta) &&
+        row.sinTheta >= -ROOT_TOLERANCE &&
+        row.sinTheta <= 1 + ROOT_TOLERANCE
+    );
+  return {
+    pass,
+    status: pass
+      ? "common_sphere_latitude_support_candidate_populated"
+      : "common_sphere_latitude_support_incomplete",
+    formula: "rho_l = R_sph sin(theta_l), s_l = rho_l omega_f",
+    selectedCommonSphereRadius: maxLeverArm,
+    supportRows,
+    retainedLimitation:
+      "This is a kinematic low-drift spherical-envelope retained-row support inside the branch-state deformation family. It does not prove that branch energy selects the theta_l values or that the retained branch is fixed-sphere geometry.",
+  };
+}
+
+function createCommonSphereGreatCircleControlRow({
+  leverArmRange,
+  commonOmega,
+  maxLeverArm,
+}) {
+  const equalLeverArmPass =
+    Number.isFinite(leverArmRange) && Math.abs(leverArmRange) <= ROOT_TOLERANCE;
+  const commonGreatCircleSpeed =
+    Number.isFinite(maxLeverArm) && Number.isFinite(commonOmega)
+      ? maxLeverArm * commonOmega
+      : null;
+  return {
+    pass: equalLeverArmPass,
+    status: equalLeverArmPass
+      ? "common_great_circle_control_equal_speed_populated"
+      : "common_great_circle_control_fails_speed_ordering",
+    required: "rho_1 = rho_2 = rho_3 on common-sphere great circles",
+    leverArmRange,
+    commonGreatCircleSpeed,
+    interpretation:
+      "Equal frequency on common great circles forces equal speed magnitude in the simple kinematic row, so it cannot realize the current sub/field/super speed ordering without another projection or causal-delay speed definition.",
+  };
+}
+
+function createOblateEnvelopeProjectionCandidateRow({
+  leverArms,
+  minLeverArm,
+  maxLeverArm,
+  phaseTurns,
+  speedRatios,
+}) {
+  const denominator =
+    Number.isFinite(minLeverArm) && Number.isFinite(maxLeverArm)
+      ? maxLeverArm ** 2 - minLeverArm ** 2
+      : null;
+  const incidenceRows = LAYER_ROLES.map((role) => {
+    const effectiveLeverArm = leverArms[role];
+    const incidenceSinSquared =
+      Number.isFinite(effectiveLeverArm) &&
+      Number.isFinite(minLeverArm) &&
+      Number.isFinite(denominator) &&
+      Math.abs(denominator) > ROOT_TOLERANCE
+        ? (effectiveLeverArm ** 2 - minLeverArm ** 2) / denominator
+        : null;
+    const incidenceAngleFromParallelRadians = Number.isFinite(incidenceSinSquared)
+      ? Math.asin(Math.sqrt(clampFinite(incidenceSinSquared, 0, 1)))
+      : null;
+    return {
+      role,
+      effectiveLeverArm,
+      phaseTurn: phaseTurns[role] ?? null,
+      speedRatio: speedRatios[role] ?? null,
+      incidenceSinSquared,
+      incidenceAngleFromParallelRadians,
+    };
+  });
+  const pass =
+    Number.isFinite(minLeverArm) &&
+    Number.isFinite(maxLeverArm) &&
+    Number.isFinite(denominator) &&
+    denominator > ROOT_TOLERANCE &&
+    incidenceRows.every(
+      (row) =>
+        Number.isFinite(row.incidenceSinSquared) &&
+        row.incidenceSinSquared >= -ROOT_TOLERANCE &&
+        row.incidenceSinSquared <= 1 + ROOT_TOLERANCE
+    );
+  return {
+    pass,
+    status: pass
+      ? "oblate_envelope_incidence_projection_candidate_populated"
+      : "oblate_envelope_incidence_projection_candidate_incomplete",
+    formula:
+      "rho_l^2 = R_parallel^2 cos^2(alpha_l) + R_perp^2 sin^2(alpha_l)",
+    selectedAxes: {
+      R_parallel: minLeverArm,
+      R_perp: maxLeverArm,
+      xi: Number.isFinite(minLeverArm) && Number.isFinite(maxLeverArm) && maxLeverArm > 0
+        ? minLeverArm / maxLeverArm
+        : null,
+    },
+    incidenceRows,
+    retainedLimitation:
+      "This only shows that the sampled lever arms fit the moving oblate incidence member of the deformation family. A retained replay must derive R_parallel, R_perp, xi, and the incidence angles from branch energy/action and velocity deformation.",
+  };
+}
+
+function createEqualFrequencyDeformationContinuationAudit(deformationRows) {
+  const rows = deformationRows.map((row) =>
+    createEqualFrequencyDeformationContinuationRow(row)
+  );
+  const sphericalEndpointPassCount = rows.filter(
+    (row) => row.sphericalEndpoint.pass === true
+  ).length;
+  const currentOblateSlicePassCount = rows.filter(
+    (row) => row.currentOblateSlice.pass === true
+  ).length;
+  const planarProjectionAgreementPassCount = rows.filter(
+    (row) => row.planarProjectionAgreement.pass === true
+  ).length;
+  const flatLimitForecastPopulatedCount = rows.filter(
+    (row) => row.flatLimitForecast.populated === true
+  ).length;
+  const allRowsHaveContinuationWitness =
+    rows.length > 0 &&
+    sphericalEndpointPassCount === rows.length &&
+    currentOblateSlicePassCount === rows.length &&
+    planarProjectionAgreementPassCount === rows.length;
+  return {
+    schema: "aaa-equal-frequency-deformation-continuation-audit.v1",
+    claimLevel:
+      "reduced kinematic branch-state projection-continuation witness; not retained branch dynamics",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    branchStateContractSchema:
+      createTriBinaryNoetherBraidBranchStateContract().schema,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    deformationCoordinate: "xi=R_parallel/R_perp",
+    generalContinuationTarget:
+      "rho_a(xi)=R_perp sqrt(xi^2 u_a^2 + (1-xi^2) q_a), where u_a is the low-drift spherical-envelope retained-row lever-arm coordinate and q_a is the flattened/incidence coordinate supplied by the retained branch state",
+    continuationFormula:
+      "restricted current witness: rho_l(xi)=R_perp sqrt(xi^2 + (1-xi^2) q_l), with u_l=1 and q_l=(rho_l(xi_current)^2/R_perp^2 - xi_current^2)/(1-xi_current^2)",
+    auditedCaseCount: rows.length,
+    sphericalEndpointPassCount,
+    currentOblateSlicePassCount,
+    planarProjectionAgreementPassCount,
+    flatLimitForecastPopulatedCount,
+    status:
+      allRowsHaveContinuationWitness
+        ? "branch_state_deformation_projection_continuation_witness_populated_retained_dynamics_missing"
+        : rows.length > 0
+          ? "deformation_continuation_witness_incomplete"
+          : "deformation_continuation_no_priority_rows",
+    rows,
+    interpretation:
+      "The priority equal-frequency rows admit a restricted reduced projection-continuation parameterization inside the general branch-state deformation family. The current witness connects an equal-envelope-axis spherical endpoint, the current oblate incidence slice, and a flattened-limit forecast; the retained replay must replace it with the general low-drift retained-row coordinate u_a and branch-derived q_a. This is stronger than disconnected chart rows, but it still does not derive branch energy, velocity selection, or retained phase/wake/action closure.",
+    retainedReplayBurden:
+      "Replace this kinematic witness with a retained velocity-deformation branch-continuation law for B_3B(q,v), then bind the selected projection rows to energy-radius stationarity, phase row-set identity, causal-root ledgers, wake/coupling rows, and the one-unit angular-momentum ledger on the same retained row set.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyDeformationContinuationRow(row) {
+  const leverArms = row.effectiveLeverArms ?? {};
+  const speedRatios = row.speedRatios ?? {};
+  const phaseTurns = row.phaseTurns ?? {};
+  const maxLeverArm = maxFinite(
+    LAYER_ROLES.map((role) => leverArms[role]).filter(Number.isFinite)
+  );
+  const minLeverArm = minFinite(
+    LAYER_ROLES.map((role) => leverArms[role]).filter(Number.isFinite)
+  );
+  const xiCurrent =
+    Number.isFinite(minLeverArm) &&
+    Number.isFinite(maxLeverArm) &&
+    maxLeverArm > ROOT_TOLERANCE
+      ? minLeverArm / maxLeverArm
+      : null;
+  const normalizedLeverArms = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(leverArms[role]) &&
+      Number.isFinite(maxLeverArm) &&
+      maxLeverArm > ROOT_TOLERANCE
+        ? leverArms[role] / maxLeverArm
+        : null,
+    ])
+  );
+  const denominator =
+    Number.isFinite(xiCurrent) ? 1 - xiCurrent ** 2 : null;
+  const incidenceShapeCoordinates = Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const normalizedLeverArm = normalizedLeverArms[role];
+      return [
+        role,
+        Number.isFinite(normalizedLeverArm) &&
+        Number.isFinite(xiCurrent) &&
+        Number.isFinite(denominator) &&
+        Math.abs(denominator) > ROOT_TOLERANCE
+          ? (normalizedLeverArm ** 2 - xiCurrent ** 2) / denominator
+          : null,
+      ];
+    })
+  );
+  const shapeCoordinateRows = LAYER_ROLES.map((role) => ({
+    role,
+    effectiveLeverArm: leverArms[role] ?? null,
+    normalizedLeverArm: normalizedLeverArms[role] ?? null,
+    q: incidenceShapeCoordinates[role] ?? null,
+    speedRatio: speedRatios[role] ?? null,
+    phaseTurn: phaseTurns[role] ?? null,
+  }));
+  const shapeCoordinatesPass =
+    Number.isFinite(xiCurrent) &&
+    xiCurrent > ROOT_TOLERANCE &&
+    xiCurrent < 1 - ROOT_TOLERANCE &&
+    shapeCoordinateRows.every(
+      (entry) =>
+        Number.isFinite(entry.q) &&
+        entry.q >= -ROOT_TOLERANCE &&
+        entry.q <= 1 + ROOT_TOLERANCE
+    );
+  const sphericalEndpoint = createDeformationContinuationSlice({
+    xi: 1,
+    maxLeverArm,
+    incidenceShapeCoordinates,
+    targetNormalizedLeverArms: Object.fromEntries(
+      LAYER_ROLES.map((role) => [role, 1])
+    ),
+    label: "restricted_spherical_equal_envelope_axis_endpoint",
+  });
+  const currentOblateSlice = createDeformationContinuationSlice({
+    xi: xiCurrent,
+    maxLeverArm,
+    incidenceShapeCoordinates,
+    targetNormalizedLeverArms: normalizedLeverArms,
+    label: "current_oblate_incidence_slice",
+  });
+  const planarProjectionAgreement = {
+    pass:
+      row.planarProjectionSupport?.pass === true &&
+      currentOblateSlice.pass === true,
+    chart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    normalizedLeverArms,
+    residualsAgainstCurrentOblateSlice: residualRoleWeights({
+      actual: currentOblateSlice.normalizedLeverArms,
+      target: normalizedLeverArms,
+    }),
+    interpretation:
+      "The current flattened-limit solver view is a projection of the current oblate slice's selected lever arms, not a separate retained geometry.",
+  };
+  const flatLimitForecast = createDeformationContinuationSlice({
+    xi: 0,
+    maxLeverArm,
+    incidenceShapeCoordinates,
+    targetNormalizedLeverArms: null,
+    label: "formal_flattened_limit_forecast",
+  });
+  return {
+    caseId: row.caseId,
+    f: row.f,
+    phaseProfileId: row.phaseProfileId,
+    commonOmega: row.commonOmega,
+    effectiveLeverArms: leverArms,
+    speedRatios,
+    phaseTurns,
+    RperpCurrent: maxLeverArm,
+    RparallelCurrent: minLeverArm,
+    xiCurrent,
+    normalizedLeverArms,
+    incidenceShapeCoordinates,
+    shapeCoordinateRows,
+    shapeCoordinatesPass,
+    sphericalEndpoint,
+    currentOblateSlice,
+    planarProjectionAgreement,
+    flatLimitForecast,
+    continuationPass:
+      shapeCoordinatesPass &&
+      sphericalEndpoint.pass === true &&
+      currentOblateSlice.pass === true &&
+      planarProjectionAgreement.pass === true,
+    retainedBranchClaim: false,
+  };
+}
+
+function createDeformationContinuationSlice({
+  xi,
+  maxLeverArm,
+  incidenceShapeCoordinates,
+  targetNormalizedLeverArms,
+  label,
+}) {
+  const normalizedLeverArms = Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const q = incidenceShapeCoordinates[role];
+      return [
+        role,
+        Number.isFinite(xi) && Number.isFinite(q)
+          ? Math.sqrt(clampFinite(xi ** 2 + (1 - xi ** 2) * q, 0, 1))
+          : null,
+      ];
+    })
+  );
+  const effectiveLeverArms = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(normalizedLeverArms[role]) &&
+      Number.isFinite(maxLeverArm)
+        ? normalizedLeverArms[role] * maxLeverArm
+        : null,
+    ])
+  );
+  const residuals = targetNormalizedLeverArms
+    ? residualRoleWeights({
+        actual: normalizedLeverArms,
+        target: targetNormalizedLeverArms,
+      })
+    : Object.fromEntries(LAYER_ROLES.map((role) => [role, null]));
+  const maxAbsResidual = targetNormalizedLeverArms
+    ? maxFinite(
+        Object.values(residuals).map((value) =>
+          Number.isFinite(value) ? Math.abs(value) : null
+        )
+      )
+    : null;
+  return {
+    label,
+    xi,
+    normalizedLeverArms,
+    effectiveLeverArms,
+    targetNormalizedLeverArms,
+    residuals,
+    maxAbsResidual,
+    pass: targetNormalizedLeverArms
+      ? Number.isFinite(maxAbsResidual) && maxAbsResidual <= ROOT_TOLERANCE
+      : null,
+    populated: LAYER_ROLES.every((role) =>
+      Number.isFinite(normalizedLeverArms[role])
+    ),
+  };
+}
+
+function createEqualFrequencyActionLedgerAudit(priorityCaseSummaries) {
+  const rows = priorityCaseSummaries.map((summary) =>
+    createEqualFrequencyActionLedgerRow(summary)
+  );
+  const unitInertiaInnerHalfPassCount = rows.filter(
+    (row) => row.unitInertiaProxy.innerHalfActionPass === true
+  ).length;
+  const fourSubstepPartitionPassCount = rows.filter(
+    (row) => row.unitInertiaProxy.fourSubstepPartitionPass === true
+  ).length;
+  const positiveEffectiveInertiaSolutionCount = rows.filter(
+    (row) => row.requiredEffectiveInertiaForFourSubstepPartition.pass === true
+  ).length;
+  const effectiveInertiaLawScan =
+    createEqualFrequencyEffectiveInertiaLawScan(rows);
+  const allRowsPopulateInnerHalf =
+    rows.length > 0 && unitInertiaInnerHalfPassCount === rows.length;
+  const noUnitInertiaFullPartition =
+    rows.length > 0 && fourSubstepPartitionPassCount === 0;
+  const allRowsHavePositiveInertiaSolution =
+    rows.length > 0 && positiveEffectiveInertiaSolutionCount === rows.length;
+  return {
+    schema: "aaa-equal-frequency-action-ledger-audit.v2",
+    claimLevel:
+      "reduced circular-path kinetic action-scale proxy; not retained same-event hbar ledger",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    executableProjectionChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    auditedCaseCount: rows.length,
+    actionProxyFormula:
+      "J_l^(proxy)=mu_l rho_l^2 omega_f, E_l^(proxy)=1/2 J_l^(proxy) omega_f",
+    unitInertiaAssumption:
+      "mu_I=mu_M=mu_O=1 in the proxy row only",
+    targetFourSubstepWeights: { ...FOUR_SUBSTEP_ACTION_WEIGHTS },
+    targetFourSubstepFractions: normalizeRoleWeights(FOUR_SUBSTEP_ACTION_WEIGHTS),
+    unitInertiaInnerHalfPassCount,
+    fourSubstepPartitionPassCount,
+    positiveEffectiveInertiaSolutionCount,
+    effectiveInertiaLawScan,
+    status:
+      allRowsPopulateInnerHalf &&
+      noUnitInertiaFullPartition &&
+      allRowsHavePositiveInertiaSolution
+        ? "unit_inertia_proxy_matches_inner_half_action_requires_effective_inertia_or_wake_for_middle_outer_partition"
+        : allRowsPopulateInnerHalf
+          ? "unit_inertia_proxy_matches_inner_half_action_full_partition_unresolved"
+          : rows.length > 0
+            ? "action_ledger_proxy_populated_inner_half_not_closed"
+            : "action_ledger_proxy_no_priority_rows",
+    rows,
+    interpretation:
+      "For the sampled equal-frequency lever arms, the unit-inertia reduced circular-path proxy makes the inner-tagged action fraction one half of the total action, matching the doubled-inner burden. The full four-substep 2:1:1 partition is not supplied by unit inertia because the middle and outer fractions split as the lever-arm squares, so retained closure still needs effective inertia, wake/coupling angular momentum, or a revised action-partition law.",
+    retainedReplayBurden:
+      "Replace the proxy mu_l row with retained branch inertia/action data and close L_retained plus wake and coupling on the same event or positive-width retained domain.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyActionLedgerRow(summary) {
+  const leverArms = summary.leverArmSpeedRelation?.effectiveLeverArms ?? {};
+  const speedRatios = summary.leverArmSpeedRelation?.speedRatios ?? {};
+  const phaseTurns = summary.triadic120Phase?.phaseTurns ?? {};
+  const commonOmega = summary.commonClock?.commonAngularVelocity ?? null;
+  const unitInertiaProxy = createUnitInertiaActionProxyRow({
+    leverArms,
+    speedRatios,
+    phaseTurns,
+    commonOmega,
+  });
+  const requiredEffectiveInertiaForFourSubstepPartition =
+    createRequiredEffectiveInertiaForFourSubstepPartition({
+      leverArms,
+    });
+  return {
+    caseId: summary.caseId,
+    f: summary.f,
+    phaseProfileId: summary.phaseProfileId,
+    commonOmega,
+    effectiveLeverArms: leverArms,
+    speedRatios,
+    phaseTurns,
+    unitInertiaProxy,
+    requiredEffectiveInertiaForFourSubstepPartition,
+    retainedBranchClaim: false,
+  };
+}
+
+function createUnitInertiaActionProxyRow({
+  leverArms,
+  speedRatios,
+  phaseTurns,
+  commonOmega,
+}) {
+  const actionRows = LAYER_ROLES.map((role) => {
+    const effectiveLeverArm = leverArms[role];
+    const proxyAngularMomentum =
+      Number.isFinite(effectiveLeverArm) && Number.isFinite(commonOmega)
+        ? effectiveLeverArm ** 2 * commonOmega
+        : null;
+    const proxyKineticEnergy =
+      Number.isFinite(proxyAngularMomentum) && Number.isFinite(commonOmega)
+        ? 0.5 * proxyAngularMomentum * commonOmega
+        : null;
+    return {
+      role,
+      effectiveLeverArm,
+      speedRatio: speedRatios[role] ?? null,
+      phaseTurn: phaseTurns[role] ?? null,
+      proxyInertia: 1,
+      proxyAngularMomentum,
+      proxyKineticEnergy,
+    };
+  });
+  const angularMomentumByRole = Object.fromEntries(
+    actionRows.map((row) => [row.role, row.proxyAngularMomentum])
+  );
+  const kineticEnergyByRole = Object.fromEntries(
+    actionRows.map((row) => [row.role, row.proxyKineticEnergy])
+  );
+  const actionFractions = normalizeRoleWeights(angularMomentumByRole);
+  const energyFractions = normalizeRoleWeights(kineticEnergyByRole);
+  const targetFractions = normalizeRoleWeights(FOUR_SUBSTEP_ACTION_WEIGHTS);
+  const residualsAgainstFourSubstepTarget = residualRoleWeights({
+    actual: actionFractions,
+    target: targetFractions,
+  });
+  const maxAbsFourSubstepResidual = maxFinite(
+    Object.values(residualsAgainstFourSubstepTarget).map((value) =>
+      Number.isFinite(value) ? Math.abs(value) : null
+    )
+  );
+  const innerHalfActionResidual =
+    Number.isFinite(actionFractions.inner) ? actionFractions.inner - 0.5 : null;
+  const innerHalfActionPass =
+    Number.isFinite(innerHalfActionResidual) &&
+    Math.abs(innerHalfActionResidual) <= ROOT_TOLERANCE;
+  const fourSubstepPartitionPass =
+    Number.isFinite(maxAbsFourSubstepResidual) &&
+    maxAbsFourSubstepResidual <= ROOT_TOLERANCE;
+  return {
+    pass: innerHalfActionPass,
+    status: fourSubstepPartitionPass
+      ? "unit_inertia_proxy_matches_full_four_substep_partition"
+      : innerHalfActionPass
+        ? "unit_inertia_proxy_matches_inner_half_action_not_middle_outer_split"
+        : "unit_inertia_proxy_action_fraction_mismatch",
+    formula:
+      "mu_l=1, J_l=rho_l^2 omega_f, E_l=1/2 J_l omega_f",
+    commonOmega,
+    actionRows: actionRows.map((row) => ({
+      ...row,
+      actionFraction: actionFractions[row.role] ?? null,
+      energyFraction: energyFractions[row.role] ?? null,
+      fourSubstepTargetFraction: targetFractions[row.role] ?? null,
+      targetResidual:
+        residualsAgainstFourSubstepTarget[row.role] ?? null,
+    })),
+    actionFractions,
+    energyFractions,
+    targetFourSubstepFractions: targetFractions,
+    residualsAgainstFourSubstepTarget,
+    maxAbsFourSubstepResidual,
+    innerHalfActionResidual,
+    innerHalfActionPass,
+    fourSubstepPartitionPass,
+    scaleInvariantInterpretation:
+      "With rho_I:rho_M:rho_O=5:4:3, unit-inertia action ratios scale as 25:16:9, so the inner share is 25/(25+16+9)=1/2.",
+    retainedLimitation:
+      "This is a reduced circular-path kinetic proxy. It does not supply the retained action scale, wake angular momentum, coupling recoil, or branch inertia law.",
+  };
+}
+
+function createRequiredEffectiveInertiaForFourSubstepPartition({ leverArms }) {
+  const unnormalizedInertias = Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const effectiveLeverArm = leverArms[role];
+      const targetWeight = FOUR_SUBSTEP_ACTION_WEIGHTS[role];
+      return [
+        role,
+        Number.isFinite(effectiveLeverArm) &&
+        Number.isFinite(targetWeight) &&
+        Math.abs(effectiveLeverArm) > ROOT_TOLERANCE
+          ? targetWeight / effectiveLeverArm ** 2
+          : null,
+      ];
+    })
+  );
+  const middleScale = unnormalizedInertias.middle;
+  const relativeInertiasNormalizedToMiddle = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(unnormalizedInertias[role]) &&
+      Number.isFinite(middleScale) &&
+      Math.abs(middleScale) > ROOT_TOLERANCE
+        ? unnormalizedInertias[role] / middleScale
+        : null,
+    ])
+  );
+  const inertiaRows = LAYER_ROLES.map((role) => ({
+    role,
+    targetWeight: FOUR_SUBSTEP_ACTION_WEIGHTS[role],
+    effectiveLeverArm: leverArms[role] ?? null,
+    unnormalizedInertia: unnormalizedInertias[role],
+    relativeInertiaNormalizedToMiddle:
+      relativeInertiasNormalizedToMiddle[role] ?? null,
+  }));
+  const pass = inertiaRows.every(
+    (row) =>
+      Number.isFinite(row.unnormalizedInertia) &&
+      row.unnormalizedInertia > 0 &&
+      Number.isFinite(row.relativeInertiaNormalizedToMiddle) &&
+      row.relativeInertiaNormalizedToMiddle > 0
+  );
+  return {
+    pass,
+    status: pass
+      ? "positive_effective_inertia_solution_for_four_substep_partition"
+      : "effective_inertia_solution_missing_or_nonpositive",
+    formula: "mu_l proportional to w_l/rho_l^2 for target weights w_l",
+    targetWeights: { ...FOUR_SUBSTEP_ACTION_WEIGHTS },
+    inertiaRows,
+    relativeInertiasNormalizedToMiddle,
+    retainedLimitation:
+      "A positive algebraic inertia solution only identifies the branch-inertia burden. The retained replay must derive these effective inertias or replace them with wake/coupling action terms.",
+  };
+}
+
+function createEqualFrequencyEffectiveInertiaLawScan(actionRows) {
+  const rows = actionRows.map((row) => createEffectiveInertiaLawScanRow(row));
+  const lawIds = Array.from(
+    new Set(rows.flatMap((row) => row.candidateLaws.map((law) => law.lawId)))
+  );
+  const lawSummaries = lawIds.map((lawId) => {
+    const candidates = rows
+      .map((row) => row.candidateLaws.find((law) => law.lawId === lawId))
+      .filter(Boolean);
+    const exactPassCount = candidates.filter((law) => law.exactPass === true).length;
+    const independent = candidates[0]?.derivationClass === "independent_kinematic_law";
+    const targetDerived =
+      candidates[0]?.derivationClass === "target_weighted_law";
+    return {
+      lawId,
+      derivationClass: candidates[0]?.derivationClass ?? null,
+      exactPassCount,
+      rowCount: rows.length,
+      maxResidualAcrossRows: maxFinite(
+        candidates.map((law) => law.maxAbsResidual)
+      ),
+      status:
+        rows.length > 0 && exactPassCount === rows.length
+          ? independent
+            ? "independent_law_exact_all_rows"
+            : targetDerived
+              ? "target_weighted_law_exact_all_rows"
+              : "law_exact_all_rows"
+          : exactPassCount > 0
+            ? "law_exact_on_subset"
+            : "law_not_exact",
+    };
+  });
+  const independentExactLawCount = lawSummaries.filter(
+    (row) =>
+      row.derivationClass === "independent_kinematic_law" &&
+      row.exactPassCount === rows.length &&
+      rows.length > 0
+  ).length;
+  const targetWeightedExactLawCount = lawSummaries.filter(
+    (row) =>
+      row.derivationClass === "target_weighted_law" &&
+      row.exactPassCount === rows.length &&
+      rows.length > 0
+  ).length;
+  const inverseSquareRows = rows
+    .map((row) =>
+      row.candidateLaws.find((law) => law.lawId === "inverse_square_lever_arm")
+    )
+    .filter(Boolean);
+  const inverseSquareOuterPassCount = inverseSquareRows.filter(
+    (law) => Math.abs(law.residuals.outer ?? Number.NaN) <= ROOT_TOLERANCE
+  ).length;
+  const inverseSquareInnerResidualMean = meanFinite(
+    inverseSquareRows.map((law) => law.residuals.inner)
+  );
+  return {
+    schema: "aaa-equal-frequency-effective-inertia-law-scan.v1",
+    claimLevel:
+      "candidate effective-inertia law comparison; not retained branch inertia derivation",
+    rowCount: rows.length,
+    lawSummaries,
+    independentExactLawCount,
+    targetWeightedExactLawCount,
+    inverseSquareOuterPassCount,
+    inverseSquareInnerResidualMean,
+    status:
+      independentExactLawCount > 0
+        ? "independent_effective_inertia_law_exact_under_current_scan"
+        : targetWeightedExactLawCount > 0
+          ? "no_independent_simple_law_exact_target_weighted_inverse_square_law_exact"
+          : "no_scanned_effective_inertia_law_exact",
+    rows,
+    interpretation:
+      "The independent inverse-square lever-arm law matches the outer effective inertia but misses the inner row by the extra root/action factor. Multiplying inverse-square lever-arm inertia by the four-substep/root-multiplicity weights gives an exact target-derived law on every sampled priority row.",
+    retainedReplayBurden:
+      "Derive the inverse-square branch-inertia response and the inner doubled root/action weight from retained branch geometry, or replace this target-derived scan with an accepted wake/coupling action-partition law.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyEnergyAngularMomentumClosureAudit({
+  priorityCaseSummaries,
+  actionLedgerAudit,
+}) {
+  const actionRowsByCaseId = new Map(
+    (actionLedgerAudit?.rows ?? []).map((row) => [row.caseId, row])
+  );
+  const rows = priorityCaseSummaries.map((summary) =>
+    createEqualFrequencyEnergyAngularMomentumClosureRow({
+      summary,
+      actionRow: actionRowsByCaseId.get(summary.caseId) ?? null,
+    })
+  );
+  const sameClockIdentityPassCount = rows.filter(
+    (row) => row.sameClockEnergyAngularMomentumIdentityPass === true
+  ).length;
+  const targetEffectiveInertiaClosurePassCount = rows.filter(
+    (row) => row.targetEffectiveInertiaLedger.fourSubstepTargetPass === true
+  ).length;
+  const unitInertiaWakeCouplingSlackFiniteCount = rows.filter(
+    (row) => row.unitInertiaWakeCouplingSlack.finiteBalancedSlackPass === true
+  ).length;
+  const hbarScaleCandidateCount = rows.filter(
+    (row) => row.hbarUnitScaleCandidate.populated === true
+  ).length;
+  const retainedEnergyStationarityPassCount = rows.filter(
+    (row) => row.retainedEnergyStationarityPass === true
+  ).length;
+  const retainedSameEventAngularMomentumPassCount = rows.filter(
+    (row) => row.retainedSameEventAngularMomentumPass === true
+  ).length;
+  const allRowsHaveCurrentClosureCandidate =
+    rows.length > 0 &&
+    sameClockIdentityPassCount === rows.length &&
+    targetEffectiveInertiaClosurePassCount === rows.length &&
+    hbarScaleCandidateCount === rows.length;
+  return {
+    schema: "aaa-equal-frequency-energy-angular-momentum-closure-audit.v1",
+    claimLevel:
+      "same-clock energy/angular-momentum closure audit; current algebraic proxy only, not retained hbar-unit acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    executableProjectionChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    residualComponents: ["r_E", "r_J"],
+    auditedCaseCount: rows.length,
+    sameClockIdentityPassCount,
+    targetEffectiveInertiaClosurePassCount,
+    unitInertiaWakeCouplingSlackFiniteCount,
+    hbarScaleCandidateCount,
+    retainedEnergyStationarityPassCount,
+    retainedSameEventAngularMomentumPassCount,
+    closureEquations: [
+      "J_a = mu_a rho_a^2 omega_f",
+      "E_a = (1/2) J_a omega_f",
+      "r_E,a = partial_{rho_a} E_branch(B_3B,rho,omega,phi,L_wake,L_coupling)",
+      "r_J = sum_a mu_a rho_a^2 omega_f + L_wake + L_coupling - hbar_unit",
+      "if L_wake=L_coupling=0, sigma_hbar = hbar_unit/(omega_f sum_a mu_a^(rel) rho_a^2)",
+    ],
+    targetFourSubstepWeights: { ...FOUR_SUBSTEP_ACTION_WEIGHTS },
+    targetFourSubstepFractions: normalizeRoleWeights(FOUR_SUBSTEP_ACTION_WEIGHTS),
+    status:
+      retainedEnergyStationarityPassCount === rows.length &&
+      retainedSameEventAngularMomentumPassCount === rows.length &&
+      rows.length > 0
+        ? "equal_frequency_energy_angular_momentum_retained_closure_accepted"
+        : allRowsHaveCurrentClosureCandidate
+          ? "same_clock_j_e_identity_populated_target_inertia_and_hbar_scale_candidates_retained_stationarity_missing"
+          : sameClockIdentityPassCount > 0
+            ? "same_clock_j_e_identity_populated_closure_candidates_incomplete"
+            : "same_clock_j_e_identity_missing",
+    rows,
+    interpretation:
+      "Equal frequency makes the action and kinetic-energy ledgers share one clock: E_a=(1/2)J_a omega_f. Different effective lever arms are therefore compatible with one frequency only after the retained replay supplies mu_a, wake/coupling angular momentum, or an energy-radius stationarity law on the same event/domain.",
+    hbarUnitImplication:
+      "The common clock turns the hbar-unit question into a scale row for the same-event angular-momentum ledger. A finite sigma_hbar candidate exists under the target effective-inertia ledger, but it is not accepted until the retained branch derives the inertia, wake/coupling, and energy-stationarity rows.",
+    retainedReplayBurden:
+      "Derive the effective inertia or wake/coupling partition from B_3B, bind it to E_branch and the same retained event/domain, and then evaluate r_E and r_J on S_eq.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyEnergyAngularMomentumClosureRow({
+  summary,
+  actionRow,
+}) {
+  const leverArms =
+    actionRow?.effectiveLeverArms ??
+    summary.leverArmSpeedRelation?.effectiveLeverArms ??
+    {};
+  const speedRatios =
+    actionRow?.speedRatios ?? summary.leverArmSpeedRelation?.speedRatios ?? {};
+  const phaseTurns = actionRow?.phaseTurns ?? summary.triadic120Phase?.phaseTurns ?? {};
+  const commonOmega =
+    actionRow?.commonOmega ?? summary.commonClock?.commonAngularVelocity ?? null;
+  const targetFractions = normalizeRoleWeights(FOUR_SUBSTEP_ACTION_WEIGHTS);
+  const unitProxyRowsByRole = Object.fromEntries(
+    (actionRow?.unitInertiaProxy?.actionRows ?? []).map((row) => [row.role, row])
+  );
+  const sameClockIdentityRows = LAYER_ROLES.map((role) => {
+    const proxyRow = unitProxyRowsByRole[role] ?? {};
+    const proxyAngularMomentum = proxyRow.proxyAngularMomentum ?? null;
+    const proxyKineticEnergy = proxyRow.proxyKineticEnergy ?? null;
+    const energyFromAngularMomentum =
+      Number.isFinite(proxyAngularMomentum) && Number.isFinite(commonOmega)
+        ? 0.5 * proxyAngularMomentum * commonOmega
+        : null;
+    const energyIdentityResidual =
+      Number.isFinite(proxyKineticEnergy) &&
+      Number.isFinite(energyFromAngularMomentum)
+        ? proxyKineticEnergy - energyFromAngularMomentum
+        : null;
+    return {
+      role,
+      effectiveLeverArm: leverArms[role] ?? null,
+      speedRatio: speedRatios[role] ?? null,
+      phaseTurn: phaseTurns[role] ?? null,
+      proxyAngularMomentum,
+      proxyKineticEnergy,
+      energyFromAngularMomentum,
+      energyIdentityResidual,
+      pass:
+        Number.isFinite(energyIdentityResidual) &&
+        Math.abs(energyIdentityResidual) <= ROOT_TOLERANCE,
+    };
+  });
+  const sameClockEnergyAngularMomentumIdentityPass =
+    sameClockIdentityRows.length === LAYER_ROLES.length &&
+    sameClockIdentityRows.every((row) => row.pass === true);
+  const unitFractions =
+    actionRow?.unitInertiaProxy?.actionFractions ??
+    normalizeRoleWeights(
+      Object.fromEntries(
+        sameClockIdentityRows.map((row) => [row.role, row.proxyAngularMomentum])
+      )
+    );
+  const unitResidualsAgainstTarget = residualRoleWeights({
+    actual: unitFractions,
+    target: targetFractions,
+  });
+  const requiredRelativeInertias =
+    actionRow?.requiredEffectiveInertiaForFourSubstepPartition
+      ?.relativeInertiasNormalizedToMiddle ?? {};
+  const targetAngularMomentumWeights = Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const mu = requiredRelativeInertias[role];
+      const rho = leverArms[role];
+      return [
+        role,
+        Number.isFinite(mu) && Number.isFinite(rho) ? mu * rho ** 2 : null,
+      ];
+    })
+  );
+  const targetAngularMomentumFractions = normalizeRoleWeights(
+    targetAngularMomentumWeights
+  );
+  const targetAngularMomentumResiduals = residualRoleWeights({
+    actual: targetAngularMomentumFractions,
+    target: targetFractions,
+  });
+  const targetMaxAbsResidual = maxFinite(
+    Object.values(targetAngularMomentumResiduals).map((value) =>
+      Number.isFinite(value) ? Math.abs(value) : null
+    )
+  );
+  const targetAngularMomentumWeightTotal = sumFinite(
+    Object.values(targetAngularMomentumWeights)
+  );
+  const targetEffectiveInertiaFourSubstepPass =
+    Number.isFinite(targetMaxAbsResidual) &&
+    targetMaxAbsResidual <= ROOT_TOLERANCE;
+  const hbarUnitScaleDenominator =
+    Number.isFinite(commonOmega) &&
+    Number.isFinite(targetAngularMomentumWeightTotal)
+      ? commonOmega * targetAngularMomentumWeightTotal
+      : null;
+  const hbarUnitScaleCandidatePopulated =
+    targetEffectiveInertiaFourSubstepPass &&
+    Number.isFinite(hbarUnitScaleDenominator) &&
+    Math.abs(hbarUnitScaleDenominator) > ROOT_TOLERANCE;
+  const slackFractionsNeededByRole = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(targetFractions[role]) && Number.isFinite(unitFractions[role])
+        ? targetFractions[role] - unitFractions[role]
+        : null,
+    ])
+  );
+  const slackFractionSum = sumFinite(Object.values(slackFractionsNeededByRole));
+  const finiteBalancedSlackPass =
+    LAYER_ROLES.every((role) =>
+      Number.isFinite(slackFractionsNeededByRole[role])
+    ) &&
+    Number.isFinite(slackFractionSum) &&
+    Math.abs(slackFractionSum) <= ROOT_TOLERANCE;
+  return {
+    rowId: `S_eq-energy-angular-momentum-f${summary.f}`,
+    retainedRowSetId: "S_eq",
+    caseId: summary.caseId,
+    f: summary.f,
+    phaseProfileId: summary.phaseProfileId,
+    roleAssignedRelation: "(I,M,O)=(f,f,f)",
+    commonOmega,
+    effectiveLeverArms: leverArms,
+    speedRatios,
+    phaseTurns,
+    sameClockEnergyAngularMomentumIdentityPass,
+    sameClockIdentityRows,
+    unitInertiaWakeCouplingSlack: {
+      formula:
+        "Delta L_wake/coupling fractions = target 2:1:1 fractions - unit-inertia J fractions",
+      unitInertiaFractions: unitFractions,
+      targetFourSubstepFractions: targetFractions,
+      unitResidualsAgainstTarget,
+      slackFractionsNeededByRole,
+      slackFractionSum,
+      finiteBalancedSlackPass,
+      interpretation:
+        "With unit inertia, the inner half-action burden is exact, but middle must shed and outer must receive equal finite angular-momentum fraction to reach the full 2:1:1 target.",
+    },
+    targetEffectiveInertiaLedger: {
+      formula: "mu_a^(rel) proportional to w_a/rho_a^2",
+      relativeEffectiveInertiasNormalizedToMiddle: requiredRelativeInertias,
+      angularMomentumWeightsByRole: targetAngularMomentumWeights,
+      angularMomentumWeightTotal: targetAngularMomentumWeightTotal,
+      angularMomentumFractionsByRole: targetAngularMomentumFractions,
+      targetFourSubstepFractions: targetFractions,
+      residualsAgainstTarget: targetAngularMomentumResiduals,
+      maxAbsResidual: targetMaxAbsResidual,
+      fourSubstepTargetPass: targetEffectiveInertiaFourSubstepPass,
+      retainedLimitation:
+        "This target ledger is algebraic. It must be derived from retained inertia, root multiplicity, wake, or coupling rows before acceptance.",
+    },
+    hbarUnitScaleCandidate: {
+      formula:
+        "sigma_hbar = hbar_unit/(omega_f sum_a mu_a^(rel) rho_a^2) if L_wake=L_coupling=0",
+      denominator: hbarUnitScaleDenominator,
+      populated: hbarUnitScaleCandidatePopulated,
+      retainedScaleAccepted: false,
+      retainedLimitation:
+        "A finite scale candidate is not an accepted hbar unit until the same retained event/domain supplies the scale law and wake/coupling disposition.",
+    },
+    retainedEnergyStationarityPass: false,
+    retainedSameEventAngularMomentumPass: false,
+    blockerIds: [
+      "retained_branch_energy_E_branch",
+      "partial_rho_E_branch_rows",
+      "derived_effective_inertia_mu_a_or_wake_coupling_partition",
+      "hbar_unit_normalization_or_sigma_hbar",
+      "same_event_angular_momentum_residual_r_J",
+      "same_retained_event_or_positive_width_domain",
+    ],
+    status:
+      hbarUnitScaleCandidatePopulated && finiteBalancedSlackPass
+        ? "same_clock_j_e_row_populated_target_inertia_and_wake_slack_routes_finite_retained_scale_missing"
+        : sameClockEnergyAngularMomentumIdentityPass
+          ? "same_clock_j_e_row_populated_retained_scale_incomplete"
+          : "same_clock_j_e_row_incomplete",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseDeformationBalanceAudit(caseSummaries) {
+  const rows = caseSummaries.map((summary) =>
+    createEqualFrequencyPhaseDeformationBalanceRow(summary)
+  );
+  const priorityRows = rows.filter((row) => row.priorityPhaseProfile === true);
+  const phaseProfileSummaries = createPhaseDeformationBalanceProfileSummaries(rows);
+  const priorityPhaseOnlyPassCount = priorityRows.filter(
+    (row) => row.phaseOnlyBalance.pass === true
+  ).length;
+  const priorityLeverArmPassCount = priorityRows.filter(
+    (row) => row.leverArmWeightedBalance.pass === true
+  ).length;
+  const priorityUnitInertiaActionPassCount = priorityRows.filter(
+    (row) => row.unitInertiaActionWeightedBalance.pass === true
+  ).length;
+  const priorityRootWeightedActionPassCount = priorityRows.filter(
+    (row) => row.rootWeightedActionBalance.pass === true
+  ).length;
+  const priorityPhaseOnlyPasses =
+    priorityRows.length > 0 && priorityPhaseOnlyPassCount === priorityRows.length;
+  const priorityWeightedBalancesFail =
+    priorityRows.length > 0 &&
+    priorityLeverArmPassCount === 0 &&
+    priorityUnitInertiaActionPassCount === 0 &&
+    priorityRootWeightedActionPassCount === 0;
+  return {
+    schema: "aaa-equal-frequency-phase-deformation-balance-audit.v2",
+    claimLevel:
+      "phase/deformation weight-balance proxy; not retained phase row-set identity or momentum closure",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    branchStateContractSchema:
+      createTriBinaryNoetherBraidBranchStateContract().schema,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    balanceEquation:
+      "sum_a W_a exp(i phi_a)=0, with W_a supplied by the retained branch momentum/action/coupling ledger",
+    planarZ3IdentityStatus:
+      "The unweighted triadic 120-degree cancellation is the planar Z3 identity. It is a useful phase-only control, but it is not evidence for a near-orthogonal tri-binary sector until plane normals and phase-bundle holonomy are retained.",
+    retainedSectorRowsRequired: [
+      "retained_plane_normals_or_angular_momentum_bivectors_N_a",
+      "phase_bundle_holonomy",
+      "plane_determinant_or_D_plane",
+      "coplanar_cyclic_vs_near_orthogonal_sector_discriminator",
+    ],
+    returnPeriodFrequencyCaveat:
+      "Equal angular frequency must be replayed as a retained return-period or locked-harmonic certificate on the branch history record; the current s/rho comparison is admissible only inside the reduced circular chart.",
+    auditedCaseCount: rows.length,
+    priorityCaseCount: priorityRows.length,
+    priorityPhaseOnlyPassCount,
+    priorityLeverArmPassCount,
+    priorityUnitInertiaActionPassCount,
+    priorityRootWeightedActionPassCount,
+    phaseProfileSummaries,
+    status:
+      priorityPhaseOnlyPasses && priorityWeightedBalancesFail
+        ? "triadic_120_phase_only_balance_populated_weighted_deformation_balance_missing"
+        : priorityPhaseOnlyPasses
+          ? "triadic_120_phase_only_balance_populated_weighted_status_mixed"
+          : rows.length > 0
+            ? "phase_deformation_balance_proxy_populated_triadic_phase_only_not_closed"
+            : "phase_deformation_balance_no_equal_frequency_rows",
+    rows,
+    interpretation:
+      "The triadic 120-degree profile exactly cancels the unweighted phase clock in the planar Z3 identity, but the same rows do not cancel when weighted by effective lever arm, unit-inertia action, or the 2:1:1 root/action burden. Phase is therefore not just an initial offset: retained closure must derive a weight balance, phase detuning, wake/coupling recoil, or momentum/angular-momentum ledger that balances the unequal branch rows, and it must classify whether the retained plane data belongs to a coplanar cyclic sector or a near-orthogonal tri-binary sector.",
+    retainedReplayBurden:
+      "Bind phase offsets to the retained branch-state weights W_a on the same row set as the energy-radius, effective-inertia, wake/coupling, momentum, one-unit angular-momentum, branch return-period, and plane-topology sector ledgers.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseDeformationBalanceRow(summary) {
+  const phaseTurns =
+    summary.phaseProfile?.phaseTurnsByLayer ??
+    summary.triadic120Phase?.phaseTurns ??
+    {};
+  const leverArms = summary.leverArmSpeedRelation?.effectiveLeverArms ?? {};
+  const commonOmega = summary.commonClock?.commonAngularVelocity ?? null;
+  const speedWeights = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(leverArms[role]) && Number.isFinite(commonOmega)
+        ? leverArms[role] * commonOmega
+        : null,
+    ])
+  );
+  const unitInertiaActionWeights = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(leverArms[role]) && Number.isFinite(commonOmega)
+        ? leverArms[role] ** 2 * commonOmega
+        : null,
+    ])
+  );
+  return {
+    caseId: summary.caseId,
+    f: summary.f,
+    phaseProfileId: summary.phaseProfileId,
+    phaseProfileRole: summary.phaseProfileRole,
+    priorityPhaseProfile: summary.priorityPhaseProfile === true,
+    phaseTurns,
+    effectiveLeverArms: leverArms,
+    speedWeights,
+    phaseOnlyBalance: createWeightedPhaseBalance({
+      weightModel: "phase_only_unit_weights",
+      weightsByRole: Object.fromEntries(LAYER_ROLES.map((role) => [role, 1])),
+      phaseTurns,
+    }),
+    leverArmWeightedBalance: createWeightedPhaseBalance({
+      weightModel: "effective_lever_arm_or_speed_weights",
+      weightsByRole: leverArms,
+      phaseTurns,
+    }),
+    speedWeightedBalance: createWeightedPhaseBalance({
+      weightModel: "common_omega_speed_weights",
+      weightsByRole: speedWeights,
+      phaseTurns,
+    }),
+    unitInertiaActionWeightedBalance: createWeightedPhaseBalance({
+      weightModel: "unit_inertia_action_proxy_weights",
+      weightsByRole: unitInertiaActionWeights,
+      phaseTurns,
+    }),
+    rootWeightedActionBalance: createWeightedPhaseBalance({
+      weightModel: "target_2_1_1_root_action_weights",
+      weightsByRole: FOUR_SUBSTEP_ACTION_WEIGHTS,
+      phaseTurns,
+    }),
+    retainedBranchClaim: false,
+  };
+}
+
+function createWeightedPhaseBalance({ weightModel, weightsByRole, phaseTurns }) {
+  const rows = LAYER_ROLES.map((role) => {
+    const weight = weightsByRole?.[role];
+    const phaseTurn = phaseTurns?.[role];
+    const angle = Number.isFinite(phaseTurn) ? CLOSURE_PERIOD * phaseTurn : null;
+    const unitVector =
+      Number.isFinite(angle)
+        ? { x: Math.cos(angle), y: Math.sin(angle) }
+        : { x: null, y: null };
+    return {
+      role,
+      weight: Number.isFinite(weight) ? weight : null,
+      phaseTurn: Number.isFinite(phaseTurn) ? phaseTurn : null,
+      unitVector,
+      weightedVector:
+        Number.isFinite(weight) && Number.isFinite(unitVector.x)
+          ? { x: weight * unitVector.x, y: weight * unitVector.y }
+          : { x: null, y: null },
+    };
+  });
+  const allRowsFinite = rows.every(
+    (row) =>
+      Number.isFinite(row.weight) &&
+      Number.isFinite(row.phaseTurn) &&
+      Number.isFinite(row.weightedVector.x) &&
+      Number.isFinite(row.weightedVector.y)
+  );
+  const totalWeight = allRowsFinite
+    ? rows.reduce((sum, row) => sum + row.weight, 0)
+    : null;
+  const vector = allRowsFinite
+    ? rows.reduce(
+        (sum, row) => ({
+          x: sum.x + row.weightedVector.x,
+          y: sum.y + row.weightedVector.y,
+        }),
+        { x: 0, y: 0 }
+      )
+    : { x: null, y: null };
+  const magnitude =
+    Number.isFinite(vector.x) && Number.isFinite(vector.y)
+      ? Math.hypot(vector.x, vector.y)
+      : null;
+  const normalizedMagnitude =
+    Number.isFinite(magnitude) &&
+    Number.isFinite(totalWeight) &&
+    Math.abs(totalWeight) > ROOT_TOLERANCE
+      ? magnitude / Math.abs(totalWeight)
+      : null;
+  const pass =
+    Number.isFinite(normalizedMagnitude) &&
+    normalizedMagnitude <= ROOT_TOLERANCE;
+  return {
+    weightModel,
+    rows,
+    totalWeight,
+    vector,
+    magnitude,
+    normalizedMagnitude,
+    pass,
+    status: pass ? "weighted_phase_vector_balances" : "weighted_phase_vector_residual",
+  };
+}
+
+function createPhaseDeformationBalanceProfileSummaries(rows) {
+  const buckets = new Map();
+  for (const row of rows) {
+    const key = row.phaseProfileId ?? "unknown";
+    const bucket = buckets.get(key) ?? {
+      phaseProfileId: key,
+      phaseProfileRole: row.phaseProfileRole ?? null,
+      priorityPhaseProfile: row.priorityPhaseProfile === true,
+      rows: [],
+    };
+    bucket.rows.push(row);
+    buckets.set(key, bucket);
+  }
+  return Array.from(buckets.values())
+    .map((bucket) => ({
+      phaseProfileId: bucket.phaseProfileId,
+      phaseProfileRole: bucket.phaseProfileRole,
+      priorityPhaseProfile: bucket.priorityPhaseProfile,
+      caseCount: bucket.rows.length,
+      phaseOnlyMeanResidual: meanFinite(
+        bucket.rows.map((row) => row.phaseOnlyBalance.normalizedMagnitude)
+      ),
+      leverArmMeanResidual: meanFinite(
+        bucket.rows.map((row) => row.leverArmWeightedBalance.normalizedMagnitude)
+      ),
+      unitInertiaActionMeanResidual: meanFinite(
+        bucket.rows.map(
+          (row) => row.unitInertiaActionWeightedBalance.normalizedMagnitude
+        )
+      ),
+      rootWeightedActionMeanResidual: meanFinite(
+        bucket.rows.map((row) => row.rootWeightedActionBalance.normalizedMagnitude)
+      ),
+      phaseOnlyPassCount: bucket.rows.filter(
+        (row) => row.phaseOnlyBalance.pass === true
+      ).length,
+      leverArmPassCount: bucket.rows.filter(
+        (row) => row.leverArmWeightedBalance.pass === true
+      ).length,
+      unitInertiaActionPassCount: bucket.rows.filter(
+        (row) => row.unitInertiaActionWeightedBalance.pass === true
+      ).length,
+      rootWeightedActionPassCount: bucket.rows.filter(
+        (row) => row.rootWeightedActionBalance.pass === true
+      ).length,
+    }))
+    .sort((left, right) => {
+      if (left.priorityPhaseProfile !== right.priorityPhaseProfile) {
+        return left.priorityPhaseProfile ? -1 : 1;
+      }
+      const leftResidual = left.phaseOnlyMeanResidual ?? Number.POSITIVE_INFINITY;
+      const rightResidual = right.phaseOnlyMeanResidual ?? Number.POSITIVE_INFINITY;
+      if (leftResidual !== rightResidual) {
+        return leftResidual - rightResidual;
+      }
+      return left.phaseProfileId.localeCompare(right.phaseProfileId);
+    });
+}
+
+function createEqualFrequencyPhaseLatticeAudit(priorityCaseSummaries) {
+  const denominator = EQUAL_FREQUENCY_PHASE_LATTICE_DENOMINATOR;
+  const rows = [];
+  for (let middleStep = 0; middleStep < denominator; middleStep += 1) {
+    for (let outerStep = 0; outerStep < denominator; outerStep += 1) {
+      rows.push(
+        createEqualFrequencyPhaseLatticeRow({
+          priorityCaseSummaries,
+          denominator,
+          middleStep,
+          outerStep,
+        })
+      );
+    }
+  }
+  const phaseOnlyExactRows = rows.filter(
+    (row) => row.balanceSummaries.phaseOnly.allPriorityRowsPass === true
+  );
+  const leverArmExactRows = rows.filter(
+    (row) => row.balanceSummaries.leverArm.allPriorityRowsPass === true
+  );
+  const unitInertiaActionExactRows = rows.filter(
+    (row) => row.balanceSummaries.unitInertiaAction.allPriorityRowsPass === true
+  );
+  const rootWeightedActionExactRows = rows.filter(
+    (row) => row.balanceSummaries.rootWeightedAction.allPriorityRowsPass === true
+  );
+  const triadicRows = rows.filter((row) => row.triadicEqualSpacingPass === true);
+  const currentTriadicProfileRow =
+    rows.find((row) => row.matchedProfileIds.includes("triadic-120")) ?? null;
+  const rootWeightedActionProfileRow =
+    rows.find((row) =>
+      row.matchedProfileIds.includes("middle-outer-opposed-180")
+    ) ?? null;
+  const phaseOnlyAndRootWeightedOverlapCount = rows.filter(
+    (row) =>
+      row.balanceSummaries.phaseOnly.allPriorityRowsPass === true &&
+      row.balanceSummaries.rootWeightedAction.allPriorityRowsPass === true
+  ).length;
+  return {
+    schema: "aaa-equal-frequency-phase-lattice-audit.v1",
+    claimLevel:
+      "finite reduced phase-lattice audit; not retained phase-lock or branch-sector selection",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    phaseGauge: "global phase fixed by phi_I=0",
+    denominator,
+    phaseStepDegrees: 360 / denominator,
+    priorityCaseCount: priorityCaseSummaries.length,
+    latticeRowCount: rows.length,
+    triadicEqualSpacingRowCount: triadicRows.length,
+    phaseOnlyExactRowCount: phaseOnlyExactRows.length,
+    leverArmExactRowCount: leverArmExactRows.length,
+    unitInertiaActionExactRowCount: unitInertiaActionExactRows.length,
+    rootWeightedActionExactRowCount: rootWeightedActionExactRows.length,
+    phaseOnlyAndRootWeightedOverlapCount,
+    currentTriadicProfileRowId: currentTriadicProfileRow?.rowId ?? null,
+    rootWeightedActionProfileRowId: rootWeightedActionProfileRow?.rowId ?? null,
+    bestRowsByBalanceModel: {
+      phaseOnly: createBestPhaseLatticeRows(rows, "phaseOnly"),
+      leverArm: createBestPhaseLatticeRows(rows, "leverArm"),
+      unitInertiaAction: createBestPhaseLatticeRows(rows, "unitInertiaAction"),
+      rootWeightedAction: createBestPhaseLatticeRows(rows, "rootWeightedAction"),
+    },
+    status:
+      phaseOnlyExactRows.length === 2 &&
+      rootWeightedActionExactRows.length > 0 &&
+      phaseOnlyAndRootWeightedOverlapCount === 0
+        ? "phase_lattice_audit_splits_triadic_clock_balance_from_weighted_action_balance"
+        : rows.length > 0
+          ? "phase_lattice_audit_populated_status_mixed"
+          : "phase_lattice_audit_no_rows",
+    interpretation:
+      "On the 30-degree reduced phase lattice with phi_I fixed, the triadic 120-degree rows are the exact unit-weight phase-clock cancellations. The target 2:1:1 root/action weights instead have an exact paired-opposition control with middle and outer opposite the doubled inner row. This does not reject the 120-degree profile; it exposes a retained-branch choice between phase-only cyclic stealth and weighted action balance that must be resolved by retained weights, wake/coupling recoil, and sector data.",
+    retainedReplayBurden:
+      "Choose phase offsets on the same retained row set as the branch weights W_a, return-period rows, plane-sector rows, energy/action ledger, and event/domain support. A retained branch may select triadic 120 degrees only if its retained weights, phase detuning, wake/coupling, or momentum/angular-momentum rows close the weighted residual.",
+    rows,
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseLatticeRow({
+  priorityCaseSummaries,
+  denominator,
+  middleStep,
+  outerStep,
+}) {
+  const phaseTurns = {
+    inner: 0,
+    middle: middleStep / denominator,
+    outer: outerStep / denominator,
+  };
+  const phaseDegrees = Object.fromEntries(
+    LAYER_ROLES.map((role) => [role, phaseTurns[role] * 360])
+  );
+  const phaseOffsetsTurns = createCanonicalForwardTurnSpacings(phaseTurns);
+  const plus120Residuals = Object.fromEntries(
+    Object.entries(phaseOffsetsTurns).map(([key, value]) => [
+      key,
+      Number.isFinite(value) ? Math.abs(value - 1 / 3) : null,
+    ])
+  );
+  const minus120Residuals = Object.fromEntries(
+    Object.entries(phaseOffsetsTurns).map(([key, value]) => [
+      key,
+      Number.isFinite(value) ? Math.abs(value - 2 / 3) : null,
+    ])
+  );
+  const maxPlus120Residual = maxFinite(Object.values(plus120Residuals));
+  const maxMinus120Residual = maxFinite(Object.values(minus120Residuals));
+  const triadicEqualSpacingPass =
+    (Number.isFinite(maxPlus120Residual) &&
+      maxPlus120Residual <= ROOT_TOLERANCE) ||
+    (Number.isFinite(maxMinus120Residual) &&
+      maxMinus120Residual <= ROOT_TOLERANCE);
+  const caseBalanceRows = priorityCaseSummaries.map((summary) =>
+    createEqualFrequencyPhaseBalanceSet({
+      phaseTurns,
+      leverArms: summary.leverArmSpeedRelation?.effectiveLeverArms ?? {},
+      commonOmega: summary.commonClock?.commonAngularVelocity ?? null,
+    })
+  );
+  const balanceSummaries = {
+    phaseOnly: createPhaseLatticeBalanceSummary(
+      caseBalanceRows.map((row) => row.phaseOnlyBalance)
+    ),
+    leverArm: createPhaseLatticeBalanceSummary(
+      caseBalanceRows.map((row) => row.leverArmWeightedBalance)
+    ),
+    unitInertiaAction: createPhaseLatticeBalanceSummary(
+      caseBalanceRows.map((row) => row.unitInertiaActionWeightedBalance)
+    ),
+    rootWeightedAction: createPhaseLatticeBalanceSummary(
+      caseBalanceRows.map((row) => row.rootWeightedActionBalance)
+    ),
+  };
+  const matchedProfileIds = createEqualFrequencyPhaseProfiles()
+    .filter((profile) => phaseTurnsMatch(phaseTurns, profile.phaseTurnsByLayer))
+    .map((profile) => profile.id);
+  return {
+    rowId: `phase-lattice-${denominator}-i0-m${middleStep}-o${outerStep}`,
+    denominator,
+    middleStep,
+    outerStep,
+    phaseTurns,
+    phaseDegrees,
+    phaseOffsetsTurns,
+    maxPlus120Residual,
+    maxMinus120Residual,
+    triadicEqualSpacingPass,
+    matchedProfileIds,
+    balanceSummaries,
+    status:
+      balanceSummaries.phaseOnly.allPriorityRowsPass &&
+      balanceSummaries.rootWeightedAction.allPriorityRowsPass
+        ? "phase_lattice_row_phase_only_and_root_action_balance"
+        : balanceSummaries.phaseOnly.allPriorityRowsPass
+          ? "phase_lattice_row_phase_only_triadic_balance"
+          : balanceSummaries.rootWeightedAction.allPriorityRowsPass
+            ? "phase_lattice_row_root_action_weighted_balance"
+            : "phase_lattice_row_weighted_residual",
+  };
+}
+
+function createEqualFrequencyPhaseBalanceSet({ phaseTurns, leverArms, commonOmega }) {
+  const speedWeights = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(leverArms[role]) && Number.isFinite(commonOmega)
+        ? leverArms[role] * commonOmega
+        : null,
+    ])
+  );
+  const unitInertiaActionWeights = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(leverArms[role]) && Number.isFinite(commonOmega)
+        ? leverArms[role] ** 2 * commonOmega
+        : null,
+    ])
+  );
+  return {
+    phaseOnlyBalance: createWeightedPhaseBalance({
+      weightModel: "phase_only_unit_weights",
+      weightsByRole: Object.fromEntries(LAYER_ROLES.map((role) => [role, 1])),
+      phaseTurns,
+    }),
+    leverArmWeightedBalance: createWeightedPhaseBalance({
+      weightModel: "effective_lever_arm_or_speed_weights",
+      weightsByRole: leverArms,
+      phaseTurns,
+    }),
+    speedWeightedBalance: createWeightedPhaseBalance({
+      weightModel: "common_omega_speed_weights",
+      weightsByRole: speedWeights,
+      phaseTurns,
+    }),
+    unitInertiaActionWeightedBalance: createWeightedPhaseBalance({
+      weightModel: "unit_inertia_action_proxy_weights",
+      weightsByRole: unitInertiaActionWeights,
+      phaseTurns,
+    }),
+    rootWeightedActionBalance: createWeightedPhaseBalance({
+      weightModel: "target_2_1_1_root_action_weights",
+      weightsByRole: FOUR_SUBSTEP_ACTION_WEIGHTS,
+      phaseTurns,
+    }),
+  };
+}
+
+function createPhaseLatticeBalanceSummary(balances) {
+  const residuals = balances
+    .map((balance) => balance.normalizedMagnitude)
+    .filter(Number.isFinite);
+  const passCount = balances.filter((balance) => balance.pass === true).length;
+  return {
+    priorityRowCount: balances.length,
+    passCount,
+    allPriorityRowsPass: balances.length > 0 && passCount === balances.length,
+    meanResidual: meanFinite(residuals),
+    minResidual: minFinite(residuals),
+    maxResidual: maxFinite(residuals),
+  };
+}
+
+function createBestPhaseLatticeRows(rows, balanceModelKey, limit = 5) {
+  return rows
+    .slice()
+    .sort((left, right) => {
+      const leftResidual =
+        left.balanceSummaries?.[balanceModelKey]?.meanResidual ??
+        Number.POSITIVE_INFINITY;
+      const rightResidual =
+        right.balanceSummaries?.[balanceModelKey]?.meanResidual ??
+        Number.POSITIVE_INFINITY;
+      if (leftResidual !== rightResidual) {
+        return leftResidual - rightResidual;
+      }
+      return left.rowId.localeCompare(right.rowId);
+    })
+    .slice(0, limit)
+    .map((row) => ({
+      rowId: row.rowId,
+      phaseTurns: row.phaseTurns,
+      phaseDegrees: row.phaseDegrees,
+      matchedProfileIds: row.matchedProfileIds,
+      triadicEqualSpacingPass: row.triadicEqualSpacingPass,
+      meanResidual:
+        row.balanceSummaries?.[balanceModelKey]?.meanResidual ?? null,
+      passCount: row.balanceSummaries?.[balanceModelKey]?.passCount ?? null,
+      allPriorityRowsPass:
+        row.balanceSummaries?.[balanceModelKey]?.allPriorityRowsPass ?? false,
+    }));
+}
+
+function phaseTurnsMatch(left, right) {
+  return LAYER_ROLES.every((role) => {
+    const leftTurn = normalizeTurn(left?.[role] ?? 0);
+    const rightTurn = normalizeTurn(right?.[role] ?? 0);
+    const delta = Math.min(
+      Math.abs(leftTurn - rightTurn),
+      1 - Math.abs(leftTurn - rightTurn)
+    );
+    return delta <= ROOT_TOLERANCE;
+  });
+}
+
+function createEqualFrequencyReturnPeriodFrequencyAudit(caseSummaries) {
+  const rows = caseSummaries.map((summary) =>
+    createEqualFrequencyReturnPeriodFrequencyRow(summary)
+  );
+  const priorityRows = rows.filter((row) => row.priorityPhaseProfile === true);
+  const currentChartReturnPeriodPassCount = rows.filter(
+    (row) => row.currentChartReturnPeriodPass === true
+  ).length;
+  const priorityCurrentChartReturnPeriodPassCount = priorityRows.filter(
+    (row) => row.currentChartReturnPeriodPass === true
+  ).length;
+  const retainedReturnPeriodCertificatePassCount = priorityRows.filter(
+    (row) => row.retainedReturnPeriodCertificatePass === true
+  ).length;
+  const priorityCurrentChartPasses =
+    priorityRows.length > 0 &&
+    priorityCurrentChartReturnPeriodPassCount === priorityRows.length;
+  return {
+    schema: "aaa-equal-frequency-return-period-frequency-audit.v1",
+    claimLevel:
+      "reduced-chart return-period identity check; not retained branch frequency certification",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    branchStateContractSchema:
+      createTriBinaryNoetherBraidBranchStateContract().schema,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    frequencyCertificationEquation:
+      "omega_a=2pi/P_a or omega_a=k_a(2pi/P_branch) with declared locked harmonic k_a on the retained history record",
+    auditedCaseCount: rows.length,
+    priorityCaseCount: priorityRows.length,
+    currentChartReturnPeriodPassCount,
+    priorityCurrentChartReturnPeriodPassCount,
+    retainedReturnPeriodCertificatePassCount,
+    status:
+      priorityCurrentChartPasses &&
+      retainedReturnPeriodCertificatePassCount === 0
+        ? "current_chart_return_period_identity_populated_retained_frequency_certificate_missing"
+        : priorityCurrentChartPasses
+          ? "current_chart_return_period_identity_populated_retained_frequency_status_mixed"
+          : rows.length > 0
+            ? "current_chart_return_period_identity_incomplete"
+            : "return_period_frequency_no_equal_frequency_rows",
+    rows,
+    interpretation:
+      "The reduced circular-path chart can compute P_a=2pi/omega_a and recover the sampled common omega on every priority triadic row. That is only a chart identity. A noncircular, oblate, or spherical retained branch must carry its own return-period or locked-harmonic certificate on the branch history record before equal frequency is promoted.",
+    retainedReplayBurden:
+      "Attach branch return periods P_a, or locked harmonics k_a against a shared branch period, to the same retained row set as the phase, deformation, effective-inertia, wake/coupling, and one-unit angular-momentum ledgers.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyReturnPeriodFrequencyRow(summary) {
+  const angularVelocities = summary.commonClock?.angularVelocities ?? {};
+  const periodByRole = Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const omega = angularVelocities[role];
+      return [
+        role,
+        Number.isFinite(omega) && Math.abs(omega) > ROOT_TOLERANCE
+          ? CLOSURE_PERIOD / Math.abs(omega)
+          : null,
+      ];
+    })
+  );
+  const recoveredAngularVelocityByRole = Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const period = periodByRole[role];
+      return [
+        role,
+        Number.isFinite(period) && Math.abs(period) > ROOT_TOLERANCE
+          ? CLOSURE_PERIOD / period
+          : null,
+      ];
+    })
+  );
+  const angularVelocityResiduals = Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const omega = angularVelocities[role];
+      const recovered = recoveredAngularVelocityByRole[role];
+      return [
+        role,
+        Number.isFinite(omega) && Number.isFinite(recovered)
+          ? recovered - Math.abs(omega)
+          : null,
+      ];
+    })
+  );
+  const maxAbsReturnPeriodResidual = maxFinite(
+    Object.values(angularVelocityResiduals).map((value) =>
+      Number.isFinite(value) ? Math.abs(value) : null
+    )
+  );
+  const currentChartReturnPeriodPass =
+    summary.rowPasses?.commonClock === true &&
+    Number.isFinite(maxAbsReturnPeriodResidual) &&
+    maxAbsReturnPeriodResidual <= ROOT_TOLERANCE;
+  return {
+    caseId: summary.caseId,
+    f: summary.f,
+    phaseProfileId: summary.phaseProfileId,
+    phaseProfileRole: summary.phaseProfileRole,
+    priorityPhaseProfile: summary.priorityPhaseProfile === true,
+    angularVelocities,
+    commonAngularVelocity: summary.commonClock?.commonAngularVelocity ?? null,
+    commonFrequencyResidual: summary.commonClock?.commonFrequencyResidual ?? null,
+    periodByRole,
+    recoveredAngularVelocityByRole,
+    angularVelocityResiduals,
+    maxAbsReturnPeriodResidual,
+    currentChartReturnPeriodPass,
+    currentChartStatus: currentChartReturnPeriodPass
+      ? "reduced_chart_return_period_identity_pass"
+      : "reduced_chart_return_period_identity_fail",
+    retainedReturnPeriodCertificatePass: false,
+    retainedLimitation:
+      "The reduced chart defines circular-path omega directly. It does not contain retained branch-history periods, noncircular arc-length closure, or declared locked harmonics.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPlaneSectorDiscriminatorAudit(caseSummaries) {
+  const rows = caseSummaries.map((summary) =>
+    createEqualFrequencyPlaneSectorDiscriminatorRow(summary)
+  );
+  const priorityRows = rows.filter((row) => row.priorityPhaseProfile === true);
+  const priorityCoplanarSectorPassCount = priorityRows.filter(
+    (row) => row.currentChartCoplanarSectorPass === true
+  ).length;
+  const priorityNearOrthogonalSectorPassCount = priorityRows.filter(
+    (row) => row.currentChartNearOrthogonalSectorPass === true
+  ).length;
+  const priorityPlanarZ3PassCount = priorityRows.filter(
+    (row) => row.planarZ3PhaseCancellationPass === true
+  ).length;
+  const retainedPlaneSectorCertificatePassCount = priorityRows.filter(
+    (row) => row.retainedPlaneSectorCertificatePass === true
+  ).length;
+  const priorityCoplanarZ3Rows =
+    priorityRows.length > 0 &&
+    priorityCoplanarSectorPassCount === priorityRows.length &&
+    priorityPlanarZ3PassCount === priorityRows.length;
+  return {
+    schema: "aaa-equal-frequency-plane-sector-discriminator-audit.v1",
+    claimLevel:
+      "current-chart plane-sector discriminator; not retained plane topology or holonomy certificate",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    branchStateContractSchema:
+      createTriBinaryNoetherBraidBranchStateContract().schema,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    discriminatorEquation:
+      "D_plane=N_I dot (N_M x N_O), paired with phase-bundle holonomy to classify coplanar cyclic versus near-orthogonal tri-binary sectors",
+    auditedCaseCount: rows.length,
+    priorityCaseCount: priorityRows.length,
+    priorityCoplanarSectorPassCount,
+    priorityNearOrthogonalSectorPassCount,
+    priorityPlanarZ3PassCount,
+    retainedPlaneSectorCertificatePassCount,
+    status:
+      priorityCoplanarZ3Rows &&
+      priorityNearOrthogonalSectorPassCount === 0 &&
+      retainedPlaneSectorCertificatePassCount === 0
+        ? "current_chart_coplanar_z3_sector_populated_retained_plane_sector_discriminator_missing"
+        : priorityCoplanarZ3Rows
+          ? "current_chart_coplanar_z3_sector_populated_retained_sector_status_mixed"
+          : rows.length > 0
+            ? "plane_sector_discriminator_current_chart_rows_mixed"
+            : "plane_sector_discriminator_no_equal_frequency_rows",
+    rows,
+    interpretation:
+      "The sampled flattened-limit chart puts all three phase rows in one plane, so the triadic 120-degree cancellation is classified as a coplanar cyclic Z3 sector in the executable chart. It is not evidence for a near-orthogonal tri-binary sector until retained plane normals or bivectors, phase-bundle holonomy, and D_plane are replayed from the branch state.",
+    retainedReplayBurden:
+      "Replay N_a or bivectors, D_plane, and phase-bundle holonomy from the retained tri-binary Noether braid branch state on the same row set as the frequency, phase, deformation, and angular-momentum ledgers.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPlaneSectorDiscriminatorRow(summary) {
+  const phaseTurns =
+    summary.phaseProfile?.phaseTurnsByLayer ??
+    summary.triadic120Phase?.phaseTurns ??
+    {};
+  const currentChartPlaneNormalsByRole = Object.fromEntries(
+    LAYER_ROLES.map((role) => [role, { x: 0, y: 0, z: 1 }])
+  );
+  const innerNormal = currentChartPlaneNormalsByRole.inner;
+  const middleNormal = currentChartPlaneNormalsByRole.middle;
+  const outerNormal = currentChartPlaneNormalsByRole.outer;
+  const dPlane = dotVectors(innerNormal, crossVectors(middleNormal, outerNormal));
+  const pairwiseNormalDots = {
+    innerMiddle: dotVectors(innerNormal, middleNormal),
+    middleOuter: dotVectors(middleNormal, outerNormal),
+    outerInner: dotVectors(outerNormal, innerNormal),
+  };
+  const phaseOnlyBalance = createWeightedPhaseBalance({
+    weightModel: "phase_only_unit_weights",
+    weightsByRole: Object.fromEntries(LAYER_ROLES.map((role) => [role, 1])),
+    phaseTurns,
+  });
+  const currentChartCoplanarSectorPass =
+    Number.isFinite(dPlane) && Math.abs(dPlane) <= ROOT_TOLERANCE;
+  const currentChartNearOrthogonalSectorPass =
+    Number.isFinite(dPlane) &&
+    Math.abs(Math.abs(dPlane) - 1) <= ROOT_TOLERANCE &&
+    Object.values(pairwiseNormalDots).every(
+      (value) => Number.isFinite(value) && Math.abs(value) <= ROOT_TOLERANCE
+    );
+  const planarZ3PhaseCancellationPass = phaseOnlyBalance.pass === true;
+  return {
+    caseId: summary.caseId,
+    f: summary.f,
+    phaseProfileId: summary.phaseProfileId,
+    phaseProfileRole: summary.phaseProfileRole,
+    priorityPhaseProfile: summary.priorityPhaseProfile === true,
+    phaseTurns,
+    currentChartPlaneNormalsByRole,
+    dPlane,
+    pairwiseNormalDots,
+    currentChartCoplanarSectorPass,
+    currentChartNearOrthogonalSectorPass,
+    planarZ3PhaseCancellationPass,
+    phaseOnlyBalanceResidual: phaseOnlyBalance.normalizedMagnitude,
+    currentChartSectorDisposition:
+      currentChartCoplanarSectorPass && planarZ3PhaseCancellationPass
+        ? "coplanar_z3_cyclic_phase_sector"
+        : currentChartCoplanarSectorPass
+          ? "coplanar_non_z3_phase_sector"
+          : currentChartNearOrthogonalSectorPass
+            ? "near_orthogonal_tri_binary_sector"
+            : "unclassified_current_chart_sector",
+    retainedPlaneSectorCertificatePass: false,
+    retainedLimitation:
+      "The current flattened-limit chart supplies coplanar normals only. It does not supply retained plane normals, bivectors, phase-bundle holonomy, or sector topology.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedRowSetScaffold({
+  priorityCaseSummaries,
+  roleAssignmentAudit,
+  deformationContinuationAudit,
+  actionLedgerAudit,
+  energyAngularMomentumClosureAudit,
+  phaseDeformationBalanceAudit,
+  returnPeriodFrequencyAudit,
+  planeSectorDiscriminatorAudit,
+}) {
+  const priorityCaseCount = priorityCaseSummaries.length;
+  const currentProxyEvidenceSources = [
+    {
+      id: "role_assignment_s3_audit",
+      residualComponent: "r_rows",
+      schema: roleAssignmentAudit?.schema ?? null,
+      status: roleAssignmentAudit?.status ?? null,
+      currentEvidencePopulated:
+        roleAssignmentAudit?.roleMapCount === 6 &&
+        roleAssignmentAudit?.quotientSectorCount === 1,
+      retainedAcceptancePass: false,
+    },
+    {
+      id: "deformation_continuation_audit",
+      residualComponent: "r_rho",
+      schema: deformationContinuationAudit?.schema ?? null,
+      status: deformationContinuationAudit?.status ?? null,
+      currentEvidencePopulated:
+        deformationContinuationAudit?.planarProjectionAgreementPassCount ===
+          priorityCaseCount &&
+        deformationContinuationAudit?.currentOblateSlicePassCount ===
+          priorityCaseCount,
+      retainedAcceptancePass: false,
+    },
+    {
+      id: "action_ledger_audit",
+      residualComponent: "r_J",
+      schema: actionLedgerAudit?.schema ?? null,
+      status: actionLedgerAudit?.status ?? null,
+      currentEvidencePopulated:
+        actionLedgerAudit?.unitInertiaInnerHalfPassCount === priorityCaseCount,
+      retainedAcceptancePass: false,
+    },
+    {
+      id: "energy_angular_momentum_closure_audit",
+      residualComponent: "r_E:r_J",
+      schema: energyAngularMomentumClosureAudit?.schema ?? null,
+      status: energyAngularMomentumClosureAudit?.status ?? null,
+      currentEvidencePopulated:
+        energyAngularMomentumClosureAudit
+          ?.targetEffectiveInertiaClosurePassCount === priorityCaseCount &&
+        energyAngularMomentumClosureAudit?.hbarScaleCandidateCount ===
+          priorityCaseCount,
+      retainedAcceptancePass: false,
+    },
+    {
+      id: "phase_deformation_balance_audit",
+      residualComponent: "r_W",
+      schema: phaseDeformationBalanceAudit?.schema ?? null,
+      status: phaseDeformationBalanceAudit?.status ?? null,
+      currentEvidencePopulated:
+        phaseDeformationBalanceAudit?.priorityPhaseOnlyPassCount ===
+        priorityCaseCount,
+      retainedAcceptancePass: false,
+    },
+    {
+      id: "return_period_frequency_audit",
+      residualComponent: "r_P",
+      schema: returnPeriodFrequencyAudit?.schema ?? null,
+      status: returnPeriodFrequencyAudit?.status ?? null,
+      currentEvidencePopulated:
+        returnPeriodFrequencyAudit?.priorityCurrentChartReturnPeriodPassCount ===
+        priorityCaseCount,
+      retainedAcceptancePass: false,
+    },
+    {
+      id: "plane_sector_discriminator_audit",
+      residualComponent: "r_D",
+      schema: planeSectorDiscriminatorAudit?.schema ?? null,
+      status: planeSectorDiscriminatorAudit?.status ?? null,
+      currentEvidencePopulated:
+        planeSectorDiscriminatorAudit?.priorityCoplanarSectorPassCount ===
+          priorityCaseCount &&
+        planeSectorDiscriminatorAudit?.priorityPlanarZ3PassCount ===
+          priorityCaseCount,
+      retainedAcceptancePass: false,
+    },
+  ];
+  const currentProxyEvidencePopulatedCount = currentProxyEvidenceSources.filter(
+    (source) => source.currentEvidencePopulated === true
+  ).length;
+  const retainedAcceptancePassCount = currentProxyEvidenceSources.filter(
+    (source) => source.retainedAcceptancePass === true
+  ).length;
+  const blockingRequirementIds = [
+    "raw_labeled_rows_preserved_on_retained_history",
+    "six_body_polarity_neutral_inventory_preserved",
+    "role_map_selected_or_quotient_policy_declared",
+    "shared_retained_event_or_positive_width_domain",
+    "path_history_rows_bound_to_S_eq",
+    "causal_root_ledger_rows_bound_to_S_eq",
+    "wake_tail_rows_bound_to_S_eq",
+    "energy_action_rows_bound_to_S_eq",
+    "momentum_and_angular_momentum_rows_bound_to_S_eq",
+    "phase_rows_bound_to_S_eq",
+    "retained_plane_orientation_rows_bound_to_S_eq",
+    "response_center_and_group_velocity_rows_bound_to_S_eq",
+    "Noether_sea_record_bound_to_S_eq",
+    "binary_to_binary_phase_row_set_identity",
+  ];
+  return {
+    schema: "aaa-equal-frequency-retained-row-set-scaffold.v1",
+    claimLevel:
+      "retained row-set identity scaffold for equal-frequency replay; no retained row-set acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId: "S_eq",
+    residualComponent: "r_rows",
+    genericInputLabels: GENERIC_TRI_BINARY_LABELS,
+    roleAssignmentPolicy:
+      "Preserve raw labeled B_1,B_2,B_3 rows first. Attach I:M:O only as a retained role map or quotient-sector projection after the branch chart supplies it.",
+    rowSetDefinition:
+      "S_eq is one finite retained branch chart for the same six-body polarity-neutral Noether braid, including path-history rows, causal-root ledger, wake-tail rows, energy/action rows, momentum and angular-momentum rows, phase data, retained plane-orientation data, response-center data, group-velocity row, and Noether sea record.",
+    requiredRowGroups: [
+      {
+        groupId: "identity_and_inventory",
+        rows: [
+          "raw_labeled_rows_B_1_B_2_B_3",
+          "six_body_polarity_neutral_inventory",
+          "role_map_I_M_O_or_quotient_sector_policy",
+        ],
+      },
+      {
+        groupId: "history_and_roots",
+        rows: [
+          "path_history_rows",
+          "causal_root_ledger",
+          "wake_tail_rows",
+          "branch_return_rows_P_a_or_k_a_P_branch",
+        ],
+      },
+      {
+        groupId: "dynamics_and_geometry",
+        rows: [
+          "rho_a_xi_deformation_rows",
+          "retained_plane_normals_or_angular_momentum_bivectors_N_a",
+          "phase_offsets_phi_a",
+          "phase_bundle_holonomy_Theta",
+          "response_center_X_resp",
+          "group_velocity_V_grp",
+        ],
+      },
+      {
+        groupId: "conservation_and_medium",
+        rows: [
+          "branch_energy_E_branch",
+          "action_rows_W_a_or_I_a",
+          "effective_inertia_rows_mu_a",
+          "branch_total_momentum_P_branch",
+          "branch_total_angular_momentum_J_branch",
+          "wake_angular_momentum_L_wake",
+          "coupling_angular_momentum_L_coupling",
+          "Noether_sea_record",
+        ],
+      },
+    ],
+    currentProxyEvidenceSources,
+    currentProxyEvidenceSourceCount: currentProxyEvidenceSources.length,
+    currentProxyEvidencePopulatedCount,
+    retainedAcceptancePassCount,
+    currentProxyEvidencePopulated: currentProxyEvidencePopulatedCount > 0,
+    currentProxyRowSetIdentityPass: false,
+    retainedRowSetIdentityPass: false,
+    sameRetainedEventOrPositiveWidthDomainPass: false,
+    blockingRequirementIds,
+    status:
+      currentProxyEvidencePopulatedCount > 0
+        ? "retained_row_set_scaffold_populated_current_proxy_only_row_set_identity_missing"
+        : "retained_row_set_scaffold_populated_no_current_proxy_evidence",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedEventDomainLiftTarget({
+  priorityCaseSummaries,
+  retainedRowSetScaffold,
+  actionLedgerAudit,
+  energyAngularMomentumClosureAudit,
+  phaseDeformationBalanceAudit,
+  returnPeriodFrequencyAudit,
+  planeSectorDiscriminatorAudit,
+}) {
+  const priorityCaseCount = priorityCaseSummaries.length;
+  const currentProxyEvidenceRows = [
+    {
+      id: "retained_row_set_scaffold",
+      schema: retainedRowSetScaffold?.schema ?? null,
+      status: retainedRowSetScaffold?.status ?? null,
+      sourceKind: "row_set_identity_scaffold",
+      currentEvidencePopulated:
+        retainedRowSetScaffold?.currentProxyEvidencePopulated === true,
+      acceptedRetainedEventDomainPass: false,
+    },
+    {
+      id: "return_period_frequency_current_chart_identity",
+      schema: returnPeriodFrequencyAudit?.schema ?? null,
+      status: returnPeriodFrequencyAudit?.status ?? null,
+      sourceKind: "reduced_chart_frequency_proxy",
+      currentEvidencePopulated:
+        returnPeriodFrequencyAudit?.priorityCurrentChartReturnPeriodPassCount ===
+        priorityCaseCount,
+      acceptedRetainedEventDomainPass: false,
+    },
+    {
+      id: "plane_sector_current_chart_identity",
+      schema: planeSectorDiscriminatorAudit?.schema ?? null,
+      status: planeSectorDiscriminatorAudit?.status ?? null,
+      sourceKind: "reduced_chart_plane_sector_proxy",
+      currentEvidencePopulated:
+        planeSectorDiscriminatorAudit?.priorityCoplanarSectorPassCount ===
+          priorityCaseCount &&
+        planeSectorDiscriminatorAudit?.priorityPlanarZ3PassCount ===
+          priorityCaseCount,
+      acceptedRetainedEventDomainPass: false,
+    },
+    {
+      id: "phase_deformation_phase_only_identity",
+      schema: phaseDeformationBalanceAudit?.schema ?? null,
+      status: phaseDeformationBalanceAudit?.status ?? null,
+      sourceKind: "phase_only_proxy",
+      currentEvidencePopulated:
+        phaseDeformationBalanceAudit?.priorityPhaseOnlyPassCount ===
+        priorityCaseCount,
+      acceptedRetainedEventDomainPass: false,
+    },
+    {
+      id: "action_ledger_current_chart_proxy",
+      schema: actionLedgerAudit?.schema ?? null,
+      status: actionLedgerAudit?.status ?? null,
+      sourceKind: "circular_kinetic_action_proxy",
+      currentEvidencePopulated:
+        actionLedgerAudit?.unitInertiaInnerHalfPassCount === priorityCaseCount,
+      acceptedRetainedEventDomainPass: false,
+    },
+    {
+      id: "energy_angular_momentum_same_clock_proxy",
+      schema: energyAngularMomentumClosureAudit?.schema ?? null,
+      status: energyAngularMomentumClosureAudit?.status ?? null,
+      sourceKind: "same_clock_energy_angular_momentum_proxy",
+      currentEvidencePopulated:
+        energyAngularMomentumClosureAudit?.sameClockIdentityPassCount ===
+          priorityCaseCount &&
+        energyAngularMomentumClosureAudit?.hbarScaleCandidateCount ===
+          priorityCaseCount,
+      acceptedRetainedEventDomainPass: false,
+    },
+  ];
+  const currentProxyEvidencePopulatedCount = currentProxyEvidenceRows.filter(
+    (row) => row.currentEvidencePopulated === true
+  ).length;
+  const currentProxyPointRowsPopulated =
+    priorityCaseCount > 0 &&
+    currentProxyEvidencePopulatedCount === currentProxyEvidenceRows.length;
+  const eventRoute = {
+    routeId: "accepted_full_point_event_route",
+    requirement:
+      "Select one retained event in S_eq and evaluate all row groups there with source provenance, causal-root labels, wake-energy routing, phase, momentum, angular momentum, response-center, group-velocity, and Noether sea rows attached.",
+    acceptedFullPointEventRulePass: false,
+    requiredRows: [
+      "retained_event_id",
+      "full_point_event_rule",
+      "binary_to_binary_retained_history_rows",
+      "retained_payload_rows",
+      "accepted_retained_energy_routing",
+      "same_event_momentum_and_angular_momentum_ledgers",
+    ],
+    blocker: "accepted_full_point_event_rule_missing",
+  };
+  const domainRoute = {
+    routeId: "positive_width_retained_domain_route",
+    requirement:
+      "Declare a positive-width retained time domain on which the same S_eq row groups remain continuous, branch-identified, and energy/action routed.",
+    positiveWidthRetainedDomainPass: false,
+    requiredRows: [
+      "retained_time_domain",
+      "positive_common_domain_width",
+      "root_sheet_continuity",
+      "phase_continuity",
+      "wake_tail_continuity",
+      "action_energy_continuity",
+      "section_stability_on_domain",
+    ],
+    blocker: "positive_width_retained_domain_missing",
+  };
+  const blockingConditionIds = [
+    "accepted_full_point_event_rule_missing",
+    "positive_width_retained_domain_missing",
+    "global_retained_row_set_identity_missing",
+    "binary_to_binary_retained_history_rows_missing",
+    "retained_payload_rows_missing",
+    "retained_energy_routing_missing",
+    "same_event_momentum_angular_momentum_rows_missing",
+    "Noether_sea_record_event_or_domain_binding_missing",
+  ];
+  return {
+    schema: "aaa-equal-frequency-retained-event-domain-lift-target.v1",
+    claimLevel:
+      "equal-frequency retained event/domain lift target; no accepted retained event or positive-width domain",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId: retainedRowSetScaffold?.retainedRowSetId ?? "S_eq",
+    residualComponent: "r_evt",
+    eventDomainRequirement:
+      "S_eq must be evaluated on one accepted retained point event or on a positive-width retained time domain before equal-frequency rows can count as one branch replay.",
+    currentChartScope:
+      "The current equal-frequency evidence is fixed-receiver reduced-chart root, phase, lever-arm, frequency, plane-sector, and action-proxy data. It is not binary-to-binary retained history and not a full Noether braid event/domain replay.",
+    currentProxyPriorityCaseCount: priorityCaseCount,
+    currentProxyEvidenceRows,
+    currentProxyEvidencePopulatedCount,
+    currentProxyPointRowsPopulated,
+    currentProxyRowsAreFullPointEvents: false,
+    acceptedFullPointEventRulePass: false,
+    positiveWidthRetainedDomainPass: false,
+    globalRetainedRowSetIdentityPass:
+      retainedRowSetScaffold?.retainedRowSetIdentityPass === true,
+    sameRetainedEventOrPositiveWidthDomainPass: false,
+    retainedEventDomainLiftPass: false,
+    eventRoute,
+    domainRoute,
+    firstRunnableRows: [
+      "binary_to_binary_retained_history_row",
+      "retained_event_or_domain_selector_row",
+      "full_point_event_rule_or_positive_width_domain_row",
+      "same_event_energy_action_momentum_angular_momentum_row",
+      "Noether_sea_record_binding_row",
+    ],
+    blockingConditionIds,
+    status: currentProxyPointRowsPopulated
+      ? "equal_frequency_retained_event_domain_lift_target_populated_current_proxy_only"
+      : currentProxyEvidencePopulatedCount > 0
+        ? "equal_frequency_retained_event_domain_lift_target_proxy_incomplete"
+        : "equal_frequency_retained_event_domain_lift_target_no_current_proxy_evidence",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedEventDomainSelector({
+  priorityCaseSummaries,
+  retainedRowSetScaffold,
+  retainedEventDomainLiftTarget,
+  retainedFrequencyPhasePacket,
+}) {
+  const retainedRowSetId =
+    retainedRowSetScaffold?.retainedRowSetId ??
+    retainedEventDomainLiftTarget?.retainedRowSetId ??
+    "S_eq";
+  const pointProxyPopulated =
+    retainedEventDomainLiftTarget?.currentProxyPointRowsPopulated === true;
+  const eventAccepted =
+    retainedEventDomainLiftTarget?.acceptedFullPointEventRulePass === true;
+  const domainAccepted =
+    retainedEventDomainLiftTarget?.positiveWidthRetainedDomainPass === true;
+  const routeCandidates = [
+    {
+      routeId: "point_event_current_proxy_first",
+      routeKind: "retained_point_event",
+      selectionPriority: 1,
+      selected: pointProxyPopulated === true,
+      currentProxyEvidencePopulated: pointProxyPopulated,
+      currentProxyEvidenceRowCount:
+        retainedEventDomainLiftTarget?.currentProxyEvidencePopulatedCount ?? null,
+      retainedAcceptancePass: eventAccepted,
+      sourceRouteId:
+        retainedEventDomainLiftTarget?.eventRoute?.routeId ??
+        "accepted_full_point_event_route",
+      requiredRows:
+        retainedEventDomainLiftTarget?.eventRoute?.requiredRows ?? [
+          "retained_event_id",
+          "full_point_event_rule",
+          "binary_to_binary_retained_history_rows",
+          "same_event_momentum_and_angular_momentum_ledgers",
+        ],
+      blocker:
+        eventAccepted === true
+          ? null
+          : "accepted_full_point_event_rule_missing",
+      status:
+        eventAccepted === true
+          ? "retained_point_event_route_accepted"
+          : pointProxyPopulated === true
+            ? "retained_point_event_route_current_proxy_first_acceptance_missing"
+            : "retained_point_event_route_proxy_incomplete",
+    },
+    {
+      routeId: "positive_width_domain_search_required",
+      routeKind: "positive_width_retained_domain",
+      selectionPriority: 2,
+      selected: pointProxyPopulated !== true,
+      currentProxyEvidencePopulated: false,
+      currentProxyEvidenceRowCount: 0,
+      retainedAcceptancePass: domainAccepted,
+      sourceRouteId:
+        retainedEventDomainLiftTarget?.domainRoute?.routeId ??
+        "positive_width_retained_domain_route",
+      requiredRows:
+        retainedEventDomainLiftTarget?.domainRoute?.requiredRows ?? [
+          "retained_time_domain",
+          "positive_common_domain_width",
+          "root_sheet_continuity",
+          "phase_continuity",
+          "wake_tail_continuity",
+          "action_energy_continuity",
+          "section_stability_on_domain",
+        ],
+      blocker:
+        domainAccepted === true
+          ? null
+          : "positive_width_retained_domain_missing",
+      status:
+        domainAccepted === true
+          ? "positive_width_retained_domain_route_accepted"
+          : "positive_width_retained_domain_route_search_required",
+    },
+  ];
+  const acceptedRouteCount = routeCandidates.filter(
+    (route) => route.retainedAcceptancePass === true
+  ).length;
+  const currentProxyRouteCount = routeCandidates.filter(
+    (route) => route.currentProxyEvidencePopulated === true
+  ).length;
+  const selectedRoute =
+    routeCandidates.find((route) => route.selected === true)?.routeId ??
+    "positive_width_domain_search_required";
+  const firstRunnableRows = priorityCaseSummaries.map((summary, index) => ({
+    rowId: `S_eq-event-selector-row-${index + 1}`,
+    retainedRowSetId,
+    rawSearchRelation: "(B_1,B_2,B_3)=(f,f,f)",
+    roleAssignedRelation: "(I,M,O)=(f,f,f)",
+    phaseProfileId: summary.phaseProfileId ?? null,
+    priorityPhaseProfile: summary.priorityPhaseProfile === true,
+    selectedRoute,
+    currentProxyPointEvidencePass: pointProxyPopulated,
+    frequencyPhasePacketStatus: retainedFrequencyPhasePacket?.status ?? null,
+    frequencyPhasePacketRowCount: retainedFrequencyPhasePacket?.rowCount ?? null,
+    eventRouteAcceptancePass: eventAccepted,
+    domainRouteAcceptancePass: domainAccepted,
+    retainedAcceptancePass: eventAccepted === true || domainAccepted === true,
+    requiredNextRows: [
+      "accepted_full_point_event_rule_or_positive_width_domain",
+      "binary_to_binary_retained_history_rows",
+      "retained_payload_rows",
+      "retained_energy_routing",
+      "same_event_momentum_angular_momentum_rows",
+      "Noether_sea_record_event_or_domain_binding",
+    ],
+  }));
+  const blockingConditionIds = Array.from(
+    new Set([
+      ...(retainedEventDomainLiftTarget?.blockingConditionIds ?? []),
+      "retained_event_domain_selector_acceptance_missing",
+    ])
+  );
+  return {
+    schema: "aaa-equal-frequency-retained-event-domain-selector.v1",
+    claimLevel:
+      "retained event/domain route selector for S_eq; current proxy only, no accepted retained event or domain",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    residualComponent: "r_evt",
+    selectorPolicy:
+      "Choose the first runnable S_eq event/domain route without treating projection-chart evidence as retained branch acceptance.",
+    selectedRoute,
+    routeCandidateCount: routeCandidates.length,
+    currentProxyRouteCount,
+    acceptedRouteCount,
+    retainedSelectorAcceptancePass: acceptedRouteCount > 0,
+    routeCandidates,
+    firstRunnableRowCount: firstRunnableRows.length,
+    firstRunnableRows,
+    acceptanceInputsRequired: [
+      "same_retained_row_set_identity_S_eq",
+      "accepted_full_point_event_rule_or_positive_width_domain",
+      "binary_to_binary_retained_history_rows",
+      "retained_payload_rows",
+      "retained_energy_routing",
+      "same_event_momentum_angular_momentum_rows",
+      "Noether_sea_record_event_or_domain_binding",
+      "branch_history_frequency_phase_rows",
+    ],
+    blockingConditionIds,
+    status:
+      acceptedRouteCount > 0
+        ? "equal_frequency_retained_event_domain_selector_accepted_route"
+        : currentProxyRouteCount > 0
+          ? "equal_frequency_retained_event_domain_selector_populated_point_event_current_proxy_first_acceptance_missing"
+          : "equal_frequency_retained_event_domain_selector_search_required",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
+  priorityCaseSummaries,
+  retainedRowSetScaffold,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+  deformationContinuationAudit,
+  actionLedgerAudit,
+  energyAngularMomentumClosureAudit,
+  phaseDeformationBalanceAudit,
+  returnPeriodFrequencyAudit,
+  planeSectorDiscriminatorAudit,
+  firstRetainedPacketTemplate,
+  retainedFrequencyPhasePacket,
+}) {
+  const priorityCaseCount = priorityCaseSummaries.length;
+  const acceptanceConditions = [
+    {
+      id: "same_retained_row_set_identity",
+      residualComponent: "r_rows",
+      expression:
+        "R_eq uses one retained row set S_eq for P_a, N_a, phi_a, rho_a, E_branch, W_a, J_branch, L_wake, coupling rows, response-center rows, group-velocity rows, and the Noether sea record",
+      currentSubauditSchema: retainedRowSetScaffold?.schema ?? null,
+      currentEvidencePopulated:
+        retainedRowSetScaffold?.currentProxyEvidencePopulated === true,
+      retainedAcceptancePass:
+        retainedRowSetScaffold?.retainedRowSetIdentityPass === true,
+      currentStatus:
+        retainedRowSetScaffold?.status ?? "missing_same_retained_row_set_identity",
+      requiredRows: retainedRowSetScaffold?.blockingRequirementIds ?? [
+        "raw_labeled_rows_B_1_B_2_B_3",
+        "role_map_I_M_O",
+        "shared_retained_event_or_positive_width_domain",
+        "binary_to_binary_row_set_identity",
+      ],
+      blocker: "row_set_identity",
+    },
+    {
+      id: "same_retained_event_or_positive_width_domain",
+      residualComponent: "r_evt",
+      expression:
+        "All S_eq rows are evaluated on one accepted retained point event or on one positive-width retained time domain before branch acceptance",
+      currentSubauditSchema:
+        retainedEventDomainSelector?.schema ??
+        retainedEventDomainLiftTarget?.schema ??
+        null,
+      currentEvidencePopulated:
+        retainedEventDomainSelector?.currentProxyRouteCount > 0 ||
+        retainedEventDomainLiftTarget?.currentProxyPointRowsPopulated === true,
+      retainedAcceptancePass:
+        retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
+        retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true,
+      currentStatus:
+        retainedEventDomainSelector?.status ??
+        retainedEventDomainLiftTarget?.status ??
+        "missing_retained_event_domain_lift_target",
+      currentEvidencePassCount:
+        retainedEventDomainSelector?.currentProxyRouteCount ??
+        retainedEventDomainLiftTarget?.currentProxyEvidencePopulatedCount ??
+        null,
+      retainedCertificatePassCount:
+        retainedEventDomainSelector?.acceptedRouteCount ?? 0,
+      requiredRows:
+        retainedEventDomainSelector?.acceptanceInputsRequired ??
+        retainedEventDomainLiftTarget?.blockingConditionIds ?? [
+          "accepted_full_point_event_rule",
+          "positive_width_retained_domain",
+          "binary_to_binary_retained_history_rows",
+        ],
+      blocker: "same_retained_event_or_positive_width_domain",
+    },
+    {
+      id: "branch_frequency_return_period",
+      residualComponent: "r_P",
+      expression:
+        "r_P,a = omega_a - 2pi/P_a, or r_P,a = omega_a - k_a(2pi/P_branch) with declared locked harmonic k_a",
+      currentSubauditSchema: returnPeriodFrequencyAudit?.schema ?? null,
+      currentEvidencePopulated:
+        returnPeriodFrequencyAudit?.priorityCurrentChartReturnPeriodPassCount ===
+        priorityCaseCount,
+      retainedAcceptancePass:
+        priorityCaseCount > 0 &&
+        returnPeriodFrequencyAudit?.retainedReturnPeriodCertificatePassCount ===
+          priorityCaseCount,
+      currentStatus: returnPeriodFrequencyAudit?.status ?? null,
+      currentEvidencePassCount:
+        returnPeriodFrequencyAudit?.priorityCurrentChartReturnPeriodPassCount ??
+        null,
+      retainedCertificatePassCount:
+        returnPeriodFrequencyAudit?.retainedReturnPeriodCertificatePassCount ??
+        null,
+      requiredRows: [
+        "branch_history_return_periods_P_a",
+        "shared_branch_period_P_branch",
+        "locked_harmonic_integers_k_a",
+        "frequency_residuals_r_P_a",
+      ],
+      blocker: "branch_return_period_or_locked_harmonic_frequency_certificate",
+    },
+    {
+      id: "deformation_projection_map",
+      residualComponent: "r_rho",
+      expression:
+        "r_rho,a = rho_a - pi_rho(D_v(B_3B)) with rho_a(xi)=R_perp sqrt(xi^2 u_a^2 + (1-xi^2) q_a) only after retained dynamics selects u_a, q_a, and xi",
+      currentSubauditSchema: deformationContinuationAudit?.schema ?? null,
+      currentEvidencePopulated:
+        deformationContinuationAudit?.sphericalEndpointPassCount ===
+          priorityCaseCount &&
+        deformationContinuationAudit?.currentOblateSlicePassCount ===
+          priorityCaseCount &&
+        deformationContinuationAudit?.planarProjectionAgreementPassCount ===
+          priorityCaseCount,
+      retainedAcceptancePass: false,
+      currentStatus: deformationContinuationAudit?.status ?? null,
+      currentEvidencePassCount:
+        deformationContinuationAudit?.planarProjectionAgreementPassCount ?? null,
+      retainedCertificatePassCount: 0,
+      requiredRows: [
+        "velocity_deformation_branch_continuation_map",
+        "low_drift_retained_row_coordinates_u_a",
+        "incidence_coordinates_q_a",
+        "deformation_parameter_xi",
+        "effective_lever_arm_projection_residuals_r_rho_a",
+      ],
+      blocker: "retained_velocity_deformation_dynamics",
+    },
+    {
+      id: "energy_radius_stationarity",
+      residualComponent: "r_E",
+      expression:
+        "r_E,a = partial_{rho_a} E_branch(B_3B,rho,omega,phi,L_wake,L_coupling)=0",
+      currentSubauditSchema: energyAngularMomentumClosureAudit?.schema ?? null,
+      currentEvidencePopulated:
+        energyAngularMomentumClosureAudit
+          ?.targetEffectiveInertiaClosurePassCount === priorityCaseCount,
+      retainedAcceptancePass: false,
+      currentStatus:
+        energyAngularMomentumClosureAudit?.status ??
+        "missing_retained_energy_radius_stationarity",
+      currentEvidencePassCount:
+        energyAngularMomentumClosureAudit
+          ?.targetEffectiveInertiaClosurePassCount ?? null,
+      retainedCertificatePassCount:
+        energyAngularMomentumClosureAudit?.retainedEnergyStationarityPassCount ??
+        0,
+      requiredRows: [
+        "retained_branch_energy_E_branch",
+        "partial_rho_E_branch_rows",
+        "derived_effective_inertia_mu_a_or_wake_coupling_partition",
+        "wake_energy_dependency_rows",
+        "coupling_energy_dependency_rows",
+      ],
+      blocker: "energy_law_for_effective_lever_arm_speed_relation",
+    },
+    {
+      id: "plane_topology_sector",
+      residualComponent: "r_D",
+      expression:
+        "D_plane = N_I dot (N_M x N_O), with phase-bundle holonomy Theta classifying coplanar cyclic, near-orthogonal tri-binary, or another retained sector",
+      currentSubauditSchema: planeSectorDiscriminatorAudit?.schema ?? null,
+      currentEvidencePopulated:
+        planeSectorDiscriminatorAudit?.priorityCoplanarSectorPassCount ===
+          priorityCaseCount &&
+        planeSectorDiscriminatorAudit?.priorityPlanarZ3PassCount ===
+          priorityCaseCount,
+      retainedAcceptancePass:
+        priorityCaseCount > 0 &&
+        planeSectorDiscriminatorAudit?.retainedPlaneSectorCertificatePassCount ===
+          priorityCaseCount,
+      currentStatus: planeSectorDiscriminatorAudit?.status ?? null,
+      currentEvidencePassCount:
+        planeSectorDiscriminatorAudit?.priorityCoplanarSectorPassCount ?? null,
+      retainedCertificatePassCount:
+        planeSectorDiscriminatorAudit?.retainedPlaneSectorCertificatePassCount ??
+        null,
+      requiredRows: [
+        "retained_plane_normals_or_angular_momentum_bivectors_N_a",
+        "phase_bundle_holonomy_Theta",
+        "D_plane",
+        "sector_disposition",
+      ],
+      blocker: "plane_topology_sector_discriminator",
+    },
+    {
+      id: "phase_deformation_weight_balance",
+      residualComponent: "r_W",
+      expression:
+        "r_W = sum_a W_a(B_3B) exp(i phi_a), with W_a supplied by retained momentum, action, wake, or coupling rows",
+      currentSubauditSchema: phaseDeformationBalanceAudit?.schema ?? null,
+      currentEvidencePopulated:
+        phaseDeformationBalanceAudit?.priorityPhaseOnlyPassCount ===
+        priorityCaseCount,
+      retainedAcceptancePass:
+        priorityCaseCount > 0 &&
+        (phaseDeformationBalanceAudit?.priorityLeverArmPassCount ===
+          priorityCaseCount ||
+          phaseDeformationBalanceAudit?.priorityUnitInertiaActionPassCount ===
+            priorityCaseCount ||
+          phaseDeformationBalanceAudit?.priorityRootWeightedActionPassCount ===
+            priorityCaseCount),
+      currentStatus: phaseDeformationBalanceAudit?.status ?? null,
+      currentEvidencePassCount:
+        phaseDeformationBalanceAudit?.priorityPhaseOnlyPassCount ?? null,
+      retainedCertificatePassCount: 0,
+      requiredRows: [
+        "retained_phase_offsets_phi_a",
+        "retained_weight_rows_W_a",
+        "phase_deformation_weight_residual_r_W",
+        "wake_or_coupling_recoil_balance",
+      ],
+      blocker: "phase_deformation_weight_balance",
+    },
+    {
+      id: "one_unit_angular_momentum_ledger",
+      residualComponent: "r_J",
+      expression:
+        "r_J = sum_a mu_a rho_a^2 omega_a + L_wake + L_coupling - hbar_unit = 0 on S_eq",
+      currentSubauditSchema:
+        energyAngularMomentumClosureAudit?.schema ??
+        actionLedgerAudit?.schema ??
+        null,
+      currentEvidencePopulated:
+        energyAngularMomentumClosureAudit?.hbarScaleCandidateCount ===
+          priorityCaseCount ||
+        actionLedgerAudit?.unitInertiaInnerHalfPassCount === priorityCaseCount,
+      retainedAcceptancePass: false,
+      currentStatus:
+        energyAngularMomentumClosureAudit?.status ??
+        actionLedgerAudit?.status ??
+        null,
+      currentEvidencePassCount:
+        energyAngularMomentumClosureAudit?.hbarScaleCandidateCount ??
+        actionLedgerAudit?.unitInertiaInnerHalfPassCount ?? null,
+      retainedCertificatePassCount:
+        energyAngularMomentumClosureAudit
+          ?.retainedSameEventAngularMomentumPassCount ?? 0,
+      requiredRows: [
+        "retained_effective_inertia_mu_a",
+        "wake_angular_momentum_L_wake",
+        "coupling_angular_momentum_L_coupling",
+        "hbar_unit_normalization_or_sigma_hbar",
+        "same_event_angular_momentum_residual_r_J",
+      ],
+      blocker: "same_event_angular_momentum_ledger",
+    },
+  ];
+  const acceptedConditionCount = acceptanceConditions.filter(
+    (condition) => condition.retainedAcceptancePass === true
+  ).length;
+  const currentEvidenceConditionCount = acceptanceConditions.filter(
+    (condition) => condition.currentEvidencePopulated === true
+  ).length;
+  const blockingConditionIds = acceptanceConditions
+    .filter((condition) => condition.retainedAcceptancePass !== true)
+    .map((condition) => condition.id);
+  return {
+    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v6",
+    claimLevel:
+      "retained replay acceptance residual blueprint; no retained branch acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    priorityCaseCount,
+    acceptanceResidualVector:
+      "R_eq=(r_rows,r_evt,r_P,r_rho,r_E,r_D,r_W,r_J), evaluated on one retained row set S_eq and one accepted retained event or positive-width retained domain",
+    acceptanceRule:
+      "Accept the equal-frequency branch only if every component of R_eq vanishes within tolerance on one retained event or positive-width retained domain, with no undeclared wake, recoil, endpoint-provider, or coupling slack.",
+    currentEvidenceConditionCount,
+    acceptedConditionCount,
+    blockingConditionCount: blockingConditionIds.length,
+    blockingConditionIds,
+    firstRetainedPacketTemplateSchema:
+      firstRetainedPacketTemplate?.schema ?? null,
+    firstRetainedPacketTemplateStatus:
+      firstRetainedPacketTemplate?.status ?? null,
+    firstRetainedPacketTemplateRowCount:
+      firstRetainedPacketTemplate?.rowTemplateCount ?? null,
+    firstRetainedPacketBlockingRowIds:
+      firstRetainedPacketTemplate?.blockingRowIds ?? [],
+    retainedFrequencyPhasePacketSchema:
+      retainedFrequencyPhasePacket?.schema ?? null,
+    retainedFrequencyPhasePacketStatus:
+      retainedFrequencyPhasePacket?.status ?? null,
+    retainedFrequencyPhasePacketRowCount:
+      retainedFrequencyPhasePacket?.rowCount ?? null,
+    retainedFrequencyPhasePacketCurrentProxyPassCount:
+      retainedFrequencyPhasePacket?.currentProxyPacketPassCount ?? null,
+    retainedFrequencyPhasePacketAcceptedRowCount:
+      retainedFrequencyPhasePacket?.retainedPacketAcceptancePassCount ?? null,
+    retainedFrequencyPhasePacketBlockingRowIds:
+      retainedFrequencyPhasePacket?.blockingRowIds ?? [],
+    retainedRowSetScaffoldSchema: retainedRowSetScaffold?.schema ?? null,
+    retainedRowSetScaffoldStatus: retainedRowSetScaffold?.status ?? null,
+    retainedRowSetId: retainedRowSetScaffold?.retainedRowSetId ?? "S_eq",
+    retainedRowSetCurrentProxyEvidencePopulated:
+      retainedRowSetScaffold?.currentProxyEvidencePopulated ?? false,
+    retainedRowSetCurrentProxyEvidencePopulatedCount:
+      retainedRowSetScaffold?.currentProxyEvidencePopulatedCount ?? null,
+    retainedRowSetIdentityPass:
+      retainedRowSetScaffold?.retainedRowSetIdentityPass ?? false,
+    retainedRowSetBlockingRequirementIds:
+      retainedRowSetScaffold?.blockingRequirementIds ?? [],
+    retainedEventDomainLiftTargetSchema:
+      retainedEventDomainLiftTarget?.schema ?? null,
+    retainedEventDomainLiftStatus:
+      retainedEventDomainLiftTarget?.status ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    retainedEventDomainSelectorStatus:
+      retainedEventDomainSelector?.status ?? null,
+    retainedEventDomainSelectorSelectedRoute:
+      retainedEventDomainSelector?.selectedRoute ?? null,
+    retainedEventDomainSelectorCurrentProxyRouteCount:
+      retainedEventDomainSelector?.currentProxyRouteCount ?? null,
+    retainedEventDomainSelectorAcceptedRouteCount:
+      retainedEventDomainSelector?.acceptedRouteCount ?? null,
+    retainedEventDomainSelectorFirstRunnableRowCount:
+      retainedEventDomainSelector?.firstRunnableRowCount ?? null,
+    energyAngularMomentumClosureAuditSchema:
+      energyAngularMomentumClosureAudit?.schema ?? null,
+    energyAngularMomentumClosureStatus:
+      energyAngularMomentumClosureAudit?.status ?? null,
+    energyAngularMomentumSameClockIdentityPassCount:
+      energyAngularMomentumClosureAudit?.sameClockIdentityPassCount ?? null,
+    energyAngularMomentumTargetInertiaClosurePassCount:
+      energyAngularMomentumClosureAudit
+        ?.targetEffectiveInertiaClosurePassCount ?? null,
+    energyAngularMomentumHbarScaleCandidateCount:
+      energyAngularMomentumClosureAudit?.hbarScaleCandidateCount ?? null,
+    sameRetainedEventOrPositiveWidthDomainPass:
+      retainedEventDomainSelector?.retainedSelectorAcceptancePass ??
+      retainedEventDomainLiftTarget?.sameRetainedEventOrPositiveWidthDomainPass ??
+      false,
+    acceptedFullPointEventRulePass:
+      retainedEventDomainLiftTarget?.acceptedFullPointEventRulePass ?? false,
+    positiveWidthRetainedDomainPass:
+      retainedEventDomainLiftTarget?.positiveWidthRetainedDomainPass ?? false,
+    retainedEventDomainBlockingConditionIds:
+      retainedEventDomainLiftTarget?.blockingConditionIds ?? [],
+    status:
+      blockingConditionIds.length === 0
+        ? "equal_frequency_retained_replay_acceptance_conditions_closed"
+        : currentEvidenceConditionCount > 0
+          ? "equal_frequency_retained_replay_blueprint_populated_current_evidence_only"
+          : "equal_frequency_retained_replay_blueprint_populated_no_current_evidence",
+    acceptanceConditions,
+    firstRunnableRetainedPacket: [
+      "preserve raw labeled B_1,B_2,B_3 rows and attach I:M:O only as role_map",
+      "select a retained point event or positive-width retained domain for S_eq before accepting any residual row",
+      "add P_a or k_a/P_branch rows to compute r_P",
+      "add N_a, Theta, and D_plane rows to compute r_D and sector disposition",
+      "bind rho_a(xi), E_branch, W_a, mu_a, L_wake, and L_coupling to the same retained row set S_eq",
+      "compute R_eq on S_eq before comparing the equal-frequency family to offset, dyadic, or general integer-lock controls",
+    ],
+    firstRunnableRetainedPacketRows:
+      firstRetainedPacketTemplate?.rowTemplates ?? [],
+    firstRunnableRetainedPacketCandidateRows:
+      retainedFrequencyPhasePacket?.rows ?? [],
+    comparisonPolicy:
+      "Do not dispose I:M:O=(f,f,f) by the offset-family self-root parity proxy. Compare it to (f+2,f,f-1), (f+1,f,f-1), (4f,2f,f), and finite (nf,mf,f) controls only after each family reports the same retained residual vector entries or an explicitly declared subset.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyFirstRetainedPacketTemplate({
+  priorityCaseSummaries,
+  retainedRowSetScaffold,
+  returnPeriodFrequencyAudit,
+  planeSectorDiscriminatorAudit,
+}) {
+  const priorityCaseCount = priorityCaseSummaries.length;
+  const rowTemplates = [
+    {
+      rowId: "branch_return_period_or_locked_harmonic_frequency_row",
+      residualComponent: "r_P",
+      targetEquation:
+        "r_P,a=omega_a-2pi/P_a or r_P,a=omega_a-k_a(2pi/P_branch)",
+      retainedInputs: [
+        "retained_row_set_S_eq_id",
+        "raw_labeled_binary_id_a",
+        "role_map_I_M_O",
+        "branch_history_return_period_P_a",
+        "shared_branch_period_P_branch",
+        "locked_harmonic_integer_k_a",
+        "retained_angular_frequency_omega_a",
+      ],
+      retainedOutputs: [
+        "frequency_residual_r_P_a",
+        "locked_harmonic_disposition",
+        "same_row_set_frequency_certificate_pass",
+      ],
+      currentProxyEvidence: {
+        schema: returnPeriodFrequencyAudit?.schema ?? null,
+        status: returnPeriodFrequencyAudit?.status ?? null,
+        priorityCurrentChartPassCount:
+          returnPeriodFrequencyAudit?.priorityCurrentChartReturnPeriodPassCount ??
+          null,
+        priorityCaseCount,
+        retainedCertificatePassCount:
+          returnPeriodFrequencyAudit?.retainedReturnPeriodCertificatePassCount ??
+          null,
+      },
+      currentProxyLimitation:
+        "The reduced chart computes P_a from omega_a after omega_a is already assigned; it does not replay branch-history return periods or locked harmonics.",
+      retainedAcceptanceCondition:
+        "Every priority row reports finite P_a or finite integer k_a with |r_P,a| within tolerance on S_eq.",
+      retainedAcceptancePass: false,
+      status:
+        returnPeriodFrequencyAudit?.priorityCurrentChartReturnPeriodPassCount ===
+        priorityCaseCount
+          ? "template_populated_current_chart_identity_only_retained_frequency_rows_missing"
+          : "template_populated_current_chart_frequency_identity_incomplete",
+      blocker: "branch_return_period_or_locked_harmonic_frequency_certificate",
+    },
+    {
+      rowId: "plane_topology_sector_discriminator_row",
+      residualComponent: "r_D",
+      targetEquation:
+        "D_plane=N_I dot (N_M x N_O), with Theta classifying coplanar cyclic, near-orthogonal tri-binary, or another retained sector",
+      retainedInputs: [
+        "retained_row_set_S_eq_id",
+        "raw_labeled_binary_id_a",
+        "role_map_I_M_O",
+        "retained_plane_normal_or_angular_momentum_bivector_N_a",
+        "phase_bundle_holonomy_Theta",
+        "retained_phase_offsets_phi_a",
+        "same_row_set_sector_disposition",
+      ],
+      retainedOutputs: [
+        "D_plane",
+        "sector_disposition",
+        "planar_z3_vs_near_orthogonal_discriminator",
+        "same_row_set_plane_sector_certificate_pass",
+      ],
+      currentProxyEvidence: {
+        schema: planeSectorDiscriminatorAudit?.schema ?? null,
+        status: planeSectorDiscriminatorAudit?.status ?? null,
+        priorityCoplanarSectorPassCount:
+          planeSectorDiscriminatorAudit?.priorityCoplanarSectorPassCount ?? null,
+        priorityPlanarZ3PassCount:
+          planeSectorDiscriminatorAudit?.priorityPlanarZ3PassCount ?? null,
+        priorityNearOrthogonalSectorPassCount:
+          planeSectorDiscriminatorAudit?.priorityNearOrthogonalSectorPassCount ??
+          null,
+        priorityCaseCount,
+        retainedCertificatePassCount:
+          planeSectorDiscriminatorAudit
+            ?.retainedPlaneSectorCertificatePassCount ?? null,
+      },
+      currentProxyLimitation:
+        "The reduced flattened-limit chart supplies coplanar normals by construction, so the 120-degree cancellation is only a planar Z3 sector witness.",
+      retainedAcceptanceCondition:
+        "Every priority row reports retained N_a or bivectors, Theta, D_plane, and a sector disposition on S_eq.",
+      retainedAcceptancePass: false,
+      status:
+        planeSectorDiscriminatorAudit?.priorityCoplanarSectorPassCount ===
+          priorityCaseCount &&
+        planeSectorDiscriminatorAudit?.priorityPlanarZ3PassCount ===
+          priorityCaseCount
+          ? "template_populated_current_coplanar_z3_only_retained_sector_rows_missing"
+          : "template_populated_current_plane_sector_identity_incomplete",
+      blocker: "plane_topology_sector_discriminator",
+    },
+  ];
+  const currentProxyPopulatedCount = rowTemplates.filter((row) =>
+    row.status.includes("current")
+  ).length;
+  const retainedAcceptancePassCount = rowTemplates.filter(
+    (row) => row.retainedAcceptancePass === true
+  ).length;
+  const blockingRowIds = rowTemplates
+    .filter((row) => row.retainedAcceptancePass !== true)
+    .map((row) => row.rowId);
+  return {
+    schema: "aaa-equal-frequency-first-retained-packet-template.v2",
+    claimLevel:
+      "first retained packet row templates for equal-frequency replay; no retained row acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetScaffoldSchema: retainedRowSetScaffold?.schema ?? null,
+    retainedRowSetScaffoldStatus: retainedRowSetScaffold?.status ?? null,
+    retainedRowSetId: retainedRowSetScaffold?.retainedRowSetId ?? "S_eq",
+    sameRowSetIdentityPass:
+      retainedRowSetScaffold?.retainedRowSetIdentityPass === true,
+    rowSetBlockingRequirementIds:
+      retainedRowSetScaffold?.blockingRequirementIds ?? [],
+    packetResiduals: ["r_P", "r_D"],
+    rowTemplateCount: rowTemplates.length,
+    currentProxyPopulatedCount,
+    retainedAcceptancePassCount,
+    blockingRowIds,
+    status:
+      retainedAcceptancePassCount === rowTemplates.length
+        ? "first_retained_packet_rows_accepted"
+        : currentProxyPopulatedCount === rowTemplates.length
+          ? "first_retained_packet_templates_populated_current_proxy_only"
+          : "first_retained_packet_templates_populated_proxy_incomplete",
+    rowTemplates,
+    nextSolverAction:
+      "Populate branch-history return-period or locked-harmonic rows and retained plane-normal/holonomy sector rows on the same S_eq row set before evaluating any retained acceptance claim.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedFrequencyPhasePacket({
+  priorityCaseSummaries,
+  retainedRowSetScaffold,
+  returnPeriodFrequencyAudit,
+  planeSectorDiscriminatorAudit,
+}) {
+  const rows = priorityCaseSummaries.map((summary) =>
+    createEqualFrequencyRetainedFrequencyPhasePacketRow({
+      summary,
+      retainedRowSetScaffold,
+      returnPeriodFrequencyAudit,
+      planeSectorDiscriminatorAudit,
+    })
+  );
+  const currentProxyPacketPassCount = rows.filter(
+    (row) => row.currentProxyPacketPass === true
+  ).length;
+  const retainedPacketAcceptancePassCount = rows.filter(
+    (row) => row.retainedPacketAcceptancePass === true
+  ).length;
+  const frequencyCurrentProxyPassCount = rows.filter(
+    (row) => row.frequencyCertificate.currentChartReturnPeriodPass === true
+  ).length;
+  const phaseSectorCurrentProxyPassCount = rows.filter(
+    (row) => row.phaseSectorCertificate.currentChartSectorProxyPass === true
+  ).length;
+  const phaseBundleCurrentProxyPassCount = rows.filter(
+    (row) => row.phaseBundleCertificate.currentChartHolonomyProxyPass === true
+  ).length;
+  const blockingRowIds = rows
+    .filter((row) => row.retainedPacketAcceptancePass !== true)
+    .map((row) => row.rowId);
+  return {
+    schema: "aaa-equal-frequency-retained-frequency-phase-packet.v1",
+    claimLevel:
+      "same-row-set frequency and phase-sector packet candidate for equal-frequency replay; current proxy populated, retained acceptance missing",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId: retainedRowSetScaffold?.retainedRowSetId ?? "S_eq",
+    residualComponents: ["r_P", "r_D"],
+    rowCount: rows.length,
+    currentProxyPacketPassCount,
+    retainedPacketAcceptancePassCount,
+    frequencyCurrentProxyPassCount,
+    phaseSectorCurrentProxyPassCount,
+    phaseBundleCurrentProxyPassCount,
+    blockingRowIds,
+    status:
+      rows.length > 0 &&
+      currentProxyPacketPassCount === rows.length &&
+      retainedPacketAcceptancePassCount === 0
+        ? "retained_frequency_phase_packet_populated_current_proxy_only_event_domain_missing"
+        : rows.length > 0 && currentProxyPacketPassCount > 0
+          ? "retained_frequency_phase_packet_partially_populated_current_proxy_only"
+          : "retained_frequency_phase_packet_no_current_proxy_rows",
+    retainedAcceptanceRule:
+      "A packet row is accepted only when r_P and r_D are evaluated on one accepted retained event or positive-width domain in S_eq, with branch-history periods or locked harmonics, retained plane normals or bivectors, phase-bundle holonomy, and same-row-set identity populated.",
+    currentProxyLimitation:
+      "The packet rows bind the current reduced-chart frequency identity and current coplanar Z3 phase-sector witness to S_eq as candidate rows. They do not supply branch-history return periods, retained plane normals, retained holonomy, or event/domain acceptance.",
+    rows,
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedFrequencyPhasePacketRow({
+  summary,
+  retainedRowSetScaffold,
+  returnPeriodFrequencyAudit,
+  planeSectorDiscriminatorAudit,
+}) {
+  const frequencyRow =
+    returnPeriodFrequencyAudit?.rows?.find((row) => row.caseId === summary.caseId) ??
+    null;
+  const planeSectorRow =
+    planeSectorDiscriminatorAudit?.rows?.find(
+      (row) => row.caseId === summary.caseId
+    ) ?? null;
+  const phaseTurns =
+    summary.phaseProfile?.phaseTurnsByLayer ??
+    summary.triadic120Phase?.phaseTurns ??
+    {};
+  const phaseBundleCertificate =
+    createEqualFrequencyPhaseBundleCertificateCandidate(phaseTurns);
+  const frequencyCertificate = {
+    residualComponent: "r_P",
+    targetEquation:
+      "r_P,a=omega_a-2pi/P_a or r_P,a=omega_a-k_a(2pi/P_branch)",
+    currentChartReturnPeriodPass:
+      frequencyRow?.currentChartReturnPeriodPass === true,
+    currentChartStatus: frequencyRow?.currentChartStatus ?? null,
+    currentChartOmegaByRole: frequencyRow?.angularVelocities ?? null,
+    currentChartPeriodByRole: frequencyRow?.periodByRole ?? null,
+    currentChartResidualsByRole:
+      frequencyRow?.angularVelocityResiduals ?? null,
+    maxAbsCurrentChartResidual:
+      frequencyRow?.maxAbsReturnPeriodResidual ?? null,
+    retainedReturnPeriodCertificatePass: false,
+    retainedMissingRows: [
+      "branch_history_return_period_P_a",
+      "shared_branch_period_P_branch",
+      "locked_harmonic_integer_k_a",
+      "same_row_set_frequency_certificate_pass",
+    ],
+  };
+  const phaseSectorCertificate = {
+    residualComponent: "r_D",
+    targetEquation:
+      "D_plane=N_I dot (N_M x N_O), with Theta classifying coplanar cyclic, near-orthogonal tri-binary, or another retained sector",
+    currentChartSectorProxyPass:
+      planeSectorRow?.currentChartCoplanarSectorPass === true &&
+      planeSectorRow?.planarZ3PhaseCancellationPass === true,
+    currentChartSectorDisposition:
+      planeSectorRow?.currentChartSectorDisposition ?? null,
+    currentChartPlaneNormalsByRole:
+      planeSectorRow?.currentChartPlaneNormalsByRole ?? null,
+    currentChartDPlane: planeSectorRow?.dPlane ?? null,
+    currentChartPairwiseNormalDots:
+      planeSectorRow?.pairwiseNormalDots ?? null,
+    planarZ3PhaseCancellationPass:
+      planeSectorRow?.planarZ3PhaseCancellationPass ?? false,
+    phaseOnlyBalanceResidual:
+      planeSectorRow?.phaseOnlyBalanceResidual ?? null,
+    retainedPlaneSectorCertificatePass: false,
+    retainedMissingRows: [
+      "retained_plane_normal_or_angular_momentum_bivector_N_a",
+      "phase_bundle_holonomy_Theta",
+      "retained_D_plane",
+      "same_row_set_sector_disposition",
+    ],
+  };
+  const currentProxyPacketPass =
+    retainedRowSetScaffold?.currentProxyEvidencePopulated === true &&
+    frequencyCertificate.currentChartReturnPeriodPass === true &&
+    phaseSectorCertificate.currentChartSectorProxyPass === true &&
+    phaseBundleCertificate.currentChartHolonomyProxyPass === true;
+  const retainedPacketAcceptancePass = false;
+  return {
+    rowId: `S_eq-frequency-phase-f${summary.f}`,
+    retainedRowSetId: retainedRowSetScaffold?.retainedRowSetId ?? "S_eq",
+    caseId: summary.caseId,
+    f: summary.f,
+    phaseProfileId: summary.phaseProfileId,
+    phaseProfileRole: summary.phaseProfileRole,
+    roleAssignedRelation: "(I,M,O)=(f,f,f)",
+    currentProxyPacketPass,
+    retainedPacketAcceptancePass,
+    sameRetainedEventOrPositiveWidthDomainPass: false,
+    sameRowSetIdentityPass:
+      retainedRowSetScaffold?.retainedRowSetIdentityPass === true,
+    frequencyCertificate,
+    phaseSectorCertificate,
+    phaseBundleCertificate,
+    blockerIds: [
+      "same_retained_event_or_positive_width_domain",
+      "branch_history_return_period_or_locked_harmonic_rows",
+      "retained_plane_normals_or_bivectors",
+      "retained_phase_bundle_holonomy",
+      "same_row_set_sector_disposition",
+    ],
+    status: currentProxyPacketPass
+      ? "frequency_phase_packet_row_current_proxy_populated_retained_acceptance_missing"
+      : "frequency_phase_packet_row_current_proxy_incomplete",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseBundleCertificateCandidate(phaseTurns) {
+  const spacings = createCanonicalForwardTurnSpacings(phaseTurns);
+  const thetaTurnsByEdge = Object.fromEntries(
+    Object.entries(spacings).map(([edge, value]) => [
+      edge,
+      Number.isFinite(value) ? normalizeSignedTurnDelta(value - 1 / 3) : null,
+    ])
+  );
+  const thetaRadiansByEdge = Object.fromEntries(
+    Object.entries(thetaTurnsByEdge).map(([edge, value]) => [
+      edge,
+      Number.isFinite(value) ? value * CLOSURE_PERIOD : null,
+    ])
+  );
+  const maxAbsThetaTurn = maxFinite(
+    Object.values(thetaTurnsByEdge).map((value) =>
+      Number.isFinite(value) ? Math.abs(value) : null
+    )
+  );
+  const maxAbsThetaRadians = Number.isFinite(maxAbsThetaTurn)
+    ? maxAbsThetaTurn * CLOSURE_PERIOD
+    : null;
+  const currentChartHolonomyProxyPass =
+    Number.isFinite(maxAbsThetaTurn) && maxAbsThetaTurn <= ROOT_TOLERANCE;
+  return {
+    residualComponent: "phase_bundle_input_for_r_D_and_r_W",
+    targetProfile: "triadic_120_unit_clock_holonomy",
+    targetSpacingTurns: 1 / 3,
+    phaseTurns,
+    canonicalForwardTurnSpacings: spacings,
+    thetaTurnsByEdge,
+    thetaRadiansByEdge,
+    maxAbsThetaTurn,
+    maxAbsThetaRadians,
+    currentChartHolonomyProxyPass,
+    retainedPhaseBundleHolonomyPass: false,
+    retainedMissingRows: [
+      "binary_to_binary_retained_phase_rows",
+      "phase_bundle_connection",
+      "retained_holonomy_Theta",
+      "phase_deformation_weight_rows_W_a",
+    ],
+    status: currentChartHolonomyProxyPass
+      ? "triadic_120_phase_bundle_proxy_exact_retained_holonomy_missing"
+      : "triadic_120_phase_bundle_proxy_residual_nonzero",
+  };
+}
+
+function createEffectiveInertiaLawScanRow(row) {
+  const leverArms = row.effectiveLeverArms ?? {};
+  const speedRatios = row.speedRatios ?? {};
+  const phaseTurns = row.phaseTurns ?? {};
+  const required =
+    row.requiredEffectiveInertiaForFourSubstepPartition
+      ?.relativeInertiasNormalizedToMiddle ?? {};
+  const middleLeverArm = leverArms.middle;
+  const middleSpeedRatio = speedRatios.middle;
+  const candidateLaws = [
+    createEffectiveInertiaCandidateLaw({
+      lawId: "uniform_branch_inertia",
+      derivationClass: "independent_kinematic_law",
+      formula: "mu_l/mu_M = 1",
+      relativeInertias: Object.fromEntries(LAYER_ROLES.map((role) => [role, 1])),
+      required,
+    }),
+    createEffectiveInertiaCandidateLaw({
+      lawId: "inverse_square_lever_arm",
+      derivationClass: "independent_kinematic_law",
+      formula: "mu_l/mu_M = (rho_M/rho_l)^2 = (s_M/s_l)^2 at common omega",
+      relativeInertias: Object.fromEntries(
+        LAYER_ROLES.map((role) => [
+          role,
+          Number.isFinite(middleLeverArm) &&
+          Number.isFinite(leverArms[role]) &&
+          Math.abs(leverArms[role]) > ROOT_TOLERANCE
+            ? (middleLeverArm / leverArms[role]) ** 2
+            : null,
+        ])
+      ),
+      required,
+    }),
+    createEffectiveInertiaCandidateLaw({
+      lawId: "root_weight_only",
+      derivationClass: "target_weight_only_law",
+      formula: "mu_l/mu_M = w_l/w_M with w=(2,1,1) in I:M:O order",
+      relativeInertias: normalizeWeightsToMiddle(FOUR_SUBSTEP_ACTION_WEIGHTS),
+      required,
+    }),
+    createEffectiveInertiaCandidateLaw({
+      lawId: "root_weighted_inverse_square_lever_arm",
+      derivationClass: "target_weighted_law",
+      formula:
+        "mu_l/mu_M = (w_l/w_M)(rho_M/rho_l)^2 = (w_l/w_M)(s_M/s_l)^2",
+      relativeInertias: Object.fromEntries(
+        LAYER_ROLES.map((role) => [
+          role,
+          Number.isFinite(middleLeverArm) &&
+          Number.isFinite(leverArms[role]) &&
+          Math.abs(leverArms[role]) > ROOT_TOLERANCE
+            ? (FOUR_SUBSTEP_ACTION_WEIGHTS[role] /
+                FOUR_SUBSTEP_ACTION_WEIGHTS.middle) *
+              (middleLeverArm / leverArms[role]) ** 2
+            : null,
+        ])
+      ),
+      required,
+    }),
+    createEffectiveInertiaCandidateLaw({
+      lawId: "direct_square_lever_arm",
+      derivationClass: "independent_kinematic_law",
+      formula: "mu_l/mu_M = (rho_l/rho_M)^2",
+      relativeInertias: Object.fromEntries(
+        LAYER_ROLES.map((role) => [
+          role,
+          Number.isFinite(middleLeverArm) &&
+          Number.isFinite(leverArms[role]) &&
+          Math.abs(middleLeverArm) > ROOT_TOLERANCE
+            ? (leverArms[role] / middleLeverArm) ** 2
+            : null,
+        ])
+      ),
+      required,
+    }),
+    createEffectiveInertiaCandidateLaw({
+      lawId: "inverse_square_speed_ratio",
+      derivationClass: "independent_kinematic_law",
+      formula: "mu_l/mu_M = (s_M/s_l)^2",
+      relativeInertias: Object.fromEntries(
+        LAYER_ROLES.map((role) => [
+          role,
+          Number.isFinite(middleSpeedRatio) &&
+          Number.isFinite(speedRatios[role]) &&
+          Math.abs(speedRatios[role]) > ROOT_TOLERANCE
+            ? (middleSpeedRatio / speedRatios[role]) ** 2
+            : null,
+        ])
+      ),
+      required,
+    }),
+  ];
+  return {
+    caseId: row.caseId,
+    f: row.f,
+    phaseProfileId: row.phaseProfileId,
+    effectiveLeverArms: leverArms,
+    speedRatios,
+    phaseTurns,
+    requiredRelativeInertias: required,
+    candidateLaws,
+    bestLaw:
+      candidateLaws
+        .slice()
+        .sort((left, right) => {
+          const leftResidual = left.maxAbsResidual ?? Number.POSITIVE_INFINITY;
+          const rightResidual = right.maxAbsResidual ?? Number.POSITIVE_INFINITY;
+          if (leftResidual !== rightResidual) {
+            return leftResidual - rightResidual;
+          }
+          return left.lawId.localeCompare(right.lawId);
+        })[0] ?? null,
+  };
+}
+
+function createEffectiveInertiaCandidateLaw({
+  lawId,
+  derivationClass,
+  formula,
+  relativeInertias,
+  required,
+}) {
+  const residuals = residualRoleWeights({
+    actual: relativeInertias,
+    target: required,
+  });
+  const maxAbsResidual = maxFinite(
+    Object.values(residuals).map((value) =>
+      Number.isFinite(value) ? Math.abs(value) : null
+    )
+  );
+  return {
+    lawId,
+    derivationClass,
+    formula,
+    relativeInertias,
+    requiredRelativeInertias: required,
+    residuals,
+    maxAbsResidual,
+    exactPass:
+      Number.isFinite(maxAbsResidual) && maxAbsResidual <= ROOT_TOLERANCE,
+  };
+}
+
+function normalizeWeightsToMiddle(weightsByRole) {
+  const middle = weightsByRole.middle;
+  if (!Number.isFinite(middle) || Math.abs(middle) <= ROOT_TOLERANCE) {
+    return Object.fromEntries(LAYER_ROLES.map((role) => [role, null]));
+  }
+  return Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(weightsByRole[role]) ? weightsByRole[role] / middle : null,
+    ])
+  );
+}
+
+function normalizeRoleWeights(weightsByRole) {
+  const values = LAYER_ROLES.map((role) => weightsByRole[role]);
+  if (!values.every(Number.isFinite)) {
+    return Object.fromEntries(LAYER_ROLES.map((role) => [role, null]));
+  }
+  const total = values.reduce((sum, value) => sum + value, 0);
+  if (!Number.isFinite(total) || Math.abs(total) <= ROOT_TOLERANCE) {
+    return Object.fromEntries(LAYER_ROLES.map((role) => [role, null]));
+  }
+  return Object.fromEntries(
+    LAYER_ROLES.map((role) => [role, weightsByRole[role] / total])
+  );
+}
+
+function residualRoleWeights({ actual, target }) {
+  return Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(actual?.[role]) && Number.isFinite(target?.[role])
+        ? actual[role] - target[role]
+        : null,
+    ])
+  );
+}
+
+function createPermutations(values) {
+  if (values.length <= 1) {
+    return [values];
+  }
+  const permutations = [];
+  for (let index = 0; index < values.length; index += 1) {
+    const head = values[index];
+    const tail = values.filter((_, tailIndex) => tailIndex !== index);
+    for (const tailPermutation of createPermutations(tail)) {
+      permutations.push([head, ...tailPermutation]);
+    }
+  }
+  return permutations;
+}
+
+function createEqualFrequencyPhaseResponseSummary(item) {
+  const byLayer = new Map((item.layers ?? []).map((row) => [row.layer, row]));
+  const layerSummaries = Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const layer = byLayer.get(role);
+      const phaseRows = layer?.phaseDiagnostics?.rows ?? [];
+      const rootCount = layer?.rootLedger?.rootCount ?? 0;
+      const delayedHitCount = layer?.rootLedger?.delayedHitCount ?? 0;
+      const activeRootDetailCount = layer?.rootLedger?.activeRootDetailCount ?? 0;
+      const phaseDiagnosticRowCount =
+        layer?.phaseDiagnostics?.rowCount ?? phaseRows.length;
+      return [
+        role,
+        {
+          geometryModel: layer?.geometryModel ?? null,
+          geometryChart: layer?.geometryChart ?? null,
+          retainedBranchModel: layer?.retainedBranchModel ?? null,
+          effectiveLeverArm: getLayerEffectiveLeverArm(layer),
+          speedRatio: layer?.speedRatio ?? null,
+          phaseAtEpochTurn: Number.isFinite(layer?.phaseAtEpoch)
+            ? normalizeTurn(layer.phaseAtEpoch / CLOSURE_PERIOD)
+            : null,
+          rootCount,
+          delayedHitCount,
+          activeRootDetailCount,
+          phaseDiagnosticRowCount,
+          sourcePhaseStats: createFiniteStats(phaseRows.map((row) => row.sourcePhase)),
+          receiverPhaseStats: createFiniteStats(
+            phaseRows.map((row) => row.receiverPhase)
+          ),
+          phaseDeltaStats: createFiniteStats(phaseRows.map((row) => row.phaseDelta)),
+          phaseSpreadStats: createFiniteStats(
+            phaseRows.map((row) => row.phaseSpread)
+          ),
+          delayStats: createFiniteStats(
+            (layer?.rootLedger?.roots ?? []).map((root) => root.delay)
+          ),
+          selfHitRootFound: layer?.selfHit?.rootFound === true,
+          selfHitRegime: layer?.selfHit?.regime ?? null,
+          selfHitSpan: layer?.selfHit?.span ?? null,
+          minAbsJacobian: layer?.rootLedger?.minAbsJacobian ?? null,
+          maxAbsResidual: layer?.rootLedger?.maxAbsResidual ?? null,
+        },
+      ];
+    })
+  );
+  const totals = {
+    rootCount: sumFinite(
+      LAYER_ROLES.map((role) => layerSummaries[role].rootCount)
+    ),
+    delayedHitCount: sumFinite(
+      LAYER_ROLES.map((role) => layerSummaries[role].delayedHitCount)
+    ),
+    activeRootDetailCount: sumFinite(
+      LAYER_ROLES.map((role) => layerSummaries[role].activeRootDetailCount)
+    ),
+    phaseDiagnosticRowCount: sumFinite(
+      LAYER_ROLES.map((role) => layerSummaries[role].phaseDiagnosticRowCount)
+    ),
+  };
+  return {
+    schema: "aaa-equal-frequency-phase-response-case-summary.v2",
+    claimLevel:
+      "fixed-receiver executable-chart phase/root response summary; not retained phase row-set identity",
+    geometryModel: item.policyModel?.geometryModel ?? layerSummaries.inner.geometryModel,
+    geometryChart: item.policyModel?.geometryChart ?? layerSummaries.inner.geometryChart,
+    retainedBranchModel:
+      item.policyModel?.retainedBranchModel ?? layerSummaries.inner.retainedBranchModel,
+    phaseProfileId: item.phaseProfile?.id ?? null,
+    phaseProfileRole: item.phaseProfile?.role ?? null,
+    priorityPhaseProfile: item.phaseProfile?.priorityPhaseProfile === true,
+    layerSummaries,
+    totals,
+    responseSignature: createPhaseResponseSignature(layerSummaries),
+    retainedBranchClaim: false,
+  };
+}
+
+function createPhaseResponseSignature(layerSummaries) {
+  return LAYER_ROLES.map((role) => {
+    const summary = layerSummaries[role] ?? {};
+    return [
+      role,
+      summary.rootCount ?? "x",
+      summary.phaseDiagnosticRowCount ?? "x",
+      summary.activeRootDetailCount ?? "x",
+      formatSignatureNumber(summary.selfHitSpan),
+    ].join(":");
+  }).join("|");
+}
+
+function createEqualFrequencyPhaseProfileRanking(caseSummaries) {
+  const buckets = new Map();
+  for (const summary of caseSummaries) {
+    const profileId = summary.phaseProfileId ?? "unknown";
+    const bucket = buckets.get(profileId) ?? {
+      phaseProfileId: profileId,
+      phaseProfileRole: summary.phaseProfileRole ?? null,
+      priorityPhaseProfile: summary.priorityPhaseProfile === true,
+      phaseProfile: summary.phaseProfile ?? null,
+      caseCount: 0,
+      auditPassCount: 0,
+      maxTriadicSpacingResidual: null,
+      meanTriadicSpacingResidual: null,
+      residualSum: 0,
+      finiteResidualCount: 0,
+      phaseResponseSummaries: [],
+      retainedBranchClaim: false,
+    };
+    bucket.caseCount += 1;
+    if (summary.allAuditRowsPass === true) {
+      bucket.auditPassCount += 1;
+    }
+    if (summary.phaseResponse) {
+      bucket.phaseResponseSummaries.push(summary.phaseResponse);
+    }
+    const residual = summary.triadic120Phase?.maxSpacingResidual ?? null;
+    if (Number.isFinite(residual)) {
+      bucket.finiteResidualCount += 1;
+      bucket.residualSum += residual;
+      bucket.maxTriadicSpacingResidual =
+        bucket.maxTriadicSpacingResidual == null
+          ? residual
+          : Math.max(bucket.maxTriadicSpacingResidual, residual);
+    }
+    buckets.set(profileId, bucket);
+  }
+  return Array.from(buckets.values())
+    .map((bucket) => ({
+      ...bucket,
+      meanTriadicSpacingResidual:
+        bucket.finiteResidualCount > 0
+          ? bucket.residualSum / bucket.finiteResidualCount
+          : null,
+      phaseResponseAggregate: createEqualFrequencyPhaseProfileResponseAggregate(
+        bucket.phaseResponseSummaries
+      ),
+      residualSum: undefined,
+      finiteResidualCount: undefined,
+      phaseResponseSummaries: undefined,
+    }))
+    .sort((left, right) => {
+      const leftResidual = left.maxTriadicSpacingResidual ?? Number.POSITIVE_INFINITY;
+      const rightResidual = right.maxTriadicSpacingResidual ?? Number.POSITIVE_INFINITY;
+      if (leftResidual !== rightResidual) {
+        return leftResidual - rightResidual;
+      }
+      if (left.priorityPhaseProfile !== right.priorityPhaseProfile) {
+        return left.priorityPhaseProfile ? -1 : 1;
+      }
+      return left.phaseProfileId.localeCompare(right.phaseProfileId);
+    })
+    .map((bucket, index) => ({
+      rank: index + 1,
+      ...bucket,
+    }));
+}
+
+function createEqualFrequencyPhaseProfileResponseAggregate(phaseResponses) {
+  const signatureCounts = new Map();
+  for (const response of phaseResponses) {
+    const signature = response.responseSignature ?? "unknown";
+    signatureCounts.set(signature, (signatureCounts.get(signature) ?? 0) + 1);
+  }
+  const signatures = Array.from(signatureCounts.entries())
+    .map(([signature, count]) => ({ signature, count }))
+    .sort((left, right) => {
+      if (right.count !== left.count) {
+        return right.count - left.count;
+      }
+      return left.signature.localeCompare(right.signature);
+    });
+  return {
+    schema: "aaa-equal-frequency-phase-response-profile-aggregate.v2",
+    claimLevel:
+      "aggregate fixed-receiver executable-chart response by phase profile; not retained phase selection",
+    geometryModel:
+      phaseResponses[0]?.geometryModel ?? GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    geometryChart: phaseResponses[0]?.geometryChart ?? CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    retainedBranchModel:
+      phaseResponses[0]?.retainedBranchModel ?? RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    caseCount: phaseResponses.length,
+    layerMeans: Object.fromEntries(
+      LAYER_ROLES.map((role) => [
+        role,
+        createLayerResponseAggregate(
+          phaseResponses.map((response) => response.layerSummaries?.[role])
+        ),
+      ])
+    ),
+    totalMeans: {
+      rootCount: meanFinite(
+        phaseResponses.map((response) => response.totals?.rootCount)
+      ),
+      activeRootDetailCount: meanFinite(
+        phaseResponses.map((response) => response.totals?.activeRootDetailCount)
+      ),
+      phaseDiagnosticRowCount: meanFinite(
+        phaseResponses.map((response) => response.totals?.phaseDiagnosticRowCount)
+      ),
+    },
+    distinctResponseSignatureCount: signatures.length,
+    majorityResponseSignature: signatures[0]?.signature ?? null,
+    responseSignatures: signatures,
+    retainedBranchClaim: false,
+  };
+}
+
+function createLayerResponseAggregate(layerSummaries) {
+  const summaries = layerSummaries.filter(Boolean);
+  return {
+    rootCount: createFiniteStats(summaries.map((summary) => summary.rootCount)),
+    activeRootDetailCount: createFiniteStats(
+      summaries.map((summary) => summary.activeRootDetailCount)
+    ),
+    phaseDiagnosticRowCount: createFiniteStats(
+      summaries.map((summary) => summary.phaseDiagnosticRowCount)
+    ),
+    selfHitSpan: createFiniteStats(summaries.map((summary) => summary.selfHitSpan)),
+    phaseDeltaMean: createFiniteStats(
+      summaries.map((summary) => summary.phaseDeltaStats?.mean)
+    ),
+    phaseSpreadMean: createFiniteStats(
+      summaries.map((summary) => summary.phaseSpreadStats?.mean)
+    ),
+    delayMean: createFiniteStats(summaries.map((summary) => summary.delayStats?.mean)),
+  };
+}
+
+function createEqualFrequencyPhaseResponseDiscrimination(phaseProfileRanking) {
+  const profileRows = phaseProfileRanking.map((profile) => ({
+    rank: profile.rank,
+    phaseProfileId: profile.phaseProfileId,
+    priorityPhaseProfile: profile.priorityPhaseProfile === true,
+    maxTriadicSpacingResidual: profile.maxTriadicSpacingResidual,
+    majorityResponseSignature:
+      profile.phaseResponseAggregate?.majorityResponseSignature ?? null,
+    distinctResponseSignatureCount:
+      profile.phaseResponseAggregate?.distinctResponseSignatureCount ?? 0,
+    meanTotalRootCount: profile.phaseResponseAggregate?.totalMeans?.rootCount ?? null,
+    meanTotalPhaseDiagnosticRowCount:
+      profile.phaseResponseAggregate?.totalMeans?.phaseDiagnosticRowCount ?? null,
+    phaseDeltaMeanByLayer: Object.fromEntries(
+      LAYER_ROLES.map((role) => [
+        role,
+        profile.phaseResponseAggregate?.layerMeans?.[role]?.phaseDeltaMean?.mean ??
+          null,
+      ])
+    ),
+    phaseSpreadMeanByLayer: Object.fromEntries(
+      LAYER_ROLES.map((role) => [
+        role,
+        profile.phaseResponseAggregate?.layerMeans?.[role]?.phaseSpreadMean?.mean ??
+          null,
+      ])
+    ),
+  }));
+  const distinctProfileSignatures = new Set(
+    profileRows.map((row) => row.majorityResponseSignature ?? "unknown")
+  );
+  const phaseDeltaMeanRangeByLayer = createProfileLayerMetricRanges(
+    profileRows,
+    "phaseDeltaMeanByLayer"
+  );
+  const phaseSpreadMeanRangeByLayer = createProfileLayerMetricRanges(
+    profileRows,
+    "phaseSpreadMeanByLayer"
+  );
+  const maxPhaseDeltaMeanProfileRange = maxFinite(
+    Object.values(phaseDeltaMeanRangeByLayer)
+  );
+  const responseSignatureDistinguished = distinctProfileSignatures.size > 1;
+  const phaseDeltaMeanDistinguished =
+    Number.isFinite(maxPhaseDeltaMeanProfileRange) &&
+    maxPhaseDeltaMeanProfileRange > ROOT_TOLERANCE;
+  return {
+    schema: "aaa-equal-frequency-phase-response-discrimination.v2",
+    claimLevel:
+      "phase-profile comparison inside the current executable chart; not retained branch selection",
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    geometryChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    status:
+      responseSignatureDistinguished && phaseDeltaMeanDistinguished
+        ? "phase_profiles_distinguished_by_root_signature_and_phase_delta_means"
+        : responseSignatureDistinguished
+        ? "phase_profiles_have_distinct_fixed_receiver_response_signatures"
+        : phaseDeltaMeanDistinguished
+          ? "phase_profiles_share_root_signature_but_phase_delta_means_differ"
+        : "phase_profiles_not_distinguished_by_current_fixed_receiver_response_signature",
+    responseSignatureDistinguished,
+    phaseDeltaMeanDistinguished,
+    phaseDeltaMeanRangeByLayer,
+    phaseSpreadMeanRangeByLayer,
+    profileRows,
+    retainedInterpretation:
+      "Use this to choose the next retained tri-binary Noether braid replay targets. It cannot by itself accept or reject a phase profile because it is still a fixed-receiver chart response, not binary-to-binary retained row-set identity.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createProfileLayerMetricRanges(profileRows, metricName) {
+  return Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const values = profileRows
+        .map((row) => row[metricName]?.[role])
+        .filter((value) => Number.isFinite(value));
+      return [
+        role,
+        values.length > 0 ? Math.max(...values) - Math.min(...values) : null,
+      ];
+    })
+  );
+}
+
 function createFrequencyTripletSearchSummary(cases) {
   const familyBuckets = new Map();
   const bestByPolicyF = new Map();
@@ -38731,10 +43761,11 @@ function createFrequencyTripletSearchSummary(cases) {
     const familyBucket = familyBuckets.get(item.familyId) ?? {
       familyId: item.familyId,
       familyLabel: item.familyLabel,
-      familyCanonicalRelation: item.familyCanonicalRelation,
-      familyOuterNormalizedRelation: item.familyOuterNormalizedRelation,
+      familyRoleAssignedRelation: item.familyRoleAssignedRelation,
+      legacyOuterNormalizedRelation: item.legacyOuterNormalizedRelation,
       candidateClass: item.candidateClass,
       integerLock: item.integerLock,
+      searchLanes: item.searchLanes ?? [],
       priorityCandidate: item.priorityCandidate === true,
       caseCount: 0,
       reducedPassCount: 0,
@@ -38786,12 +43817,13 @@ function createFrequencyTripletSearchSummary(cases) {
       bestByPolicyF.set(policyFKey, {
         policyFKey,
         policy: item.policy,
+        policyModel: item.policyModel ?? null,
         f: item.f,
         caseId: item.caseId,
         familyId: item.familyId,
         familyLabel: item.familyLabel,
-        familyCanonicalRelation: item.familyCanonicalRelation,
-        familyOuterNormalizedRelation: item.familyOuterNormalizedRelation,
+        familyRoleAssignedRelation: item.familyRoleAssignedRelation,
+        legacyOuterNormalizedRelation: item.legacyOuterNormalizedRelation,
         candidateClass: item.candidateClass,
         integerLock: item.integerLock,
         frequencyTriplet: item.frequencyTriplet,
@@ -38822,10 +43854,11 @@ function createFrequencyTripletSearchSummary(cases) {
     .map((bucket) => ({
       familyId: bucket.familyId,
       familyLabel: bucket.familyLabel,
-      familyCanonicalRelation: bucket.familyCanonicalRelation,
-      familyOuterNormalizedRelation: bucket.familyOuterNormalizedRelation,
+      familyRoleAssignedRelation: bucket.familyRoleAssignedRelation,
+      legacyOuterNormalizedRelation: bucket.legacyOuterNormalizedRelation,
       candidateClass: bucket.candidateClass,
       integerLock: bucket.integerLock,
+      searchLanes: bucket.searchLanes,
       priorityCandidate: bucket.priorityCandidate,
       caseCount: bucket.caseCount,
       reducedPassCount: bucket.reducedPassCount,
@@ -38849,12 +43882,20 @@ function createFrequencyTripletSearchSummary(cases) {
     }));
   const nonMinimalCompetitorAudit =
     createNonMinimalCompetitorAudit(branchCertificateFamilyRanking);
+  const equalFrequencyEnergyRadiusAudit =
+    createEqualFrequencyEnergyRadiusAudit(cases);
+  const candidateSetReview = createFrequencyTripletCandidateSetReview({
+    familySummaries,
+    branchCertificateFamilyRanking,
+    equalFrequencyEnergyRadiusAudit,
+  });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v1",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v28",
     claimLevel:
-      "candidate search summary over canonical I:M:O frequency triplets; not retained-branch certification",
-    canonicalOrder: "I:M:O",
-    outerNormalizedOrder: "f_O:f_M:f_I",
+      "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
+    rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
+    roleAssignedOrder: "I:M:O",
+    legacyOuterNormalizedOrder: "f_O:f_M:f_I",
     caseCount: cases.length,
     familyCount: familyBuckets.size,
     familySummaries,
@@ -38870,6 +43911,8 @@ function createFrequencyTripletSearchSummary(cases) {
       ],
       tieBreaker:
         "inner self-hit span is used only after branch-certificate criteria; span-only winners are diagnostic controls.",
+      knownLimitation:
+        "The self_root_parity_index_proxy is an offset-family score. The equal-frequency priority family I:M:O=(f,f,f) is evaluated through equalFrequencyEnergyRadiusAudit instead.",
       sharedBlockers: [
         "row_set_identity",
         "phase_lock",
@@ -38884,9 +43927,960 @@ function createFrequencyTripletSearchSummary(cases) {
     branchCertificateFamilyRanking,
     bestByBranchCertificate: branchCertificateFamilyRanking[0] ?? null,
     nonMinimalCompetitorAudit,
+    equalFrequencyEnergyRadiusAudit,
+    candidateSetReview,
     bestByPolicyF: Array.from(bestByPolicyF.values()).sort((left, right) =>
       left.policyFKey.localeCompare(right.policyFKey)
     ),
+    retainedBranchClaim: false,
+  };
+}
+
+function createFrequencyTripletCandidateSetReview({
+  familySummaries,
+  branchCertificateFamilyRanking,
+  equalFrequencyEnergyRadiusAudit,
+}) {
+  const familyById = new Map(familySummaries.map((family) => [family.familyId, family]));
+  const rankById = new Map(
+    branchCertificateFamilyRanking.map((family) => [family.familyId, family])
+  );
+  const generalIntegerLockFamilies = familySummaries.filter(
+    (family) => family.candidateClass === "general_integer_lock_control"
+  );
+  const rows = [
+    createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit),
+    createFamilyCandidateReviewRow({
+      family: familyById.get("middle-hinge-offset"),
+      rank: rankById.get("middle-hinge-offset"),
+      reviewRole: "priority offset candidate",
+      currentDisposition: "top_current_offset_proxy_family_retained_blocked",
+      proxyApplicability: "self_root_parity_index_proxy_applicable",
+      nextRetainedBurden:
+        "prove retained row-set identity, phase lock, torque/wake consistency, energy routing, and section stability",
+    }),
+    createFamilyCandidateReviewRow({
+      family: familyById.get("symmetric-control"),
+      rank: rankById.get("symmetric-control"),
+      reviewRole: "symmetric offset control",
+      currentDisposition: "control_for_middle_hinge_offset_candidate",
+      proxyApplicability: "self_root_parity_index_proxy_applicable",
+      nextRetainedBurden:
+        "keep as adjacent offset control when retained middle-hinge rows are replayed",
+    }),
+    createFamilyCandidateReviewRow({
+      family: familyById.get("dyadic-lock-4-2-1"),
+      rank: rankById.get("dyadic-lock-4-2-1"),
+      reviewRole: "dyadic integer-lock control",
+      currentDisposition: "dyadic_control_span_only_under_current_proxy",
+      proxyApplicability: "self_root_parity_index_proxy_not_supportive",
+      nextRetainedBurden:
+        "retain as 4x:2x:x control for future integer-lock lattice comparisons",
+    }),
+    createGeneralIntegerLockCandidateReviewRow({
+      families: generalIntegerLockFamilies,
+      ranks: rankById,
+    }),
+  ];
+  return {
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v24",
+    claimLevel:
+      "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
+    rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
+    roleAssignedOrder: "I:M:O",
+    legacyOrderDisposition:
+      "Outer-normalized translation metadata is not the primary solver order.",
+    comparisonAxisReview: createFrequencyTripletComparisonAxisReview(rows),
+    residualMatrixReview: createFrequencyTripletResidualMatrixReview(rows),
+    rows,
+    reviewFinding:
+      "The old offset proxy ranks the role-assigned middle-hinge family first, but it is not a disposition rule for the raw equal-frequency row with optional I:M:O=(f,f,f) role map. Equal frequency is a separate energy-radius-phase candidate whose retained replay target is the general velocity-deforming tri-binary Noether braid branch state, with low-drift spherical-envelope, oblate-envelope, and flattened-limit rows only as projection views.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createFrequencyTripletComparisonAxisReview(rows) {
+  return {
+    schema: "aaa-tri-binary-frequency-triplet-comparison-axis-review.v2",
+    claimLevel:
+      "reduced comparison-axis summary; not a retained branch selector",
+    axes: [
+      "frequency_relation",
+      "radius_velocity_relation",
+      "phase_relation",
+      "retained_acceptance",
+    ],
+    fairComparisonRule:
+      "Do not rank equal-frequency, offset, dyadic, or general integer-lock candidates against one another by one family's proxy alone. Compare only after each row has frequency, radius/velocity, phase, row-set identity, wake/energy, and stability evidence on the same retained branch record.",
+    rows: rows.map((row) => ({
+      candidateKey: row.candidateKey,
+      reviewRole: row.reviewRole,
+      roleAssignedRelation: row.roleAssignedRelation,
+      sampledCaseCount: row.sampledCaseCount,
+      frequencyEvidenceStatus: row.frequencyEvidenceStatus ?? null,
+      radiusVelocityEvidenceStatus: row.radiusVelocityEvidenceStatus ?? null,
+      phaseEvidenceStatus: row.phaseEvidenceStatus ?? null,
+      retainedAcceptanceStatus: row.retainedAcceptanceStatus ?? null,
+      fairComparisonRule: row.fairComparisonRule ?? null,
+      retainedBranchClaim: false,
+    })),
+    retainedBranchClaim: false,
+  };
+}
+
+function createFrequencyTripletResidualMatrixReview(rows) {
+  const matrixRows = rows.map(createFrequencyTripletResidualMatrixRow);
+  const retainedComparisonReadyRows = matrixRows.filter(
+    (row) => row.retainedComparisonReady === true
+  );
+  const strongestCurrentRows = matrixRows
+    .map((row) => ({
+      candidateKey: row.candidateKey,
+      reviewRole: row.reviewRole,
+      acceptedResidualCount: row.acceptedResidualCount,
+      currentProxyResidualCount: row.currentProxyResidualCount,
+      partialProxyResidualCount: row.partialProxyResidualCount,
+      missingResidualCount: row.missingResidualCount,
+      retainedComparisonReady: row.retainedComparisonReady,
+      nextBurden: row.nextBurden,
+    }))
+    .sort((left, right) => {
+      if (left.acceptedResidualCount !== right.acceptedResidualCount) {
+        return right.acceptedResidualCount - left.acceptedResidualCount;
+      }
+      if (left.currentProxyResidualCount !== right.currentProxyResidualCount) {
+        return right.currentProxyResidualCount - left.currentProxyResidualCount;
+      }
+      if (left.partialProxyResidualCount !== right.partialProxyResidualCount) {
+        return right.partialProxyResidualCount - left.partialProxyResidualCount;
+      }
+      return left.missingResidualCount - right.missingResidualCount;
+    });
+  return {
+    schema: "aaa-tri-binary-frequency-triplet-residual-matrix-review.v3",
+    claimLevel:
+      "retained residual-vector comparison matrix; current proxies only, not branch selection",
+    residualVector:
+      "R_3B=(r_rows,r_evt,r_P,r_rho,r_E,r_D,r_W,r_J)",
+    residualComponents: [
+      {
+        id: "r_rows",
+        meaning:
+          "same retained row-set identity for raw B_1:B_2:B_3 rows, role map, history rows, ledgers, and Noether sea record",
+      },
+      {
+        id: "r_evt",
+        meaning:
+          "one accepted retained point event or positive-width retained time domain",
+      },
+      {
+        id: "r_P",
+        meaning:
+          "branch return-period or locked-harmonic frequency certificate",
+      },
+      {
+        id: "r_rho",
+        meaning:
+          "retained radius/velocity/effective-lever-arm projection law",
+      },
+      {
+        id: "r_E",
+        meaning:
+          "retained branch energy/action stationarity and routing law",
+      },
+      {
+        id: "r_D",
+        meaning:
+          "retained plane-sector and phase-bundle discriminator",
+      },
+      {
+        id: "r_W",
+        meaning:
+          "phase-deformation, wake, recoil, or coupling weight balance",
+      },
+      {
+        id: "r_J",
+        meaning:
+          "same-event one-unit angular-momentum ledger with wake and coupling terms",
+      },
+    ],
+    fairComparisonRule:
+      "A candidate is retained-comparison-ready only when all residual components are accepted on the same retained row set and event/domain, or when a comparison explicitly declares a smaller common residual subset.",
+    rowCount: matrixRows.length,
+    retainedComparisonReadyCount: retainedComparisonReadyRows.length,
+    retainedComparisonReadyCandidateKeys: retainedComparisonReadyRows.map(
+      (row) => row.candidateKey
+    ),
+    strongestCurrentRows,
+    rows: matrixRows,
+    finding:
+      retainedComparisonReadyRows.length === 0
+        ? "no_frequency_triplet_family_has_retained_residual_vector_acceptance"
+        : "one_or_more_frequency_triplet_families_have_retained_residual_vector_acceptance",
+    retainedBranchClaim: false,
+  };
+}
+
+function createFrequencyTripletResidualMatrixRow(row) {
+  const residuals =
+    row.candidateKey === "equal-frequency-energy-radius"
+      ? createEqualFrequencyResidualMatrixResiduals(row)
+      : createGenericFrequencyCandidateResidualMatrixResiduals(row);
+  const residualValues = Object.values(residuals);
+  const acceptedResidualCount = residualValues.filter(
+    (residual) => residual.status === "accepted"
+  ).length;
+  const currentProxyResidualCount = residualValues.filter(
+    (residual) => residual.status === "current_proxy"
+  ).length;
+  const partialProxyResidualCount = residualValues.filter(
+    (residual) => residual.status === "partial_proxy"
+  ).length;
+  const missingResidualCount = residualValues.filter(
+    (residual) => residual.status === "missing"
+  ).length;
+  const retainedComparisonReady =
+    residualValues.length > 0 &&
+    residualValues.every((residual) => residual.status === "accepted");
+  return {
+    candidateKey: row.candidateKey,
+    reviewRole: row.reviewRole,
+    rawSearchRelation: row.rawSearchRelation ?? null,
+    roleAssignedRelation: row.roleAssignedRelation ?? null,
+    sampledCaseCount: row.sampledCaseCount ?? null,
+    sampledFamilyCount: row.sampledFamilyCount ?? null,
+    residuals,
+    acceptedResidualCount,
+    currentProxyResidualCount,
+    partialProxyResidualCount,
+    missingResidualCount,
+    retainedComparisonReady,
+    evidenceSummary:
+      retainedComparisonReady === true
+        ? "retained_residual_vector_accepted"
+        : currentProxyResidualCount > 0 || partialProxyResidualCount > 0
+          ? "current_or_partial_proxy_residuals_populated_retained_acceptance_missing"
+          : "retained_residual_vector_missing",
+    nextBurden:
+      row.nextRetainedBurden ??
+      "populate the retained residual vector on one retained row set before branch comparison",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyResidualMatrixResiduals(row) {
+  const packetRowCount = positiveNumberOrNull(
+    row.retainedFrequencyPhasePacketRowCount
+  );
+  const retainedRowSetProxyCount = positiveNumberOrNull(
+    row.retainedRowSetCurrentProxyEvidencePopulatedCount
+  );
+  const frequencyProxyCount = positiveNumberOrNull(
+    row.retainedFrequencyPhasePacketFrequencyCurrentProxyPassCount
+  );
+  const sectorProxyCount = positiveNumberOrNull(
+    row.retainedFrequencyPhasePacketPhaseSectorCurrentProxyPassCount
+  );
+  const eventSelectorProxyCount = positiveNumberOrNull(
+    row.retainedEventDomainSelectorCurrentProxyRouteCount
+  );
+  const eventSelectorAcceptedCount = positiveNumberOrNull(
+    row.retainedEventDomainSelectorAcceptedRouteCount
+  );
+  const energyAngularMomentumTargetInertiaClosureCount = positiveNumberOrNull(
+    row.energyAngularMomentumTargetInertiaClosurePassCount
+  );
+  const energyAngularMomentumHbarScaleCandidateCount = positiveNumberOrNull(
+    row.energyAngularMomentumHbarScaleCandidateCount
+  );
+  return {
+    r_rows: createResidualEvidence({
+      accepted: row.retainedRowSetIdentityPass === true,
+      currentProxy: retainedRowSetProxyCount !== null,
+      source: row.retainedRowSetScaffoldSchema,
+      blocker: "same_retained_row_set_identity",
+      note:
+        "S_eq scaffold is populated from current proxy subaudits, but retained row-set identity is not accepted.",
+    }),
+    r_evt: createResidualEvidence({
+      accepted:
+        row.sameRetainedEventOrPositiveWidthDomainPass === true ||
+        eventSelectorAcceptedCount !== null,
+      currentProxy:
+        eventSelectorProxyCount !== null ||
+        row.currentProxyPointRowsPopulated === true,
+      source:
+        row.retainedEventDomainSelectorSchema ??
+        row.retainedEventDomainLiftTargetSchema,
+      blocker: "same_retained_event_or_positive_width_domain",
+      note:
+        "S_eq has a retained event/domain route selector populated from current point-event proxy evidence, but no accepted retained point event or positive-width retained domain.",
+    }),
+    r_P: createResidualEvidence({
+      accepted: isFullPositiveCount(
+        row.retainedReturnPeriodCertificatePassCount,
+        packetRowCount
+      ),
+      currentProxy:
+        isFullPositiveCount(frequencyProxyCount, packetRowCount) ||
+        isFullPositiveCount(
+          row.priorityCurrentChartReturnPeriodPassCount,
+          packetRowCount
+        ),
+      partialProxy:
+        positiveNumberOrNull(row.priorityCurrentChartReturnPeriodPassCount) !==
+          null || frequencyProxyCount !== null,
+      source: row.returnPeriodFrequencyAuditSchema,
+      blocker: "branch_return_period_or_locked_harmonic_frequency_certificate",
+      note:
+        "The reduced chart recovers the common frequency, but no retained branch-history return period or locked harmonic is accepted.",
+    }),
+    r_rho: createResidualEvidence({
+      accepted: false,
+      currentProxy: isFullPositiveCount(
+        row.planarProjectionAgreementPassCount,
+        packetRowCount
+      ),
+      partialProxy:
+        positiveNumberOrNull(row.planarProjectionAgreementPassCount) !== null,
+      source: row.deformationContinuationAuditSchema,
+      blocker: "retained_energy_radius_effective_lever_arm_law",
+      note:
+        "Spherical, oblate, and flattened projection witnesses are current proxy evidence, not retained energy-radius stationarity.",
+    }),
+    r_E: createResidualEvidence({
+      accepted: false,
+      currentProxy: isFullPositiveCount(
+        energyAngularMomentumTargetInertiaClosureCount,
+        packetRowCount
+      ),
+      partialProxy:
+        row.energyAngularMomentumClosureAuditSchema !== null ||
+        row.actionLedgerAuditSchema !== null ||
+        positiveNumberOrNull(row.positiveEffectiveInertiaSolutionCount) !== null,
+      source:
+        row.energyAngularMomentumClosureAuditSchema ??
+        row.actionLedgerAuditSchema,
+      blocker: "retained_branch_energy_action_stationarity",
+      note:
+        "The same-clock J/E audit supplies an algebraic target-inertia closure candidate, but retained energy/action stationarity is missing.",
+    }),
+    r_D: createResidualEvidence({
+      accepted: isFullPositiveCount(
+        row.retainedPlaneSectorCertificatePassCount,
+        packetRowCount
+      ),
+      currentProxy:
+        isFullPositiveCount(sectorProxyCount, packetRowCount) ||
+        isFullPositiveCount(row.priorityCoplanarSectorPassCount, packetRowCount),
+      partialProxy:
+        sectorProxyCount !== null ||
+        positiveNumberOrNull(row.priorityCoplanarSectorPassCount) !== null,
+      source: row.planeSectorDiscriminatorAuditSchema,
+      blocker: "retained_plane_sector_phase_bundle_discriminator",
+      note:
+        "The current chart supplies coplanar Z3 sector proxy evidence; retained N_a, Theta, and D_plane are missing.",
+    }),
+    r_W: createResidualEvidence({
+      accepted: false,
+      partialProxy: isFullPositiveCount(
+        row.priorityPhaseOnlyBalancePassCount,
+        packetRowCount
+      ),
+      source: row.phaseDeformationBalanceAuditSchema,
+      blocker: "phase_deformation_wake_coupling_weight_balance",
+      note:
+        "Triadic 120 degrees balances the unit clock, but weighted phase/action balance is not closed.",
+    }),
+    r_J: createResidualEvidence({
+      accepted: false,
+      currentProxy: isFullPositiveCount(
+        energyAngularMomentumHbarScaleCandidateCount,
+        packetRowCount
+      ),
+      partialProxy:
+        row.energyAngularMomentumClosureAuditSchema !== null ||
+        isFullPositiveCount(row.unitInertiaInnerHalfPassCount, packetRowCount),
+      source:
+        row.energyAngularMomentumClosureAuditSchema ??
+        row.actionLedgerAuditSchema,
+      blocker: "same_event_one_unit_angular_momentum_ledger",
+      note:
+        "The same-clock hbar-scale candidate is populated under the target effective-inertia ledger, but the retained same-event angular-momentum ledger is missing.",
+    }),
+  };
+}
+
+function createGenericFrequencyCandidateResidualMatrixResiduals(row) {
+  const reducedPassCoverage = Number.isFinite(row.reducedPassCoverage)
+    ? row.reducedPassCoverage
+    : null;
+  const selfRootParityCoverage = Number.isFinite(
+    row.selfRootParityTargetCoverage
+  )
+    ? row.selfRootParityTargetCoverage
+    : null;
+  const phaseLockProxyCount = positiveNumberOrNull(
+    row.phaseLockSelfRootParityTargetPassCount
+  );
+  const frequencyRowsPopulated =
+    typeof row.frequencyEvidenceStatus === "string" &&
+    row.frequencyEvidenceStatus.includes("populated");
+  const frequencyRowsPartial =
+    frequencyRowsPopulated ||
+    (typeof row.frequencyEvidenceStatus === "string" &&
+      row.frequencyEvidenceStatus.includes("partial"));
+  const radiusRowsPopulated =
+    typeof row.radiusVelocityEvidenceStatus === "string" &&
+    row.radiusVelocityEvidenceStatus.includes("populated");
+  const radiusRowsPartial =
+    radiusRowsPopulated ||
+    (typeof row.radiusVelocityEvidenceStatus === "string" &&
+      row.radiusVelocityEvidenceStatus.includes("partial"));
+  const phaseRowsPopulated =
+    typeof row.phaseEvidenceStatus === "string" &&
+    (row.phaseEvidenceStatus.includes("populated") ||
+      row.phaseEvidenceStatus.includes("partial_phase"));
+  const phaseRowsPartial =
+    phaseRowsPopulated ||
+    (typeof row.phaseEvidenceStatus === "string" &&
+      row.phaseEvidenceStatus.includes("proxy"));
+  return {
+    r_rows: createResidualEvidence({
+      accepted: false,
+      currentProxy: reducedPassCoverage === 1,
+      partialProxy: reducedPassCoverage !== null && reducedPassCoverage > 0,
+      source: "reduced_branch_chart_projection",
+      blocker: "same_retained_row_set_identity",
+      note:
+        "Reduced rows are populated as proxy evidence; no retained row-set identity is accepted.",
+    }),
+    r_evt: createResidualEvidence({
+      accepted: false,
+      source: null,
+      blocker: "same_retained_event_or_positive_width_domain",
+      note:
+        "No retained point-event or positive-width domain selector is populated for this family.",
+    }),
+    r_P: createResidualEvidence({
+      accepted: false,
+      currentProxy: frequencyRowsPopulated,
+      partialProxy: frequencyRowsPartial,
+      source: row.frequencyEvidenceStatus ?? null,
+      blocker: "branch_return_period_or_locked_harmonic_frequency_certificate",
+      note:
+        "Frequency relation is a reduced family row; retained return-period or locked-harmonic evidence is missing.",
+    }),
+    r_rho: createResidualEvidence({
+      accepted: false,
+      currentProxy: radiusRowsPopulated,
+      partialProxy: radiusRowsPartial,
+      source: row.radiusVelocityEvidenceStatus ?? null,
+      blocker: "retained_energy_radius_effective_lever_arm_law",
+      note:
+        "Speed/span or radius-velocity proxy evidence is populated without retained energy-radius stationarity.",
+    }),
+    r_E: createResidualEvidence({
+      accepted: false,
+      source: null,
+      blocker: "retained_branch_energy_action_stationarity",
+      note:
+        "No retained branch energy/action stationarity row is populated for this family.",
+    }),
+    r_D: createResidualEvidence({
+      accepted: false,
+      currentProxy: false,
+      partialProxy: phaseRowsPartial,
+      source: row.phaseEvidenceStatus ?? null,
+      blocker: "retained_plane_sector_phase_bundle_discriminator",
+      note:
+        "Phase-lock proxy evidence is not a retained phase-bundle or plane-sector certificate.",
+    }),
+    r_W: createResidualEvidence({
+      accepted: false,
+      partialProxy: phaseLockProxyCount !== null,
+      source: row.phaseEvidenceStatus ?? null,
+      blocker: "phase_deformation_wake_coupling_weight_balance",
+      note:
+        "No retained phase-deformation, wake, recoil, or coupling weight balance is populated.",
+    }),
+    r_J: createResidualEvidence({
+      accepted: false,
+      partialProxy:
+        (selfRootParityCoverage !== null && selfRootParityCoverage > 0) ||
+        phaseLockProxyCount !== null,
+      source: "self_root_parity_index_proxy",
+      blocker: "same_event_one_unit_angular_momentum_ledger",
+      note:
+        "Self-root parity coverage is an index proxy, not a same-event angular-momentum ledger.",
+    }),
+  };
+}
+
+function createResidualEvidence({
+  accepted = false,
+  currentProxy = false,
+  partialProxy = false,
+  source = null,
+  blocker = null,
+  note = null,
+}) {
+  const status =
+    accepted === true
+      ? "accepted"
+      : currentProxy === true
+        ? "current_proxy"
+        : partialProxy === true
+          ? "partial_proxy"
+          : "missing";
+  return {
+    status,
+    accepted: accepted === true,
+    currentProxy: currentProxy === true,
+    partialProxy: partialProxy === true,
+    source,
+    blocker: status === "accepted" ? null : blocker,
+    note,
+  };
+}
+
+function positiveNumberOrNull(value) {
+  return Number.isFinite(value) && value > 0 ? value : null;
+}
+
+function isFullPositiveCount(count, total) {
+  return (
+    Number.isFinite(count) &&
+    Number.isFinite(total) &&
+    total > 0 &&
+    count >= total
+  );
+}
+
+function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit) {
+  return {
+    candidateKey: "equal-frequency-energy-radius",
+    reviewRole: "priority equal-frequency energy-radius candidate",
+    rawSearchRelation: "(B_1,B_2,B_3)=(f,f,f)",
+    roleAssignedRelation: "(I,M,O)=(f,f,f)",
+    legacyOuterNormalizedRelation: "f_O:f_M:f_I=f:f:f",
+    sampledCaseCount: equalFrequencyEnergyRadiusAudit.caseCount,
+    priorityPhaseProfileId:
+      equalFrequencyEnergyRadiusAudit.phaseProfileRanking?.[0]?.phaseProfileId ??
+      null,
+    currentDisposition: equalFrequencyEnergyRadiusAudit.status,
+    proxyApplicability: "self_root_parity_index_proxy_not_applicable",
+    frequencyEvidenceStatus:
+      equalFrequencyEnergyRadiusAudit.returnPeriodFrequencyAudit
+        ?.priorityCurrentChartReturnPeriodPassCount ===
+      equalFrequencyEnergyRadiusAudit.priorityCaseCount
+        ? "common_frequency_current_chart_return_identity_populated_retained_certificate_missing"
+        : "common_frequency_rows_incomplete_or_not_replayed",
+    radiusVelocityEvidenceStatus:
+      equalFrequencyEnergyRadiusAudit.deformationContinuationAudit
+        ?.planarProjectionAgreementPassCount ===
+      equalFrequencyEnergyRadiusAudit.priorityCaseCount
+        ? "effective_lever_arm_speed_rows_and_deformation_projection_witness_populated_retained_energy_radius_missing"
+        : "effective_lever_arm_speed_rows_incomplete_or_not_replayed",
+    phaseEvidenceStatus:
+      equalFrequencyEnergyRadiusAudit.phaseLatticeAudit?.status ??
+      equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit?.status ??
+      "phase_rows_missing",
+    retainedAcceptanceStatus:
+      equalFrequencyEnergyRadiusAudit.retainedReplayAcceptanceBlueprint?.status ??
+      "retained_replay_acceptance_blueprint_missing",
+    fairComparisonRule:
+      "Compare against offset, dyadic, and integer-lock controls only after S_eq has same-row-set identity, retained return-frequency rows, retained radius/velocity rows, retained phase-bundle/sector rows, wake/energy routing, angular-momentum ledger, and stability evidence.",
+    phaseResponseStatus:
+      equalFrequencyEnergyRadiusAudit.phaseResponseDiscrimination?.status ?? null,
+    phaseDeltaMeanRangeByLayer:
+      equalFrequencyEnergyRadiusAudit.phaseResponseDiscrimination
+        ?.phaseDeltaMeanRangeByLayer ?? null,
+    retainedReplayTargetSchema:
+      equalFrequencyEnergyRadiusAudit.retainedReplayTarget?.schema ?? null,
+    roleAssignmentAuditSchema:
+      equalFrequencyEnergyRadiusAudit.roleAssignmentAudit?.schema ?? null,
+    roleAssignmentStatus:
+      equalFrequencyEnergyRadiusAudit.roleAssignmentAudit?.status ?? null,
+    roleMapCount: equalFrequencyEnergyRadiusAudit.roleAssignmentAudit?.roleMapCount ?? null,
+    quotientSectorCount:
+      equalFrequencyEnergyRadiusAudit.roleAssignmentAudit?.quotientSectorCount ?? null,
+    deformationRegimeAuditSchema:
+      equalFrequencyEnergyRadiusAudit.deformationRegimeAudit?.schema ?? null,
+    projectionChartFamily:
+      equalFrequencyEnergyRadiusAudit.projectionChartFamily?.family ?? null,
+    deformationRegimeStatus:
+      equalFrequencyEnergyRadiusAudit.deformationRegimeAudit?.status ?? null,
+    commonSphereLatitudePassCount:
+      equalFrequencyEnergyRadiusAudit.deformationRegimeAudit
+        ?.commonSphereLatitudePassCount ?? null,
+    commonGreatCirclePassCount:
+      equalFrequencyEnergyRadiusAudit.deformationRegimeAudit
+        ?.commonGreatCirclePassCount ?? null,
+    oblateEnvelopeProjectionCandidateCount:
+      equalFrequencyEnergyRadiusAudit.deformationRegimeAudit
+        ?.oblateEnvelopeProjectionCandidateCount ?? null,
+    planarProjectionPassCount:
+      equalFrequencyEnergyRadiusAudit.deformationRegimeAudit
+        ?.planarProjectionPassCount ?? null,
+    deformationContinuationAuditSchema:
+      equalFrequencyEnergyRadiusAudit.deformationContinuationAudit?.schema ?? null,
+    deformationContinuationStatus:
+      equalFrequencyEnergyRadiusAudit.deformationContinuationAudit?.status ?? null,
+    sphericalEndpointPassCount:
+      equalFrequencyEnergyRadiusAudit.deformationContinuationAudit
+        ?.sphericalEndpointPassCount ?? null,
+    currentOblateSlicePassCount:
+      equalFrequencyEnergyRadiusAudit.deformationContinuationAudit
+        ?.currentOblateSlicePassCount ?? null,
+    planarProjectionAgreementPassCount:
+      equalFrequencyEnergyRadiusAudit.deformationContinuationAudit
+        ?.planarProjectionAgreementPassCount ?? null,
+    actionLedgerAuditSchema:
+      equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.schema ?? null,
+    actionLedgerStatus:
+      equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.status ?? null,
+    unitInertiaInnerHalfPassCount:
+      equalFrequencyEnergyRadiusAudit.actionLedgerAudit
+        ?.unitInertiaInnerHalfPassCount ?? null,
+    fourSubstepPartitionPassCount:
+      equalFrequencyEnergyRadiusAudit.actionLedgerAudit
+        ?.fourSubstepPartitionPassCount ?? null,
+    positiveEffectiveInertiaSolutionCount:
+      equalFrequencyEnergyRadiusAudit.actionLedgerAudit
+        ?.positiveEffectiveInertiaSolutionCount ?? null,
+    effectiveInertiaLawScanSchema:
+      equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.effectiveInertiaLawScan
+        ?.schema ?? null,
+    effectiveInertiaLawScanStatus:
+      equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.effectiveInertiaLawScan
+        ?.status ?? null,
+    independentEffectiveInertiaExactLawCount:
+      equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.effectiveInertiaLawScan
+        ?.independentExactLawCount ?? null,
+    targetWeightedEffectiveInertiaExactLawCount:
+      equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.effectiveInertiaLawScan
+        ?.targetWeightedExactLawCount ?? null,
+    energyAngularMomentumClosureAuditSchema:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit?.schema ??
+      null,
+    energyAngularMomentumClosureStatus:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit?.status ??
+      null,
+    energyAngularMomentumSameClockIdentityPassCount:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.sameClockIdentityPassCount ?? null,
+    energyAngularMomentumTargetInertiaClosurePassCount:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.targetEffectiveInertiaClosurePassCount ?? null,
+    energyAngularMomentumWakeCouplingSlackFiniteCount:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.unitInertiaWakeCouplingSlackFiniteCount ?? null,
+    energyAngularMomentumHbarScaleCandidateCount:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.hbarScaleCandidateCount ?? null,
+    retainedEnergyStationarityPassCount:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.retainedEnergyStationarityPassCount ?? null,
+    retainedSameEventAngularMomentumPassCount:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.retainedSameEventAngularMomentumPassCount ?? null,
+    phaseDeformationBalanceAuditSchema:
+      equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit?.schema ?? null,
+    phaseDeformationBalanceStatus:
+      equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit?.status ?? null,
+    planarZ3IdentityStatus:
+      equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit
+        ?.planarZ3IdentityStatus ?? null,
+    returnPeriodFrequencyCaveat:
+      equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit
+        ?.returnPeriodFrequencyCaveat ?? null,
+    priorityPhaseOnlyBalancePassCount:
+      equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit
+        ?.priorityPhaseOnlyPassCount ?? null,
+    priorityLeverArmBalancePassCount:
+      equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit
+        ?.priorityLeverArmPassCount ?? null,
+    priorityUnitInertiaActionBalancePassCount:
+      equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit
+        ?.priorityUnitInertiaActionPassCount ?? null,
+    priorityRootWeightedActionBalancePassCount:
+      equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit
+        ?.priorityRootWeightedActionPassCount ?? null,
+    phaseLatticeAuditSchema:
+      equalFrequencyEnergyRadiusAudit.phaseLatticeAudit?.schema ?? null,
+    phaseLatticeStatus:
+      equalFrequencyEnergyRadiusAudit.phaseLatticeAudit?.status ?? null,
+    phaseLatticeDenominator:
+      equalFrequencyEnergyRadiusAudit.phaseLatticeAudit?.denominator ?? null,
+    phaseLatticeRowCount:
+      equalFrequencyEnergyRadiusAudit.phaseLatticeAudit?.latticeRowCount ?? null,
+    phaseOnlyExactRowCount:
+      equalFrequencyEnergyRadiusAudit.phaseLatticeAudit?.phaseOnlyExactRowCount ??
+      null,
+    rootWeightedActionExactRowCount:
+      equalFrequencyEnergyRadiusAudit.phaseLatticeAudit
+        ?.rootWeightedActionExactRowCount ?? null,
+    phaseOnlyAndRootWeightedOverlapCount:
+      equalFrequencyEnergyRadiusAudit.phaseLatticeAudit
+        ?.phaseOnlyAndRootWeightedOverlapCount ?? null,
+    rootWeightedActionProfileRowId:
+      equalFrequencyEnergyRadiusAudit.phaseLatticeAudit
+        ?.rootWeightedActionProfileRowId ?? null,
+    returnPeriodFrequencyAuditSchema:
+      equalFrequencyEnergyRadiusAudit.returnPeriodFrequencyAudit?.schema ?? null,
+    returnPeriodFrequencyStatus:
+      equalFrequencyEnergyRadiusAudit.returnPeriodFrequencyAudit?.status ?? null,
+    priorityCurrentChartReturnPeriodPassCount:
+      equalFrequencyEnergyRadiusAudit.returnPeriodFrequencyAudit
+        ?.priorityCurrentChartReturnPeriodPassCount ?? null,
+    retainedReturnPeriodCertificatePassCount:
+      equalFrequencyEnergyRadiusAudit.returnPeriodFrequencyAudit
+        ?.retainedReturnPeriodCertificatePassCount ?? null,
+    planeSectorDiscriminatorAuditSchema:
+      equalFrequencyEnergyRadiusAudit.planeSectorDiscriminatorAudit?.schema ?? null,
+    planeSectorDiscriminatorStatus:
+      equalFrequencyEnergyRadiusAudit.planeSectorDiscriminatorAudit?.status ?? null,
+    priorityCoplanarSectorPassCount:
+      equalFrequencyEnergyRadiusAudit.planeSectorDiscriminatorAudit
+        ?.priorityCoplanarSectorPassCount ?? null,
+    priorityNearOrthogonalSectorPassCount:
+      equalFrequencyEnergyRadiusAudit.planeSectorDiscriminatorAudit
+        ?.priorityNearOrthogonalSectorPassCount ?? null,
+    priorityPlanarZ3PassCount:
+      equalFrequencyEnergyRadiusAudit.planeSectorDiscriminatorAudit
+        ?.priorityPlanarZ3PassCount ?? null,
+    retainedPlaneSectorCertificatePassCount:
+      equalFrequencyEnergyRadiusAudit.planeSectorDiscriminatorAudit
+        ?.retainedPlaneSectorCertificatePassCount ?? null,
+    retainedRowSetScaffoldSchema:
+      equalFrequencyEnergyRadiusAudit.retainedRowSetScaffold?.schema ?? null,
+    retainedRowSetScaffoldStatus:
+      equalFrequencyEnergyRadiusAudit.retainedRowSetScaffold?.status ?? null,
+    retainedRowSetId:
+      equalFrequencyEnergyRadiusAudit.retainedRowSetScaffold?.retainedRowSetId ??
+      "S_eq",
+    retainedRowSetCurrentProxyEvidencePopulatedCount:
+      equalFrequencyEnergyRadiusAudit.retainedRowSetScaffold
+        ?.currentProxyEvidencePopulatedCount ?? null,
+    retainedRowSetIdentityPass:
+      equalFrequencyEnergyRadiusAudit.retainedRowSetScaffold
+        ?.retainedRowSetIdentityPass ?? false,
+    retainedRowSetBlockingRequirementIds:
+      equalFrequencyEnergyRadiusAudit.retainedRowSetScaffold
+        ?.blockingRequirementIds ?? null,
+    retainedEventDomainLiftTargetSchema:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainLiftTarget?.schema ?? null,
+    retainedEventDomainLiftStatus:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainLiftTarget?.status ?? null,
+    currentProxyPointRowsPopulated:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainLiftTarget
+        ?.currentProxyPointRowsPopulated ?? false,
+    sameRetainedEventOrPositiveWidthDomainPass:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainLiftTarget
+        ?.sameRetainedEventOrPositiveWidthDomainPass ?? false,
+    acceptedFullPointEventRulePass:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainLiftTarget
+        ?.acceptedFullPointEventRulePass ?? false,
+    positiveWidthRetainedDomainPass:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainLiftTarget
+        ?.positiveWidthRetainedDomainPass ?? false,
+    retainedEventDomainBlockingConditionIds:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainLiftTarget
+        ?.blockingConditionIds ?? null,
+    retainedEventDomainSelectorSchema:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector?.schema ?? null,
+    retainedEventDomainSelectorStatus:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector?.status ?? null,
+    retainedEventDomainSelectorSelectedRoute:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector?.selectedRoute ??
+      null,
+    retainedEventDomainSelectorCurrentProxyRouteCount:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector
+        ?.currentProxyRouteCount ?? null,
+    retainedEventDomainSelectorAcceptedRouteCount:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector
+        ?.acceptedRouteCount ?? null,
+    retainedEventDomainSelectorFirstRunnableRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector
+        ?.firstRunnableRowCount ?? null,
+    firstRetainedPacketTemplateSchema:
+      equalFrequencyEnergyRadiusAudit.firstRetainedPacketTemplate?.schema ?? null,
+    firstRetainedPacketTemplateStatus:
+      equalFrequencyEnergyRadiusAudit.firstRetainedPacketTemplate?.status ?? null,
+    firstRetainedPacketTemplateRowCount:
+      equalFrequencyEnergyRadiusAudit.firstRetainedPacketTemplate
+        ?.rowTemplateCount ?? null,
+    firstRetainedPacketTemplateBlockingRowIds:
+      equalFrequencyEnergyRadiusAudit.firstRetainedPacketTemplate
+        ?.blockingRowIds ?? null,
+    retainedFrequencyPhasePacketSchema:
+      equalFrequencyEnergyRadiusAudit.retainedFrequencyPhasePacket?.schema ?? null,
+    retainedFrequencyPhasePacketStatus:
+      equalFrequencyEnergyRadiusAudit.retainedFrequencyPhasePacket?.status ?? null,
+    retainedFrequencyPhasePacketRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedFrequencyPhasePacket?.rowCount ??
+      null,
+    retainedFrequencyPhasePacketCurrentProxyPassCount:
+      equalFrequencyEnergyRadiusAudit.retainedFrequencyPhasePacket
+        ?.currentProxyPacketPassCount ?? null,
+    retainedFrequencyPhasePacketAcceptedRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedFrequencyPhasePacket
+        ?.retainedPacketAcceptancePassCount ?? null,
+    retainedFrequencyPhasePacketFrequencyCurrentProxyPassCount:
+      equalFrequencyEnergyRadiusAudit.retainedFrequencyPhasePacket
+        ?.frequencyCurrentProxyPassCount ?? null,
+    retainedFrequencyPhasePacketPhaseSectorCurrentProxyPassCount:
+      equalFrequencyEnergyRadiusAudit.retainedFrequencyPhasePacket
+        ?.phaseSectorCurrentProxyPassCount ?? null,
+    retainedFrequencyPhasePacketPhaseBundleCurrentProxyPassCount:
+      equalFrequencyEnergyRadiusAudit.retainedFrequencyPhasePacket
+        ?.phaseBundleCurrentProxyPassCount ?? null,
+    retainedFrequencyPhasePacketBlockingRowIds:
+      equalFrequencyEnergyRadiusAudit.retainedFrequencyPhasePacket
+        ?.blockingRowIds ?? null,
+    retainedReplayAcceptanceBlueprintSchema:
+      equalFrequencyEnergyRadiusAudit.retainedReplayAcceptanceBlueprint?.schema ??
+      null,
+    retainedReplayAcceptanceBlueprintStatus:
+      equalFrequencyEnergyRadiusAudit.retainedReplayAcceptanceBlueprint?.status ??
+      null,
+    retainedReplayAcceptanceResidualVector:
+      equalFrequencyEnergyRadiusAudit.retainedReplayAcceptanceBlueprint
+        ?.acceptanceResidualVector ?? null,
+    retainedReplayAcceptedConditionCount:
+      equalFrequencyEnergyRadiusAudit.retainedReplayAcceptanceBlueprint
+        ?.acceptedConditionCount ?? null,
+    retainedReplayBlockingConditionCount:
+      equalFrequencyEnergyRadiusAudit.retainedReplayAcceptanceBlueprint
+        ?.blockingConditionCount ?? null,
+    retainedReplayBlockingConditionIds:
+      equalFrequencyEnergyRadiusAudit.retainedReplayAcceptanceBlueprint
+        ?.blockingConditionIds ?? null,
+    nextRetainedBurden:
+      "derive same retained row-set identity S_eq, the velocity-deformation branch-continuation map, retained energy-radius/effective-lever-arm law, branch return-period or locked-harmonic frequency certificate, plane-topology sector discriminator, effective inertia or wake/coupling action partition, phase-deformation weight balance, and binary-to-binary phase row-set identity under the general tri-binary Noether braid geometry",
+    retainedBranchClaim: false,
+  };
+}
+
+function createFamilyCandidateReviewRow({
+  family,
+  rank,
+  reviewRole,
+  currentDisposition,
+  proxyApplicability,
+  nextRetainedBurden,
+}) {
+  if (!family) {
+    return {
+      candidateKey: "missing-family",
+      reviewRole,
+      currentDisposition: "family_not_sampled",
+      frequencyEvidenceStatus: null,
+      radiusVelocityEvidenceStatus: null,
+      phaseEvidenceStatus: null,
+      retainedAcceptanceStatus: "family_not_sampled",
+      fairComparisonRule: null,
+      retainedBranchClaim: false,
+    };
+  }
+  return {
+    candidateKey: family.familyId,
+    reviewRole,
+    roleAssignedRelation: family.familyRoleAssignedRelation,
+    legacyOuterNormalizedRelation: family.legacyOuterNormalizedRelation,
+    candidateClass: family.candidateClass,
+    sampledCaseCount: family.caseCount,
+    branchCertificateRank: rank?.rank ?? null,
+    reducedPassCoverage: family.reducedPassCoverage,
+    selfRootParityTargetCoverage: family.selfRootParityTargetCoverage,
+    phaseLockSelfRootParityTargetPassCount:
+      family.phaseLockSelfRootParityTargetPassCount ?? null,
+    bestInnerSelfHitSpan: family.bestInnerSelfHitSpan,
+    currentDisposition,
+    proxyApplicability,
+    frequencyEvidenceStatus:
+      family.reducedPassCoverage === 1
+        ? "frequency_index_family_reduced_rows_populated_retained_return_certificate_missing"
+        : "frequency_index_family_reduced_rows_partial",
+    radiusVelocityEvidenceStatus:
+      family.reducedPassCoverage === 1
+        ? "speed_ratio_and_self_hit_span_proxy_populated_retained_energy_radius_missing"
+        : "speed_ratio_or_self_hit_proxy_partial",
+    phaseEvidenceStatus:
+      (family.phaseLockSelfRootParityTargetPassCount ?? 0) > 0
+        ? "phase_lock_proxy_populated_retained_phase_bundle_missing"
+        : "phase_lock_proxy_not_supportive_retained_phase_bundle_missing",
+    retainedAcceptanceStatus:
+      currentDisposition.includes("retained_blocked")
+        ? "retained_branch_blocked_proxy_only"
+        : "retained_branch_not_evaluable_proxy_only",
+    fairComparisonRule:
+      "Do not let offset-family self-root parity proxy exclude equal-frequency rows; this family still needs retained row-set identity, retained phase-bundle rows, wake/energy routing, and stability before branch comparison.",
+    branchCertificateInterpretation: family.branchCertificateInterpretation,
+    nextRetainedBurden,
+    retainedBranchClaim: false,
+  };
+}
+
+function createGeneralIntegerLockCandidateReviewRow({ families, ranks }) {
+  const rankedFamilies = families
+    .map((family) => ({
+      family,
+      rank: ranks.get(family.familyId)?.rank ?? null,
+    }))
+    .sort((left, right) => {
+      const leftRank = left.rank ?? Number.POSITIVE_INFINITY;
+      const rightRank = right.rank ?? Number.POSITIVE_INFINITY;
+      if (leftRank !== rightRank) {
+        return leftRank - rightRank;
+      }
+      return left.family.familyId.localeCompare(right.family.familyId);
+    });
+  const phaseLockProxyFamilyCount = rankedFamilies.filter(
+    ({ family }) => (family.phaseLockSelfRootParityTargetPassCount ?? 0) > 0
+  ).length;
+  const phaseLockSelfRootParityTargetPassCount = rankedFamilies.reduce(
+    (total, { family }) =>
+      total + (family.phaseLockSelfRootParityTargetPassCount ?? 0),
+    0
+  );
+  return {
+    candidateKey: "general-integer-lock-controls",
+    reviewRole: "finite general m:n integer-lock controls",
+    roleAssignedRelation: "(I,M,O)=(nf,mf,f) with 1<m<n",
+    legacyOuterNormalizedRelation: "f_O:f_M:f_I=f:mf:nf",
+    sampledFamilyCount: families.length,
+    sampledCaseCount: families.reduce((total, family) => total + family.caseCount, 0),
+    phaseLockProxyFamilyCount,
+    phaseLockSelfRootParityTargetPassCount,
+    bestRankedFamilies: rankedFamilies.slice(0, 5).map(({ family, rank }) => ({
+      familyId: family.familyId,
+      roleAssignedRelation: family.familyRoleAssignedRelation,
+      integerLock: family.integerLock,
+      branchCertificateRank: rank,
+      selfRootParityTargetCoverage: family.selfRootParityTargetCoverage,
+      phaseLockSelfRootParityTargetPassCount:
+        family.phaseLockSelfRootParityTargetPassCount ?? null,
+      bestInnerSelfHitSpan: family.bestInnerSelfHitSpan,
+    })),
+    currentDisposition:
+      "finite_control_lattice_no_retained_competitor_exclusion_or_acceptance",
+    proxyApplicability: "self_root_parity_index_proxy_partial_control_only",
+    frequencyEvidenceStatus:
+      "general_integer_lock_frequency_lattice_populated_retained_return_certificate_missing",
+    radiusVelocityEvidenceStatus:
+      "span_and_reduced_pass_proxy_populated_retained_energy_radius_missing",
+    phaseEvidenceStatus:
+      phaseLockProxyFamilyCount > 0
+        ? "partial_phase_lock_proxy_only_at_sampled_f_retained_phase_bundle_missing"
+        : "phase_lock_proxy_not_supportive_retained_phase_bundle_missing",
+    retainedAcceptanceStatus:
+      "retained_branch_not_evaluable_finite_controls_only",
+    fairComparisonRule:
+      "Use as finite m:n controls only after retained row-set identity, retained phase-bundle rows, wake/energy routing, and stability are populated on the compared candidates.",
+    nextRetainedBurden:
+      "keep finite m:n lattice as competitor controls after retained row-set identity and phase-bundle rows are populated",
     retainedBranchClaim: false,
   };
 }
@@ -38955,7 +44949,7 @@ function printSummary(report, absoluteOutputPath) {
   console.log(`tri-binary offset family solver report: ${relOutputPath}`);
   console.log(`solver-backed cases: ${report.cases.length}`);
   console.log(
-    `frequency triplet families: ${report.frequencyTripletSearch?.familyCount ?? "unknown"} (canonical order I:M:O)`
+    `frequency triplet families: ${report.frequencyTripletSearch?.familyCount ?? "unknown"} (raw B_1:B_2:B_3 rows; role-assigned I:M:O projections)`
   );
   const topBranchCertificateFamily =
     report.frequencyTripletSearch?.bestByBranchCertificate ?? null;
@@ -38964,7 +44958,7 @@ function printSummary(report, absoluteOutputPath) {
       [
         "branch-certificate top family:",
         topBranchCertificateFamily.familyId,
-        topBranchCertificateFamily.familyLabel,
+        `roleAssigned=${topBranchCertificateFamily.familyLabel}`,
         `selfRootParityCoverage=${formatNumber(
           topBranchCertificateFamily.selfRootParityTargetCoverage
         )}`,
@@ -38982,6 +44976,217 @@ function printSummary(report, absoluteOutputPath) {
         `competitorFamilies=${competitorAudit.competitorFamilyCount}`,
         `retainedCompetitors=${competitorAudit.retainedCompetitorFamilyCount}`,
       ].join(" ")
+    );
+  }
+  const equalFrequencyAudit =
+    report.frequencyTripletSearch?.equalFrequencyEnergyRadiusAudit ?? null;
+  if (equalFrequencyAudit) {
+    const topPhaseProfile = equalFrequencyAudit.phaseProfileRanking?.[0] ?? null;
+    console.log(
+      [
+        "equal-frequency audit:",
+        equalFrequencyAudit.status,
+        `cases=${equalFrequencyAudit.caseCount}`,
+        `priorityCases=${equalFrequencyAudit.priorityCaseCount}`,
+        `controlCases=${equalFrequencyAudit.controlCaseCount}`,
+        `priorityRowsPass=${equalFrequencyAudit.allAuditRowsPass}`,
+        `controlsPopulated=${equalFrequencyAudit.allControlRowsPopulated}`,
+        topPhaseProfile
+          ? `topPhaseProfile=${topPhaseProfile.phaseProfileId}`
+          : "topPhaseProfile=none",
+        ].join(" ")
+    );
+    const energyAngularMomentumClosureAudit =
+      equalFrequencyAudit.energyAngularMomentumClosureAudit ?? null;
+    if (energyAngularMomentumClosureAudit) {
+      console.log(
+        [
+          "energy/angular ledger:",
+          energyAngularMomentumClosureAudit.status,
+          `sameClock=${energyAngularMomentumClosureAudit.sameClockIdentityPassCount}`,
+          `targetInertia=${energyAngularMomentumClosureAudit.targetEffectiveInertiaClosurePassCount}`,
+          `wakeSlack=${energyAngularMomentumClosureAudit.unitInertiaWakeCouplingSlackFiniteCount}`,
+          `hbarScale=${energyAngularMomentumClosureAudit.hbarScaleCandidateCount}`,
+          `retainedEnergy=${energyAngularMomentumClosureAudit.retainedEnergyStationarityPassCount}`,
+          `retainedJ=${energyAngularMomentumClosureAudit.retainedSameEventAngularMomentumPassCount}`,
+        ].join(" ")
+      );
+    }
+    const phaseDeformationBalanceAudit =
+      equalFrequencyAudit.phaseDeformationBalanceAudit ?? null;
+    if (phaseDeformationBalanceAudit) {
+      console.log(
+        [
+          "phase-deformation balance:",
+          phaseDeformationBalanceAudit.status,
+          `phaseOnlyPass=${phaseDeformationBalanceAudit.priorityPhaseOnlyPassCount}`,
+          `leverArmPass=${phaseDeformationBalanceAudit.priorityLeverArmPassCount}`,
+          `unitInertiaActionPass=${phaseDeformationBalanceAudit.priorityUnitInertiaActionPassCount}`,
+          `rootWeightedActionPass=${phaseDeformationBalanceAudit.priorityRootWeightedActionPassCount}`,
+        ].join(" ")
+      );
+    }
+    const phaseLatticeAudit = equalFrequencyAudit.phaseLatticeAudit ?? null;
+    if (phaseLatticeAudit) {
+      console.log(
+        [
+          "phase lattice:",
+          phaseLatticeAudit.status,
+          `denom=${phaseLatticeAudit.denominator}`,
+          `rows=${phaseLatticeAudit.latticeRowCount}`,
+          `phaseOnlyExact=${phaseLatticeAudit.phaseOnlyExactRowCount}`,
+          `rootActionExact=${phaseLatticeAudit.rootWeightedActionExactRowCount}`,
+          `overlap=${phaseLatticeAudit.phaseOnlyAndRootWeightedOverlapCount}`,
+          `triadic=${phaseLatticeAudit.currentTriadicProfileRowId}`,
+          `rootActionProfile=${phaseLatticeAudit.rootWeightedActionProfileRowId}`,
+        ].join(" ")
+      );
+    }
+    const returnPeriodFrequencyAudit =
+      equalFrequencyAudit.returnPeriodFrequencyAudit ?? null;
+    const planeSectorDiscriminatorAudit =
+      equalFrequencyAudit.planeSectorDiscriminatorAudit ?? null;
+    if (returnPeriodFrequencyAudit || planeSectorDiscriminatorAudit) {
+      console.log(
+        [
+          "return/plane sector:",
+          returnPeriodFrequencyAudit
+            ? `returnPeriod=${returnPeriodFrequencyAudit.status}`
+            : "returnPeriod=none",
+          returnPeriodFrequencyAudit
+            ? `currentChartReturnPass=${returnPeriodFrequencyAudit.priorityCurrentChartReturnPeriodPassCount}`
+            : null,
+          returnPeriodFrequencyAudit
+            ? `retainedReturnPass=${returnPeriodFrequencyAudit.retainedReturnPeriodCertificatePassCount}`
+            : null,
+          planeSectorDiscriminatorAudit
+            ? `planeSector=${planeSectorDiscriminatorAudit.status}`
+            : "planeSector=none",
+          planeSectorDiscriminatorAudit
+            ? `coplanarPass=${planeSectorDiscriminatorAudit.priorityCoplanarSectorPassCount}`
+            : null,
+          planeSectorDiscriminatorAudit
+            ? `nearOrthogonalPass=${planeSectorDiscriminatorAudit.priorityNearOrthogonalSectorPassCount}`
+            : null,
+          planeSectorDiscriminatorAudit
+            ? `retainedPlanePass=${planeSectorDiscriminatorAudit.retainedPlaneSectorCertificatePassCount}`
+            : null,
+        ]
+          .filter((part) => part !== null)
+          .join(" ")
+      );
+    }
+    const retainedRowSetScaffold =
+      equalFrequencyAudit.retainedRowSetScaffold ?? null;
+    if (retainedRowSetScaffold) {
+      console.log(
+        [
+          "retained row set scaffold:",
+          retainedRowSetScaffold.status,
+          `rowSet=${retainedRowSetScaffold.retainedRowSetId}`,
+          `currentProxy=${retainedRowSetScaffold.currentProxyEvidencePopulatedCount}`,
+          `accepted=${retainedRowSetScaffold.retainedAcceptancePassCount}`,
+          `blocked=${retainedRowSetScaffold.blockingRequirementIds.length}`,
+        ].join(" ")
+      );
+    }
+    const retainedEventDomainLiftTarget =
+      equalFrequencyAudit.retainedEventDomainLiftTarget ?? null;
+    if (retainedEventDomainLiftTarget) {
+      console.log(
+        [
+          "retained event/domain lift:",
+          retainedEventDomainLiftTarget.status,
+          `rowSet=${retainedEventDomainLiftTarget.retainedRowSetId}`,
+          `currentProxy=${retainedEventDomainLiftTarget.currentProxyEvidencePopulatedCount}`,
+          `event=${retainedEventDomainLiftTarget.acceptedFullPointEventRulePass}`,
+          `domain=${retainedEventDomainLiftTarget.positiveWidthRetainedDomainPass}`,
+          `globalRowSet=${retainedEventDomainLiftTarget.globalRetainedRowSetIdentityPass}`,
+          `blocked=${retainedEventDomainLiftTarget.blockingConditionIds.length}`,
+        ].join(" ")
+      );
+    }
+    const retainedEventDomainSelector =
+      equalFrequencyAudit.retainedEventDomainSelector ?? null;
+    if (retainedEventDomainSelector) {
+      console.log(
+        [
+          "retained event/domain selector:",
+          retainedEventDomainSelector.status,
+          `route=${retainedEventDomainSelector.selectedRoute}`,
+          `rows=${retainedEventDomainSelector.firstRunnableRowCount}`,
+          `currentProxyRoutes=${retainedEventDomainSelector.currentProxyRouteCount}`,
+          `acceptedRoutes=${retainedEventDomainSelector.acceptedRouteCount}`,
+          `blocked=${retainedEventDomainSelector.blockingConditionIds.length}`,
+        ].join(" ")
+      );
+    }
+    const firstRetainedPacketTemplate =
+      equalFrequencyAudit.firstRetainedPacketTemplate ?? null;
+    if (firstRetainedPacketTemplate) {
+      console.log(
+        [
+          "first retained packet:",
+          firstRetainedPacketTemplate.status,
+          `rows=${firstRetainedPacketTemplate.rowTemplateCount}`,
+          `currentProxy=${firstRetainedPacketTemplate.currentProxyPopulatedCount}`,
+          `accepted=${firstRetainedPacketTemplate.retainedAcceptancePassCount}`,
+          `blocked=${firstRetainedPacketTemplate.blockingRowIds.length}`,
+        ].join(" ")
+      );
+    }
+    const retainedFrequencyPhasePacket =
+      equalFrequencyAudit.retainedFrequencyPhasePacket ?? null;
+    if (retainedFrequencyPhasePacket) {
+      console.log(
+        [
+          "retained frequency/phase packet:",
+          retainedFrequencyPhasePacket.status,
+          `rows=${retainedFrequencyPhasePacket.rowCount}`,
+          `currentProxy=${retainedFrequencyPhasePacket.currentProxyPacketPassCount}`,
+          `frequencyProxy=${retainedFrequencyPhasePacket.frequencyCurrentProxyPassCount}`,
+          `sectorProxy=${retainedFrequencyPhasePacket.phaseSectorCurrentProxyPassCount}`,
+          `holonomyProxy=${retainedFrequencyPhasePacket.phaseBundleCurrentProxyPassCount}`,
+          `accepted=${retainedFrequencyPhasePacket.retainedPacketAcceptancePassCount}`,
+        ].join(" ")
+      );
+    }
+    const retainedReplayAcceptanceBlueprint =
+      equalFrequencyAudit.retainedReplayAcceptanceBlueprint ?? null;
+    if (retainedReplayAcceptanceBlueprint) {
+      console.log(
+        [
+          "retained replay blueprint:",
+          retainedReplayAcceptanceBlueprint.status,
+          `currentEvidence=${retainedReplayAcceptanceBlueprint.currentEvidenceConditionCount}`,
+          `accepted=${retainedReplayAcceptanceBlueprint.acceptedConditionCount}`,
+          `blocked=${retainedReplayAcceptanceBlueprint.blockingConditionCount}`,
+          `residual=${retainedReplayAcceptanceBlueprint.acceptanceResidualVector}`,
+        ].join(" ")
+      );
+    }
+  }
+  const residualMatrixReview =
+    report.frequencyTripletSearch?.candidateSetReview?.residualMatrixReview ?? null;
+  if (residualMatrixReview) {
+    const strongestRow = residualMatrixReview.strongestCurrentRows?.[0] ?? null;
+    console.log(
+      [
+        "frequency residual matrix:",
+        residualMatrixReview.finding,
+        `ready=${residualMatrixReview.retainedComparisonReadyCount}`,
+        strongestRow ? `strongest=${strongestRow.candidateKey}` : "strongest=none",
+        strongestRow ? `accepted=${strongestRow.acceptedResidualCount}` : null,
+        strongestRow
+          ? `currentProxy=${strongestRow.currentProxyResidualCount}`
+          : null,
+        strongestRow
+          ? `partialProxy=${strongestRow.partialProxyResidualCount}`
+          : null,
+        strongestRow ? `missing=${strongestRow.missingResidualCount}` : null,
+      ]
+        .filter((part) => part !== null)
+        .join(" ")
     );
   }
   for (const comparison of report.comparisons) {
@@ -39029,13 +45234,16 @@ function toCamelCase(value) {
 }
 
 function resolvePolicies(value) {
+  const policyIds = createPolicyCatalog().map((policy) => policy.id);
   if (value === "all") {
-    return ["phase-lock", "index-ratio"];
+    return policyIds;
   }
-  if (value === "phase-lock" || value === "index-ratio") {
+  if (policyIds.includes(value)) {
     return [value];
   }
-  throw new Error("--policy must be one of: all, phase-lock, index-ratio.");
+  throw new Error(
+    `--policy must be one of: all, ${policyIds.join(", ")}.`
+  );
 }
 
 function parsePositiveInteger(value, label) {
@@ -39129,6 +45337,49 @@ function minFinite(values) {
   return finiteValues.length > 0 ? Math.min(...finiteValues) : null;
 }
 
+function sumFinite(values) {
+  const finiteValues = values.filter((value) => Number.isFinite(value));
+  return finiteValues.length > 0
+    ? finiteValues.reduce((total, value) => total + value, 0)
+    : null;
+}
+
+function meanFinite(values) {
+  const finiteValues = values.filter((value) => Number.isFinite(value));
+  return finiteValues.length > 0 ? sumFinite(finiteValues) / finiteValues.length : null;
+}
+
+function clampFinite(value, min, max) {
+  if (!Number.isFinite(value)) {
+    return null;
+  }
+  return Math.min(max, Math.max(min, value));
+}
+
+function createFiniteStats(values) {
+  const finiteValues = values.filter((value) => Number.isFinite(value));
+  if (finiteValues.length === 0) {
+    return {
+      count: 0,
+      min: null,
+      max: null,
+      mean: null,
+      maxAbs: null,
+    };
+  }
+  return {
+    count: finiteValues.length,
+    min: Math.min(...finiteValues),
+    max: Math.max(...finiteValues),
+    mean: finiteValues.reduce((total, value) => total + value, 0) / finiteValues.length,
+    maxAbs: Math.max(...finiteValues.map((value) => Math.abs(value))),
+  };
+}
+
+function formatSignatureNumber(value) {
+  return Number.isFinite(value) ? value.toExponential(6) : "none";
+}
+
 function printUsage(exitCode) {
   console.log("Usage: node scripts/angular-momentum/tri-binary-offset-family-runner.mjs [options]");
   console.log("");
@@ -39137,7 +45388,11 @@ function printUsage(exitCode) {
   console.log("  --f-max <n>       Last f index to test. Default: 8");
   console.log("  --integer-lock-m-max <n>  Last m in general 1:m:n controls. Default: 4");
   console.log("  --integer-lock-n-max <n>  Last n in general 1:m:n controls. Default: 6");
-  console.log("  --policy <name>   all | phase-lock | index-ratio. Default: all");
+  console.log(
+    `  --policy <name>   all | ${createPolicyCatalog()
+      .map((policy) => policy.id)
+      .join(" | ")}. Default: all`
+  );
   console.log(`  --output <path>   JSON report path. Default: ${DEFAULT_OUTPUT_PATH}`);
   console.log("  --wasm-dir <path> Solver WASM build directory. Default: .tmp/solver-build/wasm");
   process.exit(exitCode);

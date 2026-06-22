@@ -2,15 +2,15 @@
 
 ## What This App Shows
 
-The photon app is an exploratory diagnostic for a candidate photon modeled as two contra-rotating flat Noether swarms. It is meant to help inspect the candidate geometry, Virtual Observer field readouts, and derived polarization diagnostics. It is not a proof of photon closure.
+The photon app is an exploratory diagnostic for a candidate photon modeled as two contra-rotating flat Noether braids. It is meant to help inspect the candidate geometry, Virtual Observer field readouts, and derived polarization diagnostics. It is not a proof of photon closure.
 
-The left swarm is the trailing swarm and rotates counter-clockwise. The right swarm is the leading swarm and rotates clockwise. The app shows the swarms face-on so the I/M/O binary motion is visible; in the candidate geometry, the planar swarms are perpendicular to the line of translation.
+The left braid is the trailing braid and rotates counter-clockwise. The right braid is the leading braid and rotates clockwise. The app shows the braids face-on so the I/M/O binary motion is visible; in the candidate geometry, the planar braids are perpendicular to the line of translation.
 
 ## Main View
 
-The upper stage shows the two face-on swarms on the left and an edge-on side view on the right. Each active I/M/O binary contributes one red positrino marker and one blue electrino marker. The face-on markers, orbit paths, and path-history trails follow the Ideal Swarm visual grammar.
+The upper stage shows the two face-on braids on the left and an edge-on side view on the right. Each active I/M/O binary contributes one red positrino marker and one blue electrino marker. The face-on markers, orbit paths, and path-history trails follow the Ideal Braid visual grammar.
 
-The side view shows the same pair along the line of translation. Each planar swarm appears as a vertical glowing trace with the same height as the diameter of the largest enabled binary. The red and blue side-view markers move up and down along those traces, as they would when the orbit is viewed from the side.
+The side view shows the same pair along the line of translation. Each planar braid appears as a vertical glowing trace with the same height as the diameter of the largest enabled binary. The red and blue side-view markers move up and down along those traces, as they would when the orbit is viewed from the side.
 
 The lower stage contains two observer-level readouts:
 
@@ -31,7 +31,7 @@ Use Paths on/off to show or hide orbit paths and path-history trails.
 
 Use Slow/Fast to scale animation time without changing the configured layer frequencies. The default Slow/Fast setting is calibrated to make the default I/M/O orbit rates visible at `0.8`, `0.4`, and `0.2` cycles per real second.
 
-Each of the six binaries has an enabled checkbox. When a binary is unchecked, it is removed from the swarm display and its two architrinos are removed from the Virtual Observer E field sum.
+Each of the six binaries has an enabled checkbox. When a binary is unchecked, it is removed from the braid display and its two architrinos are removed from the Virtual Observer E field sum.
 
 ## Named Presets
 
@@ -40,7 +40,7 @@ Presets are starting points for inspection, not certified photon branches. They 
 | Preset | What it sets up | How to read it |
 |---|---|---|
 | Balanced pair | All binaries enabled, I/M/O frequencies `4`, `2`, `1`, speed-matched default radii, and all phases at `0` degrees. | Baseline contra-rotating pair for comparing later edits. |
-| Linear candidate | Only the O binaries enabled, with both swarms phase-aligned. | A simple one-axis transverse readout candidate. |
+| Linear candidate | Only the O binaries enabled, with both braids phase-aligned. | A simple one-axis transverse readout candidate. |
 | Right circular candidate | All binaries enabled with a handed leading/trailing phase pattern. | A handed phase-lock candidate; it is not a certified circular photon branch. |
 | Left circular candidate | The mirror handed phase pattern of the right-circular candidate. | A comparison state for reversing the fitted handed component. |
 | Phase-offset stress | All binaries enabled, nonzero observer position, small $\Delta x$, and nontrivial phase offsets. | A stress test for the causal-root solver and polarization fit. |
@@ -69,9 +69,9 @@ The search should mark numerically suspect cases as suspect rather than good. Mi
 
 ## Geometry Controls
 
-The $\Delta x$ control changes the center-to-center distance between the two vertical traces in the side view as a ratio relative to the current reference radius $r_{\mathrm{ref}}$. The reference radius is the largest enabled binary radius, or the largest configured binary radius if every binary is disabled. The range is $10^{-10}r$ to $10^5r$, with selectable `1` through `9` coefficients in each decade. The absolute separation is $s = r_{\mathrm{ref}} 10^q$, where $q$ is the selected log value. The swarm centers sit at $x = -s/2$ and $x = +s/2$. The control does not change the spacing between the two face-on circular swarm views.
+The $\Delta x$ control changes the center-to-center distance between the two vertical traces in the side view as a ratio relative to the current reference radius $r_{\mathrm{ref}}$. The reference radius is the largest enabled binary radius, or the largest configured binary radius if every binary is disabled. The range is $10^{-10}r$ to $10^5r$, with selectable `1` through `9` coefficients in each decade. The absolute separation is $s = r_{\mathrm{ref}} 10^q$, where $q$ is the selected log value. The braid centers sit at $x = -s/2$ and $x = +s/2$. The control does not change the spacing between the two face-on circular braid views.
 
-Each swarm has independent I/M/O controls:
+Each braid has independent I/M/O controls:
 
 - frequency sets the layer cadence as powers of two, from $2^0$ through $2^5$;
 - radius sets the layer orbit size;
@@ -113,7 +113,7 @@ x_{\mathrm{VO}}\hat{\mathbf x}
 +z_{\mathrm{VO}}\hat{\mathbf z}
 $$
 
-In co-moving mode, for swarm $s$, layer $\ell$, and polarity sign $q\in\{+1,-1\}$, the app places the source at
+In co-moving mode, for braid $s$, layer $\ell$, and polarity sign $q\in\{+1,-1\}$, the app places the source at
 
 $$
 \mathbf r_{s\ell q}(\tau)
@@ -133,7 +133,7 @@ $$
 +\pi\,\mathbf 1_{q=-1}
 $$
 
-Here $\sigma_s=+1$ for the trailing counter-clockwise swarm and $\sigma_s=-1$ for the leading clockwise swarm.
+Here $\sigma_s=+1$ for the trailing counter-clockwise braid and $\sigma_s=-1$ for the leading clockwise braid.
 
 In absolute-history mode, the same circular source history carries the translated center term $c_\gamma\tau\hat{\mathbf x}$, and the Virtual Observer history includes $c_\gamma t\hat{\mathbf x}$. This makes the root solve ask whether a source history point moving with the photon channel can causally reach the moving Virtual Observer. Retained roots also carry source phase-at-hit metadata so later diagnostics can ask whether stable phase families are emerging.
 
@@ -266,10 +266,10 @@ The live Diagnostics panel includes a quality word when a readout has a useful d
 | 22 | Root&nbsp;cap&nbsp;hits | How many source histories found more candidate roots than the current root cap can keep. |
 | 23 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
 | 24 | Delay&nbsp;status | A simple stable/catch-up-limited/unstable flag based on root misses, no-catch-up classification, delay gap, and small-Jacobian checks. |
-| 25 | Left&nbsp;phase&nbsp;spread | How evenly the left swarm's I/M/O phases are spaced. |
-| 26 | Right&nbsp;phase&nbsp;spread | How evenly the right swarm's I/M/O phases are spaced. |
-| 27 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-swarm source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
-| 28 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-swarm source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+| 25 | Left&nbsp;phase&nbsp;spread | How evenly the left braid's I/M/O phases are spaced. |
+| 26 | Right&nbsp;phase&nbsp;spread | How evenly the right braid's I/M/O phases are spaced. |
+| 27 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+| 28 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
 
 ## Formulas
 

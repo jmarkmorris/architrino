@@ -1,11 +1,11 @@
 # Gravitational Waves
 
-This chapter provides a conditional closure chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [GR Phenomenology](./gr-phenomenology.md) and constrained by [Constraint Ledger](../validation/constraint-ledger.md).
+This chapter provides a conditional closure chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [General Relativity](./general-relativity.md) and constrained by [Constraint Ledger](../validation/constraint-ledger.md).
 
 Interface chapters:
 - Effective metric map: [Emergent Metric](./emergent-metric.md)
 - PPN closure and refractive weak field: [PPN Parameters](./ppn-parameters.md)
-- Phenomenology summary: [General Relativity Observables](./gr-phenomenology.md)
+- Phenomenology summary: [General Relativity](./general-relativity.md)
 
 ## Weak-Field Setup
 
@@ -96,7 +96,7 @@ This is a forecast and comparison gate. It does not license a massive-graviton o
 
 ## Medium-Transport Perturbation
 
-For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether sea state used by redshift and dark-energy modules. In the provisional Noether swarm equilibrium packet,
+For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether sea state used by redshift and dark-energy modules. In the provisional Noether braid equilibrium packet,
 
 $$
 \partial_t f_N
@@ -108,7 +108,7 @@ S_{\mathrm{BH}}
 -R_{\mathrm{eq}}[f_N]
 $$
 
-the term $S_{\mathrm{GW}}$ records the disturbance of the local Noether swarm cadence distribution by the gravitational-wave channel. It is not an additional default polarization mode and not a license for frequency-dependent gravitational-wave propagation in validated bands. It is a possible low-amplitude contribution to the Noether sea state later sampled by photons, clocks, and growth observables.
+the term $S_{\mathrm{GW}}$ records the disturbance of the local Noether braid cadence distribution by the gravitational-wave channel. It is not an additional default polarization mode and not a license for frequency-dependent gravitational-wave propagation in validated bands. It is a possible low-amplitude contribution to the Noether sea state later sampled by photons, clocks, and growth observables.
 
 The redshift-facing projection should therefore be bounded as a perturbation of the path-rate functional:
 

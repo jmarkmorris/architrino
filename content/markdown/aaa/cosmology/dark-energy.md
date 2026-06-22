@@ -52,7 +52,7 @@ The Euclidean void $\mathbb{R}^3$ with metric $h_{ij} = \delta_{ij}$ is static, 
 
 ### The Noether Sea Carries the Dynamics
 
-The Noether sea is the constitutive substrate from which effective spacetime behavior is reconstructed: a dense coupled population of neutral pro/anti Noether swarms. Each Noether swarm has internal energy stored across three nested shell binaries operating in distinct field-speed regimes. The collective state of the Noether sea—its local Noether swarm density $\rho_{\text{NS}}(\mathbf{x},t)$, normalized density $n(\mathbf{x},t)$, internal energy spectrum, delay response $\chi_{\text{sea}}$, and anisotropy—defines the effective metric experienced by all embedded assemblies.
+The Noether sea is the constitutive substrate from which effective spacetime behavior is reconstructed: a dense coupled population of neutral pro/anti Noether braids. Each Noether braid has internal energy stored across three nested shell binaries operating in distinct field-speed regimes. The collective state of the Noether sea—its local Noether braid density $\rho_{\text{NS}}(\mathbf{x},t)$, normalized density $n(\mathbf{x},t)$, internal energy spectrum, delay response $\chi_{\text{sea}}$, and anisotropy—defines the effective metric experienced by all embedded assemblies.
 
 Late-time cosmological acceleration, in this picture, is a statement about how the aggregate properties of the Noether sea evolve on Hubble timescales, not about the container expanding.
 
@@ -60,7 +60,7 @@ Late-time cosmological acceleration, in this picture, is a statement about how t
 
 ### Baseline Energy of the Noether Sea
 
-In the nested shell case, each Noether swarm in the Noether sea carries internal binding energy distributed across its three binary tiers:
+In the nested shell case, each Noether braid in the Noether sea carries internal binding energy distributed across its three binary tiers:
 
 - **Inner binary** ($v > c_f$, self-hit regime): highest energy density, tightest orbit, contributes to the gravitational charge and inertial mass of the assembly.
 - **Middle binary** ($v = c_f$): defines the effective causal speed; carries intermediate energy.
@@ -72,7 +72,7 @@ $$
 u_{\mathrm{sea}} = \rho_{\text{NS}}\,\langle E_{\mathrm{core}} \rangle
 $$
 
-where $\rho_{\text{NS}}$ is the canonical Noether swarm density field and $\langle E_{\mathrm{core}} \rangle$ is the mean energy per Noether swarm. This quantity sets the scale of the effective dark-energy density:
+where $\rho_{\text{NS}}$ is the canonical Noether braid density field and $\langle E_{\mathrm{core}} \rangle$ is the mean energy per Noether braid. This quantity sets the scale of the effective dark-energy density:
 
 $$
 \rho_{\mathrm{DE,eff}} \sim u_{\mathrm{sea}}\,f(\text{outer-binary state})
@@ -84,7 +84,7 @@ where $f$ encodes what fraction of the baseline energy acts as an effective nega
 
 In standard thermodynamics, a system with equation of state $w = p/\rho < -1/3$ drives acceleration of the scale factor. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the Noether sea can exhibit effective negative pressure through the following mechanism:
 
-**Outer-binary tension.** Each Noether swarm's outer binary is a bound oscillator in the $v < c_f$ regime. The outer binary has a natural equilibrium radius set by the balance between partner attraction and coupling to the Noether sea. When the mean inter-swarm spacing increases (due to matter dilution as structure forms and baryonic assemblies aggregate into galaxies), the outer binaries of neighbouring Noether sea swarms are stretched beyond equilibrium. This stretching stores elastic energy and produces a restoring stress—a tension—that acts to resist further separation.
+**Outer-binary tension.** Each Noether braid's outer binary is a bound oscillator in the $v < c_f$ regime. The outer binary has a natural equilibrium radius set by the balance between partner attraction and coupling to the Noether sea. When the mean inter-braid spacing increases (due to matter dilution as structure forms and baryonic assemblies aggregate into galaxies), the outer binaries of neighbouring Noether sea braids are stretched beyond equilibrium. This stretching stores elastic energy and produces a restoring stress—a tension—that acts to resist further separation.
 
 A uniform medium under tension has the thermodynamic signature $p < 0$. If the magnitude of the tension exceeds $\rho c^2/3$, the effective equation of state satisfies $w < -1/3$, which drives acceleration.
 
@@ -110,7 +110,7 @@ $$
 p_{\mathrm{sea}} = p_{\mathrm{sea}}\bigl(\rho_{\text{NS}},\;\dot{\rho}_{\text{NS}},\;n,\;\chi_{\text{sea}},\;\langle R_{\mathrm{outer}} \rangle,\;T_{\mathrm{eff}}\bigr)
 $$
 
-where $\langle R_{\mathrm{outer}} \rangle$ is the mean outer-binary radius and $T_{\mathrm{eff}}$ is an effective temperature characterizing internal mode excitation. Deriving this relation from the master equation applied to coupled Noether swarm populations is a primary simulation target.
+where $\langle R_{\mathrm{outer}} \rangle$ is the mean outer-binary radius and $T_{\mathrm{eff}}$ is an effective temperature characterizing internal mode excitation. Deriving this relation from the master equation applied to coupled Noether braid populations is a primary simulation target.
 
 ## Inference Dependency and Calibration Gates
 
@@ -447,9 +447,9 @@ which for $\Lambda_{\mathrm{UV}} = M_{\mathrm{Pl}}c$ exceeds the observed $\rho_
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the problem is reframed as an ontology mismatch:
 
-- QFT zero-point energies are not physical observables of the Euclidean void (which carries no energy). They are artifacts of the continuum-field approximation applied to a substrate that is fundamentally discrete (point architrinos) and finite (a definite number of Noether swarm assemblies per unit volume).
-- In the nested shell case, the inner and middle binaries of each Noether swarm in the Noether sea store enormous energy densities locally (self-hit regime, $v > c_f$ and $v = c_f$), but this energy is locked into stable, high-frequency orbital modes that do not gravitate as a cosmological constant. Only the slowly varying, large-scale stress from the outer-binary sector contributes to $\rho_{\mathrm{DE,eff}}$.
-- The observed smallness of $\rho_\Lambda$ relative to naïve QFT estimates reflects the fact that most internal Noether swarm energy is dynamically inert on Hubble timescales—it is shielded by the nested-binary hierarchy, not canceled by fine-tuning.
+- QFT zero-point energies are not physical observables of the Euclidean void (which carries no energy). They are artifacts of the continuum-field approximation applied to a substrate that is fundamentally discrete (point architrinos) and finite (a definite number of Noether braid assemblies per unit volume).
+- In the nested shell case, the inner and middle binaries of each Noether braid in the Noether sea store enormous energy densities locally (self-hit regime, $v > c_f$ and $v = c_f$), but this energy is locked into stable, high-frequency orbital modes that do not gravitate as a cosmological constant. Only the slowly varying, large-scale stress from the outer-binary sector contributes to $\rho_{\mathrm{DE,eff}}$.
+- The observed smallness of $\rho_\Lambda$ relative to naïve QFT estimates reflects the fact that most internal Noether braid energy is dynamically inert on Hubble timescales—it is shielded by the nested-binary hierarchy, not canceled by fine-tuning.
 
 ### Coupling-Selection Target
 
@@ -489,7 +489,7 @@ Finite-range gravity and massive-gravity programs are useful here only as compar
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, cosmological redshift is not caused by the stretching of space (the void does not stretch). It is read through endpoint clock-cadence comparison, source-branch state, launch geometry, and path-history propagation through the Noether sea:
 
-- A photon-mode assembly emitted at effective cosmic time $\tau_{c,e}$, corresponding to substrate time $t_e$ in the exact record, carries a frequency set by the nested shell swarm oscillation rates of the source assembly at that epoch.
+- A photon-mode assembly emitted at effective cosmic time $\tau_{c,e}$, corresponding to substrate time $t_e$ in the exact record, carries a frequency set by the nested shell braid oscillation rates of the source assembly at that epoch.
 - At the reception epoch $\tau_{c,o}$, corresponding to substrate time $t_o$, the observer's local clock rate is set by the current Noether sea state.
 - If the Noether sea state has evolved between $t_e$ and $t_o$—specifically, if outer-binary radii have increased and internal frequencies have decreased—then the received frequency can be lower than the emitted frequency after endpoint cadence, launch, source-branch, and path-history factors are separated. This is the operational content of $1 + z = \nu_e/\nu_o$.
 
@@ -553,7 +553,7 @@ a_\chi^X & a_n^X & a_R^X
 \end{pmatrix}
 $$
 
-This is a derivation target. It says that $\rho_{\mathrm{DE,eff}}$, $w_{\mathrm{eff}}$, and recycling source terms become observable in redshift only by changing the Noether sea delay, density, or swarm-scale state sampled by the photon path. If the same $\mathbf{J}_{\mathrm{DE}}$ cannot also support CMB, BAO, supernova, and growth projections, then the dark-energy handoff has not closed.
+This is a derivation target. It says that $\rho_{\mathrm{DE,eff}}$, $w_{\mathrm{eff}}$, and recycling source terms become observable in redshift only by changing the Noether sea delay, density, or braid-scale state sampled by the photon path. If the same $\mathbf{J}_{\mathrm{DE}}$ cannot also support CMB, BAO, supernova, and growth projections, then the dark-energy handoff has not closed.
 
 ### First-Order Coefficient Packet
 
@@ -639,13 +639,13 @@ The coefficient packet has four immediate checks:
 
 ### Equilibrium Current and Effective Expansion
 
-The equilibrium version of the dark-energy hypothesis refines what the source terms mean. A Noether swarm with cadence $\nu_N$ carries the local energy scale
+The equilibrium version of the dark-energy hypothesis refines what the source terms mean. A Noether braid with cadence $\nu_N$ carries the local energy scale
 
 $$
 E_N=h\nu_N
 $$
 
-Individual Noether swarms may change branch through $h$-scale ledger steps. Each accepted step forces a branchwise retuning of cadence and scale variables, not a simple rise in thermodynamic temperature, but a large population can still coarse-grain into a smooth medium response. For the dark-energy module, the relevant object is not a single transition. It is a distribution $f_N(\nu,\mathbf{x},t)$ and its cadence-space current:
+Individual Noether braids may change branch through $h$-scale ledger steps. Each accepted step forces a branchwise retuning of cadence and scale variables, not a simple rise in thermodynamic temperature, but a large population can still coarse-grain into a smooth medium response. For the dark-energy module, the relevant object is not a single transition. It is a distribution $f_N(\nu,\mathbf{x},t)$ and its cadence-space current:
 
 $$
 \partial_t f_N
@@ -704,7 +704,7 @@ where $a$ is the effective scale factor and $K$ measures the strength of the pro
 
 ### How $\mathbb{A}\mathbb{A}\mathbb{A}$ Would Read Such a Signal
 
-From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, a positive coupling of this kind would not be read as black holes creating energy from nothing or as the Euclidean void itself driving mass growth. The relevant interpretation would instead be constitutive: black holes are regions where the Noether sea is driven into the strongest known alignment, compression, and recycling regimes, so they are natural places for energy partition between inner, middle, and outer nested shell swarm layers to become macroscopically visible.
+From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, a positive coupling of this kind would not be read as black holes creating energy from nothing or as the Euclidean void itself driving mass growth. The relevant interpretation would instead be constitutive: black holes are regions where the Noether sea is driven into the strongest known alignment, compression, and recycling regimes, so they are natural places for energy partition between inner, middle, and outer nested shell braid layers to become macroscopically visible.
 
 That yields a disciplined three-layer reading:
 
@@ -804,8 +804,8 @@ All interfaces use the same absolute-time / Euclidean-void substrate and Noether
 
 Late-time accelerated expansion, conventionally attributed to dark energy or a cosmological constant, is interpreted in the architrino assembly architecture as a macroscopic signature of Noether sea relaxation within a fixed Euclidean void:
 
-- The Noether sea carries a baseline energy density set by the binding and oscillation energies of its constituent Noether swarms.
-- The outer-binary sector of these Noether swarms produces an effective tension (negative pressure) as the medium relaxes and outer-binary radii evolve on cosmological timescales.
+- The Noether sea carries a baseline energy density set by the binding and oscillation energies of its constituent Noether braids.
+- The outer-binary sector of these Noether braids produces an effective tension (negative pressure) as the medium relaxes and outer-binary radii evolve on cosmological timescales.
 - Supermassive black holes may supply a secondary transport channel that feeds or modulates that tension sector, but only if the inferred population-level coupling survives ordinary astrophysical explanations.
 - When this tension satisfies $w < -1/3$, the effective expansion history shows acceleration.
 - The cosmological-constant hierarchy problem is reframed: high-energy internal modes are dynamically shielded from the tension sector by the nested-binary architecture, so the natural scale of $\rho_{\mathrm{DE,eff}}$ is set by outer-binary physics, not by summing all zero-point modes.

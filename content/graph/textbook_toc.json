@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 174,
-      "sections": 1415
+      "entries": 178,
+      "sections": 1444
     }
   },
   "tocRoot": {
@@ -28,7 +28,7 @@
         "children": [
           {
             "id": "foundations__foundational_ontology",
-            "title": "Foundational Ontology",
+            "title": "Ontology",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/foundations/foundational_ontology.json",
@@ -776,7 +776,7 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/foundations/emergence_of_structure.json",
-            "markdownPath": "content/markdown/aaa/foundations/emergence.md"
+            "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md"
           }
         ]
       },
@@ -789,7 +789,7 @@
         "children": [
           {
             "id": "dynamics__master_equation_of_motion",
-            "title": "Master Equation of Motion",
+            "title": "Master Equation",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/dynamics/master_equation_of_motion.json",
@@ -847,7 +847,7 @@
           },
           {
             "id": "dynamics__kinetic_and_potential_energy",
-            "title": "Kinetic and Potential Energy",
+            "title": "Energy",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/dynamics/kinetic_and_potential_energy.json",
@@ -1094,7 +1094,7 @@
               },
               {
                 "id": "validation_action_energy__delay_dynamics_energy",
-                "title": "Constructive Energy for Delay Dynamics",
+                "title": "Delay Dynamics Energy",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/validation/delay_dynamics_energy.json",
@@ -1344,7 +1344,7 @@
           },
           {
             "id": "dynamics__entropy_and_record_coarse_graining",
-            "title": "Entropy and Record Coarse-Graining",
+            "title": "Entropy",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/dynamics/entropy_and_record_coarse_graining.json",
@@ -1539,6 +1539,112 @@
             ]
           },
           {
+            "id": "dynamics__tri_binary_configuration_space",
+            "title": "Tri-Binary Configuration Space",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/tri_binary_configuration_space.json",
+            "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Scope Of The Hypothesis",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Scope Of The Hypothesis",
+                "sectionKey": "scope of the hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why Three Binaries",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Why Three Binaries",
+                "sectionKey": "why three binaries",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "General Branch State",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "General Branch State",
+                "sectionKey": "general branch state",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Branch Group Velocity",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Branch Group Velocity",
+                "sectionKey": "branch group velocity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Eigen-Braid Candidates",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Eigen-Braid Candidates",
+                "sectionKey": "eigen braid candidates",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Momentum And Principal-Direction Decomposition",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Momentum And Principal-Direction Decomposition",
+                "sectionKey": "momentum and principal direction decomposition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Unordered Layer Semantics",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Unordered Layer Semantics",
+                "sectionKey": "unordered layer semantics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Super-Field-Speed Carrier Rows",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Super-Field-Speed Carrier Rows",
+                "sectionKey": "super field speed carrier rows",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Stability In A Sea Of Like Assemblies",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Stability In A Sea Of Like Assemblies",
+                "sectionKey": "stability in a sea of like assemblies",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Toward A Periodic Table Of The Noether Braid",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Toward A Periodic Table Of The Noether Braid",
+                "sectionKey": "toward a periodic table of the noether braid",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Accessory-Architrino Capture",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Accessory-Architrino Capture",
+                "sectionKey": "accessory architrino capture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Relation To The Dyadic Chapter",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Relation To The Dyadic Chapter",
+                "sectionKey": "relation to the dyadic chapter",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "dynamics__dyadic_resonance_lock",
             "title": "Dyadic Resonance Lock",
             "kind": "markdown-view",
@@ -1546,6 +1652,14 @@
             "scenePath": "content/scenes/dynamics/dyadic_resonance_lock.json",
             "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "General Tri-Binary Branch State",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "General Tri-Binary Branch State",
+                "sectionKey": "general tri binary branch state",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Status and Assumptions",
@@ -1616,6 +1730,64 @@
                 "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
                 "markdownSection": "Ancillary Symmetry Check",
                 "sectionKey": "ancillary symmetry check",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__assembly_topological_charge",
+            "title": "Assembly Topological Charge",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/assembly_topological_charge.json",
+            "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Source Of The Three Entries",
+                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+                "markdownSection": "Source Of The Three Entries",
+                "sectionKey": "source of the three entries",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate Definition",
+                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+                "markdownSection": "Candidate Definition",
+                "sectionKey": "candidate definition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Invariance And Allowed Transitions",
+                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+                "markdownSection": "Invariance And Allowed Transitions",
+                "sectionKey": "invariance and allowed transitions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Role In The Assembly Atlas",
+                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+                "markdownSection": "Role In The Assembly Atlas",
+                "sectionKey": "role in the assembly atlas",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation Extraction",
+                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+                "markdownSection": "Simulation Extraction",
+                "sectionKey": "simulation extraction",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Current Status",
+                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+                "markdownSection": "Current Status",
+                "sectionKey": "current status",
                 "headingLevel": 2
               }
             ]
@@ -1937,7 +2109,7 @@
               },
               {
                 "id": "proof_programs__collinear_breather",
-                "title": "1D Collinear Binary (Reduced Model)",
+                "title": "Collinear Breather",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/proof-programs/collinear_breather.json",
@@ -2330,64 +2502,64 @@
         ]
       },
       {
-        "id": "noether_swarm",
-        "title": "Noether Swarm",
+        "id": "noether_braid",
+        "title": "Noether Braid",
         "kind": "scene-index",
         "sceneType": "Scene-Index",
-        "scenePath": "content/scenes/noether-swarm/noether_swarm.json",
+        "scenePath": "content/scenes/noether-braid/noether_braid.json",
         "children": [
           {
-            "id": "noether_swarm__overview",
-            "title": "Noether Swarm",
+            "id": "noether_braid__overview",
+            "title": "Noether Braid",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-swarm/noether_swarm_overview.json",
-            "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+            "scenePath": "content/scenes/noether-braid/noether_braid_overview.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Neutral Swarm",
-                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
-                "markdownSection": "Neutral Swarm",
-                "sectionKey": "neutral swarm",
+                "title": "Neutral Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
+                "markdownSection": "Neutral Braid",
+                "sectionKey": "neutral braid",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
                 "title": "Retained-Branch Certificate Target",
-                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
                 "markdownSection": "Retained-Branch Certificate Target",
                 "sectionKey": "retained branch certificate target",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Shell Swarm",
-                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
-                "markdownSection": "Shell Swarm",
-                "sectionKey": "shell swarm",
+                "title": "Shell Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
+                "markdownSection": "Shell Braid",
+                "sectionKey": "shell braid",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Nested Shell Swarm",
-                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
-                "markdownSection": "Nested Shell Swarm",
-                "sectionKey": "nested shell swarm",
+                "title": "Nested Shell Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
+                "markdownSection": "Nested Shell Braid",
+                "sectionKey": "nested shell braid",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Properties of the Nested Shell Swarm",
-                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
-                "markdownSection": "Properties of the Nested Shell Swarm",
-                "sectionKey": "properties of the nested shell swarm",
+                "title": "Properties of the Nested Shell Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
+                "markdownSection": "Properties of the Nested Shell Braid",
+                "sectionKey": "properties of the nested shell braid",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
                 "title": "Integer Phase-Closure States",
-                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
                 "markdownSection": "Integer Phase-Closure States",
                 "sectionKey": "integer phase closure states",
                 "headingLevel": 2
@@ -2395,7 +2567,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Cadence-Scale Retuning Hypothesis",
-                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
                 "markdownSection": "Cadence-Scale Retuning Hypothesis",
                 "sectionKey": "cadence scale retuning hypothesis",
                 "headingLevel": 2
@@ -2403,47 +2575,47 @@
               {
                 "kind": "markdown-section",
                 "title": "Rest-Level Scaling Curve",
-                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
                 "markdownSection": "Rest-Level Scaling Curve",
                 "sectionKey": "rest level scaling curve",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Reduced Nested Shell Swarm Closure Label",
-                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
-                "markdownSection": "Reduced Nested Shell Swarm Closure Label",
-                "sectionKey": "reduced nested shell swarm closure label",
+                "title": "Reduced Nested Shell Braid Closure Label",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
+                "markdownSection": "Reduced Nested Shell Braid Closure Label",
+                "sectionKey": "reduced nested shell braid closure label",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
                 "title": "Geometry and Exclusion Envelope",
-                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
                 "markdownSection": "Geometry and Exclusion Envelope",
                 "sectionKey": "geometry and exclusion envelope",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "The Nested Shell Swarm Hierarchy and Fermion Generations",
-                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
-                "markdownSection": "The Nested Shell Swarm Hierarchy and Fermion Generations",
-                "sectionKey": "the nested shell swarm hierarchy and fermion generations",
+                "title": "The Nested Shell Braid Hierarchy and Fermion Generations",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
+                "markdownSection": "The Nested Shell Braid Hierarchy and Fermion Generations",
+                "sectionKey": "the nested shell braid hierarchy and fermion generations",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Nested Shell Swarm Alignment and Planck-Scale Framing",
-                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
-                "markdownSection": "Nested Shell Swarm Alignment and Planck-Scale Framing",
-                "sectionKey": "nested shell swarm alignment and planck scale framing",
+                "title": "Nested Shell Braid Alignment and Planck-Scale Framing",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
+                "markdownSection": "Nested Shell Braid Alignment and Planck-Scale Framing",
+                "sectionKey": "nested shell braid alignment and planck scale framing",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
                 "title": "The Foundation for Fermions",
-                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
                 "markdownSection": "The Foundation for Fermions",
                 "sectionKey": "the foundation for fermions",
                 "headingLevel": 2
@@ -2451,17 +2623,17 @@
             ]
           },
           {
-            "id": "noether_swarm__nested_shell_swarm_dynamics",
-            "title": "Nested Shell Swarm Dynamics",
+            "id": "noether_braid__nested_shell_braid_dynamics",
+            "title": "Nested Shell Braid Dynamics",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
-            "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+            "scenePath": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Relation to Causal Closure",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Relation to Causal Closure",
                 "sectionKey": "relation to causal closure",
                 "headingLevel": 2
@@ -2469,7 +2641,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Claim Scope",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Claim Scope",
                 "sectionKey": "claim scope",
                 "headingLevel": 2
@@ -2477,7 +2649,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Causal-Closure Certificate Target",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Causal-Closure Certificate Target",
                 "sectionKey": "causal closure certificate target",
                 "headingLevel": 2
@@ -2485,7 +2657,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Substrate and Effective Levels",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Substrate and Effective Levels",
                 "sectionKey": "substrate and effective levels",
                 "headingLevel": 2
@@ -2493,7 +2665,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Speed Hierarchy",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Speed Hierarchy",
                 "sectionKey": "speed hierarchy",
                 "headingLevel": 2
@@ -2501,7 +2673,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Multi-Scale Layer Locking",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Multi-Scale Layer Locking",
                 "sectionKey": "multi scale layer locking",
                 "headingLevel": 2
@@ -2509,7 +2681,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Mass Thesis as a Dynamics Target",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Mass Thesis as a Dynamics Target",
                 "sectionKey": "mass thesis as a dynamics target",
                 "headingLevel": 2
@@ -2517,7 +2689,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Spiral-Helical Motion Picture",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Spiral-Helical Motion Picture",
                 "sectionKey": "spiral helical motion picture",
                 "headingLevel": 2
@@ -2525,7 +2697,7 @@
               {
                 "kind": "markdown-section",
                 "title": "All-Layer Translating Branch Response",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "All-Layer Translating Branch Response",
                 "sectionKey": "all layer translating branch response",
                 "headingLevel": 2
@@ -2533,7 +2705,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Cadence-Scale Retuning Closure",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Cadence-Scale Retuning Closure",
                 "sectionKey": "cadence scale retuning closure",
                 "headingLevel": 2
@@ -2541,7 +2713,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Observer-Inference Export Boundary",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Observer-Inference Export Boundary",
                 "sectionKey": "observer inference export boundary",
                 "headingLevel": 2
@@ -2549,7 +2721,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Terminal Alignment Label-Count Target",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Terminal Alignment Label-Count Target",
                 "sectionKey": "terminal alignment label count target",
                 "headingLevel": 2
@@ -2557,7 +2729,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Dynamics-Side Roadmap",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Dynamics-Side Roadmap",
                 "sectionKey": "dynamics side roadmap",
                 "headingLevel": 2
@@ -2565,7 +2737,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Working Hypotheses",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Working Hypotheses",
                 "sectionKey": "working hypotheses",
                 "headingLevel": 2
@@ -2573,7 +2745,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
                 "sectionKey": "regime map for speed statements cft horizon ads",
                 "headingLevel": 2
@@ -2581,7 +2753,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Geometry Focus",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Geometry Focus",
                 "sectionKey": "geometry focus",
                 "headingLevel": 2
@@ -2589,7 +2761,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Minimal Models",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Minimal Models",
                 "sectionKey": "minimal models",
                 "headingLevel": 2
@@ -2597,7 +2769,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Observer-Export Diagnostics",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Observer-Export Diagnostics",
                 "sectionKey": "observer export diagnostics",
                 "headingLevel": 2
@@ -2605,7 +2777,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Observables and Diagnostics (Summary)",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Observables and Diagnostics (Summary)",
                 "sectionKey": "observables and diagnostics summary",
                 "headingLevel": 2
@@ -2613,7 +2785,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Revision Triggers (Failure Modes)",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Revision Triggers (Failure Modes)",
                 "sectionKey": "revision triggers failure modes",
                 "headingLevel": 2
@@ -2621,7 +2793,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Acceleration-Gradient Branch Comparison",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Acceleration-Gradient Branch Comparison",
                 "sectionKey": "acceleration gradient branch comparison",
                 "headingLevel": 2
@@ -2629,7 +2801,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Routed Extensions",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Routed Extensions",
                 "sectionKey": "routed extensions",
                 "headingLevel": 2
@@ -2637,17 +2809,17 @@
             ]
           },
           {
-            "id": "noether_swarm__nested_shell_swarm_geometry",
-            "title": "Nested Shell Swarm Geometry",
+            "id": "noether_braid__nested_shell_braid_geometry",
+            "title": "Nested Shell Braid Geometry",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
-            "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+            "scenePath": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Ownership Boundary",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
                 "markdownSection": "Ownership Boundary",
                 "sectionKey": "ownership boundary",
                 "headingLevel": 2
@@ -2655,7 +2827,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Dynamic Exclusion Envelope",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
                 "markdownSection": "Dynamic Exclusion Envelope",
                 "sectionKey": "dynamic exclusion envelope",
                 "headingLevel": 2
@@ -2663,7 +2835,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Assembly-Noether Sea Interface Diagnostic",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
                 "markdownSection": "Assembly-Noether Sea Interface Diagnostic",
                 "sectionKey": "assembly noether sea interface diagnostic",
                 "headingLevel": 2
@@ -2671,7 +2843,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Oblate Spheroidal Form",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
                 "markdownSection": "Oblate Spheroidal Form",
                 "sectionKey": "oblate spheroidal form",
                 "headingLevel": 2
@@ -2679,7 +2851,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Canonical Geometry Variables",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
                 "markdownSection": "Canonical Geometry Variables",
                 "sectionKey": "canonical geometry variables",
                 "headingLevel": 2
@@ -2687,7 +2859,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Lorentz Projection Role",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
                 "markdownSection": "Lorentz Projection Role",
                 "sectionKey": "lorentz projection role",
                 "headingLevel": 2
@@ -2695,7 +2867,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Retuning Projection to Envelope Variables",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
                 "markdownSection": "Retuning Projection to Envelope Variables",
                 "sectionKey": "retuning projection to envelope variables",
                 "headingLevel": 2
@@ -2703,7 +2875,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Deformability of the Envelope",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
                 "markdownSection": "Deformability of the Envelope",
                 "sectionKey": "deformability of the envelope",
                 "headingLevel": 2
@@ -2711,7 +2883,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Geometry Interfaces",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
                 "markdownSection": "Geometry Interfaces",
                 "sectionKey": "geometry interfaces",
                 "headingLevel": 2
@@ -2719,7 +2891,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Summary Commitment",
-                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
                 "markdownSection": "Summary Commitment",
                 "sectionKey": "summary commitment",
                 "headingLevel": 2
@@ -2875,10 +3047,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Pro/Anti Noether Swarm Basis",
+                "title": "Pro/Anti Noether Braid Basis",
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
-                "markdownSection": "Pro/Anti Noether Swarm Basis",
-                "sectionKey": "pro anti noether swarm basis",
+                "markdownSection": "Pro/Anti Noether Braid Basis",
+                "sectionKey": "pro anti noether braid basis",
                 "headingLevel": 2
               },
               {
@@ -3269,10 +3441,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Noether Swarm Deformation and Metric Language",
+                    "title": "Noether Braid Deformation and Metric Language",
                     "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
-                    "markdownSection": "Noether Swarm Deformation and Metric Language",
-                    "sectionKey": "noether swarm deformation and metric language",
+                    "markdownSection": "Noether Braid Deformation and Metric Language",
+                    "sectionKey": "noether braid deformation and metric language",
                     "headingLevel": 2
                   },
                   {
@@ -3461,12 +3633,12 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/spacetime/general_relativity_observables.json",
-                "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
                     "title": "Purpose",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Purpose",
                     "sectionKey": "purpose",
                     "headingLevel": 2
@@ -3474,7 +3646,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Core Interpretation",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Core Interpretation",
                     "sectionKey": "core interpretation",
                     "headingLevel": 2
@@ -3482,7 +3654,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Weak-Field Observables That Must Match GR",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Weak-Field Observables That Must Match GR",
                     "sectionKey": "weak field observables that must match gr",
                     "headingLevel": 2
@@ -3490,7 +3662,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Equivalence-Principle Channels",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Equivalence-Principle Channels",
                     "sectionKey": "equivalence principle channels",
                     "headingLevel": 2
@@ -3498,7 +3670,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Preferred-Frame Leakage",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Preferred-Frame Leakage",
                     "sectionKey": "preferred frame leakage",
                     "headingLevel": 2
@@ -3506,7 +3678,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Gravitational-Wave Channel",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Gravitational-Wave Channel",
                     "sectionKey": "gravitational wave channel",
                     "headingLevel": 2
@@ -3514,7 +3686,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Strong-Field Regime",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Strong-Field Regime",
                     "sectionKey": "strong field regime",
                     "headingLevel": 2
@@ -3522,7 +3694,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Closure Targets",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Closure Targets",
                     "sectionKey": "closure targets",
                     "headingLevel": 2
@@ -3530,7 +3702,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Falsification Gate",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Falsification Gate",
                     "sectionKey": "falsification gate",
                     "headingLevel": 2
@@ -3538,7 +3710,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Related Chapters",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Related Chapters",
                     "sectionKey": "related chapters",
                     "headingLevel": 2
@@ -3968,9 +4140,49 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-                "markdownSection": "Cosmic Censorship / Holographic Principle / AdS-CFT",
-                "sectionKey": "cosmic censorship holographic principle ads cft"
+                "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Conceptual View",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                    "markdownSection": "Conceptual View",
+                    "sectionKey": "conceptual view",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Key Equation",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                    "markdownSection": "Key Equation",
+                    "sectionKey": "key equation",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ View",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                    "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ View",
+                    "sectionKey": "mathbb a mathbb a mathbb a view",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Status",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                    "markdownSection": "Status",
+                    "sectionKey": "status",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Geometric Proof Targets",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                    "markdownSection": "Geometric Proof Targets",
+                    "sectionKey": "geometric proof targets",
+                    "headingLevel": 2
+                  }
+                ]
               }
             ]
           }
@@ -4920,10 +5132,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Proton and Neutron as Ground-State Nested Shell Swarms",
+                "title": "Proton and Neutron as Ground-State Nested Shell Braids",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Proton and Neutron as Ground-State Nested Shell Swarms",
-                "sectionKey": "proton and neutron as ground state nested shell swarms",
+                "markdownSection": "Proton and Neutron as Ground-State Nested Shell Braids",
+                "sectionKey": "proton and neutron as ground state nested shell braids",
                 "headingLevel": 2
               },
               {
@@ -5160,7 +5372,7 @@
             "kind": "diagram",
             "sceneType": "Scene-Diagram",
             "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json",
-            "markdownPath": "content/markdown/aaa/nuclear-atomic/hyde-info.md"
+            "markdownPath": "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md"
           },
           {
             "id": "nuclear_atomic__molecular_geometry",
@@ -5705,7 +5917,7 @@
           },
           {
             "id": "reactions__synchrotron_cascades",
-            "title": "Synchrotron Cascades",
+            "title": "Synchrotron",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/reactions/synchrotron_cascades.json",
@@ -5894,7 +6106,7 @@
           },
           {
             "id": "quantum__reality_causality_and_navigation",
-            "title": "Reality, Causality, and Navigation",
+            "title": "Reality Quantum Causality",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/quantum/reality_causality_and_navigation.json",
@@ -6164,7 +6376,7 @@
           },
           {
             "id": "quantum__algorithmic_resonance",
-            "title": "Algorithmic Resonance and Shor's Algorithm",
+            "title": "Algorithmic Resonance",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/quantum/algorithmic_resonance.json",
@@ -6218,28 +6430,28 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/quantum/quantum_statistics.json",
-            "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+            "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Standard Observer-Level Roles",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
                 "markdownSection": "Standard Observer-Level Roles",
                 "sectionKey": "standard observer level roles",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Nested Shell Swarm Geometry Basis",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
-                "markdownSection": "Nested Shell Swarm Geometry Basis",
-                "sectionKey": "nested shell swarm geometry basis",
+                "title": "Nested Shell Braid Geometry Basis",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+                "markdownSection": "Nested Shell Braid Geometry Basis",
+                "sectionKey": "nested shell braid geometry basis",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
                 "title": "Fermi-Dirac Regime: 3D Exclusion",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
                 "markdownSection": "Fermi-Dirac Regime: 3D Exclusion",
                 "sectionKey": "fermi dirac regime 3d exclusion",
                 "headingLevel": 2
@@ -6247,7 +6459,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Bose-Einstein Regime: 2D Coherence",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
                 "markdownSection": "Bose-Einstein Regime: 2D Coherence",
                 "sectionKey": "bose einstein regime 2d coherence",
                 "headingLevel": 2
@@ -6255,7 +6467,7 @@
               {
                 "kind": "markdown-section",
                 "title": "The 3D-to-2D Transition",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
                 "markdownSection": "The 3D-to-2D Transition",
                 "sectionKey": "the 3d to 2d transition",
                 "headingLevel": 2
@@ -6263,7 +6475,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Effective Exchange-State Contract",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
                 "markdownSection": "Effective Exchange-State Contract",
                 "sectionKey": "effective exchange state contract",
                 "headingLevel": 2
@@ -6271,7 +6483,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Interfaces",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
                 "markdownSection": "Interfaces",
                 "sectionKey": "interfaces",
                 "headingLevel": 2
@@ -6279,7 +6491,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Closure Targets",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
                 "markdownSection": "Closure Targets",
                 "sectionKey": "closure targets",
                 "headingLevel": 2
@@ -7979,10 +8191,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Assembly grammar -> nested shell swarm and flux tubes",
+                    "title": "Assembly grammar -> nested shell braid and flux tubes",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Assembly grammar -> nested shell swarm and flux tubes",
-                    "sectionKey": "assembly grammar nested shell swarm and flux tubes",
+                    "markdownSection": "Assembly grammar -> nested shell braid and flux tubes",
+                    "sectionKey": "assembly grammar nested shell braid and flux tubes",
                     "headingLevel": 2
                   },
                   {
@@ -8423,17 +8635,17 @@
                     ]
                   },
                   {
-                    "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_swarm_action_increment_protocol",
-                    "title": "Nested Shell Swarm Action-Increment Protocol",
+                    "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_braid_action_increment_protocol",
+                    "title": "Nested Shell Braid Action-Increment Protocol",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                    "scenePath": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
                     "sections": [
                       {
                         "kind": "markdown-section",
                         "title": "Closure Question",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
                         "markdownSection": "Closure Question",
                         "sectionKey": "closure question",
                         "headingLevel": 2
@@ -8441,7 +8653,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Accepted Transition Class",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
                         "markdownSection": "Accepted Transition Class",
                         "sectionKey": "accepted transition class",
                         "headingLevel": 2
@@ -8449,7 +8661,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Master-Equation Increment",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
                         "markdownSection": "Master-Equation Increment",
                         "sectionKey": "master equation increment",
                         "headingLevel": 2
@@ -8457,7 +8669,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Branch-Chart Conservation Pullback",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
                         "markdownSection": "Branch-Chart Conservation Pullback",
                         "sectionKey": "branch chart conservation pullback",
                         "headingLevel": 2
@@ -8465,7 +8677,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Cluster and Stability Residuals",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
                         "markdownSection": "Cluster and Stability Residuals",
                         "sectionKey": "cluster and stability residuals",
                         "headingLevel": 2
@@ -8473,7 +8685,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Required Packet Files",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
                         "markdownSection": "Required Packet Files",
                         "sectionKey": "required packet files",
                         "headingLevel": 2
@@ -8481,7 +8693,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Promotion Gates",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
                         "markdownSection": "Promotion Gates",
                         "sectionKey": "promotion gates",
                         "headingLevel": 2
@@ -8489,7 +8701,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Failure-Code Enum",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
                         "markdownSection": "Failure-Code Enum",
                         "sectionKey": "failure code enum",
                         "headingLevel": 2
@@ -8497,7 +8709,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Interpretation",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
                         "markdownSection": "Interpretation",
                         "sectionKey": "interpretation",
                         "headingLevel": 2
@@ -8745,7 +8957,7 @@
                   },
                   {
                     "id": "validation_simulations__sim_metric_observer__sim_thermodynamic_residual",
-                    "title": "Thermodynamic Residual Protocol",
+                    "title": "Thermodynamic Residual",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/sim_thermodynamic_residual.json",
@@ -9046,6 +9258,32 @@
         "scenePath": "content/scenes/philosophy_history/philosophy_history.json",
         "children": [
           {
+            "id": "philosophy_history__overview",
+            "title": "Philosophy and History",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/philosophy_history/overview.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/philosophy-history.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Reading Order",
+                "markdownPath": "content/markdown/aaa/philosophy-history/philosophy-history.md",
+                "markdownSection": "Reading Order",
+                "sectionKey": "reading order",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Local Discipline",
+                "markdownPath": "content/markdown/aaa/philosophy-history/philosophy-history.md",
+                "markdownSection": "Local Discipline",
+                "sectionKey": "local discipline",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "philosophy_of_science",
             "title": "Philosophy of Science",
             "kind": "markdown-split",
@@ -9275,7 +9513,7 @@
           },
           {
             "id": "unknowns_paradoxes",
-            "title": "Unknowns & Paradoxes",
+            "title": "Unknowns and Paradoxes",
             "kind": "markdown-tree",
             "sceneType": "Scene-Markdown-Tree",
             "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json",
@@ -9540,10 +9778,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Assembly Layer (Nested Shell Swarm)",
+                    "title": "Assembly Layer (Nested Shell Braid)",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-                    "markdownSection": "Assembly Layer (Nested Shell Swarm)",
-                    "sectionKey": "assembly layer nested shell swarm",
+                    "markdownSection": "Assembly Layer (Nested Shell Braid)",
+                    "sectionKey": "assembly layer nested shell braid",
                     "headingLevel": 2,
                     "children": [
                       {
@@ -10922,6 +11160,40 @@
                 "scenePath": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
                 "children": [
                   {
+                    "id": "theory_bridges__overview",
+                    "title": "Theory Bridges",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/philosophy_history/theory_bridges/overview.json",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Scope",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges.md",
+                        "markdownSection": "Scope",
+                        "sectionKey": "scope",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Bridge Pattern",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges.md",
+                        "markdownSection": "Bridge Pattern",
+                        "sectionKey": "bridge pattern",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Current Bridges",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges.md",
+                        "markdownSection": "Current Bridges",
+                        "sectionKey": "current bridges",
+                        "headingLevel": 2
+                      }
+                    ]
+                  },
+                  {
                     "id": "theory_bridges__quantum_operator_mapping",
                     "title": "Quantum Operator Mapping",
                     "kind": "markdown-view",
@@ -10931,10 +11203,10 @@
                     "sections": [
                       {
                         "kind": "markdown-section",
-                        "title": "The Nested Shell Swarm Qubit and Phase Space",
+                        "title": "The Nested Shell Braid Qubit and Phase Space",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
-                        "markdownSection": "The Nested Shell Swarm Qubit and Phase Space",
-                        "sectionKey": "the nested shell swarm qubit and phase space",
+                        "markdownSection": "The Nested Shell Braid Qubit and Phase Space",
+                        "sectionKey": "the nested shell braid qubit and phase space",
                         "headingLevel": 2
                       },
                       {
@@ -11149,10 +11421,10 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Nested Shell Swarm Spin Scaffold",
+                        "title": "Nested Shell Braid Spin Scaffold",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
-                        "markdownSection": "Nested Shell Swarm Spin Scaffold",
-                        "sectionKey": "nested shell swarm spin scaffold",
+                        "markdownSection": "Nested Shell Braid Spin Scaffold",
+                        "sectionKey": "nested shell braid spin scaffold",
                         "headingLevel": 2
                       },
                       {
@@ -11365,7 +11637,7 @@
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md"
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md"
                   },
                   {
                     "id": "theory_bridges__entanglement_nonlocality",
@@ -11484,17 +11756,17 @@
                     ]
                   },
                   {
-                    "id": "theory_bridges__special_relativity_noether_swarm",
-                    "title": "Special Relativity and Deformable Noether Swarms",
+                    "id": "theory_bridges__special_relativity_noether_braid",
+                    "title": "Special Relativity and Deformable Noether Braids",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+                    "scenePath": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                     "sections": [
                       {
                         "kind": "markdown-section",
                         "title": "Bridge Thesis",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "Bridge Thesis",
                         "sectionKey": "bridge thesis",
                         "headingLevel": 2
@@ -11502,7 +11774,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Ownership Boundary",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "Ownership Boundary",
                         "sectionKey": "ownership boundary",
                         "headingLevel": 2
@@ -11510,7 +11782,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "The Two Stories",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "The Two Stories",
                         "sectionKey": "the two stories",
                         "headingLevel": 2
@@ -11518,7 +11790,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Clock Channel",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "Clock Channel",
                         "sectionKey": "clock channel",
                         "headingLevel": 2
@@ -11526,7 +11798,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Ruler Channel",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "Ruler Channel",
                         "sectionKey": "ruler channel",
                         "headingLevel": 2
@@ -11534,7 +11806,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Branch-Quantized Lorentz Response",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "Branch-Quantized Lorentz Response",
                         "sectionKey": "branch quantized lorentz response",
                         "headingLevel": 2
@@ -11542,7 +11814,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Mass-Energy Channel",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "Mass-Energy Channel",
                         "sectionKey": "mass energy channel",
                         "headingLevel": 2
@@ -11550,7 +11822,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Energy-Momentum Channel",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "Energy-Momentum Channel",
                         "sectionKey": "energy momentum channel",
                         "headingLevel": 2
@@ -11558,7 +11830,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Why The Same Factor Appears",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "Why The Same Factor Appears",
                         "sectionKey": "why the same factor appears",
                         "headingLevel": 2
@@ -11566,7 +11838,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Domain Of Validity",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "Domain Of Validity",
                         "sectionKey": "domain of validity",
                         "headingLevel": 2
@@ -11574,7 +11846,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Closure Targets",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "Closure Targets",
                         "sectionKey": "closure targets",
                         "headingLevel": 2
@@ -11582,7 +11854,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Summary Commitment",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "Summary Commitment",
                         "sectionKey": "summary commitment",
                         "headingLevel": 2
@@ -11966,17 +12238,17 @@
                     ]
                   },
                   {
-                    "id": "theory_bridges__planck_scale_nested_shell_swarm_alignment",
-                    "title": "Planck Scale Nested Shell Swarm Alignment",
+                    "id": "theory_bridges__planck_scale_nested_shell_braid_alignment",
+                    "title": "Planck Scale Nested Shell Braid Alignment",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+                    "scenePath": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
                     "sections": [
                       {
                         "kind": "markdown-section",
                         "title": "Thesis",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
                         "markdownSection": "Thesis",
                         "sectionKey": "thesis",
                         "headingLevel": 2
@@ -11984,7 +12256,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Operational Probing Limit",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
                         "markdownSection": "Operational Probing Limit",
                         "sectionKey": "operational probing limit",
                         "headingLevel": 2
@@ -11992,7 +12264,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "What Planck Units Imply About the Outer Binary",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
                         "markdownSection": "What Planck Units Imply About the Outer Binary",
                         "sectionKey": "what planck units imply about the outer binary",
                         "headingLevel": 2
@@ -12000,7 +12272,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Kinematic and Dynamical Alignment Conditions",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
                         "markdownSection": "Kinematic and Dynamical Alignment Conditions",
                         "sectionKey": "kinematic and dynamical alignment conditions",
                         "headingLevel": 2
@@ -12008,7 +12280,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Energy as Causal-Wake Interaction History",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
                         "markdownSection": "Energy as Causal-Wake Interaction History",
                         "sectionKey": "energy as causal wake interaction history",
                         "headingLevel": 2
@@ -12016,7 +12288,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
                         "markdownSection": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
                         "sectionKey": "discrete ladder and phase slip dynamics hypothesis",
                         "headingLevel": 2
@@ -12024,7 +12296,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Spin Transition and Configuration-Space Topology (Hypothesis)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
                         "markdownSection": "Spin Transition and Configuration-Space Topology (Hypothesis)",
                         "sectionKey": "spin transition and configuration space topology hypothesis",
                         "headingLevel": 2
@@ -12032,7 +12304,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
                         "markdownSection": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
                         "sectionKey": "emergent constants hbar ell p and g",
                         "headingLevel": 2
@@ -12040,7 +12312,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
                         "markdownSection": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
                         "sectionKey": "horizon microstructure and condensate like phases conjecture",
                         "headingLevel": 2
@@ -12048,7 +12320,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Constraints, Assumptions, and Failure Modes",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
                         "markdownSection": "Constraints, Assumptions, and Failure Modes",
                         "sectionKey": "constraints assumptions and failure modes",
                         "headingLevel": 2
@@ -12127,7 +12399,7 @@
           },
           {
             "id": "substance_structure_potential",
-            "title": "Substance, Structure, and the Plenum of Potential",
+            "title": "Substance Structure and Potential",
             "kind": "markdown-split",
             "sceneType": "Scene-Markdown-Split",
             "scenePath": "content/scenes/philosophy_history/substance_structure_potential.json",

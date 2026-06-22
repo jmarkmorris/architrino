@@ -54,10 +54,10 @@
   "objects": [
     {
       "id": "foundational_ontology",
-      "title": "Foundational Ontology",
+      "title": "Ontology",
       "radius": 2.95,
       "color": "#3a5f9f",
-      "labelTitle": "Foundational Ontology",
+      "labelTitle": "Ontology",
       "labelBadge": "doc"
     },
     {

@@ -2,21 +2,21 @@
 
 This chapter is the canonical medium-ontology page for the **Noether sea** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines what the physical medium is, how it differs from the Euclidean void, which state variables describe it, and where detailed assembly, metric, clock, and cosmology work belongs.
 
-The Noether sea is not the substrate. The substrate is [absolute timespace](../foundations/absolute-timespace.md): absolute time together with the [Euclidean void](../foundations/euclidean-void.md). The Noether sea is physical content inside that background: an emergent, coupled population of neutral Noether swarm assemblies whose collective response appears to physical observers as spacetime behavior.
+The Noether sea is not the substrate. The substrate is [absolute timespace](../foundations/absolute-timespace.md): absolute time together with the [Euclidean void](../foundations/euclidean-void.md). The Noether sea is physical content inside that background: an emergent, coupled population of neutral Noether braid assemblies whose collective response appears to physical observers as spacetime behavior.
 
-This is why the reader path introduces Noether swarm scaffold and geometry before observer-level spacetime. At the roadmap level, the physical Noether swarm density can be read as a coarse-grained population field,
+This is why the reader path introduces Noether braid scaffold and geometry before observer-level spacetime. At the roadmap level, the physical Noether braid density can be read as a coarse-grained population field,
 $$
 \rho_{\text{NS}}(\mathbf{x},t)
 \sim
 \sum_s W_\ell(\mathbf{x}-\mathbf{X}_s(t))
 $$
-where $W_\ell$ is a smoothing window over Noether swarm center variables $\mathbf{X}_s(t)$. The Noether sea stress, delay factor, and orientation variables then depend on each swarm's closure label, orientation, and envelope deformation. The Noether sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether swarm geometry, not primitive geometric postulates.
+where $W_\ell$ is a smoothing window over Noether braid center variables $\mathbf{X}_s(t)$. The Noether sea stress, delay factor, and orientation variables then depend on each braid's closure label, orientation, and envelope deformation. The Noether sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether braid geometry, not primitive geometric postulates.
 
 The homogeneous Noether sea also supplies the first constructive convergence case for the infinite many-source wake sum. In a statistically homogeneous, isotropic, locally neutral population with neutrality correlation length $\ell$ and a mixing bound, receiver-centered shell contributions have square-summable fluctuations: a shell of radius $r_n\sim n\ell$ contains $O(n^2)$ neutral cells, signed fluctuations scale as $O(n)$, and inverse-square wake dilution contributes $O(n^{-2})$. The shell variance is therefore $O(n^{-2})$, so the neutral far-population contribution converges in the receiver-centered exhaustion sense. This is a weak homogeneous medium result, not a blanket convergence claim for coherent strong-field regions or unneutralized source populations.
 
 ## Core Definition
 
-The **Noether sea** is the ambient physical medium formed by dense, balanced populations of coupled neutral Noether swarms in the Euclidean void.
+The **Noether sea** is the ambient physical medium formed by dense, balanced populations of coupled neutral Noether braids in the Euclidean void.
 
 It is:
 
@@ -70,9 +70,9 @@ not a primitive frame-free photon scalar. The redshift task is to compute the en
 
 ## Composition
 
-The Noether sea is composed of neutral Noether swarm assemblies. In the present corpus the best-developed Noether swarm case is the nested shell swarm, made from three nested electrino:positrino binaries. A Noether swarm itself is not elementary; its stability is a downstream assembly result.
+The Noether sea is composed of neutral Noether braid assemblies. In the present corpus the best-developed Noether braid case is the nested shell braid, made from three nested electrino:positrino binaries. A Noether braid itself is not elementary; its stability is a downstream assembly result.
 
-The large-scale Noether sea is modeled as a balanced population of complementary Noether swarm orientations.
+The large-scale Noether sea is modeled as a balanced population of complementary Noether braid orientations.
 
 This pro/anti distinction is geometric and topological, not a net electric-charge distinction. Both orientations are electrically neutral at the core level. Their coupled balance is part of the working explanation for how the Noether sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response.
 
@@ -80,7 +80,7 @@ The detailed pro/anti basis, density split, imbalance stability, local coupling 
 
 ## Local Branches in the Medium
 
-The Noether sea changes how isolated assembly calculations should be read. A truly isolated Noether swarm or matter assembly is a limiting seed chart, not the generic physical situation. The physical target is a local branch retained inside the surrounding Noether sea state and nearby-assembly record.
+The Noether sea changes how isolated assembly calculations should be read. A truly isolated Noether braid or matter assembly is a limiting seed chart, not the generic physical situation. The physical target is a local branch retained inside the surrounding Noether sea state and nearby-assembly record.
 
 For a candidate local branch $B$, the stronger closure form is not
 
@@ -146,7 +146,7 @@ $$
 \frac{c_f}{c_{\text{eff}}(\mathbf{x},t)}
 $$
 
-It plays the role that refractive index plays in ordinary optical analogies, but it is a native Noether sea response variable. Do not use $n$ for this delay factor; $n$ is reserved for normalized Noether swarm density.
+It plays the role that refractive index plays in ordinary optical analogies, but it is a native Noether sea response variable. Do not use $n$ for this delay factor; $n$ is reserved for normalized Noether braid density.
 
 Clock and spectral comparisons may also extract the Noether sea cadence-stretch diagnostic
 
@@ -158,7 +158,7 @@ $$
 C_N(\mathbf{x},t)=\Gamma_N^{-1}(\mathbf{x},t)
 $$
 
-Here $\Omega_N$ is a representative local Noether sea swarm cadence and $C_N$ is the corresponding clock-rate factor. This pair is not a new density or delay factor: $n$ tracks normalized Noether swarm density, $\chi_{\text{sea}}$ tracks effective causal delay, and $\Gamma_N$ tracks cadence stretch. The clock extraction and hydrogen spectral use of this diagnostic belong in [Proper Time and Time Dilation](proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target).
+Here $\Omega_N$ is a representative local Noether sea braid cadence and $C_N$ is the corresponding clock-rate factor. This pair is not a new density or delay factor: $n$ tracks normalized Noether braid density, $\chi_{\text{sea}}$ tracks effective causal delay, and $\Gamma_N$ tracks cadence stretch. The clock extraction and hydrogen spectral use of this diagnostic belong in [Proper Time and Time Dilation](proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target).
 
 When a calculation needs pro/anti subcomponents, orientation imbalance, or coupling-regime stability thresholds, use [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md).
 
@@ -170,9 +170,9 @@ The Noether sea is characterized by collective variables, not by a new point-par
 
 Important medium properties include:
 
-- **Noether swarm density:** $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$.
-- **Energy density:** approximately $\rho_{\text{NS}}E_{\text{swarm}}$ at the coarse level, with corrections from stress, excitation, and coupling.
-- **Orientation and strain:** local ordering of swarm axes and deformation away from equilibrium.
+- **Noether braid density:** $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$.
+- **Energy density:** approximately $\rho_{\text{NS}}E_{\text{braid}}$ at the coarse level, with corrections from stress, excitation, and coupling.
+- **Orientation and strain:** local ordering of braid axes and deformation away from equilibrium.
 - **Flow or drift:** collective motion of the Noether sea relative to the absolute frame.
 - **Compliance:** how strongly the Noether sea responds to compression, shear, polarization, and alignment loading.
 - **Delay-factor response:** how $\chi_{\text{sea}}$, signal propagation, clock behavior, and effective light speed depend on local Noether sea state.
@@ -199,9 +199,9 @@ $$
 S_{\rho}
 +r_{\rho}
 $$
-The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether swarm population and the residual decreases under refinement.
+The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether braid population and the residual decreases under refinement.
 
-The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether swarm population dynamics, causal wakes, and branch ledgers.
+The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether braid population dynamics, causal wakes, and branch ledgers.
 
 The kinetic-theory lesson is that hydrodynamic variables are the slow variables associated with conserved quantities. For the Noether sea, the candidate slow state is
 $$
@@ -308,17 +308,17 @@ where $\mathcal H$ is the principal-value Hilbert transform used by the packet. 
 
 ## Equilibrium Transport Hypothesis
 
-A provisional cosmology-facing hypothesis treats the Noether sea as a dense neighbor-coupled population of Noether swarms whose individual action transactions are discrete while the ensemble response can be smooth. Most swarms in a weak deep-space region have other Noether swarms as their nearest dynamical neighbors. Photons and neutrinos can traverse the population, and gravitational waves can perturb it, but the baseline relaxation law is a swarm-to-swarm medium law.
+A provisional cosmology-facing hypothesis treats the Noether sea as a dense neighbor-coupled population of Noether braids whose individual action transactions are discrete while the ensemble response can be smooth. Most braids in a weak deep-space region have other Noether braids as their nearest dynamical neighbors. Photons and neutrinos can traverse the population, and gravitational waves can perturb it, but the baseline relaxation law is a braid-to-braid medium law.
 
-Let $\nu_N$ denote an ordinary frequency extracted from a representative Noether swarm cadence state. The local swarm energy scale is then
+Let $\nu_N$ denote an ordinary frequency extracted from a representative Noether braid cadence state. The local braid energy scale is then
 
 $$
 E_N=h\nu_N
 $$
 
-The point of this expression is not to add a new quantum postulate at the Noether sea level. It records the same closed-cycle action accounting used elsewhere in the corpus: a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether swarm may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
+The point of this expression is not to add a new quantum postulate at the Noether sea level. It records the same closed-cycle action accounting used elsewhere in the corpus: a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether braid may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
 
-At the single Noether swarm level, each accepted $h$-scale transfer forces the swarm to retune its cadence-scale closure. The retuning may appear as a cadence shift, shell-binary radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring swarms. In the simplest fixed-speed shell-binary approximation,
+At the single Noether braid level, each accepted $h$-scale transfer forces the braid to retune its cadence-scale closure. The retuning may appear as a cadence shift, shell-binary radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring braids. In the simplest fixed-speed shell-binary approximation,
 
 $$
 v_N\sim 2\pi R_N\nu_N,
@@ -326,9 +326,9 @@ v_N\sim 2\pi R_N\nu_N,
 R_N\nu_N\approx\text{constant}
 $$
 
-so a higher accepted cadence corresponds to a smaller representative scale, while a lower accepted cadence corresponds to a larger representative scale. The full nested shell swarm can partition the same transaction across its inner, middle, and outer layers, so this relation is a first estimate rather than a complete closure law.
+so a higher accepted cadence corresponds to a smaller representative scale, while a lower accepted cadence corresponds to a larger representative scale. The full nested shell braid can partition the same transaction across its inner, middle, and outer layers, so this relation is a first estimate rather than a complete closure law.
 
-At the ensemble level, let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether swarm cadence states. The cadence-space current is the coarse-grained flux of many branchwise retunings:
+At the ensemble level, let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether braid cadence states. The cadence-space current is the coarse-grained flux of many branchwise retunings:
 
 $$
 J_\nu
@@ -339,7 +339,7 @@ f_N
 \right\rangle_{\Delta A_{\mathrm{cyc}}=\pm h}
 $$
 
-where the average is taken over accepted $h$-scale transactions inside the coarse-graining cell. Once the single-swarm retuning map $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$ is specified, the first current estimate is
+where the average is taken over accepted $h$-scale transactions inside the coarse-graining cell. Once the single-braid retuning map $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$ is specified, the first current estimate is
 
 $$
 J_\nu(\nu,\mathbf{x},t)
@@ -352,9 +352,9 @@ r_\sigma(\nu,\mathbf{x},t)\,
 O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right)
 $$
 
-where $r_\sigma$ is the local rate density of accepted $\sigma$ transactions per swarm and $\Delta\nu_N^{(q,\sigma)}$ is the cadence component extracted from $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$. Deep space can therefore look smooth without making the underlying transactions continuous. Moving from deep space toward a solar-system environment should not be modeled as a scalar temperature increase alone; it is a bias in the local population toward higher cadence, stronger strain, stronger alignment, and larger gradients. Near a proton or other matter assembly, the neighboring Noether swarms see a sharper boundary condition and retune more discretely around the assembly.
+where $r_\sigma$ is the local rate density of accepted $\sigma$ transactions per braid and $\Delta\nu_N^{(q,\sigma)}$ is the cadence component extracted from $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$. Deep space can therefore look smooth without making the underlying transactions continuous. Moving from deep space toward a solar-system environment should not be modeled as a scalar temperature increase alone; it is a bias in the local population toward higher cadence, stronger strain, stronger alignment, and larger gradients. Near a proton or other matter assembly, the neighboring Noether braids see a sharper boundary condition and retune more discretely around the assembly.
 
-The same smoothing record supplies the ambient-branch acceptance used at assembly boundaries. For a neutral-swarm quantity $f_k(t)$ in a coarse window $\Omega_\ell$, define
+The same smoothing record supplies the ambient-branch acceptance used at assembly boundaries. For a neutral-braid quantity $f_k(t)$ in a coarse window $\Omega_\ell$, define
 
 $$
 \left\langle f\right\rangle_{\mathrm{sea},\ell}(\mathbf{x},t)
@@ -368,7 +368,7 @@ W_\ell(\mathbf{x}-\mathbf{X}_k(t))
 }
 $$
 
-The branch-level equilibrium test is not that every Noether swarm has the same cadence. It is that, after all resolved assembly ledgers have been removed, an ambient branch belongs to the local neutral-swarm population when its cadence lies within the smoothed distribution and the remaining pro/anti orientation balance is small. In symbolic form,
+The branch-level equilibrium test is not that every Noether braid has the same cadence. It is that, after all resolved assembly ledgers have been removed, an ambient branch belongs to the local neutral-braid population when its cadence lies within the smoothed distribution and the remaining pro/anti orientation balance is small. In symbolic form,
 
 $$
 \zeta_{\mathrm{sea}}^{(\ell)}
@@ -386,7 +386,7 @@ $$
 \right]
 $$
 
-where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether swarm can sit inside the same coordinate window as ambient Noether sea swarms without becoming part of the ambient Noether sea record; ledger complement, not mere spatial proximity, makes the separation.
+where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether braid can sit inside the same coordinate window as ambient Noether sea braids without becoming part of the ambient Noether sea record; ledger complement, not mere spatial proximity, makes the separation.
 
 A candidate equilibrium-transport equation is
 
@@ -678,7 +678,7 @@ b_R
 \right)
 $$
 
-because the homogeneous moving Noether swarm branch fixes the coefficient of $-\ln\xi$ by requiring $\Gamma_N\to1/\xi\to\gamma$. The weak static endpoint branch then fixes only the scalar combination
+because the homogeneous moving Noether braid branch fixes the coefficient of $-\ln\xi$ by requiring $\Gamma_N\to1/\xi\to\gamma$. The weak static endpoint branch then fixes only the scalar combination
 
 $$
 b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1
@@ -939,8 +939,8 @@ This page owns:
 
 This page does not own:
 
-- Noether swarm internal architecture; see [Noether Swarm](../noether-swarm/noether-swarm.md).
-- Noether swarm exclusion-envelope geometry; see [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md).
+- Noether braid internal architecture; see [Noether Braid](../noether-braid/noether-braid.md).
+- Noether braid exclusion-envelope geometry; see [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md).
 - Pro/anti coupling hypotheses and cluster motifs; see [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md).
 - Effective metric derivation; see [Emergent Metric](emergent-metric.md).
 - Clock and ruler behavior; see [Proper Time and Time Dilation](proper-time-and-time-dilation.md).
@@ -949,4 +949,4 @@ This page does not own:
 
 ## Summary Commitment
 
-> **Medium Commitment (Noether sea):** The Noether sea is the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void itself. Matter assemblies and Noether swarm branches are physically meaningful as local retained branches embedded in this medium record; isolated branch calculations are seed charts or limiting cases unless their Noether sea state and nearby-assembly boundary residuals are statused.
+> **Medium Commitment (Noether sea):** The Noether sea is the emergent physical medium formed by coupled neutral Noether braid assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void itself. Matter assemblies and Noether braid branches are physically meaningful as local retained branches embedded in this medium record; isolated branch calculations are seed charts or limiting cases unless their Noether sea state and nearby-assembly boundary residuals are statused.

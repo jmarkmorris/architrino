@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_INPUT_PATH = path.resolve(
   SCRIPT_DIR,
-  "../nested-shell-swarm/fixtures/action-increment-source-contract-blocked.json"
+  "../nested-shell-braid/fixtures/action-increment-source-contract-blocked.json"
 );
 const PARTIES = ["A", "B"];
 const EPS = 1e-9;
@@ -118,7 +118,7 @@ function printHelp() {
 
 Options:
   --input PATH       Read candidate local Stern-Gerlach apparatus response JSON.
-                     Defaults to scripts/nested-shell-swarm/fixtures/action-increment-source-contract-blocked.json
+                     Defaults to scripts/nested-shell-braid/fixtures/action-increment-source-contract-blocked.json
   --print-contract  Print the required local-response intake contract.
   --out PATH         Write JSON output to a file instead of stdout.
   --pretty          Pretty-print JSON output.

@@ -2,7 +2,7 @@
 
 ## Background
 
-We are exploring an **assembly**, specifically a candidate neutral rest-branch Noether swarm assembly called `$A_0$`.
+We are exploring an **assembly**, specifically a candidate neutral rest-branch Noether braid assembly called `$A_0$`.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, an assembly is not a point particle. It is a structured bundle of architrinos with internal motion, internal causal history, and sector-visible projections.
 
@@ -93,7 +93,7 @@ Before we can derive mass-basis shape functions, weak-basis shape functions, CKM
 
 So the chain is:
 
-`architrinos` → `Noether swarm assembly` → `stable causal-root ledger` → `sector exposure / quotient` → `mass, weak, color, photon-facing geometry`
+`architrinos` → `Noether braid assembly` → `stable causal-root ledger` → `sector exposure / quotient` → `mass, weak, color, photon-facing geometry`
 
 The current $A_0$ work is at the “stable causal-root ledger” level. It is not yet a particle prediction. It is checking whether an internal assembly can become a reliable geometric source object for later mass and weak-sector calculations.
 
@@ -103,7 +103,7 @@ This packet turns the $A_0$ reference-attractor posture into a concrete reduced 
 
 The central question is:
 
-Can a neutral rest-branch Noether swarm with inner, middle, and outer binary layers close as one coupled delayed root ledger while satisfying
+Can a neutral rest-branch Noether braid with inner, middle, and outer binary layers close as one coupled delayed root ledger while satisfying
 $$
 s_I > c_f,
 \qquad
@@ -840,7 +840,7 @@ At the May 16 handoff, the exact next calculation was no longer surplus classifi
 Approved validation run on May 16, 2026:
 
 ```text
-node scripts/mass-map/a0-tier1-continuation-source-prototype.mjs --tier0 scripts/nested-shell-swarm/fixtures/a0-tier0-branch-search-minimal.json --direct-probe-steps 64 --direct-step-fraction-ladder 0.0009765625 --pretty --out /tmp/a0-tier1-continuation-source-prototype-fold-lock-approved.json
+node scripts/mass-map/a0-tier1-continuation-source-prototype.mjs --tier0 scripts/nested-shell-braid/fixtures/a0-tier0-branch-search-minimal.json --direct-probe-steps 64 --direct-step-fraction-ladder 0.0009765625 --pretty --out /tmp/a0-tier1-continuation-source-prototype-fold-lock-approved.json
 node scripts/mass-map/a0-tier1-one-period-continuation-prototype.mjs --source /tmp/a0-tier1-continuation-source-prototype-fold-lock-approved.json --pretty --out /tmp/a0-tier1-one-period-continuation-prototype-fold-lock-approved.json
 ```
 

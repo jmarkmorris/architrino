@@ -70,10 +70,10 @@
     },
     {
       "id": "synchrotron_cascades",
-      "title": "Synchrotron Cascades",
+      "title": "Synchrotron",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "labelTitle": "Synchrotron Cascades",
+      "labelTitle": "Synchrotron",
       "labelBadge": "doc"
     }
   ]

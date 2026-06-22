@@ -1,4 +1,4 @@
-export type SolverAppId = "animator" | "photon" | "ideal-swarm" | "causal-delay-feedback";
+export type SolverAppId = "animator" | "photon" | "ideal-braid" | "causal-delay-feedback";
 
 export type SolverRunKind =
   | "motionSimulation"
@@ -1798,7 +1798,7 @@ export type SolverRunConfig =
   | AppPlaybackSolverConfig
   | AnimatorSolverConfig
   | PhotonSolverConfig
-  | IdealSwarmSolverConfig
+  | IdealBraidSolverConfig
   | ValidationReplayConfig;
 
 export type CausalRootsSolverConfig = { appId: SolverAppId } &
@@ -2957,8 +2957,8 @@ export interface PhotonSolverConfig {
   phaseLedger: "disabled" | "source" | "source-and-receiver";
 }
 
-export interface IdealSwarmSolverConfig {
-  appId: "ideal-swarm";
+export interface IdealBraidSolverConfig {
+  appId: "ideal-braid";
   timeWindow: SolverTimeWindow;
   histories: SolverHistoryRef[];
   pairs: SolverPairSpec[];

@@ -63,6 +63,20 @@ R^i{}_{jkl}(h)=0,
 $$
 Any cosmological scale variable must therefore be an effective summary of medium or observer records, not a time-dependent scale factor multiplying the void metric.
 
+This flatness supplies an accounting identity for later effective geometry:
+$$
+\mathcal{R}^{\mathrm{eff}}[g^{\mathrm{eff}}]
+=
+\mathcal{R}^{\mathrm{eff}}
+\!\left[
+\mathcal{N}_{\mathrm{sea}},
+O,
+\text{clock/ruler/signal response}
+\right]
++0_{\mathrm{void}}.
+$$
+The void contribution is exactly zero. Effective curvature, effective expansion, and effective anisotropy may be recovered from Noether sea state, assembly clock/ruler response, signal transport, and observer reconstruction, but they cannot be charged to the Euclidean container.
+
 > **Plain language:** The void is ordinary three-dimensional Euclidean space with the familiar straight-line distance formula. Any two points have a unique, well-defined separation.
 
 ## Flat Geometry and Topology
@@ -286,7 +300,7 @@ Allowed spatial isometries of the Euclidean void are those that preserve the Euc
 - Spatial translations.
 - Spatial rotations.
 
-At the product-background level, absolute timespace may also be described in coordinate systems related by time translations or Galilean boosts that preserve the foliation by constant-$t$ slices. Those transformations are coordinate descriptions of the product structure, not spatial isometries of a single void slice. The wake law still selects the preferred rest frame in which $c_f$ is isotropic.
+At the product-background level, absolute timespace may also be described in coordinate systems related by time translations or Galilean boosts that preserve the foliation by constant-$t$ slices. Those transformations are coordinate descriptions of the product structure, not spatial isometries of a single void slice. On a fixed slice $\Sigma_{t_0}$, a Galilean boost reduces to the translation $\mathbf{x}\mapsto\mathbf{x}+\mathbf{v}_0t_0$; its boost content appears only when comparing different slices. The wake law still selects the preferred rest frame in which $c_f$ is isotropic, and [Absolute Timespace](absolute-timespace.md) carries the dynamical non-invariance of the primitive wake equation under boosted coordinates.
 
 Forbidden as substrate symmetries:
 
@@ -304,7 +318,7 @@ The boundary with the Noether sea is an ontology boundary. The Euclidean void is
 The distinction is:
 
 1. **Euclidean void:** fixed spatial container $\mathbb{R}^3$ with metric $h_{ij}=\delta_{ij}$.
-2. **Noether sea:** physical content occupying the void, built from coupled neutral swarms.
+2. **Noether sea:** physical content occupying the void, built from coupled neutral braids.
 3. **Architrino occupancy:** local presence or absence of point entities and assemblies at a given coordinate location.
 4. **Effective spacetime:** observer-level geometry reconstructed from how clocks, rulers, and signals behave in the Noether sea.
 
@@ -315,13 +329,14 @@ $$
 a_{\mathrm{eff}}(t)=\mathcal{A}[\mathcal{N}_{\mathrm{sea}}(t),O(t)]
 $$
 Here $\mathcal{N}_{\mathrm{sea}}(t)$ denotes the relevant Noether sea state variables, and $O(t)$ denotes observer records and calibration data. The formula is a schematic inference map into the observer-level metric, not a new substrate law.
+It yields a scalar global scale factor only when the retained Noether sea record and observer family are statistically homogeneous and isotropic over the declared averaging cell. Without that condition, the honest output is a local or tensorial effective metric summary such as $g^{\mathrm{eff}}_{\mu\nu}(\mathbf{x},t)$, or an anisotropic scale response $a_{\mathrm{eff},ij}(\mathbf{x},t)$, not a single FRW-style $a_{\mathrm{eff}}(t)$.
 They must not be interpreted as
 $$
 h_{ij}(t)=a_{\mathrm{eff}}^2(t)\delta_{ij}
 $$
 for the Euclidean void. The substrate spatial metric remains $h_{ij}=\delta_{ij}$, flat and unchanging, while any effective cosmological expansion factor belongs to observer-level metric reconstruction.
 
-This no-expanding-void commitment creates a specific observational burden. Any medium-and-observer redshift mechanism must still recover the tested expansion signatures normally carried by an FRW scale factor: the Tolman surface-brightness scaling $B_{\mathrm{obs}}\propto(1+z)^{-4}$ after the declared distance map is applied, supernova light-curve time dilation $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, and CMB temperature-redshift scaling $T_{\mathrm{CMB}}(z)\approx T_0(1+z)$ in the appropriate thermal record. A fixed-void model that supplies redshift only by generic scattering loss, phase degradation, or photon fatigue falls into the excluded tired-light class. The cosmology branch owns the positive recovery: [Cosmology Ontology](../cosmology/cosmology-ontology.md) defines the shared fixed-void variables, [Expansion Mechanism](../cosmology/expansion-mechanism.md) carries the redshift and distance tests, and [CMB](../cosmology/CMB.md) carries the temperature and spectrum tests.
+This no-expanding-void commitment creates a specific observational burden. Any medium-and-observer redshift mechanism must still recover the tested expansion signatures normally carried by an FRW scale factor: the Tolman surface-brightness scaling $B_{\mathrm{obs}}\propto(1+z)^{-4}$ after the declared distance map is applied, supernova light-curve time dilation $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, and CMB temperature-redshift scaling $T_{\mathrm{CMB}}(z)\approx T_0(1+z)$ in the appropriate thermal record. The mechanism filter is transport rather than loss: the redshift must retune the signal clock rate through Noether sea transport, clock/ruler response, or both. Pure propagation loss can lower received energy, but it does not supply the observed time-dilation or thermal scaling rows. A fixed-void model that supplies redshift only by generic scattering loss, phase degradation, or photon fatigue falls into the excluded tired-light class. The cosmology branch owns the positive recovery: [Cosmology Ontology](../cosmology/cosmology-ontology.md) defines the shared fixed-void variables, [Expansion Mechanism](../cosmology/expansion-mechanism.md) carries the redshift and distance tests, and [CMB](../cosmology/CMB.md) carries the temperature and spectrum tests.
 
 ### Plenum of Potential
 
@@ -329,9 +344,17 @@ The Euclidean void is strictly empty of material substance. It is not a material
 
 Nevertheless, a coordinate location in the full universe should not be treated as relationally empty. Because architrinos continuously emit expanding causal isochrons, a location may lie on many geometrical wakes from historical architrino motion. These wakes do not fill the void as material contents; they form the delayed relational ledger through which later architrino intersections can be computed.
 
-In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population.
+For a point $(\mathbf{x},t)$, define the wake-support index set
+$$
+\mathcal{P}(\mathbf{x},t)
+=
+\{(a,s):s<t,\ \|\mathbf{x}-\mathbf{s}_a(s)\|_h=c_f(t-s)\}.
+$$
+This set records source identities and emission times whose causal isochrons pass through the point. It is a provenance index set, not a field: it has no independent state variables, stress, density, energy, or equation of motion.
 
-Noether sea density and response variables belong to the Noether sea layer, not the spatial substrate. For the Noether sea ontology, see [Noether sea](../spacetime/noether-sea.md). For Noether swarm assembly hypotheses, see [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
+In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population. Noether sea density and response variables belong to $\mathcal{N}_{\mathrm{sea}}$; $\mathcal{P}(\mathbf{x},t)$ names only the wake-history provenance labels available at that point.
+
+For the Noether sea ontology, see [Noether sea](../spacetime/noether-sea.md). For Noether braid assembly hypotheses, see [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
 
 ## Distinction From Curved Space
 

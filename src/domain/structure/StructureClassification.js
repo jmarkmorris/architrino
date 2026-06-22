@@ -30,14 +30,14 @@ const familySpeciesByOccupancyKey = Object.freeze({
   }),
 });
 
-function getPrimaryNoetherSwarm(node) {
+function getPrimaryNoetherBraid(node) {
   if (!node) {
     return null;
   }
-  if (node.kind === STRUCTURE_KINDS.NOETHER_SWARM) {
+  if (node.kind === STRUCTURE_KINDS.NOETHER_BRAID) {
     return node;
   }
-  return getStructureNodeChildren(node).find((child) => child?.kind === STRUCTURE_KINDS.NOETHER_SWARM) ?? null;
+  return getStructureNodeChildren(node).find((child) => child?.kind === STRUCTURE_KINDS.NOETHER_BRAID) ?? null;
 }
 
 function getSlotOccupant(slotNode) {
@@ -46,13 +46,13 @@ function getSlotOccupant(slotNode) {
   ) ?? null;
 }
 
-export function getNoetherSwarmSlotOccupancy(coreNode) {
+export function getNoetherBraidSlotOccupancy(coreNode) {
   const occupancy = {
     inner: false,
     middle: false,
     outer: false,
   };
-  if (!coreNode || coreNode.kind !== STRUCTURE_KINDS.NOETHER_SWARM) {
+  if (!coreNode || coreNode.kind !== STRUCTURE_KINDS.NOETHER_BRAID) {
     return occupancy;
   }
   getStructureNodeChildren(coreNode)
@@ -67,13 +67,13 @@ export function getNoetherSwarmSlotOccupancy(coreNode) {
   return occupancy;
 }
 
-export function getNoetherSwarmSlotBinaryPresence(coreNode) {
+export function getNoetherBraidSlotBinaryPresence(coreNode) {
   const presence = {
     inner: false,
     middle: false,
     outer: false,
   };
-  if (!coreNode || coreNode.kind !== STRUCTURE_KINDS.NOETHER_SWARM) {
+  if (!coreNode || coreNode.kind !== STRUCTURE_KINDS.NOETHER_BRAID) {
     return presence;
   }
   getStructureNodeChildren(coreNode)
@@ -91,13 +91,13 @@ export function getNoetherSwarmSlotBinaryPresence(coreNode) {
   return presence;
 }
 
-export function getNoetherSwarmOccupancyKey(coreNode) {
-  const occupancy = getNoetherSwarmSlotOccupancy(coreNode);
+export function getNoetherBraidOccupancyKey(coreNode) {
+  const occupancy = getNoetherBraidSlotOccupancy(coreNode);
   return STRUCTURE_SLOT_ORDER.filter((slotName) => occupancy[slotName]).join("_");
 }
 
-export function getNoetherSwarmBinaryPresenceKey(coreNode) {
-  const presence = getNoetherSwarmSlotBinaryPresence(coreNode);
+export function getNoetherBraidBinaryPresenceKey(coreNode) {
+  const presence = getNoetherBraidSlotBinaryPresence(coreNode);
   return STRUCTURE_SLOT_ORDER.filter((slotName) => presence[slotName]).join("_");
 }
 
@@ -119,7 +119,7 @@ export function deriveStructureClassification(node) {
       },
     };
   }
-  const binaryPresenceKey = getNoetherSwarmBinaryPresenceKey(getPrimaryNoetherSwarm(node));
+  const binaryPresenceKey = getNoetherBraidBinaryPresenceKey(getPrimaryNoetherBraid(node));
   const derived = familySpeciesMap[binaryPresenceKey] ?? null;
   return {
     species: derived?.species ?? node?.species,

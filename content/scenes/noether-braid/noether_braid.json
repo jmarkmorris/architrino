@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "noether_braid",
+    "title": "Noether Braid",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
+    },
+    "children": [
+      {
+        "nodeId": "noether_braid_overview",
+        "scenePath": "content/scenes/noether-braid/noether_braid_overview.json"
+      },
+      {
+        "nodeId": "nested_shell_braid_dynamics",
+        "scenePath": "content/scenes/noether-braid/nested_shell_braid_dynamics.json"
+      },
+      {
+        "nodeId": "nested_shell_braid_geometry",
+        "scenePath": "content/scenes/noether-braid/nested_shell_braid_geometry.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "noether_braid_overview",
+      "title": "Noether Braid",
+      "radius": 2.05,
+      "color": "#6c4f8d",
+      "labelTitle": "Noether Braid",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "nested_shell_braid_dynamics",
+      "title": "Nested Shell Braid Dynamics",
+      "radius": 2.05,
+      "color": "#3f6a5a",
+      "labelTitle": "Nested Shell Braid Dynamics",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "nested_shell_braid_geometry",
+      "title": "Nested Shell Braid Geometry",
+      "radius": 2.05,
+      "color": "#2f4f7a",
+      "labelTitle": "Nested Shell Braid Geometry",
+      "labelBadge": "doc"
+    }
+  ]
+}

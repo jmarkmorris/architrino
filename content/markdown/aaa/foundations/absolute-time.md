@@ -8,7 +8,7 @@ The companion chapter [Absolute Time Defense](absolute-time-defense.md) gives th
 
 Absolute time is a **one-dimensional, continuous, oriented parameter** that advances uniformly and independently of space, matter, energy, or any physical process. In substrate ontology, it is **non-dynamical**: time does not curve, dilate, accelerate, or respond to forces. Physical clocks are assemblies whose internal cycles are compared against this parameter; they do not generate the parameter itself.
 
-The word **uniformly** is a dynamical normalization statement, not an extra clock substance on the bare line. Before units and laws are declared, the oriented manifold $T\cong\mathbb{R}$ admits affine relabelings $t\mapsto at+b$ with $a>0$. The origin $b$ remains conventional. The scale $a$ is fixed only after the dynamics are declared: the primitive wake speed $c_f$ is constant in the Euclidean-void rest frame, all worldlines use the same parameter $t$, and the master equation keeps its form under time translation. A rescaling of $t$ is therefore a unit change involving $T_0$, $L_0$, $c_f$, and the coupling normalizations, not a second physical freedom to choose a different flow of time.
+The word **uniformly** is a dynamical normalization statement, not an extra clock substance on the bare line. Before units and laws are declared, the oriented manifold $T\cong\mathbb{R}$ admits affine relabelings $t\mapsto at+b$ with $a>0$. The origin $b$ remains conventional. The scale $a$ is fixed only after the dynamics are declared: the primitive wake speed $c_f$ is constant in the Euclidean-void rest frame, all worldlines use the same parameter $t$, and the master equation keeps its receiving law form. A rescaling of $t$ is therefore a unit change involving $T_0$, $L_0$, $c_f$, and the coupling normalizations, not a second physical freedom to choose a different flow of time. Constancy of $c_f$ together with form-invariance of the receiving law pins $t$ to its affine class; a smooth nonlinear reclock $t\mapsto\phi(t)$ would introduce time-dependent propagation and derivative factors, so $\operatorname{Diff}^+(\mathbb{R})$ is not a substrate symmetry.
 
 ## Mathematical Description
 
@@ -112,11 +112,17 @@ $$
 =
 \sigma_W(t)
 -
-\int_{\partial W(t)}\mathbf{J}_S\cdot\hat{\mathbf{n}}\,dA
+\int_{\partial W(t)}
+\left(
+\mathbf{J}_S
+-
+s_{\mathcal{Q}}\mathbf{u}_{\partial W}
+\right)
+\cdot\hat{\mathbf{n}}\,dA
 +
 \mathcal{R}_{\mathcal{Q}}(t)
 $$
-with $\sigma_W$ the local production term, $\mathbf{J}_S$ the entropy flux through the boundary, and $\mathcal{R}_{\mathcal{Q}}$ the residual created by changing the coarse-graining or record set. Plain language: entropy can diagnose an emergent arrow inside a stated physical and inferential window, but it does not supply the absolute ordering parameter $t$.
+with $\sigma_W$ the local production term, $\mathbf{J}_S$ the entropy flux through the boundary in the fixed substrate chart, $s_{\mathcal{Q}}$ the retained entropy density, $\mathbf{u}_{\partial W}$ the velocity of the moving window boundary, and $\mathcal{R}_{\mathcal{Q}}$ the residual created by changing the coarse-graining or record set. For a fixed window, $\mathbf{u}_{\partial W}=\mathbf{0}$ and the expression reduces to the ordinary flux balance. Plain language: entropy can diagnose an emergent arrow inside a stated physical and inferential window, but it does not supply the absolute ordering parameter $t$.
 
 A monotone entropy arrow in that window is therefore a conditional balance statement:
 $$
@@ -124,7 +130,13 @@ $$
 \quad\Longleftrightarrow\quad
 \sigma_W(t)+\mathcal{R}_{\mathcal{Q}}(t)
 \ge
-\int_{\partial W(t)}\mathbf{J}_S\cdot\hat{\mathbf{n}}\,dA
+\int_{\partial W(t)}
+\left(
+\mathbf{J}_S
+-
+s_{\mathcal{Q}}\mathbf{u}_{\partial W}
+\right)
+\cdot\hat{\mathbf{n}}\,dA
 $$
 for the declared coarse-graining and record set. Without those window data, the theory does not promote entropy increase into a definition of time.
 
@@ -167,6 +179,8 @@ t \mapsto t + t_0, \quad t_0 \in \mathbb{R}
 $$
 
 This symmetry expresses the principle that **the laws of physics are time-translation invariant**: the same admissible state and path-history data, translated by a constant amount in $t$, obey the same dynamical law.
+
+The larger group of smooth orientation-preserving time relabelings is not a symmetry of the substrate law. Once the constant wake speed and receiving-law normalization are fixed, nonlinear time reparametrizations change the causal-root spacing, velocity factors, and Jacobian weights rather than merely changing units.
 
 **Connection to Conservation Laws:** Time-translation invariance is the kinematic basis for **energy conservation** when the relevant dynamics admit an energy or action formulation. In this chapter, the point is structural: the background clock supplies a fixed parameter against which such conservation statements can be formulated.
 
@@ -256,15 +270,21 @@ Failure of this transversality floor marks a caustic-like or degenerate wake-roo
 
 The symbol $\kappa_{\mathrm{hit}}>0$ is not a universal coupling constant and not the regularization width $\eta$. It denotes a declared positive lower bound for one retained branch chart, certificate, or regularized model after the units, root labels, endpoint convention, and memory window have been fixed. Concrete branch packets may report the same condition as a certified Jacobian floor such as $J_0$ or $\nu_J$. The existence of a positive floor is part of simple-root admissibility; its numerical value belongs to the branch-chart or validation record, not to the universal parameter ledger. It is not a coordinate parameter and cannot be removed by relabeling the same history.
 
+Topologically, a generic loss of this floor is a codimension-one fold of the causal-root manifold: two simple roots can merge into one degenerate root, or a simple root can be born at a caustic boundary. The floor is therefore not merely an analytic small-denominator guard. It certifies that the branch count and causal-root topology are stable on the retained chart; when it fails, the event must be treated as a root bifurcation, reconnection, or chart transition.
+
+This is one instance of a broader foundation-stack discipline: **non-degeneracy floors** convert exact failure sets into graded admissibility certificates. The root Jacobian floor here, the basin-separatrix floor in [Emergence](emergence-of-structure.md#context-as-constraint-on-basin-selection), and the basis-conditioning floor in [Constructing the Absolute Frame](constructing-the-absolute-frame.md#reconstruction-existence-lemma) serve the same role for different objects. They are certificate margins attached to declared charts, not universal constants.
+
 The interaction law is built entirely from path-history contributions at times $t' < t$ that satisfy the causal-root condition; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This delayed-only support condition is a law-level causal asymmetry, not merely an initial-condition effect.
 
 There are **no instantaneous actions-at-a-distance** and **no advanced potentials**.
+
+This gives the postulate a hard failure wall. Postulate 1 fails if any accepted substrate-level interaction requires support from $s > t$, instantaneous coupling at spatial separation, or a clock-rate field that enters the receiving law as an independent substrate variable rather than as a derived assembly readout. Observer-level proper time, clock dilation, and effective metric lapse may still be recovered, but they cannot be promoted into a second fundamental time parameter without replacing the postulate.
 
 ## Path History and Non-Markovian Memory
 
 A critical feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that **all interactions are mediated by path history**: the cumulative effect of the causal wake surfaces that reach an architrino from prior emission events.
 
-At time $t$, an architrino at position $\mathbf{x}(t)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $t' < t$; through the [Master Equation of Motion](../dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
+At time $t$, an architrino at position $\mathbf{x}(t)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $t' < t$; through the [Master Equation](../dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
 
 Because $t$ is universal and absolute, the past (all $t' < t$) is unambiguous, and the theory can sum or integrate over admissible delayed contributions. This allows for a mechanistic model of interaction without invoking action-at-a-distance, while still permitting **deterministic multistability** at self-hit thresholds.
 
@@ -281,6 +301,8 @@ $$
 $$
 
 where $H_i(t)$ denotes the path-history and provenance record carried by architrino $i$, then a proposed exchange is exact only when it preserves the instantaneous data and the corresponding $H_i(t)$ records. Generic architrinos are therefore not interchangeable at the ontic level even when finite observers can treat their exposed properties as effectively identical.
+
+For same-polarity exchange and downstream fermionic-statistics claims, the history record must be read jointly, not as a set of independent single-worldline ledgers. A braid can preserve endpoint data while changing the relative framing or linking class of the exchanged worldlines. Exact exchange therefore requires preservation of the joint path-history record, including relative framing, linking, and any protected framed self-linking row such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when that row is part of the branch certificate. If the joint framed or linking class changes, the exchange is a different substrate branch, not a hidden exact permutation symmetry.
 
 The architrino-specific identity claim is developed further in [Architrino](architrino.md).
 

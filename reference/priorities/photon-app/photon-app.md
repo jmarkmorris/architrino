@@ -15,7 +15,7 @@ This folder owns the priority work ledger for the deployed Photon and Polarizati
 
 The app begins from the candidate photon picture already used in the photon Gate B priority material: a coaxial contra-rotating planar pair whose observer-facing transverse ledger must still be derived, tested, and routed through analyzer behavior. This priority packet does not claim photon closure, Malus-law recovery, helicity recovery, or a physical free photon branch.
 
-The deployed route is `photon.html`. The dedicated runtime lives under `src/apps/photon/`, with focused modules for state, controls, swarm rendering, formulas, diagnostics, and runtime assembly.
+The deployed route is `photon.html`. The dedicated runtime lives under `src/apps/photon/`, with focused modules for state, controls, braid rendering, formulas, diagnostics, and runtime assembly.
 
 The reader-facing app guide is [Photon Guide](../../../content/markdown/aaa/archie/photon-guide.md). The visible Photon UI exposes Markdown buttons for the guide, [Photon Closure](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), and [Polarization](../../../content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
@@ -25,11 +25,11 @@ Promotion note: the named preset descriptions, Virtual Observer branch-sum equat
 
 The current app implements:
 
-- two fixed-spacing face-on flat Noether swarm views plus an edge-on side view of the same pair;
-- counter-clockwise rotation in the trailing swarm and clockwise rotation in the leading swarm;
-- per-swarm Inner/Middle/Outer controls for enabled state, frequency, radius, and phase;
+- two fixed-spacing face-on flat Noether braid views plus an edge-on side view of the same pair;
+- counter-clockwise rotation in the trailing braid and clockwise rotation in the leading braid;
+- per-braid Inner/Middle/Outer controls for enabled state, frequency, radius, and phase;
 - a $\Delta x$ pair-separation control that changes the side-view trace spacing without changing the face-on orbit spacing;
-- Ideal Swarm-style architrino markers, orbit paths, and layered trails;
+- Ideal Braid-style architrino markers, orbit paths, and layered trails;
 - pause/play, Space bar pause/play, Reset time, Reset all, Paths, and Slow/Fast controls;
 - Virtual Observer $x$, $y$, and $z$ controls with visible zero markers and near-zero snap;
 - direct $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ controls plus a first Lorentz-factor local-$c$ mode that derives both speeds from $\gamma$;
@@ -48,13 +48,13 @@ The current app implements:
 
 The current candidate picture is:
 
-- A photon is represented as a pair of flat Noether swarms.
+- A photon is represented as a pair of flat Noether braids.
 - The current co-moving diagnostic exposes a branch signal speed control $c_{\mathrm{sig}}/c_f$.
 - The app uses a photon-channel translation speed control $c_\gamma/c_f$ in the default `Absolute history` mode.
 - The app can either use direct speed sliders or a first Lorentz-factor local-$c$ mode; a later version should derive local $c$ from declared Noether sea state variables rather than only direct slider input or the provisional $\gamma$ mapping.
-- The trailing swarm is shown on the left in the face-on view and rotates counter-clockwise.
-- The leading swarm is shown on the right in the face-on view and rotates clockwise.
-- The 2D face-on view of each swarm does not rotate as a group; only the binaries and layer phases animate.
+- The trailing braid is shown on the left in the face-on view and rotates counter-clockwise.
+- The leading braid is shown on the right in the face-on view and rotates clockwise.
+- The 2D face-on view of each braid does not rotate as a group; only the binaries and layer phases animate.
 - The edge-on side view shows the same pair along the line of translation.
 
 Use the canonical photon priority language where possible: the visual pair is a candidate planar pair, and leading/trailing role is declared in app state rather than inferred only from screen position.
@@ -97,7 +97,7 @@ $$
 T_{\mathrm{run}}=\frac{3}{f_M}.
 $$
 
-With the current default $f_M=2\,\mathrm{Hz}$, the run duration is $1.5\,\mathrm{s}$ before the plot wraps. The swarm animation time continues across plot wrap.
+With the current default $f_M=2\,\mathrm{Hz}$, the run duration is $1.5\,\mathrm{s}$ before the plot wraps. The braid animation time continues across plot wrap.
 
 ## Runtime Requirements Kept In Force
 
@@ -108,12 +108,12 @@ The visual stage should continue to preserve these requirements:
 - each active I/M/O binary contributes one red positrino marker and one blue electrino marker;
 - all architrino markers use one fixed on-screen size;
 - orbit paths use purple neutral blending where no polarity dominates;
-- layered path-history trails retain the Ideal Swarm visual grammar;
+- layered path-history trails retain the Ideal Braid visual grammar;
 - path/trail visibility remains controlled by the `Paths` control;
 - the side-view traces have height equal to the diameter of the largest enabled binary;
 - the side-view $\Delta x$ arrow spans the side-view trace centers;
 - the face-on views stay fixed for readability even when $\Delta x$ changes;
-- the face-on camera uses a stable reference scale, so radius edits move the selected orbit instead of rescaling the whole swarm;
+- the face-on camera uses a stable reference scale, so radius edits move the selected orbit instead of rescaling the whole braid;
 - the Outer orbit radius is capped at the initial/default Outer radius;
 - and the app remains 2D unless the requirements are explicitly revised.
 
@@ -148,9 +148,9 @@ The Virtual Observer $x$, $y$, and $z$ sliders should continue to show a visible
 
 ### Observer-Field Mapping
 
-The lower Electric Field plot is based on a Virtual Observer branch-sum calculation from the architrino source histories in the two swarms. This mapping is diagnostic-only and is not a photon-substrate derivation or closure certificate. The current root equation uses the visible signal-speed control $c_{\mathrm{sig}}/c_f$.
+The lower Electric Field plot is based on a Virtual Observer branch-sum calculation from the architrino source histories in the two braids. This mapping is diagnostic-only and is not a photon-substrate derivation or closure certificate. The current root equation uses the visible signal-speed control $c_{\mathrm{sig}}/c_f$.
 
-The default calculation is now `Absolute history`: the two swarm centers and the Virtual Observer translate at $c_\gamma$, and the Electric Field plot is reconstructed from shared solver-layer moving-circular source roots. The `co_moving` mode remains available as a comparison diagnostic where swarm centers are held at fixed app-frame offsets and the Virtual Observer is held at a fixed app-frame coordinate. Absolute history is still not the final photon-substrate calculation because same-source self-hit root families, deeper phase-spread summaries, and native/WASM moving-circular bridge rows remain open.
+The default calculation is now `Absolute history`: the two braid centers and the Virtual Observer translate at $c_\gamma$, and the Electric Field plot is reconstructed from shared solver-layer moving-circular source roots. The `co_moving` mode remains available as a comparison diagnostic where braid centers are held at fixed app-frame offsets and the Virtual Observer is held at a fixed app-frame coordinate. Absolute history is still not the final photon-substrate calculation because same-source self-hit root families, deeper phase-spread summaries, and native/WASM moving-circular bridge rows remain open.
 
 The Virtual Observer coordinate is
 
@@ -162,7 +162,7 @@ x_{\mathrm{VO}}\hat{\mathbf x}
 +z_{\mathrm{VO}}\hat{\mathbf z}.
 $$
 
-For swarm $s$, layer $\ell$, and architrino charge $q\in\{+1,-1\}$, the source position is
+For braid $s$, layer $\ell$, and architrino charge $q\in\{+1,-1\}$, the source position is
 
 $$
 \mathbf r_{s\ell q}(\tau)
@@ -180,7 +180,7 @@ $$
 +\pi\,\mathbf 1_{q=-1},
 $$
 
-where $\sigma_s=+1$ for the trailing counter-clockwise swarm and $\sigma_s=-1$ for the leading clockwise swarm.
+where $\sigma_s=+1$ for the trailing counter-clockwise braid and $\sigma_s=-1$ for the leading clockwise braid.
 
 For each active source row $i=(s,\ell,q)$ and observer time $t$, solve every retained causal-root source time $\tau_{i,k}<t$:
 
@@ -250,7 +250,7 @@ so $B_y=-E_z/c_f$ and $B_z=E_y/c_f$. The app should not draw $\mathbf B$ as a se
 
 The next $\Delta x$ refinement must treat the photon candidate as a moving apparatus. If the pair translates at $c_\gamma$, with $c_\gamma$ identified with local $c$ for the local Noether sea state, then the absolute source and receiver histories should be written in an absolute observer frame before solving causal roots.
 
-Let $\chi_s\in\{-\Delta x/2,+\Delta x/2\}$ be the trailing or leading swarm offset in the moving photon frame, and let $\chi_{\mathrm{VO}}$ be the Virtual Observer offset in that same moving frame. The current visual intuition often places the Virtual Observer near $\chi_{\mathrm{VO}}=+\Delta x/2$, but the calculation should keep this as an explicit variable.
+Let $\chi_s\in\{-\Delta x/2,+\Delta x/2\}$ be the trailing or leading braid offset in the moving photon frame, and let $\chi_{\mathrm{VO}}$ be the Virtual Observer offset in that same moving frame. The current visual intuition often places the Virtual Observer near $\chi_{\mathrm{VO}}=+\Delta x/2$, but the calculation should keep this as an explicit variable.
 
 The absolute Virtual Observer history is
 
@@ -305,7 +305,7 @@ u
 {c_{\mathrm{sig}}-c_\gamma}.
 $$
 
-So if local $c$ is close to $c_f$ and $c_{\mathrm{sig}}=c_f$, the received contribution from the trailing swarm may come from a very old source-history point, or may have no finite positive root in the limiting case $c_\gamma=c_{\mathrm{sig}}$. Even the leading swarm is not automatically simple: if $\chi_{\mathrm{VO}}=\chi_s$ but there is transverse orbital separation $\rho$, the root scale is
+So if local $c$ is close to $c_f$ and $c_{\mathrm{sig}}=c_f$, the received contribution from the trailing braid may come from a very old source-history point, or may have no finite positive root in the limiting case $c_\gamma=c_{\mathrm{sig}}$. Even the leading braid is not automatically simple: if $\chi_{\mathrm{VO}}=\chi_s$ but there is transverse orbital separation $\rho$, the root scale is
 
 $$
 u
@@ -358,7 +358,7 @@ Phase-lock should be treated as an output diagnostic of this solver, not as an i
 - do same-source roots return at phase positions that reinforce the emitting binary;
 - and do linear, circular, or elliptical observer candidates correspond to low phase-spread root families.
 
-Candidate phase-lock mechanisms include partner-hit loops, same-source self-hit loops, and any retained causal round-trip family whose phase rows recur across cycles. The reusable solver should therefore provide phase-spread summaries by layer, swarm role, charge sign, root kind, and cycle. These summaries should let the app distinguish a manually chosen phase preset from a causal phase-lock family produced by the delayed branch geometry.
+Candidate phase-lock mechanisms include partner-hit loops, same-source self-hit loops, and any retained causal round-trip family whose phase rows recur across cycles. The reusable solver should therefore provide phase-spread summaries by layer, braid role, charge sign, root kind, and cycle. These summaries should let the app distinguish a manually chosen phase preset from a causal phase-lock family produced by the delayed branch geometry.
 
 #### Field-Reconstruction Pipeline
 
@@ -481,7 +481,7 @@ Suspect numerical cases should be labeled as suspect, not good. Missed roots, ve
 4. `absolute_source_history_self_hit` - First pass exists: Photon now combines photon-channel translation speed with transverse binary speed, reports legacy shared-geometry circular self-hit span rows, computes helical same-source root rows through the shared moving-circular same-source bridge facade with retained roots, Jacobian values, source/receiver phase-at-hit metadata, and groups retained roots into phase families by role, layer, charge, and source cycle. Remaining work: promote the helical same-source bridge facade into native/WASM row production, add explicit sub-field-speed versus self-hit family summaries, and sharpen family labels into stable phase-lock classifications. Status: `open`.
 5. `substrate_mapping_refinement` - Refine the Virtual Observer branch-sum mapping from I/M/O layer parameters to transverse observer-field amplitudes, while preserving claim discipline and distinguishing co-moving diagnostics from absolute-history results. Status: `open`.
 6. `configuration_search_absolute_history_comparison` - First pass exists: Configuration Search now stores and scores a compact co-moving versus absolute-history comparison for top results using the shared moving-circular absolute-history solver, bounded comparison runs include helical same-source phase-family counts and stable-family deltas, and the candidate pool now includes representative direct and Lorentz-factor local-$c$ speed modes. Remaining work: support deeper/background comparison runs when useful, add search filters for local-$c$ and phase-family traits, and use the phase-family summaries in richer result filtering/export workflows. Status: `open`.
-7. `shared_visual_extraction` - Extract shared Ideal Swarm / photon architrino marker, orbit-path, tint-profile, and layered-trail helpers if the visual grammar needs to be maintained across both apps. Status: `open`.
+7. `shared_visual_extraction` - Extract shared Ideal Braid / photon architrino marker, orbit-path, tint-profile, and layered-trail helpers if the visual grammar needs to be maintained across both apps. Status: `open`.
 
 ## Deferred Non-Goals
 
@@ -490,8 +490,8 @@ The current app should continue to defer:
 - proof-grade photon Gate B residual evaluation;
 - material analyzer substrate dynamics;
 - no-signaling or Bell-pair behavior;
-- 3D swarm rendering;
-- group rotation of each 2D swarm view;
+- 3D braid rendering;
+- group rotation of each 2D braid view;
 - persistent project libraries beyond basic preset/export support;
 - and any claim that a displayed preset is a certified photon branch.
 
@@ -501,10 +501,10 @@ The app should remain verified against these baseline checks:
 
 - `photon.html` loads locally through the repo dev server;
 - the app route renders a nonblank visual stage;
-- the trailing swarm rotates counter-clockwise;
-- the leading swarm rotates clockwise;
+- the trailing braid rotates counter-clockwise;
+- the leading braid rotates clockwise;
 - the $\mathbf E$ plot draws left to right over exactly three middle-layer cycles;
-- I/M/O controls update the visual swarms and runtime state;
+- I/M/O controls update the visual braids and runtime state;
 - Virtual Observer controls update the branch-sum field plot and runtime state;
 - analyzer controls update formula-panel values;
 - disabled binary checkboxes remove both display markers and branch-sum contributions;

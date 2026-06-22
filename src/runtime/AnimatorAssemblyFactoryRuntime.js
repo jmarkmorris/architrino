@@ -179,11 +179,11 @@ export function createBuiltInAnimatorAssemblyDraftRuntime(templateId, position =
         core: createDefaultCoreSpec(id),
       });
     },
-    noether_swarm: () => {
-      const id = getNextAssemblyId("noether_swarm");
+    noether_braid: () => {
+      const id = getNextAssemblyId("noether_braid");
       return buildDraft({
         id,
-        name: "Pro Noether swarm",
+        name: "Pro Noether braid",
         role: "assembly",
         sceneRole,
         position: normalizedPosition,
@@ -202,5 +202,5 @@ export function createBuiltInAnimatorAssemblyDraftRuntime(templateId, position =
     },
   };
 
-  return (assemblyFactories[templateId] ?? assemblyFactories.noether_swarm)();
+  return (assemblyFactories[templateId] ?? assemblyFactories.noether_braid)();
 }

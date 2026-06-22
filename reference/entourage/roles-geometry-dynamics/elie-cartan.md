@@ -4,7 +4,7 @@
 Turn architrino and tri-binary distributions in a fixed Euclidean void into a mathematically precise **effective metric/connection structure** that reproduces GR phenomenology where required.
 
 **Current theory alignment**:
-- Geometry construction should align with `spacetime/emergent-metric.md`, `spacetime/gr-phenomenology.md`, `spacetime/proper-time-and-time-dilation.md`, `spacetime/noether-sea.md`, and `spacetime/ppn-parameters.md`.
+- Geometry construction should align with `spacetime/emergent-metric.md`, `spacetime/general-relativity.md`, `spacetime/proper-time-and-time-dilation.md`, `spacetime/noether-sea.md`, and `spacetime/ppn-parameters.md`.
 - Micro-to-metric mappings must stay consistent with `dynamics/master-equation.md` and `validation/parameter-ledger.md`.
 - GR-limit and deviation statements should be benchmarked against `validation/validation-protocols.md` and `validation/constraint-ledger.md`.
 
@@ -15,7 +15,7 @@ Turn architrino and tri-binary distributions in a fixed Euclidean void into a ma
      $$
      g_{\mu\nu}^{\text{eff}}(x) = \mathcal{F}\big(\rho_{\text{NS}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), u^i_{\text{sea}}(x), \text{tri-binary orientation fields}, \text{internal energy scales}\big)
      $$
-     where $\rho_{\text{NS}}$ is physical Noether swarm density, $n$ is normalized density, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$ is the Noether sea delay factor, and $u^i_{\text{sea}}$ is an effective medium-drift label.
+     where $\rho_{\text{NS}}$ is physical Noether braid density, $n$ is normalized density, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$ is the Noether sea delay factor, and $u^i_{\text{sea}}$ is an effective medium-drift label.
    - Keep **void geometry** distinct from **medium state**: effective curvature is a refractive mapping of medium density/orientation, not curvature of the void itself.
    - Use **moving frames (vielbeins)** to express local orthonormal frames in terms of:
      - Local tri-binary orientation (neutral axes),

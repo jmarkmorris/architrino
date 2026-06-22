@@ -279,7 +279,7 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate.mjs). It emits:
 
 - attempted $h$-root contractions with endpoint $H_\varepsilon$ signs and $J_\varepsilon$ signs;
 - positive-y branch $G_\varepsilon$ intervals on the $h$ root graph;
@@ -289,4 +289,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - explicit first-y-cell deferral rows with no raw $y^{-2}$ division;
 - explicit open full $G$, $D$, remainder, `I1`, and retention rows.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate.test.js) validates schema, no-fixed-speed-window discipline, positive-y quotient counts, denominator and $J$ sign clearances, zero-cell raw-division exclusion, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate.test.js) validates schema, no-fixed-speed-window discipline, positive-y quotient counts, denominator and $J$ sign clearances, zero-cell raw-division exclusion, overclaim rejection, and CLI write/validate behavior.

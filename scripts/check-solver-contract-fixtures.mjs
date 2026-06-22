@@ -4130,7 +4130,7 @@ function createCapabilitiesFixture() {
           runKinds: ["causalRoots", "phaseDiagnostics", "pathHistory", "sharedGeometry", "validationReplay"],
         },
         {
-          appId: "ideal-swarm",
+          appId: "ideal-braid",
           runKinds: ["delayedHits", "pathHistory", "sharedGeometry", "validationReplay"],
         },
       ],

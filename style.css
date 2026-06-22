@@ -266,7 +266,7 @@ body {
   padding: 8px 12px;
   background: rgba(8, 10, 18, 0.6);
   border: 1px solid rgba(160, 170, 220, 0.25);
-  border-radius: 8px;
+  border-radius: 999px;
   backdrop-filter: blur(6px);
   font-size: 12px;
   font-weight: 600;
@@ -340,9 +340,9 @@ body {
   border-color: rgba(213, 220, 255, 0.6);
 }
 
-#doc-button {
+#textbook-toc-button {
   position: relative;
-  width: 32px;
+  min-width: 48px;
   height: 32px;
   border-radius: 999px;
   border: 1px solid rgba(160, 170, 220, 0.25);
@@ -352,30 +352,36 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  padding: 0 12px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
-#doc-button::after {
+#textbook-toc-button::after {
   content: none;
   display: none;
 }
 
-#doc-button svg {
-  width: 18px;
-  height: 18px;
-}
-
-#doc-button.is-active {
+#textbook-toc-button.is-active {
   background: rgba(92, 36, 164, 0.92);
   border-color: rgba(176, 136, 255, 0.7);
 }
 
-#doc-button.is-hidden {
+#textbook-toc-button:not(:disabled):hover,
+#textbook-toc-button:not(:disabled):focus-visible {
+  border-color: rgba(213, 220, 255, 0.6);
+}
+
+#textbook-toc-button.is-hidden {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
 }
 
-#doc-button:disabled {
+#textbook-toc-button:disabled {
   opacity: 0.5;
   cursor: default;
 }
@@ -2855,7 +2861,7 @@ body {
   justify-self: center;
 }
 
-.animator-reaction-canvas-participant.has-noether-swarm-grid {
+.animator-reaction-canvas-participant.has-noether-braid-grid {
   align-items: start;
 }
 
@@ -3192,7 +3198,7 @@ body {
   padding-inline-start: calc(var(--reaction-canvas-depth, 0) * 4ch);
 }
 
-.animator-reaction-canvas-tree-content.is-noether-swarm-grid {
+.animator-reaction-canvas-tree-content.is-noether-braid-grid {
   align-items: flex-start;
   padding-inline-start: 0;
 }
@@ -3226,7 +3232,7 @@ body {
   min-height: 0;
 }
 
-.animator-reaction-canvas-tree-row.is-noether-swarm-grid {
+.animator-reaction-canvas-tree-row.is-noether-braid-grid {
   align-items: flex-start;
   min-height: 0;
 }
@@ -3236,14 +3242,14 @@ body {
   min-height: 0;
 }
 
-.animator-reaction-canvas-noether-swarm-grid {
+.animator-reaction-canvas-noether-braid-grid {
   display: grid;
   min-width: 0;
   gap: var(--reaction-canvas-small-gap, 7px);
   width: fit-content;
 }
 
-.animator-reaction-canvas-noether-swarm-grid-track {
+.animator-reaction-canvas-noether-braid-grid-track {
   display: grid;
   grid-template-columns: repeat(3, var(--binary-choice-size, 72px));
   gap: var(--reaction-canvas-tile-gap);
@@ -3251,7 +3257,7 @@ body {
 }
 
 .animator-reaction-canvas-inline-track-body,
-.animator-reaction-canvas-noether-swarm-grid-body,
+.animator-reaction-canvas-noether-braid-grid-body,
 .animator-reaction-canvas-binary-selector-grid-body,
 .animator-reaction-canvas-composite-row-track-body {
   display: inline-flex;
@@ -3680,7 +3686,7 @@ body {
   filter: none;
 }
 
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile {
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-braid-grid-tile {
   position: relative;
   display: block;
   width: var(--binary-choice-size, 72px);
@@ -3700,23 +3706,23 @@ body {
     0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile:hover,
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile:focus-visible {
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-braid-grid-tile:hover,
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-braid-grid-tile:focus-visible {
   border-color: color-mix(in srgb, var(--binary-choice-accent) 86%, rgba(255, 255, 255, 0.22));
   background: rgba(12, 16, 30, 0.96);
 }
 
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile.is-pending {
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-braid-grid-tile.is-pending {
   border-color: rgba(255, 216, 126, 0.94);
   background: color-mix(in srgb, rgba(116, 82, 24, 0.92) 32%, rgba(12, 16, 30, 0.94));
 }
 
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile.is-mapped {
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-braid-grid-tile.is-mapped {
   border-color: color-mix(in srgb, var(--binary-choice-accent) 68%, rgba(176, 255, 219, 0.2));
   background: color-mix(in srgb, rgba(24, 92, 64, 0.32) 18%, rgba(12, 16, 30, 0.94));
 }
 
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile:disabled {
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-braid-grid-tile:disabled {
   opacity: 1;
   border-color: color-mix(in srgb, var(--binary-choice-accent) 62%, rgba(255, 255, 255, 0.14));
   background: rgba(12, 16, 30, 0.9);
@@ -3725,7 +3731,7 @@ body {
     0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile.is-mapped:disabled {
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-braid-grid-tile.is-mapped:disabled {
   border-color: color-mix(in srgb, var(--binary-choice-accent) 68%, rgba(176, 255, 219, 0.2));
   background: color-mix(in srgb, rgba(24, 92, 64, 0.32) 18%, rgba(12, 16, 30, 0.94));
 }

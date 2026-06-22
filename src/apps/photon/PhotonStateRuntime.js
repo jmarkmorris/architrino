@@ -300,7 +300,7 @@ function normalizeLayerState(layer = {}, fallbackLayer = {}) {
   };
 }
 
-function normalizeSwarmLayerRadii(layers) {
+function normalizeBraidLayerRadii(layers) {
   const range = PHOTON_CONTROL_RANGES.radius;
   layers.O.radius = clampPhotonNumber(
     layers.O.radius,
@@ -322,17 +322,17 @@ function normalizeSwarmLayerRadii(layers) {
   );
 }
 
-function normalizeSwarmState(swarm = {}, fallbackSwarm = {}, side = "left") {
+function normalizeBraidState(braid = {}, fallbackBraid = {}, side = "left") {
   const lockedDirection = side === "left" ? "ccw" : "cw";
   const lockedRole = side === "left" ? "trailing" : "leading";
   const layers = {};
   PHOTON_LAYER_ORDER.forEach((layerId) => {
     layers[layerId] = normalizeLayerState(
-      swarm.layers?.[layerId],
-      fallbackSwarm.layers?.[layerId]
+      braid.layers?.[layerId],
+      fallbackBraid.layers?.[layerId]
     );
   });
-  normalizeSwarmLayerRadii(layers);
+  normalizeBraidLayerRadii(layers);
   return {
     role: lockedRole,
     direction: lockedDirection,
@@ -343,8 +343,8 @@ function normalizeSwarmState(swarm = {}, fallbackSwarm = {}, side = "left") {
 export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
   const fallback = DEFAULT_PHOTON_STATE;
   const state = input && typeof input === "object" ? input : fallback;
-  const left = normalizeSwarmState(state.pair?.left, fallback.pair.left, "left");
-  const right = normalizeSwarmState(state.pair?.right, fallback.pair.right, "right");
+  const left = normalizeBraidState(state.pair?.left, fallback.pair.left, "left");
+  const right = normalizeBraidState(state.pair?.right, fallback.pair.right, "right");
   const pairShell = { pair: { left, right } };
   const speedSettings = resolvePhotonSpeedSettings(state);
   return {
@@ -421,18 +421,18 @@ export function createDefaultPhotonState() {
   return normalizePhotonState(DEFAULT_PHOTON_STATE);
 }
 
-export function getPhotonLayer(state, swarmId, layerId) {
-  return state?.pair?.[swarmId]?.layers?.[layerId] ?? DEFAULT_PHOTON_STATE.pair[swarmId].layers[layerId];
+export function getPhotonLayer(state, braidId, layerId) {
+  return state?.pair?.[braidId]?.layers?.[layerId] ?? DEFAULT_PHOTON_STATE.pair[braidId].layers[layerId];
 }
 
-export function getPhotonLayerEnabled(state, swarmId, layerId) {
-  return getPhotonLayer(state, swarmId, layerId).enabled !== false;
+export function getPhotonLayerEnabled(state, braidId, layerId) {
+  return getPhotonLayer(state, braidId, layerId).enabled !== false;
 }
 
-export function getPhotonLayerRadiusBounds(state, swarmId, layerId) {
+export function getPhotonLayerRadiusBounds(state, braidId, layerId) {
   const range = PHOTON_CONTROL_RANGES.radius;
   const layerRadius = (id) =>
-    clampPhotonNumber(getPhotonLayer(state, swarmId, id).radius, range.min, range.max, range.min);
+    clampPhotonNumber(getPhotonLayer(state, braidId, id).radius, range.min, range.max, range.min);
   let min = range.min;
   let max = range.max;
   if (layerId === "I") {
@@ -453,9 +453,9 @@ export function getPhotonLayerRadiusBounds(state, swarmId, layerId) {
 export function getPhotonSeparationReferenceRadius(state) {
   const enabledRadii = [];
   const fallbackRadii = [];
-  ["left", "right"].forEach((swarmId) => {
+  ["left", "right"].forEach((braidId) => {
     PHOTON_LAYER_ORDER.forEach((layerId) => {
-      const layer = getPhotonLayer(state, swarmId, layerId);
+      const layer = getPhotonLayer(state, braidId, layerId);
       const radius = Number(layer.radius);
       if (!Number.isFinite(radius) || radius <= 0) {
         return;
@@ -508,11 +508,11 @@ export function clampPhotonPairSeparationForState(state, value, fallback = DEFAU
   );
 }
 
-export function setPhotonLayerEnabled(state, swarmId, layerId, enabled) {
-  if (!state?.pair?.[swarmId]?.layers?.[layerId]) {
+export function setPhotonLayerEnabled(state, braidId, layerId, enabled) {
+  if (!state?.pair?.[braidId]?.layers?.[layerId]) {
     return;
   }
-  state.pair[swarmId].layers[layerId].enabled = !!enabled;
+  state.pair[braidId].layers[layerId].enabled = !!enabled;
 }
 
 export function getPhotonReferenceFrequency(state) {
@@ -547,31 +547,31 @@ export function wrapPhotonTime(state, timeSeconds) {
   return ((timeSeconds % runDuration) + runDuration) % runDuration;
 }
 
-export function getPhotonDirectionSign(state, swarmId) {
-  return state?.pair?.[swarmId]?.direction === "cw" ? -1 : 1;
+export function getPhotonDirectionSign(state, braidId) {
+  return state?.pair?.[braidId]?.direction === "cw" ? -1 : 1;
 }
 
-export function getPhotonLayerTangentialSpeedRatio(state, swarmId, layerId, fieldSpeed = 1) {
-  const layer = getPhotonLayer(state, swarmId, layerId);
+export function getPhotonLayerTangentialSpeedRatio(state, braidId, layerId, fieldSpeed = 1) {
+  const layer = getPhotonLayer(state, braidId, layerId);
   const speed = TWO_PI * Math.abs(Number(layer.radius) || 0) * Math.abs(Number(layer.frequencyHz) || 0);
   const fieldSpeedNumber = Number(fieldSpeed);
   const safeFieldSpeed = Number.isFinite(fieldSpeedNumber) && fieldSpeedNumber > 0 ? fieldSpeedNumber : 1;
   return speed / safeFieldSpeed;
 }
 
-export function getPhotonLayerAngleRadians(state, swarmId, layerId, timeSeconds, chargeType = "positrino") {
-  const layer = getPhotonLayer(state, swarmId, layerId);
-  const directionSign = getPhotonDirectionSign(state, swarmId);
+export function getPhotonLayerAngleRadians(state, braidId, layerId, timeSeconds, chargeType = "positrino") {
+  const layer = getPhotonLayer(state, braidId, layerId);
+  const directionSign = getPhotonDirectionSign(state, braidId);
   const phase = (normalizePhotonDegrees(layer.phaseDeg) / 360) * TWO_PI;
   const chargeOffset = chargeType === "electrino" ? Math.PI : 0;
   return phase + chargeOffset + directionSign * TWO_PI * layer.frequencyHz * timeSeconds;
 }
 
-export function setPhotonLayerValue(state, swarmId, layerId, key, value) {
-  if (!state?.pair?.[swarmId]?.layers?.[layerId]) {
+export function setPhotonLayerValue(state, braidId, layerId, key, value) {
+  if (!state?.pair?.[braidId]?.layers?.[layerId]) {
     return;
   }
-  const layer = state.pair[swarmId].layers[layerId];
+  const layer = state.pair[braidId].layers[layerId];
   if (key === "phaseDeg") {
     layer.phaseDeg = normalizePhotonDegrees(value, layer.phaseDeg);
     return;
@@ -584,7 +584,7 @@ export function setPhotonLayerValue(state, swarmId, layerId, key, value) {
     return;
   }
   if (key === "radius") {
-    const radiusBounds = getPhotonLayerRadiusBounds(state, swarmId, layerId);
+    const radiusBounds = getPhotonLayerRadiusBounds(state, braidId, layerId);
     layer.radius = clampPhotonNumber(
       value,
       radiusBounds.min,

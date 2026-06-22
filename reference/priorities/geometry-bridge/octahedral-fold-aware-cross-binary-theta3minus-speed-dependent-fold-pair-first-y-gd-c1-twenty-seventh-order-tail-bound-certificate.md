@@ -277,7 +277,7 @@ through the unfactored $F_\delta$ denominator.
 ## Executable Artifact
 
 The executable packet is
-[octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-seventh-order-tail-bound-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-seventh-order-tail-bound-certificate.mjs).
+[octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-seventh-order-tail-bound-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-seventh-order-tail-bound-certificate.mjs).
 It emits:
 
 - the factored positive-y $G$ quotient-tail interval;

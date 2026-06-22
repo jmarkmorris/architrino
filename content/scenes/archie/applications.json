@@ -11,8 +11,8 @@
     "wrapLabels": true,
     "children": [
       {
-        "nodeId": "ideal_swarm",
-        "scenePath": "content/scenes/archie/ideal_swarm.json"
+        "nodeId": "ideal_braid",
+        "scenePath": "content/scenes/archie/ideal_braid.json"
       },
       {
         "nodeId": "photon",
@@ -42,11 +42,11 @@
   },
   "objects": [
     {
-      "id": "ideal_swarm",
-      "title": "Ideal Noether Swarm",
+      "id": "ideal_braid",
+      "title": "Ideal Noether Braid",
       "radius": 2.2,
       "color": "#0f766e",
-      "labelTitle": "Ideal Noether Swarm",
+      "labelTitle": "Ideal Noether Braid",
       "labelBadge": ""
     },
     {

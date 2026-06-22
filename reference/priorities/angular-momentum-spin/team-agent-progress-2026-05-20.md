@@ -6,7 +6,7 @@ The packet consumes the current Master-Equation handoff: downstream angular-mome
 
 ## Branch-Chart Conservation Pullback
 
-For a Noether swarm branch chart $B$ on a transaction window $W=[t_i,t_f]$, the angular-momentum proof object is
+For a Noether braid branch chart $B$ on a transaction window $W=[t_i,t_f]$, the angular-momentum proof object is
 
 $$
 \mathcal C_{\mathbf J}^{B}(W)

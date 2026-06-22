@@ -132,7 +132,7 @@ That certificate must own the projected fold phases where the ordinary phase cha
 
 ## Executable Diagnostic
 
-The executable diagnostic [octahedral-fold-aware-clock-length-orbit-scan.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-clock-length-orbit-scan.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-clock-length-orbit-scan.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-clock-length-orbit-scan.mjs) emits:
 
 - the source profile-scan validation status;
 - six receiver profile rows;
@@ -140,7 +140,7 @@ The executable diagnostic [octahedral-fold-aware-clock-length-orbit-scan.mjs](..
 - the weakest sampled positivity margin;
 - the non-retention verdict.
 
-The companion test [neutral-swarm-octahedral-fold-aware-clock-length-orbit-scan.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-clock-length-orbit-scan.test.js) verifies six-label coverage, sampled orbit matching, no fixed speed window, CLI validation, and non-retention guards.
+The companion test [neutral-braid-octahedral-fold-aware-clock-length-orbit-scan.test.js](../../../tests/neutral-braid-octahedral-fold-aware-clock-length-orbit-scan.test.js) verifies six-label coverage, sampled orbit matching, no fixed speed window, CLI validation, and non-retention guards.
 
 ## Promotion Decision
 
