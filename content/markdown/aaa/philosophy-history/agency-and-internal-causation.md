@@ -1,6 +1,6 @@
 # Agency and Internal Causation
 
-This document defines how agency language is used in $\mathbb{A}\mathbb{A}\mathbb{A}$ without adding a separate agency substance or a law-breaking freedom. The detailed quantum-mechanical context remains in [Reality, Quantum, and Causality](../quantum/reality-quantum-causality.md); this page isolates the philosophical and dynamical interpretation.
+This document defines how agency language is used in $\mathbb{A}\mathbb{A}\mathbb{A}$ without adding a separate agency substance or a law-breaking freedom. The detailed quantum-mechanical context remains in [Reality Quantum Causality](../quantum/reality-quantum-causality.md); this page isolates the philosophical and dynamical interpretation.
 
 It also belongs with [Measurement Ontology](../quantum/measurement-ontology.md), [Superposition Mechanism](theory-bridges/superposition-mechanism.md), [Philosophy of Science](philosophy-of-science.md), and [Information / Computation](information-computation.md).
 
@@ -10,7 +10,7 @@ The central distinction is not between caused and uncaused behavior. Every admis
 
 An externally determined system behaves like a fixed-threshold detector in the relevant context. A simple atom in a laser beam may absorb or fail to absorb according to its state and the incident field, but the example does not by itself exhibit a rich internal control architecture that changes its future responsiveness. The causal chain is still lawful, but most of the explanatory weight lies in the externally supplied condition and the fixed response rule.
 
-An internally causal system has state-dependent responsiveness. The He-Rb-He example discussed in [Reality, Quantum, and Causality](../quantum/reality-quantum-causality.md) can be read this way: the assembly may sit in a damped `Ignore Mode` or in a high-sensitivity `Leverage Mode`, and the current mode depends on recent history plus structural feedback. These names are mode labels for a proposed Switch mechanism, not independent ontology.
+An internally causal system has state-dependent responsiveness. The He-Rb-He example discussed in [Reality Quantum Causality](../quantum/reality-quantum-causality.md) can be read this way: the assembly may sit in a damped `Ignore Mode` or in a high-sensitivity `Leverage Mode`, and the current mode depends on recent history plus structural feedback. These names are mode labels for a proposed Switch mechanism, not independent ontology.
 
 From the outside, this can look like choice. In the theory-native description, it is attractor selection through internal configuration, path history, and incoming perturbation.
 

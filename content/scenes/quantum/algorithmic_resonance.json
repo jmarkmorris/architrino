@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "quantum__algorithmic_resonance",
-    "title": "Algorithmic Resonance and Shor's Algorithm",
+    "title": "Algorithmic Resonance",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

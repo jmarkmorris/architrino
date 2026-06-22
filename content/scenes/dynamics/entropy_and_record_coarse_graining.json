@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "dynamics__entropy_and_record_coarse_graining",
-    "title": "Entropy and Record Coarse-Graining",
+    "title": "Entropy",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

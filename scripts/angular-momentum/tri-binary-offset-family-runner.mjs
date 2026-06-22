@@ -164,12 +164,12 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v24",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v27",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
     sourcePriorityFile:
-      "reference/priorities/angular-momentum-spin/swarm-partition-and-spinor.md",
+      "reference/priorities/angular-momentum-spin/braid-partition-and-spinor.md",
     frequencyTripletNotation: createFrequencyTripletNotation(),
     layerRoleOrder: LAYER_ROLES,
     solverGeometryPublicContract: createSolverGeometryPublicContract(),
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v24 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v27 reports.",
   };
 }
 
@@ -39767,6 +39767,11 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     createEqualFrequencyDeformationContinuationAudit(deformationRegimeAudit.rows);
   const actionLedgerAudit =
     createEqualFrequencyActionLedgerAudit(priorityCaseSummaries);
+  const energyAngularMomentumClosureAudit =
+    createEqualFrequencyEnergyAngularMomentumClosureAudit({
+      priorityCaseSummaries,
+      actionLedgerAudit,
+    });
   const phaseDeformationBalanceAudit =
     createEqualFrequencyPhaseDeformationBalanceAudit(caseSummaries);
   const returnPeriodFrequencyAudit =
@@ -39779,6 +39784,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       roleAssignmentAudit,
       deformationContinuationAudit,
       actionLedgerAudit,
+      energyAngularMomentumClosureAudit,
       phaseDeformationBalanceAudit,
       returnPeriodFrequencyAudit,
       planeSectorDiscriminatorAudit,
@@ -39788,6 +39794,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       priorityCaseSummaries,
       retainedRowSetScaffold,
       actionLedgerAudit,
+      energyAngularMomentumClosureAudit,
       phaseDeformationBalanceAudit,
       returnPeriodFrequencyAudit,
       planeSectorDiscriminatorAudit,
@@ -39806,13 +39813,22 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       returnPeriodFrequencyAudit,
       planeSectorDiscriminatorAudit,
     });
+  const retainedEventDomainSelector =
+    createEqualFrequencyRetainedEventDomainSelector({
+      priorityCaseSummaries,
+      retainedRowSetScaffold,
+      retainedEventDomainLiftTarget,
+      retainedFrequencyPhasePacket,
+    });
   const retainedReplayAcceptanceBlueprint =
     createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       priorityCaseSummaries,
       retainedRowSetScaffold,
       retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
       deformationContinuationAudit,
       actionLedgerAudit,
+      energyAngularMomentumClosureAudit,
       phaseDeformationBalanceAudit,
       returnPeriodFrequencyAudit,
       planeSectorDiscriminatorAudit,
@@ -39820,7 +39836,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v24",
+    schema: "aaa-equal-frequency-energy-radius-audit.v26",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -39849,11 +39865,13 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     deformationRegimeAudit,
     deformationContinuationAudit,
     actionLedgerAudit,
+    energyAngularMomentumClosureAudit,
     phaseDeformationBalanceAudit,
     returnPeriodFrequencyAudit,
     planeSectorDiscriminatorAudit,
     retainedRowSetScaffold,
     retainedEventDomainLiftTarget,
+    retainedEventDomainSelector,
     firstRetainedPacketTemplate,
     retainedFrequencyPhasePacket,
     retainedReplayAcceptanceBlueprint,
@@ -39864,14 +39882,14 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       "The legacy self_root_parity_index_proxy checks n_I-n_M=2, so it is not the acceptance score for I:M:O=(f,f,f).",
     executableChartScope:
       "The current executable rows are evaluated in the flattened-limit projection view of the velocity-deformation projection-chart family. Equal-frequency audit rows interpret the reduced chart coordinate as an effective lever-arm projection of the retained tri-binary Noether braid branch state, not as a global shell radius or the complete retained geometry.",
-    generalTriBinarySwarmGeometryTarget:
+    generalTriBinaryBraidGeometryTarget:
       "A retained tri-binary Noether braid replay must solve the general branch state and deformation-continuation map first, then declare how each effective lever arm is produced from low-drift spherical-envelope retained-row coordinates, moving oblate envelope, flattened alignment limit, shell-radius map, retained plane incidence, retained energy-radius branch map, or coupling-dependent projection map.",
     returnPeriodFrequencyTarget:
       "The equal-frequency claim must be certified by retained branch return periods or declared locked harmonics. The current circular chart compares omega_f with speed/effective-lever-arm rows only because those rows are explicitly defined in the chart.",
     phaseTopologySectorTarget:
       "The triadic 120-degree identity is only a phase-only planar cyclic cancellation until retained plane normals, phase-bundle holonomy, and sector data classify the row as coplanar cyclic, near-orthogonal tri-binary, or another branch sector.",
     hbarUnitInterpretation:
-      "When omega_O=omega_M=omega_I, the sampled four-substep target omega_*=(omega_O+omega_M+2 omega_I)/4 collapses to the common binary frequency. This is evidence for an hbar-unit investigation, not an action-scale proof.",
+      "When omega_O=omega_M=omega_I, the sampled four-substep target omega_*=(omega_O+omega_M+2 omega_I)/4 collapses to the common binary frequency. The equal-frequency J/E audit makes the hbar-unit burden an explicit same-clock ledger equation, not an action-scale proof.",
     retainedBlockers: [
       "energy_law_for_effective_lever_arm_speed_relation",
       "same_event_angular_momentum_ledger",
@@ -40965,6 +40983,269 @@ function createEqualFrequencyEffectiveInertiaLawScan(actionRows) {
   };
 }
 
+function createEqualFrequencyEnergyAngularMomentumClosureAudit({
+  priorityCaseSummaries,
+  actionLedgerAudit,
+}) {
+  const actionRowsByCaseId = new Map(
+    (actionLedgerAudit?.rows ?? []).map((row) => [row.caseId, row])
+  );
+  const rows = priorityCaseSummaries.map((summary) =>
+    createEqualFrequencyEnergyAngularMomentumClosureRow({
+      summary,
+      actionRow: actionRowsByCaseId.get(summary.caseId) ?? null,
+    })
+  );
+  const sameClockIdentityPassCount = rows.filter(
+    (row) => row.sameClockEnergyAngularMomentumIdentityPass === true
+  ).length;
+  const targetEffectiveInertiaClosurePassCount = rows.filter(
+    (row) => row.targetEffectiveInertiaLedger.fourSubstepTargetPass === true
+  ).length;
+  const unitInertiaWakeCouplingSlackFiniteCount = rows.filter(
+    (row) => row.unitInertiaWakeCouplingSlack.finiteBalancedSlackPass === true
+  ).length;
+  const hbarScaleCandidateCount = rows.filter(
+    (row) => row.hbarUnitScaleCandidate.populated === true
+  ).length;
+  const retainedEnergyStationarityPassCount = rows.filter(
+    (row) => row.retainedEnergyStationarityPass === true
+  ).length;
+  const retainedSameEventAngularMomentumPassCount = rows.filter(
+    (row) => row.retainedSameEventAngularMomentumPass === true
+  ).length;
+  const allRowsHaveCurrentClosureCandidate =
+    rows.length > 0 &&
+    sameClockIdentityPassCount === rows.length &&
+    targetEffectiveInertiaClosurePassCount === rows.length &&
+    hbarScaleCandidateCount === rows.length;
+  return {
+    schema: "aaa-equal-frequency-energy-angular-momentum-closure-audit.v1",
+    claimLevel:
+      "same-clock energy/angular-momentum closure audit; current algebraic proxy only, not retained hbar-unit acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    executableProjectionChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    residualComponents: ["r_E", "r_J"],
+    auditedCaseCount: rows.length,
+    sameClockIdentityPassCount,
+    targetEffectiveInertiaClosurePassCount,
+    unitInertiaWakeCouplingSlackFiniteCount,
+    hbarScaleCandidateCount,
+    retainedEnergyStationarityPassCount,
+    retainedSameEventAngularMomentumPassCount,
+    closureEquations: [
+      "J_a = mu_a rho_a^2 omega_f",
+      "E_a = (1/2) J_a omega_f",
+      "r_E,a = partial_{rho_a} E_branch(B_3B,rho,omega,phi,L_wake,L_coupling)",
+      "r_J = sum_a mu_a rho_a^2 omega_f + L_wake + L_coupling - hbar_unit",
+      "if L_wake=L_coupling=0, sigma_hbar = hbar_unit/(omega_f sum_a mu_a^(rel) rho_a^2)",
+    ],
+    targetFourSubstepWeights: { ...FOUR_SUBSTEP_ACTION_WEIGHTS },
+    targetFourSubstepFractions: normalizeRoleWeights(FOUR_SUBSTEP_ACTION_WEIGHTS),
+    status:
+      retainedEnergyStationarityPassCount === rows.length &&
+      retainedSameEventAngularMomentumPassCount === rows.length &&
+      rows.length > 0
+        ? "equal_frequency_energy_angular_momentum_retained_closure_accepted"
+        : allRowsHaveCurrentClosureCandidate
+          ? "same_clock_j_e_identity_populated_target_inertia_and_hbar_scale_candidates_retained_stationarity_missing"
+          : sameClockIdentityPassCount > 0
+            ? "same_clock_j_e_identity_populated_closure_candidates_incomplete"
+            : "same_clock_j_e_identity_missing",
+    rows,
+    interpretation:
+      "Equal frequency makes the action and kinetic-energy ledgers share one clock: E_a=(1/2)J_a omega_f. Different effective lever arms are therefore compatible with one frequency only after the retained replay supplies mu_a, wake/coupling angular momentum, or an energy-radius stationarity law on the same event/domain.",
+    hbarUnitImplication:
+      "The common clock turns the hbar-unit question into a scale row for the same-event angular-momentum ledger. A finite sigma_hbar candidate exists under the target effective-inertia ledger, but it is not accepted until the retained branch derives the inertia, wake/coupling, and energy-stationarity rows.",
+    retainedReplayBurden:
+      "Derive the effective inertia or wake/coupling partition from B_3B, bind it to E_branch and the same retained event/domain, and then evaluate r_E and r_J on S_eq.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyEnergyAngularMomentumClosureRow({
+  summary,
+  actionRow,
+}) {
+  const leverArms =
+    actionRow?.effectiveLeverArms ??
+    summary.leverArmSpeedRelation?.effectiveLeverArms ??
+    {};
+  const speedRatios =
+    actionRow?.speedRatios ?? summary.leverArmSpeedRelation?.speedRatios ?? {};
+  const phaseTurns = actionRow?.phaseTurns ?? summary.triadic120Phase?.phaseTurns ?? {};
+  const commonOmega =
+    actionRow?.commonOmega ?? summary.commonClock?.commonAngularVelocity ?? null;
+  const targetFractions = normalizeRoleWeights(FOUR_SUBSTEP_ACTION_WEIGHTS);
+  const unitProxyRowsByRole = Object.fromEntries(
+    (actionRow?.unitInertiaProxy?.actionRows ?? []).map((row) => [row.role, row])
+  );
+  const sameClockIdentityRows = LAYER_ROLES.map((role) => {
+    const proxyRow = unitProxyRowsByRole[role] ?? {};
+    const proxyAngularMomentum = proxyRow.proxyAngularMomentum ?? null;
+    const proxyKineticEnergy = proxyRow.proxyKineticEnergy ?? null;
+    const energyFromAngularMomentum =
+      Number.isFinite(proxyAngularMomentum) && Number.isFinite(commonOmega)
+        ? 0.5 * proxyAngularMomentum * commonOmega
+        : null;
+    const energyIdentityResidual =
+      Number.isFinite(proxyKineticEnergy) &&
+      Number.isFinite(energyFromAngularMomentum)
+        ? proxyKineticEnergy - energyFromAngularMomentum
+        : null;
+    return {
+      role,
+      effectiveLeverArm: leverArms[role] ?? null,
+      speedRatio: speedRatios[role] ?? null,
+      phaseTurn: phaseTurns[role] ?? null,
+      proxyAngularMomentum,
+      proxyKineticEnergy,
+      energyFromAngularMomentum,
+      energyIdentityResidual,
+      pass:
+        Number.isFinite(energyIdentityResidual) &&
+        Math.abs(energyIdentityResidual) <= ROOT_TOLERANCE,
+    };
+  });
+  const sameClockEnergyAngularMomentumIdentityPass =
+    sameClockIdentityRows.length === LAYER_ROLES.length &&
+    sameClockIdentityRows.every((row) => row.pass === true);
+  const unitFractions =
+    actionRow?.unitInertiaProxy?.actionFractions ??
+    normalizeRoleWeights(
+      Object.fromEntries(
+        sameClockIdentityRows.map((row) => [row.role, row.proxyAngularMomentum])
+      )
+    );
+  const unitResidualsAgainstTarget = residualRoleWeights({
+    actual: unitFractions,
+    target: targetFractions,
+  });
+  const requiredRelativeInertias =
+    actionRow?.requiredEffectiveInertiaForFourSubstepPartition
+      ?.relativeInertiasNormalizedToMiddle ?? {};
+  const targetAngularMomentumWeights = Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const mu = requiredRelativeInertias[role];
+      const rho = leverArms[role];
+      return [
+        role,
+        Number.isFinite(mu) && Number.isFinite(rho) ? mu * rho ** 2 : null,
+      ];
+    })
+  );
+  const targetAngularMomentumFractions = normalizeRoleWeights(
+    targetAngularMomentumWeights
+  );
+  const targetAngularMomentumResiduals = residualRoleWeights({
+    actual: targetAngularMomentumFractions,
+    target: targetFractions,
+  });
+  const targetMaxAbsResidual = maxFinite(
+    Object.values(targetAngularMomentumResiduals).map((value) =>
+      Number.isFinite(value) ? Math.abs(value) : null
+    )
+  );
+  const targetAngularMomentumWeightTotal = sumFinite(
+    Object.values(targetAngularMomentumWeights)
+  );
+  const targetEffectiveInertiaFourSubstepPass =
+    Number.isFinite(targetMaxAbsResidual) &&
+    targetMaxAbsResidual <= ROOT_TOLERANCE;
+  const hbarUnitScaleDenominator =
+    Number.isFinite(commonOmega) &&
+    Number.isFinite(targetAngularMomentumWeightTotal)
+      ? commonOmega * targetAngularMomentumWeightTotal
+      : null;
+  const hbarUnitScaleCandidatePopulated =
+    targetEffectiveInertiaFourSubstepPass &&
+    Number.isFinite(hbarUnitScaleDenominator) &&
+    Math.abs(hbarUnitScaleDenominator) > ROOT_TOLERANCE;
+  const slackFractionsNeededByRole = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(targetFractions[role]) && Number.isFinite(unitFractions[role])
+        ? targetFractions[role] - unitFractions[role]
+        : null,
+    ])
+  );
+  const slackFractionSum = sumFinite(Object.values(slackFractionsNeededByRole));
+  const finiteBalancedSlackPass =
+    LAYER_ROLES.every((role) =>
+      Number.isFinite(slackFractionsNeededByRole[role])
+    ) &&
+    Number.isFinite(slackFractionSum) &&
+    Math.abs(slackFractionSum) <= ROOT_TOLERANCE;
+  return {
+    rowId: `S_eq-energy-angular-momentum-f${summary.f}`,
+    retainedRowSetId: "S_eq",
+    caseId: summary.caseId,
+    f: summary.f,
+    phaseProfileId: summary.phaseProfileId,
+    roleAssignedRelation: "(I,M,O)=(f,f,f)",
+    commonOmega,
+    effectiveLeverArms: leverArms,
+    speedRatios,
+    phaseTurns,
+    sameClockEnergyAngularMomentumIdentityPass,
+    sameClockIdentityRows,
+    unitInertiaWakeCouplingSlack: {
+      formula:
+        "Delta L_wake/coupling fractions = target 2:1:1 fractions - unit-inertia J fractions",
+      unitInertiaFractions: unitFractions,
+      targetFourSubstepFractions: targetFractions,
+      unitResidualsAgainstTarget,
+      slackFractionsNeededByRole,
+      slackFractionSum,
+      finiteBalancedSlackPass,
+      interpretation:
+        "With unit inertia, the inner half-action burden is exact, but middle must shed and outer must receive equal finite angular-momentum fraction to reach the full 2:1:1 target.",
+    },
+    targetEffectiveInertiaLedger: {
+      formula: "mu_a^(rel) proportional to w_a/rho_a^2",
+      relativeEffectiveInertiasNormalizedToMiddle: requiredRelativeInertias,
+      angularMomentumWeightsByRole: targetAngularMomentumWeights,
+      angularMomentumWeightTotal: targetAngularMomentumWeightTotal,
+      angularMomentumFractionsByRole: targetAngularMomentumFractions,
+      targetFourSubstepFractions: targetFractions,
+      residualsAgainstTarget: targetAngularMomentumResiduals,
+      maxAbsResidual: targetMaxAbsResidual,
+      fourSubstepTargetPass: targetEffectiveInertiaFourSubstepPass,
+      retainedLimitation:
+        "This target ledger is algebraic. It must be derived from retained inertia, root multiplicity, wake, or coupling rows before acceptance.",
+    },
+    hbarUnitScaleCandidate: {
+      formula:
+        "sigma_hbar = hbar_unit/(omega_f sum_a mu_a^(rel) rho_a^2) if L_wake=L_coupling=0",
+      denominator: hbarUnitScaleDenominator,
+      populated: hbarUnitScaleCandidatePopulated,
+      retainedScaleAccepted: false,
+      retainedLimitation:
+        "A finite scale candidate is not an accepted hbar unit until the same retained event/domain supplies the scale law and wake/coupling disposition.",
+    },
+    retainedEnergyStationarityPass: false,
+    retainedSameEventAngularMomentumPass: false,
+    blockerIds: [
+      "retained_branch_energy_E_branch",
+      "partial_rho_E_branch_rows",
+      "derived_effective_inertia_mu_a_or_wake_coupling_partition",
+      "hbar_unit_normalization_or_sigma_hbar",
+      "same_event_angular_momentum_residual_r_J",
+      "same_retained_event_or_positive_width_domain",
+    ],
+    status:
+      hbarUnitScaleCandidatePopulated && finiteBalancedSlackPass
+        ? "same_clock_j_e_row_populated_target_inertia_and_wake_slack_routes_finite_retained_scale_missing"
+        : sameClockEnergyAngularMomentumIdentityPass
+          ? "same_clock_j_e_row_populated_retained_scale_incomplete"
+          : "same_clock_j_e_row_incomplete",
+    retainedBranchClaim: false,
+  };
+}
+
 function createEqualFrequencyPhaseDeformationBalanceAudit(caseSummaries) {
   const rows = caseSummaries.map((summary) =>
     createEqualFrequencyPhaseDeformationBalanceRow(summary)
@@ -41731,6 +42012,7 @@ function createEqualFrequencyRetainedRowSetScaffold({
   roleAssignmentAudit,
   deformationContinuationAudit,
   actionLedgerAudit,
+  energyAngularMomentumClosureAudit,
   phaseDeformationBalanceAudit,
   returnPeriodFrequencyAudit,
   planeSectorDiscriminatorAudit,
@@ -41766,6 +42048,18 @@ function createEqualFrequencyRetainedRowSetScaffold({
       status: actionLedgerAudit?.status ?? null,
       currentEvidencePopulated:
         actionLedgerAudit?.unitInertiaInnerHalfPassCount === priorityCaseCount,
+      retainedAcceptancePass: false,
+    },
+    {
+      id: "energy_angular_momentum_closure_audit",
+      residualComponent: "r_E:r_J",
+      schema: energyAngularMomentumClosureAudit?.schema ?? null,
+      status: energyAngularMomentumClosureAudit?.status ?? null,
+      currentEvidencePopulated:
+        energyAngularMomentumClosureAudit
+          ?.targetEffectiveInertiaClosurePassCount === priorityCaseCount &&
+        energyAngularMomentumClosureAudit?.hbarScaleCandidateCount ===
+          priorityCaseCount,
       retainedAcceptancePass: false,
     },
     {
@@ -41902,6 +42196,7 @@ function createEqualFrequencyRetainedEventDomainLiftTarget({
   priorityCaseSummaries,
   retainedRowSetScaffold,
   actionLedgerAudit,
+  energyAngularMomentumClosureAudit,
   phaseDeformationBalanceAudit,
   returnPeriodFrequencyAudit,
   planeSectorDiscriminatorAudit,
@@ -41956,6 +42251,18 @@ function createEqualFrequencyRetainedEventDomainLiftTarget({
       sourceKind: "circular_kinetic_action_proxy",
       currentEvidencePopulated:
         actionLedgerAudit?.unitInertiaInnerHalfPassCount === priorityCaseCount,
+      acceptedRetainedEventDomainPass: false,
+    },
+    {
+      id: "energy_angular_momentum_same_clock_proxy",
+      schema: energyAngularMomentumClosureAudit?.schema ?? null,
+      status: energyAngularMomentumClosureAudit?.status ?? null,
+      sourceKind: "same_clock_energy_angular_momentum_proxy",
+      currentEvidencePopulated:
+        energyAngularMomentumClosureAudit?.sameClockIdentityPassCount ===
+          priorityCaseCount &&
+        energyAngularMomentumClosureAudit?.hbarScaleCandidateCount ===
+          priorityCaseCount,
       acceptedRetainedEventDomainPass: false,
     },
   ];
@@ -42051,12 +42358,172 @@ function createEqualFrequencyRetainedEventDomainLiftTarget({
   };
 }
 
+function createEqualFrequencyRetainedEventDomainSelector({
+  priorityCaseSummaries,
+  retainedRowSetScaffold,
+  retainedEventDomainLiftTarget,
+  retainedFrequencyPhasePacket,
+}) {
+  const retainedRowSetId =
+    retainedRowSetScaffold?.retainedRowSetId ??
+    retainedEventDomainLiftTarget?.retainedRowSetId ??
+    "S_eq";
+  const pointProxyPopulated =
+    retainedEventDomainLiftTarget?.currentProxyPointRowsPopulated === true;
+  const eventAccepted =
+    retainedEventDomainLiftTarget?.acceptedFullPointEventRulePass === true;
+  const domainAccepted =
+    retainedEventDomainLiftTarget?.positiveWidthRetainedDomainPass === true;
+  const routeCandidates = [
+    {
+      routeId: "point_event_current_proxy_first",
+      routeKind: "retained_point_event",
+      selectionPriority: 1,
+      selected: pointProxyPopulated === true,
+      currentProxyEvidencePopulated: pointProxyPopulated,
+      currentProxyEvidenceRowCount:
+        retainedEventDomainLiftTarget?.currentProxyEvidencePopulatedCount ?? null,
+      retainedAcceptancePass: eventAccepted,
+      sourceRouteId:
+        retainedEventDomainLiftTarget?.eventRoute?.routeId ??
+        "accepted_full_point_event_route",
+      requiredRows:
+        retainedEventDomainLiftTarget?.eventRoute?.requiredRows ?? [
+          "retained_event_id",
+          "full_point_event_rule",
+          "binary_to_binary_retained_history_rows",
+          "same_event_momentum_and_angular_momentum_ledgers",
+        ],
+      blocker:
+        eventAccepted === true
+          ? null
+          : "accepted_full_point_event_rule_missing",
+      status:
+        eventAccepted === true
+          ? "retained_point_event_route_accepted"
+          : pointProxyPopulated === true
+            ? "retained_point_event_route_current_proxy_first_acceptance_missing"
+            : "retained_point_event_route_proxy_incomplete",
+    },
+    {
+      routeId: "positive_width_domain_search_required",
+      routeKind: "positive_width_retained_domain",
+      selectionPriority: 2,
+      selected: pointProxyPopulated !== true,
+      currentProxyEvidencePopulated: false,
+      currentProxyEvidenceRowCount: 0,
+      retainedAcceptancePass: domainAccepted,
+      sourceRouteId:
+        retainedEventDomainLiftTarget?.domainRoute?.routeId ??
+        "positive_width_retained_domain_route",
+      requiredRows:
+        retainedEventDomainLiftTarget?.domainRoute?.requiredRows ?? [
+          "retained_time_domain",
+          "positive_common_domain_width",
+          "root_sheet_continuity",
+          "phase_continuity",
+          "wake_tail_continuity",
+          "action_energy_continuity",
+          "section_stability_on_domain",
+        ],
+      blocker:
+        domainAccepted === true
+          ? null
+          : "positive_width_retained_domain_missing",
+      status:
+        domainAccepted === true
+          ? "positive_width_retained_domain_route_accepted"
+          : "positive_width_retained_domain_route_search_required",
+    },
+  ];
+  const acceptedRouteCount = routeCandidates.filter(
+    (route) => route.retainedAcceptancePass === true
+  ).length;
+  const currentProxyRouteCount = routeCandidates.filter(
+    (route) => route.currentProxyEvidencePopulated === true
+  ).length;
+  const selectedRoute =
+    routeCandidates.find((route) => route.selected === true)?.routeId ??
+    "positive_width_domain_search_required";
+  const firstRunnableRows = priorityCaseSummaries.map((summary, index) => ({
+    rowId: `S_eq-event-selector-row-${index + 1}`,
+    retainedRowSetId,
+    rawSearchRelation: "(B_1,B_2,B_3)=(f,f,f)",
+    roleAssignedRelation: "(I,M,O)=(f,f,f)",
+    phaseProfileId: summary.phaseProfileId ?? null,
+    priorityPhaseProfile: summary.priorityPhaseProfile === true,
+    selectedRoute,
+    currentProxyPointEvidencePass: pointProxyPopulated,
+    frequencyPhasePacketStatus: retainedFrequencyPhasePacket?.status ?? null,
+    frequencyPhasePacketRowCount: retainedFrequencyPhasePacket?.rowCount ?? null,
+    eventRouteAcceptancePass: eventAccepted,
+    domainRouteAcceptancePass: domainAccepted,
+    retainedAcceptancePass: eventAccepted === true || domainAccepted === true,
+    requiredNextRows: [
+      "accepted_full_point_event_rule_or_positive_width_domain",
+      "binary_to_binary_retained_history_rows",
+      "retained_payload_rows",
+      "retained_energy_routing",
+      "same_event_momentum_angular_momentum_rows",
+      "Noether_sea_record_event_or_domain_binding",
+    ],
+  }));
+  const blockingConditionIds = Array.from(
+    new Set([
+      ...(retainedEventDomainLiftTarget?.blockingConditionIds ?? []),
+      "retained_event_domain_selector_acceptance_missing",
+    ])
+  );
+  return {
+    schema: "aaa-equal-frequency-retained-event-domain-selector.v1",
+    claimLevel:
+      "retained event/domain route selector for S_eq; current proxy only, no accepted retained event or domain",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    residualComponent: "r_evt",
+    selectorPolicy:
+      "Choose the first runnable S_eq event/domain route without treating projection-chart evidence as retained branch acceptance.",
+    selectedRoute,
+    routeCandidateCount: routeCandidates.length,
+    currentProxyRouteCount,
+    acceptedRouteCount,
+    retainedSelectorAcceptancePass: acceptedRouteCount > 0,
+    routeCandidates,
+    firstRunnableRowCount: firstRunnableRows.length,
+    firstRunnableRows,
+    acceptanceInputsRequired: [
+      "same_retained_row_set_identity_S_eq",
+      "accepted_full_point_event_rule_or_positive_width_domain",
+      "binary_to_binary_retained_history_rows",
+      "retained_payload_rows",
+      "retained_energy_routing",
+      "same_event_momentum_angular_momentum_rows",
+      "Noether_sea_record_event_or_domain_binding",
+      "branch_history_frequency_phase_rows",
+    ],
+    blockingConditionIds,
+    status:
+      acceptedRouteCount > 0
+        ? "equal_frequency_retained_event_domain_selector_accepted_route"
+        : currentProxyRouteCount > 0
+          ? "equal_frequency_retained_event_domain_selector_populated_point_event_current_proxy_first_acceptance_missing"
+          : "equal_frequency_retained_event_domain_selector_search_required",
+    retainedBranchClaim: false,
+  };
+}
+
 function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
   priorityCaseSummaries,
   retainedRowSetScaffold,
   retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
   deformationContinuationAudit,
   actionLedgerAudit,
+  energyAngularMomentumClosureAudit,
   phaseDeformationBalanceAudit,
   returnPeriodFrequencyAudit,
   planeSectorDiscriminatorAudit,
@@ -42090,18 +42557,28 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       residualComponent: "r_evt",
       expression:
         "All S_eq rows are evaluated on one accepted retained point event or on one positive-width retained time domain before branch acceptance",
-      currentSubauditSchema: retainedEventDomainLiftTarget?.schema ?? null,
+      currentSubauditSchema:
+        retainedEventDomainSelector?.schema ??
+        retainedEventDomainLiftTarget?.schema ??
+        null,
       currentEvidencePopulated:
+        retainedEventDomainSelector?.currentProxyRouteCount > 0 ||
         retainedEventDomainLiftTarget?.currentProxyPointRowsPopulated === true,
       retainedAcceptancePass:
+        retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
         retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true,
       currentStatus:
+        retainedEventDomainSelector?.status ??
         retainedEventDomainLiftTarget?.status ??
         "missing_retained_event_domain_lift_target",
       currentEvidencePassCount:
-        retainedEventDomainLiftTarget?.currentProxyEvidencePopulatedCount ?? null,
-      retainedCertificatePassCount: 0,
+        retainedEventDomainSelector?.currentProxyRouteCount ??
+        retainedEventDomainLiftTarget?.currentProxyEvidencePopulatedCount ??
+        null,
+      retainedCertificatePassCount:
+        retainedEventDomainSelector?.acceptedRouteCount ?? 0,
       requiredRows:
+        retainedEventDomainSelector?.acceptanceInputsRequired ??
         retainedEventDomainLiftTarget?.blockingConditionIds ?? [
           "accepted_full_point_event_rule",
           "positive_width_retained_domain",
@@ -42169,13 +42646,24 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       residualComponent: "r_E",
       expression:
         "r_E,a = partial_{rho_a} E_branch(B_3B,rho,omega,phi,L_wake,L_coupling)=0",
-      currentSubauditSchema: null,
-      currentEvidencePopulated: false,
+      currentSubauditSchema: energyAngularMomentumClosureAudit?.schema ?? null,
+      currentEvidencePopulated:
+        energyAngularMomentumClosureAudit
+          ?.targetEffectiveInertiaClosurePassCount === priorityCaseCount,
       retainedAcceptancePass: false,
-      currentStatus: "missing_retained_energy_radius_stationarity",
+      currentStatus:
+        energyAngularMomentumClosureAudit?.status ??
+        "missing_retained_energy_radius_stationarity",
+      currentEvidencePassCount:
+        energyAngularMomentumClosureAudit
+          ?.targetEffectiveInertiaClosurePassCount ?? null,
+      retainedCertificatePassCount:
+        energyAngularMomentumClosureAudit?.retainedEnergyStationarityPassCount ??
+        0,
       requiredRows: [
         "retained_branch_energy_E_branch",
         "partial_rho_E_branch_rows",
+        "derived_effective_inertia_mu_a_or_wake_coupling_partition",
         "wake_energy_dependency_rows",
         "coupling_energy_dependency_rows",
       ],
@@ -42244,14 +42732,25 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       residualComponent: "r_J",
       expression:
         "r_J = sum_a mu_a rho_a^2 omega_a + L_wake + L_coupling - hbar_unit = 0 on S_eq",
-      currentSubauditSchema: actionLedgerAudit?.schema ?? null,
+      currentSubauditSchema:
+        energyAngularMomentumClosureAudit?.schema ??
+        actionLedgerAudit?.schema ??
+        null,
       currentEvidencePopulated:
+        energyAngularMomentumClosureAudit?.hbarScaleCandidateCount ===
+          priorityCaseCount ||
         actionLedgerAudit?.unitInertiaInnerHalfPassCount === priorityCaseCount,
       retainedAcceptancePass: false,
-      currentStatus: actionLedgerAudit?.status ?? null,
+      currentStatus:
+        energyAngularMomentumClosureAudit?.status ??
+        actionLedgerAudit?.status ??
+        null,
       currentEvidencePassCount:
+        energyAngularMomentumClosureAudit?.hbarScaleCandidateCount ??
         actionLedgerAudit?.unitInertiaInnerHalfPassCount ?? null,
-      retainedCertificatePassCount: 0,
+      retainedCertificatePassCount:
+        energyAngularMomentumClosureAudit
+          ?.retainedSameEventAngularMomentumPassCount ?? 0,
       requiredRows: [
         "retained_effective_inertia_mu_a",
         "wake_angular_momentum_L_wake",
@@ -42272,7 +42771,7 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
     .filter((condition) => condition.retainedAcceptancePass !== true)
     .map((condition) => condition.id);
   return {
-    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v5",
+    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v6",
     claimLevel:
       "retained replay acceptance residual blueprint; no retained branch acceptance",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -42322,7 +42821,31 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       retainedEventDomainLiftTarget?.schema ?? null,
     retainedEventDomainLiftStatus:
       retainedEventDomainLiftTarget?.status ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    retainedEventDomainSelectorStatus:
+      retainedEventDomainSelector?.status ?? null,
+    retainedEventDomainSelectorSelectedRoute:
+      retainedEventDomainSelector?.selectedRoute ?? null,
+    retainedEventDomainSelectorCurrentProxyRouteCount:
+      retainedEventDomainSelector?.currentProxyRouteCount ?? null,
+    retainedEventDomainSelectorAcceptedRouteCount:
+      retainedEventDomainSelector?.acceptedRouteCount ?? null,
+    retainedEventDomainSelectorFirstRunnableRowCount:
+      retainedEventDomainSelector?.firstRunnableRowCount ?? null,
+    energyAngularMomentumClosureAuditSchema:
+      energyAngularMomentumClosureAudit?.schema ?? null,
+    energyAngularMomentumClosureStatus:
+      energyAngularMomentumClosureAudit?.status ?? null,
+    energyAngularMomentumSameClockIdentityPassCount:
+      energyAngularMomentumClosureAudit?.sameClockIdentityPassCount ?? null,
+    energyAngularMomentumTargetInertiaClosurePassCount:
+      energyAngularMomentumClosureAudit
+        ?.targetEffectiveInertiaClosurePassCount ?? null,
+    energyAngularMomentumHbarScaleCandidateCount:
+      energyAngularMomentumClosureAudit?.hbarScaleCandidateCount ?? null,
     sameRetainedEventOrPositiveWidthDomainPass:
+      retainedEventDomainSelector?.retainedSelectorAcceptancePass ??
       retainedEventDomainLiftTarget?.sameRetainedEventOrPositiveWidthDomainPass ??
       false,
     acceptedFullPointEventRulePass:
@@ -43367,7 +43890,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v25",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v28",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -43460,7 +43983,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v21",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v24",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -43468,6 +43991,7 @@ function createFrequencyTripletCandidateSetReview({
     legacyOrderDisposition:
       "O:M:I appears only as outer-normalized translation metadata; it is not the primary solver order.",
     comparisonAxisReview: createFrequencyTripletComparisonAxisReview(rows),
+    residualMatrixReview: createFrequencyTripletResidualMatrixReview(rows),
     rows,
     reviewFinding:
       "The old offset proxy ranks the role-assigned middle-hinge family first, but it is not a disposition rule for the raw equal-frequency row with optional I:M:O=(f,f,f) role map. Equal frequency is a separate energy-radius-phase candidate whose retained replay target is the general velocity-deforming tri-binary Noether braid branch state, with low-drift spherical-envelope, oblate-envelope, and flattened-limit rows only as projection views.",
@@ -43502,6 +44026,435 @@ function createFrequencyTripletComparisonAxisReview(rows) {
     })),
     retainedBranchClaim: false,
   };
+}
+
+function createFrequencyTripletResidualMatrixReview(rows) {
+  const matrixRows = rows.map(createFrequencyTripletResidualMatrixRow);
+  const retainedComparisonReadyRows = matrixRows.filter(
+    (row) => row.retainedComparisonReady === true
+  );
+  const strongestCurrentRows = matrixRows
+    .map((row) => ({
+      candidateKey: row.candidateKey,
+      reviewRole: row.reviewRole,
+      acceptedResidualCount: row.acceptedResidualCount,
+      currentProxyResidualCount: row.currentProxyResidualCount,
+      partialProxyResidualCount: row.partialProxyResidualCount,
+      missingResidualCount: row.missingResidualCount,
+      retainedComparisonReady: row.retainedComparisonReady,
+      nextBurden: row.nextBurden,
+    }))
+    .sort((left, right) => {
+      if (left.acceptedResidualCount !== right.acceptedResidualCount) {
+        return right.acceptedResidualCount - left.acceptedResidualCount;
+      }
+      if (left.currentProxyResidualCount !== right.currentProxyResidualCount) {
+        return right.currentProxyResidualCount - left.currentProxyResidualCount;
+      }
+      if (left.partialProxyResidualCount !== right.partialProxyResidualCount) {
+        return right.partialProxyResidualCount - left.partialProxyResidualCount;
+      }
+      return left.missingResidualCount - right.missingResidualCount;
+    });
+  return {
+    schema: "aaa-tri-binary-frequency-triplet-residual-matrix-review.v3",
+    claimLevel:
+      "retained residual-vector comparison matrix; current proxies only, not branch selection",
+    residualVector:
+      "R_3B=(r_rows,r_evt,r_P,r_rho,r_E,r_D,r_W,r_J)",
+    residualComponents: [
+      {
+        id: "r_rows",
+        meaning:
+          "same retained row-set identity for raw B_1:B_2:B_3 rows, role map, history rows, ledgers, and Noether sea record",
+      },
+      {
+        id: "r_evt",
+        meaning:
+          "one accepted retained point event or positive-width retained time domain",
+      },
+      {
+        id: "r_P",
+        meaning:
+          "branch return-period or locked-harmonic frequency certificate",
+      },
+      {
+        id: "r_rho",
+        meaning:
+          "retained radius/velocity/effective-lever-arm projection law",
+      },
+      {
+        id: "r_E",
+        meaning:
+          "retained branch energy/action stationarity and routing law",
+      },
+      {
+        id: "r_D",
+        meaning:
+          "retained plane-sector and phase-bundle discriminator",
+      },
+      {
+        id: "r_W",
+        meaning:
+          "phase-deformation, wake, recoil, or coupling weight balance",
+      },
+      {
+        id: "r_J",
+        meaning:
+          "same-event one-unit angular-momentum ledger with wake and coupling terms",
+      },
+    ],
+    fairComparisonRule:
+      "A candidate is retained-comparison-ready only when all residual components are accepted on the same retained row set and event/domain, or when a comparison explicitly declares a smaller common residual subset.",
+    rowCount: matrixRows.length,
+    retainedComparisonReadyCount: retainedComparisonReadyRows.length,
+    retainedComparisonReadyCandidateKeys: retainedComparisonReadyRows.map(
+      (row) => row.candidateKey
+    ),
+    strongestCurrentRows,
+    rows: matrixRows,
+    finding:
+      retainedComparisonReadyRows.length === 0
+        ? "no_frequency_triplet_family_has_retained_residual_vector_acceptance"
+        : "one_or_more_frequency_triplet_families_have_retained_residual_vector_acceptance",
+    retainedBranchClaim: false,
+  };
+}
+
+function createFrequencyTripletResidualMatrixRow(row) {
+  const residuals =
+    row.candidateKey === "equal-frequency-energy-radius"
+      ? createEqualFrequencyResidualMatrixResiduals(row)
+      : createGenericFrequencyCandidateResidualMatrixResiduals(row);
+  const residualValues = Object.values(residuals);
+  const acceptedResidualCount = residualValues.filter(
+    (residual) => residual.status === "accepted"
+  ).length;
+  const currentProxyResidualCount = residualValues.filter(
+    (residual) => residual.status === "current_proxy"
+  ).length;
+  const partialProxyResidualCount = residualValues.filter(
+    (residual) => residual.status === "partial_proxy"
+  ).length;
+  const missingResidualCount = residualValues.filter(
+    (residual) => residual.status === "missing"
+  ).length;
+  const retainedComparisonReady =
+    residualValues.length > 0 &&
+    residualValues.every((residual) => residual.status === "accepted");
+  return {
+    candidateKey: row.candidateKey,
+    reviewRole: row.reviewRole,
+    rawSearchRelation: row.rawSearchRelation ?? null,
+    roleAssignedRelation: row.roleAssignedRelation ?? null,
+    sampledCaseCount: row.sampledCaseCount ?? null,
+    sampledFamilyCount: row.sampledFamilyCount ?? null,
+    residuals,
+    acceptedResidualCount,
+    currentProxyResidualCount,
+    partialProxyResidualCount,
+    missingResidualCount,
+    retainedComparisonReady,
+    evidenceSummary:
+      retainedComparisonReady === true
+        ? "retained_residual_vector_accepted"
+        : currentProxyResidualCount > 0 || partialProxyResidualCount > 0
+          ? "current_or_partial_proxy_residuals_populated_retained_acceptance_missing"
+          : "retained_residual_vector_missing",
+    nextBurden:
+      row.nextRetainedBurden ??
+      "populate the retained residual vector on one retained row set before branch comparison",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyResidualMatrixResiduals(row) {
+  const packetRowCount = positiveNumberOrNull(
+    row.retainedFrequencyPhasePacketRowCount
+  );
+  const retainedRowSetProxyCount = positiveNumberOrNull(
+    row.retainedRowSetCurrentProxyEvidencePopulatedCount
+  );
+  const frequencyProxyCount = positiveNumberOrNull(
+    row.retainedFrequencyPhasePacketFrequencyCurrentProxyPassCount
+  );
+  const sectorProxyCount = positiveNumberOrNull(
+    row.retainedFrequencyPhasePacketPhaseSectorCurrentProxyPassCount
+  );
+  const eventSelectorProxyCount = positiveNumberOrNull(
+    row.retainedEventDomainSelectorCurrentProxyRouteCount
+  );
+  const eventSelectorAcceptedCount = positiveNumberOrNull(
+    row.retainedEventDomainSelectorAcceptedRouteCount
+  );
+  const energyAngularMomentumTargetInertiaClosureCount = positiveNumberOrNull(
+    row.energyAngularMomentumTargetInertiaClosurePassCount
+  );
+  const energyAngularMomentumHbarScaleCandidateCount = positiveNumberOrNull(
+    row.energyAngularMomentumHbarScaleCandidateCount
+  );
+  return {
+    r_rows: createResidualEvidence({
+      accepted: row.retainedRowSetIdentityPass === true,
+      currentProxy: retainedRowSetProxyCount !== null,
+      source: row.retainedRowSetScaffoldSchema,
+      blocker: "same_retained_row_set_identity",
+      note:
+        "S_eq scaffold is populated from current proxy subaudits, but retained row-set identity is not accepted.",
+    }),
+    r_evt: createResidualEvidence({
+      accepted:
+        row.sameRetainedEventOrPositiveWidthDomainPass === true ||
+        eventSelectorAcceptedCount !== null,
+      currentProxy:
+        eventSelectorProxyCount !== null ||
+        row.currentProxyPointRowsPopulated === true,
+      source:
+        row.retainedEventDomainSelectorSchema ??
+        row.retainedEventDomainLiftTargetSchema,
+      blocker: "same_retained_event_or_positive_width_domain",
+      note:
+        "S_eq has a retained event/domain route selector populated from current point-event proxy evidence, but no accepted retained point event or positive-width retained domain.",
+    }),
+    r_P: createResidualEvidence({
+      accepted: isFullPositiveCount(
+        row.retainedReturnPeriodCertificatePassCount,
+        packetRowCount
+      ),
+      currentProxy:
+        isFullPositiveCount(frequencyProxyCount, packetRowCount) ||
+        isFullPositiveCount(
+          row.priorityCurrentChartReturnPeriodPassCount,
+          packetRowCount
+        ),
+      partialProxy:
+        positiveNumberOrNull(row.priorityCurrentChartReturnPeriodPassCount) !==
+          null || frequencyProxyCount !== null,
+      source: row.returnPeriodFrequencyAuditSchema,
+      blocker: "branch_return_period_or_locked_harmonic_frequency_certificate",
+      note:
+        "The reduced chart recovers the common frequency, but no retained branch-history return period or locked harmonic is accepted.",
+    }),
+    r_rho: createResidualEvidence({
+      accepted: false,
+      currentProxy: isFullPositiveCount(
+        row.planarProjectionAgreementPassCount,
+        packetRowCount
+      ),
+      partialProxy:
+        positiveNumberOrNull(row.planarProjectionAgreementPassCount) !== null,
+      source: row.deformationContinuationAuditSchema,
+      blocker: "retained_energy_radius_effective_lever_arm_law",
+      note:
+        "Spherical, oblate, and flattened projection witnesses are current proxy evidence, not retained energy-radius stationarity.",
+    }),
+    r_E: createResidualEvidence({
+      accepted: false,
+      currentProxy: isFullPositiveCount(
+        energyAngularMomentumTargetInertiaClosureCount,
+        packetRowCount
+      ),
+      partialProxy:
+        row.energyAngularMomentumClosureAuditSchema !== null ||
+        row.actionLedgerAuditSchema !== null ||
+        positiveNumberOrNull(row.positiveEffectiveInertiaSolutionCount) !== null,
+      source:
+        row.energyAngularMomentumClosureAuditSchema ??
+        row.actionLedgerAuditSchema,
+      blocker: "retained_branch_energy_action_stationarity",
+      note:
+        "The same-clock J/E audit supplies an algebraic target-inertia closure candidate, but retained energy/action stationarity is missing.",
+    }),
+    r_D: createResidualEvidence({
+      accepted: isFullPositiveCount(
+        row.retainedPlaneSectorCertificatePassCount,
+        packetRowCount
+      ),
+      currentProxy:
+        isFullPositiveCount(sectorProxyCount, packetRowCount) ||
+        isFullPositiveCount(row.priorityCoplanarSectorPassCount, packetRowCount),
+      partialProxy:
+        sectorProxyCount !== null ||
+        positiveNumberOrNull(row.priorityCoplanarSectorPassCount) !== null,
+      source: row.planeSectorDiscriminatorAuditSchema,
+      blocker: "retained_plane_sector_phase_bundle_discriminator",
+      note:
+        "The current chart supplies coplanar Z3 sector proxy evidence; retained N_a, Theta, and D_plane are missing.",
+    }),
+    r_W: createResidualEvidence({
+      accepted: false,
+      partialProxy: isFullPositiveCount(
+        row.priorityPhaseOnlyBalancePassCount,
+        packetRowCount
+      ),
+      source: row.phaseDeformationBalanceAuditSchema,
+      blocker: "phase_deformation_wake_coupling_weight_balance",
+      note:
+        "Triadic 120 degrees balances the unit clock, but weighted phase/action balance is not closed.",
+    }),
+    r_J: createResidualEvidence({
+      accepted: false,
+      currentProxy: isFullPositiveCount(
+        energyAngularMomentumHbarScaleCandidateCount,
+        packetRowCount
+      ),
+      partialProxy:
+        row.energyAngularMomentumClosureAuditSchema !== null ||
+        isFullPositiveCount(row.unitInertiaInnerHalfPassCount, packetRowCount),
+      source:
+        row.energyAngularMomentumClosureAuditSchema ??
+        row.actionLedgerAuditSchema,
+      blocker: "same_event_one_unit_angular_momentum_ledger",
+      note:
+        "The same-clock hbar-scale candidate is populated under the target effective-inertia ledger, but the retained same-event angular-momentum ledger is missing.",
+    }),
+  };
+}
+
+function createGenericFrequencyCandidateResidualMatrixResiduals(row) {
+  const reducedPassCoverage = Number.isFinite(row.reducedPassCoverage)
+    ? row.reducedPassCoverage
+    : null;
+  const selfRootParityCoverage = Number.isFinite(
+    row.selfRootParityTargetCoverage
+  )
+    ? row.selfRootParityTargetCoverage
+    : null;
+  const phaseLockProxyCount = positiveNumberOrNull(
+    row.phaseLockSelfRootParityTargetPassCount
+  );
+  const frequencyRowsPopulated =
+    typeof row.frequencyEvidenceStatus === "string" &&
+    row.frequencyEvidenceStatus.includes("populated");
+  const frequencyRowsPartial =
+    frequencyRowsPopulated ||
+    (typeof row.frequencyEvidenceStatus === "string" &&
+      row.frequencyEvidenceStatus.includes("partial"));
+  const radiusRowsPopulated =
+    typeof row.radiusVelocityEvidenceStatus === "string" &&
+    row.radiusVelocityEvidenceStatus.includes("populated");
+  const radiusRowsPartial =
+    radiusRowsPopulated ||
+    (typeof row.radiusVelocityEvidenceStatus === "string" &&
+      row.radiusVelocityEvidenceStatus.includes("partial"));
+  const phaseRowsPopulated =
+    typeof row.phaseEvidenceStatus === "string" &&
+    (row.phaseEvidenceStatus.includes("populated") ||
+      row.phaseEvidenceStatus.includes("partial_phase"));
+  const phaseRowsPartial =
+    phaseRowsPopulated ||
+    (typeof row.phaseEvidenceStatus === "string" &&
+      row.phaseEvidenceStatus.includes("proxy"));
+  return {
+    r_rows: createResidualEvidence({
+      accepted: false,
+      currentProxy: reducedPassCoverage === 1,
+      partialProxy: reducedPassCoverage !== null && reducedPassCoverage > 0,
+      source: "reduced_branch_chart_projection",
+      blocker: "same_retained_row_set_identity",
+      note:
+        "Reduced rows are populated as proxy evidence; no retained row-set identity is accepted.",
+    }),
+    r_evt: createResidualEvidence({
+      accepted: false,
+      source: null,
+      blocker: "same_retained_event_or_positive_width_domain",
+      note:
+        "No retained point-event or positive-width domain selector is populated for this family.",
+    }),
+    r_P: createResidualEvidence({
+      accepted: false,
+      currentProxy: frequencyRowsPopulated,
+      partialProxy: frequencyRowsPartial,
+      source: row.frequencyEvidenceStatus ?? null,
+      blocker: "branch_return_period_or_locked_harmonic_frequency_certificate",
+      note:
+        "Frequency relation is a reduced family row; retained return-period or locked-harmonic evidence is missing.",
+    }),
+    r_rho: createResidualEvidence({
+      accepted: false,
+      currentProxy: radiusRowsPopulated,
+      partialProxy: radiusRowsPartial,
+      source: row.radiusVelocityEvidenceStatus ?? null,
+      blocker: "retained_energy_radius_effective_lever_arm_law",
+      note:
+        "Speed/span or radius-velocity proxy evidence is populated without retained energy-radius stationarity.",
+    }),
+    r_E: createResidualEvidence({
+      accepted: false,
+      source: null,
+      blocker: "retained_branch_energy_action_stationarity",
+      note:
+        "No retained branch energy/action stationarity row is populated for this family.",
+    }),
+    r_D: createResidualEvidence({
+      accepted: false,
+      currentProxy: false,
+      partialProxy: phaseRowsPartial,
+      source: row.phaseEvidenceStatus ?? null,
+      blocker: "retained_plane_sector_phase_bundle_discriminator",
+      note:
+        "Phase-lock proxy evidence is not a retained phase-bundle or plane-sector certificate.",
+    }),
+    r_W: createResidualEvidence({
+      accepted: false,
+      partialProxy: phaseLockProxyCount !== null,
+      source: row.phaseEvidenceStatus ?? null,
+      blocker: "phase_deformation_wake_coupling_weight_balance",
+      note:
+        "No retained phase-deformation, wake, recoil, or coupling weight balance is populated.",
+    }),
+    r_J: createResidualEvidence({
+      accepted: false,
+      partialProxy:
+        (selfRootParityCoverage !== null && selfRootParityCoverage > 0) ||
+        phaseLockProxyCount !== null,
+      source: "self_root_parity_index_proxy",
+      blocker: "same_event_one_unit_angular_momentum_ledger",
+      note:
+        "Self-root parity coverage is an index proxy, not a same-event angular-momentum ledger.",
+    }),
+  };
+}
+
+function createResidualEvidence({
+  accepted = false,
+  currentProxy = false,
+  partialProxy = false,
+  source = null,
+  blocker = null,
+  note = null,
+}) {
+  const status =
+    accepted === true
+      ? "accepted"
+      : currentProxy === true
+        ? "current_proxy"
+        : partialProxy === true
+          ? "partial_proxy"
+          : "missing";
+  return {
+    status,
+    accepted: accepted === true,
+    currentProxy: currentProxy === true,
+    partialProxy: partialProxy === true,
+    source,
+    blocker: status === "accepted" ? null : blocker,
+    note,
+  };
+}
+
+function positiveNumberOrNull(value) {
+  return Number.isFinite(value) && value > 0 ? value : null;
+}
+
+function isFullPositiveCount(count, total) {
+  return (
+    Number.isFinite(count) &&
+    Number.isFinite(total) &&
+    total > 0 &&
+    count >= total
+  );
 }
 
 function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit) {
@@ -43608,6 +44561,30 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     targetWeightedEffectiveInertiaExactLawCount:
       equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.effectiveInertiaLawScan
         ?.targetWeightedExactLawCount ?? null,
+    energyAngularMomentumClosureAuditSchema:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit?.schema ??
+      null,
+    energyAngularMomentumClosureStatus:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit?.status ??
+      null,
+    energyAngularMomentumSameClockIdentityPassCount:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.sameClockIdentityPassCount ?? null,
+    energyAngularMomentumTargetInertiaClosurePassCount:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.targetEffectiveInertiaClosurePassCount ?? null,
+    energyAngularMomentumWakeCouplingSlackFiniteCount:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.unitInertiaWakeCouplingSlackFiniteCount ?? null,
+    energyAngularMomentumHbarScaleCandidateCount:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.hbarScaleCandidateCount ?? null,
+    retainedEnergyStationarityPassCount:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.retainedEnergyStationarityPassCount ?? null,
+    retainedSameEventAngularMomentumPassCount:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.retainedSameEventAngularMomentumPassCount ?? null,
     phaseDeformationBalanceAuditSchema:
       equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit?.schema ?? null,
     phaseDeformationBalanceStatus:
@@ -43711,6 +44688,22 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     retainedEventDomainBlockingConditionIds:
       equalFrequencyEnergyRadiusAudit.retainedEventDomainLiftTarget
         ?.blockingConditionIds ?? null,
+    retainedEventDomainSelectorSchema:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector?.schema ?? null,
+    retainedEventDomainSelectorStatus:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector?.status ?? null,
+    retainedEventDomainSelectorSelectedRoute:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector?.selectedRoute ??
+      null,
+    retainedEventDomainSelectorCurrentProxyRouteCount:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector
+        ?.currentProxyRouteCount ?? null,
+    retainedEventDomainSelectorAcceptedRouteCount:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector
+        ?.acceptedRouteCount ?? null,
+    retainedEventDomainSelectorFirstRunnableRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector
+        ?.firstRunnableRowCount ?? null,
     firstRetainedPacketTemplateSchema:
       equalFrequencyEnergyRadiusAudit.firstRetainedPacketTemplate?.schema ?? null,
     firstRetainedPacketTemplateStatus:
@@ -44001,8 +44994,24 @@ function printSummary(report, absoluteOutputPath) {
         topPhaseProfile
           ? `topPhaseProfile=${topPhaseProfile.phaseProfileId}`
           : "topPhaseProfile=none",
-      ].join(" ")
+        ].join(" ")
     );
+    const energyAngularMomentumClosureAudit =
+      equalFrequencyAudit.energyAngularMomentumClosureAudit ?? null;
+    if (energyAngularMomentumClosureAudit) {
+      console.log(
+        [
+          "energy/angular ledger:",
+          energyAngularMomentumClosureAudit.status,
+          `sameClock=${energyAngularMomentumClosureAudit.sameClockIdentityPassCount}`,
+          `targetInertia=${energyAngularMomentumClosureAudit.targetEffectiveInertiaClosurePassCount}`,
+          `wakeSlack=${energyAngularMomentumClosureAudit.unitInertiaWakeCouplingSlackFiniteCount}`,
+          `hbarScale=${energyAngularMomentumClosureAudit.hbarScaleCandidateCount}`,
+          `retainedEnergy=${energyAngularMomentumClosureAudit.retainedEnergyStationarityPassCount}`,
+          `retainedJ=${energyAngularMomentumClosureAudit.retainedSameEventAngularMomentumPassCount}`,
+        ].join(" ")
+      );
+    }
     const phaseDeformationBalanceAudit =
       equalFrequencyAudit.phaseDeformationBalanceAudit ?? null;
     if (phaseDeformationBalanceAudit) {
@@ -44097,6 +45106,21 @@ function printSummary(report, absoluteOutputPath) {
         ].join(" ")
       );
     }
+    const retainedEventDomainSelector =
+      equalFrequencyAudit.retainedEventDomainSelector ?? null;
+    if (retainedEventDomainSelector) {
+      console.log(
+        [
+          "retained event/domain selector:",
+          retainedEventDomainSelector.status,
+          `route=${retainedEventDomainSelector.selectedRoute}`,
+          `rows=${retainedEventDomainSelector.firstRunnableRowCount}`,
+          `currentProxyRoutes=${retainedEventDomainSelector.currentProxyRouteCount}`,
+          `acceptedRoutes=${retainedEventDomainSelector.acceptedRouteCount}`,
+          `blocked=${retainedEventDomainSelector.blockingConditionIds.length}`,
+        ].join(" ")
+      );
+    }
     const firstRetainedPacketTemplate =
       equalFrequencyAudit.firstRetainedPacketTemplate ?? null;
     if (firstRetainedPacketTemplate) {
@@ -44141,6 +45165,29 @@ function printSummary(report, absoluteOutputPath) {
         ].join(" ")
       );
     }
+  }
+  const residualMatrixReview =
+    report.frequencyTripletSearch?.candidateSetReview?.residualMatrixReview ?? null;
+  if (residualMatrixReview) {
+    const strongestRow = residualMatrixReview.strongestCurrentRows?.[0] ?? null;
+    console.log(
+      [
+        "frequency residual matrix:",
+        residualMatrixReview.finding,
+        `ready=${residualMatrixReview.retainedComparisonReadyCount}`,
+        strongestRow ? `strongest=${strongestRow.candidateKey}` : "strongest=none",
+        strongestRow ? `accepted=${strongestRow.acceptedResidualCount}` : null,
+        strongestRow
+          ? `currentProxy=${strongestRow.currentProxyResidualCount}`
+          : null,
+        strongestRow
+          ? `partialProxy=${strongestRow.partialProxyResidualCount}`
+          : null,
+        strongestRow ? `missing=${strongestRow.missingResidualCount}` : null,
+      ]
+        .filter((part) => part !== null)
+        .join(" ")
+    );
   }
   for (const comparison of report.comparisons) {
     console.log(

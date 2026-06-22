@@ -82,10 +82,10 @@
     },
     {
       "id": "entropy_and_record_coarse_graining",
-      "title": "Entropy and Record Coarse-Graining",
+      "title": "Entropy",
       "radius": 2.688,
       "color": "#7a4b2a",
-      "labelTitle": "Entropy and Record Coarse-Graining",
+      "labelTitle": "Entropy",
       "labelBadge": "doc"
     },
     {

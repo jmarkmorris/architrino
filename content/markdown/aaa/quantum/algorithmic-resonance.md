@@ -1,4 +1,4 @@
-# Algorithmic Resonance and Shor's Algorithm
+# Algorithmic Resonance
 
 ## Macroscopic Assembly Coherence
 

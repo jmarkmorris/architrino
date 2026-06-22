@@ -1,6 +1,6 @@
 # Agency, Decision, and Decider Closure
 
-This detailed priority file supports [Quantum Closure](quantum-closure.md). It captures the theory opportunity in [Reality, Quantum Causality, and the Physical Observer](../../../content/markdown/aaa/quantum/reality-quantum-causality.md): the minimal bias-setting complex, or Decider, should become a concrete basin-control theorem target rather than a loose analogy.
+This detailed priority file supports [Quantum Closure](quantum-closure.md). It captures the theory opportunity in [Reality Quantum Causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md): the minimal bias-setting complex, or Decider, should become a concrete basin-control theorem target rather than a loose analogy.
 
 ## Core Opportunity
 

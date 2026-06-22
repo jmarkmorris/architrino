@@ -41,9 +41,9 @@
     },
     {
       "id": "collinear_breather",
-      "label": "1D Collinear Binary",
+      "label": "Collinear Breather",
       "color": "#7a5c2f",
-      "labelTitle": "1D Collinear Binary",
+      "labelTitle": "Collinear Breather",
       "labelBadge": "doc"
     },
     {

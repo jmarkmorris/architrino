@@ -98,7 +98,7 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 4 (Architrino):** The architrino is the sole primitive entity of $\mathbb{A}\mathbb{A}\mathbb{A}$: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level. The set of architrino identities is fixed. Particles, effective fields, clock behavior, and emergent spacetime phenomena arise from architrino configurations, wake intersections, and assembly dynamics rather than from additional fundamental substances.
 
-For the full primitive-entity page, see [Architrino](./architrino.md). For the receiving-law derivation, see [Master Equation](../dynamics/master-equation.md). For assembly emergence, see [Emergence](./emergence.md) and [Noether Braid](../noether-swarm/noether-swarm.md).
+For the full primitive-entity page, see [Architrino](./architrino.md). For the receiving-law derivation, see [Master Equation](../dynamics/master-equation.md). For assembly emergence, see [Emergence](./emergence-of-structure.md) and [Noether Braid](../noether-swarm/noether-swarm.md).
 
 ---
 

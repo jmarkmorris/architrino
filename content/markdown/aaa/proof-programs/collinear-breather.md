@@ -1,4 +1,4 @@
-# 1D Collinear Breather
+# Collinear Breather
 
 This chapter isolates the simplest reduced dynamical problem that can test a self-hit-assisted bounded-recapture mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
 

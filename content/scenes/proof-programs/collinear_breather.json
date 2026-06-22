@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "proof_programs__collinear_breather",
-    "title": "1D Collinear Binary (Reduced Model)",
+    "title": "Collinear Breather",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

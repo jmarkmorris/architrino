@@ -1,4 +1,4 @@
-# Entropy and Record Coarse-Graining
+# Entropy
 
 Entropy enters $\mathbb{A}\mathbb{A}\mathbb{A}$ as a record-coarse-graining concept. It is not a primitive substance, not a field in the Euclidean void, not the generator of absolute time, and not an independent gravitational mechanism. It is a functional of the histories a declared observer, apparatus, simulation packet, or effective description retains after the complete deterministic state has been projected into a finite record.
 

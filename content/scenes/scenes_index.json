@@ -1032,7 +1032,7 @@
     },
     {
       "id": "quantum__reality_causality_and_navigation",
-      "name": "Reality, Causality, and Navigation",
+      "name": "Reality Quantum Causality",
       "path": "content/scenes/quantum/reality_causality_and_navigation.json"
     },
     {
@@ -1327,7 +1327,7 @@
     },
     {
       "id": "dynamics__collinear_breather",
-      "name": "1D Collinear Binary (Reduced Model)",
+      "name": "Collinear Breather",
       "path": "content/scenes/proof-programs/collinear_breather.json"
     },
     {
@@ -1417,7 +1417,7 @@
     },
     {
       "id": "quantum__algorithmic_resonance",
-      "name": "Algorithmic Resonance and Shor's Algorithm",
+      "name": "Algorithmic Resonance",
       "path": "content/scenes/quantum/algorithmic_resonance.json"
     },
     {
@@ -1447,7 +1447,7 @@
     },
     {
       "id": "reactions__synchrotron_cascades",
-      "name": "Synchrotron Cascades",
+      "name": "Synchrotron",
       "path": "content/scenes/reactions/synchrotron_cascades.json"
     },
     {
@@ -1617,7 +1617,7 @@
     },
     {
       "id": "validation_action_energy__delay_dynamics_energy",
-      "name": "Constructive Energy for Delay Dynamics",
+      "name": "Delay Dynamics Energy",
       "path": "content/scenes/validation/delay_dynamics_energy.json"
     },
     {
@@ -1632,7 +1632,7 @@
     },
     {
       "id": "dynamics__entropy_and_record_coarse_graining",
-      "name": "Entropy and Record Coarse-Graining",
+      "name": "Entropy",
       "path": "content/scenes/dynamics/entropy_and_record_coarse_graining.json"
     },
     {

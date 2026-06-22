@@ -1,4 +1,4 @@
-# Constructive Energy for Delay Dynamics
+# Delay Dynamics Energy
 
 This chapter isolates the energy problem created by causal-delay dynamics. It is foundations-adjacent because it states what kind of energy object the substrate law is allowed to use before later chapters invoke conservation, no-runaway arguments, event ledgers, or Noether sea exchange.
 
@@ -215,7 +215,7 @@ An exact isolated conservation claim requires $\epsilon_E^{(\eta)}\to0$, $\Delta
 
 ## No-Double-Counting Rule
 
-The interaction contribution may be carried by $E_{\text{wake}}$, by an equivalent work-integral reconstruction, or by an explicitly retained near-field decomposition, but not by all of them at once. If a pairwise $U_{\mathrm{int}}$ term is used inside an assembly, the wake-energy term must omit the same near-field content. If a Noether sea update is retained inside $E_{\mathrm{sea},\Omega}$, it must not also appear as an outgoing event-ledger channel. The same rule is used by [Emergence](../../../foundations/emergence.md#transition-thresholds-and-event-ledgers) and [Energy](../../../dynamics/energy.md#energy-conservation-and-exchange).
+The interaction contribution may be carried by $E_{\text{wake}}$, by an equivalent work-integral reconstruction, or by an explicitly retained near-field decomposition, but not by all of them at once. If a pairwise $U_{\mathrm{int}}$ term is used inside an assembly, the wake-energy term must omit the same near-field content. If a Noether sea update is retained inside $E_{\mathrm{sea},\Omega}$, it must not also appear as an outgoing event-ledger channel. The same rule is used by [Emergence](../../../foundations/emergence-of-structure.md#transition-thresholds-and-event-ledgers) and [Energy](../../../dynamics/energy.md#energy-conservation-and-exchange).
 
 ## Promotion and Failure Conditions
 
@@ -233,4 +233,4 @@ The construction fails if conservation is recovered only by changing the energy 
 
 ## Downstream Use
 
-This chapter is the shared energy standard for [Master Equation](../../../dynamics/master-equation.md), [Effective Lagrangian](../../../dynamics/effective-lagrangian.md), [Energy](../../../dynamics/energy.md), [Binary Dynamics](../../../dynamics/binary-dynamics.md), and event-ledger uses in [Emergence](../../../foundations/emergence.md). The [two-body binary closure packet](../../../dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) must report $\epsilon_E^{(\eta)}(W;\mathfrak{B})$, $\Delta_{\mathrm{E,cross}}^{(\eta)}(W;\mathfrak{B})$, and the lower-bound entry on the same branch chart as its motion, branch-floor, stability, and frequency residuals. Existence and stability are not enough unless the accepted branch also carries a constructive energy ledger.
+This chapter is the shared energy standard for [Master Equation](../../../dynamics/master-equation.md), [Effective Lagrangian](../../../dynamics/effective-lagrangian.md), [Energy](../../../dynamics/energy.md), [Binary Dynamics](../../../dynamics/binary-dynamics.md), and event-ledger uses in [Emergence](../../../foundations/emergence-of-structure.md). The [two-body binary closure packet](../../../dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) must report $\epsilon_E^{(\eta)}(W;\mathfrak{B})$, $\Delta_{\mathrm{E,cross}}^{(\eta)}(W;\mathfrak{B})$, and the lower-bound entry on the same branch chart as its motion, branch-floor, stability, and frequency residuals. Existence and stability are not enough unless the accepted branch also carries a constructive energy ledger.

@@ -1,4 +1,4 @@
-# Reality, Causality, and Navigation
+# Reality Quantum Causality
 
 This chapter addresses the quantum branch at the level of ontology and epistemic navigation rather than formal operator mechanics. Its purpose is to separate absolute and operational descriptions cleanly enough that causality, effective randomness, and assembly-level decision language can be discussed without blurring microdynamics and observer-facing phenomenology.
 

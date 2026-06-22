@@ -101,11 +101,11 @@
       "sceneId": "quantum",
       "sceneName": "Quantum",
       "objects": {
-        "algorithmic_resonance": "Algorithmic Resonance and Shor's Algorithm",
+        "algorithmic_resonance": "Algorithmic Resonance",
         "measurement_ontology": "Measurement Ontology",
         "quantum_summary": "Quantum Summary",
         "quantum_statistics": "Fermi-Dirac & Bose-Einstein Statistics",
-        "reality_causality_and_navigation": "Reality, Causality, and Navigation",
+        "reality_causality_and_navigation": "Reality Quantum Causality",
         "wavefunction_ontology": "Wavefunction Ontology"
       }
     },
