@@ -414,7 +414,7 @@ $$
 
 on the declared record regions. This keeps basin-space measures and effective wavefunction measures in their proper domains.
 
-This is the Born-rule basin-measure ledger. It should stay distinct from the spin-statistics / exchange ledger in [Fermi-Dirac and Bose-Einstein Statistics](./quantum-statistics.md), which asks why effective states are antisymmetric or symmetric in the first place. Photon-channel squared-amplitude capture is a special measurement-channel bridge in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), not a replacement for the basin-measure derivation.
+This is the Born-rule basin-measure ledger. It should stay distinct from the spin-statistics / exchange ledger in [Fermi-Dirac and Bose-Einstein Statistics](./fermi-dirac-and-bose-einstein-statistics.md), which asks why effective states are antisymmetric or symmetric in the first place. Photon-channel squared-amplitude capture is a special measurement-channel bridge in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), not a replacement for the basin-measure derivation.
 
 Spin and Bell records add stricter handoffs. Spin-$\tfrac{1}{2}$ probabilities consume the lifted Stern-Gerlach apparatus basins in [Measurement Ontology](measurement-ontology.md#spin--discrete-outcome-measurements), not an abstract eigenlabel by itself. Bell-pair probabilities consume the full joint response law from pair provenance, with measurement-independence, no-signaling, and product-screening audits before the correlation curve may be treated as recovered.
 

@@ -263,7 +263,7 @@ Associated pair/Compton channels are included when they exceed the same contribu
 
 ## Shared Photon Event Record
 
-Use the same photon-channel event record here as in [Synchrotron Cascades](synchrotron.md) and [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md). A bremsstrahlung planar-mode event should record:
+Use the same photon-channel event record here as in [Synchrotron](synchrotron.md) and [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md). A bremsstrahlung planar-mode event should record:
 
 - incoming and outgoing charged assembly identity, momentum, and path-history provenance;
 - target assembly identity, recoil term, and coherent or resolved geometry regime;

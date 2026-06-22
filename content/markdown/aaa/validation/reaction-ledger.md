@@ -459,5 +459,5 @@ Radiative or photon-coupled channels also need the shared radiation event-record
 ## Validation Links
 
 - Weak-sector geometry and chirality closure remain tied to [Quantum Number Mapping](../assemblies/fermions/quantum-number-mapping.md), [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md), and [Weak-Mixing CKM](../philosophy-history/theory-bridges/weak-mixing-ckm.md).
-- Radiative and pair-production provenance should use [Synchrotron Cascades](../reactions/synchrotron.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), and [Reaction-Cosmology Provenance Ledger](reaction-cosmology-provenance-ledger.md).
+- Radiative and pair-production provenance should use [Synchrotron](../reactions/synchrotron.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), and [Reaction-Cosmology Provenance Ledger](reaction-cosmology-provenance-ledger.md).
 - Parameter closure belongs in [Parameter Ledger](parameter-ledger.md).

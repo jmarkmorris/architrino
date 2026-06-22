@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 178,
-      "sections": 1439
+      "sections": 1431
     }
   },
   "tocRoot": {
@@ -776,7 +776,7 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/foundations/emergence_of_structure.json",
-            "markdownPath": "content/markdown/aaa/foundations/emergence.md"
+            "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md"
           }
         ]
       },
@@ -1094,7 +1094,7 @@
               },
               {
                 "id": "validation_action_energy__delay_dynamics_energy",
-                "title": "Constructive Energy for Delay Dynamics",
+                "title": "Delay Dynamics Energy",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/validation/delay_dynamics_energy.json",
@@ -1344,7 +1344,7 @@
           },
           {
             "id": "dynamics__entropy_and_record_coarse_graining",
-            "title": "Entropy and Record Coarse-Graining",
+            "title": "Entropy",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/dynamics/entropy_and_record_coarse_graining.json",
@@ -2109,7 +2109,7 @@
               },
               {
                 "id": "proof_programs__collinear_breather",
-                "title": "1D Collinear Binary (Reduced Model)",
+                "title": "Collinear Breather",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/proof-programs/collinear_breather.json",
@@ -5877,7 +5877,7 @@
           },
           {
             "id": "reactions__synchrotron_cascades",
-            "title": "Synchrotron Cascades",
+            "title": "Synchrotron",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/reactions/synchrotron_cascades.json",
@@ -6066,7 +6066,7 @@
           },
           {
             "id": "quantum__reality_causality_and_navigation",
-            "title": "Reality, Causality, and Navigation",
+            "title": "Reality Quantum Causality",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/quantum/reality_causality_and_navigation.json",
@@ -6336,7 +6336,7 @@
           },
           {
             "id": "quantum__algorithmic_resonance",
-            "title": "Algorithmic Resonance and Shor's Algorithm",
+            "title": "Algorithmic Resonance",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/quantum/algorithmic_resonance.json",
@@ -6390,73 +6390,7 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/quantum/quantum_statistics.json",
-            "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Standard Observer-Level Roles",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
-                "markdownSection": "Standard Observer-Level Roles",
-                "sectionKey": "standard observer level roles",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Nested Shell Braid Geometry Basis",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
-                "markdownSection": "Nested Shell Braid Geometry Basis",
-                "sectionKey": "nested shell braid geometry basis",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Fermi-Dirac Regime: 3D Exclusion",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
-                "markdownSection": "Fermi-Dirac Regime: 3D Exclusion",
-                "sectionKey": "fermi dirac regime 3d exclusion",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Bose-Einstein Regime: 2D Coherence",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
-                "markdownSection": "Bose-Einstein Regime: 2D Coherence",
-                "sectionKey": "bose einstein regime 2d coherence",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The 3D-to-2D Transition",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
-                "markdownSection": "The 3D-to-2D Transition",
-                "sectionKey": "the 3d to 2d transition",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Effective Exchange-State Contract",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
-                "markdownSection": "Effective Exchange-State Contract",
-                "sectionKey": "effective exchange state contract",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Interfaces",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
-                "markdownSection": "Interfaces",
-                "sectionKey": "interfaces",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Closure Targets",
-                "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
-                "markdownSection": "Closure Targets",
-                "sectionKey": "closure targets",
-                "headingLevel": 2
-              }
-            ]
+            "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
           }
         ]
       },

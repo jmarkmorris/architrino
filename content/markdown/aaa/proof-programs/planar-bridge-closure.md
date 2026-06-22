@@ -12,7 +12,7 @@ The present chapter sits between four existing layers:
 
 1. the exact delayed equations in [Master Equation](../dynamics/master-equation.md),
 2. the topological branch formalism in [Causal Action Functional](../dynamics/causal-action-functional.md),
-3. the reduced return-map architecture in [1D Collinear Breather](./collinear-breather.md),
+3. the reduced return-map architecture in [Collinear Breather](./collinear-breather.md),
 4. the higher-dimensional program statement in [Master-Equation Breather Program](./master-equation-breather.md).
 
 The role of this chapter is narrower than the full breather program. It does not attempt immediate many-body closure. It focuses on the first planar binary regime in which line-order arguments fail, tangential escape becomes real, and branch topology must be controlled in tandem with radial recapture rather than in a separate later chapter.
@@ -314,7 +314,7 @@ If planar bridge closure fails, those higher-level chapters must become more con
 
 - [Master Equation](../dynamics/master-equation.md): exact delayed law, root equations, and Jacobian structure.
 - [Causal Action Functional](../dynamics/causal-action-functional.md): branch labels, coarea reduction, and the Jacobian-null bifurcation criterion.
-- [1D Collinear Breather](./collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
+- [Collinear Breather](./collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
 - [Master-Equation Breather Program](./master-equation-breather.md): global roadmap that this chapter now instantiates in the first planar regime.
 - [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
 - [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md): downstream interpretation of planar branch selection once the planar bridge is mathematically under control.

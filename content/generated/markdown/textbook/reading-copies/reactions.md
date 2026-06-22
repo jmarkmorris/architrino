@@ -387,7 +387,7 @@ If these are not maintained, standard QED/SM transport language is authoritative
 
 Radiation is the $\mathbb{A}\mathbb{A}\mathbb{A}$ workstream for energy shedding by assemblies. A radiative event is not defined merely by acceleration or by the presence of excess energy. It is the routed relaxation of a driven assembly or local Noether sea state into one or more allowed channels: photon output, medium excitation, recoil, residual internal energy, or reaction products. Photon output is described through planar-mode nucleation, while non-radiative channels remain explicit when the available energy does not lock into a stable photon assembly.
 
-The detailed channel pages remain [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), and [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md). Photon assembly ontology belongs in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), while channel vocabulary follows [Mode Taxonomy](../../../../markdown/aaa/reactions/mode-taxonomy.md). Event-level conservation uses [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), and cosmology-facing radiation provenance is tracked in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
+The detailed channel pages remain [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md), and [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md). Photon assembly ontology belongs in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), while channel vocabulary follows [Mode Taxonomy](../../../../markdown/aaa/reactions/mode-taxonomy.md). Event-level conservation uses [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), and cosmology-facing radiation provenance is tracked in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 
 This page is a foundation-up overview. It states the shared mechanism and the closure targets that individual channel pages must specialize. It does not by itself prove blackbody radiation, photon spin, atomic spectra, or QED cross sections.
 
@@ -1903,7 +1903,7 @@ Associated pair/Compton channels are included when they exceed the same contribu
 
 ### Shared Photon Event Record
 
-Use the same photon-channel event record here as in [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md) and [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md). A bremsstrahlung planar-mode event should record:
+Use the same photon-channel event record here as in [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md) and [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md). A bremsstrahlung planar-mode event should record:
 
 - incoming and outgoing charged assembly identity, momentum, and path-history provenance;
 - target assembly identity, recoil term, and coherent or resolved geometry regime;
@@ -2090,7 +2090,7 @@ Event-level provenance for cosmology-facing use is tracked in [Reaction-Cosmolog
 
 In standard plasma and astrophysical modeling, bremsstrahlung is treated as a local radiative process inside a given source geometry and transport model. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ program, the same reaction physics is retained at network level, while interpretation changes at background level: bremsstrahlung constrains how assembly transport, compression, and outflow map to observable photon continua.
 
-## Synchrotron Cascades
+## Synchrotron
 
 Synchrotron cascades are coupled electromagnetic processes in which relativistic charged particles radiate synchrotron photons in magnetic fields, and those photons then trigger secondary channels such as pair production and further radiation. The cascade redistributes injected particle energy into broadband non-thermal emission, with spectral shape set by magnetic field strength, source compactness, transport geometry, and escape times.
 

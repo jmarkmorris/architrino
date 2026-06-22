@@ -2,7 +2,7 @@
 
 This ledger connects local reaction provenance to cosmology-facing radiation, thermalization, and source-history claims. It is the bridge record for channels where synchrotron cascades, bremsstrahlung, pair production, BBN photon loading, and CMB thermalization all depend on the same underlying bookkeeping.
 
-Use it with [Reaction Ledger](reaction-ledger.md), [Radiation](../reactions/radiation.md#radiation-event-record-schema), [Synchrotron Cascades](../reactions/synchrotron.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), [BBN Constraints](../cosmology/BBN-constraints.md), and [CMB](../cosmology/CMB.md).
+Use it with [Reaction Ledger](reaction-ledger.md), [Radiation](../reactions/radiation.md#radiation-event-record-schema), [Synchrotron](../reactions/synchrotron.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), [BBN Constraints](../cosmology/BBN-constraints.md), and [CMB](../cosmology/CMB.md).
 
 ## Purpose
 
@@ -76,8 +76,8 @@ These gates are not separate ontologies. They are bookkeeping filters that preve
 | Channel | Source document | Provenance target | Current status |
 | --- | --- | --- | --- |
 | Bremsstrahlung planar-mode nucleation | [Bremsstrahlung](../reactions/bremsstrahlung.md) | Record electron assembly energy loss, target recoil, photon assembly output, and medium excitation | Provisional map |
-| Synchrotron planar-mode nucleation | [Synchrotron Cascades](../reactions/synchrotron.md) | Derive photon output from curved charged-assembly transport in anisotropic Noether sea states | Provisional map |
-| Breit-Wheeler pair channel | [Synchrotron Cascades](../reactions/synchrotron.md) | Record incoming photon assemblies, recruited Noether braid content, and final $e^+e^-$ assemblies | Derivation target |
+| Synchrotron planar-mode nucleation | [Synchrotron](../reactions/synchrotron.md) | Derive photon output from curved charged-assembly transport in anisotropic Noether sea states | Provisional map |
+| Breit-Wheeler pair channel | [Synchrotron](../reactions/synchrotron.md) | Record incoming photon assemblies, recruited Noether braid content, and final $e^+e^-$ assemblies | Derivation target |
 | BBN photon bath | [BBN Constraints](../cosmology/BBN-constraints.md) | Show that pair, bremsstrahlung, synchrotron, and related channels maintain effective $\eta\approx6\times10^{-10}$ during the bottleneck window | Closure target |
 | CMB thermal spectrum | [CMB](../cosmology/CMB.md) | Show that source emission, transport, and thermalization produce a near-blackbody photon bath with allowed anisotropy and damping structure | Closure target |
 | Redshift and clock handoff | [Expansion Mechanism](../cosmology/expansion-mechanism.md) | Map photon transport through $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, and clock-rate comparison | Effective summary with open derivation |

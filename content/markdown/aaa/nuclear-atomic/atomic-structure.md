@@ -6,7 +6,7 @@ Its natural companion notes are [Nucleon Structure](nucleon-structure.md), [Nucl
 
 The note remains provisional. It should be read as a compact orientation to the intended architecture of atomic structure rather than as a theorem-backed final chapter.
 
-Angular momentum and spin enter this chapter only through downstream closure targets. Atomic orbital labels, spin-orbit coupling, hyperfine structure, Pauli filling, and exclusion-volume packing should inherit the single-assembly angular-momentum ledger and ordered-frame spinor proof from [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), together with the exchange-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md). They should not be used here as independent explanations of angular momentum, spin, or Pauli behavior.
+Angular momentum and spin enter this chapter only through downstream closure targets. Atomic orbital labels, spin-orbit coupling, hyperfine structure, Pauli filling, and exclusion-volume packing should inherit the single-assembly angular-momentum ledger and ordered-frame spinor proof from [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), together with the exchange-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md). They should not be used here as independent explanations of angular momentum, spin, or Pauli behavior.
 
 ## Multi-Body Assembly Structure
 

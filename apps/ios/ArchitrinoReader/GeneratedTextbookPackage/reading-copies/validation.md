@@ -1354,14 +1354,14 @@ Radiative or photon-coupled channels also need the shared radiation event-record
 ### Validation Links
 
 - Weak-sector geometry and chirality closure remain tied to [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Weak-Mixing CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).
-- Radiative and pair-production provenance should use [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), and [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
+- Radiative and pair-production provenance should use [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), and [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 - Parameter closure belongs in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
 
 ## Reaction-Cosmology Provenance Ledger
 
 This ledger connects local reaction provenance to cosmology-facing radiation, thermalization, and source-history claims. It is the bridge record for channels where synchrotron cascades, bremsstrahlung, pair production, BBN photon loading, and CMB thermalization all depend on the same underlying bookkeeping.
 
-Use it with [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md), and [CMB](../../../../markdown/aaa/cosmology/CMB.md).
+Use it with [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md), and [CMB](../../../../markdown/aaa/cosmology/CMB.md).
 
 ### Purpose
 
@@ -1435,8 +1435,8 @@ These gates are not separate ontologies. They are bookkeeping filters that preve
 | Channel | Source document | Provenance target | Current status |
 | --- | --- | --- | --- |
 | Bremsstrahlung planar-mode nucleation | [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md) | Record electron assembly energy loss, target recoil, photon assembly output, and medium excitation | Provisional map |
-| Synchrotron planar-mode nucleation | [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md) | Derive photon output from curved charged-assembly transport in anisotropic Noether sea states | Provisional map |
-| Breit-Wheeler pair channel | [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md) | Record incoming photon assemblies, recruited Noether braid content, and final $e^+e^-$ assemblies | Derivation target |
+| Synchrotron planar-mode nucleation | [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md) | Derive photon output from curved charged-assembly transport in anisotropic Noether sea states | Provisional map |
+| Breit-Wheeler pair channel | [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md) | Record incoming photon assemblies, recruited Noether braid content, and final $e^+e^-$ assemblies | Derivation target |
 | BBN photon bath | [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md) | Show that pair, bremsstrahlung, synchrotron, and related channels maintain effective $\eta\approx6\times10^{-10}$ during the bottleneck window | Closure target |
 | CMB thermal spectrum | [CMB](../../../../markdown/aaa/cosmology/CMB.md) | Show that source emission, transport, and thermalization produce a near-blackbody photon bath with allowed anisotropy and damping structure | Closure target |
 | Redshift and clock handoff | [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md) | Map photon transport through $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, and clock-rate comparison | Effective summary with open derivation |

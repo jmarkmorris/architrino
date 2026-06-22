@@ -100,7 +100,7 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 4 (Architrino):** The architrino is the sole primitive entity of $\mathbb{A}\mathbb{A}\mathbb{A}$: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level. The set of architrino identities is fixed. Particles, effective fields, clock behavior, and emergent spacetime phenomena arise from architrino configurations, wake intersections, and assembly dynamics rather than from additional fundamental substances.
 
-For the full primitive-entity page, see [Architrino](../../../../markdown/aaa/foundations/architrino.md). For the receiving-law derivation, see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). For assembly emergence, see [Emergence](../../../../markdown/aaa/foundations/emergence.md) and [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
+For the full primitive-entity page, see [Architrino](../../../../markdown/aaa/foundations/architrino.md). For the receiving-law derivation, see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). For assembly emergence, see [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md) and [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
 
 ---
 
@@ -732,7 +732,7 @@ The symbol $\kappa_{\mathrm{hit}}>0$ is not a universal coupling constant and no
 
 Topologically, a generic loss of this floor is a codimension-one fold of the causal-root manifold: two simple roots can merge into one degenerate root, or a simple root can be born at a caustic boundary. The floor is therefore not merely an analytic small-denominator guard. It certifies that the branch count and causal-root topology are stable on the retained chart; when it fails, the event must be treated as a root bifurcation, reconnection, or chart transition.
 
-This is one instance of a broader foundation-stack discipline: **non-degeneracy floors** convert exact failure sets into graded admissibility certificates. The root Jacobian floor here, the basin-separatrix floor in [Emergence](../../../../markdown/aaa/foundations/emergence.md#context-as-constraint-on-basin-selection), and the basis-conditioning floor in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#reconstruction-existence-lemma) serve the same role for different objects. They are certificate margins attached to declared charts, not universal constants.
+This is one instance of a broader foundation-stack discipline: **non-degeneracy floors** convert exact failure sets into graded admissibility certificates. The root Jacobian floor here, the basin-separatrix floor in [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md#context-as-constraint-on-basin-selection), and the basis-conditioning floor in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#reconstruction-existence-lemma) serve the same role for different objects. They are certificate margins attached to declared charts, not universal constants.
 
 The interaction law is built entirely from path-history contributions at times $t' < t$ that satisfy the causal-root condition; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This delayed-only support condition is a law-level causal asymmetry, not merely an initial-condition effect.
 

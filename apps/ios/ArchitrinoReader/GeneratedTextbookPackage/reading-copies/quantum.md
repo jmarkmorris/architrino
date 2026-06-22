@@ -28,7 +28,7 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 - **Spin, measurement, and Bell ledger:** [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md), and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md) own the lifted Stern-Gerlach response, pair-provenance joint law, measurement-independence, no-signaling, and product-screening audits. The current Bell no-go is sharper than a gate: two independent one-wing threshold-pullback kernels over a setting-independent source measure imply the CHSH bound, and exact singlet recovery requires $\Delta_{\mathrm{prod}}\ge(\sqrt2-1)/8$ in the per-cell residual normalization. Bell closure therefore requires a derived non-product joint response or non-restartable provenance compression, while spinor, exchange, weak, and fermion-metric consumers must share the same retained spinor-label pullback record.
 - **Photon Gate A/B/C ledger:** [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface) owns the photon-channel theorem scaffold, while [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md#photon-closure-gates) records the Gate A/B/C acceptance filters. Gate B is the quantum-facing bridge where planar-pair capture must recover Malus' law and the native squared-amplitude rule without replacing the broader Born-rule basin-measure program; it inherits the spin and helicity ledger from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and the source-depletion/recoil/wake/handoff event residual from [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md). Photon helicity is now an event-window projection of that same balance, with error controlled by $\|\mathbf B_{\gamma}^{0}\|/\hbar$. Gate A and Gate C constrain the same photon branch through kinematics, optics, transition vertices, Bose-Einstein occupation behavior, and validated QED limits.
 
-## Reality, Causality, and Navigation
+## Reality Quantum Causality
 
 This chapter addresses the quantum branch at the level of ontology and epistemic navigation rather than formal operator mechanics. Its purpose is to separate absolute and operational descriptions cleanly enough that causality, effective randomness, and assembly-level decision language can be discussed without blurring microdynamics and observer-facing phenomenology.
 
@@ -2014,7 +2014,7 @@ for real record-forming interactions, even if that time becomes extremely short 
 - [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md)
 - [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
 
-## Algorithmic Resonance and Shor's Algorithm
+## Algorithmic Resonance
 
 ### Macroscopic Assembly Coherence
 

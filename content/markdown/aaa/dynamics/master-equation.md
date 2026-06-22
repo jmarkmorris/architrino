@@ -3500,7 +3500,7 @@ $$
 \sum_{\alpha\in\mathcal{E}_{\mathrm{esc}}(W)}
 E_\alpha^{\mathrm{emit}}.
 $$
-This does not add a second energy channel. It identifies the endpoint and boundary term of the delayed action with the causal-wake history that exits the retained window without a retained receiver. The same boundary object is the entropy-arrow theorem target in [Entropy and Record Coarse-Graining](entropy.md#second-law-and-same-record-monotonicity): energy flux, wake escapement, and observer-window entropy production are three projections of one finite-window path-history defect.
+This does not add a second energy channel. It identifies the endpoint and boundary term of the delayed action with the causal-wake history that exits the retained window without a retained receiver. The same boundary object is the entropy-arrow theorem target in [Entropy](entropy.md#second-law-and-same-record-monotonicity): energy flux, wake escapement, and observer-window entropy production are three projections of one finite-window path-history defect.
 
 Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $t'=t$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $t_0<t$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
 

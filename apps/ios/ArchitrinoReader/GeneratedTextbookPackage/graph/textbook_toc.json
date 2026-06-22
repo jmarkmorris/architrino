@@ -776,7 +776,7 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/foundations/emergence_of_structure.json",
-            "markdownPath": "content/markdown/aaa/foundations/emergence.md"
+            "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md"
           }
         ]
       },
@@ -1094,7 +1094,7 @@
               },
               {
                 "id": "validation_action_energy__delay_dynamics_energy",
-                "title": "Constructive Energy for Delay Dynamics",
+                "title": "Delay Dynamics Energy",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/validation/delay_dynamics_energy.json",
@@ -1344,7 +1344,7 @@
           },
           {
             "id": "dynamics__entropy_and_record_coarse_graining",
-            "title": "Entropy and Record Coarse-Graining",
+            "title": "Entropy",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/dynamics/entropy_and_record_coarse_graining.json",
@@ -2109,7 +2109,7 @@
               },
               {
                 "id": "proof_programs__collinear_breather",
-                "title": "1D Collinear Binary (Reduced Model)",
+                "title": "Collinear Breather",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/proof-programs/collinear_breather.json",
@@ -5877,7 +5877,7 @@
           },
           {
             "id": "reactions__synchrotron_cascades",
-            "title": "Synchrotron Cascades",
+            "title": "Synchrotron",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/reactions/synchrotron_cascades.json",
@@ -6066,7 +6066,7 @@
           },
           {
             "id": "quantum__reality_causality_and_navigation",
-            "title": "Reality, Causality, and Navigation",
+            "title": "Reality Quantum Causality",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/quantum/reality_causality_and_navigation.json",
@@ -6336,7 +6336,7 @@
           },
           {
             "id": "quantum__algorithmic_resonance",
-            "title": "Algorithmic Resonance and Shor's Algorithm",
+            "title": "Algorithmic Resonance",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/quantum/algorithmic_resonance.json",

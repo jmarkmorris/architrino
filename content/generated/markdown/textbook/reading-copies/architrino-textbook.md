@@ -102,7 +102,7 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 4 (Architrino):** The architrino is the sole primitive entity of $\mathbb{A}\mathbb{A}\mathbb{A}$: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level. The set of architrino identities is fixed. Particles, effective fields, clock behavior, and emergent spacetime phenomena arise from architrino configurations, wake intersections, and assembly dynamics rather than from additional fundamental substances.
 
-For the full primitive-entity page, see [Architrino](../../../../markdown/aaa/foundations/architrino.md). For the receiving-law derivation, see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). For assembly emergence, see [Emergence](../../../../markdown/aaa/foundations/emergence.md) and [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
+For the full primitive-entity page, see [Architrino](../../../../markdown/aaa/foundations/architrino.md). For the receiving-law derivation, see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). For assembly emergence, see [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md) and [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
 
 ---
 
@@ -734,7 +734,7 @@ The symbol $\kappa_{\mathrm{hit}}>0$ is not a universal coupling constant and no
 
 Topologically, a generic loss of this floor is a codimension-one fold of the causal-root manifold: two simple roots can merge into one degenerate root, or a simple root can be born at a caustic boundary. The floor is therefore not merely an analytic small-denominator guard. It certifies that the branch count and causal-root topology are stable on the retained chart; when it fails, the event must be treated as a root bifurcation, reconnection, or chart transition.
 
-This is one instance of a broader foundation-stack discipline: **non-degeneracy floors** convert exact failure sets into graded admissibility certificates. The root Jacobian floor here, the basin-separatrix floor in [Emergence](../../../../markdown/aaa/foundations/emergence.md#context-as-constraint-on-basin-selection), and the basis-conditioning floor in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#reconstruction-existence-lemma) serve the same role for different objects. They are certificate margins attached to declared charts, not universal constants.
+This is one instance of a broader foundation-stack discipline: **non-degeneracy floors** convert exact failure sets into graded admissibility certificates. The root Jacobian floor here, the basin-separatrix floor in [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md#context-as-constraint-on-basin-selection), and the basis-conditioning floor in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#reconstruction-existence-lemma) serve the same role for different objects. They are certificate margins attached to declared charts, not universal constants.
 
 The interaction law is built entirely from path-history contributions at times $t' < t$ that satisfy the causal-root condition; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This delayed-only support condition is a law-level causal asymmetry, not merely an initial-condition effect.
 
@@ -6201,7 +6201,7 @@ $$
 \sum_{\alpha\in\mathcal{E}_{\mathrm{esc}}(W)}
 E_\alpha^{\mathrm{emit}}.
 $$
-This does not add a second energy channel. It identifies the endpoint and boundary term of the delayed action with the causal-wake history that exits the retained window without a retained receiver. The same boundary object is the entropy-arrow theorem target in [Entropy and Record Coarse-Graining](../../../../markdown/aaa/dynamics/entropy.md#second-law-and-same-record-monotonicity): energy flux, wake escapement, and observer-window entropy production are three projections of one finite-window path-history defect.
+This does not add a second energy channel. It identifies the endpoint and boundary term of the delayed action with the causal-wake history that exits the retained window without a retained receiver. The same boundary object is the entropy-arrow theorem target in [Entropy](../../../../markdown/aaa/dynamics/entropy.md#second-law-and-same-record-monotonicity): energy flux, wake escapement, and observer-window entropy production are three projections of one finite-window path-history defect.
 
 Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $t'=t$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $t_0<t$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
 
@@ -6598,7 +6598,7 @@ where $\mathbf{R}_i^{(\eta)}$ is the Euler residual of the same action and $\mat
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with architrinos and the causal wakes they generate. Architrinos carry primitive kinetic energy through motion and supply potential-energy bookkeeping through delayed interactions; the wake itself is not a standalone substance or vacuum reservoir. A **wake** is the source-dependent causal-isochron record of an architrino's emissions: motion changes its geometry, branch timing, and received potential, not the fact that an emission record exists. The term `wake` is the architrino-native description of what appears as a field at the effective level.
 
-This chapter underwrites [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and the constructive delay-energy standard in [Constructive Energy for Delay Dynamics](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
+This chapter underwrites [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
 
 All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Forces and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and Jacobian-weighted magnitude, on this fixed background. We work in units with causal-wake propagation speed $c_f=1$.
 
@@ -6854,7 +6854,7 @@ $$
 
 This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_t$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.
 
-In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the force row and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Constructive Energy for Delay Dynamics](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
+In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the force row and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
 
 The finite-$\eta$ pathology theorem target in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#finite-eta-pathology-quarantine-theorem-target) uses this conservation status in a restricted way. The no-runaway conclusion is available only when the action-derived $E_{\text{wake}}^{(\eta)}$, or a compatible realized-trajectory reconstruction, has a declared lower bound on the same admissible branch chart. If the lower bound is absent, the run is not promoted as a closed solution; it is routed to the continuation boundary where collapse, missing wake-history bookkeeping, regulator dependence, or endpoint leakage must be resolved.
 
@@ -7082,7 +7082,7 @@ dt
 $$
 where $[x]_+=\max(x,0)$ and $\mathcal D_{\mathcal Q}$ is the declared coherent-to-incoherent transfer rate, including viscous, thermal, wake-boundary, or Noether sea response channels retained by the packet. Passing this gate means only that the selected coarse record has not made entropy decrease after unresolved boundary leakage is accounted for. It does not prove a fundamental stochastic substrate.
 
-For the consolidated mapping from legacy entropy formulas into $\mathbb{A}\mathbb{A}\mathbb{A}$ record projections, see [Entropy and Record Coarse-Graining](../../../../markdown/aaa/dynamics/entropy.md).
+For the consolidated mapping from legacy entropy formulas into $\mathbb{A}\mathbb{A}\mathbb{A}$ record projections, see [Entropy](../../../../markdown/aaa/dynamics/entropy.md).
 
 In near-equilibrium comparison runs, response and fluctuation must also come from one record. The fluctuation-dissipation map may be invoked only after that same retained record supplies an admissible temperature channel. Concretely, the record $\theta_W$ that supplies $\chi_{AB}''$ and $S_{AB}^{\mathrm{meas}}$ must pass $\mathcal R_{S,W}$ and must yield consistent temperatures from at least two independent observable pairs:
 $$
@@ -8519,7 +8519,7 @@ Four self-hits in one maneuver (storyboard):
 4) Crossings: As the boat’s curved path cuts across the expanding circles, it re-enters first the outermost of those recent ridges, then the next three in sequence. With a steady arc and timing, four distinct ridge crossings occur in quick succession—four self-hits. The shove at each crossing points straight away from the center of that ring (the boat’s earlier position).
 5) Tuning intuition: to make four hits likely, use a fast straight run $(\lvert v\rvert>c_w)$ to lay multiple rings, then a wide-radius turn whose chord length is comparable to the ring spacing. Tighter loops and longer super-speed runs increase the chance of multiple crossings; without exceeding $c_w$, this multi-hit pattern cannot occur.
 
-#### Constructive Energy for Delay Dynamics
+#### Delay Dynamics Energy
 
 This chapter isolates the energy problem created by causal-delay dynamics. It is foundations-adjacent because it states what kind of energy object the substrate law is allowed to use before later chapters invoke conservation, no-runaway arguments, event ledgers, or Noether sea exchange.
 
@@ -8736,7 +8736,7 @@ An exact isolated conservation claim requires $\epsilon_E^{(\eta)}\to0$, $\Delta
 
 ##### No-Double-Counting Rule
 
-The interaction contribution may be carried by $E_{\text{wake}}$, by an equivalent work-integral reconstruction, or by an explicitly retained near-field decomposition, but not by all of them at once. If a pairwise $U_{\mathrm{int}}$ term is used inside an assembly, the wake-energy term must omit the same near-field content. If a Noether sea update is retained inside $E_{\mathrm{sea},\Omega}$, it must not also appear as an outgoing event-ledger channel. The same rule is used by [Emergence](../../../../markdown/aaa/foundations/emergence.md#transition-thresholds-and-event-ledgers) and [Energy](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange).
+The interaction contribution may be carried by $E_{\text{wake}}$, by an equivalent work-integral reconstruction, or by an explicitly retained near-field decomposition, but not by all of them at once. If a pairwise $U_{\mathrm{int}}$ term is used inside an assembly, the wake-energy term must omit the same near-field content. If a Noether sea update is retained inside $E_{\mathrm{sea},\Omega}$, it must not also appear as an outgoing event-ledger channel. The same rule is used by [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md#transition-thresholds-and-event-ledgers) and [Energy](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange).
 
 ##### Promotion and Failure Conditions
 
@@ -8754,7 +8754,7 @@ The construction fails if conservation is recovered only by changing the energy 
 
 ##### Downstream Use
 
-This chapter is the shared energy standard for [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md), [Energy](../../../../markdown/aaa/dynamics/energy.md), [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), and event-ledger uses in [Emergence](../../../../markdown/aaa/foundations/emergence.md). The [two-body binary closure packet](../../../../markdown/aaa/dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) must report $\epsilon_E^{(\eta)}(W;\mathfrak{B})$, $\Delta_{\mathrm{E,cross}}^{(\eta)}(W;\mathfrak{B})$, and the lower-bound entry on the same branch chart as its motion, branch-floor, stability, and frequency residuals. Existence and stability are not enough unless the accepted branch also carries a constructive energy ledger.
+This chapter is the shared energy standard for [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md), [Energy](../../../../markdown/aaa/dynamics/energy.md), [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), and event-ledger uses in [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md). The [two-body binary closure packet](../../../../markdown/aaa/dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) must report $\epsilon_E^{(\eta)}(W;\mathfrak{B})$, $\Delta_{\mathrm{E,cross}}^{(\eta)}(W;\mathfrak{B})$, and the lower-bound entry on the same branch chart as its motion, branch-floor, stability, and frequency residuals. Existence and stability are not enough unless the accepted branch also carries a constructive energy ledger.
 
 #### Informational Ambiguity
 
@@ -9329,7 +9329,7 @@ for every promoted observable and active branch ledger. Otherwise the result rem
 
 Plain language: The ideal model gives instantaneous kicks; a tiny thickening turns them into brief, smooth nudges that ordinary ODE solvers can integrate. Large-system or zero-width claims have to be earned by convergence, not assumed from the finite calculation.
 
-### Entropy and Record Coarse-Graining
+### Entropy
 
 Entropy enters $\mathbb{A}\mathbb{A}\mathbb{A}$ as a record-coarse-graining concept. It is not a primitive substance, not a field in the Euclidean void, not the generator of absolute time, and not an independent gravitational mechanism. It is a functional of the histories a declared observer, apparatus, simulation packet, or effective description retains after the complete deterministic state has been projected into a finite record.
 
@@ -23869,7 +23869,7 @@ This is the correct point from which to resume work on the broader dynamics stac
 - [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
 - [energy.md](../../../../markdown/aaa/dynamics/energy.md)
 
-#### 1D Collinear Binary (Reduced Model)
+#### Collinear Breather
 
 This chapter isolates the simplest reduced dynamical problem that can test a self-hit-assisted bounded-recapture mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
 
@@ -36374,7 +36374,7 @@ The present chapter sits between four existing layers:
 
 1. the exact delayed equations in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md),
 2. the topological branch formalism in [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md),
-3. the reduced return-map architecture in [1D Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md),
+3. the reduced return-map architecture in [Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md),
 4. the higher-dimensional program statement in [Master-Equation Breather Program](../../../../markdown/aaa/proof-programs/master-equation-breather.md).
 
 The role of this chapter is narrower than the full breather program. It does not attempt immediate many-body closure. It focuses on the first planar binary regime in which line-order arguments fail, tangential escape becomes real, and branch topology must be controlled in tandem with radial recapture rather than in a separate later chapter.
@@ -36676,7 +36676,7 @@ If planar bridge closure fails, those higher-level chapters must become more con
 
 - [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md): exact delayed law, root equations, and Jacobian structure.
 - [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md): branch labels, coarea reduction, and the Jacobian-null bifurcation criterion.
-- [1D Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
+- [Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
 - [Master-Equation Breather Program](../../../../markdown/aaa/proof-programs/master-equation-breather.md): global roadmap that this chapter now instantiates in the first planar regime.
 - [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
 - [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md): downstream interpretation of planar branch selection once the planar bridge is mathematically under control.
@@ -56095,7 +56095,7 @@ If these are not maintained, standard QED/SM transport language is authoritative
 
 Radiation is the $\mathbb{A}\mathbb{A}\mathbb{A}$ workstream for energy shedding by assemblies. A radiative event is not defined merely by acceleration or by the presence of excess energy. It is the routed relaxation of a driven assembly or local Noether sea state into one or more allowed channels: photon output, medium excitation, recoil, residual internal energy, or reaction products. Photon output is described through planar-mode nucleation, while non-radiative channels remain explicit when the available energy does not lock into a stable photon assembly.
 
-The detailed channel pages remain [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), and [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md). Photon assembly ontology belongs in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), while channel vocabulary follows [Mode Taxonomy](../../../../markdown/aaa/reactions/mode-taxonomy.md). Event-level conservation uses [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), and cosmology-facing radiation provenance is tracked in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
+The detailed channel pages remain [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md), and [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md). Photon assembly ontology belongs in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), while channel vocabulary follows [Mode Taxonomy](../../../../markdown/aaa/reactions/mode-taxonomy.md). Event-level conservation uses [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), and cosmology-facing radiation provenance is tracked in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 
 This page is a foundation-up overview. It states the shared mechanism and the closure targets that individual channel pages must specialize. It does not by itself prove blackbody radiation, photon spin, atomic spectra, or QED cross sections.
 
@@ -57611,7 +57611,7 @@ Associated pair/Compton channels are included when they exceed the same contribu
 
 #### Shared Photon Event Record
 
-Use the same photon-channel event record here as in [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md) and [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md). A bremsstrahlung planar-mode event should record:
+Use the same photon-channel event record here as in [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md) and [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md). A bremsstrahlung planar-mode event should record:
 
 - incoming and outgoing charged assembly identity, momentum, and path-history provenance;
 - target assembly identity, recoil term, and coherent or resolved geometry regime;
@@ -57798,7 +57798,7 @@ Event-level provenance for cosmology-facing use is tracked in [Reaction-Cosmolog
 
 In standard plasma and astrophysical modeling, bremsstrahlung is treated as a local radiative process inside a given source geometry and transport model. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ program, the same reaction physics is retained at network level, while interpretation changes at background level: bremsstrahlung constrains how assembly transport, compression, and outflow map to observable photon continua.
 
-### Synchrotron Cascades
+### Synchrotron
 
 Synchrotron cascades are coupled electromagnetic processes in which relativistic charged particles radiate synchrotron photons in magnetic fields, and those photons then trigger secondary channels such as pair production and further radiation. The cascade redistributes injected particle energy into broadband non-thermal emission, with spectral shape set by magnetic field strength, source compactness, transport geometry, and escape times.
 
@@ -58340,7 +58340,7 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 - **Spin, measurement, and Bell ledger:** [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md), and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md) own the lifted Stern-Gerlach response, pair-provenance joint law, measurement-independence, no-signaling, and product-screening audits. The current Bell no-go is sharper than a gate: two independent one-wing threshold-pullback kernels over a setting-independent source measure imply the CHSH bound, and exact singlet recovery requires $\Delta_{\mathrm{prod}}\ge(\sqrt2-1)/8$ in the per-cell residual normalization. Bell closure therefore requires a derived non-product joint response or non-restartable provenance compression, while spinor, exchange, weak, and fermion-metric consumers must share the same retained spinor-label pullback record.
 - **Photon Gate A/B/C ledger:** [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface) owns the photon-channel theorem scaffold, while [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md#photon-closure-gates) records the Gate A/B/C acceptance filters. Gate B is the quantum-facing bridge where planar-pair capture must recover Malus' law and the native squared-amplitude rule without replacing the broader Born-rule basin-measure program; it inherits the spin and helicity ledger from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and the source-depletion/recoil/wake/handoff event residual from [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md). Photon helicity is now an event-window projection of that same balance, with error controlled by $\|\mathbf B_{\gamma}^{0}\|/\hbar$. Gate A and Gate C constrain the same photon branch through kinematics, optics, transition vertices, Bose-Einstein occupation behavior, and validated QED limits.
 
-### Reality, Causality, and Navigation
+### Reality Quantum Causality
 
 This chapter addresses the quantum branch at the level of ontology and epistemic navigation rather than formal operator mechanics. Its purpose is to separate absolute and operational descriptions cleanly enough that causality, effective randomness, and assembly-level decision language can be discussed without blurring microdynamics and observer-facing phenomenology.
 
@@ -60326,7 +60326,7 @@ for real record-forming interactions, even if that time becomes extremely short 
 - [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md)
 - [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
 
-### Algorithmic Resonance and Shor's Algorithm
+### Algorithmic Resonance
 
 #### Macroscopic Assembly Coherence
 
@@ -67259,14 +67259,14 @@ Radiative or photon-coupled channels also need the shared radiation event-record
 #### Validation Links
 
 - Weak-sector geometry and chirality closure remain tied to [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Weak-Mixing CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).
-- Radiative and pair-production provenance should use [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), and [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
+- Radiative and pair-production provenance should use [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), and [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 - Parameter closure belongs in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
 
 ### Reaction-Cosmology Provenance Ledger
 
 This ledger connects local reaction provenance to cosmology-facing radiation, thermalization, and source-history claims. It is the bridge record for channels where synchrotron cascades, bremsstrahlung, pair production, BBN photon loading, and CMB thermalization all depend on the same underlying bookkeeping.
 
-Use it with [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md), and [CMB](../../../../markdown/aaa/cosmology/CMB.md).
+Use it with [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md), and [CMB](../../../../markdown/aaa/cosmology/CMB.md).
 
 #### Purpose
 
@@ -67340,8 +67340,8 @@ These gates are not separate ontologies. They are bookkeeping filters that preve
 | Channel | Source document | Provenance target | Current status |
 | --- | --- | --- | --- |
 | Bremsstrahlung planar-mode nucleation | [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md) | Record electron assembly energy loss, target recoil, photon assembly output, and medium excitation | Provisional map |
-| Synchrotron planar-mode nucleation | [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md) | Derive photon output from curved charged-assembly transport in anisotropic Noether sea states | Provisional map |
-| Breit-Wheeler pair channel | [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md) | Record incoming photon assemblies, recruited Noether braid content, and final $e^+e^-$ assemblies | Derivation target |
+| Synchrotron planar-mode nucleation | [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md) | Derive photon output from curved charged-assembly transport in anisotropic Noether sea states | Provisional map |
+| Breit-Wheeler pair channel | [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md) | Record incoming photon assemblies, recruited Noether braid content, and final $e^+e^-$ assemblies | Derivation target |
 | BBN photon bath | [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md) | Show that pair, bremsstrahlung, synchrotron, and related channels maintain effective $\eta\approx6\times10^{-10}$ during the bottleneck window | Closure target |
 | CMB thermal spectrum | [CMB](../../../../markdown/aaa/cosmology/CMB.md) | Show that source emission, transport, and thermalization produce a near-blackbody photon bath with allowed anisotropy and damping structure | Closure target |
 | Redshift and clock handoff | [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md) | Map photon transport through $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, and clock-rate comparison | Effective summary with open derivation |
@@ -84144,7 +84144,7 @@ This taxonomy is a bridge, not a proof. It tells the corpus where to look for th
 
 Downstream chapters should use this bridge as a dictionary, not as a completed proof. The nucleon spin budget in [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md), the gluon vector-channel account in [Gluons and the Strong Force: Geometric Origins](../../../../markdown/aaa/assemblies/bosons/gluons.md), the rho/Delta spin and Pauli discussions in [Transient Hadrons: Mesons and Δ Resonances](../../../../markdown/aaa/assemblies/mesons/mesons.md), the exchange-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/quantum-statistics.md), atomic and molecular spin/exclusion language in [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), and [Molecular Geometry](../../../../markdown/aaa/nuclear-atomic/molecular-geometry.md), and photon/vector-mode language in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), [Mode Taxonomy](../../../../markdown/aaa/reactions/mode-taxonomy.md), and [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) all inherit the open single-assembly angular-momentum ledger and ordered-frame spinor closure target.
 
-Second-ring consumers inherit the same limitation. Photon records in [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), and [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), weak helicity selection in [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md), Bell/CHSH response claims in [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md), Cesium hyperfine clock claims in [Architrino and SI Base Units](../../../../markdown/aaa/validation/architrino-si-base-units.md), and boundary-helicity proxy language in [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md) may state observer-level labels and validation targets. They should not use those labels as independent derivations of spin, Pauli exclusion, spin-statistics closure, photon polarization, vector-mode spin, weak handedness, spin-measurement response, Bell correlations, or hyperfine spin coupling. The common discipline is same-record consumption: a downstream claim may use the spinor, helicity, or weak-handedness label only from the branch record that also carries the relevant angular-momentum, apparatus, event-balance, or exposure residuals.
+Second-ring consumers inherit the same limitation. Photon records in [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), and [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md), weak helicity selection in [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md), Bell/CHSH response claims in [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md), Cesium hyperfine clock claims in [Architrino and SI Base Units](../../../../markdown/aaa/validation/architrino-si-base-units.md), and boundary-helicity proxy language in [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md) may state observer-level labels and validation targets. They should not use those labels as independent derivations of spin, Pauli exclusion, spin-statistics closure, photon polarization, vector-mode spin, weak handedness, spin-measurement response, Bell correlations, or hyperfine spin coupling. The common discipline is same-record consumption: a downstream claim may use the spinor, helicity, or weak-handedness label only from the branch record that also carries the relevant angular-momentum, apparatus, event-balance, or exposure residuals.
 
 ###### Helicity and Vector Modes
 
@@ -92817,7 +92817,7 @@ The long-term relevance of this subject is as a **permanent methodological domai
 
 ### Agency and Internal Causation
 
-This document defines how agency language is used in $\mathbb{A}\mathbb{A}\mathbb{A}$ without adding a separate agency substance or a law-breaking freedom. The detailed quantum-mechanical context remains in [Reality, Quantum, and Causality](../../../../markdown/aaa/quantum/reality-quantum-causality.md); this page isolates the philosophical and dynamical interpretation.
+This document defines how agency language is used in $\mathbb{A}\mathbb{A}\mathbb{A}$ without adding a separate agency substance or a law-breaking freedom. The detailed quantum-mechanical context remains in [Reality Quantum Causality](../../../../markdown/aaa/quantum/reality-quantum-causality.md); this page isolates the philosophical and dynamical interpretation.
 
 It also belongs with [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), [Philosophy of Science](../../../../markdown/aaa/philosophy-history/philosophy-of-science.md), and [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md).
 
@@ -92827,7 +92827,7 @@ The central distinction is not between caused and uncaused behavior. Every admis
 
 An externally determined system behaves like a fixed-threshold detector in the relevant context. A simple atom in a laser beam may absorb or fail to absorb according to its state and the incident field, but the example does not by itself exhibit a rich internal control architecture that changes its future responsiveness. The causal chain is still lawful, but most of the explanatory weight lies in the externally supplied condition and the fixed response rule.
 
-An internally causal system has state-dependent responsiveness. The He-Rb-He example discussed in [Reality, Quantum, and Causality](../../../../markdown/aaa/quantum/reality-quantum-causality.md) can be read this way: the assembly may sit in a damped `Ignore Mode` or in a high-sensitivity `Leverage Mode`, and the current mode depends on recent history plus structural feedback. These names are mode labels for a proposed Switch mechanism, not independent ontology.
+An internally causal system has state-dependent responsiveness. The He-Rb-He example discussed in [Reality Quantum Causality](../../../../markdown/aaa/quantum/reality-quantum-causality.md) can be read this way: the assembly may sit in a damped `Ignore Mode` or in a high-sensitivity `Leverage Mode`, and the current mode depends on recent history plus structural feedback. These names are mode labels for a proposed Switch mechanism, not independent ontology.
 
 From the outside, this can look like choice. In the theory-native description, it is attractor selection through internal configuration, path history, and incoming perturbation.
 

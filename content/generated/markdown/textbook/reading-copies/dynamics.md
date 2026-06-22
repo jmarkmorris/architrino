@@ -3499,7 +3499,7 @@ $$
 \sum_{\alpha\in\mathcal{E}_{\mathrm{esc}}(W)}
 E_\alpha^{\mathrm{emit}}.
 $$
-This does not add a second energy channel. It identifies the endpoint and boundary term of the delayed action with the causal-wake history that exits the retained window without a retained receiver. The same boundary object is the entropy-arrow theorem target in [Entropy and Record Coarse-Graining](../../../../markdown/aaa/dynamics/entropy.md#second-law-and-same-record-monotonicity): energy flux, wake escapement, and observer-window entropy production are three projections of one finite-window path-history defect.
+This does not add a second energy channel. It identifies the endpoint and boundary term of the delayed action with the causal-wake history that exits the retained window without a retained receiver. The same boundary object is the entropy-arrow theorem target in [Entropy](../../../../markdown/aaa/dynamics/entropy.md#second-law-and-same-record-monotonicity): energy flux, wake escapement, and observer-window entropy production are three projections of one finite-window path-history defect.
 
 Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $t'=t$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $t_0<t$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
 
@@ -3896,7 +3896,7 @@ where $\mathbf{R}_i^{(\eta)}$ is the Euler residual of the same action and $\mat
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with architrinos and the causal wakes they generate. Architrinos carry primitive kinetic energy through motion and supply potential-energy bookkeeping through delayed interactions; the wake itself is not a standalone substance or vacuum reservoir. A **wake** is the source-dependent causal-isochron record of an architrino's emissions: motion changes its geometry, branch timing, and received potential, not the fact that an emission record exists. The term `wake` is the architrino-native description of what appears as a field at the effective level.
 
-This chapter underwrites [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and the constructive delay-energy standard in [Constructive Energy for Delay Dynamics](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
+This chapter underwrites [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
 
 All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Forces and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and Jacobian-weighted magnitude, on this fixed background. We work in units with causal-wake propagation speed $c_f=1$.
 
@@ -4152,7 +4152,7 @@ $$
 
 This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_t$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.
 
-In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the force row and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Constructive Energy for Delay Dynamics](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
+In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the force row and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
 
 The finite-$\eta$ pathology theorem target in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#finite-eta-pathology-quarantine-theorem-target) uses this conservation status in a restricted way. The no-runaway conclusion is available only when the action-derived $E_{\text{wake}}^{(\eta)}$, or a compatible realized-trajectory reconstruction, has a declared lower bound on the same admissible branch chart. If the lower bound is absent, the run is not promoted as a closed solution; it is routed to the continuation boundary where collapse, missing wake-history bookkeeping, regulator dependence, or endpoint leakage must be resolved.
 
@@ -4380,7 +4380,7 @@ dt
 $$
 where $[x]_+=\max(x,0)$ and $\mathcal D_{\mathcal Q}$ is the declared coherent-to-incoherent transfer rate, including viscous, thermal, wake-boundary, or Noether sea response channels retained by the packet. Passing this gate means only that the selected coarse record has not made entropy decrease after unresolved boundary leakage is accounted for. It does not prove a fundamental stochastic substrate.
 
-For the consolidated mapping from legacy entropy formulas into $\mathbb{A}\mathbb{A}\mathbb{A}$ record projections, see [Entropy and Record Coarse-Graining](../../../../markdown/aaa/dynamics/entropy.md).
+For the consolidated mapping from legacy entropy formulas into $\mathbb{A}\mathbb{A}\mathbb{A}$ record projections, see [Entropy](../../../../markdown/aaa/dynamics/entropy.md).
 
 In near-equilibrium comparison runs, response and fluctuation must also come from one record. The fluctuation-dissipation map may be invoked only after that same retained record supplies an admissible temperature channel. Concretely, the record $\theta_W$ that supplies $\chi_{AB}''$ and $S_{AB}^{\mathrm{meas}}$ must pass $\mathcal R_{S,W}$ and must yield consistent temperatures from at least two independent observable pairs:
 $$
@@ -5817,7 +5817,7 @@ Four self-hits in one maneuver (storyboard):
 4) Crossings: As the boat’s curved path cuts across the expanding circles, it re-enters first the outermost of those recent ridges, then the next three in sequence. With a steady arc and timing, four distinct ridge crossings occur in quick succession—four self-hits. The shove at each crossing points straight away from the center of that ring (the boat’s earlier position).
 5) Tuning intuition: to make four hits likely, use a fast straight run $(\lvert v\rvert>c_w)$ to lay multiple rings, then a wide-radius turn whose chord length is comparable to the ring spacing. Tighter loops and longer super-speed runs increase the chance of multiple crossings; without exceeding $c_w$, this multi-hit pattern cannot occur.
 
-### Constructive Energy for Delay Dynamics
+### Delay Dynamics Energy
 
 This chapter isolates the energy problem created by causal-delay dynamics. It is foundations-adjacent because it states what kind of energy object the substrate law is allowed to use before later chapters invoke conservation, no-runaway arguments, event ledgers, or Noether sea exchange.
 
@@ -6034,7 +6034,7 @@ An exact isolated conservation claim requires $\epsilon_E^{(\eta)}\to0$, $\Delta
 
 #### No-Double-Counting Rule
 
-The interaction contribution may be carried by $E_{\text{wake}}$, by an equivalent work-integral reconstruction, or by an explicitly retained near-field decomposition, but not by all of them at once. If a pairwise $U_{\mathrm{int}}$ term is used inside an assembly, the wake-energy term must omit the same near-field content. If a Noether sea update is retained inside $E_{\mathrm{sea},\Omega}$, it must not also appear as an outgoing event-ledger channel. The same rule is used by [Emergence](../../../../markdown/aaa/foundations/emergence.md#transition-thresholds-and-event-ledgers) and [Energy](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange).
+The interaction contribution may be carried by $E_{\text{wake}}$, by an equivalent work-integral reconstruction, or by an explicitly retained near-field decomposition, but not by all of them at once. If a pairwise $U_{\mathrm{int}}$ term is used inside an assembly, the wake-energy term must omit the same near-field content. If a Noether sea update is retained inside $E_{\mathrm{sea},\Omega}$, it must not also appear as an outgoing event-ledger channel. The same rule is used by [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md#transition-thresholds-and-event-ledgers) and [Energy](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange).
 
 #### Promotion and Failure Conditions
 
@@ -6052,7 +6052,7 @@ The construction fails if conservation is recovered only by changing the energy 
 
 #### Downstream Use
 
-This chapter is the shared energy standard for [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md), [Energy](../../../../markdown/aaa/dynamics/energy.md), [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), and event-ledger uses in [Emergence](../../../../markdown/aaa/foundations/emergence.md). The [two-body binary closure packet](../../../../markdown/aaa/dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) must report $\epsilon_E^{(\eta)}(W;\mathfrak{B})$, $\Delta_{\mathrm{E,cross}}^{(\eta)}(W;\mathfrak{B})$, and the lower-bound entry on the same branch chart as its motion, branch-floor, stability, and frequency residuals. Existence and stability are not enough unless the accepted branch also carries a constructive energy ledger.
+This chapter is the shared energy standard for [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md), [Energy](../../../../markdown/aaa/dynamics/energy.md), [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), and event-ledger uses in [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md). The [two-body binary closure packet](../../../../markdown/aaa/dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) must report $\epsilon_E^{(\eta)}(W;\mathfrak{B})$, $\Delta_{\mathrm{E,cross}}^{(\eta)}(W;\mathfrak{B})$, and the lower-bound entry on the same branch chart as its motion, branch-floor, stability, and frequency residuals. Existence and stability are not enough unless the accepted branch also carries a constructive energy ledger.
 
 ### Informational Ambiguity
 
@@ -6627,7 +6627,7 @@ for every promoted observable and active branch ledger. Otherwise the result rem
 
 Plain language: The ideal model gives instantaneous kicks; a tiny thickening turns them into brief, smooth nudges that ordinary ODE solvers can integrate. Large-system or zero-width claims have to be earned by convergence, not assumed from the finite calculation.
 
-## Entropy and Record Coarse-Graining
+## Entropy
 
 Entropy enters $\mathbb{A}\mathbb{A}\mathbb{A}$ as a record-coarse-graining concept. It is not a primitive substance, not a field in the Euclidean void, not the generator of absolute time, and not an independent gravitational mechanism. It is a functional of the histories a declared observer, apparatus, simulation packet, or effective description retains after the complete deterministic state has been projected into a finite record.
 
@@ -21167,7 +21167,7 @@ This is the correct point from which to resume work on the broader dynamics stac
 - [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
 - [energy.md](../../../../markdown/aaa/dynamics/energy.md)
 
-### 1D Collinear Binary (Reduced Model)
+### Collinear Breather
 
 This chapter isolates the simplest reduced dynamical problem that can test a self-hit-assisted bounded-recapture mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
 
@@ -33672,7 +33672,7 @@ The present chapter sits between four existing layers:
 
 1. the exact delayed equations in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md),
 2. the topological branch formalism in [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md),
-3. the reduced return-map architecture in [1D Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md),
+3. the reduced return-map architecture in [Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md),
 4. the higher-dimensional program statement in [Master-Equation Breather Program](../../../../markdown/aaa/proof-programs/master-equation-breather.md).
 
 The role of this chapter is narrower than the full breather program. It does not attempt immediate many-body closure. It focuses on the first planar binary regime in which line-order arguments fail, tangential escape becomes real, and branch topology must be controlled in tandem with radial recapture rather than in a separate later chapter.
@@ -33974,7 +33974,7 @@ If planar bridge closure fails, those higher-level chapters must become more con
 
 - [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md): exact delayed law, root equations, and Jacobian structure.
 - [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md): branch labels, coarea reduction, and the Jacobian-null bifurcation criterion.
-- [1D Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
+- [Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
 - [Master-Equation Breather Program](../../../../markdown/aaa/proof-programs/master-equation-breather.md): global roadmap that this chapter now instantiates in the first planar regime.
 - [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
 - [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md): downstream interpretation of planar branch selection once the planar bridge is mathematically under control.
