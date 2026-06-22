@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v33",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v34",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v33 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v34 reports.",
   };
 }
 
@@ -39780,6 +39780,10 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       rhoOmegaDeformationSliceAudit,
       fieldSpeedHingeSliceSelectionFunctionalAudit,
     });
+  const wakeCouplingTransferTargetAudit =
+    createEqualFrequencyWakeCouplingTransferTargetAudit({
+      sliceEnergyActionIndependenceAudit,
+    });
   const actionLedgerAudit =
     createEqualFrequencyActionLedgerAudit(priorityCaseSummaries);
   const energyAngularMomentumClosureAudit =
@@ -39851,7 +39855,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v32",
+    schema: "aaa-equal-frequency-energy-radius-audit.v33",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -39883,6 +39887,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     fieldSpeedHingeSliceSelectorAudit,
     fieldSpeedHingeSliceSelectionFunctionalAudit,
     sliceEnergyActionIndependenceAudit,
+    wakeCouplingTransferTargetAudit,
     actionLedgerAudit,
     energyAngularMomentumClosureAudit,
     phaseDeformationBalanceAudit,
@@ -39913,6 +39918,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       "energy_law_for_effective_lever_arm_speed_relation",
       "same_event_angular_momentum_ledger",
       "accepted_action_scale_or_sigma_hbar_row",
+      "wake_coupling_middle_to_outer_transfer_law",
       "branch_return_period_or_locked_harmonic_frequency_certificate",
       "retained_binary_to_binary_phase_lock",
       "phase_deformation_weight_balance",
@@ -41271,6 +41277,244 @@ function createEqualFrequencySliceEnergyActionIndependenceRow({ row, sliceIds })
     slices,
     retainedBranchClaim: false,
   };
+}
+
+function createEqualFrequencyWakeCouplingTransferTargetAudit({
+  sliceEnergyActionIndependenceAudit,
+}) {
+  const sourceRows = sliceEnergyActionIndependenceAudit?.rows ?? [];
+  const targetFractions =
+    sliceEnergyActionIndependenceAudit?.targetFourSubstepFractions ??
+    normalizeRoleWeights(FOUR_SUBSTEP_ACTION_WEIGHTS);
+  const hingeFunctionalMinimizerSliceIds =
+    sliceEnergyActionIndependenceAudit?.hingeFunctionalMinimizerSliceIds ?? [];
+  const unitInnerHalfSelectedSliceIds =
+    sliceEnergyActionIndependenceAudit?.unitInnerHalfSelectedSliceIds ?? [];
+  const selectedTransferSliceIds = unitInnerHalfSelectedSliceIds.filter((sliceId) =>
+    hingeFunctionalMinimizerSliceIds.includes(sliceId)
+  );
+  const rows = sourceRows.map((row) =>
+    createEqualFrequencyWakeCouplingTransferTargetRow({
+      row,
+      targetFractions,
+      selectedTransferSliceIds,
+    })
+  );
+  const selectedTransferEntries = rows.flatMap((row) =>
+    selectedTransferSliceIds
+      .map((sliceId) => row.slices[sliceId])
+      .filter(Boolean)
+  );
+  const selectedTransferSignature =
+    selectedTransferEntries[0]?.transferFractionsNeededByRole ?? null;
+  const selectedTransferStableAcrossRows =
+    selectedTransferEntries.length > 0 &&
+    selectedTransferEntries.every((entry) =>
+      transferFractionsMatch(
+        entry.transferFractionsNeededByRole,
+        selectedTransferSignature
+      )
+    );
+  const middleToOuterOnlyPass =
+    selectedTransferEntries.length > 0 &&
+    selectedTransferEntries.every(
+      (entry) => entry.middleToOuterOnlyTransferPass === true
+    );
+  const selectedFiniteBalancedTransferPass =
+    selectedTransferEntries.length > 0 &&
+    selectedTransferEntries.every(
+      (entry) => entry.finiteBalancedTransferPass === true
+    );
+  const selectedTransferFractionStatsByRole = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      createFiniteStats(
+        selectedTransferEntries.map(
+          (entry) => entry.transferFractionsNeededByRole[role]
+        )
+      ),
+    ])
+  );
+  const selectedTransferAngularMomentumStatsByRole = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      createFiniteStats(
+        selectedTransferEntries.map(
+          (entry) => entry.transferAngularMomentumWeightsNeededByRole[role]
+        )
+      ),
+    ])
+  );
+  return {
+    schema: "aaa-equal-frequency-wake-coupling-transfer-target-audit.v1",
+    claimLevel:
+      "current wake/coupling angular-momentum transfer target; not retained wake law or same-event angular-momentum closure",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    sourceSliceEnergyActionIndependenceAuditSchema:
+      sliceEnergyActionIndependenceAudit?.schema ?? null,
+    auditedCaseCount: rows.length,
+    targetFourSubstepWeights: { ...FOUR_SUBSTEP_ACTION_WEIGHTS },
+    targetFourSubstepFractions: targetFractions,
+    hingeFunctionalMinimizerSliceIds,
+    unitInnerHalfSelectedSliceIds,
+    selectedTransferSliceIds,
+    selectedTransferEntryCount: selectedTransferEntries.length,
+    selectedTransferSignature,
+    selectedTransferFractionStatsByRole,
+    selectedTransferAngularMomentumStatsByRole,
+    selectedFiniteBalancedTransferPass,
+    selectedTransferStableAcrossRows,
+    middleToOuterOnlyPass,
+    retainedWakeCouplingTransferAcceptedCount: 0,
+    rows,
+    status:
+      selectedFiniteBalancedTransferPass === true &&
+      middleToOuterOnlyPass === true &&
+      selectedTransferStableAcrossRows === true
+        ? "unit_inertia_hinge_slices_require_stable_middle_to_outer_transfer_retained_wake_coupling_law_missing"
+        : selectedFiniteBalancedTransferPass === true
+          ? "finite_transfer_target_populated_not_middle_to_outer_selector"
+          : rows.length > 0
+            ? "wake_coupling_transfer_target_populated_transfer_unresolved"
+            : "wake_coupling_transfer_target_no_priority_rows",
+    interpretation:
+      "On the hinge-selected equal-frequency slices, the unit-inertia proxy already closes the inner half-action burden. The remaining 2:1:1 miss is a signed transfer target: middle must shed and outer must receive the same normalized angular-momentum fraction, while the inner transfer is zero. This makes the next retained burden a concrete wake/coupling transfer law on S_eq rather than a generic effective-inertia placeholder.",
+    retainedReplayBurden:
+      "Derive the signed middle-to-outer angular-momentum transfer from retained wake, coupling, recoil, or branch-energy rows on the same retained event or positive-width retained domain. The current audit only states the transfer target implied by the reduced slice action fractions.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyWakeCouplingTransferTargetRow({
+  row,
+  targetFractions,
+  selectedTransferSliceIds,
+}) {
+  const slices = Object.fromEntries(
+    Object.entries(row.slices ?? {}).map(([sliceId, slice]) => [
+      sliceId,
+      createWakeCouplingTransferSliceTarget({
+        sliceId,
+        slice,
+        targetFractions,
+        selectedForTransferTarget: selectedTransferSliceIds.includes(sliceId),
+      }),
+    ])
+  );
+  return {
+    rowId: `S_eq-wake-coupling-transfer-target-f${row.f}`,
+    retainedRowSetId: "S_eq",
+    sourceRowId: row.rowId,
+    caseId: row.caseId,
+    f: row.f,
+    phaseProfileId: row.phaseProfileId,
+    commonOmega: row.commonOmega,
+    slices,
+    retainedWakeCouplingTransferAccepted: false,
+    retainedBranchClaim: false,
+  };
+}
+
+function createWakeCouplingTransferSliceTarget({
+  sliceId,
+  slice,
+  targetFractions,
+  selectedForTransferTarget,
+}) {
+  const unitLedger = slice?.unitInertiaActionLedger ?? {};
+  const unitFractions = unitLedger.actionFractions ?? {};
+  const transferFractionsNeededByRole = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(targetFractions?.[role]) && Number.isFinite(unitFractions[role])
+        ? targetFractions[role] - unitFractions[role]
+        : null,
+    ])
+  );
+  const transferFractionSum = sumFinite(
+    Object.values(transferFractionsNeededByRole)
+  );
+  const finiteBalancedTransferPass =
+    LAYER_ROLES.every((role) =>
+      Number.isFinite(transferFractionsNeededByRole[role])
+    ) &&
+    Number.isFinite(transferFractionSum) &&
+    Math.abs(transferFractionSum) <= ROOT_TOLERANCE;
+  const middleOuterPairBalanceResidual =
+    Number.isFinite(transferFractionsNeededByRole.middle) &&
+    Number.isFinite(transferFractionsNeededByRole.outer)
+      ? transferFractionsNeededByRole.middle +
+        transferFractionsNeededByRole.outer
+      : null;
+  const middleToOuterOnlyTransferPass =
+    finiteBalancedTransferPass === true &&
+    Number.isFinite(transferFractionsNeededByRole.inner) &&
+    Math.abs(transferFractionsNeededByRole.inner) <= ROOT_TOLERANCE &&
+    Number.isFinite(transferFractionsNeededByRole.middle) &&
+    transferFractionsNeededByRole.middle < -ROOT_TOLERANCE &&
+    Number.isFinite(transferFractionsNeededByRole.outer) &&
+    transferFractionsNeededByRole.outer > ROOT_TOLERANCE &&
+    Number.isFinite(middleOuterPairBalanceResidual) &&
+    Math.abs(middleOuterPairBalanceResidual) <= ROOT_TOLERANCE;
+  const unitAngularMomentumWeights =
+    unitLedger.angularMomentumWeights ?? {};
+  const unitAngularMomentumTotal = sumFinite(
+    Object.values(unitAngularMomentumWeights)
+  );
+  const targetAngularMomentumWeightsAtUnitTotal = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(targetFractions?.[role]) &&
+      Number.isFinite(unitAngularMomentumTotal)
+        ? targetFractions[role] * unitAngularMomentumTotal
+        : null,
+    ])
+  );
+  const transferAngularMomentumWeightsNeededByRole = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(targetAngularMomentumWeightsAtUnitTotal[role]) &&
+      Number.isFinite(unitAngularMomentumWeights[role])
+        ? targetAngularMomentumWeightsAtUnitTotal[role] -
+          unitAngularMomentumWeights[role]
+        : null,
+    ])
+  );
+  return {
+    sliceId,
+    label: slice?.label ?? null,
+    chart: slice?.chart ?? null,
+    selectedForTransferTarget,
+    unitInertiaFractions: unitFractions,
+    targetFourSubstepFractions: targetFractions,
+    transferFractionsNeededByRole,
+    transferFractionSum,
+    finiteBalancedTransferPass,
+    middleOuterPairBalanceResidual,
+    middleToOuterOnlyTransferPass,
+    unitAngularMomentumWeights,
+    unitAngularMomentumTotal,
+    targetAngularMomentumWeightsAtUnitTotal,
+    transferAngularMomentumWeightsNeededByRole,
+    retainedWakeCouplingTransferAccepted: false,
+  };
+}
+
+function transferFractionsMatch(left, right) {
+  return (
+    LAYER_ROLES.every((role) => {
+      const leftValue = left?.[role];
+      const rightValue = right?.[role];
+      return (
+        Number.isFinite(leftValue) &&
+        Number.isFinite(rightValue) &&
+        Math.abs(leftValue - rightValue) <= ROOT_TOLERANCE
+      );
+    })
+  );
 }
 
 function createSliceUnitInertiaActionLedger({ leverArms, commonOmega }) {
@@ -45088,7 +45332,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v34",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v35",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -45181,7 +45425,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v30",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v31",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -45798,6 +46042,24 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     sliceEnergyActionTargetWeightedInertiaDiscriminatesHingeFunctional:
       equalFrequencyEnergyRadiusAudit.sliceEnergyActionIndependenceAudit
         ?.targetWeightedInertiaDiscriminatesHingeFunctional ?? null,
+    wakeCouplingTransferTargetAuditSchema:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferTargetAudit?.schema ??
+      null,
+    wakeCouplingTransferTargetStatus:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferTargetAudit?.status ??
+      null,
+    wakeCouplingTransferSelectedSliceIds:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferTargetAudit
+        ?.selectedTransferSliceIds ?? null,
+    wakeCouplingTransferSelectedSignature:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferTargetAudit
+        ?.selectedTransferSignature ?? null,
+    wakeCouplingTransferMiddleToOuterOnlyPass:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferTargetAudit
+        ?.middleToOuterOnlyPass ?? null,
+    wakeCouplingTransferStableAcrossRows:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferTargetAudit
+        ?.selectedTransferStableAcrossRows ?? null,
     actionLedgerAuditSchema:
       equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.schema ?? null,
     actionLedgerStatus:
@@ -46379,6 +46641,20 @@ function printSummary(report, absoluteOutputPath) {
           `targetWeighted=${sliceEnergyActionIndependenceAudit.targetWeightedInertiaSelectedSliceIds.join(",")}`,
           `targetDiscriminates=${sliceEnergyActionIndependenceAudit.targetWeightedInertiaDiscriminatesHingeFunctional}`,
           `retainedAccepted=${sliceEnergyActionIndependenceAudit.retainedEnergyActionSelectionAcceptedCount}`,
+        ].join(" ")
+      );
+    }
+    const wakeCouplingTransferTargetAudit =
+      equalFrequencyAudit.wakeCouplingTransferTargetAudit ?? null;
+    if (wakeCouplingTransferTargetAudit) {
+      console.log(
+        [
+          "wake/coupling transfer target:",
+          wakeCouplingTransferTargetAudit.status,
+          `selected=${wakeCouplingTransferTargetAudit.selectedTransferSliceIds.join(",")}`,
+          `middleToOuterOnly=${wakeCouplingTransferTargetAudit.middleToOuterOnlyPass}`,
+          `stable=${wakeCouplingTransferTargetAudit.selectedTransferStableAcrossRows}`,
+          `retainedAccepted=${wakeCouplingTransferTargetAudit.retainedWakeCouplingTransferAcceptedCount}`,
         ].join(" ")
       );
     }

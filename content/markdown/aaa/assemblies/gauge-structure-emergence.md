@@ -207,11 +207,11 @@ General Relativity predicts that an accelerating observer sees a thermal bath of
 ## Quantization from Stability (Selection Rules)
 
 Why do observer-level electric charges appear in units of $e/3$?
-*   The Standard Model asserts this; $\mathbb{A}\mathbb{A}\mathbb{A}$ treats it as a stability-selection closure target grounded in six-site axial bookkeeping.
+*   The Standard Model asserts this; $\mathbb{A}\mathbb{A}\mathbb{A}$ treats it as a stability-selection closure target grounded first in a protected six-unit polarity inventory, with the six-site axial layer as the current charged-fermion working realization.
 *   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $\epsilon$ polarity units are likely unstable. They either collapse into an unstable self-hit branch or disperse.
-*   **The Survivors:** Specific geometric configurations (the six-pole axial patterns) are candidate stable resonances where attractive and repulsive forces balance via the nested shell braid structure. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
+*   **The Survivors:** Specific geometric configurations of six sign-carrying units are candidate stable resonances where attractive and repulsive forces balance through the assembly branch. In the axial-layer realization these appear as six-pole axial patterns supported by the nested shell braid structure. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
 
-**SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six $\epsilon$ Axial Architrinos)**
+**SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six $\epsilon$ Polarity Slots)**
 
 | split | Electrinos | Positrinos | net observer-level charge |
 |:-----:|:----------:|:----------:|:------------------:|
@@ -224,11 +224,11 @@ Why do observer-level electric charges appear in units of $e/3$?
 |     1:5     |         1         |         5         |          +2/3          |
 |     0:6     |         0         |         6         |           +1           |
 
-Under the six-site axial-layer hypothesis, sweeping all Electrino:Positrino splits across the polar sites yields exactly the Standard Model charge values listed below and no other total charge values within that fixed six-site inventory. Dynamical exclusion of non-Standard-Model stable assemblies remains a separate closure burden.
+Under the six-unit polarity-inventory target, sweeping all Electrino:Positrino splits across the six retained slots yields exactly the Standard Model charge values listed below and no other total charge values within that fixed six-unit inventory. The six-site axial-layer hypothesis is one geometric realization of those slots. Dynamical exclusion of non-Standard-Model stable assemblies remains a separate closure burden.
 
 ### Combinatorial Proof (Six $\pm\epsilon$ Slots)
 
-**Proposition.** If a fermion axial layer has exactly six polar sites, each occupied by either $+\epsilon$ or $-\epsilon$, then the observer-level charge can only be
+**Proposition.** If a charged-fermion polarity carrier has exactly six retained slots, each occupied by either $+\epsilon$ or $-\epsilon$, then the observer-level charge can only be
 $$
 \{-|e|,-2|e|/3,-|e|/3,0,+|e|/3,+2|e|/3,+|e|\}
 $$
@@ -237,7 +237,7 @@ $$
 $$
 N_+ + N_- = 6,\qquad N_+,N_- \in \{0,1,\dots,6\}
 $$
-The net observer-level charge carried by the axial layer is
+The net observer-level charge carried by the six-slot inventory is
 $$
 Q=\epsilon(N_+ - N_-)
 $$
@@ -265,7 +265,7 @@ with the physical ambiguity only
 $$
 \Theta_\gamma(Q)-2\pi N_\gamma \to 0,\qquad N_\gamma\in\mathbb{Z}
 $$
-The six-site axial bookkeeping must make this a charge-compatibility condition, not a separately imposed monopole postulate. A compact residual for the allowed axial-layer charge set is
+The six-unit charge inventory, and in the axial-layer realization the axial bookkeeping, must make this a charge-compatibility condition, not a separately imposed monopole postulate. A compact residual for the allowed six-slot charge set is
 $$
 \mathcal{R}_{\mathrm{loop}\text{-}Q}
 =

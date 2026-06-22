@@ -813,6 +813,8 @@ P_k = \mu_*(B_k)
 $$
 with $B_k$ the record-forming attractor basins that satisfy the record, persistence, and event-ledger tests above, and $\mu_*$ the relevant invariant or coarse-grained measure. When the channel includes candidate branches that do not yet pass those tests, the normalized record probability is the filtered quantity $P_\theta(k)$ rather than a weight assigned to every formal branch label.
 
+Born-rule statements must also stay at the preparation-to-record level. In a destructive channel, a formal comparison state need not survive as an outstate after the apparatus interaction. Photon absorption by a polarizer is the standard example: the admissible question is the probability that the declared preparation is routed into a record class such as transmitted, absorbed, or scattered by the apparatus kernel. The post-measurement state catalog is a later record update, not the object whose existence supplies the Born weight.
+
 The measurement ontology therefore connects directly to the basin-measure program in [wavefunction-ontology.md](./wavefunction-ontology.md) and the separatrix-time program in [superposition-mechanism.md](../philosophy-history/theory-bridges/superposition-mechanism.md).
 
 This also fixes how external probability geometries should be used. A comparison framework may assign a natural measure to a space of possible configurations or records, but that measure is not automatically the Born rule. In this chapter, a candidate record map $\pi:\mathcal{M}\to\mathcal{R}$ is admissible only if the probabilities are pulled forward from the same deterministic flow that creates the apparatus record:
