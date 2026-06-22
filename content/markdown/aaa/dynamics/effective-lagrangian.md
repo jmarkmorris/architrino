@@ -898,6 +898,8 @@ R_{\mathrm{HJ}}
 +V_{\mathrm{eff}}
 +Q_{\mathrm{env}}
 $$
+This is the current form-level quantum recovery. The residual-controlled envelope chart reproduces the Madelung/Hamilton-Jacobi structure of the non-relativistic Schrödinger equation, and the action-bundle single-valuedness condition above supplies the Bohr-Sommerfeld integer on a resonance-locked branch. Those statements are chart recoveries, not full quantum closure: the Born rule still requires the finite-window basin measure to push forward to $|\psi|^2$ on record-forming apparatus channels, and spin-$\tfrac{1}{2}$ exchange still requires the polarity-domain-wall $\mathbb{Z}_2$ holonomy to remain deformation-stable on the same retained branch.
+
 The effective Schrödinger/Madelung chart is licensed on a retained window only when
 $$
 \mathcal{R}_{\mathrm{env}}

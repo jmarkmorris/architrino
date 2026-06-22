@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v44",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v45",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v44 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v45 reports.",
   };
 }
 
@@ -39847,26 +39847,36 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedEventDomainLiftTarget,
       retainedFrequencyPhasePacket,
     });
+  const phaseCurrentRetainedKernelDerivationTarget =
+    wakeCouplingTransferPhaseOriginAudit?.phaseWakeKernelAnsatzAudit
+      ?.phaseCurrentRetainedKernelDerivationTarget ?? null;
+  const sameEventTransferLiftDependencyAudit =
+    createEqualFrequencySameEventTransferLiftDependencyAudit({
+      priorityCaseSummaries,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+      retainedFrequencyPhasePacket,
+      phaseCurrentRetainedKernelDerivationTarget,
+    });
   const retainedReplayAcceptanceBlueprint =
     createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       priorityCaseSummaries,
       retainedRowSetScaffold,
       retainedEventDomainLiftTarget,
       retainedEventDomainSelector,
+      sameEventTransferLiftDependencyAudit,
       deformationContinuationAudit,
       actionLedgerAudit,
       energyAngularMomentumClosureAudit,
       phaseDeformationBalanceAudit,
-      phaseCurrentRetainedKernelDerivationTarget:
-        wakeCouplingTransferPhaseOriginAudit?.phaseWakeKernelAnsatzAudit
-          ?.phaseCurrentRetainedKernelDerivationTarget ?? null,
+      phaseCurrentRetainedKernelDerivationTarget,
       returnPeriodFrequencyAudit,
       planeSectorDiscriminatorAudit,
       firstRetainedPacketTemplate,
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v42",
+    schema: "aaa-equal-frequency-energy-radius-audit.v43",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -39908,6 +39918,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     retainedRowSetScaffold,
     retainedEventDomainLiftTarget,
     retainedEventDomainSelector,
+    sameEventTransferLiftDependencyAudit,
     firstRetainedPacketTemplate,
     retainedFrequencyPhasePacket,
     retainedReplayAcceptanceBlueprint,
@@ -45686,11 +45697,150 @@ function createEqualFrequencyRetainedEventDomainSelector({
   };
 }
 
+function createEqualFrequencySameEventTransferLiftDependencyAudit({
+  priorityCaseSummaries,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+  retainedFrequencyPhasePacket,
+  phaseCurrentRetainedKernelDerivationTarget,
+}) {
+  const retainedRowSetId =
+    retainedEventDomainSelector?.retainedRowSetId ??
+    retainedEventDomainLiftTarget?.retainedRowSetId ??
+    retainedFrequencyPhasePacket?.retainedRowSetId ??
+    "S_eq";
+  const sameEventTransferLedgerProxyAudit =
+    phaseCurrentRetainedKernelDerivationTarget
+      ?.sameEventTransferLedgerProxyAudit ?? null;
+  const currentSameEventLedgerProxyPass =
+    sameEventTransferLedgerProxyAudit
+      ?.currentSameEventTransferLedgerProxyPass === true;
+  const sameEventLedgerProxyRowCount =
+    sameEventTransferLedgerProxyAudit?.rowCount ??
+    priorityCaseSummaries.length;
+  const sameEventLedgerProxyPassCount =
+    sameEventTransferLedgerProxyAudit?.currentProxyPassCount ?? 0;
+  const frequencyPhasePacketCurrentProxyPass =
+    isFullPositiveCount(
+      retainedFrequencyPhasePacket?.currentProxyPacketPassCount,
+      retainedFrequencyPhasePacket?.rowCount
+    );
+  const retainedEventDomainAccepted =
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
+    retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true;
+  const acceptedFullPointEventRulePass =
+    retainedEventDomainLiftTarget?.acceptedFullPointEventRulePass === true;
+  const positiveWidthRetainedDomainPass =
+    retainedEventDomainLiftTarget?.positiveWidthRetainedDomainPass === true;
+  const selectedEventDomainRoute =
+    retainedEventDomainSelector?.selectedRoute ?? null;
+  const dependencyRows = priorityCaseSummaries.map((summary, index) => ({
+    rowId: `S_eq-same-event-transfer-lift-dependency-f${summary.f}`,
+    retainedRowSetId,
+    f: summary.f,
+    rawSearchRelation: "(B_1,B_2,B_3)=(f,f,f)",
+    roleAssignedRelation: "(I,M,O)=(f,f,f)",
+    phaseProfileId: summary.phaseProfileId ?? null,
+    priorityPhaseProfile: summary.priorityPhaseProfile === true,
+    currentSameEventTransferLedgerProxyPass: currentSameEventLedgerProxyPass,
+    currentFrequencyPhasePacketProxyPass: frequencyPhasePacketCurrentProxyPass,
+    selectedEventDomainRoute,
+    retainedEventDomainAccepted,
+    acceptedFullPointEventRulePass,
+    positiveWidthRetainedDomainPass,
+    binaryToBinaryRetainedHistoryRowsPass: false,
+    retainedPayloadRowsPass: false,
+    sameEventMomentumAngularMomentumRowsPass: false,
+    NoetherSeaRecordEventDomainBindingPass: false,
+    retainedTransferLiftPass: false,
+    status:
+      currentSameEventLedgerProxyPass === true &&
+      frequencyPhasePacketCurrentProxyPass === true
+        ? "same_event_transfer_lift_current_proxy_populated_retained_event_domain_missing"
+        : "same_event_transfer_lift_proxy_incomplete",
+    nextRows: [
+      "accepted_full_point_event_rule_or_positive_width_domain",
+      "binary_to_binary_retained_history_rows",
+      "retained_payload_rows",
+      "same_event_momentum_angular_momentum_rows",
+      "Noether_sea_record_event_or_domain_binding",
+    ],
+  }));
+  const currentProxyDependencyRowCount = dependencyRows.filter(
+    (row) =>
+      row.currentSameEventTransferLedgerProxyPass === true &&
+      row.currentFrequencyPhasePacketProxyPass === true
+  ).length;
+  const acceptedDependencyRowCount = dependencyRows.filter(
+    (row) => row.retainedTransferLiftPass === true
+  ).length;
+  const blockingConditionIds = Array.from(
+    new Set([
+      ...(retainedEventDomainLiftTarget?.blockingConditionIds ?? []),
+      ...(retainedEventDomainSelector?.blockingConditionIds ?? []),
+      "same_event_transfer_lift_retained_event_domain_missing",
+      "binary_to_binary_phase_history_rows_missing",
+    ])
+  );
+  return {
+    schema: "aaa-equal-frequency-same-event-transfer-lift-dependency-audit.v1",
+    claimLevel:
+      "dependency audit from reduced same-event transfer proxy to retained event/domain carrier; no retained transfer lift acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    residualComponents: ["r_evt", "r_W", "r_J"],
+    dependencyStatement:
+      "The no-slack reduced transfer ledger can support r_W or r_J only after its rows are evaluated on one accepted S_eq retained point event or positive-width retained domain.",
+    sameEventTransferLedgerProxyAuditSchema:
+      sameEventTransferLedgerProxyAudit?.schema ?? null,
+    sameEventTransferLedgerProxyStatus:
+      sameEventTransferLedgerProxyAudit?.status ?? null,
+    currentSameEventLedgerProxyPass,
+    sameEventLedgerProxyRowCount,
+    sameEventLedgerProxyPassCount,
+    frequencyPhasePacketSchema: retainedFrequencyPhasePacket?.schema ?? null,
+    frequencyPhasePacketStatus: retainedFrequencyPhasePacket?.status ?? null,
+    frequencyPhasePacketCurrentProxyPass,
+    retainedEventDomainLiftTargetSchema:
+      retainedEventDomainLiftTarget?.schema ?? null,
+    retainedEventDomainLiftStatus:
+      retainedEventDomainLiftTarget?.status ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    retainedEventDomainSelectorStatus:
+      retainedEventDomainSelector?.status ?? null,
+    selectedEventDomainRoute,
+    retainedEventDomainAccepted,
+    acceptedFullPointEventRulePass,
+    positiveWidthRetainedDomainPass,
+    currentProxyDependencyRowCount,
+    acceptedDependencyRowCount,
+    rowCount: dependencyRows.length,
+    dependencyRows,
+    blockingConditionIds,
+    retainedTransferLiftAcceptancePass: acceptedDependencyRowCount > 0,
+    status:
+      acceptedDependencyRowCount > 0
+        ? "same_event_transfer_lift_retained_acceptance_populated"
+        : currentProxyDependencyRowCount > 0
+          ? "same_event_transfer_lift_dependency_current_proxy_populated_retained_event_domain_missing"
+          : "same_event_transfer_lift_dependency_proxy_incomplete",
+    retainedReplayBurden:
+      "Populate binary-to-binary retained phase/history rows and an accepted S_eq retained point event or positive-width domain before treating the no-slack transfer ledger as retained r_W or r_J evidence.",
+    retainedBranchClaim: false,
+  };
+}
+
 function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
   priorityCaseSummaries,
   retainedRowSetScaffold,
   retainedEventDomainLiftTarget,
   retainedEventDomainSelector,
+  sameEventTransferLiftDependencyAudit,
   deformationContinuationAudit,
   actionLedgerAudit,
   energyAngularMomentumClosureAudit,
@@ -45960,7 +46110,7 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
     .filter((condition) => condition.retainedAcceptancePass !== true)
     .map((condition) => condition.id);
   return {
-    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v11",
+    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v12",
     claimLevel:
       "retained replay acceptance residual blueprint; no retained branch acceptance",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -46022,6 +46172,20 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       retainedEventDomainSelector?.acceptedRouteCount ?? null,
     retainedEventDomainSelectorFirstRunnableRowCount:
       retainedEventDomainSelector?.firstRunnableRowCount ?? null,
+    sameEventTransferLiftDependencyAuditSchema:
+      sameEventTransferLiftDependencyAudit?.schema ?? null,
+    sameEventTransferLiftDependencyStatus:
+      sameEventTransferLiftDependencyAudit?.status ?? null,
+    sameEventTransferLiftCurrentProxyDependencyRowCount:
+      sameEventTransferLiftDependencyAudit?.currentProxyDependencyRowCount ??
+      null,
+    sameEventTransferLiftAcceptedDependencyRowCount:
+      sameEventTransferLiftDependencyAudit?.acceptedDependencyRowCount ?? null,
+    sameEventTransferLiftRetainedAcceptancePass:
+      sameEventTransferLiftDependencyAudit?.retainedTransferLiftAcceptancePass ??
+      false,
+    sameEventTransferLiftBlockingConditionIds:
+      sameEventTransferLiftDependencyAudit?.blockingConditionIds ?? [],
     energyAngularMomentumClosureAuditSchema:
       energyAngularMomentumClosureAudit?.schema ?? null,
     energyAngularMomentumClosureStatus:
@@ -46115,6 +46279,7 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
     firstRunnableRetainedPacket: [
       "preserve raw labeled B_1,B_2,B_3 rows and attach I:M:O only as role_map",
       "select a retained point event or positive-width retained domain for S_eq before accepting any residual row",
+      "lift the reduced no-slack same-event transfer ledger onto that accepted event/domain carrier before counting it as retained r_W or r_J evidence",
       "add P_a or k_a/P_branch rows to compute r_P",
       "add N_a, Theta, and D_plane rows to compute r_D and sector disposition",
       "derive the antisymmetric phase-current kernel from retained phase-return, signed-root-complex, finite-impulse, and wake/coupling rows on S_eq",
@@ -47165,7 +47330,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v45",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v46",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -47258,7 +47423,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v41",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v42",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -48397,6 +48562,21 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     retainedEventDomainSelectorFirstRunnableRowCount:
       equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector
         ?.firstRunnableRowCount ?? null,
+    sameEventTransferLiftDependencyAuditSchema:
+      equalFrequencyEnergyRadiusAudit.sameEventTransferLiftDependencyAudit
+        ?.schema ?? null,
+    sameEventTransferLiftDependencyStatus:
+      equalFrequencyEnergyRadiusAudit.sameEventTransferLiftDependencyAudit
+        ?.status ?? null,
+    sameEventTransferLiftCurrentProxyDependencyRowCount:
+      equalFrequencyEnergyRadiusAudit.sameEventTransferLiftDependencyAudit
+        ?.currentProxyDependencyRowCount ?? null,
+    sameEventTransferLiftAcceptedDependencyRowCount:
+      equalFrequencyEnergyRadiusAudit.sameEventTransferLiftDependencyAudit
+        ?.acceptedDependencyRowCount ?? null,
+    sameEventTransferLiftRetainedAcceptancePass:
+      equalFrequencyEnergyRadiusAudit.sameEventTransferLiftDependencyAudit
+        ?.retainedTransferLiftAcceptancePass ?? false,
     firstRetainedPacketTemplateSchema:
       equalFrequencyEnergyRadiusAudit.firstRetainedPacketTemplate?.schema ?? null,
     firstRetainedPacketTemplateStatus:
@@ -49009,6 +49189,20 @@ function printSummary(report, absoluteOutputPath) {
           `currentProxyRoutes=${retainedEventDomainSelector.currentProxyRouteCount}`,
           `acceptedRoutes=${retainedEventDomainSelector.acceptedRouteCount}`,
           `blocked=${retainedEventDomainSelector.blockingConditionIds.length}`,
+        ].join(" ")
+      );
+    }
+    const sameEventTransferLiftDependencyAudit =
+      equalFrequencyAudit.sameEventTransferLiftDependencyAudit ?? null;
+    if (sameEventTransferLiftDependencyAudit) {
+      console.log(
+        [
+          "same-event transfer lift dependency:",
+          sameEventTransferLiftDependencyAudit.status,
+          `rows=${sameEventTransferLiftDependencyAudit.currentProxyDependencyRowCount}/${sameEventTransferLiftDependencyAudit.rowCount}`,
+          `route=${sameEventTransferLiftDependencyAudit.selectedEventDomainRoute}`,
+          `eventDomainAccepted=${sameEventTransferLiftDependencyAudit.retainedEventDomainAccepted}`,
+          `retained=${sameEventTransferLiftDependencyAudit.retainedTransferLiftAcceptancePass}`,
         ].join(" ")
       );
     }

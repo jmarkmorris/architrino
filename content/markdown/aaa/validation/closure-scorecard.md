@@ -43,6 +43,18 @@ Score bands:
 
 Architectural coherence and ontic logic remain explicit criteria because they matter to theory quality. They carry limited weight so that a strong $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture can score high as architecture without inflating the validated-closure total.
 
+## Current Form-Level Recoveries
+
+Several mappings are now reproducible as forms, while their coefficients remain blocked by the absence of a certified eigen-braid and a derived Noether sea response tensor. They should be credited as formula scaffolds and closure interfaces, not as empirical or coefficient-level closure.
+
+| Sector | Reproducible now | Still blocked |
+| :--- | :--- | :--- |
+| Weak-field GR bridge | The effective metric handoff exports ADM/Cartan variables and the clock/ruler quadratic form, and the weak clock row reproduces $d\tau_{\mathcal A}/dt\approx1-U_N/c_0^2-\|\mathbf w\|^2/(2c_0^2)$ after the clock-channel potential is matched to the Newtonian benchmark. | $\Phi_{\mathrm{eff}}=\Phi_N$, $G_{\mathrm{eff}}$, PPN coefficients, and any Einstein-equation analogue still require one same-record Noether sea constitutive derivation. |
+| Quantum envelope bridge | The retained phase-amplitude chart reproduces the Madelung/Hamilton-Jacobi residual with $Q_{\mathrm{env}}=-(\hbar_{\mathrm{eff}}^2/(2m_{\mathrm{eff}}))\nabla^2\sqrt{\rho_{\mathrm{env}}}/\sqrt{\rho_{\mathrm{env}}}$, and resonance-locked single-valuedness supplies the Bohr-Sommerfeld integer. | Born-rule recovery, spin-$\tfrac{1}{2}$ exchange, and fermionic antisymmetry remain blocked by the basin-measure pushforward and the polarity-domain-wall $\mathbb{Z}_2$ holonomy wall. |
+| Fixed-void cosmology | No-expanding-void discipline forces transport-redshift rows that must recover Tolman $(1+z)^{-4}$, light-curve time dilation $(1+z)$, and $T_{\mathrm{CMB}}(z)=T_0(1+z)$ rather than tired-light energy loss. | No derived $a_{\mathrm{eff}}(t)$, Friedmann analogue, sea equation of state, or shared cosmology fit exists until the mass map and Noether sea response coefficients are branch-derived. |
+
+These form-level recoveries should not raise Parameter+Scale Closure, Empirical Precision+Benchmark Validation, or coefficient-recovery scores by themselves. They can raise interface readiness or formula-structure scores only when the document explicitly preserves the same-record blocker and the closure-inheritance dependency on the first certified eigen-braid.
+
 ## Assessment Table
 
 Modern physics columns use the same categories for the effective-theory stack (`GR`, `QM`, `QED`, `QFT`, `QCD`, `SM`, `LCDM`): one operational/effective score and one mechanism/foundational score. The operational column measures validated mathematical and empirical closure of the effective theories. The mechanism column measures how far the same stack supplies a unified underlying mechanism rather than a collection of successful effective descriptions.
