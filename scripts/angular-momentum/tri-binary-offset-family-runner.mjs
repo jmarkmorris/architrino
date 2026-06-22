@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v38",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v39",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v37 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v39 reports.",
   };
 }
 
@@ -39856,13 +39856,16 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       actionLedgerAudit,
       energyAngularMomentumClosureAudit,
       phaseDeformationBalanceAudit,
+      phaseCurrentRetainedKernelDerivationTarget:
+        wakeCouplingTransferPhaseOriginAudit?.phaseWakeKernelAnsatzAudit
+          ?.phaseCurrentRetainedKernelDerivationTarget ?? null,
       returnPeriodFrequencyAudit,
       planeSectorDiscriminatorAudit,
       firstRetainedPacketTemplate,
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v37",
+    schema: "aaa-equal-frequency-energy-radius-audit.v38",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -39927,6 +39930,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       "same_event_angular_momentum_ledger",
       "accepted_action_scale_or_sigma_hbar_row",
       "wake_coupling_middle_to_outer_transfer_law",
+      "phase_current_retained_kernel_derivation",
       "branch_return_period_or_locked_harmonic_frequency_certificate",
       "retained_binary_to_binary_phase_lock",
       "phase_deformation_weight_balance",
@@ -39946,7 +39950,7 @@ function createEqualFrequencyRetainedReplayTarget({
   phaseLatticeAudit,
 }) {
   return {
-    schema: "aaa-equal-frequency-retained-tri-binary-replay-target.v15",
+    schema: "aaa-equal-frequency-retained-tri-binary-replay-target.v16",
     claimLevel:
       "retained replay target for the equal-frequency candidate; not an accepted energy-radius law",
     canonicalFamily: "I:M:O=(f,f,f)",
@@ -40051,6 +40055,13 @@ function createEqualFrequencyRetainedReplayTarget({
         currentChartStatus:
           "phase_only_balance_populated_for_triadic_120_weighted_balance_missing",
       },
+      {
+        id: "antisymmetric_phase_current_kernel_derivation",
+        expression:
+          "K_MO^ret=Im(z_O conjugate(z_M))/(sqrt(3)/2), Delta ell=(0,-K_MO^ret Delta ell_gap,+K_MO^ret Delta ell_gap), with z_a and Delta ell_gap derived on S_eq",
+        currentChartStatus:
+          "phase_current_proxy_populated_retained_kernel_derivation_missing",
+      },
     ],
     phaseTarget: {
       priorityPhaseProfileId: phaseProfileRanking[0]?.phaseProfileId ?? null,
@@ -40095,6 +40106,7 @@ function createEqualFrequencyRetainedReplayTarget({
       "plane_normals_phase_bundle_holonomy_sector_discriminator",
       "planar_z3_vs_near_orthogonal_tri_binary_sector_disposition",
       "phase_deformation_weight_balance_or_wake_coupling",
+      "antisymmetric_phase_current_kernel_derivation",
       "root_multiplicity_or_branch_incidence",
       "same_event_angular_momentum_ledger",
       "wake_energy_routing",
@@ -41627,8 +41639,16 @@ function createEqualFrequencyPhaseWakeKernelAnsatzAudit({
     phaseCurrentKernelLawScan.lawSummaries.find(
       (summary) => summary.lawId === "antisymmetric_pair_phase_current"
     ) ?? null;
+  const phaseCurrentRetainedKernelDerivationTarget =
+    createEqualFrequencyPhaseCurrentRetainedKernelDerivationTarget({
+      phaseCurrentKernelLawScan,
+      antisymmetricPhaseCurrentSummary,
+      actionGapMagnitude,
+      targetTransferFractions,
+      triadic120Row,
+    });
   return {
-    schema: "aaa-equal-frequency-phase-wake-kernel-ansatz-audit.v2",
+    schema: "aaa-equal-frequency-phase-wake-kernel-ansatz-audit.v3",
     claimLevel:
       "finite phase-oriented wake/coupling ansatz scan; not retained wake/coupling kernel derivation",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -41654,6 +41674,7 @@ function createEqualFrequencyPhaseWakeKernelAnsatzAudit({
       triadic120Row?.normalizedTriadicSineKernel ?? null,
     triadic120ExactPass: triadic120Row?.candidate.exactPass ?? false,
     phaseCurrentKernelLawScan,
+    phaseCurrentRetainedKernelDerivationTarget,
     bestKernelLawId: phaseCurrentKernelLawScan.bestKernelLawId,
     antisymmetricPhaseCurrentPriorityExactPass:
       antisymmetricPhaseCurrentSummary?.priorityExactPass ?? false,
@@ -41673,10 +41694,382 @@ function createEqualFrequencyPhaseWakeKernelAnsatzAudit({
             ? "phase_oriented_action_gap_kernel_no_exact_priority_profile"
             : "phase_oriented_action_gap_kernel_no_phase_profiles",
     interpretation:
-      "A triadic-normalized antisymmetric pair phase-current kernel can use the 120-degree middle-to-outer phase offset as the sign and selector for the quadratic action-gap magnitude. The kernel law scan separates this current-like sine row from simpler turn-ratio or cosine-defect controls. This is finite current-proxy evidence because the magnitude still comes from the unit-inertia action-gap law.",
+      "A triadic-normalized antisymmetric pair phase-current kernel can use the 120-degree middle-to-outer phase offset as the sign and selector for the quadratic action-gap magnitude. The kernel law scan separates this current-like sine row from simpler turn-ratio or cosine-defect controls. The retained-kernel derivation target now states the same-row-set phase-return, signed-root-complex, finite-impulse, and wake/coupling rows that would have to derive the current rather than fit it.",
     retainedReplayBurden:
       "Derive the antisymmetric pair phase-current kernel K_MO=Im(z_O conjugate(z_M))/(sqrt(3)/2) from retained binary-to-binary phase, wake-return delay, recoil, or coupling rows on S_eq and show that the same retained rows supply the quadratic middle/outer action-gap magnitude without target calibration.",
     retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseCurrentRetainedKernelDerivationTarget({
+  phaseCurrentKernelLawScan,
+  antisymmetricPhaseCurrentSummary,
+  actionGapMagnitude,
+  targetTransferFractions,
+  triadic120Row,
+}) {
+  const currentProxyKernelPass =
+    phaseCurrentKernelLawScan?.bestKernelLawId ===
+      "antisymmetric_pair_phase_current" &&
+    antisymmetricPhaseCurrentSummary?.priorityExactPass === true &&
+    antisymmetricPhaseCurrentSummary?.exactControlProfileCount === 0;
+  const currentProxyMagnitudePass =
+    Number.isFinite(actionGapMagnitude) &&
+    Number.isFinite(targetTransferFractions?.outer) &&
+    Math.abs(actionGapMagnitude - Math.abs(targetTransferFractions.outer)) <=
+      ROOT_TOLERANCE;
+  const currentProxyTransferPass =
+    triadic120Row?.candidate?.exactPass === true &&
+    currentProxyKernelPass === true &&
+    currentProxyMagnitudePass === true;
+  const retainedSourceRows = [
+    {
+      rowId: "retained_phase_return_degree_row",
+      residualComponent: "r_D:r_W",
+      requirement:
+        "Bind z_M=exp(2pi i phi_M) and z_O=exp(2pi i phi_O) to retained phase-return degree or holonomy rows on S_eq.",
+      currentProxyEvidence:
+        currentProxyKernelPass === true
+          ? "triadic_120_phase_current_proxy_populated"
+          : "triadic_120_phase_current_proxy_missing",
+      retainedAcceptancePass: false,
+    },
+    {
+      rowId: "signed_root_complex_orientation_row",
+      residualComponent: "r_rows:r_W",
+      requirement:
+        "Attach signed-root-complex data C_+, C_-, signed sheets, and D_ij to the binary-to-binary rows that carry the middle-to-outer orientation.",
+      currentProxyEvidence: "not_present_in_current_fixed_receiver_phase_scan",
+      retainedAcceptancePass: false,
+    },
+    {
+      rowId: "finite_impulse_history_class_row",
+      residualComponent: "r_evt:r_W",
+      requirement:
+        "Show the phase-current carrier and any caustic contribution live in one finite-impulse history class H_*=W^{1,infinity} with smooth arcs and bounded finite-eta impulse.",
+      currentProxyEvidence: "not_present_in_current_projection_chart",
+      retainedAcceptancePass: false,
+    },
+    {
+      rowId: "wake_coupling_current_source_row",
+      residualComponent: "r_W:r_J",
+      requirement:
+        "Derive K_MO=Im(z_O conjugate(z_M))/(sqrt(3)/2) from retained wake-return delay, recoil, or coupling rows rather than importing it as a chart-level kernel.",
+      currentProxyEvidence:
+        phaseCurrentKernelLawScan?.status ??
+        "phase_current_kernel_law_scan_missing",
+      retainedAcceptancePass: false,
+    },
+    {
+      rowId: "quadratic_action_gap_source_row",
+      residualComponent: "r_E:r_J",
+      requirement:
+        "Derive Delta ell_gap=(ell_M^(0)-ell_O^(0))/2 from retained energy/action or wake/coupling rows on the same event/domain.",
+      currentProxyEvidence:
+        currentProxyMagnitudePass === true
+          ? "quadratic_action_gap_magnitude_populated"
+          : "quadratic_action_gap_magnitude_missing",
+      retainedAcceptancePass: false,
+    },
+    {
+      rowId: "same_event_transfer_ledger_row",
+      residualComponent: "r_J",
+      requirement:
+        "Evaluate Delta ell_I=0, Delta ell_M=-K_MO Delta ell_gap, Delta ell_O=K_MO Delta ell_gap inside the same retained angular-momentum ledger.",
+      currentProxyEvidence:
+        currentProxyTransferPass === true
+          ? "phase_current_transfer_proxy_exact"
+          : "phase_current_transfer_proxy_incomplete",
+      retainedAcceptancePass: false,
+    },
+  ];
+  const currentProxyEvidencePopulatedCount = retainedSourceRows.filter((row) =>
+    [
+      "triadic_120_phase_current_proxy_populated",
+      "quadratic_action_gap_magnitude_populated",
+      "phase_current_transfer_proxy_exact",
+      phaseCurrentKernelLawScan?.status,
+    ].includes(row.currentProxyEvidence)
+  ).length;
+  const retainedAcceptancePassCount = retainedSourceRows.filter(
+    (row) => row.retainedAcceptancePass === true
+  ).length;
+  return {
+    schema:
+      "aaa-equal-frequency-phase-current-retained-kernel-derivation-target.v1",
+    claimLevel:
+      "retained derivation target for the antisymmetric phase-current kernel; no retained wake/coupling kernel acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId: "S_eq",
+    selectedKernelLawId: phaseCurrentKernelLawScan?.bestKernelLawId ?? null,
+    selectedKernelCarrierStatus:
+      antisymmetricPhaseCurrentSummary?.phaseCurrentCarrierStatus ?? null,
+    kernelEquation:
+      "K_MO^ret=Im(z_O conjugate(z_M))/(sqrt(3)/2), z_a=exp(2pi i phi_a)",
+    transferEquation:
+      "Delta ell=(0,-K_MO^ret Delta ell_gap,+K_MO^ret Delta ell_gap)",
+    actionGapEquation: "Delta ell_gap=(ell_M^(0)-ell_O^(0))/2",
+    actionGapMagnitude,
+    targetTransferFractions,
+    currentProxyKernelPass,
+    currentProxyMagnitudePass,
+    currentProxyTransferPass,
+    retainedSourceRows,
+    retainedSourceRowCount: retainedSourceRows.length,
+    currentProxyEvidencePopulatedCount,
+    retainedAcceptancePassCount,
+    retainedKernelDerivationAccepted:
+      retainedAcceptancePassCount === retainedSourceRows.length,
+    status:
+      retainedAcceptancePassCount === retainedSourceRows.length
+        ? "phase_current_retained_kernel_derivation_accepted"
+        : currentProxyTransferPass === true
+          ? "phase_current_retained_kernel_derivation_target_populated_current_proxy_only"
+          : currentProxyEvidencePopulatedCount > 0
+            ? "phase_current_retained_kernel_derivation_target_proxy_incomplete"
+            : "phase_current_retained_kernel_derivation_target_no_current_proxy",
+    interpretation:
+      "The finite scan supplies a strong current proxy, but the retained proof burden is stricter: the phase-current sign, phase-return degree, signed root orientation, finite impulse class, action-gap magnitude, and angular-momentum transfer must all be rows of the same retained S_eq event or positive-width domain.",
+    retainedReplayBurden:
+      "Populate the retained source rows above before treating the antisymmetric phase-current kernel as evidence for r_W or r_J acceptance.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseCurrentKernelLawScan({
+  phaseProfileRanking,
+  actionGapMagnitude,
+  targetTransferFractions,
+}) {
+  const rows = (phaseProfileRanking ?? []).map((profile) =>
+    createEqualFrequencyPhaseCurrentKernelLawScanRow({
+      profile,
+      actionGapMagnitude,
+      targetTransferFractions,
+    })
+  );
+  const lawIds = Array.from(
+    new Set(rows.flatMap((row) => row.kernelLaws.map((law) => law.lawId)))
+  );
+  const lawSummaries = lawIds.map((lawId) => {
+    const candidates = rows
+      .map((row) => row.kernelLaws.find((law) => law.lawId === lawId))
+      .filter(Boolean);
+    const priorityCandidates = candidates.filter(
+      (candidate) => candidate.priorityPhaseProfile === true
+    );
+    const controlCandidates = candidates.filter(
+      (candidate) => candidate.priorityPhaseProfile !== true
+    );
+    const exactPriorityProfileCount = priorityCandidates.filter(
+      (candidate) => candidate.candidate.exactPass === true
+    ).length;
+    const exactControlProfileCount = controlCandidates.filter(
+      (candidate) => candidate.candidate.exactPass === true
+    ).length;
+    const priorityExactPass =
+      priorityCandidates.length > 0 &&
+      exactPriorityProfileCount === priorityCandidates.length;
+    return {
+      lawId,
+      derivationClass: candidates[0]?.derivationClass ?? null,
+      phaseCurrentCarrierRank: candidates[0]?.phaseCurrentCarrierRank ?? null,
+      phaseCurrentCarrierStatus:
+        candidates[0]?.phaseCurrentCarrierStatus ?? null,
+      formula: candidates[0]?.formula ?? null,
+      priorityCandidateCount: priorityCandidates.length,
+      controlCandidateCount: controlCandidates.length,
+      exactPriorityProfileCount,
+      exactControlProfileCount,
+      priorityExactPass,
+      maxPriorityResidual: maxFinite(
+        priorityCandidates.map((candidate) => candidate.candidate.maxAbsResidual)
+      ),
+      minControlResidual: minFinite(
+        controlCandidates.map((candidate) => candidate.candidate.maxAbsResidual)
+      ),
+      status:
+        priorityExactPass === true && exactControlProfileCount === 0
+          ? "kernel_exact_on_priority_profile_and_no_controls"
+          : priorityExactPass === true
+            ? "kernel_exact_on_priority_profile_but_control_collision"
+            : exactPriorityProfileCount > 0
+              ? "kernel_exact_on_priority_subset"
+              : "kernel_not_exact_on_priority_profile",
+    };
+  });
+  const bestSummary =
+    lawSummaries
+      .slice()
+      .sort((left, right) => {
+        if (left.priorityExactPass !== right.priorityExactPass) {
+          return left.priorityExactPass ? -1 : 1;
+        }
+        if (left.exactControlProfileCount !== right.exactControlProfileCount) {
+          return left.exactControlProfileCount - right.exactControlProfileCount;
+        }
+        const leftCarrierRank =
+          left.phaseCurrentCarrierRank ?? Number.POSITIVE_INFINITY;
+        const rightCarrierRank =
+          right.phaseCurrentCarrierRank ?? Number.POSITIVE_INFINITY;
+        if (leftCarrierRank !== rightCarrierRank) {
+          return leftCarrierRank - rightCarrierRank;
+        }
+        const leftResidual = left.minControlResidual ?? Number.POSITIVE_INFINITY;
+        const rightResidual = right.minControlResidual ?? Number.POSITIVE_INFINITY;
+        if (leftResidual !== rightResidual) {
+          return rightResidual - leftResidual;
+        }
+        return left.lawId.localeCompare(right.lawId);
+      })[0] ?? null;
+  return {
+    schema: "aaa-equal-frequency-phase-current-kernel-law-scan.v1",
+    claimLevel:
+      "finite phase-kernel law scan over current phase profiles; not retained wake/coupling kernel derivation",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    actionGapMagnitude,
+    profileRowCount: rows.length,
+    lawSummaries,
+    bestKernelLawId: bestSummary?.lawId ?? null,
+    bestKernelStatus: bestSummary?.status ?? null,
+    rows,
+    status:
+      bestSummary?.priorityExactPass === true &&
+      bestSummary?.exactControlProfileCount === 0
+        ? "phase_current_kernel_law_scan_has_priority_exact_no_control_hit"
+        : bestSummary?.priorityExactPass === true
+          ? "phase_current_kernel_law_scan_priority_exact_with_control_collision"
+          : rows.length > 0
+            ? "phase_current_kernel_law_scan_no_priority_exact_law"
+            : "phase_current_kernel_law_scan_no_rows",
+    interpretation:
+      "The antisymmetric pair phase-current law is the natural smooth hit in this finite scan: it is exact on the triadic 120-degree profile and has no exact sampled phase-control hit. Simpler forward-turn or cosine-defect laws do not have the same current-like sign and control behavior.",
+    retainedReplayBurden:
+      "A retained replay must derive this antisymmetric pair phase-current from binary-to-binary phase or wake/coupling rows rather than importing it as a chart-level kernel.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseCurrentKernelLawScanRow({
+  profile,
+  actionGapMagnitude,
+  targetTransferFractions,
+}) {
+  const phaseTurns = profile?.phaseProfile?.phaseTurnsByLayer ?? {};
+  const middleOuterPhaseTurn =
+    Number.isFinite(phaseTurns.middle) && Number.isFinite(phaseTurns.outer)
+      ? phaseTurns.outer - phaseTurns.middle
+      : null;
+  const middleOuterForwardTurn = Number.isFinite(middleOuterPhaseTurn)
+    ? normalizeTurn(middleOuterPhaseTurn)
+    : null;
+  const angle = Number.isFinite(middleOuterPhaseTurn)
+    ? CLOSURE_PERIOD * middleOuterPhaseTurn
+    : null;
+  const triadicSineNorm = Math.sqrt(3) / 2;
+  const triadicCosineDefect = 1 - Math.cos(CLOSURE_PERIOD / 3);
+  const kernelSpecs = [
+    {
+      lawId: "antisymmetric_pair_phase_current",
+      derivationClass: "smooth_binary_to_binary_phase_current",
+      phaseCurrentCarrierRank: 0,
+      phaseCurrentCarrierStatus: "smooth_odd_oriented_phase_current",
+      formula: "K=Im(z_O conjugate(z_M))/(sqrt(3)/2)",
+      kernelValue:
+        Number.isFinite(angle) && triadicSineNorm > ROOT_TOLERANCE
+          ? Math.sin(angle) / triadicSineNorm
+          : null,
+    },
+    {
+      lawId: "forward_phase_turn_ratio",
+      derivationClass: "unsigned_forward_turn_ratio_control",
+      phaseCurrentCarrierRank: 1,
+      phaseCurrentCarrierStatus: "modular_forward_turn_control",
+      formula: "K=normalize_turn(phi_O-phi_M)/(1/3)",
+      kernelValue: Number.isFinite(middleOuterForwardTurn)
+        ? middleOuterForwardTurn / (1 / 3)
+        : null,
+    },
+    {
+      lawId: "cosine_alignment_defect",
+      derivationClass: "even_alignment_defect_control",
+      phaseCurrentCarrierRank: 2,
+      phaseCurrentCarrierStatus: "even_alignment_control_no_current_sign",
+      formula: "K=(1-cos(2pi(phi_O-phi_M)))/(1-cos(2pi/3))",
+      kernelValue:
+        Number.isFinite(angle) && triadicCosineDefect > ROOT_TOLERANCE
+          ? (1 - Math.cos(angle)) / triadicCosineDefect
+          : null,
+    },
+  ];
+  const kernelLaws = kernelSpecs.map((spec) =>
+    createEqualFrequencyPhaseCurrentKernelLawCandidate({
+      profile,
+      lawId: spec.lawId,
+      derivationClass: spec.derivationClass,
+      phaseCurrentCarrierRank: spec.phaseCurrentCarrierRank,
+      phaseCurrentCarrierStatus: spec.phaseCurrentCarrierStatus,
+      formula: spec.formula,
+      kernelValue: spec.kernelValue,
+      actionGapMagnitude,
+      targetTransferFractions,
+    })
+  );
+  return {
+    phaseProfileId: profile.phaseProfileId,
+    priorityPhaseProfile: profile.priorityPhaseProfile === true,
+    phaseTurns,
+    middleOuterPhaseTurn,
+    middleOuterForwardTurn,
+    kernelLaws,
+  };
+}
+
+function createEqualFrequencyPhaseCurrentKernelLawCandidate({
+  profile,
+  lawId,
+  derivationClass,
+  phaseCurrentCarrierRank,
+  phaseCurrentCarrierStatus,
+  formula,
+  kernelValue,
+  actionGapMagnitude,
+  targetTransferFractions,
+}) {
+  const predictedTransfer =
+    Number.isFinite(kernelValue) && Number.isFinite(actionGapMagnitude)
+      ? kernelValue * actionGapMagnitude
+      : null;
+  return {
+    lawId,
+    phaseProfileId: profile.phaseProfileId,
+    priorityPhaseProfile: profile.priorityPhaseProfile === true,
+    derivationClass,
+    phaseCurrentCarrierRank,
+    phaseCurrentCarrierStatus,
+    formula,
+    kernelValue,
+    actionGapMagnitude,
+    candidate: createWakeCouplingTransferOriginCandidate({
+      candidateId: `${profile.phaseProfileId}-${lawId}`,
+      sourceClass: derivationClass,
+      formula,
+      predictedTransferFractions: {
+        inner: 0,
+        middle: Number.isFinite(predictedTransfer) ? -predictedTransfer : null,
+        outer: predictedTransfer,
+      },
+      targetTransferFractions,
+      retainedEligible: false,
+      note:
+        "Finite phase-kernel law scan row. This is not retained wake/coupling evidence until the kernel is derived on S_eq.",
+    }),
   };
 }
 
@@ -44642,6 +45035,7 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
   actionLedgerAudit,
   energyAngularMomentumClosureAudit,
   phaseDeformationBalanceAudit,
+  phaseCurrentRetainedKernelDerivationTarget,
   returnPeriodFrequencyAudit,
   planeSectorDiscriminatorAudit,
   firstRetainedPacketTemplate,
@@ -44819,28 +45213,46 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       id: "phase_deformation_weight_balance",
       residualComponent: "r_W",
       expression:
-        "r_W = sum_a W_a(B_3B) exp(i phi_a), with W_a supplied by retained momentum, action, wake, or coupling rows",
-      currentSubauditSchema: phaseDeformationBalanceAudit?.schema ?? null,
+        "r_W = sum_a W_a(B_3B) exp(i phi_a), or an accepted antisymmetric phase-current wake/coupling kernel on S_eq",
+      currentSubauditSchema:
+        phaseCurrentRetainedKernelDerivationTarget?.schema ??
+        phaseDeformationBalanceAudit?.schema ??
+        null,
       currentEvidencePopulated:
+        phaseCurrentRetainedKernelDerivationTarget?.currentProxyTransferPass ===
+          true ||
         phaseDeformationBalanceAudit?.priorityPhaseOnlyPassCount ===
-        priorityCaseCount,
+          priorityCaseCount,
       retainedAcceptancePass:
         priorityCaseCount > 0 &&
-        (phaseDeformationBalanceAudit?.priorityLeverArmPassCount ===
-          priorityCaseCount ||
-          phaseDeformationBalanceAudit?.priorityUnitInertiaActionPassCount ===
+        (phaseCurrentRetainedKernelDerivationTarget
+          ?.retainedKernelDerivationAccepted === true ||
+          phaseDeformationBalanceAudit?.priorityLeverArmPassCount ===
             priorityCaseCount ||
+          phaseDeformationBalanceAudit?.priorityUnitInertiaActionPassCount ===
+              priorityCaseCount ||
           phaseDeformationBalanceAudit?.priorityRootWeightedActionPassCount ===
-            priorityCaseCount),
-      currentStatus: phaseDeformationBalanceAudit?.status ?? null,
+              priorityCaseCount),
+      currentStatus:
+        phaseCurrentRetainedKernelDerivationTarget?.status ??
+        phaseDeformationBalanceAudit?.status ??
+        null,
       currentEvidencePassCount:
-        phaseDeformationBalanceAudit?.priorityPhaseOnlyPassCount ?? null,
-      retainedCertificatePassCount: 0,
+        phaseCurrentRetainedKernelDerivationTarget
+          ?.currentProxyEvidencePopulatedCount ??
+        phaseDeformationBalanceAudit?.priorityPhaseOnlyPassCount ??
+        null,
+      retainedCertificatePassCount:
+        phaseCurrentRetainedKernelDerivationTarget
+          ?.retainedAcceptancePassCount ?? 0,
       requiredRows: [
         "retained_phase_offsets_phi_a",
         "retained_weight_rows_W_a",
         "phase_deformation_weight_residual_r_W",
         "wake_or_coupling_recoil_balance",
+        ...(phaseCurrentRetainedKernelDerivationTarget?.retainedSourceRows?.map(
+          (row) => row.rowId
+        ) ?? []),
       ],
       blocker: "phase_deformation_weight_balance",
     },
@@ -44888,7 +45300,7 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
     .filter((condition) => condition.retainedAcceptancePass !== true)
     .map((condition) => condition.id);
   return {
-    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v6",
+    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v7",
     claimLevel:
       "retained replay acceptance residual blueprint; no retained branch acceptance",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -44961,6 +45373,18 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         ?.targetEffectiveInertiaClosurePassCount ?? null,
     energyAngularMomentumHbarScaleCandidateCount:
       energyAngularMomentumClosureAudit?.hbarScaleCandidateCount ?? null,
+    phaseCurrentRetainedKernelDerivationTargetSchema:
+      phaseCurrentRetainedKernelDerivationTarget?.schema ?? null,
+    phaseCurrentRetainedKernelDerivationTargetStatus:
+      phaseCurrentRetainedKernelDerivationTarget?.status ?? null,
+    phaseCurrentRetainedKernelCurrentProxyTransferPass:
+      phaseCurrentRetainedKernelDerivationTarget?.currentProxyTransferPass ??
+      null,
+    phaseCurrentRetainedKernelAccepted:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.retainedKernelDerivationAccepted ?? null,
+    phaseCurrentRetainedKernelSourceRowCount:
+      phaseCurrentRetainedKernelDerivationTarget?.retainedSourceRowCount ?? null,
     sameRetainedEventOrPositiveWidthDomainPass:
       retainedEventDomainSelector?.retainedSelectorAcceptancePass ??
       retainedEventDomainLiftTarget?.sameRetainedEventOrPositiveWidthDomainPass ??
@@ -44983,6 +45407,7 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       "select a retained point event or positive-width retained domain for S_eq before accepting any residual row",
       "add P_a or k_a/P_branch rows to compute r_P",
       "add N_a, Theta, and D_plane rows to compute r_D and sector disposition",
+      "derive the antisymmetric phase-current kernel from retained phase-return, signed-root-complex, finite-impulse, and wake/coupling rows on S_eq",
       "bind rho_a(xi), E_branch, W_a, mu_a, L_wake, and L_coupling to the same retained row set S_eq",
       "compute R_eq on S_eq before comparing the equal-frequency family to offset, dyadic, or general integer-lock controls",
     ],
@@ -46016,7 +46441,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v39",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v40",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -46109,7 +46534,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v35",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v36",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -46786,6 +47211,43 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     wakeCouplingTransferPhaseWakeKernelAnsatzTriadicKernel:
       equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
         ?.phaseWakeKernelAnsatzAudit?.triadic120KernelValue ?? null,
+    wakeCouplingTransferPhaseCurrentKernelLawScanSchema:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentKernelLawScan?.schema ?? null,
+    wakeCouplingTransferPhaseCurrentKernelLawScanStatus:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentKernelLawScan?.status ?? null,
+    wakeCouplingTransferPhaseCurrentKernelBestLawId:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.bestKernelLawId ?? null,
+    wakeCouplingTransferAntisymmetricPhaseCurrentPriorityExact:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit
+        ?.antisymmetricPhaseCurrentPriorityExactPass ?? null,
+    wakeCouplingTransferAntisymmetricPhaseCurrentControlExactCount:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit
+        ?.antisymmetricPhaseCurrentExactControlCount ?? null,
+    wakeCouplingTransferPhaseCurrentRetainedKernelTargetSchema:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.schema ?? null,
+    wakeCouplingTransferPhaseCurrentRetainedKernelTargetStatus:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.status ?? null,
+    wakeCouplingTransferPhaseCurrentRetainedKernelCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.currentProxyTransferPass ?? null,
+    wakeCouplingTransferPhaseCurrentRetainedKernelAccepted:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.retainedKernelDerivationAccepted ?? null,
+    wakeCouplingTransferPhaseCurrentRetainedKernelSourceRowCount:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.retainedSourceRowCount ?? null,
     actionLedgerAuditSchema:
       equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.schema ?? null,
     actionLedgerStatus:
@@ -47423,6 +47885,33 @@ function printSummary(report, absoluteOutputPath) {
             `retainedAccepted=${phaseWakeKernelAnsatzAudit.retainedWakeKernelAcceptedCount}`,
           ].join(" ")
         );
+        const phaseCurrentKernelLawScan =
+          phaseWakeKernelAnsatzAudit.phaseCurrentKernelLawScan ?? null;
+        if (phaseCurrentKernelLawScan) {
+          console.log(
+            [
+              "phase-current kernel law scan:",
+              phaseCurrentKernelLawScan.status,
+              `best=${phaseCurrentKernelLawScan.bestKernelLawId}`,
+              `antiPriority=${phaseWakeKernelAnsatzAudit.antisymmetricPhaseCurrentPriorityExactPass}`,
+              `antiControl=${phaseWakeKernelAnsatzAudit.antisymmetricPhaseCurrentExactControlCount}`,
+            ].join(" ")
+          );
+        }
+        const phaseCurrentRetainedKernelDerivationTarget =
+          phaseWakeKernelAnsatzAudit.phaseCurrentRetainedKernelDerivationTarget ??
+          null;
+        if (phaseCurrentRetainedKernelDerivationTarget) {
+          console.log(
+            [
+              "phase-current retained kernel target:",
+              phaseCurrentRetainedKernelDerivationTarget.status,
+              `proxy=${phaseCurrentRetainedKernelDerivationTarget.currentProxyTransferPass}`,
+              `accepted=${phaseCurrentRetainedKernelDerivationTarget.retainedKernelDerivationAccepted}`,
+              `sourceRows=${phaseCurrentRetainedKernelDerivationTarget.retainedSourceRowCount}`,
+            ].join(" ")
+          );
+        }
       }
     }
     const phaseDeformationBalanceAudit =

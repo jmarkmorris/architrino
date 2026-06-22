@@ -13,7 +13,7 @@
 
 1. `phase_bundle_return_map` — Upgrade the finite-$\eta$ reduced return map so it retains binary signed-root complex rows $(N_s,M_p,D_{ij})$, signed-sheet labels, integer return-map degree/holonomy $(m,n)$, relative phase offsets, orbital-plane normals, $D_{\mathrm{plane}}$, branch-Jacobian floors, middle-caustic impulse rows, causal-root gluing-overlap rows, finite continuation cardinality, and any starvation-scale row for translating forward partners. The promoted branch label should report the assembly topological charge $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$ as defined in [Assembly Topological Charge](../../../content/markdown/aaa/dynamics/assembly-topological-charge.md), with $c_1=(m,n)$ for tri-binary locks and with $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$ before comparing phase entries. Status: `next`. Depends on: none.
 2. `caustic_weighted_selection_score` — Compute the caustic-weighted cancellation and residual-curvature score on the same branch chart, with the middle harmonic amplitudes derived from the regularized $1/(|J_M|+\eta_J)$ ledger rather than fitted freely. Status: `pending`. Depends on: `phase_bundle_return_map`.
-3. `flat_moduli_floquet_test` — Test candidate locks, including outer-normalized `1:2:4`, by contraction off the flat-connection moduli, holonomy-defect recurrence, and nonzero $D_{\mathrm{plane}}$ rather than by scalar frequency closure alone. Status: `pending`. Depends on: `caustic_weighted_selection_score`.
+3. `flat_moduli_floquet_test` — Test candidate locks, including outer-normalized `1:2:4`, by contraction off the full-chart neutral directions, holonomy-defect recurrence, and nonzero $D_{\mathrm{plane}}$ rather than by scalar frequency closure alone. A direction may be quotiented only if it is neutral for the enclosing tri-binary chart, not merely for an isolated binary subsystem. Status: `pending`. Depends on: `caustic_weighted_selection_score`.
 
 ## Scope
 
@@ -48,6 +48,7 @@ When the reduced map is used as a probability or stability laboratory, this work
 - Whether any forward structural partner row used by a translating lock stays below the Master Equation starvation scale or is replaced by a declared Noether-sea/assembly reorganization.
 - Whether the middle-caustic impulse deposits the spectral weight needed at the first all-layer resonance block.
 - Whether the caustic-weighted cancellation score, holonomy-defect recurrence, and Floquet gap all select the same branch.
+- Whether the middle-caustic carrier and any embedded binary packet live in the same $\mathcal H_*=W^{1,\infty}$ finite-impulse history class with $C^1$ smooth arcs, rather than mixing incompatible caustic regularity assumptions.
 - Whether the $\mathbb{Z}_3$ organization belongs only to a planar cyclic sector or also reappears as a lower-dimensional degeneration of the tri-binary bundle.
 - Whether any old `1:1:2` branch ledger emerges only on an attractor rather than belonging in the foundation.
 
