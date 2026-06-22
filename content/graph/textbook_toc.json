@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 178,
-      "sections": 1431
+      "sections": 1439
     }
   },
   "tocRoot": {
@@ -6390,7 +6390,73 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/quantum/quantum_statistics.json",
-            "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+            "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Standard Observer-Level Roles",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+                "markdownSection": "Standard Observer-Level Roles",
+                "sectionKey": "standard observer level roles",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Nested Shell Braid Geometry Basis",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+                "markdownSection": "Nested Shell Braid Geometry Basis",
+                "sectionKey": "nested shell braid geometry basis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Fermi-Dirac Regime: 3D Exclusion",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+                "markdownSection": "Fermi-Dirac Regime: 3D Exclusion",
+                "sectionKey": "fermi dirac regime 3d exclusion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Bose-Einstein Regime: 2D Coherence",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+                "markdownSection": "Bose-Einstein Regime: 2D Coherence",
+                "sectionKey": "bose einstein regime 2d coherence",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The 3D-to-2D Transition",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+                "markdownSection": "The 3D-to-2D Transition",
+                "sectionKey": "the 3d to 2d transition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Exchange-State Contract",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+                "markdownSection": "Effective Exchange-State Contract",
+                "sectionKey": "effective exchange state contract",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interfaces",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+                "markdownSection": "Interfaces",
+                "sectionKey": "interfaces",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Targets",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+                "markdownSection": "Closure Targets",
+                "sectionKey": "closure targets",
+                "headingLevel": 2
+              }
+            ]
           }
         ]
       },
@@ -8851,7 +8917,7 @@
                   },
                   {
                     "id": "validation_simulations__sim_metric_observer__sim_thermodynamic_residual",
-                    "title": "Thermodynamic Residual Protocol",
+                    "title": "Thermodynamic Residual",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/sim_thermodynamic_residual.json",
@@ -9157,12 +9223,12 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/philosophy_history/overview.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/README.md",
+            "markdownPath": "content/markdown/aaa/philosophy-history/philosophy-history.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Reading Order",
-                "markdownPath": "content/markdown/aaa/philosophy-history/README.md",
+                "markdownPath": "content/markdown/aaa/philosophy-history/philosophy-history.md",
                 "markdownSection": "Reading Order",
                 "sectionKey": "reading order",
                 "headingLevel": 2
@@ -9170,7 +9236,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Local Discipline",
-                "markdownPath": "content/markdown/aaa/philosophy-history/README.md",
+                "markdownPath": "content/markdown/aaa/philosophy-history/philosophy-history.md",
                 "markdownSection": "Local Discipline",
                 "sectionKey": "local discipline",
                 "headingLevel": 2
@@ -9407,7 +9473,7 @@
           },
           {
             "id": "unknowns_paradoxes",
-            "title": "Unknowns & Paradoxes",
+            "title": "Unknowns and Paradoxes",
             "kind": "markdown-tree",
             "sceneType": "Scene-Markdown-Tree",
             "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json",

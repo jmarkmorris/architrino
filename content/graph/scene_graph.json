@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 527,
+      "nodes": 526,
       "edges": 1281,
       "scenes": 347,
       "markdownIndexes": 0,
-      "markdownDocs": 167,
+      "markdownDocs": 166,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1002,7 +1002,7 @@
     },
     {
       "id": "unknowns_paradoxes",
-      "name": "Unknowns & Paradoxes",
+      "name": "Unknowns and Paradoxes",
       "path": "content/scenes/philosophy_history/unknowns_paradoxes.json",
       "nodeType": "scene"
     },
@@ -2220,7 +2220,7 @@
     },
     {
       "id": "validation_simulations__sim_metric_observer__sim_thermodynamic_residual",
-      "name": "Thermodynamic Residual Protocol",
+      "name": "Thermodynamic Residual",
       "path": "content/scenes/validation/sim_thermodynamic_residual.json",
       "nodeType": "scene"
     },
@@ -2669,15 +2669,15 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
-      "name": "Philosophy of Science",
-      "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+      "id": "content/markdown/aaa/philosophy-history/philosophy-history.md",
+      "name": "Philosophy and History",
+      "path": "content/markdown/aaa/philosophy-history/philosophy-history.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/README.md",
-      "name": "Philosophy and History",
-      "path": "content/markdown/aaa/philosophy-history/README.md",
+      "id": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+      "name": "Philosophy of Science",
+      "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2832,7 +2832,7 @@
     },
     {
       "id": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
-      "name": "Fermi Dirac And Bose Einstein Statistics",
+      "name": "Fermi-Dirac and Bose-Einstein Statistics",
       "path": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
       "nodeType": "markdown_doc"
     },
@@ -2840,12 +2840,6 @@
       "id": "content/markdown/aaa/quantum/measurement-ontology.md",
       "name": "Measurement Ontology",
       "path": "content/markdown/aaa/quantum/measurement-ontology.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/quantum/quantum-statistics.md",
-      "name": "Quantum Statistics",
-      "path": "content/markdown/aaa/quantum/quantum-statistics.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3222,7 +3216,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
-      "name": "Thermodynamic Residual Protocol",
+      "name": "Thermodynamic Residual",
       "path": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
       "nodeType": "markdown_doc"
     },
@@ -5470,7 +5464,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
       "nodeType": "scene",
       "id": "unknowns_paradoxes",
-      "name": "Unknowns & Paradoxes",
+      "name": "Unknowns and Paradoxes",
       "path": "content/scenes/philosophy_history/unknowns_paradoxes.json",
       "searchTarget": "content/scenes/philosophy_history/unknowns_paradoxes.json",
       "implicit": false
@@ -6298,7 +6292,7 @@
       "nodeId": "scene:content/scenes/validation/sim_thermodynamic_residual.json",
       "nodeType": "scene",
       "id": "validation_simulations__sim_metric_observer__sim_thermodynamic_residual",
-      "name": "Thermodynamic Residual Protocol",
+      "name": "Thermodynamic Residual",
       "path": "content/scenes/validation/sim_thermodynamic_residual.json",
       "searchTarget": "content/scenes/validation/sim_thermodynamic_residual.json",
       "implicit": false
@@ -7015,21 +7009,21 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-history.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/philosophy-history.md",
+      "name": "Philosophy and History",
+      "path": "content/markdown/aaa/philosophy-history/philosophy-history.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/philosophy-history.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "name": "Philosophy of Science",
       "path": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/README.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/README.md",
-      "name": "Philosophy and History",
-      "path": "content/markdown/aaa/philosophy-history/README.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/README.md",
       "implicit": false
     },
     {
@@ -7261,10 +7255,10 @@
       "nodeId": "markdown_doc:content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
-      "name": "Fermi Dirac And Bose Einstein Statistics",
+      "name": "Fermi-Dirac and Bose-Einstein Statistics",
       "path": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
       "searchTarget": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
-      "implicit": true
+      "implicit": false
     },
     {
       "nodeId": "markdown_doc:content/markdown/aaa/quantum/measurement-ontology.md",
@@ -7273,15 +7267,6 @@
       "name": "Measurement Ontology",
       "path": "content/markdown/aaa/quantum/measurement-ontology.md",
       "searchTarget": "content/markdown/aaa/quantum/measurement-ontology.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/quantum/quantum-statistics.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/quantum/quantum-statistics.md",
-      "name": "Quantum Statistics",
-      "path": "content/markdown/aaa/quantum/quantum-statistics.md",
-      "searchTarget": "content/markdown/aaa/quantum/quantum-statistics.md",
       "implicit": false
     },
     {
@@ -7846,7 +7831,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
-      "name": "Thermodynamic Residual Protocol",
+      "name": "Thermodynamic Residual",
       "path": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
       "implicit": false
@@ -12853,7 +12838,7 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/overview.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/README.md",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-history.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/overview.json",
       "field": "scene.source.path"

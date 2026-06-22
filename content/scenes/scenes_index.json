@@ -712,7 +712,7 @@
     },
     {
       "id": "unknowns_paradoxes",
-      "name": "Unknowns & Paradoxes",
+      "name": "Unknowns and Paradoxes",
       "path": "content/scenes/philosophy_history/unknowns_paradoxes.json"
     },
     {
@@ -1727,7 +1727,7 @@
     },
     {
       "id": "validation_simulations__sim_metric_observer__sim_thermodynamic_residual",
-      "name": "Thermodynamic Residual Protocol",
+      "name": "Thermodynamic Residual",
       "path": "content/scenes/validation/sim_thermodynamic_residual.json"
     },
     {

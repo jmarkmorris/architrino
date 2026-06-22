@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-22T04:46:38.504Z",
-  "total_links": 1496,
+  "generated_at": "2026-06-22T05:10:48.351Z",
+  "total_links": 1538,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -782,10 +782,10 @@
     {
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
-      "target": "../../../../markdown/aaa/quantum/quantum-statistics.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/quantum/quantum-statistics.md"
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
     },
     {
       "sourceChapterId": "assemblies",
@@ -3878,10 +3878,10 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -3902,10 +3902,10 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/quantum/quantum-statistics.md",
+      "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/quantum/quantum-statistics.md"
+      "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -4354,6 +4354,342 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/validation/reaction-ledger.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/assemblies/fermions/electron.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/electron.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/assemblies/particle-masses.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/assembly-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#self-hit-definition-and-diagnostics",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/foundations/architrino.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/architrino.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/noether-swarm/noether-swarm.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/noether-swarm.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/noether-swarm/noether-swarm.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/noether-swarm.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/noether-swarm/noether-swarm.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/noether-swarm.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/spacetime/black-holes.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/black-holes.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/spacetime/black-holes.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/black-holes.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/spacetime/emergent-metric.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/emergent-metric.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/spacetime/emergent-metric.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/emergent-metric.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/spacetime/emergent-metric.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/emergent-metric.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/spacetime/horizon-chirality.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/horizon-chirality.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/lorentz-kinematics.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/spacetime/ppn-parameters.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/ppn-parameters.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/spacetime/singularity-resolution.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/singularity-resolution.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
@@ -4814,18 +5150,18 @@
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
-      "target": "../../../../markdown/aaa/quantum/quantum-statistics.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/quantum/quantum-statistics.md"
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
-      "target": "../../../../markdown/aaa/quantum/quantum-statistics.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/quantum/quantum-statistics.md"
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
@@ -6494,6 +6830,22 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -6570,22 +6922,6 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/quantum/quantum-statistics.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/quantum/quantum-statistics.md"
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/quantum/quantum-statistics.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/quantum/quantum-statistics.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -7438,6 +7774,30 @@
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
       "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -7554,30 +7914,6 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
-    },
-    {
-      "sourceChapterId": "quantum",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/quantum/quantum-statistics.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/quantum/quantum-statistics.md"
-    },
-    {
-      "sourceChapterId": "quantum",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/quantum/quantum-statistics.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/quantum/quantum-statistics.md"
-    },
-    {
-      "sourceChapterId": "quantum",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/quantum/quantum-statistics.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/quantum/quantum-statistics.md"
     },
     {
       "sourceChapterId": "quantum",
