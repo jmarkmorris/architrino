@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-22T07:10:00.691Z",
+  "generated_at": "2026-06-22T13:25:01.348Z",
   "package_version": "1.0.0-cf4f8c1c",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -237,7 +237,7 @@
       "role": "chapter",
       "type": "html",
       "size": 3342751,
-      "sha256": "cfccb18ecd2b87687e879a047bd7973b84de536ab57905cca2ae188896c8707c"
+      "sha256": "7bbd84cbc58f41fe6c6f13efe65d63b256241155943f5d374ee1162fdf5bf2fc"
     },
     {
       "path": "reading-copies/noether-braid.md",
@@ -245,7 +245,7 @@
       "role": "chapter",
       "type": "markdown",
       "size": 167299,
-      "sha256": "2559e0665874d3e5f802d2243a97fbb9db4f967dc4bd79380191d9b2933f26a4"
+      "sha256": "19b50911ffe21177cd1c986e7a6840cd10aa2b39f9fcf5c188739addee7bbc07"
     },
     {
       "path": "reading-copies/noether-sea-and-effective-spacetime.html",
@@ -333,7 +333,7 @@
       "role": "chapter",
       "type": "html",
       "size": 5493539,
-      "sha256": "664efc2da3238f8f22daa1531c2ac363abd19a34c48ae1daba5b59e8e1ae25f4"
+      "sha256": "1e655e6889aa985484e75c1ee5e08e75347f41b61043aa713fe794c0d5527694"
     },
     {
       "path": "reading-copies/validation.md",
@@ -341,7 +341,7 @@
       "role": "chapter",
       "type": "markdown",
       "size": 476070,
-      "sha256": "10517fbaf36a7d76a9f610238050b4f922b2ce189561d86e5fe57a84d1e2d1f6"
+      "sha256": "fc35b94e8a9c450f1cd091e3bebacdceefebeaf1f0873abfa949f4ce13cdfbaa"
     },
     {
       "path": "references/academic-style-guide.html",
@@ -413,7 +413,7 @@
       "role": "reference",
       "type": "html",
       "size": 82058,
-      "sha256": "e5a984cefec84d48b3bcbd07fc63590bb3b122b2414eede1e8bb4afd3f90db8d"
+      "sha256": "e935e8e0502a464328df5e6582d7b02292074e2593a2f3b386612942d697fbcf"
     },
     {
       "path": "references/terminology-usage.md",
@@ -421,7 +421,7 @@
       "role": "reference",
       "type": "markdown",
       "size": 41061,
-      "sha256": "ac0bcd0b0dd53dcfde416a603b52900d0e31f48d2b9333cbffb7617768f12149"
+      "sha256": "0f556d5992a28b673cc8480f8814bcfc71da2cfd64918a2c3231932e80e9a004"
     },
     {
       "path": "textbook_bundle_search_index.json",
@@ -429,7 +429,7 @@
       "role": "search",
       "type": "json",
       "size": 8890844,
-      "sha256": "ae5ed221fb8293290743abbcc5bbf5512a3b3db7380fa9d7060248da3124f68a"
+      "sha256": "e2b27cdd37f466bf76b4562bb737886788e2bf6b32a1cd01e9718c5f909a6487"
     }
   ],
   "links": []
