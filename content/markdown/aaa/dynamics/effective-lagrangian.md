@@ -76,6 +76,20 @@ $$
 
 on a slowly varying branch. The leading correction is therefore sign-definite once the branch delay orientation is fixed. For the causal restoring convention displayed above it is anti-damping, the same local pattern that appears as positive tangential work in the circular binary. The mass-like coefficient is also shifted by the delayed response. This does not prove the full assembly mass map, but it shows in the simplest chart why inertia and dissipation-like terms are delayed-response quantities rather than primitive architrino constants.
 
+The two displayed corrections are not independent parameters. They are the first even and odd moments of the same delayed restoring channel:
+
+$$
+m_{\mathrm{delay}}
+\sim
+\frac{1}{2}k\tau_{\mathrm{eff}}^2,
+\qquad
+\Gamma_{\mathrm{delay}}
+\sim
+k\tau_{\mathrm{eff}}
+$$
+
+where $m_{\mathrm{delay}}$ denotes the mass-like shift and $\Gamma_{\mathrm{delay}}$ denotes the signed anti-damping coefficient for this convention. On a fixed branch, their ratio is a kernel-shape consequence of the same causal-wake delay, not two fitted material constants. This toy calculation is the finite-dimensional seed of the continuum statement below: even-frequency kernel moments feed inertia-like response, while odd-frequency moments feed dissipation or anti-damping channels.
+
 Historically, the route into this form matters. Newtonian force balance can be projected along fixed-endpoint variations as virtual work. For conservative interactions, $\mathbf{F}=-\nabla V$ turns the work term into a variation of potential energy, while the inertial term supplies a variation of kinetic energy plus an endpoint term. When the endpoint variation vanishes, Hamilton's construction turns that differential relation into the stationary action of $T-V$. The useful condition is therefore stationarity of the action, not a literal minimum in every case.
 
 The same idea survives in $\mathbb{A}\mathbb{A}\mathbb{A}$ only after changing the object being varied. The Master EOM is not local in the instantaneous variables $(\mathbf{x}_i(t),\dot{\mathbf{x}}_i(t))$: receiver acceleration depends on delayed source coordinates, causal-root branches, Jacobian weights, and the retained causal-wake history. A local expression $L(\mathbf{x},\dot{\mathbf{x}},t)$ therefore cannot be the substrate-level action for the exact law. The appropriate candidate is a multi-time path-history functional whose variation must reproduce the delayed, Jacobian-weighted branch law.
@@ -153,6 +167,16 @@ $$
 
 when the relative phase closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Dyadic Resonance Lock](dyadic-resonance-lock.md) make the phase-bundle data integral rather than irrationally drifting. The effective Hamiltonian chart is therefore globally promotable only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
 
+More precisely, the action variables $I_\alpha$ are sections of a flat action bundle over the retained branch family. They are globally defined only when the return holonomy is trivial on the admitted observables; equivalently, the relative phase winding closes by an integer multiple of $2\pi$ on the same causal-root ledger. A Bohr-Sommerfeld-like condition is therefore admissible only on this trivial-holonomy locus:
+
+$$
+\oint_{\gamma_\alpha}\Pi\,dQ
+\in
+2\pi\hbar_{\mathrm{eff}}\mathbb{Z}
+$$
+
+Outside that locus, the action integral is multivalued under the return map, so the apparent integer is a local chart artifact rather than a branch invariant.
+
 ### Regularized Nonlocal Action and Variation
 
 The Master Equation of Motion for architrinos is non-Markovian, driven by intersections between receiver trajectories and past causal wake surfaces. Consequently, any action-level scaffold for this law cannot be a local integral over instantaneous states. It must be a multi-time functional over path history, and its variation residual must be identified before the scaffold is treated as an exact action derivation. A scale-only derivation requires that residual to vanish or become a boundary term; a recoil-inclusive derivation may instead retain it as a mechanical wake-emission resistance term.
@@ -227,6 +251,18 @@ $$
 $$
 
 This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf{x}_i(t)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below gives the scale-only Master EOM; if not, the same variation points to a recoil-inclusive force law.
+
+On an effective spatial chart this split can be read as a Hodge-type decomposition of the kernel-gradient current. Schematically,
+
+$$
+\nabla_{\mathbf{x}_i}\mathcal K_{ij}
+\sim
+d\Phi_{ij}^{(\eta)}
++
+\delta_{\mathrm H}\mathcal A_{ij}^{(\eta)}
+$$
+
+where $d\Phi_{ij}^{(\eta)}$ denotes the exact scalar-potential channel and $\delta_{\mathrm H}\mathcal A_{ij}^{(\eta)}$ denotes the co-exact recoil-current channel in the effective chart. The notation is schematic, not a new substrate ontology. Its use is to make the no-go sharp: a scale-only scalar counterterm can repair the exact part, but it cannot cancel a co-exact recoil current without changing the branch force or adding a richer action-level term.
 
 On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the scale-only result is the delayed force law
 $$
@@ -310,7 +346,7 @@ $$
 \right\rangle_{\mathrm{cg}}
 $$
 
-where $\mu$ indexes the absolute-time component and the three spatial components of the effective chart; this is not a substrate Lorentz four-vector. The point is structural: the scalar/vector split $(\Phi_{\mathrm{wake}},\mathbf{A}_{\mathrm{wake}})$ introduced in the continuum reduction is forced by the scale/recoil split of the first variation. The scale term is the scalar-potential channel, while the retained recoil current is the vector-transport channel.
+where $\mu$ indexes the absolute-time component and the three spatial components of the effective chart; this is not a substrate Lorentz four-vector. The point is structural: the scalar/vector split $(\Phi_{\mathrm{wake}},\mathbf{A}_{\mathrm{wake}})$ introduced in the continuum reduction is forced by the scale/recoil split of the first variation. The scale term is the scalar-potential channel, while the retained recoil current is the vector-transport channel. In the Hodge-type language above, the electric-like channel is the exact scalar part and the magnetic-like channel is the co-exact transport part of the same delayed kernel current.
 
 Thus a chart that keeps $\mathbf{C}_{ij}^{(\eta)}$ should not treat it as noise to be hidden in a residual. It should compute the effective field-strength candidate
 
@@ -348,6 +384,16 @@ K_{\mathrm{eff}}^{(\eta)}
 \frac{\delta_\eta(g)}{r^2}
 $$
 so it cancels the derivative-of-constraint residual without changing the accepted inverse-square scale term. Effective Lagrangian reductions should still inherit the Master EOM directly unless they explicitly choose the normalized characteristic-tail kernel and carry its boundary-increment convention on the retained chart.
+
+The operator in this identity is the derivative along the causal characteristic. With
+$$
+D_{\mathrm{char}}
+\equiv
+\partial_r-\frac{1}{c_f}\partial_g,
+\qquad
+u=g+\frac{r}{c_f},
+$$
+one has $D_{\mathrm{char}}u=0$. The tail kernel is therefore the characteristic integral of the regularized hit density along $u=\mathrm{const}$. This is why it carries an endpoint convention: the repair is energy-conserving only when the endpoint boundary is characteristic to the same order as the retained chart. If the endpoint cuts across the characteristic foliation, the endpoint term is an interior Euler source and the repair has changed the force law rather than merely clearing a boundary.
 
 The normalized characteristic-tail kernel now carries explicit energy, momentum, and angular-momentum wake-history increments in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). An effective Lagrangian reduction may therefore choose that kernel only when it also carries the same boundary-increment convention and reports the corresponding variation and conservation residuals on its branch chart. Without those residuals, the reduced Lagrangian remains a scaffold for the Master EOM rather than an independent proof of the branch force.
 
@@ -596,6 +642,18 @@ $$
 
 and $\Pi_{\mathrm{mem}}^{ij}$ carries the finite-frequency remainder. This makes the viscosity-like channel an odd-frequency readout of the delayed force kernel. The ratio between $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and the force-law coupling $\kappa$ is therefore a kernel-shape consequence on a certified branch, not an additional parameter family.
 
+This is the continuum version of the delayed oscillator expansion. A branch-derived response kernel has one Taylor structure:
+
+$$
+\widetilde K(\omega)
+=
+\widetilde K_{\mathrm{even}}(\omega)
++
+\widetilde K_{\mathrm{odd}}(\omega)
+$$
+
+Its even part supplies inertia-like and mass-renormalization coefficients; its odd part supplies anti-damping, viscosity-like response, and the antisymmetric stress channel. Thus ratios such as $\eta_{\mathrm{cg}}/m_{\mathrm{eff}}$ or $\eta_{\mathrm{cg}}/\kappa$ are candidate branch invariants once the same kernel and comparison window have been certified. The discrete recoil term $\mathbf{C}_{ij}^{(\eta)}$, the vector transport potential $\mathbf{A}_{\mathrm{wake}}$, and the antisymmetric stress $\Pi_{q,J}^{[ij]}$ should agree as three readouts of this one kernel, not as independently adjustable effects.
+
 The corresponding dissipation residual is
 $$
 \mathcal R_{\mathrm{diss}}(W)
@@ -684,6 +742,17 @@ $$
 
 where $h$ is the retained memory depth and $\mathcal K_{\mathrm{symp}}$ is built from the same branch causal kernel that supplies the force. The residual $\epsilon_{\omega}$ is small only when this memory term is replayable: after one return, the retained history segment $[-h,0]$ must map to a congruent segment with the same branch rows and boundary convention. This is why phase-locked branches are the natural Hamiltonian domain. They replay the history window that carries $\omega_{\mathrm{mem}}$, while off-lock branches leak symplectic content through the memory boundary and can look dissipative after projection.
 
+Equivalently, $\omega_{\mathrm{mem}}$ is the symplectic flux through the boundary of the retained memory interval. A Hamiltonian-promotable branch must make that boundary periodic under the return map:
+
+$$
+\oint_{\mathrm{return}}
+\omega_{\mathrm{mem},\partial[-h,0]}
+=
+O(\epsilon_{\omega})
+$$
+
+after quotienting only true zero-Floquet neutral directions. If the memory-boundary flux has a secular component, the projected chart can conserve neither the corrected symplectic form nor the apparent energy ledger without adding the missing history variable. This is the same branch-symplectic promotion condition used by the scalar causal-action return-map residual and by binary or dyadic return-map packets: preserve $\omega_0+\omega_{\mathrm{mem}}$ on the retained delayed chart, not merely the instantaneous phase volume.
+
 This gate keeps the exact and effective levels separate. The Master Equation owns the delayed causal dynamics; the effective Hamiltonian owns only those regimes where internal wake memory, branch changes, and unresolved Noether sea exchange have been compressed without losing the observer-level invariants being compared.
 
 The same domain restriction applies before translating an effective Hamiltonian chart into quantum operators. The admissible observable set in [Quantum Operator Mapping](../philosophy-history/theory-bridges/quantum-operator-mapping.md#admissible-quantization-domain-guardrail) must be derived from this retained coarse-graining and record window, not chosen afterward as a free quantization convention.
@@ -730,6 +799,19 @@ where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots,
 
 The corresponding mass-gap target is therefore native and computable. The gap is the minimum action cost to change $[\mathfrak B]$ by an admissible branch transition, such as a $\Delta N_s=\pm2$ root birth or death under the same Jacobian floor and boundary convention. In a caustic-grazing transition this cost should be estimated from the finite impulse and wake-history increment across the fold. If that minimum vanishes under refinement, the action chart has no protected assembly gap; if it remains positive, the gap is a property of the branch ledger and delayed action, not an imported continuum-defect assumption.
 
+In the action-counting notation of [Causal Action Functional](causal-action-functional.md#branch-barrier-and-transition-cost), the same target is
+
+$$
+\Delta_{\mathrm{gap}}
+=
+\liminf_{\eta\to0^+}
+B_{\eta,h}(\Sigma_{\mathrm{fold}})
+>
+0
+$$
+
+for the specific codimension-one wall $\Sigma_{\mathrm{fold}}$ that changes the targeted entry of the assembly topological charge. The wall may be a causal-root fold, a phase-lock wall, or a frame-degeneracy wall. The mass gap is positive exactly when the regularized fold-crossing cost survives refinement; this is the action view of the same uniform-in-$\eta$ fold-survival problem that stability packets test through Conley, Lyapunov, or Floquet data.
+
 ### Closure Interface: Action-to-Envelope Reduction
 
 This chapter supplies the variational bridge used by the quantum closure chain. The bridge remains effective and comparative: it tests when a signed polarity/current history can be compressed into a nonnegative envelope without erasing memory terms.
@@ -763,6 +845,8 @@ $$
 $$
 
 where $N_{\mathrm{wall}}(\gamma)$ is the parity count of enclosed polarity-domain-wall intersections in the retained projection. The memory current is therefore not generic residue in this regime. Its circulation classifies the polarity-domain-wall topology that the nonnegative envelope has forgotten. A spin-$\tfrac12$-like double-valued envelope can be promoted only if this $\mathbb{Z}_2$ sign-sheet circulation is recovered from the same $(\rho_q,\mathbf{j}_q)$ history and persists under branch-preserving deformation.
+
+This is a hard wall for the spinor and exchange-statistics program. The nonnegative envelope forgets an orientation double cover of the signed-density configuration space; the polarity domain walls are the branch locus of that cover. If the parity $N_{\mathrm{wall}}(\gamma)\pmod 2$ can change without crossing a certified fold, reconnection, or declared surgery event in the retained branch record, then the half-integer envelope response has been fitted rather than derived. Conversely, a deformation-stable $\mathbb{Z}_2$ holonomy gives a concrete substrate carrier for the $-1$ sign under an exchange cycle, provided the exchange cycle is computed from the same signed polarity/current history rather than from an imposed quantum label.
 
 The handoff must report the continuity residual
 $$

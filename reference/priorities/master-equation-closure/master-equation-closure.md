@@ -116,6 +116,12 @@ The updated [master-equation](../../../content/markdown/aaa/dynamics/master-equa
 
 Practical condition: active proof and simulation packets should treat this as `schema_update_required` for promoted branch certificates, not as rejection of existing diagnostics. Existing finite-collar, transport, and action-kernel rows remain useful evidence, but theorem-level promotion now needs the causal-root section data that lets local branch charts glue into a finite labeled continuation family.
 
+## Foundation/Dynamics Impact 2026-06-22
+
+The latest [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) refinement sharpens the same closure burden without restarting the workstream. A promoted branch certificate should now report the branch-chart local inverse data behind $\mathfrak B(\Gamma,\mathcal S;h,\eta,\epsilon_c)$, the $H^0$ global-section count for finite continuation, any $\check H^1$ gluing obstruction, separate $\eta$ versus $\epsilon_c$ regulator status, finite-window degree changes caused by memory-boundary starvation, and any $\ell=2$ quadrupole leakage $Q_A$ when a moving-loop Lorentz checkpoint is used.
+
+Practical condition: this is still `schema_update_required`, not `start_over`. Existing circular, spiral, A1, transport, finite-collar, and action-kernel rows remain valid diagnostics. The promotion threshold is higher: no branch chart is theorem-level until local reconstruction conditioning, gluing, regulator separation, memory-boundary degree bookkeeping, and no-proliferation scope are reported on the same retained row set.
+
 ## Promotion Map
 
 | Task | Detailed source | Primary promotion target | Promotion gate |

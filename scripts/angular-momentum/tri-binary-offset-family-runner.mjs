@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v39",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v43",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v39 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v42 reports.",
   };
 }
 
@@ -39790,6 +39790,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       phaseProfileRanking,
       phaseResponseDiscrimination,
       phaseLatticeAudit,
+      priorityCaseSummaries,
     });
   const actionLedgerAudit =
     createEqualFrequencyActionLedgerAudit(priorityCaseSummaries);
@@ -39865,7 +39866,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v38",
+    schema: "aaa-equal-frequency-energy-radius-audit.v42",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -41428,6 +41429,7 @@ function createEqualFrequencyWakeCouplingTransferPhaseOriginAudit({
   phaseProfileRanking,
   phaseResponseDiscrimination,
   phaseLatticeAudit,
+  priorityCaseSummaries,
 }) {
   const targetTransferFractions =
     wakeCouplingTransferTargetAudit?.selectedTransferSignature ?? {};
@@ -41512,6 +41514,7 @@ function createEqualFrequencyWakeCouplingTransferPhaseOriginAudit({
       phaseProfileRanking,
       transferLawScan,
       targetTransferFractions,
+      priorityCaseSummaries,
     });
   const targetMagnitude = Number.isFinite(targetTransferFractions.outer)
     ? Math.abs(targetTransferFractions.outer)
@@ -41540,7 +41543,7 @@ function createEqualFrequencyWakeCouplingTransferPhaseOriginAudit({
     quadraticActionGapCandidate,
   ];
   return {
-    schema: "aaa-equal-frequency-wake-coupling-transfer-phase-origin-audit.v3",
+    schema: "aaa-equal-frequency-wake-coupling-transfer-phase-origin-audit.v5",
     claimLevel:
       "current phase/action provenance scan for the wake/coupling transfer target; not retained phase or wake/coupling law acceptance",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -41600,6 +41603,7 @@ function createEqualFrequencyPhaseWakeKernelAnsatzAudit({
   phaseProfileRanking,
   transferLawScan,
   targetTransferFractions,
+  priorityCaseSummaries,
 }) {
   const representativeActionGapCandidate =
     findRepresentativeTransferLawCandidate({
@@ -41646,9 +41650,10 @@ function createEqualFrequencyPhaseWakeKernelAnsatzAudit({
       actionGapMagnitude,
       targetTransferFractions,
       triadic120Row,
+      priorityCaseSummaries,
     });
   return {
-    schema: "aaa-equal-frequency-phase-wake-kernel-ansatz-audit.v3",
+    schema: "aaa-equal-frequency-phase-wake-kernel-ansatz-audit.v7",
     claimLevel:
       "finite phase-oriented wake/coupling ansatz scan; not retained wake/coupling kernel derivation",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -41707,6 +41712,7 @@ function createEqualFrequencyPhaseCurrentRetainedKernelDerivationTarget({
   actionGapMagnitude,
   targetTransferFractions,
   triadic120Row,
+  priorityCaseSummaries,
 }) {
   const currentProxyKernelPass =
     phaseCurrentKernelLawScan?.bestKernelLawId ===
@@ -41722,6 +41728,22 @@ function createEqualFrequencyPhaseCurrentRetainedKernelDerivationTarget({
     triadic120Row?.candidate?.exactPass === true &&
     currentProxyKernelPass === true &&
     currentProxyMagnitudePass === true;
+  const phaseCurrentSourceBridgeTarget =
+    createEqualFrequencyPhaseCurrentSourceBridgeTarget({
+      priorityCaseSummaries,
+      triadic120Row,
+      currentProxyTransferPass,
+    });
+  const sameEventTransferLedgerProxyAudit =
+    createEqualFrequencySameEventTransferLedgerProxyAudit({
+      priorityCaseSummaries,
+      triadic120Row,
+      actionGapMagnitude,
+      targetTransferFractions,
+      currentProxyKernelPass,
+      currentProxyMagnitudePass,
+      currentProxyTransferPass,
+    });
   const retainedSourceRows = [
     {
       rowId: "retained_phase_return_degree_row",
@@ -41739,7 +41761,12 @@ function createEqualFrequencyPhaseCurrentRetainedKernelDerivationTarget({
       residualComponent: "r_rows:r_W",
       requirement:
         "Attach signed-root-complex data C_+, C_-, signed sheets, and D_ij to the binary-to-binary rows that carry the middle-to-outer orientation.",
-      currentProxyEvidence: "not_present_in_current_fixed_receiver_phase_scan",
+      currentProxyEvidence:
+        phaseCurrentSourceBridgeTarget?.signedRootCurrentProxyPass === true
+          ? "current_reduced_positive_jacobian_sheet_proxy_populated_retained_signed_root_complex_missing"
+          : phaseCurrentSourceBridgeTarget?.signedRootOrientationSeedPass === true
+          ? "triadic_phase_current_orientation_seed_populated"
+          : "not_present_in_current_fixed_receiver_phase_scan",
       retainedAcceptancePass: false,
     },
     {
@@ -41747,7 +41774,10 @@ function createEqualFrequencyPhaseCurrentRetainedKernelDerivationTarget({
       residualComponent: "r_evt:r_W",
       requirement:
         "Show the phase-current carrier and any caustic contribution live in one finite-impulse history class H_*=W^{1,infinity} with smooth arcs and bounded finite-eta impulse.",
-      currentProxyEvidence: "not_present_in_current_projection_chart",
+      currentProxyEvidence:
+        phaseCurrentSourceBridgeTarget?.finiteImpulseCurrentProxyPass === true
+          ? "current_reduced_smooth_chart_proxy_populated_retained_H_star_missing"
+          : "not_present_in_current_projection_chart",
       retainedAcceptancePass: false,
     },
     {
@@ -41777,8 +41807,9 @@ function createEqualFrequencyPhaseCurrentRetainedKernelDerivationTarget({
       requirement:
         "Evaluate Delta ell_I=0, Delta ell_M=-K_MO Delta ell_gap, Delta ell_O=K_MO Delta ell_gap inside the same retained angular-momentum ledger.",
       currentProxyEvidence:
-        currentProxyTransferPass === true
-          ? "phase_current_transfer_proxy_exact"
+        sameEventTransferLedgerProxyAudit?.currentSameEventTransferLedgerProxyPass ===
+        true
+          ? "same_event_transfer_ledger_current_proxy_no_slack_populated"
           : "phase_current_transfer_proxy_incomplete",
       retainedAcceptancePass: false,
     },
@@ -41788,15 +41819,30 @@ function createEqualFrequencyPhaseCurrentRetainedKernelDerivationTarget({
       "triadic_120_phase_current_proxy_populated",
       "quadratic_action_gap_magnitude_populated",
       "phase_current_transfer_proxy_exact",
+      "current_reduced_smooth_chart_proxy_populated_retained_H_star_missing",
+      "current_reduced_positive_jacobian_sheet_proxy_populated_retained_signed_root_complex_missing",
+      "same_event_transfer_ledger_current_proxy_no_slack_populated",
       phaseCurrentKernelLawScan?.status,
     ].includes(row.currentProxyEvidence)
   ).length;
   const retainedAcceptancePassCount = retainedSourceRows.filter(
     (row) => row.retainedAcceptancePass === true
   ).length;
+  const sourceReadinessAudit =
+    createEqualFrequencyPhaseCurrentSourceReadinessAudit({
+      retainedSourceRows,
+      phaseCurrentKernelLawScan,
+      currentProxyKernelPass,
+      currentProxyMagnitudePass,
+      currentProxyTransferPass,
+      actionGapMagnitude,
+      targetTransferFractions,
+      phaseCurrentSourceBridgeTarget,
+      sameEventTransferLedgerProxyAudit,
+    });
   return {
     schema:
-      "aaa-equal-frequency-phase-current-retained-kernel-derivation-target.v1",
+      "aaa-equal-frequency-phase-current-retained-kernel-derivation-target.v5",
     claimLevel:
       "retained derivation target for the antisymmetric phase-current kernel; no retained wake/coupling kernel acceptance",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -41817,16 +41863,48 @@ function createEqualFrequencyPhaseCurrentRetainedKernelDerivationTarget({
     currentProxyKernelPass,
     currentProxyMagnitudePass,
     currentProxyTransferPass,
+    phaseCurrentSourceBridgeTarget,
+    phaseCurrentSourceBridgeTargetSchema:
+      phaseCurrentSourceBridgeTarget.schema,
+    phaseCurrentSourceBridgeTargetStatus:
+      phaseCurrentSourceBridgeTarget.status,
+    phaseCurrentSourceBridgeCurrentProxyRowCount:
+      phaseCurrentSourceBridgeTarget.currentProxyRowCount,
+    phaseCurrentSourceBridgeSignedRootCurrentProxyPass:
+      phaseCurrentSourceBridgeTarget.signedRootCurrentProxyPass,
+    phaseCurrentSourceBridgeRetainedAcceptedRowCount:
+      phaseCurrentSourceBridgeTarget.retainedAcceptedRowCount,
+    sameEventTransferLedgerProxyAudit,
+    sameEventTransferLedgerProxyAuditSchema:
+      sameEventTransferLedgerProxyAudit.schema,
+    sameEventTransferLedgerProxyStatus:
+      sameEventTransferLedgerProxyAudit.status,
+    sameEventTransferLedgerCurrentProxyPass:
+      sameEventTransferLedgerProxyAudit.currentSameEventTransferLedgerProxyPass,
+    sameEventTransferLedgerRetainedAcceptancePass:
+      sameEventTransferLedgerProxyAudit.retainedSameEventLedgerAcceptancePass,
+    sameEventTransferLedgerCasePassCount:
+      sameEventTransferLedgerProxyAudit.currentProxyPassCount,
     retainedSourceRows,
     retainedSourceRowCount: retainedSourceRows.length,
     currentProxyEvidencePopulatedCount,
     retainedAcceptancePassCount,
+    sourceReadinessAudit,
+    sourceReadinessAuditSchema: sourceReadinessAudit.schema,
+    sourceReadinessStatus: sourceReadinessAudit.status,
+    sourceReadinessResidualVector: sourceReadinessAudit.residualVector,
+    sourceReadinessCurrentProxyRowCount:
+      sourceReadinessAudit.currentProxyRowCount,
+    sourceReadinessAcceptedSourceRowCount:
+      sourceReadinessAudit.acceptedSourceRowCount,
+    sourceReadinessBlockingRowCount: sourceReadinessAudit.blockingRowCount,
+    sourceReadinessBlockingRowIds: sourceReadinessAudit.blockingRowIds,
     retainedKernelDerivationAccepted:
-      retainedAcceptancePassCount === retainedSourceRows.length,
+      sourceReadinessAudit.sourceReadinessAcceptancePass === true,
     status:
-      retainedAcceptancePassCount === retainedSourceRows.length
+      sourceReadinessAudit.sourceReadinessAcceptancePass === true
         ? "phase_current_retained_kernel_derivation_accepted"
-        : currentProxyTransferPass === true
+      : currentProxyTransferPass === true
           ? "phase_current_retained_kernel_derivation_target_populated_current_proxy_only"
           : currentProxyEvidencePopulatedCount > 0
             ? "phase_current_retained_kernel_derivation_target_proxy_incomplete"
@@ -41835,6 +41913,588 @@ function createEqualFrequencyPhaseCurrentRetainedKernelDerivationTarget({
       "The finite scan supplies a strong current proxy, but the retained proof burden is stricter: the phase-current sign, phase-return degree, signed root orientation, finite impulse class, action-gap magnitude, and angular-momentum transfer must all be rows of the same retained S_eq event or positive-width domain.",
     retainedReplayBurden:
       "Populate the retained source rows above before treating the antisymmetric phase-current kernel as evidence for r_W or r_J acceptance.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencySameEventTransferLedgerProxyAudit({
+  priorityCaseSummaries,
+  triadic120Row,
+  actionGapMagnitude,
+  targetTransferFractions,
+  currentProxyKernelPass,
+  currentProxyMagnitudePass,
+  currentProxyTransferPass,
+}) {
+  const transferFractions =
+    triadic120Row?.candidate?.predictedTransferFractions ?? {};
+  const kernelValue = triadic120Row?.normalizedTriadicSineKernel ?? null;
+  const finiteTransferPass = LAYER_ROLES.every((role) =>
+    Number.isFinite(transferFractions?.[role])
+  );
+  const transferFractionSum = finiteTransferPass
+    ? sumFinite(LAYER_ROLES.map((role) => transferFractions[role]))
+    : null;
+  const innerSlackResidual = Number.isFinite(transferFractions.inner)
+    ? transferFractions.inner
+    : null;
+  const middleOuterPairBalanceResidual =
+    Number.isFinite(transferFractions.middle) &&
+    Number.isFinite(transferFractions.outer)
+      ? transferFractions.middle + transferFractions.outer
+      : null;
+  const actionGapMagnitudeResidual =
+    Number.isFinite(transferFractions.outer) &&
+    Number.isFinite(actionGapMagnitude)
+      ? Math.abs(transferFractions.outer) - actionGapMagnitude
+      : null;
+  const targetResiduals = residualRoleWeights({
+    actual: transferFractions,
+    target: targetTransferFractions,
+  });
+  const maxAbsTargetResidual = finiteTransferPass
+    ? maxFinite(
+        Object.values(targetResiduals).map((value) =>
+          Number.isFinite(value) ? Math.abs(value) : null
+        )
+      )
+    : null;
+  const netTransferZeroPass =
+    Number.isFinite(transferFractionSum) &&
+    Math.abs(transferFractionSum) <= ROOT_TOLERANCE;
+  const innerNoSlackPass =
+    Number.isFinite(innerSlackResidual) &&
+    Math.abs(innerSlackResidual) <= ROOT_TOLERANCE;
+  const middleOuterPairBalancePass =
+    Number.isFinite(middleOuterPairBalanceResidual) &&
+    Math.abs(middleOuterPairBalanceResidual) <= ROOT_TOLERANCE;
+  const middleToOuterDirectionPass =
+    Number.isFinite(transferFractions.middle) &&
+    Number.isFinite(transferFractions.outer) &&
+    transferFractions.middle < -ROOT_TOLERANCE &&
+    transferFractions.outer > ROOT_TOLERANCE;
+  const actionGapMagnitudePass =
+    Number.isFinite(actionGapMagnitudeResidual) &&
+    Math.abs(actionGapMagnitudeResidual) <= ROOT_TOLERANCE;
+  const targetTransferResidualPass =
+    Number.isFinite(maxAbsTargetResidual) &&
+    maxAbsTargetResidual <= ROOT_TOLERANCE;
+  const currentSameEventTransferLedgerProxyPass =
+    currentProxyKernelPass === true &&
+    currentProxyMagnitudePass === true &&
+    currentProxyTransferPass === true &&
+    finiteTransferPass === true &&
+    netTransferZeroPass === true &&
+    innerNoSlackPass === true &&
+    middleOuterPairBalancePass === true &&
+    middleToOuterDirectionPass === true &&
+    actionGapMagnitudePass === true &&
+    targetTransferResidualPass === true;
+  const rows = (priorityCaseSummaries ?? []).map((summary) => ({
+    rowId: `S_eq-same-event-transfer-ledger-proxy-f${summary.f}`,
+    retainedRowSetId: "S_eq",
+    caseId: summary.caseId,
+    f: summary.f,
+    phaseProfileId: summary.phaseProfileId ?? null,
+    priorityPhaseProfile: summary.priorityPhaseProfile === true,
+    kernelValue,
+    actionGapMagnitude,
+    transferFractions,
+    targetTransferFractions,
+    targetResiduals,
+    transferFractionSum,
+    innerSlackResidual,
+    middleOuterPairBalanceResidual,
+    actionGapMagnitudeResidual,
+    maxAbsTargetResidual,
+    currentProxyPass: currentSameEventTransferLedgerProxyPass,
+    retainedAcceptancePass: false,
+  }));
+  const currentProxyPassCount = rows.filter(
+    (row) => row.currentProxyPass === true
+  ).length;
+  return {
+    schema:
+      "aaa-equal-frequency-same-event-transfer-ledger-proxy-audit.v1",
+    claimLevel:
+      "current reduced same-event transfer ledger proxy; not retained same-event angular-momentum acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId: "S_eq",
+    sourcePhaseProfileId: triadic120Row?.phaseProfileId ?? null,
+    ledgerEquation:
+      "Delta ell=(0,-K_MO Delta ell_gap,+K_MO Delta ell_gap), sum_a Delta ell_a=0",
+    kernelValue,
+    actionGapMagnitude,
+    transferFractions,
+    targetTransferFractions,
+    targetResiduals,
+    transferFractionSum,
+    innerSlackResidual,
+    middleOuterPairBalanceResidual,
+    actionGapMagnitudeResidual,
+    maxAbsTargetResidual,
+    currentProxyKernelPass,
+    currentProxyMagnitudePass,
+    currentProxyTransferPass,
+    finiteTransferPass,
+    netTransferZeroPass,
+    innerNoSlackPass,
+    middleOuterPairBalancePass,
+    middleToOuterDirectionPass,
+    actionGapMagnitudePass,
+    targetTransferResidualPass,
+    rowCount: rows.length,
+    currentProxyPassCount,
+    currentSameEventTransferLedgerProxyPass:
+      rows.length > 0 &&
+      currentProxyPassCount === rows.length &&
+      currentSameEventTransferLedgerProxyPass === true,
+    retainedSameEventLedgerAcceptancePass: false,
+    rows,
+    status:
+      rows.length > 0 &&
+      currentProxyPassCount === rows.length &&
+      currentSameEventTransferLedgerProxyPass === true
+        ? "same_event_transfer_ledger_current_proxy_no_slack_populated_retained_event_missing"
+        : finiteTransferPass === true
+          ? "same_event_transfer_ledger_current_proxy_partial_retained_event_missing"
+          : "same_event_transfer_ledger_current_proxy_missing",
+    interpretation:
+      "The current proxy closes the transfer ledger as a no-slack normalized angular-momentum exchange: the inner transfer is zero, middle and outer are equal and opposite, the net transfer is zero, and the magnitude is the quadratic action-gap value selected by the phase-current kernel. This still is not retained same-event acceptance because the equation has not been evaluated on an accepted retained event or positive-width retained domain.",
+    retainedReplayBurden:
+      "Evaluate the same transfer equation inside the retained angular-momentum ledger on S_eq, including retained wake and coupling angular momentum rows and an explicit no-undeclared-slack row.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseCurrentSourceBridgeTarget({
+  priorityCaseSummaries,
+  triadic120Row,
+  currentProxyTransferPass,
+}) {
+  const smoothChartRows = (priorityCaseSummaries ?? []).map((summary) => {
+    const layerRows = LAYER_ROLES.map((role) => {
+      const layer = summary.phaseResponse?.layerSummaries?.[role] ?? {};
+      const activeRootDetailCount = layer.activeRootDetailCount ?? 0;
+      const phaseDiagnosticRowCount = layer.phaseDiagnosticRowCount ?? 0;
+      const minAbsJacobian = layer.minAbsJacobian ?? null;
+      const maxAbsResidual = layer.maxAbsResidual ?? null;
+      const nonzeroJacobianPass =
+        Number.isFinite(minAbsJacobian) && minAbsJacobian > ROOT_TOLERANCE;
+      const residualTolerancePass =
+        Number.isFinite(maxAbsResidual) && maxAbsResidual <= ROOT_TOLERANCE;
+      const currentReducedSmoothChartPass =
+        activeRootDetailCount > 0 &&
+        phaseDiagnosticRowCount > 0 &&
+        nonzeroJacobianPass === true &&
+        residualTolerancePass === true;
+      return {
+        role,
+        activeRootDetailCount,
+        phaseDiagnosticRowCount,
+        minAbsJacobian,
+        maxAbsResidual,
+        nonzeroJacobianPass,
+        residualTolerancePass,
+        currentReducedSmoothChartPass,
+      };
+    });
+    return {
+      caseId: summary.caseId,
+      f: summary.f,
+      phaseProfileId: summary.phaseProfileId ?? null,
+      priorityPhaseProfile: summary.priorityPhaseProfile === true,
+      layerRows,
+      currentReducedSmoothChartPass:
+        layerRows.length === LAYER_ROLES.length &&
+        layerRows.every((row) => row.currentReducedSmoothChartPass === true),
+    };
+  });
+  const priorityCaseCount = smoothChartRows.length;
+  const smoothChartPassCount = smoothChartRows.filter(
+    (row) => row.currentReducedSmoothChartPass === true
+  ).length;
+  const finiteImpulseCurrentProxyPass =
+    priorityCaseCount > 0 && smoothChartPassCount === priorityCaseCount;
+  const signedSheetRows = (priorityCaseSummaries ?? []).map((summary) => {
+    const layerRows = LAYER_ROLES.map((role) => {
+      const layer = summary.phaseResponse?.layerSummaries?.[role] ?? {};
+      const activeRootDetailCount = layer.activeRootDetailCount ?? 0;
+      const activeJacobianSigns = layer.activeJacobianSigns ?? [];
+      const activeJacobianSignStrata = layer.activeJacobianSignStrata ?? [];
+      const minAbsJacobian = layer.minAbsJacobian ?? null;
+      const maxAbsResidual = layer.maxAbsResidual ?? null;
+      const singleActiveRootDetailPass = activeRootDetailCount === 1;
+      const positiveJacobianSignPass =
+        activeJacobianSigns.length > 0 &&
+        activeJacobianSigns.every((sign) => sign === 1);
+      const positiveJacobianStratumPass =
+        activeJacobianSignStrata.length > 0 &&
+        activeJacobianSignStrata.every((stratum) => stratum === 3);
+      const nonzeroJacobianPass =
+        Number.isFinite(minAbsJacobian) && minAbsJacobian > ROOT_TOLERANCE;
+      const residualTolerancePass =
+        Number.isFinite(maxAbsResidual) && maxAbsResidual <= ROOT_TOLERANCE;
+      const currentReducedPositiveSheetPass =
+        singleActiveRootDetailPass === true &&
+        positiveJacobianSignPass === true &&
+        positiveJacobianStratumPass === true &&
+        nonzeroJacobianPass === true &&
+        residualTolerancePass === true;
+      return {
+        role,
+        activeRootDetailCount,
+        activeJacobianSigns,
+        activeJacobianSignStrata,
+        minAbsJacobian,
+        maxAbsResidual,
+        singleActiveRootDetailPass,
+        positiveJacobianSignPass,
+        positiveJacobianStratumPass,
+        nonzeroJacobianPass,
+        residualTolerancePass,
+        currentReducedPositiveSheetPass,
+      };
+    });
+    return {
+      caseId: summary.caseId,
+      f: summary.f,
+      phaseProfileId: summary.phaseProfileId ?? null,
+      priorityPhaseProfile: summary.priorityPhaseProfile === true,
+      layerRows,
+      currentReducedPositiveSheetPass:
+        layerRows.length === LAYER_ROLES.length &&
+        layerRows.every((row) => row.currentReducedPositiveSheetPass === true),
+    };
+  });
+  const signedSheetPassCount = signedSheetRows.filter(
+    (row) => row.currentReducedPositiveSheetPass === true
+  ).length;
+  const signedRootCurrentProxyPass =
+    priorityCaseCount > 0 && signedSheetPassCount === priorityCaseCount;
+  const normalizedTriadicSineKernel =
+    triadic120Row?.normalizedTriadicSineKernel ?? null;
+  const phaseCurrentOrientationSign = Number.isFinite(normalizedTriadicSineKernel)
+    ? Math.sign(normalizedTriadicSineKernel)
+    : null;
+  const signedRootOrientationSeedPass =
+    currentProxyTransferPass === true &&
+    phaseCurrentOrientationSign !== null &&
+    phaseCurrentOrientationSign !== 0;
+  const rows = [
+    {
+      rowId: "signed_root_complex_orientation_row",
+      residualSymbol: "r_C",
+      bridgeKind:
+        signedRootCurrentProxyPass === true
+          ? "current_reduced_positive_sheet_proxy"
+          : "orientation_seed_only",
+      seedEquation:
+        "sign_C_seed=sign(K_MO), K_MO=Im(z_O conjugate(z_M))/(sqrt(3)/2)",
+      sheetProxyEquation:
+        "sigma_J=+1 from active root detail jacobianSignStratum=Positive and sign(J)=+1 on every priority layer",
+      currentBridgeSeedPass: signedRootOrientationSeedPass,
+      currentProxyPass: signedRootCurrentProxyPass,
+      retainedAcceptancePass: false,
+      currentEvidence:
+        signedRootCurrentProxyPass === true
+          ? "current_reduced_positive_jacobian_sheet_proxy_populated_retained_signed_root_complex_missing"
+          : signedRootOrientationSeedPass === true
+          ? "triadic_phase_current_orientation_seed_populated"
+          : "triadic_phase_current_orientation_seed_missing",
+      missingRetainedInputs: [
+        "signed_root_complex_C_plus_C_minus",
+        "signed_degree_D_ij",
+        "signed_sheet_label_sigma",
+        "fold_or_surgery_metadata",
+      ],
+      proxyLimit:
+        "The reduced chart supplies a positive-J sheet proxy and phase-current orientation seed, but it does not supply retained signed root-complex sheets, degree rows, or fold/surgery metadata.",
+      status:
+        signedRootCurrentProxyPass === true
+          ? "current_reduced_positive_sheet_proxy_populated_retained_signed_root_complex_missing"
+          : signedRootOrientationSeedPass === true
+          ? "orientation_seed_populated_signed_root_complex_missing"
+          : "orientation_seed_missing_signed_root_complex_missing",
+    },
+    {
+      rowId: "finite_impulse_history_class_row",
+      residualSymbol: "r_H",
+      bridgeKind: "current_reduced_smooth_chart_proxy",
+      seedEquation:
+        "active root detail plus nonzero J and residual <= ROOT_TOLERANCE for every priority layer",
+      currentBridgeSeedPass: finiteImpulseCurrentProxyPass,
+      currentProxyPass: finiteImpulseCurrentProxyPass,
+      retainedAcceptancePass: false,
+      currentEvidence:
+        finiteImpulseCurrentProxyPass === true
+          ? "current_reduced_smooth_chart_proxy_populated"
+          : "current_reduced_smooth_chart_proxy_incomplete",
+      missingRetainedInputs: [
+        "H_star_finite_impulse_membership",
+        "finite_eta_impulse_bound",
+        "smooth_arc_chart_rows",
+        "caustic_or_singularity_stratum_metadata",
+      ],
+      proxyLimit:
+        "The reduced chart supplies smooth-root evidence, but it does not supply the retained H_* history class or finite-eta impulse bound.",
+      status:
+        finiteImpulseCurrentProxyPass === true
+          ? "current_reduced_smooth_chart_proxy_populated_retained_H_star_missing"
+          : "current_reduced_smooth_chart_proxy_incomplete",
+    },
+  ];
+  const currentProxyRowCount = rows.filter(
+    (row) => row.currentProxyPass === true
+  ).length;
+  const currentBridgeSeedRowCount = rows.filter(
+    (row) => row.currentBridgeSeedPass === true
+  ).length;
+  const retainedAcceptedRowCount = rows.filter(
+    (row) => row.retainedAcceptancePass === true
+  ).length;
+  return {
+    schema: "aaa-equal-frequency-phase-current-source-bridge-target.v2",
+    claimLevel:
+      "bridge target for source-readiness rows missing retained phase-current source data; current proxies only, no retained acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId: "S_eq",
+    priorityCaseCount,
+    smoothChartPassCount,
+    finiteImpulseCurrentProxyPass,
+    normalizedTriadicSineKernel,
+    phaseCurrentOrientationSign,
+    signedRootOrientationSeedPass,
+    currentBridgeSeedRowCount,
+    currentProxyRowCount,
+    retainedAcceptedRowCount,
+    smoothChartRows,
+    signedSheetPassCount,
+    signedRootCurrentProxyPass,
+    signedSheetRows,
+    rows,
+    status:
+      finiteImpulseCurrentProxyPass === true && signedRootCurrentProxyPass === true
+        ? "phase_current_source_bridge_populated_all_current_source_proxies_retained_acceptance_missing"
+        : finiteImpulseCurrentProxyPass === true && signedRootOrientationSeedPass === true
+          ? "phase_current_source_bridge_populated_finite_impulse_proxy_signed_orientation_seed"
+        : finiteImpulseCurrentProxyPass === true
+          ? "phase_current_source_bridge_populated_finite_impulse_proxy_only"
+          : signedRootOrientationSeedPass === true
+            ? "phase_current_source_bridge_populated_orientation_seed_only"
+            : "phase_current_source_bridge_no_current_proxy",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseCurrentSourceReadinessAudit({
+  retainedSourceRows,
+  phaseCurrentKernelLawScan,
+  currentProxyKernelPass,
+  currentProxyMagnitudePass,
+  currentProxyTransferPass,
+  actionGapMagnitude,
+  targetTransferFractions,
+  phaseCurrentSourceBridgeTarget,
+  sameEventTransferLedgerProxyAudit,
+}) {
+  const rowsById = new Map(
+    (retainedSourceRows ?? []).map((row) => [row.rowId, row])
+  );
+  const rowSpecs = [
+    {
+      rowId: "retained_phase_return_degree_row",
+      residualSymbol: "r_phi",
+      residualComponent: "r_D:r_W",
+      residualEquation:
+        "r_phi=phase_return_degree_or_holonomy(z_M,z_O;S_eq)-declared_triadic_phase_row",
+      requiredRetainedInputs: [
+        "phase_return_degree_or_holonomy_m_n",
+        "retained_phase_rows_phi_a",
+        "same_row_set_S_eq_binding",
+      ],
+      currentProxyPass: currentProxyKernelPass === true,
+      proxyLimit:
+        "The current chart fixes phi_M and phi_O, but does not bind them to retained return-map degree or holonomy.",
+    },
+    {
+      rowId: "signed_root_complex_orientation_row",
+      residualSymbol: "r_C",
+      residualComponent: "r_rows:r_W",
+      residualEquation:
+        "r_C=oriented_signed_root_complex(C_+,C_-,D_ij;M,O)-phase_current_orientation",
+      requiredRetainedInputs: [
+        "signed_root_complex_C_plus_C_minus",
+        "signed_degree_D_ij",
+        "signed_sheet_label_sigma",
+        "fold_or_surgery_metadata",
+      ],
+      currentProxyPass:
+        phaseCurrentSourceBridgeTarget?.signedRootCurrentProxyPass === true,
+      proxyLimit:
+        "The current reduced chart supplies a positive-J sheet proxy, but has no retained C_+, C_-, D_ij, signed sheet label, or fold/surgery metadata.",
+    },
+    {
+      rowId: "finite_impulse_history_class_row",
+      residualSymbol: "r_H",
+      residualComponent: "r_evt:r_W",
+      residualEquation:
+        "r_H=history_class_H_star(phase_current_carrier,caustic_rows;S_eq)-finite_impulse_admissible_class",
+      requiredRetainedInputs: [
+        "H_star_finite_impulse_membership",
+        "finite_eta_impulse_bound",
+        "smooth_arc_chart_rows",
+        "caustic_or_singularity_stratum_metadata",
+      ],
+      currentProxyPass:
+        phaseCurrentSourceBridgeTarget?.finiteImpulseCurrentProxyPass === true,
+      proxyLimit:
+        "The current reduced chart supplies smooth-root evidence, but has no retained H_* finite-impulse class or finite-eta caustic row.",
+    },
+    {
+      rowId: "wake_coupling_current_source_row",
+      residualSymbol: "r_K",
+      residualComponent: "r_W:r_J",
+      residualEquation:
+        "r_K=K_MO^ret-Im(z_O conjugate(z_M))/(sqrt(3)/2)",
+      requiredRetainedInputs: [
+        "wake_return_delay_rows",
+        "coupling_or_recoil_rows",
+        "kernel_gradient_or_current_source_rows",
+        "same_event_or_domain_binding",
+      ],
+      currentProxyPass:
+        phaseCurrentKernelLawScan?.status ===
+        "phase_current_kernel_law_scan_has_priority_exact_no_control_hit",
+      proxyLimit:
+        "The law scan selects the antisymmetric current carrier, but does not derive it from a retained wake/coupling source.",
+    },
+    {
+      rowId: "quadratic_action_gap_source_row",
+      residualSymbol: "r_gap",
+      residualComponent: "r_E:r_J",
+      residualEquation:
+        "r_gap=Delta_ell_gap^ret-(ell_M^(0)-ell_O^(0))/2",
+      requiredRetainedInputs: [
+        "retained_energy_action_rows",
+        "unit_or_effective_inertia_rows",
+        "middle_outer_action_gap_rows",
+        "same_event_or_domain_binding",
+      ],
+      currentProxyPass: currentProxyMagnitudePass === true,
+      proxyLimit:
+        "The quadratic action-gap magnitude is exact in the selected reduced slices, but is not yet derived from retained energy/action rows.",
+    },
+    {
+      rowId: "same_event_transfer_ledger_row",
+      residualSymbol: "r_event",
+      residualComponent: "r_J",
+      residualEquation:
+        "r_event=Delta_ell^ret-(0,-K_MO^ret Delta_ell_gap,+K_MO^ret Delta_ell_gap)",
+      requiredRetainedInputs: [
+        "same_event_angular_momentum_ledger",
+        "retained_wake_angular_momentum",
+        "retained_coupling_angular_momentum",
+        "no_undeclared_slack_row",
+      ],
+      currentProxyPass:
+        sameEventTransferLedgerProxyAudit
+          ?.currentSameEventTransferLedgerProxyPass === true,
+      proxyLimit:
+        "The no-slack transfer ledger closes in the reduced current proxy, but is not evaluated inside one retained angular-momentum ledger.",
+    },
+  ];
+  const rows = rowSpecs.map((spec) => {
+    const sourceRow = rowsById.get(spec.rowId) ?? null;
+    return {
+      rowId: spec.rowId,
+      residualSymbol: spec.residualSymbol,
+      residualComponent: spec.residualComponent,
+      residualEquation: spec.residualEquation,
+      requiredRetainedInputs: spec.requiredRetainedInputs,
+      currentProxyEvidence: sourceRow?.currentProxyEvidence ?? null,
+      currentProxyPass: spec.currentProxyPass,
+      retainedAcceptancePass: sourceRow?.retainedAcceptancePass === true,
+      proxyLimit: spec.proxyLimit,
+      status:
+        sourceRow?.retainedAcceptancePass === true
+          ? "retained_source_row_accepted"
+          : spec.currentProxyPass === true
+            ? "current_proxy_populated_retained_source_missing"
+            : "retained_source_row_missing_no_current_proxy",
+    };
+  });
+  const currentProxyRowCount = rows.filter(
+    (row) => row.currentProxyPass === true
+  ).length;
+  const acceptedSourceRowCount = rows.filter(
+    (row) => row.retainedAcceptancePass === true
+  ).length;
+  const blockingRowIds = rows
+    .filter((row) => row.retainedAcceptancePass !== true)
+    .map((row) => row.rowId);
+  const acceptedRowIds = rows
+    .filter((row) => row.retainedAcceptancePass === true)
+    .map((row) => row.rowId);
+  return {
+    schema:
+      "aaa-equal-frequency-phase-current-source-readiness-residual.v4",
+    claimLevel:
+      "source-row readiness residual for the equal-frequency antisymmetric phase-current kernel; not retained acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId: "S_eq",
+    selectedKernelLawId: phaseCurrentKernelLawScan?.bestKernelLawId ?? null,
+    residualVector: "R_K=(r_phi,r_C,r_H,r_K,r_gap,r_event)",
+    residualVectorMeaning:
+      "All six components must be evaluated on S_eq before the antisymmetric phase-current kernel can count as retained r_W or r_J evidence.",
+    actionGapMagnitude,
+    targetTransferFractions,
+    phaseCurrentSourceBridgeTargetSchema:
+      phaseCurrentSourceBridgeTarget?.schema ?? null,
+    phaseCurrentSourceBridgeTargetStatus:
+      phaseCurrentSourceBridgeTarget?.status ?? null,
+    finiteImpulseCurrentProxyPass:
+      phaseCurrentSourceBridgeTarget?.finiteImpulseCurrentProxyPass ?? false,
+    signedRootOrientationSeedPass:
+      phaseCurrentSourceBridgeTarget?.signedRootOrientationSeedPass ?? false,
+    signedRootCurrentProxyPass:
+      phaseCurrentSourceBridgeTarget?.signedRootCurrentProxyPass ?? false,
+    sameEventTransferLedgerProxyAuditSchema:
+      sameEventTransferLedgerProxyAudit?.schema ?? null,
+    sameEventTransferLedgerProxyStatus:
+      sameEventTransferLedgerProxyAudit?.status ?? null,
+    sameEventTransferLedgerCurrentProxyPass:
+      sameEventTransferLedgerProxyAudit?.currentSameEventTransferLedgerProxyPass ??
+      false,
+    sameEventTransferLedgerRetainedAcceptancePass:
+      sameEventTransferLedgerProxyAudit?.retainedSameEventLedgerAcceptancePass ??
+      false,
+    rowCount: rows.length,
+    currentProxyRowCount,
+    acceptedSourceRowCount,
+    blockingRowCount: blockingRowIds.length,
+    acceptedRowIds,
+    blockingRowIds,
+    sourceReadinessAcceptancePass:
+      rows.length > 0 && acceptedSourceRowCount === rows.length,
+    rows,
+    status:
+      rows.length > 0 && acceptedSourceRowCount === rows.length
+        ? "phase_current_source_readiness_residual_accepted"
+        : rows.length > 0 && currentProxyRowCount === rows.length
+          ? "phase_current_source_readiness_residual_all_current_proxies_retained_sources_missing"
+        : currentProxyRowCount > 0
+          ? "phase_current_source_readiness_residual_current_proxy_partial_retained_sources_missing"
+          : "phase_current_source_readiness_residual_no_current_proxy",
     retainedBranchClaim: false,
   };
 }
@@ -45300,7 +45960,7 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
     .filter((condition) => condition.retainedAcceptancePass !== true)
     .map((condition) => condition.id);
   return {
-    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v7",
+    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v11",
     claimLevel:
       "retained replay acceptance residual blueprint; no retained branch acceptance",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -45385,6 +46045,56 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         ?.retainedKernelDerivationAccepted ?? null,
     phaseCurrentRetainedKernelSourceRowCount:
       phaseCurrentRetainedKernelDerivationTarget?.retainedSourceRowCount ?? null,
+    phaseCurrentSourceBridgeTargetSchema:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.phaseCurrentSourceBridgeTargetSchema ?? null,
+    phaseCurrentSourceBridgeTargetStatus:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.phaseCurrentSourceBridgeTargetStatus ?? null,
+    phaseCurrentSourceBridgeCurrentProxyRowCount:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.phaseCurrentSourceBridgeCurrentProxyRowCount ?? null,
+    phaseCurrentSourceBridgeSignedRootCurrentProxyPass:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.phaseCurrentSourceBridgeSignedRootCurrentProxyPass ?? null,
+    phaseCurrentSourceBridgeRetainedAcceptedRowCount:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.phaseCurrentSourceBridgeRetainedAcceptedRowCount ?? null,
+    phaseCurrentSameEventTransferLedgerProxyAuditSchema:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.sameEventTransferLedgerProxyAuditSchema ?? null,
+    phaseCurrentSameEventTransferLedgerProxyStatus:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.sameEventTransferLedgerProxyStatus ?? null,
+    phaseCurrentSameEventTransferLedgerCurrentProxyPass:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.sameEventTransferLedgerCurrentProxyPass ?? null,
+    phaseCurrentSameEventTransferLedgerRetainedAcceptancePass:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.sameEventTransferLedgerRetainedAcceptancePass ?? null,
+    phaseCurrentSameEventTransferLedgerCasePassCount:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.sameEventTransferLedgerCasePassCount ?? null,
+    phaseCurrentRetainedKernelSourceReadinessAuditSchema:
+      phaseCurrentRetainedKernelDerivationTarget?.sourceReadinessAuditSchema ??
+      null,
+    phaseCurrentRetainedKernelSourceReadinessStatus:
+      phaseCurrentRetainedKernelDerivationTarget?.sourceReadinessStatus ?? null,
+    phaseCurrentRetainedKernelSourceReadinessResidualVector:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.sourceReadinessResidualVector ?? null,
+    phaseCurrentRetainedKernelSourceReadinessCurrentProxyRowCount:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.sourceReadinessCurrentProxyRowCount ?? null,
+    phaseCurrentRetainedKernelSourceReadinessAcceptedSourceRowCount:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.sourceReadinessAcceptedSourceRowCount ?? null,
+    phaseCurrentRetainedKernelSourceReadinessBlockingRowCount:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.sourceReadinessBlockingRowCount ?? null,
+    phaseCurrentRetainedKernelSourceReadinessBlockingRowIds:
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.sourceReadinessBlockingRowIds ?? [],
     sameRetainedEventOrPositiveWidthDomainPass:
       retainedEventDomainSelector?.retainedSelectorAcceptancePass ??
       retainedEventDomainLiftTarget?.sameRetainedEventOrPositiveWidthDomainPass ??
@@ -45991,11 +46701,20 @@ function createEqualFrequencyPhaseResponseSummary(item) {
     LAYER_ROLES.map((role) => {
       const layer = byLayer.get(role);
       const phaseRows = layer?.phaseDiagnostics?.rows ?? [];
+      const activeDetails = layer?.rootLedger?.activeDetails ?? [];
       const rootCount = layer?.rootLedger?.rootCount ?? 0;
       const delayedHitCount = layer?.rootLedger?.delayedHitCount ?? 0;
       const activeRootDetailCount = layer?.rootLedger?.activeRootDetailCount ?? 0;
       const phaseDiagnosticRowCount =
         layer?.phaseDiagnostics?.rowCount ?? phaseRows.length;
+      const activeJacobianSigns = activeDetails
+        .map((detail) =>
+          Number.isFinite(detail.jacobian) ? Math.sign(detail.jacobian) : null
+        )
+        .filter((value) => value !== null);
+      const activeJacobianSignStrata = activeDetails
+        .map((detail) => detail.jacobianSignStratum)
+        .filter((value) => Number.isFinite(value));
       return [
         role,
         {
@@ -46010,6 +46729,11 @@ function createEqualFrequencyPhaseResponseSummary(item) {
           rootCount,
           delayedHitCount,
           activeRootDetailCount,
+          activeJacobianSigns,
+          activeJacobianSignStrata,
+          activeRootKindCodes: activeDetails
+            .map((detail) => detail.rootKind)
+            .filter((value) => Number.isFinite(value)),
           phaseDiagnosticRowCount,
           sourcePhaseStats: createFiniteStats(phaseRows.map((row) => row.sourcePhase)),
           receiverPhaseStats: createFiniteStats(
@@ -46441,7 +47165,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v40",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v44",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -46534,7 +47258,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v36",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v40",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -46744,6 +47468,12 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
   const energyAngularMomentumHbarScaleCandidateCount = positiveNumberOrNull(
     row.energyAngularMomentumHbarScaleCandidateCount
   );
+  const phaseCurrentSourceRowCount = positiveNumberOrNull(
+    row.wakeCouplingTransferPhaseCurrentRetainedKernelSourceRowCount
+  );
+  const phaseCurrentSourceReadinessProxyCount = positiveNumberOrNull(
+    row.wakeCouplingTransferPhaseCurrentRetainedSourceReadinessCurrentProxyRowCount
+  );
   return {
     r_rows: createResidualEvidence({
       accepted: row.retainedRowSetIdentityPass === true,
@@ -46834,14 +47564,20 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
     }),
     r_W: createResidualEvidence({
       accepted: false,
+      currentProxy: isFullPositiveCount(
+        phaseCurrentSourceReadinessProxyCount,
+        phaseCurrentSourceRowCount
+      ),
       partialProxy: isFullPositiveCount(
         row.priorityPhaseOnlyBalancePassCount,
         packetRowCount
-      ),
-      source: row.phaseDeformationBalanceAuditSchema,
+      ) || phaseCurrentSourceReadinessProxyCount !== null,
+      source:
+        row.wakeCouplingTransferPhaseCurrentRetainedSourceReadinessAuditSchema ??
+        row.phaseDeformationBalanceAuditSchema,
       blocker: "phase_deformation_wake_coupling_weight_balance",
       note:
-        "Triadic 120 degrees balances the unit clock, but weighted phase/action balance is not closed.",
+        "The phase-current source-readiness residual supplies current proxy evidence only when every R_K row is populated; retained phase-deformation, wake, recoil, or coupling balance is still missing.",
     }),
     r_J: createResidualEvidence({
       accepted: false,
@@ -47248,6 +47984,70 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
       equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
         ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
         ?.retainedSourceRowCount ?? null,
+    wakeCouplingTransferPhaseCurrentSourceBridgeTargetSchema:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.phaseCurrentSourceBridgeTargetSchema ?? null,
+    wakeCouplingTransferPhaseCurrentSourceBridgeTargetStatus:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.phaseCurrentSourceBridgeTargetStatus ?? null,
+    wakeCouplingTransferPhaseCurrentSourceBridgeCurrentProxyRowCount:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.phaseCurrentSourceBridgeCurrentProxyRowCount ?? null,
+    wakeCouplingTransferPhaseCurrentSourceBridgeSignedRootCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.phaseCurrentSourceBridgeSignedRootCurrentProxyPass ?? null,
+    wakeCouplingTransferPhaseCurrentSourceBridgeRetainedAcceptedRowCount:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.phaseCurrentSourceBridgeRetainedAcceptedRowCount ?? null,
+    wakeCouplingTransferPhaseCurrentSameEventTransferLedgerProxyAuditSchema:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.sameEventTransferLedgerProxyAuditSchema ?? null,
+    wakeCouplingTransferPhaseCurrentSameEventTransferLedgerProxyStatus:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.sameEventTransferLedgerProxyStatus ?? null,
+    wakeCouplingTransferPhaseCurrentSameEventTransferLedgerCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.sameEventTransferLedgerCurrentProxyPass ?? null,
+    wakeCouplingTransferPhaseCurrentSameEventTransferLedgerRetainedAcceptancePass:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.sameEventTransferLedgerRetainedAcceptancePass ?? null,
+    wakeCouplingTransferPhaseCurrentSameEventTransferLedgerCasePassCount:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.sameEventTransferLedgerCasePassCount ?? null,
+    wakeCouplingTransferPhaseCurrentRetainedSourceReadinessAuditSchema:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.sourceReadinessAuditSchema ?? null,
+    wakeCouplingTransferPhaseCurrentRetainedSourceReadinessStatus:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.sourceReadinessStatus ?? null,
+    wakeCouplingTransferPhaseCurrentRetainedSourceReadinessResidualVector:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.sourceReadinessResidualVector ?? null,
+    wakeCouplingTransferPhaseCurrentRetainedSourceReadinessCurrentProxyRowCount:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.sourceReadinessCurrentProxyRowCount ?? null,
+    wakeCouplingTransferPhaseCurrentRetainedSourceReadinessAcceptedSourceRowCount:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.sourceReadinessAcceptedSourceRowCount ?? null,
+    wakeCouplingTransferPhaseCurrentRetainedSourceReadinessBlockingRowCount:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.phaseCurrentRetainedKernelDerivationTarget
+        ?.sourceReadinessBlockingRowCount ?? null,
     actionLedgerAuditSchema:
       equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.schema ?? null,
     actionLedgerStatus:
@@ -47911,6 +48711,39 @@ function printSummary(report, absoluteOutputPath) {
               `sourceRows=${phaseCurrentRetainedKernelDerivationTarget.retainedSourceRowCount}`,
             ].join(" ")
           );
+          if (
+            phaseCurrentRetainedKernelDerivationTarget
+              .sameEventTransferLedgerProxyAudit
+          ) {
+            const sameEventTransferLedgerProxyAudit =
+              phaseCurrentRetainedKernelDerivationTarget
+                .sameEventTransferLedgerProxyAudit;
+            console.log(
+              [
+                "same-event transfer ledger proxy:",
+                sameEventTransferLedgerProxyAudit.status,
+                `proxy=${sameEventTransferLedgerProxyAudit.currentSameEventTransferLedgerProxyPass}`,
+                `rows=${sameEventTransferLedgerProxyAudit.currentProxyPassCount}/${sameEventTransferLedgerProxyAudit.rowCount}`,
+                `net=${formatNumber(sameEventTransferLedgerProxyAudit.transferFractionSum)}`,
+                `middleOuter=${formatNumber(sameEventTransferLedgerProxyAudit.middleOuterPairBalanceResidual)}`,
+                `retained=${sameEventTransferLedgerProxyAudit.retainedSameEventLedgerAcceptancePass}`,
+              ].join(" ")
+            );
+          }
+          if (phaseCurrentRetainedKernelDerivationTarget.sourceReadinessAudit) {
+            const sourceReadinessAudit =
+              phaseCurrentRetainedKernelDerivationTarget.sourceReadinessAudit;
+            console.log(
+              [
+                "phase-current source readiness:",
+                sourceReadinessAudit.status,
+                `proxyRows=${sourceReadinessAudit.currentProxyRowCount}`,
+                `acceptedRows=${sourceReadinessAudit.acceptedSourceRowCount}`,
+                `blockingRows=${sourceReadinessAudit.blockingRowCount}`,
+                `residual=${sourceReadinessAudit.residualVector}`,
+              ].join(" ")
+            );
+          }
         }
       }
     }

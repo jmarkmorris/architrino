@@ -84,6 +84,8 @@ The result isolates the missing mechanism. Nonzero horizon block entropy cannot 
 3. terminal branch families beyond the concentric circular, bounded phase-offset, and first shifted-center ansatz, such as axial-frame variants or wake-memory classes that survive the Physical Observer quotient;
 4. a two-dimensional patch-network pressure rather than a one-strip self-loop proxy.
 
+Entropy/provenance impact 2026-06-22. The updated entropy chapter sharpens this packet's target without changing its failure status. The horizon coefficient should be read as a cut-capacity problem on the causal-wake provenance graph $G_{\mathrm{prov}}(\Sigma)$: terminal labels contribute only when they are carried by provenance edges that cross the observer access cut and survive the Physical Observer quotient. The next terminal-alignment rerun should therefore report a provenance-edge cut or equivalent cut-capacity proxy, not only local label multiplicity. This is a route refinement, not a `start_over` condition.
+
 The current action-kernel candidate is the delayed-interior characteristic-tail kernel promoted in the dynamics canon:
 
 $$

@@ -148,6 +148,44 @@ $$
 
 These diagnostics are validation outputs, not construction inputs. They may reject $\zeta(A_0)$ after the extraction, but they may not select a branch representative, angular window, far-field radius, or normalization to improve agreement with an observed mass.
 
+## Exposed-Energy Partition
+
+The Tier 2 packet must also split the exposed ledger before any mass or medium-response consumer uses it. On the accepted branch,
+
+$$
+\zeta(A_0)E_{\text{internal}}(A_0)
+=
+E_{\text{probe}}(A_0)
++
+E_{\text{sea-coupled}}(A_0)
++
+E_{\text{unresolved}}(A_0).
+$$
+
+Here $E_{\text{probe}}$ is the distant-probe channel used by the mass map, while $E_{\text{sea-coupled}}$ is the source channel for Noether sea retuning. The closure residual is
+
+$$
+\mathcal R_{\text{part}}(A_0)
+=
+\frac{
+\left|
+\zeta(A_0)E_{\text{internal}}(A_0)
+-
+E_{\text{probe}}(A_0)
+-
+E_{\text{sea-coupled}}(A_0)
+-
+E_{\text{unresolved}}(A_0)
+\right|
+}{
+\left|\zeta(A_0)E_{\text{internal}}(A_0)\right|
++
+\varepsilon_{\text{part}}
+}.
+$$
+
+A Tier 2 packet that uses raw $\zeta E_{\text{internal}}$ as both direct probe readout and sea-retuning source remains open even if the scalar far-field coefficient itself converges.
+
 ## Acceptance Gates
 
 Tier 2 passes only if:
@@ -157,7 +195,8 @@ Tier 2 passes only if:
 3. $\zeta(A_0)$ is computed from the accepted branch without observed particle masses, electron radius, charged-lepton ratios, or measured $\alpha$ as inputs;
 4. $\mathcal{L}_{\text{aniso}}$ is reported rather than hidden;
 5. every discarded exact label satisfies the hidden-label acceptance equations above;
-6. the output preserves enough state to rerun the extraction from the branch packet.
+6. the exposed-energy partition reports $E_{\text{probe}}$, $E_{\text{sea-coupled}}$, $E_{\text{unresolved}}$, and $\mathcal R_{\text{part}}$ on the same retained record;
+7. the output preserves enough state to rerun the extraction from the branch packet.
 
 ## Failure Codes
 
@@ -168,6 +207,7 @@ Tier 2 passes only if:
 | `shielding-radius-drift` | far-field coefficient changes with extraction radius |
 | `shielding-angular-drift` | far-field coefficient changes with angular resolution |
 | `leakage-unreported` | anisotropic leakage exists but is not emitted |
+| `exposed-partition-open` | $\zeta E_{\text{internal}}$ is consumed as both probe readout and sea-retuning source without a closed partition residual |
 | `hidden-branch-mass-handle` | a discarded branch label changes $\zeta(A_0)E_{\text{internal}}(A_0)$ beyond $\epsilon_{0,\mathrm{handle}}$ |
 | `benchmark-contaminated` | observed mass or hierarchy data entered before extraction |
 

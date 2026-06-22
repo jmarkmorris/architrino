@@ -191,6 +191,33 @@ $$
 
 This gives the probe a non-fitting invariant. In a homogeneous isotropic medium, $\delta\mathcal{M}_{0}=0$ and $\delta\mathcal{M}_{\mathrm{tf}}^{ab}=0$, so the roadmap scalar mass reduces to $\alpha_{\mathrm{m}}\zeta(A_0)E_{\text{internal}}(A_0)/c_{\text{eff},0}^{2}$. Pure exposure anisotropy changes direction-dependent inertia through $\mathsf{I}_{A_0}^{ab}$ but does not change the scalar trace unless a trace-free medium response is present. Conversely, pure trace-free medium response does not change scalar mass for scalar exposure. The scalar anisotropic correction is only the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}/3$.
 
+The same contraction also supplies the scalar-positivity window. A retained probe row may promote $m_{\mathrm{tr}}(A_0)$ as a positive scalar only when
+
+$$
+\zeta(A_0)(1+\delta\mathcal{M}_0)
+>
+\frac{1}{3}
+\left|
+\mathcal{Z}_{\mathrm{tf},ab}(A_0)
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right|.
+$$
+
+When $1+\delta\mathcal{M}_0>0$, the conservative norm form is
+
+$$
+\zeta(A_0)
+>
+\frac{
+\left\|\mathcal{Z}_{\mathrm{tf}}(A_0)\right\|_h
+\left\|\delta\mathcal{M}_{\mathrm{tf}}\right\|_h
+}{
+3(1+\delta\mathcal{M}_0)
+}.
+$$
+
+This means deep shielding is not an unconstrained escape hatch. A branch with large trace-free exposure must either keep the retained Noether sea response nearly isotropic or fail as a scalar mass source in that environment.
+
 In quotient language, this contraction is a retained-response-direction statement. A representative label is a scalar mass handle only if it changes $M_0^{\mathrm{src}}$ or changes the projection of $E_{\text{internal}}\mathcal{Z}_{\mathrm{tf}}^{ab}$ onto the span of retained reversible trace-free response tensors $B_r^{ab}$. Trace-free differences orthogonal to those retained response directions remain unobserved by the scalar trace until a retained probe supplies a tensor that contracts with them.
 
 Any antisymmetric response residue $\mathcal{M}_{-}^{ab}=(\mathcal{M}_{\text{sea}}^{ab}-\mathcal{M}_{\text{sea}}^{ba})/2$ drops out of the reversible quadratic kinetic scalar $V_{\text{cm},a}\mathsf{I}_{A_0}^{ab}V_{\text{cm},b}$. It therefore belongs to orientation, transport, or loss accounting rather than to scalar rest mass.
@@ -237,8 +264,9 @@ Tier 3 passes only if:
 2. the response is linear over the declared perturbation range;
 3. the homogeneous isotropic limit approaches $h^{ab}/c_{\text{eff}}^2$ within tolerance;
 4. acceleration and gradient probes agree on the shielded-energy coefficient to first order;
-5. anisotropy and leakage residuals are reported, not absorbed into $\alpha$.
-6. trace and trace-free tensor projections are reported with the same direction labels used by the pressure-response replay.
+5. the scalar-positivity window above holds before $m_{\mathrm{tr}}(A_0)$ is promoted as a positive scalar mass;
+6. anisotropy and leakage residuals are reported, not absorbed into $\alpha$;
+7. trace and trace-free tensor projections are reported with the same direction labels used by the pressure-response replay.
 
 ## Failure Codes
 
@@ -247,6 +275,7 @@ Tier 3 passes only if:
 | `basin-loss` | probe leaves the accepted branch basin |
 | `nonlinear-response` | response is not linear over the declared small-probe range |
 | `tensor-anisotropy` | homogeneous limit does not approach $h^{ab}/c_{\text{eff}}^2$ |
+| `scalar-positivity-window-fail` | trace-free exposure and trace-free medium response overwhelm the scalar shielding term |
 | `accel-gradient-mismatch` | acceleration and gradient probes do not share the shielded-energy coefficient |
 | `projection-incomplete` | trace or trace-free projections are missing or use inconsistent direction labels |
 | `null-sector-leakage` | a directional tensor residual exceeds signal, birefringence, dispersion, or preferred-frame bounds |
