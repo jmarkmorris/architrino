@@ -94,4 +94,4 @@ blocker.
 ## Executable Artifact
 
 The executable packet is
-[octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-positive-gd-quotient-subcell-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-positive-gd-quotient-subcell-certificate.mjs).
+[octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-positive-gd-quotient-subcell-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-positive-gd-quotient-subcell-certificate.mjs).

@@ -129,7 +129,7 @@ The direct successor [octahedral-fold-aware-cross-binary-i1-bracket-local-deriva
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.mjs) emits:
 
 - predecessor validation for the local zero-isolation burden reduction and bracket derivative mesh barrier;
 - one $5\times5$ mixed-stencil row for each predecessor bracket mesh cell;
@@ -138,7 +138,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-i1-bracket-local-d
 - source-root count, term root-count signature, and sampled $\min |F_\delta|$ checks;
 - explicit non-directed-rounding, non-interval, non-critical-exhaustion, non-quadrature, and non-retention boundaries.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.test.js) verifies schema validation, predecessor composition, speed-window removal, default $128$-cell and $3200$-sample margins, row-level allowance domination, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.test.js) verifies schema validation, predecessor composition, speed-window removal, default $128$-cell and $3200$-sample margins, row-level allowance domination, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
 
 ## Claim Boundary
 

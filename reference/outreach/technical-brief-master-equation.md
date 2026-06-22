@@ -189,7 +189,7 @@ The equation is only the microscopic candidate law. To become a physics architec
 
 The first target is stable two-body or few-body behavior. Opposite-polarity attraction, like-polarity repulsion, delay, and self-hit structure must produce stable or metastable branch patterns rather than immediate collapse, explosion, or pathological caustic behavior. This includes ordinary partner-hit regimes and same-source self-hit regimes, with clear conditions for when each branch is admissible.
 
-The second target is assembly structure. A Noether swarm is a neutral six-architrino assembly class with polarity balance and a persistent causal-return ledger. The stronger nested shell swarm program asks whether organized radial support bands can supply stable scaffolds for particle-like behavior. Those structures must be derived as retained branches of the master equation, not simply drawn as plausible diagrams.
+The second target is assembly structure. A Noether braid is a neutral six-architrino assembly class with polarity balance and a persistent causal-return ledger. The stronger nested shell braid program asks whether organized radial support bands can supply stable scaffolds for particle-like behavior. Those structures must be derived as retained branches of the master equation, not simply drawn as plausible diagrams.
 
 The third target is effective particle bookkeeping. Stable assemblies must expose conserved records that can map to observed charge, mass, spin, interaction channels, and identity behavior. The architrino inventory is fixed at the substrate level, so particle production, association, dissociation, and reaction language must be interpreted as repartitioning of persistent architrinos into different assemblies.
 
@@ -207,7 +207,7 @@ The validation burden is the central reason to state the law explicitly. A serio
 
 3. **Energy and symmetry accounting:** Show how conserved quantities or controlled exchange ledgers arise from the delayed law. Persistent architrino identity gives provenance; it does not automatically prove energy, momentum, or angular momentum conservation.
 
-4. **Assembly retention:** Demonstrate that candidate binaries, neutral swarms, and nested shell swarms remain bounded, recover from perturbations, and close their causal-return ledgers under declared tolerances.
+4. **Assembly retention:** Demonstrate that candidate binaries, neutral braids, and nested shell braids remain bounded, recover from perturbations, and close their causal-return ledgers under declared tolerances.
 
 5. **Effective recovery:** Derive particle-like records, effective fields, clock behavior, quantum statistics, and Lorentz-like observer limits from assemblies and coarse-graining. Do not assume the effective theories as hidden inputs.
 
@@ -221,7 +221,7 @@ A fair first test should not attempt to recover every known physical theory at o
 
 A minimal example would be a two-body opposite-polarity branch with declared regularization, declared memory depth, and a stated source-pair policy. The test should report the root set $\mathcal{C}_{ij}(t)$ over a time window, the Jacobian floor, the radial residual, energy or action bookkeeping under the chosen convention, and convergence behavior as numerical resolution improves. If the branch is claimed to be stable, the report must also show boundedness and perturbation recovery rather than only a visually appealing orbit.
 
-A stronger test would move to a neutral six-architrino swarm. There the question is not whether a symmetric configuration can be drawn, but whether all ordered source-receiver pairs close one causal-return ledger under the same assumptions. The retained-branch claim should survive changes in timestep, regularization width, phase sampling, and perturbation size within declared tolerance. A failed branch is still useful if it narrows the admissible architecture and prevents overclaiming.
+A stronger test would move to a neutral six-architrino braid. There the question is not whether a symmetric configuration can be drawn, but whether all ordered source-receiver pairs close one causal-return ledger under the same assumptions. The retained-branch claim should survive changes in timestep, regularization width, phase sampling, and perturbation size within declared tolerance. A failed branch is still useful if it narrows the admissible architecture and prevents overclaiming.
 
 This style of test is the bridge between outreach and technical seriousness. It gives a skeptical reader a concrete object to inspect and gives a supporter a concrete next result to request. The theory advances only when a branch certificate, derivation, or failure criterion becomes sharper than the previous statement.
 

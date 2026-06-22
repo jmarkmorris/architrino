@@ -202,7 +202,7 @@ interpreted by Taylor cancellation rather than raw division. This packet bypasse
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-septic-jet-coefficient-interval-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-septic-jet-coefficient-interval-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-septic-jet-coefficient-interval-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-septic-jet-coefficient-interval-certificate.mjs). It emits:
 
 - directed-rounded interval series rows over the $128$ speed cells;
 - branch $h_{0,\varepsilon}$ through $h_{7,\varepsilon}$ interval rows;
@@ -211,4 +211,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - linear-loss, quadratic-loss, cubic-loss, quartic-loss, quintic-loss, sextic-loss, septic-loss, tail-budget rows, and eighth-order-tail-budget rows on the first y cell;
 - explicit open finite-tail, full quotient, scaled-remainder, `I1`, and retention rows.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-septic-jet-coefficient-interval-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-septic-jet-coefficient-interval-certificate.test.js) validates schema, no-fixed-speed-window discipline, $h_7$ solve rows, coefficient intervals, remaining post-septic budget, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-septic-jet-coefficient-interval-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-septic-jet-coefficient-interval-certificate.test.js) validates schema, no-fixed-speed-window discipline, $h_7$ solve rows, coefficient intervals, remaining post-septic budget, overclaim rejection, and CLI write/validate behavior.

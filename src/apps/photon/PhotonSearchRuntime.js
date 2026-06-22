@@ -60,9 +60,9 @@ function cloneNormalizedPhotonState(state) {
 
 function getEnabledMask(state) {
   return ["left", "right"]
-    .map((swarmId) =>
+    .map((braidId) =>
       PHOTON_LAYER_ORDER.map((layerId) =>
-        getPhotonLayer(state, swarmId, layerId).enabled !== false ? layerId : "-"
+        getPhotonLayer(state, braidId, layerId).enabled !== false ? layerId : "-"
       ).join("")
     )
     .join("/");
@@ -91,19 +91,19 @@ function getStateSearchKey(state) {
 
 function setEnabledLayers(state, enabledLayers) {
   const enabledSet = new Set(enabledLayers);
-  ["left", "right"].forEach((swarmId) => {
+  ["left", "right"].forEach((braidId) => {
     PHOTON_LAYER_ORDER.forEach((layerId) => {
-      setPhotonLayerEnabled(state, swarmId, layerId, enabledSet.has(layerId));
+      setPhotonLayerEnabled(state, braidId, layerId, enabledSet.has(layerId));
     });
   });
 }
 
 function setPhases(state, phaseMap) {
-  ["left", "right"].forEach((swarmId) => {
+  ["left", "right"].forEach((braidId) => {
     PHOTON_LAYER_ORDER.forEach((layerId) => {
-      const phase = phaseMap?.[swarmId]?.[layerId] ?? phaseMap?.[layerId];
+      const phase = phaseMap?.[braidId]?.[layerId] ?? phaseMap?.[layerId];
       if (Number.isFinite(Number(phase))) {
-        state.pair[swarmId].layers[layerId].phaseDeg = normalizePhotonDegrees(phase);
+        state.pair[braidId].layers[layerId].phaseDeg = normalizePhotonDegrees(phase);
       }
     });
   });
@@ -528,17 +528,17 @@ function createPhotonSearchSolverOptions(options, defaults, overrideKey) {
 }
 
 function countEnabledLayers(state) {
-  return ["left", "right"].reduce((sum, swarmId) => (
+  return ["left", "right"].reduce((sum, braidId) => (
     sum + PHOTON_LAYER_ORDER.filter(
-      (layerId) => getPhotonLayer(state, swarmId, layerId).enabled !== false
+      (layerId) => getPhotonLayer(state, braidId, layerId).enabled !== false
     ).length
   ), 0);
 }
 
 function hasSimplePhases(state) {
-  return ["left", "right"].every((swarmId) =>
+  return ["left", "right"].every((braidId) =>
     PHOTON_LAYER_ORDER.every((layerId) => {
-      const phase = Number(getPhotonLayer(state, swarmId, layerId).phaseDeg) || 0;
+      const phase = Number(getPhotonLayer(state, braidId, layerId).phaseDeg) || 0;
       return Math.abs(phase - Math.round(phase / 45) * 45) <= 1e-6;
     })
   );

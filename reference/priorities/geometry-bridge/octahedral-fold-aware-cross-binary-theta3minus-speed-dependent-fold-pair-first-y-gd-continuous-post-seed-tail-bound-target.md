@@ -1019,7 +1019,7 @@ This is the present quantitative target for the first directed-rounded h39
 polydisc majorant attempt.
 
 The executable budget reducer is
-[octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-root-tangent-cauchy-majorant-tail-budget.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-root-tangent-cauchy-majorant-tail-budget.mjs).
+[octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-root-tangent-cauchy-majorant-tail-budget.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-root-tangent-cauchy-majorant-tail-budget.mjs).
 It also proves the radius monotonicity corollary: for fixed
 $\Xi_*/\sigma_X\ge0$, both h39 $M_G$ thresholds strictly increase with
 $s=\rho/Y>1$, and the correlated $D$ threshold is always stricter than the

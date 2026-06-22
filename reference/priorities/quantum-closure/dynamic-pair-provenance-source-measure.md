@@ -403,7 +403,7 @@ The current repo does not yet contain a real accepted-history Stern-Gerlach appa
 
 ```text
 node scripts/mass-map/a0-tier1-continuation-source-prototype.mjs \
-  --tier0 scripts/nested-shell-swarm/fixtures/a0-tier0-branch-search-minimal.json \
+  --tier0 scripts/nested-shell-braid/fixtures/a0-tier0-branch-search-minimal.json \
   --pretty \
   --out /tmp/a0-tier1-continuation-source-prototype.json
 
@@ -413,7 +413,7 @@ node scripts/mass-map/a0-tier1-one-period-continuation-prototype.mjs \
   --out /tmp/a0-tier1-one-period-continuation-prototype.json
 
 node scripts/mass-map/a0-tier1-accepted-history-writer.mjs \
-  --tier0 scripts/nested-shell-swarm/fixtures/a0-tier0-branch-search-minimal.json \
+  --tier0 scripts/nested-shell-braid/fixtures/a0-tier0-branch-search-minimal.json \
   --continuation /tmp/a0-tier1-continuation-source-prototype.json \
   --pretty \
   --out /tmp/a0-tier1-accepted-history-from-continuation-source.json
@@ -423,7 +423,7 @@ now reconstructs finite carrier-chart samples and the carrier root ledger from t
 
 ```text
 node scripts/mass-map/a0-tier1-continuation-source-prototype.mjs \
-  --tier0 scripts/nested-shell-swarm/fixtures/a0-tier0-branch-search-minimal.json \
+  --tier0 scripts/nested-shell-braid/fixtures/a0-tier0-branch-search-minimal.json \
   --direct-probe-steps 64 \
   --direct-step-fraction-ladder 0.0009765625 \
   --pretty \

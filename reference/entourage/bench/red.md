@@ -77,7 +77,7 @@ Use `validation/parameter-ledger.md` as the canonical list; flag any new paramet
 **Category B (Scale Setters / Emergent Structures):**
 - Overall coupling strength $\lambda$ (sets energy/distance scales)
 - Tri-binary radius ratios ($r_{inner} : r_{mid} : r_{outer}$)
-- Noether swarm density normalization $\rho_{\text{NS},0}$ and state variables such as $n(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$
+- Noether braid density normalization $\rho_{\text{NS},0}$ and state variables such as $n(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$
 - Self-hit memory depth or decay timescale (if computational approximation)
 
 **Category C (Derived from Micro-Dynamics / Simulations):**

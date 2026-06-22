@@ -100,13 +100,13 @@
         "sea": { "type": "string" }
       }
     },
-    "eigenSwarm": {
+    "eigenBraid": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "status": {
           "type": "string",
-          "enum": ["not-evaluated", "candidate", "relative-return-passed", "retained-eigen-swarm", "rejected"]
+          "enum": ["not-evaluated", "candidate", "relative-return-passed", "retained-eigen-braid", "rejected"]
         },
         "period": {
           "type": "number",
@@ -198,8 +198,8 @@
           "type": "object",
           "additionalProperties": true
         },
-        "eigenSwarm": {
-          "$ref": "#/$defs/eigenSwarm"
+        "eigenBraid": {
+          "$ref": "#/$defs/eigenBraid"
         },
         "axisAlignment": {
           "$ref": "#/$defs/axisAlignment"

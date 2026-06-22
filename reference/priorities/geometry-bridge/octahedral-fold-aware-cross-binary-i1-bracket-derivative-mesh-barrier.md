@@ -88,7 +88,7 @@ The direct sampled/stencil composition successor [octahedral-fold-aware-cross-bi
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.mjs) emits:
 
 - no-fixed-speed-window mesh parameters using $3.02156\le v_\ast\le3.02157$;
 - predecessor validation for the sampled `I1.f1` zero-isolation speed-envelope scan;
@@ -97,7 +97,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-i1-bracket-derivat
 - a global worst-cell barrier summary;
 - explicit non-interval, non-critical-exhaustion, non-quadrature, and non-retention boundaries.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.test.js) verifies schema validation, predecessor composition, speed-window removal, mesh-row negativity, barrier summary values, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.test.js) verifies schema validation, predecessor composition, speed-window removal, mesh-row negativity, barrier summary values, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
 
 ## Claim Boundary
 

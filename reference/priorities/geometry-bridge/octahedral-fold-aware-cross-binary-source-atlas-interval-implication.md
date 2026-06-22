@@ -138,7 +138,7 @@ Thus the next closure proof is sharply finite: prove the thirty-three finite row
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-source-atlas-interval-implication.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-source-atlas-interval-implication.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-source-atlas-interval-implication.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-source-atlas-interval-implication.mjs) emits:
 
 - predecessor validation for the source-atlas quarter-cell reduction, interval sign-enclosure target atlas, and fold-collar sign-transport certificate;
 - no-fixed-speed-window interval implication parameters;
@@ -150,7 +150,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-source-atlas-inter
 - the imported value-budget implication;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-source-atlas-interval-implication.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-source-atlas-interval-implication.test.js) verifies predecessor validation, speed-window removal, formula-scope import, target counts, bottleneck preservation, theorem statement, fold-collar $G,D$ rows, bridge predicate exposure, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-source-atlas-interval-implication.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-source-atlas-interval-implication.test.js) verifies predecessor validation, speed-window removal, formula-scope import, target counts, bottleneck preservation, theorem statement, fold-collar $G,D$ rows, bridge predicate exposure, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

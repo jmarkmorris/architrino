@@ -292,7 +292,7 @@ That successor remains `not_retained`: it records a sign-certified period-integr
 
 ## Executable Diagnostic
 
-The executable diagnostic [octahedral-period-rescaled-fold-chart.mjs](../../../scripts/neutral-swarm/octahedral-period-rescaled-fold-chart.mjs) emits:
+The executable diagnostic [octahedral-period-rescaled-fold-chart.mjs](../../../scripts/neutral-braid/octahedral-period-rescaled-fold-chart.mjs) emits:
 
 - the reduced cross-binary phase-delay equation $F_{\kappa,v}=0$;
 - the Jacobian relation $F_\delta=(2\delta/v^2)J$;
@@ -302,9 +302,9 @@ The executable diagnostic [octahedral-period-rescaled-fold-chart.mjs](../../../s
 - the fold-aware multi-root mean formula;
 - the non-retention verdict.
 
-The successor executables [octahedral-fold-aware-multiroot-period-integral.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-multiroot-period-integral.mjs) and [octahedral-fold-aware-zero-bracket-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-zero-bracket-certificate.mjs) own the coarea-chart reduction, cross-binary cancellation, sampled multi-root zero bracket, and sign-certified zero bracket.
+The successor executables [octahedral-fold-aware-multiroot-period-integral.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-multiroot-period-integral.mjs) and [octahedral-fold-aware-zero-bracket-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-zero-bracket-certificate.mjs) own the coarea-chart reduction, cross-binary cancellation, sampled multi-root zero bracket, and sign-certified zero bracket.
 
-The companion test [neutral-braid-octahedral-period-rescaled-fold-chart.test.js](../../../tests/neutral-swarm-octahedral-period-rescaled-fold-chart.test.js) verifies the cusp numbers, the $v=1.75$ fold endpoints, the sampled failure witness, CLI validation, and claim-level guards.
+The companion test [neutral-braid-octahedral-period-rescaled-fold-chart.test.js](../../../tests/neutral-braid-octahedral-period-rescaled-fold-chart.test.js) verifies the cusp numbers, the $v=1.75$ fold endpoints, the sampled failure witness, CLI validation, and claim-level guards.
 
 ## Retention Verdict
 

@@ -175,7 +175,7 @@ No fixed speed window is imposed in this packet. The representative $h=1$ row is
 
 ## Executable Diagnostic
 
-The executable diagnostic [octahedral-fold-aware-dynamics-handoff.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-dynamics-handoff.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-dynamics-handoff.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-dynamics-handoff.mjs) emits:
 
 - the source zero-bracket certificate validation status;
 - the representative $h=1$, $s=v_0$ zero-ray point;
@@ -184,7 +184,7 @@ The executable diagnostic [octahedral-fold-aware-dynamics-handoff.mjs](../../../
 - the bounded-speed primitive handoff status;
 - the non-retention verdict.
 
-The companion test [neutral-braid-octahedral-fold-aware-dynamics-handoff.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-dynamics-handoff.test.js) verifies the source certificate, pointwise witness, fixed-speed rejection, bounded-speed handoff boundary, CLI validation, and non-retention guards.
+The companion test [neutral-braid-octahedral-fold-aware-dynamics-handoff.test.js](../../../tests/neutral-braid-octahedral-fold-aware-dynamics-handoff.test.js) verifies the source certificate, pointwise witness, fixed-speed rejection, bounded-speed handoff boundary, CLI validation, and non-retention guards.
 
 ## Promotion Decision
 

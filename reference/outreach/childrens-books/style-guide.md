@@ -172,7 +172,7 @@ The child should be able to see that a calm neutral assembly is made from active
 
 ### Oblate Spheroidal Envelopes
 
-For adult notes, prompts, and production metadata, use `oblate spheroidal envelope` when a Noether swarm boundary has two equal transverse directions and one shortened axis. Use `oblate spheroidal exclusion envelope` when the page is about packing, overlap, displacement, or boundary contact.
+For adult notes, prompts, and production metadata, use `oblate spheroidal envelope` when a Noether braid boundary has two equal transverse directions and one shortened axis. Use `oblate spheroidal exclusion envelope` when the page is about packing, overlap, displacement, or boundary contact.
 
 In child-facing story prose, avoid making the technical term carry the sentence. Prefer simple descriptions such as `flattened envelope`, `squashed round envelope`, or `round glow pressed flatter in one direction` when the exact term would interrupt the page. Keep the adult note or production prompt precise enough that the image still shows the correct geometry.
 

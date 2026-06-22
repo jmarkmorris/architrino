@@ -266,7 +266,7 @@ using regular subcharts and explicit fold cells.
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-quarter-profile-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-quarter-profile-certificate.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-quarter-profile-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-quarter-profile-certificate.mjs) emits:
 
 - source validation for the representative decomposition and receiver-orbit chart closure;
 - no-fixed-speed-window scan parameters;
@@ -276,7 +276,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-quarter-profile-ce
 - the centered clock interval $\nu_{\min}=\ell-D_{\times}$, $\nu_{\max}=\ell+D_{\times}$;
 - fold guards and non-retention boundaries.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-quarter-profile-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-quarter-profile-certificate.test.js) verifies source validation, speed-window removal, symmetry transport, quarter primitive formulas, centered clock positivity, fold guards, CLI emission, JSON validation, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-quarter-profile-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-quarter-profile-certificate.test.js) verifies source validation, speed-window removal, symmetry transport, quarter primitive formulas, centered clock positivity, fold guards, CLI emission, JSON validation, and non-retention claims.
 
 ## Claim Boundary
 

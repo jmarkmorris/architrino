@@ -236,7 +236,7 @@ $$
 dS_B=\omega_B
 $$
 
-on the tested chart. The branch response can still be useful: it can report period stretch, shape response, exposure response, medium-response tensors, and preferred-frame leakage. It cannot be described as action-derived, and any conserved-current statement is at most diagnostic until the rows in [action-and-noether-closure-row.md](../swarm/shell-swarm/action-and-noether-closure-row.md) close on the same ledger.
+on the tested chart. The branch response can still be useful: it can report period stretch, shape response, exposure response, medium-response tensors, and preferred-frame leakage. It cannot be described as action-derived, and any conserved-current statement is at most diagnostic until the rows in [action-and-noether-closure-row.md](../braid/shell-braid/action-and-noether-closure-row.md) close on the same ledger.
 
 If the curl passes and the conservation rows close, the response reaches
 

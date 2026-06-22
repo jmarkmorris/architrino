@@ -208,7 +208,7 @@ The $|J|$ target cannot honestly be a single positive global floor across the fo
 
 ## Executable Checksum
 
-The executable diagnostic [octahedral-fold-aware-clock-length-chart-closure-proof.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-clock-length-chart-closure-proof.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-clock-length-chart-closure-proof.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-clock-length-chart-closure-proof.mjs) emits:
 
 - the source symmetry-reduction validation status;
 - theorem-scope assumptions;
@@ -218,7 +218,7 @@ The executable diagnostic [octahedral-fold-aware-clock-length-chart-closure-proo
 - the six-to-one interval burden reduction;
 - the non-retention verdict.
 
-The companion test [neutral-braid-octahedral-fold-aware-clock-length-chart-closure-proof.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-clock-length-chart-closure-proof.test.js) verifies source validation, identity statements, generator conventions, covariance checksums, receiver-burden reduction, CLI validation, and non-retention guards.
+The companion test [neutral-braid-octahedral-fold-aware-clock-length-chart-closure-proof.test.js](../../../tests/neutral-braid-octahedral-fold-aware-clock-length-chart-closure-proof.test.js) verifies source validation, identity statements, generator conventions, covariance checksums, receiver-burden reduction, CLI validation, and non-retention guards.
 
 ## Claim Boundary
 

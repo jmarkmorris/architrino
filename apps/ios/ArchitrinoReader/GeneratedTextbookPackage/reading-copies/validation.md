@@ -4679,13 +4679,13 @@ The purpose is narrow: turn the retuning scaffold into a machine-readable packet
 Run the default mock packet with:
 
 ```text
-node scripts/nested-shell-swarm/retuning-map-toy-model.mjs --pretty
+node scripts/nested-shell-braid/retuning-map-toy-model.mjs --pretty
 ```
 
 The script consumes:
 
 ```text
-scripts/nested-shell-swarm/retuning-map-mock.json
+scripts/nested-shell-braid/retuning-map-mock.json
 ```
 
 and emits one result row per scenario. The packet is dimensionless: action increments are in units of $h$, speeds are compared to the declared $c_f$, and radius/cadence changes are reported as logarithmic increments plus reconstructed component changes.

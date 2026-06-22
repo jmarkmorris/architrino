@@ -8,7 +8,7 @@ import { pathToFileURL } from "node:url";
 import {
   buildH39SharedDomainPrimitiveDiagnostic,
   validateH39SharedDomainPrimitiveDiagnostic,
-} from "../neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs";
+} from "../neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs";
 
 export const H39_SHARED_DOMAIN_PRIMITIVE_REPLAY_SCHEMA =
   "solver-h39-shared-domain-primitive-replay/v1";
@@ -19,9 +19,9 @@ export const H39_SHARED_DOMAIN_PRIMITIVE_REPLAY_MANIFEST_SCHEMA =
 
 const AUDIT_ID = "h39_shared_domain_primitive_replay";
 const SOURCE_SCRIPT =
-  "scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs";
+  "scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs";
 const SOURCE_TEST =
-  "tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js";
+  "tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js";
 const AUDIT_DOC = "reference/priorities/solver/h39-solver-impact-audit.md";
 const UNIT_CONVENTION = "dimensionless-h39-shared-domain-primitives";
 const SCALE_NORMALIZATION = "h39 graph-centered shared-domain primitive chart";

@@ -896,7 +896,7 @@
       ]
     },
     {
-      "key": "pro-noether-swarm",
+      "key": "pro-noether-braid",
       "title": "Pro Noether braid",
       "borderColor": "purple",
       "lines": [
@@ -918,7 +918,7 @@
       ]
     },
     {
-      "key": "anti-noether-swarm",
+      "key": "anti-noether-braid",
       "title": "Anti Noether braid",
       "borderColor": "purple",
       "lines": [
@@ -940,7 +940,7 @@
       ]
     },
     {
-      "key": "pro-noether-swarm-glyph",
+      "key": "pro-noether-braid-glyph",
       "title": "Pro Noether braid glyph",
       "type": "binary-glyph",
       "borderColor": "purple",
@@ -1053,7 +1053,7 @@
       }
     },
     {
-      "key": "anti-noether-swarm-glyph",
+      "key": "anti-noether-braid-glyph",
       "title": "Anti Noether braid glyph",
       "type": "binary-glyph",
       "borderColor": "purple",

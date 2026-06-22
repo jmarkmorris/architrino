@@ -167,7 +167,7 @@ That cancellation is resolution-unstable under fixed-candidate reruns, so this p
 
 ## Executable Diagnostic
 
-The executable diagnostic [octahedral-trace-affine-zero-mean-obstruction.mjs](../../../scripts/neutral-swarm/octahedral-trace-affine-zero-mean-obstruction.mjs) emits:
+The executable diagnostic [octahedral-trace-affine-zero-mean-obstruction.mjs](../../../scripts/neutral-braid/octahedral-trace-affine-zero-mean-obstruction.mjs) emits:
 
 - the analytic partner-root uniqueness and positivity certificate;
 - the unit-scale partner-row check;
@@ -175,7 +175,7 @@ The executable diagnostic [octahedral-trace-affine-zero-mean-obstruction.mjs](..
 - a positive-scale partner sample table;
 - the non-retention verdict.
 
-The companion test [neutral-braid-octahedral-trace-affine-zero-mean-obstruction.test.js](../../../tests/neutral-swarm-octahedral-trace-affine-zero-mean-obstruction.test.js) verifies the partner root interval, positivity, the fixed-speed partner mean reproduction, the positive partner value at $s_{\mathrm{lin}}$, CLI validation, and the claim-level guard
+The companion test [neutral-braid-octahedral-trace-affine-zero-mean-obstruction.test.js](../../../tests/neutral-braid-octahedral-trace-affine-zero-mean-obstruction.test.js) verifies the partner root interval, positivity, the fixed-speed partner mean reproduction, the positive partner value at $s_{\mathrm{lin}}$, CLI validation, and the claim-level guard
 
 $$
 \texttt{retention=not\_retained}.

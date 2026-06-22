@@ -140,7 +140,7 @@ The direct successor [octahedral-fold-aware-cross-binary-forcing-sign-topology-m
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-finite-candidate-reduction.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-finite-candidate-reduction.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-finite-candidate-reduction.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-finite-candidate-reduction.mjs) emits:
 
 - predecessor validation for the forcing-topology atlas and critical-value atlas;
 - no-fixed-speed-window reduction parameters;
@@ -151,7 +151,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-finite-candidate-r
 - $M_Q$, $m_Q$, full-ordering, positive-$M_Q$, and negative-$C_\times$ budget rows;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-finite-candidate-reduction.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-finite-candidate-reduction.test.js) verifies predecessor validation, speed-window removal, theorem statement, candidate alignment, margin budgets, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-finite-candidate-reduction.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-finite-candidate-reduction.test.js) verifies predecessor validation, speed-window removal, theorem statement, candidate alignment, margin budgets, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

@@ -152,11 +152,11 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate.mjs). It emits:
 
 - ordinary source-equation complement slabs for the three nonfold source terms;
 - ordinary source-equation complement slabs for the folded source outside $|p|\le 8$;
 - Taylor-cancelled fold-$p$ complement slabs inside $|p|\le 8$ outside the protected fold-pair collars;
 - explicit regular-root complement closure and explicit open fold-pair quotient, full collar, `I1`, quadrature, and retention rows.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate.test.js) validates schema, no-fixed-speed-window discipline, hybrid slab counts, raw and scaled sign margins, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate.test.js) validates schema, no-fixed-speed-window discipline, hybrid slab counts, raw and scaled sign margins, overclaim rejection, and CLI write/validate behavior.

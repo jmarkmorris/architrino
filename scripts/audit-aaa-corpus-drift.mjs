@@ -74,11 +74,11 @@ const rules = [
     suggestion: "Use c_f for primitive wake propagation speed unless a local symbol table explicitly defines another quantity.",
   },
   {
-    id: "stale-noether-swarm-nucleus",
-    description: "Older fermion-dictionary wording that calls the Noether swarm a nucleus.",
+    id: "stale-noether-braid-nucleus",
+    description: "Older fermion-dictionary wording that calls the Noether braid a nucleus.",
     pattern: /\b(Tri-Binary Nucleus|Nucleus Type|Nucleus:|from the Nucleus)\b/i,
     pathPattern: /\/assemblies\/fermions\/quantum-number-mapping\.md$/,
-    suggestion: "Use Noether swarm, core type, or core as the canonical assembly term.",
+    suggestion: "Use Noether braid, core type, or core as the canonical assembly term.",
   },
   {
     id: "gauge-quantization-overclaim",
@@ -96,11 +96,11 @@ const rules = [
   },
   {
     id: "quantum-statistics-oblation-notation",
-    description: "Quantum-statistics pages should use canonical Noether swarm geometry variables.",
+    description: "Quantum-statistics pages should use canonical Noether braid geometry variables.",
     pattern: /\\epsilon_\{\\text\{obl\}\}|Let \$R_\{\\parallel\}\$ denote the dominant equatorial orbital scale|Let \$R_\{\\perp\}\$ denote the polar thickness/i,
     pathPattern: /\/quantum\/quantum-statistics\.md$/,
     suggestion:
-      "Use the canonical Noether swarm shape ratio \\xi=R_{\\parallel}/R_{\\perp}, with R_{\\parallel} contraction/drift-aligned and R_{\\perp} transverse.",
+      "Use the canonical Noether braid shape ratio \\xi=R_{\\parallel}/R_{\\perp}, with R_{\\parallel} contraction/drift-aligned and R_{\\perp} transverse.",
   },
   {
     id: "born-statistics-ledger-conflation",
@@ -211,7 +211,7 @@ const surfaceRules = [
     pattern:
       /\b(spacetime[- ]aether|aether[- ]assembly|aether assemblies|aether density|aether response|aether coupling|aether gradients|aether dynamics|aether parameters|aether simulations|aether language|aether sea|background aether)\b/i,
     suggestion:
-      "Use Noether sea, Noether sea response, Noether sea state, or Noether swarm density unless the passage is explicitly historical.",
+      "Use Noether sea, Noether sea response, Noether sea state, or Noether braid density unless the passage is explicitly historical.",
   },
   {
     id: "surface-density-delay-notation",
@@ -219,7 +219,7 @@ const surfaceRules = [
     pattern:
       /\\rho_\{\\text\{vac\}\}|\\rho_\{\\rm\s+aether\}|\\rho_\{vac\}|rho_vac|\bn\(x\)|refractive index (?:field|model)|Spacetime medium density/i,
     suggestion:
-      "Use \\rho_{\\text{NS}}(\\mathbf{x},t) for physical Noether swarm density, n(\\mathbf{x},t) for normalized density, and \\chi_{\\text{sea}} for delay.",
+      "Use \\rho_{\\text{NS}}(\\mathbf{x},t) for physical Noether braid density, n(\\mathbf{x},t) for normalized density, and \\chi_{\\text{sea}} for delay.",
   },
   {
     id: "surface-mass-drag-language",

@@ -232,11 +232,11 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-limit-interval-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-limit-interval-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-limit-interval-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-limit-interval-certificate.mjs). It emits:
 
 - directed-rounded signs for the fold endpoint bracket;
 - directed-rounded positivity of $E_\delta$ over the fold bracket;
 - directed-rounded intervals for $\theta_{3-}(\nu)$, $F_\theta$, $F_{\delta\delta}$, $B_f$, $\alpha$, $\beta$, and $L(\nu)$;
 - explicit non-remainder, non-collar-closure, non-critical-exhaustion, and non-retention boundaries.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-limit-interval-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-limit-interval-certificate.test.js) validates the fold bracket, constant signs, negative $L$ interval, no-fixed-speed-window discipline, open remainder boundary, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-limit-interval-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-limit-interval-certificate.test.js) validates the fold bracket, constant signs, negative $L$ interval, no-fixed-speed-window discipline, open remainder boundary, overclaim rejection, and CLI write/validate behavior.

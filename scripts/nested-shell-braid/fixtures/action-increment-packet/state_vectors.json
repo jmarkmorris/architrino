@@ -1,0 +1,20 @@
+{
+  "schema": "nested-shell-braid-state-vectors-fixture/v1",
+  "rows": [
+    {
+      "id": "fixture-B12-B13-a",
+      "transaction_axis": [0, 0, 1],
+      "source_channel": "fixture"
+    },
+    {
+      "id": "fixture-B20-B21-b",
+      "transaction_axis": [0, 0, 1],
+      "source_channel": "fixture"
+    },
+    {
+      "id": "fixture-B07-B08-control",
+      "transaction_axis": [0, 0, 1],
+      "source_channel": "fixture-control"
+    }
+  ]
+}

@@ -53,7 +53,7 @@ Options:
                 Fail candidate rows unless their scenario declares accepted finite-branch Hessian evidence.
   --help        Show this help.
 
-This evaluates the reduced Noether swarm envelope Hessian rescue conditions:
+This evaluates the reduced Noether braid envelope Hessian rescue conditions:
   Delta_H = k_R k_xi - k_Rxi^2
   A_H = (k_xi c_R - k_Rxi c_xi) / D_H
   B_H = (k_R c_xi - k_Rxi c_R) / D_H

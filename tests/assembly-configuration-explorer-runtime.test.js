@@ -123,7 +123,7 @@ test("assembly explorer keeps eigen-braid status out of the S3 layer key", () =>
   const candidate = normalizeBranchRecord(
     {
       branchId: "eigen-candidate",
-      eigenSwarm: {
+      eigenBraid: {
         status: "candidate",
         returnResidual: 0.01,
         floquetGap: 0.2,
@@ -137,7 +137,7 @@ test("assembly explorer keeps eigen-braid status out of the S3 layer key", () =>
   const rejected = normalizeBranchRecord(
     {
       branchId: "eigen-rejected",
-      eigenSwarm: {
+      eigenBraid: {
         status: "rejected",
         returnResidual: 1.4,
         lorentzExportStatus: "failed",
@@ -146,9 +146,9 @@ test("assembly explorer keeps eigen-braid status out of the S3 layer key", () =>
     },
     1
   );
-  assert.equal(candidate.eigenSwarm.status, "candidate");
-  assert.equal(candidate.eigenSwarm.returnResidual, 0.01);
-  assert.deepEqual(candidate.eigenSwarm.allowedSymmetries, ["phase-shift", "translation"]);
+  assert.equal(candidate.eigenBraid.status, "candidate");
+  assert.equal(candidate.eigenBraid.returnResidual, 0.01);
+  assert.deepEqual(candidate.eigenBraid.allowedSymmetries, ["phase-shift", "translation"]);
   assert.equal(candidate.permutationCanonicalKey, rejected.permutationCanonicalKey);
 });
 

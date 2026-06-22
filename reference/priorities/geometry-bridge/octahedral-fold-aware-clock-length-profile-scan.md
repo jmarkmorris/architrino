@@ -160,7 +160,7 @@ on the fold-aware coarea convention.
 
 ## Executable Diagnostic
 
-The executable diagnostic [octahedral-fold-aware-clock-length-profile-scan.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-clock-length-profile-scan.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-clock-length-profile-scan.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-clock-length-profile-scan.mjs) emits:
 
 - the source clock/length criterion validation status;
 - the sampled all-root tangential forcing summary;
@@ -168,7 +168,7 @@ The executable diagnostic [octahedral-fold-aware-clock-length-profile-scan.mjs](
 - the evaluated clock/length criterion;
 - the non-retention verdict.
 
-The companion test [neutral-braid-octahedral-fold-aware-clock-length-profile-scan.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-clock-length-profile-scan.test.js) verifies the source criterion, sampled positive clock profile, CLI validation, no fixed speed window, and non-retention guards.
+The companion test [neutral-braid-octahedral-fold-aware-clock-length-profile-scan.test.js](../../../tests/neutral-braid-octahedral-fold-aware-clock-length-profile-scan.test.js) verifies the source criterion, sampled positive clock profile, CLI validation, no fixed speed window, and non-retention guards.
 
 ## Promotion Decision
 

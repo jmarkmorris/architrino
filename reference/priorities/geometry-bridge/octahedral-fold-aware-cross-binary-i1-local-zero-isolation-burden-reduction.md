@@ -130,7 +130,7 @@ The full-cell derivative row is not discarded. It remains an open global-sign-to
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.mjs) emits:
 
 - predecessor validation for the bracket-local zero-isolation mesh composition;
 - the original full-cell successor row and the reduced bracket-local successor row;
@@ -139,7 +139,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-i1-local-zero-isol
 - source-root preservation and term root-count signature checks;
 - explicit non-interval, non-critical-exhaustion, non-quadrature, and non-retention boundaries.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.test.js) verifies schema validation, predecessor composition, speed-window removal, successor-row replacement, the $1/48$ bracket-domain ratio, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.test.js) verifies schema validation, predecessor composition, speed-window removal, successor-row replacement, the $1/48$ bracket-domain ratio, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
 
 ## Claim Boundary
 

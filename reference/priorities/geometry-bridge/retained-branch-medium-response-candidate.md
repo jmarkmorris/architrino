@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`.
 
-This packet consumes [specific-branch-medium-response-row](specific-branch-medium-response-row.md), [axial-tensor-coefficient-extraction](axial-tensor-coefficient-extraction.md), and the medium-response admissibility standard in [Medium-Response Constitutive Closure Theorem](../swarm/shell-swarm/medium-response-constitutive-closure-theorem.md). It answers the next geometry-bridge question:
+This packet consumes [specific-branch-medium-response-row](specific-branch-medium-response-row.md), [axial-tensor-coefficient-extraction](axial-tensor-coefficient-extraction.md), and the medium-response admissibility standard in [Medium-Response Constitutive Closure Theorem](../braid/shell-braid/medium-response-constitutive-closure-theorem.md). It answers the next geometry-bridge question:
 
 $$
 \text{Is the required axial cancellation tensor forbidden by symmetry?}

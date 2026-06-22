@@ -82,13 +82,13 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 ### The Physical Medium (Spacetime Implementation)
 
 **Structure:**
-- Space is **not** empty. It is filled with a **"Sea of Noether Swarms"**: coupled pro/anti tri-binary assemblies forming a dense, dynamic lattice.
-- Each Noether Swarm: 2 pro-tri-binaries + 2 anti-tri-binaries (neutral, stable, low rest-mass).
+- Space is **not** empty. It is filled with a **"Sea of Noether Braids"**: coupled pro/anti tri-binary assemblies forming a dense, dynamic lattice.
+- Each Noether Braid: 2 pro-tri-binaries + 2 anti-tri-binaries (neutral, stable, low rest-mass).
 - Analogous to: **Superfluid or Bose–Einstein condensate** (coherent quantum medium).
 
 **Role:**
 - This medium **is** the implementation of what GR calls "spacetime fabric."
-- Has properties: physical Noether swarm density $\rho_{\text{NS}}(\mathbf{x},t)$, normalized density $n(\mathbf{x},t)$, stress, flow, and Noether sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$.
+- Has properties: physical Noether braid density $\rho_{\text{NS}}(\mathbf{x},t)$, normalized density $n(\mathbf{x},t)$, stress, flow, and Noether sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$.
 - Local excitations → particles (fermions, bosons).
 - Large-scale ripples → gravitational waves.
 - Density gradients → effective curvature (gravity as refraction).
@@ -98,7 +98,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 - **Einstein's curved spacetime** is an effective description of this Noether sea delay and clock/ruler response.
 - Analogy: Light bending in glass, sound slowing in denser air.
 - Mathematical mapping:
-  - $\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)$, with $n(\mathbf{x},t)$ reserved for normalized Noether swarm density.
+  - $\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)$, with $n(\mathbf{x},t)$ reserved for normalized Noether braid density.
   - Emergent metric: $g_{00} \sim -(c_{\text{eff}}/c_f)^2$, spatial components follow from medium anisotropy/flow.
 
 **Why This Matters:**
@@ -157,7 +157,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 - **Charge quantization**: Six polar sites on the tri-binary surface; each can host an additional architrino ($|e/6|$).
   - Result: stable charges are 0, $\pm e/3$, $\pm 2e/3$, $\pm e$ only.
 
-**Noether Swarm:**
+**Noether Braid:**
 - Coupled pro + anti tri-binaries (2P + 2A) → neutral, stable, low-mass assembly.
 - Forms the **Noether sea** (with `spacetime medium` reserved as bridge language).
 - Structural comparison: neutral constituents in a coherent medium.
@@ -182,7 +182,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 - **"Ether" (alone)** → ambiguous (historical luminiferous ether vs architrino medium); use "Noether sea" or clearly marked bridge language.
 - **Old causal-delay r-word family** → **"Path History" / "causal wake surface" / "causal isochron"**
 - **"Shell"** → When describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete pulses.
-- **"Vacuum"** → carries a lot of baggage—both historical and intuitive—that suggests truly empty space. Many readers (including some physicists) still interpret it that way. Whenever we’re describing the broad physical medium, use **"Noether sea"**; when the context is local to one bounded assembly, use **"Noether swarm"** or **"Noether swarm assembly"** as appropriate. Reserve “vacuum” only when referring explicitly to the historical semantics of mainstream physics.
+- **"Vacuum"** → carries a lot of baggage—both historical and intuitive—that suggests truly empty space. Many readers (including some physicists) still interpret it that way. Whenever we’re describing the broad physical medium, use **"Noether sea"**; when the context is local to one bounded assembly, use **"Noether braid"** or **"Noether braid assembly"** as appropriate. Reserve “vacuum” only when referring explicitly to the historical semantics of mainstream physics.
 - **"Virtual particles"** → use "transient assembly configurations" or "effective field description."
 
 **Why This Matters:**
@@ -243,7 +243,7 @@ This protocol is active **until Entourage gains direct repo write access**.
 **Category B (Scale Setters):**
 - Coupling strength: $\lambda$ (dimensionless constant relating potential strength to mass/energy)
 - Tri-binary radius ratios: $r_{\text{inner}} : r_{\text{middle}} : r_{\text{outer}}$
-- Noether swarm density: $\rho_{\text{NS}}(\mathbf{x},t)$, with normalized density $n(\mathbf{x},t)$ for constitutive maps
+- Noether braid density: $\rho_{\text{NS}}(\mathbf{x},t)$, with normalized density $n(\mathbf{x},t)$ for constitutive maps
 - Maximal curvature radius: $r_{\text{min}}$ (inner binary self-hit stabilization)
 
 **Category C (Derived from Simulations/Theory):**
@@ -331,7 +331,7 @@ Assess five dimensions (Green/Yellow/Red):
 - PPN parameter $\gamma \approx 1.0$ within $|\gamma - 1| < 10^{-5}$ (Cassini bound).
 
 **Mechanism:**
-- Increased Noether swarm density $\rho_{\text{NS}}(\mathbf{x},t)$ near massive body → increased Noether sea delay factor $\chi_{\text{sea}}$ → reduced effective light speed $c_{\text{eff}} = c_f/\chi_{\text{sea}}$.
+- Increased Noether braid density $\rho_{\text{NS}}(\mathbf{x},t)$ near massive body → increased Noether sea delay factor $\chi_{\text{sea}}$ → reduced effective light speed $c_{\text{eff}} = c_f/\chi_{\text{sea}}$.
 - Delay: $\Delta t = \int (1/c_{\text{eff}} - 1/c) \, ds$.
 
 **Mapping:**
@@ -450,9 +450,9 @@ Assess five dimensions (Green/Yellow/Red):
 - **Terminology locked**: "Path history", "Noether sea" for ambient contents, "spacetime medium" only as bridge language, and "Euclidean void" for the fixed container.
 
 **Gravity as Refraction:**
-- Moved from "curved space" metaphor to **Noether sea delay model**: $\chi_{\text{sea}}(\mathbf{x},t)=c_f/c_{\text{eff}}(\mathbf{x},t)$, with $n(\mathbf{x},t)$ reserved for normalized Noether swarm density.
+- Moved from "curved space" metaphor to **Noether sea delay model**: $\chi_{\text{sea}}(\mathbf{x},t)=c_f/c_{\text{eff}}(\mathbf{x},t)$, with $n(\mathbf{x},t)$ reserved for normalized Noether braid density.
 - Conceptual clarity: massive bodies change local $\rho_{\text{NS}}$ and $\chi_{\text{sea}}$ → light slows → effective curvature.
-- Path to PPN parameters: derive $g_{\mu\nu}$ from $\chi_{\text{sea}}$, Noether swarm density, stress, and medium flow.
+- Path to PPN parameters: derive $g_{\mu\nu}$ from $\chi_{\text{sea}}$, Noether braid density, stress, and medium flow.
 
 **Self-Hit Dynamics:**
 - Established as **critical innovation**: non-Markovian feedback prevents singularities, stabilizes binaries, generates quantum-like effects.

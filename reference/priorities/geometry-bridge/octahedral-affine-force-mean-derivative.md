@@ -265,7 +265,7 @@ It does not prove that the rigid carrier becomes retained. Instead it identifies
 
 ## Executable Diagnostic
 
-The executable diagnostic [octahedral-affine-force-mean-derivative.mjs](../../../scripts/neutral-swarm/octahedral-affine-force-mean-derivative.mjs) emits:
+The executable diagnostic [octahedral-affine-force-mean-derivative.mjs](../../../scripts/neutral-braid/octahedral-affine-force-mean-derivative.mjs) emits:
 
 - the frozen six-row period-integral force mean;
 - the nine affine derivative columns;
@@ -273,7 +273,7 @@ The executable diagnostic [octahedral-affine-force-mean-derivative.mjs](../../..
 - the trace-only correction certificate;
 - the non-retention verdict.
 
-The companion test [neutral-braid-octahedral-affine-force-mean-derivative.test.js](../../../tests/neutral-swarm-octahedral-affine-force-mean-derivative.test.js) verifies the schema, the six-by-nine matrix, the trace-only correction direction, the rank/range certificate, CLI validation, and the claim-level guard:
+The companion test [neutral-braid-octahedral-affine-force-mean-derivative.test.js](../../../tests/neutral-braid-octahedral-affine-force-mean-derivative.test.js) verifies the schema, the six-by-nine matrix, the trace-only correction direction, the rank/range certificate, CLI validation, and the claim-level guard:
 
 $$
 \texttt{certifies\_live\_derivative\_matrix=false},

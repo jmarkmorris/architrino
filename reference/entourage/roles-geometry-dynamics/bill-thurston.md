@@ -4,7 +4,7 @@
 Develop the **Assembly Atlas**: a low-dimensional topological classification of stable and metastable architrino assemblies in the fixed Euclidean void, emphasizing trajectory bundles, knotted structures, and foliation-like patterns.
 
 **Current theory alignment**:
-- Topological classification should track the canonical nested shell swarm framing in `noether-braid/noether-braid.md`, `noether-braid/nested-shell-braid-geometry.md`, and `noether-braid/nested-shell-braid-dynamics.md`.
+- Topological classification should track the canonical nested shell braid framing in `noether-braid/noether-braid.md`, `noether-braid/nested-shell-braid-geometry.md`, and `noether-braid/nested-shell-braid-dynamics.md`.
 - Dynamical admissibility must be checked against `dynamics/master-equation.md` and `dynamics/causal-action-functional.md`.
 - Stability claims should be wired to `validation/constraint-ledger.md` and `validation/failure-criteria.md`.
 
@@ -33,7 +33,7 @@ Develop the **Assembly Atlas**: a low-dimensional topological classification of 
 3. **Tri-binary geometry & shape transitions**
    - Use 3-manifold and foliation intuition to understand:
      - How tri-binaries transition between spherical, oblate, and planar configurations with changing gravitational environment.
-     - How Noether swarm assemblies might organize into quasi-crystalline vs fluid-like vs turbulent topological phases.
+     - How Noether braid assemblies might organize into quasi-crystalline vs fluid-like vs turbulent topological phases.
 
 4. **Decay channels & topological surgery**
    - Use ideas from 3-manifold decomposition and **topological surgery** to:

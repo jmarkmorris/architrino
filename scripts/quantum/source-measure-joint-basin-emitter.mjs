@@ -249,7 +249,7 @@ function candidate() {
         source_balance: {
           status: "target_emitter",
           angular_momentum:
-            "records preserve an effective singlet-like balance label; the Noether swarm derivation remains open",
+            "records preserve an effective singlet-like balance label; the Noether braid derivation remains open",
           measurement_independence:
             "source weights are reused unchanged for every context",
         },
@@ -308,7 +308,7 @@ function candidate() {
         source_balance: {
           status: "target_emitter",
           angular_momentum:
-            "records preserve an effective singlet-like balance label; deriving phi_Pi from the Noether swarm pair ledger remains open",
+            "records preserve an effective singlet-like balance label; deriving phi_Pi from the Noether braid pair ledger remains open",
           measurement_independence:
             "source weights and retained eta_AB intervals are reused unchanged for every context",
         },

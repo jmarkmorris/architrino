@@ -251,7 +251,7 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nineteenth-order-jet-coefficient-interval-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nineteenth-order-jet-coefficient-interval-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nineteenth-order-jet-coefficient-interval-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nineteenth-order-jet-coefficient-interval-certificate.mjs). It emits:
 
 - directed-rounded interval series rows over the $128$ speed cells;
 - branch $h_{0,\varepsilon}$ through $h_{19,\varepsilon}$ interval rows;
@@ -260,4 +260,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - linear-loss through nineteenth-order-loss and twentieth-order-tail-budget rows on the first y cell;
 - explicit open finite-tail, full quotient, scaled-remainder, `I1`, and retention rows.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nineteenth-order-jet-coefficient-interval-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nineteenth-order-jet-coefficient-interval-certificate.test.js) validates schema, no-fixed-speed-window discipline, $h_{19}$ solve rows, coefficient intervals, remaining post-twentieth-order budget, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nineteenth-order-jet-coefficient-interval-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nineteenth-order-jet-coefficient-interval-certificate.test.js) validates schema, no-fixed-speed-window discipline, $h_{19}$ solve rows, coefficient intervals, remaining post-twentieth-order budget, overclaim rejection, and CLI write/validate behavior.

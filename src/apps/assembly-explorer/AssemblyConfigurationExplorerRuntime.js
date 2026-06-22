@@ -155,7 +155,7 @@ function optionalFiniteNumber(value) {
   return Number.isFinite(number) ? number : null;
 }
 
-function normalizeEigenSwarmRecord(record = {}) {
+function normalizeEigenBraidRecord(record = {}) {
   const normalized = record && typeof record === "object" ? record : {};
   return {
     status: String(normalized.status ?? "not-evaluated"),
@@ -207,7 +207,7 @@ export function normalizeBranchRecord(branch = {}, fieldSpeed = DEFAULT_FIELD_SP
     totalAngularMomentumMagnitude: vectorLength(totalAngularMomentum),
     stability: branch.stability && typeof branch.stability === "object" ? { ...branch.stability } : {},
     seaRecord: branch.seaRecord && typeof branch.seaRecord === "object" ? { ...branch.seaRecord } : {},
-    eigenSwarm: normalizeEigenSwarmRecord(branch.eigenSwarm),
+    eigenBraid: normalizeEigenBraidRecord(branch.eigenBraid),
     axisAlignment: normalizeAxisAlignmentRecord(branch.axisAlignment),
     assemblyTopologicalCharge:
       branch.assemblyTopologicalCharge && typeof branch.assemblyTopologicalCharge === "object"
@@ -271,7 +271,7 @@ export function createAssemblyExplorerDemoDataset() {
         totalMomentum: { x: 0, y: 0, z: 0 },
         totalAngularMomentum: { x: 1, y: 1, z: 1 },
         seaRecord: { regime: "homogeneous-rest-comparison" },
-        eigenSwarm: {
+        eigenBraid: {
           status: "candidate",
           period: 1,
           allowedSymmetries: ["phase-shift", "rigid-rotation", "S3-layer-relabeling"],
@@ -301,7 +301,7 @@ export function createAssemblyExplorerDemoDataset() {
         totalMomentum: { x: 0, y: 0, z: 0 },
         totalAngularMomentum: { x: 1, y: 1, z: 1 },
         seaRecord: { regime: "homogeneous-rest-comparison" },
-        eigenSwarm: {
+        eigenBraid: {
           status: "candidate",
           period: 1,
           allowedSymmetries: ["phase-shift", "rigid-rotation", "S3-layer-relabeling"],
@@ -331,7 +331,7 @@ export function createAssemblyExplorerDemoDataset() {
         totalMomentum: { x: 0.08, y: 0, z: 0.02 },
         totalAngularMomentum: { x: 0.31, y: 0.81, z: 0.55 },
         seaRecord: { regime: "weak-drift-diagnostic" },
-        eigenSwarm: {
+        eigenBraid: {
           status: "not-evaluated",
           allowedSymmetries: ["phase-shift", "translation"],
           lorentzExportStatus: "not-evaluated",
@@ -493,7 +493,7 @@ export class AssemblyConfigurationExplorerRuntime {
       ["Energy", formatRatio(branch.ratios.energy)],
       ["Speed", formatRatio(branch.ratios.speed)],
       ["Group speed", formatNumber(branch.groupSpeed, 5)],
-      ["Eigen-braid", branch.eigenSwarm.status],
+      ["Eigen-braid", branch.eigenBraid.status],
       ["Axis", branch.axisAlignment.status],
       ["D_plane", formatNumber(branch.planeDeterminant, 5)],
       ["S3 key", branch.permutationCanonicalKey.slice(0, 44)],

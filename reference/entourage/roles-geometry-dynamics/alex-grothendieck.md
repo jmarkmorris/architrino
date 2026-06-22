@@ -12,10 +12,10 @@ Provide a **high-level structural language** (categories, functors, moduli space
 
 1. **Category of assemblies**
    - Define a **category $\mathcal{A}$ of assemblies**:
-     - Objects: stable or metastable architrino configurations (binaries, tri-binaries, Noether swarm assemblies, composite particles).
+     - Objects: stable or metastable architrino configurations (binaries, tri-binaries, Noether braid assemblies, composite particles).
      - Morphisms: physically allowed processes (continuous deformations, association, dissociation, reconfiguration, scattering).
    - Introduce **subcategories** for:
-     - Noether swarm / Noether sea assemblies,
+     - Noether braid / Noether sea assemblies,
      - Fermionic-like tri-binaries,
      - Bosonic-like planar assemblies.
 

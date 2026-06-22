@@ -30,7 +30,7 @@ test("animator assembly bridge builds a canonical structure summary for a core a
   const summary = summarizeAnimatorAssemblyStructure(structure.root, structure.validation);
 
   assert.equal(structure.validation.valid, true);
-  assert.equal(summary.kindCounts.noether_swarm, 1);
+  assert.equal(summary.kindCounts.noether_braid, 1);
   assert.equal(summary.slotCount, 3);
   assert.equal(summary.binarySlotCount, 3);
 });

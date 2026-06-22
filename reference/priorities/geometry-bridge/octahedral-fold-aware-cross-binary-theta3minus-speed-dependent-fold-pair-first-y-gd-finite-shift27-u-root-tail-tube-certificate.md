@@ -205,7 +205,7 @@ That successor must bound $T_G^{(24)}$ and $T_D^{(24)}$ inside the inherited twe
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift27-u-root-tail-tube-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift27-u-root-tail-tube-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift27-u-root-tail-tube-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift27-u-root-tail-tube-certificate.mjs). It emits:
 
 - the coefficient-shifted $R_{\varepsilon,27}=\operatorname{Shift}_{27}(F_\varepsilon)$ evaluator;
 - lower-coefficient zero-containment rows for $y^0$ through $y^{26}$;

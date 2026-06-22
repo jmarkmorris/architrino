@@ -135,7 +135,7 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-linear-jet-coefficient-interval-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-linear-jet-coefficient-interval-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-linear-jet-coefficient-interval-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-linear-jet-coefficient-interval-certificate.mjs). It emits:
 
 - directed-rounded interval series rows over the $16$ speed cells;
 - branch $h_{0,\varepsilon}$ and $h_{1,\varepsilon}$ interval rows;
@@ -144,4 +144,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - linear-loss budgets on the first y cell;
 - explicit open finite-remainder, full quotient, scaled-remainder, `I1`, and retention rows.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-linear-jet-coefficient-interval-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-linear-jet-coefficient-interval-certificate.test.js) validates schema, no-fixed-speed-window discipline, $h_1$ solve rows, coefficient intervals, remaining tail budget, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-linear-jet-coefficient-interval-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-linear-jet-coefficient-interval-certificate.test.js) validates schema, no-fixed-speed-window discipline, $h_1$ solve rows, coefficient intervals, remaining tail budget, overclaim rejection, and CLI write/validate behavior.

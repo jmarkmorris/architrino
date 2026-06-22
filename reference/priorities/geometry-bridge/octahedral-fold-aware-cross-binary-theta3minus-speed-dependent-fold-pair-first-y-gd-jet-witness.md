@@ -244,7 +244,7 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness.mjs). It emits:
 
 - sampled branch $h_{0,\varepsilon}$ coefficients and predecessor-tube membership;
 - source-equation jet residuals through $y^4$;
@@ -253,4 +253,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - $P(0)-L$, $P'(0)$, $D(0)-L$, $D'(0)$, and $Q_D(0)+Q_G(0)$ residuals;
 - explicit open directed-rounded first-y enclosure, full quotient, remainder, `I1`, and retention rows.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness.test.js) validates schema, no-fixed-speed-window discipline, sampled cancellation residuals, $h_0$ tube membership, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness.test.js) validates schema, no-fixed-speed-window discipline, sampled cancellation residuals, $h_0$ tube membership, overclaim rejection, and CLI write/validate behavior.

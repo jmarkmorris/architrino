@@ -13,7 +13,7 @@ This priority packet closes the coefficient side of the pressure-dependent Noeth
 
 - [Pressure-Dependent Noether sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) defines $\Pi_\ell$, $\Pi_\ell^{\parallel-\perp}$, $\chi_{\text{sea}}$, $\Gamma_N$, and $\mathcal{M}_{\text{sea}}^{ab}$ for atomic and metallic-lattice pressure cells.
 - [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) fixes $b_\xi=1$ on the homogeneous moving-core Lorentz branch and fixes only one static weak-field isotropic combination, $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$.
-- [Noether Braid Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) supplies the current priority-side packing ceiling and exclusion-volume scaffold for $n_{\max}^{\mathrm{obl}}$.
+- [Noether Braid Scaling and Packing Scaffold](../dyadic-lock/noether-braid-scaling-and-packing.md) supplies the current priority-side packing ceiling and exclusion-volume scaffold for $n_{\max}^{\mathrm{obl}}$.
 - [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) fixes the homogeneous tensor target $\mathcal{M}_{\text{sea}}^{ab}\to h^{ab}/c_{\text{eff}}^2$.
 - [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) supplies the replay record, channel mask, covariance, shared-row fit, and null-sector bounds that consume these identities.
 

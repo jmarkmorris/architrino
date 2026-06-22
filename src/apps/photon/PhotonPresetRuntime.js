@@ -43,39 +43,39 @@ const PRESET_LAYER_SPEED_RATIOS = Object.freeze({
 
 function setPhotonPresetEnabledLayers(state, enabledLayers) {
   const enabledSet = new Set(enabledLayers);
-  ["left", "right"].forEach((swarmId) => {
+  ["left", "right"].forEach((braidId) => {
     ["I", "M", "O"].forEach((layerId) => {
-      state.pair[swarmId].layers[layerId].enabled = enabledSet.has(layerId);
+      state.pair[braidId].layers[layerId].enabled = enabledSet.has(layerId);
     });
   });
 }
 
 function setPhotonPresetLayerPhases(state, phases) {
-  ["left", "right"].forEach((swarmId) => {
+  ["left", "right"].forEach((braidId) => {
     ["I", "M", "O"].forEach((layerId) => {
-      const phase = phases?.[swarmId]?.[layerId];
+      const phase = phases?.[braidId]?.[layerId];
       if (Number.isFinite(Number(phase))) {
-        state.pair[swarmId].layers[layerId].phaseDeg = Number(phase);
+        state.pair[braidId].layers[layerId].phaseDeg = Number(phase);
       }
     });
   });
 }
 
 function setPhotonPresetLayerRadii(state, radii) {
-  ["left", "right"].forEach((swarmId) => {
+  ["left", "right"].forEach((braidId) => {
     ["I", "M", "O"].forEach((layerId) => {
-      const radius = radii?.[swarmId]?.[layerId] ?? radii?.[layerId];
+      const radius = radii?.[braidId]?.[layerId] ?? radii?.[layerId];
       if (Number.isFinite(Number(radius))) {
-        state.pair[swarmId].layers[layerId].radius = Number(radius);
+        state.pair[braidId].layers[layerId].radius = Number(radius);
       }
     });
   });
 }
 
 function setPhotonPresetSpeedMatchedRadii(state, speedRatios = PRESET_LAYER_SPEED_RATIOS) {
-  ["left", "right"].forEach((swarmId) => {
+  ["left", "right"].forEach((braidId) => {
     ["I", "M", "O"].forEach((layerId) => {
-      const layer = state.pair[swarmId].layers[layerId];
+      const layer = state.pair[braidId].layers[layerId];
       layer.radius = getPhotonRadiusForSpeedRatio(
         layer.frequencyHz,
         speedRatios[layerId] ?? PRESET_LAYER_SPEED_RATIOS[layerId]

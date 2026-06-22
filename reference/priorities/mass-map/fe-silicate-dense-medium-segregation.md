@@ -14,7 +14,7 @@ This priority packet is a proof and replay scaffold, not reader-facing canon. It
 - [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) separates Earth-core iron concentration from iron-nucleus creation and states the no-new-iron guardrail $S_{\mathrm{Fe}}^{\mathrm{nuc}}=0$ for ordinary planetary differentiation.
 - [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) frames dense material phases through the local response record $\Theta_E^{(\ell)}$, not through a bare element label.
 - [Molecular Exclusion and Noether Sea Response](../../../content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md) distinguishes ordinary molecular or atomic exclusion from deeper Noether sea implementation layers.
-- [Noether Braid Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) supplies the current priority-side model for packing-limited center density and oblate-envelope support-function contact.
+- [Noether Braid Scaling and Packing Scaffold](../dyadic-lock/noether-braid-scaling-and-packing.md) supplies the current priority-side model for packing-limited center density and oblate-envelope support-function contact.
 - [Pressure-Dependent Noether sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) supplies the shared variables $n$, $\chi_{\text{sea}}$, $\Gamma_N$, $S_{ij}$, and $\mathcal{M}_{\text{sea}}^{ab}$ for pressure-sensitive matter environments.
 
 ## Claim Map

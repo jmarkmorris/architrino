@@ -173,7 +173,7 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate.mjs). It emits:
 
 - directed-rounded interval series rows over the $16$ speed cells;
 - branch $h_{0,\varepsilon}$ interval rows with predecessor-tube membership;
@@ -182,4 +182,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - exact coefficient-level $Q_D(0)=-Q_G(0)$ identity;
 - explicit open first-y remainder, full quotient, scaled-remainder, `I1`, and retention rows.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate.test.js) validates schema, no-fixed-speed-window discipline, coefficient signs, $h_0$ tube membership, source-coefficient containment, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate.test.js) validates schema, no-fixed-speed-window discipline, coefficient signs, $h_0$ tube membership, source-coefficient containment, overclaim rejection, and CLI write/validate behavior.

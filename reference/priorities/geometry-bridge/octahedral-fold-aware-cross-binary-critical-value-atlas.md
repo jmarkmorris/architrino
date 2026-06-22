@@ -132,7 +132,7 @@ The later [octahedral-fold-aware-cross-binary-finite-candidate-reduction](octahe
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-critical-value-atlas.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-critical-value-atlas.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-critical-value-atlas.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-critical-value-atlas.mjs) emits:
 
 - predecessor validation for the primitive-critical atlas;
 - no-fixed-speed-window quadrature parameters;
@@ -142,7 +142,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-critical-value-atl
 - the sampled $C_\times$, $m_Q$, and $M_Q$ ordering;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-critical-value-atlas.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-critical-value-atlas.test.js) verifies predecessor validation, speed-window removal, transformed quadrature rows, candidate values, sampled value ordering, CLI emission, JSON validation, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-critical-value-atlas.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-critical-value-atlas.test.js) verifies predecessor validation, speed-window removal, transformed quadrature rows, candidate values, sampled value ordering, CLI emission, JSON validation, and non-retention claims.
 
 ## Claim Boundary
 

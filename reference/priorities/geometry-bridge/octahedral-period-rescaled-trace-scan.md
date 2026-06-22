@@ -245,7 +245,7 @@ Thus the next valid branch-retention attempt is not another fixed-window speed a
 
 ## Executable Diagnostic
 
-The executable diagnostic [octahedral-period-rescaled-trace-scan.mjs](../../../scripts/neutral-swarm/octahedral-period-rescaled-trace-scan.mjs) emits:
+The executable diagnostic [octahedral-period-rescaled-trace-scan.mjs](../../../scripts/neutral-braid/octahedral-period-rescaled-trace-scan.mjs) emits:
 
 - the speed-unconstrained period-rescaled root equation;
 - the exact scale law $\mathcal M_i^\nu(s,h)=(1/h)C_i(v)$;
@@ -254,9 +254,9 @@ The executable diagnostic [octahedral-period-rescaled-trace-scan.mjs](../../../s
 - the first sampled root-ledger failure row;
 - the non-retention verdict.
 
-The successor executables [octahedral-period-rescaled-fold-chart.mjs](../../../scripts/neutral-swarm/octahedral-period-rescaled-fold-chart.mjs), [octahedral-fold-aware-multiroot-period-integral.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-multiroot-period-integral.mjs), and [octahedral-fold-aware-zero-bracket-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-zero-bracket-certificate.mjs) own the analytic fold-onset refinement, sampled fold-aware zero bracket, and sign-certified zero bracket.
+The successor executables [octahedral-period-rescaled-fold-chart.mjs](../../../scripts/neutral-braid/octahedral-period-rescaled-fold-chart.mjs), [octahedral-fold-aware-multiroot-period-integral.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-multiroot-period-integral.mjs), and [octahedral-fold-aware-zero-bracket-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-zero-bracket-certificate.mjs) own the analytic fold-onset refinement, sampled fold-aware zero bracket, and sign-certified zero bracket.
 
-The companion test [neutral-braid-octahedral-period-rescaled-trace-scan.test.js](../../../tests/neutral-swarm-octahedral-period-rescaled-trace-scan.test.js) verifies simple-root positivity, root-ledger boundary detection, the analytic partner row, the fixed-$v$ scale law, CLI validation, and claim-level guards.
+The companion test [neutral-braid-octahedral-period-rescaled-trace-scan.test.js](../../../tests/neutral-braid-octahedral-period-rescaled-trace-scan.test.js) verifies simple-root positivity, root-ledger boundary detection, the analytic partner row, the fixed-$v$ scale law, CLI validation, and claim-level guards.
 
 ## Retention Verdict
 

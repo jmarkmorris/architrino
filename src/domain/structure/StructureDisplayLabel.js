@@ -1,6 +1,6 @@
 import {
   deriveStructureClassification,
-  getNoetherSwarmBinaryPresenceKey,
+  getNoetherBraidBinaryPresenceKey,
 } from "./StructureClassification.js";
 import {
   getStructureAssemblyDisplayLabel,
@@ -9,13 +9,13 @@ import {
 } from "./StructureAssemblyCatalog.js";
 import { getStructureTrait, STRUCTURE_KINDS } from "./StructureSchema.js";
 
-const noetherSwarmDisplayLabelsByBinaryPresenceKey = Object.freeze({
+const noetherBraidDisplayLabelsByBinaryPresenceKey = Object.freeze({
   inner: "Shell Braid",
   inner_middle: "Nested Shell Braid",
 });
 
 const displayLabelsBySpecies = Object.freeze({
-  noether_swarm: "Noether braid",
+  noether_braid: "Noether braid",
   noether_pair: "Noether Pair",
   noether_quad: "Noether Quad",
   photon: "Photon",
@@ -51,7 +51,7 @@ const displayLabelsBySpecies = Object.freeze({
 });
 
 const polarityQualifiedSpecies = new Set([
-  "noether_swarm",
+  "noether_braid",
   "electron",
   "muon",
   "tau",
@@ -83,7 +83,7 @@ function humanizeStructureId(value = "") {
     .join(" ");
 }
 
-function formatNoetherSwarmDisplayLabel(structureRoot = null) {
+function formatNoetherBraidDisplayLabel(structureRoot = null) {
   const polarity = String(structureRoot?.traits?.polarity ?? "").trim().toLowerCase();
   return polarity === "anti" ? "Anti Noether braid" : "Pro Noether braid";
 }
@@ -98,14 +98,14 @@ export function resolveStructureDisplayLabel(structureRoot = null) {
     return "";
   }
 
-  if (structureRoot.kind === STRUCTURE_KINDS.NOETHER_SWARM) {
-    const binaryPresenceKey = getNoetherSwarmBinaryPresenceKey(structureRoot);
+  if (structureRoot.kind === STRUCTURE_KINDS.NOETHER_BRAID) {
+    const binaryPresenceKey = getNoetherBraidBinaryPresenceKey(structureRoot);
     if (binaryPresenceKey === "inner_middle_outer") {
-      return formatNoetherSwarmDisplayLabel(structureRoot);
+      return formatNoetherBraidDisplayLabel(structureRoot);
     }
-    if (noetherSwarmDisplayLabelsByBinaryPresenceKey[binaryPresenceKey]) {
+    if (noetherBraidDisplayLabelsByBinaryPresenceKey[binaryPresenceKey]) {
       return formatPolarityQualifiedLabel(
-        noetherSwarmDisplayLabelsByBinaryPresenceKey[binaryPresenceKey],
+        noetherBraidDisplayLabelsByBinaryPresenceKey[binaryPresenceKey],
         structureRoot?.traits?.polarity
       );
     }

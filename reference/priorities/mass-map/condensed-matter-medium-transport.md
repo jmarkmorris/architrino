@@ -32,7 +32,7 @@ $$
 
 Above threshold, some transported energy must enter excitation, radiation, medium heating, or branch transition channels.
 
-When the threshold is crossed, this packet consumes the shared [residual-routing event-ledger theorem](../nested-shell-swarm-causal-closure/residual-routing-event-ledger.md). It owns $\mathcal{R}_{\text{tr}}$, the transport thresholds, and condensed-matter benchmark failures; the shared packet owns the general channel-routing and ledger contract.
+When the threshold is crossed, this packet consumes the shared [residual-routing event-ledger theorem](../nested-shell-braid-causal-closure/residual-routing-event-ledger.md). It owns $\mathcal{R}_{\text{tr}}$, the transport thresholds, and condensed-matter benchmark failures; the shared packet owns the general channel-routing and ledger contract.
 
 ## Critical Transport Surface
 

@@ -179,7 +179,7 @@ Each emitted `pdgsolve-request/v1` candidate should:
 - `source.kind` set to `pdgfeed`;
 - `source.sourceDocumentId` pointing back to the originating `pdg-proposal:<proposalId>` record;
 - `reactants` and `products` emitted as explicit request occurrences with stable `id`, `assemblyId`, and `title` fields;
-- when boundary completion requires omitted medium-side material, add explicit `pro_noether_swarm_I` and `anti_noether_swarm_I` rows on the reactant or product side before handoff;
+- when boundary completion requires omitted medium-side material, add explicit `pro_noether_braid_I` and `anti_noether_braid_I` rows on the reactant or product side before handoff;
 - when a completed boundary still leaves an explicit primitive residue below one full Noether pair, emit one product-side `Unbound Architrinos` occurrence carrying exact `electrinoCount` and `positrinoCount`;
 - set `policy` explicitly;
 - keep `allowedBoundaryAugmentations` at `["none"]` for `pdgfeed`-emitted v1 requests because boundary completion is upstream, not a solver choice;
@@ -435,12 +435,12 @@ For composites, the `AAA Notation` column uses the current atomic shorthand when
 
 | Canonical ID | Full Name | PDG Notation | AAA Notation | Type | Breakdown into AAA notation at Noether braid and unbound architrinos layer | Total architrinos | Family | Generation | Pro or Anti | Transforms to pdgsolve rows |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `pro_noether_swarm_I` | Pro Noether Braid | `n/a` | `h` | assembly | `h` | `3:3@` | Noether braid | I | pro | yes |
-| `anti_noether_swarm_I` | Anti Noether Braid | `n/a` | `ah` | assembly | `ah` | `3:3@` | Noether braid | I | anti | yes |
-| `pro_noether_swarm_II` | Pro Bi-Binary | `n/a` | `h2` | assembly | `h2` | `2:2@` | Noether braid | II | pro | yes |
-| `anti_noether_swarm_II` | Anti Bi-Binary | `n/a` | `ah2` | assembly | `ah2` | `2:2@` | Noether braid | II | anti | yes |
-| `pro_noether_swarm_III` | Pro Uni-Binary | `n/a` | `h3` | assembly | `h3` | `1:1@` | Noether braid | III | pro | yes |
-| `anti_noether_swarm_III` | Anti Uni-Binary | `n/a` | `ah3` | assembly | `ah3` | `1:1@` | Noether braid | III | anti | yes |
+| `pro_noether_braid_I` | Pro Noether Braid | `n/a` | `h` | assembly | `h` | `3:3@` | Noether braid | I | pro | yes |
+| `anti_noether_braid_I` | Anti Noether Braid | `n/a` | `ah` | assembly | `ah` | `3:3@` | Noether braid | I | anti | yes |
+| `pro_noether_braid_II` | Pro Bi-Binary | `n/a` | `h2` | assembly | `h2` | `2:2@` | Noether braid | II | pro | yes |
+| `anti_noether_braid_II` | Anti Bi-Binary | `n/a` | `ah2` | assembly | `ah2` | `2:2@` | Noether braid | II | anti | yes |
+| `pro_noether_braid_III` | Pro Uni-Binary | `n/a` | `h3` | assembly | `h3` | `1:1@` | Noether braid | III | pro | yes |
+| `anti_noether_braid_III` | Anti Uni-Binary | `n/a` | `ah3` | assembly | `ah3` | `1:1@` | Noether braid | III | anti | yes |
 | `pro_electron_I` | Electron | `e-` | `e` | assembly | `h + 6:0@` | `9:3@` | charged lepton | I | pro | yes |
 | `anti_electron_I` | Positron | `e+` | `ae` | assembly | `ah + 0:6@` | `3:9@` | charged lepton | I | anti | yes |
 | `pro_electron_neutrino_I` | Electron Neutrino | `nu_e` | `v` | assembly | `h + 3:3@` | `6:6@` | neutrino | I | pro | yes |

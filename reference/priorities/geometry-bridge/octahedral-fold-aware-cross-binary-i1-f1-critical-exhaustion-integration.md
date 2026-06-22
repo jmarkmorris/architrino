@@ -114,13 +114,13 @@ No speed band, speed window, speed minimum, or speed maximum is imposed. The pac
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.mjs). It imports and validates the full `I1.f1` zero-isolation composition and the sampled root-location speed-envelope scan, then emits the theorem summary:
+The executable packet is [octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.mjs). It imports and validates the full `I1.f1` zero-isolation composition and the sampled root-location speed-envelope scan, then emits the theorem summary:
 
 $$
 \texttt{I1.f1.critical-exhaustion-integration}.
 $$
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.test.js) validates predecessor consumption, no-fixed-speed-window discipline, complement-row emission, downstream overclaim rejection, and CLI validation.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.test.js) validates predecessor consumption, no-fixed-speed-window discipline, complement-row emission, downstream overclaim rejection, and CLI validation.
 
 ## Result
 

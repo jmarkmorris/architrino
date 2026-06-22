@@ -151,7 +151,7 @@ It preserves that interval quadrature and interval critical exhaustion remain op
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-primitive-critical-atlas.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-primitive-critical-atlas.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-primitive-critical-atlas.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-primitive-critical-atlas.mjs) emits:
 
 - predecessor validation for the source-atlas quarter-cell reduction;
 - no-fixed-speed-window atlas parameters;
@@ -162,7 +162,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-primitive-critical
 - the six-point sampled primitive-extrema candidate set;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-primitive-critical-atlas.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-primitive-critical-atlas.test.js) verifies predecessor validation, speed-window removal, the primitive critical rule, sampled critical counts, refined roots, fold endpoint turns, the six-point candidate set, CLI emission, JSON validation, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-primitive-critical-atlas.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-primitive-critical-atlas.test.js) verifies predecessor validation, speed-window removal, the primitive critical rule, sampled critical counts, refined roots, fold endpoint turns, the six-point candidate set, CLI emission, JSON validation, and non-retention claims.
 
 ## Claim Boundary
 

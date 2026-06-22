@@ -137,11 +137,11 @@ replays remain nonadmissible wrappers around an aggregate-only provider object.
 
 Primary diagnostic file:
 
-- `scripts/neutral-swarm/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs`
+- `scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs`
 
 Focused test file:
 
-- `tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js`
+- `tests/neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js`
 
 Most relevant packet builders:
 
@@ -167,10 +167,10 @@ field groups needed to materialize $P_b$.
 The latest focused validation passed:
 
 ```bash
-node --check scripts/neutral-swarm/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs
-node --check tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js
-node --test --test-name-pattern "h39 terminal affine-zeta endpoint provider replay crosses the provider boundary" tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js
-node --test --test-name-pattern "h39 h38 expression-level N38 terminal graph remainder budget bridges the symmetric cross-fold window" tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js
+node --check scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs
+node --check tests/neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js
+node --test --test-name-pattern "h39 terminal affine-zeta endpoint provider replay crosses the provider boundary" tests/neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js
+node --test --test-name-pattern "h39 h38 expression-level N38 terminal graph remainder budget bridges the symmetric cross-fold window" tests/neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
 git diff --check

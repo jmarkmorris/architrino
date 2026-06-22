@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`.
 
-This packet inserts actual root-ledger data into [minimal-worked-branch-response](minimal-worked-branch-response.md). The cleanest available source is not yet the exact-antipodal $M=3$ dynamics row, because that row has aggregate trust data but no full per-root exposure table. The cleanest available insertion target is the certified rigid octahedral all-pairs causal-root ledger in [octahedral-root-ledger-certification-target](../swarm/neutral-swarm/octahedral-root-ledger-certification-target.md).
+This packet inserts actual root-ledger data into [minimal-worked-branch-response](minimal-worked-branch-response.md). The cleanest available source is not yet the exact-antipodal $M=3$ dynamics row, because that row has aggregate trust data but no full per-root exposure table. The cleanest available insertion target is the certified rigid octahedral all-pairs causal-root ledger in [octahedral-root-ledger-certification-target](../braid/neutral-braid/octahedral-root-ledger-certification-target.md).
 
 The result is a branch-response row for the root ledger, not a retained dynamics branch. The rigid octahedral packet explicitly says its all-pairs root ledger is certified while dynamics, action, Noether, event, stability, observer-export, shell braid, and nested shell braid rows remain separate. This packet respects that boundary.
 

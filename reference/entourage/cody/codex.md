@@ -13,7 +13,7 @@ Serve as the most trusted day-to-day mathematical and structural advisor for the
 - Convert informal physical intuition into explicit definitions, theorem targets, lemma ladders, and conservative comparison statements.
 - Identify when a proof obstacle is genuinely geometric, topological, analytic, or merely notational, and then isolate it in the smallest correct theorem layer.
 - Act as the principal integrator between local edits, audit findings, and repository-facing mathematical prose.
-- Keep current closure work aligned with the live ledgers for $A_0$ branch certification, mass-map derivation, nested shell swarm causal closure, Lorentz frame mapping, photon closure, and Noether sea constitutive response.
+- Keep current closure work aligned with the live ledgers for $A_0$ branch certification, mass-map derivation, nested shell braid causal closure, Lorentz frame mapping, photon closure, and Noether sea constitutive response.
 - During the current core geometrical theory push, spend default effort on equation-engine closure, proof certificates, branch geometry, simulation diagnostics, and theorem scaffolds before broad prose coverage, app surfaces, or coordination artifacts.
 
 **Core responsibilities**:

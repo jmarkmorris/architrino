@@ -58,29 +58,29 @@ REQUEST_ASSEMBLY_TITLE_BY_ID = {
 UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID = "unbound_architrinos_residue"
 UNBOUND_ARCHITRINOS_RESIDUE_TITLE = "Unbound Architrinos"
 PDGEDIT_APP_MIN_BRANCHING_PROBABILITY = 0.20
-NOETHER_SWARM_GENERATIONS = ("I", "II", "III")
+NOETHER_BRAID_GENERATIONS = ("I", "II", "III")
 NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION = {
     generation: {
-        "electrinoCount": REQUEST_ASSEMBLY_COUNTS[f"pro_noether_swarm_{generation}"]["electrinoCount"]
-        + REQUEST_ASSEMBLY_COUNTS[f"anti_noether_swarm_{generation}"]["electrinoCount"],
-        "positrinoCount": REQUEST_ASSEMBLY_COUNTS[f"pro_noether_swarm_{generation}"]["positrinoCount"]
-        + REQUEST_ASSEMBLY_COUNTS[f"anti_noether_swarm_{generation}"]["positrinoCount"],
+        "electrinoCount": REQUEST_ASSEMBLY_COUNTS[f"pro_noether_braid_{generation}"]["electrinoCount"]
+        + REQUEST_ASSEMBLY_COUNTS[f"anti_noether_braid_{generation}"]["electrinoCount"],
+        "positrinoCount": REQUEST_ASSEMBLY_COUNTS[f"pro_noether_braid_{generation}"]["positrinoCount"]
+        + REQUEST_ASSEMBLY_COUNTS[f"anti_noether_braid_{generation}"]["positrinoCount"],
     }
-    for generation in NOETHER_SWARM_GENERATIONS
+    for generation in NOETHER_BRAID_GENERATIONS
 }
 NOETHER_PAIR_PRIMITIVE_TOTALS = NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION["I"]
-NOETHER_SWARM_ASSEMBLY_IDS = tuple(
+NOETHER_BRAID_ASSEMBLY_IDS = tuple(
     assembly_id
-    for generation in NOETHER_SWARM_GENERATIONS
-    for assembly_id in (f"pro_noether_swarm_{generation}", f"anti_noether_swarm_{generation}")
+    for generation in NOETHER_BRAID_GENERATIONS
+    for assembly_id in (f"pro_noether_braid_{generation}", f"anti_noether_braid_{generation}")
 )
-NOETHER_SWARM_SUCCESSOR = {
-    "pro_noether_swarm_I": "pro_noether_swarm_II",
-    "anti_noether_swarm_I": "anti_noether_swarm_II",
-    "pro_noether_swarm_II": "pro_noether_swarm_III",
-    "anti_noether_swarm_II": "anti_noether_swarm_III",
-    "pro_noether_swarm_III": None,
-    "anti_noether_swarm_III": None,
+NOETHER_BRAID_SUCCESSOR = {
+    "pro_noether_braid_I": "pro_noether_braid_II",
+    "anti_noether_braid_I": "anti_noether_braid_II",
+    "pro_noether_braid_II": "pro_noether_braid_III",
+    "anti_noether_braid_II": "anti_noether_braid_III",
+    "pro_noether_braid_III": None,
+    "anti_noether_braid_III": None,
 }
 INCOMPLETE_NOTE_MARKERS = (
     "generic-or-textual-item",
@@ -232,9 +232,9 @@ def build_reaction_summary_participant(text: Any) -> dict[str, str] | None:
     return {"text": normalized_text}
 
 
-def is_noether_swarm_request_occurrence(occurrence: dict[str, Any]) -> bool:
+def is_noether_braid_request_occurrence(occurrence: dict[str, Any]) -> bool:
     assembly_id = str(occurrence.get("assemblyId", "")).strip()
-    return assembly_id.startswith("pro_noether_swarm_") or assembly_id.startswith("anti_noether_swarm_")
+    return assembly_id.startswith("pro_noether_braid_") or assembly_id.startswith("anti_noether_braid_")
 
 
 def build_pdg_provenance_reaction_summary_participants(
@@ -262,7 +262,7 @@ def build_pdg_provenance_reaction_summary_participants(
             if entry is not None:
                 pdg_entries.append(entry)
             continue
-        if all(is_noether_swarm_request_occurrence(occurrence) for occurrence in participant_occurrences):
+        if all(is_noether_braid_request_occurrence(occurrence) for occurrence in participant_occurrences):
             label = str(participant.label or participant.pdg_name or "").strip()
             if label:
                 entry = build_reaction_summary_participant(f"{label} [{' + '.join(titles)}]")
@@ -381,8 +381,8 @@ def build_noether_pair_occurrences(
     id_prefix: str = "noether_pair",
 ) -> list[dict[str, Any]]:
     pair_id_prefix = id_prefix if generation == "I" and id_prefix == "noether_pair" else f"{id_prefix}_{generation.lower()}"
-    pro_assembly_id = f"pro_noether_swarm_{generation}"
-    anti_assembly_id = f"anti_noether_swarm_{generation}"
+    pro_assembly_id = f"pro_noether_braid_{generation}"
+    anti_assembly_id = f"anti_noether_braid_{generation}"
     occurrences: list[dict[str, Any]] = []
     for index in range(1, pair_count + 1):
         occurrences.append(
@@ -493,38 +493,38 @@ def add_reactant_noether_pairs_for_balance(
     return [*reactants, *build_noether_pair_occurrences("reactant", pair_count)]
 
 
-def get_noether_swarm_assembly_id_for_occurrence(occurrence: dict[str, Any]) -> str | None:
+def get_noether_braid_assembly_id_for_occurrence(occurrence: dict[str, Any]) -> str | None:
     assembly_id = str(occurrence.get("assemblyId", "")).strip()
     if not assembly_id or assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
         return None
-    if assembly_id in NOETHER_SWARM_ASSEMBLY_IDS:
+    if assembly_id in NOETHER_BRAID_ASSEMBLY_IDS:
         return assembly_id
     generation = assembly_id.rsplit("_", 1)[-1] if "_" in assembly_id else ""
     if not generation:
         return None
     if assembly_id.startswith("pro_"):
-        core_assembly_id = f"pro_noether_swarm_{generation}"
+        core_assembly_id = f"pro_noether_braid_{generation}"
     elif assembly_id.startswith("anti_"):
-        core_assembly_id = f"anti_noether_swarm_{generation}"
+        core_assembly_id = f"anti_noether_braid_{generation}"
     else:
         return None
     return core_assembly_id if core_assembly_id in REQUEST_ASSEMBLY_COUNTS else None
 
 
-def count_noether_swarm_support_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
-    counts = {assembly_id: 0 for assembly_id in NOETHER_SWARM_ASSEMBLY_IDS}
+def count_noether_braid_support_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {assembly_id: 0 for assembly_id in NOETHER_BRAID_ASSEMBLY_IDS}
     for occurrence in occurrences:
         if not isinstance(occurrence, dict):
             continue
-        core_assembly_id = get_noether_swarm_assembly_id_for_occurrence(occurrence)
+        core_assembly_id = get_noether_braid_assembly_id_for_occurrence(occurrence)
         if core_assembly_id is None:
             continue
         counts[core_assembly_id] += 1
     return counts
 
 
-def count_direct_noether_swarm_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
-    counts = {assembly_id: 0 for assembly_id in NOETHER_SWARM_ASSEMBLY_IDS}
+def count_direct_noether_braid_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {assembly_id: 0 for assembly_id in NOETHER_BRAID_ASSEMBLY_IDS}
     for occurrence in occurrences:
         if not isinstance(occurrence, dict):
             continue
@@ -534,38 +534,38 @@ def count_direct_noether_swarm_occurrences(occurrences: list[dict[str, Any]]) ->
     return counts
 
 
-def count_noether_swarm_middle_supply_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
-    counts = {assembly_id: 0 for assembly_id in NOETHER_SWARM_ASSEMBLY_IDS}
+def count_noether_braid_middle_supply_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {assembly_id: 0 for assembly_id in NOETHER_BRAID_ASSEMBLY_IDS}
     for occurrence in occurrences:
         if not isinstance(occurrence, dict):
             continue
         assembly_id = str(occurrence.get("assemblyId", "")).strip()
         if assembly_id in counts:
             continue
-        core_assembly_id = get_noether_swarm_assembly_id_for_occurrence(occurrence)
+        core_assembly_id = get_noether_braid_assembly_id_for_occurrence(occurrence)
         if core_assembly_id is None:
             continue
         counts[core_assembly_id] += 1
     return counts
 
 
-def get_reachable_noether_swarm_assembly_ids(core_assembly_id: str) -> tuple[str, ...]:
+def get_reachable_noether_braid_assembly_ids(core_assembly_id: str) -> tuple[str, ...]:
     reachable_core_ids: list[str] = []
     current_core_assembly_id = str(core_assembly_id or "").strip()
     while current_core_assembly_id:
         reachable_core_ids.append(current_core_assembly_id)
-        current_core_assembly_id = str(NOETHER_SWARM_SUCCESSOR.get(current_core_assembly_id) or "").strip()
+        current_core_assembly_id = str(NOETHER_BRAID_SUCCESSOR.get(current_core_assembly_id) or "").strip()
     return tuple(reachable_core_ids)
 
 
-def plan_noether_swarm_middle_supply_occurrences(
+def plan_noether_braid_middle_supply_occurrences(
     occurrences: list[dict[str, Any]],
     required_counts: dict[str, int],
 ) -> dict[str, int]:
-    counts = {assembly_id: 0 for assembly_id in NOETHER_SWARM_ASSEMBLY_IDS}
+    counts = {assembly_id: 0 for assembly_id in NOETHER_BRAID_ASSEMBLY_IDS}
     remaining_required = {
         assembly_id: int(required_counts.get(assembly_id, 0) or 0)
-        for assembly_id in NOETHER_SWARM_ASSEMBLY_IDS
+        for assembly_id in NOETHER_BRAID_ASSEMBLY_IDS
     }
     for occurrence in occurrences:
         if not isinstance(occurrence, dict):
@@ -573,13 +573,13 @@ def plan_noether_swarm_middle_supply_occurrences(
         assembly_id = str(occurrence.get("assemblyId", "")).strip()
         if assembly_id in counts:
             continue
-        core_assembly_id = get_noether_swarm_assembly_id_for_occurrence(occurrence)
+        core_assembly_id = get_noether_braid_assembly_id_for_occurrence(occurrence)
         if core_assembly_id is None:
             continue
         target_core_assembly_id = next(
             (
                 candidate_id
-                for candidate_id in reversed(get_reachable_noether_swarm_assembly_ids(core_assembly_id))
+                for candidate_id in reversed(get_reachable_noether_braid_assembly_ids(core_assembly_id))
                 if remaining_required[candidate_id] > 0
             ),
             None,
@@ -595,23 +595,23 @@ def compute_required_full_noether_pair_count(
     reactants: list[dict[str, Any]],
     products: list[dict[str, Any]],
 ) -> int:
-    direct_counts = count_direct_noether_swarm_occurrences(reactants)
-    required_counts = count_noether_swarm_support_occurrences(products)
-    middle_supply_counts = plan_noether_swarm_middle_supply_occurrences(reactants, required_counts)
+    direct_counts = count_direct_noether_braid_occurrences(reactants)
+    required_counts = count_noether_braid_support_occurrences(products)
+    middle_supply_counts = plan_noether_braid_middle_supply_occurrences(reactants, required_counts)
     required_pair_count_by_charge = {"pro": 0, "anti": 0}
 
     for charge in ("pro", "anti"):
         remaining_required = {
-            generation: required_counts[f"{charge}_noether_swarm_{generation}"]
-            for generation in NOETHER_SWARM_GENERATIONS
+            generation: required_counts[f"{charge}_noether_braid_{generation}"]
+            for generation in NOETHER_BRAID_GENERATIONS
         }
         available_direct = {
-            generation: direct_counts[f"{charge}_noether_swarm_{generation}"]
-            for generation in NOETHER_SWARM_GENERATIONS
+            generation: direct_counts[f"{charge}_noether_braid_{generation}"]
+            for generation in NOETHER_BRAID_GENERATIONS
         }
         available_middle = {
-            generation: middle_supply_counts[f"{charge}_noether_swarm_{generation}"]
-            for generation in NOETHER_SWARM_GENERATIONS
+            generation: middle_supply_counts[f"{charge}_noether_braid_{generation}"]
+            for generation in NOETHER_BRAID_GENERATIONS
         }
 
         for generation, direct_sources in (

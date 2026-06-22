@@ -12,7 +12,7 @@ This priority packet supplies the first reduced Hessian calculation behind the N
 ## Source Anchors
 
 - [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) defines $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$ and requires $H_{\mathrm{env}}$ to compute $K_{\mathrm{env}}$.
-- [Noether Braid Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) defines the oblate envelope, support-function lattice-cell bound, and same-level packing scalings.
+- [Noether Braid Scaling and Packing Scaffold](../dyadic-lock/noether-braid-scaling-and-packing.md) defines the oblate envelope, support-function lattice-cell bound, and same-level packing scalings.
 - [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) records how shape response feeds $\chi_{\text{sea}}$, $\Gamma_N$, and $\mathcal{M}_{\text{sea}}^{ab}$.
 
 ## Runtime Artifact

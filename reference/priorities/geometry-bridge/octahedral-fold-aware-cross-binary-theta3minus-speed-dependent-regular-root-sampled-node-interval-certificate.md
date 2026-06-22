@@ -136,7 +136,7 @@ The remaining regular-root proof is no longer a finite-node or named-sheet quoti
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-sampled-node-interval-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-sampled-node-interval-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-sampled-node-interval-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-sampled-node-interval-certificate.mjs). It emits:
 
 - directed-rounded sampled-node endpoint brackets for all regular roots;
 - sign-definite $F_\delta$ intervals on each regular source sheet;
@@ -144,4 +144,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - a predecessor/direct drift row for the derivative quotient;
 - explicit open continuous-collar, fold-pair, `I1`, quadrature, and retention rows.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-sampled-node-interval-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-sampled-node-interval-certificate.test.js) validates schema, no-fixed-speed-window discipline, root brackets, $F_\delta$ signs, quotient budgets, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-sampled-node-interval-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-sampled-node-interval-certificate.test.js) validates schema, no-fixed-speed-window discipline, root brackets, $F_\delta$ signs, quotient budgets, overclaim rejection, and CLI write/validate behavior.

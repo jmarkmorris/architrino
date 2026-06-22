@@ -123,7 +123,7 @@ This certificate therefore removes the need for a bounded $\theta$-derivative at
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.mjs) emits:
 
 - predecessor validation for the interval sign-enclosure target atlas and fold-square limit atlas;
 - no-fixed-speed-window collar parameters;
@@ -133,7 +133,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-fold-collar-sign-t
 - derivative-tail signs for both $f'_\times$ and $D=4y^3f'_\times$;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.test.js) verifies predecessor validation, speed-window removal, theorem identities, singular collar row constants, finite-collar sampled signs, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.test.js) verifies predecessor validation, speed-window removal, theorem identities, singular collar row constants, finite-collar sampled signs, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

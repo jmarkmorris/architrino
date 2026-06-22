@@ -137,7 +137,7 @@ The direct successor [octahedral-fold-aware-cross-binary-forcing-derivative-atla
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-fold-square-limit-atlas.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-fold-square-limit-atlas.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-fold-square-limit-atlas.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-fold-square-limit-atlas.mjs) emits:
 
 - source atlas validation for the $\kappa=+1$ fold endpoints;
 - critical-value atlas predecessor validation;
@@ -148,7 +148,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-fold-square-limit-
 - analytic square-limit rows for the folded sides and zero-limit rows for the regular sides;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-fold-square-limit-atlas.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-fold-square-limit-atlas.test.js) verifies predecessor validation, speed-window removal, square normal form, fold-side classification, analytic limits, sampled convergence, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-fold-square-limit-atlas.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-fold-square-limit-atlas.test.js) verifies predecessor validation, speed-window removal, square normal form, fold-side classification, analytic limits, sampled convergence, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

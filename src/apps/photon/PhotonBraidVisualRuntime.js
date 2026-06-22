@@ -71,9 +71,9 @@ function wrapAngle(angle) {
   return ((((angle + Math.PI) % TWO_PI) + TWO_PI) % TWO_PI) - Math.PI;
 }
 
-function colorForPathAngle(state, swarmId, layerId, angle, timeSeconds, alpha = 1) {
-  const positrinoAngle = getPhotonLayerAngleRadians(state, swarmId, layerId, timeSeconds, "positrino");
-  const electrinoAngle = getPhotonLayerAngleRadians(state, swarmId, layerId, timeSeconds, "electrino");
+function colorForPathAngle(state, braidId, layerId, angle, timeSeconds, alpha = 1) {
+  const positrinoAngle = getPhotonLayerAngleRadians(state, braidId, layerId, timeSeconds, "positrino");
+  const electrinoAngle = getPhotonLayerAngleRadians(state, braidId, layerId, timeSeconds, "electrino");
   const positrinoWeight = Math.max(0, 1 - Math.abs(wrapAngle(angle - positrinoAngle)) / 0.72);
   const electrinoWeight = Math.max(0, 1 - Math.abs(wrapAngle(angle - electrinoAngle)) / 0.72);
   if (positrinoWeight > electrinoWeight && positrinoWeight > 0) {
@@ -106,7 +106,7 @@ function drawPolylineArc(ctx, centerX, centerY, radius, startAngle, directionSig
   ctx.restore();
 }
 
-function drawOrbitPath(ctx, state, swarmId, layerId, centerX, centerY, radius, timeSeconds) {
+function drawOrbitPath(ctx, state, braidId, layerId, centerX, centerY, radius, timeSeconds) {
   const segments = 144;
   ctx.save();
   ctx.lineWidth = 1.15;
@@ -116,17 +116,17 @@ function drawOrbitPath(ctx, state, swarmId, layerId, centerX, centerY, radius, t
     ctx.beginPath();
     ctx.moveTo(centerX + Math.cos(a0) * radius, centerY + Math.sin(a0) * radius);
     ctx.lineTo(centerX + Math.cos(a1) * radius, centerY + Math.sin(a1) * radius);
-    ctx.strokeStyle = colorForPathAngle(state, swarmId, layerId, (a0 + a1) / 2, timeSeconds, 0.72);
+    ctx.strokeStyle = colorForPathAngle(state, braidId, layerId, (a0 + a1) / 2, timeSeconds, 0.72);
     ctx.stroke();
   }
   ctx.restore();
 }
 
-function drawLayerTrail(ctx, state, swarmId, layerId, centerX, centerY, radius, timeSeconds) {
-  const directionSign = state.pair[swarmId].direction === "cw" ? -1 : 1;
+function drawLayerTrail(ctx, state, braidId, layerId, centerX, centerY, radius, timeSeconds) {
+  const directionSign = state.pair[braidId].direction === "cw" ? -1 : 1;
   ["positrino", "electrino"].forEach((chargeType) => {
-    const chargeAngle = getPhotonLayerAngleRadians(state, swarmId, layerId, timeSeconds, chargeType);
-    const colorForAngle = (angle, alpha) => colorForPathAngle(state, swarmId, layerId, angle, timeSeconds, alpha);
+    const chargeAngle = getPhotonLayerAngleRadians(state, braidId, layerId, timeSeconds, chargeType);
+    const colorForAngle = (angle, alpha) => colorForPathAngle(state, braidId, layerId, angle, timeSeconds, alpha);
     drawPolylineArc(ctx, centerX, centerY, radius, chargeAngle, directionSign, Math.PI * 0.82, {
       colorForAngle,
       opacity: 0.52,
@@ -226,11 +226,11 @@ function drawPhotonFaceAxisGlyph(ctx, centerX, centerY, maxRadiusPx) {
 
 function getPhotonLayerRadii(state, { enabledOnly = false } = {}) {
   return PHOTON_LAYER_ORDER.flatMap((layerId) =>
-    ["left", "right"].flatMap((swarmId) => {
-      if (enabledOnly && !getPhotonLayerEnabled(state, swarmId, layerId)) {
+    ["left", "right"].flatMap((braidId) => {
+      if (enabledOnly && !getPhotonLayerEnabled(state, braidId, layerId)) {
         return [];
       }
-      return [getPhotonLayer(state, swarmId, layerId).radius];
+      return [getPhotonLayer(state, braidId, layerId).radius];
     })
   );
 }
@@ -240,7 +240,7 @@ function getPhotonMaxLayerRadius(state, { enabledOnly = false } = {}) {
   return radii.length > 0 ? Math.max(...radii) : 0;
 }
 
-function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds) {
+function drawBraid(ctx, state, braidId, centerX, centerY, scale, timeSeconds) {
   const pathsVisible = state.view?.pathsVisible !== false;
   const glyphRadius = Math.max(
     getPhotonMaxLayerRadius(state, { enabledOnly: true }),
@@ -250,10 +250,10 @@ function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds) {
   ctx.save();
 
   PHOTON_LAYER_ORDER.forEach((layerId) => {
-    if (!getPhotonLayerEnabled(state, swarmId, layerId)) {
+    if (!getPhotonLayerEnabled(state, braidId, layerId)) {
       return;
     }
-    const layer = getPhotonLayer(state, swarmId, layerId);
+    const layer = getPhotonLayer(state, braidId, layerId);
     const meta = PHOTON_LAYER_META[layerId];
     const radius = layer.radius * scale;
     if (pathsVisible) {
@@ -265,11 +265,11 @@ function drawSwarm(ctx, state, swarmId, centerX, centerY, scale, timeSeconds) {
       ctx.arc(centerX, centerY, radius, 0, TWO_PI);
       ctx.stroke();
       ctx.restore();
-      drawOrbitPath(ctx, state, swarmId, layerId, centerX, centerY, radius, timeSeconds);
-      drawLayerTrail(ctx, state, swarmId, layerId, centerX, centerY, radius, timeSeconds);
+      drawOrbitPath(ctx, state, braidId, layerId, centerX, centerY, radius, timeSeconds);
+      drawLayerTrail(ctx, state, braidId, layerId, centerX, centerY, radius, timeSeconds);
     }
-    const positrinoAngle = getPhotonLayerAngleRadians(state, swarmId, layerId, timeSeconds, "positrino");
-    const electrinoAngle = getPhotonLayerAngleRadians(state, swarmId, layerId, timeSeconds, "electrino");
+    const positrinoAngle = getPhotonLayerAngleRadians(state, braidId, layerId, timeSeconds, "positrino");
+    const electrinoAngle = getPhotonLayerAngleRadians(state, braidId, layerId, timeSeconds, "electrino");
     drawArchitrinoMarker(
       ctx,
       centerX + Math.cos(positrinoAngle) * radius,
@@ -311,7 +311,7 @@ function drawPhotonFacePairTitle(ctx, layout) {
   ctx.restore();
 }
 
-function drawSideSwarmTrace(ctx, state, swarmId, x, centerY, halfHeight, scale, timeSeconds, labelY) {
+function drawSideBraidTrace(ctx, state, braidId, x, centerY, halfHeight, scale, timeSeconds, labelY) {
   if (halfHeight <= 1) {
     return;
   }
@@ -327,13 +327,13 @@ function drawSideSwarmTrace(ctx, state, swarmId, x, centerY, halfHeight, scale, 
   ctx.stroke();
 
   PHOTON_LAYER_ORDER.forEach((layerId) => {
-    if (!getPhotonLayerEnabled(state, swarmId, layerId)) {
+    if (!getPhotonLayerEnabled(state, braidId, layerId)) {
       return;
     }
-    const layer = getPhotonLayer(state, swarmId, layerId);
+    const layer = getPhotonLayer(state, braidId, layerId);
     const radius = layer.radius * scale;
     ["positrino", "electrino"].forEach((chargeType) => {
-      const angle = getPhotonLayerAngleRadians(state, swarmId, layerId, timeSeconds, chargeType);
+      const angle = getPhotonLayerAngleRadians(state, braidId, layerId, timeSeconds, chargeType);
       const markerY = centerY + Math.sin(angle) * radius;
       drawArchitrinoMarker(
         ctx,
@@ -350,7 +350,7 @@ function drawSideSwarmTrace(ctx, state, swarmId, x, centerY, halfHeight, scale, 
   ctx.font = PHOTON_STAGE_TEXT_FONT;
   ctx.textAlign = "center";
   ctx.textBaseline = "top";
-  ctx.fillText(state.pair[swarmId].role, x, labelY);
+  ctx.fillText(state.pair[braidId].role, x, labelY);
   ctx.restore();
 }
 
@@ -417,8 +417,8 @@ function drawPhotonSideView(ctx, state, layout, timeSeconds) {
   ctx.textBaseline = "bottom";
   ctx.fillText("Side View", sideCenterX, topLabelY);
   drawPhotonSideDeltaMarker(ctx, layout);
-  drawSideSwarmTrace(ctx, state, "left", sideLeftX, centerY, sideHalfHeight, scale, timeSeconds, bottomLabelY);
-  drawSideSwarmTrace(ctx, state, "right", sideRightX, centerY, sideHalfHeight, scale, timeSeconds, bottomLabelY);
+  drawSideBraidTrace(ctx, state, "left", sideLeftX, centerY, sideHalfHeight, scale, timeSeconds, bottomLabelY);
+  drawSideBraidTrace(ctx, state, "right", sideRightX, centerY, sideHalfHeight, scale, timeSeconds, bottomLabelY);
   ctx.restore();
 }
 
@@ -530,8 +530,8 @@ export function drawPhotonBraidStage(canvas, state, timeSeconds, options = {}) {
   ctx.restore();
 
   drawPhotonFacePairTitle(ctx, layout);
-  drawSwarm(ctx, state, "left", layout.faceLeftX, layout.centerY, layout.faceLeftScale, timeSeconds);
-  drawSwarm(ctx, state, "right", layout.faceRightX, layout.centerY, layout.faceRightScale, timeSeconds);
+  drawBraid(ctx, state, "left", layout.faceLeftX, layout.centerY, layout.faceLeftScale, timeSeconds);
+  drawBraid(ctx, state, "right", layout.faceRightX, layout.centerY, layout.faceRightScale, timeSeconds);
   drawPhotonFaceLabels(ctx, state, layout);
   drawPhotonSideView(ctx, state, layout, timeSeconds);
 }

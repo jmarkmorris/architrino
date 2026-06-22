@@ -356,7 +356,7 @@ $$
 
 ## Executable Checksum
 
-The executable diagnostic [octahedral-fold-aware-representative-profile-decomposition.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-representative-profile-decomposition.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-representative-profile-decomposition.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-representative-profile-decomposition.mjs) emits:
 
 - validation status for the zero-bracket and chart-closure source packets;
 - the representative decomposition identity;
@@ -366,7 +366,7 @@ The executable diagnostic [octahedral-fold-aware-representative-profile-decompos
 - the fixed-speed obstruction witness showing the total tangential forcing remains nonzero;
 - the cross-binary coarea interval profile as the next proof target.
 
-The companion test [neutral-braid-octahedral-fold-aware-representative-profile-decomposition.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-representative-profile-decomposition.test.js) verifies source validation, no fixed speed window, the partner null identity, fold-aware root counts, fixed-speed obstruction preservation, open cross-binary profile boundaries, CLI emission, and JSON validation.
+The companion test [neutral-braid-octahedral-fold-aware-representative-profile-decomposition.test.js](../../../tests/neutral-braid-octahedral-fold-aware-representative-profile-decomposition.test.js) verifies source validation, no fixed speed window, the partner null identity, fold-aware root counts, fixed-speed obstruction preservation, open cross-binary profile boundaries, CLI emission, and JSON validation.
 
 The checksum reports:
 

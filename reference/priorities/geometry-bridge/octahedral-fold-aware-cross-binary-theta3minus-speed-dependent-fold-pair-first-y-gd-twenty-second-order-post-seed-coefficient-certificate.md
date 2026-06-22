@@ -121,7 +121,7 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate.mjs). It emits:
 
 - directed-rounded $h_{22}$ branch-row solves over the $128$ speed cells;
 - $F_\varepsilon$ source coefficient containment through $y^{26}$ after the post-seed solve;
@@ -129,4 +129,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - the correlated coefficient identity interval $Q_{D,22}+23Q_{G,22}\ni0$;
 - explicit open finite-root-tail-tube, finite-remainder, full quotient, scaled-remainder, `I1`, and retention rows.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate.test.js) validates schema, no-fixed-speed-window discipline, $h_{22}$ and $Q_{G,22},Q_{D,22}$ intervals, the $Q_D+23Q_G$ identity interval, finite-tube overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate.test.js) validates schema, no-fixed-speed-window discipline, $h_{22}$ and $Q_{G,22},Q_{D,22}$ intervals, the $Q_D+23Q_G$ identity interval, finite-tube overclaim rejection, and CLI write/validate behavior.

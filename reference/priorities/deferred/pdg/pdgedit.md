@@ -369,9 +369,9 @@ The current composite review groups are:
 
 | Composite Label | Row Recipe |
 | --------------- | ---------- |
-| `Photon` | `Pro Noether Swarm`; `Anti Noether Swarm` |
-| `Noether Pair` | `Pro Noether Swarm`; `Anti Noether Swarm` |
-| `Noether Quad` | `Pro Noether Swarm`; `Anti Noether Swarm`; `Pro Noether Swarm`; `Anti Noether Swarm` |
+| `Photon` | `Pro Noether Braid`; `Anti Noether Braid` |
+| `Noether Pair` | `Pro Noether Braid`; `Anti Noether Braid` |
+| `Noether Quad` | `Pro Noether Braid`; `Anti Noether Braid`; `Pro Noether Braid`; `Anti Noether Braid` |
 | `Pro Proton` | `Pro Up Quark`; `Pro Down Quark`; `Pro Up Quark` |
 | `Anti Proton` | `Anti Up Quark`; `Anti Down Quark`; `Anti Up Quark` |
 | `Pro Neutron` | `Pro Down Quark`; `Pro Up Quark`; `Pro Down Quark` |
@@ -1385,8 +1385,8 @@ For assembly records, the exact allowed `type` values for `pdgedit/v1` are now f
 - `up-quark-color-variations-assembly`
 - `down-quark-color-variations-family-i-assembly`
 - `down-quark-color-variations-family-ii-assembly`
-- `pro-noether-swarm-assembly`
-- `anti-noether-swarm-assembly`
+- `pro-noether-braid-assembly`
+- `anti-noether-braid-assembly`
 
 For assemblies, `type` is semantic only.
 

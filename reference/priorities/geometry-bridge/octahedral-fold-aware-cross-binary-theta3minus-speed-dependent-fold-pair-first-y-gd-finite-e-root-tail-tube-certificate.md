@@ -128,7 +128,7 @@ $$
 
 ## Executable Artifact
 
-The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate.mjs). It emits:
+The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate.mjs). It emits:
 
 - direct positive-y endpoint-sign rows for $H_\varepsilon(y,h_{\le20}+y^{21}E,\nu)$;
 - inherited seed intervals and post-seed $Q_G,Q_D$ tail budgets;
@@ -136,4 +136,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - the additional $E$ padding that direct endpoint signs would require;
 - explicit open flags for the finite $\operatorname{Shift}_{25}$ evaluator, finite $E_\varepsilon$ tube, full quotient, scaled remainder, `I1`, and retained branch status.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate.test.js) validates schema, no-fixed-speed-window discipline, direct-H obstruction metrics, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate.test.js) validates schema, no-fixed-speed-window discipline, direct-H obstruction metrics, overclaim rejection, and CLI write/validate behavior.

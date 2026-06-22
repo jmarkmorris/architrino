@@ -73,7 +73,7 @@ These rows refine the previous sampled bridge-predicate certificate. The bridge 
 
 ## Executable Artifact
 
-The executable diagnostic [octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction.mjs) emits:
+The executable diagnostic [octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction.mjs) emits:
 
 - predecessor validation for the sampled bridge-predicate certificate and forcing interval sign-enclosure target atlas;
 - no-fixed-speed-window interval bridge parameters;
@@ -83,7 +83,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-interval-bridge-pr
 - three interval bridge-predicate reduction rows with inherited budgets;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction.test.js) verifies predecessor validation, speed-window removal, theorem statement, endpoint and derivative target rows, bridge reduction rows, weakest-budget summary, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-interval-bridge-predicate-reduction.test.js) verifies predecessor validation, speed-window removal, theorem statement, endpoint and derivative target rows, bridge reduction rows, weakest-budget summary, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 The direct successor [octahedral-fold-aware-cross-binary-finite-interval-closure-reduction](octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.md) composes this bridge reduction into the source-atlas interval implication theorem. It keeps the five bridge endpoint rows separate, imports the two derivative rows as existing regular-subcell obligations, and reduces the remaining interval-closure burden to thirty-three finite row families.
 

@@ -34,7 +34,7 @@ The queue favors app concepts that make the theory's native mechanisms visible: 
 7. `born_rule_basin_measure` - Born Rule As Basin Measure. Status: `idea`.
 8. `record_autonomy_restartability` - Record Autonomy And Restartability. Status: `idea`.
 9. `noether_sea_reversible_retuning` - Noether Sea Reversible Retuning. Status: `idea`.
-10. `nested_shell_swarm_exclusion` - Nested Shell Braid Exclusion. Status: `idea`.
+10. `nested_shell_braid_exclusion` - Nested Shell Braid Exclusion. Status: `idea`.
 11. `photon_surface_routing` - Photon Surface Routing. Status: `idea`.
 12. `clock_cadence_retuning` - Clock-Cadence Retuning. Status: `idea`.
 13. `two_way_signal_recovery` - Two-Way Signal Recovery. Status: `idea`.

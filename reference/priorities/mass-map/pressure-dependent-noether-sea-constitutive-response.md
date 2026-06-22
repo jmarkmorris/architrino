@@ -24,7 +24,7 @@ This priority packet is a report and derivation scaffold, not reader-facing cano
   $$
 - [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) already requires atomic calculations to distinguish resolved matter assemblies from the complementary local Noether sea record inside the same atomic window.
 - [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) and [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) already separate reversible medium-dressed inertial response from dissipative resistance through $\mathcal{R}_{\text{tr}}$, and carry the Earth-core iron guardrail that ordinary planetary differentiation has no iron-nucleus source term.
-- [Noether Braid Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) supplies the current priority-side packing estimate, including packing-limited center density and oblate-envelope support-function contact conditions.
+- [Noether Braid Scaling and Packing Scaffold](../dyadic-lock/noether-braid-scaling-and-packing.md) supplies the current priority-side packing estimate, including packing-limited center density and oblate-envelope support-function contact conditions.
 
 ## External Source-Mining Constraints
 
