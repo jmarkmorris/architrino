@@ -1,6 +1,6 @@
 # Foundations
 
-## Foundational Ontology
+## Ontology
 
 This chapter states the bedrock ontology of $\mathbb{A}\mathbb{A}\mathbb{A}$. It identifies what exists at the substrate level, what emerges from assembly and medium behavior, and which terms must remain level-aware for the rest of the corpus to stay coherent.
 
@@ -744,7 +744,7 @@ This gives the postulate a hard failure wall. Postulate 1 fails if any accepted 
 
 A critical feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that **all interactions are mediated by path history**: the cumulative effect of the causal wake surfaces that reach an architrino from prior emission events.
 
-At time $t$, an architrino at position $\mathbf{x}(t)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $t' < t$; through the [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
+At time $t$, an architrino at position $\mathbf{x}(t)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $t' < t$; through the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
 
 Because $t$ is universal and absolute, the past (all $t' < t$) is unambiguous, and the theory can sum or integrate over admissible delayed contributions. This allows for a mechanistic model of interaction without invoking action-at-a-distance, while still permitting **deterministic multistability** at self-hit thresholds.
 
@@ -1756,7 +1756,7 @@ Absolute timespace is the formal product background in which all architrino dyna
 
 This chapter states the substrate-level case for absolute time as the fundamental evolution parameter of the theory. Its purpose is to distinguish the exact absolute-time variable used by the [master equation](../../../../markdown/aaa/dynamics/master-equation.md) from the derived proper time read out by physical clock assemblies, and to show why the framework treats foliation as real structure rather than coordinate gauge.
 
-The teaching sequence is deliberately layered. First comes the ontological claim about absolute time and the Euclidean void. Then comes the dynamical claim about universe-state evolution. Only after those substrate claims are fixed does the chapter introduce proper time, clock-rate extraction, and relativistic observer inferences. It is the argumentative companion to [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
+The teaching sequence is deliberately layered. First comes the ontological claim about absolute time and the Euclidean void. Then comes the dynamical claim about universe-state evolution. Only after those substrate claims are fixed does the chapter introduce proper time, clock-rate extraction, and relativistic observer inferences. It is the argumentative companion to [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
 
 ### The Case for Absolute Time ($t$)
 

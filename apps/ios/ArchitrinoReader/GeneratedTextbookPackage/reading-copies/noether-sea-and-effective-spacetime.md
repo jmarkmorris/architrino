@@ -6089,12 +6089,12 @@ If that intersection is empty, the effective-metric program is not yet viable.
 
 ### Gravitational Waves
 
-This chapter provides a conditional closure chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md) and constrained by [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md).
+This chapter provides a conditional closure chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md) and constrained by [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md).
 
 Interface chapters:
 - Effective metric map: [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md)
 - PPN closure and refractive weak field: [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md)
-- Phenomenology summary: [General Relativity Observables](../../../../markdown/aaa/spacetime/gr-phenomenology.md)
+- Phenomenology summary: [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md)
 
 #### Weak-Field Setup
 
@@ -7240,7 +7240,7 @@ The clearest falsifier would be a precise, multi-probe data set showing that bla
 This chapter centralizes the black-hole ontology and hands specific tasks to adjacent chapters.
 
 - [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md): canonical horizon alignment condition and singularity replacement language.
-- [gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md): weak-field and strong-field observational closure targets.
+- [general-relativity.md](../../../../markdown/aaa/spacetime/general-relativity.md): weak-field and strong-field observational closure targets.
 - [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md): nested shell braid regime map, recycling sketches, and kinematic hypotheses.
 - [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md): Planck-alignment interpretation of terminal horizon locking.
 - [../cosmology/dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md): effective dark-energy source terms and late-time expansion history.
