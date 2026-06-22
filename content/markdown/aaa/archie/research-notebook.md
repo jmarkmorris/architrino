@@ -31,7 +31,7 @@ This milestone matters because it turns causal-delay language into an inspectabl
 Relevant files:
 
 - [Photon and Polarization Visualization App](../../../../photon.html)
-- [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-swarm.html)
+- [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-braid.html)
 - [Animator](../../../../animator.html)
 - [Causal Delay Feedback](../../../../causal-delay-feedback.html)
 
@@ -140,12 +140,12 @@ The supporting documents keep that boundary clear. [Photon Guide](photon-guide.m
 
 Relevant files:
 
-- [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-swarm.html)
+- [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-braid.html)
 - [Ideal Braid Guide](ideal-braid-guide.md)
 - [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
 
-The standalone [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-swarm.html) became the interactive inspection surface for the Noether braid Lorentz-geometry lesson built around an oblate spheroidal envelope. Its purpose is to make one candidate Noether braid deformation concrete: a nested braid is shown inside a velocity-dependent envelope, the user adjusts $\beta=v/c_f$, and the app ties the visible flattening to $\gamma$, $\xi=R_{\parallel}/R_{\perp}$, relative time, relative length, and the normalized center-of-mass energy ledger. The controls also keep the lesson inspectable rather than merely illustrative: paths, surface, axes, orbit scale, cycle speed, and markdown overlays let the reader compare the moving geometry with the equations on the same screen.
+The standalone [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-braid.html) became the interactive inspection surface for the Noether braid Lorentz-geometry lesson built around an oblate spheroidal envelope. Its purpose is to make one candidate Noether braid deformation concrete: a nested braid is shown inside a velocity-dependent envelope, the user adjusts $\beta=v/c_f$, and the app ties the visible flattening to $\gamma$, $\xi=R_{\parallel}/R_{\perp}$, relative time, relative length, and the normalized center-of-mass energy ledger. The controls also keep the lesson inspectable rather than merely illustrative: paths, surface, axes, orbit scale, cycle speed, and markdown overlays let the reader compare the moving geometry with the equations on the same screen.
 
 The app deliberately does not claim to prove Lorentz kinematics from Noether braid dynamics. It records the target geometry in a form that can be checked visually and algebraically: in the zero-extra-scale lesson case, the displayed oblate spheroidal envelope satisfies $R_{\parallel}=R_{\perp}/\gamma$ and $\xi=1/\gamma$. That makes the Lorentz factor more than a formula in a side panel; it becomes the aspect ratio of the displayed envelope. The app is therefore a dictionary between the formula, the return-cycle picture, and the geometry that a later branch-ledger derivation would have to recover.
 

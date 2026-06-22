@@ -8,14 +8,14 @@ import { pathToFileURL } from "node:url";
 import * as THREE from "../vendor/three/three.module.js";
 import {
   solveFlightTimeRowWithSolverBridge,
-} from "../src/apps/ideal-swarm/IdealSwarmRuntime.js";
+} from "../src/apps/ideal-braid/IdealBraidRuntime.js";
 import {
   runPhotonCausalRootsWithSolverBridge,
   solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge,
 } from "../src/apps/photon/PhotonFormulaRuntime.js";
 import {
   solveCircularSelfHitSpanRowWithSolverBridge,
-} from "../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js";
+} from "../src/apps/ideal-braid/IdealBraidPathPotentialProfile.js";
 import {
   SOLVER_APP_BRIDGE_API_VERSION,
   createSolverAppBridgeClient,
@@ -65,7 +65,7 @@ await client.init({
 const cases = [
   createCase("animator-causal-root-smoke", "animator"),
   createCase("photon-causal-root-smoke", "photon"),
-  createCase("ideal-swarm-causal-root-smoke", "ideal-swarm"),
+  createCase("ideal-braid-causal-root-smoke", "ideal-braid"),
 ];
 
 const artifacts = [];
@@ -389,82 +389,82 @@ artifacts.push({
   manifestHash: photonNormalizedCircularRunNormalizedResponse.manifest.manifestHash,
 });
 
-const idealSwarmGeometryCase = createIdealSwarmGeometryCase();
-const idealSwarmGeometryCandidate = await client.computeSharedGeometryF64(
-  idealSwarmGeometryCase.geometryRequest
+const idealBraidGeometryCase = createIdealBraidGeometryCase();
+const idealBraidGeometryCandidate = await client.computeSharedGeometryF64(
+  idealBraidGeometryCase.geometryRequest
 );
-const idealSwarmFacadeSelfHit = await solveCircularSelfHitSpanRowWithSolverBridge(1.2, {
+const idealBraidFacadeSelfHit = await solveCircularSelfHitSpanRowWithSolverBridge(1.2, {
   solverClient: client,
-  runId: `${idealSwarmGeometryCase.caseId}-facade-run`,
+  runId: `${idealBraidGeometryCase.caseId}-facade-run`,
 });
-const idealSwarmBaselineSelfHitSpan =
-  idealSwarmGeometryCase.baseline.geometry.circularSelfHitSpans[0].span;
+const idealBraidBaselineSelfHitSpan =
+  idealBraidGeometryCase.baseline.geometry.circularSelfHitSpans[0].span;
 assert(
-  Math.abs(idealSwarmFacadeSelfHit.span - idealSwarmBaselineSelfHitSpan) <=
-    idealSwarmGeometryCase.tolerance,
-  `${idealSwarmGeometryCase.caseId} facade self-hit span drifted from baseline`
+  Math.abs(idealBraidFacadeSelfHit.span - idealBraidBaselineSelfHitSpan) <=
+    idealBraidGeometryCase.tolerance,
+  `${idealBraidGeometryCase.caseId} facade self-hit span drifted from baseline`
 );
-const idealSwarmGeometryComparable = {
-  geometry: projectIdealSwarmGeometryForBaseline(idealSwarmGeometryCandidate),
-  status: idealSwarmGeometryCandidate.status,
+const idealBraidGeometryComparable = {
+  geometry: projectIdealBraidGeometryForBaseline(idealBraidGeometryCandidate),
+  status: idealBraidGeometryCandidate.status,
 };
-const idealSwarmGeometryComparison = classifySolverBaselineResponse({
-  baseline: idealSwarmGeometryCase.baseline,
-  candidate: idealSwarmGeometryComparable,
-  tolerance: idealSwarmGeometryCase.tolerance,
-  refinementTolerance: idealSwarmGeometryCase.refinementTolerance,
+const idealBraidGeometryComparison = classifySolverBaselineResponse({
+  baseline: idealBraidGeometryCase.baseline,
+  candidate: idealBraidGeometryComparable,
+  tolerance: idealBraidGeometryCase.tolerance,
+  refinementTolerance: idealBraidGeometryCase.refinementTolerance,
 });
 assert(
-  idealSwarmGeometryComparison.classification === "baseline_within_tolerance",
-  `${idealSwarmGeometryCase.caseId} baseline classification was ${idealSwarmGeometryComparison.classification}`
+  idealBraidGeometryComparison.classification === "baseline_within_tolerance",
+  `${idealBraidGeometryCase.caseId} baseline classification was ${idealBraidGeometryComparison.classification}`
 );
-const idealSwarmGeometryArtifact = {
+const idealBraidGeometryArtifact = {
   schema: "solver-baseline-sandbox/v1",
-  caseId: idealSwarmGeometryCase.caseId,
-  appId: idealSwarmGeometryCase.appId,
+  caseId: idealBraidGeometryCase.caseId,
+  appId: idealBraidGeometryCase.appId,
   seedPolicy: "fixed-no-randomness",
-  resourceCaps: idealSwarmGeometryCase.resourceCaps,
-  tolerancePolicy: createTolerancePolicy(idealSwarmGeometryCase),
-  provenance: createSandboxProvenance(idealSwarmGeometryCase),
+  resourceCaps: idealBraidGeometryCase.resourceCaps,
+  tolerancePolicy: createTolerancePolicy(idealBraidGeometryCase),
+  provenance: createSandboxProvenance(idealBraidGeometryCase),
   workingDirectory: outputDir,
   outputPolicy: "artifact-only",
   writesToAppSource: false,
-  comparison: idealSwarmGeometryComparison,
-  baseline: idealSwarmGeometryCase.baseline,
-  response: idealSwarmGeometryComparable,
+  comparison: idealBraidGeometryComparison,
+  baseline: idealBraidGeometryCase.baseline,
+  response: idealBraidGeometryComparable,
   fullResponse: {
-    geometry: idealSwarmGeometryCandidate,
-    appFacadeSelfHit: idealSwarmFacadeSelfHit,
-    status: idealSwarmGeometryCandidate.status,
+    geometry: idealBraidGeometryCandidate,
+    appFacadeSelfHit: idealBraidFacadeSelfHit,
+    status: idealBraidGeometryCandidate.status,
   },
 };
-const idealSwarmGeometryArtifactPath = path.join(outputDir, `${idealSwarmGeometryCase.caseId}.json`);
-const idealSwarmGeometryArtifactSha256 = writeJsonArtifact(
-  idealSwarmGeometryArtifactPath,
-  idealSwarmGeometryArtifact
+const idealBraidGeometryArtifactPath = path.join(outputDir, `${idealBraidGeometryCase.caseId}.json`);
+const idealBraidGeometryArtifactSha256 = writeJsonArtifact(
+  idealBraidGeometryArtifactPath,
+  idealBraidGeometryArtifact
 );
 artifacts.push({
-  caseId: idealSwarmGeometryCase.caseId,
-  appId: idealSwarmGeometryCase.appId,
-  path: idealSwarmGeometryArtifactPath,
-  artifactSha256: idealSwarmGeometryArtifactSha256,
-  tolerancePolicy: createTolerancePolicy(idealSwarmGeometryCase),
-  classification: idealSwarmGeometryComparison.classification,
+  caseId: idealBraidGeometryCase.caseId,
+  appId: idealBraidGeometryCase.appId,
+  path: idealBraidGeometryArtifactPath,
+  artifactSha256: idealBraidGeometryArtifactSha256,
+  tolerancePolicy: createTolerancePolicy(idealBraidGeometryCase),
+  classification: idealBraidGeometryComparison.classification,
   manifestHash: "geometry-direct-bridge",
 });
 
-const idealSwarmSelfHitWasmClientCase = createIdealSwarmSelfHitWasmClientCase(
-  idealSwarmGeometryCase
+const idealBraidSelfHitWasmClientCase = createIdealBraidSelfHitWasmClientCase(
+  idealBraidGeometryCase
 );
-const idealSwarmSelfHitWasmClientRow = await solveCircularSelfHitSpanRowWithSolverBridge(1.2, {
+const idealBraidSelfHitWasmClientRow = await solveCircularSelfHitSpanRowWithSolverBridge(1.2, {
   createWasmModule,
   locateFile: locateWasmFile,
-  runId: `${idealSwarmSelfHitWasmClientCase.caseId}-run`,
+  runId: `${idealBraidSelfHitWasmClientCase.caseId}-run`,
 });
-const idealSwarmSelfHitWasmClientCandidate = {
+const idealBraidSelfHitWasmClientCandidate = {
   geometry: {
     circularSelfHitSpans: [
-      projectCircularSelfHitSpanRowForBaseline(idealSwarmSelfHitWasmClientRow),
+      projectCircularSelfHitSpanRowForBaseline(idealBraidSelfHitWasmClientRow),
     ],
   },
   status: {
@@ -474,42 +474,42 @@ const idealSwarmSelfHitWasmClientCandidate = {
     recoverable: true,
   },
 };
-const idealSwarmSelfHitWasmClientComparison = classifySolverBaselineResponse({
-  baseline: idealSwarmSelfHitWasmClientCase.baseline,
-  candidate: idealSwarmSelfHitWasmClientCandidate,
-  tolerance: idealSwarmSelfHitWasmClientCase.tolerance,
-  refinementTolerance: idealSwarmSelfHitWasmClientCase.refinementTolerance,
+const idealBraidSelfHitWasmClientComparison = classifySolverBaselineResponse({
+  baseline: idealBraidSelfHitWasmClientCase.baseline,
+  candidate: idealBraidSelfHitWasmClientCandidate,
+  tolerance: idealBraidSelfHitWasmClientCase.tolerance,
+  refinementTolerance: idealBraidSelfHitWasmClientCase.refinementTolerance,
 });
 assert(
-  idealSwarmSelfHitWasmClientComparison.classification === "baseline_within_tolerance",
-  `${idealSwarmSelfHitWasmClientCase.caseId} baseline classification was ${idealSwarmSelfHitWasmClientComparison.classification}`
+  idealBraidSelfHitWasmClientComparison.classification === "baseline_within_tolerance",
+  `${idealBraidSelfHitWasmClientCase.caseId} baseline classification was ${idealBraidSelfHitWasmClientComparison.classification}`
 );
 recordSandboxArtifact({
-  testCase: idealSwarmSelfHitWasmClientCase,
-  comparison: idealSwarmSelfHitWasmClientComparison,
-  baseline: idealSwarmSelfHitWasmClientCase.baseline,
-  response: idealSwarmSelfHitWasmClientCandidate,
+  testCase: idealBraidSelfHitWasmClientCase,
+  comparison: idealBraidSelfHitWasmClientComparison,
+  baseline: idealBraidSelfHitWasmClientCase.baseline,
+  response: idealBraidSelfHitWasmClientCandidate,
   fullResponse: {
-    appFacadeSelfHit: idealSwarmSelfHitWasmClientRow,
+    appFacadeSelfHit: idealBraidSelfHitWasmClientRow,
   },
-  manifestHash: "ideal-swarm-self-hit-wasm-client",
+  manifestHash: "ideal-braid-self-hit-wasm-client",
 });
 
-const idealSwarmFlightTimeCase = createIdealSwarmFlightTimeCase();
-const idealSwarmFlightTimeRow = await solveFlightTimeRowWithSolverBridge(
-  idealSwarmFlightTimeCase.samplePoint,
-  idealSwarmFlightTimeCase.architrino,
-  idealSwarmFlightTimeCase.observationTime,
+const idealBraidFlightTimeCase = createIdealBraidFlightTimeCase();
+const idealBraidFlightTimeRow = await solveFlightTimeRowWithSolverBridge(
+  idealBraidFlightTimeCase.samplePoint,
+  idealBraidFlightTimeCase.architrino,
+  idealBraidFlightTimeCase.observationTime,
   {
-    ...idealSwarmFlightTimeCase.options,
+    ...idealBraidFlightTimeCase.options,
     solverClient: client,
-    runId: `${idealSwarmFlightTimeCase.caseId}-facade-run`,
+    runId: `${idealBraidFlightTimeCase.caseId}-facade-run`,
   }
 );
-const idealSwarmFlightTimeCandidate = {
+const idealBraidFlightTimeCandidate = {
   geometry: {
     delayedPotentials: [
-      projectDelayedPotentialRowForBaseline(idealSwarmFlightTimeRow),
+      projectDelayedPotentialRowForBaseline(idealBraidFlightTimeRow),
     ],
   },
   status: {
@@ -519,67 +519,67 @@ const idealSwarmFlightTimeCandidate = {
     recoverable: true,
   },
 };
-const idealSwarmFlightTimeComparison = classifySolverBaselineResponse({
-  baseline: idealSwarmFlightTimeCase.baseline,
-  candidate: idealSwarmFlightTimeCandidate,
-  tolerance: idealSwarmFlightTimeCase.tolerance,
-  refinementTolerance: idealSwarmFlightTimeCase.refinementTolerance,
+const idealBraidFlightTimeComparison = classifySolverBaselineResponse({
+  baseline: idealBraidFlightTimeCase.baseline,
+  candidate: idealBraidFlightTimeCandidate,
+  tolerance: idealBraidFlightTimeCase.tolerance,
+  refinementTolerance: idealBraidFlightTimeCase.refinementTolerance,
 });
 assert(
-  idealSwarmFlightTimeComparison.classification === "baseline_within_tolerance",
-  `${idealSwarmFlightTimeCase.caseId} baseline classification was ${idealSwarmFlightTimeComparison.classification}`
+  idealBraidFlightTimeComparison.classification === "baseline_within_tolerance",
+  `${idealBraidFlightTimeCase.caseId} baseline classification was ${idealBraidFlightTimeComparison.classification}`
 );
-const idealSwarmFlightTimeArtifact = {
+const idealBraidFlightTimeArtifact = {
   schema: "solver-baseline-sandbox/v1",
-  caseId: idealSwarmFlightTimeCase.caseId,
-  appId: idealSwarmFlightTimeCase.appId,
+  caseId: idealBraidFlightTimeCase.caseId,
+  appId: idealBraidFlightTimeCase.appId,
   seedPolicy: "fixed-no-randomness",
-  resourceCaps: idealSwarmFlightTimeCase.resourceCaps,
-  tolerancePolicy: createTolerancePolicy(idealSwarmFlightTimeCase),
-  provenance: createSandboxProvenance(idealSwarmFlightTimeCase),
+  resourceCaps: idealBraidFlightTimeCase.resourceCaps,
+  tolerancePolicy: createTolerancePolicy(idealBraidFlightTimeCase),
+  provenance: createSandboxProvenance(idealBraidFlightTimeCase),
   workingDirectory: outputDir,
   outputPolicy: "artifact-only",
   writesToAppSource: false,
-  comparison: idealSwarmFlightTimeComparison,
-  baseline: idealSwarmFlightTimeCase.baseline,
-  response: idealSwarmFlightTimeCandidate,
+  comparison: idealBraidFlightTimeComparison,
+  baseline: idealBraidFlightTimeCase.baseline,
+  response: idealBraidFlightTimeCandidate,
   fullResponse: {
-    appFacadeFlightTime: idealSwarmFlightTimeRow,
+    appFacadeFlightTime: idealBraidFlightTimeRow,
   },
 };
-const idealSwarmFlightTimeArtifactPath = path.join(outputDir, `${idealSwarmFlightTimeCase.caseId}.json`);
-const idealSwarmFlightTimeArtifactSha256 = writeJsonArtifact(
-  idealSwarmFlightTimeArtifactPath,
-  idealSwarmFlightTimeArtifact
+const idealBraidFlightTimeArtifactPath = path.join(outputDir, `${idealBraidFlightTimeCase.caseId}.json`);
+const idealBraidFlightTimeArtifactSha256 = writeJsonArtifact(
+  idealBraidFlightTimeArtifactPath,
+  idealBraidFlightTimeArtifact
 );
 artifacts.push({
-  caseId: idealSwarmFlightTimeCase.caseId,
-  appId: idealSwarmFlightTimeCase.appId,
-  path: idealSwarmFlightTimeArtifactPath,
-  artifactSha256: idealSwarmFlightTimeArtifactSha256,
-  tolerancePolicy: createTolerancePolicy(idealSwarmFlightTimeCase),
-  classification: idealSwarmFlightTimeComparison.classification,
-  manifestHash: "ideal-swarm-flight-time-facade",
+  caseId: idealBraidFlightTimeCase.caseId,
+  appId: idealBraidFlightTimeCase.appId,
+  path: idealBraidFlightTimeArtifactPath,
+  artifactSha256: idealBraidFlightTimeArtifactSha256,
+  tolerancePolicy: createTolerancePolicy(idealBraidFlightTimeCase),
+  classification: idealBraidFlightTimeComparison.classification,
+  manifestHash: "ideal-braid-flight-time-facade",
 });
 
-const idealSwarmFlightTimeWasmClientCase = createIdealSwarmFlightTimeWasmClientCase(
-  idealSwarmFlightTimeCase
+const idealBraidFlightTimeWasmClientCase = createIdealBraidFlightTimeWasmClientCase(
+  idealBraidFlightTimeCase
 );
-const idealSwarmFlightTimeWasmClientRow = await solveFlightTimeRowWithSolverBridge(
-  idealSwarmFlightTimeWasmClientCase.samplePoint,
-  idealSwarmFlightTimeWasmClientCase.architrino,
-  idealSwarmFlightTimeWasmClientCase.observationTime,
+const idealBraidFlightTimeWasmClientRow = await solveFlightTimeRowWithSolverBridge(
+  idealBraidFlightTimeWasmClientCase.samplePoint,
+  idealBraidFlightTimeWasmClientCase.architrino,
+  idealBraidFlightTimeWasmClientCase.observationTime,
   {
-    ...idealSwarmFlightTimeWasmClientCase.options,
+    ...idealBraidFlightTimeWasmClientCase.options,
     createWasmModule,
     locateFile: locateWasmFile,
-    runId: `${idealSwarmFlightTimeWasmClientCase.caseId}-run`,
+    runId: `${idealBraidFlightTimeWasmClientCase.caseId}-run`,
   }
 );
-const idealSwarmFlightTimeWasmClientCandidate = {
+const idealBraidFlightTimeWasmClientCandidate = {
   geometry: {
     delayedPotentials: [
-      projectDelayedPotentialRowForBaseline(idealSwarmFlightTimeWasmClientRow),
+      projectDelayedPotentialRowForBaseline(idealBraidFlightTimeWasmClientRow),
     ],
   },
   status: {
@@ -589,25 +589,25 @@ const idealSwarmFlightTimeWasmClientCandidate = {
     recoverable: true,
   },
 };
-const idealSwarmFlightTimeWasmClientComparison = classifySolverBaselineResponse({
-  baseline: idealSwarmFlightTimeWasmClientCase.baseline,
-  candidate: idealSwarmFlightTimeWasmClientCandidate,
-  tolerance: idealSwarmFlightTimeWasmClientCase.tolerance,
-  refinementTolerance: idealSwarmFlightTimeWasmClientCase.refinementTolerance,
+const idealBraidFlightTimeWasmClientComparison = classifySolverBaselineResponse({
+  baseline: idealBraidFlightTimeWasmClientCase.baseline,
+  candidate: idealBraidFlightTimeWasmClientCandidate,
+  tolerance: idealBraidFlightTimeWasmClientCase.tolerance,
+  refinementTolerance: idealBraidFlightTimeWasmClientCase.refinementTolerance,
 });
 assert(
-  idealSwarmFlightTimeWasmClientComparison.classification === "baseline_within_tolerance",
-  `${idealSwarmFlightTimeWasmClientCase.caseId} baseline classification was ${idealSwarmFlightTimeWasmClientComparison.classification}`
+  idealBraidFlightTimeWasmClientComparison.classification === "baseline_within_tolerance",
+  `${idealBraidFlightTimeWasmClientCase.caseId} baseline classification was ${idealBraidFlightTimeWasmClientComparison.classification}`
 );
 recordSandboxArtifact({
-  testCase: idealSwarmFlightTimeWasmClientCase,
-  comparison: idealSwarmFlightTimeWasmClientComparison,
-  baseline: idealSwarmFlightTimeWasmClientCase.baseline,
-  response: idealSwarmFlightTimeWasmClientCandidate,
+  testCase: idealBraidFlightTimeWasmClientCase,
+  comparison: idealBraidFlightTimeWasmClientComparison,
+  baseline: idealBraidFlightTimeWasmClientCase.baseline,
+  response: idealBraidFlightTimeWasmClientCandidate,
   fullResponse: {
-    appFacadeFlightTime: idealSwarmFlightTimeWasmClientRow,
+    appFacadeFlightTime: idealBraidFlightTimeWasmClientRow,
   },
-  manifestHash: "ideal-swarm-flight-time-wasm-client",
+  manifestHash: "ideal-braid-flight-time-wasm-client",
 });
 
 const photonPhaseCase = createPhotonPhaseDiagnosticsCase();
@@ -1035,7 +1035,7 @@ function createPhotonNormalizedCircularSourceRunCase() {
   };
 }
 
-function createIdealSwarmGeometryCase() {
+function createIdealBraidGeometryCase() {
   const delayedPotentialBaseline = {
     tau: 1,
     emissionTime: 5,
@@ -1044,8 +1044,8 @@ function createIdealSwarmGeometryCase() {
   };
   const selfHitSpan = 2.0534765827345125;
   return {
-    caseId: "ideal-swarm-geometry-smoke",
-    appId: "ideal-swarm",
+    caseId: "ideal-braid-geometry-smoke",
+    appId: "ideal-braid",
     tolerance: 1e-10,
     refinementTolerance: 1e-6,
     resourceCaps: {
@@ -1113,17 +1113,17 @@ function createIdealSwarmGeometryCase() {
   };
 }
 
-function createIdealSwarmSelfHitWasmClientCase(idealSwarmGeometryCase) {
+function createIdealBraidSelfHitWasmClientCase(idealBraidGeometryCase) {
   return {
-    caseId: "ideal-swarm-self-hit-wasm-client-smoke",
-    appId: "ideal-swarm",
-    tolerance: idealSwarmGeometryCase.tolerance,
-    refinementTolerance: idealSwarmGeometryCase.refinementTolerance,
-    resourceCaps: idealSwarmGeometryCase.resourceCaps,
+    caseId: "ideal-braid-self-hit-wasm-client-smoke",
+    appId: "ideal-braid",
+    tolerance: idealBraidGeometryCase.tolerance,
+    refinementTolerance: idealBraidGeometryCase.refinementTolerance,
+    resourceCaps: idealBraidGeometryCase.resourceCaps,
     baseline: {
       geometry: {
         circularSelfHitSpans:
-          idealSwarmGeometryCase.baseline.geometry.circularSelfHitSpans.map((row) => ({
+          idealBraidGeometryCase.baseline.geometry.circularSelfHitSpans.map((row) => ({
             itemIndex: row.itemIndex,
             statusCode: row.statusCode,
             fieldSpeedRatio: row.fieldSpeedRatio,
@@ -1133,12 +1133,12 @@ function createIdealSwarmSelfHitWasmClientCase(idealSwarmGeometryCase) {
             rootFound: row.rootFound,
           })),
       },
-      status: idealSwarmGeometryCase.baseline.status,
+      status: idealBraidGeometryCase.baseline.status,
     },
   };
 }
 
-function createIdealSwarmFlightTimeCase() {
+function createIdealBraidFlightTimeCase() {
   const sourceStart = new THREE.Vector3(1, -0.5, 0.25);
   const sourceVelocity = new THREE.Vector3(0.2, 0.1, -0.05);
   const samplePoint = new THREE.Vector3(3.4, 1.2, -0.7);
@@ -1168,8 +1168,8 @@ function createIdealSwarmFlightTimeCase() {
     potential: 1.581307013398278,
   };
   return {
-    caseId: "ideal-swarm-flight-time-smoke",
-    appId: "ideal-swarm",
+    caseId: "ideal-braid-flight-time-smoke",
+    appId: "ideal-braid",
     samplePoint,
     architrino,
     observationTime,
@@ -1206,10 +1206,10 @@ function createIdealSwarmFlightTimeCase() {
   };
 }
 
-function createIdealSwarmFlightTimeWasmClientCase(idealSwarmFlightTimeCase) {
+function createIdealBraidFlightTimeWasmClientCase(idealBraidFlightTimeCase) {
   return {
-    ...idealSwarmFlightTimeCase,
-    caseId: "ideal-swarm-flight-time-wasm-client-smoke",
+    ...idealBraidFlightTimeCase,
+    caseId: "ideal-braid-flight-time-wasm-client-smoke",
   };
 }
 
@@ -1473,7 +1473,7 @@ function createMotionFrameBaseline(frameIndex, time, position) {
   };
 }
 
-function projectIdealSwarmGeometryForBaseline(geometry) {
+function projectIdealBraidGeometryForBaseline(geometry) {
   return {
     pathBounds: [],
     spherePointIntersections: [],

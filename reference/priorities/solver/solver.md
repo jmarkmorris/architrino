@@ -45,7 +45,7 @@ The reusable solver target is an architrino motion and geometry solver. It solve
 | App | Current solver path | Notes |
 | --- | --- | --- |
 | Photon | `runPhotonCausalRootsWithSolverBridge` and `solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge` in [PhotonFormulaRuntime.js](../../../src/apps/photon/PhotonFormulaRuntime.js) | Shared bridge causal-root, delayed-hit, phase, and circular-source diagnostics. |
-| Ideal Braid | `computePotentialSamplesWithSolverBridge` and `solveFlightTimeRowWithSolverBridge` in [IdealBraidRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmRuntime.js), plus `solveCircularSelfHitSpanRowsWithSolverBridge` in [IdealBraidPathPotentialProfile.js](../../../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js) | Bridge-backed delayed-potential samples, flight-time rows, and circular self-hit span rows. |
+| Ideal Braid | `computePotentialSamplesWithSolverBridge` and `solveFlightTimeRowWithSolverBridge` in [IdealBraidRuntime.js](../../../src/apps/ideal-braid/IdealBraidRuntime.js), plus `solveCircularSelfHitSpanRowsWithSolverBridge` in [IdealBraidPathPotentialProfile.js](../../../src/apps/ideal-braid/IdealBraidPathPotentialProfile.js) | Bridge-backed delayed-potential samples, flight-time rows, and circular self-hit span rows. |
 | Animator | `runAnimatorSimulationWorkerRequestAsync` in [AnimatorSimulationWorkerCoreRuntime.js](../../../src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js) | Shared bridge motion datasets, path streams, frame buffers, and diagnostics. |
 
 Photon, Ideal Braid, and Animator are the active app integration surfaces for this workstream.
@@ -331,7 +331,7 @@ Storage lifecycle is part of the app bridge contract. Browser and native paths m
 The shared adapter should expose a small TypeScript surface. Apps import this adapter; they do not call the WebAssembly module, C++ exports, stream files, or worker protocol directly.
 
 ```ts
-export type SolverAppId = "animator" | "photon" | "ideal-swarm";
+export type SolverAppId = "animator" | "photon" | "ideal-braid";
 
 export type SolverRunKind =
   | "motionSimulation"
@@ -414,7 +414,7 @@ export interface SolverErrorBudget {
 export type SolverRunConfig =
   | AnimatorSolverConfig
   | PhotonSolverConfig
-  | IdealSwarmSolverConfig
+  | IdealBraidSolverConfig
   | ValidationReplayConfig;
 
 export interface SolverRunHandle {
@@ -678,8 +678,8 @@ export interface PhotonSolverConfig {
   phaseLedger: "disabled" | "source" | "source-and-receiver";
 }
 
-export interface IdealSwarmSolverConfig {
-  appId: "ideal-swarm";
+export interface IdealBraidSolverConfig {
+  appId: "ideal-braid";
   timeWindow: SolverTimeWindow;
   histories: SolverHistoryRef[];
   pairs: SolverPairSpec[];
@@ -1253,7 +1253,7 @@ The app-side geometry inventory is closed in [geometry-centralization-inventory]
 - `minimal_causal_root_core` - Closed as a first-core smoke baseline in [minimal-causal-root-core](minimal-causal-root-core.md). Future scoped work may add production performance thresholds, broader adapter coverage, and proof-object capability schemas.
 - `animator_adapter` - Closed as a motion dataset and playback bridge adapter in [animator-adapter](animator-adapter.md). Animator delayed-hit shell/path intersections now use stream-backed solver descriptors and solver-owned delayed-hit rows; field-shell emitter source-history sampling and event/cadence packaging now use solver-owned stream-package rows and durable `field_shell_events.v1` native-file stream storage. Any future native C++ producer for `field_shell_events.v1` remains future adapter work.
 - `photon_adapter` - Closed as a causal-root and circular-source bridge adapter in [photon-adapter](photon-adapter.md). Remaining Photon observer-field summaries, search ranking, and display geometry are outside this adapter closeout.
-- `ideal_braid_adapter` - Closed as a delayed-potential, flight-time, and circular self-hit bridge adapter in [ideal-braid-adapter](ideal-swarm-adapter.md). Remaining Ideal Braid mesh, chart, and visual geometry stays app-owned unless a future solver row replaces it.
+- `ideal_braid_adapter` - Closed as a delayed-potential, flight-time, and circular self-hit bridge adapter in [ideal-braid-adapter](ideal-braid-adapter.md). Remaining Ideal Braid mesh, chart, and visual geometry stays app-owned unless a future solver row replaces it.
 - `h39_solver_impact_audit` - Closed as a retrospective solver-impact boundary capture in [h39-solver-impact-audit](h39-solver-impact-audit.md). The primitive and terminal graph replay fixtures classify solver-style replay gains as `h39_refined_result`, while provider-boundary and aggregate-$P$ cases remain missing-capability surfaces until an H39 provider-object branch schema exists.
 
 ## Task Queue
@@ -1272,7 +1272,7 @@ contract artifact without new evidence.
 - [cpp-clang-runtime-validation](cpp-clang-runtime-validation.md)
 - [geometry-centralization-inventory](geometry-centralization-inventory.md)
 - [gpu-acceleration-deferral](gpu-acceleration-deferral.md)
-- [ideal-braid-adapter](ideal-swarm-adapter.md)
+- [ideal-braid-adapter](ideal-braid-adapter.md)
 - [model-contract](model-contract.md)
 - [minimal-causal-root-core](minimal-causal-root-core.md)
 - [numeric-serialization-contract](numeric-serialization-contract.md)

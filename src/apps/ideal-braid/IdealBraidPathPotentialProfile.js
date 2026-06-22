@@ -1,4 +1,4 @@
-import { createIdealSwarmSharedGeometryRunRequest } from "../../solver/app/SolverAppAdapters.mjs";
+import { createIdealBraidSharedGeometryRunRequest } from "../../solver/app/SolverAppAdapters.mjs";
 import {
   runSolverAppBridgeRequest,
 } from "../../solver/app/SolverAppBridgeClientResolver.mjs";
@@ -11,7 +11,7 @@ const SELF_HIT_SCAN_SUBDIVISIONS = 72;
 const SELF_HIT_TOLERANCE = 1e-12;
 const SELF_HIT_MAX_ANGLE = Math.PI * 1.96;
 const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
-const IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
+const IDEAL_BRAID_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
 const DEFAULT_PATH_SPEED_PRODUCTS = Object.freeze({
   inner: 0.5 * 0.42,
   middle: 0.7 * 0.26,
@@ -66,11 +66,11 @@ export function getFieldSpeedRegimeLabel(fieldSpeedRatio) {
   return "field speed";
 }
 
-export function createIdealSwarmCircularSelfHitSpanRunRequest(fieldSpeedRatio, options = {}) {
-  return createIdealSwarmCircularSelfHitSpansRunRequest([fieldSpeedRatio], options);
+export function createIdealBraidCircularSelfHitSpanRunRequest(fieldSpeedRatio, options = {}) {
+  return createIdealBraidCircularSelfHitSpansRunRequest([fieldSpeedRatio], options);
 }
 
-export function createIdealSwarmCircularSelfHitSpansRunRequest(fieldSpeedRatios, options = {}) {
+export function createIdealBraidCircularSelfHitSpansRunRequest(fieldSpeedRatios, options = {}) {
   const ratios = normalizeFieldSpeedRatios(fieldSpeedRatios);
   const tolerance = normalizeNonnegativeNumber(options.tolerance, SELF_HIT_TOLERANCE);
   const fieldSpeedTolerance = normalizeNonnegativeNumber(
@@ -88,21 +88,21 @@ export function createIdealSwarmCircularSelfHitSpansRunRequest(fieldSpeedRatios,
     DEFAULT_SOLVER_MEMORY_BUDGET_BYTES
   );
   const ratioId = ratios.map((ratio) => ratio.toString().replaceAll(".", "_")).join("-");
-  const runId = options.runId ?? `ideal-swarm-self-hit-${ratioId}`;
-  return createIdealSwarmSharedGeometryRunRequest({
+  const runId = options.runId ?? `ideal-braid-self-hit-${ratioId}`;
+  return createIdealBraidSharedGeometryRunRequest({
     requestId: options.requestId ?? `${runId}-request`,
     runId,
     datasetId: options.datasetId ?? `${runId}-dataset`,
     claimLevel: options.claimLevel ?? "interactive-preview",
     precisionPath: options.precisionPath ?? "auto",
-    configVersion: options.configVersion ?? "ideal-swarm-circular-self-hit-adapter.v1",
-    configHash: options.configHash ?? `ideal-swarm-circular-self-hit:${ratios.join(",")}`,
-    model: options.model ?? createDefaultIdealSwarmGeometryModel(),
-    envelope: options.envelope ?? createDefaultIdealSwarmGeometryEnvelope({
+    configVersion: options.configVersion ?? "ideal-braid-circular-self-hit-adapter.v1",
+    configHash: options.configHash ?? `ideal-braid-circular-self-hit:${ratios.join(",")}`,
+    model: options.model ?? createDefaultIdealBraidGeometryModel(),
+    envelope: options.envelope ?? createDefaultIdealBraidGeometryEnvelope({
       fieldSpeedRatio: Math.max(...ratios),
       memoryBudgetBytes,
     }),
-    errorBudget: options.errorBudget ?? createDefaultIdealSwarmGeometryErrorBudget(tolerance),
+    errorBudget: options.errorBudget ?? createDefaultIdealBraidGeometryErrorBudget(tolerance),
     geometryRequest: {
       circularSelfHitSpans: ratios.map((ratio) => ({
         fieldSpeedRatio: ratio,
@@ -141,16 +141,16 @@ export async function solveCircularSelfHitSpanRowsWithSolverBridge(
 ) {
   const runRequest =
     options.runRequest ??
-    createIdealSwarmCircularSelfHitSpansRunRequest(fieldSpeedRatios, options);
+    createIdealBraidCircularSelfHitSpansRunRequest(fieldSpeedRatios, options);
   const runHandle = typeof options.runSolverBridge === "function"
     ? await options.runSolverBridge(runRequest)
-    : await runIdealSwarmSolverBridgeClient(options, fieldSpeedRatios, runRequest);
+    : await runIdealBraidSolverBridgeClient(options, fieldSpeedRatios, runRequest);
   return extractCircularSelfHitSpanRows(runHandle);
 }
 
-async function runIdealSwarmSolverBridgeClient(options, fieldSpeedRatios, runRequest) {
+async function runIdealBraidSolverBridgeClient(options, fieldSpeedRatios, runRequest) {
   return runSolverAppBridgeRequest({
-    appId: "ideal-swarm",
+    appId: "ideal-braid",
     request: runRequest,
     options,
     factoryRequest: {
@@ -180,19 +180,19 @@ function extractCircularSelfHitSpanRows(runHandle = {}) {
     throw new Error("Ideal Braid solver bridge response did not include a circular self-hit span row.");
   }
   return rows.map((row) => ({
-    solverEngineId: IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID,
+    solverEngineId: IDEAL_BRAID_SOLVER_BRIDGE_ENGINE_ID,
     runId: response.runId ?? runHandle.runId ?? "",
     datasetId: response.datasetId ?? runHandle.datasetId ?? "",
     ...row,
   }));
 }
 
-function createDefaultIdealSwarmGeometryModel() {
+function createDefaultIdealBraidGeometryModel() {
   return {
-    modelId: "aaa.ideal-swarm",
+    modelId: "aaa.ideal-braid",
     equationVersion: "circular-self-hit-v1",
     forceLawVersion: "causal-delay-v1",
-    constantsHash: "constants:ideal-swarm",
+    constantsHash: "constants:ideal-braid",
     causalSpeedPolicy: "field-speed-ratio",
     branchPolicy: "first-positive-self-hit",
     unitConvention: "dimensionless-ratio",
@@ -200,7 +200,7 @@ function createDefaultIdealSwarmGeometryModel() {
   };
 }
 
-function createDefaultIdealSwarmGeometryEnvelope({
+function createDefaultIdealBraidGeometryEnvelope({
   fieldSpeedRatio,
   memoryBudgetBytes,
 } = {}) {
@@ -225,7 +225,7 @@ function createDefaultIdealSwarmGeometryEnvelope({
   };
 }
 
-function createDefaultIdealSwarmGeometryErrorBudget(tolerance = SELF_HIT_TOLERANCE) {
+function createDefaultIdealBraidGeometryErrorBudget(tolerance = SELF_HIT_TOLERANCE) {
   return {
     globalTolerance: tolerance,
     rootIsolationTolerance: tolerance,

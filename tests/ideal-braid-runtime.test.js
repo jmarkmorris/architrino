@@ -3,30 +3,30 @@ import assert from "node:assert/strict";
 
 import * as THREE from "../vendor/three/three.module.js";
 import {
-  createIdealSwarmCircularSelfHitSpanRunRequest,
+  createIdealBraidCircularSelfHitSpanRunRequest,
   solveCircularSelfHitSpanRowWithSolverBridge,
   solveCircularSelfHitSpanRowsWithSolverBridge,
   solveCircularSelfHitSpanWithSolverBridge,
   getOrbitPathTintProfileWithSolverBridge,
-} from "../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js";
+} from "../src/apps/ideal-braid/IdealBraidPathPotentialProfile.js";
 import {
   computePotentialSamplesWithSolverBridge,
   computeAssemblyMomentumContractionMatrix,
   computeLorentzAlignedOrbitBasis,
   computeLorentzState,
-  createIdealSwarmFlightTimeRunRequest,
-  createIdealSwarmPotentialSamplesRunRequest,
+  createIdealBraidFlightTimeRunRequest,
+  createIdealBraidPotentialSamplesRunRequest,
   createSurfaceSamples,
-  createIdealSwarmModel,
+  createIdealBraidModel,
   getOrbitPathTintProfile,
-  navigateIdealSwarmHome,
+  navigateIdealBraidHome,
   solveFlightTimeRowWithSolverBridge,
   solveFlightTimeWithSolverBridge,
-} from "../src/apps/ideal-swarm/IdealSwarmRuntime.js";
+} from "../src/apps/ideal-braid/IdealBraidRuntime.js";
 import { createSolverBridgeLoopbackWorker } from "./solver-worker-loopback.mjs";
 
 test("Ideal Braid model reuses three animator circular binaries", () => {
-  const model = createIdealSwarmModel({ THREE });
+  const model = createIdealBraidModel({ THREE });
 
   assert.equal(model.binaries.length, 3);
   assert.equal(model.architrinos.length, 6);
@@ -56,9 +56,9 @@ test("standalone Ideal Braid home navigation returns to the main webapp", () => 
     assign: (href) => assigned.push(href),
   };
 
-  assert.equal(navigateIdealSwarmHome(locationLike), true);
+  assert.equal(navigateIdealBraidHome(locationLike), true);
   assert.deepEqual(assigned, ["./index.html"]);
-  assert.equal(navigateIdealSwarmHome(locationLike, ""), false);
+  assert.equal(navigateIdealBraidHome(locationLike, ""), false);
 });
 
 test("surface sample poles align with assembly momentum", () => {
@@ -72,10 +72,10 @@ test("surface sample poles align with assembly momentum", () => {
 });
 
 test("full potential is the solver bridge six-emission superposition", async () => {
-  const model = createIdealSwarmModel({ THREE });
+  const model = createIdealBraidModel({ THREE });
   const samplePoint = new THREE.Vector3(1.8, -0.4, 0.65);
   const observationTime = 1.35;
-  const runRequest = createIdealSwarmPotentialSamplesRunRequest(
+  const runRequest = createIdealBraidPotentialSamplesRunRequest(
     [samplePoint],
     model,
     observationTime,
@@ -138,7 +138,7 @@ test("Lorentz energy ledger treats beta equals one as a limit state", () => {
 });
 
 test("Lorentz alignment tilts binary angular momentum normals toward assembly momentum", () => {
-  const model = createIdealSwarmModel({ THREE });
+  const model = createIdealBraidModel({ THREE });
   const assemblyMomentum = new THREE.Vector3(1, 1, 1).normalize();
   const restState = computeLorentzState(0, 1.62);
   const limitState = computeLorentzState(1, 1.62);
@@ -170,7 +170,7 @@ test("assembly momentum contraction preserves the final shared orbit plane", () 
 });
 
 test("flight time bridge returns a positive emission delay", async () => {
-  const model = createIdealSwarmModel({ THREE });
+  const model = createIdealBraidModel({ THREE });
   const samplePoint = new THREE.Vector3(1.6, 0.3, -0.5);
   const expectedTau = 0.3125;
   const tau = await solveFlightTimeWithSolverBridge(samplePoint, model.architrinos[0], 0.9, {
@@ -210,7 +210,7 @@ test("Ideal Braid flight time can be routed through the solver app bridge for a 
     useCausalDenominator: true,
   };
   const expectedTau = 0.483125;
-  const runRequest = createIdealSwarmFlightTimeRunRequest(
+  const runRequest = createIdealBraidFlightTimeRunRequest(
     samplePoint,
     architrino,
     observationTime,
@@ -222,7 +222,7 @@ test("Ideal Braid flight time can be routed through the solver app bridge for a 
     }
   );
 
-  assert.equal(runRequest.appId, "ideal-swarm");
+  assert.equal(runRequest.appId, "ideal-braid");
   assert.equal(runRequest.runKind, "sharedGeometry");
   assert.equal(runRequest.envelope.timeWindow.units, "seconds");
   assert.equal(runRequest.config.geometryRequest.delayedPotentials[0].iterations, 6);
@@ -275,7 +275,7 @@ test("Ideal Braid flight time can create and dispose a solver bridge client", as
     datasetId: "ideal_flight_factory_dataset",
     disposeSolverBridgeClientAfterRun: true,
     createSolverBridgeClient(factoryRequest, context) {
-      assert.equal(context.appId, "ideal-swarm");
+      assert.equal(context.appId, "ideal-braid");
       assert.equal(context.requiredMethod, "runSimulation");
       assert.ok(context.requestedCapabilities.includes("sharedGeometry"));
       assert.equal(factoryRequest.observationTime, observationTime);
@@ -313,7 +313,7 @@ test("Ideal Braid flight time can create and dispose a solver bridge worker clie
   const expectedTau = 0.375;
   const worker = createSolverBridgeLoopbackWorker({
     init(initRequest) {
-      assert.equal(initRequest.appId, "ideal-swarm");
+      assert.equal(initRequest.appId, "ideal-braid");
       assert.ok(initRequest.requestedCapabilities.includes("sharedGeometry"));
       return {
         apiVersion: initRequest.apiVersion,
@@ -332,7 +332,7 @@ test("Ideal Braid flight time can create and dispose a solver bridge worker clie
     runId: "ideal_flight_worker_run",
     datasetId: "ideal_flight_worker_dataset",
     createSolverWorker(factoryRequest, context) {
-      assert.equal(context.appId, "ideal-swarm");
+      assert.equal(context.appId, "ideal-braid");
       assert.equal(context.requiredMethod, "runSimulation");
       assert.ok(context.requestedCapabilities.includes("sharedGeometry"));
       assert.equal(factoryRequest.observationTime, observationTime);
@@ -350,7 +350,7 @@ test("Ideal Braid flight time can create and dispose a solver bridge worker clie
 });
 
 test("orbit path tint profiles distinguish inner middle and outer binaries", () => {
-  const model = createIdealSwarmModel({ THREE });
+  const model = createIdealBraidModel({ THREE });
   const [inner, middle, outer] = model.binaries.map((binary) => getOrbitPathTintProfile(binary));
 
   assert.equal(middle.regime, "field speed");
@@ -373,7 +373,7 @@ test("orbit path tint profiles distinguish inner middle and outer binaries", () 
 });
 
 test("super-field profile expands the path-history span from solver circular self-hit geometry", async () => {
-  const model = createIdealSwarmModel({ THREE });
+  const model = createIdealBraidModel({ THREE });
   const innerBinary = model.binaries[0];
   const expectedSpan = 2.0534765827345125;
   const pendingProfile = getOrbitPathTintProfile(innerBinary);
@@ -396,13 +396,13 @@ test("super-field profile expands the path-history span from solver circular sel
 });
 
 test("Ideal Braid circular self-hit span can be routed through the solver app bridge", async () => {
-  const runRequest = createIdealSwarmCircularSelfHitSpanRunRequest(1.2, {
+  const runRequest = createIdealBraidCircularSelfHitSpanRunRequest(1.2, {
     requestId: "ideal_self_hit_bridge_request",
     runId: "ideal_self_hit_bridge_run",
     datasetId: "ideal_self_hit_bridge_dataset",
   });
 
-  assert.equal(runRequest.appId, "ideal-swarm");
+  assert.equal(runRequest.appId, "ideal-braid");
   assert.equal(runRequest.runKind, "sharedGeometry");
   assert.equal(runRequest.config.geometryRequest.circularSelfHitSpans[0].fieldSpeedRatio, 1.2);
   assert.equal(runRequest.config.geometryRequest.circularSelfHitSpans[0].maxIterations, 28);
@@ -462,7 +462,7 @@ test("Ideal Braid circular self-hit span can create and dispose a solver bridge 
     datasetId: "ideal_self_hit_factory_dataset",
     disposeSolverBridgeClientAfterRun: true,
     createSolverBridgeClient(factoryRequest, context) {
-      assert.equal(context.appId, "ideal-swarm");
+      assert.equal(context.appId, "ideal-braid");
       assert.equal(context.requiredMethod, "runSimulation");
       assert.ok(context.requestedCapabilities.includes("sharedGeometry"));
       assert.equal(factoryRequest.fieldSpeedRatio, 1.35);

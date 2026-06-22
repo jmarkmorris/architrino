@@ -996,8 +996,8 @@ function toArchitrinoWebUrl(rawTarget, resolvedPath) {
   if (!slug) {
     return null;
   }
-  if (slug === "ideal-swarm") {
-    return `${ARCHITRINO_WEB_BASE_URL}/ideal-swarm${anchor}`;
+  if (slug === "ideal-braid") {
+    return `${ARCHITRINO_WEB_BASE_URL}/ideal-braid${anchor}`;
   }
   return `${ARCHITRINO_WEB_BASE_URL}/${slug}${anchor}`;
 }

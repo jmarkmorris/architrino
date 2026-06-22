@@ -114,7 +114,7 @@ const client = createSolverAppBridgeClient({
 });
 
   const initResponse = await client.init({
-  appId: "ideal-swarm",
+  appId: "ideal-braid",
   apiVersion: SOLVER_APP_BRIDGE_API_VERSION,
   requestedCapabilities: [
     "sharedGeometry",

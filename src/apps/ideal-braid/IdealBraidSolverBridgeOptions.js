@@ -1,28 +1,28 @@
 const DEFAULT_SOLVER_WASM_RELATIVE_URL =
   "../../../.tmp/solver-build/wasm/architrino_solver_wasm_smoke.mjs";
 const DEFAULT_SOLVER_WASM_BASE_RELATIVE_URL = "../../../.tmp/solver-build/wasm/";
-const DEFAULT_SOLVER_WORKER_RELATIVE_URL = "./IdealSwarmSolverBridgeWorker.js";
-const DEFAULT_SOLVER_WASM_CACHE_TAG = "ideal-swarm-solver-wasm-v1";
+const DEFAULT_SOLVER_WORKER_RELATIVE_URL = "./IdealBraidSolverBridgeWorker.js";
+const DEFAULT_SOLVER_WASM_CACHE_TAG = "ideal-braid-solver-wasm-v1";
 const DEFAULT_WASM_FACTORY_EXPORTS = Object.freeze([
   "default",
   "createArchitrinoSolverModule",
   "createArchitrinoSolverSmoke",
 ]);
 
-export function createIdealSwarmSolverBridgeOptions(scope = globalThis, overrides = {}) {
-  const configuredOptions = getIdealSwarmSolverBridgeConfiguredOptions(scope);
+export function createIdealBraidSolverBridgeOptions(scope = globalThis, overrides = {}) {
+  const configuredOptions = getIdealBraidSolverBridgeConfiguredOptions(scope);
   const options = {
     ...configuredOptions,
     ...(overrides && typeof overrides === "object" ? overrides : {}),
   };
   const resolverScope = options.scope ?? scope;
-  const wasmBaseUrl = options.wasmBaseUrl ?? createIdealSwarmDefaultSolverWasmBaseUrl();
-  const workerUrl = options.workerUrl ?? createIdealSwarmDefaultSolverWorkerUrl();
+  const wasmBaseUrl = options.wasmBaseUrl ?? createIdealBraidDefaultSolverWasmBaseUrl();
+  const workerUrl = options.workerUrl ?? createIdealBraidDefaultSolverWorkerUrl();
   const createWasmModule =
     options.createWasmModule ??
-    resolveIdealSwarmGlobalFactory(resolverScope, options) ??
-    createIdealSwarmSolverBridgeWasmLoaderFactory(
-      options.wasmLoaderUrl ?? createIdealSwarmDefaultSolverWasmLoaderUrl(),
+    resolveIdealBraidGlobalFactory(resolverScope, options) ??
+    createIdealBraidSolverBridgeWasmLoaderFactory(
+      options.wasmLoaderUrl ?? createIdealBraidDefaultSolverWasmLoaderUrl(),
       options
     );
 
@@ -38,24 +38,24 @@ export function createIdealSwarmSolverBridgeOptions(scope = globalThis, override
   };
 }
 
-export function createIdealSwarmDefaultSolverWasmLoaderUrl() {
+export function createIdealBraidDefaultSolverWasmLoaderUrl() {
   return new URL(DEFAULT_SOLVER_WASM_RELATIVE_URL, import.meta.url).href;
 }
 
-export function createIdealSwarmDefaultSolverWasmBaseUrl() {
+export function createIdealBraidDefaultSolverWasmBaseUrl() {
   return new URL(DEFAULT_SOLVER_WASM_BASE_RELATIVE_URL, import.meta.url).href;
 }
 
-export function createIdealSwarmDefaultSolverWorkerUrl() {
+export function createIdealBraidDefaultSolverWorkerUrl() {
   return new URL(DEFAULT_SOLVER_WORKER_RELATIVE_URL, import.meta.url).href;
 }
 
-function getIdealSwarmSolverBridgeConfiguredOptions(scope) {
-  const options = scope?.ARCHITRINO_IDEAL_SWARM_SOLVER_BRIDGE_OPTIONS;
+function getIdealBraidSolverBridgeConfiguredOptions(scope) {
+  const options = scope?.ARCHITRINO_IDEAL_BRAID_SOLVER_BRIDGE_OPTIONS;
   return options && typeof options === "object" ? options : {};
 }
 
-function resolveIdealSwarmGlobalFactory(scope, options = {}) {
+function resolveIdealBraidGlobalFactory(scope, options = {}) {
   const names = [
     options.wasmFactoryGlobalName,
     ...(options.wasmFactoryGlobalNames ?? DEFAULT_WASM_FACTORY_EXPORTS),
@@ -69,10 +69,10 @@ function resolveIdealSwarmGlobalFactory(scope, options = {}) {
   return null;
 }
 
-function createIdealSwarmSolverBridgeWasmLoaderFactory(wasmLoaderUrl, options = {}) {
-  return async function createIdealSwarmSolverBridgeWasmModule(moduleOptions = {}) {
+function createIdealBraidSolverBridgeWasmLoaderFactory(wasmLoaderUrl, options = {}) {
+  return async function createIdealBraidSolverBridgeWasmModule(moduleOptions = {}) {
     const loader = await import(wasmLoaderUrl);
-    const factory = selectIdealSwarmSolverBridgeFactoryExport(loader, options);
+    const factory = selectIdealBraidSolverBridgeFactoryExport(loader, options);
     return factory(moduleOptions);
   };
 }
@@ -86,7 +86,7 @@ function createVersionedWasmFileUrl(fileName, wasmBaseUrl, options = {}) {
   return url.href;
 }
 
-function selectIdealSwarmSolverBridgeFactoryExport(moduleExports, options = {}) {
+function selectIdealBraidSolverBridgeFactoryExport(moduleExports, options = {}) {
   const exportNames = [
     options.wasmFactoryExportName,
     ...(options.wasmFactoryExportNames ?? DEFAULT_WASM_FACTORY_EXPORTS),

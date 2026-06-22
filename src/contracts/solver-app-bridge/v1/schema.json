@@ -12392,7 +12392,7 @@
     },
     "solverAppId": {
       "type": "string",
-      "enum": ["animator", "photon", "ideal-swarm", "causal-delay-feedback"]
+      "enum": ["animator", "photon", "ideal-braid", "causal-delay-feedback"]
     },
     "solverRunKind": {
       "type": "string",

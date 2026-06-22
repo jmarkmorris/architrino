@@ -42808,7 +42808,7 @@ This chapter is the focused program statement for deriving operational Lorentz b
 
 The opening abstract states the target; the later sections move through the governing delayed dynamics, the anisotropy mechanism, and the conditions under which assembly-built observers could recover standard Lorentz kinematics.
 
-For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether braid story, see [the special-relativity bridge](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). For the interactive geometry surface, open [Ideal Noether Braid: Lorentz Geometry App](../../../../../ideal-swarm.html).
+For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether braid story, see [the special-relativity bridge](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). For the interactive geometry surface, open [Ideal Noether Braid: Lorentz Geometry App](../../../../../ideal-braid.html).
 
 ##### Abstract
 
@@ -87714,7 +87714,7 @@ To promote this bridge from mapping to derivation, the following targets must cl
 
 This bridge gives a compact reader-facing account of the Lorentz milestone developed in the spacetime and Noether braid chapters. Its preferred name is **Return-Cycle Lorentz Quantization**. The name is more precise than `quantized Lorentz factor` because the smooth observer-level Lorentz function is not replaced by a step function. The quantized object is the material realization of that function: a discrete admissible return-cycle branch of the Noether braid causal-root ledger.
 
-The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md). For the interactive geometry surface, open [Ideal Noether Braid: Lorentz Geometry App](../../../../../ideal-swarm.html).
+The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md). For the interactive geometry surface, open [Ideal Noether Braid: Lorentz Geometry App](../../../../../ideal-braid.html).
 
 ###### Naming And Scope
 

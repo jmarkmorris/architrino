@@ -33,7 +33,7 @@
         font: inherit;
       }
 
-      #ideal-swarm-app {
+      #ideal-braid-app {
         position: relative;
         width: 100%;
         height: 100%;
@@ -42,7 +42,7 @@
           linear-gradient(180deg, #111722 0%, #070a11 100%);
       }
 
-      #ideal-swarm-canvas {
+      #ideal-braid-canvas {
         position: absolute;
         inset: 0;
         display: block;
@@ -51,7 +51,7 @@
         outline: none;
       }
 
-      .ideal-swarm-title {
+      .ideal-braid-title {
         position: absolute;
         left: 50%;
         top: 18px;
@@ -64,7 +64,7 @@
         pointer-events: none;
       }
 
-      .ideal-swarm-panel {
+      .ideal-braid-panel {
         position: absolute;
         width: 292px;
         padding: 12px;
@@ -75,7 +75,7 @@
         backdrop-filter: blur(10px);
       }
 
-      .ideal-swarm-panel h2 {
+      .ideal-braid-panel h2 {
         margin: 0 0 10px;
         color: rgba(238, 243, 255, 0.95);
         font-size: 13px;
@@ -83,7 +83,7 @@
         letter-spacing: 0;
       }
 
-      .ideal-swarm-panel-header {
+      .ideal-braid-panel-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -91,11 +91,11 @@
         margin: 0 0 10px;
       }
 
-      .ideal-swarm-panel-header h2 {
+      .ideal-braid-panel-header h2 {
         margin: 0;
       }
 
-      .ideal-swarm-home-button {
+      .ideal-braid-home-button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -109,41 +109,41 @@
         cursor: pointer;
       }
 
-      .ideal-swarm-home-button:hover,
-      .ideal-swarm-home-button:focus-visible {
+      .ideal-braid-home-button:hover,
+      .ideal-braid-home-button:focus-visible {
         border-color: rgba(125, 211, 252, 0.58);
         outline: none;
       }
 
-      .ideal-swarm-home-button svg {
+      .ideal-braid-home-button svg {
         width: 18px;
         height: 18px;
       }
 
-      .ideal-swarm-panel.is-upper-left {
+      .ideal-braid-panel.is-upper-left {
         left: 16px;
         top: 16px;
         width: 296px;
       }
 
-      .ideal-swarm-panel.is-upper-right {
+      .ideal-braid-panel.is-upper-right {
         right: 16px;
         top: 16px;
       }
 
-      .ideal-swarm-panel.is-lower-left {
+      .ideal-braid-panel.is-lower-left {
         left: 16px;
         bottom: 16px;
         width: 296px;
       }
 
-      .ideal-swarm-panel.is-lower-right {
+      .ideal-braid-panel.is-lower-right {
         right: 16px;
         bottom: 16px;
         width: 352px;
       }
 
-      .ideal-swarm-button {
+      .ideal-braid-button {
         min-height: 32px;
         padding: 0 8px;
         border: 1px solid rgba(148, 163, 184, 0.25);
@@ -161,43 +161,43 @@
         white-space: nowrap;
       }
 
-      .ideal-swarm-button:hover {
+      .ideal-braid-button:hover {
         border-color: rgba(125, 211, 252, 0.58);
       }
 
-      .ideal-swarm-button.is-active {
+      .ideal-braid-button.is-active {
         border-color: rgba(251, 191, 36, 0.85);
         background: rgba(40, 34, 20, 0.92);
         color: #fff8e6;
       }
 
-      .ideal-swarm-control-stack {
+      .ideal-braid-control-stack {
         display: grid;
         gap: 10px;
       }
 
-      .ideal-swarm-action-grid,
-      .ideal-swarm-range-row {
+      .ideal-braid-action-grid,
+      .ideal-braid-range-row {
         display: grid;
         gap: 8px;
       }
 
-      .ideal-swarm-action-grid {
+      .ideal-braid-action-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .ideal-swarm-range-row {
+      .ideal-braid-range-row {
         grid-template-columns: 1fr 1fr;
         gap: 8px;
       }
 
-      .ideal-swarm-doc-row {
+      .ideal-braid-doc-row {
         display: grid;
         grid-template-columns: 0.82fr 1.1fr 1.25fr;
         gap: 8px;
       }
 
-      .ideal-swarm-control-icon {
+      .ideal-braid-control-icon {
         position: relative;
         flex: 0 0 auto;
         width: 12px;
@@ -205,8 +205,8 @@
         color: currentColor;
       }
 
-      .ideal-swarm-control-icon.is-pause::before,
-      .ideal-swarm-control-icon.is-pause::after {
+      .ideal-braid-control-icon.is-pause::before,
+      .ideal-braid-control-icon.is-pause::after {
         content: "";
         position: absolute;
         top: 0;
@@ -216,15 +216,15 @@
         background: currentColor;
       }
 
-      .ideal-swarm-control-icon.is-pause::before {
+      .ideal-braid-control-icon.is-pause::before {
         left: 2px;
       }
 
-      .ideal-swarm-control-icon.is-pause::after {
+      .ideal-braid-control-icon.is-pause::after {
         right: 2px;
       }
 
-      .ideal-swarm-control-icon.is-play::before {
+      .ideal-braid-control-icon.is-play::before {
         content: "";
         position: absolute;
         left: 2px;
@@ -236,13 +236,13 @@
         border-left: 10px solid currentColor;
       }
 
-      .ideal-swarm-button.is-doc-button {
+      .ideal-braid-button.is-doc-button {
         gap: 4px;
         padding: 0 5px;
         font-size: 11px;
       }
 
-      .ideal-swarm-md-icon {
+      .ideal-braid-md-icon {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -252,28 +252,28 @@
         opacity: 0.9;
       }
 
-      .ideal-swarm-md-icon svg {
+      .ideal-braid-md-icon svg {
         display: block;
         width: 15px;
         height: 15px;
       }
 
-      .ideal-swarm-button-label {
+      .ideal-braid-button-label {
         min-width: 0;
         white-space: nowrap;
       }
 
-      .ideal-swarm-range-row {
+      .ideal-braid-range-row {
         grid-template-columns: 72px 1fr 46px;
         align-items: center;
       }
 
-      .ideal-swarm-range-row label {
+      .ideal-braid-range-row label {
         color: rgba(203, 213, 225, 0.76);
         font-size: 12px;
       }
 
-      .ideal-swarm-range-row output {
+      .ideal-braid-range-row output {
         color: rgba(238, 243, 255, 0.92);
         font-size: 12px;
         text-align: right;
@@ -284,14 +284,14 @@
         accent-color: #fbbf24;
       }
 
-      .ideal-swarm-factor-grid {
+      .ideal-braid-factor-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 6px;
         margin-top: 10px;
       }
 
-      .ideal-swarm-factor-card {
+      .ideal-braid-factor-card {
         min-height: 64px;
         padding: 6px;
         border: 1px solid rgba(148, 163, 184, 0.18);
@@ -302,28 +302,28 @@
         gap: 4px;
       }
 
-      .ideal-swarm-factor-card.is-time {
+      .ideal-braid-factor-card.is-time {
         border-color: rgba(125, 211, 252, 0.34);
       }
 
-      .ideal-swarm-factor-card.is-length {
+      .ideal-braid-factor-card.is-length {
         border-color: rgba(45, 212, 191, 0.34);
       }
 
-      .ideal-swarm-factor-card span {
+      .ideal-braid-factor-card span {
         color: rgba(203, 213, 225, 0.82);
         font-size: 10px;
         line-height: 1.2;
       }
 
-      .ideal-swarm-factor-card strong {
+      .ideal-braid-factor-card strong {
         color: #fef3c7;
         font-size: 16px;
         font-weight: 700;
         line-height: 1;
       }
 
-      .ideal-swarm-factor-card small {
+      .ideal-braid-factor-card small {
         color: rgba(203, 213, 225, 0.7);
         font-size: 8px;
         line-height: 1.18;
@@ -331,7 +331,7 @@
         white-space: nowrap;
       }
 
-      .ideal-swarm-energy-ledger {
+      .ideal-braid-energy-ledger {
         margin-top: 10px;
         padding: 9px;
         border: 1px solid rgba(148, 163, 184, 0.18);
@@ -339,7 +339,7 @@
         background: rgba(2, 6, 23, 0.5);
       }
 
-      .ideal-swarm-energy-ledger header {
+      .ideal-braid-energy-ledger header {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
@@ -347,25 +347,25 @@
         margin-bottom: 7px;
       }
 
-      .ideal-swarm-energy-ledger h3 {
+      .ideal-braid-energy-ledger h3 {
         margin: 0;
         color: rgba(238, 243, 255, 0.95);
         font-size: 11px;
         font-weight: 700;
       }
 
-      .ideal-swarm-energy-ledger small {
+      .ideal-braid-energy-ledger small {
         color: rgba(203, 213, 225, 0.62);
         font-size: 9px;
         text-align: right;
       }
 
-      .ideal-swarm-energy-rows {
+      .ideal-braid-energy-rows {
         display: grid;
         gap: 5px;
       }
 
-      .ideal-swarm-energy-row {
+      .ideal-braid-energy-row {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
         gap: 8px;
@@ -375,18 +375,18 @@
         line-height: 1.25;
       }
 
-      .ideal-swarm-energy-row span {
+      .ideal-braid-energy-row span {
         white-space: nowrap;
       }
 
-      .ideal-swarm-energy-row output {
+      .ideal-braid-energy-row output {
         color: #fef3c7;
         font-size: 11px;
         font-weight: 700;
         white-space: nowrap;
       }
 
-      #ideal-swarm-potential-strip {
+      #ideal-braid-potential-strip {
         width: 100%;
         height: 84px;
         border: 1px solid rgba(148, 163, 184, 0.16);
@@ -394,7 +394,7 @@
         background: rgba(2, 6, 23, 0.55);
       }
 
-      .ideal-swarm-chart-legend {
+      .ideal-braid-chart-legend {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
@@ -403,28 +403,28 @@
         font-size: 11px;
       }
 
-      .ideal-swarm-chart-legend span {
+      .ideal-braid-chart-legend span {
         display: inline-flex;
         align-items: center;
         gap: 5px;
       }
 
-      .ideal-swarm-chart-legend i {
+      .ideal-braid-chart-legend i {
         display: inline-block;
         width: 16px;
         height: 3px;
         border-radius: 999px;
       }
 
-      .ideal-swarm-equation-stack {
+      .ideal-braid-equation-stack {
         display: grid;
         gap: 9px;
         color: rgba(203, 213, 225, 0.78);
         font-size: 12px;
       }
 
-      .ideal-swarm-equation-row,
-      .ideal-swarm-cycle-row {
+      .ideal-braid-equation-row,
+      .ideal-braid-cycle-row {
         display: grid;
         grid-template-columns: 1fr auto;
         gap: 10px;
@@ -432,31 +432,31 @@
         min-height: 24px;
       }
 
-      .ideal-swarm-equation-row code,
-      .ideal-swarm-cycle-row code {
+      .ideal-braid-equation-row code,
+      .ideal-braid-cycle-row code {
         color: rgba(238, 243, 255, 0.9);
         font-family: "Helvetica Neue", Arial, sans-serif;
         font-size: 12px;
       }
 
-      .ideal-swarm-equation-row output,
-      .ideal-swarm-cycle-row output {
+      .ideal-braid-equation-row output,
+      .ideal-braid-cycle-row output {
         color: #fef3c7;
         font-size: 12px;
         text-align: right;
         white-space: nowrap;
       }
 
-      .ideal-swarm-equation-divider {
+      .ideal-braid-equation-divider {
         height: 1px;
         background: rgba(148, 163, 184, 0.16);
       }
 
-      .ideal-swarm-closure-detail {
+      .ideal-braid-closure-detail {
         display: none;
       }
 
-      .ideal-swarm-status {
+      .ideal-braid-status {
         margin-top: 2px;
         padding: 7px 8px;
         border: 1px solid rgba(45, 212, 191, 0.28);
@@ -466,27 +466,27 @@
         font-size: 11px;
       }
 
-      .ideal-swarm-table {
+      .ideal-braid-table {
         width: 100%;
         border-collapse: collapse;
         font-size: 12px;
       }
 
-      .ideal-swarm-table th,
-      .ideal-swarm-table td {
+      .ideal-braid-table th,
+      .ideal-braid-table td {
         padding: 6px 5px;
         border-bottom: 1px solid rgba(148, 163, 184, 0.15);
         text-align: right;
         white-space: nowrap;
       }
 
-      .ideal-swarm-table th:first-child,
-      .ideal-swarm-table td:first-child {
+      .ideal-braid-table th:first-child,
+      .ideal-braid-table td:first-child {
         text-align: left;
         color: rgba(203, 213, 225, 0.78);
       }
 
-      .ideal-swarm-table th {
+      .ideal-braid-table th {
         color: rgba(238, 243, 255, 0.9);
         font-weight: 700;
       }
@@ -513,7 +513,7 @@
         grid-template-rows: auto minmax(0, 1fr);
       }
 
-      .ideal-swarm-markdown-header {
+      .ideal-braid-markdown-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -533,14 +533,14 @@
         white-space: nowrap;
       }
 
-      .ideal-swarm-markdown-actions {
+      .ideal-braid-markdown-actions {
         display: inline-flex;
         align-items: center;
         gap: 6px;
         flex: 0 0 auto;
       }
 
-      .ideal-swarm-icon-button {
+      .ideal-braid-icon-button {
         width: 30px;
         height: 30px;
         border: 1px solid rgba(148, 163, 184, 0.25);
@@ -550,11 +550,11 @@
         cursor: pointer;
       }
 
-      .ideal-swarm-icon-button:hover {
+      .ideal-braid-icon-button:hover {
         border-color: rgba(125, 211, 252, 0.58);
       }
 
-      .ideal-swarm-icon-button svg {
+      .ideal-braid-icon-button svg {
         width: 16px;
         height: 16px;
         fill: none;
@@ -684,129 +684,129 @@
       }
 
       @media (max-width: 900px), (max-height: 680px) {
-        .ideal-swarm-title {
+        .ideal-braid-title {
           display: none;
         }
 
-        .ideal-swarm-panel {
+        .ideal-braid-panel {
           width: calc(50vw - 18px);
           padding: 8px;
         }
 
-        .ideal-swarm-panel.is-upper-left,
-        .ideal-swarm-panel.is-upper-right {
+        .ideal-braid-panel.is-upper-left,
+        .ideal-braid-panel.is-upper-right {
           width: calc(50vw - 15px);
         }
 
-        .ideal-swarm-panel h2 {
+        .ideal-braid-panel h2 {
           margin-bottom: 7px;
           font-size: 11px;
         }
 
-        .ideal-swarm-panel-header {
+        .ideal-braid-panel-header {
           margin-bottom: 7px;
         }
 
-        .ideal-swarm-home-button {
+        .ideal-braid-home-button {
           width: 28px;
           height: 28px;
         }
 
-        .ideal-swarm-panel.is-upper-left {
+        .ideal-braid-panel.is-upper-left {
           left: 10px;
           top: 10px;
         }
 
-        .ideal-swarm-panel.is-upper-right {
+        .ideal-braid-panel.is-upper-right {
           right: 10px;
           top: 10px;
         }
 
-        .ideal-swarm-panel.is-lower-left {
+        .ideal-braid-panel.is-lower-left {
           display: none;
         }
 
-        .ideal-swarm-panel.is-lower-right {
+        .ideal-braid-panel.is-lower-right {
           left: 10px;
           right: 10px;
           bottom: 10px;
           width: auto;
         }
 
-        #ideal-swarm-potential-strip {
+        #ideal-braid-potential-strip {
           height: 48px;
         }
 
-        .ideal-swarm-chart-legend,
-        .ideal-swarm-equation-stack,
-        .ideal-swarm-factor-card span,
-        .ideal-swarm-factor-card small,
-        .ideal-swarm-energy-ledger h3,
-        .ideal-swarm-energy-ledger small,
-        .ideal-swarm-energy-row,
-        .ideal-swarm-status {
+        .ideal-braid-chart-legend,
+        .ideal-braid-equation-stack,
+        .ideal-braid-factor-card span,
+        .ideal-braid-factor-card small,
+        .ideal-braid-energy-ledger h3,
+        .ideal-braid-energy-ledger small,
+        .ideal-braid-energy-row,
+        .ideal-braid-status {
           font-size: 10px;
         }
 
-        .ideal-swarm-factor-grid {
+        .ideal-braid-factor-grid {
           grid-template-columns: 1fr;
           gap: 5px;
           margin-top: 8px;
         }
 
-        .ideal-swarm-factor-card {
+        .ideal-braid-factor-card {
           min-height: 58px;
           gap: 2px;
           padding: 6px;
         }
 
-        .ideal-swarm-factor-card strong {
+        .ideal-braid-factor-card strong {
           font-size: 16px;
         }
 
-        .ideal-swarm-energy-ledger {
+        .ideal-braid-energy-ledger {
           margin-top: 7px;
           padding: 6px;
         }
 
-        .ideal-swarm-energy-ledger header {
+        .ideal-braid-energy-ledger header {
           display: block;
           margin-bottom: 5px;
         }
 
-        .ideal-swarm-energy-ledger small {
+        .ideal-braid-energy-ledger small {
           display: block;
           margin-top: 2px;
           text-align: left;
         }
 
-        .ideal-swarm-energy-rows {
+        .ideal-braid-energy-rows {
           gap: 3px;
         }
 
-        .ideal-swarm-action-grid,
-        .ideal-swarm-doc-row {
+        .ideal-braid-action-grid,
+        .ideal-braid-doc-row {
           gap: 5px;
         }
 
-        .ideal-swarm-button {
+        .ideal-braid-button {
           min-height: 28px;
           font-size: 11px;
         }
 
-        .ideal-swarm-range-row {
+        .ideal-braid-range-row {
           grid-template-columns: 48px 1fr 36px;
           gap: 5px;
         }
 
-        .ideal-swarm-range-row label,
-        .ideal-swarm-range-row output,
-        .ideal-swarm-table {
+        .ideal-braid-range-row label,
+        .ideal-braid-range-row output,
+        .ideal-braid-table {
           font-size: 10px;
         }
 
-        .ideal-swarm-table th,
-        .ideal-swarm-table td {
+        .ideal-braid-table th,
+        .ideal-braid-table td {
           padding: 4px 3px;
         }
 
@@ -824,14 +824,14 @@
       }
 
       @media print {
-        #ideal-swarm-canvas,
-        .ideal-swarm-title,
-        .ideal-swarm-panel,
-        .ideal-swarm-markdown-header {
+        #ideal-braid-canvas,
+        .ideal-braid-title,
+        .ideal-braid-panel,
+        .ideal-braid-markdown-header {
           display: none !important;
         }
 
-        #ideal-swarm-app {
+        #ideal-braid-app {
           position: static;
           height: auto;
           background: #ffffff !important;
@@ -861,70 +861,70 @@
     </style>
   </head>
   <body>
-    <main id="ideal-swarm-app">
-      <canvas id="ideal-swarm-canvas" tabindex="0" aria-label="Noether braid Lorentz map stage"></canvas>
-      <div class="ideal-swarm-title">Ideal Noether Braid: Lorentz Geometry App</div>
+    <main id="ideal-braid-app">
+      <canvas id="ideal-braid-canvas" tabindex="0" aria-label="Noether braid Lorentz map stage"></canvas>
+      <div class="ideal-braid-title">Ideal Noether Braid: Lorentz Geometry App</div>
 
-      <section class="ideal-swarm-panel is-upper-left" aria-label="Graph zone">
+      <section class="ideal-braid-panel is-upper-left" aria-label="Graph zone">
         <h2>Lorentz Map</h2>
-        <canvas id="ideal-swarm-potential-strip" width="536" height="168" aria-hidden="true"></canvas>
-        <div class="ideal-swarm-chart-legend" aria-hidden="true">
+        <canvas id="ideal-braid-potential-strip" width="536" height="168" aria-hidden="true"></canvas>
+        <div class="ideal-braid-chart-legend" aria-hidden="true">
           <span><i style="background:#fbbf24"></i>&gamma; time</span>
           <span><i style="background:#2dd4bf"></i>&xi; length</span>
           <span><i style="background:#f472b6"></i>&beta; = v / c<sub>f</sub></span>
         </div>
-        <div class="ideal-swarm-factor-grid" aria-label="Time and length factors">
-          <div class="ideal-swarm-factor-card is-time">
+        <div class="ideal-braid-factor-grid" aria-label="Time and length factors">
+          <div class="ideal-braid-factor-card is-time">
             <span>Relative time</span>
-            <strong id="ideal-swarm-time-label">1.000</strong>
+            <strong id="ideal-braid-time-label">1.000</strong>
             <small>&Delta;t=&Delta;&tau;/&radic;(1-&beta;<sup>2</sup>)</small>
           </div>
-          <div class="ideal-swarm-factor-card is-length">
+          <div class="ideal-braid-factor-card is-length">
             <span>Relative length</span>
-            <strong id="ideal-swarm-length-label">1.000</strong>
+            <strong id="ideal-braid-length-label">1.000</strong>
             <small>L<sub>&parallel;</sub>=L<sub>0</sub>&radic;(1-&beta;<sup>2</sup>)</small>
           </div>
         </div>
-        <div class="ideal-swarm-energy-ledger" aria-label="Energy and mass ledger">
+        <div class="ideal-braid-energy-ledger" aria-label="Energy and mass ledger">
           <header>
             <h3>Energy ledger</h3>
             <small>m<sub>0</sub> = 1, c<sub>f</sub> = 1</small>
           </header>
-          <div class="ideal-swarm-energy-rows">
-            <div class="ideal-swarm-energy-row">
+          <div class="ideal-braid-energy-rows">
+            <div class="ideal-braid-energy-row">
               <span>Rest mass m<sub>0</sub></span>
-              <output id="ideal-swarm-rest-mass-label">1.000</output>
+              <output id="ideal-braid-rest-mass-label">1.000</output>
             </div>
-            <div class="ideal-swarm-energy-row">
+            <div class="ideal-braid-energy-row">
               <span>Rest energy E<sub>0</sub> = m<sub>0</sub>c<sub>f</sub><sup>2</sup></span>
-              <output id="ideal-swarm-rest-energy-label">1.000</output>
+              <output id="ideal-braid-rest-energy-label">1.000</output>
             </div>
-            <div class="ideal-swarm-energy-row">
+            <div class="ideal-braid-energy-row">
               <span>Bulk-motion energy &Delta;E<sub>CM</sub> = (&gamma; - 1)m<sub>0</sub>c<sub>f</sub><sup>2</sup></span>
-              <output id="ideal-swarm-movement-energy-label">0.000</output>
+              <output id="ideal-braid-movement-energy-label">0.000</output>
             </div>
-            <div class="ideal-swarm-energy-row">
+            <div class="ideal-braid-energy-row">
               <span>Bulk-motion mass equivalent &Delta;E<sub>CM</sub> / c<sub>f</sub><sup>2</sup></span>
-              <output id="ideal-swarm-movement-mass-label">0.000</output>
+              <output id="ideal-braid-movement-mass-label">0.000</output>
             </div>
-            <div class="ideal-swarm-energy-row">
+            <div class="ideal-braid-energy-row">
               <span>Total energy E<sub>CM</sub> = &gamma;m<sub>0</sub>c<sub>f</sub><sup>2</sup></span>
-              <output id="ideal-swarm-total-energy-label">1.000</output>
+              <output id="ideal-braid-total-energy-label">1.000</output>
             </div>
-            <div class="ideal-swarm-energy-row">
+            <div class="ideal-braid-energy-row">
               <span>Total mass equivalent E<sub>CM</sub> / c<sub>f</sub><sup>2</sup></span>
-              <output id="ideal-swarm-total-mass-label">1.000</output>
+              <output id="ideal-braid-total-mass-label">1.000</output>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="ideal-swarm-panel is-upper-right" aria-label="Control panel">
-        <div class="ideal-swarm-panel-header">
+      <section class="ideal-braid-panel is-upper-right" aria-label="Control panel">
+        <div class="ideal-braid-panel-header">
           <h2>Controls</h2>
           <button
-            id="ideal-swarm-home-button"
-            class="ideal-swarm-home-button"
+            id="ideal-braid-home-button"
+            class="ideal-braid-home-button"
             type="button"
             aria-label="Go to main webapp"
             title="Main webapp"
@@ -941,46 +941,46 @@
             </svg>
           </button>
         </div>
-        <div class="ideal-swarm-control-stack">
-          <div class="ideal-swarm-action-grid">
-            <button id="ideal-swarm-path-toggle" class="ideal-swarm-button is-active" type="button">Paths</button>
-            <button id="ideal-swarm-surface-toggle" class="ideal-swarm-button is-active" type="button">Surface</button>
-            <button id="ideal-swarm-axes-toggle" class="ideal-swarm-button is-active" type="button">Axes</button>
+        <div class="ideal-braid-control-stack">
+          <div class="ideal-braid-action-grid">
+            <button id="ideal-braid-path-toggle" class="ideal-braid-button is-active" type="button">Paths</button>
+            <button id="ideal-braid-surface-toggle" class="ideal-braid-button is-active" type="button">Surface</button>
+            <button id="ideal-braid-axes-toggle" class="ideal-braid-button is-active" type="button">Axes</button>
             <button
-              id="ideal-swarm-freeze-toggle"
-              class="ideal-swarm-button"
+              id="ideal-braid-freeze-toggle"
+              class="ideal-braid-button"
               type="button"
               aria-label="Pause animation"
             >
-              <span class="ideal-swarm-control-icon is-pause" aria-hidden="true"></span>
-              <span class="ideal-swarm-control-label">Pause</span>
+              <span class="ideal-braid-control-icon is-pause" aria-hidden="true"></span>
+              <span class="ideal-braid-control-label">Pause</span>
             </button>
-            <button id="ideal-swarm-reset-button" class="ideal-swarm-button" type="button">Reset</button>
-            <button id="ideal-swarm-focus-button" class="ideal-swarm-button" type="button">Focus</button>
+            <button id="ideal-braid-reset-button" class="ideal-braid-button" type="button">Reset</button>
+            <button id="ideal-braid-focus-button" class="ideal-braid-button" type="button">Focus</button>
           </div>
-          <div class="ideal-swarm-range-row">
-            <label for="ideal-swarm-radius-input">Outer orbit</label>
-            <input id="ideal-swarm-radius-input" type="range" min="1.1" max="2.2" step="0.02" value="1.62" />
-            <output id="ideal-swarm-radius-output" for="ideal-swarm-radius-input">1.62</output>
+          <div class="ideal-braid-range-row">
+            <label for="ideal-braid-radius-input">Outer orbit</label>
+            <input id="ideal-braid-radius-input" type="range" min="1.1" max="2.2" step="0.02" value="1.62" />
+            <output id="ideal-braid-radius-output" for="ideal-braid-radius-input">1.62</output>
           </div>
-          <div class="ideal-swarm-range-row">
-            <label for="ideal-swarm-beta-input">&beta; = v / c<sub>f</sub></label>
-            <input id="ideal-swarm-beta-input" type="range" min="0" max="1" step="0.005" value="0" />
-            <output id="ideal-swarm-beta-output" for="ideal-swarm-beta-input">0.000</output>
+          <div class="ideal-braid-range-row">
+            <label for="ideal-braid-beta-input">&beta; = v / c<sub>f</sub></label>
+            <input id="ideal-braid-beta-input" type="range" min="0" max="1" step="0.005" value="0" />
+            <output id="ideal-braid-beta-output" for="ideal-braid-beta-input">0.000</output>
           </div>
-          <div class="ideal-swarm-range-row">
-            <label for="ideal-swarm-speed-input">Cycle</label>
-            <input id="ideal-swarm-speed-input" type="range" min="0.2" max="2.4" step="0.05" value="1" />
-            <output id="ideal-swarm-speed-output" for="ideal-swarm-speed-input">1.00</output>
+          <div class="ideal-braid-range-row">
+            <label for="ideal-braid-speed-input">Cycle</label>
+            <input id="ideal-braid-speed-input" type="range" min="0.2" max="2.4" step="0.05" value="1" />
+            <output id="ideal-braid-speed-output" for="ideal-braid-speed-input">1.00</output>
           </div>
-          <div class="ideal-swarm-doc-row" aria-label="Lorentz documentation">
+          <div class="ideal-braid-doc-row" aria-label="Lorentz documentation">
             <button
-              id="ideal-swarm-notes-doc-button"
-              class="ideal-swarm-button is-doc-button"
+              id="ideal-braid-notes-doc-button"
+              class="ideal-braid-button is-doc-button"
               type="button"
               aria-label="Open Ideal Braid Guide document"
             >
-              <span class="ideal-swarm-md-icon" aria-hidden="true">
+              <span class="ideal-braid-md-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false">
                   <path
                     d="M5 3H14L19 8V21H5Z"
@@ -999,15 +999,15 @@
                   ></path>
                 </svg>
               </span>
-              <span class="ideal-swarm-button-label">Guide</span>
+              <span class="ideal-braid-button-label">Guide</span>
             </button>
             <button
-              id="ideal-swarm-lorentz-doc-button"
-              class="ideal-swarm-button is-doc-button"
+              id="ideal-braid-lorentz-doc-button"
+              class="ideal-braid-button is-doc-button"
               type="button"
               aria-label="Open Lorentz Kinematics document"
             >
-              <span class="ideal-swarm-md-icon" aria-hidden="true">
+              <span class="ideal-braid-md-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false">
                   <path
                     d="M5 3H14L19 8V21H5Z"
@@ -1026,15 +1026,15 @@
                   ></path>
                 </svg>
               </span>
-              <span class="ideal-swarm-button-label">Kinematics</span>
+              <span class="ideal-braid-button-label">Kinematics</span>
             </button>
             <button
-              id="ideal-swarm-return-cycle-doc-button"
-              class="ideal-swarm-button is-doc-button"
+              id="ideal-braid-return-cycle-doc-button"
+              class="ideal-braid-button is-doc-button"
               type="button"
               aria-label="Open Return-Cycle Lorentz Quantization document"
             >
-              <span class="ideal-swarm-md-icon" aria-hidden="true">
+              <span class="ideal-braid-md-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false">
                   <path
                     d="M5 3H14L19 8V21H5Z"
@@ -1053,49 +1053,49 @@
                   ></path>
                 </svg>
               </span>
-              <span class="ideal-swarm-button-label">Return-Cycle</span>
+              <span class="ideal-braid-button-label">Return-Cycle</span>
             </button>
           </div>
         </div>
       </section>
 
-      <section class="ideal-swarm-panel is-lower-left" aria-label="Lorentz equation zone">
+      <section class="ideal-braid-panel is-lower-left" aria-label="Lorentz equation zone">
         <h2>Noether Braid Equations</h2>
-        <div class="ideal-swarm-equation-stack">
-          <div class="ideal-swarm-equation-row">
+        <div class="ideal-braid-equation-stack">
+          <div class="ideal-braid-equation-row">
             <code>&gamma; = 1 / sqrt(1 - (v/c<sub>f</sub>)<sup>2</sup>)</code>
-            <output id="ideal-swarm-gamma-equation">1.000</output>
+            <output id="ideal-braid-gamma-equation">1.000</output>
           </div>
-          <div class="ideal-swarm-equation-row">
+          <div class="ideal-braid-equation-row">
             <code>&xi; = R<sub>&parallel;</sub> / R<sub>&perp;</sub> = 1 / &gamma;</code>
-            <output id="ideal-swarm-xi-equation">1.000</output>
+            <output id="ideal-braid-xi-equation">1.000</output>
           </div>
-          <div class="ideal-swarm-equation-row">
+          <div class="ideal-braid-equation-row">
             <code>R<sub>&parallel;</sub> = R<sub>&perp;</sub> / &gamma;</code>
-            <output id="ideal-swarm-rparallel-equation">1.620</output>
+            <output id="ideal-braid-rparallel-equation">1.620</output>
           </div>
-          <div class="ideal-swarm-equation-divider ideal-swarm-closure-detail"></div>
-          <div class="ideal-swarm-cycle-row ideal-swarm-closure-detail">
+          <div class="ideal-braid-equation-divider ideal-braid-closure-detail"></div>
+          <div class="ideal-braid-cycle-row ideal-braid-closure-detail">
             <code>T<sub>&parallel;</sub> = R<sub>&parallel;</sub>/(c<sub>f</sub> - v) + R<sub>&parallel;</sub>/(c<sub>f</sub> + v)</code>
-            <output id="ideal-swarm-tparallel-equation">3.240</output>
+            <output id="ideal-braid-tparallel-equation">3.240</output>
           </div>
-          <div class="ideal-swarm-cycle-row ideal-swarm-closure-detail">
+          <div class="ideal-braid-cycle-row ideal-braid-closure-detail">
             <code>T<sub>&perp;</sub> = 2 R<sub>&perp;</sub>&gamma; / c<sub>f</sub></code>
-            <output id="ideal-swarm-tperp-equation">3.240</output>
+            <output id="ideal-braid-tperp-equation">3.240</output>
           </div>
-          <div class="ideal-swarm-cycle-row ideal-swarm-closure-detail">
+          <div class="ideal-braid-cycle-row ideal-braid-closure-detail">
             <code>T<sub>&parallel;</sub> - T<sub>&perp;</sub></code>
-            <output id="ideal-swarm-closure-equation">0.00</output>
+            <output id="ideal-braid-closure-equation">0.00</output>
           </div>
-          <div class="ideal-swarm-status">
+          <div class="ideal-braid-status">
             Closure target: the app shows the candidate shared geometry for mass, clock, and ruler response; it is not a proof by itself.
           </div>
         </div>
       </section>
 
-      <section class="ideal-swarm-panel is-lower-right" aria-label="Binary measures table">
+      <section class="ideal-braid-panel is-lower-right" aria-label="Binary measures table">
         <h2>Binary Measures</h2>
-        <table class="ideal-swarm-table">
+        <table class="ideal-braid-table">
           <thead>
             <tr>
               <th>Measure</th>
@@ -1104,17 +1104,17 @@
               <th>Outer</th>
             </tr>
           </thead>
-          <tbody id="ideal-swarm-table-body"></tbody>
+          <tbody id="ideal-braid-table-body"></tbody>
         </table>
       </section>
 
       <aside id="markdown-panel" aria-hidden="true" inert>
-        <div class="ideal-swarm-markdown-header">
+        <div class="ideal-braid-markdown-header">
           <div id="markdown-title"></div>
-          <div class="ideal-swarm-markdown-actions">
+          <div class="ideal-braid-markdown-actions">
             <button
               id="markdown-layout-toggle"
-              class="ideal-swarm-icon-button"
+              class="ideal-braid-icon-button"
               type="button"
               aria-label="Switch markdown layout"
               title="Layout"
@@ -1127,7 +1127,7 @@
             </button>
             <button
               id="markdown-pdf-button"
-              class="ideal-swarm-icon-button"
+              class="ideal-braid-icon-button"
               type="button"
               aria-label="Print current document"
               title="Print"
@@ -1140,7 +1140,7 @@
             </button>
             <button
               id="markdown-close"
-              class="ideal-swarm-icon-button"
+              class="ideal-braid-icon-button"
               type="button"
               aria-label="Close document"
               title="Close"
@@ -1157,6 +1157,6 @@
         </div>
       </aside>
     </main>
-    <script type="module" src="./src/apps/ideal-swarm/main.js"></script>
+    <script type="module" src="./src/apps/ideal-braid/main.js"></script>
   </body>
 </html>

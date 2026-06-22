@@ -1,7 +1,7 @@
 import { installSolverAppWorkerRuntime } from "../../solver/app/SolverAppWorkerRuntime.mjs";
-import { createIdealSwarmSolverBridgeOptions } from "./IdealSwarmSolverBridgeOptions.js";
+import { createIdealBraidSolverBridgeOptions } from "./IdealBraidSolverBridgeOptions.js";
 
 const workerScope = globalThis.self ?? globalThis;
-const solverBridgeOptions = createIdealSwarmSolverBridgeOptions(workerScope);
+const solverBridgeOptions = createIdealBraidSolverBridgeOptions(workerScope);
 
 installSolverAppWorkerRuntime(workerScope, solverBridgeOptions);

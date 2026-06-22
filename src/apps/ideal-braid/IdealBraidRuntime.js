@@ -4,7 +4,7 @@ import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js"
 import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
 import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
 import { createSolverAppBridgeClient } from "../../solver/app/SolverAppBridge.mjs";
-import { createIdealSwarmSharedGeometryRunRequest } from "../../solver/app/SolverAppAdapters.mjs";
+import { createIdealBraidSharedGeometryRunRequest } from "../../solver/app/SolverAppAdapters.mjs";
 import {
   createSolverAppBridgeInitRequest,
   runSolverAppBridgeRequest,
@@ -15,8 +15,8 @@ import {
   getOrbitPathBranchGain,
   getOrbitPathTintProfile as resolveOrbitPathTintProfile,
   solveCircularSelfHitSpanRowsWithSolverBridge,
-} from "./IdealSwarmPathPotentialProfile.js";
-import { createIdealSwarmSolverBridgeOptions } from "./IdealSwarmSolverBridgeOptions.js";
+} from "./IdealBraidPathPotentialProfile.js";
+import { createIdealBraidSolverBridgeOptions } from "./IdealBraidSolverBridgeOptions.js";
 
 const BINARY_META = [
   {
@@ -60,16 +60,16 @@ const FIELD_SPEED_REFERENCE_BINARY_INDEX = 1;
 const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const DEFAULT_FLIGHT_TIME_TOLERANCE = 1e-12;
 const DEFAULT_FLIGHT_TIME_SOURCE_HISTORY_DEPTH = 10;
-const IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
-const IDEAL_SWARM_RUNTIME_SOLVER_CAPABILITIES = Object.freeze([
+const IDEAL_BRAID_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
+const IDEAL_BRAID_RUNTIME_SOLVER_CAPABILITIES = Object.freeze([
   "sharedGeometry",
   "delayedHits",
 ]);
-const IDEAL_SWARM_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
-const IDEAL_SWARM_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS = 30_000;
-const IDEAL_SWARM_SURFACE_SOLVER_TIME_QUANTUM_SECONDS = 1 / 8;
-const IDEAL_SWARM_SURFACE_SOLVER_MIN_INTERVAL_MS = 180;
-const IDEAL_SWARM_SURFACE_SOLVER_EDIT_DEBOUNCE_MS = 120;
+const IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
+const IDEAL_BRAID_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS = 30_000;
+const IDEAL_BRAID_SURFACE_SOLVER_TIME_QUANTUM_SECONDS = 1 / 8;
+const IDEAL_BRAID_SURFACE_SOLVER_MIN_INTERVAL_MS = 180;
+const IDEAL_BRAID_SURFACE_SOLVER_EDIT_DEBOUNCE_MS = 120;
 const SHELL_SURFACE_BASE_OPACITY = 0.007;
 const SHELL_SURFACE_RIM_OPACITY = 0.16;
 const SHELL_SURFACE_RIM_POWER = 3.2;
@@ -88,7 +88,7 @@ const ASSEMBLY_TRANSVERSE_AXIS_V = new THREE.Vector3(
   1 / Math.sqrt(6),
   -2 / Math.sqrt(6)
 );
-const IDEAL_SWARM_DOCS = {
+const IDEAL_BRAID_DOCS = {
   notes: {
     name: "Ideal Braid Guide",
     markdownPath: "content/markdown/aaa/archie/ideal-braid-guide.md",
@@ -106,7 +106,7 @@ const IDEAL_SWARM_DOCS = {
     markdownColumns: 1,
   },
 };
-export const IDEAL_SWARM_NAVIGATOR_HREF = "./index.html";
+export const IDEAL_BRAID_NAVIGATOR_HREF = "./index.html";
 const ORBIT_PATH_TRAIL_LAYERS = [
   {
     role: "headlamp-glow",
@@ -350,9 +350,9 @@ function getOrbitPathLogWidthScale(radius, referenceRadius) {
   return ORBIT_PATH_LOG_WIDTH_FLOOR + (1 - ORBIT_PATH_LOG_WIDTH_FLOOR) * compressedRadius;
 }
 
-export function createIdealSwarmModel(options = {}) {
+export function createIdealBraidModel(options = {}) {
   const Three = options.THREE ?? THREE;
-  const coreSpec = options.coreSpec ?? createAnimatorDefaultCoreSpec("ideal_swarm");
+  const coreSpec = options.coreSpec ?? createAnimatorDefaultCoreSpec("ideal_braid");
   const geometryRuntime =
     options.geometryRuntime ?? createAnimatorStructureGeometryRuntime({ THREE: Three });
   const binaries = coreSpec.binaries.map((binary, index) => {
@@ -440,7 +440,7 @@ export function createIdealSwarmModel(options = {}) {
   };
 }
 
-export function createIdealSwarmFlightTimeRunRequest(
+export function createIdealBraidFlightTimeRunRequest(
   samplePoint,
   architrino,
   observationTime,
@@ -456,27 +456,27 @@ export function createIdealSwarmFlightTimeRunRequest(
     options.memoryBudgetBytes,
     DEFAULT_SOLVER_MEMORY_BUDGET_BYTES
   );
-  const source = createIdealSwarmFlightTimeSourceSegment(
+  const source = createIdealBraidFlightTimeSourceSegment(
     architrino,
     observationTime,
     options
   );
-  const runId = options.runId ?? `ideal-swarm-flight-time-${formatSolverIdNumber(observationTime)}`;
-  return createIdealSwarmSharedGeometryRunRequest({
+  const runId = options.runId ?? `ideal-braid-flight-time-${formatSolverIdNumber(observationTime)}`;
+  return createIdealBraidSharedGeometryRunRequest({
     requestId: options.requestId ?? `${runId}-request`,
     runId,
     datasetId: options.datasetId ?? `${runId}-dataset`,
     claimLevel: options.claimLevel ?? "interactive-preview",
     precisionPath: options.precisionPath ?? "auto",
-    configVersion: options.configVersion ?? "ideal-swarm-flight-time-adapter.v1",
-    configHash: options.configHash ?? `ideal-swarm-flight-time:${formatSolverIdNumber(observationTime)}`,
-    model: options.model ?? createDefaultIdealSwarmFlightTimeModel(),
-    envelope: options.envelope ?? createDefaultIdealSwarmFlightTimeEnvelope({
+    configVersion: options.configVersion ?? "ideal-braid-flight-time-adapter.v1",
+    configHash: options.configHash ?? `ideal-braid-flight-time:${formatSolverIdNumber(observationTime)}`,
+    model: options.model ?? createDefaultIdealBraidFlightTimeModel(),
+    envelope: options.envelope ?? createDefaultIdealBraidFlightTimeEnvelope({
       source,
       observationTime,
       memoryBudgetBytes,
     }),
-    errorBudget: options.errorBudget ?? createDefaultIdealSwarmFlightTimeErrorBudget(tolerance),
+    errorBudget: options.errorBudget ?? createDefaultIdealBraidFlightTimeErrorBudget(tolerance),
     geometryRequest: {
       delayedPotentials: [
         {
@@ -524,19 +524,19 @@ export async function solveFlightTimeRowWithSolverBridge(
 ) {
   const runRequest =
     options.runRequest ??
-    createIdealSwarmFlightTimeRunRequest(samplePoint, architrino, observationTime, options);
+    createIdealBraidFlightTimeRunRequest(samplePoint, architrino, observationTime, options);
   const runHandle = typeof options.runSolverBridge === "function"
     ? await options.runSolverBridge(runRequest)
-    : await runIdealSwarmSolverBridgeClient(options, {
+    : await runIdealBraidSolverBridgeClient(options, {
         factoryRequest: { samplePoint, architrino, observationTime },
         runRequest,
       });
-  return extractIdealSwarmFlightTimeRow(runHandle);
+  return extractIdealBraidFlightTimeRow(runHandle);
 }
 
-async function runIdealSwarmSolverBridgeClient(options, { factoryRequest, runRequest }) {
+async function runIdealBraidSolverBridgeClient(options, { factoryRequest, runRequest }) {
   return runSolverAppBridgeRequest({
-    appId: "ideal-swarm",
+    appId: "ideal-braid",
     request: runRequest,
     options,
     factoryRequest,
@@ -555,7 +555,7 @@ async function runIdealSwarmSolverBridgeClient(options, { factoryRequest, runReq
   });
 }
 
-function extractIdealSwarmFlightTimeRow(runHandle = {}) {
+function extractIdealBraidFlightTimeRow(runHandle = {}) {
   const response = runHandle.response ?? runHandle;
   const geometry = response.geometry ?? response;
   const rows = Array.isArray(geometry.delayedPotentials) ? geometry.delayedPotentials : [];
@@ -563,14 +563,14 @@ function extractIdealSwarmFlightTimeRow(runHandle = {}) {
     throw new Error("Ideal Braid solver bridge response did not include a delayed-potential row.");
   }
   return {
-    solverEngineId: IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID,
+    solverEngineId: IDEAL_BRAID_SOLVER_BRIDGE_ENGINE_ID,
     runId: response.runId ?? runHandle.runId ?? "",
     datasetId: response.datasetId ?? runHandle.datasetId ?? "",
     ...rows[0],
   };
 }
 
-export function createIdealSwarmPotentialSamplesRunRequest(
+export function createIdealBraidPotentialSamplesRunRequest(
   samplePoints,
   model,
   observationTime,
@@ -589,7 +589,7 @@ export function createIdealSwarmPotentialSamplesRunRequest(
     DEFAULT_SOLVER_MEMORY_BUDGET_BYTES
   );
   const sources = architrinos.map((architrino) =>
-    createIdealSwarmFlightTimeSourceSegment(architrino, observationTime, options)
+    createIdealBraidFlightTimeSourceSegment(architrino, observationTime, options)
   );
   const delayedPotentials = points.flatMap((samplePoint) =>
     architrinos.map((architrino, sourceIndex) => ({
@@ -606,28 +606,28 @@ export function createIdealSwarmPotentialSamplesRunRequest(
   );
   const runId =
     options.runId ??
-    `ideal-swarm-potential-samples-${formatSolverIdNumber(observationTime)}-${points.length}x${architrinos.length}`;
-  return createIdealSwarmSharedGeometryRunRequest({
+    `ideal-braid-potential-samples-${formatSolverIdNumber(observationTime)}-${points.length}x${architrinos.length}`;
+  return createIdealBraidSharedGeometryRunRequest({
     requestId: options.requestId ?? `${runId}-request`,
     runId,
     datasetId: options.datasetId ?? `${runId}-dataset`,
     claimLevel: options.claimLevel ?? "interactive-preview",
     precisionPath: options.precisionPath ?? "auto",
-    configVersion: options.configVersion ?? "ideal-swarm-potential-samples-adapter.v1",
+    configVersion: options.configVersion ?? "ideal-braid-potential-samples-adapter.v1",
     configHash:
       options.configHash ??
-      `ideal-swarm-potential-samples:${formatSolverIdNumber(observationTime)}:${points.length}:${architrinos.length}`,
-    model: options.model ?? createDefaultIdealSwarmPotentialSamplesModel(),
+      `ideal-braid-potential-samples:${formatSolverIdNumber(observationTime)}:${points.length}:${architrinos.length}`,
+    model: options.model ?? createDefaultIdealBraidPotentialSamplesModel(),
     envelope:
       options.envelope ??
-      createDefaultIdealSwarmPotentialSamplesEnvelope({
+      createDefaultIdealBraidPotentialSamplesEnvelope({
         sources,
         observationTime,
         sampleCount: points.length,
         sourceCount: architrinos.length,
         memoryBudgetBytes,
       }),
-    errorBudget: options.errorBudget ?? createDefaultIdealSwarmFlightTimeErrorBudget(tolerance),
+    errorBudget: options.errorBudget ?? createDefaultIdealBraidFlightTimeErrorBudget(tolerance),
     geometryRequest: {
       delayedPotentials,
     },
@@ -650,11 +650,11 @@ export async function computePotentialSamplesWithSolverBridge(
   const architrinos = normalizeSolverArchitrinos(model);
   const runRequest =
     options.runRequest ??
-    createIdealSwarmPotentialSamplesRunRequest(points, { architrinos }, observationTime, options);
+    createIdealBraidPotentialSamplesRunRequest(points, { architrinos }, observationTime, options);
   const runHandle =
     typeof options.runSolverBridge === "function"
       ? await options.runSolverBridge(runRequest)
-      : await runIdealSwarmSolverBridgeClient(options, {
+      : await runIdealBraidSolverBridgeClient(options, {
           factoryRequest: {
             sampleCount: points.length,
             sourceCount: architrinos.length,
@@ -662,13 +662,13 @@ export async function computePotentialSamplesWithSolverBridge(
           },
           runRequest,
         });
-  return extractIdealSwarmPotentialSamplesSnapshot(runHandle, {
+  return extractIdealBraidPotentialSamplesSnapshot(runHandle, {
     sampleCount: points.length,
     sourceCount: architrinos.length,
   });
 }
 
-function extractIdealSwarmPotentialSamplesSnapshot(
+function extractIdealBraidPotentialSamplesSnapshot(
   runHandle = {},
   { sampleCount = 0, sourceCount = 0 } = {}
 ) {
@@ -697,7 +697,7 @@ function extractIdealSwarmPotentialSamplesSnapshot(
   const min = samplePotentials.length > 0 ? Math.min(...samplePotentials) : 0;
   const max = samplePotentials.length > 0 ? Math.max(...samplePotentials) : 0;
   return {
-    solverEngineId: IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID,
+    solverEngineId: IDEAL_BRAID_SOLVER_BRIDGE_ENGINE_ID,
     runId: response.runId ?? runHandle.runId ?? "",
     datasetId: response.datasetId ?? runHandle.datasetId ?? "",
     samplePotentials,
@@ -708,7 +708,7 @@ function extractIdealSwarmPotentialSamplesSnapshot(
   };
 }
 
-function createIdealSwarmFlightTimeSourceSegment(architrino, observationTime, options = {}) {
+function createIdealBraidFlightTimeSourceSegment(architrino, observationTime, options = {}) {
   if (options.sourceSegment && typeof options.sourceSegment === "object") {
     return cloneSolverSegment(options.sourceSegment);
   }
@@ -756,12 +756,12 @@ function cloneSolverSegment(segment = {}) {
   };
 }
 
-function createDefaultIdealSwarmFlightTimeModel() {
+function createDefaultIdealBraidFlightTimeModel() {
   return {
-    modelId: "aaa.ideal-swarm",
+    modelId: "aaa.ideal-braid",
     equationVersion: "delayed-potential-flight-time-v1",
     forceLawVersion: "causal-delay-v1",
-    constantsHash: "constants:ideal-swarm",
+    constantsHash: "constants:ideal-braid",
     causalSpeedPolicy: "field-speed",
     branchPolicy: "fixed-point-flight-time",
     unitConvention: "relative",
@@ -769,12 +769,12 @@ function createDefaultIdealSwarmFlightTimeModel() {
   };
 }
 
-function createDefaultIdealSwarmPotentialSamplesModel() {
+function createDefaultIdealBraidPotentialSamplesModel() {
   return {
-    modelId: "aaa.ideal-swarm",
+    modelId: "aaa.ideal-braid",
     equationVersion: "delayed-potential-samples-v1",
     forceLawVersion: "causal-delay-v1",
-    constantsHash: "constants:ideal-swarm",
+    constantsHash: "constants:ideal-braid",
     causalSpeedPolicy: "field-speed",
     branchPolicy: "batched-linear-source-segments",
     unitConvention: "relative",
@@ -782,7 +782,7 @@ function createDefaultIdealSwarmPotentialSamplesModel() {
   };
 }
 
-function createDefaultIdealSwarmFlightTimeEnvelope({
+function createDefaultIdealBraidFlightTimeEnvelope({
   source,
   observationTime,
   memoryBudgetBytes,
@@ -806,7 +806,7 @@ function createDefaultIdealSwarmFlightTimeEnvelope({
   };
 }
 
-function createDefaultIdealSwarmPotentialSamplesEnvelope({
+function createDefaultIdealBraidPotentialSamplesEnvelope({
   sources = [],
   observationTime,
   sampleCount = 0,
@@ -837,7 +837,7 @@ function createDefaultIdealSwarmPotentialSamplesEnvelope({
   };
 }
 
-function createDefaultIdealSwarmFlightTimeErrorBudget(tolerance = DEFAULT_FLIGHT_TIME_TOLERANCE) {
+function createDefaultIdealBraidFlightTimeErrorBudget(tolerance = DEFAULT_FLIGHT_TIME_TOLERANCE) {
   return {
     globalTolerance: tolerance,
     rootIsolationTolerance: tolerance,
@@ -890,20 +890,20 @@ function formatSolverIdNumber(value) {
   return String(Number(value) || 0).replaceAll(".", "_").replaceAll("-", "neg_");
 }
 
-function quantizeIdealSwarmRuntimeSolverTime(timeSeconds) {
+function quantizeIdealBraidRuntimeSolverTime(timeSeconds) {
   const time = Number.isFinite(Number(timeSeconds)) ? Number(timeSeconds) : 0;
-  return Math.round(time / IDEAL_SWARM_SURFACE_SOLVER_TIME_QUANTUM_SECONDS) *
-    IDEAL_SWARM_SURFACE_SOLVER_TIME_QUANTUM_SECONDS;
+  return Math.round(time / IDEAL_BRAID_SURFACE_SOLVER_TIME_QUANTUM_SECONDS) *
+    IDEAL_BRAID_SURFACE_SOLVER_TIME_QUANTUM_SECONDS;
 }
 
-function getIdealSwarmRuntimeNowMs(windowLike) {
+function getIdealBraidRuntimeNowMs(windowLike) {
   if (typeof windowLike?.performance?.now === "function") {
     return windowLike.performance.now();
   }
   return Date.now();
 }
 
-function hasIdealSwarmInlineSolverOption(options) {
+function hasIdealBraidInlineSolverOption(options) {
   return typeof options?.runSolverBridge === "function";
 }
 
@@ -1487,19 +1487,19 @@ function makeArchitrinoMaterial(Three, color) {
 function queryRequiredElement(documentLike, selector) {
   const element = documentLike.querySelector(selector);
   if (!element) {
-    throw new Error(`Missing ideal-swarm element: ${selector}`);
+    throw new Error(`Missing ideal-braid element: ${selector}`);
   }
   return element;
 }
 
-function appendIdealSwarmCacheBust(path, token) {
+function appendIdealBraidCacheBust(path, token) {
   const separator = path.includes("?") ? "&" : "?";
   return `${path}${separator}v=${token}`;
 }
 
-export function navigateIdealSwarmHome(
+export function navigateIdealBraidHome(
   locationLike = globalThis.window?.location,
-  href = IDEAL_SWARM_NAVIGATOR_HREF
+  href = IDEAL_BRAID_NAVIGATOR_HREF
 ) {
   const resolvedHref = String(href ?? "").trim();
   if (!resolvedHref || typeof locationLike?.assign !== "function") {
@@ -1509,7 +1509,7 @@ export function navigateIdealSwarmHome(
   return true;
 }
 
-function createIdealSwarmMarkdownRenderer(windowLike) {
+function createIdealBraidMarkdownRenderer(windowLike) {
   const markdownItFactory = windowLike?.markdownit;
   if (typeof markdownItFactory !== "function") {
     return null;
@@ -1519,7 +1519,7 @@ function createIdealSwarmMarkdownRenderer(windowLike) {
   return markdownRenderer;
 }
 
-function createIdealSwarmMarkdownRuntime({
+function createIdealBraidMarkdownRuntime({
   documentLike,
   windowLike,
   markdownPanel,
@@ -1548,11 +1548,11 @@ function createIdealSwarmMarkdownRuntime({
     markdownTitle,
     markdownBody,
     markdownLayoutToggle,
-    markdownRenderer: createIdealSwarmMarkdownRenderer(windowLike),
+    markdownRenderer: createIdealBraidMarkdownRenderer(windowLike),
     markdownCache,
     markdownSectionCache,
     extractMarkdownSection,
-    appendCacheBust: (path) => appendIdealSwarmCacheBust(path, cacheBustToken),
+    appendCacheBust: (path) => appendIdealBraidCacheBust(path, cacheBustToken),
     navigateToTarget: openMarkdownTarget,
   });
 
@@ -1560,17 +1560,17 @@ function createIdealSwarmMarkdownRuntime({
   return markdownRuntime;
 }
 
-export function mountIdealSwarm(options = {}) {
+export function mountIdealBraid(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
   const Three = options.THREE ?? THREE;
-  const homeHref = options.homeHref ?? IDEAL_SWARM_NAVIGATOR_HREF;
-  const solverBridgeOptions = createIdealSwarmSolverBridgeOptions(
+  const homeHref = options.homeHref ?? IDEAL_BRAID_NAVIGATOR_HREF;
+  const solverBridgeOptions = createIdealBraidSolverBridgeOptions(
     windowLike ?? globalThis,
     options.solverBridgeOptions ?? {}
   );
-  const canvas = queryRequiredElement(documentLike, "#ideal-swarm-canvas");
-  const model = createIdealSwarmModel({ THREE: Three });
+  const canvas = queryRequiredElement(documentLike, "#ideal-braid-canvas");
+  const model = createIdealBraidModel({ THREE: Three });
   const renderer = new Three.WebGLRenderer({
     canvas,
     antialias: true,
@@ -1643,44 +1643,44 @@ export function mountIdealSwarm(options = {}) {
   sphereContents.add(axisReferenceGroup);
 
   const dom = {
-    homeButton: queryRequiredElement(documentLike, "#ideal-swarm-home-button"),
-    pathToggle: queryRequiredElement(documentLike, "#ideal-swarm-path-toggle"),
-    surfaceToggle: queryRequiredElement(documentLike, "#ideal-swarm-surface-toggle"),
-    axesToggle: queryRequiredElement(documentLike, "#ideal-swarm-axes-toggle"),
-    freezeToggle: queryRequiredElement(documentLike, "#ideal-swarm-freeze-toggle"),
-    resetButton: queryRequiredElement(documentLike, "#ideal-swarm-reset-button"),
-    focusButton: queryRequiredElement(documentLike, "#ideal-swarm-focus-button"),
+    homeButton: queryRequiredElement(documentLike, "#ideal-braid-home-button"),
+    pathToggle: queryRequiredElement(documentLike, "#ideal-braid-path-toggle"),
+    surfaceToggle: queryRequiredElement(documentLike, "#ideal-braid-surface-toggle"),
+    axesToggle: queryRequiredElement(documentLike, "#ideal-braid-axes-toggle"),
+    freezeToggle: queryRequiredElement(documentLike, "#ideal-braid-freeze-toggle"),
+    resetButton: queryRequiredElement(documentLike, "#ideal-braid-reset-button"),
+    focusButton: queryRequiredElement(documentLike, "#ideal-braid-focus-button"),
     returnCycleDocButton: queryRequiredElement(
       documentLike,
-      "#ideal-swarm-return-cycle-doc-button"
+      "#ideal-braid-return-cycle-doc-button"
     ),
-    notesDocButton: queryRequiredElement(documentLike, "#ideal-swarm-notes-doc-button"),
-    lorentzDocButton: queryRequiredElement(documentLike, "#ideal-swarm-lorentz-doc-button"),
-    radiusInput: queryRequiredElement(documentLike, "#ideal-swarm-radius-input"),
-    radiusOutput: queryRequiredElement(documentLike, "#ideal-swarm-radius-output"),
-    betaInput: queryRequiredElement(documentLike, "#ideal-swarm-beta-input"),
-    betaOutput: queryRequiredElement(documentLike, "#ideal-swarm-beta-output"),
-    speedInput: queryRequiredElement(documentLike, "#ideal-swarm-speed-input"),
-    speedOutput: queryRequiredElement(documentLike, "#ideal-swarm-speed-output"),
-    timeLabel: queryRequiredElement(documentLike, "#ideal-swarm-time-label"),
-    lengthLabel: queryRequiredElement(documentLike, "#ideal-swarm-length-label"),
-    restMassLabel: queryRequiredElement(documentLike, "#ideal-swarm-rest-mass-label"),
-    restEnergyLabel: queryRequiredElement(documentLike, "#ideal-swarm-rest-energy-label"),
+    notesDocButton: queryRequiredElement(documentLike, "#ideal-braid-notes-doc-button"),
+    lorentzDocButton: queryRequiredElement(documentLike, "#ideal-braid-lorentz-doc-button"),
+    radiusInput: queryRequiredElement(documentLike, "#ideal-braid-radius-input"),
+    radiusOutput: queryRequiredElement(documentLike, "#ideal-braid-radius-output"),
+    betaInput: queryRequiredElement(documentLike, "#ideal-braid-beta-input"),
+    betaOutput: queryRequiredElement(documentLike, "#ideal-braid-beta-output"),
+    speedInput: queryRequiredElement(documentLike, "#ideal-braid-speed-input"),
+    speedOutput: queryRequiredElement(documentLike, "#ideal-braid-speed-output"),
+    timeLabel: queryRequiredElement(documentLike, "#ideal-braid-time-label"),
+    lengthLabel: queryRequiredElement(documentLike, "#ideal-braid-length-label"),
+    restMassLabel: queryRequiredElement(documentLike, "#ideal-braid-rest-mass-label"),
+    restEnergyLabel: queryRequiredElement(documentLike, "#ideal-braid-rest-energy-label"),
     movementEnergyLabel: queryRequiredElement(
       documentLike,
-      "#ideal-swarm-movement-energy-label"
+      "#ideal-braid-movement-energy-label"
     ),
-    movementMassLabel: queryRequiredElement(documentLike, "#ideal-swarm-movement-mass-label"),
-    totalEnergyLabel: queryRequiredElement(documentLike, "#ideal-swarm-total-energy-label"),
-    totalMassLabel: queryRequiredElement(documentLike, "#ideal-swarm-total-mass-label"),
-    gammaEquation: queryRequiredElement(documentLike, "#ideal-swarm-gamma-equation"),
-    xiEquation: queryRequiredElement(documentLike, "#ideal-swarm-xi-equation"),
-    rParallelEquation: queryRequiredElement(documentLike, "#ideal-swarm-rparallel-equation"),
-    tParallelEquation: queryRequiredElement(documentLike, "#ideal-swarm-tparallel-equation"),
-    tPerpEquation: queryRequiredElement(documentLike, "#ideal-swarm-tperp-equation"),
-    closureEquation: queryRequiredElement(documentLike, "#ideal-swarm-closure-equation"),
-    stripCanvas: queryRequiredElement(documentLike, "#ideal-swarm-potential-strip"),
-    tableBody: queryRequiredElement(documentLike, "#ideal-swarm-table-body"),
+    movementMassLabel: queryRequiredElement(documentLike, "#ideal-braid-movement-mass-label"),
+    totalEnergyLabel: queryRequiredElement(documentLike, "#ideal-braid-total-energy-label"),
+    totalMassLabel: queryRequiredElement(documentLike, "#ideal-braid-total-mass-label"),
+    gammaEquation: queryRequiredElement(documentLike, "#ideal-braid-gamma-equation"),
+    xiEquation: queryRequiredElement(documentLike, "#ideal-braid-xi-equation"),
+    rParallelEquation: queryRequiredElement(documentLike, "#ideal-braid-rparallel-equation"),
+    tParallelEquation: queryRequiredElement(documentLike, "#ideal-braid-tparallel-equation"),
+    tPerpEquation: queryRequiredElement(documentLike, "#ideal-braid-tperp-equation"),
+    closureEquation: queryRequiredElement(documentLike, "#ideal-braid-closure-equation"),
+    stripCanvas: queryRequiredElement(documentLike, "#ideal-braid-potential-strip"),
+    tableBody: queryRequiredElement(documentLike, "#ideal-braid-table-body"),
     markdownPanel: queryRequiredElement(documentLike, "#markdown-panel"),
     markdownTitle: queryRequiredElement(documentLike, "#markdown-title"),
     markdownBody: queryRequiredElement(documentLike, "#markdown-body"),
@@ -1689,7 +1689,7 @@ export function mountIdealSwarm(options = {}) {
     markdownPdfButton: queryRequiredElement(documentLike, "#markdown-pdf-button"),
   };
   const stripContext = dom.stripCanvas.getContext("2d");
-  const markdownRuntime = createIdealSwarmMarkdownRuntime({
+  const markdownRuntime = createIdealBraidMarkdownRuntime({
     documentLike,
     windowLike,
     markdownPanel: dom.markdownPanel,
@@ -1726,17 +1726,17 @@ export function mountIdealSwarm(options = {}) {
   let solverGeneration = 0;
   let orbitProfileSolverPromise = null;
 
-  function createIdealSwarmRuntimeSolverInitRequest(runtimeSolverOptions) {
+  function createIdealBraidRuntimeSolverInitRequest(runtimeSolverOptions) {
     return createSolverAppBridgeInitRequest({
-      appId: "ideal-swarm",
-      requestedCapabilities: IDEAL_SWARM_RUNTIME_SOLVER_CAPABILITIES,
+      appId: "ideal-braid",
+      requestedCapabilities: IDEAL_BRAID_RUNTIME_SOLVER_CAPABILITIES,
       options: runtimeSolverOptions,
       storagePolicy: {
         target: runtimeSolverOptions.streamTarget ?? "caller-buffer",
         durable: runtimeSolverOptions.streamTarget === "native-file",
         maxBytes:
           runtimeSolverOptions.memoryBudgetBytes ??
-          IDEAL_SWARM_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
+          IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
       },
       threadingPolicy: {
         mode: runtimeSolverOptions.threadingMode ?? "single-thread",
@@ -1745,7 +1745,7 @@ export function mountIdealSwarm(options = {}) {
     });
   }
 
-  function createIdealSwarmRuntimeSolverWorkerClient() {
+  function createIdealBraidRuntimeSolverWorkerClient() {
     const workerUrl = solverBridgeOptions.workerUrl;
     const scope = solverBridgeOptions.scope ?? windowLike ?? globalThis;
     const WorkerCtor = solverBridgeOptions.WorkerCtor ?? scope?.Worker;
@@ -1754,20 +1754,20 @@ export function mountIdealSwarm(options = {}) {
     }
     const worker = new WorkerCtor(workerUrl, {
       type: "module",
-      name: "ideal-swarm-solver-bridge",
+      name: "ideal-braid-solver-bridge",
       ...(solverBridgeOptions.workerOptions ?? {}),
     });
     ownedSolverWorker = worker;
     return createSolverAppWorkerClient(worker, {
-      requestIdPrefix: "ideal-swarm-solver-worker",
+      requestIdPrefix: "ideal-braid-solver-worker",
       requestTimeoutMs:
         solverBridgeOptions.workerRequestTimeoutMs ??
-        IDEAL_SWARM_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS,
+        IDEAL_BRAID_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS,
       terminateOnDispose: solverBridgeOptions.terminateSolverWorkerOnDispose ?? true,
     });
   }
 
-  async function getIdealSwarmRuntimeSolverClient() {
+  async function getIdealBraidRuntimeSolverClient() {
     if (solverBridgeOptions.solverClient) {
       return solverBridgeOptions.solverClient;
     }
@@ -1777,22 +1777,22 @@ export function mountIdealSwarm(options = {}) {
           const providedWorkerClient = createSolverAppWorkerClient(
             solverBridgeOptions.solverWorker,
             {
-              requestIdPrefix: "ideal-swarm-solver-worker",
+              requestIdPrefix: "ideal-braid-solver-worker",
               requestTimeoutMs:
                 solverBridgeOptions.workerRequestTimeoutMs ??
-                IDEAL_SWARM_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS,
+                IDEAL_BRAID_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS,
               terminateOnDispose: solverBridgeOptions.terminateSolverWorkerOnDispose === true,
             }
           );
           await providedWorkerClient.init(
-            createIdealSwarmRuntimeSolverInitRequest(solverBridgeOptions)
+            createIdealBraidRuntimeSolverInitRequest(solverBridgeOptions)
           );
           ownedSolverClient = providedWorkerClient;
           return providedWorkerClient;
         }
-        const workerClient = createIdealSwarmRuntimeSolverWorkerClient();
+        const workerClient = createIdealBraidRuntimeSolverWorkerClient();
         if (workerClient) {
-          await workerClient.init(createIdealSwarmRuntimeSolverInitRequest(solverBridgeOptions));
+          await workerClient.init(createIdealBraidRuntimeSolverInitRequest(solverBridgeOptions));
           ownedSolverClient = workerClient;
           return workerClient;
         }
@@ -1800,7 +1800,7 @@ export function mountIdealSwarm(options = {}) {
           createWasmModule: solverBridgeOptions.createWasmModule,
           locateFile: solverBridgeOptions.locateFile,
         });
-        await client.init(createIdealSwarmRuntimeSolverInitRequest(solverBridgeOptions));
+        await client.init(createIdealBraidRuntimeSolverInitRequest(solverBridgeOptions));
         ownedSolverClient = client;
         return client;
       })();
@@ -1808,13 +1808,13 @@ export function mountIdealSwarm(options = {}) {
     return solverClientPromise;
   }
 
-  async function createIdealSwarmRuntimeSolverOptions() {
-    if (hasIdealSwarmInlineSolverOption(solverBridgeOptions)) {
+  async function createIdealBraidRuntimeSolverOptions() {
+    if (hasIdealBraidInlineSolverOption(solverBridgeOptions)) {
       return solverBridgeOptions;
     }
     return {
       ...solverBridgeOptions,
-      solverClient: await getIdealSwarmRuntimeSolverClient(),
+      solverClient: await getIdealBraidRuntimeSolverClient(),
       streamTarget: solverBridgeOptions.streamTarget ?? "caller-buffer",
       deterministic: solverBridgeOptions.deterministic ?? true,
       threadingMode: solverBridgeOptions.threadingMode ?? "single-thread",
@@ -1848,7 +1848,7 @@ export function mountIdealSwarm(options = {}) {
 
   function clearSurfaceSolverSnapshotForStateChange({ preserveSnapshot = true } = {}) {
     solverGeneration += 1;
-    surfaceSolverLastStateChangeAtMs = getIdealSwarmRuntimeNowMs(windowLike);
+    surfaceSolverLastStateChangeAtMs = getIdealBraidRuntimeNowMs(windowLike);
     surfaceSolverInteractiveUpdatePending = preserveSnapshot;
     if (!preserveSnapshot) {
       surfaceSolverSnapshot = null;
@@ -1868,7 +1868,7 @@ export function mountIdealSwarm(options = {}) {
     if (runtimeDestroyed || surfaceSolverSnapshotPromise) {
       return;
     }
-    const solveTime = quantizeIdealSwarmRuntimeSolverTime(state.modelTime);
+    const solveTime = quantizeIdealBraidRuntimeSolverTime(state.modelTime);
     const stateKey = createSurfaceSolverStateKey();
     const snapshotMatches =
       surfaceSolverSnapshot?.stateKey === stateKey &&
@@ -1876,11 +1876,11 @@ export function mountIdealSwarm(options = {}) {
     if (snapshotMatches) {
       return;
     }
-    const nowMs = getIdealSwarmRuntimeNowMs(windowLike);
+    const nowMs = getIdealBraidRuntimeNowMs(windowLike);
     if (
       !force &&
       surfaceSolverInteractiveUpdatePending &&
-      nowMs - surfaceSolverLastStateChangeAtMs < IDEAL_SWARM_SURFACE_SOLVER_EDIT_DEBOUNCE_MS
+      nowMs - surfaceSolverLastStateChangeAtMs < IDEAL_BRAID_SURFACE_SOLVER_EDIT_DEBOUNCE_MS
     ) {
       return;
     }
@@ -1889,28 +1889,28 @@ export function mountIdealSwarm(options = {}) {
       !force &&
       !stateChanged &&
       !state.frozen &&
-      nowMs - surfaceSolverLastRequestAtMs < IDEAL_SWARM_SURFACE_SOLVER_MIN_INTERVAL_MS
+      nowMs - surfaceSolverLastRequestAtMs < IDEAL_BRAID_SURFACE_SOLVER_MIN_INTERVAL_MS
     ) {
       return;
     }
 
     const generation = solverGeneration;
     const samplePoints = createSurfaceSolverSamplePoints();
-    const runRequest = createIdealSwarmPotentialSamplesRunRequest(
+    const runRequest = createIdealBraidPotentialSamplesRunRequest(
       samplePoints,
       model,
       solveTime,
       {
         fieldSpeed: 6,
         softening: 0.1,
-        memoryBudgetBytes: IDEAL_SWARM_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
+        memoryBudgetBytes: IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
       }
     );
     surfaceSolverLastRequestAtMs = nowMs;
     surfaceSolverInteractiveUpdatePending = false;
     surfaceSolverError = null;
     surfaceSolverSnapshotPromise = (async () => {
-      const runtimeSolverOptions = await createIdealSwarmRuntimeSolverOptions();
+      const runtimeSolverOptions = await createIdealBraidRuntimeSolverOptions();
       const snapshot = await computePotentialSamplesWithSolverBridge(
         samplePoints,
         model,
@@ -1920,7 +1920,7 @@ export function mountIdealSwarm(options = {}) {
           runRequest,
           fieldSpeed: 6,
           softening: 0.1,
-          memoryBudgetBytes: IDEAL_SWARM_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
+          memoryBudgetBytes: IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
         }
       );
       return {
@@ -1963,11 +1963,11 @@ export function mountIdealSwarm(options = {}) {
     }
     const ratios = model.binaries.map((binary) => binary.fieldSpeedRatio);
     orbitProfileSolverPromise = (async () => {
-      const runtimeSolverOptions = await createIdealSwarmRuntimeSolverOptions();
+      const runtimeSolverOptions = await createIdealBraidRuntimeSolverOptions();
       return solveCircularSelfHitSpanRowsWithSolverBridge(ratios, {
         ...runtimeSolverOptions,
-        runId: "ideal-swarm-orbit-profile-self-hit",
-        memoryBudgetBytes: IDEAL_SWARM_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
+        runId: "ideal-braid-orbit-profile-self-hit",
+        memoryBudgetBytes: IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
       });
     })();
     orbitProfileSolverPromise
@@ -2060,8 +2060,8 @@ export function mountIdealSwarm(options = {}) {
   }
 
   function updatePauseButton() {
-    const label = dom.freezeToggle.querySelector(".ideal-swarm-control-label");
-    const icon = dom.freezeToggle.querySelector(".ideal-swarm-control-icon");
+    const label = dom.freezeToggle.querySelector(".ideal-braid-control-label");
+    const icon = dom.freezeToggle.querySelector(".ideal-braid-control-icon");
     const nextLabel = state.frozen ? "Resume" : "Pause";
     if (label) {
       label.textContent = nextLabel;
@@ -2368,7 +2368,7 @@ export function mountIdealSwarm(options = {}) {
     syncControls();
   });
   dom.homeButton.addEventListener("click", () => {
-    navigateIdealSwarmHome(windowLike?.location, homeHref);
+    navigateIdealBraidHome(windowLike?.location, homeHref);
   });
   dom.resetButton.addEventListener("click", () => {
     resetRotation();
@@ -2378,13 +2378,13 @@ export function mountIdealSwarm(options = {}) {
     canvas.focus();
   });
   dom.returnCycleDocButton.addEventListener("click", () => {
-    markdownRuntime.showMarkdownPanel(IDEAL_SWARM_DOCS.returnCycle);
+    markdownRuntime.showMarkdownPanel(IDEAL_BRAID_DOCS.returnCycle);
   });
   dom.notesDocButton.addEventListener("click", () => {
-    markdownRuntime.showMarkdownPanel(IDEAL_SWARM_DOCS.notes);
+    markdownRuntime.showMarkdownPanel(IDEAL_BRAID_DOCS.notes);
   });
   dom.lorentzDocButton.addEventListener("click", () => {
-    markdownRuntime.showMarkdownPanel(IDEAL_SWARM_DOCS.lorentzKinematics);
+    markdownRuntime.showMarkdownPanel(IDEAL_BRAID_DOCS.lorentzKinematics);
   });
   dom.markdownClose.addEventListener("click", () => {
     markdownRuntime.hideMarkdownPanel();

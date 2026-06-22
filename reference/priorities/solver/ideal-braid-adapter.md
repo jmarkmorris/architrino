@@ -15,12 +15,12 @@ Primary dependencies:
 
 Implementation surfaces:
 
-- [IdealBraidRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmRuntime.js)
-- [IdealBraidPathPotentialProfile.js](../../../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js)
-- [IdealBraidSolverBridgeOptions.js](../../../src/apps/ideal-swarm/IdealSwarmSolverBridgeOptions.js)
+- [IdealBraidRuntime.js](../../../src/apps/ideal-braid/IdealBraidRuntime.js)
+- [IdealBraidPathPotentialProfile.js](../../../src/apps/ideal-braid/IdealBraidPathPotentialProfile.js)
+- [IdealBraidSolverBridgeOptions.js](../../../src/apps/ideal-braid/IdealBraidSolverBridgeOptions.js)
 - [SolverAppAdapters.mjs](../../../src/solver/app/SolverAppAdapters.mjs)
 - [check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
-- [ideal-braid-runtime.test.js](../../../tests/ideal-swarm-runtime.test.js)
+- [ideal-braid-runtime.test.js](../../../tests/ideal-braid-runtime.test.js)
 
 ## Adapter Scope
 
@@ -38,7 +38,7 @@ mapping, viewport transforms, and visual presentation remain app responsibilitie
 | Delayed-potential samples | `computePotentialSamplesWithSolverBridge` builds shared-geometry run requests and consumes solver delayed-potential rows. |
 | Flight-time row | `solveFlightTimeRowWithSolverBridge` runs through the shared solver bridge with direct client, worker, factory, or WebAssembly module options. |
 | Circular self-hit span | `solveCircularSelfHitSpanRowsWithSolverBridge`, `solveCircularSelfHitSpanRowWithSolverBridge`, and `solveCircularSelfHitSpanWithSolverBridge` run through shared solver geometry requests. |
-| App bridge options | `createIdealSwarmSolverBridgeOptions` centralizes the app-owned bridge client and WebAssembly loader setup. |
+| App bridge options | `createIdealBraidSolverBridgeOptions` centralizes the app-owned bridge client and WebAssembly loader setup. |
 
 ## Validation Evidence
 
@@ -52,7 +52,7 @@ Current validation evidence:
   `baseline_within_tolerance`.
 - [check-solver-migration-parity.mjs](../../../scripts/check-solver-migration-parity.mjs)
   includes all five Ideal Braid cases in the ordered migration parity report.
-- [ideal-braid-runtime.test.js](../../../tests/ideal-swarm-runtime.test.js)
+- [ideal-braid-runtime.test.js](../../../tests/ideal-braid-runtime.test.js)
   covers solver-bridge potential samples, flight-time rows, client/worker bridge
   creation, and circular self-hit span bridge rows.
 

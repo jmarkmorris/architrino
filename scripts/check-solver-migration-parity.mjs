@@ -54,14 +54,14 @@ const migrationPlan = [
     ],
   },
   {
-    appId: "ideal-swarm",
+    appId: "ideal-braid",
     order: 3,
     requiredCases: [
-      "ideal-swarm-causal-root-smoke",
-      "ideal-swarm-geometry-smoke",
-      "ideal-swarm-flight-time-smoke",
-      "ideal-swarm-flight-time-wasm-client-smoke",
-      "ideal-swarm-self-hit-wasm-client-smoke",
+      "ideal-braid-causal-root-smoke",
+      "ideal-braid-geometry-smoke",
+      "ideal-braid-flight-time-smoke",
+      "ideal-braid-flight-time-wasm-client-smoke",
+      "ideal-braid-self-hit-wasm-client-smoke",
     ],
   },
 ];

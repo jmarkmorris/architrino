@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-22T06:54:09.294Z",
+  "generated_at": "2026-06-22T07:10:00.691Z",
   "total_links": 1539,
   "links": [
     {
@@ -5286,10 +5286,10 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../../ideal-swarm.html",
+      "target": "../../../../../ideal-braid.html",
       "kind": "external",
       "status": "web_redirect",
-      "targetBundlePath": "https://architrino.com/ideal-swarm"
+      "targetBundlePath": "https://architrino.com/ideal-braid"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -8526,10 +8526,10 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../../ideal-swarm.html",
+      "target": "../../../../../ideal-braid.html",
       "kind": "external",
       "status": "web_redirect",
-      "targetBundlePath": "https://architrino.com/ideal-swarm"
+      "targetBundlePath": "https://architrino.com/ideal-braid"
     },
     {
       "sourceChapterId": "spacetime",

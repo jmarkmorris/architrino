@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-22T06:54:09.294Z",
+  "generated_at": "2026-06-22T07:10:00.691Z",
   "package_version": "1.0.0-cf4f8c1c",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -253,7 +253,7 @@
       "role": "chapter",
       "type": "html",
       "size": 6507737,
-      "sha256": "d3c0338cc6f1fd7c868120b2547ab5193d13d1b75c937958e68aa30089ab863b"
+      "sha256": "17262be5a1029d452c30ff249b966558b9cf5b82a9de5988c6f30f4e84a50b32"
     },
     {
       "path": "reading-copies/noether-sea-and-effective-spacetime.md",
@@ -261,7 +261,7 @@
       "role": "chapter",
       "type": "markdown",
       "size": 416813,
-      "sha256": "1928db70293a248dc2a21d7aac7615bd0a9432c4300071c68d9c6765504af8b5"
+      "sha256": "babd6dc2fc660c576bd8ec3b79f928aa8c85090e24cbcbc38171f65bcdd72715"
     },
     {
       "path": "reading-copies/philosophy-history.html",
@@ -269,7 +269,7 @@
       "role": "chapter",
       "type": "html",
       "size": 9590149,
-      "sha256": "c56c0f423f3c993eb6ad5bd76661d34849a52bbdd43c5e55a1c044fedcdf85d2"
+      "sha256": "2574e31624db3b8a56769b494b0cbe7b40b29d7927a9464f44b239d33b5313ca"
     },
     {
       "path": "reading-copies/philosophy-history.md",
@@ -277,7 +277,7 @@
       "role": "chapter",
       "type": "markdown",
       "size": 1623671,
-      "sha256": "dbbe82ed3d90ef6401e49cd1b622979c6d3914d449d8f19a2aac557d791a54d1"
+      "sha256": "31b48b2873748aad7a476885eb5a0d97ab743ca8a07e056b4a7425bdb3b5c46f"
     },
     {
       "path": "reading-copies/quantum.html",

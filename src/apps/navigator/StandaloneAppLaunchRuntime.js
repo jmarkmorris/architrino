@@ -1,7 +1,7 @@
 const standaloneAppPathBySceneToken = Object.freeze({
   "assembly-explorer": "assembly-explorer.html",
   "causal-delay-feedback": "causal-delay-feedback.html",
-  archie__ideal_braid: "ideal-swarm.html",
+  archie__ideal_braid: "ideal-braid.html",
   archie__photon: "photon.html",
   "content/scenes/archie/molecule.json": "molecule.html",
   "content/scenes/chemistry/molecule.json": "molecule.html",

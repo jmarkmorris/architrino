@@ -94,12 +94,12 @@ const migrationTargets = [
     ],
   },
   {
-    id: "ideal-swarm-flight-time",
-    app: "Ideal Swarm",
+    id: "ideal-braid-flight-time",
+    app: "Ideal Braid",
     local: {
-      file: "src/apps/ideal-swarm/IdealSwarmRuntime.js",
+      file: "src/apps/ideal-braid/IdealBraidRuntime.js",
       symbols: [
-        "createIdealSwarmFlightTimeRunRequest",
+        "createIdealBraidFlightTimeRunRequest",
         "solveFlightTimeRowWithSolverBridge",
         "computePotentialSamplesWithSolverBridge",
       ],
@@ -107,7 +107,7 @@ const migrationTargets = [
     central: [
       {
         file: "src/solver/app/SolverAppAdapters.mjs",
-        symbols: ["createIdealSwarmSharedGeometryRunRequest"],
+        symbols: ["createIdealBraidSharedGeometryRunRequest"],
       },
       {
         file: "src/solver/app/SolverAppBridge.mjs",
@@ -124,17 +124,17 @@ const migrationTargets = [
       "shared geometry buffer output",
     ],
     baselineCases: [
-      "ideal-swarm-flight-time-smoke",
-      "ideal-swarm-flight-time-wasm-client-smoke",
+      "ideal-braid-flight-time-smoke",
+      "ideal-braid-flight-time-wasm-client-smoke",
     ],
   },
   {
-    id: "ideal-swarm-circular-self-hit-span",
-    app: "Ideal Swarm",
+    id: "ideal-braid-circular-self-hit-span",
+    app: "Ideal Braid",
     local: {
-      file: "src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js",
+      file: "src/apps/ideal-braid/IdealBraidPathPotentialProfile.js",
       symbols: [
-        "createIdealSwarmCircularSelfHitSpanRunRequest",
+        "createIdealBraidCircularSelfHitSpanRunRequest",
         "solveCircularSelfHitSpanRowWithSolverBridge",
         "solveCircularSelfHitSpanRowsWithSolverBridge",
       ],
@@ -155,8 +155,8 @@ const migrationTargets = [
       "geometry profile row output",
     ],
     baselineCases: [
-      "ideal-swarm-geometry-smoke",
-      "ideal-swarm-self-hit-wasm-client-smoke",
+      "ideal-braid-geometry-smoke",
+      "ideal-braid-self-hit-wasm-client-smoke",
     ],
   },
   {
@@ -314,7 +314,7 @@ if (missing.length > 0) {
 const report = {
   schema: "solver-geometry-centralization-inventory.v1",
   migrationScope: {
-    targets: ["Photon", "Ideal Swarm", "Animator"],
+    targets: ["Photon", "Ideal Braid", "Animator"],
   },
   generatedAt: new Date().toISOString(),
   items: inventoryItems.map(({ missing, ...item }) => item),
