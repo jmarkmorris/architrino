@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v27",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v29",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v27 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v29 reports.",
   };
 }
 
@@ -39836,7 +39836,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v26",
+    schema: "aaa-equal-frequency-energy-radius-audit.v28",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -41008,6 +41008,8 @@ function createEqualFrequencyEnergyAngularMomentumClosureAudit({
   const hbarScaleCandidateCount = rows.filter(
     (row) => row.hbarUnitScaleCandidate.populated === true
   ).length;
+  const sigmaHbarScaleLawAudit =
+    createEqualFrequencySigmaHbarScaleLawAudit(rows);
   const retainedEnergyStationarityPassCount = rows.filter(
     (row) => row.retainedEnergyStationarityPass === true
   ).length;
@@ -41020,7 +41022,7 @@ function createEqualFrequencyEnergyAngularMomentumClosureAudit({
     targetEffectiveInertiaClosurePassCount === rows.length &&
     hbarScaleCandidateCount === rows.length;
   return {
-    schema: "aaa-equal-frequency-energy-angular-momentum-closure-audit.v1",
+    schema: "aaa-equal-frequency-energy-angular-momentum-closure-audit.v3",
     claimLevel:
       "same-clock energy/angular-momentum closure audit; current algebraic proxy only, not retained hbar-unit acceptance",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -41034,6 +41036,7 @@ function createEqualFrequencyEnergyAngularMomentumClosureAudit({
     targetEffectiveInertiaClosurePassCount,
     unitInertiaWakeCouplingSlackFiniteCount,
     hbarScaleCandidateCount,
+    sigmaHbarScaleLawAudit,
     retainedEnergyStationarityPassCount,
     retainedSameEventAngularMomentumPassCount,
     closureEquations: [
@@ -41050,8 +41053,11 @@ function createEqualFrequencyEnergyAngularMomentumClosureAudit({
       retainedSameEventAngularMomentumPassCount === rows.length &&
       rows.length > 0
         ? "equal_frequency_energy_angular_momentum_retained_closure_accepted"
-        : allRowsHaveCurrentClosureCandidate
-          ? "same_clock_j_e_identity_populated_target_inertia_and_hbar_scale_candidates_retained_stationarity_missing"
+        : allRowsHaveCurrentClosureCandidate &&
+            sigmaHbarScaleLawAudit.frequencyLinearScaleLawPass === true
+          ? "same_clock_j_e_identity_populated_frequency_linear_sigma_hbar_candidate_retained_stationarity_missing"
+          : allRowsHaveCurrentClosureCandidate
+          ? "same_clock_j_e_identity_populated_target_inertia_and_sigma_hbar_candidates_retained_stationarity_missing"
           : sameClockIdentityPassCount > 0
             ? "same_clock_j_e_identity_populated_closure_candidates_incomplete"
             : "same_clock_j_e_identity_missing",
@@ -41059,9 +41065,281 @@ function createEqualFrequencyEnergyAngularMomentumClosureAudit({
     interpretation:
       "Equal frequency makes the action and kinetic-energy ledgers share one clock: E_a=(1/2)J_a omega_f. Different effective lever arms are therefore compatible with one frequency only after the retained replay supplies mu_a, wake/coupling angular momentum, or an energy-radius stationarity law on the same event/domain.",
     hbarUnitImplication:
-      "The common clock turns the hbar-unit question into a scale row for the same-event angular-momentum ledger. A finite sigma_hbar candidate exists under the target effective-inertia ledger, but it is not accepted until the retained branch derives the inertia, wake/coupling, and energy-stationarity rows.",
+      "The common clock turns the hbar-unit question into a scale row for the same-event angular-momentum ledger. A finite sigma_hbar candidate exists under the target effective-inertia ledger. Across the sampled f rows it is frequency-linear, not universal-constant, until the retained branch derives the inertia, wake/coupling, and energy-stationarity rows.",
     retainedReplayBurden:
       "Derive the effective inertia or wake/coupling partition from B_3B, bind it to E_branch and the same retained event/domain, and then evaluate r_E and r_J on S_eq.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencySigmaHbarScaleLawAudit(rows) {
+  const scaleRows = rows.map((row) => {
+    const scale = row.hbarUnitScaleCandidate?.unitHbarScaleForHbarUnitOne ?? null;
+    const commonOmega = row.commonOmega;
+    const scalePerOmega =
+      Number.isFinite(scale) &&
+      Number.isFinite(commonOmega) &&
+      Math.abs(commonOmega) > ROOT_TOLERANCE
+        ? scale / commonOmega
+        : null;
+    const denominatorTimesOmega =
+      Number.isFinite(row.hbarUnitScaleCandidate?.denominator) &&
+      Number.isFinite(commonOmega)
+        ? row.hbarUnitScaleCandidate.denominator * commonOmega
+        : null;
+    return {
+      rowId: row.rowId,
+      caseId: row.caseId,
+      f: row.f,
+      commonOmega,
+      unitHbarScaleForHbarUnitOne: scale,
+      scalePerCommonOmega: scalePerOmega,
+      denominatorTimesCommonOmega: denominatorTimesOmega,
+      retainedScaleAccepted: false,
+    };
+  });
+  const provenanceAudit =
+    createEqualFrequencySigmaHbarScaleLawProvenanceAudit({
+      rows,
+      scaleRows,
+    });
+  const scaleStats = createFiniteStats(
+    scaleRows.map((row) => row.unitHbarScaleForHbarUnitOne)
+  );
+  const scalePerOmegaStats = createFiniteStats(
+    scaleRows.map((row) => row.scalePerCommonOmega)
+  );
+  const denominatorTimesOmegaStats = createFiniteStats(
+    scaleRows.map((row) => row.denominatorTimesCommonOmega)
+  );
+  const universalConstantScalePass =
+    scaleStats.count === rows.length &&
+    Number.isFinite(scaleStats.min) &&
+    Number.isFinite(scaleStats.max) &&
+    Math.abs(scaleStats.max - scaleStats.min) <= ROOT_TOLERANCE;
+  const frequencyLinearScaleLawPass =
+    scalePerOmegaStats.count === rows.length &&
+    Number.isFinite(scalePerOmegaStats.min) &&
+    Number.isFinite(scalePerOmegaStats.max) &&
+    Math.abs(scalePerOmegaStats.max - scalePerOmegaStats.min) <= ROOT_TOLERANCE;
+  const denominatorOmegaInvariantPass =
+    denominatorTimesOmegaStats.count === rows.length &&
+    Number.isFinite(denominatorTimesOmegaStats.min) &&
+    Number.isFinite(denominatorTimesOmegaStats.max) &&
+    Math.abs(denominatorTimesOmegaStats.max - denominatorTimesOmegaStats.min) <=
+      ROOT_TOLERANCE;
+  return {
+    schema: "aaa-equal-frequency-sigma-hbar-scale-law-audit.v2",
+    claimLevel:
+      "current sigma_hbar scale-law audit for equal-frequency rows; not retained action-scale acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    rowCount: scaleRows.length,
+    scaleRows,
+    unitHbarScaleStats: scaleStats,
+    scalePerCommonOmegaStats: scalePerOmegaStats,
+    denominatorTimesCommonOmegaStats: denominatorTimesOmegaStats,
+    universalConstantScalePass,
+    frequencyLinearScaleLawPass,
+    denominatorOmegaInvariantPass,
+    provenanceAudit,
+    candidateLawRows: [
+      {
+        lawId: "universal_constant_sigma_hbar",
+        expression: "sigma_hbar/hbar_unit = constant across sampled f",
+        pass: universalConstantScalePass,
+        retainedAcceptanceEligible: true,
+        blocker: universalConstantScalePass
+          ? "retained_scale_law_derivation_missing"
+          : "universal_constant_sigma_hbar_fails_current_sample",
+      },
+      {
+        lawId: "frequency_linear_sigma_hbar",
+        expression:
+          "sigma_hbar/hbar_unit divided by omega_f is constant across sampled f",
+        pass: frequencyLinearScaleLawPass,
+        retainedAcceptanceEligible: false,
+        blocker:
+          provenanceAudit.frequencyLinearInducedByCurrentNormalizationPass === true
+            ? "frequency_linear_sigma_hbar_is_induced_by_current_lever_arm_normalization_until_retained_branch_scale_law_is_derived"
+            : "frequency_linear_sigma_hbar_is_current_proxy_until_retained_branch_scale_law_is_derived",
+      },
+      {
+        lawId: "denominator_times_frequency_invariant",
+        expression:
+          "omega_f^2 sum_a mu_a^(rel) rho_a^2 is constant across sampled f",
+        pass: denominatorOmegaInvariantPass,
+        retainedAcceptanceEligible: false,
+        blocker:
+          "invariant_is_a_current_normalized_ledger_identity_not_an_independent_scale_source",
+      },
+    ],
+    status:
+      universalConstantScalePass === true
+        ? "sigma_hbar_universal_constant_candidate_populated_retained_derivation_missing"
+        : frequencyLinearScaleLawPass === true
+          ? "sigma_hbar_frequency_linear_candidate_populated_universal_constant_fails_retained_scale_law_missing"
+          : scaleStats.count > 0
+            ? "sigma_hbar_scale_candidates_populated_no_simple_sample_law"
+            : "sigma_hbar_scale_candidates_missing",
+    interpretation:
+      "With the current target effective-inertia ledger, sigma_hbar/hbar_unit is finite for every sampled equal-frequency row but varies with f. The exact current proxy is frequency-linear, equivalently omega_f^2 sum_a mu_a^(rel) rho_a^2 is constant. A retained proof must decide whether this frequency dependence is a derived branch-scale law, a wake/coupling scale term, or a failure of the no-wake/no-coupling scale route.",
+    retainedReplayBurden:
+      "Derive a retained action-scale law on S_eq before treating the finite sigma_hbar rows as hbar-unit acceptance.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencySigmaHbarScaleLawProvenanceAudit({
+  rows,
+  scaleRows,
+}) {
+  const provenanceRows = rows.map((row, index) => {
+    const scaleRow = scaleRows[index] ?? {};
+    const commonOmega = row.commonOmega;
+    const leverArmOmegaProductsByRole = Object.fromEntries(
+      LAYER_ROLES.map((role) => {
+        const rho = row.effectiveLeverArms?.[role];
+        return [
+          role,
+          Number.isFinite(rho) && Number.isFinite(commonOmega)
+            ? rho * commonOmega
+            : null,
+        ];
+      })
+    );
+    const relativeEffectiveInertiasByRole =
+      row.targetEffectiveInertiaLedger
+        ?.relativeEffectiveInertiasNormalizedToMiddle ?? {};
+    const targetAngularMomentumWeightTotal =
+      row.targetEffectiveInertiaLedger?.angularMomentumWeightTotal ?? null;
+    const targetWeightTimesOmegaSquared =
+      Number.isFinite(targetAngularMomentumWeightTotal) &&
+      Number.isFinite(commonOmega)
+        ? targetAngularMomentumWeightTotal * commonOmega ** 2
+        : null;
+    const denominatorTimesOmega =
+      scaleRow.denominatorTimesCommonOmega ??
+      row.hbarUnitScaleCandidate?.denominatorTimesCommonOmega ??
+      null;
+    const scalePerOmega =
+      scaleRow.scalePerCommonOmega ??
+      row.hbarUnitScaleCandidate?.scalePerCommonOmega ??
+      null;
+    return {
+      rowId: row.rowId,
+      caseId: row.caseId,
+      f: row.f,
+      commonOmega,
+      leverArmOmegaProductsByRole,
+      relativeEffectiveInertiasByRole,
+      targetAngularMomentumWeightTotal,
+      targetWeightTimesOmegaSquared,
+      denominatorTimesOmega,
+      scalePerOmega,
+      retainedEventDomainAccepted: false,
+      retainedBranchScaleLawAccepted: false,
+    };
+  });
+  const roleConstantStats = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      createFiniteStats(
+        provenanceRows.map((row) => row.leverArmOmegaProductsByRole[role])
+      ),
+    ])
+  );
+  const relativeInertiaStats = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      createFiniteStats(
+        provenanceRows.map((row) => row.relativeEffectiveInertiasByRole[role])
+      ),
+    ])
+  );
+  const targetWeightTimesOmegaSquaredStats = createFiniteStats(
+    provenanceRows.map((row) => row.targetWeightTimesOmegaSquared)
+  );
+  const denominatorTimesOmegaStats = createFiniteStats(
+    provenanceRows.map((row) => row.denominatorTimesOmega)
+  );
+  const scalePerOmegaStats = createFiniteStats(
+    provenanceRows.map((row) => row.scalePerOmega)
+  );
+  const roleLeverArmOmegaInvariantPass =
+    rows.length > 0 &&
+    LAYER_ROLES.every((role) =>
+      finiteStatsConstantPass(roleConstantStats[role], rows.length)
+    );
+  const relativeEffectiveInertiaInvariantPass =
+    rows.length > 0 &&
+    LAYER_ROLES.every((role) =>
+      finiteStatsConstantPass(relativeInertiaStats[role], rows.length)
+    );
+  const targetWeightOmegaSquaredInvariantPass = finiteStatsConstantPass(
+    targetWeightTimesOmegaSquaredStats,
+    rows.length
+  );
+  const denominatorOmegaInvariantPass = finiteStatsConstantPass(
+    denominatorTimesOmegaStats,
+    rows.length
+  );
+  const scalePerOmegaInvariantPass = finiteStatsConstantPass(
+    scalePerOmegaStats,
+    rows.length
+  );
+  const currentNormalizationChainPass =
+    roleLeverArmOmegaInvariantPass === true &&
+    relativeEffectiveInertiaInvariantPass === true &&
+    targetWeightOmegaSquaredInvariantPass === true &&
+    denominatorOmegaInvariantPass === true &&
+    scalePerOmegaInvariantPass === true;
+  return {
+    schema: "aaa-equal-frequency-sigma-hbar-scale-law-provenance-audit.v1",
+    claimLevel:
+      "current provenance audit for the equal-frequency sigma_hbar scale law; distinguishes chart-normalization consequence from retained branch-scale derivation",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    executableProjectionChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    rowCount: provenanceRows.length,
+    provenanceRows,
+    roleLeverArmOmegaProductStats: roleConstantStats,
+    relativeEffectiveInertiaStats: relativeInertiaStats,
+    targetWeightTimesOmegaSquaredStats,
+    denominatorTimesOmegaStats,
+    scalePerOmegaStats,
+    roleLeverArmOmegaInvariantPass,
+    relativeEffectiveInertiaInvariantPass,
+    targetWeightOmegaSquaredInvariantPass,
+    denominatorOmegaInvariantPass,
+    scalePerOmegaInvariantPass,
+    frequencyLinearInducedByCurrentNormalizationPass:
+      currentNormalizationChainPass,
+    retainedBranchScaleLawAcceptedCount: provenanceRows.filter(
+      (row) => row.retainedBranchScaleLawAccepted === true
+    ).length,
+    retainedEventDomainAcceptedCount: provenanceRows.filter(
+      (row) => row.retainedEventDomainAccepted === true
+    ).length,
+    provenanceEquations: [
+      "rho_a omega_f = k_a in the current effective-lever-arm chart",
+      "mu_a^(rel) is fixed by the target 2:1:1 ledger in the current rows",
+      "omega_f^2 sum_a mu_a^(rel) rho_a^2 = C_current",
+      "therefore sigma_hbar/hbar_unit = omega_f/C_current under the no-wake/no-coupling scale equation",
+    ],
+    status:
+      currentNormalizationChainPass === true
+        ? "frequency_linear_sigma_hbar_induced_by_current_lever_arm_normalization_retained_scale_law_missing"
+        : scalePerOmegaInvariantPass === true
+          ? "frequency_linear_sigma_hbar_populated_provenance_chain_incomplete"
+          : "frequency_linear_sigma_hbar_provenance_not_populated",
+    interpretation:
+      "The sampled frequency-linear sigma_hbar row is not yet an independent retained hbar-unit law. In the current chart it follows from fixed rho_a omega_f lever-arm constants plus fixed target effective-inertia weights, which force omega_f^2 sum_a mu_a^(rel) rho_a^2 to be constant.",
+    retainedReplayBurden:
+      "A retained replay must decide whether rho_a omega_f and the target effective-inertia weights are branch invariants on S_eq, or whether the current linear scale is replaced by retained energy-radius, wake, coupling, or deformation rows.",
     retainedBranchClaim: false,
   };
 }
@@ -41164,6 +41442,19 @@ function createEqualFrequencyEnergyAngularMomentumClosureRow({
     targetEffectiveInertiaFourSubstepPass &&
     Number.isFinite(hbarUnitScaleDenominator) &&
     Math.abs(hbarUnitScaleDenominator) > ROOT_TOLERANCE;
+  const unitHbarScaleForHbarUnitOne = hbarUnitScaleCandidatePopulated
+    ? 1 / hbarUnitScaleDenominator
+    : null;
+  const scalePerCommonOmega =
+    Number.isFinite(unitHbarScaleForHbarUnitOne) &&
+    Number.isFinite(commonOmega) &&
+    Math.abs(commonOmega) > ROOT_TOLERANCE
+      ? unitHbarScaleForHbarUnitOne / commonOmega
+      : null;
+  const denominatorTimesCommonOmega =
+    Number.isFinite(hbarUnitScaleDenominator) && Number.isFinite(commonOmega)
+      ? hbarUnitScaleDenominator * commonOmega
+      : null;
   const slackFractionsNeededByRole = Object.fromEntries(
     LAYER_ROLES.map((role) => [
       role,
@@ -41221,6 +41512,9 @@ function createEqualFrequencyEnergyAngularMomentumClosureRow({
       formula:
         "sigma_hbar = hbar_unit/(omega_f sum_a mu_a^(rel) rho_a^2) if L_wake=L_coupling=0",
       denominator: hbarUnitScaleDenominator,
+      unitHbarScaleForHbarUnitOne,
+      scalePerCommonOmega,
+      denominatorTimesCommonOmega,
       populated: hbarUnitScaleCandidatePopulated,
       retainedScaleAccepted: false,
       retainedLimitation:
@@ -43890,7 +44184,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v28",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v30",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -43983,7 +44277,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v24",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v26",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -44579,6 +44873,31 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     energyAngularMomentumHbarScaleCandidateCount:
       equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
         ?.hbarScaleCandidateCount ?? null,
+    sigmaHbarScaleLawAuditSchema:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.sigmaHbarScaleLawAudit?.schema ?? null,
+    sigmaHbarScaleLawStatus:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.sigmaHbarScaleLawAudit?.status ?? null,
+    sigmaHbarUniversalConstantScalePass:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.sigmaHbarScaleLawAudit?.universalConstantScalePass ?? null,
+    sigmaHbarFrequencyLinearScaleLawPass:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.sigmaHbarScaleLawAudit?.frequencyLinearScaleLawPass ?? null,
+    sigmaHbarDenominatorOmegaInvariantPass:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.sigmaHbarScaleLawAudit?.denominatorOmegaInvariantPass ?? null,
+    sigmaHbarScaleLawProvenanceAuditSchema:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.sigmaHbarScaleLawAudit?.provenanceAudit?.schema ?? null,
+    sigmaHbarScaleLawProvenanceStatus:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.sigmaHbarScaleLawAudit?.provenanceAudit?.status ?? null,
+    sigmaHbarFrequencyLinearInducedByCurrentNormalizationPass:
+      equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
+        ?.sigmaHbarScaleLawAudit?.provenanceAudit
+        ?.frequencyLinearInducedByCurrentNormalizationPass ?? null,
     retainedEnergyStationarityPassCount:
       equalFrequencyEnergyRadiusAudit.energyAngularMomentumClosureAudit
         ?.retainedEnergyStationarityPassCount ?? null,
@@ -45011,6 +45330,33 @@ function printSummary(report, absoluteOutputPath) {
           `retainedJ=${energyAngularMomentumClosureAudit.retainedSameEventAngularMomentumPassCount}`,
         ].join(" ")
       );
+      const sigmaHbarScaleLawAudit =
+        energyAngularMomentumClosureAudit.sigmaHbarScaleLawAudit ?? null;
+      if (sigmaHbarScaleLawAudit) {
+        console.log(
+          [
+            "sigma-hbar scale law:",
+            sigmaHbarScaleLawAudit.status,
+            `constant=${sigmaHbarScaleLawAudit.universalConstantScalePass}`,
+            `frequencyLinear=${sigmaHbarScaleLawAudit.frequencyLinearScaleLawPass}`,
+            `denomOmegaInvariant=${sigmaHbarScaleLawAudit.denominatorOmegaInvariantPass}`,
+          ].join(" ")
+        );
+        const provenanceAudit = sigmaHbarScaleLawAudit.provenanceAudit ?? null;
+        if (provenanceAudit) {
+          console.log(
+            [
+              "sigma-hbar provenance:",
+              provenanceAudit.status,
+              `rhoOmegaInvariant=${provenanceAudit.roleLeverArmOmegaInvariantPass}`,
+              `muInvariant=${provenanceAudit.relativeEffectiveInertiaInvariantPass}`,
+              `weightOmega2Invariant=${provenanceAudit.targetWeightOmegaSquaredInvariantPass}`,
+              `induced=${provenanceAudit.frequencyLinearInducedByCurrentNormalizationPass}`,
+              `retainedScaleAccepted=${provenanceAudit.retainedBranchScaleLawAcceptedCount}`,
+            ].join(" ")
+          );
+        }
+      }
     }
     const phaseDeformationBalanceAudit =
       equalFrequencyAudit.phaseDeformationBalanceAudit ?? null;
@@ -45374,6 +45720,17 @@ function createFiniteStats(values) {
     mean: finiteValues.reduce((total, value) => total + value, 0) / finiteValues.length,
     maxAbs: Math.max(...finiteValues.map((value) => Math.abs(value))),
   };
+}
+
+function finiteStatsConstantPass(stats, expectedCount) {
+  return (
+    Number.isFinite(expectedCount) &&
+    expectedCount > 0 &&
+    stats?.count === expectedCount &&
+    Number.isFinite(stats.min) &&
+    Number.isFinite(stats.max) &&
+    Math.abs(stats.max - stats.min) <= ROOT_TOLERANCE
+  );
 }
 
 function formatSignatureNumber(value) {
