@@ -865,7 +865,7 @@ The clearest falsifier would be a precise, multi-probe data set showing that bla
 This chapter centralizes the black-hole ontology and hands specific tasks to adjacent chapters.
 
 - [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition and singularity replacement language.
-- [gr-phenomenology.md](./gr-phenomenology.md): weak-field and strong-field observational closure targets.
+- [general-relativity.md](./general-relativity.md): weak-field and strong-field observational closure targets.
 - [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md): nested shell braid regime map, recycling sketches, and kinematic hypotheses.
 - [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md): Planck-alignment interpretation of terminal horizon locking.
 - [../cosmology/dark-energy.md](../cosmology/dark-energy.md): effective dark-energy source terms and late-time expansion history.

@@ -1,4 +1,4 @@
-# General Relativity Observables
+# General Relativity
 
 This chapter is the observer-facing checklist for the spacetime branch. Its purpose is to say, in one place, which general-relativistic observables must be matched by the constitutive medium picture and where the framework is allowed to differ only after that closure is secured.
 

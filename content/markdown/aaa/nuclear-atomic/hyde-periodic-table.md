@@ -1,4 +1,4 @@
-# Hyde Periodic Table: Structural Periodicity and Geometric Representation
+# Hyde Periodic Table
 
 [Open the interactive Hyde Periodic Table](../../../scenes/chemistry/hyde_periodic_table_scene.json).
 

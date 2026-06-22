@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "dynamics__kinetic_and_potential_energy",
-    "title": "Kinetic and Potential Energy",
+    "title": "Energy",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

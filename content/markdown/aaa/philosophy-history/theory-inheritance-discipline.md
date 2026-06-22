@@ -8,7 +8,7 @@ failing to identify the substrate mechanism that produces the result.
 
 The discipline here sits between the broad survey in [Theory Mapping](theory-mapping.md),
 the classification catalog in [Theory Differentials](theory-differentials.md),
-and the detailed per-framework mappings in [Theory Bridges](theory-bridges/README.md).
+and the detailed per-framework mappings in [Theory Bridges](theory-bridges.md).
 It does not own the substrate ontology, the Master Equation of Motion, assembly
 definitions, validation gates, or parameter ledgers. Its job is to prevent
 inherited concepts from entering the corpus with more authority than they have
@@ -398,7 +398,7 @@ catalog. It locates each concept in the comparative stack and the
 $\mathbb{A}\mathbb{A}\mathbb{A}$ stack, names its relation type, and records the
 mapping target.
 
-[Theory Bridges](theory-bridges/README.md) should remain the detailed bridge
+[Theory Bridges](theory-bridges.md) should remain the detailed bridge
 lane. A bridge may use this chapter's transfer record to keep its mathematical
 handoff disciplined, but the bridge still has to point back to the domain
 chapters that own the underlying mechanism.

@@ -51,8 +51,8 @@
         "binary_dynamics": "Binary Dynamics",
         "causal_action_functional": "Causal Action Functional",
         "effective_lagrangian": "Effective Lagrangian",
-        "kinetic_and_potential_energy": "Kinetic and Potential Energy",
-        "master_equation_of_motion": "Master Equation of Motion",
+        "kinetic_and_potential_energy": "Energy",
+        "master_equation_of_motion": "Master Equation",
         "proof_programs": "Proof Programs",
         "dyadic_resonance_lock": "Dyadic Resonance Lock"
       }
@@ -69,7 +69,7 @@
         "constructing_the_absolute_frame": "Constructing the Absolute Frame",
         "emergence_of_structure": "Emergence of Structure",
         "euclidean_void": "Euclidean Void",
-        "foundational_ontology": "Foundational Ontology"
+        "foundational_ontology": "Ontology"
       }
     },
     "content/scenes/archie/archie.json": {

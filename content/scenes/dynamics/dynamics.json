@@ -59,18 +59,18 @@
   "objects": [
     {
       "id": "master_equation_of_motion",
-      "title": "Master Equation of Motion",
+      "title": "Master Equation",
       "radius": 2.688,
       "color": "#1c2a4f",
-      "labelTitle": "Master Equation of Motion",
+      "labelTitle": "Master Equation",
       "labelBadge": "doc"
     },
     {
       "id": "kinetic_and_potential_energy",
-      "title": "Kinetic and Potential Energy",
+      "title": "Energy",
       "radius": 2.688,
       "color": "#4b0082",
-      "labelTitle": "Kinetic and Potential Energy",
+      "labelTitle": "Energy",
       "labelBadge": "doc"
     },
     {

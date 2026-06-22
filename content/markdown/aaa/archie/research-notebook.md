@@ -349,12 +349,12 @@ The note gives a brief working taxonomy. `Scene-Index` is the structural organiz
 
 ## 2026-03-07 Hyde Periodic Table
 
-The Hyde periodic table became a meaningful part of the project’s reader-facing structure. The repo now includes both a dedicated [Hyde periodic-table scene config](../../../scenes/chemistry/hyde_periodic_table_scene.json) and a supporting [Hyde analysis note](../nuclear-atomic/hyde-info.md).
+The Hyde periodic table became a meaningful part of the project’s reader-facing structure. The repo now includes both a dedicated [Hyde periodic-table scene config](../../../scenes/chemistry/hyde_periodic_table_scene.json) and a supporting [Hyde analysis note](../nuclear-atomic/hyde-periodic-table.md).
 
 Relevant files:
 
-- [Hyde geometry and periodic structure](../nuclear-atomic/hyde-info.md#how-the-hyde-geometry-encodes-periodic-structure)
-- [Hyde working hypotheses](../nuclear-atomic/hyde-info.md)
+- [Hyde geometry and periodic structure](../nuclear-atomic/hyde-periodic-table.md#how-the-hyde-geometry-encodes-periodic-structure)
+- [Hyde working hypotheses](../nuclear-atomic/hyde-periodic-table.md)
 - [Periodic-table navigation and controls](navigation-and-controls.md#periodic-table-scene)
 
 What matters about the Hyde form is not only its historical novelty. It is a spiral layout that works well for intuitive thinkers because it preserves a near-continuous path through atomic number while making shell progression and family resemblance visually legible in one sweep. In the current writeup, the Hyde geometry is treated as a structural representation that reduces the topological breaks of the detached rectangular table and makes periodic recurrence feel spatially continuous rather than block-fragmented.
