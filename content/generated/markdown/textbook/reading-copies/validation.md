@@ -4480,7 +4480,7 @@ A future closure packet becomes promotable only if:
 5. the product-screening audit does not collapse the completed hidden-variable record into $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$;
 6. failure cases are reported when the model reduces to classical-axis response, separable pair measure, product-screened pair provenance, context-independent GHZ values, forbidden Hardy events, setting-dependent provenance, or signaling marginals.
 
-#### Nested Shell Swarm Action-Increment Protocol
+#### Nested Shell Braid Action-Increment Protocol
 
 This protocol defines the simulation-facing test for deriving or falsifying the one-cycle action increment used by the quantum closure program. It specializes [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) and [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md) to the question left open by [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), and [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md).
 

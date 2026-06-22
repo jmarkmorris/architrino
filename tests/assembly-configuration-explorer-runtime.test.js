@@ -114,7 +114,7 @@ test("assembly explorer keeps group velocity as a branch-level transport row", (
   assert.equal(branch.seaRecord.regime, "weak-drift-diagnostic");
 });
 
-test("assembly explorer keeps eigen-swarm status out of the S3 layer key", () => {
+test("assembly explorer keeps eigen-braid status out of the S3 layer key", () => {
   const layers = [
     { layerId: "a", frequency: 3, radius: 1, energy: 1, phase: 0, normal: { x: 1, y: 0, z: 0 } },
     { layerId: "b", frequency: 1, radius: 1, energy: 1, phase: 0, normal: { x: 0, y: 1, z: 0 } },

@@ -97,5 +97,5 @@ function selectIdealSwarmSolverBridgeFactoryExport(moduleExports, options = {}) 
       return factory;
     }
   }
-  throw new TypeError("Ideal Swarm solver bridge WASM loader does not export a module factory.");
+  throw new TypeError("Ideal Braid solver bridge WASM loader does not export a module factory.");
 }

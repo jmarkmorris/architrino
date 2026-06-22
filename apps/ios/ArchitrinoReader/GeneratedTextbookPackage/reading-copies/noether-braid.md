@@ -1,6 +1,6 @@
-# Noether Swarm
+# Noether Braid
 
-## Noether Swarm
+## Noether Braid
 
 The **Noether braid** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether sea and particle-architecture program. A Noether braid is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos (positrinos) and three negative-polarity architrinos (electrinos) maintain a persistent causal-return ledger.
 
@@ -601,7 +601,7 @@ The Noether braid class supplies the structural scaffold used by the fermion pro
 
 The collective motion, or **group velocity**, of a Noether braid assembly determines its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that claim is developed in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md): volumetric Noether braid envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.
 
-## Nested Shell Swarm Dynamics
+## Nested Shell Braid Dynamics
 
 This chapter formulates nested shell braid dynamics by extending the two-body delayed causal-wake system to a nested shell braid with three coupled shell binaries. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
 
@@ -2670,7 +2670,7 @@ In the nested shell braid picture, each nested shell braid is a nested stack of 
 
 For the strong-field continuation of that story, see [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
 
-## Nested Shell Swarm Geometry
+## Nested Shell Braid Geometry
 
 This chapter is the canonical home for the geometric footprint of the nested shell braid: its dynamic exclusion envelope, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The nested shell braid scaffold itself belongs in [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md). The delayed dynamics that stabilize and deform the nested shell braid belong in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md).
 

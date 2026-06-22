@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "noether_swarm__overview",
-    "title": "Noether Swarm",
+    "title": "Noether Braid",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

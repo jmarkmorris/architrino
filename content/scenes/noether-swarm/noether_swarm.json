@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "noether_swarm",
-    "title": "Noether Swarm",
+    "title": "Noether Braid",
     "type": "Scene-Index",
     "units": "relative",
     "wrapLabels": true,
@@ -30,26 +30,26 @@
   "objects": [
     {
       "id": "noether_swarm_overview",
-      "title": "Noether Swarm",
+      "title": "Noether Braid",
       "radius": 2.05,
       "color": "#6c4f8d",
-      "labelTitle": "Noether Swarm",
+      "labelTitle": "Noether Braid",
       "labelBadge": "doc"
     },
     {
       "id": "nested_shell_swarm_dynamics",
-      "title": "Nested Shell Swarm Dynamics",
+      "title": "Nested Shell Braid Dynamics",
       "radius": 2.05,
       "color": "#3f6a5a",
-      "labelTitle": "Nested Shell Swarm Dynamics",
+      "labelTitle": "Nested Shell Braid Dynamics",
       "labelBadge": "doc"
     },
     {
       "id": "nested_shell_swarm_geometry",
-      "title": "Nested Shell Swarm Geometry",
+      "title": "Nested Shell Braid Geometry",
       "radius": 2.05,
       "color": "#2f4f7a",
-      "labelTitle": "Nested Shell Swarm Geometry",
+      "labelTitle": "Nested Shell Braid Geometry",
       "labelBadge": "doc"
     }
   ]

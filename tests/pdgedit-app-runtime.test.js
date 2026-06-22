@@ -54,41 +54,41 @@ function createMockParentElement() {
 test("reaction title compacts repeated AAA bracket groups", () => {
   assert.equal(
     compactPdgeditReactionTitle(
-      "+ [Pro Noether swarm+Anti Noether swarm+Pro Noether swarm+Anti Noether swarm]AAA"
+      "+ [Pro Noether braid+Anti Noether braid+Pro Noether braid+Anti Noether braid]AAA"
     ),
-    "+ 2x[Pro Noether swarm+Anti Noether swarm]AAA"
+    "+ 2x[Pro Noether braid+Anti Noether braid]AAA"
   );
 });
 
 test("reaction participant compaction collapses repeated sequences for summary rendering", () => {
   assert.deepEqual(
     compactPdgeditReactionParticipants([
-      { text: "Anti Noether swarm" },
-      { text: "Pro Noether swarm" },
-      { text: "Anti Noether swarm" },
-      { text: "Pro Noether swarm" },
+      { text: "Anti Noether braid" },
+      { text: "Pro Noether braid" },
+      { text: "Anti Noether braid" },
+      { text: "Pro Noether braid" },
     ]),
     {
       repeatCount: 2,
-      participants: ["Anti Noether swarm", "Pro Noether swarm"],
+      participants: ["Anti Noether braid", "Pro Noether braid"],
     }
   );
 });
 
 test("reaction title leaves non-repeated AAA groups unchanged", () => {
   assert.equal(
-    compactPdgeditReactionTitle("+ [Pro Noether swarm+Anti Noether swarm+Pro Up Quark]AAA"),
-    "+ [Pro Noether swarm+Anti Noether swarm+Pro Up Quark]AAA"
+    compactPdgeditReactionTitle("+ [Pro Noether braid+Anti Noether braid+Pro Up Quark]AAA"),
+    "+ [Pro Noether braid+Anti Noether braid+Pro Up Quark]AAA"
   );
 });
 
 test("reaction title compacts each repeated AAA group independently", () => {
   assert.equal(
     compactPdgeditReactionTitle(
-      "[Pro Noether swarm + Anti Noether swarm + Pro Noether swarm + Anti Noether swarm]AAA -> " +
+      "[Pro Noether braid + Anti Noether braid + Pro Noether braid + Anti Noether braid]AAA -> " +
         "[Pro Electron+Pro Electron]AAA"
     ),
-    "2x[Pro Noether swarm+Anti Noether swarm]AAA -> 2x[Pro Electron]AAA"
+    "2x[Pro Noether braid+Anti Noether braid]AAA -> 2x[Pro Electron]AAA"
   );
 });
 

@@ -2,7 +2,7 @@
 
 This document establishes the ontological and mathematical mapping between the traditional quantum mechanical concept of state superposition and the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$).
 
-It should be read alongside [Wavefunction Ontology](../../quantum/wavefunction-ontology.md), [Measurement Ontology](../../quantum/measurement-ontology.md), [Collapse Problem](./collapse-problem.md), and [Pilot-Wave Character](./pilot-wave-character.md).
+It should be read alongside [Wavefunction Ontology](../../quantum/wavefunction-ontology.md), [Measurement Ontology](../../quantum/measurement-ontology.md), [Measurement Problem and Collapse](./measurement-problem-and-collapse.md), and [Pilot-Wave Character](./pilot-wave-character.md).
 
 ### Traditional Quantum Mechanical View
 

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "substance_structure_potential",
-    "title": "Substance, Structure, and the Plenum of Potential",
+    "title": "Substance Structure and Potential",
     "type": "Scene-Markdown-Split",
     "units": "relative",
     "wrapLabels": true,

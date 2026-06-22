@@ -1944,7 +1944,7 @@
     },
     {
       "id": "theory_bridges__planck_scale_nested_shell_swarm_alignment",
-      "name": "Planck Scale Nested Shell Swarm Alignment",
+      "name": "Planck Scale Nested Shell Braid Alignment",
       "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
       "nodeType": "scene"
     },
@@ -1956,7 +1956,7 @@
     },
     {
       "id": "theory_bridges__special_relativity_noether_swarm",
-      "name": "Special Relativity and Deformable Noether Swarms",
+      "name": "Special Relativity and Deformable Noether Braids",
       "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
       "nodeType": "scene"
     },
@@ -1980,7 +1980,7 @@
     },
     {
       "id": "substance_structure_potential",
-      "name": "Substance, Structure, and the Plenum of Potential",
+      "name": "Substance Structure and Potential",
       "path": "content/scenes/philosophy_history/substance_structure_potential.json",
       "nodeType": "scene"
     },
@@ -2016,25 +2016,25 @@
     },
     {
       "id": "noether_swarm__nested_shell_swarm",
-      "name": "Nested Shell Swarm",
+      "name": "Nested Shell Braid",
       "path": "content/scenes/noether-swarm/nested_shell_swarm.json",
       "nodeType": "scene"
     },
     {
       "id": "noether_swarm__neutral_swarm",
-      "name": "Neutral Swarm",
+      "name": "Neutral Braid",
       "path": "content/scenes/noether-swarm/neutral_swarm.json",
       "nodeType": "scene"
     },
     {
       "id": "noether_swarm",
-      "name": "Noether Swarm",
+      "name": "Noether Braid",
       "path": "content/scenes/noether-swarm/noether_swarm.json",
       "nodeType": "scene"
     },
     {
       "id": "noether_swarm__shell_swarm",
-      "name": "Shell Swarm",
+      "name": "Shell Braid",
       "path": "content/scenes/noether-swarm/shell_swarm.json",
       "nodeType": "scene"
     },
@@ -2058,19 +2058,19 @@
     },
     {
       "id": "noether_swarm__nested_shell_swarm_dynamics",
-      "name": "Nested Shell Swarm Dynamics",
+      "name": "Nested Shell Braid Dynamics",
       "path": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
       "nodeType": "scene"
     },
     {
       "id": "noether_swarm__overview",
-      "name": "Noether Swarm",
+      "name": "Noether Braid",
       "path": "content/scenes/noether-swarm/noether_swarm_overview.json",
       "nodeType": "scene"
     },
     {
       "id": "noether_swarm__nested_shell_swarm_geometry",
-      "name": "Nested Shell Swarm Geometry",
+      "name": "Nested Shell Braid Geometry",
       "path": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
       "nodeType": "scene"
     },
@@ -2082,7 +2082,7 @@
     },
     {
       "id": "archie__ideal_swarm",
-      "name": "Ideal Noether Swarm: Lorentz Geometry App",
+      "name": "Ideal Noether Braid: Lorentz Geometry App",
       "path": "content/scenes/archie/ideal_swarm.json",
       "nodeType": "scene"
     },
@@ -2196,7 +2196,7 @@
     },
     {
       "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_swarm_action_increment_protocol",
-      "name": "Nested Shell Swarm Action-Increment Protocol",
+      "name": "Nested Shell Braid Action-Increment Protocol",
       "path": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
       "nodeType": "scene"
     },
@@ -2688,7 +2688,7 @@
     },
     {
       "id": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
-      "name": "Substance, Structure, and the Plenum of Potential",
+      "name": "Substance Structure and Potential",
       "path": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
       "nodeType": "markdown_doc"
     },
@@ -2711,12 +2711,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "name": "Measurement Problem and Collapse",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
       "name": "Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
@@ -2726,6 +2720,12 @@
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
       "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "name": "Measurement Problem and Collapse",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3304,7 +3304,7 @@
       "nodeId": "scene:content/scenes/archie/ideal_swarm.json",
       "nodeType": "scene",
       "id": "archie__ideal_swarm",
-      "name": "Ideal Noether Swarm: Lorentz Geometry App",
+      "name": "Ideal Noether Braid: Lorentz Geometry App",
       "path": "content/scenes/archie/ideal_swarm.json",
       "searchTarget": "content/scenes/archie/ideal_swarm.json",
       "implicit": false
@@ -5014,7 +5014,7 @@
       "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
       "nodeType": "scene",
       "id": "noether_swarm__nested_shell_swarm_dynamics",
-      "name": "Nested Shell Swarm Dynamics",
+      "name": "Nested Shell Braid Dynamics",
       "path": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
       "searchTarget": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
       "implicit": false
@@ -5023,7 +5023,7 @@
       "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
       "nodeType": "scene",
       "id": "noether_swarm__nested_shell_swarm_geometry",
-      "name": "Nested Shell Swarm Geometry",
+      "name": "Nested Shell Braid Geometry",
       "path": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
       "searchTarget": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
       "implicit": false
@@ -5032,7 +5032,7 @@
       "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm.json",
       "nodeType": "scene",
       "id": "noether_swarm__nested_shell_swarm",
-      "name": "Nested Shell Swarm",
+      "name": "Nested Shell Braid",
       "path": "content/scenes/noether-swarm/nested_shell_swarm.json",
       "searchTarget": "content/scenes/noether-swarm/nested_shell_swarm.json",
       "implicit": false
@@ -5041,7 +5041,7 @@
       "nodeId": "scene:content/scenes/noether-swarm/neutral_swarm.json",
       "nodeType": "scene",
       "id": "noether_swarm__neutral_swarm",
-      "name": "Neutral Swarm",
+      "name": "Neutral Braid",
       "path": "content/scenes/noether-swarm/neutral_swarm.json",
       "searchTarget": "content/scenes/noether-swarm/neutral_swarm.json",
       "implicit": false
@@ -5050,7 +5050,7 @@
       "nodeId": "scene:content/scenes/noether-swarm/noether_swarm_overview.json",
       "nodeType": "scene",
       "id": "noether_swarm__overview",
-      "name": "Noether Swarm",
+      "name": "Noether Braid",
       "path": "content/scenes/noether-swarm/noether_swarm_overview.json",
       "searchTarget": "content/scenes/noether-swarm/noether_swarm_overview.json",
       "implicit": false
@@ -5059,7 +5059,7 @@
       "nodeId": "scene:content/scenes/noether-swarm/noether_swarm.json",
       "nodeType": "scene",
       "id": "noether_swarm",
-      "name": "Noether Swarm",
+      "name": "Noether Braid",
       "path": "content/scenes/noether-swarm/noether_swarm.json",
       "searchTarget": "content/scenes/noether-swarm/noether_swarm.json",
       "implicit": false
@@ -5068,7 +5068,7 @@
       "nodeId": "scene:content/scenes/noether-swarm/shell_swarm.json",
       "nodeType": "scene",
       "id": "noether_swarm__shell_swarm",
-      "name": "Shell Swarm",
+      "name": "Shell Braid",
       "path": "content/scenes/noether-swarm/shell_swarm.json",
       "searchTarget": "content/scenes/noether-swarm/shell_swarm.json",
       "implicit": false
@@ -5293,7 +5293,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
       "nodeType": "scene",
       "id": "substance_structure_potential",
-      "name": "Substance, Structure, and the Plenum of Potential",
+      "name": "Substance Structure and Potential",
       "path": "content/scenes/philosophy_history/substance_structure_potential.json",
       "searchTarget": "content/scenes/philosophy_history/substance_structure_potential.json",
       "implicit": false
@@ -5365,7 +5365,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
       "nodeType": "scene",
       "id": "theory_bridges__planck_scale_nested_shell_swarm_alignment",
-      "name": "Planck Scale Nested Shell Swarm Alignment",
+      "name": "Planck Scale Nested Shell Braid Alignment",
       "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
       "searchTarget": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
       "implicit": false
@@ -5401,7 +5401,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
       "nodeType": "scene",
       "id": "theory_bridges__special_relativity_noether_swarm",
-      "name": "Special Relativity and Deformable Noether Swarms",
+      "name": "Special Relativity and Deformable Noether Braids",
       "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
       "searchTarget": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
       "implicit": false
@@ -6220,7 +6220,7 @@
       "nodeId": "scene:content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
       "nodeType": "scene",
       "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_swarm_action_increment_protocol",
-      "name": "Nested Shell Swarm Action-Increment Protocol",
+      "name": "Nested Shell Braid Action-Increment Protocol",
       "path": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
       "searchTarget": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
       "implicit": false
@@ -7039,7 +7039,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
-      "name": "Substance, Structure, and the Plenum of Potential",
+      "name": "Substance Structure and Potential",
       "path": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
       "implicit": false
@@ -7072,15 +7072,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "name": "Measurement Problem and Collapse",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
@@ -7096,6 +7087,15 @@
       "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "name": "Measurement Problem and Collapse",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
       "implicit": false
     },
     {
@@ -12880,7 +12880,7 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
       "field": "scene.source.path"

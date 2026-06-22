@@ -139,10 +139,10 @@
     },
     {
       "id": "special_relativity_noether_swarm",
-      "title": "Special Relativity and Deformable Noether Swarms",
+      "title": "Special Relativity and Deformable Noether Braids",
       "radius": 2.688,
       "color": "#4f5d75",
-      "labelTitle": "Special Relativity and Deformable Noether Swarms",
+      "labelTitle": "Special Relativity and Deformable Noether Braids",
       "labelBadge": "doc"
     },
     {
@@ -179,10 +179,10 @@
     },
     {
       "id": "planck_scale_nested_shell_swarm_alignment",
-      "title": "Planck Scale Nested Shell Swarm Alignment",
+      "title": "Planck Scale Nested Shell Braid Alignment",
       "radius": 2.688,
       "color": "#7a4a1f",
-      "labelTitle": "Planck Scale Nested Shell Swarm Alignment",
+      "labelTitle": "Planck Scale Nested Shell Braid Alignment",
       "labelBadge": "doc"
     }
   ]

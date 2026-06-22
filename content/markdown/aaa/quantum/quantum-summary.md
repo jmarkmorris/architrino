@@ -6,7 +6,7 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 
 - [pilot-wave-character.md](../philosophy-history/theory-bridges/pilot-wave-character.md): synthesis page for the effective wave picture, metastability, and substrate interpretation.
 - [measurement-ontology.md](./measurement-ontology.md): what a measurement event is at the ontological level.
-- [collapse-problem.md](../philosophy-history/theory-bridges/collapse-problem.md): finite-time separatrix-crossing replacement for collapse.
+- [measurement-problem-and-collapse.md](../philosophy-history/theory-bridges/measurement-problem-and-collapse.md): finite-time separatrix-crossing replacement for collapse.
 - [wavefunction-ontology.md](./wavefunction-ontology.md): wavefunction as effective basin-weight bookkeeping.
 - [superposition-mechanism.md](../philosophy-history/theory-bridges/superposition-mechanism.md): metastability, separatrices, and branch selection.
 - [fermi-dirac-and-bose-einstein-statistics.md](./fermi-dirac-and-bose-einstein-statistics.md): Fermi-Dirac and Bose-Einstein statistics as a nested shell braid geometry transition.

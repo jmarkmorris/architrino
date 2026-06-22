@@ -114,13 +114,13 @@
     },
     {
       "id": "pdf_snapshot_noether_swarm",
-      "title": "Noether Swarm",
+      "title": "Noether Braid",
       "radius": 1.55,
       "color": "#2f6b6f",
       "position": [-9.63, -3.65, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,
-      "labelTitle": "Noether Swarm",
+      "labelTitle": "Noether Braid",
       "labelBadge": "pdf",
       "source": {
         "type": "pdf",

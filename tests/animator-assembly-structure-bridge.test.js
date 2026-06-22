@@ -55,7 +55,7 @@ test("animator assembly bridge formats a human-readable core status string", () 
     }, {
       core: { binaries: [{}, {}, {}] },
     }),
-    "Noether swarm • full"
+    "Noether braid • full"
   );
   assert.equal(
     formatAnimatorAssemblyStructureStatus({
@@ -65,7 +65,7 @@ test("animator assembly bridge formats a human-readable core status string", () 
     }, {
       core: { binaries: [{}, {}, {}] },
     }),
-    "Noether swarm • 2/3 binaries"
+    "Noether braid • 2/3 binaries"
   );
 });
 

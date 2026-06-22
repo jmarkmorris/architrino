@@ -25,7 +25,7 @@ import {
 } from "../src/apps/ideal-swarm/IdealSwarmRuntime.js";
 import { createSolverBridgeLoopbackWorker } from "./solver-worker-loopback.mjs";
 
-test("Ideal Swarm model reuses three animator circular binaries", () => {
+test("Ideal Braid model reuses three animator circular binaries", () => {
   const model = createIdealSwarmModel({ THREE });
 
   assert.equal(model.binaries.length, 3);
@@ -50,7 +50,7 @@ test("Ideal Swarm model reuses three animator circular binaries", () => {
   );
 });
 
-test("standalone Ideal Swarm home navigation returns to the main webapp", () => {
+test("standalone Ideal Braid home navigation returns to the main webapp", () => {
   const assigned = [];
   const locationLike = {
     assign: (href) => assigned.push(href),
@@ -186,7 +186,7 @@ test("flight time bridge returns a positive emission delay", async () => {
   assert.equal(tau, expectedTau);
 });
 
-test("Ideal Swarm flight time can be routed through the solver app bridge for a linear source", async () => {
+test("Ideal Braid flight time can be routed through the solver app bridge for a linear source", async () => {
   const sourceStart = new THREE.Vector3(1, -0.5, 0.25);
   const sourceVelocity = new THREE.Vector3(0.2, 0.1, -0.05);
   const architrino = {
@@ -252,7 +252,7 @@ test("Ideal Swarm flight time can be routed through the solver app bridge for a 
   assert.ok(Math.abs(tau - expectedTau) < 1e-12);
 });
 
-test("Ideal Swarm flight time can create and dispose a solver bridge client", async () => {
+test("Ideal Braid flight time can create and dispose a solver bridge client", async () => {
   const sourceStart = new THREE.Vector3(0.4, -0.2, 0.1);
   const sourceVelocity = new THREE.Vector3(0.05, 0.1, -0.02);
   const architrino = {
@@ -296,7 +296,7 @@ test("Ideal Swarm flight time can create and dispose a solver bridge client", as
   assert.equal(disposed, true);
 });
 
-test("Ideal Swarm flight time can create and dispose a solver bridge worker client", async () => {
+test("Ideal Braid flight time can create and dispose a solver bridge worker client", async () => {
   const sourceStart = new THREE.Vector3(0.2, 0.1, -0.3);
   const sourceVelocity = new THREE.Vector3(0.04, -0.03, 0.02);
   const architrino = {
@@ -395,7 +395,7 @@ test("super-field profile expands the path-history span from solver circular sel
   assert.equal(bridgeProfile.solverEngineId, "architrino-solver-app-bridge");
 });
 
-test("Ideal Swarm circular self-hit span can be routed through the solver app bridge", async () => {
+test("Ideal Braid circular self-hit span can be routed through the solver app bridge", async () => {
   const runRequest = createIdealSwarmCircularSelfHitSpanRunRequest(1.2, {
     requestId: "ideal_self_hit_bridge_request",
     runId: "ideal_self_hit_bridge_run",
@@ -431,7 +431,7 @@ test("Ideal Swarm circular self-hit span can be routed through the solver app br
   assert.ok(Math.abs(span - expectedSpan) < 1e-12);
 });
 
-test("Ideal Swarm circular self-hit spans can be batched through the solver app bridge", async () => {
+test("Ideal Braid circular self-hit spans can be batched through the solver app bridge", async () => {
   const ratios = [1.2, 1.01, 0.8];
   const spans = [2.0534765827345125, 0, 0];
   const rows = await solveCircularSelfHitSpanRowsWithSolverBridge(ratios, {
@@ -453,7 +453,7 @@ test("Ideal Swarm circular self-hit spans can be batched through the solver app 
   assert.ok(Math.abs(rows[0].span - spans[0]) < 1e-12);
 });
 
-test("Ideal Swarm circular self-hit span can create and dispose a solver bridge client", async () => {
+test("Ideal Braid circular self-hit span can create and dispose a solver bridge client", async () => {
   const expectedSpan = 2.5;
   let disposed = false;
   const row = await solveCircularSelfHitSpanRowWithSolverBridge(1.35, {

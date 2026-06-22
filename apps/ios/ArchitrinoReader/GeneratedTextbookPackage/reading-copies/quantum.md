@@ -8,7 +8,7 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 
 - [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md): synthesis page for the effective wave picture, metastability, and substrate interpretation.
 - [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md): what a measurement event is at the ontological level.
-- [collapse-problem.md](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md): finite-time separatrix-crossing replacement for collapse.
+- [measurement-problem-and-collapse.md](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md): finite-time separatrix-crossing replacement for collapse.
 - [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md): wavefunction as effective basin-weight bookkeeping.
 - [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md): metastability, separatrices, and branch selection.
 - [fermi-dirac-and-bose-einstein-statistics.md](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md): Fermi-Dirac and Bose-Einstein statistics as a nested shell braid geometry transition.
@@ -496,7 +496,7 @@ Concrete hardware sketches, including a Rydberg-like He-Rb-He Switch, are illust
 
 This chapter states what the wavefunction is and is not within the framework. Its purpose is to relocate $\psi$ from fundamental ontic field status to an effective epistemic description while still explaining why standard quantum formalism remains operationally useful.
 
-Its nearest companion notes are [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Collapse Problem](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md), [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
+Its nearest companion notes are [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Measurement Problem and Collapse](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md), [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
 
 ### Purpose and Scope
 
@@ -2009,7 +2009,7 @@ for real record-forming interactions, even if that time becomes extremely short 
 
 ### Related Chapters
 
-- [collapse-problem.md](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md)
+- [measurement-problem-and-collapse.md](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md)
 - [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)
 - [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md)
 - [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)

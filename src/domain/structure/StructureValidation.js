@@ -109,7 +109,7 @@ function validateNoetherSwarmNode(node, errors) {
   const children = getStructureNodeChildren(node);
   const slotChildren = children.filter((child) => child?.kind === STRUCTURE_KINDS.SLOT);
   if (slotChildren.length !== 3) {
-    pushError(errors, "noether_swarm.slot_count", "Canonical Noether swarms must contain three slots.", node);
+    pushError(errors, "noether_swarm.slot_count", "Canonical Noether braids must contain three slots.", node);
     return;
   }
   const seen = new Set();

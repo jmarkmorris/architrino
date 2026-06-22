@@ -130,7 +130,7 @@ export async function solveCircularSelfHitSpanWithSolverBridge(fieldSpeedRatio, 
 export async function solveCircularSelfHitSpanRowWithSolverBridge(fieldSpeedRatio, options = {}) {
   const rows = await solveCircularSelfHitSpanRowsWithSolverBridge([fieldSpeedRatio], options);
   if (rows.length === 0) {
-    throw new Error("Ideal Swarm solver bridge response did not include a circular self-hit span row.");
+    throw new Error("Ideal Braid solver bridge response did not include a circular self-hit span row.");
   }
   return rows[0];
 }
@@ -168,7 +168,7 @@ async function runIdealSwarmSolverBridgeClient(options, fieldSpeedRatios, runReq
       deterministic: options.deterministic ?? true,
     },
     missingClientMessage:
-      "Ideal Swarm solver bridge request requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
+      "Ideal Braid solver bridge request requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
   });
 }
 
@@ -177,7 +177,7 @@ function extractCircularSelfHitSpanRows(runHandle = {}) {
   const geometry = response.geometry ?? response;
   const rows = Array.isArray(geometry.circularSelfHitSpans) ? geometry.circularSelfHitSpans : [];
   if (rows.length === 0) {
-    throw new Error("Ideal Swarm solver bridge response did not include a circular self-hit span row.");
+    throw new Error("Ideal Braid solver bridge response did not include a circular self-hit span row.");
   }
   return rows.map((row) => ({
     solverEngineId: IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID,

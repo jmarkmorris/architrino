@@ -24,7 +24,7 @@ test("pdgedit tile review lines tolerate missing sample counts for ordinary asse
   );
 });
 
-test("nested Noether swarm glyph tiles normalize as binary glyph bands", () => {
+test("nested Noether braid glyph tiles normalize as binary glyph bands", () => {
   const catalog = normalizePdgeditTileCatalog(readJson("src/apps/pdgedit/pdgedit-tiles.json"));
   const proNoetherSwarmGlyphTile = catalog.tiles.find((tile) => tile.key === "pro-noether-swarm-glyph");
 

@@ -90,7 +90,7 @@ const ASSEMBLY_TRANSVERSE_AXIS_V = new THREE.Vector3(
 );
 const IDEAL_SWARM_DOCS = {
   notes: {
-    name: "Ideal Swarm Guide",
+    name: "Ideal Braid Guide",
     markdownPath: "content/markdown/aaa/archie/ideal-swarm-guide.md",
     markdownColumns: 1,
   },
@@ -551,7 +551,7 @@ async function runIdealSwarmSolverBridgeClient(options, { factoryRequest, runReq
       deterministic: options.deterministic ?? true,
     },
     missingClientMessage:
-      "Ideal Swarm solver bridge request requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
+      "Ideal Braid solver bridge request requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
   });
 }
 
@@ -560,7 +560,7 @@ function extractIdealSwarmFlightTimeRow(runHandle = {}) {
   const geometry = response.geometry ?? response;
   const rows = Array.isArray(geometry.delayedPotentials) ? geometry.delayedPotentials : [];
   if (rows.length === 0) {
-    throw new Error("Ideal Swarm solver bridge response did not include a delayed-potential row.");
+    throw new Error("Ideal Braid solver bridge response did not include a delayed-potential row.");
   }
   return {
     solverEngineId: IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID,
@@ -858,7 +858,7 @@ function normalizeSolverSamplePoints(samplePoints) {
 function normalizeSolverArchitrinos(model) {
   const architrinos = Array.isArray(model?.architrinos) ? model.architrinos : [];
   if (architrinos.length === 0) {
-    throw new TypeError("Ideal Swarm potential sample request requires at least one architrino.");
+    throw new TypeError("Ideal Braid potential sample request requires at least one architrino.");
   }
   return architrinos;
 }

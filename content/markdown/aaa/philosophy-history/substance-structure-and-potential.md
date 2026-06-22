@@ -1,4 +1,4 @@
-# Substance, Structure, and the Plenum of Potential
+# Substance Structure and Potential
 
 ## Overview
 

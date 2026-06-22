@@ -87,10 +87,10 @@
     },
     {
       "id": "noether_swarm",
-      "title": "Noether Swarm",
+      "title": "Noether Braid",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "labelTitle": "Noether Swarm"
+      "labelTitle": "Noether Braid"
     },
     {
       "id": "spacetime",

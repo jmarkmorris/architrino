@@ -1003,7 +1003,7 @@ for real record-forming interactions, even if that time becomes extremely short 
 
 ## Related Chapters
 
-- [collapse-problem.md](../philosophy-history/theory-bridges/collapse-problem.md)
+- [measurement-problem-and-collapse.md](../philosophy-history/theory-bridges/measurement-problem-and-collapse.md)
 - [superposition-mechanism.md](../philosophy-history/theory-bridges/superposition-mechanism.md)
 - [wavefunction-ontology.md](./wavefunction-ontology.md)
 - [pilot-wave-character.md](../philosophy-history/theory-bridges/pilot-wave-character.md)

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_swarm_action_increment_protocol",
-    "title": "Nested Shell Swarm Action-Increment Protocol",
+    "title": "Nested Shell Braid Action-Increment Protocol",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

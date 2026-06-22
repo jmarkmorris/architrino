@@ -43,10 +43,10 @@
   "objects": [
     {
       "id": "ideal_swarm",
-      "title": "Ideal Noether Swarm",
+      "title": "Ideal Noether Braid",
       "radius": 2.2,
       "color": "#0f766e",
-      "labelTitle": "Ideal Noether Swarm",
+      "labelTitle": "Ideal Noether Braid",
       "labelBadge": ""
     },
     {

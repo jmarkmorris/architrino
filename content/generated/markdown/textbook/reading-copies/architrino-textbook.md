@@ -36681,9 +36681,9 @@ If planar bridge closure fails, those higher-level chapters must become more con
 - [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
 - [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md): downstream interpretation of planar branch selection once the planar bridge is mathematically under control.
 
-## Noether Swarm
+## Noether Braid
 
-### Noether Swarm
+### Noether Braid
 
 The **Noether braid** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether sea and particle-architecture program. A Noether braid is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos (positrinos) and three negative-polarity architrinos (electrinos) maintain a persistent causal-return ledger.
 
@@ -37284,7 +37284,7 @@ The Noether braid class supplies the structural scaffold used by the fermion pro
 
 The collective motion, or **group velocity**, of a Noether braid assembly determines its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that claim is developed in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md): volumetric Noether braid envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.
 
-### Nested Shell Swarm Dynamics
+### Nested Shell Braid Dynamics
 
 This chapter formulates nested shell braid dynamics by extending the two-body delayed causal-wake system to a nested shell braid with three coupled shell binaries. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
 
@@ -39353,7 +39353,7 @@ In the nested shell braid picture, each nested shell braid is a nested stack of 
 
 For the strong-field continuation of that story, see [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
 
-### Nested Shell Swarm Geometry
+### Nested Shell Braid Geometry
 
 This chapter is the canonical home for the geometric footprint of the nested shell braid: its dynamic exclusion envelope, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The nested shell braid scaffold itself belongs in [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md). The delayed dynamics that stabilize and deform the nested shell braid belong in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md).
 
@@ -58320,7 +58320,7 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 
 - [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md): synthesis page for the effective wave picture, metastability, and substrate interpretation.
 - [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md): what a measurement event is at the ontological level.
-- [collapse-problem.md](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md): finite-time separatrix-crossing replacement for collapse.
+- [measurement-problem-and-collapse.md](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md): finite-time separatrix-crossing replacement for collapse.
 - [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md): wavefunction as effective basin-weight bookkeeping.
 - [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md): metastability, separatrices, and branch selection.
 - [fermi-dirac-and-bose-einstein-statistics.md](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md): Fermi-Dirac and Bose-Einstein statistics as a nested shell braid geometry transition.
@@ -58808,7 +58808,7 @@ Concrete hardware sketches, including a Rydberg-like He-Rb-He Switch, are illust
 
 This chapter states what the wavefunction is and is not within the framework. Its purpose is to relocate $\psi$ from fundamental ontic field status to an effective epistemic description while still explaining why standard quantum formalism remains operationally useful.
 
-Its nearest companion notes are [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Collapse Problem](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md), [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
+Its nearest companion notes are [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Measurement Problem and Collapse](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md), [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
 
 #### Purpose and Scope
 
@@ -60321,7 +60321,7 @@ for real record-forming interactions, even if that time becomes extremely short 
 
 #### Related Chapters
 
-- [collapse-problem.md](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md)
+- [measurement-problem-and-collapse.md](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md)
 - [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)
 - [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md)
 - [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
@@ -70385,7 +70385,7 @@ A future closure packet becomes promotable only if:
 5. the product-screening audit does not collapse the completed hidden-variable record into $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$;
 6. failure cases are reported when the model reduces to classical-axis response, separable pair measure, product-screened pair provenance, context-independent GHZ values, forbidden Hardy events, setting-dependent provenance, or signaling marginals.
 
-##### Nested Shell Swarm Action-Increment Protocol
+##### Nested Shell Braid Action-Increment Protocol
 
 This protocol defines the simulation-facing test for deriving or falsifying the one-cycle action increment used by the quantum closure program. It specializes [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) and [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md) to the question left open by [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), and [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md).
 
@@ -72836,7 +72836,7 @@ Do not use this lane as the primary home for:
 
 #### Reading Order
 
-Start with [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) for a compact comparison of inherited frameworks. Use [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md) when a reader needs to know which inherited concepts are carried forward as mathematics, benchmarks, effective limits, or directional comparison pressure rather than as ontology. Use [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md) when a concept needs explicit stack placement and relation-type classification. Use [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) when a reader needs the philosophical distinction between primitive substance, causal wake structure, Euclidean void, Noether sea, and effective description. Use [Geometry and Ontology](../../../../markdown/aaa/philosophy-history/geometry-and-ontology.md) when a reader needs the distinction between fundamental Euclidean geometry, generated causal and assembly geometry, and recovered effective metric geometry. Use [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), and [Historical Context and Missed Opportunities](../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) to understand why closure targets matter. Use [Philosophy of Science](../../../../markdown/aaa/philosophy-history/philosophy-of-science.md), [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md), and [Agency and Internal Causation](../../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md) for methodological and interpretive discipline.
+Start with [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) for a compact comparison of inherited frameworks. Use [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md) when a reader needs to know which inherited concepts are carried forward as mathematics, benchmarks, effective limits, or directional comparison pressure rather than as ontology. Use [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md) when a concept needs explicit stack placement and relation-type classification. Use [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) when a reader needs the philosophical distinction between primitive substance, causal wake structure, Euclidean void, Noether sea, and effective description. Use [Geometry and Ontology](../../../../markdown/aaa/philosophy-history/geometry-and-ontology.md) when a reader needs the distinction between fundamental Euclidean geometry, generated causal and assembly geometry, and recovered effective metric geometry. Use [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), and [Historical Context and Missed Opportunities](../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) to understand why closure targets matter. Use [Philosophy of Science](../../../../markdown/aaa/philosophy-history/philosophy-of-science.md), [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md), and [Agency and Internal Causation](../../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md) for methodological and interpretive discipline.
 
 #### Local Discipline
 
@@ -72976,7 +72976,7 @@ Major thinkers and schools include Bertrand Russell, early and later Wittgenstei
 
 The core commitment is that scientific language must be answerable to logical discipline and use-context alike. Formal reconstruction clarifies what follows from what. Attention to language-games and practice clarifies how terms actually function in inquiry. What the subject gets right is that conceptual precision is not cosmetic. If one uses "vacuum" to mean both absence of matter and an actively structured sector, or "information" to mean both physical distinguishability and epistemic content, one has already loaded ontology into language before argument begins.
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$ this means that every central term must be role-stabilized. "Assembly" must not collapse into mere aggregate. "Causal delayed interaction" must not be confused with signaling folklore. "Emergent metric" must not be equated with merely approximate geometry unless the derivation really warrants that step. The substance-and-structure distinction developed in [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) is one example of this discipline: architrinos, wakes, void, medium, and effective fields must not be treated as interchangeable names for the same object. Analytic hygiene is therefore a real part of theory construction.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this means that every central term must be role-stabilized. "Assembly" must not collapse into mere aggregate. "Causal delayed interaction" must not be confused with signaling folklore. "Emergent metric" must not be equated with merely approximate geometry unless the derivation really warrants that step. The substance-and-structure distinction developed in [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) is one example of this discipline: architrinos, wakes, void, medium, and effective fields must not be treated as interchangeable names for the same object. Analytic hygiene is therefore a real part of theory construction.
 
 The same discipline applies to borderline classifications. A finite observation record can fail to locate a boundary without making the boundary ontologically indeterminate. If the native dynamics define a basin or separatrix, the first question is whether the declared Physical Observer access map and tolerance can distinguish the side of the boundary. In that case the ambiguity belongs to measurement access, not to the ontology, unless the model also shows that the proposed basin boundary is absent, unstable, or irrelevant to the observed transition.
 
@@ -73569,7 +73569,7 @@ The long-term relevance of this subject is as a **permanent principle of inferen
 
 Modern foundational physics carries a persistent tension between predictive success and conceptual clarity. The formal machinery is powerful, yet many of its deepest objects remain operationally effective without being ontologically settled.
 
-Companion bridge chapters for this map are [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), and [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md).
+Companion bridge chapters for this map are [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), and [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md).
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not a complaint about science failing. It is a diagnosis that several domains of modern physics may be mathematically mature while still being ontologically incomplete, mislocated, or over-interpreted.
 
@@ -74049,7 +74049,7 @@ Standard repairs include treating vacuum properties as field-theoretic state str
 
 ##### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether sea is the constitutive medium whose organized state is summarized as spacetime behavior at the observer level, and matter assemblies are higher-order organizations within the same constitutive world. The companion bridge [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) adds the further distinction between primitive architrino substance and causal wake structure. This does not recover an older medium theory by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, dynamical medium response, causal wake history, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether sea is the constitutive medium whose organized state is summarized as spacetime behavior at the observer level, and matter assemblies are higher-order organizations within the same constitutive world. The companion bridge [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) adds the further distinction between primitive architrino substance and causal wake structure. This does not recover an older medium theory by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, dynamical medium response, causal wake history, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
 
 ##### What Would Count As Resolution
 
@@ -74761,7 +74761,7 @@ The arrow problem also separates dynamical relaxation from measure-based typical
 
 #### Theory Mapping
 
-This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), and [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md).
+This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), and [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md).
 
 The document is organized as a matrix rather than a linear history. The first sections explain the comparison method; the later layers then group theories by assembly, spacetime, cosmology, and epistemic-observation roles.
 
@@ -74864,7 +74864,7 @@ $$
 S=\int d^4x\; \left(\frac{1}{2}\partial_\mu\phi\,\partial^\mu\phi
 -\frac{1}{2}m^2\phi^2 - V(\phi)\right)
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi(x)$ is a coarse-grained effective field describing collective wake and assembly behavior in the architrino/Noether sea system. Creation/annihilation operators encode observer-level association, dissociation, repartitioning, and normal-mode changes of assemblies, not ontic birth or death of architrinos and not fundamental quanta of a continuous field. For the underlying substance-structure distinction, see [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi(x)$ is a coarse-grained effective field describing collective wake and assembly behavior in the architrino/Noether sea system. Creation/annihilation operators encode observer-level association, dissociation, repartitioning, and normal-mode changes of assemblies, not ontic birth or death of architrinos and not fundamental quanta of a continuous field. For the underlying substance-structure distinction, see [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md).
 
 **What Still Works:** Quantum Field Theory (QFT) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model. Its precision comparisons with experiment, renormalized perturbation methods, lattice calculations where applicable, effective actions, and operator language are benchmark successes that any replacement must recover in the regimes where practitioners currently use them. That success does not by itself settle the ontology of continuum fields, vacuum structure, or creation and annihilation operators; it fixes a recovery burden.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, field operators, vacuum summaries, particle-number changes, symmetries, and couplings are treated as effective descriptors of assembly association, dissociation, normal-mode changes, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -81361,7 +81361,7 @@ Each mature bridge should include:
 
 - [Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md)
 - [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md)
-- [Measurement Problem and Collapse](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md)
+- [Measurement Problem and Collapse](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md)
 - [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)
 - [Relativistic Scalar Fields and the Klein-Gordon Equation](../../../../markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md)
 - [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
@@ -85990,7 +85990,7 @@ Detailed interface chapters:
 
 This document establishes the ontological and mathematical mapping between the traditional quantum mechanical concept of state superposition and the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$).
 
-It should be read alongside [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Collapse Problem](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
+It should be read alongside [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Measurement Problem and Collapse](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
 
 ###### Traditional Quantum Mechanical View
 
@@ -87324,7 +87324,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 
 The Bell claim therefore stops at the closure target and failure conditions. A completed account requires lower-level angular-momentum, Stern-Gerlach response, source-measure, and pair-provenance derivations before this chapter can report success or failure.
 
-##### Special Relativity and Deformable Noether Swarms
+##### Special Relativity and Deformable Noether Braids
 
 This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether braid assemblies. It is a mapping document: the canonical Noether braid geometry remains in [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), the canonical mass thesis remains in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
 
@@ -89304,7 +89304,7 @@ to satisfy $Z_{\mathrm{closure}}\le z_p$ at the chosen confidence level.
 Use the same overlap/holonomy machinery in the lepton-neutral sector with a different internal Hamiltonian and weaker exterior coupling. The detailed lepton closure model is integrated in:
 - [assemblies/fermions/neutrinos.md](../../../../markdown/aaa/assemblies/fermions/neutrinos.md)
 
-##### Planck Scale Nested Shell Swarm Alignment
+##### Planck Scale Nested Shell Braid Alignment
 
 This chapter treats the Planck scale as an exploratory alignment-horizon problem for the nested shell braid rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed nested shell braid sector, then test which parts survive once full closure conditions are imposed.
 
@@ -89857,7 +89857,7 @@ For the Euclidean void, the invariant is flat spatial metric structure: $\partia
 
 This gives the philosophy-history lane a clean answer to the original worry. $\mathbb{A}\mathbb{A}\mathbb{A}$ is geometric, but it is not geometrically naive. It treats geometry as a layered explanatory instrument and refuses to let an effective observer geometry replace the substrate generator it is supposed to recover.
 
-### Substance, Structure, and the Plenum of Potential
+### Substance Structure and Potential
 
 #### Overview
 
@@ -92566,7 +92566,7 @@ then the available information has not selected one ontology. The prediction may
 
 ##### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is best classified as **useful but mislocated**. Informational language is highly useful for tracking state discrimination, path-history dependence, entropy-like summaries, and measurement-limited access to the world. It is not, however, the right primitive layer. $\mathbb{A}\mathbb{A}\mathbb{A}$ begins from substrate entities, causal delayed interactions, and assembly organization. Information then appears as a derivative description of how those organized states differ, persist, and can be interrogated. The distinction is sharpened in [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md): path history may be reconstructible in a calculation without becoming a stored informational substance spread through the void.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is best classified as **useful but mislocated**. Informational language is highly useful for tracking state discrimination, path-history dependence, entropy-like summaries, and measurement-limited access to the world. It is not, however, the right primitive layer. $\mathbb{A}\mathbb{A}\mathbb{A}$ begins from substrate entities, causal delayed interactions, and assembly organization. Information then appears as a derivative description of how those organized states differ, persist, and can be interrogated. The distinction is sharpened in [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md): path history may be reconstructible in a calculation without becoming a stored informational substance spread through the void.
 
 Its transition relevance is therefore high but bounded. During theory transition, informational ontology is useful because it already supplies a mature vocabulary for discussing encoding, loss, compression, and inferential limitation. It helps prevent naive material pictures from ignoring state structure. But it should function as a bridge language, not as the replacement ontology itself. If used incautiously, it can repeat the error of treating the bookkeeping layer as the world.
 

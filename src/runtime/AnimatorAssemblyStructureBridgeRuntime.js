@@ -303,11 +303,11 @@ export function formatAnimatorAssemblyStructureStatus(summary = {}, assembly = n
   let label = "Assembly structure";
   if (slotCount > 0 || summary?.kindCounts?.noether_swarm > 0 || assembly?.core) {
     if (slotCount > 0 && binarySlotCount === slotCount) {
-      label = "Noether swarm • full";
+      label = "Noether braid • full";
     } else if (slotCount > 0) {
-      label = `Noether swarm • ${binarySlotCount}/${slotCount} binaries`;
+      label = `Noether braid • ${binarySlotCount}/${slotCount} binaries`;
     } else {
-      label = "Noether swarm";
+      label = "Noether braid";
     }
   } else if (subassemblyCount > 0) {
     label = `Composite • ${subassemblyCount} group${subassemblyCount === 1 ? "" : "s"}`;

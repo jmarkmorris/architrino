@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "noether_swarm__nested_shell_swarm_geometry",
-    "title": "Nested Shell Swarm Geometry",
+    "title": "Nested Shell Braid Geometry",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

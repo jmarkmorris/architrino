@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-22T05:10:48.351Z",
+  "generated_at": "2026-06-22T05:27:38.068Z",
   "total_links": 1538,
   "links": [
     {
@@ -4357,7 +4357,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/assemblies/fermions/electron.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4365,7 +4365,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/assemblies/particle-masses.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4373,7 +4373,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4381,7 +4381,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4389,7 +4389,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4397,7 +4397,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#self-hit-definition-and-diagnostics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4405,7 +4405,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4413,7 +4413,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4421,7 +4421,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4429,7 +4429,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4437,7 +4437,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4445,7 +4445,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4453,7 +4453,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/foundations/architrino.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4461,7 +4461,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4469,7 +4469,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4477,7 +4477,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4485,7 +4485,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4493,7 +4493,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4501,7 +4501,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4509,7 +4509,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4517,7 +4517,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-swarm/noether-swarm.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4525,7 +4525,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-swarm/noether-swarm.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4533,7 +4533,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-swarm/noether-swarm.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4541,7 +4541,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4549,7 +4549,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4557,7 +4557,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4565,7 +4565,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4573,7 +4573,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4581,7 +4581,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/black-holes.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4589,7 +4589,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/black-holes.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4597,7 +4597,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/emergent-metric.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4605,7 +4605,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/emergent-metric.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4613,7 +4613,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/emergent-metric.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4621,7 +4621,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/horizon-chirality.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4629,7 +4629,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4637,7 +4637,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4645,7 +4645,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4653,7 +4653,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/ppn-parameters.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4661,7 +4661,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4669,7 +4669,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4677,7 +4677,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/singularity-resolution.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4685,7 +4685,7 @@
     },
     {
       "sourceChapterId": "noether_swarm",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -6334,22 +6334,6 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md"
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md"
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -6394,6 +6378,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -7582,30 +7582,6 @@
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md"
-    },
-    {
-      "sourceChapterId": "quantum",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md"
-    },
-    {
-      "sourceChapterId": "quantum",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md"
-    },
-    {
-      "sourceChapterId": "quantum",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -7626,6 +7602,30 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md"
     },
     {
       "sourceChapterId": "quantum",

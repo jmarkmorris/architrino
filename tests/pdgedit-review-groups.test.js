@@ -109,7 +109,7 @@ test("standard fermion review rows use generation-trimmed polar tiles", () => {
   });
 });
 
-test("Noether swarm review rows show the shell and nested shell rows explicitly", () => {
+test("Noether braid review rows show the shell and nested shell rows explicitly", () => {
   const reviewGroups = normalizePdgeditReviewGroupCatalog(readJson("src/apps/pdgedit/pdgedit-review-groups.json"));
   const groupByKey = new Map(reviewGroups.singleRowGroups.map((group) => [group.key, group]));
 
@@ -181,7 +181,7 @@ test("quark color example groups use the standard quark title tiles and expected
   );
 });
 
-test("photon composite group starts with a pro Noether swarm row", () => {
+test("photon composite group starts with a pro Noether braid row", () => {
   const tileCatalog = normalizePdgeditTileCatalog(readJson("src/apps/pdgedit/pdgedit-tiles.json"));
   const reviewGroups = normalizePdgeditReviewGroupCatalog(readJson("src/apps/pdgedit/pdgedit-review-groups.json"));
   const groupByKey = new Map(reviewGroups.compositeGroups.map((group) => [group.key, group]));

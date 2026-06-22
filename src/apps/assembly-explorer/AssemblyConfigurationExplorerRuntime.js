@@ -493,7 +493,7 @@ export class AssemblyConfigurationExplorerRuntime {
       ["Energy", formatRatio(branch.ratios.energy)],
       ["Speed", formatRatio(branch.ratios.speed)],
       ["Group speed", formatNumber(branch.groupSpeed, 5)],
-      ["Eigen-swarm", branch.eigenSwarm.status],
+      ["Eigen-braid", branch.eigenSwarm.status],
       ["Axis", branch.axisAlignment.status],
       ["D_plane", formatNumber(branch.planeDeterminant, 5)],
       ["S3 key", branch.permutationCanonicalKey.slice(0, 44)],
