@@ -1,23 +1,23 @@
-# Noether Swarm Scaling and Packing Scaffold
+# Noether Braid Scaling and Packing Scaffold
 
-This priority packet captures the 2026-05-17 operator discussion on ideal Noether swarm scaling, outer-binary radius/speed equations, and same-level pool packing. It is priority material, not reader-facing canon. Its purpose is to preserve the concrete equations and proof burdens until the branch constants can be extracted from the Master Equation, dyadic-lock reduction, or a finite-$\eta$ simulation.
+This priority packet captures the 2026-05-17 operator discussion on ideal Noether braid scaling, outer-binary radius/speed equations, and same-level pool packing. It is priority material, not reader-facing canon. Its purpose is to preserve the concrete equations and proof burdens until the branch constants can be extracted from the Master Equation, dyadic-lock reduction, or a finite-$\eta$ simulation.
 
 ## Claim Level
 
 - **Status:** derivation scaffold.
-- **Main claim:** for a group-velocity-zero Noether swarm at integer rest level $N$, the fixed $Nh$ action ledger determines the outer product $r_O v_O\propto Nh$. It does not by itself determine separate functions $r_O(N)$ and $v_O(N)$.
+- **Main claim:** for a group-velocity-zero Noether braid at integer rest level $N$, the fixed $Nh$ action ledger determines the outer product $r_O v_O\propto Nh$. It does not by itself determine separate functions $r_O(N)$ and $v_O(N)$.
 - **Open burden:** the actual curve is not determined until the outer action share, rotational bookkeeping coefficient, speed closure, exclusion-threshold map, and delayed root-ledger balance are fixed on a branch chart. The former $r_O\propto Nh$ law is only the fixed-speed branch subcase.
-- **Promotion targets:** [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), [binary-dynamics.md](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [noether-swarm.md](../../../content/markdown/aaa/noether-swarm/noether-swarm.md), [nested-shell-swarm-geometry.md](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), and [noether-sea.md](../../../content/markdown/aaa/spacetime/noether-sea.md) after the constants and branch assumptions are certified.
+- **Promotion targets:** [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), [binary-dynamics.md](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [Noether Braid](../../../content/markdown/aaa/noether-swarm/noether-swarm.md), [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), and [noether-sea.md](../../../content/markdown/aaa/spacetime/noether-sea.md) after the constants and branch assumptions are certified.
 
 ## Notation Discipline
 
 Use $h$ here only for the fixed closed-cycle action unit. The branch-scaling variable is $A_N=Nh$, where $N$ is the integer action-unit count. Do not confuse $h$ with the history horizon used in proof-program files. If both appear in the same calculation, write $h_{\mathrm{act}}$ for closed-cycle action and $h_{\mathrm{mem}}$ for memory depth. A pool at one rest level has all cores at the same $N$; a scaling curve compares admissible rest levels $N$ along a branch.
 
-All kinematics below live in absolute time and Euclidean space. A Noether swarm center is a point $X_a(t)\in\Sigma_t$ attached to a reduced closure label, not the position of any one architrino.
+All kinematics below live in absolute time and Euclidean space. A Noether braid center is a point $X_a(t)\in\Sigma_t$ attached to a reduced closure label, not the position of any one architrino.
 
 ## Rest-Level Pool Scaling
 
-Let every Noether swarm in the ideal pool have group velocity zero and the same integer rest level $N$. The pool is homogeneous at that level; the scaling curve compares admissible rest levels along one branch.
+Let every Noether braid in the ideal pool have group velocity zero and the same integer rest level $N$. The pool is homogeneous at that level; the scaling curve compares admissible rest levels along one branch.
 
 For the outer binary, the action allocation is
 
@@ -96,7 +96,7 @@ v_O\propto N^{-1},
 f_O\propto N^{-3}.
 $$
 
-Those two subcases are diagnostics of different closure assumptions, not competing definitions of the Noether swarm.
+Those two subcases are diagnostics of different closure assumptions, not competing definitions of the Noether braid.
 
 ## Outer-Binary Action Equation
 
@@ -448,7 +448,7 @@ Thus a $1{:}2{:}4$ frequency lock does not by itself imply self-similar radii. S
 
 ## Exclusion Envelope and Centers
 
-The packing centers are the Noether swarm centers
+The packing centers are the Noether braid centers
 
 $$
 X_a(t)\in\Sigma_t,
@@ -549,7 +549,7 @@ $$
 
 ## Oblate Spheroid Packing Generalization
 
-For an oblate Noether swarm envelope with transverse radius $R_\perp$ and parallel radius $R_\parallel=\xi R_\perp$, the envelope volume is
+For an oblate Noether braid envelope with transverse radius $R_\perp$ and parallel radius $R_\parallel=\xi R_\perp$, the envelope volume is
 
 $$
 V_{\mathrm{env}}
@@ -677,9 +677,9 @@ n_{\max,X}^{\mathrm{obl}}
 }
 $$
 
-Here $\nu_{\mathrm{pack},0}$ is the chosen conversion from the branch cell units to normalized Noether swarm density. Equality is a lattice-cell replay assumption; the inequality is the support-function exclusion bound.
+Here $\nu_{\mathrm{pack},0}$ is the chosen conversion from the branch cell units to normalized Noether braid density. Equality is a lattice-cell replay assumption; the inequality is the support-function exclusion bound.
 
-The reference constants are not independent material knobs when the cell volume has already been nondimensionalized against the reference Noether swarm density. In that branch-normalized convention,
+The reference constants are not independent material knobs when the cell volume has already been nondimensionalized against the reference Noether braid density. In that branch-normalized convention,
 
 $$
 \widetilde V_{\mathrm{cell},X}^{\mathrm{sf}}
@@ -1005,7 +1005,7 @@ $$
 \in[0,1].
 $$
 
-This does not prove that the declared lattice is dynamically selected. It removes the direct scalar insertion of $e_X$ and $n_{\max,X}^{\mathrm{obl}}$ by tying both quantities to the oblate envelope, orientation record, contact network, and lattice-cell volume. The remaining proof burden is to derive $F_X$ or its certified $\beta_X$ interval, $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, and the exact shared compliance weights from the Noether swarm branch rather than from a mock material record.
+This does not prove that the declared lattice is dynamically selected. It removes the direct scalar insertion of $e_X$ and $n_{\max,X}^{\mathrm{obl}}$ by tying both quantities to the oblate envelope, orientation record, contact network, and lattice-cell volume. The remaining proof burden is to derive $F_X$ or its certified $\beta_X$ interval, $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, and the exact shared compliance weights from the Noether braid branch rather than from a mock material record.
 
 ## Energy-Closure Ambiguity to Resolve
 
@@ -1045,7 +1045,7 @@ or an equivalent layer-energy projection before using one energy variable in bot
 
 For a branch-chart calculation:
 
-1. Choose a reduced Noether swarm branch label $\Lambda_{\mathrm{NS}}$ and outer sublabel $\Lambda_O$.
+1. Choose a reduced Noether braid branch label $\Lambda_{\mathrm{NS}}$ and outer sublabel $\Lambda_O$.
 2. Declare whether $h$ means closed-cycle action $h_{\mathrm{act}}$ and reserve $h_{\mathrm{mem}}$ for memory depth.
 3. Extract or choose provisional values for
    $$
@@ -1078,7 +1078,7 @@ For a branch-chart calculation:
    $$
    R_{\mathrm{excl}}=\alpha_Or_O
    $$
-   in the spherical estimate, or to $(R_\perp,R_\parallel,\xi)$ through the Noether swarm geometry projection.
+   in the spherical estimate, or to $(R_\perp,R_\parallel,\xi)$ through the Noether braid geometry projection.
 7. Compute same-level pool packing:
    $$
    n_{\max}=\frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}
@@ -1091,7 +1091,7 @@ For a branch-chart calculation:
 - If $p_O^{(q)}$ changes, the action share has crossed a branch boundary or the chosen projection is not invariant.
 - If $\mathcal{B}_O$ changes discontinuously, the active causal-root ledger has changed.
 - If $\alpha_O$ depends strongly on energy or environment, the packing curve can differ from the outer-radius curve.
-- If the Noether swarm pool is oblate and orientation-correlated, equal-sphere close packing is the wrong center-density model.
+- If the Noether braid pool is oblate and orientation-correlated, equal-sphere close packing is the wrong center-density model.
 - If $\xi_X>1$, $z_X^{\mathrm{eff}}>12$, $\phi_X^{\mathrm{sf}}>1$, or any compliance weight leaves $[0,1]$, the oblate support-function replay has left the bounded packing scaffold and needs a separate branch-response derivation.
 - If the energy variable is not specified as $E_N$, $E_O$, or a layer projection, the energy scaling exponent cannot be trusted.
 

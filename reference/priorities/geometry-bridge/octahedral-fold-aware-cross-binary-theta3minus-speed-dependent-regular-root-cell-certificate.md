@@ -149,4 +149,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - direct quotient intervals for $R_G^{\mathrm{reg}}/y$ and $R_D^{\mathrm{reg}}/y^3$;
 - explicit open fold-pair quotient, full collar, `I1`, quadrature, and retention rows.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-cell-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-cell-certificate.test.js) validates schema, no-fixed-speed-window discipline, cell counts, endpoint signs, $F_\delta$ signs, quotient bounds, budget ratio, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-cell-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-cell-certificate.test.js) validates schema, no-fixed-speed-window discipline, cell counts, endpoint signs, $F_\delta$ signs, quotient bounds, budget ratio, overclaim rejection, and CLI write/validate behavior.

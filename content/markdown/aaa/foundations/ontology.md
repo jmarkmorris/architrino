@@ -10,7 +10,7 @@ This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\m
 
 1. **The Substrate** ([absolute time](./absolute-time.md), [Euclidean void](./euclidean-void.md), and [absolute timespace](./absolute-timespace.md))
 2. **The Fundamental Entity** ([architrino](./architrino.md): point transceiver of potential-bearing causal wakes)
-3. **The Physical Medium** ([Noether sea](../spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether swarm assemblies)
+3. **The Physical Medium** ([Noether sea](../spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether braid assemblies)
 4. **The Observer Framework** ([complete-state vs Physical Observer access](../spacetime/observer-framework.md))
 5. **Terminology Discipline** ([canonical level-aware terminology](../archie/terminology-usage.md))
 6. **Parameter Ledger** ([fundamental postulates vs derived quantities](../validation/parameter-ledger.md))
@@ -24,7 +24,7 @@ The same level discipline can be read through the canonical symbol map:
 | Level | Canonical variables or records | Owning chapters |
 |:---|:---|:---|
 | Substrate ontology | $t$, $\Sigma_t$, $h_{ij}$, $\mathbf{s}_a(t)$, $q_a$, causal-wake support | [Absolute Time](./absolute-time.md), [Euclidean Void](./euclidean-void.md), [Absolute Timespace](./absolute-timespace.md), [Architrino](./architrino.md) |
-| Assembly and medium behavior | assembly branch records, $\Lambda_{\text{NS}}$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\Sigma_{\text{sea}}(\mathbf{x},t)$, $\mathbf{u}_{\text{sea}}(\mathbf{x},t)$ | [Noether Swarm](../noether-swarm/noether-swarm.md), [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md), [Noether sea](../spacetime/noether-sea.md) |
+| Assembly and medium behavior | assembly branch records, $\Lambda_{\text{NS}}$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\Sigma_{\text{sea}}(\mathbf{x},t)$, $\mathbf{u}_{\text{sea}}(\mathbf{x},t)$ | [Noether Braid](../noether-swarm/noether-swarm.md), [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md), [Noether sea](../spacetime/noether-sea.md) |
 | Effective description | $A(\mathcal{N}_{\mathrm{sea}})$, $B_{ij}(\mathcal{N}_{\mathrm{sea}})$, $u^i_{\text{sea}}$, $g^{\text{eff}}_{\mu\nu}$, $\Phi_{\text{eff}}$ | [Emergent Metric](../spacetime/emergent-metric.md), [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), [Particle Masses](../assemblies/particle-masses.md) |
 | Observer inference | $\Pi_{\mathrm{obs}}:S(t)\to\bar S(t)$, Physical Observer records $\Theta_A^{(O,W)}$, detector and measurement records | [Observer Framework](../spacetime/observer-framework.md), [Wavefunction Ontology](../quantum/wavefunction-ontology.md), [Measurement Ontology](../quantum/measurement-ontology.md) |
 
@@ -74,7 +74,7 @@ For the factor-level specifications, see [Absolute Time](./absolute-time.md) and
 
 [Architrino](./architrino.md) is the canonical primitive-entity specification for $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level.
 
-The architrino is the sole primitive material substance of the theory. This does not make an isolated architrino a matter particle: rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties. Likewise, fermion and boson exchange behavior is an assembly-level recovery target rather than an inserted projector postulate: any effective antisymmetric or symmetric exchange label must be routed through a retained branch record, currently the ordered-frame spinor program and the nested shell swarm closure label $\Lambda_{\text{NS}}$, whose $\chi_c$ entry names the candidate topological carrier through ordered-frame chirality, $Wr_c$, or multi-component causal-writhe parity rather than a hand-selected exchange sign. Its intrinsic polarity is likewise not the full observer-level charge record. Electric, weak, color, and particle labels are effective bookkeeping to be recovered from assembly geometry and medium response. The emitted causal wake is not another primitive substance, but it is not unreal or merely verbal. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.
+The architrino is the sole primitive material substance of the theory. This does not make an isolated architrino a matter particle: rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties. Likewise, fermion and boson exchange behavior is an assembly-level recovery target rather than an inserted projector postulate: any effective antisymmetric or symmetric exchange label must be routed through a retained branch record, currently the ordered-frame spinor program and the nested shell braid closure label $\Lambda_{\text{NS}}$, whose $\chi_c$ entry names the candidate topological carrier through ordered-frame chirality, $Wr_c$, or multi-component causal-writhe parity rather than a hand-selected exchange sign. Its intrinsic polarity is likewise not the full observer-level charge record. Electric, weak, color, and particle labels are effective bookkeeping to be recovered from assembly geometry and medium response. The emitted causal wake is not another primitive substance, but it is not unreal or merely verbal. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.
 
 For an architrino $a$ with worldline $\mathbf{s}_a(t)$ on time domain $I_a$ and polarity $q_a$, the wake may be read schematically as a functional of that source history:
 $$
@@ -98,13 +98,13 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 4 (Architrino):** The architrino is the sole primitive entity of $\mathbb{A}\mathbb{A}\mathbb{A}$: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level. The set of architrino identities is fixed. Particles, effective fields, clock behavior, and emergent spacetime phenomena arise from architrino configurations, wake intersections, and assembly dynamics rather than from additional fundamental substances.
 
-For the full primitive-entity page, see [Architrino](./architrino.md). For the receiving-law derivation, see [Master Equation](../dynamics/master-equation.md). For assembly emergence, see [Emergence](./emergence.md) and [Noether Swarm](../noether-swarm/noether-swarm.md).
+For the full primitive-entity page, see [Architrino](./architrino.md). For the receiving-law derivation, see [Master Equation](../dynamics/master-equation.md). For assembly emergence, see [Emergence](./emergence.md) and [Noether Braid](../noether-swarm/noether-swarm.md).
 
 ---
 
 ## The Physical Medium (Noether Sea)
 
-[Noether sea](../spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether sea as the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void.
+[Noether sea](../spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether sea as the emergent physical medium formed by coupled neutral Noether braid assemblies occupying the Euclidean void.
 
 This section marks the first step away from primitive ontology. The Noether sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.
 
@@ -211,7 +211,7 @@ This Foundational Ontology defines:
 
 1. **The Substrate**: absolute time and Euclidean void organized as absolute timespace, the fixed non-dynamical product background.
 2. **The Fundamental Entity**: architrino as the fixed-identity primitive point transceiver with polarity and persistent identity.
-3. **The Physical Medium**: Noether sea as emergent physical content formed by coupled neutral Noether swarm assemblies inside the Euclidean void.
+3. **The Physical Medium**: Noether sea as emergent physical content formed by coupled neutral Noether braid assemblies inside the Euclidean void.
 4. **The Observer Framework**: complete-state bookkeeping versus Physical Observer access.
 5. **Terminology Discipline**: level-aware wording routed to the Archie canon.
 6. **Validation Routing**: parameters, closure burdens, and open questions routed to validation and branch chapters.

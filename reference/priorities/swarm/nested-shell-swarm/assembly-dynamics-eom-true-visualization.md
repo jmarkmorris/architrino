@@ -4,7 +4,7 @@ Promotion status: `priority-only`.
 
 Claim level: explanatory visualization scaffold. This packet assumes the master equation of motion is true for the purpose of visualizing assembly dynamics. It does not retain a branch, close a certificate, prove stability, or authorize migration into `content/markdown/aaa`.
 
-Related anchors: [nested-shell-swarm-model-card.md](nested-shell-swarm-model-card.md), [nested-shell-swarm-reduction-row.md](nested-shell-swarm-reduction-row.md), [Nested Shell Swarm Dynamics](../../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), and [Master Equation of Motion](../../../../content/markdown/aaa/dynamics/master-equation.md).
+Related anchors: [Nested Shell Braid Model Card](nested-shell-swarm-model-card.md), [Nested Shell Braid Reduction Row](nested-shell-swarm-reduction-row.md), [Nested Shell Braid Dynamics](../../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), and [Master Equation of Motion](../../../../content/markdown/aaa/dynamics/master-equation.md).
 
 ---
 
@@ -31,11 +31,11 @@ In electrical-engineering language, the assembly behaves like a coupled delay os
 - the causal wakes are the delayed feedback paths;
 - the active roots are the loop-delay events;
 - the shell phases are oscillator phases;
-- the nested shell swarm is a multi-loop delayed-feedback system whose loops must return coherently.
+- the nested shell braid is a multi-loop delayed-feedback system whose loops must return coherently.
 
 ## 3. Current Geometry
 
-The reader-facing nested shell swarm case uses six architrinos organized, when the exact-binary assumption is active, into three ordered shell binaries:
+The reader-facing nested shell braid case uses six architrinos organized, when the exact-binary assumption is active, into three ordered shell binaries:
 
 | Shell | Visualization role under `EOM=true` | Typical weak-stress behavior |
 | --- | --- | --- |
@@ -43,7 +43,7 @@ The reader-facing nested shell swarm case uses six architrinos organized, when t
 | Middle | Hinge and transfer layer | Near the $c_f$ separator scale, sensitive to branch changes |
 | Outer | Boundary and Noether sea interface | Largest radius, lowest cadence, strongest envelope projection |
 
-The binary language is a visualization convenience only when a binary partition has been declared. The broader neutral swarm model still starts from six labeled architrinos with three positive-polarity and three negative-polarity sites.
+The binary language is a visualization convenience only when a binary partition has been declared. The broader neutral braid model still starts from six labeled architrinos with three positive-polarity and three negative-polarity sites.
 
 ## 4. Motion Modes
 
@@ -86,7 +86,7 @@ Near a fold, wake arrivals can bunch together and produce a strong impulse-like 
 
 Each shell has a phase, but the useful phase is not just an angle on a drawn circle. It is the phase of the whole causal-return pattern: position, speed, active wake rows, and inter-layer timing.
 
-An idealized nested shell swarm visualization can use phases
+An idealized nested shell braid visualization can use phases
 
 $$
 \theta_I(t),\qquad \theta_M(t),\qquad \theta_O(t)
@@ -104,7 +104,7 @@ The integers are visualization labels for a repeat cycle unless the correspondin
 
 ### Nested Shell Behavior
 
-The nested shell swarm behaves like three coupled delay loops, not like three independent orbits.
+The nested shell braid behaves like three coupled delay loops, not like three independent orbits.
 
 - The inner shell supplies fast causal-history activity.
 - The middle shell transfers timing stress between inner and outer layers.
@@ -150,13 +150,13 @@ This packet may be used for:
 This packet may not be used as:
 
 - a retained-branch certificate;
-- a proof of nested shell swarm stability;
+- a proof of nested shell braid stability;
 - a proof of exact binary nesting;
 - a proof of mass, photon, spin, Lorentz, or observer-geometry recovery;
 - a replacement for active-root, Jacobian-floor, finite-memory, action, event, or stability rows.
 
 ## 7. Likely Reader-Facing Destination
 
-If this scaffold becomes stable enough for corpus prose, the most natural destination is a short explanatory subsection near the spiral-helical motion picture in [Nested Shell Swarm Dynamics](../../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md).
+If this scaffold becomes stable enough for corpus prose, the most natural destination is a short explanatory subsection near the spiral-helical motion picture in [Nested Shell Braid Dynamics](../../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md).
 
 Before promotion, it should be rewritten as reader-facing explanation and stripped of priority-side workflow language.

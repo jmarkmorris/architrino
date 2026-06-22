@@ -46,7 +46,7 @@ $$
 \frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
 $$
 
-Here $\Gamma_N=1$ marks the reference weak-sea cadence, while $\Gamma_N>1$ marks a locally slowed or stretched Noether sea core cadence. In a homogeneous Lorentz-closure branch, this factor should reduce to the appropriate moving-core deformation factor only after the Noether swarm geometry and clock extraction have been derived; schematically one expects $\Gamma_N\to(1-\beta_N^2)^{-1/2}$ in the validated limit.
+Here $\Gamma_N=1$ marks the reference weak-sea cadence, while $\Gamma_N>1$ marks a locally slowed or stretched Noether sea core cadence. In a homogeneous Lorentz-closure branch, this factor should reduce to the appropriate moving-core deformation factor only after the Noether braid geometry and clock extraction have been derived; schematically one expects $\Gamma_N\to(1-\beta_N^2)^{-1/2}$ in the validated limit.
 
 For a spectral transition family $X$, introduce three dimensionless factors:
 
@@ -212,7 +212,7 @@ This law is falsified if $\mathbf b_N$, $\mathbf p_X$, $D_v$, or $\mathcal R_{\m
 
 ### Noether-Core Equilibrium Transport Hypothesis
 
-A sharper candidate for the deep-space term is an equilibrium transport law over Noether swarm cadence states. The hypothesis is that most Noether sea cores interact primarily with neighboring Noether swarms, while photons, neutrinos, and stronger disturbances provide sparse probe or perturbation channels. If a representative core cadence is written as $\nu_N$, the local core energy scale is
+A sharper candidate for the deep-space term is an equilibrium transport law over Noether braid cadence states. The hypothesis is that most Noether sea cores interact primarily with neighboring Noether braids, while photons, neutrinos, and stronger disturbances provide sparse probe or perturbation channels. If a representative core cadence is written as $\nu_N$, the local core energy scale is
 
 $$
 E_N=h\nu_N.
@@ -220,7 +220,7 @@ $$
 
 Individual transitions may occur as $h$-scale ledger steps, while a large asynchronous population can still produce a smooth coarse-grained cadence drift. The single-core mechanism is cadence-scale retuning: an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction changes the closure ledger and is resolved by shifts in cadence, layer radii, envelope scale, envelope ratio, orientation, strain, or neighbor coupling. In the simplest fixed-speed estimate, $R_N\nu_N\approx\text{constant}$, so higher cadence implies a smaller representative scale and lower cadence implies a larger one.
 
-Let $f_N(\nu,\mathbf{x},t)$ denote the local distribution of Noether swarm cadence states. The cadence-space current should be interpreted as the ensemble flux
+Let $f_N(\nu,\mathbf{x},t)$ denote the local distribution of Noether braid cadence states. The cadence-space current should be interpreted as the ensemble flux
 
 $$
 J_\nu
@@ -420,7 +420,7 @@ The allowed difference between rows is the data-product context $\nu_i$, not a n
 - Absolute-record transport map: $\mathfrak{T}_X[\mathcal{S}_{X,E\to R}]=(\Gamma_{N,E},\Gamma_{N,R},B_X(E),D_v,Y_{X,E\to R})$ from one restricted $S(t)$ record containing the source branch, receiver branch, Noether sea cadence, medium flow, causal wakes, and photon path-history ledger relevant to the measured line; the path-rate row must use the same continuity-disciplined $\mathcal C_N[f_N]$ term in gravitational, relative-motion, and deep-space cases.
 - Cadence-scale retuning map: an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction maps one core closure label into another through $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}=(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$, with the ensemble average supplying the candidate current $J_\nu\sim f_N\langle\dot{\nu}_N\rangle_{\Delta A_{\mathrm{cyc}}=\pm h}$ and first estimate $J_\nu=\sum_\sigma f_N r_\sigma\Delta\nu_N^{(q,\sigma)}+O((\Delta\nu_N)^2\partial_\nu f_N)$.
 - Retuning-map toy fixture: `scripts/nested-shell-swarm/retuning-map-toy-model.mjs` with documentation in `content/markdown/aaa/validation/simulations/retuning-map-toy-model.md`; this fixture solves the linearized constrained compliance problem and reports branch speed gates plus net $J_\nu$.
-- Noether swarm equilibrium transport packet: $f_N(\nu,\mathbf{x},t)$, $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, $R_{\mathrm{eq}}[f_N]$, and the projection from that packet into $\alpha_{\mathrm{prop},X}$ through the fixed row $\Theta_X=(\mathbf b_N,\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$.
+- Noether braid equilibrium transport packet: $f_N(\nu,\mathbf{x},t)$, $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, $R_{\mathrm{eq}}[f_N]$, and the projection from that packet into $\alpha_{\mathrm{prop},X}$ through the fixed row $\Theta_X=(\mathbf b_N,\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$.
 - Cosmology acceptance vector: $(z,D_L,D_A,H(z),T_{\mathrm{CMB}},P(k),f\sigma_8)$.
 - Shared medium variables: $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and $\mathcal{M}_{\mathrm{sea}}^{ab}$.
 - Frame-consistency record for CMB, matter dipoles, supernova directionality, BAO anisotropy, and local $H_0$ scatter.
@@ -482,7 +482,7 @@ Uncertain claims staged for the next proof packet:
 - `cosmology.clock_signal_delay_split`: the same branch uses different first-order $\chi_{\text{sea}}$ responses for Shapiro delay and clock redshift without carrying $\Delta_\chi^{\mathrm{clk\text{-}sig}}$ as an explicit residual.
 - `cosmology.static_response_vector_underclosure`: candidate $(a_n,a_\chi,a_\lambda,a_R)$ vectors close one weak-field row while failing the endpoint, inverse clock-rate, row-inverse, or shared-delay constraints.
 - `cosmology.dark_energy_coefficient_split`: the dark-energy coefficient row fits a redshift slope but fails chromaticity, cadence, image-sharpness, or shared-state projection checks.
-- `cosmology.equilibrium_current_null`: the proposed Noether swarm equilibrium law relaxes to zero signed $J_\nu$ or cancels source terms, so it cannot supply an expansion-like path-rate contribution.
+- `cosmology.equilibrium_current_null`: the proposed Noether braid equilibrium law relaxes to zero signed $J_\nu$ or cancels source terms, so it cannot supply an expansion-like path-rate contribution.
 - `cosmology.retuning_continuum_leak`: a model treats discrete one-core $h$-scale retunings as smooth single-core frequency drift and loses the branch ledger needed to define $J_\nu$.
 - `cosmology.no_admissible_retuning`: the constrained retuning problem has no branch-admissible solution for $\Delta A_{\mathrm{cyc}}=\pm h$, so the proposed current must be treated as a branch transition, rejection event, or failed closure rather than a smooth equilibrium contribution.
 - `cosmology.gw_transport_overload`: gravitational-wave perturbation terms produce path-rate noise, dispersion, or beam variance above image-sharpness, timing, or gravitational-wave-speed tolerances.

@@ -13,7 +13,7 @@
 
 This file is the priority ledger for new single-page animation app ideas that teach critical $\mathbb{A}\mathbb{A}\mathbb{A}$ concepts.
 
-The queue favors app concepts that make the theory's native mechanisms visible: causal-delay interaction, path-history dependence, branch geometry, threshold crossing, Noether sea response, nested shell swarm structure, observer-level coarse-graining, and ledger closure.
+The queue favors app concepts that make the theory's native mechanisms visible: causal-delay interaction, path-history dependence, branch geometry, threshold crossing, Noether sea response, nested shell braid structure, observer-level coarse-graining, and ledger closure.
 
 ## Prioritization Rules
 
@@ -21,7 +21,7 @@ The queue favors app concepts that make the theory's native mechanisms visible: 
 - Prefer concepts where animation teaches something that prose alone handles poorly.
 - Prefer AAA-native mechanisms over standard-physics comparison apps unless the comparison directly exposes an AAA recovery target.
 - Keep apps candidate-level unless the underlying corpus already supplies a derivation.
-- Reuse existing visual grammar from Ideal Swarm, Photon, Animator, and solver diagnostics where possible.
+- Reuse existing visual grammar from Ideal Braid, Photon, Animator, and solver diagnostics where possible.
 
 ## Priority Queue
 
@@ -34,7 +34,7 @@ The queue favors app concepts that make the theory's native mechanisms visible: 
 7. `born_rule_basin_measure` - Born Rule As Basin Measure. Status: `idea`.
 8. `record_autonomy_restartability` - Record Autonomy And Restartability. Status: `idea`.
 9. `noether_sea_reversible_retuning` - Noether Sea Reversible Retuning. Status: `idea`.
-10. `nested_shell_swarm_exclusion` - Nested Shell Swarm Exclusion. Status: `idea`.
+10. `nested_shell_swarm_exclusion` - Nested Shell Braid Exclusion. Status: `idea`.
 11. `photon_surface_routing` - Photon Surface Routing. Status: `idea`.
 12. `clock_cadence_retuning` - Clock-Cadence Retuning. Status: `idea`.
 13. `two_way_signal_recovery` - Two-Way Signal Recovery. Status: `idea`.
@@ -224,17 +224,17 @@ Requirements:
 - Below threshold, show stress return with no net heating channel.
 - Above threshold, route energy into visible excitation, heating, radiation-like shedding, or branch transition.
 
-### 10. Nested Shell Swarm Exclusion
+### 10. Nested Shell Braid Exclusion
 
 Description:
 
-- Animate why volumetric nested shell swarm assemblies are candidates for exclusion-like behavior.
-- Contrast a 3D nested shell swarm envelope with a strongly oblated coherent planar-channel regime.
+- Animate why volumetric nested shell braid assemblies are candidates for exclusion-like behavior.
+- Contrast a 3D nested shell braid envelope with a strongly oblated coherent planar-channel regime.
 - Teach the proposed geometry distinction between fermionic effective exclusion and bosonic effective shared-state behavior.
 
 Visualization:
 
-- Use a central canvas with two nested shell swarm assemblies approaching the same effective state from opposite sides.
+- Use a central canvas with two nested shell braid assemblies approaching the same effective state from opposite sides.
 - Draw each nested shell as layered orbit traces inside a translucent dynamic exclusion envelope.
 - Animate overlap pressure by brightening the intersection volume and pushing the assemblies apart in volumetric mode.
 - Add an oblation slider that visibly flattens the orbital support toward a coherent planar channel.
@@ -242,7 +242,7 @@ Visualization:
 
 Requirements:
 
-- Show two nested shell swarm assemblies approaching the same effective state.
+- Show two nested shell braid assemblies approaching the same effective state.
 - Render volumetric exclusion envelopes and overlap pressure in the 3D-support mode.
 - Add an oblation control for the canonical ratio $\xi=R_{\parallel}/R_{\perp}$.
 - Switch into a coherent planar-channel mode when support becomes effectively two-dimensional.

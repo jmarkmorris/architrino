@@ -256,7 +256,7 @@ The executable diagnostic [octahedral-period-rescaled-trace-scan.mjs](../../../s
 
 The successor executables [octahedral-period-rescaled-fold-chart.mjs](../../../scripts/neutral-swarm/octahedral-period-rescaled-fold-chart.mjs), [octahedral-fold-aware-multiroot-period-integral.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-multiroot-period-integral.mjs), and [octahedral-fold-aware-zero-bracket-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-zero-bracket-certificate.mjs) own the analytic fold-onset refinement, sampled fold-aware zero bracket, and sign-certified zero bracket.
 
-The companion test [neutral-swarm-octahedral-period-rescaled-trace-scan.test.js](../../../tests/neutral-swarm-octahedral-period-rescaled-trace-scan.test.js) verifies simple-root positivity, root-ledger boundary detection, the analytic partner row, the fixed-$v$ scale law, CLI validation, and claim-level guards.
+The companion test [neutral-braid-octahedral-period-rescaled-trace-scan.test.js](../../../tests/neutral-swarm-octahedral-period-rescaled-trace-scan.test.js) verifies simple-root positivity, root-ledger boundary detection, the analytic partner row, the fixed-$v$ scale law, CLI validation, and claim-level guards.
 
 ## Retention Verdict
 

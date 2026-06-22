@@ -113,7 +113,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-i1-bracket-local-z
 - source-root preservation and term root-count signature checks;
 - explicit non-interval, non-critical-exhaustion, non-quadrature, and non-retention boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.test.js) verifies schema validation, predecessor composition, speed-window removal, endpoint and derivative-barrier values, root clearances, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.test.js) verifies schema validation, predecessor composition, speed-window removal, endpoint and derivative-barrier values, root clearances, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
 
 ## Claim Boundary
 

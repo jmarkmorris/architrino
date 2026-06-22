@@ -120,7 +120,7 @@ $$
 \texttt{I1.f1.critical-exhaustion-integration}.
 $$
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.test.js) validates predecessor consumption, no-fixed-speed-window discipline, complement-row emission, downstream overclaim rejection, and CLI validation.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.test.js) validates predecessor consumption, no-fixed-speed-window discipline, complement-row emission, downstream overclaim rejection, and CLI validation.
 
 ## Result
 

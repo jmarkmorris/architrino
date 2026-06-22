@@ -6,11 +6,11 @@ This chapter defines the current electron-assembly target for $\mathbb{A}\mathbb
 
 ## Current framing
 
-The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Noether Swarm](../../noether-swarm/noether-swarm.md), [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md), and [Weak Mixing Angle](./weak-mixing-angle.md).
+The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Noether Braid](../../noether-swarm/noether-swarm.md), [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md), and [Weak Mixing Angle](./weak-mixing-angle.md).
 
 ## Axial Inventory and Generation Core
 
-The electron uses the charged-fermion axial-layer rule in its lowest shielding-coherence class. The $e^-$ branch has a pro-nested shell swarm with full inner/middle/outer shielding support and a six-site axial inventory of $6E$. The $e^+$ branch is the charge-conjugate branch with axial inventory $6P$. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
+The electron uses the charged-fermion axial-layer rule in its lowest shielding-coherence class. The $e^-$ branch has a pro-nested shell braid with full inner/middle/outer shielding support and a six-site axial inventory of $6E$. The $e^+$ branch is the charge-conjugate branch with axial inventory $6P$. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
 
 The generation-core record is therefore not a new charge pattern. It is the shielding-coherence class of the same charged-lepton axial inventory:
 
@@ -34,7 +34,7 @@ The equality is a constraint on the mass-facing causal ledger: complete polarity
 
 ## Assembly and Detection Map
 
-The electron is not treated as a literal ontic-probability distribution. It is a coherent fermion assembly: a Noether swarm plus axial layer whose internal causal ledger remains localized enough to preserve identity, charge bookkeeping, and spin-statistical behavior. The diffuse object used in ordinary atomic language is an effective detection map for where that coherent assembly can resolve a record under a declared nuclear, apparatus, and Noether sea environment.
+The electron is not treated as a literal ontic-probability distribution. It is a coherent fermion assembly: a Noether braid plus axial layer whose internal causal ledger remains localized enough to preserve identity, charge bookkeeping, and spin-statistical behavior. The diffuse object used in ordinary atomic language is an effective detection map for where that coherent assembly can resolve a record under a declared nuclear, apparatus, and Noether sea environment.
 
 A compact local target is
 
@@ -61,7 +61,7 @@ Atomic orbitals are therefore recovery targets for coherent electron resonance, 
 
 An electron-level calculation should not begin with a fitted orbital probability density. The minimum native variables are:
 
-- the electron internal branch record $\mathcal{B}_e$, including Noether swarm geometry and axial-layer state;
+- the electron internal branch record $\mathcal{B}_e$, including Noether braid geometry and axial-layer state;
 - the nuclear source ledger $\mathcal{A}_{\mathrm{nuc}}$ and its causal-wake envelope;
 - the local Noether sea record $\theta_{\mathrm{sea}}^{(\ell)}$, including density, delay, cadence, and medium-response data at the chosen atomic window;
 - the apparatus or environmental projection $\Pi_{\mathrm{det}}$ that turns the branch ensemble into a finite record;
@@ -69,11 +69,11 @@ An electron-level calculation should not begin with a fitted orbital probability
 
 ## Weak-Reaction Provenance
 
-In weak reactions the electron is an outgoing or incoming charged assembly whose axial inventory and Noether swarm provenance must be accounted for explicitly. For a beta-family channel such as $d\to u\,e^-\,\bar\nu_e$, the $W^-$ corridor records the charged weak-coupling-triad transaction. It does not by itself identify the full source of the outgoing electron core and $6E$ axial inventory.
+In weak reactions the electron is an outgoing or incoming charged assembly whose axial inventory and Noether braid provenance must be accounted for explicitly. For a beta-family channel such as $d\to u\,e^-\,\bar\nu_e$, the $W^-$ corridor records the charged weak-coupling-triad transaction. It does not by itself identify the full source of the outgoing electron core and $6E$ axial inventory.
 
 A closed event record must therefore state:
 
-- which incoming assembly, local Noether sea content, or recruited neutral swarm material supplies the electron's Noether swarm provenance;
+- which incoming assembly, local Noether sea content, or recruited neutral braid material supplies the electron's Noether braid provenance;
 - how the $6E$ axial inventory is routed without violating charge, energy, momentum, angular momentum, or identity bookkeeping;
 - how the associated antineutrino branch inherits the neutral near-photon weak ledger rather than a charged-fermion axial layer;
 - and whether the observer-level beta rate and nuclear form factors are recovered without redefining the weak-coupling-triad exposure domain.
@@ -106,7 +106,7 @@ For the electron branch, the gate is conservative: any finite-size or Noether se
 
 ## Related Chapters
 
-- [noether-swarm.md](../../noether-swarm/noether-swarm.md)
+- [Noether Braid](../../noether-swarm/noether-swarm.md)
 - [particle-masses.md](../particle-masses.md)
 - [quantum-number-mapping.md](./quantum-number-mapping.md)
 - [muon-tau.md](./muon-tau.md)

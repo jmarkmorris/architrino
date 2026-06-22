@@ -1,12 +1,12 @@
 # Tri-Binary Configuration Space
 
-This chapter gives the general dynamics-facing search space for tri-binary Noether swarm candidates. It comes before any named configuration such as the dyadic `4:2:1` lock, an equal-frequency candidate, or a middle-hinge candidate. A tri-binary branch is first a three-layer retained state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
+This chapter gives the general dynamics-facing search space for tri-binary Noether braid candidates. It comes before any named configuration such as the dyadic `4:2:1` lock, an equal-frequency candidate, or a middle-hinge candidate. A tri-binary branch is first a three-layer retained state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
 
-This is a search architecture and theorem target, not a completed classification theorem. The goal is to find which regions of the tri-binary configuration space support stable retained branches in a Noether sea populated by like assemblies, identify which of those branches are eigen-swarm candidates, and then use those branches as the entry point for assembly topological charge, energy differentials, shielding, and accessory-architrino capture.
+This is a search architecture and theorem target, not a completed classification theorem. The goal is to find which regions of the tri-binary configuration space support stable retained branches in a Noether sea populated by like assemblies, identify which of those branches are eigen-braid candidates, and then use those branches as the entry point for assembly topological charge, energy differentials, shielding, and accessory-architrino capture.
 
 ## Scope Of The Hypothesis
 
-The tri-binary hypothesis is a decomposition strategy, not an exhaustion theorem. There may be stable Noether swarm configurations that do not admit a clean split into three persistent binary rows. The reason to study tri-binaries first is that three independent angular-momentum directions are enough to span the orientation data of Euclidean three-space. In that sense, a tri-binary is the minimal exact-binary decomposition that can test whether a stable assembly carries a full three-dimensional internal frame.
+The tri-binary hypothesis is a decomposition strategy, not an exhaustion theorem. There may be stable Noether braid configurations that do not admit a clean split into three persistent binary rows. The reason to study tri-binaries first is that three independent angular-momentum directions are enough to span the orientation data of Euclidean three-space. In that sense, a tri-binary is the minimal exact-binary decomposition that can test whether a stable assembly carries a full three-dimensional internal frame.
 
 This also means that the word `binary` names a retained angular-momentum row, not necessarily a perfectly circular two-body orbit at every instant. A certified row may have a conserved or slowly bounded angular-momentum ledger while the actual architrino paths on the retained support are quasiperiodic, braided, or chaotic. On such a row, $f_a$ is a return or winding frequency, $r_a$ is a characteristic lever arm, $s_a$ is a speed row or speed statistic, and $E_a$ is the retained branch-energy row. A circular carrier chart is the cleanest comparison case, not the only admissible path geometry.
 
@@ -29,9 +29,11 @@ D_{\mathrm{plane}}
 \hat{\mathbf n}_1 & \hat{\mathbf n}_2 & \hat{\mathbf n}_3
 \right].
 $$
-The branch is genuinely three-dimensional only when $D_{\mathrm{plane}}\ne0$. Near $|D_{\mathrm{plane}}|=1$, the three planes are close to mutually orthogonal. Near $D_{\mathrm{plane}}=0$, the tri-binary degenerates toward a coplanar or lower-dimensional support. This determinant is therefore a natural order parameter for the transition between a volumetric Noether swarm branch and a planar or horizon-aligned branch.
+The branch is genuinely three-dimensional only when $D_{\mathrm{plane}}\ne0$. Near $|D_{\mathrm{plane}}|=1$, the three planes are close to mutually orthogonal. Near $D_{\mathrm{plane}}=0$, the tri-binary degenerates toward a coplanar or lower-dimensional support. This determinant is therefore a natural order parameter for the transition between a volumetric Noether braid branch and a planar or horizon-aligned branch.
 
-The claim is not that every stable assembly must be an exact tri-binary. The broader [Noether swarm](../noether-swarm/noether-swarm.md) class permits six-body branches before exact binary grouping is certified. The tri-binary search is the minimal exact-binary architecture that can test full three-dimensional frame closure.
+This is a statement about a derived orientation frame, not a claim that the constituent architrino paths are axial. The actual six paths may be braided, quasiperiodic, chaotic, shell-supported, or otherwise noncircular while still emitting retained angular-momentum rows from which principal directions can be extracted. Axis language in this chapter therefore means a ledger or envelope direction derived from the branch record, not a primitive path pattern.
+
+The claim is not that every stable assembly must be an exact tri-binary. The broader [Noether braid](../noether-swarm/noether-swarm.md) class permits six-body branches before exact binary grouping is certified. The tri-binary search is the minimal exact-binary architecture that can test full three-dimensional frame closure.
 
 ## General Branch State
 
@@ -86,11 +88,13 @@ where $\mathbf{P}_{\mathfrak B}$ and $\mathbf{J}_{\mathfrak B}$ are the branch-t
 
 This distinction matters for the equivalence-principle and Lorentz-closure programs. In a validated low-energy regime, uniform group velocity should not become an observable composition-dependent force merely because two assemblies carry different internal plane orientations. That is an effective recovery target: the moving branch must retune its clock, ruler, and signal rows so that preferred-frame leakage stays below the declared bounds. It is not a reason to omit $\mathbf{V}_{\mathrm{grp}}$ from the dynamics. The correct statement is that $\mathbf{V}_{\mathrm{grp}}$ is a separate branch-transport variable whose observable leakage must be suppressed by common-channel closure.
 
-## Eigen-Swarm Candidates
+## Eigen-Braid Candidates
 
-An **eigen-swarm** is a theorem-target status for a Noether swarm branch, not a new primitive substance. A branch is an eigen-swarm candidate when its full retained record returns to itself under the delayed dynamics, up to declared symmetries. Since the dynamics are nonlinear and path-history dependent, `eigen` here means a relative fixed point or relative periodic orbit of the branch return map, not an eigenvector of a linear quantum operator.
+An **eigen-braid** is a theorem-target status for a Noether braid branch, not a new primitive substance. A branch is an eigen-braid candidate when its full retained record returns to itself under the delayed dynamics, up to declared symmetries. Since the dynamics are nonlinear and path-history dependent, `eigen` here means a relative fixed point or relative periodic orbit of the branch return map, not an eigenvector of a linear quantum operator.
 
-Let $P_T^{(\mathbf{V})}$ be the finite-memory return map over one branch period $T$, including translation by the branch group velocity $\mathbf{V}_{\mathrm{grp}}$. Let $\mathcal G_{\mathrm{sym}}$ contain only declared neutral symmetries such as global phase shift, rigid spatial rotation, translation of the response center, and permitted $S_3$ layer relabeling. A tri-binary branch $B_{3B}$ is an eigen-swarm candidate when there exists $g\in\mathcal G_{\mathrm{sym}}$ such that
+The retained record is not an arbitrary internal diary and it is not an arbitrary collection of architrinos. It is the finite branch chart for one Noether braid: the six-body polarity-neutral inventory of three positive-polarity and three negative-polarity architrinos, together with the path-history rows, causal-root ledger, wake-tail rows, energy/action rows, momentum and angular-momentum rows, phase data, plane-orientation data, response-center data, group-velocity row, and Noether sea record that can still affect the next delayed update of that same six-body branch. A path-history segment belongs to the retained record only while it can still enter a self-hit, partner-hit, wake-tail, boundary, or branch-return row on the declared memory window.
+
+Let $P_T^{(\mathbf{V})}$ be the finite-memory return map over one branch period $T$, including translation by the branch group velocity $\mathbf{V}_{\mathrm{grp}}$. Let $\mathcal G_{\mathrm{sym}}$ contain only declared neutral symmetries such as global phase shift, rigid spatial rotation, translation of the response center, and permitted $S_3$ layer relabeling. A tri-binary branch $B_{3B}$ is an eigen-braid candidate when there exists $g\in\mathcal G_{\mathrm{sym}}$ such that
 $$
 \mathcal R_{\mathrm{eig}}
 =
@@ -116,11 +120,11 @@ C_{\mathrm{obs}}
 C_{\mathrm{branch}}
 +O(\epsilon_{\mathrm{LV}}),
 $$
-when Lorentz closure applies. The export may dress energy-momentum, angular-momentum components, clock rates, and ruler geometry, but it does not define the eigen-swarm itself. Topological rows such as assembly topological charge remain branch-intrinsic invariants unless the branch crosses a fold, reconnection, or other declared surgery event.
+when Lorentz closure applies. The export may dress energy-momentum, angular-momentum components, clock rates, and ruler geometry, but it does not define the eigen-braid itself. Topological rows such as assembly topological charge remain branch-intrinsic invariants unless the branch crosses a fold, reconnection, or other declared surgery event.
 
-## Momentum And Axis Decomposition
+## Momentum And Principal-Direction Decomposition
 
-An eigen-swarm candidate should also say how its internal tri-binary rows align with the conserved momentum ledgers. A branch whose retained record returns but whose axes do not align with branch-total momentum and angular momentum remains a return-map candidate, not a promoted eigen-swarm. The branch-total momentum and angular momentum should be computed on the same finite window as the return map:
+An eigen-braid candidate should also say how its internal tri-binary rows align with the conserved momentum ledgers. A branch whose retained record returns but whose axes do not align with branch-total momentum and angular momentum remains a return-map candidate, not a promoted eigen-braid. The branch-total momentum and angular momentum should be computed on the same finite window as the return map:
 $$
 \mathbf{P}_{\mathfrak B}
 =
@@ -148,7 +152,7 @@ $$
 =
 \frac{\mathbf{J}_{\mathfrak B}}{\|\mathbf{J}_{\mathfrak B}\|}
 $$
-is the branch's total angular-momentum axis. The tri-binary plane normals $\hat{\mathbf n}_a$ should then be read as an internal axial decomposition of $\mathbf{J}_{\mathfrak B}$, not as arbitrary visual decoration. A simple diagnostic is the angular-momentum closure vector
+is the branch's total angular-momentum axis. The tri-binary plane normals $\hat{\mathbf n}_a$ should then be read as a principal-direction decomposition of $\mathbf{J}_{\mathfrak B}$, not as arbitrary visual decoration and not as a claim that the paths themselves lie on axes. A simple diagnostic is the angular-momentum closure vector
 $$
 \mathcal{R}_{J\mathrm{-axis}}
 =
@@ -169,7 +173,7 @@ $$
 \qquad
 R_{\parallel}\ \text{measured along }\hat{\mathbf e}_{P},
 $$
-while the same internal angular-momentum ledger remains retained. Thus the tri-binary picture is also a disciplined way to visualize an oblate spheroidal Noether swarm: the three retained rows decompose the internal angular momentum, while group velocity and total momentum select the moving-envelope axis.
+while the same internal angular-momentum ledger remains retained. Thus the tri-binary picture is also a disciplined way to visualize an oblate spheroidal Noether braid: the three retained rows decompose the internal angular momentum into principal directions, while group velocity and total momentum select the moving-envelope axis.
 
 ## Unordered Layer Semantics
 
@@ -251,7 +255,7 @@ This is not a signal-speed claim. The primitive causal wake still propagates at 
 
 ## Stability In A Sea Of Like Assemblies
 
-An isolated tri-binary return map is not enough for Noether swarm promotion. A retained branch must also remain stable when embedded in a Noether sea containing like assemblies. The relevant stability question is not only whether one branch closes, but whether a population of similar branches can coexist without destroying the retained ledgers.
+An isolated tri-binary return map is not enough for Noether braid promotion. A retained branch must also remain stable when embedded in a Noether sea containing like assemblies. The relevant stability question is not only whether one branch closes, but whether a population of similar branches can coexist without destroying the retained ledgers.
 
 For a candidate branch $B$ over a window $W$, write the stability target schematically as
 $$
@@ -271,9 +275,9 @@ Here $P_{\mathrm{root}}$ requires persistent causal-root ledgers with positive r
 
 The result of this search should be an atlas of stable regions in $\widetilde{\mathcal C}_{3B}$, not a single preferred row. Patterns may include dyadic locks, equal-frequency families, offset-hinge families, caustic-hinge families, planar degenerations, and mixed regimes where one or more layers run above $c_f$ while the whole assembly remains a retained delayed branch. If a stable region is $S_3$-symmetric, the atlas may also report the corresponding quotient-sector representative, but the unquotiented evidence should remain available.
 
-## Toward A Periodic Table Of The Noether Swarm
+## Toward A Periodic Table Of The Noether Braid
 
-The phrase "periodic table of the Noether swarm" names the classification program, not an already completed table. The proposed atlas should classify retained branches by:
+The phrase "periodic table of the Noether braid" names the classification program, not an already completed table. The proposed atlas should classify retained branches by:
 
 1. The compact assembly topological charge $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$ and its signed-degree refinement.
 2. The frequency, radius, energy, and speed ratios of $\mathcal{T}_{3B}$.
@@ -328,4 +332,4 @@ $$
 =
 \{B\in\widetilde{\mathcal C}_{3B}:f_1=f_2=f_3\}.
 $$
-Both rows are legitimate until the retained-branch certificates decide which, if either, survives. The general tri-binary search keeps the mathematics wide enough for the solver to discover stable configurations rather than forcing every stable Noether swarm into a preselected frequency pattern.
+Both rows are legitimate until the retained-branch certificates decide which, if either, survives. The general tri-binary search keeps the mathematics wide enough for the solver to discover stable configurations rather than forcing every stable Noether braid into a preselected frequency pattern.

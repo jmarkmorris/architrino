@@ -1,6 +1,6 @@
 # Structural-Integrity Common-Limit Theorem Packet
 
-This detailed priority file supports [nested shell swarm causal closure](nested-shell-swarm-causal-closure.md). It captures the proof route for the structural-integrity theorem target summarized in [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry) and stated as Theorem G in [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure).
+This detailed priority file supports [nested shell braid causal closure](nested-shell-swarm-causal-closure.md). It captures the proof route for the structural-integrity theorem target summarized in [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry) and stated as Theorem G in [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure).
 
 The compact theorem target is surfaced in the $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus through scene-backed chapters. The dependency graph, residual vector, and fail-closed failure map remain priority-only until an accepted retained branch can populate the rows.
 

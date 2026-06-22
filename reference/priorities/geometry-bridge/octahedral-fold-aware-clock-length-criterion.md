@@ -234,7 +234,7 @@ The executable diagnostic [octahedral-fold-aware-clock-length-criterion.mjs](../
 - the sampled profile-scan successor packet;
 - the non-retention verdict.
 
-The companion test [neutral-swarm-octahedral-fold-aware-clock-length-criterion.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-clock-length-criterion.test.js) verifies the symbolic criterion, supplied-profile evaluation, optional declared-window handling, CLI validation, and non-retention guards.
+The companion test [neutral-braid-octahedral-fold-aware-clock-length-criterion.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-clock-length-criterion.test.js) verifies the symbolic criterion, supplied-profile evaluation, optional declared-window handling, CLI validation, and non-retention guards.
 
 ## Promotion Decision
 

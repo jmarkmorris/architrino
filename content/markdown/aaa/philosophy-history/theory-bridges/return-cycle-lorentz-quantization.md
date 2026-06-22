@@ -1,8 +1,8 @@
 # Return-Cycle Lorentz Quantization
 
-This bridge gives a compact reader-facing account of the Lorentz milestone developed in the spacetime and Noether swarm chapters. Its preferred name is **Return-Cycle Lorentz Quantization**. The name is more precise than `quantized Lorentz factor` because the smooth observer-level Lorentz function is not replaced by a step function. The quantized object is the material realization of that function: a discrete admissible return-cycle branch of the Noether swarm causal-root ledger.
+This bridge gives a compact reader-facing account of the Lorentz milestone developed in the spacetime and Noether braid chapters. Its preferred name is **Return-Cycle Lorentz Quantization**. The name is more precise than `quantized Lorentz factor` because the smooth observer-level Lorentz function is not replaced by a step function. The quantized object is the material realization of that function: a discrete admissible return-cycle branch of the Noether braid causal-root ledger.
 
-The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Nested Shell Swarm Geometry](../../noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Swarms](./special-relativity-noether-swarm.md). For the interactive geometry surface, open [Ideal Noether Swarm: Lorentz Geometry App](../../../../../ideal-swarm.html).
+The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Nested Shell Braid Geometry](../../noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Braids](./special-relativity-noether-swarm.md). For the interactive geometry surface, open [Ideal Noether Braid: Lorentz Geometry App](../../../../../ideal-swarm.html).
 
 ## Naming And Scope
 
@@ -38,7 +38,7 @@ The bridge separates four levels:
 | Level | Role |
 | --- | --- |
 | Substrate ontology | Architrinos evolve in the Euclidean void under absolute time and delayed causal wakes. |
-| Assembly dynamics | A Noether swarm must close inner, middle, and outer binary return cycles through a causal-root ledger. |
+| Assembly dynamics | A Noether braid must close inner, middle, and outer binary return cycles through a causal-root ledger. |
 | Geometry projection | The outer-binary exclusion envelope exposes an oblate spheroidal envelope with shape ratio $\xi=R_{\parallel}/R_{\perp}$. |
 | Observer law | Physical Observers infer Lorentz contraction, clock dilation, and two-way signal invariance after branch averaging and Noether sea dressing. |
 
@@ -130,7 +130,7 @@ This is the direct Lorentz-to-geometry map.
 
 ## Oblate Spheroidal Envelope Projection
 
-The moving Noether swarm envelope is represented by an oblate spheroidal envelope,
+The moving Noether braid envelope is represented by an oblate spheroidal envelope,
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp}^2}
 +
@@ -249,7 +249,7 @@ O(\epsilon_{\mathrm{LV}})
 $$
 for every branch class admitted as stable clock/ruler material.
 
-This is the precise sense in which the Lorentz equation is quantized. The smooth curve remains the observer-level envelope. The Noether swarm implementation is discrete because each accepted material realization must be a closed causal-root ledger class.
+This is the precise sense in which the Lorentz equation is quantized. The smooth curve remains the observer-level envelope. The Noether braid implementation is discrete because each accepted material realization must be a closed causal-root ledger class.
 
 ## All-Layer Closure Burden
 
@@ -306,7 +306,7 @@ The geometry projection is then the visible part of the sequence
 $$
 \text{one-}h\text{ action transaction}
 \longrightarrow
-\text{nested shell swarm branch update}
+\text{nested shell braid branch update}
 \longrightarrow
 \text{outer-envelope oblation}
 \longrightarrow
@@ -349,4 +349,4 @@ then the bridge fails. The theory must not tune the ruler, clock, momentum, and 
 
 Return-Cycle Lorentz Quantization is a derivation and simulation target, not a completed theorem. The current corpus has the closed-return axis-ratio derivation, the geometry projection, and the all-layer branch ledger scaffold. The next closure step is to solve an explicit translating branch family from the master delayed law, extract $\mathcal{L}_{\mathrm{root}}^{(q)}(v)$, and verify that the same branch gives the clock factor, ruler factor, and two-way leakage bound.
 
-If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether swarm geometry.
+If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether braid geometry.

@@ -1,6 +1,6 @@
 # Support-Complete $M=3$ Master Retention Theorem
 
-Promotion status: `priority-only`. This packet states the master certificate that would make the exact-antipodal $M=3$ shell swarm branch a retained priority-side candidate. It integrates the tail, root-sheet, dynamics/action, Krawczyk, finite-mode convergence, Noether/event, and stability handoffs into one theorem target.
+Promotion status: `priority-only`. This packet states the master certificate that would make the exact-antipodal $M=3$ shell braid branch a retained priority-side candidate. It integrates the tail, root-sheet, dynamics/action, Krawczyk, finite-mode convergence, Noether/event, and stability handoffs into one theorem target.
 
 It does not claim that the branch is retained. It defines the exact row-level meaning of a retained exact-antipodal $M=3$ branch candidate and the first-failure precedence for the present solve route. Retained-branch claims remain blocked until every required row closes on the same live ledger.
 
@@ -193,7 +193,7 @@ $$
 
 where $\epsilon_r^{\mathrm{cert}}$ includes the certified tail, root, sheet, mesh, projector, aliasing, action, endpoint, Noether sea, and nonlinear-recovery error terms relevant to row $r$.
 
-The exact-antipodal $M=3$ branch is a retained shell swarm branch candidate only if
+The exact-antipodal $M=3$ branch is a retained shell braid branch candidate only if
 
 $$
 \mathfrak{E}_{M3}(B)\le1
@@ -352,7 +352,7 @@ Midpoint relaxation is not terminal. It is a new chart opened only after the obs
 7. the central inventory and event ledgers match the dynamics/action ledger;
 8. the normalized master error satisfies $\mathfrak{E}_{M3}(B)\le1$.
 
-Then $B$ is a retained exact-antipodal $M=3$ shell swarm branch candidate on the declared live ledger. Observer exports remain downstream claims and do not define retention, but any downstream claim that uses them remains blocked until the corresponding export row is explicitly statused.
+Then $B$ is a retained exact-antipodal $M=3$ shell braid branch candidate on the declared live ledger. Observer exports remain downstream claims and do not define retention, but any downstream claim that uses them remains blocked until the corresponding export row is explicitly statused.
 
 Conversely, if rows 1 and 2 pass but the support-complete adjoint/cokernel obstruction inequality passes after exact-antipodal mode refinement fails, then the exact-antipodal $M=3$ chart is locally obstructed on the declared ledger. Midpoint relaxation may be opened only if its projected columns span the obstructing block.
 

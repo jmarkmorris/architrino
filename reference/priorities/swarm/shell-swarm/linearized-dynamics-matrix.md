@@ -1,6 +1,6 @@
 # Linearized Dynamics Matrix
 
-Promotion status: `priority-only`. This packet derives a finite-dimensional first-order balance system around the rigid octahedral carrier. It is a theorem-target and search-matrix specification only. It does not claim a retained shell swarm branch, a nonlinear deformation theorem, a stability result, an event/action ledger, or migration readiness.
+Promotion status: `priority-only`. This packet derives a finite-dimensional first-order balance system around the rigid octahedral carrier. It is a theorem-target and search-matrix specification only. It does not claim a retained shell braid branch, a nonlinear deformation theorem, a stability result, an event/action ledger, or migration readiness.
 
 Claim level: linearized finite-mode balance target. A solution of the matrix system below is evidence that the chosen Fourier deformation space can cancel the rigid tangential, speed, and radial residual rows to first order on a fixed active-root ledger. It becomes branch-retention material only after the same candidate also preserves the support band, noncollision, active-root counts, Jacobian floors, phase/winding rows, and event ledgers under a nonlinear rescreen.
 

@@ -1,8 +1,8 @@
-# Nested Shell Swarm Radial Support Functional
+# Nested Shell Braid Radial Support Functional
 
-Promotion status: `priority-only`. This packet closes the local definition gap in [nested-shell-swarm-model-card.md](nested-shell-swarm-model-card.md): the shorthand shell radius $R_a(t)$ is not a primitive object of the base branch. It must be extracted from the free-support descriptor and the closed arclength curves of [free-support-bounded-speed-dynamics.md](../shell-swarm/free-support-bounded-speed-dynamics.md).
+Promotion status: `priority-only`. This packet closes the local definition gap in [Nested Shell Braid Model Card](nested-shell-swarm-model-card.md): the shorthand shell radius $R_a(t)$ is not a primitive object of the base branch. It must be extracted from the free-support descriptor and the closed arclength curves of [free-support-bounded-speed-dynamics.md](../shell-swarm/free-support-bounded-speed-dynamics.md).
 
-It does not retain a branch, choose a final binary-partition notation policy, or authorize corpus migration. Its purpose is to make radius-spread, nested shell, shell swarm, and transition rows differentiable proof objects rather than visual labels.
+It does not retain a branch, choose a final binary-partition notation policy, or authorize corpus migration. Its purpose is to make radius-spread, nested shell, shell braid, and transition rows differentiable proof objects rather than visual labels.
 
 ---
 
@@ -38,7 +38,7 @@ r_{a,\sigma}(\lambda)
 \|\mathbf{Y}_{a,\sigma}(\lambda)-\mathbf{C}\|.
 $$
 
-A nested shell swarm packet must declare one radial support functional
+A nested shell braid packet must declare one radial support functional
 
 $$
 \boxed{
@@ -48,7 +48,7 @@ R_a
 }
 $$
 
-before using $R_a$ in nested shell, shell swarm, transition, or radius-spread rows. The admissible default is the arclength mean
+before using $R_a$ in nested shell, shell braid, transition, or radius-spread rows. The admissible default is the arclength mean
 
 $$
 R_a^{\mathrm{mean}}
@@ -215,7 +215,7 @@ $$
 \frac{|R_a-\bar R|}{\bar R},
 $$
 
-and, for an ordered nested shell swarm,
+and, for an ordered nested shell braid,
 
 $$
 \mathcal{M}_{ab}^{R}
@@ -262,11 +262,11 @@ The entries mean:
 | $\mathcal{R}_{\mathrm{conv}}$ | declares arclength-mean, causal-time-mean, support-band midpoint, or interval-center convention |
 | $\mathcal{R}_{R\mathrm{def}}$ | verifies every emitted $R_a$ equals $\mathcal{S}_a[\mathbf{Y},\nu,\mathcal{D}_{\mathrm{supp}}]$ |
 | $\mathcal{R}_{R\mathrm{gap}}$ | nested shell gap rows $R_b-R_a$ with margins |
-| $\mathcal{R}_{R\mathrm{spread}}$ | shell swarm spread row using the declared radius convention |
+| $\mathcal{R}_{R\mathrm{spread}}$ | shell braid spread row using the declared radius convention |
 | $\mathcal{R}_{R\mathrm{der}}$ | first and second derivative rows used by Newton, Krawczyk, event, and stability packets |
 | $\mathcal{R}_{R\mathrm{mix}}$ | all terms introduced when a simplified shell equation drops radius-functional derivatives |
 
-The nested shell swarm dynamics shorthand
+The nested shell braid dynamics shorthand
 
 $$
 \mathbf{x}_{a,\sigma}
@@ -280,15 +280,15 @@ is allowed only as a local parametrization if $\mathcal{R}_{R\mathrm{def}}=0$ an
 
 ## 5. Theorem Target
 
-**Theorem target: nested shell swarm radial support functional.** Fix one nested shell swarm branch chart, one support descriptor, one shell-radius convention, one binary-partition notation policy, and one coefficient box. Suppose:
+**Theorem target: nested shell braid radial support functional.** Fix one nested shell braid branch chart, one support descriptor, one shell-radius convention, one binary-partition notation policy, and one coefficient box. Suppose:
 
 1. every site radius satisfies $r_{a,\sigma}\ge r_0>0$;
 2. the radial support functional $\mathcal{S}_a$ is declared and used consistently for all $a$;
 3. first and second variation formulas for $R_a$, $\bar R$, $G_{ab}^{R}$, and $S_a$ are emitted on the coefficient box;
-4. nested shell, shell swarm, or transition rows use the emitted margins rather than visual labels;
+4. nested shell, shell braid, or transition rows use the emitted margins rather than visual labels;
 5. any simplified shell dynamics row either includes the induced radius-functional derivatives or places their omission in $\mathcal{R}_{R\mathrm{mix}}$ with a certified bound.
 
-Then the radial support functional is a differentiable residual subblock of the bounded-speed branch certificate. The branch may be classified as nested shell swarm, shell swarm, or transition on that coefficient box without treating shell radii as primitive ontology.
+Then the radial support functional is a differentiable residual subblock of the bounded-speed branch certificate. The branch may be classified as nested shell braid, shell braid, or transition on that coefficient box without treating shell radii as primitive ontology.
 
 Proof route:
 
@@ -303,7 +303,7 @@ Proof route:
 
 ## 6. Output Schema
 
-A nested shell swarm branch packet using shell radii must emit:
+A nested shell braid branch packet using shell radii must emit:
 
 | Field | Required payload |
 | --- | --- |
@@ -311,7 +311,7 @@ A nested shell swarm branch packet using shell radii must emit:
 | `support_descriptor` | $\mathbf{C}$, support bands, binary-partition labels, and radius floors |
 | `shell_radius_values` | $R_a$, $\bar R$, $G_{ab}^{R}$, $S_a$, and interval bounds if used |
 | `shell_radius_derivatives` | $D_vR_a$, $D^2_{v,w}R_a$, derivative bounds, and length/clock correction status |
-| `shell_margins` | shell swarm spread margin, nested shell gap margins, transition event surfaces, and transversality rows |
+| `shell_margins` | shell braid spread margin, nested shell gap margins, transition event surfaces, and transversality rows |
 | `mixing_residual` | $\mathcal{R}_{R\mathrm{mix}}$ and every dropped radius-functional derivative term |
 | `status` | first failed status or `nested-shell-swarm-radial-support-certified` |
 

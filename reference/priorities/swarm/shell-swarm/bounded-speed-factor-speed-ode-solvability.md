@@ -386,7 +386,7 @@ $$
 
 ### 4.1 Frozen Octahedral Ledger Diagnostic
 
-The rigid octahedral all-pairs source ledger now has a frozen-ledger speed-ODE diagnostic in [../neutral-swarm/octahedral-speed-ode-diagnostic.md](../neutral-swarm/octahedral-speed-ode-diagnostic.md). It deliberately stays on the fixed-speed source ledger and therefore reports
+The rigid octahedral all-pairs source ledger now has a frozen-ledger speed-ODE diagnostic in [Octahedral Speed Ode Diagnostic](../neutral-swarm/octahedral-speed-ode-diagnostic.md). It deliberately stays on the fixed-speed source ledger and therefore reports
 
 $$
 \texttt{bounded-speed-ledger-handoff-open}.

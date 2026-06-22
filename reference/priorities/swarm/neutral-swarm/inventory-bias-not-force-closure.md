@@ -20,14 +20,14 @@ node scripts/neutral-swarm/octahedral-inventory-closure-witness.mjs --validate /
 The artifact schema is
 
 $$
-\texttt{neutral-swarm-octahedral-inventory-closure-witness/v1}.
+\texttt{neutral-braid-octahedral-inventory-closure-witness/v1}.
 $$
 
 ---
 
 ## 1. Narrow Hypothesis
 
-The rejected hypothesis is not the neutral swarm program. It is the one-row implication
+The rejected hypothesis is not the neutral braid program. It is the one-row implication
 
 $$
 \left(
@@ -40,7 +40,7 @@ N_{\mathrm{rep},i}=2
 \widetilde{\mathcal{R}}_{\mathrm{tan},i}(\theta)=0
 $$
 
-for the fixed-speed force row, before any further geometry, bounded-speed factor, support-band deformation, self-hit, fold-layer, medium-response, shell swarm, or nested shell swarm row is declared.
+for the fixed-speed force row, before any further geometry, bounded-speed factor, support-band deformation, self-hit, fold-layer, medium-response, shell braid, or nested shell braid row is declared.
 
 The inventory row counts source-site signs only:
 
@@ -169,7 +169,7 @@ $$
 \texttt{closed-rejected:inventory-bias-implies-force-closure}.
 $$
 
-This status means only that source-site inventory bias is not a sufficient proof of fixed-speed force closure. It does not say that the inventory row is false or useless. The inventory row remains a necessary bookkeeping row for neutral swarm candidates; it simply cannot replace the delayed all-pairs force calculation.
+This status means only that source-site inventory bias is not a sufficient proof of fixed-speed force closure. It does not say that the inventory row is false or useless. The inventory row remains a necessary bookkeeping row for neutral braid candidates; it simply cannot replace the delayed all-pairs force calculation.
 
 ---
 
@@ -182,9 +182,9 @@ This packet preserves the following boundaries. It makes no claim against:
 3. controlled self-hit rows with declared endpoint, action, and event accounting;
 4. fold-layer rows with their own regularized event ledger;
 5. medium-response rows with declared exchange terms;
-6. shell swarm case reductions;
-7. nested shell swarm case reductions;
-8. general neutral swarm branch searches outside this rigid fixed-speed counterexample.
+6. shell braid case reductions;
+7. nested shell braid case reductions;
+8. general neutral braid branch searches outside this rigid fixed-speed counterexample.
 
 The retained-branch status for the rejected implication is
 

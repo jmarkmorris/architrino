@@ -44,7 +44,7 @@ e^a{}_i,
 \Pi_{\text{obs}}
 \right)
 $$
-Here $S(t)$ is the complete ontic universe state with path-history provenance, $n$ is normalized Noether swarm density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $\sigma^{ab}_{\text{sea}}$ denotes retained stress response, $u^i_{\text{sea}}$ and $e^a{}_i$ are observer-level drift and frame-field channels, and $\Pi_{\text{obs}}$ denotes the clock, ruler, and signal projections used by Physical Observers. The map $\mathcal{G}_{\text{metric}}$ is not a new primitive. It is the constitutive recovery problem: show how one medium and observer record yields the effective metric that passes GR-level tests.
+Here $S(t)$ is the complete ontic universe state with path-history provenance, $n$ is normalized Noether braid density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $\sigma^{ab}_{\text{sea}}$ denotes retained stress response, $u^i_{\text{sea}}$ and $e^a{}_i$ are observer-level drift and frame-field channels, and $\Pi_{\text{obs}}$ denotes the clock, ruler, and signal projections used by Physical Observers. The map $\mathcal{G}_{\text{metric}}$ is not a new primitive. It is the constitutive recovery problem: show how one medium and observer record yields the effective metric that passes GR-level tests.
 
 ## Geometry-Layer Map
 
@@ -54,7 +54,7 @@ The useful distinction is not geometric versus non-geometric. It is primitive ge
 | --- | --- | --- | --- |
 | Euclidean void | Flat metric $h_{ij}=\delta_{ij}$ on $\mathbb{R}^3$ | Fundamental container | Distance, direction, simultaneity-slice spatial operators, fixed location identity |
 | Causal wake | Expanding causal isochrons satisfying $r=c_f(t-t_0)$ | Source-provenanced causal structure | Delayed interaction, line of action, branch roots, path-history effects |
-| Assembly | Stable internal organization of architrinos and Noether swarms | Emergent bound structure | Particle identity, shielding, mass response, chirality, spin-like and quantum-number mappings |
+| Assembly | Stable internal organization of architrinos and Noether braids | Emergent bound structure | Particle identity, shielding, mass response, chirality, spin-like and quantum-number mappings |
 | Noether sea | Density, delay, stress, drift, alignment, and compliance response | Emergent medium content | Clock/ruler response, inertia, propagation channels, weak-field gravitational behavior |
 | Effective metric | $g^{\text{eff}}_{\mu\nu}$ reconstructed from observer records | Observer-level geometry | Proper time, geodesic approximation, lensing, redshift, Shapiro delay, gravitational-wave comparison |
 

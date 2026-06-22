@@ -227,7 +227,7 @@ The rows mean:
 | $\Delta_{\mathrm{sep}}$ | $\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}$ and its normal are defined on the successful record domain. | Formula only. |
 | $\Delta_{\mathrm{norm}}$ | The zero set has zero record measure or a calibrated threshold rule. | Blocked. |
 | $\Delta_{\mathrm{rec}}^{\mathrm{lift}}$ | Plus/reject basins partition successful records. | Toy pass only. |
-| $\Delta_{\psi}$ | The effective spinor coordinate $\psi(Z)$ and angle $\alpha(Z,\hat{\mathbf m})$ are derived from the ordered Noether swarm history. | Blocked. |
+| $\Delta_{\psi}$ | The effective spinor coordinate $\psi(Z)$ and angle $\alpha(Z,\hat{\mathbf m})$ are derived from the ordered Noether braid history. | Blocked. |
 | $\Delta_{\mathrm{half}}^{\mathrm{lift}}$ | The lifted plus measure matches the derived half-angle target. | Toy pass only after $p_{+}$ is supplied. |
 | $\Delta_{\mathbf J}^{\mathrm{event}}$ | Event recoil and wake rows conserve angular momentum through the record event. | Blocked. |
 

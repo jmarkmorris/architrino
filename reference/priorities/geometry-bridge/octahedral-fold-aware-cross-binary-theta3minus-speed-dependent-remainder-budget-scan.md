@@ -240,4 +240,4 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 - reconstruction checks for $R_G^{\mathrm{tot}}=R_G^{\mathrm{pair}}+R_G^{\mathrm{reg}}$ and $R_D^{\mathrm{tot}}=R_D^{\mathrm{pair}}+R_D^{\mathrm{reg}}$;
 - a local closure burndown for the $\theta_{3-}^{-}$ collar.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-remainder-budget-scan.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-remainder-budget-scan.test.js) validates the residual budget, pair/regular decomposition, no-fixed-speed-window discipline, open interval-closure boundary, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-remainder-budget-scan.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-remainder-budget-scan.test.js) validates the residual budget, pair/regular decomposition, no-fixed-speed-window discipline, open interval-closure boundary, overclaim rejection, and CLI write/validate behavior.

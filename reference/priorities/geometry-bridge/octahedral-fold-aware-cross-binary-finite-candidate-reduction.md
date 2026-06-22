@@ -151,7 +151,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-finite-candidate-r
 - $M_Q$, $m_Q$, full-ordering, positive-$M_Q$, and negative-$C_\times$ budget rows;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-finite-candidate-reduction.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-finite-candidate-reduction.test.js) verifies predecessor validation, speed-window removal, theorem statement, candidate alignment, margin budgets, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-finite-candidate-reduction.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-finite-candidate-reduction.test.js) verifies predecessor validation, speed-window removal, theorem statement, candidate alignment, margin budgets, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

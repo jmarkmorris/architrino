@@ -1,15 +1,15 @@
 # Quantum Number Mapping: Architrino Geometry to Standard Model
 
-This chapter is the canonical dictionary from assembly geometry to Standard Model quantum numbers. Its purpose is to tell the reader which structural features of the Noether swarm and axial layer are supposed to map to charge, weak labels, color labels, generation, and related bookkeeping categories.
+This chapter is the canonical dictionary from assembly geometry to Standard Model quantum numbers. Its purpose is to tell the reader which structural features of the Noether braid and axial layer are supposed to map to charge, weak labels, color labels, generation, and related bookkeeping categories.
 
 ## Purpose
-This document establishes the canonical dictionary translating **Nested Shell Swarm Assembly Geometry** into **Standard Model (SM) Quantum Numbers**.
+This document establishes the canonical dictionary translating **Nested Shell Braid Assembly Geometry** into **Standard Model (SM) Quantum Numbers**.
 
-For charged fermions and quarks, it adopts the **Noether swarm + axial layer** model:
-1.  **The Noether swarm:** A neutral, rotating nested shell swarm structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
-2.  **The Axial Layer:** A layer of 6 axial architrinos occupying polar sites on the Noether swarm, defining the effective electric-charge bookkeeping, weak isospin, and color-sector pattern.
+For charged fermions and quarks, it adopts the **Noether braid + axial layer** model:
+1.  **The Noether braid:** A neutral, rotating nested shell braid structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
+2.  **The Axial Layer:** A layer of 6 axial architrinos occupying polar sites on the Noether braid, defining the effective electric-charge bookkeeping, weak isospin, and color-sector pattern.
 
-Neutrinos are the current exception to this inventory model. They are treated as near-photon neutral pro/anti swarm pairings; balanced $3P,3E$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](./neutrinos.md).
+Neutrinos are the current exception to this inventory model. They are treated as near-photon neutral pro/anti braid pairings; balanced $3P,3E$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](./neutrinos.md).
 
 Note: **Mass is derived**, not a quantum number here; it comes from shielded internal causal history and medium-dressed Noether sea response. See [Particle Masses](../particle-masses.md) for the mass thesis and [Emergent Metric](../../spacetime/emergent-metric.md) for metric-level translation.
 
@@ -23,61 +23,61 @@ Note: **Mass is derived**, not a quantum number here; it comes from shielded int
     *   **Positrino ($P$):** positive-polarity architrino, labeled $+1\epsilon$ in electric bookkeeping.
     *   **Electrino ($E$):** negative-polarity architrino, labeled $-1\epsilon$ in electric bookkeeping.
 
-### The Noether Swarm
+### The Noether Braid
 Every fermion contains a central engine composed of nested binary pairs.
 *   **Composition:** Each binary contains 1 Positrino + 1 Electrino (Neutral).
-*   **Generation-I Noether swarm (nested shell swarm):** 3 nested binaries (inner, middle, outer). Total 6 architrinos (3P, 3E).
+*   **Generation-I Noether braid (nested shell braid):** 3 nested binaries (inner, middle, outer). Total 6 architrinos (3P, 3E).
 *   **Nested-scale picture:** The three binaries should be read as a genuine radial hierarchy, not just as three items in a list. The middle binary sits inside the shielding domain of the outer binary, and the inner binary sits inside the shielding domains of both. In that sense, the higher-generation core may be viewed as what is revealed when the outer shielding tier is removed and the assembly is read further inward.
 *   **Chirality (Matter vs. Antimatter):**
-    *   **Pro-Swarm:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
-    *   **Anti-Swarm:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
+    *   **Pro-Braid:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
+    *   **Anti-Braid:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
 *   **Net Charge:** Always $0$.
 
 ### The Axial Layer
 *   **Sites:** 6 polar sites available for axial occupancy.
 *   **Occupancy:** Stable charged leptons and quarks have all 6 sites filled. Neutrinos do not carry a stable charged-fermion-style axial layer in the current architecture.
 *   **Function:** This layer interacts through external effective-field channels (EM, Weak).
-*   **Association picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials associate with the Noether swarm scaffold.
+*   **Association picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials associate with the Noether braid scaffold.
 
 ### Why Polar Sites Are Plausible Dwell Regions
 
-The current geometric picture needs a reason that the axial layer prefers the poles rather than wandering arbitrarily around the Noether swarm. The most conservative working hypothesis is that each binary axis creates a **polar calm region**: a local saddle or relative minimum in the rapidly varying superposed potential generated by the surrounding binary circulation.
+The current geometric picture needs a reason that the axial layer prefers the poles rather than wandering arbitrarily around the Noether braid. The most conservative working hypothesis is that each binary axis creates a **polar calm region**: a local saddle or relative minimum in the rapidly varying superposed potential generated by the surrounding binary circulation.
 
 In plain terms, most of the core volume is a storm of whipping delayed potentials. Near the axis-defined poles, opposing contributions from the rotating binaries can partially cancel in the transverse directions while still preserving axial attachment. That does not mean the poles are force-free. It means they are the places where an axial architrino can remain phase-locked to the core with the least continual lateral correction.
 
 This gives a provisional dwelling mechanism for polar sites:
 
-- the Noether swarm supplies the neutral rotating scaffold,
+- the Noether braid supplies the neutral rotating scaffold,
 - the binary axes define candidate attachment directions,
 - and the polar saddle structure selects six metastable docking regions for the axial layer.
 
 This remains a geometric hypothesis rather than a finished derivation. Its value is that it ties the six-site axial architecture to the already-existing delayed superposition picture, instead of treating the polar sites as unexplained labels pasted onto the core.
 
 ### Total Constituent Count (Charged Gen I)
-*   **Noether swarm (6) + axial layer (6) = 12 architrinos.**
+*   **Noether braid (6) + axial layer (6) = 12 architrinos.**
 
 ---
 
 ## The Fermion Mapping (Generation I)
 
-Charged Generation I leptons and quarks utilize the full **nested shell swarm** (3 binaries). The neutrino entry records the active weak-sector mapping while deferring the physical neutral-pair geometry to [Neutrinos](./neutrinos.md).
+Charged Generation I leptons and quarks utilize the full **nested shell braid** (3 binaries). The neutrino entry records the active weak-sector mapping while deferring the physical neutral-pair geometry to [Neutrinos](./neutrinos.md).
 
 ### Leptons
 
 **The Electron ($e^-$)**
-*   **Core:** Pro-Nested Shell Swarm (3P, 3E, Neutral, Matter-chirality).
+*   **Core:** Pro-Nested Shell Braid (3P, 3E, Neutral, Matter-chirality).
 *   **Axial Layer:** 6 Electrinos ($6E$).
 *   **Net Charge:** $0 (\text{core}) - 6\epsilon (\text{axial}) = -6\epsilon = -1e$.
 *   **Total Count:** 12 architrinos.
 
 **The Positron ($e^+$)**
-*   **Core:** Anti-Nested Shell Swarm (3P, 3E, Neutral, Antimatter-chirality).
+*   **Core:** Anti-Nested Shell Braid (3P, 3E, Neutral, Antimatter-chirality).
 *   **Axial Layer:** 6 Positrinos ($6P$).
 *   **Net Charge:** $0 + 6\epsilon = +1e$.
 *   **Note:** Antimatter is a geometric inversion of *both* the core braiding and the axial polarity.
 
 **The Electron Neutrino ($\nu_e$)**
-*   **Geometry:** Near-planar pro/anti Noether swarm pairing, close to the fully locked photon channel modeled as a coaxial contra-rotating pro/anti planar pair but not fully locked into it.
+*   **Geometry:** Near-planar pro/anti Noether braid pairing, close to the fully locked photon channel modeled as a coaxial contra-rotating pro/anti planar pair but not fully locked into it.
 *   **Stable Axial Layer:** None in the charged-fermion sense.
 *   **Weak Bookkeeping:** During charged-current coupling, the exposed neutral ledger can be represented as a balanced $3P,3E$ weak-coupling projection.
 *   **Net Charge:** $0$.
@@ -86,12 +86,12 @@ Charged Generation I leptons and quarks utilize the full **nested shell swarm** 
 ### Quarks
 
 **The Up Quark ($u$)**
-*   **Core:** Pro-Nested Shell Swarm.
+*   **Core:** Pro-Nested Shell Braid.
 *   **Axial Layer:** 5 Positrinos, 1 Electrino ($5P, 1E$).
 *   **Net Charge:** $+5\epsilon - 1\epsilon = +4\epsilon = +2/3e$.
 
 **The Down Quark ($d$)**
-*   **Core:** Pro-Nested Shell Swarm.
+*   **Core:** Pro-Nested Shell Braid.
 *   **Axial Layer:** 2 Positrinos, 4 Electrinos ($2P, 4E$).
 *   **Net Charge:** $+2\epsilon - 4\epsilon = -2\epsilon = -1/3e$.
 
@@ -99,11 +99,11 @@ Charged Generation I leptons and quarks utilize the full **nested shell swarm** 
 
 | Particle | Core Type | Axial Layer | Net Charge ($e$) | Total Architrinos |
 | :--- | :--- | :--- | :--- | :--- |
-| **Electron** ($e^-$) | Pro-Nested Shell Swarm | 6E | -1 | 12 |
-| **Positron** ($e^+$) | Anti-Nested Shell Swarm | 6P | +1 | 12 |
-| **Neutrino** ($\nu_e$) | Near-planar pro/anti swarm pair | no stable axial layer; effective $3P,3E$ weak ledger | 0 | geometry-dependent |
-| **Up Quark** ($u$) | Pro-Nested Shell Swarm | 5P, 1E | +2/3 | 12 |
-| **Down Quark** ($d$) | Pro-Nested Shell Swarm | 2P, 4E | -1/3 | 12 |
+| **Electron** ($e^-$) | Pro-Nested Shell Braid | 6E | -1 | 12 |
+| **Positron** ($e^+$) | Anti-Nested Shell Braid | 6P | +1 | 12 |
+| **Neutrino** ($\nu_e$) | Near-planar pro/anti braid pair | no stable axial layer; effective $3P,3E$ weak ledger | 0 | geometry-dependent |
+| **Up Quark** ($u$) | Pro-Nested Shell Braid | 5P, 1E | +2/3 | 12 |
+| **Down Quark** ($d$) | Pro-Nested Shell Braid | 2P, 4E | -1/3 | 12 |
 
 ---
 
@@ -112,11 +112,11 @@ Charged Generation I leptons and quarks utilize the full **nested shell swarm** 
 In the Standard Model, the Weak Force only acts on "Left-Handed" particles. It transforms members of a doublet (e.g., $e^- \leftrightarrow \nu_e$) into each other. We map this to the **weak-coupling-triad hypothesis**.
 
 ### The Weak-Coupling Triad Geometry
-For charged leptons and quarks, every charged-fermion axial layer consists of 6 polar sites. We hypothesize that these are organized into two groups based on the nested shell swarm rotation axis:
+For charged leptons and quarks, every charged-fermion axial layer consists of 6 polar sites. We hypothesize that these are organized into two groups based on the nested shell braid rotation axis:
 1.  **The Shielded Triad (3 sites):** Geometrically locked or obscured by the binary precession. These axial occupancies *cannot* be swapped without destroying the particle.
 2.  **The weak-coupling triad (3 sites):** Exposed to the Noether sea. These are the "switchable bits."
 
-For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon pro/anti swarm pair, not as a literal inventory of six bound axial sites.
+For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon pro/anti braid pair, not as a literal inventory of six bound axial sites.
 
 **Weak-coupling exposure diagnostic (hypothesis)**
 For an assembly $A$ with propagation direction $\hat{\mathbf p}$, the exposed triad should be selected by an operator rather than by a raw verbal claim. Let $\mathcal{S}_{\mathrm{ax}}(A)$ be the six polar sites and let $w_a(A,\hat{\mathbf p})$ be the local $W$-corridor docking weight of site $a$. Define
@@ -225,7 +225,7 @@ Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
 
 ## Color Charge and Strong Confinement
 
-In the Standard Model, quarks carry one of three color labels, while leptons are color singlets. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping, color is the **axis-exceptionality state** of a Noether swarm with an axial layer: one axis is distinguished relative to the other two, and the three possible choices span the quark color triplet.
+In the Standard Model, quarks carry one of three color labels, while leptons are color singlets. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping, color is the **axis-exceptionality state** of a Noether braid with an axial layer: one axis is distinguished relative to the other two, and the three possible choices span the quark color triplet.
 
 ### The Definition of Color
 Use the ordered-frame axes $(H,M,L)$.
@@ -287,7 +287,7 @@ for every tested baryon-violating channel $\mathcal{C}_{\Delta B\ne0}$, while th
 
 At the representation and charge-bookkeeping layer, the current dictionary recovers the Standard Model labels as:
 
-- **$SU(3)_c$ (color):** axis-exceptionality of the Noether swarm plus axial layer. Quarks occupy the triplet basis $|q_H\rangle, |q_M\rangle, |q_L\rangle$ (conventionally Red, Green, Blue), while charged leptons remain axis-uniform singlets and neutrinos remain singlets by the near-photon neutral-pair route. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
+- **$SU(3)_c$ (color):** axis-exceptionality of the Noether braid plus axial layer. Quarks occupy the triplet basis $|q_H\rangle, |q_M\rangle, |q_L\rangle$ (conventionally Red, Green, Blue), while charged leptons remain axis-uniform singlets and neutrinos remain singlets by the near-photon neutral-pair route. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
 - **$SU(2)_L$ (weak isospin):** polarity of the **weak-coupling triad** (three exposed polar sites, or the effective near-photon weak projection for neutrinos). Left-handed fermions are doublets; right-handed fermions are singlets (weak-coupling triad hidden).
 - **$U(1)_Y$ (weak hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
 - **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving weak-coupling-triad charge/phase; see [Electroweak Bosons](../bosons/electroweak-bosons.md).
@@ -305,7 +305,7 @@ This is not yet a derivation of local gauge dynamics. The remaining closure targ
 
 | Field | SU(3) | SU(2) | $Y$ | $Q = T_3 + Y/2$ | Geometric handle |
 | --- | --- | --- | --- | --- | --- |
-| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | weak-coupling triad P- or E-dominant on Noether swarm; axis exceptionality sets color |
+| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | weak-coupling triad P- or E-dominant on Noether braid; axis exceptionality sets color |
 | $u_R$ | 3 | 1 | +4/3 | +2/3 | weak-coupling triad hidden; asymmetry 5P/1E fixes $Q$ |
 | $d_R$ | 3 | 1 | -2/3 | -1/3 | weak-coupling triad hidden; asymmetry 2P/4E |
 | $\ell_L = (\nu_L, e_L)$ | 1 | 2 | -1 | $(0, -1)$ | neutrino uses effective near-photon weak ledger; electron uses axial-layer weak-coupling triad; both colorless |
@@ -376,7 +376,7 @@ The geometrical interpretation is:
 - charge conjugation mirrors the pattern across the same bookkeeping plane,
 - handedness selects whether the weak-coupling triad is exposed or hidden.
 
-The neutral sector is now separated from the charged-fermion inventory rule. The left-handed neutrino branch fits the electroweak doublet as an effective weak ledger, but its physical assembly is a near-photon pro/anti swarm pair rather than an ordinary charged-fermion axial layer. The fate of $\nu_R$, $\bar\nu_R$, and $\bar\nu_L$ still depends on whether the model ultimately selects:
+The neutral sector is now separated from the charged-fermion inventory rule. The left-handed neutrino branch fits the electroweak doublet as an effective weak ledger, but its physical assembly is a near-photon pro/anti braid pair rather than an ordinary charged-fermion axial layer. The fate of $\nu_R$, $\bar\nu_R$, and $\bar\nu_L$ still depends on whether the model ultimately selects:
 
 - no right-handed neutrino in the minimal architecture,
 - a sterile singlet branch,
@@ -404,8 +404,8 @@ For elementary fermions, the clean geometric bookkeeping is:
   $$
   s_{\text{core}}=
   \begin{cases}
-  +1,& \text{pro-swarm},\\
-  -1,& \text{anti-swarm}.
+  +1,& \text{pro-braid},\\
+  -1,& \text{anti-braid}.
   \end{cases}
   $$
 
@@ -416,7 +416,7 @@ B = s_{\text{core}}\frac{\chi_q}{3},
 L = s_{\text{core}}(1-\chi_q)
 $$
 
-This keeps matter/antimatter distinct from baryon/lepton labels: the pro/anti swarm sets the sign, while the quark-vs-lepton sector sets whether the unit is $1/3$ or $1$.
+This keeps matter/antimatter distinct from baryon/lepton labels: the pro/anti braid sets the sign, while the quark-vs-lepton sector sets whether the unit is $1/3$ or $1$.
 
 Using the left-chiral one-generation SM content
 $$
@@ -507,12 +507,12 @@ while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restore
 - **Current stance:** We do **not** include a $\nu_R$ in the minimal architecture. Left-handed neutrinos are the only active SU(2) doublet partners; omitting $\nu_R$ preserves the usual anomaly cancellation pattern.
 - **If added:** A $\nu_R$ would be a colorless, SU(2)-singlet, $Y=0$ sterile branch of the near-photon neutral-pair sector; it would couple only via mixing terms (Dirac/Majorana choice left open).
 - **Empirical gate:** Precision bounds on $\sum_i m_i$, the lightest-neutrino mass, direct kinematic mass, and neutrinoless double-beta searches are allowed to revise the neutral sector, not the charged-fermion axial-layer rule. A positive $0\nu\beta\beta$ result would force a lepton-number-violating neutral-pair provenance channel; null results tighten the allowed Majorana-like or sterile mixing channel without canonizing a separate interpretation.
-- **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be a near-photon pro/anti swarm pair whose residual internal-binary exposure defines three nearby mass modes. Oscillation is the changing weak projection of those modes over propagation. Other fermions have much stiffer charged axial-layer architectures, so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
-- **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by Noether swarm shielding/exposure and axial pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (weak-coupling-triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
+- **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be a near-photon pro/anti braid pair whose residual internal-binary exposure defines three nearby mass modes. Oscillation is the changing weak projection of those modes over propagation. Other fermions have much stiffer charged axial-layer architectures, so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
+- **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by Noether braid shielding/exposure and axial pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (weak-coupling-triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
 
 ## The Generation Mechanism (Mass Hierarchy)
 
-For charged fermions and quarks, generations are defined by the depletion of coherent shielding support in the nested Noether swarm. The axial layer remains a six-site gauge-facing record, so generation changes exposed mass response and lifetime without deleting the H/M/L axial frame that carries color and electroweak bookkeeping.
+For charged fermions and quarks, generations are defined by the depletion of coherent shielding support in the nested Noether braid. The axial layer remains a six-site gauge-facing record, so generation changes exposed mass response and lifetime without deleting the H/M/L axial frame that carries color and electroweak bookkeeping.
 
 Equivalently, the generation ladder can be read as a nested shielding hierarchy:
 
@@ -697,8 +697,8 @@ The explicit shared fitting packet lives in [Particle Masses](../particle-masses
 
 ### Core Depletion, Axial Vortices, and Lifetime (plain view)
 
-- **What the binaries do:** Each coherent shielding tier supplies axial-vortex support that helps hold the six axial architrinos in phase with the Noether swarm and shares load into the Noether sea.
-- **Gen I (nested shell swarm):** Three coherent shielding tiers give a stiff 3D support scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
+- **What the binaries do:** Each coherent shielding tier supplies axial-vortex support that helps hold the six axial architrinos in phase with the Noether braid and shares load into the Noether sea.
+- **Gen I (nested shell braid):** Three coherent shielding tiers give a stiff 3D support scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
 - **Gen II (bi-binary shielding branch):** The outer support tier is depleted. The H/M/L axial frame persists as a delayed branch record, but small perturbations reach the weakly bound axial layer more easily after causal propagation and relocking cycles. Lifetime drops.
 - **Gen III (uni-binary shielding branch):** Outer and middle support are depleted. The axial layer is metastable around the exposed inner engine, almost no outer screening remains for the deepest core energy, and the reaction corridor opens quickly. Very short-lived.
 - **Takeaway:** Fewer coherent shielding tiers means higher exposed mass response and shorter lifetime, not fewer color states.
@@ -714,7 +714,7 @@ Because the **Axial Layer** (which dictates charge bookkeeping and isospin for c
 Baryons are bound states of 3 quarks held together by shared flux/gluon planar assemblies.
 
 *   **Proton ($uud$):**
-    *   3 Pro-Swarms (Gen I).
+    *   3 Pro-Braids (Gen I).
     *   Axial layers: $(5P,1E) + (5P,1E) + (2P,4E)$.
     *   Total axial P: $5+5+2 = 12$.
     *   Total axial E: $1+1+4 = 6$.
@@ -722,7 +722,7 @@ Baryons are bound states of 3 quarks held together by shared flux/gluon planar a
     *   Total Architrinos: $3 \times 6 \text{ (Cores)} + 18 \text{ (Axial)} = 36$.
 
 *   **Neutron ($udd$):**
-    *   3 Pro-Swarms (Gen I).
+    *   3 Pro-Braids (Gen I).
     *   Axial layers: $(5P,1E) + (2P,4E) + (2P,4E)$.
     *   Total axial P: $5+2+2 = 9$.
     *   Total axial E: $1+4+4 = 9$.
@@ -746,16 +746,16 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the weak-coupling triad.** The net charge state of the 3 exposed polar sites. (+1/2 = P-dominant, -1/2 = E-dominant). |
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any core offset. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which core axis is exceptional relative to the other two. |
-| **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-frame spinor topology.** The nested shell swarm is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
+| **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-frame spinor topology.** The nested shell braid is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
 | **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The same ordered-frame spinor/exposure record exposes the weak-coupling triad to the ambient Noether sea (interaction allowed).<br>• **Right ($R$):** The same record hides the weak-coupling triad in the particle's wake or shield (interaction blocked). Spin-projection language is observer-level shorthand until the $SU(2)\to SO(3)$ lift and $\Delta_{\mathrm{WCT}}$ row pass. |
-| **Generation** | I, II, III | Mass hierarchy (Flavor). | **Noether Swarm Shielding Level.**<br>• **Gen I:** Nested Shell Swarm (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (exposed Noether swarm). |
-| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-swarm vs anti-swarm orientation. |
+| **Generation** | I, II, III | Mass hierarchy (Flavor). | **Noether Braid Shielding Level.**<br>• **Gen I:** Nested Shell Braid (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (exposed Noether braid). |
+| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-braid vs anti-braid orientation. |
 
 For the **Elementary Fermions** (Quarks and Leptons), this table is complete at the quantum-number bookkeeping layer. The neutrino's internal geometry remains delegated to the near-photon closure program.
 
 ### Spin and the $4\pi$ Rule
 
-This is a closure target, not a completed proof. The nested shell swarm has three non-coplanar binary planes with ordered normals. Keeping the conserved angular-momentum ledger fixed, the visible ordered frame projects to $SO(3)$, while the causal-root and phase history may carry an additional sheet label.
+This is a closure target, not a completed proof. The nested shell braid has three non-coplanar binary planes with ordered normals. Keeping the conserved angular-momentum ledger fixed, the visible ordered frame projects to $SO(3)$, while the causal-root and phase history may carry an additional sheet label.
 
 The target is that a $2\pi$ spatial rotation returns the visible ordered frame but transports the history-lifted state to the opposite sheet, while a $4\pi$ rotation restores the full state. If this lift exists, it supplies the geometric route to spin-$\tfrac{1}{2}$ behavior through the $SU(2)\to SO(3)$ double cover. If the history lift closes after $2\pi$, the ordered-frame route does not derive fermion spinor behavior.
 
@@ -772,7 +772,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, these symbols are not separate primitive ob
 Across the repo, the working geometric rule is that the spin label tracks the **kind of orientation data** the excitation carries:
 
 - **Spin-$0$ (scalar):** purely radial or isotropic breathing, with no preferred direction attached to the mode itself.
-- **Spin-$\tfrac{1}{2}$ (fermionic spinor):** an ordered nested shell swarm core whose history-lifted state changes sheet under a $2\pi$ turn and closes only after $4\pi$.
+- **Spin-$\tfrac{1}{2}$ (fermionic spinor):** an ordered nested shell braid core whose history-lifted state changes sheet under a $2\pi$ turn and closes only after $4\pi$.
 - **Spin-$1$ (vector):** an excitation with one distinguished axis plus transverse/helical structure around that axis.
 - **Spin-$2$ (tensor):** a transverse-traceless shape disturbance carrying quadrupolar deformation data rather than a single axis alone.
 
@@ -789,8 +789,8 @@ Two qualifications remain useful without adding new rows to the taxonomy:
 2.  **Intrinsic Parity ($P$):**
     *   By convention, quarks have parity $P = +1$ and antiquarks have $P = -1$.
     *   **Mapping:** This is covered by the **Baryon/Lepton Number (Core Topology)** row.
-        *   Pro-Swarm (Matter) = $+$.
-        *   Anti-Swarm (Antimatter) = $-$.
+        *   Pro-Braid (Matter) = $+$.
+        *   Anti-Braid (Antimatter) = $-$.
     *   So, we have this covered implicitly.
 
 **Verdict:**
@@ -801,14 +801,14 @@ The table is sufficient. It connects the geometry to every parameter needed to c
 This chapter is a dictionary layer; the primary derivations live elsewhere. The closure interfaces are:
 
 - **Quark mixing (CKM):** weak-basis vs mass-basis overlap and holonomy closure in [theory-bridges/weak-mixing-ckm.md](../../philosophy-history/theory-bridges/weak-mixing-ckm.md).
-- **Lepton mixing (PMNS):** near-photon pro/anti swarm-pair phase operator and oscillation map in [assemblies/fermions/neutrinos.md](./neutrinos.md).
+- **Lepton mixing (PMNS):** near-photon pro/anti braid-pair phase operator and oscillation map in [assemblies/fermions/neutrinos.md](./neutrinos.md).
 - **Topological spin/confinement closure:** bundle/topology and causal-locus invariants in [dynamics/causal-action-functional.md](../../dynamics/causal-action-functional.md) and [assemblies/fermions/color-charge-su3.md](./color-charge-su3.md).
 
 The weak-sector handoff now uses one shared exposure problem. The weak-coupling triad is not only the bookkeeping source of $T_3$; it is also the domain on which three later closure tasks must agree:
 
 - the left-channel selection rule must expose the triad for left-handed charged-current coupling and hide it for right-handed charged-current coupling,
 - CKM and PMNS closure must use the same exposed domain when defining weak-basis states,
-- weak-reaction provenance must record how the charged corridor routes the triad payload and whether final-state Noether swarm provenance is supplied by the corridor or by the local Noether sea.
+- weak-reaction provenance must record how the charged corridor routes the triad payload and whether final-state Noether braid provenance is supplied by the corridor or by the local Noether sea.
 
 The first concrete test case is the $d\to u$ beta-reaction exposure operator in [Weak-Mixing CKM](../../philosophy-history/theory-bridges/weak-mixing-ckm.md). It uses the same weak-coupling-triad domain to gate left-handed docking, apply the $3E\to3P$ active-triad change, attach the $V_{ud}$ overlap factor, and hand the opposite $W^-$ transaction to the reaction ledger.
 
@@ -825,7 +825,7 @@ Spin closure target (formal, not yet proven):
 $$
 \widetilde{R}:SU(2)\simeq \mathrm{Spin}(3)\to SO(3)
 $$
-with nested shell swarm ordered-frame evolution transforming on the double cover so that $2\pi$ and $4\pi$ rotations are distinguished at the internal phase level.
+with nested shell braid ordered-frame evolution transforming on the double cover so that $2\pi$ and $4\pi$ rotations are distinguished at the internal phase level.
 
 ## Weak-Mixing and Composite-Observable Closure Hooks
 
@@ -853,7 +853,7 @@ with $Z_e$ fixed by canonical field normalization when mapping to observer-level
 
 ### Inertial response and magnetic-moment interface
 
-Mass, inertial response, and magnetic moment are not additional quantum-number rows in this dictionary. A rigid-body inertia tensor is a useful comparison object because it maps angular velocity to angular momentum for a fixed mass distribution. The fermion assembly is not treated as that kind of rigid body. Its observer-level response is derived from a closed internal causal-history ledger, shielding, Noether sea coupling, and the orientation of the Noether swarm plus axial layer.
+Mass, inertial response, and magnetic moment are not additional quantum-number rows in this dictionary. A rigid-body inertia tensor is a useful comparison object because it maps angular velocity to angular momentum for a fixed mass distribution. The fermion assembly is not treated as that kind of rigid body. Its observer-level response is derived from a closed internal causal-history ledger, shielding, Noether sea coupling, and the orientation of the Noether braid plus axial layer.
 
 For a fermion assembly $A$, write the local response maps as
 $$

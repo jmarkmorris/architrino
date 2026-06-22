@@ -80,7 +80,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-i1-forcing-bracket
 - the imported `I1.forcing-bracket` margin and target radius;
 - non-derivative, non-critical-exhaustion, non-quadrature, and non-retention boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.test.js) verifies schema validation, speed-window removal, endpoint sign preservation, radius preservation below the bottleneck target, claim boundaries, invalid controls, and CLI emission.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.test.js) verifies schema validation, speed-window removal, endpoint sign preservation, radius preservation below the bottleneck target, claim boundaries, invalid controls, and CLI emission.
 
 ## Claim Boundary
 

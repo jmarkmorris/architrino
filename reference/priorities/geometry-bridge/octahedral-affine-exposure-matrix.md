@@ -351,7 +351,7 @@ D_IZ_{\mathrm{oct}}^{ab}
 \end{pmatrix},
 $$
 
-matching $D_IZ_{\mathrm{oct}}^{ab}=\zeta_{\delta Z}A^{ab}$ to the displayed numerical precision. The companion test [neutral-swarm-octahedral-affine-exposure-probe.test.js](../../../tests/neutral-swarm-octahedral-affine-exposure-probe.test.js) checks the schema, row count, nine-column decomposition, non-retention status, and trace-column coefficient.
+matching $D_IZ_{\mathrm{oct}}^{ab}=\zeta_{\delta Z}A^{ab}$ to the displayed numerical precision. The companion test [neutral-braid-octahedral-affine-exposure-probe.test.js](../../../tests/neutral-swarm-octahedral-affine-exposure-probe.test.js) checks the schema, row count, nine-column decomposition, non-retention status, and trace-column coefficient.
 
 ## Bound And Support
 

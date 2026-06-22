@@ -218,7 +218,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-forcing-interval-s
 - the bottleneck-derived first outward-rounded radius target;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.test.js) verifies predecessor validation, no speed-window imposition, target-row counts and names, bottleneck preservation, fold-collar sign transport, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.test.js) verifies predecessor validation, no speed-window imposition, target-row counts and names, bottleneck preservation, fold-collar sign transport, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

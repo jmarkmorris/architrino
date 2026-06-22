@@ -494,7 +494,7 @@ The theorem target can fail in precise ways: a root hits $J_\rho=0$, an inactive
 
 The first worked target should be the smallest support-complete branch already close to a root-regular chart:
 
-1. exact-antipodal $M=3$ shell swarm row, if its active root ledger, Jacobian signs, action scale, and exterior exposure rows can be kept fixed over one cycle;
+1. exact-antipodal $M=3$ shell braid row, if its active root ledger, Jacobian signs, action scale, and exterior exposure rows can be kept fixed over one cycle;
 2. otherwise the bounded-speed successor of that row, using $\nu_i$ and $\chi_i$ explicitly so the tangential force projection becomes a speed-factor equation rather than a fixed-speed obstruction.
 
 The target deliverable is not a metric and not a new gate. It is a populated instance of

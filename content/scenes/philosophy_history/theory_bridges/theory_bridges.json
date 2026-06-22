@@ -15,6 +15,10 @@
     "centerOn": "quantum_operator_mapping",
     "children": [
       {
+        "nodeId": "theory_bridges_overview",
+        "scenePath": "content/scenes/philosophy_history/theory_bridges/overview.json"
+      },
+      {
         "nodeId": "quantum_operator_mapping",
         "scenePath": "content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json"
       },
@@ -69,6 +73,14 @@
     ]
   },
   "objects": [
+    {
+      "id": "theory_bridges_overview",
+      "title": "Theory Bridges",
+      "radius": 2.688,
+      "color": "#4f5d75",
+      "labelTitle": "Overview",
+      "labelBadge": "doc"
+    },
     {
       "id": "quantum_operator_mapping",
       "title": "Quantum Operator Mapping",

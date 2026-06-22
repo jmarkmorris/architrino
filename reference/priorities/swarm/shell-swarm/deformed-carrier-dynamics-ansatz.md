@@ -1,8 +1,8 @@
 # Deformed Carrier Dynamics Ansatz
 
-Promotion status: `priority-only`. This packet develops low-order deformed support-band carrier ansatzes after the rigid zero-offset octahedral row in [octahedral-carrier-worked-example.md](octahedral-carrier-worked-example.md) fails the neutral tangential-residual screen. It is theorem-target material only. It does not promote a retained shell swarm branch, a spinor proof, a mass map, observer exports, or a migration path into `content/markdown/aaa`.
+Promotion status: `priority-only`. This packet develops low-order deformed support-band carrier ansatzes after the rigid zero-offset octahedral row in [octahedral-carrier-worked-example.md](octahedral-carrier-worked-example.md) fails the neutral tangential-residual screen. It is theorem-target material only. It does not promote a retained shell braid branch, a spinor proof, a mass map, observer exports, or a migration path into `content/markdown/aaa`.
 
-Claim level: deformation search packet. A candidate row becomes retention material only if the same branch data close the support-band, speed, phase-lock, noncollision, active causal-root, Jacobian-floor, tangential-residual, energy/action, angular-momentum, exposure, and event-ledger rows required in [shell-swarm-branch-mathematics.md](shell-swarm-branch-mathematics.md) and [topological-carrier-and-spin-targets.md](topological-carrier-and-spin-targets.md).
+Claim level: deformation search packet. A candidate row becomes retention material only if the same branch data close the support-band, speed, phase-lock, noncollision, active causal-root, Jacobian-floor, tangential-residual, energy/action, angular-momentum, exposure, and event-ledger rows required in [Shell Braid Branch Mathematics](shell-swarm-branch-mathematics.md) and [topological-carrier-and-spin-targets.md](topological-carrier-and-spin-targets.md).
 
 ---
 

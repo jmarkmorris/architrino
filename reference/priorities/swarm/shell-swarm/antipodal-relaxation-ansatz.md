@@ -90,7 +90,7 @@ This residual is not a dynamics equation. It is a declaration of how far the bra
 
 ## 3. Inventory And Center Gauge
 
-For the neutral six-site Noether swarm search, the polarity ledger remains
+For the neutral six-site Noether braid search, the polarity ledger remains
 
 $$
 q_{a,+}=+\epsilon,
@@ -785,4 +785,4 @@ $$
 \text{antipodal relaxation is a necessary candidate column for the pair-even dynamics residual.}
 $$
 
-It is not evidence of a retained shell swarm branch until a concrete relaxed curve family closes the full intrinsic dynamics, root, inventory, action, event, stability, and framed-wake rows together on one live ledger.
+It is not evidence of a retained shell braid branch until a concrete relaxed curve family closes the full intrinsic dynamics, root, inventory, action, event, stability, and framed-wake rows together on one live ledger.

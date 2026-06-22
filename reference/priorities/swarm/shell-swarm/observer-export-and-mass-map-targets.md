@@ -30,7 +30,7 @@ Claim discipline:
 
 ## 1. Moving-Branch Export Definition
 
-Let $q$ be a retained shell swarm branch candidate over a window $W$, and let $\mathbf{C}^{(\mathbf{v})}(t)$ be the branch center in a moving row with constant drift velocity
+Let $q$ be a retained shell braid branch candidate over a window $W$, and let $\mathbf{C}^{(\mathbf{v})}(t)$ be the branch center in a moving row with constant drift velocity
 
 $$
 \dot{\mathbf{C}}^{(\mathbf{v})}(t)=\mathbf{v},

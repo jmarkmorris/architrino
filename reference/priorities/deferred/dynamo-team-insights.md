@@ -161,7 +161,7 @@ For bookkeeping:
    E(t) = \sum_i K_i(t) + U(t).
    $$
 
-At higher levels, $U(t)$ coarse-grains into a local Noether swarm volume gradient and then into an effective refractive or metric field. The ontological shift is that potential energy is fundamentally geometry of causal history, with the familiar potential emerging by coarse-graining.
+At higher levels, $U(t)$ coarse-grains into a local Noether braid volume gradient and then into an effective refractive or metric field. The ontological shift is that potential energy is fundamentally geometry of causal history, with the familiar potential emerging by coarse-graining.
 
 ### Path-History Energy Functional
 
@@ -234,4 +234,4 @@ The mathematical challenge is to rigorously connect these scales:
 - [ontology](../../../content/markdown/aaa/foundations/ontology.md)
 - [emergence](../../../content/markdown/aaa/foundations/emergence.md)
 - [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md)
-- [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
+- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)

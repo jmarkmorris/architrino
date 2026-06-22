@@ -238,7 +238,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-source-atlas-quart
 - sampled reference payload values;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction.test.js) verifies predecessor validation, speed-window removal, fold ordering, formula targets, the three-cell partition, midpoint root-count checks, sampled payload preservation, CLI emission, JSON validation, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction.test.js) verifies predecessor validation, speed-window removal, fold ordering, formula targets, the three-cell partition, midpoint root-count checks, sampled payload preservation, CLI emission, JSON validation, and non-retention claims.
 
 ## Claim Boundary
 

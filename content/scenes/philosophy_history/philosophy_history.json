@@ -14,6 +14,10 @@
     },
     "children": [
       {
+        "nodeId": "philosophy_history_overview",
+        "scenePath": "content/scenes/philosophy_history/overview.json"
+      },
+      {
         "nodeId": "philosophy_of_science",
         "scenePath": "content/scenes/philosophy_history/philosophy_of_science.json"
       },
@@ -60,6 +64,14 @@
     ]
   },
   "objects": [
+    {
+      "id": "philosophy_history_overview",
+      "title": "Philosophy and History",
+      "radius": 2.688,
+      "color": "#4f5d75",
+      "labelTitle": "Overview",
+      "labelBadge": "doc"
+    },
     {
       "id": "philosophy_of_science",
       "title": "Philosophy of Science",

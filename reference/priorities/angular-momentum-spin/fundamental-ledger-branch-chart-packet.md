@@ -2,7 +2,7 @@
 
 Status. Proof packet for `fundamental_angular_momentum_ledger`, `tri_binary_partition_rule`, and the reduced `worked_three_layer_noether_transition` branch in [angular-momentum-spin.md](angular-momentum-spin.md). This packet is a branch-chart evaluation object, not a theorem promotion into AAA prose.
 
-Claim level. The equations below turn the existing scaffold in [core-angular-momentum-ledger.md](core-angular-momentum-ledger.md) and [swarm-partition-and-spinor.md](swarm-partition-and-spinor.md) into a replayable certificate target. A passing certificate would validate one retained Noether swarm branch chart for angular-momentum conservation and tri-binary partition closure. It would not by itself prove global branch uniqueness, spinor closure, measurement response, or Bell correlations.
+Claim level. The equations below turn the existing scaffold in [core-angular-momentum-ledger.md](core-angular-momentum-ledger.md) and [Braid Partition and Spinor](swarm-partition-and-spinor.md) into a replayable certificate target. A passing certificate would validate one retained Noether braid branch chart for angular-momentum conservation and tri-binary partition closure. It would not by itself prove global branch uniqueness, spinor closure, measurement response, or Bell correlations.
 
 ## Evaluation Object
 
@@ -709,4 +709,4 @@ It also fails if the scalar row passes but the vector row does not, because then
 
 ## Next Consumer
 
-The immediate consumer is a concrete branch-chart run or hand-built certificate that fills $\mathcal V_{\mathrm{cert}}$ with numerical or interval rows. The first useful output is not a new gate; it is a completed instance of the table above for one retained Noether swarm chart. If it passes, the branch can be promoted as a reduced angular-momentum ledger certificate. If it fails, the failure row says whether the four-substep branch is energy-mismatched, root-inadmissible, wake-incomplete, vector-incomplete, or unstable.
+The immediate consumer is a concrete branch-chart run or hand-built certificate that fills $\mathcal V_{\mathrm{cert}}$ with numerical or interval rows. The first useful output is not a new gate; it is a completed instance of the table above for one retained Noether braid chart. If it passes, the branch can be promoted as a reduced angular-momentum ledger certificate. If it fails, the failure row says whether the four-substep branch is energy-mismatched, root-inadmissible, wake-incomplete, vector-incomplete, or unstable.

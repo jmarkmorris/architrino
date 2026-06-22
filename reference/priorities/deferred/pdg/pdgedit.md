@@ -389,7 +389,7 @@ The current composite review groups are:
 | `Neutral B Meson (d anti-b)` | `Pro Down Quark`; `Anti Bottom Quark` |
 | `Neutral B Meson (b anti-d)` | `Pro Bottom Quark`; `Anti Down Quark` |
 
-The standard row-level tile set may include row-level constituent tiles that appear inside these recipes. It should not include a standalone four-tile `Photon` row: `Photon` is only the composite label over the Pro/Anti Noether Swarm pair.
+The standard row-level tile set may include row-level constituent tiles that appear inside these recipes. It should not include a standalone four-tile `Photon` row: `Photon` is only the composite label over the Pro/Anti Noether Braid pair.
 
 The shared review catalog may carry composite label tiles such as `Photon` as `type: "composite-label"` reference artwork. Those label tiles are span-label primitives, not valid row-level assembly payloads.
 

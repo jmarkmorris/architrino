@@ -1,12 +1,12 @@
 # Current Dynamics Synthesis
 
-Promotion status: `priority-only`. This packet summarizes the current mathematical state of shell swarm dynamics after the rigid, polarity, deformation, arclength, linearized, and theorem-target packets in this directory. It is a synthesis of priority-side work only. It does not retain a branch or authorize migration into `content/markdown/aaa`.
+Promotion status: `priority-only`. This packet summarizes the current mathematical state of shell braid dynamics after the rigid, polarity, deformation, arclength, linearized, and theorem-target packets in this directory. It is a synthesis of priority-side work only. It does not retain a branch or authorize migration into `content/markdown/aaa`.
 
 ---
 
 ## 1. Main Conclusion
 
-The rigid octahedral shell swarm seed carrier is a strong geometry/root seed, but it is not a dynamics branch.
+The rigid octahedral shell braid seed carrier is a strong geometry/root seed, but it is not a dynamics branch.
 
 The viable dynamics problem is not:
 
@@ -80,7 +80,7 @@ The current screens all remain negative.
 | [rational-winding-screen-results.md](rational-winding-screen-results.md) | low-integer winding search chooses $(1,1,1)$; nontrivial winding is unsupported by the refined $M=2$ lengths | equal-period force/unit rows still open |
 | [unit-speed-chart-reparameterization.md](unit-speed-chart-reparameterization.md) | proves construction-speed spread is a chart row removable by arclength inverse when $S_i>0$ and lengths match | force/root/curvature closure must be recomputed in the arclength-inverse chart |
 | [variable-speed-factor-extension.md](variable-speed-factor-extension.md) | replaces strict fixed speed by a bounded speed factor $\nu_i$, modifies causal-root Jacobians to $1-\nu_j^-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}$, and allows short controlled self-hit intervals | the current exact-antipodal $M=3$ rows remain the $\nu_i\equiv1$ special case until root, tail, action, and proof-budget rows are rerun |
-| [neutral-swarm-model.md](../neutral-swarm/neutral-swarm-model.md) | generalizes the neutral Noether swarm to six labeled architrinos, three positive and three negative, on free-support bounded-speed paths with no mandatory binary partition | exact-antipodal, shell swarm, nested shell swarm, and transition rows are now case reductions until a general all-pairs branch certificate is emitted |
+| [Neutral Braid Model](../neutral-swarm/neutral-swarm-model.md) | generalizes the neutral Noether braid to six labeled architrinos, three positive and three negative, on free-support bounded-speed paths with no mandatory binary partition | exact-antipodal, shell braid, nested shell braid, and transition rows are now case reductions until a general all-pairs branch certificate is emitted |
 | [bounded-speed-factor-proof-stack-impact-map.md](bounded-speed-factor-proof-stack-impact-map.md) | maps the bounded speed factor through time maps, root/Jacobian rows, force dynamics, action/Noether, Krawczyk, stability, and self-hit rows | every fixed-speed packet must either declare $\nu_i\equiv1$ or emit bounded-speed successor fields |
 | [bounded-speed-factor-executable-solver-protocol.md](bounded-speed-factor-executable-solver-protocol.md) | defines the finite-mode unknowns $(a,b,\gamma)$, causal-time nodes, bounded-speed residual vector, Krawczyk rows, and first-event surfaces | first executable route for testing whether exact-antipodal $M=3$ opens off the fixed-speed subspace |
 | [bounded-speed-factor-branch-search-certificate.md](bounded-speed-factor-branch-search-certificate.md) | turns the bounded-speed proof stack into a branch-search decision object with a fixed chart, single residual, margin vector, trichotomy, execution order, and report schema | no candidate box has yet emitted the interval/Krawczyk decision and margin vector needed for acceptance, event reset, or certified rejection |
@@ -95,7 +95,7 @@ The current screens all remain negative.
 | [bounded-speed-factor-self-hit-return-lemma.md](bounded-speed-factor-self-hit-return-lemma.md) | gives the nontrapping inequality, speed-band normal-velocity cap, and dwell-time bound for a bounded-speed self-hit interval | turns "must return quickly" into a certifiable center-time row instead of a verbal condition |
 | [free-support-bounded-speed-dynamics.md](free-support-bounded-speed-dynamics.md) | makes closed arclength curves in $\mathbb{R}^3$ with support-band rows the base geometry and derives radial/support decompositions | prevents fixed-radius or spherical rows from being mistaken for global assumptions |
 | [free-support-action-compatibility-theorem.md](free-support-action-compatibility-theorem.md) | adds support multipliers, support work, and Noether support residuals to the free-support row | prevents support constraints from becoming hidden external work |
-| [nested-shell-swarm-radial-support-functional.md](../nested-shell-swarm/nested-shell-swarm-radial-support-functional.md) | defines partition-indexed radii $R_a$ as support-descriptor functionals with first/second variations, spread rows, gap rows, transition rows, and mixing residuals | nested shell, shell swarm, and transition cases are differentiable residual rows, not primitive radius labels |
+| [Nested Shell Braid Radial Support Functional](../nested-shell-swarm/nested-shell-swarm-radial-support-functional.md) | defines partition-indexed radii $R_a$ as support-descriptor functionals with first/second variations, spread rows, gap rows, transition rows, and mixing residuals | nested shell, shell braid, and transition cases are differentiable residual rows, not primitive radius labels |
 | [attraction-repulsion-inventory-theorem.md](attraction-repulsion-inventory-theorem.md) | proves each neutral site has three opposite-polarity and two same-polarity source sites, then inserts the count into weighted delayed force sums | captures the structural attraction bias without overclaiming dynamics closure |
 | [attraction-repulsion-force-moment-decomposition.md](attraction-repulsion-force-moment-decomposition.md) | decomposes the weighted bounded-speed force into attraction and repulsion tangent-power, normal-drive, and support-radial moment rows | the $3$-$2$ count becomes a force diagnostic only through weighted projections, not by count alone |
 | [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md) | derives causal-time root sheets, $D_vJ_{ij}^{\nu}$, force derivatives, and bounded-speed Krawczyk envelopes | fixed-speed root-sheet and tail certificates cannot be reused after $\nu_i$ becomes a branch variable |
@@ -274,7 +274,7 @@ There is now a second, broader interpretation. A bounded speed factor $\nu_i$ ca
 
 ## 4. Current Dynamics Picture
 
-The fixed-speed shell swarm branch has three hard constraints that must be solved together.
+The fixed-speed shell braid branch has three hard constraints that must be solved together.
 
 First, the delayed force field must be tangent-free:
 
@@ -480,7 +480,7 @@ The $M=3$ stability handoff now closes the other non-promotion label. After dyna
 
 The finite-mode convergence handoff now separates a certified finite $M=3$ candidate from a curve-level branch. A single successful $M=3$ solve would still need a refinement sequence with uniform floors, convergent root and tail sheets, vanishing mesh/projector/aliasing errors, vanishing continuous residuals, and a stable action-scale convention. This is the mathematical bridge that prevents a good finite collocation row from being overread as a continuum branch.
 
-The master retention theorem now states the complete exact-antipodal $M=3$ meaning of "solved": a single normalized master residual $\mathfrak{E}_{M3}\le1$ plus positive floors, with every certified error term accounted for and every row on one live ledger. It also makes the alternatives explicit: retained exact-antipodal $M=3$ shell swarm branch candidate, support-complete dynamics/action candidate, support-complete exact-antipodal obstruction, or active-window-only.
+The master retention theorem now states the complete exact-antipodal $M=3$ meaning of "solved": a single normalized master residual $\mathfrak{E}_{M3}\le1$ plus positive floors, with every certified error term accounted for and every row on one live ledger. It also makes the alternatives explicit: retained exact-antipodal $M=3$ shell braid branch candidate, support-complete dynamics/action candidate, support-complete exact-antipodal obstruction, or active-window-only.
 
 The promotion theorem now composes those obligations into one decision surface. A retained-branch claim is blocked until geometry, support-complete roots, dynamics, finite-mode convergence, action scale, Noether conservation, root-dependent stability, inventory, and event certificate rows all share one live-ledger convention. The current $M=3$ row is useful continuation evidence, but its promotion status is still `not-retained`.
 
@@ -497,5 +497,5 @@ $$
 \qquad
 \texttt{priority-only},
 \qquad
-\texttt{no-retained-shell-swarm-branch-yet}.
+\texttt{no-retained-shell-braid-branch-yet}.
 $$

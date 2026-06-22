@@ -1,22 +1,24 @@
-# Noether Swarm
+# Noether Braid
 
-The **Noether swarm** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether sea and particle-architecture program. A Noether swarm is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos and three negative-polarity architrinos maintain a persistent causal-return ledger.
+The **Noether braid** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether sea and particle-architecture program. A Noether braid is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos (positrinos) and three negative-polarity architrinos (electrinos) maintain a persistent causal-return ledger.
 
-This chapter uses three swarm types:
+This chapter uses three braid types:
 
 | Term | Definition | Additional structure |
 | --- | --- | --- |
-| **neutral swarm** | The broad six-architrino neutral case before any required binary grouping or radial organization. | Polarity balance and causal-return bookkeeping. |
-| **shell swarm** | A neutral swarm whose six architrino paths remain in a controlled radial support band. | Radial support control, with near-antipodality only as an optional constraint. |
-| **nested shell swarm** | A shell swarm with three ordered radial support bands. | The old three-layer picture; exact binaries are an additional proof assumption, not a separate swarm type. |
+| **neutral braid** | The broad six-architrino neutral case before any required binary grouping or radial organization. | Polarity balance and causal-return bookkeeping. |
+| **shell braid** | A neutral braid whose six architrino paths remain in a controlled radial support band. | Radial support control, with near-antipodality only as an optional constraint. |
+| **nested shell braid** | A shell braid with three ordered radial support bands. | The old three-layer picture; exact binaries are an additional proof assumption, not a separate braid type. |
 
-These definitions name case structure, not retained-branch existence. A neutral swarm requires six-body polarity balance and causal-return bookkeeping; a shell swarm adds radial support and recovery residuals; a nested shell swarm adds ordered support bands. Exact binary nesting, stable all-pairs roots, and observer-export behavior are theorem targets that must be certified by the branch ledger rather than read back into the definition.
+These definitions name case structure, not retained-branch existence. A neutral braid requires six-body polarity balance and causal-return bookkeeping; a shell braid adds radial support and recovery residuals; a nested shell braid adds ordered support bands. Exact binary nesting, stable all-pairs roots, and observer-export behavior are theorem targets that must be certified by the branch ledger rather than read back into the definition.
 
-Older chapters in the corpus use **Noether swarm**, **nested shell swarm**, and **nested binary** for material that usually belongs to the nested shell swarm case. This chapter treats that structure as a special case of the broader Noether swarm class. The downstream corpus still mostly describes the nested shell swarm and has not yet been generalized; the older terms should therefore be read as nested shell swarm terminology unless a later page explicitly promotes the more general swarm case. The swarm's dynamic envelope geometry is developed separately in [the nested shell swarm geometry chapter](nested-shell-swarm-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
+The word **braid** names the six retained worldline strands together with their shared causal-return ledger. It does not by itself assert that the branch already carries a protected mathematical braid-group class. A protected braid, linking, framing, or chirality class is extra structure to be certified by the [assembly topological charge](../dynamics/assembly-topological-charge.md) program.
 
-## Neutral Swarm
+Canonical reader-facing prose uses **Noether braid**, **nested shell braid**, and **nested binary** for this material. Repository file paths and durable symbols may still contain `noether-swarm` or `NS`; those strings are stable identifiers during the notation migration, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [the nested shell braid geometry chapter](nested-shell-swarm-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
 
-A **neutral swarm** is the base six-architrino case. It contains six architrinos indexed by $i\in\{1,\ldots,6\}$, with polarity signs $\sigma_i\in\{+1,-1\}$ satisfying
+## Neutral Braid
+
+A **neutral braid** is the base six-architrino case. It contains three positrinos and three electrinos, indexed by $i\in\{1,\ldots,6\}$ with polarity signs $\sigma_i\in\{+1,-1\}$ satisfying
 
 $$
 \#\{i:\sigma_i=+1\}
@@ -27,7 +29,7 @@ $$
 \sum_{i=1}^{6}\sigma_i=0
 $$
 
-This polarity-neutral ledger is imposed before any binary partition, shell ordering, or near-antipodal matching is assumed. Each positive-polarity architrino has three attractive channels to negative-polarity architrinos and two repellent channels to the other positive-polarity architrinos. Each negative-polarity architrino has the polarity-reversed version of the same count: three attractive channels to positives and two repellent channels to negatives. That $3+2$ channel count is part of the neutral swarm bookkeeping even when no binary partition has been certified.
+This polarity-neutral ledger is imposed before any binary partition, shell ordering, or near-antipodal matching is assumed. Each positive-polarity architrino has three attractive channels to negative-polarity architrinos and two repellent channels to the other positive-polarity architrinos. Each negative-polarity architrino has the polarity-reversed version of the same count: three attractive channels to positives and two repellent channels to negatives. That $3+2$ channel count is part of the neutral braid bookkeeping even when no binary partition has been certified.
 
 The intrinsic path of architrino $i$ may be represented by a closed arclength curve
 
@@ -49,11 +51,11 @@ X_i(t)=Y_i(\lambda_i(t)),
 0<\nu_-\leq\nu_i(t)\leq\nu_+<\infty
 $$
 
-The bounded speed factor $\nu_i(t)$ is the place where speed-lapse behavior enters the architecture. A branch may temporarily push an architrino over a local hinge into a self-hit mode, but an admissible neutral swarm must still return to a closed causal ledger within the branch's recovery tolerance. The neutral swarm therefore allows changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to three exact binaries.
+The bounded speed factor $\nu_i(t)$ is the place where speed-lapse behavior enters the architecture. A branch may temporarily push an architrino over a local hinge into a self-hit mode, but an admissible neutral braid must still return to a closed causal ledger within the branch's recovery tolerance. The neutral braid therefore allows changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to three exact binaries.
 
 ## Retained-Branch Certificate Target
 
-The present neutral swarm claim is a theorem target, not a retained-branch result. A candidate branch $B$ over a test window $W$ is retained only if the required rows close on one ledger identity. The master certificate can be summarized as
+The present neutral braid claim is a theorem target, not a retained-branch result. A candidate branch $B$ over a test window $W$ is retained only if the required rows close on one ledger identity. The master certificate can be summarized as
 
 $$
 \mathsf{R}_{\mathrm{NS}}(B,W)
@@ -114,7 +116,7 @@ $$
 |\Pi_{\mathrm{all}}|=30
 $$
 
-The $3$ attractive and $2$ repellent source-site counts for each receiver are inventory facts, not a compressed force law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, and line-of-action vectors for these ordered pairs. A shell swarm or nested shell swarm can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
+The $3$ attractive and $2$ repellent source-site counts for each receiver are inventory facts, not a compressed force law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, and line-of-action vectors for these ordered pairs. A shell braid or nested shell braid can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
 
 The certificate should report the first blocking row as
 
@@ -140,11 +142,11 @@ $$
 [0.07393815228,0.07393815232]
 $$
 
-so that narrow branch chart is rejected. The diagnostic family also rejects several overreads: the ordinary same-source positive-delay rescue is absent under the rigid exact-$c_f$ circular convention, inventory attraction bias does not imply force closure, resolved positive-delay root rows do not imply force closure, and sampled phase or polarity-phase improvements do not imply retention. These are negative results for rigid fixed-speed octahedral hypotheses, not rejections of the broader neutral swarm, shell swarm, nested shell swarm, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
+so that narrow branch chart is rejected. The diagnostic family also rejects several overreads: the ordinary same-source positive-delay rescue is absent under the rigid exact-$c_f$ circular convention, inventory attraction bias does not imply force closure, resolved positive-delay root rows do not imply force closure, and sampled phase or polarity-phase improvements do not imply retention. These are negative results for rigid fixed-speed octahedral hypotheses, not rejections of the broader neutral braid, shell braid, nested shell braid, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
 
-## Shell Swarm
+## Shell Braid
 
-A **shell swarm** is a neutral swarm whose six trajectories remain in a controlled radial band around a branch center $C(t)$. For a representative shell scale $R_*$ and band limits $R_-<R_+$, the shell condition is
+A **shell braid** is a neutral braid whose six trajectories remain in a controlled radial band around a branch center $C(t)$. For a representative shell scale $R_*$ and band limits $R_-<R_+$, the shell condition is
 
 $$
 R_-\leq
@@ -160,9 +162,9 @@ $$
 \frac{R_+-R_-}{R_*}\leq\varepsilon_{\mathrm{shell}}
 $$
 
-while a broader shell branch keeps only the hollow-band condition. This is still not the nested shell swarm. It is a one-band neutral swarm whose support is spatially organized strongly enough to produce a persistent exclusion envelope, shielding pattern, and Noether sea coupling channel.
+while a broader shell branch keeps only the hollow-band condition. This is still not the nested shell braid. It is a one-band neutral braid whose support is spatially organized strongly enough to produce a persistent exclusion envelope, shielding pattern, and Noether sea coupling channel.
 
-Near-antipodality is an optional shell swarm constraint, not a definition of the neutral swarm. A shell branch may carry an approximate polarity-reversing matching $\iota$ with $\iota^2=\mathrm{id}$ and $\sigma_{\iota(i)}=-\sigma_i$. Relative to a branch center $C(t)$, define the near-antipodality defect
+Near-antipodality is an optional shell braid constraint, not a definition of the neutral braid. A shell branch may carry an approximate polarity-reversing matching $\iota$ with $\iota^2=\mathrm{id}$ and $\sigma_{\iota(i)}=-\sigma_i$. Relative to a branch center $C(t)$, define the near-antipodality defect
 
 $$
 \delta_{\mathrm{anti},i}(t)
@@ -186,9 +188,9 @@ $$
 
 for a branch interval $J$, recovery time $T_{\mathrm{rec}}$, contraction factor $0\leq\kappa<1$, and driving residue $\varepsilon_{\mathrm{drive}}$. Near-antipodality is useful because it captures the shell branch's tendency to restore opposite-side balance without pretending that the two matched architrinos remain in lockstep under perturbation.
 
-## Nested Shell Swarm
+## Nested Shell Braid
 
-A **nested shell swarm** is a shell swarm with three ordered radial support bands. It is the case most of the existing downstream corpus currently describes.
+A **nested shell braid** is a shell braid with three ordered radial support bands. It is the case most of the existing downstream corpus currently describes.
 
 The geometric shell labels are
 
@@ -204,27 +206,27 @@ $$
 H,\ M,\ L
 $$
 
-for **high**, **middle**, and **low** branch role. In the weak-stress nested shell swarm chart, $H$ is the high-cadence or high-stress role, $M$ is the hinge or transfer role, and $L$ is the low-cadence or external-coupling role. The letter $M$ is therefore context-dependent: in $I/M/O$ it means middle radius, while in $H/M/L$ it means the middle role between high and low branch response. The usual weak-stress branch is expected to align these two orderings approximately, but that alignment is a branch result rather than a naming axiom.
+for **high**, **middle**, and **low** branch role. In the weak-stress nested shell braid chart, $H$ is the high-cadence or high-stress role, $M$ is the hinge or transfer role, and $L$ is the low-cadence or external-coupling role. The letter $M$ is therefore context-dependent: in $I/M/O$ it means middle radius, while in $H/M/L$ it means the middle role between high and low branch response. The usual weak-stress branch is expected to align these two orderings approximately, but that alignment is a branch result rather than a naming axiom.
 
 The recursive binary picture remains valuable inside this case. Just as an Electrino and a Positrino can form a stable binary, a declared binary can participate in a larger coupled support structure, and three energy-separated binaries can form a nested shell hierarchy. The key to stability is still separation of scale: each surrounding support band must have a larger radius, a lower cadence, and a compatible causal-root ledger than the deeper support band.
 
-In this case, a candidate stable configuration is the **nested shell swarm with exact binary assumptions**. It consists of three binaries, one in each ordered shell, and supplies the assembly scaffold later used in [Nested Shell Swarm Dynamics](nested-shell-swarm-dynamics.md).
+In this case, a candidate stable configuration is the **nested shell braid with exact binary assumptions**. It consists of three binaries, one in each ordered shell, and supplies the assembly scaffold later used in [Nested Shell Braid Dynamics](nested-shell-swarm-dynamics.md).
 
 -   **Why Three?** The stability of a three-shell nested structure is a theorem target tied to the three-dimensional nature of Euclidean space. Each binary defines an orbital plane or dominant support sheet. The working claim is that three mutually orthogonal support sheets can form a dynamically stable, symmetric, three-dimensional structure that is resistant to perturbation; the proof burden is to derive that role count from the delayed causal dynamics rather than assuming it.
 
--   **Why "Noether"?** This swarm family is named in honor of Emmy Noether. Noether's theorem links symmetries in physical systems to conserved quantities. The highly symmetric nested shell swarm is the candidate scaffold through which spin, branch-quantized energy records, and other conserved observer-level labels should be recovered from closure labels and emitted causal-wake envelopes.
+-   **Why "Noether"?** This braid family is named in honor of Emmy Noether. Noether's theorem links symmetries in physical systems to conserved quantities. The highly symmetric nested shell braid is the candidate scaffold through which spin, branch-quantized energy records, and other conserved observer-level labels should be recovered from closure labels and emitted causal-wake envelopes.
 
-## Properties of the Nested Shell Swarm
+## Properties of the Nested Shell Braid
 
--   **Energy-Separated Scales:** In low-energy nested shell swarm conditions, the three shell binaries have energy-separated orbital radii and cadences. The innermost binary is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the system's stability.
+-   **Energy-Separated Scales:** In low-energy nested shell braid conditions, the three shell binaries have energy-separated orbital radii and cadences. The innermost binary is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the system's stability.
 
 -   **Internal Stabilization:** The system is expected to be stable only on branches where the high-frequency causal-wake emissions from the innermost binary, inter-layer wake exchange, and outer-layer shielding close into a persistent return cycle. The time-averaged potential picture is useful, but the theorem burden is to show that the root ledger, phase closure, and separator conditions keep the coupled hierarchy on the same branch.
 
--   **Energy Shielding via Superposition:** From a distance, a nested shell swarm appears to have far less energy and a much smaller potential signature than the raw sum of its six constituent architrinos. The rapid oscillation of the positive- and negative-polarity architrinos within the nested structure causes their wake contributions to largely cancel out through superposition. This shielding effect is the working mechanism for how highly energetic structures can form the basis for relatively low-mass observed particles; quantitative extraction remains a mass-map closure target.
+-   **Energy Shielding via Superposition:** From a distance, a nested shell braid appears to have far less energy and a much smaller potential signature than the raw sum of its six constituent architrinos. The rapid oscillation of the positive- and negative-polarity architrinos within the nested structure causes their wake contributions to largely cancel out through superposition. This shielding effect is the working mechanism for how highly energetic structures can form the basis for relatively low-mass observed particles; quantitative extraction remains a mass-map closure target.
 
 ## Integer Phase-Closure States
 
-A nested shell swarm should be treated as a closed-cycle geometry before it is treated as a particle label. Over a stable return period $T$, each binary must return its phase together with the relevant causal-root ledger:
+A nested shell braid should be treated as a closed-cycle geometry before it is treated as a particle label. Over a stable return period $T$, each binary must return its phase together with the relevant causal-root ledger:
 
 $$
 \Theta_a(T)
@@ -242,13 +244,13 @@ $$
 
 The integers $k_a$ are winding counts over the closure period. They are not a claim that the layer frequencies are integer-valued at every instant. The surrounding root ledger records which self-hit, partner-hit, and inter-layer branches made the closure admissible.
 
-On this reading, an accepted energy-level change is a one-$h$ closed-cycle action transaction that moves the nested shell swarm from one admissible integer-and-root ledger to another. The causal wake emitted by the retuned swarm should therefore carry information about the swarm's closure state. Higher-level atomic orbital configurations, when they are recovered, should appear as electron-assembly resonance envelopes in that structured nuclear and Noether sea wake environment, not as primitive labels pasted onto the swarm.
+On this reading, an accepted energy-level change is a one-$h$ closed-cycle action transaction that moves the nested shell braid from one admissible integer-and-root ledger to another. The causal wake emitted by the retuned braid should therefore carry information about the braid's closure state. Higher-level atomic orbital configurations, when they are recovered, should appear as electron-assembly resonance envelopes in that structured nuclear and Noether sea wake environment, not as primitive labels pasted onto the braid.
 
-The same closure-label machinery is the native carrier for branch-quantized Lorentz response. A moving nested shell swarm should not be assigned a Lorentz factor independently of its internal ledger. Instead, a stable closure label should determine the all-layer retuning of radii, frequencies, characteristic speeds, and wake exchange; the outer envelope then projects the ruler factor seen by Physical Observers. In the homogeneous weak-field limit, the admitted labels must collapse to the usual effective $\gamma(v)$ within the preferred-frame leakage bound.
+The same closure-label machinery is the native carrier for branch-quantized Lorentz response. A moving nested shell braid should not be assigned a Lorentz factor independently of its internal ledger. Instead, a stable closure label should determine the all-layer retuning of radii, frequencies, characteristic speeds, and wake exchange; the outer envelope then projects the ruler factor seen by Physical Observers. In the homogeneous weak-field limit, the admitted labels must collapse to the usual effective $\gamma(v)$ within the preferred-frame leakage bound.
 
 ## Cadence-Scale Retuning Hypothesis
 
-The single-swarm version of the $h$-step claim is geometric rather than merely thermal. An accepted action transaction does not add energy to a rigid object. It moves the nested shell swarm from one admissible closure branch toward another, and the swarm resolves that transaction by retuning its cadence-scale closure.
+The single-braid version of the $h$-step claim is geometric rather than merely thermal. An accepted action transaction does not add energy to a rigid object. It moves the nested shell braid from one admissible closure branch toward another, and the braid resolves that transaction by retuning its cadence-scale closure.
 
 The bookkeeping distinction is
 
@@ -260,7 +262,7 @@ A_N=Nh,
 E_N=A_N\nu_N
 $$
 
-Here $h$ is the fixed closed-cycle action unit, $N$ is the integer number of accepted action units carried by the branch, $A_N$ is the total branch action level, and $\nu_N$ is a representative cadence extracted from the closed nested shell swarm branch. A one-$h$ transaction changes the action ledger; a branch with many accepted units is scaled by $Nh$. The accepted branch may answer through one or more of the cadence, layer radii, envelope scale, envelope ratio, orientation, strain, and inter-layer wake-exchange variables:
+Here $h$ is the fixed closed-cycle action unit, $N$ is the integer number of accepted action units carried by the branch, $A_N$ is the total branch action level, and $\nu_N$ is a representative cadence extracted from the closed nested shell braid branch. A one-$h$ transaction changes the action ledger; a branch with many accepted units is scaled by $Nh$. The accepted branch may answer through one or more of the cadence, layer radii, envelope scale, envelope ratio, orientation, strain, and inter-layer wake-exchange variables:
 
 $$
 \Delta A_{\mathrm{cyc}}=\pm h
@@ -325,7 +327,7 @@ D\mathcal{C}_q[\Delta\mathbf{y}]
 =0
 $$
 
-If $\Delta\mathcal{C}_{\mathcal{G}}=0$, the retuning stays on the same causal-root ledger. If $\Delta\mathcal{C}_{\mathcal{G}}\neq0$, the event is a branch transition and must be treated as a separator crossing or causal-locus reconnection rather than as smooth single-swarm drift.
+If $\Delta\mathcal{C}_{\mathcal{G}}=0$, the retuning stays on the same causal-root ledger. If $\Delta\mathcal{C}_{\mathcal{G}}\neq0$, the event is a branch transition and must be treated as a separator crossing or causal-locus reconnection rather than as smooth single-braid drift.
 
 The local cadence-scale retuning map is therefore the closure target
 
@@ -353,13 +355,13 @@ w_O^{(q)}\Delta\ln\nu_O,
 w_I^{(q)}+w_M^{(q)}+w_O^{(q)}=1
 $$
 
-with the weights determined by the same branch and exposure record used for clock and medium coupling. The full nested shell swarm need not put the entire transaction into a single layer. One layer may tighten while another expands, and the outer envelope may change through $\lambda$ or $\xi$, provided the total closure label remains admissible.
+with the weights determined by the same branch and exposure record used for clock and medium coupling. The full nested shell braid need not put the entire transaction into a single layer. One layer may tighten while another expands, and the outer envelope may change through $\lambda$ or $\xi$, provided the total closure label remains admissible.
 
 This is the local branchwise origin of the smoother Noether sea equilibrium-current language: individual retunings are discrete, while many asynchronous accepted retunings can coarse-grain into a continuous cadence-space current.
 
 ## Rest-Level Scaling Curve
 
-The cadence-scale retuning map becomes more predictive when a homogeneous pool of group-velocity-zero Noether swarms is assumed to occupy the same reduced closure label and the same integer rest level. In that case the pool is made of equal swarms at one level $N$, while the scaling curve compares neighboring admissible rest levels along the same branch. The scaling variable is not $h$ itself. The fixed quantity is the closed-cycle action unit $h$; the branch variable is the total action level
+The cadence-scale retuning map becomes more predictive when a homogeneous pool of group-velocity-zero Noether braids is assumed to occupy the same reduced closure label and the same integer rest level. In that case the pool is made of equal braids at one level $N$, while the scaling curve compares neighboring admissible rest levels along the same branch. The scaling variable is not $h$ itself. The fixed quantity is the closed-cycle action unit $h$; the branch variable is the total action level
 
 $$
 A_N=Nh,
@@ -500,7 +502,7 @@ $$
 \frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}
 $$
 
-The legacy density symbol is retained as packing notation for this chart. It names the maximum center density of the relevant Noether swarm exclusion envelopes, not a separate swarm type. Therefore the packing curve inherits the radius closure:
+The legacy density symbol is retained as packing notation for this chart. It names the maximum center density of the relevant Noether braid exclusion envelopes, not a separate braid type. Therefore the packing curve inherits the radius closure:
 
 $$
 \rho_{\mathrm{NS},\max}^{\#}(N)
@@ -508,7 +510,7 @@ $$
 R_O(N)^{-3}
 $$
 
-For example, the fixed-speed branch gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-3}$, while the bare inverse-square branch with approximately constant $\mathcal{B}_O$ gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-6}$. These are branch diagnostics, not competing definitions of a Noether swarm.
+For example, the fixed-speed branch gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-3}$, while the bare inverse-square branch with approximately constant $\mathcal{B}_O$ gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-6}$. These are branch diagnostics, not competing definitions of a Noether braid.
 
 This packing formula is only the spherical leading estimate. At high relative velocity, high Noether sea delay, or high gravitational strain, the branch data cannot be kept constant:
 
@@ -520,9 +522,9 @@ $$
 
 The scaling curve is therefore piecewise by branch. Once the branch supplies $\xi$ and $\lambda$, the exclusion envelope must be treated as an oblate spheroidal envelope rather than a sphere, and the center-density calculation must inherit orientation, strain, and Noether sea delay data from the same branch label.
 
-## Reduced Nested Shell Swarm Closure Label
+## Reduced Nested Shell Braid Closure Label
 
-For proof work, the integer phase-closure state should be packaged with the branch data that made the closure admissible. The reduced nested shell swarm closure label is a branch label, not a new ontological ingredient. The symbol $\Lambda_{\text{NS}}$ is retained here as legacy notation:
+For proof work, the integer phase-closure state should be packaged with the branch data that made the closure admissible. The reduced nested shell braid closure label is a branch label, not a new ontological ingredient. The symbol $\Lambda_{\text{NS}}$ is retained here as legacy notation:
 
 $$
 \Lambda_{\text{NS}}
@@ -535,11 +537,11 @@ k_I,k_M,k_O;\
 \right)
 $$
 
-Here $k_I,k_M,k_O$ are the layer winding counts over the chosen return period. The layer ledgers $\mathcal{G}_I,\mathcal{G}_M,\mathcal{G}_O$ record active self-hit and partner-hit branches, root multiplicities, winding or phase branch, emission-order data, and separator history. The inter-layer ledgers $\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO}$ record delayed exchange roots and phase-lock constraints between binary layers. The branch label $\chi_c$ records ordered swarm chirality; the current candidate data are the `HML/HLM` ordered-swarm distinction together with $Wr_c$ or a multi-component causal-writhe parity.
+Here $k_I,k_M,k_O$ are the layer winding counts over the chosen return period. The layer ledgers $\mathcal{G}_I,\mathcal{G}_M,\mathcal{G}_O$ record active self-hit and partner-hit branches, root multiplicities, winding or phase branch, emission-order data, and separator history. The inter-layer ledgers $\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO}$ record delayed exchange roots and phase-lock constraints between binary layers. The branch label $\chi_c$ records ordered braid chirality; the current candidate data are the `HML/HLM` ordered-braid distinction together with $Wr_c$ or a multi-component causal-writhe parity.
 
 This label is reduced because it omits the full architrino trajectories and retains only the closure data needed for branch comparison. It is useful only under a theorem-target burden: smooth branch-preserving deformations should keep $\Lambda_{\text{NS}}$ fixed, while a change of label should be tied to a causal-root bifurcation, separator crossing, or causal-locus reconnection. The chirality entry $\chi_c$ is not yet proved by this definition; it names the entry that the later causal-writhe or ordered-frame proof must fill.
 
-The quantum-number generalization begins at this level. Generation, spin, chirality, and later observer-level orbital labels should be read as downstream coarse-grainings or measurement labels derived from admissible nested shell swarm closure labels and their emitted causal-wake envelopes. They should not be imposed as primitive particle labels before the closure, wake-envelope, and apparatus-coupling maps have been derived.
+The quantum-number generalization begins at this level. Generation, spin, chirality, and later observer-level orbital labels should be read as downstream coarse-grainings or measurement labels derived from admissible nested shell braid closure labels and their emitted causal-wake envelopes. They should not be imposed as primitive particle labels before the closure, wake-envelope, and apparatus-coupling maps have been derived.
 
 For the horizon-interface entropy calculation, the counted labels must be restrictions of this same reduced closure label, not a second black-hole bookkeeping system. The alignment-restricted label is the theorem-target restriction
 $$
@@ -571,28 +573,28 @@ Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compat
 
 ## Geometry and Exclusion Envelope
 
-The same nested shell swarm motion that supplies shielding also sweeps out a persistent dynamic exclusion envelope. That envelope is not the swarm definition itself; it is the geometric footprint of the nested assembly. For the oblate spheroidal form, exclusion-envelope interpretation, and deformation channels, see [the nested shell swarm geometry chapter](nested-shell-swarm-geometry.md).
+The same nested shell braid motion that supplies shielding also sweeps out a persistent dynamic exclusion envelope. That envelope is not the braid definition itself; it is the geometric footprint of the nested assembly. For the oblate spheroidal form, exclusion-envelope interpretation, and deformation channels, see [the nested shell braid geometry chapter](nested-shell-swarm-geometry.md).
 
-## The Nested Shell Swarm Hierarchy and Fermion Generations
+## The Nested Shell Braid Hierarchy and Fermion Generations
 
-The broader assembly program suggests reading the nested shell swarm hierarchy as a natural hierarchy of fermion shielding tiers:
+The broader assembly program suggests reading the nested shell braid hierarchy as a natural hierarchy of fermion shielding tiers:
 
 -   **Isolated binary:** the most exposed shielding tier, corresponding to Generation III.
 -   **Two-binary shielding tier:** one shielding tier restored, corresponding to the Generation-II shielding tier.
--   **Nested shell swarm:** the fully shielded three-tier swarm, corresponding to the Generation-I shielding tier.
+-   **Nested shell braid:** the fully shielded three-tier braid, corresponding to the Generation-I shielding tier.
 
 On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether sea](../assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../assemblies/fermions/electron.md).
 
-## Nested Shell Swarm Alignment and Planck-Scale Framing
+## Nested Shell Braid Alignment and Planck-Scale Framing
 
-The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary** is the near-field-speed hinge, written as $s_M\approx c_f$ in the ordinary weak-stress branch and as $v_M=c_f$ in the terminal-alignment target; its shell scale and cadence retune along the branch. It acts as the **energy-storage fulcrum** for transfers across the nested shell swarm.
+The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary** is the near-field-speed hinge, written as $s_M\approx c_f$ in the ordinary weak-stress branch and as $v_M=c_f$ in the terminal-alignment target; its shell scale and cadence retune along the branch. It acts as the **energy-storage fulcrum** for transfers across the nested shell braid.
 
-As a nested shell swarm approaches an event horizon, the **outer binary frequency increases** and its **speed approaches $c_f$**, while the **middle binary** remains on the declared hinge branch as its shell scale and cadence retune. At the horizon-alignment target, the **middle and outer binaries reach $c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
+As a nested shell braid approaches an event horizon, the **outer binary frequency increases** and its **speed approaches $c_f$**, while the **middle binary** remains on the declared hinge branch as its shell scale and cadence retune. At the horizon-alignment target, the **middle and outer binaries reach $c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
 
-**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (nested shell swarm coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](../spacetime/singularity-resolution.md) and [Mapping the Planck Scale to the Nested Shell Swarm Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md).
+**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (nested shell braid coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](../spacetime/singularity-resolution.md) and [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md).
 
 ## The Foundation for Fermions
 
-The Noether swarm class supplies the structural scaffold used by the fermion program. Different closure labels, shielding tiers, energy records, and surrounding axial/wake structures are expected to map to Standard Model flavors and generations, but the mapping remains a derivation target until the branch labels, axial-layer inventory, and apparatus-coupling records have been recovered from the dynamics.
+The Noether braid class supplies the structural scaffold used by the fermion program. Different closure labels, shielding tiers, energy records, and surrounding axial/wake structures are expected to map to Standard Model flavors and generations, but the mapping remains a derivation target until the branch labels, axial-layer inventory, and apparatus-coupling records have been recovered from the dynamics.
 
-The collective motion, or **group velocity**, of a Noether swarm assembly determines its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that claim is developed in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md): volumetric Noether swarm envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.
+The collective motion, or **group velocity**, of a Noether braid assembly determines its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that claim is developed in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md): volumetric Noether braid envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.

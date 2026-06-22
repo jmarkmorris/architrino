@@ -261,7 +261,7 @@ It emits:
   $F_\delta$.
 
 The companion test
-[neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-sixth-order-tail-bound-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-sixth-order-tail-bound-certificate.test.js)
+[neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-sixth-order-tail-bound-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-c1-twenty-sixth-order-tail-bound-certificate.test.js)
 validates schema, no-fixed-speed-window discipline, root-tangent inclusion,
 invalid-route rejection, exact obstruction bounds, overclaim rejection, and CLI
 validate/schema behavior.

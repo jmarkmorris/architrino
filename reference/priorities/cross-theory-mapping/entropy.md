@@ -109,14 +109,14 @@ The local corpus already gives a coherent first map.
 | [Theory Differentials](../../../content/markdown/aaa/philosophy-history/theory-differentials.md#entropy) | Entropy is a cross-layer portable construct relocated to statistical population regimes and recovered as an effective limit. It is explicitly windowed by coarse-graining and access region. | effective summary plus derivation-closure target |
 | [Theory Differentials](../../../content/markdown/aaa/philosophy-history/theory-differentials.md#the-laws-of-thermodynamics) | The second-law comparison must include production, boundary flux, and coarse-graining residuals before being extrapolated to cosmology. | derivation-closure target |
 | [Measurement Ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) | Environmental locking can be tested by an apparatus/environment entropy increase over a persistence window. | derivation-closure target |
-| [Black Holes](../../../content/markdown/aaa/spacetime/black-holes.md#horizon-interface) | Horizon entropy should derive a local block entropy density over admissible horizon-interface Noether swarm closure labels and recover area scaling as a benchmark. | derivation-closure target |
+| [Black Holes](../../../content/markdown/aaa/spacetime/black-holes.md#horizon-interface) | Horizon entropy should derive a local block entropy density over admissible horizon-interface Noether braid closure labels and recover area scaling as a benchmark. | derivation-closure target |
 | [Dark Energy](../../../content/markdown/aaa/cosmology/dark-energy.md#thermodynamic-lambda_mathrmeff-closure-target) | A thermodynamic reading of $\Lambda_{\mathrm{eff}}$ is useful only as an effective-geometry closure target over a shared Noether sea state record. | effective summary plus closure target |
 | [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Photon loading, blackbody recovery, thermalization, and CMB handoff must use one provenance ledger rather than separate source stories. | derivation-closure target |
 | [Radiation](../../../content/markdown/aaa/reactions/radiation.md#blackbody-limit) | Blackbody entropy and thermal occupation require detailed balance over an ensemble, not a single excited assembly. | derivation-closure target |
 
 ## Draft $\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping
 
-Entropy is not primitive ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$. The ontic object is the complete state $\mathbb{U}_{\text{now}}\equiv S(t)$, including architrino positions, velocities, polarities, Noether swarm labels, causal-root ledgers, path-history, and Noether sea state variables. Entropy appears only after a finite observer, calculation, or effective theory forgets part of that state.
+Entropy is not primitive ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$. The ontic object is the complete state $\mathbb{U}_{\text{now}}\equiv S(t)$, including architrino positions, velocities, polarities, Noether braid labels, causal-root ledgers, path-history, and Noether sea state variables. Entropy appears only after a finite observer, calculation, or effective theory forgets part of that state.
 
 The reusable draft object is a windowed state count. For a coarse-graining $\mathcal{Q}$, retained region $W(t)$, and measure $\mu$ on the compatible reduced state space, the corpus already suggests
 
@@ -142,7 +142,7 @@ $$
 
 Here $\sigma_W$ should be derived from unresolved branch mixing, residual routing, thermalization, record formation, and dissipative medium response. The boundary flux term carries emitted assemblies, radiation, recoil, release channels, and Noether sea transport across $\partial W(t)$. The residual $\mathcal{R}_{\mathcal{Q}}$ records coarse-graining error, not an extra physical substance.
 
-The Noether swarm equilibrium transport hypothesis supplies a concrete cosmology-facing candidate for part of this entropy balance. If $f_N(\nu,\mathbf{x},t)$ is the distribution of Noether swarm cadence states and $J_\nu$ is its frequency-space current, then entropy production should be tested against the neighbor-equilibration term $R_{\mathrm{eq}}[f_N]$, while boundary flux should carry the source terms $S_{\mathrm{BH}}$ and $S_{\mathrm{GW}}$ only through declared medium-loading and perturbation records. A useful entropy packet must therefore show whether the proposed bulk movement from recycling sites toward lower-energy Noether sea states increases coarse-grained entropy, exports entropy through $\partial W(t)$, or merely redistributes an already constrained medium record.
+The Noether braid equilibrium transport hypothesis supplies a concrete cosmology-facing candidate for part of this entropy balance. If $f_N(\nu,\mathbf{x},t)$ is the distribution of Noether braid cadence states and $J_\nu$ is its frequency-space current, then entropy production should be tested against the neighbor-equilibration term $R_{\mathrm{eq}}[f_N]$, while boundary flux should carry the source terms $S_{\mathrm{BH}}$ and $S_{\mathrm{GW}}$ only through declared medium-loading and perturbation records. A useful entropy packet must therefore show whether the proposed bulk movement from recycling sites toward lower-energy Noether sea states increases coarse-grained entropy, exports entropy through $\partial W(t)$, or merely redistributes an already constrained medium record.
 
 ## Mapping Table
 
@@ -155,7 +155,7 @@ The Noether swarm equilibrium transport hypothesis supplies a concrete cosmology
 | Available/free energy | Extractable-work pressure under declared operations | Resource value of a record, bath, bias state, or medium state after energy and entropy channels are both routed | State the allowed operations, reference resources, and event ledger before claiming work extraction |
 | Record entropy | Irreversible-looking measurement records | Environmental locking of a durable apparatus branch | Prove $\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}}>0$ for a declared apparatus class |
 | Reset or memory entropy | Physical cost of cycling a memory-bearing apparatus | Export of unresolved record alternatives into apparatus/environment history, or explicit depletion of a blank-memory resource | For cyclic reset, prove a lower-bound entropy export from the same record channel |
-| Black-hole entropy | Horizon area, generalized entropy, and RT horizon-wrapping benchmarks | Derive the compatible horizon-interface Noether swarm label ensemble, its local block entropy density, region-anchored entropy surfaces, and accessible outgoing channels | Derive $\mathcal{B}_H(M,\mathbf{J},Q)$, the local coefficient $s_{\mathrm{align}}^H(\theta)/a_H(\theta)$, the $\eta_H(A;\theta)\to1$ thermal limit, and Page-curve-compatible release accounting |
+| Black-hole entropy | Horizon area, generalized entropy, and RT horizon-wrapping benchmarks | Derive the compatible horizon-interface Noether braid label ensemble, its local block entropy density, region-anchored entropy surfaces, and accessible outgoing channels | Derive $\mathcal{B}_H(M,\mathbf{J},Q)$, the local coefficient $s_{\mathrm{align}}^H(\theta)/a_H(\theta)$, the $\eta_H(A;\theta)\to1$ thermal limit, and Page-curve-compatible release accounting |
 | Cosmological entropy | Thermal history and large-scale arrow | Production, flux, and coarse-graining residuals in a finite Noether sea window | Preserve one medium-state record across CMB, BBN, redshift, and growth modules |
 
 ## Concrete Closure Objects
@@ -246,7 +246,7 @@ a_H(\theta)
 \frac{1}{4},
 $$
 
-with boundary corrections vanishing in the large-block limit. The native content is the area-normalized growth rate of admissible Noether swarm label families plus release-channel ledgers; the simpler $s_{\mathrm{align}}^H\to1/4$ statement is only the special case $a_H\to1$.
+with boundary corrections vanishing in the large-block limit. The native content is the area-normalized growth rate of admissible Noether braid label families plus release-channel ledgers; the simpler $s_{\mathrm{align}}^H\to1/4$ statement is only the special case $a_H\to1$.
 
 The matching region-anchored target is
 

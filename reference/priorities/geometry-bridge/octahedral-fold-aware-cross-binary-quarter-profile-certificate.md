@@ -276,7 +276,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-quarter-profile-ce
 - the centered clock interval $\nu_{\min}=\ell-D_{\times}$, $\nu_{\max}=\ell+D_{\times}$;
 - fold guards and non-retention boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-quarter-profile-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-quarter-profile-certificate.test.js) verifies source validation, speed-window removal, symmetry transport, quarter primitive formulas, centered clock positivity, fold guards, CLI emission, JSON validation, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-quarter-profile-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-quarter-profile-certificate.test.js) verifies source validation, speed-window removal, symmetry transport, quarter primitive formulas, centered clock positivity, fold guards, CLI emission, JSON validation, and non-retention claims.
 
 ## Claim Boundary
 

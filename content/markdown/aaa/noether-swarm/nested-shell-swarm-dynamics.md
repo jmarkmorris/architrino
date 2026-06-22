@@ -1,16 +1,16 @@
-# Nested Shell Swarm Dynamics
+# Nested Shell Braid Dynamics
 
-This chapter formulates nested shell swarm dynamics by extending the two-body delayed causal-wake system to a nested shell swarm with three coupled shell binaries. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
+This chapter formulates nested shell braid dynamics by extending the two-body delayed causal-wake system to a nested shell braid with three coupled shell binaries. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
 
-It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md), [Dyadic Resonance Lock](../dynamics/dyadic-resonance-lock.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), [Noether Swarm](noether-swarm.md), and [Nested Shell Swarm Geometry](nested-shell-swarm-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
+It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md), [Dyadic Resonance Lock](../dynamics/dyadic-resonance-lock.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), [Noether Braid](noether-swarm.md), and [Nested Shell Braid Geometry](nested-shell-swarm-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
 
-This chapter is the canonical dynamics home for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms inside the nested shell swarm variant. Primitive architrino ontology supplies the transceivers, polarities, causal wakes, and causal-root law; coupled stability mechanisms belong here and in [Binary Dynamics](../dynamics/binary-dynamics.md).
+This chapter is the canonical dynamics home for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms inside the nested shell braid variant. Primitive architrino ontology supplies the transceivers, polarities, causal wakes, and causal-root law; coupled stability mechanisms belong here and in [Binary Dynamics](../dynamics/binary-dynamics.md).
 
 ## Relation to Causal Closure
 
-This chapter owns the dynamics baseline: the nested shell swarm roles, speed-regime conventions, delay-envelope geometry, gradient response, local cycle-period diagnostics, and stability tests that define the nested shell swarm mechanism. It does not try to close the full rest-mass, photon, or observer-inference proof program.
+This chapter owns the dynamics baseline: the nested shell braid roles, speed-regime conventions, delay-envelope geometry, gradient response, local cycle-period diagnostics, and stability tests that define the nested shell braid mechanism. It does not try to close the full rest-mass, photon, or observer-inference proof program.
 
-Proper time $\tau$ does not exist at this layer. The EOM is integrated exclusively over absolute substrate time $t$. A nested shell swarm branch may output absolute periods, causal-root ledgers, deformation tensors, and stability residuals; later observer-inference chapters may translate those outputs into clock, ruler, signal, and effective-geometry language.
+Proper time $\tau$ does not exist at this layer. The EOM is integrated exclusively over absolute substrate time $t$. A nested shell braid branch may output absolute periods, causal-root ledgers, deformation tensors, and stability residuals; later observer-inference chapters may translate those outputs into clock, ruler, signal, and effective-geometry language.
 
 The stronger causal-closure program uses the mechanism defined here as an input. In this chapter, those stronger claims are included only where they clarify the dynamics baseline, and they are marked as reconstruction targets rather than completed theorems.
 
@@ -20,15 +20,15 @@ The claims in this chapter define a canonical dynamics baseline. They do not yet
 
 | Class | Treatment in this chapter |
 | --- | --- |
-| Dynamics baseline | Nested shell swarm roles, speed-regime conventions, delay-envelope geometry, spiral-helical motion, cycle-period diagnostics, and stability tests. |
+| Dynamics baseline | Nested shell braid roles, speed-regime conventions, delay-envelope geometry, spiral-helical motion, cycle-period diagnostics, and stability tests. |
 | Reconstruction target | Mass response, photon-channel behavior, observer-inference exports, and weak-field matching inputs as quantities to be derived from the dynamics before downstream interpretation. |
-| Open proof burden | Nested shell swarm minimality, shielding extraction, momentum-skew derivation, Floquet stability, photon closure, equivalence-principle export bounds, and downstream observer-geometry closure. |
+| Open proof burden | Nested shell braid minimality, shielding extraction, momentum-skew derivation, Floquet stability, photon closure, equivalence-principle export bounds, and downstream observer-geometry closure. |
 
 The chapter should therefore be read as the stable dynamics layer beneath the causal-closure program. It preserves the mechanism and the diagnostic quantities while leaving the full theorem burden explicit.
 
 ## Causal-Closure Certificate Target
 
-The rest-mass, moving-deformation, photon, observer-export, and event-ledger rows should be populated by one retained branch record, not by separately tuned fits. Retention is the conclusion of the certificate, not an assumption made before the rows are checked. For a candidate nested shell swarm chart $q$ over a test window $W$, the shared certificate target is
+The rest-mass, moving-deformation, photon, observer-export, and event-ledger rows should be populated by one retained branch record, not by separately tuned fits. Retention is the conclusion of the certificate, not an assumption made before the rows are checked. For a candidate nested shell braid chart $q$ over a test window $W$, the shared certificate target is
 
 $$
 \mathcal{C}_{\mathrm{tri}}^{(q)}(W)
@@ -92,16 +92,16 @@ $$
 \le1
 $$
 
-This is a certificate target, not an additional force law. It prevents a moving-deformation ratio, a mass-response average, a photon row, or an observer-export residual from being promoted unless the same causal-root branch supplies the period, envelope, signal, observer-export, mass, sector, and event-ledger data. If a row fails on $q$, the verdict is a rejected chart or continuation target under its declared hypotheses, not evidence against the broader neutral swarm or shell swarm class.
+This is a certificate target, not an additional force law. It prevents a moving-deformation ratio, a mass-response average, a photon row, or an observer-export residual from being promoted unless the same causal-root branch supplies the period, envelope, signal, observer-export, mass, sector, and event-ledger data. If a row fails on $q$, the verdict is a rejected chart or continuation target under its declared hypotheses, not evidence against the broader neutral braid or shell braid class.
 
 ## Substrate and Effective Levels
 
-Nested shell swarm dynamics uses four levels of description:
+Nested shell braid dynamics uses four levels of description:
 
 | Level | Meaning |
 | --- | --- |
 | Substrate ontology | Euclidean void, absolute substrate time $t$, architrinos, causal wakes, and causal-root branch structure. |
-| Assembly dynamics | Nested shell swarms, three coupled shell binaries, self-hit multiplicity, shielding, phase closure, and root-ledger transitions. |
+| Assembly dynamics | Nested shell braids, three coupled shell binaries, self-hit multiplicity, shielding, phase closure, and root-ledger transitions. |
 | Observer-inference exports | Rest mass, photon propagation, reconstructed kinematics, geodesics, and horizon behavior as later reconstructed by assembly-built observers. |
 | Inference and closure status | Mathematical closures that remain to be derived before effective claims can be treated as proved rather than reconstructed. |
 
@@ -122,7 +122,7 @@ The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. T
 
 ## Multi-Scale Layer Locking
 
-The baseline nested shell swarm is not a stack of three identical circular binaries. It is a nested causal lock whose shells operate in different speed regimes. Let $s_\ell$ denote the characteristic speed of one member of shell $\ell$ around that shell's center. In the ordinary weak-stress regime, the target ordering is
+The baseline nested shell braid is not a stack of three identical circular binaries. It is a nested causal lock whose shells operate in different speed regimes. Let $s_\ell$ denote the characteristic speed of one member of shell $\ell$ around that shell's center. In the ordinary weak-stress regime, the target ordering is
 
 $$
 s_I > c_f,
@@ -134,15 +134,15 @@ $$
 
 The inner binary is therefore self-hit and history-supported, the middle binary is the $\|\mathbf{v}\| = c_f$ hinge where root branches are most sensitive, and the outer binary is the sub-field-speed interface that controls shielding and boundary coupling. Their radii, cycle times, and history-window depths may differ by orders of magnitude. A reduced derivation can start with a separated-scale hypothesis such as $R_I \ll R_M \ll R_O$ and $T_I \ll T_M \ll T_O$, but the branch must report the actual hierarchy rather than hiding it in the notation.
 
-This is why ordinary circular or elliptic orbit language is limited. A circular carrier can expose useful geometry and a separable shell ansatz can diagnose missing forces, but a tangential residual in that ansatz does not by itself settle the nested shell swarm closure problem. In a coupled lock, inter-shell wakes, self-hit roots, and near-separator branch changes can supply phase corrections that are absent from a single isolated two-body chart.
+This is why ordinary circular or elliptic orbit language is limited. A circular carrier can expose useful geometry and a separable shell ansatz can diagnose missing forces, but a tangential residual in that ansatz does not by itself settle the nested shell braid closure problem. In a coupled lock, inter-shell wakes, self-hit roots, and near-separator branch changes can supply phase corrections that are absent from a single isolated two-body chart.
 
-The same distinction applies to compact nested shell swarm carriers. A finite-coordinate no-go for one compact carrier rejects that branch chart and its declared coordinates; it does not falsify the $A_0$ branch program. Raw root-key splits, observation-phase bins, and fitted residual bases remain diagnostic unless they belong to a branch-native coordinate declared before fitting. A checker-cleared coordinate may seed only a rerun candidate; it is not physical branch structure until the same branch identity survives root-ledger transport, residual checks, and stability continuation.
+The same distinction applies to compact nested shell braid carriers. A finite-coordinate no-go for one compact carrier rejects that branch chart and its declared coordinates; it does not falsify the $A_0$ branch program. Raw root-key splits, observation-phase bins, and fitted residual bases remain diagnostic unless they belong to a branch-native coordinate declared before fitting. A checker-cleared coordinate may seed only a rerun candidate; it is not physical branch structure until the same branch identity survives root-ledger transport, residual checks, and stability continuation.
 
 The perturbation status should therefore be sorted before simplification:
 
 | Perturbation class | Dynamics role |
 | --- | --- |
-| Nonresonant fast terms | Average over the closed nested shell swarm cycle and mostly affect convergence or small far-field corrections. |
+| Nonresonant fast terms | Average over the closed nested shell braid cycle and mostly affect convergence or small far-field corrections. |
 | Resonant and near-separator terms | Change phase closure, causal-root counts, Jacobians, or Floquet multipliers, so they remain part of the branch definition. |
 | Leakage terms | May be small internally while surviving as far-field multipoles or anisotropy, so they control the shielding extraction. |
 
@@ -158,11 +158,11 @@ m_0(A)c_{\text{eff}}^2
 \zeta(A)E_{\text{internal}}(A)
 $$
 
-where $E_{\text{internal}}(A)$ is the closed internal causal-history energy ledger of assembly $A$, and $\zeta(A)$ is the shielding or leakage factor that controls how much of that ledger couples to external probes. This is not yet a derived mass formula. It becomes a theorem only after the shielding factor, the internal energy ledger, and the first-order momentum-skew response are derived from the closed nested shell swarm dynamics.
+where $E_{\text{internal}}(A)$ is the closed internal causal-history energy ledger of assembly $A$, and $\zeta(A)$ is the shielding or leakage factor that controls how much of that ledger couples to external probes. This is not yet a derived mass formula. It becomes a theorem only after the shielding factor, the internal energy ledger, and the first-order momentum-skew response are derived from the closed nested shell braid dynamics.
 
 ## Spiral-Helical Motion Picture
 
-A resting nested shell swarm is modeled as a nested, phase-locked structure with three coupled binary planes. When the swarm moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$, the rest-state circular or near-circular binary motions are drawn into braided spiral-helical cable patterns through the Euclidean void.
+A resting nested shell braid is modeled as a nested, phase-locked structure with three coupled binary planes. When the braid moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$, the rest-state circular or near-circular binary motions are drawn into braided spiral-helical cable patterns through the Euclidean void.
 
 The spiral-helical picture is not decorative. A causal wake sent between partners, or between the inner, middle, and outer layers, must now reach a receiver that has moved during the wake's travel time. The internal phase geometry must therefore retune its pitch, radius, tilt, and timing to preserve the same closure ledger. In dynamics language, bulk velocity is encoded as internal geometry.
 
@@ -174,7 +174,7 @@ This is the common mechanical basis for three later downstream readouts:
 
 ## All-Layer Translating Branch Response
 
-A translating nested shell swarm is not described by one outer radius alone. The hidden state includes all three shell radii, frequencies, characteristic speeds, axes, active causal roots, and wake exchange:
+A translating nested shell braid is not described by one outer radius alone. The hidden state includes all three shell radii, frequencies, characteristic speeds, axes, active causal roots, and wake exchange:
 $$
 B_q(v)
 =
@@ -196,7 +196,7 @@ All causal roots in the branch ledger are solved with $c_f$ and absolute time $t
 
 The strict upper end of this drift band is kinematic. A leading-side partner row must be caught by a causal wake emitted from a source behind the receiver in the co-moving branch chart. If the center drift reaches $\|\mathbf{v}_{\text{trans}}\|\ge c_f$, that forward partner row has no positive-delay root, and the causal-root ledger starves on the leading side. The resulting speed-limit statement applies to sustained center translation of an internally bound branch; it does not prohibit inner-shell self-hit histories or other internal components from entering super-field-speed regimes relative to the primitive wake speed.
 
-For the same admitted branch $q$, extract semiaxes from the cycle-averaged nested shell swarm shape tensor
+For the same admitted branch $q$, extract semiaxes from the cycle-averaged nested shell braid shape tensor
 $$
 Q_{ab}^{(q)}(\mathbf{v}_{\text{trans}})
 =
@@ -407,7 +407,7 @@ $$
 \ell\in\{I,M,O\}
 $$
 
-The simple inverse rule $\Delta\ln R_\ell=-\Delta\ln\nu_\ell$ is therefore valid only on a sub-branch where $\Delta\ln s_\ell=0$. The ordinary nested shell swarm speed hierarchy instead imposes inequalities and hinge tolerances:
+The simple inverse rule $\Delta\ln R_\ell=-\Delta\ln\nu_\ell$ is therefore valid only on a sub-branch where $\Delta\ln s_\ell=0$. The ordinary nested shell braid speed hierarchy instead imposes inequalities and hinge tolerances:
 
 $$
 s_I'>c_f,
@@ -495,11 +495,11 @@ K_{\perp}^{(q)},
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}
 \right)
 $$
-Every entry is computed in absolute time from the retained causal-root chart. Later observer-inference chapters may ask whether this packet recovers clock behavior, ruler behavior, photon synchronization, or effective geometry. Those are downstream recovery tests. They are not definitions, assumptions, or integration variables in nested shell swarm dynamics.
+Every entry is computed in absolute time from the retained causal-root chart. Later observer-inference chapters may ask whether this packet recovers clock behavior, ruler behavior, photon synchronization, or effective geometry. Those are downstream recovery tests. They are not definitions, assumptions, or integration variables in nested shell braid dynamics.
 
 ## Terminal Alignment Label-Count Target
 
-The black-hole entropy route requires a dynamics-side label calculation. Once a nested shell swarm branch is driven to terminal alignment, the dynamics should output the admissible alignment-restricted closure labels and their neighbor-compatibility rules. For a connected block $U$ of horizon-adjacent alignment patches, the object is
+The black-hole entropy route requires a dynamics-side label calculation. Once a nested shell braid branch is driven to terminal alignment, the dynamics should output the admissible alignment-restricted closure labels and their neighbor-compatibility rules. For a connected block $U$ of horizon-adjacent alignment patches, the object is
 $$
 \mathcal{L}_U(\theta)
 =
@@ -1748,7 +1748,7 @@ in the equilibrium weak-field horizon-interface limit. This is the precise missi
 The dynamics chapter contributes the stable pieces needed by the larger theorem program:
 
 1. Define the speed hierarchy and the causal-speed guardrails.
-2. Model the nested shell swarm as inner engine, middle fulcrum, and outer shielding/interface shell.
+2. Model the nested shell braid as inner engine, middle fulcrum, and outer shielding/interface shell.
 3. Track how motion deforms the rest-state lock into braided spiral-helical geometry.
 4. Derive local cycle-period diagnostics from the absolute cycle-stretch theorem target.
 5. Solve all-layer branch updates for one-$h$ transactions and extract the branch-indexed period-stretch and envelope-oblation records.
@@ -1758,7 +1758,7 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 
 ## Working Hypotheses
 
-1. The formed nested shell swarm has stable invariants ($R_{\text{core}}$, $\omega_{\text{core}}$, fixed phase offsets).
+1. The formed nested shell braid has stable invariants ($R_{\text{core}}$, $\omega_{\text{core}}$, fixed phase offsets).
 2. The outer-binary delay loop yields discrete plateaus and a terminal aligned mode under increasing stress.
 3. High group velocity may produce an oblate causal envelope that drives planar alignment in the terminal rung; this remains a working hypothesis until the swept-volume and branch-stability tests close.
 4. High gravitational gradient modifies phase closure through tidal or differential delay effects, shifting or destabilizing rungs.
@@ -1771,7 +1771,7 @@ To keep speed claims consistent across documents, all binary-speed statements sh
 
 | Regime | Inner binary | Middle binary | Outer binary | Operational meaning |
 | --- | --- | --- | --- | --- |
-| **Partner/exterior comparison regime** (CFT bridge label) | Typically in self-hit branch ($\|\mathbf{v}\| \gtrsim c_f$ history-supported) | Near the hinge scale ($\|\mathbf{v}\| \approx c_f$) in working models | Typically $\|\mathbf{v}\| < c_f$ | Hierarchical nested shell swarm operation and ordinary ladder behavior |
+| **Partner/exterior comparison regime** (CFT bridge label) | Typically in self-hit branch ($\|\mathbf{v}\| \gtrsim c_f$ history-supported) | Near the hinge scale ($\|\mathbf{v}\| \approx c_f$) in working models | Typically $\|\mathbf{v}\| < c_f$ | Hierarchical nested shell braid operation and ordinary ladder behavior |
 | **Terminal-alignment interface** (holographic bridge label) | Forward-sector components approach $c_f$ | Forward-sector components approach $c_f$ | Forward-sector components approach $c_f$ | 3D precessing structure collapses toward planar lock |
 | **Self-hit interior comparison regime** (AdS bridge label) | Self-hit dominated; effective closure may involve super-field effective speed | Strongly coupled to inner/outer delay closure | Can participate in states where combined in-plane effective speed satisfies $v_{\text{eff}} > c_f$ | Mach-wedge-like causal geometry and interior recycling hypotheses |
 
@@ -1889,7 +1889,7 @@ T_{\text{local}}(\theta) = T_0 \, \alpha(\theta, G_{\text{grad}})
 $$
 When $\alpha > 1$, local cycles are longer relative to $T_0$; when $\alpha < 1$, they are shorter. This sector-delay diagnostic remains an absolute-time branch-period record. It can be exported downstream only after the accepted branch functional $T_q(v,G_{\text{grad}})$ is derived from the full cycle and matched to the retained causal-root ledger.
 
-**Geometric source of period shift:** The causal envelope shape sets $\Delta t_{\text{rt}}$. As the nested shell swarm tilts out of planar alignment and loses energy, the envelope becomes less oblate (larger $R_\parallel/R_\perp$), increasing some path lengths and stretching $T_{\text{local}}$; as it flattens, $R_\parallel$ shrinks and the corresponding delays contract. Gradients ($G_{\text{grad}}$) further skew delays across the orbit.
+**Geometric source of period shift:** The causal envelope shape sets $\Delta t_{\text{rt}}$. As the nested shell braid tilts out of planar alignment and loses energy, the envelope becomes less oblate (larger $R_\parallel/R_\perp$), increasing some path lengths and stretching $T_{\text{local}}$; as it flattens, $R_\parallel$ shrinks and the corresponding delays contract. Gradients ($G_{\text{grad}}$) further skew delays across the orbit.
 
 **Primitive translation parameter:** For the branch scan, use
 $$
@@ -1905,7 +1905,7 @@ Geometrically, $\beta_f$ is the primitive axis-squash control: as $\beta_f \to 1
 
 ## Minimal Models
 
-### Nested Shell Swarm Baseline (Inner + Middle Fixed)
+### Nested Shell Braid Baseline (Inner + Middle Fixed)
 
 **Focus:** Treat the inner and middle binaries as a formed subsystem with fixed (or slowly varying) center of mass. Track convergence of phase relations and extract $R_{\text{core}}$, $\omega_{\text{core}}$, and stable phase offsets. Check repeatability across nearby initial conditions and whether any subsystem element rides $\|\mathbf{v}\| = c_f$ continuously.
 
@@ -1940,7 +1940,7 @@ As alignment increases and planes coincide, the remaining degree of freedom may 
 
 Two nonlinear-dynamics diagnostics extend the standard alignment invariants and connect this chapter to the broader causal-closure program.
 
-**Floquet basin-robustness gap:** For a periodic nested shell swarm state $\mathcal{S}_{\mathbf{k}}$ with integer winding $\mathbf{k}$ and period $T_{\mathbf{k}}$, linearize the delay system around the periodic orbit and compute the leading Floquet multipliers $\{\mu_i\}$ off the symmetry directions. Define
+**Floquet basin-robustness gap:** For a periodic nested shell braid state $\mathcal{S}_{\mathbf{k}}$ with integer winding $\mathbf{k}$ and period $T_{\mathbf{k}}$, linearize the delay system around the periodic orbit and compute the leading Floquet multipliers $\{\mu_i\}$ off the symmetry directions. Define
 $$
 \Delta_{\mathbf{k}} = 1 - \max_{i\notin G}\|\mu_i(\mathbf{k})\|
 $$
@@ -2014,11 +2014,11 @@ The ambient Noether sea must participate in this comparison. Deforming the assem
 
 The following items are retained here only as dynamics-facing boundary conditions. Their full proof burdens belong to the broader causal-closure program, not to this chapter.
 
-### Nested Shell Swarm Role Hypotheses
+### Nested Shell Braid Role Hypotheses
 
-An electrino:positrino binary is the most primitive assembly considered in the current architecture. The $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture posits that three binaries can become coupled into a nested shell swarm, with each binary playing a distinct dynamical role.
+An electrino:positrino binary is the most primitive assembly considered in the current architecture. The $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture posits that three binaries can become coupled into a nested shell braid, with each binary playing a distinct dynamical role.
 
-Nested shell swarm minimality is a theorem target: the working claim is that three coupled shell binaries are the minimal stable closure architecture capable of preserving inner memory, commensurability buffering, and boundary coupling under combined kinematic and gradient stress.
+Nested shell braid minimality is a theorem target: the working claim is that three coupled shell binaries are the minimal stable closure architecture capable of preserving inner memory, commensurability buffering, and boundary coupling under combined kinematic and gradient stress.
 
 - **Inner binary** (MCB, partner/exterior comparison role): typically in/near self-hit branch ($v \gtrsim c_f$ by history), and would define fundamental units if MCB attractor is confirmed.
 - **Middle binary** (partner/exterior comparison role): near the symmetry hinge ($v \approx c_f$), with shell scale and cadence retuning; energy-storage fulcrum and coupling bridge.
@@ -2061,8 +2061,8 @@ The detailed black-hole treatment now lives in [../spacetime/black-holes.md](../
 - in the interior, maximum-curvature and recycling dynamics dominate;
 - outward release may later appear as jets, diffuse outflow, or dark-sector radiation channels.
 
-This chapter therefore keeps only the nested shell swarm regime map and leaves the ontology, recycling logic, and observer-facing strong-field interpretation to the canonical spacetime chapters.
+This chapter therefore keeps only the nested shell braid regime map and leaves the ontology, recycling logic, and observer-facing strong-field interpretation to the canonical spacetime chapters.
 
-In the nested shell swarm picture, each nested shell swarm is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. This chapter uses that mechanism to define the local dynamics and diagnostics. The coarse-grained metric, observer-clock, and strong-field ontology belong to the spacetime chapters and the causal-closure proof synthesis.
+In the nested shell braid picture, each nested shell braid is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. This chapter uses that mechanism to define the local dynamics and diagnostics. The coarse-grained metric, observer-clock, and strong-field ontology belong to the spacetime chapters and the causal-closure proof synthesis.
 
 For the strong-field continuation of that story, see [Black Holes](../spacetime/black-holes.md) and [Horizon Chirality](../spacetime/horizon-chirality.md).

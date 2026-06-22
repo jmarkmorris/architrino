@@ -12,7 +12,7 @@ node scripts/neutral-swarm/octahedral-root-force-closure-witness.mjs --validate 
 The artifact schema is
 
 $$
-\texttt{neutral-swarm-octahedral-root-force-closure-witness/v1}.
+\texttt{neutral-braid-octahedral-root-force-closure-witness/v1}.
 $$
 
 ---
@@ -195,8 +195,8 @@ This packet preserves the following boundaries. It makes no claim against:
 5. controlled self-hit rows with declared endpoint, action, and event accounting;
 6. fold-layer rows with their own regularized event ledger;
 7. medium-response rows with declared exchange terms;
-8. shell swarm case reductions;
-9. nested shell swarm case reductions;
-10. general neutral swarm branch searches outside this narrow fixed-speed implication.
+8. shell braid case reductions;
+9. nested shell braid case reductions;
+10. general neutral braid branch searches outside this narrow fixed-speed implication.
 
 The only closed-rejected statement is that resolved positive-delay source roots with positive Jacobian data are not sufficient, by themselves, to prove fixed-speed force closure.

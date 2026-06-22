@@ -167,7 +167,7 @@ The common radial breathing mode has the right qualitative effect on tangential 
 This supports three conclusions:
 
 1. Deformation is not optional. Rigid phase offsets alone do not close the dynamics.
-2. A retained shell swarm branch must solve the coupled system
+2. A retained shell braid branch must solve the coupled system
    $$
    \mathcal{R}_{\mathrm{tan}}=0,
    \qquad
@@ -232,4 +232,4 @@ The next bounded search should use the ansatz from [deformed-carrier-dynamics-an
 4. radial/support residual in the primary objective, not as a diagnostic after the fact;
 5. optional self/fold-layer terms only if their event/action ledger contribution is explicitly tracked.
 
-This is the first evidence that shell swarm dynamics may need a genuinely deformable support-band attractor rather than a lightly tuned octahedral loop.
+This is the first evidence that shell braid dynamics may need a genuinely deformable support-band attractor rather than a lightly tuned octahedral loop.

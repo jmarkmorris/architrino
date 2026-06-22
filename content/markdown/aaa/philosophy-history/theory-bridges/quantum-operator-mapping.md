@@ -1,10 +1,10 @@
 # Quantum Operator Mapping
 
-The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document establishes the formal mapping between abstract quantum operators and the topological torques acting on nested shell swarm assemblies, bounded by the causal-delay master equation.
+The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document establishes the formal mapping between abstract quantum operators and the topological torques acting on nested shell braid assemblies, bounded by the causal-delay master equation.
 
-## The Nested Shell Swarm Qubit and Phase Space
+## The Nested Shell Braid Qubit and Phase Space
 
-A physical qubit corresponds to the stable orientational states of a nested shell swarm assembly. Let $\hat{\mathbf{n}}_{\text{in}}$, $\hat{\mathbf{n}}_{\text{mid}}$, and $\hat{\mathbf{n}}_{\text{out}}$ denote the normal vectors of the inner ($v > c_f$), middle ($v = c_f$), and outer ($v < c_f$) binary orbital planes, respectively.
+A physical qubit corresponds to the stable orientational states of a nested shell braid assembly. Let $\hat{\mathbf{n}}_{\text{in}}$, $\hat{\mathbf{n}}_{\text{mid}}$, and $\hat{\mathbf{n}}_{\text{out}}$ denote the normal vectors of the inner ($v > c_f$), middle ($v = c_f$), and outer ($v < c_f$) binary orbital planes, respectively.
 
 The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ relative to the middle binary fulcrum $\hat{\mathbf{n}}_{\text{mid}}$. 
 
@@ -413,12 +413,12 @@ Here $X$ ranges over declared critical assemblies or branch critical points and 
 
 ## Unitary Evolution and Topological Torques
 
-Quantum gates correspond to continuous, energy-conserving topological torques applied to the nested shell swarm orbital planes.
+Quantum gates correspond to continuous, energy-conserving topological torques applied to the nested shell braid orbital planes.
 
-* **Pauli Operators ($X, Y, Z$):** These map to discrete $\pi$-rotations of the nested shell swarm orientation axes. The torque $\boldsymbol{\tau} = \int \mathbf{r} \times \mathbf{F}_{\text{hist}} d^3x$ is applied via external causal wakes, smoothly rotating $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ while the middle binary maintains the $v = c_f$ stability threshold.
+* **Pauli Operators ($X, Y, Z$):** These map to discrete $\pi$-rotations of the nested shell braid orientation axes. The torque $\boldsymbol{\tau} = \int \mathbf{r} \times \mathbf{F}_{\text{hist}} d^3x$ is applied via external causal wakes, smoothly rotating $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ while the middle binary maintains the $v = c_f$ stability threshold.
 * **Hadamard Operator ($H$):** This operation is modeled as a critical bifurcation. The applied torque should drive the assembly into a controlled neighborhood of the saddle separating the $|0\rangle$ and $|1\rangle$ attractors, with an equiprobable meta-stable precessional state as the closure target rather than an assumed result.
 
-To prevent ionization or irreversible symmetry breaking during these operations, the total action $S = \int (T - V) dt$ must remain bounded. We define an ionization threshold $\Delta S_{\text{ionize}}$; any gate operation must satisfy $\Delta S \ll \Delta S_{\text{ionize}}$ to maintain the factorization of the nested shell swarm structure.
+To prevent ionization or irreversible symmetry breaking during these operations, the total action $S = \int (T - V) dt$ must remain bounded. We define an ionization threshold $\Delta S_{\text{ionize}}$; any gate operation must satisfy $\Delta S \ll \Delta S_{\text{ionize}}$ to maintain the factorization of the nested shell braid structure.
 
 ## Entanglement via Path-History Potentials
 
@@ -432,7 +432,7 @@ Entanglement-like behavior must separate newly established causal coupling from 
 
 Wavefunction collapse is formalized as a deterministic, non-linear relaxation process rather than a probabilistic axiom.
 
-The measurement apparatus acts as a massive, thermodynamically irreversible perturbation introduced into the local Noether sea. This external energy gradient overwhelms the meta-stable precessional states (superpositions). Unable to maintain the delicate limit cycle against the massive influx of external causal wakes, the nested shell swarm assembly undergoes attractor relaxation, deterministically entering a completed record basin. The effective eigenstate label is licensed only after the apparatus kernel maps that basin to a stable record channel.
+The measurement apparatus acts as a massive, thermodynamically irreversible perturbation introduced into the local Noether sea. This external energy gradient overwhelms the meta-stable precessional states (superpositions). Unable to maintain the delicate limit cycle against the massive influx of external causal wakes, the nested shell braid assembly undergoes attractor relaxation, deterministically entering a completed record basin. The effective eigenstate label is licensed only after the apparatus kernel maps that basin to a stable record channel.
 
 Decoherence is the continuous loss of path-history coherence due to unresolved fluctuations in the local Noether sea state. It is an artifact of treating the observer-level vacuum as empty or structureless rather than as the effective quiet limit of a dense medium whose assemblies are still dynamically active.
 
@@ -446,7 +446,7 @@ Decoherence is the continuous loss of path-history coherence due to unresolved f
 * **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with the legacy physical density variable $\rho_{\text{NS}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ## Statistical Measure and the Born Rule Emergence
-While the trajectory of a single nested shell swarm under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether sea.
+While the trajectory of a single nested shell braid under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether sea.
 
 * **Local Finite-Time Invariant Measure Target:** For a fixed preparation class, apparatus calibration, local Noether sea band, and record window $T$, the closure target is a local measure $\mu_{*,T}$ on the relevant record-window section $\Gamma_{\text{eff}}^{(T)}$, not a global measure over every physically possible state. If $\Phi_T$ is the finite-time apparatus-target flow, the required recovery is approximate invariance on that retained window:
 $$
@@ -458,7 +458,7 @@ $$
 $$
 P_k(T)=\int_{\mathcal{B}_k^{(T)}} d\mu_{*,T}(\Gamma)
 $$
-* **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the calibrated limit of these weighted finite-time basin volumes. When the nested shell swarm's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the theory must show that microstate sensitivity plus the finite-time apparatus flow recover $\mu_{*,T}$ and push it through the record basins with $P_k(T)\to |\psi_k|^2$ in the relevant operating regime. This is a local invariant-measure recovery target, not an assumption of global ergodicity.
+* **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the calibrated limit of these weighted finite-time basin volumes. When the nested shell braid's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the theory must show that microstate sensitivity plus the finite-time apparatus flow recover $\mu_{*,T}$ and push it through the record basins with $P_k(T)\to |\psi_k|^2$ in the relevant operating regime. This is a local invariant-measure recovery target, not an assumption of global ergodicity.
 * **Thermodynamic Ensemble Consistency Target:** The same $\mu_{*,T}$ must also support the thermodynamic summaries used to describe apparatus irreversibility and decoherence. For a declared coarse-graining $\mathcal{Q}$, access region $W$, record window $T$, and thermodynamic projection $\pi_{\mathrm{th}}:\Gamma_{\text{eff}}^{(T)}\to\mathcal{Y}_{\mathrm{th}}$, define
 $$
 \Delta_{\mathrm{ens}}(\mathcal{Q},W,T)
@@ -496,9 +496,9 @@ This is the native $\mathbb{A}\mathbb{A}\mathbb{A}$ version of the scientific-in
 ## Kinetic Limits and Decoherence
 The continuous loss of path-history coherence must be formalized as a transport phenomenon within the Noether sea, or in bridge prose the spacetime medium.
 
-* **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether sea, the nested shell swarm orientation evolves according to an effective Fokker-Planck equation.
+* **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether sea, the nested shell braid orientation evolves according to an effective Fokker-Planck equation.
 * **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor. 
-* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether sea state and the spatial density variables $\rho_{\text{NS}}(\mathbf{x},t)$ or $n(\mathbf{x},t)$. It is not an intrinsic property of the nested shell swarm, but a measure of the local Noether sea entropy production rate during the operation.
+* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether sea state and the spatial density variables $\rho_{\text{NS}}(\mathbf{x},t)$ or $n(\mathbf{x},t)$. It is not an intrinsic property of the nested shell braid, but a measure of the local Noether sea entropy production rate during the operation.
 
 ## Statistical Falsifiability and Observables
 * **Finite-Time Born Rule Deviations:** If the Born rule in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires the local invariant-measure approximation to settle over the apparatus record window, ultra-fast sequential measurements approaching the local path-history delay timescale $d/c_f$ become the natural place to search for deviations from standard $|\psi|^2$ statistics.

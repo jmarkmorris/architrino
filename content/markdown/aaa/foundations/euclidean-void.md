@@ -318,7 +318,7 @@ The boundary with the Noether sea is an ontology boundary. The Euclidean void is
 The distinction is:
 
 1. **Euclidean void:** fixed spatial container $\mathbb{R}^3$ with metric $h_{ij}=\delta_{ij}$.
-2. **Noether sea:** physical content occupying the void, built from coupled neutral swarms.
+2. **Noether sea:** physical content occupying the void, built from coupled neutral braids.
 3. **Architrino occupancy:** local presence or absence of point entities and assemblies at a given coordinate location.
 4. **Effective spacetime:** observer-level geometry reconstructed from how clocks, rulers, and signals behave in the Noether sea.
 
@@ -354,7 +354,7 @@ This set records source identities and emission times whose causal isochrons pas
 
 In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population. Noether sea density and response variables belong to $\mathcal{N}_{\mathrm{sea}}$; $\mathcal{P}(\mathbf{x},t)$ names only the wake-history provenance labels available at that point.
 
-For the Noether sea ontology, see [Noether sea](../spacetime/noether-sea.md). For Noether swarm assembly hypotheses, see [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
+For the Noether sea ontology, see [Noether sea](../spacetime/noether-sea.md). For Noether braid assembly hypotheses, see [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
 
 ## Distinction From Curved Space
 

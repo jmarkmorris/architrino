@@ -218,7 +218,7 @@ It emits:
   retention rows.
 
 The companion test
-[neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-eighth-order-post-u-successor-coefficient-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-eighth-order-post-u-successor-coefficient-certificate.test.js)
+[neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-eighth-order-post-u-successor-coefficient-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-eighth-order-post-u-successor-coefficient-certificate.test.js)
 validates schema, no-fixed-speed-window discipline, $h_{28}$ and
 $Q_{G,28},Q_{D,28}$ intervals, the $Q_D+29Q_G$ identity interval, overclaim
 rejection, and CLI write/validate behavior.

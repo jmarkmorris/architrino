@@ -6,7 +6,7 @@ Kind: `app-priority`
 
 ## Purpose
 
-The Assembly Configuration Explorer is the app-side surface for inspecting tri-binary Noether swarm configuration-space packets. It is not a replacement for the solver. Its job is to load solver or script outputs, preserve the unquotiented layer records, compute comparison diagnostics, and help identify stable sectors, symmetric duplicates, energy-differential patterns, super-field-speed rows, and accessory-architrino capture targets.
+The Assembly Configuration Explorer is the app-side surface for inspecting tri-binary Noether braid configuration-space packets. It is not a replacement for the solver. Its job is to load solver or script outputs, preserve the unquotiented layer records, compute comparison diagnostics, and help identify stable sectors, symmetric duplicates, energy-differential patterns, super-field-speed rows, and accessory-architrino capture targets.
 
 ## Search Semantics
 
@@ -48,7 +48,7 @@ The first dataset contract is `assembly-configuration-explorer.dataset.v1`. A da
 - one or more branch rows
 - exactly three binary layer records per branch
 - per-layer `frequency`, `radius`, `energy`, `speed` or enough data to compute `speed`, `phase`, `normal`, and optional root-ledger data
-- optional eigen-swarm status, momentum-axis alignment, stability, assembly topological charge, solver reference, and capture rows
+- optional eigen-braid status, momentum-axis alignment, stability, assembly topological charge, solver reference, and capture rows
 
 The app computes:
 
@@ -56,7 +56,7 @@ The app computes:
 - speed regimes relative to $c_f$
 - $D_{\mathrm{plane}}$
 - pairwise energy differentials
-- branch-level eigen-swarm status, including return residual, stability gap, allowed symmetries, and Lorentz-export status when reported
+- branch-level eigen-braid status, including return residual, stability gap, allowed symmetries, and Lorentz-export status when reported
 - branch-level total momentum, total angular momentum, and axis-alignment residual/status when reported
 - a permutation-canonical key for $S_3$-equivalence checking
 
@@ -76,5 +76,5 @@ The explorer should consume solver and script outputs before it requests live ru
 3. Add a stable-sector atlas view that plots rows by energy differential, speed regime, $D_{\mathrm{plane}}$, and assembly topological charge.
 4. Add accessory-architrino capture packet rendering after the capture scanner emits retained rows.
 5. Add an optional quotient-sector view that groups by permutation-canonical key while preserving repeated raw rows.
-6. Add an eigen-swarm filter that separates raw candidate rows from relative-return-passed and retained-eigen-swarm rows.
+6. Add an eigen-braid filter that separates raw candidate rows from relative-return-passed and retained-eigen-braid rows.
 7. Add an axis-alignment plot/filter for total momentum, total angular momentum, and oblate-envelope orientation rows.

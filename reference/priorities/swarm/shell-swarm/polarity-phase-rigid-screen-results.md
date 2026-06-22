@@ -150,7 +150,7 @@ $$
 \texttt{closed-rejected:polarity-phase-improvement-implies-retention}.
 $$
 
-The rejected implication is that neutral polarity reassignment plus rigid phase-offset RMS improvement implies a retained branch. The screen still has pointwise tangential leakage, with best maximum residual about $1.7874$, and it does not close support-complete roots, action, Noether, event, stability, or convergence rows. The proof packet is [../neutral-swarm/polarity-phase-improvement-not-retention.md](../neutral-swarm/polarity-phase-improvement-not-retention.md), and the executable witness is `scripts/neutral-swarm/octahedral-polarity-phase-retention-witness.mjs`.
+The rejected implication is that neutral polarity reassignment plus rigid phase-offset RMS improvement implies a retained branch. The screen still has pointwise tangential leakage, with best maximum residual about $1.7874$, and it does not close support-complete roots, action, Noether, event, stability, or convergence rows. The proof packet is [Polarity Phase Improvement Not Retention](../neutral-swarm/polarity-phase-improvement-not-retention.md), and the executable witness is `scripts/neutral-swarm/octahedral-polarity-phase-retention-witness.mjs`.
 
 ---
 

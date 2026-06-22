@@ -12,7 +12,7 @@ node scripts/neutral-swarm/octahedral-speed-ode-diagnostic.mjs --validate /tmp/n
 The artifact schema is
 
 $$
-\texttt{neutral-swarm-octahedral-speed-ode-diagnostic/v1}.
+\texttt{neutral-braid-octahedral-speed-ode-diagnostic/v1}.
 $$
 
 ---
@@ -150,7 +150,7 @@ $$
 
 The rejected implication is that the certified rigid root ledger and nonzero tangent force can be converted into a periodic bounded-speed primitive while keeping the rigid geometry, fixed-speed roots, fixed-speed Jacobians, and fixed force weights frozen.
 
-It does not reject bounded-speed continuation in general. A true bounded-speed candidate must rebuild the clocks, roots, Jacobians, derivative columns, tail interface, force checksum, support rows, action/Noether rows, event rows, and coupled Krawczyk data on one live ledger as required by [../shell-swarm/bounded-speed-factor-all-pairs-ledger-handoff-contract.md](../shell-swarm/bounded-speed-factor-all-pairs-ledger-handoff-contract.md) and [../shell-swarm/bounded-speed-factor-coupled-fixed-point-theorem.md](../shell-swarm/bounded-speed-factor-coupled-fixed-point-theorem.md).
+It does not reject bounded-speed continuation in general. A true bounded-speed candidate must rebuild the clocks, roots, Jacobians, derivative columns, tail interface, force checksum, support rows, action/Noether rows, event rows, and coupled Krawczyk data on one live ledger as required by [Bounded Speed Factor All Pairs Ledger Handoff Contract](../shell-swarm/bounded-speed-factor-all-pairs-ledger-handoff-contract.md) and [Bounded Speed Factor Coupled Fixed Point Theorem](../shell-swarm/bounded-speed-factor-coupled-fixed-point-theorem.md).
 
 The companion intake script `scripts/neutral-swarm/octahedral-zero-mean-correction-intake.mjs` consumes this diagnostic and packages the frozen source vector as $\mathbf{m}_{\mathrm{frz}}=m_*\mathbf{1}_6$ for the live range condition. That bridge still leaves `live-ledger-derivative-open` and `zero-mean-correction-open`.
 

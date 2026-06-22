@@ -307,7 +307,7 @@ The executable diagnostic [octahedral-fold-aware-zero-bracket-certificate.mjs](.
 - the zero-speed-ratio enclosure and bisection estimate;
 - the non-retention verdict.
 
-The companion test [neutral-swarm-octahedral-fold-aware-zero-bracket-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-zero-bracket-certificate.test.js) verifies source validation, absence of a speed-window assumption, three-root regularity, endpoint sign change, the zero estimate, CLI validation, and non-retention guards.
+The companion test [neutral-braid-octahedral-fold-aware-zero-bracket-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-zero-bracket-certificate.test.js) verifies source validation, absence of a speed-window assumption, three-root regularity, endpoint sign change, the zero estimate, CLI validation, and non-retention guards.
 
 ## Promotion Decision
 

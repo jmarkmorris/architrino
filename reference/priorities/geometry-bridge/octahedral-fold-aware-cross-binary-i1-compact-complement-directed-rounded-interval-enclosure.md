@@ -159,7 +159,7 @@ The executable packet is [octahedral-fold-aware-cross-binary-i1-compact-compleme
 - an explicitly open finite fixed-fold collar probe on $y\in[0.003,0.115]$;
 - explicit non-retention and non-overclaim boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-i1-compact-complement-directed-rounded-interval-enclosure.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-compact-complement-directed-rounded-interval-enclosure.test.js) validates the compact interval signs, no-fixed-speed-window discipline, fold-collar residual, speed-fold crossing obstruction, CLI write/validate path, and overclaim rejection.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-compact-complement-directed-rounded-interval-enclosure.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-compact-complement-directed-rounded-interval-enclosure.test.js) validates the compact interval signs, no-fixed-speed-window discipline, fold-collar residual, speed-fold crossing obstruction, CLI write/validate path, and overclaim rejection.
 
 ## Result
 

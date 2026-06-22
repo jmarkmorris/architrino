@@ -4,7 +4,7 @@ This chapter is the focused program statement for deriving operational Lorentz b
 
 The opening abstract states the target; the later sections move through the governing delayed dynamics, the anisotropy mechanism, and the conditions under which assembly-built observers could recover standard Lorentz kinematics.
 
-For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether swarm story, see [the special-relativity bridge](../philosophy-history/theory-bridges/special-relativity-noether-swarm.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). For the interactive geometry surface, open [Ideal Noether Swarm: Lorentz Geometry App](../../../../ideal-swarm.html).
+For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether braid story, see [the special-relativity bridge](../philosophy-history/theory-bridges/special-relativity-noether-swarm.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). For the interactive geometry surface, open [Ideal Noether Braid: Lorentz Geometry App](../../../../ideal-swarm.html).
 
 ## Abstract
 
@@ -34,7 +34,7 @@ To match modern precision constraints, operational observers made from bound ass
 
 ### Mathematical objective
 
-Given a translating bound assembly (binary and then nested shell swarm), derive:
+Given a translating bound assembly (binary and then nested shell braid), derive:
 
 1. The velocity-dependent equilibrium shape tensor $Q(v)$ and its anisotropy.
 2. The velocity-dependent internal period $T(v)$.
@@ -346,7 +346,7 @@ $$
 =
 \frac{1}{\gamma_\star(v)}
 $$
-This is the direct map from Lorentz kinematics to Noether swarm geometry. The oblate spheroidal envelope for an admitted branch $q$ can be written
+This is the direct map from Lorentz kinematics to Noether braid geometry. The oblate spheroidal envelope for an admitted branch $q$ can be written
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp,q}^2}
 +
@@ -438,7 +438,7 @@ q
 \mathcal{L}_{\mathrm{root}}^{(q)}(v)
 \right)
 $$
-with admissibility requiring the same causal-root ledger to close the oblate spheroidal envelope geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether swarm return-cycle classes only after those branch-admissibility conditions close.
+with admissibility requiring the same causal-root ledger to close the oblate spheroidal envelope geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether braid return-cycle classes only after those branch-admissibility conditions close.
 
 To keep this closure target testable, the branch should report a single Lorentz residual record rather than separate narrative successes. For a declared channel speed $c_\star$ and branch $q$, write
 $$
@@ -693,7 +693,7 @@ with the following structured components:
 
 1. Translational architrino speed increase: $\Delta v_{\text{tr}}>0$.
 2. Discrete frequency retuning of $H,M,L$: $\Delta f_k=n_k\,\delta f_k$, with $n_k\in\mathbb{Z}$ and $k\in\{H,M,L\}$.
-3. Nested shell swarm axis realignment: $\Delta\mathbf{A}\neq 0$ (precession/tilt of principal axes).
+3. Nested shell braid axis realignment: $\Delta\mathbf{A}\neq 0$ (precession/tilt of principal axes).
 4. Exclusion-zone geometry shift: $\Delta\mathcal{E}_{\text{excl}}\neq 0$ (shape and orientation update).
 5. Operational time response shift: $\Delta\tau_{\text{op}}\neq 0$.
 
@@ -711,11 +711,11 @@ The immediate task is to identify which subset dominates $\partial \tau_{\text{o
 
 Working assumption:
 
-1. The outer precessing binary of a Noether swarm defines the effective exclusion volume boundary; see [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md).
-2. Each nested shell swarm layer ($H,M,L$) has its own circulation axis.
+1. The outer precessing binary of a Noether braid defines the effective exclusion volume boundary; see [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md).
+2. Each nested shell braid layer ($H,M,L$) has its own circulation axis.
 3. Total angular and translational momentum are conserved at assembly level (up to modeled exchange channels with environment).
 
-Proposed mechanism chain under applied force (acceleration of a Noether swarm-based assembly):
+Proposed mechanism chain under applied force (acceleration of a Noether braid-based assembly):
 
 1. External forcing increases translational state.
 2. Axis coupling drives partial alignment of $H,M,L$ circulation axes.
@@ -740,7 +740,7 @@ with the strongest transduction at $L$.
 
 Interpretive thesis:
 
-Einstein-like spacetime behavior may be recovered as the continuum limit of moving, deforming exclusion volumes of Noether swarms under translation and local volume variation, rather than from fundamental geometric curvature at substrate level.
+Einstein-like spacetime behavior may be recovered as the continuum limit of moving, deforming exclusion volumes of Noether braids under translation and local volume variation, rather than from fundamental geometric curvature at substrate level.
 
 Consistency checks required for this scenario:
 
@@ -753,7 +753,7 @@ Status: scenario is a structured hypothesis, not yet a proved derivation. It is 
 
 ### Two-channel deformation: shape plus scale
 
-Relevant to Lorentzian closure, the Noether swarm deformation is not only axis-ratio change. A working two-channel model is:
+Relevant to Lorentzian closure, the Noether braid deformation is not only axis-ratio change. A working two-channel model is:
 
 1. Shape channel (oblateness): longitudinal compression relative to transverse radius.
 2. Scale channel (radius rescaling): transverse radius changes with energy state.
@@ -788,7 +788,7 @@ $$
 $$
 with $\xi\in(0,1]$ as shape and $\lambda$ as scale. The Lorentz-closure target is $\xi(x)\to1/\gamma(x)$ in the homogeneous drift regime.
 
-Terminology guardrail: $\xi$ is the Noether swarm envelope shape ratio, inherited from [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
+Terminology guardrail: $\xi$ is the Noether braid envelope shape ratio, inherited from [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
 $$
 \frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt}\to\xi\to\frac{1}{\gamma}
 $$
@@ -919,9 +919,9 @@ Start with a single causal path-history binary under constant drift $\mathbf{v}$
 2. Closed-form or asymptotic estimates for $(a_{\parallel}/a_{\perp})(v)$.
 3. First nonzero leakage coefficients in $v/c_f$ expansion.
 
-### Stage B: nested shell swarm full closure
+### Stage B: nested shell braid full closure
 
-Promote to a nested shell swarm with coupled circulation scales. Establish:
+Promote to a nested shell braid with coupled circulation scales. Establish:
 
 1. Persistence of aligned attractor family under drift.
 2. Factorization or controlled coupling of inner/middle/outer period shifts.
@@ -939,8 +939,8 @@ so local assembly kinematics and macroscopic refractive geometry are mathematica
 
 To connect the two-channel deformation model to observables, use the following sequence:
 
-1. Single-swarm constitutive closure: derive or fit-test $R_\perp(E)$ and induced $\xi(E,\beta)$ from causal path-history nested shell swarm dynamics.
-2. Effective-medium propagation law: construct $n_{\text{eff}}(\xi,\lambda,n)$ for signal transport through deformed Noether swarm populations.
+1. Single-braid constitutive closure: derive or fit-test $R_\perp(E)$ and induced $\xi(E,\beta)$ from causal path-history nested shell braid dynamics.
+2. Effective-medium propagation law: construct $n_{\text{eff}}(\xi,\lambda,n)$ for signal transport through deformed Noether braid populations.
 3. Effective metric extraction: build $g_{\mu\nu}^{\text{eff}}$ from medium variables and preferred-frame structure.
 4. Weak-field consistency checks: verify Newtonian limit and required post-Newtonian behavior in the operational observer sector.
 5. Strong-field/cosmology consistency checks: test horizon-adjacent and expansion-regime implications of the same constitutive channels.
@@ -1193,7 +1193,7 @@ $$
 \left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right)
 +O(\epsilon_{\mathrm{br}}+\epsilon_{\mathrm{hier}}+\epsilon_{\mathrm{reg}})
 $$
-The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures nested shell swarm hierarchy leakage away from the binary benchmark, and $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma$ and $T(v)=\gamma T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
+The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures nested shell braid hierarchy leakage away from the binary benchmark, and $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma$ and $T(v)=\gamma T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
 
 This gives a possible prediction of the framework. If Lorentz behavior is rooted in causal-root progression, then the first nonzero deviations from exact Lorentz closure should not be arbitrary smooth functions of speed. They should inherit the structure of branch charts: smooth even-power drift terms inside a fixed chart, plus localized or resonant leakage near separator events, small-divisor interlayer resonances, or changes in admissible root multiplicity. In a nonresonant chart the leakage should obey
 $$
@@ -1222,13 +1222,13 @@ The technology-facing status is therefore conditional. The immediate test is not
 
 This also prevents overclaiming. The present chapter does not prove that quantum mechanics causes special relativity. It states a narrower closure target: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the discrete causal-root progression that supports quantum-facing assembly behavior must also generate the Lorentz formulas in the homogeneous weak-field observer limit. If the branch ledger produces quantum-like discreteness but fails to produce the Lorentz coefficient vector, then the proposed common mechanism fails. If it produces the Lorentz vector only by tuning a separate clock law, ruler law, or photon speed for each observable, the Lorentz bridge also fails.
 
-### Nested shell swarm adiabatic decoupling bound
+### Nested shell braid adiabatic decoupling bound
 
 Let
 $$
 \mathbf{c}^{(2)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{binary}}
 \qquad
-\mathbf{c}^{(3)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{nested shell swarm}}
+\mathbf{c}^{(3)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{nested shell braid}}
 $$
 and define
 $$
@@ -1272,7 +1272,7 @@ $$
 
 ### Spectral-decoupling vulnerability criterion
 
-The [Nested Shell Swarm Adiabatic Decoupling Bound](#nested-shell-swarm-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
+The [Nested Shell Braid Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
 $$
 |m\omega_L-n\omega_M|
 \ge
@@ -1292,7 +1292,7 @@ for small integers $(m,n)$ and nonlinear coupling width $\delta\omega_{\text{nl}
 
 ### Theorem A0 (forward partner-root speed-limit lemma)
 
-The primitive material speed-limit row has a kinematic upper-bound lemma before any detailed nested shell swarm deformation is solved. In a translating branch with center drift $u\hat{\mathbf e}$, a retained partner row whose receiver lies ahead of its source by positive co-moving separation $d_{\parallel}\ge d_{\min}>0$ must satisfy
+The primitive material speed-limit row has a kinematic upper-bound lemma before any detailed nested shell braid deformation is solved. In a translating branch with center drift $u\hat{\mathbf e}$, a retained partner row whose receiver lies ahead of its source by positive co-moving separation $d_{\parallel}\ge d_{\min}>0$ must satisfy
 $$
 c_f\tau
 =
@@ -1352,11 +1352,11 @@ $$
 \qquad
 \gamma_f(u)=\left(1-\frac{u^2}{c_f^2}\right)^{-1/2}
 $$
-If these equalities hold on the same branch ledger, the Lorentzian compensation has been derived for the two-body clock rather than asserted. If they fail, the residual is the earliest foundation-level falsification pressure: it marks exactly where the primitive kernel departs from Lorentzian matter behavior before nested shell swarm averaging or Noether sea dressing is allowed to repair anything.
+If these equalities hold on the same branch ledger, the Lorentzian compensation has been derived for the two-body clock rather than asserted. If they fail, the residual is the earliest foundation-level falsification pressure: it marks exactly where the primitive kernel departs from Lorentzian matter behavior before nested shell braid averaging or Noether sea dressing is allowed to repair anything.
 
 ### Theorem A (attractor existence under drift)
 
-For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and nested shell swarm systems for $\|\mathbf{v}\|<c_f$.
+For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and nested shell braid systems for $\|\mathbf{v}\|<c_f$.
 
 ### Theorem B (anisotropic deformation law)
 
@@ -1409,7 +1409,7 @@ the drift-response coefficients are locally identifiable from $(a_{\parallel}/a_
 
 ### Theorem F (cross-regime universality of closure coefficients)
 
-If binary and nested shell swarm attracting branches exist, are smooth in $\beta$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
+If binary and nested shell braid attracting branches exist, are smooth in $\beta$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
 $$
 \omega_H\gg \omega_M\gg \omega_L\qquad
 |m\omega_L-n\omega_M|
@@ -1432,7 +1432,7 @@ In particular, if $(r_M/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Loren
 
 ### Theorem G (structural-integrity common-limit closure)
 
-This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. Theorem A0 supplies the primitive kinematic obstruction: a material branch that needs forward partner-hit closure cannot have a sustained translating ledger with $c_{\mathrm{mat}}^{\mathrm{lim}}>c_f$. Theorem A1 supplies the first constructive clock/ruler decision surface by asking whether the translating two-body branch returns $R_T^{\mathrm{bin}}=0$ and $R_{\xi}^{\mathrm{bin}}=0$ before nested shell swarm averaging or Noether sea dressing is invoked. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
+This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. Theorem A0 supplies the primitive kinematic obstruction: a material branch that needs forward partner-hit closure cannot have a sustained translating ledger with $c_{\mathrm{mat}}^{\mathrm{lim}}>c_f$. Theorem A1 supplies the first constructive clock/ruler decision surface by asking whether the translating two-body branch returns $R_T^{\mathrm{bin}}=0$ and $R_{\xi}^{\mathrm{bin}}=0$ before nested shell braid averaging or Noether sea dressing is invoked. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
 $$
 c_{\mathrm{mat}}^{\mathrm{lim}}
 =
@@ -1464,7 +1464,7 @@ The Lorentzian conspiracy program fails if any of the following occur:
 3. Residual anisotropy terms exceed accepted bounds after full observer construction.
 4. Different assembly decorations produce incompatible kinematic laws that prevent universal operational closure.
 5. The weak-field connection built from $g_{\mu\nu}^{\text{eff}}$ fails to reproduce a Newtonian Poisson limit for $\Phi_{\text{eff}}$ in the operational observer sector.
-6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in [Nested Shell Swarm Adiabatic Decoupling Bound](#nested-shell-swarm-adiabatic-decoupling-bound).
+6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in [Nested Shell Braid Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound).
 7. The extracted Lorentz coefficients cannot be traced to the causal-root ledger on a completed branch chart, or the same ledger cannot generate clock, ruler, and two-way signal closure without separate per-observable tuning.
 
 ## Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
@@ -1482,7 +1482,7 @@ Primary theory anchors:
 1. [dynamics/master-equation.md](../dynamics/master-equation.md)
 2. [dynamics/causal-action-functional.md](../dynamics/causal-action-functional.md)
 3. [dynamics/binary-dynamics.md](../dynamics/binary-dynamics.md)
-4. [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md)
+4. [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md)
 5. `spacetime/*`
 6. [validation/constraint-ledger.md](../validation/constraint-ledger.md)
 7. [validation/no-go-theorems.md](../validation/no-go-theorems.md)

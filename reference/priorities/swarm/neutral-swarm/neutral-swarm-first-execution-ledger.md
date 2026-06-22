@@ -1,8 +1,8 @@
-# Neutral Swarm First Execution Ledger
+# Neutral Braid First Execution Ledger
 
-Promotion status: `partially-promoted`. The fixed-speed octahedral diagnostic boundary and narrow overread rejections were promoted into [Noether Swarm](../../../../content/markdown/aaa/noether-swarm/noether-swarm.md) as scoped negative-result language. This packet still defines the first executable ledger that should be emitted after the neutral swarm finite-mode search spec is implemented. It refines [neutral-swarm-finite-mode-search.md](neutral-swarm-finite-mode-search.md), [all-pairs-root-ledger.md](all-pairs-root-ledger.md), and [neutral-swarm-master-retention-theorem.md](neutral-swarm-master-retention-theorem.md).
+Promotion status: `partially-promoted`. The fixed-speed octahedral diagnostic boundary and narrow overread rejections were promoted into [Noether Braid](../../../../content/markdown/aaa/noether-swarm/noether-swarm.md) as scoped negative-result language. This packet still defines the first executable ledger that should be emitted after the neutral braid finite-mode search spec is implemented. It refines [Neutral Braid Finite Mode Search](neutral-swarm-finite-mode-search.md), [all-pairs-root-ledger.md](all-pairs-root-ledger.md), and [Neutral Braid Master Retention Theorem](neutral-swarm-master-retention-theorem.md).
 
-Promoted claim level: `theorem-target` plus scoped negative result. The rigid octahedral root diagnostic now reaches `all-pairs-root-ledger-certified`; the fixed-speed zero-offset row remains `not-retained` because the tangential residual witness closes it by rejection. It does not define a general neutral swarm solver and does not retain a branch. Its purpose is to make the first run produce a useful mathematical verdict rather than another unstructured diagnostic.
+Promoted claim level: `theorem-target` plus scoped negative result. The rigid octahedral root diagnostic now reaches `all-pairs-root-ledger-certified`; the fixed-speed zero-offset row remains `not-retained` because the tangential residual witness closes it by rejection. It does not define a general neutral braid solver and does not retain a branch. Its purpose is to make the first run produce a useful mathematical verdict rather than another unstructured diagnostic.
 
 The first audit-emitter surface is implemented at:
 
@@ -20,7 +20,7 @@ node scripts/neutral-swarm/octahedral-root-ledger.mjs --out /tmp/neutral-swarm-o
 node scripts/neutral-swarm/octahedral-root-ledger.mjs --validate /tmp/neutral-swarm-octahedral-root-ledger.json --pretty
 ```
 
-This second artifact instantiates the rigid octahedral carrier from [../shell-swarm/octahedral-carrier-worked-example.md](../shell-swarm/octahedral-carrier-worked-example.md), samples every ordered distinct source pair on the declared phase mesh, and emits the analytic all-pairs root certificate for the six antipodal-partner rows and twenty-four cross-binary rows. Its useful verdict is:
+This second artifact instantiates the rigid octahedral carrier from [Octahedral Carrier Worked Example](../shell-swarm/octahedral-carrier-worked-example.md), samples every ordered distinct source pair on the declared phase mesh, and emits the analytic all-pairs root certificate for the six antipodal-partner rows and twenty-four cross-binary rows. Its useful verdict is:
 
 $$
 \mathrm{root\_ledger\_diagnostic}
@@ -69,7 +69,7 @@ $$
 \approx2.0637.
 $$
 
-This is a useful negative result for the rigid zero-offset seed, not a general neutral swarm rejection. After root-ledger certification, the master first failure for this fixed-speed zero-offset row is `closed-rejected:rigid-octahedral-fixed-speed-neutral-row`.
+This is a useful negative result for the rigid zero-offset seed, not a general neutral braid rejection. After root-ledger certification, the master first failure for this fixed-speed zero-offset row is `closed-rejected:rigid-octahedral-fixed-speed-neutral-row`.
 
 The frozen fixed-ledger speed-ODE diagnostic is implemented at:
 
@@ -111,13 +111,13 @@ $$
 
 The antipodal-partner positive mean is analytic on the certified constant partner root; the cross-binary aggregate is certified by the phase anti-periodicity proof $C_i(\theta+\pi/2)=-C_i(\theta)$, with sampled checksum rows retained for audit. Thus the frozen cross-binary mean cancels in the current diagnostic row while the antipodal-partner mean leaves a positive drift. This rejects only the frozen fixed-ledger speed primitive. The bounded-speed live-ledger handoff remains `bounded-speed-ledger-handoff-open`.
 
-The successor priority target is [../shell-swarm/bounded-speed-factor-speed-ode-zero-mean-correction-target.md](../shell-swarm/bounded-speed-factor-speed-ode-zero-mean-correction-target.md). The bridge intake certificate consumes `neutral-swarm-octahedral-speed-ode-diagnostic/v1` and emits $\mathbf{m}_{\mathrm{frz}}=m_*\mathbf{1}_6$ plus the range-condition target for bounded-speed shell swarm work. It is not another neutral first-execution success criterion; it packages the source vector for the live shell-swarm equation that would have to turn the frozen mean obstruction into $\mathcal{M}_i^\nu(z)=0$ with bounded-speed clock, root, Jacobian, force, support, action, and event derivative columns on one ledger.
+The successor priority target is [Bounded Speed Factor Speed Ode Zero Mean Correction Target](../shell-swarm/bounded-speed-factor-speed-ode-zero-mean-correction-target.md). The bridge intake certificate consumes `neutral-swarm-octahedral-speed-ode-diagnostic/v1` and emits $\mathbf{m}_{\mathrm{frz}}=m_*\mathbf{1}_6$ plus the range-condition target for bounded-speed shell braid work. It is not another neutral first-execution success criterion; it packages the source vector for the live shell-braid equation that would have to turn the frozen mean obstruction into $\mathcal{M}_i^\nu(z)=0$ with bounded-speed clock, root, Jacobian, force, support, action, and event derivative columns on one ledger.
 
-If the bridge intake includes a candidate range/cokernel checker, that checker remains a shell-swarm diagnostic screen for $B_{\mathrm{cand}}$ against the frozen constant-vector obstruction. It is not another neutral first-execution success criterion, does not certify a live derivative matrix, and leaves `live-ledger-derivative-open`.
+If the bridge intake includes a candidate range/cokernel checker, that checker remains a shell-braid diagnostic screen for $B_{\mathrm{cand}}$ against the frozen constant-vector obstruction. It is not another neutral first-execution success criterion, does not certify a live derivative matrix, and leaves `live-ledger-derivative-open`.
 
-If the bridge intake includes a live derivative column audit, that audit remains a provenance screen for future shell-swarm columns. It may record parameter labels, perturbation artifacts, same-ledger guards, and a matrix preview, but it is not the neutral first-execution ledger and it still leaves `certifies_live_derivative_matrix=false` until the bounded-speed live-ledger handoff, rank/range certificate, and correction verdict close on one ledger.
+If the bridge intake includes a live derivative column audit, that audit remains a provenance screen for future shell-braid columns. It may record parameter labels, perturbation artifacts, same-ledger guards, and a matrix preview, but it is not the neutral first-execution ledger and it still leaves `certifies_live_derivative_matrix=false` until the bounded-speed live-ledger handoff, rank/range certificate, and correction verdict close on one ledger.
 
-If that matrix preview is range-probed, the derived probe remains a preview-only shell-swarm diagnostic. It may report whether $-\mathbf{m}_{\mathrm{frz}}$ lies in the preview range, but it still does not populate the certified live derivative matrix $B$ or change the neutral first-execution status.
+If that matrix preview is range-probed, the derived probe remains a preview-only shell-braid diagnostic. It may report whether $-\mathbf{m}_{\mathrm{frz}}$ lies in the preview range, but it still does not populate the certified live derivative matrix $B$ or change the neutral first-execution status.
 
 ---
 
@@ -187,37 +187,37 @@ $$
 The first run may leave most mathematical rows as `not_computed`, but it must still emit them explicitly. A missing row is a failed artifact, not an open theorem target. The current executable audit artifact emits this row with the schema:
 
 $$
-\texttt{neutral-swarm-finite-mode-artifact/v1}.
+\texttt{neutral-braid-finite-mode-artifact/v1}.
 $$
 
 The sampled octahedral root diagnostic emits the companion schema:
 
 $$
-\texttt{neutral-swarm-octahedral-root-ledger/v1}.
+\texttt{neutral-braid-octahedral-root-ledger/v1}.
 $$
 
 The sampled octahedral fixed-speed force diagnostic emits:
 
 $$
-\texttt{neutral-swarm-octahedral-force-residual/v1}.
+\texttt{neutral-braid-octahedral-force-residual/v1}.
 $$
 
 The sampled octahedral frozen-ledger speed-ODE diagnostic emits:
 
 $$
-\texttt{neutral-swarm-octahedral-speed-ode-diagnostic/v1}.
+\texttt{neutral-braid-octahedral-speed-ode-diagnostic/v1}.
 $$
 
 The frozen zero-mean correction intake bridge emits:
 
 $$
-\texttt{neutral-swarm-octahedral-zero-mean-correction-intake/v1}.
+\texttt{neutral-braid-octahedral-zero-mean-correction-intake/v1}.
 $$
 
 The deterministic fixed-speed no-go witness emits:
 
 $$
-\texttt{neutral-swarm-octahedral-fixed-speed-witness/v1}.
+\texttt{neutral-braid-octahedral-fixed-speed-witness/v1}.
 $$
 
 It closes one narrow hypothesis by rejection:
@@ -234,7 +234,7 @@ $$
 [0.07393815228,0.07393815232],
 $$
 
-so the fixed-speed tangential row cannot vanish for every required receiver and phase. This rejection does not consume or close the broader neutral swarm master certificate; it only removes the rigid zero-offset fixed-speed octahedral seed from the retained-branch candidate set.
+so the fixed-speed tangential row cannot vanish for every required receiver and phase. This rejection does not consume or close the broader neutral braid master certificate; it only removes the rigid zero-offset fixed-speed octahedral seed from the retained-branch candidate set.
 
 The ordinary same-source positive-delay exclusion witness is implemented at:
 
@@ -246,7 +246,7 @@ node scripts/neutral-swarm/octahedral-same-source-witness.mjs --validate /tmp/ne
 Its schema is
 
 $$
-\texttt{neutral-swarm-octahedral-same-source-witness/v1}.
+\texttt{neutral-braid-octahedral-same-source-witness/v1}.
 $$
 
 It closes the ordinary fixed-speed same-source rescue hypothesis by rejection:
@@ -275,7 +275,7 @@ node scripts/neutral-swarm/octahedral-inventory-closure-witness.mjs --validate /
 Its schema is
 
 $$
-\texttt{neutral-swarm-octahedral-inventory-closure-witness/v1}.
+\texttt{neutral-braid-octahedral-inventory-closure-witness/v1}.
 $$
 
 It closes the count-only force-closure overread by rejection:
@@ -304,7 +304,7 @@ node scripts/neutral-swarm/octahedral-root-force-closure-witness.mjs --validate 
 Its schema is
 
 $$
-\texttt{neutral-swarm-octahedral-root-force-closure-witness/v1}.
+\texttt{neutral-braid-octahedral-root-force-closure-witness/v1}.
 $$
 
 It closes the resolved-root-implies-force-closure overread by rejection:
@@ -333,7 +333,7 @@ node scripts/neutral-swarm/octahedral-phase-offset-retention-witness.mjs --valid
 Its schema is
 
 $$
-\texttt{neutral-swarm-octahedral-phase-offset-retention-witness/v1}.
+\texttt{neutral-braid-octahedral-phase-offset-retention-witness/v1}.
 $$
 
 It closes the sampled-improvement-implies-retention overread by rejection:
@@ -354,7 +354,7 @@ node scripts/neutral-swarm/octahedral-polarity-phase-retention-witness.mjs --val
 Its schema is
 
 $$
-\texttt{neutral-swarm-octahedral-polarity-phase-retention-witness/v1}.
+\texttt{neutral-braid-octahedral-polarity-phase-retention-witness/v1}.
 $$
 
 It closes the neutral-polarity-plus-rigid-phase retention overread by rejection:
@@ -363,7 +363,7 @@ $$
 \texttt{closed-rejected:polarity-phase-improvement-implies-retention}.
 $$
 
-The certificate is [../shell-swarm/polarity-phase-rigid-screen-results.md](../shell-swarm/polarity-phase-rigid-screen-results.md): neutral polarity reassignment plus rigid phase offsets improve the RMS tangential residual to about $0.8296$, but the best row remains `not_retained`, keeps positive pointwise tangential residual with maximum about $1.7874$, and leaves the master retention rows open. This rejects only the retention overread, not polarity reassignment or phase offsets as search coordinates.
+The certificate is [Polarity Phase Rigid Screen Results](../shell-swarm/polarity-phase-rigid-screen-results.md): neutral polarity reassignment plus rigid phase offsets improve the RMS tangential residual to about $0.8296$, but the best row remains `not_retained`, keeps positive pointwise tangential residual with maximum about $1.7874$, and leaves the master retention rows open. This rejects only the retention overread, not polarity reassignment or phase offsets as search coordinates.
 
 ---
 
@@ -464,7 +464,7 @@ $$
 \right).
 $$
 
-The first-failure ladder is inherited from [neutral-swarm-master-retention-theorem.md](neutral-swarm-master-retention-theorem.md). For the first minimal audit artifact, the expected result is usually:
+The first-failure ladder is inherited from [Neutral Braid Master Retention Theorem](neutral-swarm-master-retention-theorem.md). For the first minimal audit artifact, the expected result is usually:
 
 $$
 \mathrm{first\_failed\_row}

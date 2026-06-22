@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet turns the sampled causal-root diagnostic for the rigid octahedral carrier in [octahedral-carrier-worked-example.md](../shell-swarm/octahedral-carrier-worked-example.md) into a certified all-pairs root ledger for this fixed rigid carrier. The executable artifact now owns all $30$ ordered distinct source rows on one ledger: $6$ antipodal-partner rows and $24$ cross-binary rows with analytic active-root graphs, inactive-gap predicates, delay bounds, support-complete memory depth, and a global Jacobian floor.
 
-It does not retain a branch, does not promote material into `content/markdown/aaa`, and does not override the rigid carrier's neutral tangential-residual failure. Its only success condition is a certified all-pairs root ledger for this fixed Noether swarm seed. Dynamics, action, Noether, stability, shell swarm, and nested shell swarm rows remain separate downstream obligations.
+It does not retain a branch, does not promote material into `content/markdown/aaa`, and does not override the rigid carrier's neutral tangential-residual failure. Its only success condition is a certified all-pairs root ledger for this fixed Noether braid seed. Dynamics, action, Noether, stability, shell braid, and nested shell braid rows remain separate downstream obligations.
 
 ---
 
@@ -30,7 +30,7 @@ a\in\{1,2,3\},
 \sigma\in\{+1,-1\}.
 $$
 
-The neutral swarm polarity row is
+The neutral braid polarity row is
 
 $$
 q_{a,+}=+\epsilon,
@@ -106,7 +106,7 @@ $$
 \texttt{all-pairs-root-ledger-certified}.
 $$
 
-This certifies only the causal-root ledger. No dynamics, action, Noether, event, stability, observer-export, shell swarm, or nested shell swarm row may consume it as branch retention.
+This certifies only the causal-root ledger. No dynamics, action, Noether, event, stability, observer-export, shell braid, or nested shell braid row may consume it as branch retention.
 
 ---
 
@@ -487,7 +487,7 @@ N_{\mathrm{same}}
 \right).
 $$
 
-A symmetry-compressed partner/cross table, an unordered-pair table, or a shell swarm case table may be useful as a diagnostic, but it is not this all-pairs checksum.
+A symmetry-compressed partner/cross table, an unordered-pair table, or a shell braid case table may be useful as a diagnostic, but it is not this all-pairs checksum.
 
 ---
 
@@ -499,7 +499,7 @@ The certification attempt must stop at the first applicable status in this order
 | --- | --- |
 | `all-pairs-root-ledger-open` | no analytic or interval root proof has been emitted |
 | `interval-payload-open` | analytic one-root-per-ordered-pair and $h_{\mathrm{mem}}=2$ support-complete memory are staged, but finite theta cells, active tubes, inactive gaps, delay bounds, and the Jacobian floor have not been emitted on one constructive payload |
-| `ordered-pair-policy-mismatch` | the pair-policy checksum is not $(6,30,\{5\},\{5\},6,24,0)$, or a binary, shell swarm, or nested shell swarm compression is used as the base ledger |
+| `ordered-pair-policy-mismatch` | the pair-policy checksum is not $(6,30,\{5\},\{5\},6,24,0)$, or a binary, shell braid, or nested shell braid compression is used as the base ledger |
 | `root-residual-failed` | an active tube does not interval-certify $G_{ij}=0$ |
 | `root-tube-overlap` | two active tubes overlap or a single ordered pair/cell has more than one retained positive-delay tube without an event row |
 | `delay-floor-collision` | an active tube touches $y=0$ or lacks a positive delay floor |
@@ -509,7 +509,7 @@ The certification attempt must stop at the first applicable status in this order
 | `jacobian-floor-failed` | $J_{\min}^{\mathrm{oct}}\le\epsilon_J$ on the certified tube set |
 | `support-complete-memory-open` | the payload does not attach the finite support bound $0<y\le2$ or leaves the $y=2$ endpoint convention open |
 | `ledger-rerun-required` | a downstream row consumes a different root, endpoint, pair-policy, inactive-gap, or same-source convention |
-| `optional-reduction-not-certified` | a shell swarm or nested shell swarm reduction is claimed before the neutral all-pairs equality row is certified |
+| `optional-reduction-not-certified` | a shell braid or nested shell braid reduction is claimed before the neutral all-pairs equality row is certified |
 | `all-pairs-root-ledger-certified` | all pair-policy, interval-cell, root-uniqueness, delay-bound, Jacobian-floor, inactive-gap, and checksum rows pass on one ledger |
 
 The status
@@ -532,7 +532,7 @@ $$
 \texttt{closed-rejected:rigid-octahedral-fixed-speed-neutral-row}
 $$
 
-for the fixed-speed zero-offset row, and broader neutral swarm retention still requires force, dynamics, action, Noether, event, and stability closure on a compatible ledger.
+for the fixed-speed zero-offset row, and broader neutral braid retention still requires force, dynamics, action, Noether, event, and stability closure on a compatible ledger.
 
 ---
 
@@ -566,7 +566,7 @@ Required field meanings:
 | Field | Payload |
 | --- | --- |
 | $\mathsf{LedgerID}$ | rigid octahedral carrier label, source packet, solver version, tolerance, and timestamp |
-| $\Pi_{\mathrm{all}}^{\mathrm{oct}}$ | all $30$ ordered distinct source pairs over the six neutral swarm sites |
+| $\Pi_{\mathrm{all}}^{\mathrm{oct}}$ | all $30$ ordered distinct source pairs over the six neutral braid sites |
 | $\mathsf{Chk}_{\Pi}$ | the pair-policy checksum from Section 4 |
 | $\mathcal{T}_{\theta}$ | interval theta cells, endpoint ownership, and period-cut convention |
 | $\mathsf{ActiveTubes}$ | one certified positive-delay tube for each $(r,s,\Theta_n)$ |
@@ -584,4 +584,4 @@ Required field meanings:
 
 **Theorem target: rigid octahedral sampled ledger certification.** Suppose the rigid octahedral carrier above is equipped with an interval theta-cell cover, the ordered pair policy $\Pi_{\mathrm{all}}^{\mathrm{oct}}$, the pair-policy checksum $\mathsf{Chk}_{\Pi}$, one certified positive-delay root tube for every ordered pair and theta cell, a certified inactive-gap cover of the remaining delay slab, positive global delay bounds, a fixed Jacobian sign stratum and floor on every active tube, and a consumer checksum tying all downstream rows to the same ledger.
 
-Then the sampled root evidence from the worked example has been upgraded to a certified all-pairs causal-root ledger for the rigid octahedral neutral swarm carrier. The result is still `priority-only`: it may unblock a later Noether swarm, shell swarm, or nested shell swarm calculation that consumes this exact ledger, but it does not by itself retain a branch.
+Then the sampled root evidence from the worked example has been upgraded to a certified all-pairs causal-root ledger for the rigid octahedral neutral braid carrier. The result is still `priority-only`: it may unblock a later Noether braid, shell braid, or nested shell braid calculation that consumes this exact ledger, but it does not by itself retain a branch.

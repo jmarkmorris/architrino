@@ -6,7 +6,7 @@ This detailed priority file supports [Standard Model Closure](standard-model-clo
 
 The weak-sector opportunity is to combine three currently separated ideas:
 
-- axial-frame misalignment relative to the fixed Noether swarm frame;
+- axial-frame misalignment relative to the fixed Noether braid frame;
 - weak-coupling-triad exposure and `V-A` selection;
 - emergent effective gauge covariance.
 
@@ -19,7 +19,7 @@ M_{ij}
 q_a n_i^{(a)}n_j^{(a)}.
 $$
 
-Its principal frame $\mathcal{F}_{\text{ax}}$ may rotate relative to the Noether swarm frame $\mathcal{F}_{\text{core}}$ by
+Its principal frame $\mathcal{F}_{\text{ax}}$ may rotate relative to the Noether braid frame $\mathcal{F}_{\text{core}}$ by
 
 $$
 \mathcal{F}_{\text{ax}}
@@ -38,7 +38,7 @@ This packet absorbs two former top-level queue items without discarding them:
 | Subgate | Preserved burden | Failure condition |
 | --- | --- | --- |
 | Weak `V-A` chirality | Test whether the spiral-handedness / axial-exposure story produces charged-current left-channel selection while suppressing right-channel coupling in the validated regime. | `V-A` selection requires a separate rule from the weak-exposure domain. |
-| Weak-corridor provenance | Determine whether $W^\pm$ corridors carry pro/anti Noether swarm provenance or only charged transaction delta, and close how outgoing lepton / antilepton cores are sourced in weak reactions. | Outgoing weak-reaction cores appear without a source ledger or require a different coupling domain from `V-A`. |
+| Weak-corridor provenance | Determine whether $W^\pm$ corridors carry pro/anti Noether braid provenance or only charged transaction delta, and close how outgoing lepton / antilepton cores are sourced in weak reactions. | Outgoing weak-reaction cores appear without a source ledger or require a different coupling domain from `V-A`. |
 | Flavor overlap compatibility | Keep CKM/PMNS overlap integrals in the same weak-exposure domain as chirality and weak-corridor provenance. | Mixing angles, chirality, and provenance each require independent tuning. |
 
 For weak-reaction event accounting, this packet consumes the shared [residual-routing event-ledger theorem](../nested-shell-swarm-causal-closure/residual-routing-event-ledger.md). It owns the weak exposure domain and provenance burden; the shared packet owns the general rule that a charged-current route must close $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ without unbalanced source inventory.
@@ -53,7 +53,7 @@ $$
 \mathcal{E}_W(R_{\text{rel}},c,\sigma_{\text{ax}},\Lambda_{\text{NS}},\rho_{\text{NS}},\chi_{\text{sea}}),
 $$
 
-where $c\in\{H,M,L\}$ labels the exceptional-axis sector, $\sigma_{\text{ax}}$ records the axial inventory, and $\Lambda_{\text{NS}}$ records the reduced nested shell swarm closure label. The weak `V-A` gate passes only if $\mathcal{E}_W$ exposes the charged-current coupling domain for left-handed channels while suppressing right-handed charged-current coupling in the validated regime.
+where $c\in\{H,M,L\}$ labels the exceptional-axis sector, $\sigma_{\text{ax}}$ records the axial inventory, and $\Lambda_{\text{NS}}$ records the reduced nested shell braid closure label. The weak `V-A` gate passes only if $\mathcal{E}_W$ exposes the charged-current coupling domain for left-handed channels while suppressing right-handed charged-current coupling in the validated regime.
 
 ## Gauge Compatibility Gate
 
@@ -220,6 +220,6 @@ with calibration and mistag rates attached. Here $d_0$ is impact-parameter infor
 ## Failure Modes
 
 - `V-A`, CKM/PMNS, and weak-reaction provenance each require a different exposure domain.
-- Axial-frame misalignment rotates the Noether swarm scaffold instead of the axial layer.
+- Axial-frame misalignment rotates the Noether braid scaffold instead of the axial layer.
 - Gauge covariance survives only by ignoring medium-response or preferred-frame corrections.
 - The measured weak angle is asserted to equal an internal geometric angle without exposure, dressing, and renormalization gates.

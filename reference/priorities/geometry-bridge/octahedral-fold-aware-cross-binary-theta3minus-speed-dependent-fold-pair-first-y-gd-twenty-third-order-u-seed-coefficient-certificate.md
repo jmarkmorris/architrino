@@ -214,7 +214,7 @@ It emits:
   scaled-remainder, `I1`, and retention rows.
 
 The companion test
-[neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-third-order-u-seed-coefficient-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-third-order-u-seed-coefficient-certificate.test.js)
+[neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-third-order-u-seed-coefficient-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-third-order-u-seed-coefficient-certificate.test.js)
 validates schema, no-fixed-speed-window discipline, $h_{23}$ and
 $Q_{G,23},Q_{D,23}$ intervals, the $Q_D+24Q_G$ identity interval,
 overclaim rejection, and CLI write/validate behavior.

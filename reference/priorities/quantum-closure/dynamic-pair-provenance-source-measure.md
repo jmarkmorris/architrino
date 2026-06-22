@@ -27,7 +27,7 @@ The value is live because it protects contact with tested Bell-family data and p
 
 The reader-facing Bell chapter should stop at the closure target, obstruction, and failure conditions. The operational Bell work queue is retained here:
 
-1. Derive the total angular-momentum functional for a Noether swarm with changing inner, middle, and outer binary frequencies, including self-action and causal-wake terms.
+1. Derive the total angular-momentum functional for a Noether braid with changing inner, middle, and outer binary frequencies, including self-action and causal-wake terms.
 2. Evaluate the Master-Equation branch-sum apparatus impulse, separatrix normal, and record-cycle invariant measure for a tri-binary assembly driven by a Stern-Gerlach-like apparatus potential gradient.
 3. Simulate a minimal fragmentation event and extract the joint pair ledger, not merely a pair of opposite classical axes.
 4. Compute $E(\theta_{AB})$ from the derived response kernel and source measure; compare against $-\cos\theta_{AB}$ and evaluate $|S|$.
@@ -777,7 +777,7 @@ This theorem target fails in any of the following cases:
 
 ## Remaining Blockers
 
-- The delayed total-angular-momentum functional still needs a source-event evaluation for a changing-frequency Noether swarm.
+- The delayed total-angular-momentum functional still needs a source-event evaluation for a changing-frequency Noether braid.
 - The effective spinor coordinate and the conditions under which the record-cycle measure flattens to the ideal chart remain lower-level proof obligations.
 - The current product-screened generated axis model is a correct failure control, not a partial success.
 - The generated joint-basin target is now a failure-boundary fixture and simulation target, not a positive Bell closure candidate. Its table-level success is blocked by $\Delta_{\mathrm{par}}=1/\sqrt{2}$ until a local-response replay target locates the obstruction before the completed local record boundary without setting-dependent source weights or signaling.

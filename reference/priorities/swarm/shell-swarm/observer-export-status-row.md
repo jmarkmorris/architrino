@@ -1,6 +1,6 @@
 # Observer Export Status Row
 
-Promotion status: `priority-only`. This packet defines the status discipline for Lorentz, photon, mass-map, color, strong-field, and cosmology observer exports from a Noether swarm branch. It refines [observer-export-and-mass-map-targets.md](observer-export-and-mass-map-targets.md), [action-and-noether-closure-row.md](action-and-noether-closure-row.md), and [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md).
+Promotion status: `priority-only`. This packet defines the status discipline for Lorentz, photon, mass-map, color, strong-field, and cosmology observer exports from a Noether braid branch. It refines [observer-export-and-mass-map-targets.md](observer-export-and-mass-map-targets.md), [action-and-noether-closure-row.md](action-and-noether-closure-row.md), and [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md).
 
 The purpose is to prevent downstream recovery claims from driving the base proof. Observer exports are computed rows:
 

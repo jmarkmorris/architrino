@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 524,
-      "edges": 1277,
-      "scenes": 345,
+      "nodes": 526,
+      "edges": 1281,
+      "scenes": 347,
       "markdownIndexes": 0,
       "markdownDocs": 166,
       "runtimeEdges": 476,
@@ -1931,6 +1931,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "theory_bridges__overview",
+      "name": "Theory Bridges",
+      "path": "content/scenes/philosophy_history/theory_bridges/overview.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "theory_bridges__pilot_wave_character",
       "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
       "path": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
@@ -1976,6 +1982,12 @@
       "id": "substance_structure_potential",
       "name": "Substance, Structure, and the Plenum of Potential",
       "path": "content/scenes/philosophy_history/substance_structure_potential.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__overview",
+      "name": "Philosophy and History",
+      "path": "content/scenes/philosophy_history/overview.json",
       "nodeType": "scene"
     },
     {
@@ -2250,7 +2262,7 @@
     },
     {
       "id": "content/markdown/aaa/archie/ideal-swarm-guide.md",
-      "name": "Ideal Swarm Guide",
+      "name": "Ideal Braid Guide",
       "path": "content/markdown/aaa/archie/ideal-swarm-guide.md",
       "nodeType": "markdown_doc"
     },
@@ -2562,19 +2574,19 @@
     },
     {
       "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
-      "name": "Nested Shell Swarm Dynamics",
+      "name": "Nested Shell Braid Dynamics",
       "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
-      "name": "Nested Shell Swarm Geometry",
+      "name": "Nested Shell Braid Geometry",
       "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/noether-swarm/noether-swarm.md",
-      "name": "Noether Swarm",
+      "name": "Noether Braid",
       "path": "content/markdown/aaa/noether-swarm/noether-swarm.md",
       "nodeType": "markdown_doc"
     },
@@ -2718,7 +2730,7 @@
     },
     {
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
-      "name": "Mapping the Planck Scale to the Nested Shell Swarm Geometry",
+      "name": "Mapping the Planck Scale to the Nested Shell Braid Geometry",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
       "nodeType": "markdown_doc"
     },
@@ -2748,7 +2760,7 @@
     },
     {
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
-      "name": "Special Relativity and Deformable Noether Swarms",
+      "name": "Special Relativity and Deformable Noether Braids",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
       "nodeType": "markdown_doc"
     },
@@ -3156,7 +3168,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
-      "name": "Nested Shell Swarm Action-Increment Protocol",
+      "name": "Nested Shell Braid Action-Increment Protocol",
       "path": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
       "nodeType": "markdown_doc"
     },
@@ -5242,6 +5254,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/overview.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__overview",
+      "name": "Philosophy and History",
+      "path": "content/scenes/philosophy_history/overview.json",
+      "searchTarget": "content/scenes/philosophy_history/overview.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "nodeType": "scene",
       "id": "philosophy_history",
@@ -5320,6 +5341,15 @@
       "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
       "path": "content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json",
       "searchTarget": "content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/overview.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__overview",
+      "name": "Theory Bridges",
+      "path": "content/scenes/philosophy_history/theory_bridges/overview.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/overview.json",
       "implicit": false
     },
     {
@@ -6370,7 +6400,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-guide.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/ideal-swarm-guide.md",
-      "name": "Ideal Swarm Guide",
+      "name": "Ideal Braid Guide",
       "path": "content/markdown/aaa/archie/ideal-swarm-guide.md",
       "searchTarget": "content/markdown/aaa/archie/ideal-swarm-guide.md",
       "implicit": false
@@ -6838,7 +6868,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
-      "name": "Nested Shell Swarm Dynamics",
+      "name": "Nested Shell Braid Dynamics",
       "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
       "searchTarget": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
       "implicit": false
@@ -6847,7 +6877,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
-      "name": "Nested Shell Swarm Geometry",
+      "name": "Nested Shell Braid Geometry",
       "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
       "searchTarget": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
       "implicit": false
@@ -6856,7 +6886,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/noether-swarm/noether-swarm.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/noether-swarm/noether-swarm.md",
-      "name": "Noether Swarm",
+      "name": "Noether Braid",
       "path": "content/markdown/aaa/noether-swarm/noether-swarm.md",
       "searchTarget": "content/markdown/aaa/noether-swarm/noether-swarm.md",
       "implicit": false
@@ -7072,7 +7102,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
-      "name": "Mapping the Planck Scale to the Nested Shell Swarm Geometry",
+      "name": "Mapping the Planck Scale to the Nested Shell Braid Geometry",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
       "implicit": false
@@ -7117,7 +7147,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
-      "name": "Special Relativity and Deformable Noether Swarms",
+      "name": "Special Relativity and Deformable Noether Braids",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
       "implicit": false
@@ -7729,7 +7759,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
-      "name": "Nested Shell Swarm Action-Increment Protocol",
+      "name": "Nested Shell Braid Action-Increment Protocol",
       "path": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
       "implicit": false
@@ -11327,168 +11357,182 @@
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/geometry_and_ontology.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/overview.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/angular_momentum_and_spin.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[12]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/overview.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[8]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[9]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[7]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[13]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[10]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/proof-programs/proof_programs.json",
@@ -12793,6 +12837,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/overview.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/README.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/overview.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "edgeType": "markdown_doc",
@@ -12846,6 +12897,13 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/overview.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/README.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/overview.json",
       "field": "scene.source.path"
     },
     {

@@ -275,7 +275,7 @@ The executable diagnostic [octahedral-fold-aware-multiroot-period-integral.mjs](
 - the sampled zero bracket and its sign-certified successor packet;
 - the non-retention verdict.
 
-The companion test [neutral-swarm-octahedral-fold-aware-multiroot-period-integral.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-multiroot-period-integral.test.js) verifies cross-binary cancellation, the $\phi$ coarea chart marker, the secondary fold, the zero bracket, CLI validation, and the non-retention guards.
+The companion test [neutral-braid-octahedral-fold-aware-multiroot-period-integral.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-multiroot-period-integral.test.js) verifies cross-binary cancellation, the $\phi$ coarea chart marker, the secondary fold, the zero bracket, CLI validation, and the non-retention guards.
 
 ## Promotion Decision
 

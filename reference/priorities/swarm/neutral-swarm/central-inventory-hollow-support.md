@@ -1,11 +1,11 @@
 # Central Inventory Inside Hollow Support
 
-Promotion status: `priority-only`. This packet connects the neutral swarm hollow support row to charged central-inventory closure. It refines [neutral-swarm-model.md](neutral-swarm-model.md) and [central-inventory-and-event-ledgers.md](../shell-swarm/central-inventory-and-event-ledgers.md). It does not retain a branch, promote charged-fermion ontology, or authorize corpus migration.
+Promotion status: `priority-only`. This packet connects the neutral braid hollow support row to charged central-inventory closure. It refines [Neutral Braid Model](neutral-swarm-model.md) and [central-inventory-and-event-ledgers.md](../shell-swarm/central-inventory-and-event-ledgers.md). It does not retain a branch, promote charged-fermion ontology, or authorize corpus migration.
 
 The target is:
 
 $$
-\text{neutral swarm hollow support}
+\text{neutral braid hollow support}
 +
 \text{resolved or regularized central inventory}
 +
@@ -16,13 +16,13 @@ $$
 \text{admissible charged-branch bookkeeping candidate}.
 $$
 
-The implication is a theorem target only. A neutral swarm may provide a support band around central inventory, but it does not by itself explain charge, mass, stability, or observer exports.
+The implication is a theorem target only. A neutral braid may provide a support band around central inventory, but it does not by itself explain charge, mass, stability, or observer exports.
 
 ---
 
 ## 1. Hollow Support Row
 
-Let the six neutral swarm sites be
+Let the six neutral braid sites be
 
 $$
 I_S=\{1,\ldots,6\},
@@ -57,7 +57,7 @@ $$
 0<R_{\mathrm{in}}<R_{\mathrm{out}}.
 $$
 
-The neutral swarm exclusion row is
+The neutral braid exclusion row is
 
 $$
 \mathcal{R}_{\mathrm{hole}}^{S}
@@ -67,7 +67,7 @@ $$
 \left(R_{\mathrm{in}}-r_i(\lambda)\right)_+.
 $$
 
-This row says only that the six neutral swarm paths do not enter the central hollow. It does not decide what occupies the hollow.
+This row says only that the six neutral braid paths do not enter the central hollow. It does not decide what occupies the hollow.
 
 ---
 
@@ -148,7 +148,7 @@ $$
 \left(\|\mathbf{Z}_a(\lambda)-\mathbf{C}\|-R_{\mathrm{in}}\right)_+.
 $$
 
-The separation row from neutral swarm paths is
+The separation row from neutral braid paths is
 
 $$
 d_{S,C}
@@ -173,8 +173,8 @@ Central inventory cannot be handled by a separate hidden force law. The active r
 
 | Pair class | Required handling |
 | --- | --- |
-| $S\to S$ | neutral swarm all-pairs root ledger |
-| $S\leftrightarrow C$ | cross ledger between neutral swarm and central inventory |
+| $S\to S$ | neutral braid all-pairs root ledger |
+| $S\leftrightarrow C$ | cross ledger between neutral braid and central inventory |
 | $C\to C$ | central-inventory internal roots or explicit regularization policy |
 
 For resolved paths, roots solve
@@ -205,7 +205,7 @@ $$
 B_i^{\mathrm{in}}(u)=R_{\mathrm{in}}-\rho_i(u)
 $$
 
-for neutral swarm paths and
+for neutral braid paths and
 
 $$
 B_a^{\mathrm{out}}(u)=\rho_a(u)-R_{\mathrm{in}}
@@ -248,8 +248,8 @@ The allowed statuses are:
 | --- | --- |
 | `central-hollow-compatible` | all central labels are represented and all cross rows close |
 | `central-inventory-ledger-open` | inventory is counted but representatives are not closed |
-| `cross-root-ledger-open` | neutral swarm and central inventory do not yet share one root ledger |
+| `cross-root-ledger-open` | neutral braid and central inventory do not yet share one root ledger |
 | `hollow-event-open` | boundary crossing or support work lacks conservation provenance |
 | `central-inventory-rejected` | at least one central label has no admissible representative |
 
-Until this block closes, a neutral swarm may remain a viable neutral branch candidate, but a charged branch using central inventory remains unretained.
+Until this block closes, a neutral braid may remain a viable neutral branch candidate, but a charged branch using central inventory remains unretained.

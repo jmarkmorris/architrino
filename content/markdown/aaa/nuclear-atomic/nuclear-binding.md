@@ -64,7 +64,7 @@ for separations in the nuclear window, with the attraction strongest where meson
 
 ### Short-range exclusion
 
-Nucleons are not point masses. Each is a structured Noether swarm assembly with an exclusion volume and a strong internal stress network. If two nucleons are pushed too close together, the cost rises sharply:
+Nucleons are not point masses. Each is a structured Noether braid assembly with an exclusion volume and a strong internal stress network. If two nucleons are pushed too close together, the cost rises sharply:
 $$
 V_{\text{excl}}(r)\to +\infty
 \quad\text{as}\quad

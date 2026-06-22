@@ -1,6 +1,6 @@
 # Ordinary Same-Source Fixed-Speed No-Go Certificate
 
-Promotion status: `priority-only`. Closure status: `closed-rejected` only for the ordinary same-source positive-delay root hypothesis on the rigid fixed-speed circular carrier. This packet isolates the same-source row from the rigid octahedral carrier worked example in [../shell-swarm/octahedral-carrier-worked-example.md](../shell-swarm/octahedral-carrier-worked-example.md). It does not reject any broader neutral swarm, shell swarm, nested shell swarm, event-ledger, bounded-speed, fold-layer, or deformed support-band route.
+Promotion status: `priority-only`. Closure status: `closed-rejected` only for the ordinary same-source positive-delay root hypothesis on the rigid fixed-speed circular carrier. This packet isolates the same-source row from the rigid octahedral carrier worked example in [Octahedral Carrier Worked Example](../shell-swarm/octahedral-carrier-worked-example.md). It does not reject any broader neutral braid, shell braid, nested shell braid, event-ledger, bounded-speed, fold-layer, or deformed support-band route.
 
 Executable witness:
 
@@ -12,7 +12,7 @@ node scripts/neutral-swarm/octahedral-same-source-witness.mjs --validate /tmp/ne
 The artifact schema is
 
 $$
-\texttt{neutral-swarm-octahedral-same-source-witness/v1}.
+\texttt{neutral-braid-octahedral-same-source-witness/v1}.
 $$
 
 ---
@@ -171,8 +171,8 @@ This certificate rejects only the ordinary same-source positive-delay root hypot
 4. event-ledger routes;
 5. bounded-speed rows;
 6. deformed support-band carriers;
-7. shell swarm case reductions;
-8. nested shell swarm case reductions;
-9. the general neutral swarm branch program.
+7. shell braid case reductions;
+8. nested shell braid case reductions;
+9. the general neutral braid branch program.
 
 Any later packet that claims one of those routes must declare its own root equation, endpoint convention, event or fold accounting, and downstream force/action/Noether obligations on the same ledger.

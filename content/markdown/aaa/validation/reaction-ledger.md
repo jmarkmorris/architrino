@@ -1,6 +1,6 @@
 # Reaction Ledger: Architrino Provenance
 
-This ledger records how reaction channels should account for constituent architrinos, Noether swarms, axial layers, energy, momentum, charge, polarity, and path-history provenance. Its purpose is not to replace Standard Model reaction notation. Its purpose is to state what an $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must conserve before a reaction map can be treated as more than a provisional diagram.
+This ledger records how reaction channels should account for constituent architrinos, Noether braids, axial layers, energy, momentum, charge, polarity, and path-history provenance. Its purpose is not to replace Standard Model reaction notation. Its purpose is to state what an $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must conserve before a reaction map can be treated as more than a provisional diagram.
 
 For radiative channels, use this ledger together with [Radiation](../reactions/radiation.md#radiation-event-record-schema). For cosmology-facing radiation and thermalization channels, use it together with [Reaction-Cosmology Provenance Ledger](reaction-cosmology-provenance-ledger.md).
 
@@ -23,8 +23,8 @@ Each reaction record should state:
 
 1. **Observer channel:** the standard reaction label, including historical labels such as `beta decay` only when immediately translated into native reaction language.
 2. **Active assemblies:** which incoming assemblies actually reconfigure, and which are spectators.
-3. **Noether sea participation:** whether local Noether swarms, neutral binaries, axial layers, or medium excitations are consumed, split, reconfigured, or returned.
-4. **Constituent inventory:** total $E$ and $P$ counts before and after, separated into swarm and axial-layer contributions where the distinction matters.
+3. **Noether sea participation:** whether local Noether braids, neutral binaries, axial layers, or medium excitations are consumed, split, reconfigured, or returned.
+4. **Constituent inventory:** total $E$ and $P$ counts before and after, separated into braid and axial-layer contributions where the distinction matters.
 5. **Polarity and charge accounting:** how observer-level charge bookkeeping emerges from the $E/P$ routing.
 6. **Energy-momentum and angular-momentum accounting:** where kinetic energy, internal binding energy, photon assemblies, recoil, medium excitation, spin/vector ledger terms, and wake-carried angular momentum enter and exit.
 7. **Path-history provenance:** which emitted causal wakes, source identities, and delayed interactions are needed to make the reaction deterministic in absolute time.
@@ -37,8 +37,8 @@ Each reaction record should state:
 | Field | Required content |
 | --- | --- |
 | Observer channel | Standard reaction notation and native reaction label |
-| Active assembly change | Swarm and axial-layer changes for the transformed assembly |
-| Noether sea input/output | Neutral swarms, axial material, or medium excitations recruited or returned |
+| Active assembly change | Braid and axial-layer changes for the transformed assembly |
+| Noether sea input/output | Neutral braids, axial material, or medium excitations recruited or returned |
 | Conserved inventory | $E/P$ totals and charge/polarity balance |
 | Energy-momentum and angular-momentum ledger | Internal energy, recoil, emitted assemblies, spin/vector ledger terms, wake-carried angular momentum, and medium excitation |
 | Radiation event record, when applicable | Source assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, photon Gate B event residual when $E_\gamma\ne0$, and closure status |
@@ -58,7 +58,7 @@ $$
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}
 $$
 
-Here $\mathcal{R}$ is the replayable residual computed from the local assembly state, path-history ledger, Noether swarm density, Noether sea delay factor, and any named sector variables. The set $\{B_i\}$ is the finite list of admissible output channels, such as retuning, bound excitation, radiation, recoil, medium heating, weak or nuclear reaction, record formation, release channel, or branch transition. The event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the balance object that must close after all selected outputs are named.
+Here $\mathcal{R}$ is the replayable residual computed from the local assembly state, path-history ledger, Noether braid density, Noether sea delay factor, and any named sector variables. The set $\{B_i\}$ is the finite list of admissible output channels, such as retuning, bound excitation, radiation, recoil, medium heating, weak or nuclear reaction, record formation, release channel, or branch transition. The event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the balance object that must close after all selected outputs are named.
 
 For a reaction attempt, the input state should be recorded as:
 
@@ -325,7 +325,7 @@ A reaction record may be promoted beyond a provisional map only when all of the 
 4. **Ledger closure:** $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}$ after adding the sector-required charge, polarity, architrino-inventory, identity-routing, path-history, Noether sea, and remnant rows.
 5. **Benchmark compatibility:** the promoted event recovers the sector benchmark without breaking any required weak, quantum, gravity, hadronic, radiation, cosmology, conservation-law, or direct-observation acceptance gate.
 
-This is a promotion criterion, not a completed theorem. Worked sector cases remain open until at least one channel supplies a named residual, a named threshold or separatrix, a channel decision, a complete $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger, a benchmark recovery, and a failure diagnostic in one record. The free-neutron beta reaction, the $t\to b+W^+$ channel, radiation-coupled pair channels, and nuclear reaction examples therefore remain provisional where their sector records still lack closed residual routing, outgoing swarm provenance, angular-momentum balance, rate recovery, or quantitative benchmark closure.
+This is a promotion criterion, not a completed theorem. Worked sector cases remain open until at least one channel supplies a named residual, a named threshold or separatrix, a channel decision, a complete $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger, a benchmark recovery, and a failure diagnostic in one record. The free-neutron beta reaction, the $t\to b+W^+$ channel, radiation-coupled pair channels, and nuclear reaction examples therefore remain provisional where their sector records still lack closed residual routing, outgoing braid provenance, angular-momentum balance, rate recovery, or quantitative benchmark closure.
 
 ### Failure Modes
 
@@ -344,16 +344,16 @@ This is a promotion criterion, not a completed theorem. Worked sector cases rema
 
 Weak reactions now require an explicit corridor-provenance stance. The current corpus supports two live possibilities:
 
-1. **Transaction-payload corridor:** $W^\pm$ carries the charged triad payload and phase relation, while final-state pro/anti Noether swarm material is supplied by the local Noether sea or by explicitly identified incoming assemblies.
-2. **Provenance-carrying corridor:** $W^\pm$ carries not only the charged transaction payload but also enough pro/anti Noether swarm provenance to seed some final-state lepton or antilepton swarm content.
+1. **Transaction-payload corridor:** $W^\pm$ carries the charged triad payload and phase relation, while final-state pro/anti Noether braid material is supplied by the local Noether sea or by explicitly identified incoming assemblies.
+2. **Provenance-carrying corridor:** $W^\pm$ carries not only the charged transaction payload but also enough pro/anti Noether braid provenance to seed some final-state lepton or antilepton braid content.
 
-The ledger should not choose between these silently. For each serious weak record, add a row or note that states which stance is being used, which Noether swarm material enters and exits, and what would falsify the accounting. This gate is coupled to the weak-coupling-triad exposure problem: the same geometry that permits left-handed charged-current docking must also determine which corridor payload can be transferred and where the outgoing lepton swarms come from.
+The ledger should not choose between these silently. For each serious weak record, add a row or note that states which stance is being used, which Noether braid material enters and exits, and what would falsify the accounting. This gate is coupled to the weak-coupling-triad exposure problem: the same geometry that permits left-handed charged-current docking must also determine which corridor payload can be transferred and where the outgoing lepton braids come from.
 
 Minimum weak-channel records should therefore include:
 
 - the active weak-coupling-triad swap,
 - the corridor provenance stance,
-- all Noether sea or incoming-assembly swarm material used for charged lepton and neutrino outputs,
+- all Noether sea or incoming-assembly braid material used for charged lepton and neutrino outputs,
 - the CKM/PMNS overlap weight when a flavor or generation branch is selected,
 - and the energy, angular momentum, polarity, and path-history terms needed for deterministic replay.
 
@@ -375,17 +375,17 @@ $$
 
 Equivalently, the active quark sector requires a $+3E,-3P$ axial exchange. In observer language this is the $W^+$ channel. In substrate language it is a transient payload and coupling event whose geometry, chirality selection, and energy routing still need closure.
 
-The lepton products cannot be asserted as creation from nothing. Their swarm and axial-layer material must be drawn from a local Noether sea reservoir or from explicitly identified incoming assemblies. The provisional ledger target is:
+The lepton products cannot be asserted as creation from nothing. Their braid and axial-layer material must be drawn from a local Noether sea reservoir or from explicitly identified incoming assemblies. The provisional ledger target is:
 
 | Component | Ledger requirement | Status |
 | --- | --- | --- |
 | Top-to-bottom axial exchange | Route the $+3E,-3P$ change through a weak-channel coupling event | Provisional |
-| Positron assembly | Identify the Noether swarm and axial material used to form the charged lepton output | Provisional |
-| Electron-neutrino assembly | Identify neutral swarm and axial-layer routing, including chirality/orientation | Provisional |
+| Positron assembly | Identify the Noether braid and axial material used to form the charged lepton output | Provisional |
+| Electron-neutrino assembly | Identify neutral braid and axial-layer routing, including chirality/orientation | Provisional |
 | Energy-momentum | Account for quark mass difference, lepton energies, recoil, and medium excitation | Derivation target |
 | Weak geometry | Derive the left-handed selection rule and allowed coupling operator | Derivation target |
 
-This channel should not be presented as a completed architrino derivation until the inventory table balances $E/P$ counts, swarm orientation, axial-layer routing, and energy-momentum in one consistent record.
+This channel should not be presented as a completed architrino derivation until the inventory table balances $E/P$ counts, braid orientation, axial-layer routing, and energy-momentum in one consistent record.
 
 ## Free Neutron Beta Reaction
 
@@ -431,16 +431,16 @@ This gate inherits the unresolved spinor/helicity proof in [Angular Momentum and
 | CKM weight | $V_{ud}$, interpreted as the same-tier weak-basis to shielding-eigenstate overlap |
 | Provenance stance | Transaction-payload corridor unless a later derivation proves provenance-carrying corridor content is required |
 
-This record keeps the beta reaction from becoming two separate stories. The same exposed triad must explain the left-handed selection rule, supply the $V_{ud}$ overlap domain, and identify what the $W^-$ corridor transfers. The remaining open work is to identify the electron and antineutrino swarm provenance and then attach the energy, angular momentum, recoil, and path-history terms.
+This record keeps the beta reaction from becoming two separate stories. The same exposed triad must explain the left-handed selection rule, supply the $V_{ud}$ overlap domain, and identify what the $W^-$ corridor transfers. The remaining open work is to identify the electron and antineutrino braid provenance and then attach the energy, angular momentum, recoil, and path-history terms.
 
 The conservative ledger is:
 
 | Component | Required provenance statement | Closure status |
 | --- | --- | --- |
 | Active $d \to u$ assembly | Route $3E$ out of the active axial layer and route $3P$ into it | Provisional map |
-| Electron assembly | Combine the ejected $3E$ contribution with additional local Noether sea material and a suitable swarm | Provisional map |
-| Antineutrino assembly | Identify neutral swarm orientation, axial-layer routing, and weak-channel phase relation | Open derivation target |
-| Noether sea | Record every neutral swarm, axial layer, or medium excitation consumed or returned | Required |
+| Electron assembly | Combine the ejected $3E$ contribution with additional local Noether sea material and a suitable braid | Provisional map |
+| Antineutrino assembly | Identify neutral braid orientation, axial-layer routing, and weak-channel phase relation | Open derivation target |
+| Noether sea | Record every neutral braid, axial layer, or medium excitation consumed or returned | Required |
 | Energy and angular momentum | Track mass difference, recoil, electron kinetic energy, antineutrino energy, and medium response | Required |
 
 This map supports a strong but bounded claim: beta reaction charge bookkeeping can be interpreted as local separation and rerouting of neutral Noether sea material plus active quark axial reconfiguration. It does not yet establish a full weak-interaction derivation, because chirality selection, antineutrino routing, and quantitative rate closure still belong to the weak-sector closure program.
@@ -449,9 +449,9 @@ This map supports a strong but bounded claim: beta reaction charge bookkeeping c
 
 The reaction ledger needs at least four tables for each serious channel:
 
-1. **Constituent inventory table:** swarm and axial-layer $E/P$ counts for every input, output, Noether sea contribution, and returned medium product.
+1. **Constituent inventory table:** braid and axial-layer $E/P$ counts for every input, output, Noether sea contribution, and returned medium product.
 2. **Energy-momentum table:** internal energy changes, kinetic output, recoil, photon assemblies, neutrino channel, and medium excitation.
-3. **Geometry table:** axial frame, swarm orientation, chirality, polarity routing, and allowed coupling/docking geometry.
+3. **Geometry table:** axial frame, braid orientation, chirality, polarity routing, and allowed coupling/docking geometry.
 4. **Path-history table:** causal-root branches, source identities, emission times, and local Noether sea state variables needed for deterministic replay.
 
 Radiative or photon-coupled channels also need the shared radiation event-record table. The polarization handoff in that table remains inherited from Gate B; this ledger records the required transverse and capture/rejection fields but does not derive photon spin locally.

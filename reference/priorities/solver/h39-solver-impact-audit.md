@@ -34,8 +34,8 @@ The direct H39 sources inspected for this audit are:
 - [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs)
 - [h39-shared-domain-primitive-replay.mjs](../../../scripts/solver-audits/h39-shared-domain-primitive-replay.mjs)
 - [h39-terminal-graph-remainder-budget-replay.mjs](../../../scripts/solver-audits/h39-terminal-graph-remainder-budget-replay.mjs)
-- [neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js](../../../tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js)
-- [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js)
+- [neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js](../../../tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js)
+- [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js)
 - [solver-h39-shared-domain-primitive-replay.test.js](../../../tests/solver-h39-shared-domain-primitive-replay.test.js)
 - [solver-h39-terminal-graph-remainder-budget-replay.test.js](../../../tests/solver-h39-terminal-graph-remainder-budget-replay.test.js)
 

@@ -27,7 +27,7 @@ Generated evidence:
 ## Scope
 
 The baseline comparison sandbox defines fixed app-facing solver cases for Photon,
-Ideal Swarm, and Animator. It runs those cases through the shared solver bridge,
+Ideal Braid, and Animator. It runs those cases through the shared solver bridge,
 writes artifact-only outputs under `.tmp/solver-baseline-sandbox`, hashes those
 artifacts, classifies differences under the solver baseline vocabulary, and feeds
 the ordered migration parity report.
@@ -68,7 +68,7 @@ The live manifest contains 17 cases:
 | --- | ---: | --- |
 | Animator | 4 | causal-root smoke, path-history smoke, motion dynamic replay smoke, worker solver bridge smoke |
 | Photon | 8 | causal-root smoke, facade path, WebAssembly client path, circular-source roots/hits ledger facade and WebAssembly paths, normalized circular-source ledger, normalized circular-source run, phase diagnostics |
-| Ideal Swarm | 5 | causal-root smoke, shared geometry smoke, flight-time facade, flight-time WebAssembly client, self-hit WebAssembly client |
+| Ideal Braid | 5 | causal-root smoke, shared geometry smoke, flight-time facade, flight-time WebAssembly client, self-hit WebAssembly client |
 
 All 17 current cases classify as `baseline_within_tolerance`.
 
@@ -79,7 +79,7 @@ consumes the sandbox manifest and checks the ordered migration plan:
 
 1. Animator;
 2. Photon;
-3. Ideal Swarm.
+3. Ideal Braid.
 
 The current report status is `parity_ready_for_ordered_adapter_migration`, with
 17 required cases, 17 evaluated cases, 17 ready cases, 0 blocked cases, and 0

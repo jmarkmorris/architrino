@@ -193,7 +193,7 @@ The screening suggests the rigid octahedral carrier is not immediately rejected 
 
 ## 6. Neutral Force-Residual Screening
 
-Assign the neutral Noether swarm polarity pattern
+Assign the neutral Noether braid polarity pattern
 
 $$
 q_{a,+}=+\epsilon,
@@ -253,4 +253,4 @@ This candidate must be rejected if any later retained packet finds:
 5. The phase return map has no stable fixed point, invariant curve, or attractor.
 6. The event/action ledger fails to conserve $E$, $\mathbf{p}$, $\mathbf{J}$, and $Q$ on this same active-root convention.
 
-The useful conclusion is narrow: the zero-offset octahedral carrier has an exact Euclidean noncollision floor and a plausible first causal-root screening row, but it fails the first neutral tangential-residual screen in its rigid form. It is therefore a disciplined input for deformed-carrier search, not a retained shell swarm branch.
+The useful conclusion is narrow: the zero-offset octahedral carrier has an exact Euclidean noncollision floor and a plausible first causal-root screening row, but it fails the first neutral tangential-residual screen in its rigid form. It is therefore a disciplined input for deformed-carrier search, not a retained shell braid branch.

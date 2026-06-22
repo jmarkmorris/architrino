@@ -97,7 +97,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-i1-bracket-derivat
 - a global worst-cell barrier summary;
 - explicit non-interval, non-critical-exhaustion, non-quadrature, and non-retention boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.test.js) verifies schema validation, predecessor composition, speed-window removal, mesh-row negativity, barrier summary values, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.test.js) verifies schema validation, predecessor composition, speed-window removal, mesh-row negativity, barrier summary values, claim boundaries, invalid controls, overclaim rejection, and CLI emission.
 
 ## Claim Boundary
 

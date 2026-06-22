@@ -237,7 +237,7 @@ The executable diagnostic [octahedral-bounded-speed-successor-closure-row.mjs](.
 - the live bounded-speed range equation;
 - the non-retention verdict.
 
-The companion test [neutral-swarm-octahedral-bounded-speed-successor-closure-row.test.js](../../../tests/neutral-swarm-octahedral-bounded-speed-successor-closure-row.test.js) verifies the conditional diagnostic failure, non-retention fields, CLI validation, and claim-level guards.
+The companion test [neutral-braid-octahedral-bounded-speed-successor-closure-row.test.js](../../../tests/neutral-swarm-octahedral-bounded-speed-successor-closure-row.test.js) verifies the conditional diagnostic failure, non-retention fields, CLI validation, and claim-level guards.
 
 ## Retention Verdict
 

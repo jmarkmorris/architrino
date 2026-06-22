@@ -1,6 +1,6 @@
-# Shell Swarm Reduction Row
+# Shell Braid Reduction Row
 
-Promotion status: `priority-only`. This packet formalizes the shell swarm as a case reduction of the general neutral swarm certificate, not as a separate ontology and not as a completed retained branch. It refines [neutral-swarm-model.md](../neutral-swarm/neutral-swarm-model.md), [free-support-bounded-speed-dynamics.md](free-support-bounded-speed-dynamics.md), [free-support-action-compatibility-theorem.md](free-support-action-compatibility-theorem.md), and [nested-shell-swarm-radial-support-functional.md](../nested-shell-swarm/nested-shell-swarm-radial-support-functional.md).
+Promotion status: `priority-only`. This packet formalizes the shell braid as a case reduction of the general neutral braid certificate, not as a separate ontology and not as a completed retained branch. It refines [Neutral Braid Model](../neutral-swarm/neutral-swarm-model.md), [free-support-bounded-speed-dynamics.md](free-support-bounded-speed-dynamics.md), [free-support-action-compatibility-theorem.md](free-support-action-compatibility-theorem.md), and [Nested Shell Braid Radial Support Functional](../nested-shell-swarm/nested-shell-swarm-radial-support-functional.md).
 
 The reduction target is:
 
@@ -11,7 +11,7 @@ $$
 \quad
 \Longrightarrow
 \quad
-\text{neutral swarm branch in the shell swarm case}.
+\text{neutral braid branch in the shell braid case}.
 $$
 
 The implication is only a case classification. It does not retain the branch unless the root, tail, dynamics, support, action, Noether, event, stability, inventory, and observer-export rows also close on the same live ledger.
@@ -30,7 +30,7 @@ I=\{1,\ldots,6\},
 \sum_{i\in I}\sigma_i=0
 $$
 
-be the neutral swarm site and polarity ledger. A shell swarm case adds a common support descriptor
+be the neutral braid site and polarity ledger. A shell braid case adds a common support descriptor
 
 $$
 \mathcal{D}_{\mathrm{shell}}
@@ -76,7 +76,7 @@ $$
 \right].
 $$
 
-The branch is not in the shell swarm case unless
+The branch is not in the shell braid case unless
 
 $$
 \mathcal{R}_{\mathrm{band}}^{\mathrm{shell}}(B)=0
@@ -88,7 +88,7 @@ or an explicitly declared tolerance row bounds it below the retained support tol
 
 ## 2. Spread And Non-Spherical Condition
 
-A shell swarm is a controlled radial support-band case. It is not a spherical-curve assumption. Define the causal-time mean support radius
+A shell braid is a controlled radial support-band case. It is not a spherical-curve assumption. Define the causal-time mean support radius
 
 $$
 \bar r_i^u
@@ -109,7 +109,7 @@ $$
 \frac{|\bar r_i^u-\bar r^u|}{\bar r^u}.
 $$
 
-A narrow shell swarm case requires
+A narrow shell braid case requires
 
 $$
 \mathcal{R}_{\mathrm{spread}}^{\mathrm{shell}}(B)\le\epsilon_{\mathrm{spread}},
@@ -129,13 +129,13 @@ $$
 r_i(\lambda)\equiv R_i
 $$
 
-is an optional subcase. It must not be silently inserted into the shell swarm reduction.
+is an optional subcase. It must not be silently inserted into the shell braid reduction.
 
 ---
 
 ## 3. Support Work And Complementarity
 
-The shell swarm support row is admissible only if the support work is tracked on the same center-time chart as the dynamics. With
+The shell braid support row is admissible only if the support work is tracked on the same center-time chart as the dynamics. With
 
 $$
 \rho_i(u)=r_i(\Lambda_i(u)),
@@ -176,13 +176,13 @@ The support work status is one of:
 | `support-work-zero` | multipliers vanish on the retained interval |
 | `support-work-exact` | support work is an exact contribution to the same action ledger |
 | `support-work-event-ledgered` | support work is exchanged through explicitly statused event rows |
-| `support-work-open` | support work is untracked; the shell swarm branch is not retained |
+| `support-work-open` | support work is untracked; the shell braid branch is not retained |
 
 ---
 
 ## 4. Optional Occupancy Rows
 
-Containment or shielding language is allowed only when the branch claims a support-distribution effect. In that case it must consume the occupancy density rows from the neutral swarm model:
+Containment or shielding language is allowed only when the branch claims a support-distribution effect. In that case it must consume the occupancy density rows from the neutral braid model:
 
 $$
 n_{\mathrm{occ},\delta}(\mathbf{x})
@@ -219,13 +219,13 @@ $$
 |n_{\mathrm{sgn},\delta}(\mathbf{x})|.
 $$
 
-These rows are optional for a shell swarm branch. They are required only when the branch claims cloud-like containment, shielding, or near-neutral coarse exposure.
+These rows are optional for a shell braid branch. They are required only when the branch claims cloud-like containment, shielding, or near-neutral coarse exposure.
 
 ---
 
 ## 5. Shell Reduction Residual
 
-The shell swarm reduction block is
+The shell braid reduction block is
 
 $$
 \mathcal{R}_{\mathrm{shell}}
@@ -248,6 +248,6 @@ The branch status is:
 | `shell-case-without-occupancy` | shell case passes, but no containment or shielding claim is made |
 | `shell-case-occupancy-open` | shell support passes, but a claimed support-distribution effect lacks coverage or signed-balance rows |
 | `shell-case-failed` | common support band or spread rows fail |
-| `neutral-branch-only` | the neutral swarm branch may remain viable, but the shell swarm case reduction is not available |
+| `neutral-branch-only` | the neutral braid branch may remain viable, but the shell braid case reduction is not available |
 
-Thus failure of $\mathcal{R}_{\mathrm{shell}}$ rejects only the shell swarm case. It does not reject the broader neutral swarm branch unless a required neutral certificate row also fails.
+Thus failure of $\mathcal{R}_{\mathrm{shell}}$ rejects only the shell braid case. It does not reject the broader neutral braid branch unless a required neutral certificate row also fails.

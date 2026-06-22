@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet turns the intrinsic curve equation from [intrinsic-curve-dynamics-equation.md](intrinsic-curve-dynamics-equation.md) into a concrete collocation solver protocol. It builds on the search constraints in [retained-branch-dynamics-protocol.md](retained-branch-dynamics-protocol.md), the current synthesis in [current-dynamics-synthesis.md](current-dynamics-synthesis.md), and the first-order rank target in [linearized-dynamics-matrix.md](linearized-dynamics-matrix.md).
 
-Claim level: solver specification and theorem-target support. This document does not claim a retained shell swarm branch, does not certify a nonlinear solution, and does not authorize migration into `content/markdown/aaa`.
+Claim level: solver specification and theorem-target support. This document does not claim a retained shell braid branch, does not certify a nonlinear solution, and does not authorize migration into `content/markdown/aaa`.
 
 This packet is the fixed-speed intrinsic solver unless the unknown vector is augmented by a bounded speed factor. The bounded-speed executable successor is [bounded-speed-factor-executable-solver-protocol.md](bounded-speed-factor-executable-solver-protocol.md), where the solver variables are $(a,b,\gamma)$ and the residual includes $\mathcal{R}_{\parallel}^{\nu}$, $\mathcal{R}_{\perp}^{\nu}$, causal-time roots, and speed-band rows.
 

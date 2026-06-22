@@ -1,6 +1,6 @@
 # Residual-Routing and Event-Ledger Theorem Packet
 
-This detailed priority file supports [nested shell swarm causal closure](nested-shell-swarm-causal-closure.md). It owns the shared proof grammar for transitions that route unresolved action into a physical channel while closing the same event ledger.
+This detailed priority file supports [nested shell braid causal closure](nested-shell-swarm-causal-closure.md). It owns the shared proof grammar for transitions that route unresolved action into a physical channel while closing the same event ledger.
 
 ## Core Theorem Target
 
@@ -59,7 +59,7 @@ $$
 \right)(\mathsf e).
 $$
 
-Here $\Delta_E$ is scalar energy balance, $\Delta_{\mathbf{p}}$ is vector momentum balance, $\Delta_{\mathbf{J}}$ is angular-momentum balance including mechanical, core, radiation, apparatus, medium, and causal-wake entries where applicable, $\Delta_{\mathrm{pol}}$ is polarity / charge bookkeeping, $\Delta_{\mathrm{arch}}$ is architrino and Noether swarm inventory bookkeeping, $\Delta_{\mathrm{path}}$ is source identity, emission time, active causal-root branch, and branch-Jacobian provenance, $\Delta_{\mathrm{med}}$ is the mismatch between computed Noether sea update and recorded medium update, and $\Delta_{\mathrm{rem}}$ is the mismatch between computed post-event remnant state and recorded remnant state.
+Here $\Delta_E$ is scalar energy balance, $\Delta_{\mathbf{p}}$ is vector momentum balance, $\Delta_{\mathbf{J}}$ is angular-momentum balance including mechanical, core, radiation, apparatus, medium, and causal-wake entries where applicable, $\Delta_{\mathrm{pol}}$ is polarity / charge bookkeeping, $\Delta_{\mathrm{arch}}$ is architrino and Noether braid inventory bookkeeping, $\Delta_{\mathrm{path}}$ is source identity, emission time, active causal-root branch, and branch-Jacobian provenance, $\Delta_{\mathrm{med}}$ is the mismatch between computed Noether sea update and recorded medium update, and $\Delta_{\mathrm{rem}}$ is the mismatch between computed post-event remnant state and recorded remnant state.
 
 Ledger closure means
 
@@ -220,7 +220,7 @@ This predicate is the shared event-ledger contract. Radiation, transport excitat
 
 ## Branch-Certificate Coupling Rule
 
-When a sector event belongs to a retained tri-binary branch class $q$, the event record $\theta_{\mathsf e}$ must extend into the shared branch certificate $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ from [nested shell swarm causal closure](nested-shell-swarm-causal-closure.md). This does not add a sixth promotion factor. It binds $\operatorname{Replay}_S$, $\operatorname{Compat}_S$, and $\operatorname{Ledger}_S$ to the same finite closure graph, active causal-root ledger, branch-Jacobian floor, inactive-root gap, finite memory depth, stability gap, speed-convention row, and Noether sea response record used by the Lorentz and effective-metric rows.
+When a sector event belongs to a retained tri-binary branch class $q$, the event record $\theta_{\mathsf e}$ must extend into the shared branch certificate $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ from [nested shell braid causal closure](nested-shell-swarm-causal-closure.md). This does not add a sixth promotion factor. It binds $\operatorname{Replay}_S$, $\operatorname{Compat}_S$, and $\operatorname{Ledger}_S$ to the same finite closure graph, active causal-root ledger, branch-Jacobian floor, inactive-root gap, finite memory depth, stability gap, speed-convention row, and Noether sea response record used by the Lorentz and effective-metric rows.
 
 Equivalently, for every promoted event there must be an embedding
 $$
@@ -259,7 +259,7 @@ Each consumer packet should instantiate the same predicate factors instead of ad
 | --- | --- | --- | --- | --- |
 | Radiation | $\mathcal{R}_{\Theta}$ from driven assembly, causal-root data, local angular-momentum data, $\rho_{\text{NS}}(\mathbf{x},t)$, and $\chi_{\text{sea}}(\mathbf{x},t)$ | Retuning, photon output, recoil, medium update, non-radiative remnant, reaction | Planar-mode gate data, photon provenance, polarization / angular-momentum handoff, $\operatorname{GateC}_{\gamma}$, benchmark radiation limit | Fail if photon output, recoil, remnant, or medium update is used as untracked loss. |
 | Transport excitation | $\mathcal{R}_{\text{tr}}$ from medium response, reversible inertia, causal-wake strain, and local material state | Reversible retuning, bound excitation, dissipative heating, radiation, branch transition | Material state update, transport threshold, medium-carried momentum, retained excitation | Fail if ordinary dissipative drag is substituted for the mass or inertia mechanism. |
-| Reaction | Sector reaction residual from assembly inventory, weak or nuclear corridor data, and causal-wake provenance | Product assemblies, recoil, radiation, medium update, remnant, bound-state change | Charge / polarity rows, architrino inventory, Noether swarm provenance, weak-corridor or nuclear-configuration rows | Fail if products appear without source inventory, path-history, or recoil accounting. |
+| Reaction | Sector reaction residual from assembly inventory, weak or nuclear corridor data, and causal-wake provenance | Product assemblies, recoil, radiation, medium update, remnant, bound-state change | Charge / polarity rows, architrino inventory, Noether braid provenance, weak-corridor or nuclear-configuration rows | Fail if products appear without source inventory, path-history, or recoil accounting. |
 | Measurement record | Basin residual after transfer-operator or return-map evolution and apparatus coupling | Apparatus record, recoil, medium update, remnant branch, branch transition | Record stability, apparatus state, detector kernel provenance, no-signaling benchmark rows | Fail if an outcome label is assigned without a stable physical record and ledger closure. |
 | Branch transition | Stability or separatrix residual on an assembly branch chart | Retuning, new branch, remnant deformation, radiation, medium update | Active causal-root branch, branch-Jacobian provenance, returned-sample or stability data | Fail if branch selection changes without replayable root-ledger and remnant records. |
 | Strong-field release | Horizon-interface or compact-object residual plus Noether sea response data | Jet, diffuse outflow, remnant update, dark-sector escape, radiation, medium update | Horizon-interface boundary state, entropy or information-accounting row, weak-field compatibility row | Fail if release succeeds only by violating thermodynamic, no-signaling, or weak-field acceptance gates. |
@@ -328,7 +328,7 @@ g_{\text{rxn}}\ge0,
 \Delta_{\mathrm{arch}}^{\text{products}}\ne0,
 $$
 
-with the full reaction ledger supplying charge / polarity, architrino inventory, Noether swarm provenance, recoil, and path-history rows.
+with the full reaction ledger supplying charge / polarity, architrino inventory, Noether braid provenance, recoil, and path-history rows.
 
 The radiation ledger instance is
 
@@ -420,7 +420,7 @@ The shared packet may appear in [reaction-ledger](../../../content/markdown/aaa/
 
 ## Related Priorities And Corpus Consumers
 
-- [nested-shell-swarm-causal-closure](nested-shell-swarm-causal-closure.md)
+- [nested-shell-braid-causal-closure](nested-shell-swarm-causal-closure.md)
 - [radiation](../../../content/markdown/aaa/reactions/radiation.md)
 - [mass-map](../mass-map/mass-map.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)

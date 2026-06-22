@@ -8,7 +8,7 @@ The Weinberg angle $\theta_W$ is the electroweak mixing angle of the Standard Mo
 
 This note records a constrained geometric hypothesis for fermion assemblies in $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
-- the **Noether swarm axes remain fixed** as the reference scaffold,
+- the **Noether braid axes remain fixed** as the reference scaffold,
 - the **axial distribution** is allowed to rotate relative to that scaffold,
 - stable quark-like states may occupy a **discrete set of misalignment angles**,
 - the candidate branch increment for those angles is hypothesized, not derived here, to satisfy the existing six-pole electroweak value
@@ -20,7 +20,7 @@ $$
 \theta_{\mathrm{inc}}=\frac{\pi}{6}=30^\circ
 $$
 
-This is intentionally narrower than a claim that the H/M/L axes themselves tilt or precess into new orientations. The nested shell swarm scaffold remains the kinematic frame. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **weak-coupling triad** relative to the fixed core frame.
+This is intentionally narrower than a claim that the H/M/L axes themselves tilt or precess into new orientations. The nested shell braid scaffold remains the kinematic frame. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **weak-coupling triad** relative to the fixed core frame.
 
 ---
 
@@ -30,7 +30,7 @@ We separate two structures that are often spoken about together but should not b
 
 ### 1. Core frame
 
-The [Noether swarm](../../noether-swarm/noether-swarm.md) is the neutral nested shell swarm scaffold. It defines:
+The [Noether braid](../../noether-swarm/noether-swarm.md) is the neutral nested shell braid scaffold. It defines:
 
 - generation via shielding level,
 - matter/antimatter braid orientation,
@@ -159,7 +159,7 @@ The following are allowed to rotate relative to the fixed core frame:
 
 The following are **not** rotating in this note:
 
-- the H/M/L Noether swarm scaffold itself,
+- the H/M/L Noether braid scaffold itself,
 - the binary nesting order that defines generation,
 - the matter/antimatter braid orientation,
 - the topological structure used to motivate spin-$\tfrac{1}{2}$ behavior.
@@ -224,7 +224,7 @@ For $2P,4E$:
 
 This suggests that down-type quarks need not minimize the same effective angle as up-type quarks. They may occupy a different branch even when the color azimuth is held fixed.
 
-This gives a possible path for distinguishing quark flavors geometrically without rotating the Noether swarm itself.
+This gives a possible path for distinguishing quark flavors geometrically without rotating the Noether braid itself.
 
 ---
 
@@ -274,7 +274,7 @@ For the weak-sector closure route, this note owns the first gate: selecting the 
 
 The useful theorem target is:
 
-1. define the admissible axial-layer configuration space for a fixed Noether swarm,
+1. define the admissible axial-layer configuration space for a fixed Noether braid,
 2. quotient by color-basis relabeling and pole symmetries,
 3. minimize $E_{\text{eff}}(\alpha,\phi_c)$ on the quotient space,
 4. pass the surviving branches to the weak-coupling-triad exposure calculation.
@@ -383,7 +383,7 @@ The fourth point matters. The discrete-angle idea is only worthwhile if it expla
 
 The sharpened hypothesis is:
 
-- the **Noether swarm stays fixed**,
+- the **Noether braid stays fixed**,
 - the **axial frame** may rotate relative to that fixed core,
 - the electron sits at the symmetric limit $\alpha=0$,
 - quarks occupy nonzero misalignment branches because their axial layers are both charge-imbalanced and axis-exceptional,

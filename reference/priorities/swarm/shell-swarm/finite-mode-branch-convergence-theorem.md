@@ -196,7 +196,7 @@ If $\Gamma_K^{(\nu)}$ is fitted only, this proves only convergence of the fitted
 
 **Theorem target: finite-mode convergence to a same-level dynamics branch.** Suppose a refinement sequence satisfies the certified finite sequence assumptions, with uniform root/Jacobian/noncollision/support floors, support-complete memory, delayed-force Lipschitz envelopes, collocation-refinement errors tending to zero, and dynamics residual envelopes tending to zero. Suppose also that the scale/action row converges in one declared convention. Then a subsequence converges to an exact-antipodal curve packet $\mathbf{Y}^{(*)}$ that satisfies the intrinsic same-level dynamics equation on the limiting support-complete root ledger.
 
-If the inventory, event, and stability certificate rows also converge and close on the same live ledger, the limit becomes a retained shell swarm branch candidate. Without those rows, it is only a retained dynamics candidate. Observer-export rows do not define retention, but any downstream Lorentz, photon, mass, color, strong-field, cosmology, or corpus-migration claim remains blocked until the relevant export rows are explicitly statused.
+If the inventory, event, and stability certificate rows also converge and close on the same live ledger, the limit becomes a retained shell braid branch candidate. Without those rows, it is only a retained dynamics candidate. Observer-export rows do not define retention, but any downstream Lorentz, photon, mass, color, strong-field, cosmology, or corpus-migration claim remains blocked until the relevant export rows are explicitly statused.
 
 Proof route:
 

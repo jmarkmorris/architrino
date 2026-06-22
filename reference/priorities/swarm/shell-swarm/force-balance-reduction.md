@@ -1,6 +1,6 @@
 # Force-Balance Reduction
 
-Promotion status: `priority-only`. This packet derives necessary force-balance equations for a same-level tri-binary carrier. It does not prove existence, stability, energy/action closure, observer export, or migration readiness. Its role is to make the tangential and radial/support-band residuals from [shell-swarm-branch-mathematics.md](shell-swarm-branch-mathematics.md) analytically checkable on the same active-root convention used by [octahedral-carrier-worked-example.md](octahedral-carrier-worked-example.md).
+Promotion status: `priority-only`. This packet derives necessary force-balance equations for a same-level tri-binary carrier. It does not prove existence, stability, energy/action closure, observer export, or migration readiness. Its role is to make the tangential and radial/support-band residuals from [Shell Braid Branch Mathematics](shell-swarm-branch-mathematics.md) analytically checkable on the same active-root convention used by [octahedral-carrier-worked-example.md](octahedral-carrier-worked-example.md).
 
 ---
 
@@ -607,7 +607,7 @@ Thus force balance is a root-ledger theorem target. Symmetry may reduce the numb
 
 ## 6. Certificate Use
 
-A retained shell swarm branch packet must supply, for every receiver $i$ and every retained time $t$:
+A retained shell braid branch packet must supply, for every receiver $i$ and every retained time $t$:
 
 1. The active-root partition $\mathcal{P}_i(t)$, $\mathcal{X}_i(t)$, and $\mathcal{S}_i(t)$, including the self/fold-layer status.
 2. The scalar data $y_{ij}^{\alpha}$, $J_{ij}^{\alpha}$, $T_{ij}^{\alpha}$, and $N_{ij}^{\alpha}$ for every retained root.

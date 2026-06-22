@@ -16,7 +16,7 @@ Scoring system:
 | # | Item | Value | Cost | ROI |
 | ---: | --- | ---: | ---: | ---: |
 | 1 | Execute the frozen breather proof program | 10 | 4 | 2.50 |
-| 2 | Noether swarm stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
+| 2 | Noether braid stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
 | 3 | Scene system, animator, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
 | 4 | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
 | 5 | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
@@ -118,7 +118,7 @@ Scoring system:
       $$
   - preserve the theorem-program structure exactly as written; the next work is proof writing, not architectural redesign.
 
-### 2. Finish Noether swarm stability, shielding, the parameter ledger, and the first mass map
+### 2. Finish Noether braid stability, shielding, the parameter ledger, and the first mass map
 - Value `10`, Cost `4`, ROI `2.50`.
 - For scorecard purposes, this is now the main Parameter Closure + Mass Formulas bucket.
 - If the goal is fastest total-score increase, pair this item with item `10` for Parameter Closure + Coverage first.
@@ -184,7 +184,7 @@ Scoring system:
   - move at least one actual animator mutation path onto shared structure transforms, likely regroup/group-split or another narrow hierarchy edit;
   - make parent/child nesting read as local structure rather than grouped ids alone;
   - add richer subassembly transforms, presets, and instance overrides once the canonical edit path exists;
-  - decide how anti-Noether swarms and similar theory-facing structures should be depicted and edited;
+  - decide how anti-Noether braids and similar theory-facing structures should be depicted and edited;
   - add structure-changing edits such as detaching an axial architrino into a free architrino and breaking a binary into unbound architrinos;
   - keep unbound architrinos as outputs of structure-changing edits, not as top-level add-menu stamps;
   - make scale changes legible in-scene, including clear indication when a structure, inset, or derived view is shown at a different scale;
@@ -341,7 +341,7 @@ Scoring system:
   - black-holes.md,
   - singularity-resolution.md,
   - the aligned cosmology chapters,
-  - and the equivalence-principle rewrite in nested-shell-swarm-dynamics.md.
+  - and the equivalence-principle rewrite in nested-shell-braid-dynamics.md.
 - The actual priority here is now narrow and quantitative:
   - derive a stronger observer-level strong-field prediction set,
   - decide the release-channel selection between jets, diffuse outflow, and dark-sector escape,
@@ -419,7 +419,7 @@ Scoring system:
   - show that the basin weights recover $P \propto |\psi|^2$ and the squared amplitudes of the effective linear envelope equation rather than only qualitative multistability,
   - use that closure to support quantitative scattering and decay predictions rather than only interpretive rhetoric.
 - Keep Bell / CHSH / Tsirelson as a hard gate, not a side note.
-- Preserve the side question: is the missing neutrino chirality tied to converting a pro-Noether swarm?
+- Preserve the side question: is the missing neutrino chirality tied to converting a pro-Noether braid?
 
 ### 12. Convert cosmology from narrative strength to equation-level closure
 - Value `2`, Cost `9`, ROI `0.22`.

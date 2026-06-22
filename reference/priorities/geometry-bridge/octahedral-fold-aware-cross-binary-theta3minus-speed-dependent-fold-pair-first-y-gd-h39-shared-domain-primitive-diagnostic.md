@@ -1337,7 +1337,7 @@ their structural and transcendental-envelope predicates close, and exports
 $(\rho_X,r_X;\mathfrak S)$ declaration consumed by the graph-radii subset.
 
 The companion test is
-[neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js).
+[neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js).
 It verifies the missing-bound report, unverified-provenance block, external
 directed-rounded replay pass, failing-bound report, overclaim rejection,
 speed-band rejection, reducer-drift rejection, and CLI write/validate/schema

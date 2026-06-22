@@ -1,4 +1,4 @@
-# Ideal Swarm Adapter
+# Ideal Braid Adapter
 
 Status: `closed-app-adapter`
 
@@ -15,19 +15,19 @@ Primary dependencies:
 
 Implementation surfaces:
 
-- [IdealSwarmRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmRuntime.js)
-- [IdealSwarmPathPotentialProfile.js](../../../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js)
-- [IdealSwarmSolverBridgeOptions.js](../../../src/apps/ideal-swarm/IdealSwarmSolverBridgeOptions.js)
+- [IdealBraidRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmRuntime.js)
+- [IdealBraidPathPotentialProfile.js](../../../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js)
+- [IdealBraidSolverBridgeOptions.js](../../../src/apps/ideal-swarm/IdealSwarmSolverBridgeOptions.js)
 - [SolverAppAdapters.mjs](../../../src/solver/app/SolverAppAdapters.mjs)
 - [check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
-- [ideal-swarm-runtime.test.js](../../../tests/ideal-swarm-runtime.test.js)
+- [ideal-braid-runtime.test.js](../../../tests/ideal-swarm-runtime.test.js)
 
 ## Adapter Scope
 
-The Ideal Swarm adapter task is scoped to replacing app-local delayed-potential,
+The Ideal Braid adapter task is scoped to replacing app-local delayed-potential,
 flight-time, and circular self-hit calculations with shared solver geometry.
 
-It does not claim that all Ideal Swarm rendering geometry is solver-owned. Orbit
+It does not claim that all Ideal Braid rendering geometry is solver-owned. Orbit
 ribbons, Lorentz chart geometry, potential-surface mesh construction, color
 mapping, viewport transforms, and visual presentation remain app responsibilities.
 
@@ -45,20 +45,20 @@ mapping, viewport transforms, and visual presentation remain app responsibilitie
 Current validation evidence:
 
 - [check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
-  includes five Ideal Swarm cases: causal-root smoke, shared-geometry smoke,
+  includes five Ideal Braid cases: causal-root smoke, shared-geometry smoke,
   flight-time facade, flight-time WebAssembly client, and self-hit WebAssembly
   client.
-- The current baseline sandbox manifest classifies all five Ideal Swarm cases as
+- The current baseline sandbox manifest classifies all five Ideal Braid cases as
   `baseline_within_tolerance`.
 - [check-solver-migration-parity.mjs](../../../scripts/check-solver-migration-parity.mjs)
-  includes all five Ideal Swarm cases in the ordered migration parity report.
-- [ideal-swarm-runtime.test.js](../../../tests/ideal-swarm-runtime.test.js)
+  includes all five Ideal Braid cases in the ordered migration parity report.
+- [ideal-braid-runtime.test.js](../../../tests/ideal-swarm-runtime.test.js)
   covers solver-bridge potential samples, flight-time rows, client/worker bridge
   creation, and circular self-hit span bridge rows.
 
 ## Remaining Boundaries
 
-Remaining Ideal Swarm work is not this adapter task:
+Remaining Ideal Braid work is not this adapter task:
 
 - move remaining source-history normalization and circular-to-segment conversion
   into solver-owned descriptors before deleting app-local request-building
@@ -73,4 +73,4 @@ Remaining Ideal Swarm work is not this adapter task:
 `ideal_swarm_adapter` is complete for delayed-potential, flight-time, and
 circular self-hit solver geometry. The app routes those calculations through the
 shared solver bridge, and the baseline/migration parity harness covers the
-required Ideal Swarm bridge cases.
+required Ideal Braid bridge cases.

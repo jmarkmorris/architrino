@@ -1,6 +1,6 @@
-# Ideal Swarm Guide
+# Ideal Braid Guide
 
-Ideal Swarm is an app-facing guide for the standalone Noether swarm Lorentz lesson. It explains what the application is trying to make visible, how its controls map to the equations, and where the displayed geometry fits relative to the surrounding $\mathbb{A}\mathbb{A}\mathbb{A}$ documents.
+Ideal Braid is an app-facing guide for the standalone Noether braid Lorentz lesson. It explains what the application is trying to make visible, how its controls map to the equations, and where the displayed geometry fits relative to the surrounding $\mathbb{A}\mathbb{A}\mathbb{A}$ documents.
 
 This is not a proof document. The app is an inspection surface: it makes a candidate geometry legible so that the theory documents can state the mathematical obligations clearly.
 
@@ -8,14 +8,14 @@ Read this alongside:
 
 - [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
-- [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md)
+- [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md)
 - [About the Webapp](about-the-webapp.md)
 
 ## Purpose
 
-The app shows a nested Noether swarm whose velocity-dependent boundary is treated as an oblate spheroidal envelope. The user changes the velocity fraction $\beta = v/c_f$ and sees the same factor appear in four linked places:
+The app shows a nested Noether braid whose velocity-dependent boundary is treated as an oblate spheroidal envelope. The user changes the velocity fraction $\beta = v/c_f$ and sees the same factor appear in four linked places:
 
-1. the geometry of the flattened swarm envelope,
+1. the geometry of the flattened braid envelope,
 2. the relative-time readout,
 3. the relative-length readout,
 4. the normalized center-of-mass energy and mass-equivalent ledger.
@@ -35,7 +35,7 @@ The app therefore uses geometry as a dictionary for the Lorentz kinematics, whil
 
 ## What the App Shows
 
-At $\beta=0$, the swarm is displayed in its rest geometry. The inner, middle, and outer binary angular-momentum vectors begin as mutually orthogonal reference directions, like the positive coordinate axes of a Cartesian frame.
+At $\beta=0$, the braid is displayed in its rest geometry. The inner, middle, and outer binary angular-momentum vectors begin as mutually orthogonal reference directions, like the positive coordinate axes of a Cartesian frame.
 
 As $\beta$ increases, the app uses a shared assembly momentum direction. The current lesson surface uses
 $$
@@ -73,9 +73,9 @@ $$
 \sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}
 $$
 
-In ordinary geometry language, $\beta$ is the eccentricity of the oblate spheroidal envelope in this simplified display. The physical claim is narrower: if the Noether swarm realizes Lorentz-compatible closure with no additional scale channel, then the measured semiaxes determine $\beta$, $\gamma$, and $\xi$ through the equations above.
+In ordinary geometry language, $\beta$ is the eccentricity of the oblate spheroidal envelope in this simplified display. The physical claim is narrower: if the Noether braid realizes Lorentz-compatible closure with no additional scale channel, then the measured semiaxes determine $\beta$, $\gamma$, and $\xi$ through the equations above.
 
-The visible oblate spheroidal envelope should be read as the outer-binary envelope exposed by the full nested Noether swarm, not as a solid body filled only by the outer binary. In the no-extra-scale lesson state,
+The visible oblate spheroidal envelope should be read as the outer-binary envelope exposed by the full nested Noether braid, not as a solid body filled only by the outer binary. In the no-extra-scale lesson state,
 $$
 R_{\perp}=R_0
 \qquad
@@ -163,7 +163,7 @@ falls in lockstep with the length-contraction factor because the denominator is 
 | `Axes` | Toggles momentum-frame guides: a short bulk-motion contraction guide along $\hat{\mathbf{n}}$ plus two transverse axes perpendicular to it. |
 | `Pause` / `Resume` | Pauses or resumes the animation. |
 | Home icon | Returns from the standalone lesson to the main webapp. |
-| `Outer orbit` | Sets the reference transverse scale for the outer binary and rescales the displayed nested swarm from that reference. |
+| `Outer orbit` | Sets the reference transverse scale for the outer binary and rescales the displayed nested braid from that reference. |
 | $\beta=v/c_f$ | Sets the displayed velocity fraction, from rest to the formal field-speed limit. |
 | `Cycle` | Changes animation phase speed only. It does not change $\beta$, $\gamma$, or the physical factors. |
 | `Reset` | Restores the view orientation and default phase. |
@@ -189,9 +189,9 @@ The app supports three separate claim levels:
 | --- | --- |
 | Formula visualization | Implemented in the app. |
 | Geometry dictionary | Defensible as the zero-extra-scale oblate spheroidal envelope map. |
-| Dynamical derivation from Noether swarm branch closure | Still a theory and simulation obligation. |
+| Dynamical derivation from Noether braid branch closure | Still a theory and simulation obligation. |
 
-The app should therefore not be used as proof that the Noether swarm dynamics derive special relativity. Its role is to keep the geometric target concrete:
+The app should therefore not be used as proof that the Noether braid dynamics derive special relativity. Its role is to keep the geometric target concrete:
 $$
 \xi=\frac{1}{\gamma}
 \qquad

@@ -23,7 +23,7 @@ This file should not grow into a proof queue. Any hypothesis that becomes action
 | Watch item | Detailed source | Promotion target | Promotion gate |
 | --- | --- | --- | --- |
 | `keep_hypothesis_registry` | This file | [strong-field-closure](strong-field-closure.md) and [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | A preserved hypothesis gains a concrete boundary condition, equation, simulation target, or observable before leaving the watchlist. |
-| `protect_421_model` | This file | [dyadic-lock](../dyadic-lock/dyadic-lock.md), [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), or [planck-scale-nested-shell-swarm-alignment](../../../content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md) | The `4:2:1` idea is rederived from a reduced-map, branch-ledger, or Planck-alignment result before being promoted beyond hypothesis status. |
+| `protect_421_model` | This file | [dyadic-lock](../dyadic-lock/dyadic-lock.md), [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), or [planck-scale-nested-shell-braid-alignment](../../../content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md) | The `4:2:1` idea is rederived from a reduced-map, branch-ledger, or Planck-alignment result before being promoted beyond hypothesis status. |
 | `dark_sector_photon_like_modes` | [dark-sector-photon-like-mode](../dark-sector/dark-sector-photon-like-mode.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), and [cosmology-closure](../cosmology-closure/cosmology-closure.md) | [dark-sector](../dark-sector/dark-sector.md), [strong-field-closure](strong-field-closure.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), or [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | The hypothesis gains a release-channel boundary condition, an event-ledger route through radiation Gate C, a redshift / thermalization / re-entry criterion, and at least one discriminating observable before being promoted beyond watchlist status. |
 
 ## Hypotheses To Preserve
@@ -69,5 +69,5 @@ The expanded dark-sector photon-like mode brainstorm, candidate assembly registr
 
 - [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md)
 - [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md)
-- [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
+- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
 - [noether-sea-pro-anti-coupling](../../../content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md)

@@ -195,10 +195,10 @@ Treat these as backlog tickets in execution order. Keep each ticket one engineer
 - First visualization candidate when resumed: Molecule Visualization.
 - Later visualization candidates:
   - Photon candidate planar pair and Virtual Observer diagnostic.
-  - Ideal Swarm layered trails and causal path-history intuition.
+  - Ideal Braid layered trails and causal path-history intuition.
   - Causal Delay Feedback App with one-pair path-history, partial/full wake modes, and orientation-adaptive iPhone/iPad layout.
   - Causal-root delay diagram for source time, observer time, distance, and branch weight.
-  - Noether swarm layer comparison with Inner, Middle, and Outer roles.
+  - Noether braid layer comparison with Inner, Middle, and Outer roles.
 - A visualization should have a clear textbook entry point: a chapter or section link that can open the relevant visual context.
 
 ## Nice To Haves

@@ -2,7 +2,7 @@
 
 This chapter studies resonance lock for the nested Outer, Middle, and Inner binaries as a restricted family inside the broader [Tri-Binary Configuration Space](tri-binary-configuration-space.md). Its immediate goal is specific: identify the relationship between frequency, scalar tangential speed, and radius in a reduced branch where the middle binary caustic-grazes the field-speed hinge and the three rings form an exact integer phase-locked cycle.
 
-It should be read together with [Binary Dynamics](binary-dynamics.md), [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), and [Noether Swarm](../noether-swarm/noether-swarm.md), which provide the assembly geometry and scale-setting context for the lock relations derived here.
+It should be read together with [Binary Dynamics](binary-dynamics.md), [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), and [Noether Braid](../noether-swarm/noether-swarm.md), which provide the assembly geometry and scale-setting context for the lock relations derived here.
 
 The level distinctions matter throughout. Ontologically, the Outer, Middle, and Inner binaries are assembly layers built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. Inferentially, an integer lock is selected only after the phase-bundle holonomy, cancellation score, and stability gap all favor the same branch.
 
@@ -48,7 +48,7 @@ f_1=f_2=f_3
 $$
 still permits different $r_a$, $s_a$, and $E_a$, because the radii or retained lever arms can differ. Different phase offsets and different active root ledgers can then carry the branch distinction even when the frequency row is common.
 
-For nested shell swarm prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later dyadic lock discussion studies one restricted family inside this broader tri-binary branch state; it is not the default assumption for all stable tri-binary configurations.
+For nested shell braid prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later dyadic lock discussion studies one restricted family inside this broader tri-binary branch state; it is not the default assumption for all stable tri-binary configurations.
 
 ## Status and Assumptions
 
@@ -106,7 +106,7 @@ $$
 rather than an infinite-force constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](energy.md#self-hit-echo-and-discrete-steps-working-note).
 
 This is the main regime assumption of the chapter. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric.
-It is not a claim that every Noether swarm regime has the middle binary exactly at $c_f$; ordinary weak-stress operation may keep the middle layer only near the hinge scale, while the caustic-grazing carrier belongs to the reduced exterior/horizon-transition branch.
+It is not a claim that every Noether braid regime has the middle binary exactly at $c_f$; ordinary weak-stress operation may keep the middle layer only near the hinge scale, while the caustic-grazing carrier belongs to the reduced exterior/horizon-transition branch.
 
 ### Assumption 2 (Exact Integer Phase Closure)
 
@@ -131,7 +131,7 @@ Therefore the canonical `I:M:O` frequency triplet is $f_I:f_M:f_O=n:m:1$. Equiva
 
 Plain language: after one outer revolution, the middle and inner rings have completed whole numbers of revolutions as well, so the three-ring pattern closes exactly.
 
-This is the reduced constant-frequency carrier model. It is a branch-level closure assumption, not a statement that the assembly has only three degrees of freedom. In the full Noether swarm closure problem, the simple phases $\theta_k=q_k\Omega t+\phi_k$ are replaced by integrated winding, causal-root, and frame-phase ledgers over the accepted branch chart.
+This is the reduced constant-frequency carrier model. It is a branch-level closure assumption, not a statement that the assembly has only three degrees of freedom. In the full Noether braid closure problem, the simple phases $\theta_k=q_k\Omega t+\phi_k$ are replaced by integrated winding, causal-root, and frame-phase ledgers over the accepted branch chart.
 
 ### Assumption 3 (Fixed Relative Phase Lock)
 

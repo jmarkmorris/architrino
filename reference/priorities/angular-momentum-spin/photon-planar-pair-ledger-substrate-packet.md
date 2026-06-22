@@ -139,7 +139,7 @@ The next useful app-side input is not a better hand-selected phase preset. It is
 
 ## Local-c Helical Self-Hit Hypothesis
 
-Priority-only hypothesis. When a photon branch is carried by a local Noether sea, the packet center should move at the declared photon-channel speed $c_\gamma$, while each architrino also carries transverse orbital motion in its planar swarm. For layer $k$,
+Priority-only hypothesis. When a photon branch is carried by a local Noether sea, the packet center should move at the declared photon-channel speed $c_\gamma$, while each architrino also carries transverse orbital motion in its planar braid. For layer $k$,
 
 $$
 \mathbf v_{k,\mathrm{abs}}

@@ -411,7 +411,7 @@ The executable diagnostic [octahedral-diagonal-affine-zero-mean-solver.mjs](../.
 - delay and sampled Jacobian bounds;
 - the non-retention verdict.
 
-The companion test [neutral-swarm-octahedral-diagonal-affine-zero-mean-solver.test.js](../../../tests/neutral-swarm-octahedral-diagonal-affine-zero-mean-solver.test.js) verifies unit-scale reproduction, the finite sampled zero-mean candidate, paired receiver equality, the resolution-instability verdict, physical primitive fields, CLI validation, and the claim-level guards.
+The companion test [neutral-braid-octahedral-diagonal-affine-zero-mean-solver.test.js](../../../tests/neutral-swarm-octahedral-diagonal-affine-zero-mean-solver.test.js) verifies unit-scale reproduction, the finite sampled zero-mean candidate, paired receiver equality, the resolution-instability verdict, physical primitive fields, CLI validation, and the claim-level guards.
 
 ## Retention Verdict
 

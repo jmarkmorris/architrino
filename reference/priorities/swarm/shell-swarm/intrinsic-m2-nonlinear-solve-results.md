@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet records the first bounded nonlinear solve using the exact-antipodal $M=2$ vector Fourier basis from [intrinsic-m2-collocation-rank-results.md](intrinsic-m2-collocation-rank-results.md). It is the strongest numerical evidence so far that the intrinsic collocation route is viable, but it does not retain a branch.
 
-The solve substantially reduces the intrinsic residual on its training grid and preserves the $5$-$5$ active-root count. Refinement shows off-grid residual peaks, open period/unit rows, and coefficient-bound saturation. The result is a candidate direction for the next constrained solve, not a retained shell swarm branch.
+The solve substantially reduces the intrinsic residual on its training grid and preserves the $5$-$5$ active-root count. Refinement shows off-grid residual peaks, open period/unit rows, and coefficient-bound saturation. The result is a candidate direction for the next constrained solve, not a retained shell braid branch.
 
 ---
 

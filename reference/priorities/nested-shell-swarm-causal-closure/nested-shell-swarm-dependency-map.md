@@ -1,10 +1,10 @@
-# Nested Shell Swarm Dependency Map
+# Nested Shell Braid Dependency Map
 
 ## Purpose
 
-This is the active-development workbench for [nested-shell-swarm-causal-closure.md](nested-shell-swarm-causal-closure.md). Its job is to make the proof ladder explicit before the synthesis is promoted into deployed or textbook-facing material.
+This is the active-development workbench for [Nested Shell Braid Causal Closure](nested-shell-swarm-causal-closure.md). Its job is to make the proof ladder explicit before the synthesis is promoted into deployed or textbook-facing material.
 
-The deployed dynamics baseline is [nested shell swarm dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md). That chapter owns the mechanism definitions; this map owns the proof burdens that determine whether those mechanisms can carry the causal-closure synthesis.
+The deployed dynamics baseline is [nested shell braid dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md). That chapter owns the mechanism definitions; this map owns the proof burdens that determine whether those mechanisms can carry the causal-closure synthesis.
 
 Each claim is tracked as:
 
@@ -33,10 +33,10 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ## Logical Spine
 
-### 0. Nested Shell Swarm Dynamics Baseline
+### 0. Nested Shell Braid Dynamics Baseline
 
-- Inputs: [nested shell swarm dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Noether Swarm](../../../content/markdown/aaa/noether-swarm/noether-swarm.md), and [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md).
-- Mechanism: use the AAA dynamics chapter as the canonical source for Noether swarm roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and alignment/stability tests.
+- Inputs: [nested shell braid dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Noether Braid](../../../content/markdown/aaa/noether-swarm/noether-swarm.md), and [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md).
+- Mechanism: use the AAA dynamics chapter as the canonical source for Noether braid roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and alignment/stability tests.
 - Output: a stable baseline vocabulary and mechanism set for the causal-closure synthesis.
 - Proof burden: keep the priority synthesis from silently redefining the mechanism; any stronger claim about mass, proper time, photons, measurement, or relativistic limits must be carried as a theorem target, priority route, or cut item here.
 - Current disposition: `roadmap`.
@@ -75,11 +75,11 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Priority route: `breather-proof`, `simulations`.
 - Current disposition: `priority`.
 
-### 4. Noether Swarm Architecture
+### 4. Noether Braid Architecture
 
 - Inputs: nested binary assemblies, self-hit engine, middle fulcrum, outer shield.
 - Mechanism: three mutually supporting binary layers distribute high-multiplicity internal closure, buffer phase stress, and regulate external coupling.
-- Output: the tri-binary Noether swarm becomes the proposed stable matter unit.
+- Output: the tri-binary Noether braid becomes the proposed stable matter unit.
 - Proof burden: prove the slow-fast tri-binary minimality theorem. Show that under simultaneous kinematic stress $\beta>0$ and Noether sea gradient stress $G>0$, the stable slow manifold of an $n$-layer nested assembly persists for $n\ge 3$ and loses normal hyperbolicity for $n\le 2$ on a codimension-one set in $(\beta,G)$. Equivalently, derive the corresponding $n$-layer closure law with explicit role-counting in the slow-fast decomposition; universality is a consequence only if the same three-role law covers the admitted matter branches.
 - Priority route: `mass-map`, `master-equation-closure`.
 - Current disposition: `priority`.
@@ -95,7 +95,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 6. Momentum Skew To Inertia
 
-- Inputs: moving Noether swarm with center-of-mass velocity $\mathbf{V}_{\text{cm}}$.
+- Inputs: moving Noether braid with center-of-mass velocity $\mathbf{V}_{\text{cm}}$.
 - Mechanism: the delayed causal Jacobian skews forward and backward internal wake exchange; expanding $J=J_{\text{rest}}-(\mathbf{V}_{\text{cm}}\cdot\hat{\mathbf{r}})/c_f+O(\|\mathbf{V}_{\text{cm}}\|^2)$ leaves a first-order residual after the resting symmetric loop cancels.
 - Renormalization gap: the primitive Jacobian is written with $c_f$, while the macroscopic inertia coefficient is written with $c_{\text{eff}}^{-2}$. The Noether sea dressing of the closed root sum must explicitly convert primitive wake-delay weighting into the effective inverse-speed-squared response.
 - Output:
@@ -287,8 +287,8 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 12. Photon Coaxial Contra-Rotating Pro/Anti Planar Pair
 
-- Inputs: massive-clock transverse-budget failure at $c_{\text{eff}}$, pro/anti Noether swarm orientations, and primitive wake speed $c_f$.
-- Mechanism: a photon is a coaxial contra-rotating pro/anti planar pair with axial pair communication rather than volumetric transverse clock closure. The transition from a three-dimensional Noether swarm invariant to a planar photon invariant must be treated as separator-mediated dimensional reduction, not as a smooth flattening of an orthogonal braid.
+- Inputs: massive-clock transverse-budget failure at $c_{\text{eff}}$, pro/anti Noether braid orientations, and primitive wake speed $c_f$.
+- Mechanism: a photon is a coaxial contra-rotating pro/anti planar pair with axial pair communication rather than volumetric transverse clock closure. The transition from a three-dimensional Noether braid invariant to a planar photon invariant must be treated as separator-mediated dimensional reduction, not as a smooth flattening of an orthogonal braid.
 - Output: a massless measurement channel with energy, momentum, transverse polarization, and no rest proper-time clock.
 - Proof burden: photon gate A must recover masslessness, no rest branch, no static charge leakage, no birefringence, no unacceptable dispersion, no rest proper-time clock, and the topological surgery rule that destroys the volumetric clock invariant before the photon channel is used as an empirical measurement basis.
 - Priority route: `standard-model-closure`, `quantum-closure`, `planar-bridge-closure`.
@@ -329,7 +329,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Inputs: photon coaxial contra-rotating pro/anti planar pair ontology, emission/absorption ledger transitions, and charged assembly overlaps.
 - Mechanism: effective Maxwell/QED behavior must arise as the validated limit of planar-pair interactions.
 - Output: $E=h\nu$, $p=h/\lambda$, $U(1)$-like phase behavior, Aharonov-Bohm shifts, transition rates, pair production, Compton scattering, blackbody spectra, and $\alpha$.
-- Proof burden: photon gate C must map emission, absorption, pair production, transition rates, and $\alpha$ as allowed topological surgery between massive Noether swarms and coaxial contra-rotating pro/anti planar pairs, while recovering QED without extra modes, dispersion, birefringence, or wrong statistics.
+- Proof burden: photon gate C must map emission, absorption, pair production, transition rates, and $\alpha$ as allowed topological surgery between massive Noether braids and coaxial contra-rotating pro/anti planar pairs, while recovering QED without extra modes, dispersion, birefringence, or wrong statistics.
 - Priority route: `standard-model-closure`.
 - Current disposition: `priority`.
 
@@ -360,7 +360,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 3. Photon gate A, kinematics and optics, with proportional-collapse selection theorem.
 4. Photon gate B, polarization and spin.
 5. Photon gate C, vertices and transitions.
-6. Moving Noether swarm deformation map with the $d_2=s_2=-1/2$ first coefficient test.
+6. Moving Noether braid deformation map with the $d_2=s_2=-1/2$ first coefficient test.
 7. Transverse causal budget lemma with Floquet-gap closure at $\beta\to 1$.
 8. Slow-fast tri-binary minimality theorem, with universality only after admitted matter branches share the three-role law.
 9. Momentum skew with Noether sea dressing tensor.
@@ -380,7 +380,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 | Grazing-bifurcation separator classification | create task | `breather-proof`, `simulations` |
 | Slow-fast tri-binary minimality theorem | create task | `mass-map`, `master-equation-closure` |
 | Effective metric and Cartan connection | create task | `master-equation-closure`, `strong-field-closure` |
-| Moving Noether swarm deformation map | create task | `master-equation-closure`, `simulations` |
+| Moving Noether braid deformation map | create task | `master-equation-closure`, `simulations` |
 | Transverse causal budget lemma | extract or create task | `master-equation-closure` |
 | Momentum skew derivation | create task | `mass-map`, `master-equation-closure` |
 | Equivalence-principle residual bound | create task | `master-equation-closure`, `strong-field-closure` |
@@ -390,7 +390,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ## Next Revision Pass
 
-The next pass over [nested-shell-swarm-causal-closure.md](nested-shell-swarm-causal-closure.md) should check the chapter against this dependency map in order:
+The next pass over [Nested Shell Braid Causal Closure](nested-shell-swarm-causal-closure.md) should check the chapter against this dependency map in order:
 
 1. Confirm every section advances one dependency node.
 2. Move any sentence that belongs only to a proof burden into the theorem roadmap or this map.

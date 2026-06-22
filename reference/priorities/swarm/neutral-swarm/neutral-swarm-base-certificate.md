@@ -1,19 +1,19 @@
-# Neutral Swarm Base Certificate
+# Neutral Braid Base Certificate
 
 Promotion status: `priority-only`. This packet defines the
 `neutral_swarm_base_certificate` proof object requested in
-[swarm.md](../swarm.md) and refines the general scaffold in
-[neutral-swarm-model.md](neutral-swarm-model.md). It does not retain a branch,
+[Braid](../swarm.md) and refines the general scaffold in
+[Neutral Braid Model](neutral-swarm-model.md). It does not retain a branch,
 does not authorize migration into `content/markdown/aaa`, and does not promote
 any observer export.
 
-The certificate is the irreducible six-site neutral swarm certificate. It is
-defined before any binary partition, shell swarm support row, or nested shell
-swarm radial ordering is assumed. Those later structures are optional
-case-reduction rows of a neutral swarm, not separate ontology.
+The certificate is the irreducible six-site neutral braid certificate. It is
+defined before any binary partition, shell braid support row, or nested shell
+braid radial ordering is assumed. Those later structures are optional
+case-reduction rows of a neutral braid, not separate ontology.
 
 Retained-branch language below is theorem-target language only. A future
-retained neutral swarm branch would have to populate all required rows on one
+retained neutral braid branch would have to populate all required rows on one
 live ledger and then pass the downstream stability, action, Noether, event, and
 observer-export obligations required by the retained-branch proof stack.
 
@@ -24,14 +24,14 @@ observer-export obligations required by the retained-branch proof stack.
 The base certificate answers one question:
 
 $$
-\text{has a six-site neutral Noether swarm branch candidate been specified on one ledger?}
+\text{has a six-site neutral Noether braid branch candidate been specified on one ledger?}
 $$
 
 It does not answer:
 
 1. whether the candidate has a binary partition;
-2. whether the candidate is a shell swarm;
-3. whether the candidate is a nested shell swarm;
+2. whether the candidate is a shell braid;
+3. whether the candidate is a nested shell braid;
 4. whether a retained branch exists;
 5. whether Lorentz, photon, mass-map, color, strong-field, or cosmology exports
    pass.
@@ -61,7 +61,7 @@ $$
 I=\{1,\ldots,6\}
 $$
 
-index the six Noether swarm architrinos. A neutral swarm base branch supplies a
+index the six Noether braid architrinos. A neutral braid base branch supplies a
 polarity map
 
 $$
@@ -167,7 +167,7 @@ d_{\min}
 $$
 
 Here $\mathbf{C}$ is a gauge point used to state the finite range row. This is
-not a shell swarm support band, a hollow-support claim, or a nested radial
+not a shell braid support band, a hollow-support claim, or a nested radial
 ordering.
 
 ---
@@ -210,7 +210,7 @@ The required rows are:
 | $\mathsf{FiniteMode}$ | finite coefficient chart or direct curve-level certificate using site labels $i\in I$, plus convergence, Krawczyk, or rejection status |
 | $\mathsf{ActionNoether}^{\nu}$ | total action or declared action obstruction, work-one-form curl row, action-derived $\Gamma_B^\nu$ or tensorial inertia row, and Noether currents |
 | $\mathsf{Event}^{\nu}$ | endpoint convention, event interval, root-fold, same-source/fold-layer if declared, topology-change, support-boundary if declared, and exchange rows |
-| $\mathsf{CaseReduction}$ | optional binary partition, shell swarm, and nested shell swarm rows marked `not-claimed`, `open`, `passed`, or `failed` |
+| $\mathsf{CaseReduction}$ | optional binary partition, shell braid, and nested shell braid rows marked `not-claimed`, `open`, `passed`, or `failed` |
 | $\mathsf{ObserverExport}$ | downstream Lorentz, photon, mass-map, generation, color, strong-field, and cosmology rows marked `passed`, `failed`, or `not_computed` |
 | $\mathsf{Status}$ | primary first-failure code from Section 5 |
 
@@ -300,15 +300,15 @@ with primitive speed excursion inside the declared speed band.
 ## 4. Optional Case-Reduction Interface
 
 The case-reduction row is required even when no case is claimed. Its job is to
-make later swarm variants explicit reductions of the neutral swarm base:
+make later braid variants explicit reductions of the neutral braid base:
 
 $$
 \mathsf{CaseReduction}(B)
 =
 \left(
 \mathsf{BinaryPartition},
-\mathsf{ShellSwarm},
-\mathsf{NestedShellSwarm}
+\mathsf{ShellBraid},
+\mathsf{NestedShellBraid}
 \right).
 $$
 
@@ -326,13 +326,13 @@ $$
 
 Only after this row passes may the packet use $i=(a,\sigma)$ notation. If exact
 antipodality or speed parity is claimed, the row must add those residuals. A
-failed binary-partition row does not reject the neutral swarm base certificate.
-It only blocks binary-specific claims and nested shell swarm claims that depend
+failed binary-partition row does not reject the neutral braid base certificate.
+It only blocks binary-specific claims and nested shell braid claims that depend
 on binary blocks.
 
-### 4.2 Shell Swarm
+### 4.2 Shell Braid
 
-A shell swarm reduction adds a controlled common radial support band around a
+A shell braid reduction adds a controlled common radial support band around a
 declared gauge point $\mathbf{C}$:
 
 $$
@@ -353,7 +353,7 @@ B_i^+
 \left(R_{\mathrm{out}}-\|\mathbf{Y}_i(\lambda)-\mathbf{C}\|\right).
 $$
 
-The shell swarm row passes only when
+The shell braid row passes only when
 
 $$
 B_i^-\ge0,
@@ -366,9 +366,9 @@ rows added when the dynamics uses support forces or barriers. Occupancy and
 signed-balance rows are required only if the branch claims enclosing support,
 shielding, or near-neutral coarse exposure.
 
-### 4.3 Nested Shell Swarm
+### 4.3 Nested Shell Braid
 
-A nested shell swarm reduction requires a binary partition plus ordered radial
+A nested shell braid reduction requires a binary partition plus ordered radial
 support bands for the three binary blocks. If $a\prec b$ denotes the declared
 radial order, the gap row has the form
 
@@ -377,16 +377,16 @@ R_a^+ + \epsilon_R \le R_b^-.
 $$
 
 Every ordered-gap row, binary-block row, support-work row, and root-ledger row
-must use the same underlying neutral swarm ledger. If the radial order changes,
+must use the same underlying neutral braid ledger. If the radial order changes,
 the branch exits to an event or transition status rather than silently retaining
-a nested shell swarm label.
+a nested shell braid label.
 
 The implication direction is one-way:
 
 $$
-\text{neutral swarm base certificate plus passed case rows}
+\text{neutral braid base certificate plus passed case rows}
 \Longrightarrow
-\text{corresponding shell swarm or nested shell swarm case}.
+\text{corresponding shell braid or nested shell braid case}.
 $$
 
 The reverse implication is not accepted unless the reduction packet also proves
@@ -429,15 +429,15 @@ $$
 $$
 
 $$
-\texttt{shell-swarm-reduction-open},
+\texttt{shell-braid-reduction-open},
 \qquad
-\texttt{shell-swarm-reduction-failed},
+\texttt{shell-braid-reduction-failed},
 $$
 
 $$
-\texttt{nested-shell-swarm-reduction-open},
+\texttt{nested-shell-braid-reduction-open},
 \qquad
-\texttt{nested-shell-swarm-reduction-failed}.
+\texttt{nested-shell-braid-reduction-failed}.
 $$
 
 Observer-export statuses are downstream:
@@ -451,7 +451,7 @@ $$
 $$
 
 They may block a Lorentz, photon, mass-map, color, strong-field, or cosmology
-claim, but they do not define the base neutral swarm certificate.
+claim, but they do not define the base neutral braid certificate.
 
 ---
 
@@ -471,7 +471,7 @@ i\ne j
 $$
 
 with the same active, tail, and excluded statuses. A binary-specific ledger is
-not a base neutral swarm ledger unless it is shown to be the restriction of
+not a base neutral braid ledger unless it is shown to be the restriction of
 $\mathcal{A}_{B}^{0}$ after a passed binary-partition row.
 
 Finite-mode search dependency: the first executable target must use site labels
@@ -500,8 +500,8 @@ R_{\mathrm{export}}
 \right).
 $$
 
-A solve over a binary-partition chart, a shell swarm support chart, or a nested
-shell swarm radial chart is a case-reduction solve unless it also emits the
+A solve over a binary-partition chart, a shell braid support chart, or a nested
+shell braid radial chart is a case-reduction solve unless it also emits the
 base rows above.
 
 Action/Noether dependency: a base dynamics row is promotion-eligible only when
@@ -524,7 +524,7 @@ Noether currents for time translation, spatial translation, rotation, charge,
 and source provenance. A fitted $\Gamma_K$ alone gives a diagnostic row, not a
 retained-branch row.
 
-Observer-export dependency: a neutral swarm branch may export Lorentz, photon,
+Observer-export dependency: a neutral braid branch may export Lorentz, photon,
 mass-map, generation, color, strong-field, or cosmology rows only after the base
 ledger, action/Noether row, event row, and retained-branch theorem target are
 statused. Each export must then report `passed`, `failed`, or `not_computed` on
@@ -532,7 +532,7 @@ the same branch convention. No observer export can rescue a failed base
 certificate.
 
 Promotion decision: `priority-only`. The mathematical advance here is the
-separation of the irreducible six-site neutral swarm certificate from optional
-binary partition, shell swarm, and nested shell swarm reductions. The next hard
+separation of the irreducible six-site neutral braid certificate from optional
+binary partition, shell braid, and nested shell braid reductions. The next hard
 blockers remain the all-pairs root ledger, the first neutral finite-mode search,
 and the action/Noether row on the same ledger.

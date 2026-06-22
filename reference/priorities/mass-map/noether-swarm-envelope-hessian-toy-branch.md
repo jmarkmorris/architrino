@@ -1,18 +1,18 @@
-# Noether Swarm Envelope Hessian Toy Branch
+# Noether Braid Envelope Hessian Toy Branch
 
-This priority packet supplies the first reduced Hessian calculation behind the Noether sea pressure modulus. It is report material, not reader-facing canon. Its purpose is to turn the open branch stiffness $H_{\mathrm{env}}$ into an explicit two-variable toy branch that can be checked, falsified, and later replaced by a certified Noether swarm branch calculation.
+This priority packet supplies the first reduced Hessian calculation behind the Noether sea pressure modulus. It is report material, not reader-facing canon. Its purpose is to turn the open branch stiffness $H_{\mathrm{env}}$ into an explicit two-variable toy branch that can be checked, falsified, and later replaced by a certified Noether braid branch calculation.
 
 ## Claim Level
 
 - **Status:** toy branch Hessian and stability classifier.
 - **Main claim:** for a reduced oblate-envelope branch with active variables $(\ln R_\perp,\ln\xi)$, the scalar packing-volume stiffness is a constrained projection of a $2\times2$ envelope Hessian. It is positive only when the branch Hessian is positive on the retained non-symmetry subspace.
-- **Open burden:** derive the entries of $H_{\mathrm{env}}$ from a finite Noether swarm branch calculation instead of assigning them as toy stiffnesses.
+- **Open burden:** derive the entries of $H_{\mathrm{env}}$ from a finite Noether braid branch calculation instead of assigning them as toy stiffnesses.
 - **Promotion target:** none until the Hessian entries are extracted from an accepted branch and the pressure, tensor, and null-sector residuals remain below bound.
 
 ## Source Anchors
 
 - [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) defines $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$ and requires $H_{\mathrm{env}}$ to compute $K_{\mathrm{env}}$.
-- [Noether Swarm Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) defines the oblate envelope, support-function lattice-cell bound, and same-level packing scalings.
+- [Noether Braid Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) defines the oblate envelope, support-function lattice-cell bound, and same-level packing scalings.
 - [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) records how shape response feeds $\chi_{\text{sea}}$, $\Gamma_N$, and $\mathcal{M}_{\text{sea}}^{ab}$.
 
 ## Runtime Artifact
@@ -345,7 +345,7 @@ B_H
 \end{pmatrix},
 $$
 
-and hence recover that pair through the normalized projection. The real branch burden is stronger: the finite Noether swarm branch must supply the Hessian entries, and the resulting $B_H$ must pass the retained null-sector bounds.
+and hence recover that pair through the normalized projection. The real branch burden is stronger: the finite Noether braid branch must supply the Hessian entries, and the resulting $B_H$ must pass the retained null-sector bounds.
 
 For a pressure coordinate $\Theta$ with
 
@@ -493,7 +493,7 @@ The default mock packet has two scenarios:
 | `chi_only_falsification_control` | all four readouts fail | the scalar equation is formally underdetermined, but the density denominator is zero, so $\kappa_n$ cannot be positive while $G_\chi\ne0$ |
 | `fixed_core_readout_density_rescue_toy` | fixed-core readout passes; transverse-radius, volume-equivalent, and parallel-radius readouts fail scalar feasibility | a positive aligned-cancellation Hessian can rescue the toy row only for the declared fixed-core readout and density-side pressure response |
 
-This is still a toy branch certificate. It should remain priority-side material until a finite Noether swarm branch supplies actual Hessian entries and the induced $\xi$ residual is checked against the retained null-sector bounds.
+This is still a toy branch certificate. It should remain priority-side material until a finite Noether braid branch supplies actual Hessian entries and the induced $\xi$ residual is checked against the retained null-sector bounds.
 
 ## Finite-Branch Intake Verdict
 
@@ -530,13 +530,13 @@ $$
 Until those quantities are produced by the same finite branch that passes residual closure, positive $\Delta_{\mathbf{k}}$, and $\eta$-ladder persistence, the compensated-row scanner has only two durable conclusions:
 
 1. the $\chi_{\text{sea}}$-only row is falsified by the pressure denominator and density-sign test;
-2. the fixed Noether-swarm-density rescue is a toy witness, not branch evidence.
+2. the fixed Noether-braid-density rescue is a toy witness, not branch evidence.
 
 Running the scanner with finite-branch evidence required currently returns zero passing scenarios and zero passing candidates, because both default scenarios are marked as toy algebra rather than accepted branch output.
 
 ## Finite-Branch Intake Contract
 
-This contract is the handoff from the negative `--require-branch-evidence` verdict to the next finite-branch packet. It is an intake contract, not a new validation gate: it states the fields that a finite Noether swarm branch must already have emitted before the Hessian scanner may treat a pressure-row rescue as branch-derived.
+This contract is the handoff from the negative `--require-branch-evidence` verdict to the next finite-branch packet. It is an intake contract, not a new validation gate: it states the fields that a finite Noether braid branch must already have emitted before the Hessian scanner may treat a pressure-row rescue as branch-derived.
 
 ### Required Scenario Status
 

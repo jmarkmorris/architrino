@@ -1,6 +1,6 @@
 # Bounded Speed Factor Finite-Mode Branch System
 
-Promotion status: `priority-only`. This packet refines the finite-mode solver row of [bounded-speed-factor-executable-solver-protocol.md](bounded-speed-factor-executable-solver-protocol.md) into a single algebraic branch system for the bounded speed factor shell swarm model. It is the executable finite-mode version of the coupled live ledger in [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md), with root-sheet derivatives from [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md), second sheet envelopes from [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md), radial support rows from [nested-shell-swarm-radial-support-functional.md](../nested-shell-swarm/nested-shell-swarm-radial-support-functional.md), variational rows from [bounded-speed-factor-variational-noether-closure.md](bounded-speed-factor-variational-noether-closure.md), self-hit exchange rows from [bounded-speed-factor-self-hit-exchange-closure.md](bounded-speed-factor-self-hit-exchange-closure.md), branch-search reporting from [bounded-speed-factor-branch-search-certificate.md](bounded-speed-factor-branch-search-certificate.md), gauge reduction from [bounded-speed-factor-symmetry-gauge-reduction.md](bounded-speed-factor-symmetry-gauge-reduction.md), Krawczyk decisions from [bounded-speed-factor-branch-krawczyk-decision-theorem.md](bounded-speed-factor-branch-krawczyk-decision-theorem.md), and retention status from [bounded-speed-factor-master-retention-theorem.md](bounded-speed-factor-master-retention-theorem.md).
+Promotion status: `priority-only`. This packet refines the finite-mode solver row of [bounded-speed-factor-executable-solver-protocol.md](bounded-speed-factor-executable-solver-protocol.md) into a single algebraic branch system for the bounded speed factor shell braid model. It is the executable finite-mode version of the coupled live ledger in [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md), with root-sheet derivatives from [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md), second sheet envelopes from [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md), radial support rows from [Nested Shell Braid Radial Support Functional](../nested-shell-swarm/nested-shell-swarm-radial-support-functional.md), variational rows from [bounded-speed-factor-variational-noether-closure.md](bounded-speed-factor-variational-noether-closure.md), self-hit exchange rows from [bounded-speed-factor-self-hit-exchange-closure.md](bounded-speed-factor-self-hit-exchange-closure.md), branch-search reporting from [bounded-speed-factor-branch-search-certificate.md](bounded-speed-factor-branch-search-certificate.md), gauge reduction from [bounded-speed-factor-symmetry-gauge-reduction.md](bounded-speed-factor-symmetry-gauge-reduction.md), Krawczyk decisions from [bounded-speed-factor-branch-krawczyk-decision-theorem.md](bounded-speed-factor-branch-krawczyk-decision-theorem.md), and retention status from [bounded-speed-factor-master-retention-theorem.md](bounded-speed-factor-master-retention-theorem.md).
 
 It does not retain a branch. It states the finite-mode unknown vector, residual rows, dimension count, gauge handling, tail split, solver artifact schema, and first-failure statuses required before any numerical bounded speed factor run can be read as a branch candidate rather than as a diagnostic descent.
 
@@ -31,7 +31,7 @@ a\in\{1,2,3\},
 \sigma\in\{+,-\},
 $$
 
-so the neutral Noether swarm inventory has six architrinos and polarity signs $\sigma_i\in\{+1,-1\}$ with three positive and three negative sites.
+so the neutral Noether braid inventory has six architrinos and polarity signs $\sigma_i\in\{+1,-1\}$ with three positive and three negative sites.
 
 The finite unknown is
 
@@ -589,7 +589,7 @@ R_a
 d\lambda.
 $$
 
-The shell swarm spread row is
+The shell braid spread row is
 
 $$
 R_{R\mathrm{spread}}
@@ -1164,7 +1164,7 @@ Rejection as a model obstruction requires more than a failed finite run. The sol
 
 ## 7. Theorem Target
 
-**Theorem target: bounded speed factor finite-mode branch system.** Fix one bounded-speed shell swarm branch class, one finite-mode chart $M$, one radial-support convention, one source-pair policy, one same-source policy, one period/winding convention, one action/event convention, one polarity/live ledger, and one row-weight convention. Suppose:
+**Theorem target: bounded speed factor finite-mode branch system.** Fix one bounded-speed shell braid branch class, one finite-mode chart $M$, one radial-support convention, one source-pair policy, one same-source policy, one period/winding convention, one action/event convention, one polarity/live ledger, and one row-weight convention. Suppose:
 
 1. $z_M$ declares every active curve, bounded speed factor, root, support, phase, period, polarity, event, action, Noether, and gauge variable used by the residual;
 2. the gauge matrix is transverse to the neutral symmetry directions and all finite chart floors persist on a coefficient box;
@@ -1185,7 +1185,7 @@ Proof route:
 3. first and second root variations propagate finite coefficient changes into force, action, Noether, and Krawczyk derivative envelopes;
 4. the tangential row stores admissible tangent work in bounded speed factor evolution instead of forcing pointwise tangent force to vanish;
 5. the normal row gives curvature force balance with the $\nu_i^2$ factor required by center-time dynamics;
-6. radial support rows convert visual shell swarm or transition claims into differentiable residuals;
+6. radial support rows convert visual shell braid or transition claims into differentiable residuals;
 7. inventory rows separate the structural $3$ attractive / $2$ repulsive source-site count from weighted force closure;
 8. self-hit and event rows prevent speed, source provenance, charge, momentum, angular momentum, or Noether sea exchange from being hidden in the force residual;
 9. the variational Noether rows decide whether the speed ODE and support work are action-derived rather than fitted diagnostics;

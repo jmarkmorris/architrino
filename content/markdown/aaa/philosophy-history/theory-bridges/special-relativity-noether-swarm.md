@@ -1,39 +1,39 @@
-# Special Relativity and Deformable Noether Swarms
+# Special Relativity and Deformable Noether Braids
 
-This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether swarm assemblies. It is a mapping document: the canonical Noether swarm geometry remains in [Nested Shell Swarm Geometry](../../noether-swarm/nested-shell-swarm-geometry.md), the canonical mass thesis remains in [Particle Masses](../../assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md).
+This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether braid assemblies. It is a mapping document: the canonical Noether braid geometry remains in [Nested Shell Braid Geometry](../../noether-swarm/nested-shell-swarm-geometry.md), the canonical mass thesis remains in [Particle Masses](../../assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md).
 
 ## Bridge Thesis
 
-Special relativity gives the observer-level invariant bookkeeping for clocks, rulers, energy, and momentum. The Noether swarm account proposes the underlying implementation layer: a moving Noether swarm assembly must preserve finite-speed causal wake closure while translating through the Noether sea. That requirement deforms the swarm's exclusion envelope, retunes its internal clock channel, and changes its medium-dressed response to acceleration.
+Special relativity gives the observer-level invariant bookkeeping for clocks, rulers, energy, and momentum. The Noether braid account proposes the underlying implementation layer: a moving Noether braid assembly must preserve finite-speed causal wake closure while translating through the Noether sea. That requirement deforms the braid's exclusion envelope, retunes its internal clock channel, and changes its medium-dressed response to acceleration.
 
 The bridge claim is not that special relativity is discarded. The claim is that the Lorentz formulas are the effective limit seen by Physical Observers when stable assemblies and photon-like signal channels are built from the same finite-speed Noether sea dynamics.
 
-The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether swarm assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether swarm realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three binary layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
+The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether braid assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether braid realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three binary layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
 
 ## Ownership Boundary
 
 This chapter owns:
 
-- the side-by-side dictionary between special-relativistic language and Noether swarm implementation language,
+- the side-by-side dictionary between special-relativistic language and Noether braid implementation language,
 - the qualitative mechanism connecting deformation, clock slowing, and inertial response,
 - the first mathematical handoff from Lorentz kinematics to assembly closure variables,
 - and the list of closure targets needed to turn the mapping into a derivation.
 
 This chapter does not own:
 
-- the definition of a Noether swarm; see [Noether Swarm](../../noether-swarm/noether-swarm.md),
-- the geometry of the dynamic exclusion envelope; see [Nested Shell Swarm Geometry](../../noether-swarm/nested-shell-swarm-geometry.md),
+- the definition of a Noether braid; see [Noether Braid](../../noether-swarm/noether-swarm.md),
+- the geometry of the dynamic exclusion envelope; see [Nested Shell Braid Geometry](../../noether-swarm/nested-shell-swarm-geometry.md),
 - the proper-time map; see [Proper Time and Time Dilation](../../spacetime/proper-time-and-time-dilation.md),
 - the energy ledger; see [Energy](../../dynamics/energy.md),
 - or the exact delayed law; see [Master Equation of Motion](../../dynamics/master-equation.md).
 
 ## The Two Stories
 
-| Special relativity story | Deformable Noether swarm story |
+| Special relativity story | Deformable Noether braid story |
 | --- | --- |
-| Physical clocks measure proper time $\tau$, and moving clocks satisfy $d\tau/dt = 1/\gamma$. | A physical clock is an assembly with a countable internal cycle. When a Noether swarm clock moves through the Noether sea, delayed wake paths must still close across the inner, middle, and outer binaries, so fewer stable internal cycles occur per unit absolute time $t$. |
-| Length contraction follows from Lorentz geometry: $L_{\parallel}=L_0/\gamma$. | The swarm's effective exclusion envelope deforms along the direction of translation. Stable delayed closure requires a longitudinal/transverse retuning of orbital paths, with the Lorentz-compatible target $R_{\parallel}=R_{\perp}/\gamma$ in the weak-field homogeneous limit. |
-| Rest energy is $E_0=m_0c^2$. | Rest energy is the observer-facing value of shielded internal causal history: the part of the closed Noether swarm energy ledger exposed through far-field coupling and Noether sea response. |
+| Physical clocks measure proper time $\tau$, and moving clocks satisfy $d\tau/dt = 1/\gamma$. | A physical clock is an assembly with a countable internal cycle. When a Noether braid clock moves through the Noether sea, delayed wake paths must still close across the inner, middle, and outer binaries, so fewer stable internal cycles occur per unit absolute time $t$. |
+| Length contraction follows from Lorentz geometry: $L_{\parallel}=L_0/\gamma$. | The braid's effective exclusion envelope deforms along the direction of translation. Stable delayed closure requires a longitudinal/transverse retuning of orbital paths, with the Lorentz-compatible target $R_{\parallel}=R_{\perp}/\gamma$ in the weak-field homogeneous limit. |
+| Rest energy is $E_0=m_0c^2$. | Rest energy is the observer-facing value of shielded internal causal history: the part of the closed Noether braid energy ledger exposed through far-field coupling and Noether sea response. |
 | Momentum is $p=\gamma m_0v$. | Momentum is the medium-dressed response of a moving assembly: the internal path-history ledger must relock under translation, and the Noether sea supplies the effective response tensor that Physical Observers summarize as relativistic momentum. |
 | Energy and momentum obey $E^2=p^2c^2+m_0^2c^4$. | In the weak-field observer limit, center-of-mass energy and momentum should satisfy the same effective mass-shell relation with $c_{\text{eff}}$, while the substrate calculation resolves the internal ledger, shielding coefficient, and medium-response tensor. |
 | The invariant speed $c$ is a postulate of the observer-level theory. | The observed signal speed is the effective propagation speed $c_{\text{eff}}$ of photon-like and clock-synchronization channels in the local Noether sea, approaching $c_f$ in the homogeneous weak-field limit. |
@@ -49,7 +49,7 @@ $$
 $$
 The equation is an observer-level statement: it tells Physical Observers how many proper-time units a moving clock records relative to an inertial coordinate description.
 
-For the Noether swarm bridge, the velocity entering the material response is the assembly drift through the local Noether sea, not an abstract coordinate label:
+For the Noether braid bridge, the velocity entering the material response is the assembly drift through the local Noether sea, not an abstract coordinate label:
 $$
 \mathbf{w}
 =
@@ -62,7 +62,7 @@ $$
 \frac{1}{\sqrt{1-\|\mathbf{w}\|^2/c_{\text{eff}}^2}}
 $$
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $t$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether swarm clock, a natural clock channel is the middle binary or a transition built from the coupled nested shell swarm ledger. The proper-time map is therefore an extracted frequency ratio:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $t$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether braid clock, a natural clock channel is the middle binary or a transition built from the coupled nested shell braid ledger. The proper-time map is therefore an extracted frequency ratio:
 $$
 \frac{d\tau}{dt}
 =
@@ -77,7 +77,7 @@ $$
 \frac{1}{\gamma_{\text{eff}}(\mathbf{w})}
 $$
 
-The Noether swarm mechanism behind that target is finite-speed causal closure. As the center of mass drifts through the local Noether sea, each internal wake return must close across a slanted path-history geometry. In the local Noether sea rest frame, the channel speed budget separates into a drift component and a transverse closure component:
+The Noether braid mechanism behind that target is finite-speed causal closure. As the center of mass drifts through the local Noether sea, each internal wake return must close across a slanted path-history geometry. In the local Noether sea rest frame, the channel speed budget separates into a drift component and a transverse closure component:
 $$
 c_{\text{eff}}^2
 =
@@ -100,7 +100,7 @@ $$
 =
 \frac{1}{\gamma_{\text{eff}}(\mathbf{w})}
 $$
-The assembly can remain stable only if orbital phase, path length, envelope geometry, and inter-layer timing retune together, so the moving swarm has fewer available stable closure cycles per unit absolute time.
+The assembly can remain stable only if orbital phase, path length, envelope geometry, and inter-layer timing retune together, so the moving braid has fewer available stable closure cycles per unit absolute time.
 
 ## Ruler Channel
 
@@ -112,7 +112,7 @@ L_{\perp}(v)=L_{\perp,0}
 $$
 The standard equation is kinematic. It does not say what a ruler is made of.
 
-In the Noether swarm implementation story, rods are made from bound assemblies whose equilibrium spacings are maintained by finite-speed wake exchange. A moving rod is not merely re-described by a new coordinate system. Its constituent assemblies must preserve stable closure while their center-of-mass state changes relative to the Noether sea. The local geometric carrier is the deformable exclusion envelope:
+In the Noether braid implementation story, rods are made from bound assemblies whose equilibrium spacings are maintained by finite-speed wake exchange. A moving rod is not merely re-described by a new coordinate system. Its constituent assemblies must preserve stable closure while their center-of-mass state changes relative to the Noether sea. The local geometric carrier is the deformable exclusion envelope:
 $$
 \mathcal{E}_{\text{excl}}
 =
@@ -129,7 +129,7 @@ $$
 
 The important point is that the contraction is not a primitive command imposed on matter. It is a closure condition on matter. If delayed wake exchange sets stable separations, and if those wake exchanges propagate through a medium with effective speed $c_{\text{eff}}$, then the equilibrium geometry of a moving bound system must change in the direction that preserves return timing and phase lock.
 
-In the geometry canon, this contraction is recorded first as the Noether swarm envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$. The special-relativistic limit requires a derived map $\xi\to1/\gamma_{\text{eff}}$ together with a matching clock readout $\omega_{\text{clk}}/\omega_0\to1/\gamma_{\text{eff}}$; neither equality is the definition of $\xi$.
+In the geometry canon, this contraction is recorded first as the Noether braid envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$. The special-relativistic limit requires a derived map $\xi\to1/\gamma_{\text{eff}}$ together with a matching clock readout $\omega_{\text{clk}}/\omega_0\to1/\gamma_{\text{eff}}$; neither equality is the definition of $\xi$.
 
 ### Closed Return Cycle And Oblate Spheroidal Envelope Map
 
@@ -186,7 +186,7 @@ $$
 \frac{1}{\gamma_{\text{eff}}(v)}
 $$
 
-The moving Noether swarm envelope is then the oblate spheroidal envelope
+The moving Noether braid envelope is then the oblate spheroidal envelope
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp}^2}
 +
@@ -207,7 +207,7 @@ Thus $\gamma_{\text{eff}}$ maps to the shape channel $\xi$, while $\lambda$ rema
 
 This is the bridge insight. The one-way legs reveal the substrate anisotropy; the closed return cycle determines the geometry that hides it from Physical Observers. The Lorentz factor is therefore not painted onto an oblate spheroidal envelope. It is the return-cycle closure condition expressed as an axis ratio.
 
-This is also the precise meaning of quantizing the Lorentz response. The smooth equation for $\gamma_{\text{eff}}(v)$ remains the effective observer law, but a Noether swarm assembly realizes any admitted value only through a discrete stable branch class $q$ with a definite causal-root ledger, return-cycle period, and envelope projection. The continuous Lorentz curve is therefore treated as the common observer envelope of branch-indexed Noether swarm closure states, not as an independent kinematic rule imposed on matter.
+This is also the precise meaning of quantizing the Lorentz response. The smooth equation for $\gamma_{\text{eff}}(v)$ remains the effective observer law, but a Noether braid assembly realizes any admitted value only through a discrete stable branch class $q$ with a definite causal-root ledger, return-cycle period, and envelope projection. The continuous Lorentz curve is therefore treated as the common observer envelope of branch-indexed Noether braid closure states, not as an independent kinematic rule imposed on matter.
 
 The same component split also states the material speed-limit side of the bridge. As $\|\mathbf{w}\|\to c_{\text{eff}}$, the transverse budget $c_{\perp}$ tends to zero. A limiting branch may still carry axial wake transfer in the bookkeeping sense, but it can no longer function as a volumetric clock or ruler because the internal binary and inter-layer loops have no transverse causal capacity left. The speed bound is therefore not merely a rule about fast coordinate motion; it is the branch-failure point at which a bound assembly can no longer preserve the clock/ruler ledger required for ordinary matter.
 
@@ -217,9 +217,9 @@ The Lorentz factor is usually written as a smooth function,
 $$
 \gamma_{\text{eff}}(v)=\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}
 $$
-In the observer-level theory this is the correct continuous kinematic envelope. The Noether swarm implementation adds a deeper condition: the swarm can realize this envelope only by moving through admissible branch classes of the nested shell swarm causal-root ledger.
+In the observer-level theory this is the correct continuous kinematic envelope. The Noether braid implementation adds a deeper condition: the braid can realize this envelope only by moving through admissible branch classes of the nested shell braid causal-root ledger.
 
-For a stable Noether swarm branch $q$, define the layer state
+For a stable Noether braid branch $q$, define the layer state
 $$
 B_q(v)
 =
@@ -261,7 +261,7 @@ The bridge to Lorentz behavior is then:
 $$
 \text{one-}h\text{ action transaction}
 \longrightarrow
-\text{nested shell swarm branch update}
+\text{nested shell braid branch update}
 \longrightarrow
 \text{outer-envelope oblation}
 \longrightarrow
@@ -287,7 +287,7 @@ $$
 $$
 for every branch class admitted as a stable clock/ruler material. This is the sense in which the Lorentz response is branch-quantized: the substrate realizes a continuous observer law through discrete admissible ledger classes, and any residual deviation should carry the signature of a branch transition, separator approach, inter-layer resonance, or incomplete wake ledger.
 
-This target also clarifies which part of the Noether swarm should be modeled. The full branch solve must include inner, middle, and outer binaries because clock rate, action storage, separator sensitivity, and conservation all live in the coupled nested shell swarm ledger. The outer binary then supplies the leading geometric projection:
+This target also clarifies which part of the Noether braid should be modeled. The full branch solve must include inner, middle, and outer binaries because clock rate, action storage, separator sensitivity, and conservation all live in the coupled nested shell braid ledger. The outer binary then supplies the leading geometric projection:
 $$
 \xi_q(v)
 \equiv
@@ -305,7 +305,7 @@ E_0=m_0c^2
 $$
 That equation is extremely successful as observer-level bookkeeping. The bridge question is what implements $m_0$.
 
-The Noether swarm mass thesis is that observed mass is not a primitive property of individual architrinos. It is the externally exposed response of a closed internal causal-history ledger. A compact scalar roadmap formula is
+The Noether braid mass thesis is that observed mass is not a primitive property of individual architrinos. It is the externally exposed response of a closed internal causal-history ledger. A compact scalar roadmap formula is
 $$
 m_{\text{inertial}}(A)
 \approx
@@ -313,13 +313,13 @@ m_{\text{inertial}}(A)
 $$
 Here $A$ is the assembly, $E_{\text{internal}}(A)$ is the internal energy ledger, $\zeta(A)$ is the shielding/exposure factor, and $\alpha_{\mathrm{m}}$ is the weak-field matching normalization once a reference assembly is fixed.
 
-The SR-side phrase "mass is energy divided by $c^2$" becomes, in the Noether swarm bridge:
+The SR-side phrase "mass is energy divided by $c^2$" becomes, in the Noether braid bridge:
 $$
 \text{observed rest mass}
 \quad\leftrightarrow\quad
 \text{shielded internal ledger exposed through Noether sea response}
 $$
-This keeps the force of $E_0=m_0c^2$ while relocating its ontology. The equation remains the observer-level conversion law; the deeper task is to derive the internal ledger, shielding coefficient, and response tensor from Noether swarm dynamics.
+This keeps the force of $E_0=m_0c^2$ while relocating its ontology. The equation remains the observer-level conversion law; the deeper task is to derive the internal ledger, shielding coefficient, and response tensor from Noether braid dynamics.
 
 The first mass-side gate is the $A_0$ reference attractor defined in [Particle Masses](../../assemblies/particle-masses.md#reference-attractor-gate). That gate must produce a calibration-free internal-energy ledger, shielding coefficient, and medium-response baseline before $m_0$ is treated as a particle-specific prediction rather than a roadmap output.
 
@@ -390,7 +390,7 @@ Outside that regime, $\mathbb{A}\mathbb{A}\mathbb{A}$ should not merely repeat s
 
 To promote this bridge from mapping to derivation, the following targets must close:
 
-1. Derive a translating Noether swarm attractor family from the delayed master equation.
+1. Derive a translating Noether braid attractor family from the delayed master equation.
 2. Extract the velocity-dependent clock frequency $\omega_{\text{clk}}(v)$ and prove the weak-field limit $\omega_{\text{clk}}/\omega_0\to 1/\gamma_{\text{eff}}$.
 3. Derive the velocity-dependent exclusion-envelope axis ratio $R_{\parallel}/R_{\perp}\to 1/\gamma_{\text{eff}}$.
 4. Compute the internal energy ledger $E_{\text{internal}}(A)$ without assuming the mass being derived.
@@ -403,4 +403,4 @@ To promote this bridge from mapping to derivation, the following targets must cl
 
 ## Summary Commitment
 
-> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether swarms preserve finite-speed causal wake closure by retuning internal phase, all three binary layers, outer-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.
+> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether braids preserve finite-speed causal wake closure by retuning internal phase, all three binary layers, outer-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.

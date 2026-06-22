@@ -111,7 +111,7 @@ The contract baseline intentionally leaves these items outside its closeout:
   coverage;
 - H39 provider-object theorem schemas and proof-program-specific source-map
   objects;
-- default replacement of Photon, Animator, or Ideal Swarm app-local solver paths.
+- default replacement of Photon, Animator, or Ideal Braid app-local solver paths.
 
 ## Completion Judgment
 

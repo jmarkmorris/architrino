@@ -304,7 +304,7 @@ The executable diagnostic [octahedral-period-rescaled-fold-chart.mjs](../../../s
 
 The successor executables [octahedral-fold-aware-multiroot-period-integral.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-multiroot-period-integral.mjs) and [octahedral-fold-aware-zero-bracket-certificate.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-zero-bracket-certificate.mjs) own the coarea-chart reduction, cross-binary cancellation, sampled multi-root zero bracket, and sign-certified zero bracket.
 
-The companion test [neutral-swarm-octahedral-period-rescaled-fold-chart.test.js](../../../tests/neutral-swarm-octahedral-period-rescaled-fold-chart.test.js) verifies the cusp numbers, the $v=1.75$ fold endpoints, the sampled failure witness, CLI validation, and claim-level guards.
+The companion test [neutral-braid-octahedral-period-rescaled-fold-chart.test.js](../../../tests/neutral-swarm-octahedral-period-rescaled-fold-chart.test.js) verifies the cusp numbers, the $v=1.75$ fold endpoints, the sampled failure witness, CLI validation, and claim-level guards.
 
 ## Retention Verdict
 

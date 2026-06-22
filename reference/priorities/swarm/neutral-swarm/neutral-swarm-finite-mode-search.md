@@ -1,11 +1,11 @@
-# Neutral Swarm Finite-Mode Search
+# Neutral Braid Finite-Mode Search
 
 Promotion status: `priority-only`. This packet closes the priority-specification gap for
-`neutral_swarm_finite_mode_search` in [swarm.md](../swarm.md). It defines the first
-executable finite-mode search target for a free-support neutral swarm with hollow
+`neutral_swarm_finite_mode_search` in [Braid](../swarm.md). It defines the first
+executable finite-mode search target for a free-support neutral braid with hollow
 support, bounded speed factors, and all-pairs delayed force rows.
 
-It refines [neutral-swarm-model.md](neutral-swarm-model.md),
+It refines [Neutral Braid Model](neutral-swarm-model.md),
 [bounded-speed-factor-executable-solver-protocol.md](../shell-swarm/bounded-speed-factor-executable-solver-protocol.md),
 and
 [bounded-speed-factor-finite-mode-branch-system.md](../shell-swarm/bounded-speed-factor-finite-mode-branch-system.md).
@@ -18,8 +18,8 @@ artifact schema needed by future executable code.
 
 ## 1. Scope And Status
 
-The search target is a general six-site neutral swarm before binary partition, common
-support band, exact antipodality, shell swarm, or nested shell swarm assumptions are
+The search target is a general six-site neutral braid before binary partition, common
+support band, exact antipodality, shell braid, or nested shell braid assumptions are
 imposed. Let
 
 $$
@@ -129,7 +129,7 @@ $$
 Current status:
 
 $$
-\texttt{neutral-swarm-finite-mode-search-open}.
+\texttt{neutral-braid-finite-mode-search-open}.
 $$
 
 Promotion decision: `priority-only`. The packet is an executable simulation/proof
@@ -362,9 +362,9 @@ $$
 \frac{R_{\mathrm{out}}}{R_{\mathrm{in}}}.
 $$
 
-This search does not require $\beta_{\mathrm{band}}\approx1$. A shell swarm or nested
-shell swarm reduction may later add radius-spread or ordered-radius rows, but failure
-of those optional rows is not rejection of the general neutral swarm search.
+This search does not require $\beta_{\mathrm{band}}\approx1$. A shell braid or nested
+shell braid reduction may later add radius-spread or ordered-radius rows, but failure
+of those optional rows is not rejection of the general neutral braid search.
 
 If support multipliers are active, the complementarity rows are
 
@@ -410,7 +410,7 @@ R_{\mathrm{supp\text{-}work}}^\nu
 \right).
 $$
 
-The hollow row only says that the six neutral swarm architrinos do not enter the
+The hollow row only says that the six neutral braid architrinos do not enter the
 central hollow. If a charged branch, central inventory, or other inner occupant is
 declared, it must carry a separate noncollision, charge, root, action, event, and
 provenance ledger.
@@ -688,13 +688,13 @@ $$
 
 Here $\triangle$ denotes symmetric difference of retained root labels. A solve that
 uses all-pairs roots for diagnostics but a reduced pair set for force, action, support,
-Noether, or event rows is not a neutral swarm finite-mode candidate.
+Noether, or event rows is not a neutral braid finite-mode candidate.
 
 ---
 
 ## 5. Residual Vector And Objective Hierarchy
 
-The neutral swarm finite-mode residual is
+The neutral braid finite-mode residual is
 
 $$
 \boxed{
@@ -832,7 +832,7 @@ $$
 
 The scalar value cannot override the lexicographic first-failure row.
 
-Optional binary partition, shell swarm, and nested shell swarm reductions enter only
+Optional binary partition, shell braid, and nested shell braid reductions enter only
 through
 
 $$
@@ -850,7 +850,7 @@ R_{\mathrm{reduction\text{-}ledger}}
 $$
 
 with status `not_claimed` unless the branch scope declares the reduction. Failure of
-an optional reduction does not reject a general neutral swarm candidate.
+an optional reduction does not reject a general neutral braid candidate.
 
 ---
 
@@ -862,9 +862,9 @@ $$
 \mathsf{Decision}_{\mathrm{NS},M}
 \in
 \left\{
-\texttt{neutral-swarm-finite-mode-candidate},
-\texttt{neutral-swarm-finite-mode-rejected},
-\texttt{neutral-swarm-finite-mode-open}
+\texttt{neutral-braid-finite-mode-candidate},
+\texttt{neutral-braid-finite-mode-rejected},
+\texttt{neutral-braid-finite-mode-open}
 \right\}.
 $$
 
@@ -1002,7 +1002,7 @@ A future executable search artifact for this packet must emit at least:
 | `objective_hierarchy` | $\Phi_0,\ldots,\Phi_4$, scalar merit value if used, and proof that scalar weighting did not override first-failure ordering |
 | `derivative_matrix` | derivative columns in curve, speed, clock, root, support, occupancy-claim, event, action, Noether, provenance, and gauge blocks, with omitted-column audit |
 | `krawczyk_budget` | $Y_{\mathrm{NS},M}^{\nu}$, $Z_{\mathrm{NS},M}^{\nu}$, $\rho$, $\rho_{\mathrm{chart,NS},M}^{\nu}$, range/cokernel rows, and pass/fail status |
-| `optional_reductions` | binary partition, exact-antipodal, shell swarm, and nested shell swarm rows as `not_claimed`, `failed`, or `passed`; these do not drive base neutral swarm rejection |
+| `optional_reductions` | binary partition, exact-antipodal, shell braid, and nested shell braid rows as `not_claimed`, `failed`, or `passed`; these do not drive base neutral braid rejection |
 | `decision` | one of the trichotomy statuses plus first-failure status and rejection scope if applicable |
 | `not_retained_reason` | retained-branch blockers: finite-mode convergence, full root/tail closure, action-derived scale, Noether/event closure, stability, or master-retention rows |
 
@@ -1014,8 +1014,8 @@ exports must not drive this base finite-mode search.
 
 ## 8. Theorem Target
 
-**Theorem target: neutral swarm finite-mode search trichotomy.** Fix one six-site
-neutral swarm scope $\mathsf{Scope}_{\mathrm{NS},M}^{\nu}$, one finite chart
+**Theorem target: neutral braid finite-mode search trichotomy.** Fix one six-site
+neutral braid scope $\mathsf{Scope}_{\mathrm{NS},M}^{\nu}$, one finite chart
 $M_{\mathrm{NS}}$, one hollow support convention, one all-pairs distinct-site root
 policy, one same-source policy, one action/event convention, and one residual-weight
 convention. Suppose:
@@ -1041,7 +1041,7 @@ Then the search returns exactly one of the trichotomy statuses in Section 6. A
 candidate is a finite-mode live-ledger candidate, not a retained branch. A rejection is
 local to the declared finite chart unless higher-mode, support, tail, and policy
 relaxation exclusions are also certified. An open result records the first missing row
-without rejecting the neutral swarm model.
+without rejecting the neutral braid model.
 
 Proof route:
 
@@ -1058,13 +1058,13 @@ Proof route:
    the same total force;
 8. action, Noether, and event rows decide whether a dynamics candidate is action-derived
    or only diagnostic;
-9. optional binary, shell swarm, and nested shell swarm rows classify reductions without
-   controlling base neutral swarm acceptance;
+9. optional binary, shell braid, and nested shell braid rows classify reductions without
+   controlling base neutral braid acceptance;
 10. the Krawczyk or interval exclusion block supplies the finite-mode proof decision,
    while the output schema preserves the blockers for retained-branch closure.
 
 Current successor status:
 
 $$
-\texttt{neutral-swarm-finite-mode-artifact-open}.
+\texttt{neutral-braid-finite-mode-artifact-open}.
 $$

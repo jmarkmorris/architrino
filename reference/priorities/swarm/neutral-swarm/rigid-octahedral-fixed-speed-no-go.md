@@ -1,13 +1,13 @@
 # Rigid Octahedral Fixed-Speed No-Go Certificate
 
-Promotion status: `priority-only`. Closure status: `closed-rejected` for the narrow rigid zero-offset fixed-speed octahedral carrier hypothesis. This packet formulates the narrow rejection certificate for the rigid zero-offset octahedral carrier under the fixed-speed neutral-swarm force convention. It uses the carrier and root formulas from [../shell-swarm/octahedral-carrier-worked-example.md](../shell-swarm/octahedral-carrier-worked-example.md), the force convention from [octahedral-force-residual-diagnostic.md](octahedral-force-residual-diagnostic.md), and the executable witness:
+Promotion status: `priority-only`. Closure status: `closed-rejected` for the narrow rigid zero-offset fixed-speed octahedral carrier hypothesis. This packet formulates the narrow rejection certificate for the rigid zero-offset octahedral carrier under the fixed-speed neutral-braid force convention. It uses the carrier and root formulas from [Octahedral Carrier Worked Example](../shell-swarm/octahedral-carrier-worked-example.md), the force convention from [octahedral-force-residual-diagnostic.md](octahedral-force-residual-diagnostic.md), and the executable witness:
 
 ```bash
 node scripts/neutral-swarm/octahedral-fixed-speed-witness.mjs --out /tmp/neutral-swarm-octahedral-fixed-speed-witness.json --pretty
 node scripts/neutral-swarm/octahedral-fixed-speed-witness.mjs --validate /tmp/neutral-swarm-octahedral-fixed-speed-witness.json --pretty
 ```
 
-This packet rejects only the rigid zero-offset octahedral carrier with fixed speed, neutral opposite-pair polarity, ordinary same-source excluded, and the sampled/certified root convention stated below. It does not reject deformed support-band, bounded-speed, shell swarm, nested shell swarm, or general neutral swarm hypotheses.
+This packet rejects only the rigid zero-offset octahedral carrier with fixed speed, neutral opposite-pair polarity, ordinary same-source excluded, and the sampled/certified root convention stated below. It does not reject deformed support-band, bounded-speed, shell braid, nested shell braid, or general neutral braid hypotheses.
 
 ---
 
@@ -49,7 +49,7 @@ q_{a,+}=+\epsilon,
 q_{a,-}=-\epsilon.
 $$
 
-The ordinary same-source row is excluded. The consumed source-pair policy for each receiver is therefore the ordered all-pairs neutral swarm policy
+The ordinary same-source row is excluded. The consumed source-pair policy for each receiver is therefore the ordered all-pairs neutral braid policy
 
 $$
 \Pi_{\mathrm{all}}^{\mathrm{oct}}
@@ -378,7 +378,7 @@ $$
 0.
 $$
 
-This is the closure row for the narrow hypothesis. Fixed-speed tangent closure requires $\widetilde{\mathcal{R}}_{\mathrm{tan},i}(\theta)=0$ for every retained receiver and phase on the consumed root ledger. The required row fails at $(i,\theta)=((1,+),0)$, so the rigid zero-offset octahedral fixed-speed neutral-swarm hypothesis is rejected under the declared source-pair, polarity, and same-source policies:
+This is the closure row for the narrow hypothesis. Fixed-speed tangent closure requires $\widetilde{\mathcal{R}}_{\mathrm{tan},i}(\theta)=0$ for every retained receiver and phase on the consumed root ledger. The required row fails at $(i,\theta)=((1,+),0)$, so the rigid zero-offset octahedral fixed-speed neutral-braid hypothesis is rejected under the declared source-pair, polarity, and same-source policies:
 
 $$
 \texttt{closed-rejected:rigid-octahedral-fixed-speed-neutral-row}.
@@ -393,9 +393,9 @@ This no-go packet does not exclude:
 1. a deformed support-band carrier that changes $\mathbf{x}_{a,\sigma}$ and the root sheets;
 2. a nonzero phase-lock row tuned by the causal-wake dynamics;
 3. a bounded-speed factor row, where the tangent projection becomes a speed-ODE source rather than a fixed-speed zero row;
-4. a shell swarm or nested shell swarm branch with different support, memory, or inventory rows;
+4. a shell braid or nested shell braid branch with different support, memory, or inventory rows;
 5. a regularized fold-layer or distinct split-source representative with its own action and event ledger;
-6. a general neutral swarm hypothesis outside the rigid zero-offset octahedral representative.
+6. a general neutral braid hypothesis outside the rigid zero-offset octahedral representative.
 
 The retained-branch status for this hypothesis is
 

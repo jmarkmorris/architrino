@@ -1,8 +1,8 @@
 # Promotion Policy Into Corpus
 
-Promotion status: `priority-only`. This packet decides how neutral swarm, shell swarm, nested shell swarm, validation, and closure material can move from `reference/priorities/swarm/` into reader-facing corpus prose without overclaiming a retained branch. It does not itself promote material into `content/markdown/aaa`, does not modify any corpus file, and does not retain a branch.
+Promotion status: `priority-only`. This packet decides how neutral braid, shell braid, nested shell braid, validation, and closure material can move from `reference/priorities/swarm/` into reader-facing corpus prose without overclaiming a retained branch. It does not itself promote material into `content/markdown/aaa`, does not modify any corpus file, and does not retain a branch.
 
-The policy follows the active swarm terminology in [swarm.md](swarm.md): `neutral swarm`, `shell swarm`, and `nested shell swarm` are the reader-facing case terms. Priority packets may link to each other for workstream bookkeeping. Corpus pages must remain self-contained and must not link to `reference/priorities`.
+The policy follows the active braid terminology in [Braid](swarm.md): `neutral braid`, `shell braid`, and `nested shell braid` are the reader-facing case terms. Priority packets may link to each other for workstream bookkeeping. Corpus pages must remain self-contained and must not link to `reference/priorities`.
 
 ---
 
@@ -11,13 +11,13 @@ The policy follows the active swarm terminology in [swarm.md](swarm.md): `neutra
 This policy answers one question:
 
 $$
-\text{when may a priority-side swarm statement become reader-facing corpus content?}
+\text{when may a priority-side braid statement become reader-facing corpus content?}
 $$
 
 It does not answer:
 
-1. whether a neutral swarm branch has been retained;
-2. whether a shell swarm or nested shell swarm reduction passes;
+1. whether a neutral braid branch has been retained;
+2. whether a shell braid or nested shell braid reduction passes;
 3. whether observer exports such as Lorentz recovery, photon closure, mass-map rows, color, strong-field continuation, or cosmology pass;
 4. whether a validation run proves existence rather than supplies a diagnostic, candidate, or failure status.
 
@@ -37,13 +37,13 @@ $$
 
 `NoOverclaim` means that reader-facing prose must not imply retained-branch existence, observer-export recovery, or model closure unless the corresponding live-ledger rows have closed and are named in the same corpus passage. If the live ledger is still open, the corpus material can only be promoted as a theorem target, validation target, effective summary, or speculation/comparison.
 
-The default decision for current swarm priority material remains `priority-only` unless a packet explicitly satisfies this policy. The strongest near-term promotable material is reader-safe theorem-target language: definitions, residuals, proof routes, validation criteria, and first-failure statuses that help a reader understand the proof stack without claiming the proof has succeeded.
+The default decision for current braid priority material remains `priority-only` unless a packet explicitly satisfies this policy. The strongest near-term promotable material is reader-safe theorem-target language: definitions, residuals, proof routes, validation criteria, and first-failure statuses that help a reader understand the proof stack without claiming the proof has succeeded.
 
 ---
 
 ## 2. Claim-Level Classes
 
-Every promoted swarm statement must carry one of four claim levels.
+Every promoted braid statement must carry one of four claim levels.
 
 | Claim level | Meaning | Corpus permission |
 | --- | --- | --- |
@@ -60,9 +60,9 @@ Retained-branch language is allowed only at `theorem-result` level after the ret
 
 ## 3. Promotion Prerequisites By Material Type
 
-### 3.1 Neutral Swarm Material
+### 3.1 Neutral Braid Material
 
-Neutral swarm material may promote as a `theorem-target` when it states the irreducible six-site base object without imposing binary partition, shell support, or nested radial ordering:
+Neutral braid material may promote as a `theorem-target` when it states the irreducible six-site base object without imposing binary partition, shell support, or nested radial ordering:
 
 $$
 I=\{1,\ldots,6\},
@@ -72,7 +72,7 @@ I=\{1,\ldots,6\},
 \#\{i:\sigma_i=+1\}=\#\{i:\sigma_i=-1\}=3.
 $$
 
-Reader-facing prose may say that a neutral swarm branch target uses all ordered cross-site source pairs $i\ne j$, a common ledger convention, finite range, noncollision floors, an all-pairs causal-root ledger, action/Noether rows, event rows, and observer-export statuses. It may not say that a neutral swarm branch exists or is retained until those rows close on one live ledger.
+Reader-facing prose may say that a neutral braid branch target uses all ordered cross-site source pairs $i\ne j$, a common ledger convention, finite range, noncollision floors, an all-pairs causal-root ledger, action/Noether rows, event rows, and observer-export statuses. It may not say that a neutral braid branch exists or is retained until those rows close on one live ledger.
 
 Promotion prerequisites:
 
@@ -84,9 +84,9 @@ Promotion prerequisites:
 | neutral finite-mode search | `theorem-target` | unknown vector, residual rows, objective hierarchy, derivative matrix, Krawczyk or rejection budget, and first-failure order |
 | neutral retained branch | `theorem-result` only | full base certificate plus dynamics, finite-mode convergence, action, Noether, event, stability, inventory, and observer-export statuses on one convention |
 
-### 3.2 Shell Swarm Material
+### 3.2 Shell Braid Material
 
-Shell swarm material may promote as a case-reduction theorem target when it is explicitly a neutral swarm branch in a common support-band case. The corpus language must not make shell swarm a separate ontology.
+Shell braid material may promote as a case-reduction theorem target when it is explicitly a neutral braid branch in a common support-band case. The corpus language must not make shell braid a separate ontology.
 
 The allowed reduction form is:
 
@@ -95,21 +95,21 @@ $$
 +
 \mathcal{R}_{\mathrm{shell}}
 \Longrightarrow
-\text{neutral swarm branch in the shell swarm case}.
+\text{neutral braid branch in the shell braid case}.
 $$
 
 Promotion prerequisites:
 
 | Material | Minimum promotion level | Required prerequisite |
 | --- | --- | --- |
-| shell swarm definition | `theorem-target` | common support descriptor, radial band residual, spread row, and no fixed-radius assumption unless separately declared |
+| shell braid definition | `theorem-target` | common support descriptor, radial band residual, spread row, and no fixed-radius assumption unless separately declared |
 | support work | `theorem-target` | one of `support-work-zero`, `support-work-exact`, or `support-work-event-ledgered`; `support-work-open` blocks promotion beyond priority-only |
 | occupancy or shielding language | `effective-summary` unless fully ledgered | occupancy scale, coverage row, signed-balance row, and event/action accounting for central inventory or boundary exchange |
 | shell retained branch | `theorem-result` only | retained-branch promotion certificate closes geometry, support, roots, dynamics, convergence, action, Noether, event, inventory, and stability rows on one live ledger |
 
-### 3.3 Nested Shell Swarm Material
+### 3.3 Nested Shell Braid Material
 
-Nested shell swarm material may promote only as the stricter case reduction of a neutral swarm branch. The corpus must state that nested shell swarm failure rejects only the nested reduction unless the broader neutral swarm or shell swarm rows fail separately.
+Nested shell braid material may promote only as the stricter case reduction of a neutral braid branch. The corpus must state that nested shell braid failure rejects only the nested reduction unless the broader neutral braid or shell braid rows fail separately.
 
 The allowed reduction form is:
 
@@ -120,7 +120,7 @@ $$
 +
 \mathcal{R}_{\mathrm{nested}}
 \Longrightarrow
-\text{neutral swarm branch in the nested shell swarm case}.
+\text{neutral braid branch in the nested shell braid case}.
 $$
 
 Promotion prerequisites:
@@ -173,9 +173,9 @@ Allowed patterns:
 
 | Situation | Allowed corpus pattern |
 | --- | --- |
-| theorem target | "The neutral swarm proof target is to close the six-site all-pairs causal-root ledger, action/Noether row, event row, and observer-export statuses on one branch convention." |
-| case reduction | "A shell swarm is treated here as a neutral swarm branch in a common support-band case, not as separate ontology." |
-| stricter reduction | "A nested shell swarm adds a binary partition and ordered radial support-band rows; failure of those rows rejects the nested reduction, not the broader neutral swarm case." |
+| theorem target | "The neutral braid proof target is to close the six-site all-pairs causal-root ledger, action/Noether row, event row, and observer-export statuses on one branch convention." |
+| case reduction | "A shell braid is treated here as a neutral braid branch in a common support-band case, not as separate ontology." |
+| stricter reduction | "A nested shell braid adds a binary partition and ordered radial support-band rows; failure of those rows rejects the nested reduction, not the broader neutral braid case." |
 | validation target | "This residual is a validation target: it identifies the first failed row of the branch certificate, but a residual decrease alone does not retain the branch." |
 | observer export | "Lorentz behavior remains a closure target until moving-assembly deformation, clock/ruler extraction, two-way synchronization, and preferred-frame leakage rows close on the retained branch." |
 | effective summary | "At the effective level, the occupancy measure can look like a smooth support distribution after coarse-graining, while the substrate object remains six deterministic architrino paths." |
@@ -185,9 +185,9 @@ Disallowed patterns:
 
 | Pattern | Reason |
 | --- | --- |
-| "The swarm has a retained branch" when certificate rows are open | overclaims existence |
-| "Nested shell swarm explains mass/Lorentz/photon behavior" before exports pass | promotes downstream exports by implication |
-| "A failed nested row rejects the Noether swarm" | confuses a stricter case reduction with the base neutral swarm case |
+| "The braid has a retained branch" when certificate rows are open | overclaims existence |
+| "Nested shell braid explains mass/Lorentz/photon behavior" before exports pass | promotes downstream exports by implication |
+| "A failed nested row rejects the Noether braid" | confuses a stricter case reduction with the base neutral braid case |
 | "Simulation found the branch" from a residual decrease or screen | treats diagnostics as proof |
 | "Topology determines generation mass" without mass-map rows | replaces energy, exposure, and Noether sea response with a label |
 | corpus links to `reference/priorities` | violates corpus self-containment |
@@ -208,16 +208,16 @@ Promotion should stop at the earliest unresolved row that affects the claim bein
 | --- | --- | --- |
 | `claim-level-undeclared` | all promotion | the material does not say whether it is result, target, effective summary, or comparison |
 | `corpus-self-containment-failed` | all promotion | the proposed corpus prose requires a priority link or unstated priority context |
-| `neutral-base-inventory-open` | neutral swarm target/result | six-site inventory, polarity balance, or all ordered source-pair policy is missing |
+| `neutral-base-inventory-open` | neutral braid target/result | six-site inventory, polarity balance, or all ordered source-pair policy is missing |
 | `all-pairs-root-ledger-open` | dynamics, validation, action, event, exports | ordered source pairs lack active/excluded/tail causal-root status |
 | `jacobian-floor-open` | retained-branch and validation claims | active roots lack positive delay or Jacobian floors |
 | `tail-ledger-open` | retained-branch and certified obstruction claims | tail cells are not excluded, assimilated, owned, or carried into error bounds |
 | `force-action-ledger-mismatch` | dynamics/action promotion | force, root, support, medium, endpoint, or event conventions differ |
 | `dynamics-open` | branch retention | tangential speed, speed-ODE, normal curvature, or support-complete force row is open |
 | `finite-mode-convergence-open` | theorem-result promotion | finite-mode data do not yet lift to a curve-level branch or certified obstruction |
-| `support-work-open` | shell swarm retention | support work is untracked by exact action or event rows |
-| `partition-case-open` | nested shell swarm promotion | binary partition is missing or not certified |
-| `nested-radial-gap-open` | nested shell swarm promotion | radial functional, gap margins, or derivative rows are missing |
+| `support-work-open` | shell braid retention | support work is untracked by exact action or event rows |
+| `partition-case-open` | nested shell braid promotion | binary partition is missing or not certified |
+| `nested-radial-gap-open` | nested shell braid promotion | radial functional, gap margins, or derivative rows are missing |
 | `action-noether-open` | action, mass-map, observer export | action exactness, action-derived scale, Noether currents, or Noether sea exchange rows are missing |
 | `event-ledger-open` | branch retention and exports | endpoint, source provenance, recoil, boundary exchange, topology-change, or fold-layer rows are missing when needed |
 | `stability-open` | retained-branch result | stability class is not supported by variational, monodromy, return-map, or energy rows |
@@ -225,13 +225,13 @@ Promotion should stop at the earliest unresolved row that affects the claim bein
 | `observer-export-failed` | export result | named export fails on the same branch convention |
 | `not-retained` | retained-branch result | at least one required retained-branch row is absent, failed, or only diagnostic |
 
-If a blocker affects only a stricter case, the corpus statement must preserve the surviving broader case. For example, `partition-case-open` blocks nested shell swarm language, but it does not block a neutral swarm theorem target. `observer-export-not_computed` blocks Lorentz, photon, mass-map, color, strong-field, or cosmology result language, but it does not by itself reject the base branch certificate.
+If a blocker affects only a stricter case, the corpus statement must preserve the surviving broader case. For example, `partition-case-open` blocks nested shell braid language, but it does not block a neutral braid theorem target. `observer-export-not_computed` blocks Lorentz, photon, mass-map, color, strong-field, or cosmology result language, but it does not by itself reject the base branch certificate.
 
 ---
 
 ## 6. Update Policy After Promotion
 
-After any swarm material is promoted into `content/markdown/aaa`, update the source priority packet so future workers do not repeat the same triage.
+After any braid material is promoted into `content/markdown/aaa`, update the source priority packet so future workers do not repeat the same triage.
 
 Required priority-side updates:
 
@@ -247,4 +247,4 @@ Priority packets should keep operational details, solver schemas, scratch diagno
 
 Current decision: `priority-only`. This packet is itself a promotion policy and guardrail. Its mathematical advance is the predicate $\mathrm{Promote}_{\mathrm{corpus}}(M,D)$ and the claim-level/prerequisite ladder above.
 
-Applied 2026-05-22: the policy was applied to one concrete destination, [Noether Swarm](../../../content/markdown/aaa/noether-swarm/noether-swarm.md). The promoted material was `theorem-target` retained-branch certificate language plus scoped fixed-speed octahedral negative-result boundaries from [neutral-swarm-master-retention-theorem.md](neutral-swarm/neutral-swarm-master-retention-theorem.md), [all-pairs-root-ledger.md](neutral-swarm/all-pairs-root-ledger.md), and [neutral-swarm-first-execution-ledger.md](neutral-swarm/neutral-swarm-first-execution-ledger.md). The remaining promotion surface should be a dedicated validation-method destination rather than a broad swarm corpus migration while retained-branch, validation, and observer-export rows remain open.
+Applied 2026-05-22: the policy was applied to one concrete destination, [Noether Braid](../../../content/markdown/aaa/noether-swarm/noether-swarm.md). The promoted material was `theorem-target` retained-branch certificate language plus scoped fixed-speed octahedral negative-result boundaries from [Neutral Braid Master Retention Theorem](neutral-swarm/neutral-swarm-master-retention-theorem.md), [all-pairs-root-ledger.md](neutral-swarm/all-pairs-root-ledger.md), and [Neutral Braid First Execution Ledger](neutral-swarm/neutral-swarm-first-execution-ledger.md). The remaining promotion surface should be a dedicated validation-method destination rather than a broad braid corpus migration while retained-branch, validation, and observer-export rows remain open.

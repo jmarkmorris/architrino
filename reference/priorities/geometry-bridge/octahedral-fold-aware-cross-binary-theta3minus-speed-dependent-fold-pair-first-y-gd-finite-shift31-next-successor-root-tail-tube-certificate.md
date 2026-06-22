@@ -207,7 +207,7 @@ It emits:
   quadrature, and retention rows.
 
 The companion test
-[neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.test.js)
+[neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-shift31-next-successor-root-tail-tube-certificate.test.js)
 validates schema, no-fixed-speed-window discipline, endpoint signs,
 monotonicity, predecessor containment, overclaim rejection, and CLI validation
 behavior.

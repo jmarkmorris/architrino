@@ -194,7 +194,7 @@ The executable diagnostic [octahedral-fold-aware-speed-primitive-existence.mjs](
 - the preserved fixed-speed pointwise obstruction;
 - the non-retention verdict.
 
-The companion test [neutral-swarm-octahedral-fold-aware-speed-primitive-existence.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-speed-primitive-existence.test.js) verifies the source handoff, the canonical center-time speed equation, the absence of a fixed speed window, the open clock/length row, CLI validation, and non-retention guards.
+The companion test [neutral-braid-octahedral-fold-aware-speed-primitive-existence.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-speed-primitive-existence.test.js) verifies the source handoff, the canonical center-time speed equation, the absence of a fixed speed window, the open clock/length row, CLI validation, and non-retention guards.
 
 ## Promotion Decision
 

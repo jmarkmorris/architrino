@@ -4,21 +4,21 @@
 
 This chapter is the canonical medium-ontology page for the **Noether sea** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines what the physical medium is, how it differs from the Euclidean void, which state variables describe it, and where detailed assembly, metric, clock, and cosmology work belongs.
 
-The Noether sea is not the substrate. The substrate is [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md): absolute time together with the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md). The Noether sea is physical content inside that background: an emergent, coupled population of neutral Noether swarm assemblies whose collective response appears to physical observers as spacetime behavior.
+The Noether sea is not the substrate. The substrate is [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md): absolute time together with the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md). The Noether sea is physical content inside that background: an emergent, coupled population of neutral Noether braid assemblies whose collective response appears to physical observers as spacetime behavior.
 
-This is why the reader path introduces Noether swarm scaffold and geometry before observer-level spacetime. At the roadmap level, the physical Noether swarm density can be read as a coarse-grained population field,
+This is why the reader path introduces Noether braid scaffold and geometry before observer-level spacetime. At the roadmap level, the physical Noether braid density can be read as a coarse-grained population field,
 $$
 \rho_{\text{NS}}(\mathbf{x},t)
 \sim
 \sum_s W_\ell(\mathbf{x}-\mathbf{X}_s(t))
 $$
-where $W_\ell$ is a smoothing window over Noether swarm center variables $\mathbf{X}_s(t)$. The Noether sea stress, delay factor, and orientation variables then depend on each swarm's closure label, orientation, and envelope deformation. The Noether sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether swarm geometry, not primitive geometric postulates.
+where $W_\ell$ is a smoothing window over Noether braid center variables $\mathbf{X}_s(t)$. The Noether sea stress, delay factor, and orientation variables then depend on each braid's closure label, orientation, and envelope deformation. The Noether sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether braid geometry, not primitive geometric postulates.
 
 The homogeneous Noether sea also supplies the first constructive convergence case for the infinite many-source wake sum. In a statistically homogeneous, isotropic, locally neutral population with neutrality correlation length $\ell$ and a mixing bound, receiver-centered shell contributions have square-summable fluctuations: a shell of radius $r_n\sim n\ell$ contains $O(n^2)$ neutral cells, signed fluctuations scale as $O(n)$, and inverse-square wake dilution contributes $O(n^{-2})$. The shell variance is therefore $O(n^{-2})$, so the neutral far-population contribution converges in the receiver-centered exhaustion sense. This is a weak homogeneous medium result, not a blanket convergence claim for coherent strong-field regions or unneutralized source populations.
 
 ### Core Definition
 
-The **Noether sea** is the ambient physical medium formed by dense, balanced populations of coupled neutral Noether swarms in the Euclidean void.
+The **Noether sea** is the ambient physical medium formed by dense, balanced populations of coupled neutral Noether braids in the Euclidean void.
 
 It is:
 
@@ -72,9 +72,9 @@ not a primitive frame-free photon scalar. The redshift task is to compute the en
 
 ### Composition
 
-The Noether sea is composed of neutral Noether swarm assemblies. In the present corpus the best-developed Noether swarm case is the nested shell swarm, made from three nested electrino:positrino binaries. A Noether swarm itself is not elementary; its stability is a downstream assembly result.
+The Noether sea is composed of neutral Noether braid assemblies. In the present corpus the best-developed Noether braid case is the nested shell braid, made from three nested electrino:positrino binaries. A Noether braid itself is not elementary; its stability is a downstream assembly result.
 
-The large-scale Noether sea is modeled as a balanced population of complementary Noether swarm orientations.
+The large-scale Noether sea is modeled as a balanced population of complementary Noether braid orientations.
 
 This pro/anti distinction is geometric and topological, not a net electric-charge distinction. Both orientations are electrically neutral at the core level. Their coupled balance is part of the working explanation for how the Noether sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response.
 
@@ -82,7 +82,7 @@ The detailed pro/anti basis, density split, imbalance stability, local coupling 
 
 ### Local Branches in the Medium
 
-The Noether sea changes how isolated assembly calculations should be read. A truly isolated Noether swarm or matter assembly is a limiting seed chart, not the generic physical situation. The physical target is a local branch retained inside the surrounding Noether sea state and nearby-assembly record.
+The Noether sea changes how isolated assembly calculations should be read. A truly isolated Noether braid or matter assembly is a limiting seed chart, not the generic physical situation. The physical target is a local branch retained inside the surrounding Noether sea state and nearby-assembly record.
 
 For a candidate local branch $B$, the stronger closure form is not
 
@@ -148,7 +148,7 @@ $$
 \frac{c_f}{c_{\text{eff}}(\mathbf{x},t)}
 $$
 
-It plays the role that refractive index plays in ordinary optical analogies, but it is a native Noether sea response variable. Do not use $n$ for this delay factor; $n$ is reserved for normalized Noether swarm density.
+It plays the role that refractive index plays in ordinary optical analogies, but it is a native Noether sea response variable. Do not use $n$ for this delay factor; $n$ is reserved for normalized Noether braid density.
 
 Clock and spectral comparisons may also extract the Noether sea cadence-stretch diagnostic
 
@@ -160,7 +160,7 @@ $$
 C_N(\mathbf{x},t)=\Gamma_N^{-1}(\mathbf{x},t)
 $$
 
-Here $\Omega_N$ is a representative local Noether sea swarm cadence and $C_N$ is the corresponding clock-rate factor. This pair is not a new density or delay factor: $n$ tracks normalized Noether swarm density, $\chi_{\text{sea}}$ tracks effective causal delay, and $\Gamma_N$ tracks cadence stretch. The clock extraction and hydrogen spectral use of this diagnostic belong in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target).
+Here $\Omega_N$ is a representative local Noether sea braid cadence and $C_N$ is the corresponding clock-rate factor. This pair is not a new density or delay factor: $n$ tracks normalized Noether braid density, $\chi_{\text{sea}}$ tracks effective causal delay, and $\Gamma_N$ tracks cadence stretch. The clock extraction and hydrogen spectral use of this diagnostic belong in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target).
 
 When a calculation needs pro/anti subcomponents, orientation imbalance, or coupling-regime stability thresholds, use [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md).
 
@@ -172,9 +172,9 @@ The Noether sea is characterized by collective variables, not by a new point-par
 
 Important medium properties include:
 
-- **Noether swarm density:** $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$.
-- **Energy density:** approximately $\rho_{\text{NS}}E_{\text{swarm}}$ at the coarse level, with corrections from stress, excitation, and coupling.
-- **Orientation and strain:** local ordering of swarm axes and deformation away from equilibrium.
+- **Noether braid density:** $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$.
+- **Energy density:** approximately $\rho_{\text{NS}}E_{\text{braid}}$ at the coarse level, with corrections from stress, excitation, and coupling.
+- **Orientation and strain:** local ordering of braid axes and deformation away from equilibrium.
 - **Flow or drift:** collective motion of the Noether sea relative to the absolute frame.
 - **Compliance:** how strongly the Noether sea responds to compression, shear, polarization, and alignment loading.
 - **Delay-factor response:** how $\chi_{\text{sea}}$, signal propagation, clock behavior, and effective light speed depend on local Noether sea state.
@@ -201,9 +201,9 @@ $$
 S_{\rho}
 +r_{\rho}
 $$
-The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether swarm population and the residual decreases under refinement.
+The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether braid population and the residual decreases under refinement.
 
-The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether swarm population dynamics, causal wakes, and branch ledgers.
+The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether braid population dynamics, causal wakes, and branch ledgers.
 
 The kinetic-theory lesson is that hydrodynamic variables are the slow variables associated with conserved quantities. For the Noether sea, the candidate slow state is
 $$
@@ -310,17 +310,17 @@ where $\mathcal H$ is the principal-value Hilbert transform used by the packet. 
 
 ### Equilibrium Transport Hypothesis
 
-A provisional cosmology-facing hypothesis treats the Noether sea as a dense neighbor-coupled population of Noether swarms whose individual action transactions are discrete while the ensemble response can be smooth. Most swarms in a weak deep-space region have other Noether swarms as their nearest dynamical neighbors. Photons and neutrinos can traverse the population, and gravitational waves can perturb it, but the baseline relaxation law is a swarm-to-swarm medium law.
+A provisional cosmology-facing hypothesis treats the Noether sea as a dense neighbor-coupled population of Noether braids whose individual action transactions are discrete while the ensemble response can be smooth. Most braids in a weak deep-space region have other Noether braids as their nearest dynamical neighbors. Photons and neutrinos can traverse the population, and gravitational waves can perturb it, but the baseline relaxation law is a braid-to-braid medium law.
 
-Let $\nu_N$ denote an ordinary frequency extracted from a representative Noether swarm cadence state. The local swarm energy scale is then
+Let $\nu_N$ denote an ordinary frequency extracted from a representative Noether braid cadence state. The local braid energy scale is then
 
 $$
 E_N=h\nu_N
 $$
 
-The point of this expression is not to add a new quantum postulate at the Noether sea level. It records the same closed-cycle action accounting used elsewhere in the corpus: a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether swarm may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
+The point of this expression is not to add a new quantum postulate at the Noether sea level. It records the same closed-cycle action accounting used elsewhere in the corpus: a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether braid may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
 
-At the single Noether swarm level, each accepted $h$-scale transfer forces the swarm to retune its cadence-scale closure. The retuning may appear as a cadence shift, shell-binary radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring swarms. In the simplest fixed-speed shell-binary approximation,
+At the single Noether braid level, each accepted $h$-scale transfer forces the braid to retune its cadence-scale closure. The retuning may appear as a cadence shift, shell-binary radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring braids. In the simplest fixed-speed shell-binary approximation,
 
 $$
 v_N\sim 2\pi R_N\nu_N,
@@ -328,9 +328,9 @@ v_N\sim 2\pi R_N\nu_N,
 R_N\nu_N\approx\text{constant}
 $$
 
-so a higher accepted cadence corresponds to a smaller representative scale, while a lower accepted cadence corresponds to a larger representative scale. The full nested shell swarm can partition the same transaction across its inner, middle, and outer layers, so this relation is a first estimate rather than a complete closure law.
+so a higher accepted cadence corresponds to a smaller representative scale, while a lower accepted cadence corresponds to a larger representative scale. The full nested shell braid can partition the same transaction across its inner, middle, and outer layers, so this relation is a first estimate rather than a complete closure law.
 
-At the ensemble level, let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether swarm cadence states. The cadence-space current is the coarse-grained flux of many branchwise retunings:
+At the ensemble level, let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether braid cadence states. The cadence-space current is the coarse-grained flux of many branchwise retunings:
 
 $$
 J_\nu
@@ -341,7 +341,7 @@ f_N
 \right\rangle_{\Delta A_{\mathrm{cyc}}=\pm h}
 $$
 
-where the average is taken over accepted $h$-scale transactions inside the coarse-graining cell. Once the single-swarm retuning map $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$ is specified, the first current estimate is
+where the average is taken over accepted $h$-scale transactions inside the coarse-graining cell. Once the single-braid retuning map $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$ is specified, the first current estimate is
 
 $$
 J_\nu(\nu,\mathbf{x},t)
@@ -354,9 +354,9 @@ r_\sigma(\nu,\mathbf{x},t)\,
 O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right)
 $$
 
-where $r_\sigma$ is the local rate density of accepted $\sigma$ transactions per swarm and $\Delta\nu_N^{(q,\sigma)}$ is the cadence component extracted from $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$. Deep space can therefore look smooth without making the underlying transactions continuous. Moving from deep space toward a solar-system environment should not be modeled as a scalar temperature increase alone; it is a bias in the local population toward higher cadence, stronger strain, stronger alignment, and larger gradients. Near a proton or other matter assembly, the neighboring Noether swarms see a sharper boundary condition and retune more discretely around the assembly.
+where $r_\sigma$ is the local rate density of accepted $\sigma$ transactions per braid and $\Delta\nu_N^{(q,\sigma)}$ is the cadence component extracted from $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$. Deep space can therefore look smooth without making the underlying transactions continuous. Moving from deep space toward a solar-system environment should not be modeled as a scalar temperature increase alone; it is a bias in the local population toward higher cadence, stronger strain, stronger alignment, and larger gradients. Near a proton or other matter assembly, the neighboring Noether braids see a sharper boundary condition and retune more discretely around the assembly.
 
-The same smoothing record supplies the ambient-branch acceptance used at assembly boundaries. For a neutral-swarm quantity $f_k(t)$ in a coarse window $\Omega_\ell$, define
+The same smoothing record supplies the ambient-branch acceptance used at assembly boundaries. For a neutral-braid quantity $f_k(t)$ in a coarse window $\Omega_\ell$, define
 
 $$
 \left\langle f\right\rangle_{\mathrm{sea},\ell}(\mathbf{x},t)
@@ -370,7 +370,7 @@ W_\ell(\mathbf{x}-\mathbf{X}_k(t))
 }
 $$
 
-The branch-level equilibrium test is not that every Noether swarm has the same cadence. It is that, after all resolved assembly ledgers have been removed, an ambient branch belongs to the local neutral-swarm population when its cadence lies within the smoothed distribution and the remaining pro/anti orientation balance is small. In symbolic form,
+The branch-level equilibrium test is not that every Noether braid has the same cadence. It is that, after all resolved assembly ledgers have been removed, an ambient branch belongs to the local neutral-braid population when its cadence lies within the smoothed distribution and the remaining pro/anti orientation balance is small. In symbolic form,
 
 $$
 \zeta_{\mathrm{sea}}^{(\ell)}
@@ -388,7 +388,7 @@ $$
 \right]
 $$
 
-where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether swarm can sit inside the same coordinate window as ambient Noether sea swarms without becoming part of the ambient Noether sea record; ledger complement, not mere spatial proximity, makes the separation.
+where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether braid can sit inside the same coordinate window as ambient Noether sea braids without becoming part of the ambient Noether sea record; ledger complement, not mere spatial proximity, makes the separation.
 
 A candidate equilibrium-transport equation is
 
@@ -680,7 +680,7 @@ b_R
 \right)
 $$
 
-because the homogeneous moving Noether swarm branch fixes the coefficient of $-\ln\xi$ by requiring $\Gamma_N\to1/\xi\to\gamma$. The weak static endpoint branch then fixes only the scalar combination
+because the homogeneous moving Noether braid branch fixes the coefficient of $-\ln\xi$ by requiring $\Gamma_N\to1/\xi\to\gamma$. The weak static endpoint branch then fixes only the scalar combination
 
 $$
 b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1
@@ -941,8 +941,8 @@ This page owns:
 
 This page does not own:
 
-- Noether swarm internal architecture; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
-- Noether swarm exclusion-envelope geometry; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
+- Noether braid internal architecture; see [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
+- Noether braid exclusion-envelope geometry; see [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
 - Pro/anti coupling hypotheses and cluster motifs; see [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md).
 - Effective metric derivation; see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 - Clock and ruler behavior; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
@@ -951,26 +951,26 @@ This page does not own:
 
 ### Summary Commitment
 
-> **Medium Commitment (Noether sea):** The Noether sea is the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void itself. Matter assemblies and Noether swarm branches are physically meaningful as local retained branches embedded in this medium record; isolated branch calculations are seed charts or limiting cases unless their Noether sea state and nearby-assembly boundary residuals are statused.
+> **Medium Commitment (Noether sea):** The Noether sea is the emergent physical medium formed by coupled neutral Noether braid assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void itself. Matter assemblies and Noether braid branches are physically meaningful as local retained branches embedded in this medium record; isolated branch calculations are seed charts or limiting cases unless their Noether sea state and nearby-assembly boundary residuals are statused.
 
 ## Noether Sea Pro/Anti Coupling
 
-This note summarizes a working hypothesis used across the Noether sea branch of the model: the Noether sea is not treated as a passive geometric background, but as an active medium built from persistent Noether swarm assemblies with internal structure and coupling rules. It is the assembly-hypothesis continuation of [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), and [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
+This note summarizes a working hypothesis used across the Noether sea branch of the model: the Noether sea is not treated as a passive geometric background, but as an active medium built from persistent Noether braid assemblies with internal structure and coupling rules. It is the assembly-hypothesis continuation of [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), and [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
 
-For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether swarm coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs.
+For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether braid coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs.
 
-### Pro/Anti Noether Swarm Basis
+### Pro/Anti Noether Braid Basis
 
-In the current framing, the basic Noether sea carrier is a Noether swarm with a state that can appear in two complementary orientations:
+In the current framing, the basic Noether sea carrier is a Noether braid with a state that can appear in two complementary orientations:
 
-- pro-Noether swarm orientation
-- anti-Noether swarm orientation
+- pro-Noether braid orientation
+- anti-Noether braid orientation
 
-In this project framing, pro-Noether swarms are associated with pro-particle assemblies, and anti-Noether swarms are associated with anti-particle assemblies. The key claim is that stable large-scale Noether sea behavior emerges when both orientations coexist and couple, so the Noether sea remains dynamically balanced rather than drifting into a single-sign ordering.
+In this project framing, pro-Noether braids are associated with pro-particle assemblies, and anti-Noether braids are associated with anti-particle assemblies. The key claim is that stable large-scale Noether sea behavior emerges when both orientations coexist and couple, so the Noether sea remains dynamically balanced rather than drifting into a single-sign ordering.
 
 At the assembly level, a useful physical picture is that complementary orientations can also suppress exposed axial circulation by pairing anti-parallel. That gives the Noether sea a second kind of neutrality beyond net charge cancellation: local pole leakage is mutually plugged, so the composite remains comparatively transparent and non-reactive.
 
-At the continuum-medium level, represent local Noether swarm density with canonical symbols
+At the continuum-medium level, represent local Noether braid density with canonical symbols
 $(\rho_{\text{NS}}, n)$ as two coupled components:
 
 $$
@@ -992,7 +992,7 @@ This decomposition should not be duplicated in the Noether sea ontology page. Th
 
 ### 2 Pro + 2 Anti Coupling Hypothesis
 
-A recurring speculative motif is a minimal neutral cluster built from two pro-Noether swarm and two anti-Noether swarm constituents. Geometrically, this is often pictured as a compact four-body bound state analogous in shape intuition, but not in nuclear force mechanism, to a helium-like $2P + 2N$ nucleus: two of one type plus two of the complementary type in a tightly coupled arrangement.
+A recurring speculative motif is a minimal neutral cluster built from two pro-Noether braid and two anti-Noether braid constituents. Geometrically, this is often pictured as a compact four-body bound state analogous in shape intuition, but not in nuclear force mechanism, to a helium-like $2P + 2N$ nucleus: two of one type plus two of the complementary type in a tightly coupled arrangement.
 
 The analogy is structural:
 
@@ -1009,11 +1009,11 @@ Instead, the model uses the helium-like picture as a design intuition for why a 
 
 ### Why This Matters for Effective Spacetime Phenomenology
 
-If the local Noether sea is assembled from balanced pro/anti Noether swarm populations, then curvature-like behavior can be interpreted as collective reconfiguration of assembly states rather than purely geometric deformation of an otherwise structureless manifold. In that interpretation:
+If the local Noether sea is assembled from balanced pro/anti Noether braid populations, then curvature-like behavior can be interpreted as collective reconfiguration of assembly states rather than purely geometric deformation of an otherwise structureless manifold. In that interpretation:
 
 - weak-field behavior tracks smooth perturbations in normalized density $n$ as used in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md),
 - strong-field behavior tracks approach to alignment and saturation limits,
-- wave channels track propagating phase disturbances through the coupled Noether swarm assembly network.
+- wave channels track propagating phase disturbances through the coupled Noether braid assembly network.
 
 This is consistent with the framework's broader assemblies-first stance: equations are read as effective descriptors of deeper assembly dynamics.
 
@@ -1021,24 +1021,24 @@ This is consistent with the framework's broader assemblies-first stance: equatio
 
 This chapter owns:
 
-- pro-Noether swarm and anti-Noether swarm orientation basis,
+- pro-Noether braid and anti-Noether braid orientation basis,
 - local density decomposition into $\rho_+$ and $\rho_-$,
 - orientation imbalance $\Delta\rho_{\text{NS}}$,
 - coupling-regime stability thresholds,
 - the $2+2$ pro/anti cluster hypothesis,
-- and medium-level Noether swarm assembly motifs that could support effective spacetime behavior.
+- and medium-level Noether braid assembly motifs that could support effective spacetime behavior.
 
 This chapter does not own:
 
 - the Noether sea as medium ontology; see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md),
-- the internal Noether swarm architecture; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
+- the internal Noether braid architecture; see [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
 - the effective metric map; see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md),
 - clock and ruler extraction; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
 - or cosmological scale-factor translation; see [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md).
 
 ### Claim Scope
 
-This is a hypothesis note, not a closed derivation. The chapter's claim is limited to the organizing possibility that local pro/anti Noether swarm motifs may support effective spacetime behavior through Noether sea response. A completed version must derive the local coupling law, test whether the $2+2$ pro/anti cluster is an energy minimum or only a design intuition, and extract weak-field, strong-field, or cosmological signatures from the same Noether sea variables used by the effective-metric program.
+This is a hypothesis note, not a closed derivation. The chapter's claim is limited to the organizing possibility that local pro/anti Noether braid motifs may support effective spacetime behavior through Noether sea response. A completed version must derive the local coupling law, test whether the $2+2$ pro/anti cluster is an energy minimum or only a design intuition, and extract weak-field, strong-field, or cosmological signatures from the same Noether sea variables used by the effective-metric program.
 
 ## Molecular Exclusion and Noether Sea Response
 
@@ -1194,7 +1194,7 @@ In other words, the van der Waals volume is an exclusion region mainly for **ord
 
 ### Observer Framework
 
-This chapter is the canonical home for the observer framework in $\mathbb{A}\mathbb{A}\mathbb{A}$. It distinguishes the complete ontic universe-state perspective from Physical Observers, and it states how absolute simultaneity, operational simultaneity, proper time, and effective metric descriptions fit together.
+This chapter is the canonical home for the observer framework in $\mathbb{A}\mathbb{A}\mathbb{A}$. It distinguishes the complete ontic universe-state perspective from Physical Observers, and it states how absolute simultaneity, operational simultaneity, derived clock time, and effective metric descriptions fit together.
 
 The key split is:
 
@@ -1235,7 +1235,7 @@ A Physical Observer has access only to:
 
 - local interactions,
 - finite-speed signals,
-- proper time measured by physical clocks,
+- derived clock time measured by physical clocks,
 - coarse-grained effective fields,
 - finite records,
 - and statistical summaries of unresolved microstate structure.
@@ -1272,7 +1272,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a two-level distinction:
 | **Level** | **What It Means** | **Typical Description** |
 |:---|:---|:---|
 | Ontic | What exists and evolves in the complete microstate | Architrinos in absolute timespace with path-history dynamics |
-| Epistemic | What embedded assemblies can access and summarize | Proper time, measured distance, effective fields, wavefunctions, thermodynamic quantities |
+| Epistemic | What embedded assemblies can access and summarize | Derived clock time, measured distance, effective fields, wavefunctions, thermodynamic quantities |
 
 The ontic level is not observer-dependent. It is the complete state of the modeled world at absolute time $t$, together with the path-history information needed for deterministic continuation.
 
@@ -1487,7 +1487,7 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 $$
 Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies the missing local scale, and the preferred-frame term penalizes residual PPN drift coefficients. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
 
-A causal-set comparison adds a useful uniqueness discipline. It is not enough for Physical Observer records to fit one effective metric; the same causal-order, clock, ruler, and preferred-frame data should not also fit macroscopically distinct effective metrics at the same declared coarse-graining scale. For a scale $\ell$ and tolerance $\varepsilon$, let $\mathcal{G}_{\ell,\varepsilon}(\theta)$ be the family of GR comparison metrics on the domain whose coarse-grained causal-order and clock/ruler diagnostics satisfy $\mathcal{R}_{\mathrm{causal}}(\theta;g)\le\varepsilon$, using the same residual above with $g$ supplying the target causal order and proper-time terms. Define the effective reconstruction-uniqueness residual
+A causal-set comparison adds a useful uniqueness discipline. It is not enough for Physical Observer records to fit one effective metric; the same causal-order, clock, ruler, and preferred-frame data should not also fit macroscopically distinct effective metrics at the same declared coarse-graining scale. For a scale $\ell$ and tolerance $\varepsilon$, let $\mathcal{G}_{\ell,\varepsilon}(\theta)$ be the family of GR comparison metrics on the domain whose coarse-grained causal-order and clock/ruler diagnostics satisfy $\mathcal{R}_{\mathrm{causal}}(\theta;g)\le\varepsilon$, using the same residual above with $g$ supplying the target causal order and GR proper-time terms. Define the effective reconstruction-uniqueness residual
 $$
 \mathcal{H}_{\mathrm{eff}}(\theta;\ell,\varepsilon)
 =
@@ -1511,7 +1511,7 @@ Small process-table mismatch with large $\mathcal{R}_{\mathrm{causal}}$ is a war
 
 #### Physical Observer Clocks and Rulers
 
-A Physical Observer clock measures **proper time** $\tau$, not the substrate parameter $t$ directly. A ruler is likewise an assembly whose measured length depends on its internal dynamics and medium coupling.
+A Physical Observer clock measures **derived clock time** $\tau$ (standard bridge term: proper time), not the substrate parameter $t$ directly. A ruler is likewise an assembly whose measured length depends on its internal dynamics and medium coupling. In this observer-layer use, `proper` means clock-carried in the relativity comparison sense; it does not mean substrate-level or exemplary time.
 
 This page does not own the clock law. Once a discussion asks how an internal clock frequency changes with velocity, Noether sea density, effective potential, or clock geometry, use [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
@@ -1557,11 +1557,13 @@ This chapter does not own:
 
 ### Proper Time and Time Dilation
 
-**Goal:** Define the theorem targets relating **absolute time** $t$ (used by the $\mathbb{U}_{\text{now}}$ universe-state perspective in the Euclidean void) to the **proper time** $\tau$ measured by physical clocks built from Noether swarm assemblies, and state how GR-like time dilation and gravitational redshift must arise as effective behavior if the clock map closes.
+**Goal:** Define the theorem targets relating **absolute time** $t$ (used by the $\mathbb{U}_{\text{now}}$ universe-state perspective in the Euclidean void) to the **derived clock time** $\tau$ measured by physical clocks built from Noether braid assemblies, and state how GR-like time dilation and gravitational redshift must arise as effective behavior if the clock map closes.
 
-This chapter is the canonical home for proper time, observer clocks, clock slowing, and the clock map from absolute time $t$ to measured proper time $\tau$. Foundation and ontology pages should point here once the discussion becomes a clock law, frequency extraction, observer-clock comparison, or Lorentz/GR time-dilation recovery.
+This chapter keeps `proper time` as the standard relativity bridge term for clock time along a timelike record. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the native claim is more specific: $\tau$ is a derived clock readout, not a second substrate time and not a more fundamental or exemplary time. The word `proper` should therefore be read only in the inherited physics sense of belonging to the physical clock record.
 
-For the detailed comparison between special-relativistic clock language and the deformable Noether swarm implementation story, see [the special-relativity bridge](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md).
+This chapter is the canonical home for derived clock time, observer clocks, clock slowing, and the clock map from absolute time $t$ to measured clock readout $\tau$. Foundation and ontology pages should point here once the discussion becomes a clock law, frequency extraction, observer-clock comparison, or Lorentz/GR time-dilation recovery.
+
+For the detailed comparison between special-relativistic clock language and the deformable Noether braid implementation story, see [the special-relativity bridge](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md).
 
 The primary clock law is phase extraction from a declared assembly channel:
 $$
@@ -1599,16 +1601,17 @@ The clock-law derivation imports the [transverse causal budget lemma](../../../.
 
 #### Conceptual Setup
 
-##### Absolute Time vs Proper Time
+##### Absolute Time vs Derived Clock Time
 
 - **Absolute time $t$**
   - Fundamental evolution parameter for the complete architrino dynamics.
   - Global, universal, non-dynamical; used by the $\mathbb{U}_{\text{now}}$ universe-state perspective (simulation clock).
   - All worldlines are parametrized directly by $t$.
 
-- **Proper time $\tau$**
-  - Time read by a **physical clock**: a bound Noether swarm assembly, such as an atomic transition or binary oscillation, interacting with the Noether sea.
+- **Derived clock time $\tau$** (standard bridge term: proper time)
+  - Time read by a **physical clock**: a bound Noether braid assembly, such as an atomic transition or binary oscillation, interacting with the Noether sea.
   - Encodes how many internal oscillation cycles occur per unit $dt$.
+  - The word `proper` does not mean substrate-level, privileged, or exemplary; it names the inherited relativity comparison target for a clock-carried record.
 
 The fundamental claim is:
 
@@ -1618,12 +1621,12 @@ The fundamental claim is:
 
 A clock is any assembly with a **stable, countable internal cycle**:
 
-- Minimal model: a Noether swarm where one shell binary, typically the middle binary, supplies the counted cycle.
+- Minimal model: a Noether braid where one shell binary, typically the middle binary, supplies the counted cycle.
 - Base frequency $\omega_0$ (or period $T_0 = 2\pi/\omega_0$) is defined for:
   - Clock **at rest** in the absolute frame.
   - In a region of homogeneous Noether sea density $n=1$ and negligible external gradients.
 
-Proper time is then defined operationally as:
+Derived clock time is then defined operationally as:
 $$
 d\tau = \frac{\omega(\text{state})}{\omega_0}\, dt
 $$
@@ -1675,7 +1678,7 @@ $$
 $$
 from its internal phase dynamics, rather than assign the factor independently.
 
-For an admitted moving nested shell swarm branch $q$ on a drift band $0\le \|\mathbf{w}\|/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
+For an admitted moving nested shell braid branch $q$ on a drift band $0\le \|\mathbf{w}\|/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
 $$
 T_q(\mathbf{w})
 =
@@ -1699,11 +1702,11 @@ C_T\epsilon_{\text{LV}}\beta_\star^2
 $$
 uniformly on the drift band, with any surviving preferred-frame sideband reported as a branch-sourced leakage term. This packet fails if the clock phase and ruler geometry come from different branch ledgers, if the residual is suppressed only by fitting a PPN coefficient after the fact, or if $c_f$ is silently identified with $c_\star$ without a dressing map.
 
-This moving-clock row is one leg of the structural-integrity common-limit closure in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). It is not enough for the clock branch to approximate $\gamma_\star^{-1}$ in isolation. The same causal-root ledger must also produce the moving ruler deformation, photon synchronization row, and weak-field gravity-channel speed row used by Lorentz closure; otherwise the clock result is a branch-split fit rather than proper-time closure.
+This moving-clock row is one leg of the structural-integrity common-limit closure in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). It is not enough for the clock branch to approximate $\gamma_\star^{-1}$ in isolation. The same causal-root ledger must also produce the moving ruler deformation, photon synchronization row, and weak-field gravity-channel speed row used by Lorentz closure; otherwise the clock result is a branch-split fit rather than clock-map closure.
 
-##### Noether Sea Swarm Cadence
+##### Noether Sea Braid Cadence
 
-For redshift and cosmology work, the local Noether sea swarm cadence can serve as the immediate clock reference before any separate detector clock is introduced. Let $\Omega_N(\mathbf{x},t)$ be a representative cadence extracted from the local Noether sea swarm population, with $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$. Relative to the weak homogeneous reference cadence, define
+For redshift and cosmology work, the local Noether sea braid cadence can serve as the immediate clock reference before any separate detector clock is introduced. Let $\Omega_N(\mathbf{x},t)$ be a representative cadence extracted from the local Noether sea braid population, with $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$. Relative to the weak homogeneous reference cadence, define
 
 $$
 \Gamma_N(\mathbf{x},t)
@@ -1713,9 +1716,9 @@ $$
 \frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}
 $$
 
-The quantity $\Gamma_N$ records local cadence stretching of the Noether sea itself. It is therefore a substrate-facing clock diagnostic: $\Gamma_N=1$ marks the weak homogeneous reference, while $\Gamma_N>1$ marks a locally slowed or stretched Noether sea cadence. In the homogeneous moving Noether swarm branch, the Lorentz-closure target is to derive the appropriate limit $\Gamma_N\to\gamma$ or, equivalently, $\Omega_N/\Omega_{N0}\to1/\gamma$ for the declared clock channel. In a gravitational or cosmological Noether sea state comparison, $\Gamma_N$ must instead be extracted from $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\Phi_{\text{eff}}$, and clock geometry.
+The quantity $\Gamma_N$ records local cadence stretching of the Noether sea itself. It is therefore a substrate-facing clock diagnostic: $\Gamma_N=1$ marks the weak homogeneous reference, while $\Gamma_N>1$ marks a locally slowed or stretched Noether sea cadence. In the homogeneous moving Noether braid branch, the Lorentz-closure target is to derive the appropriate limit $\Gamma_N\to\gamma$ or, equivalently, $\Omega_N/\Omega_{N0}\to1/\gamma$ for the declared clock channel. In a gravitational or cosmological Noether sea state comparison, $\Gamma_N$ must instead be extracted from $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\Phi_{\text{eff}}$, and clock geometry.
 
-This diagnostic does not replace $d\tau/dt$. It supplies a more primitive Noether sea cadence factor from which clock-rate comparisons, gravitational redshift, and the redshift factorization in [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md#noether-sea-swarm-factorization-target) can be built. The ordinary local clock-rate factor is the inverse:
+This diagnostic does not replace $d\tau/dt$. It supplies a more primitive Noether sea cadence factor from which clock-rate comparisons, gravitational redshift, and the redshift factorization in [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md#noether-sea-braid-factorization-target) can be built. The ordinary local clock-rate factor is the inverse:
 
 $$
 C_N(\mathbf{x},t)
@@ -1725,7 +1728,7 @@ C_N(\mathbf{x},t)
 \Gamma_N^{-1}(\mathbf{x},t)
 $$
 
-In the homogeneous moving Noether swarm branch, the geometry-to-clock closure target is $C_N\to\xi\to1/\gamma$, so the corresponding cadence-stretch target is $\Gamma_N\to1/\xi\to\gamma$.
+In the homogeneous moving Noether braid branch, the geometry-to-clock closure target is $C_N\to\xi\to1/\gamma$, so the corresponding cadence-stretch target is $\Gamma_N\to1/\xi\to\gamma$.
 
 In the weak-field endpoint limit, the required recovery condition is
 
@@ -1739,7 +1742,7 @@ $$
 1-\frac{\Phi_N(\mathbf{x},t)}{c_0^2}
 $$
 
-to first order in $\Phi_N/c_0^2$. Since $\Phi_N < 0$ in a deeper potential, this gives $\Gamma_N > 1$ there: the local Noether sea swarm cadence is stretched relative to the weak homogeneous reference. For two endpoint cells $E$ and $R$ with no source-branch, launch, or path-history correction, the redshift recovery condition is therefore
+to first order in $\Phi_N/c_0^2$. Since $\Phi_N < 0$ in a deeper potential, this gives $\Gamma_N > 1$ there: the local Noether sea braid cadence is stretched relative to the weak homogeneous reference. For two endpoint cells $E$ and $R$ with no source-branch, launch, or path-history correction, the redshift recovery condition is therefore
 
 $$
 \ln(1+z)
@@ -1751,9 +1754,9 @@ $$
 
 This is the clock-channel version of the weak gravitational-redshift benchmark. The derivation burden is to obtain the first equation from Noether sea constitutive response rather than impose it as an imported metric fact.
 
-##### Proper-Time Functional Benchmark
+##### GR Proper-Time Functional Benchmark
 
-The same clock map must also reproduce the observer-level proper-time functional that GR uses for timelike records. For a candidate effective metric recovered from the Noether sea record,
+The same clock map must also reproduce the observer-level proper-time functional that GR uses for timelike records. This is a bridge benchmark, not a substrate definition of time. For a candidate effective metric recovered from the Noether sea record,
 $$
 d\tau
 =
@@ -1768,11 +1771,11 @@ g^{\text{eff}}_{\mu\nu}
 =
 -c_0^2
 $$
-This equation is not a claim that the Euclidean void is a four-dimensional curved substrate. It is the observer-level action benchmark: physical clocks should extremize the same effective interval that the signal, ruler, and orbital modules use when they project the Noether sea state into GR comparison language. If a branch recovers endpoint redshift but fails the integrated clock functional along accelerated or orbital records, the proper-time map has not closed.
+This equation is not a claim that the Euclidean void is a four-dimensional curved substrate. It is the observer-level action benchmark: physical clocks should extremize the same effective interval that the signal, ruler, and orbital modules use when they project the Noether sea state into GR comparison language. If a branch recovers endpoint redshift but fails the integrated clock functional along accelerated or orbital records, the clock map has not closed.
 
 ##### Gamma-N Geometry Extraction Target
 
-The equations above define the endpoint benchmark, but they do not yet derive the Noether sea cadence factor from Noether swarm geometry. A first-order extraction scaffold should start from the local variables that already appear in the clock and transport programs: normalized Noether swarm density $n$, Noether sea delay factor $\chi_{\text{sea}}$, envelope scale $\lambda$, envelope shape ratio $\xi$, and a representative Noether swarm scale $R_{\text{core}}$. Around the weak homogeneous reference, collect the logarithmic deformation record
+The equations above define the endpoint benchmark, but they do not yet derive the Noether sea cadence factor from Noether braid geometry. A first-order extraction scaffold should start from the local variables that already appear in the clock and transport programs: normalized Noether braid density $n$, Noether sea delay factor $\chi_{\text{sea}}$, envelope scale $\lambda$, envelope shape ratio $\xi$, and a representative Noether braid scale $R_{\text{core}}$. Around the weak homogeneous reference, collect the logarithmic deformation record
 
 $$
 \mathbf{g}_N
@@ -1809,7 +1812,7 @@ b_R
 \right)
 $$
 
-The sign convention places $-\ln\xi$ in the deformation record because the homogeneous Lorentz-closure branch requires $\Gamma_N\to1/\xi$ when the clock readout is controlled only by oblate moving Noether swarm geometry. In that branch
+The sign convention places $-\ln\xi$ in the deformation record because the homogeneous Lorentz-closure branch requires $\Gamma_N\to1/\xi$ when the clock readout is controlled only by oblate moving Noether braid geometry. In that branch
 
 $$
 \mathbf{g}_N^{\mathrm{mov}}
@@ -1824,7 +1827,7 @@ $$
 +O(\epsilon_{\mathrm{LV}})
 $$
 
-so the moving Noether swarm constraint fixes
+so the moving Noether braid constraint fixes
 
 $$
 b_\xi=1
@@ -2169,7 +2172,7 @@ The current validation result is therefore:
 
 Unconstrained nonzero values of $a_n$, $a_\lambda$, or $a_R$ are disfavored. They may be promoted only as branch-derived compensated response, not as adjustable redshift coefficients.
 
-This gives the derivation a concrete target. The same $\Gamma_N$ extraction map must recover $\Gamma_N=1$ in the weak homogeneous reference, $\Gamma_N\to1/\xi$ in the homogeneous moving Noether swarm Lorentz branch, and $\Gamma_N\approx1-\Phi_N/c_0^2$ in the weak gravitational endpoint branch. It must also remain separate from the launch factor $D_v$ and the path-history propagation factor $Y_X$, so the endpoint contribution to redshift is only
+This gives the derivation a concrete target. The same $\Gamma_N$ extraction map must recover $\Gamma_N=1$ in the weak homogeneous reference, $\Gamma_N\to1/\xi$ in the homogeneous moving Noether braid Lorentz branch, and $\Gamma_N\approx1-\Phi_N/c_0^2$ in the weak gravitational endpoint branch. It must also remain separate from the launch factor $D_v$ and the path-history propagation factor $Y_X$, so the endpoint contribution to redshift is only
 
 $$
 \ln(1+z)_{\mathrm{endpoint}}
@@ -2311,7 +2314,7 @@ When the clock has center-of-mass velocity $\mathbf{V}_{\text{cm}}$ relative to 
  - As $\|\mathbf{w}\|\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{w}}$ while maintaining transverse dimensions, yielding an oblate spheroidal envelope with semiaxes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
 
-Geometry terminology follows [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The proper-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt$. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
+Geometry terminology follows [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The derived clock-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt$. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
 
 **Kinematic hypothesis:**
 $$
@@ -2334,7 +2337,7 @@ Massive assemblies polarize and densify the surrounding Noether sea. A clock dee
  Interaction delays with the Noether sea (and between internal architrinos through the Noether sea) increase. This raises the **Noether sea delay factor** $\chi_{\text{sea}}$ for internal processes.
 
 2. **Effective field speed reduction $c_{\text{eff}}(\mathbf{x}) < c_f$:**
- - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether swarms).
+ - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether braids).
  - From the clock’s perspective, every internal force arrives “later” in $t$.
 
 3. **Tidal distortion of tri‑binary geometry:**
@@ -2359,9 +2362,9 @@ $$
 \approx
 \frac{gL}{c_0^2}
 $$
-Thus $L=1\,\mathrm{mm}$ corresponds to $\Delta\nu/\nu\approx1.1\times10^{-19}$, while $L=33\,\mathrm{cm}$ corresponds to $\Delta\nu/\nu\approx3.6\times10^{-17}$. These numbers are direct weak-field acceptance tests for the extracted clock map: the same Noether sea constitutive response that slows separated clocks must also describe an extended clock sample whose lower and upper portions accumulate different proper-time phases.
+Thus $L=1\,\mathrm{mm}$ corresponds to $\Delta\nu/\nu\approx1.1\times10^{-19}$, while $L=33\,\mathrm{cm}$ corresponds to $\Delta\nu/\nu\approx3.6\times10^{-17}$. These numbers are direct weak-field acceptance tests for the extracted clock map: the same Noether sea constitutive response that slows separated clocks must also describe an extended clock sample whose lower and upper portions accumulate different derived clock phases.
 
-For independent atoms this can be corrected pointwise, as in ordinary redshift compensation. For entangled or collective clock states, however, assigning the entire apparatus the proper time at the trap center is only an approximation. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target is to derive the measured clock time from collective phase evolution across the sample, with the center-time prescription emerging only when the gradient-induced phase spread is below the experiment's uncertainty.
+For independent atoms this can be corrected pointwise, as in ordinary redshift compensation. For entangled or collective clock states, however, assigning the entire apparatus the derived clock time at the trap center is only an approximation. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target is to derive the measured clock time from collective phase evolution across the sample, with the center-time prescription emerging only when the gradient-induced phase spread is below the experiment's uncertainty.
 
 Guided/free-fall atom interferometers sharpen this target because one branch is held in the laboratory frame while the other follows a free-fall trajectory. After subtracting controlled laser, magnetic, and preparation phases, the branch comparison should expose a cubic-time phase coefficient:
 $$
@@ -2381,7 +2384,7 @@ $$
 = \frac{\omega(\mathbf{w},\Phi_N,n)}{\omega_0}
 \approx \sqrt{1 + \frac{2\Phi_N}{c_0^2} - \frac{\|\mathbf{w}\|^2}{c_0^2}}
 $$
-in the weak-field, low-velocity observer limit, with higher-order corrections ($\|\mathbf{w}\|^4/c_0^4$, $\Phi_N^2/c_0^4$, cross-terms) determined by the detailed Noether swarm response. Primitive simulations may still use $c_f$ inside the root equation; the PPN comparison uses the dressed asymptotic speed $c_0$.
+in the weak-field, low-velocity observer limit, with higher-order corrections ($\|\mathbf{w}\|^4/c_0^4$, $\Phi_N^2/c_0^4$, cross-terms) determined by the detailed Noether braid response. Primitive simulations may still use $c_f$ inside the root equation; the PPN comparison uses the dressed asymptotic speed $c_0$.
 
 Outside that limit, $F$ will in general deviate from the GR expression and define the theory’s distinctive strong‑field / high‑velocity predictions.
 
@@ -2411,9 +2414,9 @@ In this chapter, Planck-scale references inherit that same alignment definition.
 
 To close the derivation gap, we now fix an explicit clock model and an explicit observable-extraction map.
 
-##### Concrete Nested Shell Swarm Clock State
+##### Concrete Nested Shell Braid Clock State
 
-Use one neutral nested shell swarm with six constituent architrinos:
+Use one neutral nested shell braid with six constituent architrinos:
 $$
 \mathcal{A}=\{i_+,i_-,m_+,m_-,o_+,o_-\}
 $$
@@ -2448,7 +2451,7 @@ r_{ab}(t;t_0)=\|\mathbf{x}_a(t)-\mathbf{x}_b(t_0)\|,
 $$
 This is the same $\eta>0$ regularized kernel used in the dynamical chapters.
 
-##### Clock Observable and Proper-Time Map
+##### Clock Observable and Clock Map
 
 Take the middle binary as the clock channel. Let $\mathbf{e}_1,\mathbf{e}_2$ be an orthonormal basis of the mean orbital plane of $\mathbf{r}_m$, and define phase
 $$
@@ -2465,7 +2468,7 @@ $$
 \frac{d\tau}{dt}\equiv\frac{\omega_{\text{clk}}}{\omega_0}
 $$
 
-This observable is the benchmark preserved by the clock projector in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). For a branch record $\mathcal{B}_{\mathbf{x}j}^{(t_0)}$, the clock-facing projection keeps only the entries that can change the extracted phase or cadence:
+This observable is the benchmark preserved by the clock projector in [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). For a branch record $\mathcal{B}_{\mathbf{x}j}^{(t_0)}$, the clock-facing projection keeps only the entries that can change the extracted phase or cadence:
 
 $$
 \Pi_{\mathrm{clock}}
@@ -2485,7 +2488,7 @@ Thus a boundary contribution may affect clock coupling only by changing the same
 
 ##### Controlled Perturbation Family
 
-Run the same nested shell swarm under controlled backgrounds:
+Run the same nested shell braid under controlled backgrounds:
 
 1. Uniform center-of-mass drift speed $v=\|\mathbf{V}_{\text{CM}}\|$ through homogeneous medium.
 2. Weak static potential background $\Phi_N(\mathbf{x})$ (or $U\equiv-\Phi_N>0$).
@@ -2647,7 +2650,7 @@ This chapter is the focused program statement for deriving operational Lorentz b
 
 The opening abstract states the target; the later sections move through the governing delayed dynamics, the anisotropy mechanism, and the conditions under which assembly-built observers could recover standard Lorentz kinematics.
 
-For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether swarm story, see [the special-relativity bridge](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). For the interactive geometry surface, open [Ideal Noether Swarm: Lorentz Geometry App](../../../../../ideal-swarm.html).
+For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether braid story, see [the special-relativity bridge](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). For the interactive geometry surface, open [Ideal Noether Braid: Lorentz Geometry App](../../../../../ideal-swarm.html).
 
 #### Abstract
 
@@ -2677,7 +2680,7 @@ To match modern precision constraints, operational observers made from bound ass
 
 ##### Mathematical objective
 
-Given a translating bound assembly (binary and then nested shell swarm), derive:
+Given a translating bound assembly (binary and then nested shell braid), derive:
 
 1. The velocity-dependent equilibrium shape tensor $Q(v)$ and its anisotropy.
 2. The velocity-dependent internal period $T(v)$.
@@ -2989,7 +2992,7 @@ $$
 =
 \frac{1}{\gamma_\star(v)}
 $$
-This is the direct map from Lorentz kinematics to Noether swarm geometry. The oblate spheroidal envelope for an admitted branch $q$ can be written
+This is the direct map from Lorentz kinematics to Noether braid geometry. The oblate spheroidal envelope for an admitted branch $q$ can be written
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp,q}^2}
 +
@@ -3081,7 +3084,7 @@ q
 \mathcal{L}_{\mathrm{root}}^{(q)}(v)
 \right)
 $$
-with admissibility requiring the same causal-root ledger to close the oblate spheroidal envelope geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether swarm return-cycle classes only after those branch-admissibility conditions close.
+with admissibility requiring the same causal-root ledger to close the oblate spheroidal envelope geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether braid return-cycle classes only after those branch-admissibility conditions close.
 
 To keep this closure target testable, the branch should report a single Lorentz residual record rather than separate narrative successes. For a declared channel speed $c_\star$ and branch $q$, write
 $$
@@ -3336,7 +3339,7 @@ with the following structured components:
 
 1. Translational architrino speed increase: $\Delta v_{\text{tr}}>0$.
 2. Discrete frequency retuning of $H,M,L$: $\Delta f_k=n_k\,\delta f_k$, with $n_k\in\mathbb{Z}$ and $k\in\{H,M,L\}$.
-3. Nested shell swarm axis realignment: $\Delta\mathbf{A}\neq 0$ (precession/tilt of principal axes).
+3. Nested shell braid axis realignment: $\Delta\mathbf{A}\neq 0$ (precession/tilt of principal axes).
 4. Exclusion-zone geometry shift: $\Delta\mathcal{E}_{\text{excl}}\neq 0$ (shape and orientation update).
 5. Operational time response shift: $\Delta\tau_{\text{op}}\neq 0$.
 
@@ -3354,11 +3357,11 @@ The immediate task is to identify which subset dominates $\partial \tau_{\text{o
 
 Working assumption:
 
-1. The outer precessing binary of a Noether swarm defines the effective exclusion volume boundary; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
-2. Each nested shell swarm layer ($H,M,L$) has its own circulation axis.
+1. The outer precessing binary of a Noether braid defines the effective exclusion volume boundary; see [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
+2. Each nested shell braid layer ($H,M,L$) has its own circulation axis.
 3. Total angular and translational momentum are conserved at assembly level (up to modeled exchange channels with environment).
 
-Proposed mechanism chain under applied force (acceleration of a Noether swarm-based assembly):
+Proposed mechanism chain under applied force (acceleration of a Noether braid-based assembly):
 
 1. External forcing increases translational state.
 2. Axis coupling drives partial alignment of $H,M,L$ circulation axes.
@@ -3383,7 +3386,7 @@ with the strongest transduction at $L$.
 
 Interpretive thesis:
 
-Einstein-like spacetime behavior may be recovered as the continuum limit of moving, deforming exclusion volumes of Noether swarms under translation and local volume variation, rather than from fundamental geometric curvature at substrate level.
+Einstein-like spacetime behavior may be recovered as the continuum limit of moving, deforming exclusion volumes of Noether braids under translation and local volume variation, rather than from fundamental geometric curvature at substrate level.
 
 Consistency checks required for this scenario:
 
@@ -3396,7 +3399,7 @@ Status: scenario is a structured hypothesis, not yet a proved derivation. It is 
 
 ##### Two-channel deformation: shape plus scale
 
-Relevant to Lorentzian closure, the Noether swarm deformation is not only axis-ratio change. A working two-channel model is:
+Relevant to Lorentzian closure, the Noether braid deformation is not only axis-ratio change. A working two-channel model is:
 
 1. Shape channel (oblateness): longitudinal compression relative to transverse radius.
 2. Scale channel (radius rescaling): transverse radius changes with energy state.
@@ -3431,7 +3434,7 @@ $$
 $$
 with $\xi\in(0,1]$ as shape and $\lambda$ as scale. The Lorentz-closure target is $\xi(x)\to1/\gamma(x)$ in the homogeneous drift regime.
 
-Terminology guardrail: $\xi$ is the Noether swarm envelope shape ratio, inherited from [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
+Terminology guardrail: $\xi$ is the Noether braid envelope shape ratio, inherited from [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
 $$
 \frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt}\to\xi\to\frac{1}{\gamma}
 $$
@@ -3562,9 +3565,9 @@ Start with a single causal path-history binary under constant drift $\mathbf{v}$
 2. Closed-form or asymptotic estimates for $(a_{\parallel}/a_{\perp})(v)$.
 3. First nonzero leakage coefficients in $v/c_f$ expansion.
 
-##### Stage B: nested shell swarm full closure
+##### Stage B: nested shell braid full closure
 
-Promote to a nested shell swarm with coupled circulation scales. Establish:
+Promote to a nested shell braid with coupled circulation scales. Establish:
 
 1. Persistence of aligned attractor family under drift.
 2. Factorization or controlled coupling of inner/middle/outer period shifts.
@@ -3582,8 +3585,8 @@ so local assembly kinematics and macroscopic refractive geometry are mathematica
 
 To connect the two-channel deformation model to observables, use the following sequence:
 
-1. Single-swarm constitutive closure: derive or fit-test $R_\perp(E)$ and induced $\xi(E,\beta)$ from causal path-history nested shell swarm dynamics.
-2. Effective-medium propagation law: construct $n_{\text{eff}}(\xi,\lambda,n)$ for signal transport through deformed Noether swarm populations.
+1. Single-braid constitutive closure: derive or fit-test $R_\perp(E)$ and induced $\xi(E,\beta)$ from causal path-history nested shell braid dynamics.
+2. Effective-medium propagation law: construct $n_{\text{eff}}(\xi,\lambda,n)$ for signal transport through deformed Noether braid populations.
 3. Effective metric extraction: build $g_{\mu\nu}^{\text{eff}}$ from medium variables and preferred-frame structure.
 4. Weak-field consistency checks: verify Newtonian limit and required post-Newtonian behavior in the operational observer sector.
 5. Strong-field/cosmology consistency checks: test horizon-adjacent and expansion-regime implications of the same constitutive channels.
@@ -3836,7 +3839,7 @@ $$
 \left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right)
 +O(\epsilon_{\mathrm{br}}+\epsilon_{\mathrm{hier}}+\epsilon_{\mathrm{reg}})
 $$
-The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures nested shell swarm hierarchy leakage away from the binary benchmark, and $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma$ and $T(v)=\gamma T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
+The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures nested shell braid hierarchy leakage away from the binary benchmark, and $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma$ and $T(v)=\gamma T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
 
 This gives a possible prediction of the framework. If Lorentz behavior is rooted in causal-root progression, then the first nonzero deviations from exact Lorentz closure should not be arbitrary smooth functions of speed. They should inherit the structure of branch charts: smooth even-power drift terms inside a fixed chart, plus localized or resonant leakage near separator events, small-divisor interlayer resonances, or changes in admissible root multiplicity. In a nonresonant chart the leakage should obey
 $$
@@ -3865,13 +3868,13 @@ The technology-facing status is therefore conditional. The immediate test is not
 
 This also prevents overclaiming. The present chapter does not prove that quantum mechanics causes special relativity. It states a narrower closure target: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the discrete causal-root progression that supports quantum-facing assembly behavior must also generate the Lorentz formulas in the homogeneous weak-field observer limit. If the branch ledger produces quantum-like discreteness but fails to produce the Lorentz coefficient vector, then the proposed common mechanism fails. If it produces the Lorentz vector only by tuning a separate clock law, ruler law, or photon speed for each observable, the Lorentz bridge also fails.
 
-##### Nested shell swarm adiabatic decoupling bound
+##### Nested shell braid adiabatic decoupling bound
 
 Let
 $$
 \mathbf{c}^{(2)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{binary}}
 \qquad
-\mathbf{c}^{(3)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{nested shell swarm}}
+\mathbf{c}^{(3)}\equiv (k_2,\ell_2,k_4,\ell_4)_{\text{nested shell braid}}
 $$
 and define
 $$
@@ -3915,7 +3918,7 @@ $$
 
 ##### Spectral-decoupling vulnerability criterion
 
-The [Nested Shell Swarm Adiabatic Decoupling Bound](#nested-shell-swarm-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
+The [Nested Shell Braid Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
 $$
 |m\omega_L-n\omega_M|
 \ge
@@ -3935,7 +3938,7 @@ for small integers $(m,n)$ and nonlinear coupling width $\delta\omega_{\text{nl}
 
 ##### Theorem A0 (forward partner-root speed-limit lemma)
 
-The primitive material speed-limit row has a kinematic upper-bound lemma before any detailed nested shell swarm deformation is solved. In a translating branch with center drift $u\hat{\mathbf e}$, a retained partner row whose receiver lies ahead of its source by positive co-moving separation $d_{\parallel}\ge d_{\min}>0$ must satisfy
+The primitive material speed-limit row has a kinematic upper-bound lemma before any detailed nested shell braid deformation is solved. In a translating branch with center drift $u\hat{\mathbf e}$, a retained partner row whose receiver lies ahead of its source by positive co-moving separation $d_{\parallel}\ge d_{\min}>0$ must satisfy
 $$
 c_f\tau
 =
@@ -3995,11 +3998,11 @@ $$
 \qquad
 \gamma_f(u)=\left(1-\frac{u^2}{c_f^2}\right)^{-1/2}
 $$
-If these equalities hold on the same branch ledger, the Lorentzian compensation has been derived for the two-body clock rather than asserted. If they fail, the residual is the earliest foundation-level falsification pressure: it marks exactly where the primitive kernel departs from Lorentzian matter behavior before nested shell swarm averaging or Noether sea dressing is allowed to repair anything.
+If these equalities hold on the same branch ledger, the Lorentzian compensation has been derived for the two-body clock rather than asserted. If they fail, the residual is the earliest foundation-level falsification pressure: it marks exactly where the primitive kernel departs from Lorentzian matter behavior before nested shell braid averaging or Noether sea dressing is allowed to repair anything.
 
 ##### Theorem A (attractor existence under drift)
 
-For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and nested shell swarm systems for $\|\mathbf{v}\|<c_f$.
+For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and nested shell braid systems for $\|\mathbf{v}\|<c_f$.
 
 ##### Theorem B (anisotropic deformation law)
 
@@ -4052,7 +4055,7 @@ the drift-response coefficients are locally identifiable from $(a_{\parallel}/a_
 
 ##### Theorem F (cross-regime universality of closure coefficients)
 
-If binary and nested shell swarm attracting branches exist, are smooth in $\beta$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
+If binary and nested shell braid attracting branches exist, are smooth in $\beta$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
 $$
 \omega_H\gg \omega_M\gg \omega_L\qquad
 |m\omega_L-n\omega_M|
@@ -4075,7 +4078,7 @@ In particular, if $(r_M/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Loren
 
 ##### Theorem G (structural-integrity common-limit closure)
 
-This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. Theorem A0 supplies the primitive kinematic obstruction: a material branch that needs forward partner-hit closure cannot have a sustained translating ledger with $c_{\mathrm{mat}}^{\mathrm{lim}}>c_f$. Theorem A1 supplies the first constructive clock/ruler decision surface by asking whether the translating two-body branch returns $R_T^{\mathrm{bin}}=0$ and $R_{\xi}^{\mathrm{bin}}=0$ before nested shell swarm averaging or Noether sea dressing is invoked. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
+This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. Theorem A0 supplies the primitive kinematic obstruction: a material branch that needs forward partner-hit closure cannot have a sustained translating ledger with $c_{\mathrm{mat}}^{\mathrm{lim}}>c_f$. Theorem A1 supplies the first constructive clock/ruler decision surface by asking whether the translating two-body branch returns $R_T^{\mathrm{bin}}=0$ and $R_{\xi}^{\mathrm{bin}}=0$ before nested shell braid averaging or Noether sea dressing is invoked. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
 $$
 c_{\mathrm{mat}}^{\mathrm{lim}}
 =
@@ -4107,7 +4110,7 @@ The Lorentzian conspiracy program fails if any of the following occur:
 3. Residual anisotropy terms exceed accepted bounds after full observer construction.
 4. Different assembly decorations produce incompatible kinematic laws that prevent universal operational closure.
 5. The weak-field connection built from $g_{\mu\nu}^{\text{eff}}$ fails to reproduce a Newtonian Poisson limit for $\Phi_{\text{eff}}$ in the operational observer sector.
-6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in [Nested Shell Swarm Adiabatic Decoupling Bound](#nested-shell-swarm-adiabatic-decoupling-bound).
+6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in [Nested Shell Braid Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound).
 7. The extracted Lorentz coefficients cannot be traced to the causal-root ledger on a completed branch chart, or the same ledger cannot generate clock, ruler, and two-way signal closure without separate per-observable tuning.
 
 #### Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
@@ -4125,7 +4128,7 @@ Primary theory anchors:
 1. [dynamics/master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md)
 2. [dynamics/causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md)
 3. [dynamics/binary-dynamics.md](../../../../markdown/aaa/dynamics/binary-dynamics.md)
-4. [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
+4. [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
 5. `spacetime/*`
 6. [validation/constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md)
 7. [validation/no-go-theorems.md](../../../../markdown/aaa/validation/no-go-theorems.md)
@@ -4147,7 +4150,7 @@ The bridge is therefore constitutive rather than ontological. A successful metri
 #### Ontological Picture
 
 - **Substrate**: A fixed Euclidean 3D void with absolute time $t$. A chosen chart $(x,y,z)$ represents fixed void locations; the labels never move or curve.
-- **Noether sea**: The [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), a pervasive population of coupled pro/anti Noether swarms. The bridge term *spacetime medium* is used when translating toward effective spacetime language.
+- **Noether sea**: The [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), a pervasive population of coupled pro/anti Noether braids. The bridge term *spacetime medium* is used when translating toward effective spacetime language.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: Complete-state bookkeeping on the absolute-time slice, carrying:
   - The full architrino microstate $S(t)$,
   - The instantaneous state of the Noether sea (density $\rho_{\text{NS}}(\mathbf{x},t)$, alignment, stress),
@@ -4155,14 +4158,14 @@ The bridge is therefore constitutive rather than ontological. A successful metri
 
 From this bookkeeping perspective, there is only:
 - Flat Euclidean geometry $h_{ij}=\delta_{ij}$,
-- A dynamic medium (Noether swarms) moving and rearranging in that geometry.
+- A dynamic medium (Noether braids) moving and rearranging in that geometry.
 
 #### Canonical Symbols (Spacetime)
 
 Use the following symbols consistently across spacetime chapters:
 
-- $n(\mathbf{x},t)$: normalized Noether swarm density.
-- $\rho_{\text{NS}}(\mathbf{x},t)=\rho_{\text{NS},0}\,n(\mathbf{x},t)$: physical Noether swarm density.
+- $n(\mathbf{x},t)$: normalized Noether braid density.
+- $\rho_{\text{NS}}(\mathbf{x},t)=\rho_{\text{NS},0}\,n(\mathbf{x},t)$: physical Noether braid density.
 - $\chi_{\text{sea}}(\mathbf{x},t)=c_f/c_{\text{eff}}(\mathbf{x},t)$: Noether sea delay factor.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field metric comparisons.
 - $\Phi_{\text{eff}}(\mathbf{x},t)$: constitutive potential inferred from the clock channel.
@@ -4182,7 +4185,7 @@ Use the following symbols consistently across spacetime chapters:
 
 We define $g^{\text{eff}}_{\mu\nu}$ operationally:
 
-> At each point $x$, choose an idealized physical observer (Noether swarm clock + ruler), and infer a local metric from their measured time intervals and spatial separations.
+> At each point $x$, choose an idealized physical observer (Noether braid clock + ruler), and infer a local metric from their measured time intervals and spatial separations.
 
 The $\mathbb{U}_{\text{now}}$ universe-state perspective then maps substrate and medium data into observer-level ADM/Cartan fields:
 
@@ -4212,7 +4215,7 @@ Thus ordinary density can be weakly visible to clocks and signal paths when it i
 
 #### ADM/Cartan Reconstruction Surface
 
-The metric bridge should now be expressed through the same ADM/Cartan variables used by [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is
+The metric bridge should now be expressed through the same ADM/Cartan variables used by [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is
 
 $$
 ds_{\rm eff}^2
@@ -4470,9 +4473,9 @@ The same-record condition is part of the metric claim. A fermion stress channel 
 
 In the shared pullback notation, the stress-side consumer is $\Pi_{\mathrm{matter}}\mathcal L_\star(\theta;W,r_\star)$. The fermion metric row therefore fails if spinor closure, weak exposure, and matter response are sourced from different retained rows, even when each reduced row is individually well fitted.
 
-#### Noether Swarm Deformation and Metric Language
+#### Noether Braid Deformation and Metric Language
 
-At the assembly level, an individual Noether swarm has an oblate, deformable exclusion envelope; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md). This chapter does not identify that individual Noether swarm envelope with the metric. The metric bridge uses many deforming Noether swarms in the Noether sea, whose coarse variables determine clock, ruler, and signal behavior.
+At the assembly level, an individual Noether braid has an oblate, deformable exclusion envelope; see [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md). This chapter does not identify that individual Noether braid envelope with the metric. The metric bridge uses many deforming Noether braids in the Noether sea, whose coarse variables determine clock, ruler, and signal behavior.
 
 When translating toward General Relativity, Einstein's field equations are treated as the effective continuum relation
 $$
@@ -4498,7 +4501,7 @@ The useful GR analogy is therefore limited but important:
 - perturbative methods can capture small departures from spherical symmetry,
 - and standard predictions such as redshift, Shapiro delay, lensing, orbital precession, frame-dragging, and gravitational-wave emission from deformed sources must be recovered from one reusable constitutive map.
 
-The assembly fact that a Noether swarm is oblate belongs in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md). The spacetime claim that a population of deformed Noether swarms yields an effective metric belongs here and in [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md).
+The assembly fact that a Noether braid is oblate belongs in [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md). The spacetime claim that a population of deformed Noether braids yields an effective metric belongs here and in [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md).
 
 #### Jacobson-Type Support: Metric as Equation of State
 
@@ -4537,9 +4540,9 @@ This residual is not a new gate; it states the existing constitutive burden in a
 
 This does not license dismissing low-energy quantized-metric calculations. In the long-distance regime, the effective-field-theory treatment of GR separates unknown high-energy local terms from calculable infrared corrections. $\mathbb{A}\mathbb{A}\mathbb{A}$ should preserve that result as an observer-level recovery benchmark: the microscopic account may differ, but the weak-field constitutive record must reproduce the same long-distance quantum correction when its variables are coarse-grained into the effective metric description.
 
-This support is useful but limited. A Jacobson-style argument would explain why GR-like behavior is a natural equilibrium limit of many possible media, not why $\mathbb{A}\mathbb{A}\mathbb{A}$ is uniquely correct. The distinguishing burden therefore shifts to the departures from equilibrium, where the detailed Noether swarm architecture should matter.
+This support is useful but limited. A Jacobson-style argument would explain why GR-like behavior is a natural equilibrium limit of many possible media, not why $\mathbb{A}\mathbb{A}\mathbb{A}$ is uniquely correct. The distinguishing burden therefore shifts to the departures from equilibrium, where the detailed Noether braid architecture should matter.
 
-It also does not derive inertia by itself. A successful equation-of-state route can recover an effective Einstein equation while leaving open how a particular assembly acquires its inertial response, why accelerated and gradient-driven local records agree to equivalence-principle accuracy, and how the same Noether sea record fixes the mass-side response tensor. Those burdens remain with the mass, energy, Lorentz-closure, and nested shell swarm dynamics programs.
+It also does not derive inertia by itself. A successful equation-of-state route can recover an effective Einstein equation while leaving open how a particular assembly acquires its inertial response, why accelerated and gradient-driven local records agree to equivalence-principle accuracy, and how the same Noether sea record fixes the mass-side response tensor. Those burdens remain with the mass, energy, Lorentz-closure, and nested shell braid dynamics programs.
 
 ##### Local-Horizon Recovery Target
 
@@ -4714,13 +4717,13 @@ $$
 \longrightarrow
 \frac{1}{4}
 $$
-Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to A_{\partial\Omega}^{\mathrm{eff}}$, these claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal nested shell swarm alignment must supply a universal block entropy density, its patch-area normalization, and surrounding Noether sea correlations short-range enough that the boundary count is additive up to edge residuals.
+Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to A_{\partial\Omega}^{\mathrm{eff}}$, these claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal nested shell braid alignment must supply a universal block entropy density, its patch-area normalization, and surrounding Noether sea correlations short-range enough that the boundary count is additive up to edge residuals.
 
 #### Refraction vs. Curvature
 
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
   - Primitive causal-wake support is measured by Euclidean distances in $(x,y,z)$,
-  - While effective ray paths and clock comparisons depend on an *effective speed* $c_{\text{eff}}(x)$ set by the local Noether swarm configuration:
+  - While effective ray paths and clock comparisons depend on an *effective speed* $c_{\text{eff}}(x)$ set by the local Noether braid configuration:
     $c_{\text{eff}}(x) < c_f \quad \text{in dense regions (near mass)}$
 - From the **physical observer** (built from assemblies):
   - Light and free-falling matter appear to move along curved paths (geodesics) of an effective metric $g^{\text{eff}}_{\mu\nu}$.
@@ -4838,7 +4841,7 @@ u^i_{\text{sea}}=0,
 N=\Omega(n,\lambda)\xi
 $$
 
-Here $\xi$ is the Noether swarm envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$, not a synonym for the clock-rate factor. The stationary ideal clock-rate factor in this metric subclass is $N=\Omega\xi$ only after the geometry-to-clock map is fixed.
+Here $\xi$ is the Noether braid envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$, not a synonym for the clock-rate factor. The stationary ideal clock-rate factor in this metric subclass is $N=\Omega\xi$ only after the geometry-to-clock map is fixed.
 
 Define the clock-channel potential by the observer-side lapse:
 $$
@@ -4900,7 +4903,7 @@ the spacetime constitutive map.
 
 #### Canonical Symbols
 
-- $n$: normalized Noether swarm density, with $\rho_{\text{NS}}=\rho_{\text{NS},0}n$.
+- $n$: normalized Noether braid density, with $\rho_{\text{NS}}=\rho_{\text{NS},0}n$.
 - $\chi_{\text{sea}}$: Noether sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field PPN comparisons.
 - $\Phi_N$: Newtonian benchmark potential.
@@ -4925,7 +4928,7 @@ Here, geodetic precession means the de Sitter precession of a carried gyroscope:
 
 #### Explicit Weak-Field Noether Sea Delay Map (PPN $\gamma$)
 
-Adopt a weak-field PPN-normalized Noether sea delay-factor ansatz for signal propagation in the Noether swarm medium:
+Adopt a weak-field PPN-normalized Noether sea delay-factor ansatz for signal propagation in the Noether braid medium:
 $$
 \bar{\chi}_{\text{sea}}(\mathbf{x})
 \equiv
@@ -6182,7 +6185,7 @@ This is a forecast and comparison gate. It does not license a massive-graviton o
 
 #### Medium-Transport Perturbation
 
-For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether sea state used by redshift and dark-energy modules. In the provisional Noether swarm equilibrium packet,
+For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether sea state used by redshift and dark-energy modules. In the provisional Noether braid equilibrium packet,
 
 $$
 \partial_t f_N
@@ -6194,7 +6197,7 @@ S_{\mathrm{BH}}
 -R_{\mathrm{eq}}[f_N]
 $$
 
-the term $S_{\mathrm{GW}}$ records the disturbance of the local Noether swarm cadence distribution by the gravitational-wave channel. It is not an additional default polarization mode and not a license for frequency-dependent gravitational-wave propagation in validated bands. It is a possible low-amplitude contribution to the Noether sea state later sampled by photons, clocks, and growth observables.
+the term $S_{\mathrm{GW}}$ records the disturbance of the local Noether braid cadence distribution by the gravitational-wave channel. It is not an additional default polarization mode and not a license for frequency-dependent gravitational-wave propagation in validated bands. It is a possible low-amplitude contribution to the Noether sea state later sampled by photons, clocks, and growth observables.
 
 The redshift-facing projection should therefore be bounded as a perturbation of the path-rate functional:
 
@@ -6372,7 +6375,7 @@ This is the quantity used for binary-orbit energy-loss consistency checks. Energ
 
 ### Black Holes
 
-This chapter is the main black-hole orientation document for the spacetime branch. Its purpose is to tell the reader what survives from standard compact-object phenomenology, what is being reinterpreted at the constitutive level, and how the strong-field nested shell swarm regime is supposed to replace singularity language without losing observational discipline.
+This chapter is the main black-hole orientation document for the spacetime branch. Its purpose is to tell the reader what survives from standard compact-object phenomenology, what is being reinterpreted at the constitutive level, and how the strong-field nested shell braid regime is supposed to replace singularity language without losing observational discipline.
 
 The opening establishes the three-layer distinction between observables, constitutive strong-field structure, and substrate ontology. The later sections then work through horizon conditions, interior regime structure, release channels, and cosmological embedding.
 
@@ -6381,16 +6384,16 @@ The opening establishes the three-layer distinction between observables, constit
 This chapter centralizes the black-hole story within $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to distinguish three levels that are often conflated in black-hole discussion:
 
 - the **effective observational layer**, where black holes are compact objects constrained by lensing, dynamics, accretion phenomenology, horizon-scale imaging, and gravitational-wave data;
-- the **strong-field constitutive layer**, where Noether swarm assemblies enter alignment, compression, and recycling regimes not encountered in ordinary weak-field gravity;
+- the **strong-field constitutive layer**, where Noether braid assemblies enter alignment, compression, and recycling regimes not encountered in ordinary weak-field gravity;
 - the **substrate ontology**, where the Euclidean void remains fixed and the Noether sea carries all dynamical structure.
 
 The chapter does not replace weak-field or observer-level black-hole phenomenology. What survives from standard practice remains indispensable: compact-object mass inference, horizon-scale imaging, ringdown analysis, accretion and jet modeling, and the requirement that exterior predictions recover the tested general-relativistic limit to observational accuracy. The reinterpretation begins only when one asks what a black hole is made of, what replaces singularity language, and how strong-field interiors connect to cosmology.
 
 #### What the Framework Treats as a Black Hole
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, a black hole is not a hole in the Euclidean void. It is a region of the Noether sea driven into an extreme alignment and compression regime by sustained inward transport of matter, radiation, and medium deformation. The effective exterior still behaves like a compact gravitating source, but the interior ontology is not a geometric singularity. It is a structured nested shell swarm regime with three coupled zones:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, a black hole is not a hole in the Euclidean void. It is a region of the Noether sea driven into an extreme alignment and compression regime by sustained inward transport of matter, radiation, and medium deformation. The effective exterior still behaves like a compact gravitating source, but the interior ontology is not a geometric singularity. It is a structured nested shell braid regime with three coupled zones:
 
-| Zone | Nested shell swarm role | Speed regime | Effective black-hole language |
+| Zone | Nested shell braid role | Speed regime | Effective black-hole language |
 | :--- | :--- | :--- | :--- |
 | Exterior bulk | outer-dominant volumetric assemblies | $v < c_f$ | outside observer region |
 | Horizon interface | middle-layer locking with outer-layer terminal alignment | $v = c_f$ for the locked interface components | event horizon |
@@ -6447,7 +6450,7 @@ $$
 
 ##### Neutron-Star Branch as a Radial Test
 
-The neutron-star branch is the sharpest compact-object test before horizon-interface language becomes active. It is already far outside weak-field matter, but it remains a non-horizon branch as long as volumetric neutron-rich matter support has not been forced into terminal nested shell swarm alignment. For a spherical bookkeeping radius $r$ inside a star of surface radius $R_*$, the useful local record is not a scalar density alone but a Noether sea state and matter-response bundle,
+The neutron-star branch is the sharpest compact-object test before horizon-interface language becomes active. It is already far outside weak-field matter, but it remains a non-horizon branch as long as volumetric neutron-rich matter support has not been forced into terminal nested shell braid alignment. For a spherical bookkeeping radius $r$ inside a star of surface radius $R_*$, the useful local record is not a scalar density alone but a Noether sea state and matter-response bundle,
 
 $$
 \Theta_{\mathrm{NS}}(r)
@@ -6569,7 +6572,7 @@ At the assembly level, opposite-charge binaries driven past the hinge near $c_f$
 
 The constitutive claim is modest but important: singularity language remains a warning that weak-field effective variables have exceeded their domain, while the ontic replacement is a structured maximum-curvature core with finite internal bookkeeping.
 
-One preserved strong-field intuition is that sufficiently old or sufficiently compressed interiors may approach an ordered collapse limit rather than a thermalized point. In that heuristic picture, maximal-curvature nested shell swarms pack into a near-crystalline interior, while most entropy remains associated with the active shear and shredding layers nearer the horizon interface. This is not yet a constitutive derivation, but it is a useful candidate for how collapse can saturate without an ontic singularity.
+One preserved strong-field intuition is that sufficiently old or sufficiently compressed interiors may approach an ordered collapse limit rather than a thermalized point. In that heuristic picture, maximal-curvature nested shell braids pack into a near-crystalline interior, while most entropy remains associated with the active shear and shredding layers nearer the horizon interface. This is not yet a constitutive derivation, but it is a useful candidate for how collapse can saturate without an ontic singularity.
 
 ##### High-Energy Probe Closure Target
 
@@ -6612,7 +6615,7 @@ k_B\log|\mathcal{B}_H|
 \mathcal{R}_{\mathrm{release}}(E;\theta)
 \right]
 $$
-Here $w(E)$ is the comparison weighting for the probe family, $d_{\mathrm{curv}}$ checks that the admitted Noether swarm labels are finite maximum-curvature labels, $d_{\mathrm{ent}}$ checks horizon-interface entropy bookkeeping, and $\mathcal{R}_{\mathrm{release}}$ checks the outgoing $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, provenance, medium-update, and remnant rows through the event ledger.
+Here $w(E)$ is the comparison weighting for the probe family, $d_{\mathrm{curv}}$ checks that the admitted Noether braid labels are finite maximum-curvature labels, $d_{\mathrm{ent}}$ checks horizon-interface entropy bookkeeping, and $\mathcal{R}_{\mathrm{release}}$ checks the outgoing $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, provenance, medium-update, and remnant rows through the event ledger.
 
 The closure condition is $\mathcal{R}_{E\to H}(\theta)\le\epsilon_{E\to H}$ using the same strong-field branch record that recovers exterior compact-object observables. A model fails this gate if it claims arbitrarily short-distance resolution in the active compact-object regime, or if it activates the horizon scale while leaving maximum-curvature labels, entropy capacity, or release-channel accounting undefined.
 
@@ -6658,7 +6661,7 @@ The falsifier is not merely failure to choose a numerical Planck scale. The fals
 
 #### Horizon Interface
 
-The horizon interface is the most important black-hole concept in the local dialect. It names the layer in which Noether swarm assemblies are flattened into an alignment-locked sheet.
+The horizon interface is the most important black-hole concept in the local dialect. It names the layer in which Noether braid assemblies are flattened into an alignment-locked sheet.
 
 At this interface:
 
@@ -6669,7 +6672,7 @@ At this interface:
 
 This is why the project treats holographic language as suggestive but not primitive. The horizon behaves like an information-compression interface because the constitutive degrees of freedom have been forced into a constrained alignment state. That motivates the analogy to holography and AdS/CFT without requiring a literal boundary-field ontology.
 
-Modern holographic entropy work, including Ryu-Takayanagi, island, and replica-wormhole calculations, should be treated in this chapter as a comparison framework rather than as imported ontology. Its value is that it sharpens a high-value consistency target: a mature horizon-interface model should explain how compressed interface bookkeeping can remain compatible with Page-curve recovery and smooth effective horizons. It does not, by itself, supply the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. The native task is still to derive entropy and information accounting from terminal nested shell swarm alignment, path-history bookkeeping, Noether sea storage, and release-channel selection.
+Modern holographic entropy work, including Ryu-Takayanagi, island, and replica-wormhole calculations, should be treated in this chapter as a comparison framework rather than as imported ontology. Its value is that it sharpens a high-value consistency target: a mature horizon-interface model should explain how compressed interface bookkeeping can remain compatible with Page-curve recovery and smooth effective horizons. It does not, by itself, supply the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. The native task is still to derive entropy and information accounting from terminal nested shell braid alignment, path-history bookkeeping, Noether sea storage, and release-channel selection.
 
 The Ryu-Takayanagi comparison makes this distinction sharper. A region-anchored entropy surface is not automatically the event horizon; in vacuum or nonthermal comparisons it can have no horizon component at all, while in thermal black-hole limits a large-region surface can wrap the horizon. For a candidate strong-field record $\theta$, let $\gamma_A^{\mathrm{eff}}(\theta)$ be the effective entropy surface associated with access region $A$, and let $H_{\mathrm{eff}}(\theta)=\{F_H=0\}$ denote the observer-level horizon surface selected by the same record. The useful diagnostic is the horizon-wrapping fraction
 $$
@@ -6683,7 +6686,7 @@ A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\right)
 $$
 The event-horizon reading is justified only in the $\eta_H\to1$ regime. When $\eta_H=0$ or remains bounded away from one, the holographic comparison is still useful as an access-region entropy test, but it is not evidence that the boundary surface is the horizon-interface ontology.
 
-A useful way to state that native task is through a horizon-interface label ensemble. Let $\Lambda_{\text{NS}}$ denote the reduced Noether swarm closure label from [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). For an effective exterior black-hole label $(M,\mathbf{J},Q)$, define the schematic ensemble
+A useful way to state that native task is through a horizon-interface label ensemble. Let $\Lambda_{\text{NS}}$ denote the reduced Noether braid closure label from [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md). For an effective exterior black-hole label $(M,\mathbf{J},Q)$, define the schematic ensemble
 $$
 \mathcal{B}_{H}(M,\mathbf{J},Q)
 =
@@ -6699,7 +6702,7 @@ v_O\to c_f,\quad
 \right\}
 $$
 
-In plain language, $\mathcal{B}_{H}$ is the set of strong-field Noether swarm ledger arrangements that look identical to exterior probes once the probe can resolve only effective mass, angular momentum, charge, and allowed interface channels. This gives a precise no-hair reading: exterior no-hair is a coarse-graining over many compatible closure labels, not evidence that the interior has no microstate.
+In plain language, $\mathcal{B}_{H}$ is the set of strong-field Noether braid ledger arrangements that look identical to exterior probes once the probe can resolve only effective mass, angular momentum, charge, and allowed interface channels. This gives a precise no-hair reading: exterior no-hair is a coarse-graining over many compatible closure labels, not evidence that the interior has no microstate.
 
 The corresponding thermodynamic closure target is
 $$
@@ -6850,7 +6853,7 @@ G_N\circ\cdots\circ G_1(\Lambda_a)=\Lambda_b,\
 G_i\in\mathcal{G}_{\mathrm{loc}}
 \right\}
 $$
-where $\mathcal{G}_{\mathrm{loc}}$ is the permitted set of local Noether swarm, path-history, and release-ledger updates inside the horizon-interface model. For a horizon history, write $\mathcal{C}_{H}^{(O)}(t)$ for the minimum such update count between the observer-accessible initial ledger and the compatible ledger class at time $t$.
+where $\mathcal{G}_{\mathrm{loc}}$ is the permitted set of local Noether braid, path-history, and release-ledger updates inside the horizon-interface model. For a horizon history, write $\mathcal{C}_{H}^{(O)}(t)$ for the minimum such update count between the observer-accessible initial ledger and the compatible ledger class at time $t$.
 
 The comparison burden is then:
 $$
@@ -6889,7 +6892,7 @@ This gives a compact comparison rule for evaporation and endpoint proposals. A p
 
 No-hair, cosmic-censorship, Cauchy-horizon, and endpoint theorems enter this chapter with the same assumption discipline. Their strongest use is to preserve exterior compact-object behavior, horizon regularity, non-arbitrary continuation, and finite-release accounting where their hypotheses match the comparison regime. When a theorem assumes an isolated vacuum black hole, asymptotically flat exterior, or global hyperbolicity condition, it cannot by itself settle a black hole embedded in an evolving Noether sea. The retained burden is sharper: the native horizon-interface record must reproduce the exterior $(M,\mathbf{J},Q)$ coarse-graining, avoid observer-level naked-singularity pathology, and select a finite continuation family using finite active-medium boundary data.
 
-As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** in the nested shell swarm shape trajectory. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed shape path is
+As a heuristic geometric picture, the horizon can also be described as a **dimensional pinch** in the nested shell braid shape trajectory. On this reading, ordinary 3D assemblies are flattened toward a near-planar disk at the alignment interface, while the interior self-hit regime permits re-opening of the suppressed axial degree of freedom. In shorthand, the proposed shape path is
 $$
 \text{3D sphere} \to \text{2D horizon disk} \to \text{3D interior reopening}
 $$
@@ -7170,7 +7173,7 @@ The clean constitutive chain is:
 
 This means black holes are candidate contributors to dark-energy phenomenology, not substitutes for the Noether sea ontology.
 
-The equilibrium-transport version of this claim is more specific. Strong-field recycling may act as a source term for the Noether swarm cadence distribution of the surrounding Noether sea. If $f_N(\nu,\mathbf{x},t)$ records the local distribution of Noether swarm cadence states with $E_N=h\nu_N$, then a black-hole contribution appears as $S_{\mathrm{BH}}$ in a medium equation of the form
+The equilibrium-transport version of this claim is more specific. Strong-field recycling may act as a source term for the Noether braid cadence distribution of the surrounding Noether sea. If $f_N(\nu,\mathbf{x},t)$ records the local distribution of Noether braid cadence states with $E_N=h\nu_N$, then a black-hole contribution appears as $S_{\mathrm{BH}}$ in a medium equation of the form
 
 $$
 \partial_t f_N
@@ -7198,7 +7201,7 @@ Within $\mathbb{A}\mathbb{A}\mathbb{A}$, such a signal would be interpreted cons
 
 That interpretation remains conditional. The observational correlation must first survive ordinary astrophysical alternatives such as hidden accretion, merger incompleteness, host selection, and mass-calibration drift. Even if the correlation survives, the theory still must show how interior recycling feeds a cosmological source term without spoiling other closure targets.
 
-In local usage, $K$ should therefore be treated as a phenomenological diagnostic rather than as a primitive constant of nature. Its value summarizes how strongly the population of recycling sites appears to track the expansion history in a given observational reconstruction. The underlying $\mathbb{A}\mathbb{A}\mathbb{A}$ claim would remain deeper: any apparent coupling must emerge from nested shell swarm alignment, maximum-curvature storage, interface transport, and outward medium loading.
+In local usage, $K$ should therefore be treated as a phenomenological diagnostic rather than as a primitive constant of nature. Its value summarizes how strongly the population of recycling sites appears to track the expansion history in a given observational reconstruction. The underlying $\mathbb{A}\mathbb{A}\mathbb{A}$ claim would remain deeper: any apparent coupling must emerge from nested shell braid alignment, maximum-curvature storage, interface transport, and outward medium loading.
 
 #### Population History and Source Accounting
 
@@ -7238,8 +7241,8 @@ This chapter centralizes the black-hole ontology and hands specific tasks to adj
 
 - [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md): canonical horizon alignment condition and singularity replacement language.
 - [gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md): weak-field and strong-field observational closure targets.
-- [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md): nested shell swarm regime map, recycling sketches, and kinematic hypotheses.
-- [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md): Planck-alignment interpretation of terminal horizon locking.
+- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md): nested shell braid regime map, recycling sketches, and kinematic hypotheses.
+- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md): Planck-alignment interpretation of terminal horizon locking.
 - [../cosmology/dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md): effective dark-energy source terms and late-time expansion history.
 - [../cosmology/CMB.md](../../../../markdown/aaa/cosmology/CMB.md): recycling cosmology and SMBH-sourced chronology mapping.
 - [../cosmology/dark-matter.md](../../../../markdown/aaa/cosmology/dark-matter.md): dark-sector processing and SMBH recycling constraints.
@@ -7250,7 +7253,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, black holes are strong-field Noether sea re
 
 ### Singularity Resolution
 
-This chapter frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the Noether swarm architecture. It is the canonical strong-field bridge for [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), and [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md).
+This chapter frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the Noether braid architecture. It is the canonical strong-field bridge for [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), and [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md).
 
 #### Canonical Strong-Field Alignment Condition
 
@@ -7346,7 +7349,7 @@ $$
 \right)
 <\infty
 $$
-together with the horizon-interface condition $F_H=0$ and a finite Noether swarm closure-label ensemble. This is a theorem target, not a definition of success: the strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
+together with the horizon-interface condition $F_H=0$ and a finite Noether braid closure-label ensemble. This is a theorem target, not a definition of success: the strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
 
 A sharper endpoint criterion is that those same finite data admit a continuation map
 $$
@@ -7403,19 +7406,19 @@ with the same finite boundary data driving the transition across the whole inter
 
 #### Maximal Curvature vs Planck Scale
 
-The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), with **scale and cadence retuning**; it serves as the **energy-storage fulcrum** for transfers across the nested shell swarm.
+The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), with **scale and cadence retuning**; it serves as the **energy-storage fulcrum** for transfers across the nested shell braid.
 
 In strong-field conditions (e.g., near an event horizon), the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary** remains at $v=c_f$ as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
 
-One preserved intuition, to be read only as a heuristic, is that this alignment limit may correspond to a temporary **planar horizon state** rather than to the final interior shape. In that picture, the horizon is the point of strongest flattening, while deeper interior self-hit pressure can reopen the suppressed polar degree of freedom so the nested shell swarm returns to a finite 3D configuration instead of terminating in a zero-volume endpoint. This is compatible with the maximum-curvature replacement logic, but it is not yet a derived mechanism; compare [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md).
+One preserved intuition, to be read only as a heuristic, is that this alignment limit may correspond to a temporary **planar horizon state** rather than to the final interior shape. In that picture, the horizon is the point of strongest flattening, while deeper interior self-hit pressure can reopen the suppressed polar degree of freedom so the nested shell braid returns to a finite 3D configuration instead of terminating in a zero-volume endpoint. This is compatible with the maximum-curvature replacement logic, but it is not yet a derived mechanism; compare [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md).
 
-**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (nested shell swarm coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale.
+**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (nested shell braid coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale.
 
 ### Horizon Chirality
 
-This chapter studies one narrow theory question: how the Noether swarm `pro/anti` distinction should be understood as a nested shell swarm approaches the planar horizon state. For this note we set aside bookkeeping questions and focus on geometry, orbit direction, and the reduction from a 3D precessing scaffold to a planar exterior view.
+This chapter studies one narrow theory question: how the Noether braid `pro/anti` distinction should be understood as a nested shell braid approaches the planar horizon state. For this note we set aside bookkeeping questions and focus on geometry, orbit direction, and the reduction from a 3D precessing scaffold to a planar exterior view.
 
-The guiding problem is simple. In ordinary low-stress conditions, the nested shell swarm is a fully 3D object with ordered binary roles and precession structure. At the event horizon, the same assembly is driven toward coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
+The guiding problem is simple. In ordinary low-stress conditions, the nested shell braid is a fully 3D object with ordered binary roles and precession structure. At the event horizon, the same assembly is driven toward coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
 
 #### Canonical Horizon Condition
 
@@ -7429,16 +7432,16 @@ $$
 
 with the middle and outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
 
-This chapter does not alter that constitutive rule. It asks what chirality information can still be distinguished once the nested shell swarm has been compressed into that planar boundary-like state.
+This chapter does not alter that constitutive rule. It asks what chirality information can still be distinguished once the nested shell braid has been compressed into that planar boundary-like state.
 
 #### Pro/Anti Before Planar Lock
 
-Away from the horizon, the project already treats `pro/anti` as a handedness or ordering property of the 3D nested shell swarm scaffold rather than as a net-charge distinction. The standard working convention appears in [noether-sea-pro-anti-coupling.md](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md) and [../assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md):
+Away from the horizon, the project already treats `pro/anti` as a handedness or ordering property of the 3D nested shell braid scaffold rather than as a net-charge distinction. The standard working convention appears in [noether-sea-pro-anti-coupling.md](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md) and [../assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md):
 
 - `pro`: $H \to M \to L$ ordering in time;
 - `anti`: $H \to L \to M$ ordering in time.
 
-That distinction is natural in the ordinary nested shell swarm because the three binaries occupy non-coplanar planes with an ordered set of normals and a genuine precession structure. In that regime, `pro/anti` is a 3D chirality datum.
+That distinction is natural in the ordinary nested shell braid because the three binaries occupy non-coplanar planes with an ordered set of normals and a genuine precession structure. In that regime, `pro/anti` is a 3D chirality datum.
 
 The strongest current mathematical candidate beneath that datum comes from [causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md): the causal writhe
 
@@ -7449,24 +7452,24 @@ $$
 
 is a signed measure of handedness for the self-interaction pattern, and the same chapter states that changing $Wr_c$ requires tearing the causal locus. So the cleanest current reading is:
 
-- the surface convention for `pro/anti` remains the ordered `HML/HLM` nested shell swarm distinction;
+- the surface convention for `pro/anti` remains the ordered `HML/HLM` nested shell braid distinction;
 - the best current formalization candidate is a topological branch label carried by the causal locus, with $Wr_c$ as the leading chirality measure.
 
 The horizon state is different. Once the planes collapse into one planar lock and precession ceases, some of the ordinary 3D chirality data are suppressed. That makes it plausible that the horizon exposes only a reduced exterior signature of the deeper `pro/anti` distinction.
 
 #### Broader Pro/Anti Balance in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-This chapter should also be read against a broader guardrail from the project framing: $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** naturally suggest a large universal pro/anti imbalance in the substrate as a whole. The Noether sea picture is instead built around persistent local or mesoscopic balance between complementary Noether swarm orientations.
+This chapter should also be read against a broader guardrail from the project framing: $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** naturally suggest a large universal pro/anti imbalance in the substrate as a whole. The Noether sea picture is instead built around persistent local or mesoscopic balance between complementary Noether braid orientations.
 
 Several standing examples point in that direction.
 
 - **Noether sea / spacetime medium:** the ambient Noether sea is already framed as a coupled pro/anti population rather than a single-sign sea.
 - **Photon channel:** the photon assembly is naturally read as a coaxial contra-rotating pro/anti planar pair, or equivalently one `CW` and one `CCW` planar branch in the flat state as an absolute-frame observer compares the two sides of the propagating pair.
-- **Higgs-like cluster:** the standing cluster intuition remains a $2+2$ object, with two pro and two anti Noether swarms in a three-dimensional coupled state rather than a single-sign configuration.
+- **Higgs-like cluster:** the standing cluster intuition remains a $2+2$ object, with two pro and two anti Noether braids in a three-dimensional coupled state rather than a single-sign configuration.
 
-So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem compresses the Noether swarm strongly enough that the binary branch structure becomes especially visible.
+So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem compresses the Noether braid strongly enough that the binary branch structure becomes especially visible.
 
-The matter sector then becomes the special case. In the current intuition, what we call ordinary matter may be the regime where pro-Noether swarm and anti-Noether swarm encounters act as a kind of geometric opener for one another, making fast reconfiguration channels available. In that reading, the standard word "annihilation" is too blunt. The deeper process is a **reaction** or **reconfiguration event** in which the coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
+The matter sector then becomes the special case. In the current intuition, what we call ordinary matter may be the regime where pro-Noether braid and anti-Noether braid encounters act as a kind of geometric opener for one another, making fast reconfiguration channels available. In that reading, the standard word "annihilation" is too blunt. The deeper process is a **reaction** or **reconfiguration event** in which the coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
 
 That broader matter/reaction thesis belongs with reaction-channel provenance and fermion assembly structure. Inside this chapter, its role is narrower: it reminds us that horizon chirality should be developed inside a theory that is broadly pro/anti balanced, with the dramatic visible asymmetries appearing only in certain reaction channels or assembly sectors.
 
@@ -7476,8 +7479,8 @@ To keep terms from sliding into one another, use the following provisional dicti
 
 | Label | Meaning in this note | Typical regime |
 | --- | --- | --- |
-| `pro/anti` | the deeper 3D Noether swarm chirality, currently tracked by ordered nested shell swarm structure such as `HML` versus `HLM` | pre-planar 3D swarm |
-| `CW/CCW` | the exterior planar angular-momentum sign seen from one chosen viewing side of a planarized Noether swarm | horizon / planar lock |
+| `pro/anti` | the deeper 3D Noether braid chirality, currently tracked by ordered nested shell braid structure such as `HML` versus `HLM` | pre-planar 3D braid |
+| `CW/CCW` | the exterior planar angular-momentum sign seen from one chosen viewing side of a planarized Noether braid | horizon / planar lock |
 | `left/right` | a possible axial sign relative to translation, for example $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$, if that later proves to control forward exposure of the weak-active structure | high-velocity aligned regime |
 
 This chapter treats these as related but not yet identical labels. One of its main goals is to understand how they may collapse onto one another in the terminal high-velocity regime.
@@ -7490,10 +7493,10 @@ The horizon question becomes clearer when compared against the main assembly sec
 | --- | --- | --- | --- |
 | Noether sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not predict a large universal imbalance |
 | Photon channel | coaxial contra-rotating pro/anti planar pair | planar / propagating pair | shows that opposite branch pairing is natural in flat planar states |
-| Higgs-like cluster | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-swarm organization without collapsing to one sign |
+| Higgs-like cluster | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-braid organization without collapsing to one sign |
 | Ordinary matter reaction channels | pro/anti encounters can open rapid reconfiguration channels | mixed 3D and reaction geometry | the place where asymmetry becomes dynamically important rather than globally dominant |
 
-This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed nested shell swarm advertises its branch structure when driven into the strongest alignment regime.
+This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed nested shell braid advertises its branch structure when driven into the strongest alignment regime.
 
 #### Exterior Planar Angular-Momentum Basis
 
@@ -7535,22 +7538,22 @@ The simplest exterior quantity is the sign of the common planar angular momentum
 
 This chapter will call that reduced exterior quantity **boundary helicity**: the horizon-local sign of common planar angular momentum relative to a chosen normal. The term is deliberately narrower than standard helicity until the normal is identified with the relevant propagation or translation direction.
 
-The deeper `pro/anti` distinction is plausibly stronger than boundary helicity alone. In the 3D scaffold, `pro/anti` tracks ordered nested shell swarm chirality, not merely the sign of one visible planar swirl. Once the horizon suppresses precession and forces coplanarity, two different 3D histories may collapse to the same exterior planar sign.
+The deeper `pro/anti` distinction is plausibly stronger than boundary helicity alone. In the 3D scaffold, `pro/anti` tracks ordered nested shell braid chirality, not merely the sign of one visible planar swirl. Once the horizon suppresses precession and forces coplanarity, two different 3D histories may collapse to the same exterior planar sign.
 
 That motivates the following working distinction:
 
 - **Boundary helicity:** the visible sign of the common planar angular momentum at the horizon, measured relative to a chosen normal.
-- **Core chirality:** the deeper `pro/anti` distinction inherited from the ordered 3D nested shell swarm before flattening.
+- **Core chirality:** the deeper `pro/anti` distinction inherited from the ordered 3D nested shell braid before flattening.
 
 If this distinction is correct, then the horizon does not necessarily erase `pro/anti`, but it may compress it so strongly that the exterior observer sees only a reduced proxy.
 
 #### Translation-Axis Alignment at High Velocity
 
-The next question is whether a rapidly translating nested shell swarm should drive the three orbital angular-momentum vectors toward the translation axis itself.
+The next question is whether a rapidly translating nested shell braid should drive the three orbital angular-momentum vectors toward the translation axis itself.
 
 The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
 
-The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md) and its dynamics treatment in [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md):
+The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md) and its dynamics treatment in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md):
 
 $$
 \frac{x^2+y^2}{R_\perp^2} + \frac{z^2}{R_\parallel^2} = 1,
@@ -7595,7 +7598,7 @@ $$
 
 so the restoring pressure toward axial alignment strengthens as $v_{\text{trans}} \to c_f$.
 
-This gives a precise version of the intuition: a high-velocity nested shell swarm should be driven toward a state in which the three orbital angular-momentum vectors are **coaxial with the line of translation**, not because momentum conservation alone demands it, but because delayed closure becomes least frustrated there.
+This gives a precise version of the intuition: a high-velocity nested shell braid should be driven toward a state in which the three orbital angular-momentum vectors are **coaxial with the line of translation**, not because momentum conservation alone demands it, but because delayed closure becomes least frustrated there.
 
 #### Exact Conservation Versus Dynamical Selection
 
@@ -7612,11 +7615,11 @@ In symmetry language, the ambient substrate begins with the full spatial isotrop
 The emerging picture is easier to reason about if written as a shape-and-label ladder:
 
 $$
-\text{3D precessing swarm}
+\text{3D precessing braid}
 \;\to\;
-\text{oblate translating swarm}
+\text{oblate translating braid}
 \;\to\;
-\text{axialized high-}v\text{ swarm}
+\text{axialized high-}v\text{ braid}
 \;\to\;
 \text{planar horizon lock}
 \;\to\;
@@ -7625,10 +7628,10 @@ $$
 
 The intended label flow along that ladder is:
 
-1. In the ordinary 3D regime, `pro/anti` is carried by ordered nested shell swarm chirality.
+1. In the ordinary 3D regime, `pro/anti` is carried by ordered nested shell braid chirality.
 2. Under high translation speed, the orbital normals are biased toward the translation axis.
 3. Near the terminal aligned state, the surviving branch data may reduce to the sign of the common axial orientation and then to the sign of the visible planar helicity.
-4. After passage through the lock, the Noether swarm may either preserve that branch, re-expand with the same handed history, or undergo a deeper reconfiguration if the planar degeneracy is strong enough.
+4. After passage through the lock, the Noether braid may either preserve that branch, re-expand with the same handed history, or undergo a deeper reconfiguration if the planar degeneracy is strong enough.
 
 This ladder is still a working map, not a completed derivation. Its value is organizational: it shows where the theory expects information to be compressed, preserved, or potentially switched.
 
@@ -7673,7 +7676,7 @@ In the more cautious reduction, the two uniform planar states are still the visi
 - the uniform planar sign is the **visible boundary marker**;
 - the deeper `pro/anti` label still refers to the ordered 3D chirality from which the planar state was reached.
 
-On this reading, the horizon preserves only a compressed image of the deeper nested shell swarm chirality. The exterior observer sees the branch, but not necessarily the full internal ordering history.
+On this reading, the horizon preserves only a compressed image of the deeper nested shell braid chirality. The exterior observer sees the branch, but not necessarily the full internal ordering history.
 
 At present, Theory B is the stronger conceptual fit with the existing 3D `HML/HLM` framing, because that framing is richer than a single planar spin sign.
 
@@ -7693,18 +7696,18 @@ are natural candidates for a left/right or helicity-like pair.
 
 That does **not** automatically make them identical to weak-interaction chirality. The current canon already uses left/right language operationally in terms of whether the weak-coupling triad is exposed or hidden relative to motion and wake geometry. Still, the axial-lock picture suggests a possible underlying bridge:
 
-- the high-velocity Noether swarm first selects one of the two axial branches $\pm \hat{\mathbf V}$;
+- the high-velocity Noether braid first selects one of the two axial branches $\pm \hat{\mathbf V}$;
 - that branch then influences which side of the axial structure is forward-exposed versus wake-hidden;
 - the observer-level left/right distinction may therefore descend from the sign choice of the common axial angular momentum in the translating aligned state.
 
 In that reading, the horizon or near-horizon limit does not merely present two boundary-helicity states. It may also reveal a candidate upstream axial-lock variable for later left/right spin mapping:
 
-- `right-like`: net swarm axis aligned with translation;
-- `left-like`: net swarm axis anti-aligned with translation;
+- `right-like`: net braid axis aligned with translation;
+- `left-like`: net braid axis anti-aligned with translation;
 
 or the reverse, depending on the eventual sign convention.
 
-This should remain a live hypothesis rather than a settled identification. The safe claim is only that the high-velocity math strongly favors **axialization** of the nested shell swarm angular-momentum vectors along the line of translation, and that the surviving sign choice is exactly the kind of binary datum that could later map onto a left/right spin label.
+This should remain a live hypothesis rather than a settled identification. The safe claim is only that the high-velocity math strongly favors **axialization** of the nested shell braid angular-momentum vectors along the line of translation, and that the surviving sign choice is exactly the kind of binary datum that could later map onto a left/right spin label.
 
 The explicit defer condition is that terminal axial sign,
 
@@ -7720,8 +7723,8 @@ The current chapter mixes canonical inputs with stronger and weaker hypotheses. 
 
 | Claim | Status |
 | --- | --- |
-| horizon lock drives the nested shell swarm toward coplanarity and suppresses precession | canonical in current project framing |
-| `pro/anti` is a deeper 3D Noether swarm chirality label rather than a net-charge label | canonical working convention |
+| horizon lock drives the nested shell braid toward coplanarity and suppresses precession | canonical in current project framing |
+| `pro/anti` is a deeper 3D Noether braid chirality label rather than a net-charge label | canonical working convention |
 | `Wr_c` and causal-locus topology supply the best current formalization candidate for that chirality | strong structural candidate, not yet sole canonical definition |
 | the planar exterior sign space has 8 rows for labeled `H/M/L` binaries | exact combinatorial statement |
 | high translation speed biases orbital normals toward the translation axis | strong geometric argument in this chapter |
@@ -7738,7 +7741,7 @@ That possibility raises three immediate questions:
 
 1. Are mixed-sign rows dynamically stable, or do they relax toward a common-sign lock?
 2. If they are stable, do they define additional horizon classes beyond `pro/anti`?
-3. If they are unstable, are they the natural transition states through which a Noether swarm passes while entering or leaving the horizon interface?
+3. If they are unstable, are they the natural transition states through which a Noether braid passes while entering or leaving the horizon interface?
 
 The present note favors the third reading: mixed-sign planar states are more naturally interpreted as transition or frustration states than as clean final branches. But this remains an open dynamics question rather than a closed derivation.
 
@@ -7746,15 +7749,15 @@ One reason for that preference is action-geometric rather than merely visual. In
 
 #### Transition Rules for Pro/Anti Conversion
 
-One of the biggest unresolved questions is whether a Noether swarm can flip from `pro` to `anti` smoothly, or only through a more singular reconfiguration.
+One of the biggest unresolved questions is whether a Noether braid can flip from `pro` to `anti` smoothly, or only through a more singular reconfiguration.
 
 The current chapter points toward the second option. The likely possibilities are:
 
-1. **No flip in ordinary smooth evolution:** away from the planar degeneracy, the ordered 3D Noether swarm chirality appears robust and should survive adiabatic deformations.
+1. **No flip in ordinary smooth evolution:** away from the planar degeneracy, the ordered 3D Noether braid chirality appears robust and should survive adiabatic deformations.
 2. **Near-degenerate branch switch at planar lock:** when the three planes collapse into one planar state, some 3D chirality data are compressed strongly enough that a branch change may become dynamically accessible.
 3. **Full reconfiguration / reaction channel:** a deeper split, exchange, or reconstruction of the constituent binaries could permit a true $pro \leftrightarrow anti$ conversion.
 
-This is exactly where the language of "annihilation" starts to look too weak. If a pro/anti encounter opens the Noether swarm and allows branch-changing reconfiguration, the physical process is better described as a structured reaction than as disappearance.
+This is exactly where the language of "annihilation" starts to look too weak. If a pro/anti encounter opens the Noether braid and allows branch-changing reconfiguration, the physical process is better described as a structured reaction than as disappearance.
 
 The strongest current language from the dynamics stack is that true branch conversion should be associated with a **mode-lock event** or related non-perturbative reconfiguration, not with an adiabatic drift. If the branch label is indeed carried by the topology of the causal locus, then a smooth $pro \leftrightarrow anti$ conversion would require passage through a singular or near-singular reconnection stage rather than ordinary continuous motion.
 
@@ -7768,14 +7771,14 @@ For now, the safest working rule is:
 
 #### Simulation Diagnostics
 
-If this note is to become more than a conceptual sketch, the following diagnostics should be added to simulations of fast translating or horizon-adjacent nested shell swarms:
+If this note is to become more than a conceptual sketch, the following diagnostics should be added to simulations of fast translating or horizon-adjacent nested shell braids:
 
 - **Axis-alignment diagnostic:** track $\hat J_{\text{net}} \cdot \hat{\mathbf V}$ and test whether it tends toward $\pm 1$ as $v_{\text{trans}} \to c_f$.
 - **Tilt decay diagnostic:** track each orbital-normal angle $\alpha_i$ to test whether non-axial states relax toward the translation axis with a rate that grows with $\gamma$.
 - **Planar branch diagnostic:** once the planarity threshold is met, record which of the 8 planar sign rows the assembly occupies.
 - **Mixed-row lifetime diagnostic:** test whether rows 2 through 7 are long-lived or short-lived compared with the two uniform rows.
 - **Exposure diagnostic:** compare the sign of $\hat J_{\text{net}} \cdot \hat{\mathbf V}$ against forward exposure of the weak-active structure to test the left/right bridge hypothesis.
-- **Branch persistence diagnostic:** drive a Noether swarm into and back out of the planar regime and test whether the same deeper branch label is recovered after re-expansion.
+- **Branch persistence diagnostic:** drive a Noether braid into and back out of the planar regime and test whether the same deeper branch label is recovered after re-expansion.
 
 #### Provisional Conclusion
 
@@ -7783,8 +7786,8 @@ The full planar spin-sign space at the horizon has eight rows because each of th
 
 That yields a disciplined provisional picture:
 
-- `pro/anti` in the ordinary nested shell swarm is a 3D chirality or ordering property;
-- the horizon compresses the nested shell swarm into a planar state with a reduced exterior signature;
+- `pro/anti` in the ordinary nested shell braid is a 3D chirality or ordering property;
+- the horizon compresses the nested shell braid into a planar state with a reduced exterior signature;
 - the exterior planar state has eight logical spin permutations;
 - the two uniform rows are the best candidates for stable horizon branches;
 - the other six rows are most naturally read as transitional, frustrated, or unstable states unless future dynamics show otherwise.
@@ -7793,8 +7796,8 @@ That yields a disciplined provisional picture:
 
 - [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md): canonical horizon alignment condition.
 - [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md): horizon interface and strong-field ontology.
-- [nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md): regime map, planarity diagnostics, and alignment observables.
-- [planck-scale-nested-shell-swarm-alignment.md](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md): terminal planar lock and alignment-horizon interpretation.
+- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md): regime map, planarity diagnostics, and alignment observables.
+- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md): terminal planar lock and alignment-horizon interpretation.
 - [angular-momentum-and-spin.md](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
 - [../assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md): matter/antimatter chirality convention.
 - [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md): ordered-triad and chirality language.
@@ -7811,24 +7814,24 @@ That yields a disciplined provisional picture:
 $$
 Z_{\mathrm{grav}}[\phi_0] = Z_{\mathrm{CFT}}[\phi_0]
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Within $\mathbb{A}\mathbb{A}\mathbb{A}$, these concepts are treated as high-level clues rather than as final ontology. The project does not start from a fundamental AdS bulk or a literal boundary CFT. Instead, it interprets horizon structure as a constitutive interface between different nested shell swarm regimes. In that setting, cosmic censorship becomes a statement about access to maximal-curvature regimes, holography becomes a statement about compressed interface encoding, and AdS/CFT becomes a suggestive dual-language analogue rather than the primitive architecture itself.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Within $\mathbb{A}\mathbb{A}\mathbb{A}$, these concepts are treated as high-level clues rather than as final ontology. The project does not start from a fundamental AdS bulk or a literal boundary CFT. Instead, it interprets horizon structure as a constitutive interface between different nested shell braid regimes. In that setting, cosmic censorship becomes a statement about access to maximal-curvature regimes, holography becomes a statement about compressed interface encoding, and AdS/CFT becomes a suggestive dual-language analogue rather than the primitive architecture itself.
 
-The same restraint applies to Ryu-Takayanagi, island, and replica-wormhole entropy results. They are strongest here as comparison mathematics showing how Page-curve recovery can be organized in controlled holographic settings. They should not be imported as horizon ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping target is narrower: determine which boundary-encoding features survive as effective compression laws after the horizon-interface regime is derived from nested shell swarm alignment and Noether sea dynamics.
+The same restraint applies to Ryu-Takayanagi, island, and replica-wormhole entropy results. They are strongest here as comparison mathematics showing how Page-curve recovery can be organized in controlled holographic settings. They should not be imported as horizon ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping target is narrower: determine which boundary-encoding features survive as effective compression laws after the horizon-interface regime is derived from nested shell braid alignment and Noether sea dynamics.
 
-| Nested Shell Swarm Region | $f$ | Speed Regime | Black Hole Region | Volume | AdS/CFT Side |
+| Nested Shell Braid Region | $f$ | Speed Regime | Black Hole Region | Volume | AdS/CFT Side |
 | :--- | :--: | :---: | :--- | :--- | :--- |
 | Inner (self-hit) | 4 | $v > c_f$ | Inside the black hole | Inflation/deflation | AdS interior (gravity side) |
 | Middle (interface) | 2 | $v = c_f$ | Event horizon | Flat | Holographic horizon/interface |
 | Outer (non-self-hit) | 1 | $v < c_f$ | Outside observer region | Expansion/contraction | CFT (exterior QFT) |
 
-The more precise architrino picture is a radial alignment state in which all three nested shell swarm components share one axis while occupying different speed and deformation regimes. In that sense, \"inside,\" \"horizon,\" and \"outside\" should be read as a constitutive continuum parameterized by nested shell swarm deformation rather than as three disconnected ontological zones.
+The more precise architrino picture is a radial alignment state in which all three nested shell braid components share one axis while occupying different speed and deformation regimes. In that sense, \"inside,\" \"horizon,\" and \"outside\" should be read as a constitutive continuum parameterized by nested shell braid deformation rather than as three disconnected ontological zones.
 
-For this reason the preferred local term is **Horizon interface**: surface degrees of freedom with Planck-aligned nested shell swarms, without asserting that the interface is literally a conventional CFT. Horizon interface means:
+For this reason the preferred local term is **Horizon interface**: surface degrees of freedom with Planck-aligned nested shell braids, without asserting that the interface is literally a conventional CFT. Horizon interface means:
 
 - Assemblies fixed at $v=c_f$ tangentially (middle and outer loops locked),
 - Planck-frequency hierarchy (inner 4x, middle 2x, outer 1x),
 - Information flow constrained to the interface sheet,
-- Ready to bifurcate into volumetric Noether swarms as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or Noether sea content).
+- Ready to bifurcate into volumetric Noether braids as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or Noether sea content).
 
 That yields a disciplined shorthand: Horizon interface for the Planck-aligned interface layer, bulk for $v<c_f$ volumetric cores, and AdS-like for the $v>c_f$ self-hit interior, all treated as regimes on one constitutive continuum.
 
@@ -7838,7 +7841,7 @@ That yields a disciplined shorthand: Horizon interface for the Planck-aligned in
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 **Geometric proof targets:**
-- Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit nested shell swarm states.
+- Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit nested shell braid states.
 - Show which elements of boundary encoding survive as effective compression laws without requiring fundamental boundary ontology.
 - Treat black-hole entropy and Page-curve recovery as downstream consistency targets after the native horizon-interface mechanism is specified, not as source derivations for the ontology.
 

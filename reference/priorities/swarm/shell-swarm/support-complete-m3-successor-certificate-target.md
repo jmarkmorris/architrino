@@ -400,7 +400,7 @@ Such a row may guide the next solve, but it cannot retain a branch or support en
 7. the fitted curvature coefficient is compatible with an action-derived $\Gamma_B$ and the work one-form passes the curl row;
 8. the finite-mode refinement sequence has bounded off-grid residual, root-label drift, excluded-gap drift, and projector drift.
 
-Then the packet is a support-complete $M=3$ dynamics candidate on the declared branch label. It is not yet a retained shell swarm branch candidate until the Noether action/conservation rows, inventory rows, and root-ledger Floquet stability row also pass on the same live ledger.
+Then the packet is a support-complete $M=3$ dynamics candidate on the declared branch label. It is not yet a retained shell braid branch candidate until the Noether action/conservation rows, inventory rows, and root-ledger Floquet stability row also pass on the same live ledger.
 
 The finite-mode convergence handoff is specified in [support-complete-m3-finite-mode-convergence-handoff.md](support-complete-m3-finite-mode-convergence-handoff.md). It upgrades finite $M=3$ rows to a curve-level dynamics/action candidate only when a certified refinement sequence has uniform floors and vanishing continuous errors. The exact $M=3$ Noether/event handoff is specified in [support-complete-m3-noether-event-handoff.md](support-complete-m3-noether-event-handoff.md). It must not be run before the dynamics/action candidate exists, but it is mandatory before any retained-branch claim. The same is true for the stability handoff in [support-complete-m3-stability-handoff.md](support-complete-m3-stability-handoff.md): root-ledger monodromy, neutral-mode quotient, conservative or exchange classification, and nonlinear recovery must all use the same ledger.
 

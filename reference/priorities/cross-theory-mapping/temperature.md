@@ -13,15 +13,15 @@
 
 1. `standard_temperature_baseline` - Keep thermodynamic, kinetic, statistical, radiation, cosmological, and horizon-temperature meanings separated before mapping them into $\mathbb{A}\mathbb{A}\mathbb{A}$. Status: `draft`. Depends on: none.
 2. `ensemble_temperature_definition` - Convert the radiation chapter's ensemble-temperature relation into a reusable condition for when temperature is available. Status: `draft`. Depends on: [entropy](entropy.md).
-3. `kelvin_kb_bridge` - Route the Kelvin and $k_B$ discussion through Noether sea ensemble dynamics without treating a single Noether swarm as thermodynamically hot. Status: `draft`. Depends on: `ensemble_temperature_definition`, [mass-map](../mass-map/mass-map.md).
-4. `blackbody_temperature_gate` - Tie Planck-spectrum recovery to Gate A, Gate B, Gate C, detailed balance, and thermalization depth. Status: `draft`. Depends on: [swarm](../swarm/swarm.md).
-5. `cosmology_temperature_handoff` - Separate intrinsic Noether swarm energy, local emissive ensemble temperature, and observer-inferred CMB temperature. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
+3. `kelvin_kb_bridge` - Route the Kelvin and $k_B$ discussion through Noether sea ensemble dynamics without treating a single Noether braid as thermodynamically hot. Status: `draft`. Depends on: `ensemble_temperature_definition`, [mass-map](../mass-map/mass-map.md).
+4. `blackbody_temperature_gate` - Tie Planck-spectrum recovery to Gate A, Gate B, Gate C, detailed balance, and thermalization depth. Status: `draft`. Depends on: [braid](../swarm/swarm.md).
+5. `cosmology_temperature_handoff` - Separate intrinsic Noether braid energy, local emissive ensemble temperature, and observer-inferred CMB temperature. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
 
 ## Scope
 
 This lane is a draft mapping surface for temperature. It is not a new reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ chapter and it does not replace [Radiation](../../../content/markdown/aaa/reactions/radiation.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [Noether sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [reaction-cosmology provenance](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md), or [architrino SI base units](../../../content/markdown/aaa/validation/architrino-si-base-units.md).
 
-The purpose is to preserve the useful standard meanings of temperature while preventing a common mapping mistake: equating the internal energy of one Noether swarm with a thermodynamic temperature before an ensemble distribution, entropy-energy relation, or local-equilibrium condition has been derived.
+The purpose is to preserve the useful standard meanings of temperature while preventing a common mapping mistake: equating the internal energy of one Noether braid with a thermodynamic temperature before an ensemble distribution, entropy-energy relation, or local-equilibrium condition has been derived.
 
 ## Current Theory Baseline
 
@@ -70,7 +70,7 @@ In horizon physics, Hawking and Unruh temperatures are comparison targets associ
 | Source | Signal for this lane | Claim bucket |
 | --- | --- | --- |
 | [Theory Differentials](../../../content/markdown/aaa/philosophy-history/theory-differentials.md#temperature) | Temperature is a cross-layer portable construct relocated to statistical population regimes and recovered as an effective limit. | effective summary plus derivation-closure target |
-| [Radiation](../../../content/markdown/aaa/reactions/radiation.md#ensemble-temperature) | A single excited Noether swarm is internally excited, closure-mismatched, or metastable, not thermodynamically hot. Temperature requires an ensemble distribution or entropy-energy relation. | derivation-closure target |
+| [Radiation](../../../content/markdown/aaa/reactions/radiation.md#ensemble-temperature) | A single excited Noether braid is internally excited, closure-mismatched, or metastable, not thermodynamically hot. Temperature requires an ensemble distribution or entropy-energy relation. | derivation-closure target |
 | [Radiation](../../../content/markdown/aaa/reactions/radiation.md#blackbody-limit) | Blackbody temperature requires detailed balance, Planck occupation, and a thermalized photon bath. | derivation-closure target |
 | [CMB](../../../content/markdown/aaa/cosmology/CMB.md#effective-thermal-spectrum-of-the-noether-sea) | The observed $2.7255\,\mathrm{K}$ background is the present observer-side microwave radiation temperature, not automatically the intrinsic temperature of the Noether sea. | effective summary plus closure target |
 | [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Photon bath temperature, thermalization depth, redshift, and CMB spectra must be carried by one source-to-observer ledger. | derivation-closure target |
@@ -79,9 +79,9 @@ In horizon physics, Hawking and Unruh temperatures are comparison targets associ
 
 ## Draft $\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping
 
-Temperature is not a primitive substrate property. The primitive and medium-level objects are architrino assemblies, Noether swarm populations, causal wakes, event ledgers, and Noether sea state variables. Temperature becomes available only when a selected population has enough mixing, exchange, and stability for an ensemble description.
+Temperature is not a primitive substrate property. The primitive and medium-level objects are architrino assemblies, Noether braid populations, causal wakes, event ledgers, and Noether sea state variables. Temperature becomes available only when a selected population has enough mixing, exchange, and stability for an ensemble description.
 
-The Noether swarm equilibrium transport hypothesis adds one useful caution. If a representative core cadence carries $E_N=h\nu_N$, that is an energy-cadence ledger for individual or coarse-grained core states, not a thermodynamic temperature by itself. A temperature for the Noether sea requires the distribution $f_N(\nu,\mathbf{x},t)$, an ensemble measure, and a local-equilibrium or entropy-energy derivative condition. The same hypothesis can therefore feed temperature work only after its equilibration term $R_{\mathrm{eq}}[f_N]$ and source terms are shown to define a stable ensemble window.
+The Noether braid equilibrium transport hypothesis adds one useful caution. If a representative core cadence carries $E_N=h\nu_N$, that is an energy-cadence ledger for individual or coarse-grained core states, not a thermodynamic temperature by itself. A temperature for the Noether sea requires the distribution $f_N(\nu,\mathbf{x},t)$, an ensemble measure, and a local-equilibrium or entropy-energy derivative condition. The same hypothesis can therefore feed temperature work only after its equilibration term $R_{\mathrm{eq}}[f_N]$ and source terms are shown to define a stable ensemble window.
 
 The cleanest existing $\mathbb{A}\mathbb{A}\mathbb{A}$ condition is the radiation chapter's ensemble definition. Using the dimensionless-entropy convention of that local passage,
 
@@ -118,9 +118,9 @@ The minimum $\mathbb{A}\mathbb{A}\mathbb{A}$ temperature record should declare:
 | Current concept | What survives | $\mathbb{A}\mathbb{A}\mathbb{A}$ draft translation | Required gate |
 | --- | --- | --- | --- |
 | Thermodynamic temperature | Energy-conjugate intensive variable | Derivative of an ensemble entropy with respect to an ensemble energy ledger | Define entropy, energy, inventory, and access window |
-| Kinetic temperature | Velocity-distribution width | Coarse-grained kinetic or mode-excitation distribution over Noether swarm, matter, or photon assemblies | Show thermalization or local equilibrium before assigning one scalar |
+| Kinetic temperature | Velocity-distribution width | Coarse-grained kinetic or mode-excitation distribution over Noether braid, matter, or photon assemblies | Show thermalization or local equilibrium before assigning one scalar |
 | Canonical $\beta$ | Equilibrium weight parameter | Lagrange multiplier for a constrained ensemble measure | Derive the measure and conserved quantities |
-| Kelvin and $k_B$ | Energy-temperature conversion | Conversion scale emerging from Noether sea equilibrium distribution and effective assembly mass | Derive $k_B$ from thermalized Noether swarm assembly dynamics in the Noether sea |
+| Kelvin and $k_B$ | Energy-temperature conversion | Conversion scale emerging from Noether sea equilibrium distribution and effective assembly mass | Derive $k_B$ from thermalized Noether braid assembly dynamics in the Noether sea |
 | Blackbody temperature | Planck spectrum parameter | Photon-bath ensemble temperature after Gate A, Gate B, Gate C, detailed balance, and zero effective photon chemical potential | Prove Planck occupation from transition rates and ensemble weights |
 | CMB temperature | Observer-side radiation-bath temperature | Present microwave photon-bath temperature after source, thermalization, transport, and redshift handoff | Preserve spectral shape and anisotropy through one medium-state map |
 | Horizon temperature | Acceleration/horizon comparison variable | Strong-field effective-observer recovery target tied to horizon-interface entropy and release channels | Recover Hawking/Unruh-like limits without importing them as ontology |
@@ -212,7 +212,7 @@ The CMB chapter already marks the central distinction:
 
 | Quantity | Meaning | Status |
 | --- | --- | --- |
-| Noether swarm internal energy scale | Energy stored inside individual or clustered Noether swarms | Not a thermodynamic temperature by itself |
+| Noether braid internal energy scale | Energy stored inside individual or clustered Noether braids | Not a thermodynamic temperature by itself |
 | Local emissive ensemble temperature | Effective temperature of a sufficiently thermalized Noether sea / assembly / photon ensemble | Derivation target |
 | Observer-inferred radiation temperature | Temperature fitted from the measured photon bath after transport and redshift | Effective observable |
 
@@ -242,7 +242,7 @@ This split should be promoted anywhere cosmology prose risks converting the obse
 
 - [entropy](entropy.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
-- [swarm](../swarm/swarm.md)
+- [braid](../swarm/swarm.md)
 - [mass-map](../mass-map/mass-map.md)
 - [validation-gates](../validation-gates/validation-gates.md)
 

@@ -107,7 +107,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-finite-interval-cl
 - the thirty-three-family finite interval row census;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.test.js) verifies predecessor validation, speed-window removal, theorem statement, bridge endpoint separation, bridge derivative de-duplication, row census, global bottleneck preservation, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-finite-interval-closure-reduction.test.js) verifies predecessor validation, speed-window removal, theorem statement, bridge endpoint separation, bridge derivative de-duplication, row census, global bottleneck preservation, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

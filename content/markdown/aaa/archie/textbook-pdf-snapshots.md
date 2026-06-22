@@ -52,9 +52,9 @@ Open the Dynamics generated PDF review copy.
 
 Open the Noether Sea and Effective Spacetime generated PDF review copy.
 
-## Noether Swarm
+## Noether Braid
 
-Open the Noether Swarm generated PDF review copy.
+Open the Noether Braid generated PDF review copy.
 
 ## Standard Model Assemblies
 

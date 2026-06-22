@@ -1,6 +1,6 @@
 # Bounded Speed Factor All-Pairs Ledger Handoff Contract
 
-Promotion status: `priority-only`. This packet sits between the fixed rigid-octahedral all-pairs certificate in [../neutral-swarm/octahedral-root-ledger-certification-target.md](../neutral-swarm/octahedral-root-ledger-certification-target.md), the general neutral swarm ledger in [../neutral-swarm/all-pairs-root-ledger.md](../neutral-swarm/all-pairs-root-ledger.md), the bounded-speed root-sheet formulas in [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md), and the coupled residual object in [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md).
+Promotion status: `priority-only`. This packet sits between the fixed rigid-octahedral all-pairs certificate in [Octahedral Root Ledger Certification Target](../neutral-swarm/octahedral-root-ledger-certification-target.md), the general neutral braid ledger in [All Pairs Root Ledger](../neutral-swarm/all-pairs-root-ledger.md), the bounded-speed root-sheet formulas in [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md), and the coupled residual object in [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md).
 
 The incremental value is narrow: the fixed-speed octahedral payload now certifies the $30$ ordered distinct source pairs on one rigid carrier, but a bounded-speed solve changes the clocks, delayed source phases, root equations, Jacobians, force weights, derivative columns, tail cells, and event surfaces. This packet prevents that fixed-speed success marker from being consumed as a bounded-speed live ledger. It strengthens the existing `ledger-convention-mismatch`, `root-ledger-persistence-failure`, `implicit-consumer-stale`, and `derivative-block-stale` rows; it does not add an independent retained-branch gate.
 
@@ -43,7 +43,7 @@ $$
 
 This status certifies only the fixed carrier root ledger. It may seed bounded-speed root labels, initial brackets, and equality-row checksums, but it is not a bounded-speed live ledger unless the rows in this packet are rebuilt and certified.
 
-The frozen fixed-ledger speed-ODE diagnostic in [../neutral-swarm/octahedral-speed-ode-diagnostic.md](../neutral-swarm/octahedral-speed-ode-diagnostic.md) is still a source-side screen. It consumes $\mathcal{L}_{\mathrm{oct}}^{1}$ and reports `sampled-speed-ode-zero-mean-failed`, but it does not change the handoff status because it does not rebuild $\chi_i$, $\Lambda_i$, $G_r^\nu$, $J_r^\nu$, root derivatives, tail ownership, or downstream consumer checksums.
+The frozen fixed-ledger speed-ODE diagnostic in [Octahedral Speed Ode Diagnostic](../neutral-swarm/octahedral-speed-ode-diagnostic.md) is still a source-side screen. It consumes $\mathcal{L}_{\mathrm{oct}}^{1}$ and reports `sampled-speed-ode-zero-mean-failed`, but it does not change the handoff status because it does not rebuild $\chi_i$, $\Lambda_i$, $G_r^\nu$, $J_r^\nu$, root derivatives, tail ownership, or downstream consumer checksums.
 
 ---
 
@@ -127,7 +127,7 @@ is accepted only when the following rows are emitted on one bounded-speed ledger
 | `source_ledger_reference` | fixed source artifact id, fixed-speed-special-case flag, $\mathsf{Chk}_{\Pi}^{1}$, $\mathsf{Chk}_{\mathrm{root}}^{1}$, delay bounds, $J_0^1$, and ordinary same-source policy |
 | `bounded_chart` | coefficient vector $z=(a,b,r,\gamma,s,e)$ or declared subchart, support descriptor, period or winding convention, endpoint convention, row weights, and gauge rows |
 | `clock_lift` | $\nu_i$, speed band, $\chi_i$, $\Lambda_i$, $H_i$, inverse-clock derivatives, and the map from fixed phase cells to causal-time cells where a continuation seed is claimed |
-| `pair_policy_handoff` | $\Pi_{\mathrm{all}}$ with $30$ ordered distinct source pairs, no unordered compression, and equality rows for any shell swarm or nested shell swarm reduction |
+| `pair_policy_handoff` | $\Pi_{\mathrm{all}}$ with $30$ ordered distinct source pairs, no unordered compression, and equality rows for any shell braid or nested shell braid reduction |
 | `root_label_handoff` | for every fixed seed label, either a certified bounded-speed root tube, a certified event/reset status, or an explicit dropped-label reason tied to a ledger reset |
 | `active_root_equations` | $G_r^{\nu}=0$, delay brackets, delay floors, owner cells, positive memory status, and source provenance for every retained root in $\mathcal{A}_{\mathrm{all}}^{\nu,+}$ |
 | `inactive_gap_cover` | disjoint inactive cells with certified predicates on the bounded-speed $G_r^{\nu}$, not inherited fixed-speed gap predicates |
@@ -203,7 +203,7 @@ The status `fixed-speed-special-case` is not a failure of the fixed-speed certif
 
 1. a source-ledger reference to $\mathcal{L}_{\mathrm{oct}}^{1}$ without claiming bounded-speed validity from fixed-speed rows alone;
 2. bounded-speed clock maps $\chi_i$, $\Lambda_i$, periods $H_i$, speed-band margins, and derivative columns on $X$;
-3. the ordered all-pairs policy $\Pi_{\mathrm{all}}$ with equality rows for every optional shell swarm or nested shell swarm reduction;
+3. the ordered all-pairs policy $\Pi_{\mathrm{all}}$ with equality rows for every optional shell braid or nested shell braid reduction;
 4. a bounded-speed active-root and inactive-gap cover for every ordered distinct source pair on the declared causal-time cells;
 5. positive delay floors, fixed Jacobian sign strata, positive bounded-speed Jacobian floors, and root persistence radii on $X$;
 6. a support-complete memory route or finite tail exclusion/assimilation cover, with rerun instructions whenever tail assimilation changes $\mathcal{A}_{\mathrm{all}}^{\nu,+}$;

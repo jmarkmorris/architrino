@@ -1,16 +1,16 @@
-# Swarm Proof Program And Decision Gate
+# Braid Proof Program And Decision Gate
 
-Terminology status: `quarantined-priority-history`. This gate map is inherited architecture source, not terminology authority. Its disputed labels may remain here for git history and mathematical source mining, but they are not accepted reader-facing taxonomy. Route any reuse through [swarm.md](../swarm.md), whose active reader-facing triad is `neutral swarm`, `shell swarm`, and `nested shell swarm`.
+Terminology status: `quarantined-priority-history`. This gate map is inherited architecture source, not terminology authority. Its disputed labels may remain here for git history and mathematical source mining, but they are not accepted reader-facing taxonomy. Route any reuse through [Braid](../swarm.md), whose active reader-facing triad is `neutral braid`, `shell braid`, and `nested shell braid`.
 
-Promotion status: `priority-only`. This document coordinates the shell swarm mathematics developed in this directory. It does not authorize migration into `content/markdown/aaa`. Retained-branch and architecture claims remain blocked until a live ledger and the required certificate rows close on one convention through the decision gate in [swarm-architecture.md](swarm-architecture.md).
+Promotion status: `priority-only`. This document coordinates the shell braid mathematics developed in this directory. It does not authorize migration into `content/markdown/aaa`. Retained-branch and architecture claims remain blocked until a live ledger and the required certificate rows close on one convention through the decision gate in [Braid Architecture](swarm-architecture.md).
 
-The merge decision now runs through [neutral-swarm-model.md](../neutral-swarm/neutral-swarm-model.md) and [nested-shell-swarm-model-card.md](../nested-shell-swarm/nested-shell-swarm-model-card.md). Shell swarm geometry is therefore one mathematical case of a broader neutral swarm branch family, while the nested shell swarm packet set remains comparison and fallback source material until the user-facing corpus merge gate passes.
+The merge decision now runs through [Neutral Braid Model](../neutral-swarm/neutral-swarm-model.md) and [Nested Shell Braid Model Card](../nested-shell-swarm/nested-shell-swarm-model-card.md). Shell braid geometry is therefore one mathematical case of a broader neutral braid branch family, while the nested shell braid packet set remains comparison and fallback source material until the user-facing corpus merge gate passes.
 
-In the shell swarm case, the model trades persistent radial nesting for a certified common support band, phase-locked choreography, central inventory accounting, and branch-certificate data. In the broader neutral swarm base case, the model also drops mandatory binary grouping: the neutral swarm is six labeled sites with exactly three positive and three negative architrinos, an all-pairs causal-root ledger, and a support band when that case is claimed. The proof burden is therefore not a single visual construction. It is a coupled certificate showing that one retained branch simultaneously closes its causal-root ledger, dynamics residuals, noncollision gates, energy/action ledger, inventory ledger, exposure map, and observer-export rows.
+In the shell braid case, the model trades persistent radial nesting for a certified common support band, phase-locked choreography, central inventory accounting, and branch-certificate data. In the broader neutral braid base case, the model also drops mandatory binary grouping: the neutral braid is six labeled sites with exactly three positive and three negative architrinos, an all-pairs causal-root ledger, and a support band when that case is claimed. The proof burden is therefore not a single visual construction. It is a coupled certificate showing that one retained branch simultaneously closes its causal-root ledger, dynamics residuals, noncollision gates, energy/action ledger, inventory ledger, exposure map, and observer-export rows.
 
 For deformed support-band rows, the preferred dynamics chart is now the arclength chart: fixed speed is encoded by the curve clock, and the remaining carrier equation is force-versus-curvature closure. Thus a fixed-speed deformed retained branch must close $\mathcal{R}_{L}$, $\mathcal{R}_{T}$, $\mathcal{R}_{\mathrm{tan}}$, and $\mathcal{R}_{\mathrm{curv}}$ on the same active-root ledger, not only an angle-clock speed residual. A bounded-speed branch replaces the tangent row with $\mathcal{R}_{\mathrm{speedODE}}^\nu$ and closes $\mathcal{R}_{N\mathrm{rec}}^\nu$, $\mathcal{R}_{\parallel}^{\nu}$, $\mathcal{R}_{\perp}^{\nu}$, support, and action/event exchange rows on the bounded-speed ledger. Because those rows change the same roots, Jacobians, force weights, support multipliers, and event surfaces, bounded-speed promotion also needs the coupled live-ledger residual $\mathcal{R}_{\mathrm{cpl}}^\nu$.
 
-The composite promotion decision is stated in [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md). That theorem is the guardrail for any future migration: a shell swarm packet remains priority-only until geometry, roots, dynamics, convergence, action, conservation, stability, inventory, and event rows all close on one live-ledger convention. Observer-export rows must be reported as statuses before any downstream Lorentz, photon, mass, color, strong-field, or cosmology claim is promoted.
+The composite promotion decision is stated in [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md). That theorem is the guardrail for any future migration: a shell braid packet remains priority-only until geometry, roots, dynamics, convergence, action, conservation, stability, inventory, and event rows all close on one live-ledger convention. Observer-export rows must be reported as statuses before any downstream Lorentz, photon, mass, color, strong-field, or cosmology claim is promoted.
 
 ---
 
@@ -20,16 +20,16 @@ The architecture must keep the following levels separate.
 
 | Claim | Level | Current status | Required mathematical object |
 | --- | --- | --- | --- |
-| Architrinos move in absolute time through the Euclidean void and interact through causal wakes. | ontology | inherited from the canonical dynamics | no new swarm proof needed |
-| A neutral swarm may be a six-architrino branch without mandatory binary grouping. | derivation/closure target | base certificate, all-pairs ledger, and finite-mode search staged; no retained branch | all-pairs root ledger, support-band rows, bounded-speed dynamics, action/Noether/event ledgers, optional reduction status, and retained branch certificate |
-| Nested shell swarm and shell swarm geometries may be cases of one branch family. | derivation/closure target | model card plus shell and nested reduction rows staged | shell support-band reduction, nested partition/radial reduction, label-use decision, transition status, and retained branch certificate |
-| A shell swarm branch can remain noncolliding in one support band. | derivation/closure target | open | retained carrier row with $d_{\min}>\epsilon_x$ and finite active causal roots |
-| A twelve-architrino charged fermion can be represented by a central-inventory ledger plus neutral shell swarm choreography. | derivation/closure target | central-inventory and hollow-support rows staged; no charged branch retained | integer inventory row, hollow-support representative status, noncollision/regularization representative, and shared root/action/event ledger |
+| Architrinos move in absolute time through the Euclidean void and interact through causal wakes. | ontology | inherited from the canonical dynamics | no new braid proof needed |
+| A neutral braid may be a six-architrino branch without mandatory binary grouping. | derivation/closure target | base certificate, all-pairs ledger, and finite-mode search staged; no retained branch | all-pairs root ledger, support-band rows, bounded-speed dynamics, action/Noether/event ledgers, optional reduction status, and retained branch certificate |
+| Nested shell braid and shell braid geometries may be cases of one branch family. | derivation/closure target | model card plus shell and nested reduction rows staged | shell support-band reduction, nested partition/radial reduction, label-use decision, transition status, and retained branch certificate |
+| A shell braid branch can remain noncolliding in one support band. | derivation/closure target | open | retained carrier row with $d_{\min}>\epsilon_x$ and finite active causal roots |
+| A twelve-architrino charged fermion can be represented by a central-inventory ledger plus neutral shell braid choreography. | derivation/closure target | central-inventory and hollow-support rows staged; no charged branch retained | integer inventory row, hollow-support representative status, noncollision/regularization representative, and shared root/action/event ledger |
 | The choreography can recover spinor $2\pi/4\pi$ behavior. | derivation/closure target | topology and framed-wake status rows staged; export blocked | framed-wake parity row, gauge-control residual, angular-momentum ledger, and observer-export status |
 | The moving branch can export Lorentz clock/ruler behavior. | derivation/closure target | observer-export status row staged; export blocked | moving-branch export with bounded preferred-frame leakage and `passed`, `failed`, `not_computed`, or `blocked:<row>` status |
 | Topological complexity may index generations. | speculation until computed | constrained | mass map must pass through energy, exposure, and Noether sea response, not a standalone topology law |
-| Strong-field and cosmology claims may be cleaner in the shell swarm architecture. | speculative comparison target | open | finite-boundary continuation and observer-level recovery rows |
-| A larger assembly swarm may be needed if cleaner six-site or central-inventory routes stall. | speculative comparison target | low-priority fallback only | documented hard obstruction in the primary route and one enlarged $N>6$ root/action/Noether/event ledger with no observer-data fit selecting the extra labels |
+| Strong-field and cosmology claims may be cleaner in the shell braid architecture. | speculative comparison target | open | finite-boundary continuation and observer-level recovery rows |
+| A larger assembly braid may be needed if cleaner six-site or central-inventory routes stall. | speculative comparison target | low-priority fallback only | documented hard obstruction in the primary route and one enlarged $N>6$ root/action/Noether/event ledger with no observer-data fit selecting the extra labels |
 
 ---
 
@@ -37,14 +37,14 @@ The architecture must keep the following levels separate.
 
 The minimal proof stack is:
 
-1. **Branch definition.** Define the site set, polarity ledger, support descriptor, state history, optional case labels, topology data, and active causal-root ledger on one time window $W$. In the neutral swarm branch this starts with the base certificate on $I=\{1,\ldots,6\}$ and no mandatory binary grouping; shell and nested shell claims require explicit reduction rows.
+1. **Branch definition.** Define the site set, polarity ledger, support descriptor, state history, optional case labels, topology data, and active causal-root ledger on one time window $W$. In the neutral braid branch this starts with the base certificate on $I=\{1,\ldots,6\}$ and no mandatory binary grouping; shell and nested shell claims require explicit reduction rows.
 2. **Root regularity.** Prove every retained causal root is isolated, finite in number, and has $|J_{ij}|>\epsilon_J$ on the all-pairs ordered source ledger before using any partitioned or symmetry-compressed root list.
 3. **Carrier closure.** Prove the support descriptor, speed specialization, clock/period row, phase-lock, winding data, hollow-support status where relevant, and noncollision residuals stay below tolerance, with fixed-speed and bounded-speed subcases declared explicitly. In the bounded-speed subcase, close the coupled curve-speed-root-support-action-event residual rather than only separate projected rows.
 4. **Action, Noether, and event closure.** Prove the variationality, action-derived scale, support work, $Q$, $E$, $\mathbf{p}$, $\mathbf{J}$, source provenance, recoil, and medium-update rows close on the same retained branch.
 5. **Stability.** Prove a return-map gap, NHIM domination row, stable limit cycle, quasiperiodic carrier, or SRB target, with the claim type determined by the measured Lyapunov spectrum.
 6. **Topology and framed-wake status.** Attach link, braid, framed-wake, parity, gauge-control, and angular-momentum statuses only after the same branch ledger supplies the required noncollision, root, support, action, and event rows.
 7. **Observer exports.** Compute Lorentz, photon, mass, color, strong-field, and cosmology rows as `passed`, `failed`, `not_computed`, `blocked:<row>`, `comparison_only`, or `invalid_mixed_ledger`.
-8. **Nested shell swarm comparison and migration policy.** Compare the retained branch against the nested shell swarm causal-closure packet set and promotion policy before migration; keep the assembly fallback closed unless a documented hard obstruction opens it.
+8. **Nested shell braid comparison and migration policy.** Compare the retained branch against the nested shell braid causal-closure packet set and promotion policy before migration; keep the assembly fallback closed unless a documented hard obstruction opens it.
 
 The sequence is strict in one direction: observer exports cannot promote a theorem target if root regularity, carrier closure, and event/action closure were computed on a different branch or were not computed.
 
@@ -81,7 +81,7 @@ The packet becomes a retained priority-side candidate only if each row is attach
 | $\mathsf{P}_{\mathrm{top/frame}}$ | topology classifier, tubular floor, framed-wake parity, gauge-control residual, and angular-momentum compatibility where claimed | topology is used without noncollision floor, framed-wake gauge control is open, or spinor behavior is promoted by implication |
 | $\mathsf{P}_{\mathrm{stab}}$ | return map, Lyapunov spectrum, NHIM or attractor classification | the branch type is stronger than the computed spectrum supports |
 | $\mathsf{P}_{\mathrm{export}}$ | Lorentz, photon, mass, color, strong-field rows | an export row is promoted by implication rather than computed or marked `not_computed` |
-| $\mathsf{P}_{\mathrm{compare}}$ | replaced/preserved/fallback nested shell swarm assumptions | shell swarm migration starts without an explicit fallback comparison |
+| $\mathsf{P}_{\mathrm{compare}}$ | replaced/preserved/fallback nested shell braid assumptions | shell braid migration starts without an explicit fallback comparison |
 
 ---
 
@@ -101,7 +101,7 @@ $$
 
 The first theorem target is:
 
-**Theorem target A.** If a candidate shell swarm branch has finite active causal roots, $J_{\min}>\epsilon_J$, noncollision $d_{\min}>\epsilon_x$, and locally Lipschitz mollified force kernels, then the regularized dynamics generate a unique branch segment on $W$ from the admissible history, and active roots continue smoothly until a listed failure code is triggered.
+**Theorem target A.** If a candidate shell braid branch has finite active causal roots, $J_{\min}>\epsilon_J$, noncollision $d_{\min}>\epsilon_x$, and locally Lipschitz mollified force kernels, then the regularized dynamics generate a unique branch segment on $W$ from the admissible history, and active roots continue smoothly until a listed failure code is triggered.
 
 Proof route:
 
@@ -125,7 +125,7 @@ $$
 \mathbf{u}_i(t)=\dot{\mathbf{x}}_i(t)-\dot{\mathbf{C}}(t).
 $$
 
-The ideal shell swarm row imposes $\|\mathbf{u}_i(t)\|=c_f$ on the carrier interval. Differentiating gives the necessary orthogonality condition
+The ideal shell braid row imposes $\|\mathbf{u}_i(t)\|=c_f$ on the carrier interval. Differentiating gives the necessary orthogonality condition
 
 $$
 \mathbf{u}_i(t)\cdot\dot{\mathbf{u}}_i(t)=0.
@@ -145,11 +145,11 @@ $$
 \right].
 $$
 
-**Theorem target B.** A fixed-speed shell swarm carrier is dynamically admissible only if $\sup_{i,t\in W}|\mathcal{R}_{\mathrm{tan},i}(t)|\le\epsilon_{\mathrm{tan}}$ and the radial support residual remains below tolerance.
+**Theorem target B.** A fixed-speed shell braid carrier is dynamically admissible only if $\sup_{i,t\in W}|\mathcal{R}_{\mathrm{tan},i}(t)|\le\epsilon_{\mathrm{tan}}$ and the radial support residual remains below tolerance.
 
 This is a necessary condition. It is not sufficient until phase, root, energy/action, and stability rows also close.
 
-**Theorem target B$\nu$.** A bounded-speed shell swarm carrier is dynamically admissible only if the tangent projection is solved as a speed equation on the same retained ledger: the scalar forcing $T_i\cdot F_i^\nu$ has zero mean over the declared period, its primitive excursion stays inside the speed band, the clock/length row fixes an admissible initial speed, and the support descriptor and action/event exchange rows close. The live-ledger version of this target is the coupled fixed-point row: curves, speed factors, root sheets, support variables, action scale, and event variables must be solved together before the bounded-speed row can be promoted. The fixed-speed target B is recovered only by adding $\nu_i'\equiv0$.
+**Theorem target B$\nu$.** A bounded-speed shell braid carrier is dynamically admissible only if the tangent projection is solved as a speed equation on the same retained ledger: the scalar forcing $T_i\cdot F_i^\nu$ has zero mean over the declared period, its primitive excursion stays inside the speed band, the clock/length row fixes an admissible initial speed, and the support descriptor and action/event exchange rows close. The live-ledger version of this target is the coupled fixed-point row: curves, speed factors, root sheets, support variables, action scale, and event variables must be solved together before the bounded-speed row can be promoted. The fixed-speed target B is recovered only by adding $\nu_i'\equiv0$.
 
 ### 4.3 Noncollision And Phase Clearance
 
@@ -206,7 +206,7 @@ The observer-export rows inherit the branch packet; they do not define it.
 | Color | $\mathcal{S}_3$ slots plus continuous phase connection | `color-connection-missing` until generators and curvature are supplied |
 | Strong-field | finite boundary, event-ledger closure, observer-level translation | $\mathcal{R}_H(\Omega)$ |
 
-The current shell swarm architecture may improve Lorentz isotropy because an isotropic carrier can reduce rest-frame orientation leakage. That is a proof route, not a result. The retained branch must still compute the preferred-frame leakage diagnostic $\mathcal{A}_{\mathrm{pf}}^{(q)}$.
+The current shell braid architecture may improve Lorentz isotropy because an isotropic carrier can reduce rest-frame orientation leakage. That is a proof route, not a result. The retained branch must still compute the preferred-frame leakage diagnostic $\mathcal{A}_{\mathrm{pf}}^{(q)}$.
 
 ---
 
@@ -214,13 +214,13 @@ The current shell swarm architecture may improve Lorentz isotropy because an iso
 
 | Gate from architecture draft | Priority-side proof object | Current state |
 | --- | --- | --- |
-| Swarm merge gate | neutral base certificate, all-pairs root ledger, shell/nested reduction rows, nested shell swarm model card, label-use decision, and merge batch plan | open |
+| Braid merge gate | neutral base certificate, all-pairs root ledger, shell/nested reduction rows, nested shell braid model card, label-use decision, and merge batch plan | open |
 | Branch existence | Theorem targets A, fixed-speed B or bounded-speed B$\nu$, C, finite-mode search status, plus explicit all-pairs root ledger | open |
 | Inventory replacement | central-inventory ledger, hollow-support representative status, and event-ledger rows | open |
 | Energy and exposure | theorem target D, action-and-Noether closure row, plus exposure/medium extraction | open |
 | Topology and framed wake | topology classifier, tubular floor, framed-wake parity, gauge-control, and angular-momentum rows | blocked behind retained live ledger |
 | Observer exports | export dependency rows with `passed`, `failed`, `not_computed`, or `blocked:<row>` | open |
-| Nested shell swarm comparison | retained comparison packet against nested causal-closure source and nested reduction rows | open |
+| Nested shell braid comparison | retained comparison packet against nested causal-closure source and nested reduction rows | open |
 | Promotion policy | corpus-promotion policy applied before any reader-facing migration | staged; retained-branch material blocked |
 | Assembly fallback | enlarged $N>6$ ledger investigation only after documented primary-route obstruction | closed fallback |
 | Migration batch plan | reviewable sequence after all earlier gates | deferred |
@@ -235,18 +235,18 @@ The first proof-packet layer is now staged:
 
 | Packet | Status |
 | --- | --- |
-| Neutral swarm base certificate | priority-only six-site neutral base tuple staged before binary, shell, nested, retention, or observer-export claims |
+| Neutral braid base certificate | priority-only six-site neutral base tuple staged before binary, shell, nested, retention, or observer-export claims |
 | All-pairs root ledger | priority-only ordered $30$ cross-site root/Jacobian ledger staged; partitioned and symmetry-compressed ledgers require explicit reduction status |
-| Neutral swarm finite-mode search | priority-only finite-mode unknowns, residual rows, root-ledger consumption, decision statuses, and artifact schema staged; no runnable code or retained branch |
-| Shell swarm reduction row | priority-only common support-band case classification staged; it does not retain the branch without root, tail, dynamics, support, action, Noether, event, stability, inventory, and observer-export rows |
-| Nested shell swarm reduction row | priority-only partition, radial functional, ordered support-band, label-use, and transition rows staged; nested reduction failure does not by itself reject the broader neutral swarm case |
+| Neutral braid finite-mode search | priority-only finite-mode unknowns, residual rows, root-ledger consumption, decision statuses, and artifact schema staged; no runnable code or retained branch |
+| Shell braid reduction row | priority-only common support-band case classification staged; it does not retain the branch without root, tail, dynamics, support, action, Noether, event, stability, inventory, and observer-export rows |
+| Nested shell braid reduction row | priority-only partition, radial functional, ordered support-band, label-use, and transition rows staged; nested reduction failure does not by itself reject the broader neutral braid case |
 | Action and Noether closure row | priority-only shared-ledger variationality, action-derived scale, support-work, Noether-current, event, and branch-scale rows staged |
 | Central inventory hollow support | priority-only hollow-support and central-inventory representative statuses staged; no charged branch retained and no unresolved point-charge placement authorized |
 | Topology and framed-wake rows | priority-only topology classifier, tubular floor, framed-wake parity, gauge-control, and event-compatibility statuses staged; topology remains classifier-only until attached to a retained live ledger |
 | Observer export status row | priority-only status vocabulary staged for Lorentz, photon, mass-map, color, strong-field, and cosmology rows; exports remain downstream statuses, not branch-existence evidence |
 | Promotion policy into corpus | priority-only promotion policy staged; theorem-target material may move only when self-contained and non-overclaiming, while retained-branch claims remain blocked |
-| Assembly swarm fallback investigation | low-priority fallback staged; opens only after a documented hard obstruction in six-site, shell, nested, central-inventory, or axial-inventory routes |
-| Retained branch promotion theorem | composite promotion decision staged; no current shell swarm packet satisfies the required geometry, root, dynamics, convergence, action, conservation, stability, inventory, and event rows |
+| Assembly braid fallback investigation | low-priority fallback staged; opens only after a documented hard obstruction in six-site, shell, nested, central-inventory, or axial-inventory routes |
+| Retained branch promotion theorem | composite promotion decision staged; no current shell braid packet satisfies the required geometry, root, dynamics, convergence, action, conservation, stability, inventory, and event rows |
 | Current dynamics synthesis | integrated conclusion staged; next solve target is intrinsic finite-mode curve dynamics |
 | Branch mathematics | theorem targets stated; no retained branch yet |
 | Carrier/topology/spin | theorem targets stated; no retained framed-wake row yet |
@@ -337,7 +337,7 @@ The first proof-packet layer is now staged:
 | Branch-switching bifurcation theorem | states the Lyapunov-Schmidt extra-kernel and symmetry-breaking normal forms that distinguish branch switches from event resets |
 | Antipodal relaxation column certificate | tests whether pair-midpoint columns span a certified exact-antipodal cokernel obstruction before opening relaxation |
 | Collocation refinement error certificate | supplies the off-grid residual, root-label, excluded-gap, and projector-drift error $\epsilon_{\mathrm{disc}}$ used by obstruction and closure rows |
-| Finite-mode branch convergence theorem | states the uniform-refinement route from certified finite Fourier rows to a curve-level shell swarm dynamics branch |
+| Finite-mode branch convergence theorem | states the uniform-refinement route from certified finite Fourier rows to a curve-level shell braid dynamics branch |
 | Same-source self-root exclusion lemma | proves ordinary same-curve self roots fail the positive-Jacobian retained-root gate in the fixed-speed arclength chart; bounded speed factor self-hit rows must satisfy the speed-factor hinge and event ledger |
 | Fold-layer regularization action theorem | states the regulated action, weak-limit, curl, and conservation rows required before a fold-layer force can enter the ledger |
 | Medium-response constitutive closure theorem | states the constitutive response, memory, passivity, isotropy, and exchange-ledger rows required before medium response can enter the force ledger |
@@ -363,4 +363,4 @@ The first proof-packet layer is now staged:
 | Observer exports/mass map | residuals stated; no moving-branch export computed yet |
 | Source triage | converted targets and overclaims classified |
 
-The next mathematical closure object is one live-ledger retained-branch certificate packet using a single active causal-root convention. Until that object exists and its certificate rows close, shell swarm architecture remains an architecture-development candidate rather than the accepted replacement for nested shell swarm material.
+The next mathematical closure object is one live-ledger retained-branch certificate packet using a single active causal-root convention. Until that object exists and its certificate rows close, shell braid architecture remains an architecture-development candidate rather than the accepted replacement for nested shell braid material.

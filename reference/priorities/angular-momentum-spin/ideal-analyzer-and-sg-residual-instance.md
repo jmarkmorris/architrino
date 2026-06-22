@@ -609,7 +609,7 @@ The zero residuals above are exact within their declared reduced charts. They do
 | Coaxial contra-rotating pro/anti planar-pair ledger | Not derived. | Supplies $a_{\perp}$, helicity $\pm1$, and the local photon angular-momentum ledger. |
 | Material analyzer return map | Replaced by the ideal quotient $[0,1)$ and measure-preserving rotation. | Derives $\Theta_{\hat{\mathbf a}}$, $T_s$, $d\nu_{\hat{\mathbf a}}$, and $\eta_{\hat{\mathbf a}}$ from a concrete analyzer assembly. |
 | Pass/reject material recoil ledger | Not evaluated. | Closes energy, momentum, angular momentum, wake, and Noether sea recoil for each material record. |
-| Effective spinor coordinate | Assumed only as reduced input. | Derives $\psi(Z)$ from ordered Noether swarm history and validates the spin-$\tfrac12$ projector chart. |
+| Effective spinor coordinate | Assumed only as reduced input. | Derives $\psi(Z)$ from ordered Noether braid history and validates the spin-$\tfrac12$ projector chart. |
 | Apparatus impulse | Not evaluated. | Computes $\dot{\mathbf J}_{C}^{\text{app}}$ from delayed apparatus cross-root hits and wake exchange. |
 | Concrete Stern-Gerlach separatrix | Replaced by $\Sigma_{\hat{\mathbf m}}^{\text{SG,red}}$. | Shows that the full apparatus flow reduces to the declared separatrix and record-cycle phase. |
 | Pair provenance | Not evaluated. | Supplies two-wing preparation data without setting-dependent provenance. |

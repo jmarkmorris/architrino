@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This document is a theorem/proof-target packet for the same-level tri-binary architecture. It does not migrate corpus prose, simulation fixtures, app assets, or Archie terminology. Its job is to make the central-inventory and event-ledger obligations explicit enough that a retained branch certificate can later decide whether the same-level architecture replaces the former axial / polar-charge bookkeeping.
 
-Source posture: read this packet with [swarm-architecture.md](swarm-architecture.md) and [swarm.md](../swarm.md). The equations below are closure targets, not completed conservation proofs.
+Source posture: read this packet with [Braid Architecture](swarm-architecture.md) and [Braid](../swarm.md). The equations below are closure targets, not completed conservation proofs.
 
 ---
 
@@ -54,7 +54,7 @@ where $\mathcal{I}_B$ is the integer inventory ledger and $\mathcal{L}_{E\mathbf
 
 ## 2. Neutral Noether-Core Inventory
 
-A neutral Noether swarm is a six-architrino branch with
+A neutral Noether braid is a six-architrino branch with
 
 $$
 N(B)=6,
@@ -92,7 +92,7 @@ S_{\mathrm{chor}}
 \right).
 $$
 
-Here $S_{\mathrm{chor}}$ is the neutral same-level choreography inventory. $C_{\mathrm{cent}}=(0,0)$ means the neutral Noether swarm row has no uncompensated central inventory.
+Here $S_{\mathrm{chor}}$ is the neutral same-level choreography inventory. $C_{\mathrm{cent}}=(0,0)$ means the neutral Noether braid row has no uncompensated central inventory.
 
 Proof target: show that the neutral choreography row can be represented by noncolliding architrino worldlines whose retained causal-root ledger has finite active roots, a positive Jacobian floor, finite memory depth, fixed-speed tangent closure or bounded-speed speed-ODE closure, and closed history-dressed energy.
 
@@ -761,7 +761,7 @@ on the same retained branch packet that also passes the root, Jacobian, memory-d
 
 This packet remains `priority-only` until all blockers below are closed:
 
-1. At least one same-level neutral Noether swarm branch passes the six-architrino inventory row and the noncollision / regularization rows.
+1. At least one same-level neutral Noether braid branch passes the six-architrino inventory row and the noncollision / regularization rows.
 2. At least one charged twelve-architrino branch passes the central-inventory split without singular charge placement.
 3. At least one pair-production row supplies source provenance for all $24$ outgoing branch architrinos.
 4. A reaction event row closes $\mathcal{R}_Q$, $\mathcal{R}_E$, $\mathcal{R}_{\mathbf{p}}$, $\mathcal{R}_{\mathbf{J}}$, $\mathcal{R}_{\mathrm{src}}$, $\mathcal{R}_{\mathrm{recoil}}$, and $\mathcal{R}_{\mathrm{sea}}$ under one endpoint convention.

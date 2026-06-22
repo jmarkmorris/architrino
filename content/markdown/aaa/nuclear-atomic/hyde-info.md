@@ -130,7 +130,7 @@ The two-lobed (peanut/lemniscate-like) morphology separates strongly electroposi
 
 Hyde’s explicit H-C-Si axis emphasizes group-14 centrality between electropositive and electronegative domains and links carbon-rich and silicon-rich materials regimes.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ working interpretation, this axis corresponds to the radial tier where four outer nested shell swarms can achieve a near-symmetric tetrahedral docking arrangement with maximally exposed neutral axes, giving a geometric route to catenation and directional covalency.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ working interpretation, this axis corresponds to the radial tier where four outer nested shell braids can achieve a near-symmetric tetrahedral docking arrangement with maximally exposed neutral axes, giving a geometric route to catenation and directional covalency.
 
 ### Branches and heavy-series treatment
 
@@ -153,41 +153,41 @@ The points below are collected as a framework-internal research program, not as 
 
 ### Central Claim
 
-- The 1976 Hyde periodic chart abandons the rigid Cartesian block structure of the Mendeleev-style table in favor of a continuous spiral topology, and this topology is proposed to map directly to geometric packing constraints of Noether swarm assemblies.
+- The 1976 Hyde periodic chart abandons the rigid Cartesian block structure of the Mendeleev-style table in favor of a continuous spiral topology, and this topology is proposed to map directly to geometric packing constraints of Noether braid assemblies.
 
 ### Assumptions
 
-- The $s, p, d, f$ orbitals are treated not as abstract probability distributions, but as emergent volume-exclusion zones of oblate spheroidal electron nested shell swarm envelopes carrying six axial architrinos.
-- Electron nested shell swarms are assumed to couple to a central nuclear Noether swarm through local Noether sea density gradients.
+- The $s, p, d, f$ orbitals are treated not as abstract probability distributions, but as emergent volume-exclusion zones of oblate spheroidal electron nested shell braid envelopes carrying six axial architrinos.
+- Electron nested shell braids are assumed to couple to a central nuclear Noether braid through local Noether sea density gradients.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 
 ### Mechanism and Derivation Sketch
 
-- Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology on the nuclear Noether swarm, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
-- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether sea pressure gradient drops enough to stabilize an additional shell of precessing nested shell swarms.
-- In this view, the 8/18/32 shell periodicity emerges from finite-volume packing limits of Noether swarm assemblies under these boundary conditions.
-- Volume-exclusion mechanism: each electron nested shell swarm displaces the local Noether sea, and overlap of two precessing oblate spheroidal exclusion envelopes generates a sharply rising displacement-pressure gradient.
+- Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology on the nuclear Noether braid, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
+- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether sea pressure gradient drops enough to stabilize an additional shell of precessing nested shell braids.
+- In this view, the 8/18/32 shell periodicity emerges from finite-volume packing limits of Noether braid assemblies under these boundary conditions.
+- Volume-exclusion mechanism: each electron nested shell braid displaces the local Noether sea, and overlap of two precessing oblate spheroidal exclusion envelopes generates a sharply rising displacement-pressure gradient.
 - Dynamical resolution rule: when exclusion volumes intersect, assemblies must either separate into orthogonal precession phases or move to a larger-radius tier.
 - Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by Noether sea displacement pressure rather than only an abstract occupancy postulate.
 - Subshell branching hypothesis ($s, p, d, f$): branching reflects the number and symmetry of available neutral-axis docking geometries permitted by six polar sites.
-- Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are interpreted as shared exposed neutral-axis geometry in outer nested shell swarms, which controls preferred bonding directions.
+- Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are interpreted as shared exposed neutral-axis geometry in outer nested shell braids, which controls preferred bonding directions.
 - Carbon-silicon centrality hypothesis: the H-C-Si axis is identified with the first tier permitting a symmetric four-site tetrahedral outer-docking pattern, giving a direct structural basis for group-14 bonding behavior.
 
 ### Predictions and Observables
 
 - If shell structure is a packing phenomenon, ionization-energy trends along Hyde’s spiral should show systematic high-$Z$ deviations from idealized Dirac-limit expectations.
-- Mechanism for the deviation: increasing nuclear mass steepens the local Noether sea density gradient, geometrically compressing inner-shell nested shell swarms and driving middle-binary velocities toward field-speed limits.
-- This inner-shell geometric strain changes the effective shielding potential seen by valence nested shell swarms, producing measurable departures from standard relativistic-correction-only trends.
+- Mechanism for the deviation: increasing nuclear mass steepens the local Noether sea density gradient, geometrically compressing inner-shell nested shell braids and driving middle-binary velocities toward field-speed limits.
+- This inner-shell geometric strain changes the effective shielding potential seen by valence nested shell braids, producing measurable departures from standard relativistic-correction-only trends.
 
 ### Failure Modes and Falsification Criteria
 
-- If multi-body simulations of nested shell swarms with axial layers do not spontaneously produce discrete 8/18/32 packing regimes, the geometric-periodicity derivation fails.
+- If multi-body simulations of nested shell braids with axial layers do not spontaneously produce discrete 8/18/32 packing regimes, the geometric-periodicity derivation fails.
 - If the model collapses into continuous charge distributions with no discrete angular nodes, the orbital-geometry mapping is falsified.
 - If predicted high-$Z$ ionization-energy deviations are absent beyond uncertainty and known correction terms, the proposed finite-volume mechanism is disfavored.
 
 ### Geometric-Periodicity Closure Program
 
-The Hyde hypothesis becomes useful only if it can be converted into a closure program with explicit geometric tests. The first step is to translate Hyde's 2D spiral ordering into a 3D close-packing algorithm for oblate spheroidal electron Noether swarm assemblies.
+The Hyde hypothesis becomes useful only if it can be converted into a closure program with explicit geometric tests. The first step is to translate Hyde's 2D spiral ordering into a 3D close-packing algorithm for oblate spheroidal electron Noether braid assemblies.
 
 The first constrained benchmark should be the Neon core ($Z=10$), with explicit boundary conditions:
 

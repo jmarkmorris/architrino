@@ -12,7 +12,7 @@ This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\m
 
 1. **The Substrate** ([absolute time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md), and [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md))
 2. **The Fundamental Entity** ([architrino](../../../../markdown/aaa/foundations/architrino.md): point transceiver of potential-bearing causal wakes)
-3. **The Physical Medium** ([Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether swarm assemblies)
+3. **The Physical Medium** ([Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether braid assemblies)
 4. **The Observer Framework** ([complete-state vs Physical Observer access](../../../../markdown/aaa/spacetime/observer-framework.md))
 5. **Terminology Discipline** ([canonical level-aware terminology](../../../../markdown/aaa/archie/terminology-usage.md))
 6. **Parameter Ledger** ([fundamental postulates vs derived quantities](../../../../markdown/aaa/validation/parameter-ledger.md))
@@ -26,7 +26,7 @@ The same level discipline can be read through the canonical symbol map:
 | Level | Canonical variables or records | Owning chapters |
 |:---|:---|:---|
 | Substrate ontology | $t$, $\Sigma_t$, $h_{ij}$, $\mathbf{s}_a(t)$, $q_a$, causal-wake support | [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md), [Architrino](../../../../markdown/aaa/foundations/architrino.md) |
-| Assembly and medium behavior | assembly branch records, $\Lambda_{\text{NS}}$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\Sigma_{\text{sea}}(\mathbf{x},t)$, $\mathbf{u}_{\text{sea}}(\mathbf{x},t)$ | [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) |
+| Assembly and medium behavior | assembly branch records, $\Lambda_{\text{NS}}$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\Sigma_{\text{sea}}(\mathbf{x},t)$, $\mathbf{u}_{\text{sea}}(\mathbf{x},t)$ | [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) |
 | Effective description | $A(\mathcal{N}_{\mathrm{sea}})$, $B_{ij}(\mathcal{N}_{\mathrm{sea}})$, $u^i_{\text{sea}}$, $g^{\text{eff}}_{\mu\nu}$, $\Phi_{\text{eff}}$ | [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) |
 | Observer inference | $\Pi_{\mathrm{obs}}:S(t)\to\bar S(t)$, Physical Observer records $\Theta_A^{(O,W)}$, detector and measurement records | [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md) |
 
@@ -76,7 +76,7 @@ For the factor-level specifications, see [Absolute Time](../../../../markdown/aa
 
 [Architrino](../../../../markdown/aaa/foundations/architrino.md) is the canonical primitive-entity specification for $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level.
 
-The architrino is the sole primitive material substance of the theory. This does not make an isolated architrino a matter particle: rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties. Likewise, fermion and boson exchange behavior is an assembly-level recovery target rather than an inserted projector postulate: any effective antisymmetric or symmetric exchange label must be routed through a retained branch record, currently the ordered-frame spinor program and the nested shell swarm closure label $\Lambda_{\text{NS}}$, whose $\chi_c$ entry names the candidate topological carrier through ordered-frame chirality, $Wr_c$, or multi-component causal-writhe parity rather than a hand-selected exchange sign. Its intrinsic polarity is likewise not the full observer-level charge record. Electric, weak, color, and particle labels are effective bookkeeping to be recovered from assembly geometry and medium response. The emitted causal wake is not another primitive substance, but it is not unreal or merely verbal. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.
+The architrino is the sole primitive material substance of the theory. This does not make an isolated architrino a matter particle: rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties. Likewise, fermion and boson exchange behavior is an assembly-level recovery target rather than an inserted projector postulate: any effective antisymmetric or symmetric exchange label must be routed through a retained branch record, currently the ordered-frame spinor program and the nested shell braid closure label $\Lambda_{\text{NS}}$, whose $\chi_c$ entry names the candidate topological carrier through ordered-frame chirality, $Wr_c$, or multi-component causal-writhe parity rather than a hand-selected exchange sign. Its intrinsic polarity is likewise not the full observer-level charge record. Electric, weak, color, and particle labels are effective bookkeeping to be recovered from assembly geometry and medium response. The emitted causal wake is not another primitive substance, but it is not unreal or merely verbal. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.
 
 For an architrino $a$ with worldline $\mathbf{s}_a(t)$ on time domain $I_a$ and polarity $q_a$, the wake may be read schematically as a functional of that source history:
 $$
@@ -100,13 +100,13 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 4 (Architrino):** The architrino is the sole primitive entity of $\mathbb{A}\mathbb{A}\mathbb{A}$: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level. The set of architrino identities is fixed. Particles, effective fields, clock behavior, and emergent spacetime phenomena arise from architrino configurations, wake intersections, and assembly dynamics rather than from additional fundamental substances.
 
-For the full primitive-entity page, see [Architrino](../../../../markdown/aaa/foundations/architrino.md). For the receiving-law derivation, see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). For assembly emergence, see [Emergence](../../../../markdown/aaa/foundations/emergence.md) and [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
+For the full primitive-entity page, see [Architrino](../../../../markdown/aaa/foundations/architrino.md). For the receiving-law derivation, see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). For assembly emergence, see [Emergence](../../../../markdown/aaa/foundations/emergence.md) and [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
 
 ---
 
 ### The Physical Medium (Noether Sea)
 
-[Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether sea as the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void.
+[Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether sea as the emergent physical medium formed by coupled neutral Noether braid assemblies occupying the Euclidean void.
 
 This section marks the first step away from primitive ontology. The Noether sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.
 
@@ -213,7 +213,7 @@ This Foundational Ontology defines:
 
 1. **The Substrate**: absolute time and Euclidean void organized as absolute timespace, the fixed non-dynamical product background.
 2. **The Fundamental Entity**: architrino as the fixed-identity primitive point transceiver with polarity and persistent identity.
-3. **The Physical Medium**: Noether sea as emergent physical content formed by coupled neutral Noether swarm assemblies inside the Euclidean void.
+3. **The Physical Medium**: Noether sea as emergent physical content formed by coupled neutral Noether braid assemblies inside the Euclidean void.
 4. **The Observer Framework**: complete-state bookkeeping versus Physical Observer access.
 5. **Terminology Discipline**: level-aware wording routed to the Archie canon.
 6. **Validation Routing**: parameters, closure burdens, and open questions routed to validation and branch chapters.
@@ -295,7 +295,7 @@ The two polarity names are:
 
 Like polarities repel; unlike polarities attract in the universal interaction law. At the assembly level, electric charge is the coarse bookkeeping summary of the signed architrino inventory. For example, quark and lepton electric charges are built from integer counts of $\epsilon$ units in stable assembly patterns rather than from a separate primitive charge substance.
 
-The normalization $|e|=6\epsilon$ is currently an input parameter and a high-priority explanatory target. In this convention, the architrino polarity unit is primitive for bookkeeping, and the observed electron or positron charge is a six-unit assembly-level multiple. The current structural target is a closed six-polar-site axial-layer branch record: three polar dyads on the H/M/L axial frame, with each polar site occupied by one axial architrino of sign $\pm\epsilon$. If assembly closure retains exactly that six-site axial inventory, the allowed observer-level charge table follows as a finite signed inventory result. Deriving why the Noether swarm supplies those six protected polar sites belongs to [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#the-axial-layer) and [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), not to the primitive definition of an architrino.
+The normalization $|e|=6\epsilon$ is currently an input parameter and a high-priority explanatory target. In this convention, the architrino polarity unit is primitive for bookkeeping, and the observed electron or positron charge is a six-unit assembly-level multiple. The current structural target is a closed six-polar-site axial-layer branch record: three polar dyads on the H/M/L axial frame, with each polar site occupied by one axial architrino of sign $\pm\epsilon$. If assembly closure retains exactly that six-site axial inventory, the allowed observer-level charge table follows as a finite signed inventory result. Deriving why the Noether braid supplies those six protected polar sites belongs to [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#the-axial-layer) and [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), not to the primitive definition of an architrino.
 
 ### Provenance and Persistence
 
@@ -412,14 +412,14 @@ It does not define the force kernel, causal emission-time set, Jacobian weightin
 
 ### Dynamics and Regime Boundary
 
-This page does not own wake regimes, self-hit activation, maximum-curvature binaries, or nested shell swarm stability mechanisms. Those are behavioral and assembly-level dynamics, not primitive-entity definitions. The chapter therefore names those topics only to keep the reader from importing them back into the definition of a single architrino.
+This page does not own wake regimes, self-hit activation, maximum-curvature binaries, or nested shell braid stability mechanisms. Those are behavioral and assembly-level dynamics, not primitive-entity definitions. The chapter therefore names those topics only to keep the reader from importing them back into the definition of a single architrino.
 
 The canonical homes are:
 
 - [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) for causal hits, delay roots, Jacobian weights, received acceleration, and branch topology.
 - [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
-- [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
-- [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md) for the assembly-level Noether swarm architecture built from those dynamics.
+- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
+- [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md) for the assembly-level Noether braid architecture built from those dynamics.
 
 ### Determinism and Multistability
 
@@ -1116,7 +1116,7 @@ The boundary with the Noether sea is an ontology boundary. The Euclidean void is
 The distinction is:
 
 1. **Euclidean void:** fixed spatial container $\mathbb{R}^3$ with metric $h_{ij}=\delta_{ij}$.
-2. **Noether sea:** physical content occupying the void, built from coupled neutral swarms.
+2. **Noether sea:** physical content occupying the void, built from coupled neutral braids.
 3. **Architrino occupancy:** local presence or absence of point entities and assemblies at a given coordinate location.
 4. **Effective spacetime:** observer-level geometry reconstructed from how clocks, rulers, and signals behave in the Noether sea.
 
@@ -1152,7 +1152,7 @@ This set records source identities and emission times whose causal isochrons pas
 
 In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population. Noether sea density and response variables belong to $\mathcal{N}_{\mathrm{sea}}$; $\mathcal{P}(\mathbf{x},t)$ names only the wake-history provenance labels available at that point.
 
-For the Noether sea ontology, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). For Noether swarm assembly hypotheses, see [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md).
+For the Noether sea ontology, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). For Noether braid assembly hypotheses, see [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md).
 
 ### Distinction From Curved Space
 
@@ -1767,7 +1767,7 @@ The teaching sequence is deliberately layered. First comes the ontological claim
    \Sigma_{t_0} = \pi_t^{-1}(\{t_0\}) = \{t_0\}\times \mathbb{R}^3
    $$
 4. **Substrate clock form**: The substrate clock form $dt$ is exact, closed, and nowhere vanishing as the pullback from the $\mathbb{R}$ factor. Together with the chosen orientation of increasing $t$, it fixes the tangent planes to the slices $\Sigma_t$; foliation ambiguity is absent at the substrate level rather than removed by coordinate gauge.
-5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of nested shell swarm internal phase dynamics.
+5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of nested shell braid internal phase dynamics.
 
 The list separates ontology from effective description. Absolute time, the Euclidean void, and the slices $\Sigma_t$ are substrate commitments. Proper time, clock synchronization, and relativistic simultaneity judgments are effective readouts produced by assemblies embedded in the Noether sea. The defense of absolute time therefore does not deny observed clock dilation; it relocates clock dilation from fundamental temporal ontology to derived assembly dynamics.
 
@@ -1804,7 +1804,7 @@ This is a claim about the exact substrate flow, not about practical prediction. 
 
 **Proper time $\tau$ for physical observers**
 
-Physical clocks are Noether swarm assemblies; ticks correspond to internal limit-cycle phase evolution. The primary definition is therefore phase extraction, not an arbitrary scalar fit:
+Physical clocks are Noether braid assemblies; ticks correspond to internal limit-cycle phase evolution. The primary definition is therefore phase extraction, not an arbitrary scalar fit:
 $$
 d\tau_{\mathcal A}
 =
@@ -1860,7 +1860,7 @@ $$
 \tau(t_1)-\tau(t_0)=\int_{t_0}^{t_1}\frac{\omega_{\text{clk}}(s)}{\omega_0}\,ds
 $$
 
-where $\omega_{\text{clk}}(s)$ is the phase rate extracted from the declared Noether swarm clock channel and $\omega_0$ is its rest-branch reference frequency. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether sea state variables used by the clock/ruler metric handoff.
+where $\omega_{\text{clk}}(s)$ is the phase rate extracted from the declared Noether braid clock channel and $\omega_0$ is its rest-branch reference frequency. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether sea state variables used by the clock/ruler metric handoff.
 
 This definition avoids assigning proper time as an independent scalar, but it does not by itself prove relativity-compatible clock behavior. The non-circular closure statement is stronger: after phase extraction, all admitted low-energy clock and ruler assemblies in a tested comparison class must reduce to the same observer-level clock/ruler map. Equivalently, for each clock assembly $\mathcal A$,
 $$
@@ -2235,7 +2235,7 @@ The concentricity diagnostic connects directly to the geometry developed in [Sel
   \|\mathbf{z}_a(t)-\mathbf{z}_a(s)\|=c_f(t-s)
   $$
   For closed or recurrent framed branches, the protected topology row should be stated as a linking or framed self-linking record, such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when the branch supplies a nonsingular frame. Thus absolute rest and self-hit are distinct invariants: rest is concentricity of source-tagged centers, while self-hit is a source-identity root with a retained wake/worldline linking or framing record when such a record is part of the branch certificate.
-- For bound assemblies, the corresponding closure problem is conditional: a translating nested shell swarm must retune its moving-assembly deformation, clock/ruler behavior, two-way signal synchronization, and preferred-frame leakage while its internal causal-root ledgers remain admissible. Failure of that shared closure would appear as phase loss, dissociation, or unacceptable preferred-frame leakage; the disruption claim is a theorem target, not an established consequence of the rest diagnostic alone.
+- For bound assemblies, the corresponding closure problem is conditional: a translating nested shell braid must retune its moving-assembly deformation, clock/ruler behavior, two-way signal synchronization, and preferred-frame leakage while its internal causal-root ledgers remain admissible. Failure of that shared closure would appear as phase loss, dissociation, or unacceptable preferred-frame leakage; the disruption claim is a theorem target, not an established consequence of the rest diagnostic alone.
 - This moving-assembly bias is one input to the medium-dressed inertial response of bound assemblies: acceleration skews the delayed causal ledger, while shielding determines how much of the internal energy is exposed to external probes.
 
 **The upshot:** Absolute velocity is not merely a kinematic label, but the direct rest diagnostic is geometric rather than an immediate self-hit claim. The dynamical burden belongs to the Lorentz-closure ladder: moving assemblies must show stable delayed-root closure, medium-dressed deformation, and bounded preferred-frame leakage before Physical Observers can recover ordinary relativistic behavior.
@@ -2423,7 +2423,7 @@ V=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)
 $$
 with $V>0$ and $V<0$ selecting opposite sides of the plane after the orientation convention has been declared. The sign of $V$ does not turn coordinate parity into a dynamical handedness law.
 
-Dynamical chirality is reserved for an assembly-level handed marker carried by the retained branch record. Ordered precession, axial-frame exposure, reaction provenance, and Noether swarm handedness may feed that marker, but the deformation-stable object should be a framed topology invariant, such as framed self-linking parity
+Dynamical chirality is reserved for an assembly-level handed marker carried by the retained branch record. Ordered precession, axial-frame exposure, reaction provenance, and Noether braid handedness may feed that marker, but the deformation-stable object should be a framed topology invariant, such as framed self-linking parity
 $$
 Lk(\gamma,\gamma^{\mathrm{fr}})
 =
@@ -2604,15 +2604,15 @@ This recursive structure implies that many stable forms can be deconstructed int
 
 #### Bottom-Up Structural Ladder
 
-The recursive picture is easiest to read as a bottom-up construction ladder. The ladder is a teaching map of claim levels, not a proof that every branch has already been derived. Closure inheritance is strict: no rung may export effective claims with a stronger status than the weakest supporting rung below it. If a fermion, bosonic channel, or composite-matter claim depends on an unclosed binary or Noether swarm branch, it inherits that lower branch's target status until the supporting certificate closes.
+The recursive picture is easiest to read as a bottom-up construction ladder. The ladder is a teaching map of claim levels, not a proof that every branch has already been derived. Closure inheritance is strict: no rung may export effective claims with a stronger status than the weakest supporting rung below it. If a fermion, bosonic channel, or composite-matter claim depends on an unclosed binary or Noether braid branch, it inherits that lower branch's target status until the supporting certificate closes.
 
 1. **Ontological background:** status: postulate. Absolute time and the Euclidean void provide the fixed arena.
 2. **Primitive transceivers:** status: primitive definition. Individual architrinos are the irreducible emitters/receivers of causal wake structure.
 3. **First bound assembly candidate:** status: branch-certificate target. A stable orbiting electrino:positrino binary is the first bound assembly once its branch stability certificate is supplied.
-4. **Nested shell swarms:** status: simulated/conjectural construction target. Binaries can capture into larger nested systems, giving isolated binaries, shell swarms, and nested shell swarms with progressively stronger shielding structure.
-5. **Noether swarm stabilization:** status: closure target. The nested shell swarm is the first fully three-dimensional shielded Noether swarm scaffold; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). Its persistence must be closed through delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
-6. **Fermions with axial layers:** status: working map and routing target. A nested shell swarm plus a six-site axial layer is the current map for charged-fermion and quark family architecture; changing the shielding tier is the generation target, while pro/anti orientation tracks handedness within the same swarm architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
-7. **Collective medium:** status: effective collective-state target. Larger balanced populations of neutral swarms organize into the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), so the Noether sea is a higher-order collective state of neutral swarms rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md).
+4. **Nested shell braids:** status: simulated/conjectural construction target. Binaries can capture into larger nested systems, giving isolated binaries, shell braids, and nested shell braids with progressively stronger shielding structure.
+5. **Noether braid stabilization:** status: closure target. The nested shell braid is the first fully three-dimensional shielded Noether braid scaffold; see [Noether Braid](../../../../markdown/aaa/noether-swarm/noether-swarm.md). Its persistence must be closed through delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
+6. **Fermions with axial layers:** status: working map and routing target. A nested shell braid plus a six-site axial layer is the current map for charged-fermion and quark family architecture; changing the shielding tier is the generation target, while pro/anti orientation tracks handedness within the same braid architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
+7. **Collective medium:** status: effective collective-state target. Larger balanced populations of neutral braids organize into the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), so the Noether sea is a higher-order collective state of neutral braids rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md).
 8. **Bosonic channels:** status: channel-specific routing targets. Propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating pro/anti planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
 9. **Composite matter and reactions:** status: effective summary after lower closure. Nucleons, atoms, and larger structures arise from the coupling of already-formed assemblies. A reaction is then a reorganization of conserved constituents inside a structured environment, not creation from nothing.
 
@@ -2631,10 +2631,10 @@ For example, Lorentz-like behavior is an emergence claim only when the text name
 
 This rule keeps emergence from becoming a placeholder. It is acceptable to use emergence as a programmatic claim, but the surrounding prose must say whether the mechanism is derived, simulated, conjectural, or only a routing target.
 
-Just as important, the ladder should not be read as a single unbranched stack after the Noether swarm appears. Once stable swarms exist, three descriptive branches open at once:
+Just as important, the ladder should not be read as a single unbranched stack after the Noether braid appears. Once stable braids exist, three descriptive branches open at once:
 
--   **Matter branch:** Noether swarms carrying axial layers yield fermions and then larger composites.
--   **Medium branch:** dense balanced populations of neutral swarms yield the Noether sea.
+-   **Matter branch:** Noether braids carrying axial layers yield fermions and then larger composites.
+-   **Medium branch:** dense balanced populations of neutral braids yield the Noether sea.
 -   **Interaction branch:** phase-locked disturbances and exchange corridors yield effective bosonic behavior.
 
 This separation of branches helps keep levels distinct. The theory does not place a photon, a fermion axial layer, and the Noether sea on the same explanatory rung; they are different organizations of the same underlying ingredients.
@@ -2644,7 +2644,7 @@ This separation of branches helps keep levels distinct. The theory does not plac
 The most useful observer-level quantities enter only after assemblies have formed. They are not primitive objects sitting underneath the dynamics, and their use always depends on an effective mapping from persistent assembly behavior to a measured descriptor.
 
 -   **Angular momentum:** derivation target. The mechanism is organized binary circulation and ordered orientation data; the mapping is through the return-period phase and angular-momentum ledger; the regime is stable or metastable closed cycles; the breakdown occurs at separator crossings, root-ledger changes, or dissociation.
--   **Chirality:** derivation target. The mechanism is ordered-frame precession plus a deformation-stable framed topology row, such as framed self-linking parity $Lk(\gamma,\gamma^{\mathrm{fr}})=\operatorname{Wr}(\gamma)+\operatorname{Tw}(\gamma)$ for a closed framed constituent trace, or linking number among distinct constituent worldlines. The mapping is through the Noether swarm closure label and its framed-wake or linking data; the regime is branch-preserving deformation with noncollision and nonsingular frame transport; the breakdown occurs when a causal-root bifurcation, reconnection, collision-floor loss, or frame slip changes the link or framing class.
+-   **Chirality:** derivation target. The mechanism is ordered-frame precession plus a deformation-stable framed topology row, such as framed self-linking parity $Lk(\gamma,\gamma^{\mathrm{fr}})=\operatorname{Wr}(\gamma)+\operatorname{Tw}(\gamma)$ for a closed framed constituent trace, or linking number among distinct constituent worldlines. The mapping is through the Noether braid closure label and its framed-wake or linking data; the regime is branch-preserving deformation with noncollision and nonsingular frame transport; the breakdown occurs when a causal-root bifurcation, reconnection, collision-floor loss, or frame slip changes the link or framing class.
 -   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is a closed internal causal-history ledger, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
 In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
@@ -2668,7 +2668,7 @@ For the weak homogeneous Noether sea case, local neutrality can be stronger than
 
 This convergence discipline is what allows for the formation of **metastable assemblies** that can maintain their general form for long periods.
 
-The infinite-history statement is therefore not a claim that every past wake carries equal computational weight. In principle, an architrino receives the delayed wake history that intersects it; in practical assembly dynamics, the active burden is bounded by inverse-square wake dilution, phase cancellation across remote populations, and the shielding or screening supplied by nested Noether swarms. The mathematical task is to identify which causal-root branches remain dynamically active in a regime, not to treat the entire past universe as an undifferentiated force of equal importance.
+The infinite-history statement is therefore not a claim that every past wake carries equal computational weight. In principle, an architrino receives the delayed wake history that intersects it; in practical assembly dynamics, the active burden is bounded by inverse-square wake dilution, phase cancellation across remote populations, and the shielding or screening supplied by nested Noether braids. The mathematical task is to identify which causal-root branches remain dynamically active in a regime, not to treat the entire past universe as an undifferentiated force of equal importance.
 
 Self-hit is not defined by speed alone. It occurs when the same-source causal-root set is nonempty:
 $$

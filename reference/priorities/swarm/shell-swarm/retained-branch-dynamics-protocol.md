@@ -31,13 +31,13 @@ $$
 
 The packet is retained as a search candidate only if the required residuals pass the thresholds in Section 9. Rows that are not computed must be marked `not_computed` and cannot support downstream claims.
 
-Full promotion from a search candidate to a retained shell swarm branch candidate is governed by [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md). Search retention is therefore only an intermediate status unless the promotion theorem's geometry, root, dynamics, convergence, action, conservation, stability, inventory, and event rows all close on one live-ledger convention.
+Full promotion from a search candidate to a retained shell braid branch candidate is governed by [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md). Search retention is therefore only an intermediate status unless the promotion theorem's geometry, root, dynamics, convergence, action, conservation, stability, inventory, and event rows all close on one live-ledger convention.
 
 ---
 
 ## 2. State Variables And Parameterization
 
-The state vector uses the branch chart from [shell-swarm-branch-mathematics.md](shell-swarm-branch-mathematics.md):
+The state vector uses the branch chart from [Shell Braid Branch Mathematics](shell-swarm-branch-mathematics.md):
 
 $$
 X(t)=
@@ -51,7 +51,7 @@ R(t),\delta(t),
 \right).
 $$
 
-For the neutral Noether swarm search, take $N=6$ and index sites by $(a,\sigma)$ with $a\in\{1,2,3\}$ and $\sigma\in\{+,-\}$. The default polarity row is
+For the neutral Noether braid search, take $N=6$ and index sites by $(a,\sigma)$ with $a\in\{1,2,3\}$ and $\sigma\in\{+,-\}$. The default polarity row is
 
 $$
 q_{a,+}=+\epsilon,

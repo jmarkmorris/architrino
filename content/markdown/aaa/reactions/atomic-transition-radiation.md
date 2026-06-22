@@ -19,7 +19,7 @@ E_{\mathrm{env}}\!\left(b;\mathcal W_{\mathrm{nuc}},\rho_{\text{NS}},n,\chi_{\te
 >0
 $$
 
-Here $\mathcal W_{\mathrm{nuc}}$ is the effective nuclear causal-wake envelope, $\rho_{\text{NS}}(\mathbf{x},t)$ is the physical Noether swarm density, $n(\mathbf{x},t)$ is the normalized Noether swarm density, and $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether sea delay factor. The gap is an effective atomic quantity, not a proof that the underlying Noether swarm ledgers of the nucleus or electron have already been derived.
+Here $\mathcal W_{\mathrm{nuc}}$ is the effective nuclear causal-wake envelope, $\rho_{\text{NS}}(\mathbf{x},t)$ is the physical Noether braid density, $n(\mathbf{x},t)$ is the normalized Noether braid density, and $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether sea delay factor. The gap is an effective atomic quantity, not a proof that the underlying Noether braid ledgers of the nucleus or electron have already been derived.
 
 The observer-level line frequency is recovered only after local clock/rate conversion:
 

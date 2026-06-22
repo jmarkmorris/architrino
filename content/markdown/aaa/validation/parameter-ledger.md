@@ -196,16 +196,16 @@ These symbols belong to the delayed microscopic law itself.
 
 ## Layer II: Assembly-Geometry Closure Targets
 
-These quantities belong to Noether swarm architecture, shielding, branch structure, and assembly response.
+These quantities belong to Noether braid architecture, shielding, branch structure, and assembly response.
 
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
-| G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch Noether swarm reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [../assemblies/particle-masses.md](../assemblies/particle-masses.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../noether-swarm/nested-shell-swarm-dynamics.md), [../dynamics/energy.md](../dynamics/energy.md) |
+| G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch Noether braid reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [Particle Masses](../assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md), [Energy](../dynamics/energy.md) |
 | G0a | $\mathcal{P}_{A_0}$ | Geometric closure target | Open; compact finite-coordinate no-go recorded, branch-chart revision required before Tier 1 continuation | certificate packet tying the finite closure graph $\mathcal{G}_{A_0}$, active root ledger, quotient Floquet gap $\Delta_{\mathbf{k}}$, shielding extraction, and $\mathcal{M}_{\text{sea}}^{ab}$ response probe into one promotion sequence | [simulations/a0-branch-certificate-protocol.md](./simulations/a0-branch-certificate-protocol.md), [simulations/a0-tier0-result-interpretation.md](./simulations/a0-tier0-result-interpretation.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
-| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether swarm | [../noether-swarm/noether-swarm.md](../noether-swarm/noether-swarm.md), [../noether-swarm/nested-shell-swarm-geometry.md](../noether-swarm/nested-shell-swarm-geometry.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../noether-swarm/nested-shell-swarm-dynamics.md) |
-| G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [../noether-swarm/nested-shell-swarm-dynamics.md](../noether-swarm/nested-shell-swarm-dynamics.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
-| G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md) |
-| G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md) |
+| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether braid | [Noether Braid](../noether-swarm/noether-swarm.md), [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md), [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md) |
+| G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md), [Particle Masses](../assemblies/particle-masses.md) |
+| G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md) |
+| G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md) |
 | G5 | $\zeta(A)$ | Geometric closure target | Open | shielding or leakage factor of assembly $A$, defined by far-field suppression relative to naive constituent exposure | [../dynamics/energy.md](../dynamics/energy.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
 | G6 | $\alpha$ | Geometric closure target | Open | axial-frame misalignment angle used in the weak-mixing / quark-geometry program | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
 | G7 | $\phi_c$ | Geometric closure target | Open | color-sector azimuth selecting the exceptional axial-frame orientation | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
@@ -216,8 +216,8 @@ These symbols control the handoff from the Euclidean substrate plus Noether sea 
 
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
-| C1 | $\rho_{\text{NS},0}$ | Constitutive closure target | Open | reference Noether swarm density used to normalize the Noether sea | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
-| C2 | $n(\mathbf{x},t)$ | State variable / field | Derived field | normalized Noether swarm density, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
+| C1 | $\rho_{\text{NS},0}$ | Constitutive closure target | Open | reference Noether braid density used to normalize the Noether sea | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
+| C2 | $n(\mathbf{x},t)$ | State variable / field | Derived field | normalized Noether braid density, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
 | C3 | $\Omega(\mathbf{x}),\xi(\mathbf{x})$ | Constitutive closure target | Open | clock-channel and ruler-channel response functions in the effective metric subclass | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/lorentz-kinematics.md](../spacetime/lorentz-kinematics.md) |
 | C4 | $\Phi_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | constitutive effective potential defined from the clock channel | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
 | C5 | $c_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | Noether sea dressed assembly-channel propagation speed used for clock/ruler closure and effective-metric comparisons, with $c_{\text{eff}}\to c_f$ in weak homogeneous conditions; separate from photon-channel speed $c_\gamma$ unless Gate A closes that identification | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
@@ -234,8 +234,8 @@ These quantities are where closure is tested. They are not substrate inputs.
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | O1 | $e$ | Observable benchmark | Derived target | elementary charge reconstructed from substrate charge and normalization map | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../assemblies/gauge-structure-emergence.md](../assemblies/gauge-structure-emergence.md) |
-| O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | full-cycle action quantum and radian-normalized angular-momentum quantum to be related to nested shell swarm alignment, orbital closure, and any lower recordable basin-measure scale derived by quantum closure | [../philosophy-history/theory-bridges/angular-momentum-and-spin.md](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), [architrino-si-base-units.md](./architrino-si-base-units.md) |
-| O3 | $G$ or $G_{\text{eff}}$ | Observable benchmark / constitutive target | Open | effective gravitational coupling emerging from medium compliance and alignment geometry | [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md) |
+| O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | full-cycle action quantum and radian-normalized angular-momentum quantum to be related to nested shell braid alignment, orbital closure, and any lower recordable basin-measure scale derived by quantum closure | [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), [Architrino SI Base Units](./architrino-si-base-units.md) |
+| O3 | $G$ or $G_{\text{eff}}$ | Observable benchmark / constitutive target | Open | effective gravitational coupling emerging from medium compliance and alignment geometry | [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), [Emergent Metric](../spacetime/emergent-metric.md) |
 | O4 | $m_{\text{inertial}}(A)$ | Derived output | Open | inertial mass of assembly $A$, extracted operationally from shielding and medium response | [../dynamics/energy.md](../dynamics/energy.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
 | O5 | $\theta_W^{\text{bare}}$ and $\theta_W$ | Geometric target / observable benchmark | Open | bare geometric weak-mixing increment and the measured electroweak mixing angle it must eventually inform | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md), [../assemblies/gauge-structure-emergence.md](../assemblies/gauge-structure-emergence.md) |
 | O6 | $(\alpha_1,\alpha_2,\alpha_3)$ | Observable benchmark | Open | standard PPN preferred-frame coefficients derived from $(\Xi_1,\Xi_2,\Xi_3)$ | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
@@ -291,7 +291,7 @@ $$
 c_f^2\ln\!\big(\Omega(\mathbf{x})\xi(\mathbf{x})\big)
 $$
 
-Here $\xi$ is the Noether swarm envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed.
+Here $\xi$ is the Noether braid envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed.
 
 This is the cleanest current statement of the Noether sea-to-metric handoff:
 $$
@@ -410,7 +410,7 @@ The current corpus supports the following conservative closure assessment.
 - $\epsilon$ is treated consistently as the potential polarity-unit magnitude.
 - The exact bare two-body kernel admits the canonical nondimensionalization by $R_*=\kappa\epsilon^2/c_f^2$ and $T_*=R_*/c_f$, so branch thresholds and residual equations are parameter-free once a branch chart is declared.
 - $\rho_{\text{NS},0}$ is the reference density symbol for the Noether sea.
-- $\Phi_{\text{eff}}=c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition for the exponential metric subclass, with $\xi$ retained as a geometry-first Noether swarm shape ratio.
+- $\Phi_{\text{eff}}=c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition for the exponential metric subclass, with $\xi$ retained as a geometry-first Noether braid shape ratio.
 
 ### Still genuinely open
 
@@ -418,7 +418,7 @@ The current corpus supports the following conservative closure assessment.
 - whether $\eta$ should disappear entirely from physical statements after the weak limit is taken,
 - whether any specific maximum-curvature binary branch exists and is stable under the full signed-root, finite-window two-body dynamics,
 - the $A_0$ reference-attractor output packet,
-- the actual nested shell swarm radii/frequency ladder,
+- the actual nested shell braid radii/frequency ladder,
 - the shielding map $\zeta(A)$ across the fermion spectrum,
 - the medium-response tensor $\mathcal{M}_{\text{sea}}^{ab}$ that turns shielded internal energy into inertial and gradient response,
 - the constitutive functions $(\Omega,\xi)$ and the weak-field coefficient set $(\gamma_{\text{eff}},C_2,\Xi_i)$,
@@ -457,7 +457,7 @@ where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive se
 - [../dynamics/master-equation.md](../dynamics/master-equation.md)
 - [../dynamics/energy.md](../dynamics/energy.md)
 - [../philosophy-history/theory-bridges/angular-momentum-and-spin.md](../philosophy-history/theory-bridges/angular-momentum-and-spin.md)
-- [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md)
+- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md)
 - [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md)
 - [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md)
 - [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md)

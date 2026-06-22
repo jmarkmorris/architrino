@@ -1,4 +1,4 @@
-# Nested Shell Swarm Motion Model With EOM Accepted
+# Nested Shell Braid Motion Model With EOM Accepted
 
 Promotion status: `priority-only`. This packet captures an EOM-accepted conceptual model and candidate simulation variables. It does not prove retained-branch existence, three-shell genericity, mass closure, photon closure, or observer-level Lorentz recovery.
 
@@ -25,7 +25,7 @@ $$
 \ell\in\{I,M,O\}.
 $$
 
-The exact-binary chart imposes $|\mathcal{I}_{\ell}^{(q)}|=2$ for every shell. A more general nested shell swarm chart keeps only three ordered radial support bands:
+The exact-binary chart imposes $|\mathcal{I}_{\ell}^{(q)}|=2$ for every shell. A more general nested shell braid chart keeps only three ordered radial support bands:
 
 $$
 R_I+\Delta_I < R_M-\Delta_M,
@@ -150,7 +150,7 @@ Here $\mathcal{C}_q$ collects phase closure, causal-root, separator, inter-layer
 | Breathes | $R_I,R_M,R_O$, support widths $\Delta_{\ell}$, $\nu_{\ell}$, $\omega_{\ell}$, envelope scale $\lambda$, axis ratio $\xi$, and inter-layer exchange entries $\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO}$ | Breathing is radial/cadence retuning required to keep phase and root closure after a transaction, translation, external gradient, or Noether sea change. |
 | Rotates | Layer phases $\theta_{\ell}$, winding counts $k_{\ell}$, binary partner phases, support-plane or axis frames $\mathbf{A}_{\ell}$, and global orientation modulo gauge | Rotation is the ongoing branch motion and possible precession of the support bands. A stable branch rotates while preserving its ledger identity. |
 
-Thus the stable assembly behaves like a nested shell swarm because its invariant object is a path-history ledger, while its geometric carrier is allowed to retune. The phrase "stable shell" should mean "ledger-stable support band," not "unchanging spherical shell."
+Thus the stable assembly behaves like a nested shell braid because its invariant object is a path-history ledger, while its geometric carrier is allowed to retune. The phrase "stable shell" should mean "ledger-stable support band," not "unchanging spherical shell."
 
 ## Candidate Retention And Simulation Variables
 
@@ -171,7 +171,7 @@ B_q^{\mathrm{shell}}(t)
 \right).
 $$
 
-The reduced exact-binary version may add partner labels, binary planes, and relative phase offsets. The broader nested shell swarm version should instead compute shell support descriptors from the six trajectories and test whether the three ordered bands persist.
+The reduced exact-binary version may add partner labels, binary planes, and relative phase offsets. The broader nested shell braid version should instead compute shell support descriptors from the six trajectories and test whether the three ordered bands persist.
 
 Candidate diagnostics:
 
@@ -193,7 +193,7 @@ The first discriminating experiment is not "can three drawn rings look stable?" 
 
 The failure modes are equally informative:
 
-- one-band shell persistence with no ordered sub-bands: shell swarm but not nested shell swarm;
+- one-band shell persistence with no ordered sub-bands: shell braid but not nested shell braid;
 - ordered bands without positive stability gap: transient nesting only;
 - phase closure on one ledger but event or exchange closure on another: branch split;
 - approximate $1:2:4$ cadence without branch-derived amplitudes or stability: numerology, not selection;

@@ -1,6 +1,6 @@
 # Binary-Specific Deformation Search Results
 
-Promotion status: `priority-only`. This packet records a bounded numerical dynamics screen for a binary-specific support-band deformation after the common radial and common phase rows in [low-order-deformation-search-results.md](low-order-deformation-search-results.md). It does not retain a shell swarm branch. Its purpose is to determine whether independent low-order radial modes by binary/sign can reduce the coupled tangential, speed, and radial/support residuals without losing the active-root convention.
+Promotion status: `priority-only`. This packet records a bounded numerical dynamics screen for a binary-specific support-band deformation after the common radial and common phase rows in [low-order-deformation-search-results.md](low-order-deformation-search-results.md). It does not retain a shell braid branch. Its purpose is to determine whether independent low-order radial modes by binary/sign can reduce the coupled tangential, speed, and radial/support residuals without losing the active-root convention.
 
 ---
 
@@ -305,6 +305,6 @@ The screen sharpens the current dynamics picture:
 1. Site-specific radial freedom does not automatically close the tangential force-balance row. The optimizer can preserve roots and improve speed, but the line-of-action projections still leave a large pointwise tangential residual.
 2. The leading-order speed-coupled phase row works as intended: speed RMS drops from the common radial row's $0.2344$ to about $0.0689$. This confirms that radial breathing and phase modulation must be solved together.
 3. The common radial row's stronger tangential improvement appears to use deformation in a way that is dynamically expensive: it damages speed closure and pushes the Jacobian floor toward the screening boundary.
-4. A retained shell swarm branch probably requires at least one additional force-balance degree of freedom beyond binary-specific radial breathing with speed-coupled phase modulation. The next mathematical candidate is a controlled plane-normal precession or antipodal-relaxation row, because those can rotate line-of-action projections without relying only on radial-support changes.
+4. A retained shell braid branch probably requires at least one additional force-balance degree of freedom beyond binary-specific radial breathing with speed-coupled phase modulation. The next mathematical candidate is a controlled plane-normal precession or antipodal-relaxation row, because those can rotate line-of-action projections without relying only on radial-support changes.
 
 This packet should remain priority-only until a single candidate row closes $\widetilde{\mathcal{R}}_{\mathrm{tan}}$, $\mathcal{R}_{\mathrm{speed}}$, $\widetilde{\mathcal{R}}_{\mathrm{rad}}$, noncollision, active-root floors, and event/action ledgers on the same branch convention.

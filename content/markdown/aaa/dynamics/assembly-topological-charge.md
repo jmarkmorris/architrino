@@ -1,6 +1,6 @@
 # Assembly Topological Charge
 
-This chapter gives a first-class home to the candidate topological label of an architrino assembly. The label combines the causal-root ledger of the delayed dynamics with the phase-bundle winding of a resonance-locked nested shell swarm. Its purpose is to state what can be computed from a retained branch chart, what is invariant inside a nondegenerate branch domain, and what remains a theorem target before the label can serve as a topological periodic table of assemblies. The general search domain that emits candidate tri-binary branch charts is developed in [Tri-Binary Configuration Space](tri-binary-configuration-space.md).
+This chapter gives a first-class home to the candidate topological label of an architrino assembly. The label combines the causal-root ledger of the delayed dynamics with the phase-bundle winding of a resonance-locked nested shell braid. Its purpose is to state what can be computed from a retained branch chart, what is invariant inside a nondegenerate branch domain, and what remains a theorem target before the label can serve as a topological periodic table of assemblies. The general search domain that emits candidate tri-binary branch charts is developed in [Tri-Binary Configuration Space](tri-binary-configuration-space.md).
 
 The compact notation is
 $$
@@ -32,7 +32,7 @@ where $D_s$ and $D_p$ are signed root degrees. The unsigned counts $N_s$ and $M_
 
 This is a definition and closure target, not a completed classification theorem. It becomes a physical assembly label only after the same retained branch chart supplies positive root floors, finite memory, finite local-to-global gluing, stable return data, and a closed wake-history boundary ledger.
 
-In the terminology of [Tri-Binary Configuration Space](tri-binary-configuration-space.md#eigen-swarm-candidates), an eigen-swarm candidate is the dynamical return-map status of the full retained branch. The assembly topological charge is the branch-intrinsic topological label carried by that candidate. It is not a Lorentz-dressed observer component: moving-assembly export may transform energy-momentum and angular-momentum readouts, but $[\mathfrak B]_{\mathrm{top}}$ changes only when the retained branch crosses a fold, reconnection, or declared surgery event.
+In the terminology of [Tri-Binary Configuration Space](tri-binary-configuration-space.md#eigen-braid-candidates), an eigen-braid candidate is the dynamical return-map status of the full retained branch. The assembly topological charge is the branch-intrinsic topological label carried by that candidate. It is not a Lorentz-dressed observer component: moving-assembly export may transform energy-momentum and angular-momentum readouts, but $[\mathfrak B]_{\mathrm{top}}$ changes only when the retained branch crosses a fold, reconnection, or declared surgery event.
 
 ## Source Of The Three Entries
 

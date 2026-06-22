@@ -203,7 +203,7 @@ It emits:
   `I1`, and retention rows.
 
 The companion test
-[neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fourth-order-post-u-coefficient-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fourth-order-post-u-coefficient-certificate.test.js)
+[neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fourth-order-post-u-coefficient-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-fourth-order-post-u-coefficient-certificate.test.js)
 validates schema, no-fixed-speed-window discipline, $h_{24}$ and
 $Q_{G,24},Q_{D,24}$ intervals, the $Q_D+25Q_G$ identity interval, overclaim
 rejection, and CLI write/validate behavior.

@@ -35,7 +35,7 @@ This is the useful lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$: Michelson-Morley
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-Lorentz symmetry is already a theorem target, not substrate ontology. The corpus signals name moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage. The Noether sea response object and nested shell swarm causal closure should make absolute-frame dynamics operationally hidden in the tested regime.
+Lorentz symmetry is already a theorem target, not substrate ontology. The corpus signals name moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage. The Noether sea response object and nested shell braid causal closure should make absolute-frame dynamics operationally hidden in the tested regime.
 
 ## Task Queue
 
@@ -133,7 +133,7 @@ where the photon-sector rows compare against two-way cavity, clock-comparison, a
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | [swarm](../swarm/swarm.md) | Make Lorentz behavior consume moving-assembly deformation and clock/ruler retuning. |
+| This file | [braid](../swarm/swarm.md) | Make Lorentz behavior consume moving-assembly deformation and clock/ruler retuning. |
 | This file | [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Tie the cancellation to causal-root and Jacobian structure rather than postulated Minkowski geometry. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Add preferred-frame leakage as a direct gravity/relativity acceptance predicate. |
 

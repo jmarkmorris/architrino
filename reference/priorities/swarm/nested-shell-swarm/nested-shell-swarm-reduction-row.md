@@ -1,6 +1,6 @@
-# Nested Shell Swarm Reduction Row
+# Nested Shell Braid Reduction Row
 
-Promotion status: `priority-only`. This packet formalizes nested shell swarm as a stricter case reduction of a neutral swarm branch. It refines [neutral-swarm-model.md](../neutral-swarm/neutral-swarm-model.md), [nested-shell-swarm-model-card.md](nested-shell-swarm-model-card.md), [nested-shell-swarm-radial-support-functional.md](nested-shell-swarm-radial-support-functional.md), and [shell-swarm-reduction-row.md](../shell-swarm/shell-swarm-reduction-row.md).
+Promotion status: `priority-only`. This packet formalizes nested shell braid as a stricter case reduction of a neutral braid branch. It refines [Neutral Braid Model](../neutral-swarm/neutral-swarm-model.md), [Nested Shell Braid Model Card](nested-shell-swarm-model-card.md), [Nested Shell Braid Radial Support Functional](nested-shell-swarm-radial-support-functional.md), and [Shell Braid Reduction Row](../shell-swarm/shell-swarm-reduction-row.md).
 
 The reduction target is:
 
@@ -13,7 +13,7 @@ $$
 \quad
 \Longrightarrow
 \quad
-\text{neutral swarm branch in the nested shell swarm case}.
+\text{neutral braid branch in the nested shell braid case}.
 $$
 
 The implication is a case classification only. It does not retain the branch and does not promote observer exports.
@@ -22,7 +22,7 @@ The implication is a case classification only. It does not retain the branch and
 
 ## 1. Partition Row
 
-A nested shell swarm case requires a declared binary partition
+A nested shell braid case requires a declared binary partition
 
 $$
 \mathcal{P}=\{P_1,P_2,P_3\},
@@ -70,13 +70,13 @@ $$
 \right\|.
 $$
 
-No nested shell swarm conclusion may depend on exact antipodality unless this residual is explicitly statused.
+No nested shell braid conclusion may depend on exact antipodality unless this residual is explicitly statused.
 
 ---
 
 ## 2. Radial Functional Row
 
-The shell radius $R_a$ is not primitive. A retained nested shell swarm packet must declare a radial support functional
+The shell radius $R_a$ is not primitive. A retained nested shell braid packet must declare a radial support functional
 
 $$
 R_a=\mathscr{R}_a(\mathbf{Y},\nu,\mathcal{D}_{\mathrm{supp}},\mathcal{P})
@@ -108,7 +108,7 @@ $$
 \bar R=\frac13\sum_{a=1}^3R_a.
 $$
 
-For an ordered nested shell swarm with adjacent labels $(I,M,O)$ or another declared convention, the radial gap margins are
+For an ordered nested shell braid with adjacent labels $(I,M,O)$ or another declared convention, the radial gap margins are
 
 $$
 \mathcal{G}_{IM}^{R}(W)
@@ -130,13 +130,13 @@ $$
 \mathcal{G}_{MO}^{R}(W)>\epsilon_R.
 $$
 
-The spread row from the shell swarm reduction may pass or fail independently. A nested shell swarm may have separated shells rather than a common shell band, but it still inherits all neutral swarm rows and all declared support-work rows.
+The spread row from the shell braid reduction may pass or fail independently. A nested shell braid may have separated shells rather than a common shell band, but it still inherits all neutral braid rows and all declared support-work rows.
 
 ---
 
 ## 4. Label-Use Ledger
 
-The labels `inner`, `middle`, and `outer` are not allowed to carry unstated dynamics. A nested shell swarm packet must declare one label-use status:
+The labels `inner`, `middle`, and `outer` are not allowed to carry unstated dynamics. A nested shell braid packet must declare one label-use status:
 
 | Status | Meaning |
 | --- | --- |
@@ -151,7 +151,7 @@ If a label is used as a weak-stress role, the packet must define the residual th
 
 ## 5. Transition Row
 
-The transition case is the region where an ordered nested shell swarm approaches a shell swarm or loses radial order:
+The transition case is the region where an ordered nested shell braid approaches a shell braid or loses radial order:
 
 $$
 0\le
@@ -191,7 +191,7 @@ Without this event row, branch continuation across shell-order change is not cer
 
 ## 6. Nested Reduction Residual
 
-The nested shell swarm reduction block is
+The nested shell braid reduction block is
 
 $$
 \mathcal{R}_{\mathrm{nested}}
@@ -215,6 +215,6 @@ The branch status is:
 | `nested-shell-transition` | a certified radial transition event is active |
 | `shell-case-instead` | common support-band shell row is better supported than ordered radial gaps |
 | `partition-case-failed` | no admissible binary partition supports the nested shell row |
-| `neutral-branch-only` | the broader neutral swarm branch may remain viable, but the nested shell swarm reduction is unavailable |
+| `neutral-branch-only` | the broader neutral braid branch may remain viable, but the nested shell braid reduction is unavailable |
 
-Thus nested shell swarm failure rejects only the stricter reduction. It does not discard shell swarm or neutral swarm candidates unless their required rows fail separately.
+Thus nested shell braid failure rejects only the stricter reduction. It does not discard shell braid or neutral braid candidates unless their required rows fail separately.

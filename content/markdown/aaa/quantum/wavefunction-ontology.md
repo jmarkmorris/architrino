@@ -21,7 +21,7 @@ This requires a two-layer use of the word superposition. Substrate superposition
 The wavefunction encodes:
 *   **The superposed potential landscape:** A coarse-grained representation of the ambient causal wake intersections.
 *   **Informational ambiguity:** The integrated ignorance of exact source identities, distances, and path-history emission times.
-*   **Assembly resonance modes:** The allowed stable configuration limits of Noether swarm assemblies.
+*   **Assembly resonance modes:** The allowed stable configuration limits of Noether braid assemblies.
 
 When standard non-relativistic, fixed-particle-number quantum mechanics uses a unitary evolution equation (the Schrödinger equation), it is tracking the linear, idealized propagation of these coarse-grained potential distributions across the Noether sea.
 
@@ -147,7 +147,7 @@ When an architrino intersects a causal wake surface, it receives an instantaneou
 1.  The unoriented line of action.
 2.  The net force magnitude.
 
-The receiver cannot intrinsically distinguish between the attractive pull of an opposite polarity and the repulsive push of a like polarity located on the diametrically opposite side of the line of action. Furthermore, because the local potential is a dense superposition of hits from countless Noether sea swarms, the exact origin and path-history of any single perturbation is irretrievable.
+The receiver cannot intrinsically distinguish between the attractive pull of an opposite polarity and the repulsive push of a like polarity located on the diametrically opposite side of the line of action. Furthermore, because the local potential is a dense superposition of hits from countless Noether sea braids, the exact origin and path-history of any single perturbation is irretrievable.
 
 ### Measurement Back-Action and the $h$-Bracket
 Any attempt by a Physical Observer to resolve the microstate of an assembly requires an interaction (e.g., scattering a photon assembly modeled as a coaxial contra-rotating pro/anti planar pair). This interaction injects a discrete, minimum action increment (scaling with $h$) into the target assembly's causal history. This back-action continuously alters the boundary conditions of the state, placing a hard limit on simultaneously resolvable conjugate variables. The uncertainty principle brackets the physical action step associated with assembly transitions.
@@ -237,11 +237,11 @@ This is also the correct home for anomalous signed weak-probe averages. A weak-v
 
 The "collapse" of the wavefunction is not a spontaneous, non-physical violation of unitary evolution. It is the **deterministic crossing of a metastable phase-space boundary** (a separatrix) during an interaction.
 
-Assemblies such as Noether swarms possess internal slow variables that dictate their resonant states. When an assembly interacts with a measurement apparatus (a macroscopic complex of assemblies), the combined system enters a metastable configuration. The incoming potential sum drives the system toward a bifurcation threshold.
+Assemblies such as Noether braids possess internal slow variables that dictate their resonant states. When an assembly interacts with a measurement apparatus (a macroscopic complex of assemblies), the combined system enters a metastable configuration. The incoming potential sum drives the system toward a bifurcation threshold.
 
 Once the accumulated path-history forces push the assembly's action across the $h$-scale separatrix, the system falls into a new, distinct basin of attraction (e.g., transitioning from an excited orbital resonance to a ground state, or locking into a specific spatial trajectory). 
 
-For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full nested shell swarm spin ledger rather than to a preassigned spin label.
+For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full nested shell braid spin ledger rather than to a preassigned spin label.
 
 The stronger deterministic statement is not that the formal wavefunction disappears from calculation. It is that a complete substrate state would already contain the realized path-history branch. The effective state must carry multiple amplitudes only because the retained observer chart has lost enough source identity, emission-time, and apparatus-kernel detail that several basin outcomes remain unresolved.
 

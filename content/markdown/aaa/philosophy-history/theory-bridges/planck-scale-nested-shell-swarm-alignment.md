@@ -1,21 +1,21 @@
-# Mapping the Planck Scale to the Nested Shell Swarm Geometry
+# Mapping the Planck Scale to the Nested Shell Braid Geometry
 
-This chapter treats the Planck scale as an exploratory alignment-horizon problem for the nested shell swarm rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed nested shell swarm sector, then test which parts survive once full closure conditions are imposed.
+This chapter treats the Planck scale as an exploratory alignment-horizon problem for the nested shell braid rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed nested shell braid sector, then test which parts survive once full closure conditions are imposed.
 
-Its closest companions are [Nested Shell Swarm Dynamics](../../noether-swarm/nested-shell-swarm-dynamics.md), [Dyadic Resonance Lock](../../dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](./angular-momentum-and-spin.md), [Horizon Chirality](../../spacetime/horizon-chirality.md), [Black Holes](../../spacetime/black-holes.md), and [Effective Lagrangian](../../dynamics/effective-lagrangian.md).
+Its closest companions are [Nested Shell Braid Dynamics](../../noether-swarm/nested-shell-swarm-dynamics.md), [Dyadic Resonance Lock](../../dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](./angular-momentum-and-spin.md), [Horizon Chirality](../../spacetime/horizon-chirality.md), [Black Holes](../../spacetime/black-holes.md), and [Effective Lagrangian](../../dynamics/effective-lagrangian.md).
 
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 
 ## Thesis
 
-This chapter maps the Planck scale into nested shell swarm geometry and dynamics. The inherited Planck formulas are used as constraints and comparison targets, not as settled ontology. The immediate aim is to identify which geometric quantities, delay-feedback conditions, and alignment variables would have to be derived before the Planck scale can be claimed as a nested shell swarm closure result.
+This chapter maps the Planck scale into nested shell braid geometry and dynamics. The inherited Planck formulas are used as constraints and comparison targets, not as settled ontology. The immediate aim is to identify which geometric quantities, delay-feedback conditions, and alignment variables would have to be derived before the Planck scale can be claimed as a nested shell braid closure result.
 
-We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of nested shell swarm assemblies in the Noether sea:
+We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of nested shell braid assemblies in the Noether sea:
 
 > 
 > **Working Thesis (Planck Alignment Horizon).**
 > 
-> A nested shell swarm reaches the Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
+> A nested shell braid reaches the Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
 > 1. The kinematic transition to flattening occurs as $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ in the forward sector, starving new one-way causal updates ahead of the forward edge (local horizon behavior).
 > 2. The geometry collapses from a 3D precessing oblate spheroidal envelope (fermion-like) to a 2D, co-planar disk (boson-like).
 > 3. In the planar limit, the combined in-plane motion outruns $c_f$, so the emission history forms a Mach-wedge causal wake with half-angle
@@ -59,13 +59,13 @@ E_{\mathrm{cross}}^2 \sim \frac{\hbar c_f^5}{2G},
 \ell_{\mathrm{probe,min}} \sim O(\ell_P)
 $$
 
-Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This supports the interpretation of $\ell_P$ as the observed trace of a nested shell swarm alignment horizon rather than as proof that spacetime is made of smaller static beads.
+Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This supports the interpretation of $\ell_P$ as the observed trace of a nested shell braid alignment horizon rather than as proof that spacetime is made of smaller static beads.
 
 **Regime clarification (to prevent speed-label conflicts):**
 - In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are component-speed saturation statements in the terminal alignment regime.
 - The statement "$v_{\text{eff}} > c_f$" refers to a **combined in-plane effective motion** used for Mach-wedge causal geometry, not a claim that either component speed is individually $> c_f$.
 - The local one-way starvation condition begins when a forward component approaches $c_f$; the Mach-wedge condition is the stronger combined-speed condition $v_{\text{eff}}>c_f$.
-- The CFT-exterior role label "outer binary $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [nested-shell-swarm-dynamics.md](../../noether-swarm/nested-shell-swarm-dynamics.md)).
+- The CFT-exterior role label "outer binary $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [Nested Shell Braid Dynamics](../../noether-swarm/nested-shell-swarm-dynamics.md)).
 
 ---
 
@@ -153,7 +153,7 @@ $$
 \Phi_n \equiv \omega_n \Delta t_{\text{rt}} + \phi_{\text{geom}}(n) = 2\pi k_n
 $$
 
-for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip delay and $\phi_{\text{geom}}$ encodes geometric phase due to nested shell swarm structure.
+for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip delay and $\phi_{\text{geom}}$ encodes geometric phase due to nested shell braid structure.
 
 > **Working hypothesis (Terminal Mode):**  
 > There exists a final mode $n_{\text{max}}$ in which:
@@ -196,7 +196,7 @@ In this causal-wake framing:
 ## Discrete Ladder and Phase-Slip Dynamics (Hypothesis)
 
 > **Working Hypothesis (Discrete Ladder).**  
-> The nested shell swarm supports a discrete set of delay-locked modes indexed by $n$, each with characteristic radius $r_n$, frequency $\omega_n$, and delay $\Delta t_n = r_n/c_f$. Stability requires a phase-closure condition between orbital motion and causal wake.
+> The nested shell braid supports a discrete set of delay-locked modes indexed by $n$, each with characteristic radius $r_n$, frequency $\omega_n$, and delay $\Delta t_n = r_n/c_f$. Stability requires a phase-closure condition between orbital motion and causal wake.
 
 Under increasing translational stress or deepening gravitational potential:
 
@@ -221,7 +221,7 @@ then the “single top rung” picture must be modified or abandoned.
 
 We propose an effective spin/statistics mapping via a reduction in configuration-space structure.
 
-### Fermionic Regime: 3D Precessing Nested Shell Swarm
+### Fermionic Regime: 3D Precessing Nested Shell Braid
 
 In the low-energy / weak-alignment regime:
 
@@ -229,11 +229,11 @@ In the low-energy / weak-alignment regime:
 - Total angular momentum **J** is fixed (no external torque), but the normals of the three binary planes wobble: their composite orientation precesses around **J**, often following small-circle, Lissajous, or figure-8 paths in orientation space (not a rigid cone).
 - The full causal configuration (including self-hit history and relative plane orientations) is not restored by a simple $2\pi$ spatial rotation.
 
-> **Hypothesis:** The effective orientation space of such a nested shell swarm behaves like an $SU(2)$-type double cover of spatial rotations:
+> **Hypothesis:** The effective orientation space of such a nested shell braid behaves like an $SU(2)$-type double cover of spatial rotations:
 > a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it.  
 > This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
 
-A rigorous mapping from the detailed nested shell swarm phase space to an $SU(2)$ bundle is not yet derived; it is a closure target.
+A rigorous mapping from the detailed nested shell braid phase space to an $SU(2)$ bundle is not yet derived; it is a closure target.
 
 ### Bosonic Regime: Fully Aligned Planar Disk
 
@@ -266,7 +266,7 @@ Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to 
 
 ### Minimal Cycle Action: $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text{align}}$, and $h$
 
-Let $I$ denote the radian-normalized total rotational action of a nested shell swarm assembly: the action-angle variable that has the same units and role as angular momentum. Let $\mathcal{A}_{\text{cycle}}=2\pi I$ denote the corresponding closed-cycle action.
+Let $I$ denote the radian-normalized total rotational action of a nested shell braid assembly: the action-angle variable that has the same units and role as angular momentum. Let $\mathcal{A}_{\text{cycle}}=2\pi I$ denote the corresponding closed-cycle action.
 
 - For generic modes $n$, $I(n)$ and $\mathcal{A}_{\text{cycle}}(n)$ depend on axial structure and environment.
 - For the Planck alignment state $n_{\text{max}}$, we expect a **universal attractor** dominated by:
@@ -297,7 +297,7 @@ Let
 $$
 Q_{\mathrm{align}}
 $$
-denote the retained topological and phase-lock data of the aligned nested shell swarm branch: winding class, layer-lock integers, chirality sign if retained, and the active causal-root ledger over one cycle. A useful theorem target is a bound of the form
+denote the retained topological and phase-lock data of the aligned nested shell braid branch: winding class, layer-lock integers, chirality sign if retained, and the active causal-root ledger over one cycle. A useful theorem target is a bound of the form
 $$
 \mathcal{A}_{\text{cycle}}[\Gamma]
 \ge
@@ -359,7 +359,7 @@ Our program is to compute $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text
 Qualitatively, gravitational coupling strength reflects the **elastic response of the Noether sea**:
 
 > **Heuristic View:**  
-> $G$ is inversely related to the **stiffness** of nested shell swarm assemblies in the Noether sea against being driven toward the alignment phase. High energy density in aligned swarms deforms the surrounding Noether sea, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
+> $G$ is inversely related to the **stiffness** of nested shell braid assemblies in the Noether sea against being driven toward the alignment phase. High energy density in aligned braids deforms the surrounding Noether sea, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
 
 A full derivation of $G$ from medium compliance is still to be done; the formula above gives a target relationship.
 
@@ -369,11 +369,11 @@ A full derivation of $G$ from medium compliance is still to be done; the formula
 
 With Planck alignment as an endpoint rather than a point singularity:
 
-- Black-hole-like objects are interpreted as regions where large numbers of nested shell swarms are **driven close to or into** the alignment state.
+- Black-hole-like objects are interpreted as regions where large numbers of nested shell braids are **driven close to or into** the alignment state.
 - The horizon-adjacent interface is then modeled by patches whose characteristic scale is $R_{\text{align}}$, while any core-volume packing interpretation remains a separate conjecture.
 
 > **Conjecture (Condensate-Like Aligned Phase).**  
-> We conjecture that black-hole cores correspond to a **condensate-like phase** dominated by planar-aligned, effectively bosonic nested shell swarms. This analogy is structural:
+> We conjecture that black-hole cores correspond to a **condensate-like phase** dominated by planar-aligned, effectively bosonic nested shell braids. This analogy is structural:
 > - Many nearly identical aligned assemblies occupy a low-dimensional configuration manifold (planar disk orientation).
 > - Entropy and area scaling would have to emerge from counting alignment-compatible boundary labels on horizon-adjacent surfaces, not from arbitrary volume packing.
 
@@ -395,11 +395,11 @@ a_{\theta}
 \longrightarrow
 \frac{1}{4}
 $$
-where $\mathcal{L}_U$ is the observer-distinguishable set of alignment-compatible labels on a connected block $U$ and $A_{\mathrm{eff}}(U)\to A_H$ in the large-area limit. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal nested shell swarm alignment supplies a universal local entropy density, the associated patch-area normalization, and correlations between neighboring patches that do not restore volume or arbitrary history-length scaling.
+where $\mathcal{L}_U$ is the observer-distinguishable set of alignment-compatible labels on a connected block $U$ and $A_{\mathrm{eff}}(U)\to A_H$ in the large-area limit. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal nested shell braid alignment supplies a universal local entropy density, the associated patch-area normalization, and correlations between neighboring patches that do not restore volume or arbitrary history-length scaling.
 
 We deliberately use “condensate-like” here; a full condensate claim would require:
 
-- a derived many-body Hamiltonian for aligned nested shell swarms,
+- a derived many-body Hamiltonian for aligned nested shell braids,
 - demonstration of macroscopic occupation of a single mode,
 - consistent thermodynamic treatment (BH entropy, specific heat, etc.).
 
@@ -416,7 +416,7 @@ Those steps remain open.
 
 2. **Universality of $R_{\text{align}}$.**  
    The alignment radius must be a property of the **medium**:
-   - Different nested shell swarm assembly variants (electron-like, muon-like, quark-like) driven to alignment should converge to the same $R_{\text{align}}$ within small tolerances.
+   - Different nested shell braid assembly variants (electron-like, muon-like, quark-like) driven to alignment should converge to the same $R_{\text{align}}$ within small tolerances.
    - Large species-dependence would undermine the identification with a universal $\ell_P$.
 
 3. **Uniqueness of Aligned Mode.**  

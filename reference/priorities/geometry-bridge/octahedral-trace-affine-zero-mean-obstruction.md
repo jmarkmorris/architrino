@@ -175,7 +175,7 @@ The executable diagnostic [octahedral-trace-affine-zero-mean-obstruction.mjs](..
 - a positive-scale partner sample table;
 - the non-retention verdict.
 
-The companion test [neutral-swarm-octahedral-trace-affine-zero-mean-obstruction.test.js](../../../tests/neutral-swarm-octahedral-trace-affine-zero-mean-obstruction.test.js) verifies the partner root interval, positivity, the fixed-speed partner mean reproduction, the positive partner value at $s_{\mathrm{lin}}$, CLI validation, and the claim-level guard
+The companion test [neutral-braid-octahedral-trace-affine-zero-mean-obstruction.test.js](../../../tests/neutral-swarm-octahedral-trace-affine-zero-mean-obstruction.test.js) verifies the partner root interval, positivity, the fixed-speed partner mean reproduction, the positive partner value at $s_{\mathrm{lin}}$, CLI validation, and the claim-level guard
 
 $$
 \texttt{retention=not\_retained}.

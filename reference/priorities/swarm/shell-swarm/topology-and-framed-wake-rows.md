@@ -22,7 +22,7 @@ $$
 \Gamma_B=\bigcup_{i\in I}\operatorname{im}\mathbf{Y}_i
 $$
 
-be the labeled path union of a neutral swarm or shell swarm branch. A topological invariant may be assigned only if the branch has a tubular floor
+be the labeled path union of a neutral braid or shell braid branch. A topological invariant may be assigned only if the branch has a tubular floor
 
 $$
 d_{\min}^{\Gamma}

@@ -1,8 +1,8 @@
 # Horizon Chirality and Planar Spin
 
-This chapter studies one narrow theory question: how the Noether swarm `pro/anti` distinction should be understood as a nested shell swarm approaches the planar horizon state. For this note we set aside bookkeeping questions and focus on geometry, orbit direction, and the reduction from a 3D precessing scaffold to a planar exterior view.
+This chapter studies one narrow theory question: how the Noether braid `pro/anti` distinction should be understood as a nested shell braid approaches the planar horizon state. For this note we set aside bookkeeping questions and focus on geometry, orbit direction, and the reduction from a 3D precessing scaffold to a planar exterior view.
 
-The guiding problem is simple. In ordinary low-stress conditions, the nested shell swarm is a fully 3D object with ordered binary roles and precession structure. At the event horizon, the same assembly is driven toward coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
+The guiding problem is simple. In ordinary low-stress conditions, the nested shell braid is a fully 3D object with ordered binary roles and precession structure. At the event horizon, the same assembly is driven toward coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
 
 ## Canonical Horizon Condition
 
@@ -16,16 +16,16 @@ $$
 
 with the middle and outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
 
-This chapter does not alter that constitutive rule. It asks what chirality information can still be distinguished once the nested shell swarm has been compressed into that planar boundary-like state.
+This chapter does not alter that constitutive rule. It asks what chirality information can still be distinguished once the nested shell braid has been compressed into that planar boundary-like state.
 
 ## Pro/Anti Before Planar Lock
 
-Away from the horizon, the project already treats `pro/anti` as a handedness or ordering property of the 3D nested shell swarm scaffold rather than as a net-charge distinction. The standard working convention appears in [noether-sea-pro-anti-coupling.md](noether-sea-pro-anti-coupling.md) and [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md):
+Away from the horizon, the project already treats `pro/anti` as a handedness or ordering property of the 3D nested shell braid scaffold rather than as a net-charge distinction. The standard working convention appears in [noether-sea-pro-anti-coupling.md](noether-sea-pro-anti-coupling.md) and [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md):
 
 - `pro`: $H \to M \to L$ ordering in time;
 - `anti`: $H \to L \to M$ ordering in time.
 
-That distinction is natural in the ordinary nested shell swarm because the three binaries occupy non-coplanar planes with an ordered set of normals and a genuine precession structure. In that regime, `pro/anti` is a 3D chirality datum.
+That distinction is natural in the ordinary nested shell braid because the three binaries occupy non-coplanar planes with an ordered set of normals and a genuine precession structure. In that regime, `pro/anti` is a 3D chirality datum.
 
 The strongest current mathematical candidate beneath that datum comes from [causal-action-functional.md](../dynamics/causal-action-functional.md): the causal writhe
 
@@ -36,24 +36,24 @@ $$
 
 is a signed measure of handedness for the self-interaction pattern, and the same chapter states that changing $Wr_c$ requires tearing the causal locus. So the cleanest current reading is:
 
-- the surface convention for `pro/anti` remains the ordered `HML/HLM` nested shell swarm distinction;
+- the surface convention for `pro/anti` remains the ordered `HML/HLM` nested shell braid distinction;
 - the best current formalization candidate is a topological branch label carried by the causal locus, with $Wr_c$ as the leading chirality measure.
 
 The horizon state is different. Once the planes collapse into one planar lock and precession ceases, some of the ordinary 3D chirality data are suppressed. That makes it plausible that the horizon exposes only a reduced exterior signature of the deeper `pro/anti` distinction.
 
 ## Broader Pro/Anti Balance in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-This chapter should also be read against a broader guardrail from the project framing: $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** naturally suggest a large universal pro/anti imbalance in the substrate as a whole. The Noether sea picture is instead built around persistent local or mesoscopic balance between complementary Noether swarm orientations.
+This chapter should also be read against a broader guardrail from the project framing: $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** naturally suggest a large universal pro/anti imbalance in the substrate as a whole. The Noether sea picture is instead built around persistent local or mesoscopic balance between complementary Noether braid orientations.
 
 Several standing examples point in that direction.
 
 - **Noether sea / spacetime medium:** the ambient Noether sea is already framed as a coupled pro/anti population rather than a single-sign sea.
 - **Photon channel:** the photon assembly is naturally read as a coaxial contra-rotating pro/anti planar pair, or equivalently one `CW` and one `CCW` planar branch in the flat state as an absolute-frame observer compares the two sides of the propagating pair.
-- **Higgs-like cluster:** the standing cluster intuition remains a $2+2$ object, with two pro and two anti Noether swarms in a three-dimensional coupled state rather than a single-sign configuration.
+- **Higgs-like cluster:** the standing cluster intuition remains a $2+2$ object, with two pro and two anti Noether braids in a three-dimensional coupled state rather than a single-sign configuration.
 
-So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem compresses the Noether swarm strongly enough that the binary branch structure becomes especially visible.
+So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem compresses the Noether braid strongly enough that the binary branch structure becomes especially visible.
 
-The matter sector then becomes the special case. In the current intuition, what we call ordinary matter may be the regime where pro-Noether swarm and anti-Noether swarm encounters act as a kind of geometric opener for one another, making fast reconfiguration channels available. In that reading, the standard word "annihilation" is too blunt. The deeper process is a **reaction** or **reconfiguration event** in which the coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
+The matter sector then becomes the special case. In the current intuition, what we call ordinary matter may be the regime where pro-Noether braid and anti-Noether braid encounters act as a kind of geometric opener for one another, making fast reconfiguration channels available. In that reading, the standard word "annihilation" is too blunt. The deeper process is a **reaction** or **reconfiguration event** in which the coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
 
 That broader matter/reaction thesis belongs with reaction-channel provenance and fermion assembly structure. Inside this chapter, its role is narrower: it reminds us that horizon chirality should be developed inside a theory that is broadly pro/anti balanced, with the dramatic visible asymmetries appearing only in certain reaction channels or assembly sectors.
 
@@ -63,8 +63,8 @@ To keep terms from sliding into one another, use the following provisional dicti
 
 | Label | Meaning in this note | Typical regime |
 | --- | --- | --- |
-| `pro/anti` | the deeper 3D Noether swarm chirality, currently tracked by ordered nested shell swarm structure such as `HML` versus `HLM` | pre-planar 3D swarm |
-| `CW/CCW` | the exterior planar angular-momentum sign seen from one chosen viewing side of a planarized Noether swarm | horizon / planar lock |
+| `pro/anti` | the deeper 3D Noether braid chirality, currently tracked by ordered nested shell braid structure such as `HML` versus `HLM` | pre-planar 3D braid |
+| `CW/CCW` | the exterior planar angular-momentum sign seen from one chosen viewing side of a planarized Noether braid | horizon / planar lock |
 | `left/right` | a possible axial sign relative to translation, for example $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$, if that later proves to control forward exposure of the weak-active structure | high-velocity aligned regime |
 
 This chapter treats these as related but not yet identical labels. One of its main goals is to understand how they may collapse onto one another in the terminal high-velocity regime.
@@ -77,10 +77,10 @@ The horizon question becomes clearer when compared against the main assembly sec
 | --- | --- | --- | --- |
 | Noether sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not predict a large universal imbalance |
 | Photon channel | coaxial contra-rotating pro/anti planar pair | planar / propagating pair | shows that opposite branch pairing is natural in flat planar states |
-| Higgs-like cluster | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-swarm organization without collapsing to one sign |
+| Higgs-like cluster | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-braid organization without collapsing to one sign |
 | Ordinary matter reaction channels | pro/anti encounters can open rapid reconfiguration channels | mixed 3D and reaction geometry | the place where asymmetry becomes dynamically important rather than globally dominant |
 
-This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed nested shell swarm advertises its branch structure when driven into the strongest alignment regime.
+This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed nested shell braid advertises its branch structure when driven into the strongest alignment regime.
 
 ## Exterior Planar Angular-Momentum Basis
 
@@ -122,22 +122,22 @@ The simplest exterior quantity is the sign of the common planar angular momentum
 
 This chapter will call that reduced exterior quantity **boundary helicity**: the horizon-local sign of common planar angular momentum relative to a chosen normal. The term is deliberately narrower than standard helicity until the normal is identified with the relevant propagation or translation direction.
 
-The deeper `pro/anti` distinction is plausibly stronger than boundary helicity alone. In the 3D scaffold, `pro/anti` tracks ordered nested shell swarm chirality, not merely the sign of one visible planar swirl. Once the horizon suppresses precession and forces coplanarity, two different 3D histories may collapse to the same exterior planar sign.
+The deeper `pro/anti` distinction is plausibly stronger than boundary helicity alone. In the 3D scaffold, `pro/anti` tracks ordered nested shell braid chirality, not merely the sign of one visible planar swirl. Once the horizon suppresses precession and forces coplanarity, two different 3D histories may collapse to the same exterior planar sign.
 
 That motivates the following working distinction:
 
 - **Boundary helicity:** the visible sign of the common planar angular momentum at the horizon, measured relative to a chosen normal.
-- **Core chirality:** the deeper `pro/anti` distinction inherited from the ordered 3D nested shell swarm before flattening.
+- **Core chirality:** the deeper `pro/anti` distinction inherited from the ordered 3D nested shell braid before flattening.
 
 If this distinction is correct, then the horizon does not necessarily erase `pro/anti`, but it may compress it so strongly that the exterior observer sees only a reduced proxy.
 
 ## Translation-Axis Alignment at High Velocity
 
-The next question is whether a rapidly translating nested shell swarm should drive the three orbital angular-momentum vectors toward the translation axis itself.
+The next question is whether a rapidly translating nested shell braid should drive the three orbital angular-momentum vectors toward the translation axis itself.
 
 The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
 
-The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md) and its dynamics treatment in [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md):
+The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md) and its dynamics treatment in [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md):
 
 $$
 \frac{x^2+y^2}{R_\perp^2} + \frac{z^2}{R_\parallel^2} = 1,
@@ -182,7 +182,7 @@ $$
 
 so the restoring pressure toward axial alignment strengthens as $v_{\text{trans}} \to c_f$.
 
-This gives a precise version of the intuition: a high-velocity nested shell swarm should be driven toward a state in which the three orbital angular-momentum vectors are **coaxial with the line of translation**, not because momentum conservation alone demands it, but because delayed closure becomes least frustrated there.
+This gives a precise version of the intuition: a high-velocity nested shell braid should be driven toward a state in which the three orbital angular-momentum vectors are **coaxial with the line of translation**, not because momentum conservation alone demands it, but because delayed closure becomes least frustrated there.
 
 ## Exact Conservation Versus Dynamical Selection
 
@@ -199,11 +199,11 @@ In symmetry language, the ambient substrate begins with the full spatial isotrop
 The emerging picture is easier to reason about if written as a shape-and-label ladder:
 
 $$
-\text{3D precessing swarm}
+\text{3D precessing braid}
 \;\to\;
-\text{oblate translating swarm}
+\text{oblate translating braid}
 \;\to\;
-\text{axialized high-}v\text{ swarm}
+\text{axialized high-}v\text{ braid}
 \;\to\;
 \text{planar horizon lock}
 \;\to\;
@@ -212,10 +212,10 @@ $$
 
 The intended label flow along that ladder is:
 
-1. In the ordinary 3D regime, `pro/anti` is carried by ordered nested shell swarm chirality.
+1. In the ordinary 3D regime, `pro/anti` is carried by ordered nested shell braid chirality.
 2. Under high translation speed, the orbital normals are biased toward the translation axis.
 3. Near the terminal aligned state, the surviving branch data may reduce to the sign of the common axial orientation and then to the sign of the visible planar helicity.
-4. After passage through the lock, the Noether swarm may either preserve that branch, re-expand with the same handed history, or undergo a deeper reconfiguration if the planar degeneracy is strong enough.
+4. After passage through the lock, the Noether braid may either preserve that branch, re-expand with the same handed history, or undergo a deeper reconfiguration if the planar degeneracy is strong enough.
 
 This ladder is still a working map, not a completed derivation. Its value is organizational: it shows where the theory expects information to be compressed, preserved, or potentially switched.
 
@@ -260,7 +260,7 @@ In the more cautious reduction, the two uniform planar states are still the visi
 - the uniform planar sign is the **visible boundary marker**;
 - the deeper `pro/anti` label still refers to the ordered 3D chirality from which the planar state was reached.
 
-On this reading, the horizon preserves only a compressed image of the deeper nested shell swarm chirality. The exterior observer sees the branch, but not necessarily the full internal ordering history.
+On this reading, the horizon preserves only a compressed image of the deeper nested shell braid chirality. The exterior observer sees the branch, but not necessarily the full internal ordering history.
 
 At present, Theory B is the stronger conceptual fit with the existing 3D `HML/HLM` framing, because that framing is richer than a single planar spin sign.
 
@@ -280,18 +280,18 @@ are natural candidates for a left/right or helicity-like pair.
 
 That does **not** automatically make them identical to weak-interaction chirality. The current canon already uses left/right language operationally in terms of whether the weak-coupling triad is exposed or hidden relative to motion and wake geometry. Still, the axial-lock picture suggests a possible underlying bridge:
 
-- the high-velocity Noether swarm first selects one of the two axial branches $\pm \hat{\mathbf V}$;
+- the high-velocity Noether braid first selects one of the two axial branches $\pm \hat{\mathbf V}$;
 - that branch then influences which side of the axial structure is forward-exposed versus wake-hidden;
 - the observer-level left/right distinction may therefore descend from the sign choice of the common axial angular momentum in the translating aligned state.
 
 In that reading, the horizon or near-horizon limit does not merely present two boundary-helicity states. It may also reveal a candidate upstream axial-lock variable for later left/right spin mapping:
 
-- `right-like`: net swarm axis aligned with translation;
-- `left-like`: net swarm axis anti-aligned with translation;
+- `right-like`: net braid axis aligned with translation;
+- `left-like`: net braid axis anti-aligned with translation;
 
 or the reverse, depending on the eventual sign convention.
 
-This should remain a live hypothesis rather than a settled identification. The safe claim is only that the high-velocity math strongly favors **axialization** of the nested shell swarm angular-momentum vectors along the line of translation, and that the surviving sign choice is exactly the kind of binary datum that could later map onto a left/right spin label.
+This should remain a live hypothesis rather than a settled identification. The safe claim is only that the high-velocity math strongly favors **axialization** of the nested shell braid angular-momentum vectors along the line of translation, and that the surviving sign choice is exactly the kind of binary datum that could later map onto a left/right spin label.
 
 The explicit defer condition is that terminal axial sign,
 
@@ -307,8 +307,8 @@ The current chapter mixes canonical inputs with stronger and weaker hypotheses. 
 
 | Claim | Status |
 | --- | --- |
-| horizon lock drives the nested shell swarm toward coplanarity and suppresses precession | canonical in current project framing |
-| `pro/anti` is a deeper 3D Noether swarm chirality label rather than a net-charge label | canonical working convention |
+| horizon lock drives the nested shell braid toward coplanarity and suppresses precession | canonical in current project framing |
+| `pro/anti` is a deeper 3D Noether braid chirality label rather than a net-charge label | canonical working convention |
 | `Wr_c` and causal-locus topology supply the best current formalization candidate for that chirality | strong structural candidate, not yet sole canonical definition |
 | the planar exterior sign space has 8 rows for labeled `H/M/L` binaries | exact combinatorial statement |
 | high translation speed biases orbital normals toward the translation axis | strong geometric argument in this chapter |
@@ -325,7 +325,7 @@ That possibility raises three immediate questions:
 
 1. Are mixed-sign rows dynamically stable, or do they relax toward a common-sign lock?
 2. If they are stable, do they define additional horizon classes beyond `pro/anti`?
-3. If they are unstable, are they the natural transition states through which a Noether swarm passes while entering or leaving the horizon interface?
+3. If they are unstable, are they the natural transition states through which a Noether braid passes while entering or leaving the horizon interface?
 
 The present note favors the third reading: mixed-sign planar states are more naturally interpreted as transition or frustration states than as clean final branches. But this remains an open dynamics question rather than a closed derivation.
 
@@ -333,15 +333,15 @@ One reason for that preference is action-geometric rather than merely visual. In
 
 ## Transition Rules for Pro/Anti Conversion
 
-One of the biggest unresolved questions is whether a Noether swarm can flip from `pro` to `anti` smoothly, or only through a more singular reconfiguration.
+One of the biggest unresolved questions is whether a Noether braid can flip from `pro` to `anti` smoothly, or only through a more singular reconfiguration.
 
 The current chapter points toward the second option. The likely possibilities are:
 
-1. **No flip in ordinary smooth evolution:** away from the planar degeneracy, the ordered 3D Noether swarm chirality appears robust and should survive adiabatic deformations.
+1. **No flip in ordinary smooth evolution:** away from the planar degeneracy, the ordered 3D Noether braid chirality appears robust and should survive adiabatic deformations.
 2. **Near-degenerate branch switch at planar lock:** when the three planes collapse into one planar state, some 3D chirality data are compressed strongly enough that a branch change may become dynamically accessible.
 3. **Full reconfiguration / reaction channel:** a deeper split, exchange, or reconstruction of the constituent binaries could permit a true $pro \leftrightarrow anti$ conversion.
 
-This is exactly where the language of "annihilation" starts to look too weak. If a pro/anti encounter opens the Noether swarm and allows branch-changing reconfiguration, the physical process is better described as a structured reaction than as disappearance.
+This is exactly where the language of "annihilation" starts to look too weak. If a pro/anti encounter opens the Noether braid and allows branch-changing reconfiguration, the physical process is better described as a structured reaction than as disappearance.
 
 The strongest current language from the dynamics stack is that true branch conversion should be associated with a **mode-lock event** or related non-perturbative reconfiguration, not with an adiabatic drift. If the branch label is indeed carried by the topology of the causal locus, then a smooth $pro \leftrightarrow anti$ conversion would require passage through a singular or near-singular reconnection stage rather than ordinary continuous motion.
 
@@ -355,14 +355,14 @@ For now, the safest working rule is:
 
 ## Simulation Diagnostics
 
-If this note is to become more than a conceptual sketch, the following diagnostics should be added to simulations of fast translating or horizon-adjacent nested shell swarms:
+If this note is to become more than a conceptual sketch, the following diagnostics should be added to simulations of fast translating or horizon-adjacent nested shell braids:
 
 - **Axis-alignment diagnostic:** track $\hat J_{\text{net}} \cdot \hat{\mathbf V}$ and test whether it tends toward $\pm 1$ as $v_{\text{trans}} \to c_f$.
 - **Tilt decay diagnostic:** track each orbital-normal angle $\alpha_i$ to test whether non-axial states relax toward the translation axis with a rate that grows with $\gamma$.
 - **Planar branch diagnostic:** once the planarity threshold is met, record which of the 8 planar sign rows the assembly occupies.
 - **Mixed-row lifetime diagnostic:** test whether rows 2 through 7 are long-lived or short-lived compared with the two uniform rows.
 - **Exposure diagnostic:** compare the sign of $\hat J_{\text{net}} \cdot \hat{\mathbf V}$ against forward exposure of the weak-active structure to test the left/right bridge hypothesis.
-- **Branch persistence diagnostic:** drive a Noether swarm into and back out of the planar regime and test whether the same deeper branch label is recovered after re-expansion.
+- **Branch persistence diagnostic:** drive a Noether braid into and back out of the planar regime and test whether the same deeper branch label is recovered after re-expansion.
 
 ## Provisional Conclusion
 
@@ -370,8 +370,8 @@ The full planar spin-sign space at the horizon has eight rows because each of th
 
 That yields a disciplined provisional picture:
 
-- `pro/anti` in the ordinary nested shell swarm is a 3D chirality or ordering property;
-- the horizon compresses the nested shell swarm into a planar state with a reduced exterior signature;
+- `pro/anti` in the ordinary nested shell braid is a 3D chirality or ordering property;
+- the horizon compresses the nested shell braid into a planar state with a reduced exterior signature;
 - the exterior planar state has eight logical spin permutations;
 - the two uniform rows are the best candidates for stable horizon branches;
 - the other six rows are most naturally read as transitional, frustrated, or unstable states unless future dynamics show otherwise.
@@ -380,8 +380,8 @@ That yields a disciplined provisional picture:
 
 - [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition.
 - [black-holes.md](./black-holes.md): horizon interface and strong-field ontology.
-- [nested-shell-swarm-dynamics.md](../noether-swarm/nested-shell-swarm-dynamics.md): regime map, planarity diagnostics, and alignment observables.
-- [planck-scale-nested-shell-swarm-alignment.md](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md): terminal planar lock and alignment-horizon interpretation.
+- [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md): regime map, planarity diagnostics, and alignment observables.
+- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md): terminal planar lock and alignment-horizon interpretation.
 - [angular-momentum-and-spin.md](../philosophy-history/theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
 - [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md): matter/antimatter chirality convention.
 - [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md): ordered-triad and chirality language.

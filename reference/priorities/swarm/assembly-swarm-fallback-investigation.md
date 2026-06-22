@@ -1,13 +1,13 @@
-# Assembly Swarm Fallback Investigation
+# Assembly Braid Fallback Investigation
 
 Promotion status: `priority-only`. Task id:
 `assembly_swarm_fallback_investigation`.
 
 Priority status: `low-priority-fallback`. This packet is conditional on stalls
-in the neutral swarm, shell swarm, and nested shell swarm closure programs. It
-does not replace [neutral-swarm-base-certificate.md](neutral-swarm/neutral-swarm-base-certificate.md),
-[shell-swarm-reduction-row.md](shell-swarm/shell-swarm-reduction-row.md), or
-[nested-shell-swarm-reduction-row.md](nested-shell-swarm/nested-shell-swarm-reduction-row.md).
+in the neutral braid, shell braid, and nested shell braid closure programs. It
+does not replace [Neutral Braid Base Certificate](neutral-swarm/neutral-swarm-base-certificate.md),
+[Shell Braid Reduction Row](shell-swarm/shell-swarm-reduction-row.md), or
+[Nested Shell Braid Reduction Row](nested-shell-swarm/nested-shell-swarm-reduction-row.md).
 It also does not modify the central-inventory bookkeeping in
 [central-inventory-and-event-ledgers.md](shell-swarm/central-inventory-and-event-ledgers.md)
 or the hollow-support packet in
@@ -16,13 +16,13 @@ or the hollow-support packet in
 The fallback question is narrow:
 
 $$
-\text{can every architrino in a larger assembly participate in one Noether swarm ledger?}
+\text{can every architrino in a larger assembly participate in one Noether braid ledger?}
 $$
 
 Here "larger assembly" means an $N$-site branch with $N>6$, not a six-site
-neutral swarm plus externally attached polar-site or axial-inventory appendages,
-and not a neutral swarm plus a separately statused central inventory. If this
-fallback ever opens, the whole branch must be treated as one Noether swarm
+neutral braid plus externally attached polar-site or axial-inventory appendages,
+and not a neutral braid plus a separately statused central inventory. If this
+fallback ever opens, the whole branch must be treated as one Noether braid
 candidate with one inventory, one causal-root ledger, one action/Noether row,
 and one event ledger.
 
@@ -34,11 +34,11 @@ This packet records a possible fallback architecture only. It is not a retained
 branch, not a charged-fermion model, not a nuclear model, and not a migration
 authority for corpus prose. Its purpose is to prevent one specific ambiguity:
 if central-inventory or polar-site separation fails, the next attempt must not
-quietly add hidden architrinos outside the Noether swarm certificate. Either
+quietly add hidden architrinos outside the Noether braid certificate. Either
 those architrinos are outside the retained branch, or they enter one enlarged
 branch ledger.
 
-The fallback object is an $N$-site assembly swarm candidate
+The fallback object is an $N$-site assembly braid candidate
 
 $$
 \mathfrak{R}_{\mathrm{asm}}^\nu(B,W;N)
@@ -97,9 +97,9 @@ a documented hard obstruction:
 
 | Primary route | Stall condition that may open this fallback | What the fallback is allowed to test |
 | --- | --- | --- |
-| neutral six-site swarm | all-pairs six-site root, dynamics, action, or event rows cannot close without extra labels | whether the extra labels must join the same root/action/event ledger |
-| shell swarm | common support-band closure requires persistent source labels outside the six shell sites | whether those labels are real branch participants rather than support artifacts |
-| nested shell swarm | binary-partition or ordered-radius closure fails, but a larger recurrent $N$-site ledger remains coherent | whether the larger ledger is the retained object and nested shells are only a quotient |
+| neutral six-site braid | all-pairs six-site root, dynamics, action, or event rows cannot close without extra labels | whether the extra labels must join the same root/action/event ledger |
+| shell braid | common support-band closure requires persistent source labels outside the six shell sites | whether those labels are real branch participants rather than support artifacts |
+| nested shell braid | binary-partition or ordered-radius closure fails, but a larger recurrent $N$-site ledger remains coherent | whether the larger ledger is the retained object and nested shells are only a quotient |
 | central inventory inside hollow support | resolved or regularized central labels cannot be kept separate without singularity, hidden energy, or root-ledger mismatch | whether central-inventory labels must be promoted into the same all-pairs ledger |
 | axial inventory compatibility | axial inventory cannot be recovered as a compatibility interface from central-inventory plus choreography rows | whether the axial inventory is a sector exposure of one larger branch |
 
@@ -205,13 +205,13 @@ $$
 
 must be an emitted reduction row, not a premise. If no such subset closes, the
 fallback branch may still be investigated as a larger assembly, but it cannot
-claim the neutral swarm, shell swarm, or nested shell swarm reductions.
+claim the neutral braid, shell braid, or nested shell braid reductions.
 
 ---
 
 ## 4. Relation To Existing Six-Site And Charged Rows
 
-The six-site neutral swarm is the preferred base route because it has the lowest
+The six-site neutral braid is the preferred base route because it has the lowest
 inventory cost:
 
 $$
@@ -222,7 +222,7 @@ N_+=N_-=3,
 Q=0.
 $$
 
-The assembly-swarm fallback contains that route only as a reduction:
+The assembly-braid fallback contains that route only as a reduction:
 
 $$
 \mathfrak{R}_{\mathrm{asm}}^\nu(B,W;N)
@@ -266,7 +266,7 @@ independent ingredients.
 
 This relation is stricter than the central-inventory packet. The central
 inventory route may keep labels inside hollow support if it supplies resolved or
-regularized representatives. The assembly-swarm fallback has no such separation:
+regularized representatives. The assembly-braid fallback has no such separation:
 every label participates in the same all-pairs root, action, Noether, and event
 rows unless a quotient row proves that it is unobservable or dynamically
 decoupled below tolerance.
@@ -402,16 +402,16 @@ Immediate rejection criteria:
 The only successful status this packet can define is conditional:
 
 $$
-\texttt{assembly-swarm-fallback-candidate-statused}.
+\texttt{assembly-braid-fallback-candidate-statused}.
 $$
 
 That status means the fallback has a complete investigation ledger. It does not
 mean the branch is retained. Retention would still require the same root,
 dynamics, support, action, Noether, event, stability, inventory, quotient, and
-observer-export closure demanded of the lower-cost swarm programs.
+observer-export closure demanded of the lower-cost braid programs.
 
 Promotion decision: `priority-only`. The mathematical advance is the explicit
 fallback boundary: if larger-assembly architrinos cannot be handled as central
 inventory, axial inventory, or lower-case reductions, they must either enter one
-$N$-site Noether swarm certificate with all-pairs closure or be rejected from the
+$N$-site Noether braid certificate with all-pairs closure or be rejected from the
 branch claim.

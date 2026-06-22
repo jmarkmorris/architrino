@@ -29,13 +29,13 @@ This vocabulary should not be read as branch-choice metaphysics. In quantum comp
 
 ## Primitive Metastability
 
-The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether swarm](../noether-swarm/noether-swarm.md) architecture, every Noether swarm contains a middle binary at the field-speed hinge $v=c_f$, while [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.
+The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether braid](../noether-swarm/noether-swarm.md) architecture, every Noether braid contains a middle binary at the field-speed hinge $v=c_f$, while [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.
 
-This does not make every Noether swarm an agent. A bare Noether swarm has a threshold-sensitive internal hinge, but it has not yet been shown to set its own threshold, hold a bias, or reuse feedback. The philosophical ladder is:
+This does not make every Noether braid an agent. A bare Noether braid has a threshold-sensitive internal hinge, but it has not yet been shown to set its own threshold, hold a bias, or reuse feedback. The philosophical ladder is:
 
 | Level | Philosophical reading |
 | --- | --- |
-| Bare Noether swarm | Metastability exists as a physical threshold resource. |
+| Bare Noether braid | Metastability exists as a physical threshold resource. |
 | Switch | Bias-to-state behavior exists when one preparation moves a metastable unit nearer to or farther from a transition boundary. |
 | Decider | Functional decision exists when an assembly can set, hold, update, and reuse bias states that change later basin weights. |
 | Mature agent | Compatibilist agency exists when many such controlled thresholds are integrated with memory, feedback, and record-making action. |
@@ -77,7 +77,7 @@ where $D$ is a declared distance on outcome distributions and $\epsilon_I$ is th
 
 In this framework, `will` is a compatibilist and functional term for organized threshold setting across a networked assembly. It is not a primitive force and not an exception to causality.
 
-Because metastability is already present in Noether swarm architecture, the philosophical burden shifts. The question is not how uncaused freedom enters matter. The question is how matter with built-in metastable hinges becomes organized enough to prepare its own boundary conditions. On this reading, will is the assembly-level governance of sensitivity: which thresholds are softened, which are damped, which records are allowed to form, and which incoming causal-wake patterns are ignored.
+Because metastability is already present in Noether braid architecture, the philosophical burden shifts. The question is not how uncaused freedom enters matter. The question is how matter with built-in metastable hinges becomes organized enough to prepare its own boundary conditions. On this reading, will is the assembly-level governance of sensitivity: which thresholds are softened, which are damped, which records are allowed to form, and which incoming causal-wake patterns are ignored.
 
 When a Decider amplifies a signal, the proposed sequence is:
 
@@ -105,7 +105,7 @@ The He-Rb-He example supplies a minimal worked foothold for threshold tuning. It
 | **Libertarian Free Will** | Excluded as uncaused or law-violating initiation |
 | **Compatibilist Agency** | Allowed when complex assemblies navigate deterministic dynamics through internal state and feedback |
 | **Mechanism of "Decision"** | Threshold tuning + feedback + memory in networked assemblies |
-| **Metastability Substrate** | Field-speed middle binary in the Noether swarm supplies a primitive threshold resource, but not agency by itself |
+| **Metastability Substrate** | Field-speed middle binary in the Noether braid supplies a primitive threshold resource, but not agency by itself |
 | **Validation Target** | Fixed boundary context plus different internal preparations must produce a measurable basin-weight shift with work, dissipation, and hold time recorded |
 | **Switch** | Bias-to-state mechanism; computed example currently uses He-Rb-He |
 | **Decider** | Candidate bias-setting architecture built from controlled thresholds, feedback, and memory |

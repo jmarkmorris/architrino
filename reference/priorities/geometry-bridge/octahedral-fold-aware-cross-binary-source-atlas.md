@@ -214,7 +214,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-source-atlas.mjs](
 - fold-cell adjacency checks around the two quarter-domain fold boundaries;
 - non-retention boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-source-atlas.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-source-atlas.test.js) verifies source scope, speed-window removal, four-source coverage, root-count regimes, fold endpoint positions, source-pair antisymmetry, fold-cell adjacency, CLI emission, JSON validation, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-source-atlas.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-source-atlas.test.js) verifies source scope, speed-window removal, four-source coverage, root-count regimes, fold endpoint positions, source-pair antisymmetry, fold-cell adjacency, CLI emission, JSON validation, and non-retention claims.
 
 ## Claim Boundary
 

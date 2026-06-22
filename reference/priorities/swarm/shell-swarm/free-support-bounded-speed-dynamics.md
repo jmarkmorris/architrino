@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet answers the support-geometry concern for the bounded speed factor tri-binary model. The base branch model does not assume that architrino paths lie on a sphere. It assumes closed arclength curves in the Euclidean substrate $\mathbb{R}^3$, with a declared support-band row. Fixed-sphere or fixed-radius motion is only a special sector obtained by setting the support radius constant.
 
-This packet refines the support geometry used by [bounded-speed-factor-center-time-dynamics.md](bounded-speed-factor-center-time-dynamics.md), [swarm-architecture.md](swarm-architecture.md), [nested-shell-swarm-model-card.md](../nested-shell-swarm/nested-shell-swarm-model-card.md), and [force-balance-reduction.md](force-balance-reduction.md). It does not retain a branch, compute a causal-root ledger, or authorize corpus migration.
+This packet refines the support geometry used by [bounded-speed-factor-center-time-dynamics.md](bounded-speed-factor-center-time-dynamics.md), [Braid Architecture](swarm-architecture.md), [Nested Shell Braid Model Card](../nested-shell-swarm/nested-shell-swarm-model-card.md), and [force-balance-reduction.md](force-balance-reduction.md). It does not retain a branch, compute a causal-root ledger, or authorize corpus migration.
 
 ---
 
@@ -42,7 +42,7 @@ r_i(\lambda)
 R+\delta.
 $$
 
-The support-band row may be narrow, wide, fixed in center time, continued along a branch, or partition-indexed in a nested shell or shell swarm case. None of these choices makes the curve spherical unless the retained packet adds the stronger equality row
+The support-band row may be narrow, wide, fixed in center time, continued along a branch, or partition-indexed in a nested shell or shell braid case. None of these choices makes the curve spherical unless the retained packet adds the stronger equality row
 
 $$
 r_i(\lambda)\equiv R_i.

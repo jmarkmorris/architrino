@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This priority packet stages the Koide charged-lepton relation as a downstream mass-map benchmark. It does not promote Koide structure into reader-facing corpus prose and does not identify charged-lepton generations with Noether swarm axes by declaration.
+This priority packet stages the Koide charged-lepton relation as a downstream mass-map benchmark. It does not promote Koide structure into reader-facing corpus prose and does not identify charged-lepton generations with Noether braid axes by declaration.
 
 The useful mathematical form is not a fitted mass formula. It is an equal-norm condition on the square-root amplitudes of branch-derived exposed-source numerators. The packet therefore belongs after $A_0$ branch closure, energy/shielding extraction, scalar exposure quotient descent, and medium-response extraction.
 
@@ -123,9 +123,9 @@ The two residuals are equivalent in nondegenerate records: $Q_{\mathrm{K}}^{\mat
 
 ## Axis Interpretation Discipline
 
-The Noether swarm supplies three layer and role structures, including $I/M/O$ radial support, $H/M/L$ branch roles, binary-plane normals, and branch axes. This packet does not identify $e,\mu,\tau$ with those axes by name.
+The Noether braid supplies three layer and role structures, including $I/M/O$ radial support, $H/M/L$ branch roles, binary-plane normals, and branch axes. This packet does not identify $e,\mu,\tau$ with those axes by name.
 
-An axis explanation is admissible only if a future branch packet declares a branch-native map from the charged-lepton family labels into the relevant Noether swarm axis, role, or quotient-visible response components and proves that the map survives branch-ledger transport, shielding extraction, and medium-response evaluation. Without that map, the Koide residual remains a hierarchy benchmark, not an axis theorem.
+An axis explanation is admissible only if a future branch packet declares a branch-native map from the charged-lepton family labels into the relevant Noether braid axis, role, or quotient-visible response components and proves that the map survives branch-ledger transport, shielding extraction, and medium-response evaluation. Without that map, the Koide residual remains a hierarchy benchmark, not an axis theorem.
 
 If a future branch record emits axis-resolved directional masses through
 
@@ -157,10 +157,10 @@ The Koide benchmark can be scored only when:
 | `response-record-split` | the three charged-lepton branches require different $\alpha_{\mathrm{m}}$, $c_{\text{eff}}$, $\Pi_0$, $Q_0$, or reversible $\mathcal{M}_{\text{sea}}^{ab}$ records without a declared state variable |
 | `source-negative-or-degenerate` | an exposed-source numerator is negative, undefined, or too close to the numerical floor to support a square-root amplitude |
 | `scalar-quotient-fail` | discarded labels change $M_{0,g}^{\mathrm{src}}$ beyond tolerance |
-| `axis-map-undeclared` | an explanation claims Noether swarm axis origin without a branch-native map from charged-lepton labels to axis, role, or quotient-visible response data |
+| `axis-map-undeclared` | an explanation claims Noether braid axis origin without a branch-native map from charged-lepton labels to axis, role, or quotient-visible response data |
 | `koide-residual-fail` | $\mathcal{R}_{\mathrm{K,norm}}$ or $\mathcal{R}_{\mathrm{K,scalar}}$ exceeds the declared tolerance after branch outputs are fixed |
 | `scheme-mismatch` | compared charged-lepton masses or branch outputs mix incompatible mass conventions or response states |
 
 ## Promotion Status
 
-This packet is priority-only. It may support the `mass_hierarchy_check` task after $A_0$, shielding, exposure quotient, and medium-response records are fixed. Reader-facing promotion is blocked until the residual is computed from branch-derived exposed-source numerators and any claimed Noether swarm axis explanation is supplied by the branch ledger rather than by label assignment.
+This packet is priority-only. It may support the `mass_hierarchy_check` task after $A_0$, shielding, exposure quotient, and medium-response records are fixed. Reader-facing promotion is blocked until the residual is computed from branch-derived exposed-source numerators and any claimed Noether braid axis explanation is supplied by the branch ledger rather than by label assignment.

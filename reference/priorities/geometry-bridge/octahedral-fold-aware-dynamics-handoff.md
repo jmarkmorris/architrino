@@ -184,7 +184,7 @@ The executable diagnostic [octahedral-fold-aware-dynamics-handoff.mjs](../../../
 - the bounded-speed primitive handoff status;
 - the non-retention verdict.
 
-The companion test [neutral-swarm-octahedral-fold-aware-dynamics-handoff.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-dynamics-handoff.test.js) verifies the source certificate, pointwise witness, fixed-speed rejection, bounded-speed handoff boundary, CLI validation, and non-retention guards.
+The companion test [neutral-braid-octahedral-fold-aware-dynamics-handoff.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-dynamics-handoff.test.js) verifies the source certificate, pointwise witness, fixed-speed rejection, bounded-speed handoff boundary, CLI validation, and non-retention guards.
 
 ## Promotion Decision
 

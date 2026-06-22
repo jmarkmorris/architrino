@@ -73,7 +73,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-forcing-sign-topol
 - bottleneck summary rows;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.test.js) verifies predecessor validation, speed-window removal, candidate order, core margins, bottleneck identification, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.test.js) verifies predecessor validation, speed-window removal, candidate order, core margins, bottleneck identification, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

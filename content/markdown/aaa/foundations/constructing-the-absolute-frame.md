@@ -86,7 +86,7 @@ V=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)
 $$
 with $V>0$ and $V<0$ selecting opposite sides of the plane after the orientation convention has been declared. The sign of $V$ does not turn coordinate parity into a dynamical handedness law.
 
-Dynamical chirality is reserved for an assembly-level handed marker carried by the retained branch record. Ordered precession, axial-frame exposure, reaction provenance, and Noether swarm handedness may feed that marker, but the deformation-stable object should be a framed topology invariant, such as framed self-linking parity
+Dynamical chirality is reserved for an assembly-level handed marker carried by the retained branch record. Ordered precession, axial-frame exposure, reaction provenance, and Noether braid handedness may feed that marker, but the deformation-stable object should be a framed topology invariant, such as framed self-linking parity
 $$
 Lk(\gamma,\gamma^{\mathrm{fr}})
 =

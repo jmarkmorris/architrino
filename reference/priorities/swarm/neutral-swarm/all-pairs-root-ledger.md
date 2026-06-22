@@ -1,8 +1,8 @@
 # All-Pairs Root Ledger
 
-Promotion status: `partially-promoted`. The all-pairs source-pair policy, the $|\Pi_{\mathrm{all}}|=30$ count, and the rule that $3$ attractive / $2$ repellent source-site inventory does not compress the force ledger were promoted into [Noether Swarm](../../../../content/markdown/aaa/noether-swarm/noether-swarm.md) as theorem-target language. This packet still supplies the priority-side causal-root and Jacobian-floor ledger for a general six-site neutral swarm. It is the first hard blocker for the downstream dynamics, action, event, support, and observer-export rows: those rows may not claim closure from a partitioned, paired, or symmetry-compressed root list unless this all-pairs ledger has first emitted an explicit reduction row.
+Promotion status: `partially-promoted`. The all-pairs source-pair policy, the $|\Pi_{\mathrm{all}}|=30$ count, and the rule that $3$ attractive / $2$ repellent source-site inventory does not compress the force ledger were promoted into [Noether Braid](../../../../content/markdown/aaa/noether-swarm/noether-swarm.md) as theorem-target language. This packet still supplies the priority-side causal-root and Jacobian-floor ledger for a general six-site neutral braid. It is the first hard blocker for the downstream dynamics, action, event, support, and observer-export rows: those rows may not claim closure from a partitioned, paired, or symmetry-compressed root list unless this all-pairs ledger has first emitted an explicit reduction row.
 
-This packet refines [neutral-swarm-model.md](neutral-swarm-model.md), [swarm.md](../swarm.md), and [bounded-speed-factor-root-sheet-certificate.md](../shell-swarm/bounded-speed-factor-root-sheet-certificate.md). Promoted claim level: `theorem-target`. Remaining blocker: `all-pairs-root-ledger-open` until active, inactive, and tail cells are interval-certified or assimilated on one ledger.
+This packet refines [Neutral Braid Model](neutral-swarm-model.md), [Braid](../swarm.md), and [bounded-speed-factor-root-sheet-certificate.md](../shell-swarm/bounded-speed-factor-root-sheet-certificate.md). Promoted claim level: `theorem-target`. Remaining blocker: `all-pairs-root-ledger-open` until active, inactive, and tail cells are interval-certified or assimilated on one ledger.
 
 ---
 
@@ -24,9 +24,9 @@ $$
 |\Pi_{\mathrm{all}}|=30.
 $$
 
-No binary partition, antipodal pairing, shell swarm support band, nested shell swarm radial order, or exact phase relation is part of this base ledger. If a later packet declares any of those reductions, it must prove that its compressed root rows are the image of this ordered-pair ledger under the declared equality rows.
+No binary partition, antipodal pairing, shell braid support band, nested shell braid radial order, or exact phase relation is part of this base ledger. If a later packet declares any of those reductions, it must prove that its compressed root rows are the image of this ordered-pair ledger under the declared equality rows.
 
-The ledger input is a neutral swarm branch chart
+The ledger input is a neutral braid branch chart
 
 $$
 \mathfrak{K}_{\nu}
@@ -454,7 +454,7 @@ The root ledger classifies failures before any downstream row may interpret them
 | `tail-root-sheet-assimilated-rerun-required` | one or more tail root sheets are certified and added to the root ledger |
 | `tail-force-error-unbounded` | unresolved tail roots prevent a finite omitted-force envelope |
 | `ledger-rerun-required` | a downstream row uses a stale or different root, endpoint, support, or tail convention |
-| `optional-reduction-not-certified` | a binary, shell swarm, or nested shell swarm compression is claimed without equality rows from the all-pairs ledger |
+| `optional-reduction-not-certified` | a binary, shell braid, or nested shell braid compression is claimed without equality rows from the all-pairs ledger |
 | `all-pairs-root-ledger-certified` | active roots, inactive gaps, Jacobian floors, memory depth, and tail status close on one ordered-pair policy |
 
 First-event surfaces that terminate continuation are
@@ -494,7 +494,7 @@ A solver emitting this ledger must return a structured payload with the followin
 | `force_ledger` | all-pairs force sum, attraction/repulsion diagnostics, and consumer checksum for dynamics/action/event rows |
 | `tail_interface` | tail domain, owned cells, endpoint rows, terminal predicates, tail roots if any, $\epsilon_{\mathcal{F}}^{\mathrm{tail}}$, and tail status |
 | `event_classification` | first event surface, first hard failure, secondary diagnostics, and reset instruction |
-| `optional_reductions` | binary, shell swarm, nested shell swarm, or exact-antipodal compression status; `not_claimed` is allowed |
+| `optional_reductions` | binary, shell braid, nested shell braid, or exact-antipodal compression status; `not_claimed` is allowed |
 | `downstream_contract` | list of rows required to consume this exact ledger: dynamics, support, action, Noether, event, stability, observer export |
 | `status` | `all-pairs-root-ledger-certified` or first failed row |
 
@@ -504,7 +504,7 @@ The payload is accepted only if every downstream checksum points to the same $\m
 
 ## 8. Theorem Target
 
-**Theorem target: all-pairs causal-root ledger completeness.** Fix a neutral swarm branch chart $\mathfrak{K}_{\nu}$, ordered source-pair policy $\Pi_{\mathrm{all}}$, receiver-time cover $\mathcal{U}$, memory depth $h_{\mathrm{mem}}$, support descriptor with finite $\eta_{\mathrm{sup}}$, and coefficient box $X$. Suppose the solver emits:
+**Theorem target: all-pairs causal-root ledger completeness.** Fix a neutral braid branch chart $\mathfrak{K}_{\nu}$, ordered source-pair policy $\Pi_{\mathrm{all}}$, receiver-time cover $\mathcal{U}$, memory depth $h_{\mathrm{mem}}$, support descriptor with finite $\eta_{\mathrm{sup}}$, and coefficient box $X$. Suppose the solver emits:
 
 1. a disjoint active-root and inactive-gap cover of $\Pi_{\mathrm{all}}\times\mathcal{U}\times(0,h_{\mathrm{mem}}]$;
 2. one positive-delay, isolated root sheet for every retained active root label;
@@ -514,4 +514,4 @@ The payload is accepted only if every downstream checksum points to the same $\m
 6. a rerun instruction whenever assimilation changes $\mathcal{A}_{\mathrm{all}}^{\nu}$;
 7. no downstream consumer using a different root, endpoint, support, or tail convention.
 
-Then the ledger is support-complete for the general six-site neutral swarm on $X$. The dynamics, support, action, event, and observer-export rows may consume the emitted root set only under the same ledger checksum. Any optional binary, shell swarm, or nested shell swarm reduction is a later equality-row theorem, not a premise of this all-pairs ledger.
+Then the ledger is support-complete for the general six-site neutral braid on $X$. The dynamics, support, action, event, and observer-export rows may consume the emitted root set only under the same ledger checksum. Any optional binary, shell braid, or nested shell braid reduction is a later equality-row theorem, not a premise of this all-pairs ledger.

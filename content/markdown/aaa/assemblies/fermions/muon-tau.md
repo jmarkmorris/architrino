@@ -6,19 +6,19 @@ This chapter defines the current heavier charged-lepton branch targets for $\mat
 
 ## Current framing
 
-Muon and tau states are treated as higher-excitation charged lepton assemblies that share the same broad charge pattern as the [electron](./electron.md) while differing in shielding, excitation, and dissociation-accessible relaxation channels. In the present architecture they are the heavier charged-lepton branches of the same shielding ladder used in [Noether Swarm](../../noether-swarm/noether-swarm.md) and [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md).
+Muon and tau states are treated as higher-excitation charged lepton assemblies that share the same broad charge pattern as the [electron](./electron.md) while differing in shielding, excitation, and dissociation-accessible relaxation channels. In the present architecture they are the heavier charged-lepton branches of the same shielding ladder used in [Noether Braid](../../noether-swarm/noether-swarm.md) and [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md).
 
 ## Axial Inventory and Shielding-Coherence Classes
 
-Muon and tau branches do not introduce new charged-lepton axial inventories. They keep the charged-lepton six-site axial layer and change the generation-Noether swarm shielding-coherence class:
+Muon and tau branches do not introduce new charged-lepton axial inventories. They keep the charged-lepton six-site axial layer and change the generation-Noether braid shielding-coherence class:
 
 | Branch | Shielding-coherence class | Core readout | Charged axial inventory | Claim status |
 | --- | --- | --- | --- | --- |
-| $e^-$ | $(1,1,1)$ | nested shell swarm shielding branch | $6E$ | reference charged-lepton branch |
+| $e^-$ | $(1,1,1)$ | nested shell braid shielding branch | $6E$ | reference charged-lepton branch |
 | $\mu^-$ | $(1,1,0)$ | bi-binary shielding branch | $6E$ | Generation-II charged-lepton target |
 | $\tau^-$ | $(1,0,0)$ | uni-binary shielding branch | $6E$ | Generation-III charged-lepton target |
 
-The corresponding antileptons use anti-swarm orientation and $6P$ axial inventory. Generation changes exposed mass response, shielding leakage, and branch lifetime; it must not change electric charge, weak hypercharge bookkeeping, or the existence of the charged-lepton weak-coupling triad.
+The corresponding antileptons use anti-braid orientation and $6P$ axial inventory. Generation changes exposed mass response, shielding leakage, and branch lifetime; it must not change electric charge, weak hypercharge bookkeeping, or the existence of the charged-lepton weak-coupling triad.
 
 This gives the charged-lepton side of lepton universality in a disciplined form. The common axial inventory supplies the shared electromagnetic and weak bookkeeping for $e$, $\mu$, and $\tau$. Differences in observed rates, lifetimes, and response corrections are allowed only after the same weak-coupling-triad exposure rule, shielding map, and Noether sea response record have been declared.
 
@@ -69,7 +69,7 @@ If the $R_L$ or response coefficient needed for $\Delta a_\mu$ produces excluded
 ## Related Chapters
 
 - [electron.md](./electron.md)
-- [noether-swarm.md](../../noether-swarm/noether-swarm.md)
+- [Noether Braid](../../noether-swarm/noether-swarm.md)
 - [particle-masses.md](../particle-masses.md)
 - [quantum-number-mapping.md](./quantum-number-mapping.md)
 - [weak-mixing-ckm.md](../../philosophy-history/theory-bridges/weak-mixing-ckm.md)
@@ -77,4 +77,4 @@ If the $R_L$ or response coefficient needed for $\Delta a_\mu$ produces excluded
 
 ## Status
 
-This page now records the heavier charged-lepton branch targets: shared axial inventory, generation-Noether swarm shielding classes, weak-reaction provenance, and precision validation gates. It remains provisional until the shielding map, weak-corridor event ledger, and `g-2`/form-factor residuals are derived from one branch record.
+This page now records the heavier charged-lepton branch targets: shared axial inventory, generation-Noether braid shielding classes, weak-reaction provenance, and precision validation gates. It remains provisional until the shielding map, weak-corridor event ledger, and `g-2`/form-factor residuals are derived from one branch record.

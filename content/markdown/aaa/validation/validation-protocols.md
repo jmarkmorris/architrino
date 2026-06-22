@@ -16,7 +16,7 @@ The note is therefore a gatekeeping document. It should tell the reader what has
 ### Null Tests for Absolute-Frame Drift
 * **Simulation Protocol:** Run a simulated Michelson-Morley experiment through a declared Noether sea state.
 * **Success Criterion:** The observer-level interference pattern must remain invariant, within the declared leakage bound, as the assembly is rotated relative to the Euclidean-void rest frame.
-* **Mechanism to Verify:** Check that the Noether swarm naturally contracts by $\gamma^{-1}$ due to its internal architrino trajectories being compressed by motion through the Noether sea state.
+* **Mechanism to Verify:** Check that the Noether braid naturally contracts by $\gamma^{-1}$ due to its internal architrino trajectories being compressed by motion through the Noether sea state.
 
 ### Precision Atomic Comparison
 * **Protocol:** Compare the predicted shift in the 1S-2S Hydrogen transition for a system moving relative to the Euclidean-void rest frame vs. one at rest.

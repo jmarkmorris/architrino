@@ -1,6 +1,6 @@
 # Exposure-Quotient Theorem Packet
 
-This detailed priority file supports [Noether-Core Stability and First Mass Map](mass-map.md). It generalizes shielding extraction into a sector exposure/quotient theorem: what part of internal Noether swarm geometry becomes externally visible to a sector.
+This detailed priority file supports [Noether-Core Stability and First Mass Map](mass-map.md). It generalizes shielding extraction into a sector exposure/quotient theorem: what part of internal Noether braid geometry becomes externally visible to a sector.
 
 ## Core Theorem Target
 
@@ -14,7 +14,7 @@ Q_S\!\left[
 \right].
 $$
 
-For an accepted Noether swarm assembly or branch family $A$, choose a declared ledger space
+For an accepted Noether braid assembly or branch family $A$, choose a declared ledger space
 
 $$
 \mathfrak{L}_A
@@ -64,7 +64,7 @@ Q_S\!\left[
 \mathfrak{V}_S/\!\sim_S.
 $$
 
-The mass-map scalar $\zeta(A)$ is the isotropic scalar specialization of $\mathcal{E}_S(A)$, not the whole theorem. Mass shielding, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility must each instantiate the same projection/quotient grammar before their internal Noether swarm geometry is treated as externally visible.
+The mass-map scalar $\zeta(A)$ is the isotropic scalar specialization of $\mathcal{E}_S(A)$, not the whole theorem. Mass shielding, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility must each instantiate the same projection/quotient grammar before their internal Noether braid geometry is treated as externally visible.
 
 Exposure is distinct from residual routing: exposure decides which part of an already emitted or retained ledger is visible to a sector, while residual routing decides where unresolved action goes and how the event ledger closes.
 
@@ -251,7 +251,7 @@ $$
 
 ## Exposure Promotion Lemma
 
-Let $A$ be an accepted Noether swarm assembly or branch family, let $\mathcal{L}_A\in\mathfrak{L}_A$ satisfy branch-ledger provenance, and let $(\Pi_S,Q_S,\mathcal{B}_S)$ satisfy projection idempotence, quotient compatibility, gauge/relabeling invariance, and leakage bounds with tolerances $\epsilon_{S,\mathrm{leak}}$, $\epsilon_{S,Q}$, $\epsilon_{S,\mathrm{gauge}}$, and $\epsilon_{S,\mathrm{rec}}$. Then
+Let $A$ be an accepted Noether braid assembly or branch family, let $\mathcal{L}_A\in\mathfrak{L}_A$ satisfy branch-ledger provenance, and let $(\Pi_S,Q_S,\mathcal{B}_S)$ satisfy projection idempotence, quotient compatibility, gauge/relabeling invariance, and leakage bounds with tolerances $\epsilon_{S,\mathrm{leak}}$, $\epsilon_{S,Q}$, $\epsilon_{S,\mathrm{gauge}}$, and $\epsilon_{S,\mathrm{rec}}$. Then
 
 $$
 \mathcal{E}_S(A)
@@ -546,7 +546,7 @@ The theorem can promote into [particle-masses](../../../content/markdown/aaa/ass
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 - [weak-sector-gauge-closure](../standard-model-closure/weak-sector-gauge-closure.md)
 - [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md)
-- [swarm](../swarm/swarm.md)
+- [braid](../swarm/swarm.md)
 - [validation-gates](../validation-gates/validation-gates.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

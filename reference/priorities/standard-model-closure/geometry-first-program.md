@@ -14,7 +14,7 @@ For sector visibility, this packet consumes the shared [exposure-quotient theore
 | [quantum-number-mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md) | Remaining quantum-number dictionary pieces from tri-binary geometry. |
 | [color-charge-su3](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) | Confinement energetics and color-singlet bound-state checks. |
 | [weak-mixing-ckm](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md) | CKM / PMNS overlap-integral derivations, CP phase tests, and weak `V-A` chirality. |
-| [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Weak corridor provenance and the status of $W^\pm$ as charge-routing bundles versus carriers of pro/anti Noether swarm provenance. |
+| [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Weak corridor provenance and the status of $W^\pm$ as charge-routing bundles versus carriers of pro/anti Noether braid provenance. |
 
 ## Pulled-Back Color SU(3) Interfaces
 
@@ -36,7 +36,7 @@ The reader-facing color chapter should summarize the accepted algebra and confin
 - Derive CKM / PMNS data from explicit overlap integrals rather than fit knobs.
 - Derive confinement behavior from topological or strain energetics.
 - Work the chirality crisis hard enough to test weak `V-A` closure.
-- Close the provenance question for weak corridors: whether $W^\pm$ should be modeled as carrying final-state pro/anti Noether swarm identity, or only as transient charge-routing bundles while the local pro/anti core reservoir supplies outgoing lepton cores.
+- Close the provenance question for weak corridors: whether $W^\pm$ should be modeled as carrying final-state pro/anti Noether braid identity, or only as transient charge-routing bundles while the local pro/anti core reservoir supplies outgoing lepton cores.
 - State which projection and quotient make color exceptionality, weak exposure, and mass-facing response visible rather than treating internal geometry as directly observable.
 
 ## Geometry Program
@@ -185,7 +185,7 @@ f(a,\mathbf{x})\,
 A_a(\mathbf{x};R_{\text{rel}})
 \,dV.
 $$
-Here $\eta_a^{(h)}$ is the finite-state weak-exposure score already used by the weak-sector packet, $\rho_{\text{NS}}$ weights available Noether swarm density, $\chi_{\text{sea}}$ weights Noether sea delay, and $A_a$ is a provisional polar-site aperture profile localized around the polar-site direction $\hat{\mathbf n}_a(R_{\text{rel}})$. The normalizer $Z_h$ is fixed by $\int 1\,d\mu_W^{(h)}=1$ on the selected branch.
+Here $\eta_a^{(h)}$ is the finite-state weak-exposure score already used by the weak-sector packet, $\rho_{\text{NS}}$ weights available Noether braid density, $\chi_{\text{sea}}$ weights Noether sea delay, and $A_a$ is a provisional polar-site aperture profile localized around the polar-site direction $\hat{\mathbf n}_a(R_{\text{rel}})$. The normalizer $Z_h$ is fixed by $\int 1\,d\mu_W^{(h)}=1$ on the selected branch.
 
 This measure is the first chirality selector. The weak `V-A` gate is not a separate rule if
 $$
@@ -252,7 +252,7 @@ $$
 =
 \langle\psi_{j,\text{mass}}^d,\psi_{k,\text{mass}}^d\rangle_{\mu_W^{(L)}}.
 $$
-For PMNS, use the same overlap form but replace quark shielding envelopes by mass-basis eigenmodes of the near-photon pro/anti Noether swarm pair:
+For PMNS, use the same overlap form but replace quark shielding envelopes by mass-basis eigenmodes of the near-photon pro/anti Noether braid pair:
 $$
 U_{\alpha k}
 =
@@ -694,4 +694,4 @@ with stability under extraction radius, angular resolution, cycle window, and $\
 | CP phase | Decide whether the current $\cos\delta = s_{13}/(s_{12}s_{23})$ target is derived, falsified, or only a heuristic comparison. |
 | Confinement | Produce a line-defect, braid, or strain-energy mechanism that yields effective linear tension or a finite relaxed bound for color-singlet configurations. |
 | Weak chirality | Show how geometry selects weak `V-A` behavior, or record the failure explicitly. |
-| Weak corridor provenance | Decide whether $W^\pm$ corridors carry pro/anti Noether swarm provenance or only charged transaction delta, and name the source of outgoing lepton / antilepton cores. |
+| Weak corridor provenance | Decide whether $W^\pm$ corridors carry pro/anti Noether braid provenance or only charged transaction delta, and name the source of outgoing lepton / antilepton cores. |

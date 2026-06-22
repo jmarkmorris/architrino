@@ -1486,6 +1486,11 @@
       "path": "content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json"
     },
     {
+      "id": "theory_bridges__overview",
+      "name": "Theory Bridges",
+      "path": "content/scenes/philosophy_history/theory_bridges/overview.json"
+    },
+    {
       "id": "theory_bridges__pilot_wave_character",
       "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
       "path": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json"
@@ -1524,6 +1529,11 @@
       "id": "substance_structure_potential",
       "name": "Substance, Structure, and the Plenum of Potential",
       "path": "content/scenes/philosophy_history/substance_structure_potential.json"
+    },
+    {
+      "id": "philosophy_history__overview",
+      "name": "Philosophy and History",
+      "path": "content/scenes/philosophy_history/overview.json"
     },
     {
       "id": "archie__textbook_pdf_snapshots",

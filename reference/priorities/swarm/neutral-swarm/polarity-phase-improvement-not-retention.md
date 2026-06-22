@@ -1,6 +1,6 @@
-# Polarity-Phase Improvement Does Not Imply Neutral Swarm Retention
+# Polarity-Phase Improvement Does Not Imply Neutral Braid Retention
 
-Promotion status: `priority-only`. Closure status: `closed-rejected:polarity-phase-improvement-implies-retention`. This packet rejects only the narrow overread that neutral polarity reassignment plus rigid phase-offset improvement identifies or implies a retained neutral swarm branch. It consumes [../shell-swarm/polarity-phase-rigid-screen-results.md](../shell-swarm/polarity-phase-rigid-screen-results.md) and preserves the retention requirements stated in [neutral-swarm-master-retention-theorem.md](neutral-swarm-master-retention-theorem.md).
+Promotion status: `priority-only`. Closure status: `closed-rejected:polarity-phase-improvement-implies-retention`. This packet rejects only the narrow overread that neutral polarity reassignment plus rigid phase-offset improvement identifies or implies a retained neutral braid branch. It consumes [Polarity Phase Rigid Screen Results](../shell-swarm/polarity-phase-rigid-screen-results.md) and preserves the retention requirements stated in [Neutral Braid Master Retention Theorem](neutral-swarm-master-retention-theorem.md).
 
 Executable witness command path:
 
@@ -12,7 +12,7 @@ node scripts/neutral-swarm/octahedral-polarity-phase-retention-witness.mjs --val
 The witness artifact schema is
 
 $$
-\texttt{neutral-swarm-octahedral-polarity-phase-retention-witness/v1}.
+\texttt{neutral-braid-octahedral-polarity-phase-retention-witness/v1}.
 $$
 
 ---
@@ -101,7 +101,7 @@ The consumed screen also does not supply a support-complete interval-certified r
 $$
 \text{polarity-phase residual improvement}
 \nRightarrow
-\text{retained neutral swarm branch}
+\text{retained neutral braid branch}
 $$
 
 is rejected.
@@ -131,8 +131,8 @@ It also makes no claim against:
 3. controlled self-hit rows with declared action and event accounting;
 4. fold-layer rows;
 5. medium-response rows;
-6. shell swarm routes;
-7. nested shell swarm routes;
-8. general neutral swarm routes outside this rigid polarity-phase screen.
+6. shell braid routes;
+7. nested shell braid routes;
+8. general neutral braid routes outside this rigid polarity-phase screen.
 
 Any later branch in those classes must be evaluated on its own declared ledger identity and retained only if the required rows close.

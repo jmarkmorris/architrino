@@ -14,7 +14,7 @@ $$
 \text{coarse-grained scalar amplitude of assembly or Noether sea response}
 $$
 
-The bridge target is to derive when a collective mode of Noether swarm clusters or Noether sea state variables obeys a Klein-Gordon-like equation, and when delayed path-history effects force corrections.
+The bridge target is to derive when a collective mode of Noether braid clusters or Noether sea state variables obeys a Klein-Gordon-like equation, and when delayed path-history effects force corrections.
 
 ## Scalar Field Meaning
 
@@ -48,13 +48,13 @@ $$
 \hat{\phi}(x)=\sum_k\left(a_k u_k(x)+a_k^\dagger u_k^*(x)\right)
 $$
 
-Under $\mathbb{A}\mathbb{A}\mathbb{A}$, this should be read as effective bookkeeping for stable mode contributions from Noether swarm clusters, not as literal creation or destruction of substrate entities.
+Under $\mathbb{A}\mathbb{A}\mathbb{A}$, this should be read as effective bookkeeping for stable mode contributions from Noether braid clusters, not as literal creation or destruction of substrate entities.
 
 | QFT language | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
 | --- | --- |
 | Vacuum state | Reference Noether sea background |
 | Scalar field $\phi$ | Coarse-grained scalar amplitude of Noether sea density, compression, or radial-breathing response |
-| Mode $u_k$ | Normal-mode pattern supported by a Noether swarm cluster or medium region |
+| Mode $u_k$ | Normal-mode pattern supported by a Noether braid cluster or medium region |
 | Creation operator $a_k^\dagger$ | Coherent addition, nucleation, or release of a cluster contribution into mode $k$ |
 | Annihilation operator $a_k$ | Absorption, damping, or reconfiguration of that contribution back into the surrounding Noether sea |
 | Number operator $N_k=a_k^\dagger a_k$ | Effective occupation count of stable mode contributions |
@@ -206,7 +206,7 @@ Long-term relevance is as a benchmark continuum limit: the mature stack should d
 To promote this bridge from mapping to derivation, the following targets must close:
 
 1. Derive a coarse-grained scalar amplitude $\phi$ from Noether sea density, compression, or radial breathing modes.
-2. Derive normal coordinates $Q_k(t)$ for Noether swarm cluster modes so that $\phi(\mathbf{x},t)\approx\sum_k Q_k(t)u_k(\mathbf{x})$ in the continuum limit.
+2. Derive normal coordinates $Q_k(t)$ for Noether braid cluster modes so that $\phi(\mathbf{x},t)\approx\sum_k Q_k(t)u_k(\mathbf{x})$ in the continuum limit.
 3. Show how stable discrete increments of $Q_k$ produce the effective occupation-count behavior encoded by $a_k^\dagger$, $a_k$, and $N_k$.
 4. Show when linearization around a homogeneous Noether sea background yields $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$.
 5. Relate the effective mass parameter $m$ to assembly stiffness, confinement energy, or radial restoring dynamics rather than treating it as primitive.

@@ -1,6 +1,6 @@
 # Orbital Quantization Recovery Packet
 
-Status. Proof packet for `orbital_quantization_recovery` in [angular-momentum-spin.md](angular-momentum-spin.md). This packet is priority material. It does not close internal Noether swarm spin, spin-statistics, atomic spin-orbit coupling, hyperfine structure, or molecular singlet/triplet behavior.
+Status. Proof packet for `orbital_quantization_recovery` in [angular-momentum-spin.md](angular-momentum-spin.md). This packet is priority material. It does not close internal Noether braid spin, spin-statistics, atomic spin-orbit coupling, hyperfine structure, or molecular singlet/triplet behavior.
 
 Claim level. The packet recovers the standard observer-level orbital labels from an effective envelope in a central external potential, assuming the envelope extraction map has already been derived from assembly dynamics. The result is a contrast gate: orbital quantization follows from $2\pi$ azimuthal single-valuedness and angular regularity of the external envelope, while spinor closure still requires an ordered-core $2\pi$ history-sheet change and $4\pi$ restoration.
 
@@ -264,7 +264,7 @@ $$
 },
 $$
 
-where $\Pi_{\mathrm{env}}$ is the declared projection from the internal Noether swarm angular-momentum ledger into the external envelope chart. For a clean orbital recovery, $\Delta_{\mathrm{int}}$ must stay below tolerance unless the calculation is explicitly a spin-orbit or hyperfine coupling calculation.
+where $\Pi_{\mathrm{env}}$ is the declared projection from the internal Noether braid angular-momentum ledger into the external envelope chart. For a clean orbital recovery, $\Delta_{\mathrm{int}}$ must stay below tolerance unless the calculation is explicitly a spin-orbit or hyperfine coupling calculation.
 
 The orbital recovery gate passes when
 
@@ -284,9 +284,9 @@ and the envelope-input rows pass.
 
 The orbital packet and the spinor packet test different mathematical objects.
 
-| Row | Orbital quantization | Internal Noether swarm spin |
+| Row | Orbital quantization | Internal Noether braid spin |
 | --- | --- | --- |
-| Object | Effective external envelope $\Psi_{\mathrm{env}}$ | Ordered Noether swarm branch history $\mathfrak H_B$ |
+| Object | Effective external envelope $\Psi_{\mathrm{env}}$ | Ordered Noether braid branch history $\mathfrak H_B$ |
 | Closure loop | $\phi\mapsto\phi+2\pi$ on the record-facing envelope | Physical ordered-frame path $\gamma_{2\pi}$ and doubled path $\gamma_{4\pi}$ |
 | Passing $2\pi$ behavior | The envelope returns identically | A nontrivial retained history-sheet row must change after $2\pi$ |
 | Passing $4\pi$ behavior | No separate requirement beyond ordinary return | The doubled path must restore the retained history sheet |
@@ -303,7 +303,7 @@ Thus a successful orbital packet is a useful downstream recovery success, but it
 | `envelope_extraction_blocked` | $\mathcal E_{\mathrm{orb}}$ has not been supplied from assembly dynamics or fails restartability. | Do not use standard orbital labels as native proof inputs. |
 | `central_chart_fail` | The potential or record window is not central enough for the spherical angular operator. | Move to an axisymmetric or numerical envelope chart; do not claim the $\ell,m$ spectrum from central symmetry. |
 | `angular_regular_fail` | The envelope violates $2\pi$ closure, angular regularity, or the $\ell,m$ domain. | Reject the candidate orbital mode or treat it as a transient/nonbound envelope. |
-| `internal_spin_conflation_fail` | The calculation uses internal Noether swarm spinor data to force an orbital label, or uses orbital labels to prove spin. | Keep orbital recovery and spinor closure separated. |
+| `internal_spin_conflation_fail` | The calculation uses internal Noether braid spinor data to force an orbital label, or uses orbital labels to prove spin. | Keep orbital recovery and spinor closure separated. |
 
 ## Promotion Value
 

@@ -289,7 +289,7 @@ The executable diagnostic [octahedral-fold-aware-clock-length-orbit-symmetry-red
 - the conditional proof-burden reduction;
 - the non-retention verdict.
 
-The companion test [neutral-swarm-octahedral-fold-aware-clock-length-orbit-symmetry-reduction.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-clock-length-orbit-symmetry-reduction.test.js) verifies sampled scope, generator coverage, chart assumptions, conditional interval replacement, sampled checksum, CLI validation, and non-retention guards.
+The companion test [neutral-braid-octahedral-fold-aware-clock-length-orbit-symmetry-reduction.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-clock-length-orbit-symmetry-reduction.test.js) verifies sampled scope, generator coverage, chart assumptions, conditional interval replacement, sampled checksum, CLI validation, and non-retention guards.
 
 ## Promotion Decision
 

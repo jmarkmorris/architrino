@@ -1,6 +1,6 @@
-# Shell Swarm Branch Mathematics
+# Shell Braid Branch Mathematics
 
-This priority packet states theorem targets for same-level tri-binary branch mathematics. It is not a completed existence, stability, or observer-export proof. Its role is to make the DDE well-posedness and causal-root ledger obligations precise enough that a retained branch certificate can later be checked against [swarm-architecture.md](swarm-architecture.md).
+This priority packet states theorem targets for same-level tri-binary branch mathematics. It is not a completed existence, stability, or observer-export proof. Its role is to make the DDE well-posedness and causal-root ledger obligations precise enough that a retained branch certificate can later be checked against [Braid Architecture](swarm-architecture.md).
 
 Promotion status: `priority-only`. Do not promote this document into `content/markdown/aaa` until a concrete same-level branch supplies the active causal roots, Jacobian floors, finite memory depth, tangential residual closure, polarity ledger, and weak-limit data required below.
 
@@ -552,13 +552,13 @@ The failure-code vocabulary must match the architecture draft exactly:
 | `color-connection-missing` | $\mathcal{S}_3$ color slots are promoted without a continuous connection target |
 | `strong-field-continuation-open` | finite-boundary continuation is not supplied for strong-field claims |
 
-These codes are certificate stops, not prose warnings. A retained shell swarm branch packet must either pass the associated residual row, mark the row `not_computed` without promotion, or reject the branch.
+These codes are certificate stops, not prose warnings. A retained shell braid branch packet must either pass the associated residual row, mark the row `not_computed` without promotion, or reject the branch.
 
 ---
 
 ## 8. Closure Position
 
-The shell swarm branch mathematics program has four immediate theorem targets:
+The shell braid branch mathematics program has four immediate theorem targets:
 
 1. A finite-memory proof from bounded support and center-gauge drift.
 2. A causal-root continuation proof with explicit Jacobian floors.

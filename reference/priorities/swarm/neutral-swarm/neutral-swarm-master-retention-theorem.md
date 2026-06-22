@@ -1,14 +1,14 @@
-# Neutral Swarm Master Retention Theorem
+# Neutral Braid Master Retention Theorem
 
-Promotion status: `partially-promoted`. The reader-safe theorem-target predicate, all-pairs source-pair policy, first-failure payload, and fixed-speed octahedral negative-result boundary were promoted into [Noether Swarm](../../../../content/markdown/aaa/noether-swarm/noether-swarm.md). This packet still owns the priority-side execution burden: it composes the new neutral swarm base certificate, all-pairs root ledger, finite-mode search target, optional case reductions, action/Noether closure, event rows, and observer-export statuses into one master retention theorem target. It refines [neutral-swarm-base-certificate.md](neutral-swarm-base-certificate.md), [all-pairs-root-ledger.md](all-pairs-root-ledger.md), [neutral-swarm-finite-mode-search.md](neutral-swarm-finite-mode-search.md), [shell-swarm-reduction-row.md](../shell-swarm/shell-swarm-reduction-row.md), [nested-shell-swarm-reduction-row.md](../nested-shell-swarm/nested-shell-swarm-reduction-row.md), [action-and-noether-closure-row.md](../shell-swarm/action-and-noether-closure-row.md), and [observer-export-status-row.md](../shell-swarm/observer-export-status-row.md).
+Promotion status: `partially-promoted`. The reader-safe theorem-target predicate, all-pairs source-pair policy, first-failure payload, and fixed-speed octahedral negative-result boundary were promoted into [Noether Braid](../../../../content/markdown/aaa/noether-swarm/noether-swarm.md). This packet still owns the priority-side execution burden: it composes the new neutral braid base certificate, all-pairs root ledger, finite-mode search target, optional case reductions, action/Noether closure, event rows, and observer-export statuses into one master retention theorem target. It refines [Neutral Braid Base Certificate](neutral-swarm-base-certificate.md), [all-pairs-root-ledger.md](all-pairs-root-ledger.md), [Neutral Braid Finite Mode Search](neutral-swarm-finite-mode-search.md), [Shell Braid Reduction Row](../shell-swarm/shell-swarm-reduction-row.md), [Nested Shell Braid Reduction Row](../nested-shell-swarm/nested-shell-swarm-reduction-row.md), [action-and-noether-closure-row.md](../shell-swarm/action-and-noether-closure-row.md), and [observer-export-status-row.md](../shell-swarm/observer-export-status-row.md).
 
-Promoted claim level: `theorem-target` plus scoped negative result for the rigid zero-offset fixed-speed octahedral chart. Remaining first-failure status: `not-retained`; no neutral swarm, shell swarm, or nested shell swarm branch is retained by this promotion. This packet states exactly what must be true before any neutral swarm, shell swarm, or nested shell swarm candidate may be called retained.
+Promoted claim level: `theorem-target` plus scoped negative result for the rigid zero-offset fixed-speed octahedral chart. Remaining first-failure status: `not-retained`; no neutral braid, shell braid, or nested shell braid branch is retained by this promotion. This packet states exactly what must be true before any neutral braid, shell braid, or nested shell braid candidate may be called retained.
 
 ---
 
 ## 1. Master Certificate
 
-Let $B$ be a neutral swarm branch candidate on a retained window $W$. The neutral swarm master certificate is
+Let $B$ be a neutral braid branch candidate on a retained window $W$. The neutral braid master certificate is
 
 $$
 \mathsf{R}_{\mathrm{NS}}(B,W)
@@ -61,7 +61,7 @@ $$
 
 ## 2. Promotion Predicate
 
-The neutral swarm retained predicate is
+The neutral braid retained predicate is
 
 $$
 \mathrm{Retain}_{\mathrm{NS}}(B,W)
@@ -107,7 +107,7 @@ The required predicates are:
 
 | Predicate | Required content |
 | --- | --- |
-| $P_{\mathrm{inventory}}$ | exactly three positive and three negative neutral swarm sites, $Q_{\mathrm{core}}=0$, and explicit same-source policy |
+| $P_{\mathrm{inventory}}$ | exactly three positive and three negative neutral braid sites, $Q_{\mathrm{core}}=0$, and explicit same-source policy |
 | $P_{\mathrm{curves}}$ | six closed arclength curves, positive bounded speed factors, period or winding closure, center gauge, and noncollision floor |
 | $P_{\mathrm{support}}$ | hollow, free-support, shell, nested shell, or other declared support descriptor with support-work status |
 | $P_{\mathrm{root}}$ | all 30 ordered distinct source-pair root rows, active/inactive root accounting, positive Jacobian floors, and fixed root-label convention |
@@ -139,17 +139,17 @@ $$
 \right).
 $$
 
-These rows classify the branch after the neutral swarm certificate is evaluated:
+These rows classify the branch after the neutral braid certificate is evaluated:
 
 | Case status | Meaning |
 | --- | --- |
 | `neutral-retained-no-reduction` | required neutral rows pass; optional case reductions are absent or failed |
-| `shell-case-retained` | neutral rows pass and shell swarm reduction passes |
-| `nested-shell-case-retained` | neutral rows pass and nested shell swarm reduction passes |
+| `shell-case-retained` | neutral rows pass and shell braid reduction passes |
+| `nested-shell-case-retained` | neutral rows pass and nested shell braid reduction passes |
 | `transition-case-retained` | neutral rows pass and a shell/nested transition event is ledgered |
 | `case-failed-neutral-open` | required neutral rows remain open; case row cannot promote |
 
-Failure of a case row does not reject the neutral swarm branch. It rejects only that case classification.
+Failure of a case row does not reject the neutral braid branch. It rejects only that case classification.
 
 ---
 
@@ -186,7 +186,7 @@ $$
 \texttt{invalid\_mixed\_ledger}.
 $$
 
-The export row is mandatory as a status report, but not every export must pass for neutral swarm retention. A branch may be retained with exports marked `not_computed`; it may not be retained with upstream export dependencies silently substituted for missing dynamics, action, event, or stability rows.
+The export row is mandatory as a status report, but not every export must pass for neutral braid retention. A branch may be retained with exports marked `not_computed`; it may not be retained with upstream export dependencies silently substituted for missing dynamics, action, event, or stability rows.
 
 ---
 
@@ -241,6 +241,6 @@ $$
 
 The next closure-producing action is not another taxonomy row. It is one of:
 
-1. execute the neutral swarm finite-mode search artifact against a concrete chart and emit $\mathsf{F}_{\mathrm{NS}}$;
+1. execute the neutral braid finite-mode search artifact against a concrete chart and emit $\mathsf{F}_{\mathrm{NS}}$;
 2. finish the support-complete $M=3$ tail ledger for the exact-antipodal case and propagate the result into the master certificate;
 3. close or reject the action/Noether row for a concrete dynamics candidate.

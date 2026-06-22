@@ -40,7 +40,7 @@ The third distinction is between the void and what occupies it. The [Euclidean v
 
 This means the void is not a physical medium. It is not the Noether sea, not a quantum vacuum substance, and not a dynamical spacetime. Its role is to supply spatial identity, distance, direction, and the arena in which architrinos and their assemblies move.
 
-The [Noether sea](../spacetime/noether-sea.md) is different. It is physical content inside the Euclidean void: an emergent population of neutral Noether swarm assemblies whose collective state produces effective metric, inertia, clock, ruler, signal-delay, and cosmological behavior. The Noether sea can carry density, stress, flow, orientation, and energy response. The void itself cannot.
+The [Noether sea](../spacetime/noether-sea.md) is different. It is physical content inside the Euclidean void: an emergent population of neutral Noether braid assemblies whose collective state produces effective metric, inertia, clock, ruler, signal-delay, and cosmological behavior. The Noether sea can carry density, stress, flow, orientation, and energy response. The void itself cannot.
 
 This split is one of the core ontological safeguards of the framework. If the void and the Noether sea are fused, then geometry, occupancy, medium response, and observer-level spacetime become one ambiguous object. If they remain separated, the theory can say exactly which layer does which explanatory work.
 

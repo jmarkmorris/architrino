@@ -1,6 +1,6 @@
 # Octahedral Force-Residual Diagnostic
 
-Promotion status: `priority-only`. This packet records the executable sampled force-residual diagnostic for the rigid octahedral carrier from [../shell-swarm/octahedral-carrier-worked-example.md](../shell-swarm/octahedral-carrier-worked-example.md). It consumes the certified rigid-octahedral all-pairs root ledger from `scripts/neutral-swarm/octahedral-root-ledger.mjs`, but it does not retain a branch.
+Promotion status: `priority-only`. This packet records the executable sampled force-residual diagnostic for the rigid octahedral carrier from [Octahedral Carrier Worked Example](../shell-swarm/octahedral-carrier-worked-example.md). It consumes the certified rigid-octahedral all-pairs root ledger from `scripts/neutral-swarm/octahedral-root-ledger.mjs`, but it does not retain a branch.
 
 Run the diagnostic with:
 
@@ -12,7 +12,7 @@ node scripts/neutral-swarm/octahedral-force-residual.mjs --validate /tmp/neutral
 The artifact schema is
 
 $$
-\texttt{neutral-swarm-octahedral-force-residual/v1}.
+\texttt{neutral-braid-octahedral-force-residual/v1}.
 $$
 
 The single-node closure witness for the rigid fixed-speed no-go is:
@@ -25,7 +25,7 @@ node scripts/neutral-swarm/octahedral-fixed-speed-witness.mjs --validate /tmp/ne
 Its schema is
 
 $$
-\texttt{neutral-swarm-octahedral-fixed-speed-witness/v1}.
+\texttt{neutral-braid-octahedral-fixed-speed-witness/v1}.
 $$
 
 ---
@@ -52,7 +52,7 @@ q_{a,+}=+\epsilon,
 q_{a,-}=-\epsilon.
 $$
 
-The source-pair policy is the ordered all-pairs neutral swarm policy
+The source-pair policy is the ordered all-pairs neutral braid policy
 
 $$
 \Pi_{\mathrm{all}}^{\mathrm{oct}}
@@ -185,4 +185,4 @@ $$
 \texttt{not\_retained}.
 $$
 
-The next concrete mathematical move is not to retain this rigid fixed-speed row. The surviving closure work is to reuse the root-ledger machinery for bounded-speed factors, deformed support-band carriers, or certified shell/nested shell swarm case reductions. This artifact is a proof of non-retention only for the rigid zero-offset fixed-speed hypothesis, not a proof of nonexistence for the neutral swarm, shell swarm, or nested shell swarm cases.
+The next concrete mathematical move is not to retain this rigid fixed-speed row. The surviving closure work is to reuse the root-ledger machinery for bounded-speed factors, deformed support-band carriers, or certified shell/nested shell braid case reductions. This artifact is a proof of non-retention only for the rigid zero-offset fixed-speed hypothesis, not a proof of nonexistence for the neutral braid, shell braid, or nested shell braid cases.

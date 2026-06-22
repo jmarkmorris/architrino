@@ -82,7 +82,7 @@ The executable diagnostic [octahedral-fold-aware-cross-binary-forcing-sign-brack
 - the six topology candidates;
 - non-retention and non-interval boundaries.
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-forcing-sign-bracket-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-forcing-sign-bracket-certificate.test.js) verifies predecessor validation, speed-window removal, signed zero brackets, derivative-turn order, candidate preservation, CLI emission, JSON validation, invalid controls, and non-retention claims.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-forcing-sign-bracket-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-forcing-sign-bracket-certificate.test.js) verifies predecessor validation, speed-window removal, signed zero brackets, derivative-turn order, candidate preservation, CLI emission, JSON validation, invalid controls, and non-retention claims.
 
 ## Claim Boundary
 

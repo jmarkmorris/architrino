@@ -13,7 +13,7 @@ The bridge is therefore constitutive rather than ontological. A successful metri
 ## Ontological Picture
 
 - **Substrate**: A fixed Euclidean 3D void with absolute time $t$. A chosen chart $(x,y,z)$ represents fixed void locations; the labels never move or curve.
-- **Noether sea**: The [Noether sea](noether-sea.md), a pervasive population of coupled pro/anti Noether swarms. The bridge term *spacetime medium* is used when translating toward effective spacetime language.
+- **Noether sea**: The [Noether sea](noether-sea.md), a pervasive population of coupled pro/anti Noether braids. The bridge term *spacetime medium* is used when translating toward effective spacetime language.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: Complete-state bookkeeping on the absolute-time slice, carrying:
   - The full architrino microstate $S(t)$,
   - The instantaneous state of the Noether sea (density $\rho_{\text{NS}}(\mathbf{x},t)$, alignment, stress),
@@ -21,14 +21,14 @@ The bridge is therefore constitutive rather than ontological. A successful metri
 
 From this bookkeeping perspective, there is only:
 - Flat Euclidean geometry $h_{ij}=\delta_{ij}$,
-- A dynamic medium (Noether swarms) moving and rearranging in that geometry.
+- A dynamic medium (Noether braids) moving and rearranging in that geometry.
 
 ## Canonical Symbols (Spacetime)
 
 Use the following symbols consistently across spacetime chapters:
 
-- $n(\mathbf{x},t)$: normalized Noether swarm density.
-- $\rho_{\text{NS}}(\mathbf{x},t)=\rho_{\text{NS},0}\,n(\mathbf{x},t)$: physical Noether swarm density.
+- $n(\mathbf{x},t)$: normalized Noether braid density.
+- $\rho_{\text{NS}}(\mathbf{x},t)=\rho_{\text{NS},0}\,n(\mathbf{x},t)$: physical Noether braid density.
 - $\chi_{\text{sea}}(\mathbf{x},t)=c_f/c_{\text{eff}}(\mathbf{x},t)$: Noether sea delay factor.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field metric comparisons.
 - $\Phi_{\text{eff}}(\mathbf{x},t)$: constitutive potential inferred from the clock channel.
@@ -48,7 +48,7 @@ Use the following symbols consistently across spacetime chapters:
 
 We define $g^{\text{eff}}_{\mu\nu}$ operationally:
 
-> At each point $x$, choose an idealized physical observer (Noether swarm clock + ruler), and infer a local metric from their measured time intervals and spatial separations.
+> At each point $x$, choose an idealized physical observer (Noether braid clock + ruler), and infer a local metric from their measured time intervals and spatial separations.
 
 The $\mathbb{U}_{\text{now}}$ universe-state perspective then maps substrate and medium data into observer-level ADM/Cartan fields:
 
@@ -78,7 +78,7 @@ Thus ordinary density can be weakly visible to clocks and signal paths when it i
 
 ## ADM/Cartan Reconstruction Surface
 
-The metric bridge should now be expressed through the same ADM/Cartan variables used by [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is
+The metric bridge should now be expressed through the same ADM/Cartan variables used by [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is
 
 $$
 ds_{\rm eff}^2
@@ -336,9 +336,9 @@ The same-record condition is part of the metric claim. A fermion stress channel 
 
 In the shared pullback notation, the stress-side consumer is $\Pi_{\mathrm{matter}}\mathcal L_\star(\theta;W,r_\star)$. The fermion metric row therefore fails if spinor closure, weak exposure, and matter response are sourced from different retained rows, even when each reduced row is individually well fitted.
 
-## Noether Swarm Deformation and Metric Language
+## Noether Braid Deformation and Metric Language
 
-At the assembly level, an individual Noether swarm has an oblate, deformable exclusion envelope; see [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md). This chapter does not identify that individual Noether swarm envelope with the metric. The metric bridge uses many deforming Noether swarms in the Noether sea, whose coarse variables determine clock, ruler, and signal behavior.
+At the assembly level, an individual Noether braid has an oblate, deformable exclusion envelope; see [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md). This chapter does not identify that individual Noether braid envelope with the metric. The metric bridge uses many deforming Noether braids in the Noether sea, whose coarse variables determine clock, ruler, and signal behavior.
 
 When translating toward General Relativity, Einstein's field equations are treated as the effective continuum relation
 $$
@@ -364,7 +364,7 @@ The useful GR analogy is therefore limited but important:
 - perturbative methods can capture small departures from spherical symmetry,
 - and standard predictions such as redshift, Shapiro delay, lensing, orbital precession, frame-dragging, and gravitational-wave emission from deformed sources must be recovered from one reusable constitutive map.
 
-The assembly fact that a Noether swarm is oblate belongs in [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md). The spacetime claim that a population of deformed Noether swarms yields an effective metric belongs here and in [PPN Parameters](ppn-parameters.md).
+The assembly fact that a Noether braid is oblate belongs in [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md). The spacetime claim that a population of deformed Noether braids yields an effective metric belongs here and in [PPN Parameters](ppn-parameters.md).
 
 ## Jacobson-Type Support: Metric as Equation of State
 
@@ -403,9 +403,9 @@ This residual is not a new gate; it states the existing constitutive burden in a
 
 This does not license dismissing low-energy quantized-metric calculations. In the long-distance regime, the effective-field-theory treatment of GR separates unknown high-energy local terms from calculable infrared corrections. $\mathbb{A}\mathbb{A}\mathbb{A}$ should preserve that result as an observer-level recovery benchmark: the microscopic account may differ, but the weak-field constitutive record must reproduce the same long-distance quantum correction when its variables are coarse-grained into the effective metric description.
 
-This support is useful but limited. A Jacobson-style argument would explain why GR-like behavior is a natural equilibrium limit of many possible media, not why $\mathbb{A}\mathbb{A}\mathbb{A}$ is uniquely correct. The distinguishing burden therefore shifts to the departures from equilibrium, where the detailed Noether swarm architecture should matter.
+This support is useful but limited. A Jacobson-style argument would explain why GR-like behavior is a natural equilibrium limit of many possible media, not why $\mathbb{A}\mathbb{A}\mathbb{A}$ is uniquely correct. The distinguishing burden therefore shifts to the departures from equilibrium, where the detailed Noether braid architecture should matter.
 
-It also does not derive inertia by itself. A successful equation-of-state route can recover an effective Einstein equation while leaving open how a particular assembly acquires its inertial response, why accelerated and gradient-driven local records agree to equivalence-principle accuracy, and how the same Noether sea record fixes the mass-side response tensor. Those burdens remain with the mass, energy, Lorentz-closure, and nested shell swarm dynamics programs.
+It also does not derive inertia by itself. A successful equation-of-state route can recover an effective Einstein equation while leaving open how a particular assembly acquires its inertial response, why accelerated and gradient-driven local records agree to equivalence-principle accuracy, and how the same Noether sea record fixes the mass-side response tensor. Those burdens remain with the mass, energy, Lorentz-closure, and nested shell braid dynamics programs.
 
 ### Local-Horizon Recovery Target
 
@@ -580,13 +580,13 @@ $$
 \longrightarrow
 \frac{1}{4}
 $$
-Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to A_{\partial\Omega}^{\mathrm{eff}}$, these claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal nested shell swarm alignment must supply a universal block entropy density, its patch-area normalization, and surrounding Noether sea correlations short-range enough that the boundary count is additive up to edge residuals.
+Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to A_{\partial\Omega}^{\mathrm{eff}}$, these claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal nested shell braid alignment must supply a universal block entropy density, its patch-area normalization, and surrounding Noether sea correlations short-range enough that the boundary count is additive up to edge residuals.
 
 ## Refraction vs. Curvature
 
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
   - Primitive causal-wake support is measured by Euclidean distances in $(x,y,z)$,
-  - While effective ray paths and clock comparisons depend on an *effective speed* $c_{\text{eff}}(x)$ set by the local Noether swarm configuration:
+  - While effective ray paths and clock comparisons depend on an *effective speed* $c_{\text{eff}}(x)$ set by the local Noether braid configuration:
     $c_{\text{eff}}(x) < c_f \quad \text{in dense regions (near mass)}$
 - From the **physical observer** (built from assemblies):
   - Light and free-falling matter appear to move along curved paths (geodesics) of an effective metric $g^{\text{eff}}_{\mu\nu}$.
@@ -704,7 +704,7 @@ u^i_{\text{sea}}=0,
 N=\Omega(n,\lambda)\xi
 $$
 
-Here $\xi$ is the Noether swarm envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$, not a synonym for the clock-rate factor. The stationary ideal clock-rate factor in this metric subclass is $N=\Omega\xi$ only after the geometry-to-clock map is fixed.
+Here $\xi$ is the Noether braid envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$, not a synonym for the clock-rate factor. The stationary ideal clock-rate factor in this metric subclass is $N=\Omega\xi$ only after the geometry-to-clock map is fixed.
 
 Define the clock-channel potential by the observer-side lapse:
 $$

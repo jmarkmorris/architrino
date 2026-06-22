@@ -1,6 +1,6 @@
 # Master Equation of Motion
 
-This chapter is the canonical statement of the delayed dynamical law used throughout the dynamics branch. It defines what counts as a causal hit, how the receiver-local force law is assembled from path history, and which exact or regularized structures are firm enough to support later work on binaries, nested shell swarms, effective geometry, and quantum closure.
+This chapter is the canonical statement of the delayed dynamical law used throughout the dynamics branch. It defines what counts as a causal hit, how the receiver-local force law is assembled from path history, and which exact or regularized structures are firm enough to support later work on binaries, nested shell braids, effective geometry, and quantum closure.
 
 For the primitive-entity ontology, see [Architrino](../foundations/architrino.md). This chapter begins where ontology stops: once continuous transceiver status is turned into a delay-root law, causal-hit branch sum, Jacobian-weighted acceleration, or regularized simulation equation.
 
@@ -656,13 +656,13 @@ $$
 
 Fold bifurcations create/annihilate roots in pairs. The signed degree $D_{ij}$ stays topologically fixed between folds, while the unsigned branch count $N_{ij}$ jumps by even integers.
 
-For a suggestive first folded branch used as a nested shell swarm closure target, the reduced root-count analogy is
+For a suggestive first folded branch used as a nested shell braid closure target, the reduced root-count analogy is
 
 $$
 N_O=1 \;\longrightarrow\; N_I=2
 $$
 
-This is not yet a nested shell swarm closure result. It is the root-count counterpart one would need to justify before using the action-partition doubling target ($w_I=2w_O$) or the associated $1:2:4$ frequency-lock discussion as derived structure.
+This is not yet a nested shell braid closure result. It is the root-count counterpart one would need to justify before using the action-partition doubling target ($w_I=2w_O$) or the associated $1:2:4$ frequency-lock discussion as derived structure.
 
 **Intuition:** If the source outruns its own emissions, it can emit multiple wake surfaces that later converge and intersect the same receiver location simultaneously (or nearly so, within regularization width $\eta$).
 
@@ -750,15 +750,15 @@ T(v)=\frac{T_0}{\sqrt{1-\beta^2}},
 T_0=\frac{2L_0}{c_f}
 $$
 
-This gives a purely substrate-level period-stretch checkpoint. It says only that preserving the same internal phase closure while the receiver translates forces the physical period $T$ to increase in absolute time unless the longitudinal leg shortens. The full unresolved step is proving the same absolute-period scaling for the complete multi-hit NFDE nested shell swarm dynamics without reducing to a two-leg closure model.
+This gives a purely substrate-level period-stretch checkpoint. It says only that preserving the same internal phase closure while the receiver translates forces the physical period $T$ to increase in absolute time unless the longitudinal leg shortens. The full unresolved step is proving the same absolute-period scaling for the complete multi-hit NFDE nested shell braid dynamics without reducing to a two-leg closure model.
 
 The forward parallel leg carries the same starvation constraint as Proposition 4 with $d_{\min}$ replaced by the leading longitudinal leg length $L_\parallel$. Therefore the two-leg checkpoint is admissible as a retained-row model only in the starvation-free regime
 $$
 v<c_f-\frac{L_\parallel}{h}.
 $$
-Above that scale, the checkpoint no longer tracks the same causal-root ledger: the full nested shell swarm proof must show a ledger reorganization, a sea-mediated replacement row, or a declared failure of the translating-loop reduction.
+Above that scale, the checkpoint no longer tracks the same causal-root ledger: the full nested shell braid proof must show a ledger reorganization, a sea-mediated replacement row, or a declared failure of the translating-loop reduction.
 
-The two-leg loop is only a checkpoint. It has two phase points and one chosen orientation relative to the absolute motion. A real assembly has an effective internal phase distribution over a finite three-dimensional volume, and operational isotropy has to hold for all loop orientations at once. The closure target is therefore a full oblate-envelope-to-sphere reduction in the internal nested shell swarm phase space, not just the equality
+The two-leg loop is only a checkpoint. It has two phase points and one chosen orientation relative to the absolute motion. A real assembly has an effective internal phase distribution over a finite three-dimensional volume, and operational isotropy has to hold for all loop orientations at once. The closure target is therefore a full oblate-envelope-to-sphere reduction in the internal nested shell braid phase space, not just the equality
 $$
 T_\parallel=T_\perp
 $$
@@ -979,7 +979,7 @@ $$
 
 **Plain language:** A hit only changes the along-the-line velocity component right now; sideways motion continues unaffected at the instant of the hit. Over time, the changing radial motion alters the trajectory and thus the subsequent orthogonal component.
 
-**Translating-assembly deformation requirement:** The receiver kinematics described here must mechanically produce the moving-assembly deformation, branch-period stretch, and two-way signal-synchronization records that later observer-inference chapters consume. If nested shell swarms do not squash along the direction of motion and do not preserve one retained causal-root ledger while translating through the Noether sea, the downstream recovery program fails at the dynamics layer.
+**Translating-assembly deformation requirement:** The receiver kinematics described here must mechanically produce the moving-assembly deformation, branch-period stretch, and two-way signal-synchronization records that later observer-inference chapters consume. If nested shell braids do not squash along the direction of motion and do not preserve one retained causal-root ledger while translating through the Noether sea, the downstream recovery program fails at the dynamics layer.
 
 #### Work and Power
 
@@ -1412,7 +1412,7 @@ This null-separatrix is therefore an **amplitude wall** for the self branch. It 
 **Significance:**
 - Defines a **fundamental length scale** $R_{\min}$ that sets the tightest stable orbit radius
 - In the exact geometric model, excludes classical $r \to 0$ collapse by a null-separatrix barrier
-- Supplies one geometric ingredient in candidate stable particle assemblies such as nested shell swarms
+- Supplies one geometric ingredient in candidate stable particle assemblies such as nested shell braids
 
 **Status split (analytic vs numeric):**
 - **Analytic:** Existence of the Jacobian-null boundary and its singular restoring scaling in the exact kernel.
@@ -1575,7 +1575,7 @@ $$
 The equation supplies the microscopic input for later emergence claims, but it does not by itself prove those claims. The status split is:
 
 - **Binary stabilization**: supported by self-hit barriers and circular/spiral benchmarks; exact stable branches still require certified branch charts and tangential-power closure.
-- **Nested shell swarms and particle assemblies**: downstream assembly claims that must be derived from multi-body causal-root locking and hierarchy averaging.
+- **Nested shell braids and particle assemblies**: downstream assembly claims that must be derived from multi-body causal-root locking and hierarchy averaging.
 - **Quantum behavior**: an effective closure target based on non-Markovian memory, attractor basins, and receiver-level informational ambiguity.
 - **Observer-level geometry and gravity**: effective descriptions that must be recovered from Noether sea constitutive response and clock/ruler closure, not inserted into the substrate law.
 - **Cosmology**: an effective observer-side program tied to Noether sea evolution, transport, and clock-rate comparison; the Euclidean void itself is not claimed to expand.
@@ -2150,7 +2150,7 @@ a_{r}^{(\mathrm{part})}+A_r^{|\sin|}(\beta)
 $$
 is again outward for sufficiently large $\beta$. Thus, on this equal-magnitude bare circular chart and away from Jacobian-null birth windows, an exact constant-radius orbit is excluded for sufficiently large $\beta$: the tangential residual remains forward, and the radial branch sum does not provide the required inward acceleration $-\omega^2R$. This is a conditional high-speed chart result, not a global MCB no-go theorem and not a finite-$\beta$ exclusion across all ledgers; any surviving finite-speed window still requires a certified branch chart with positive Jacobian floor, inactive gaps, finite memory depth, and signed residual closure.
 
-The circular self-hit and partner-hit formulas are kernel benchmarks. They are not the Noether swarm model. The Noether swarm model is the six-body branch chart containing self, partner, and inter-layer causal roots, with hierarchy averaging only where justified by separated scales and certified branch data.
+The circular self-hit and partner-hit formulas are kernel benchmarks. They are not the Noether braid model. The Noether braid model is the six-body branch chart containing self, partner, and inter-layer causal roots, with hierarchy averaging only where justified by separated scales and certified branch data.
 
 ---
 
@@ -2182,7 +2182,7 @@ However, the circular benchmark still exposes a serious obstruction in the bare 
 This sharpens the maximum-curvature program into a concrete fork:
 
 - either the certified signed branch sum fails to cancel the partner drive, so the isolated two-body MCB does **not** exist as an exact constant-speed circular orbit of the bare kernel, or
-- an algebraic cancellation exists, after which stability still requires a separate delay-operator proof and may require additional structure beyond the bare circular two-body ansatz, such as medium coupling, genuine nested shell swarm multi-body locking, or a more subtle non-circular periodic balance.
+- an algebraic cancellation exists, after which stability still requires a separate delay-operator proof and may require additional structure beyond the bare circular two-body ansatz, such as medium coupling, genuine nested shell braid multi-body locking, or a more subtle non-circular periodic balance.
 
 So:
 
@@ -2216,7 +2216,7 @@ is an unstable mode.
 > $$
 > space until the net signed tangential balance and transverse eigenvalues are certified.
 
-This is the intended dynamical interpretation. Stable particles in the present architecture are Noether swarm assemblies; a bare MCB, if it exists, is a high-curvature component or limiting scaffold whose instability explains why additional locking structure is needed.
+This is the intended dynamical interpretation. Stable particles in the present architecture are Noether braid assemblies; a bare MCB, if it exists, is a high-curvature component or limiting scaffold whose instability explains why additional locking structure is needed.
 
 This would be an “analytic scaffold + numerical check” situation, not full closed forms.
 
@@ -2410,7 +2410,7 @@ Principal roots with $0<\Delta<\pi$ still carry the same positive tangential sig
 
 1. admissible older or wrapped roots with $\sin\Delta<0$ and enough Jacobian weight;
 2. off-turn variable-pitch intervals where the $p$-terms dominate the positive principal branches;
-3. additional medium, nested shell swarm, or multi-body structure outside the isolated two-body spiral ansatz.
+3. additional medium, nested shell braid, or multi-body structure outside the isolated two-body spiral ansatz.
 
 The radial turn condition is equally explicit. Since
 $$
@@ -2460,7 +2460,7 @@ $$
 T_0(C_{\mathrm{A1}})
 \in[-0.007585901776635041,\ -0.007585740886803276]
 $$
-Thus A1 is a constant-$\Omega$ kinematic-balance no-go for this prescribed isolated two-body history. It remains a replayable retained-chart benchmark, not a closed isolated spiral certificate and not a rejection of variable-angular-rate, medium-supplemented, nested shell swarm, or other non-circular histories.
+Thus A1 is a constant-$\Omega$ kinematic-balance no-go for this prescribed isolated two-body history. It remains a replayable retained-chart benchmark, not a closed isolated spiral certificate and not a rejection of variable-angular-rate, medium-supplemented, nested shell braid, or other non-circular histories.
 
 The no-go is also constructive. If the same turn-center radial curve is allowed a variable angular rate, with $\omega_\ast=\dot\theta(0)>0$ and $\alpha_\ast=\ddot\theta(0)$, then $r'(0)=0$ and the exact local balance equations become
 $$
@@ -3410,7 +3410,7 @@ K_{\mathrm{eff}}^{(\eta)}
 $$
 while the source-end gradient is the opposite. Therefore a global spatial translation or rotation of both endpoints changes no interior action density, and a step translation or step rotation across $t_\ast$ exposes exactly the boundary increments above. The characteristic endpoint condition $D_{ij}R_{+}=0$, together with endpoint clearance, is the local reason these increments are wake-history boundary terms rather than a hidden extra receiver force.
 
-This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or nested shell swarm attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive Jacobian floors, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
+This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or nested shell braid attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive Jacobian floors, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
 
 **Branch-chart conservation pullback.** Let $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ be a retained branch chart with active causal-root rows $\mathcal{R}^{\mathrm{act}}$, positive inactive-root gaps, positive Jacobian floor, finite memory depth, and declared endpoint convention. For a time cut $t_\ast$, define the chart-restricted crossing domain
 $$

@@ -301,7 +301,7 @@ D_{xy}^{\mathrm{coord}}Z_{\mathrm{oct}}^{ab}
 \end{pmatrix}.
 $$
 
-The companion test [neutral-swarm-octahedral-coordinate-exposure-matrix.test.js](../../../tests/neutral-swarm-octahedral-coordinate-exposure-matrix.test.js) checks the schema, all nine columns, all finite-difference comparisons, the distinction from the fixed-ledger trace probe, and the non-retention verdict.
+The companion test [neutral-braid-octahedral-coordinate-exposure-matrix.test.js](../../../tests/neutral-swarm-octahedral-coordinate-exposure-matrix.test.js) checks the schema, all nine columns, all finite-difference comparisons, the distinction from the fixed-ledger trace probe, and the non-retention verdict.
 
 ## Retention Verdict
 

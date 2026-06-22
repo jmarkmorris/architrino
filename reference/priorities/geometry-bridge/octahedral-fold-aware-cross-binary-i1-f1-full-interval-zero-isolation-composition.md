@@ -97,7 +97,7 @@ $$
 \texttt{I1.f1.full-interval-zero-isolation-composition}.
 $$
 
-The companion test [neutral-swarm-octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.test.js) validates schema boundaries, endpoint/derivative predecessor consumption, absence of speed-band fields, downstream overclaim rejection, and CLI validation. The test accepts `AAA_TEST_HEARTBEAT=0` to suppress long-run progress lines; by default it reports peak-budget parent-row progress while building the artifact.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-i1-f1-full-interval-zero-isolation-composition.test.js) validates schema boundaries, endpoint/derivative predecessor consumption, absence of speed-band fields, downstream overclaim rejection, and CLI validation. The test accepts `AAA_TEST_HEARTBEAT=0` to suppress long-run progress lines; by default it reports peak-budget parent-row progress while building the artifact.
 
 ## Result
 

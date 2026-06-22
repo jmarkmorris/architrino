@@ -273,7 +273,7 @@ The executable diagnostic [octahedral-affine-force-mean-derivative.mjs](../../..
 - the trace-only correction certificate;
 - the non-retention verdict.
 
-The companion test [neutral-swarm-octahedral-affine-force-mean-derivative.test.js](../../../tests/neutral-swarm-octahedral-affine-force-mean-derivative.test.js) verifies the schema, the six-by-nine matrix, the trace-only correction direction, the rank/range certificate, CLI validation, and the claim-level guard:
+The companion test [neutral-braid-octahedral-affine-force-mean-derivative.test.js](../../../tests/neutral-swarm-octahedral-affine-force-mean-derivative.test.js) verifies the schema, the six-by-nine matrix, the trace-only correction direction, the rank/range certificate, CLI validation, and the claim-level guard:
 
 $$
 \texttt{certifies\_live\_derivative\_matrix=false},

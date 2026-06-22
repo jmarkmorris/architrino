@@ -2,7 +2,7 @@
 
 ## Background
 
-We are exploring an **assembly**, specifically a candidate neutral rest-branch Noether swarm assembly called `$A_0$`.
+We are exploring an **assembly**, specifically a candidate neutral rest-branch Noether braid assembly called `$A_0$`.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, an assembly is not a point particle. It is a structured bundle of architrinos with internal motion, internal causal history, and sector-visible projections.
 
@@ -103,7 +103,7 @@ This packet turns the $A_0$ reference-attractor posture into a concrete reduced 
 
 The central question is:
 
-Can a neutral rest-branch Noether swarm with inner, middle, and outer binary layers close as one coupled delayed root ledger while satisfying
+Can a neutral rest-branch Noether braid with inner, middle, and outer binary layers close as one coupled delayed root ledger while satisfying
 $$
 s_I > c_f,
 \qquad

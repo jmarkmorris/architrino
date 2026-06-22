@@ -2126,7 +2126,7 @@ the finite-prefix candidates into continuous shared-domain $E_R,\nu_J,M_G,$
 and $M_R$ certificates.
 
 The companion test is
-[neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js](../../../tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js).
+[neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js](../../../tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js).
 It verifies h39 $X$ insertion, affine leading $R_{\varepsilon,43}$ dependence
 on $X$, the removable $\partial_XR_{\varepsilon,43}$ identity, the $y^{41}$
 $\partial_X^2R_{\varepsilon,43}$ identity, the $K_\varepsilon$ factorization,

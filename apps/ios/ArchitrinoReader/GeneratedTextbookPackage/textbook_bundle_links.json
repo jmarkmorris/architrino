@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-21T17:19:38.263Z",
-  "total_links": 1454,
+  "generated_at": "2026-06-22T03:49:04.018Z",
+  "total_links": 1538,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -1772,22 +1772,6 @@
       "targetBundlePath": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md"
     },
     {
-      "sourceChapterId": "cosmology",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
-      "target": "https://arxiv.org/abs/2604.14327",
-      "kind": "external",
-      "status": "external",
-      "targetBundlePath": ""
-    },
-    {
-      "sourceChapterId": "cosmology",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
-      "target": "https://arxiv.org/abs/2604.14327",
-      "kind": "external",
-      "status": "external",
-      "targetBundlePath": ""
-    },
-    {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md",
@@ -1838,6 +1822,38 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/assembly-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/assembly-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/assembly-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/assembly-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -1871,6 +1887,14 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#principal-partner-root-certificate",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
@@ -1974,6 +1998,14 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/causal-action-functional.md#geometrictopological-framework",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/causal-action-functional.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -1983,6 +2015,30 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md#exact-integer-phase-closure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
@@ -2007,6 +2063,22 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#ordinary-hamiltonian-orientation",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#regularized-nonlocal-action-and-variation",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
@@ -2023,6 +2095,14 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#symmetries-and-history-aware-conservation-laws",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#topological-constraints-and-assembly-stability",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
@@ -2086,6 +2166,38 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/energy.md#theorem-target-center-of-response",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/energy.md#wake-escapement",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/energy.md#wake-escapement",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/energy.md#wake-escapement",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2095,6 +2207,14 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/entropy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/entropy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/entropy.md#second-law-and-same-record-monotonicity",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/entropy.md"
@@ -2222,6 +2342,22 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#delay-map-theorem-pack-formalized",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2287,6 +2423,22 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#finite-eta-pathology-quarantine-theorem-target",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#informational-ambiguity-at-the-receiver",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
@@ -2306,6 +2458,38 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/tri-binary-configuration-space.md#eigen-braid-candidates",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -2394,6 +2578,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/noether-swarm/noether-swarm.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/noether-swarm.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -3014,10 +3206,34 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#the-axial-layer",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/assemblies/particle-masses.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -3190,7 +3406,23 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#causal-time-map-and-root-topology",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#self-interaction-self-hit-dynamics",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
@@ -3286,6 +3518,14 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/foundations/absolute-time.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/absolute-time.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/foundations/absolute-time.md#causality-and-finite-propagation-speed",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -3319,6 +3559,30 @@
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/foundations/absolute-timespace.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/absolute-timespace.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/foundations/absolute-timespace.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/absolute-timespace.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/foundations/absolute-timespace.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/absolute-timespace.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/foundations/absolute-timespace.md#receiver-centered-exhaustion-lemma",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/foundations/absolute-timespace.md"
@@ -3374,6 +3638,14 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/foundations/architrino.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/architrino.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -3383,6 +3655,14 @@
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#reconstruction-existence-lemma",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md"
@@ -3410,6 +3690,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/foundations/emergence.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/foundations/emergence.md#context-as-constraint-on-basin-selection",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/emergence.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/foundations/euclidean-void.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/euclidean-void.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -3502,6 +3798,22 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/noether-swarm/noether-swarm.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/noether-swarm.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/noether-swarm/noether-swarm.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -3582,6 +3894,14 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/quantum/quantum-statistics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -3610,6 +3930,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/quantum/wavefunction-ontology.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/quantum/wavefunction-ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/wavefunction-ontology.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/spacetime/emergent-metric.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/emergent-metric.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -3822,6 +4158,22 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/spacetime/observer-framework.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/observer-framework.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/spacetime/observer-framework.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -3842,6 +4194,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/observer-framework.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -3996,14 +4356,6 @@
       "targetBundlePath": "content/markdown/aaa/validation/reaction-ledger.md"
     },
     {
-      "sourceChapterId": "foundations",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "https://arxiv.org/abs/1110.3795",
-      "kind": "external",
-      "status": "external",
-      "targetBundlePath": ""
-    },
-    {
       "sourceChapterId": "noether_swarm",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
       "target": "../../../../markdown/aaa/assemblies/fermions/electron.md",
@@ -4018,6 +4370,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
+    },
+    {
+      "sourceChapterId": "noether_swarm",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/assembly-topological-charge.md"
     },
     {
       "sourceChapterId": "noether_swarm",
@@ -5310,6 +5670,22 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/foundations/architrino.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -5354,6 +5730,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/foundations/euclidean-void.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/foundations/ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/ontology.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/foundations/ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/ontology.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -5454,6 +5846,22 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/noether-swarm/noether-swarm.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/noether-swarm.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/noether-swarm/noether-swarm.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/noether-swarm.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -5490,6 +5898,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -5558,6 +5974,30 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/crisis-in-physics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/geometry-and-ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -5598,10 +6038,10 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/major-thinkers.md",
+      "target": "../../../../markdown/aaa/philosophy-history/information-computation.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/information-computation.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -5622,10 +6062,10 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/philosophy-of-science.md",
+      "target": "../../../../markdown/aaa/philosophy-history/major-thinkers.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/philosophy-of-science.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/major-thinkers.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -5662,10 +6102,18 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "target": "../../../../markdown/aaa/philosophy-history/philosophy-of-science.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/philosophy-of-science.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/philosophy-of-science.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/philosophy-of-science.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -5706,6 +6154,30 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -5814,10 +6286,26 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md#bell-closure-diagnostics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -5850,6 +6338,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -5894,6 +6398,30 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#apparatus-context-guardrail",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -5934,10 +6462,34 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/README.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/README.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -5966,6 +6518,22 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -6026,6 +6594,30 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-differentials.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-differentials.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-differentials.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-differentials.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -6102,10 +6694,10 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-mapping.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-mapping.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -6170,6 +6762,46 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-mapping.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-mapping.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-mapping.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-mapping.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-mapping.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-mapping.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-mapping.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-mapping.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-mapping.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -6494,6 +7126,14 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/spacetime/lorentz-kinematics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/lorentz-kinematics.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -6538,6 +7178,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/spacetime/observer-framework.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/observer-framework.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -6598,7 +7246,23 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/validation/failure-criteria.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/failure-criteria.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/validation/failure-criteria.md#null-result-residual-for-added-channels",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/failure-criteria.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/validation/failure-criteria.md#preferred-frame-hiding-stop-condition",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/validation/failure-criteria.md"
@@ -8006,7 +8670,7 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/cosmology/expansion-mechanism.md#noether-sea-swarm-factorization-target",
+      "target": "../../../../markdown/aaa/cosmology/expansion-mechanism.md#noether-sea-braid-factorization-target",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/cosmology/expansion-mechanism.md"
@@ -9198,7 +9862,7 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "#nested-shell-swarm-adiabatic-decoupling-bound",
+      "target": "#nested-shell-braid-adiabatic-decoupling-bound",
       "kind": "anchor",
       "status": "skip_anchor",
       "targetBundlePath": ""
@@ -9206,7 +9870,7 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "#nested-shell-swarm-adiabatic-decoupling-bound",
+      "target": "#nested-shell-braid-adiabatic-decoupling-bound",
       "kind": "anchor",
       "status": "skip_anchor",
       "targetBundlePath": ""
@@ -10882,6 +11546,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/ppn-parameters.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
     },
     {
       "sourceChapterId": "validation",
