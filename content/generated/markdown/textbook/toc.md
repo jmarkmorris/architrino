@@ -506,6 +506,11 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - **Ch 4.6.3.19** [Provisional Conclusion](../../../markdown/aaa/spacetime/horizon-chirality.md?section=Provisional+Conclusion)
       - **Ch 4.6.3.20** [Interfaces to Other Chapters](../../../markdown/aaa/spacetime/horizon-chirality.md?section=Interfaces+to+Other+Chapters)
     - **Ch 4.6.4** [Cosmic Censorship and Holography](../../../scenes/philosophy_history/cosmic_censorship_holography.json)
+      - **Ch 4.6.4.1** [Conceptual View](../../../markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md?section=Conceptual+View)
+      - **Ch 4.6.4.2** [Key Equation](../../../markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md?section=Key+Equation)
+      - **Ch 4.6.4.3** [$\mathbb{A}\mathbb{A}\mathbb{A}$ View](../../../markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md?section=%24%5Cmathbb%7BA%7D%5Cmathbb%7BA%7D%5Cmathbb%7BA%7D%24+View)
+      - **Ch 4.6.4.4** [Status](../../../markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md?section=Status)
+      - **Ch 4.6.4.5** [Geometric Proof Targets](../../../markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md?section=Geometric+Proof+Targets)
 - **Ch 5** [Standard Model Assemblies](../../../scenes/assemblies/assemblies.json)
   - **Ch 5.1** [Standard Model](../../../scenes/standard-model-particles/standard_model.json) _(diagram)_
   - **Ch 5.2** [Gauge Structure Emergence](../../../scenes/assemblies/gauge_structure_emergence.json)

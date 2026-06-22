@@ -1,4 +1,4 @@
-# Radial Fall to Fixed Center (Test Particle)
+# Radial Attraction
 
 Setup:
 - A test architrino with polarity $q'$ falls radially toward a fixed center with polarity $q$.

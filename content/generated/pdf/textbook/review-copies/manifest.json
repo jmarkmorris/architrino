@@ -9,7 +9,7 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "sourceSha256": "823ae06ab0094db9c6437b30598c3beee42cfb84ffb4a8687b0bbab59c1d974e",
       "pdfPath": "content/generated/pdf/textbook/review-copies/foundations.pdf",
-      "pdfSha256": "d33570329db63f39028b74c97428b5418c5af56d233acde61e9a6bf9f78f2442",
+      "pdfSha256": "75304db8518d6515cf782a43f21eb92296f000747252389ade68cea85161fa50",
       "pdfBytes": 1231788
     },
     {
@@ -18,7 +18,7 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "sourceSha256": "db7c08380a10dee2cc5e6586cc859d35b8a2f719577590767965d83adcb0bead",
       "pdfPath": "content/generated/pdf/textbook/review-copies/dynamics.pdf",
-      "pdfSha256": "74bccabe265b0ae678eca8ed2cbeb5e31f00c6d1e1fce2aa6358b5ada513d38f",
+      "pdfSha256": "728dd37c24facef1c1d226b998f761b6a5aeb54b8dfd5c21c55c312b341828d2",
       "pdfBytes": 6928754
     },
     {
@@ -27,7 +27,7 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "sourceSha256": "2559e0665874d3e5f802d2243a97fbb9db4f967dc4bd79380191d9b2933f26a4",
       "pdfPath": "content/generated/pdf/textbook/review-copies/noether-braid.pdf",
-      "pdfSha256": "41e6f01c0e4e807023810666e597d1f1bd6fd5913f2ccf5e5bb155cc926c7da2",
+      "pdfSha256": "fe6f95d5c6d6661ba24dd18ba83aacbf4671de29d25101710a885756112acfe8",
       "pdfBytes": 872951
     },
     {
@@ -36,8 +36,8 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "sourceSha256": "b3e57719028d8fe3ba1c1a13563350712f1abd918253e7e17ae0c1c8e34922f2",
       "pdfPath": "content/generated/pdf/textbook/review-copies/noether-sea-and-effective-spacetime.pdf",
-      "pdfSha256": "e6735659a4ee81df8f8b7f050d49b844cb4840084e766b67955b1193357a5ff6",
-      "pdfBytes": 38837
+      "pdfSha256": "19bf126d4ebfd8d9f98cd5155d480e94fb827e7c9179c6797f0508dd0343b76b",
+      "pdfBytes": 2159985
     },
     {
       "id": "assemblies",
@@ -45,7 +45,7 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
       "sourceSha256": "28fd23ff8450ad6e7ec49656eb9254b7b8c5e30107feebef3362f8ed4a338770",
       "pdfPath": "content/generated/pdf/textbook/review-copies/standard-model-assemblies.pdf",
-      "pdfSha256": "b827edf3d3fe11afaae24eda9f52676c06c2e971c9e40bf20025ee68293744e1",
+      "pdfSha256": "dce13cbc4a196201a427f671f9f33a90da5a6a72aecc9a892d119dba9df82810",
       "pdfBytes": 2231115
     },
     {
@@ -54,7 +54,7 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
       "sourceSha256": "7e3481f3eea905a6c9a5ca52f4a5fd24efa1041f9a79a648117d5290a2b4698e",
       "pdfPath": "content/generated/pdf/textbook/review-copies/atomic-and-nuclear-assemblies.pdf",
-      "pdfSha256": "a5fc885d1dbda06ed534e1c9f4f17917621e90946473aa3ff72397082f259c73",
+      "pdfSha256": "930aea20c3b3a9e4daebe175c02c66d046f12ac53cd84aacf8306db954ab71b9",
       "pdfBytes": 730426
     },
     {
@@ -63,7 +63,7 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
       "sourceSha256": "84c45b378fa47577e097103e42bac47c836ce10fd2450afdec34de7cc93d72ef",
       "pdfPath": "content/generated/pdf/textbook/review-copies/reactions.pdf",
-      "pdfSha256": "384c6af603423375530e7ed8b34ec35ce6811aff72d5c9ed3838fed3c9a8b509",
+      "pdfSha256": "490b18a8ef0bf53e34cf11289fb886674ac6d66dd9a8796a29c431eebfc23eef",
       "pdfBytes": 919302
     },
     {
@@ -72,7 +72,7 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
       "sourceSha256": "304a41758d57b8a38e5dbe17525ebf8deddada4773ea3fbcab9e181c54c58f2e",
       "pdfPath": "content/generated/pdf/textbook/review-copies/quantum.pdf",
-      "pdfSha256": "1f5d6b254cdcea8a95c3326fcd3bdcb2a28f8c2917374d8f03ba2fc845231983",
+      "pdfSha256": "7347f136aa2ab6c0eb391e78bd41d9086a7a81fd6edd408fe333d774580454b8",
       "pdfBytes": 921958
     },
     {
@@ -81,7 +81,7 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "sourceSha256": "5d461062e70b35ad1792936854d1d3dc79997acda26489069289106b93572684",
       "pdfPath": "content/generated/pdf/textbook/review-copies/cosmology.pdf",
-      "pdfSha256": "e9bd37db5b8dd86275abd750d129808fcfb0ea95b6bc4b1084b35faf48277b15",
+      "pdfSha256": "f054983fb204a8fb57aa6cf9c48966abd8b260910f83ddb4f6eaff3905c74281",
       "pdfBytes": 1638367
     },
     {
@@ -90,7 +90,7 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
       "sourceSha256": "10517fbaf36a7d76a9f610238050b4f922b2ce189561d86e5fe57a84d1e2d1f6",
       "pdfPath": "content/generated/pdf/textbook/review-copies/validation.pdf",
-      "pdfSha256": "60b408fb865acbfbb7c41a6e18f8f87c380b6933aa5cc25e94708a63ed057ab6",
+      "pdfSha256": "9f545ba53df260b8fb28a6ed533cbc99a4bdd95dd24a134a5816885788dfe77c",
       "pdfBytes": 3149182
     },
     {
@@ -99,7 +99,7 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "sourceSha256": "14847bef7af2597cf7b65c5b51f8d53b61043d562536385f8edc135e10b21e1b",
       "pdfPath": "content/generated/pdf/textbook/review-copies/philosophy-history.pdf",
-      "pdfSha256": "021f5f530bce5b9843bfd6a0774350c8d296242f40f2b3aa8aaa4074c2e3aa20",
+      "pdfSha256": "054ea373a16b88da75946fcf797a5e305e98cd9f467ac3045e03cd36af6c3a10",
       "pdfBytes": 7365780
     },
     {
@@ -108,8 +108,8 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
       "sourceSha256": "e7d0554ebbbf23d3318de92fc9f0b70b6814bced9248020e3875b0098f340dfc",
       "pdfPath": "content/generated/pdf/textbook/review-copies/architrino-textbook.pdf",
-      "pdfSha256": "5cefd704dff0ba78a2ccb83a869862cb9a024fb9cd39b6141b3bcc69dbd7b3a1",
-      "pdfBytes": 16286240
+      "pdfSha256": "35ae00348e87ccc245635156d0c3de8fdeb8d1f6936fc3c82f87821b064654ae",
+      "pdfBytes": 17686268
     }
   ]
 }

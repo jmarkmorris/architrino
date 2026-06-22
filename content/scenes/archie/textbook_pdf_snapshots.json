@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "archie__textbook_pdf_snapshots",
-    "title": "Download Textbook (pdf)",
+    "title": "Download Textbook PDF",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -12,7 +12,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md"
+      "path": "content/markdown/aaa/archie/download-textbook-pdf.md"
     },
     "view": {
       "columns": 1,

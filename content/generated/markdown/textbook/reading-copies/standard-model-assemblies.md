@@ -4829,7 +4829,7 @@ in the confining window. At the assembly level, this says that an open color cor
 
 #### The Color Singlet (White)
 
-A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md) and [Transient Hadrons: Mesons and Δ Resonances](../../../../markdown/aaa/assemblies/mesons/mesons.md).
+A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md) and [Mesons](../../../../markdown/aaa/assemblies/mesons/mesons.md).
 
 1. Red: H-exceptional
 2. Green: M-exceptional

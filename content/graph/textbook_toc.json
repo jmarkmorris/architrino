@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 178,
-      "sections": 1439
+      "sections": 1444
     }
   },
   "tocRoot": {
@@ -4140,9 +4140,49 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-                "markdownSection": "Cosmic Censorship / Holographic Principle / AdS-CFT",
-                "sectionKey": "cosmic censorship holographic principle ads cft"
+                "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Conceptual View",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                    "markdownSection": "Conceptual View",
+                    "sectionKey": "conceptual view",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Key Equation",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                    "markdownSection": "Key Equation",
+                    "sectionKey": "key equation",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ View",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                    "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ View",
+                    "sectionKey": "mathbb a mathbb a mathbb a view",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Status",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                    "markdownSection": "Status",
+                    "sectionKey": "status",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Geometric Proof Targets",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                    "markdownSection": "Geometric Proof Targets",
+                    "sectionKey": "geometric proof targets",
+                    "headingLevel": 2
+                  }
+                ]
               }
             ]
           }

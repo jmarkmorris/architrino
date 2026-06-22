@@ -1,4 +1,4 @@
-# Transient Hadrons: Mesons and Δ Resonances
+# Mesons
 
 A **hadron** is a **composite particle made of quarks** that is held together by the **strong nuclear force** (the force described by quantum chromodynamics, QCD). Quarks have a characteristic called **color charge** that makes them unstable unless they bind into hadrons that are overall **color neutral**.
 

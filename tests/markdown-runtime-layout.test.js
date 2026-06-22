@@ -505,7 +505,7 @@ test("PDF toolbar button opens markdown before invoking browser print", async (t
   const markdownPdfButton = createFakeButton();
   const currentLevel = {
     name: "Textbook Markdown to PDF",
-    markdownPath: "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
+    markdownPath: "content/markdown/aaa/archie/download-textbook-pdf.md",
   };
 
   globalThis.window = {

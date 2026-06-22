@@ -83,10 +83,10 @@
     },
     {
       "id": "textbook_pdf_snapshots",
-      "title": "Download Textbook (pdf)",
+      "title": "Download Textbook PDF",
       "radius": 2.2,
       "color": "#7a5a2f",
-      "labelTitle": "Download Textbook (pdf)",
+      "labelTitle": "Download Textbook PDF",
       "labelBadge": "doc"
     },
     {

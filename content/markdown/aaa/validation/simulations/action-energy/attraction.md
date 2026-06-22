@@ -1,4 +1,4 @@
-# Opposite Charges From Rest at Large Separation
+# Attraction
 
 Setup:
 - Two architrinos with polarities $q_1=-\epsilon$ and $q_2=+\epsilon$.

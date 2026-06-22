@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 526,
+      "nodes": 527,
       "edges": 1281,
       "scenes": 347,
       "markdownIndexes": 0,
-      "markdownDocs": 166,
+      "markdownDocs": 167,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2255,6 +2255,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/archie/download-textbook-pdf.md",
+      "name": "Download Textbook PDF",
+      "path": "content/markdown/aaa/archie/download-textbook-pdf.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/archie/github-presence-and-community.md",
       "name": "GitHub Presence and Community",
       "path": "content/markdown/aaa/archie/github-presence-and-community.md",
@@ -2318,12 +2324,6 @@
       "id": "content/markdown/aaa/archie/terminology-usage.md",
       "name": "Terminology Usage",
       "path": "content/markdown/aaa/archie/terminology-usage.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
-      "name": "Download Textbook (pdf)",
-      "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2400,7 +2400,7 @@
     },
     {
       "id": "content/markdown/aaa/assemblies/mesons/mesons.md",
-      "name": "Transient Hadrons: Mesons and Δ Resonances",
+      "name": "Mesons",
       "path": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "nodeType": "markdown_doc"
     },
@@ -2412,7 +2412,7 @@
     },
     {
       "id": "content/markdown/aaa/cosmology/BBN-constraints.md",
-      "name": "BBN in the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Framework",
+      "name": "BBN Constraints",
       "path": "content/markdown/aaa/cosmology/BBN-constraints.md",
       "nodeType": "markdown_doc"
     },
@@ -2636,6 +2636,12 @@
       "id": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
       "name": "Agency and Internal Causation",
       "path": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+      "name": "Cosmic Censorship and Holography",
+      "path": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3048,13 +3054,13 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
-      "name": "Delay-Only Formulations (Exact Statements)",
+      "name": "Analytic Baselines",
       "path": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
-      "name": "Opposite Charges From Rest at Large Separation",
+      "name": "Attraction",
       "path": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
       "nodeType": "markdown_doc"
     },
@@ -3090,7 +3096,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
-      "name": "Radial Fall to Fixed Center (Test Particle)",
+      "name": "Radial Attraction",
       "path": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "nodeType": "markdown_doc"
     },
@@ -6388,6 +6394,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/download-textbook-pdf.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/download-textbook-pdf.md",
+      "name": "Download Textbook PDF",
+      "path": "content/markdown/aaa/archie/download-textbook-pdf.md",
+      "searchTarget": "content/markdown/aaa/archie/download-textbook-pdf.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/github-presence-and-community.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/github-presence-and-community.md",
@@ -6484,15 +6499,6 @@
       "name": "Terminology Usage",
       "path": "content/markdown/aaa/archie/terminology-usage.md",
       "searchTarget": "content/markdown/aaa/archie/terminology-usage.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/textbook-pdf-snapshots.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
-      "name": "Download Textbook (pdf)",
-      "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
-      "searchTarget": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
       "implicit": false
     },
     {
@@ -6607,7 +6613,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/assemblies/mesons/mesons.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/assemblies/mesons/mesons.md",
-      "name": "Transient Hadrons: Mesons and Δ Resonances",
+      "name": "Mesons",
       "path": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "searchTarget": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "implicit": false
@@ -6625,7 +6631,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/cosmology/BBN-constraints.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/cosmology/BBN-constraints.md",
-      "name": "BBN in the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Framework",
+      "name": "BBN Constraints",
       "path": "content/markdown/aaa/cosmology/BBN-constraints.md",
       "searchTarget": "content/markdown/aaa/cosmology/BBN-constraints.md",
       "implicit": false
@@ -6961,6 +6967,15 @@
       "name": "Agency and Internal Causation",
       "path": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+      "name": "Cosmic Censorship and Holography",
+      "path": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
       "implicit": false
     },
     {
@@ -7579,7 +7594,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
-      "name": "Delay-Only Formulations (Exact Statements)",
+      "name": "Analytic Baselines",
       "path": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
       "implicit": false
@@ -7588,7 +7603,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/attraction.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
-      "name": "Opposite Charges From Rest at Large Separation",
+      "name": "Attraction",
       "path": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
       "implicit": false
@@ -7642,7 +7657,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
-      "name": "Radial Fall to Fixed Center (Test Particle)",
+      "name": "Radial Attraction",
       "path": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "implicit": false
@@ -12432,7 +12447,7 @@
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/textbook-pdf-snapshots.md",
+      "to": "markdown_doc:content/markdown/aaa/archie/download-textbook-pdf.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/textbook_pdf_snapshots.json",
       "field": "scene.source.path"
@@ -12796,7 +12811,7 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
       "field": "scene.source.path"

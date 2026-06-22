@@ -1,6 +1,6 @@
 # Nucleon Structure
 
-This chapter fixes the current proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time. It is the baryon-side bridge between [Quarks](../assemblies/fermions/quarks.md), [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), and [Transient Hadrons: Mesons and Δ Resonances](../assemblies/mesons/mesons.md).
+This chapter fixes the current proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time. It is the baryon-side bridge between [Quarks](../assemblies/fermions/quarks.md), [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), and [Mesons](../assemblies/mesons/mesons.md).
 
 ## Purpose
 

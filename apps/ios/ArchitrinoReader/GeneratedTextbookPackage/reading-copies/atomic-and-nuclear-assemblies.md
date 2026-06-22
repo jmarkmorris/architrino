@@ -762,7 +762,7 @@ tests azimuthal single-valuedness, $\Delta_{\Omega}$ tests the angular operator 
 
 ## Nucleon Structure
 
-This chapter fixes the current proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time. It is the baryon-side bridge between [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Transient Hadrons: Mesons and Δ Resonances](../../../../markdown/aaa/assemblies/mesons/mesons.md).
+This chapter fixes the current proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time. It is the baryon-side bridge between [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Mesons](../../../../markdown/aaa/assemblies/mesons/mesons.md).
 
 ### Purpose
 
