@@ -224,7 +224,7 @@ Why do observer-level electric charges appear in units of $e/3$?
 |     1:5     |         1         |         5         |          +2/3          |
 |     0:6     |         0         |         6         |           +1           |
 
-Under the six-unit polarity-inventory target, sweeping all Electrino:Positrino splits across the six retained slots yields exactly the Standard Model charge values listed below and no other total charge values within that fixed six-unit inventory. The six-site axial-layer hypothesis is one geometric realization of those slots. Dynamical exclusion of non-Standard-Model stable assemblies remains a separate closure burden.
+Under the six-unit polarity inventory target, sweeping all Electrino:Positrino splits across the six retained slots yields exactly the Standard Model charge values listed below and no other total charge values within that fixed six-unit inventory. The six-site axial-layer hypothesis is one geometric realization of those slots. Dynamical exclusion of non-Standard-Model stable assemblies remains a separate closure burden.
 
 ### Combinatorial Proof (Six $\pm\epsilon$ Slots)
 

@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v34",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v35",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v34 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v35 reports.",
   };
 }
 
@@ -39855,7 +39855,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v33",
+    schema: "aaa-equal-frequency-energy-radius-audit.v34",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -41345,8 +41345,17 @@ function createEqualFrequencyWakeCouplingTransferTargetAudit({
       ),
     ])
   );
+  const transferLawScan = createEqualFrequencyWakeCouplingTransferLawScan({
+    rows,
+    selectedTransferSliceIds,
+  });
+  const pairEqualizationLawSummary =
+    transferLawScan.lawSummaries.find(
+      (summary) =>
+        summary.lawId === "quadratic_middle_outer_pair_equalization"
+    ) ?? null;
   return {
-    schema: "aaa-equal-frequency-wake-coupling-transfer-target-audit.v1",
+    schema: "aaa-equal-frequency-wake-coupling-transfer-target-audit.v2",
     claimLevel:
       "current wake/coupling angular-momentum transfer target; not retained wake law or same-event angular-momentum closure",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -41368,6 +41377,12 @@ function createEqualFrequencyWakeCouplingTransferTargetAudit({
     selectedFiniteBalancedTransferPass,
     selectedTransferStableAcrossRows,
     middleToOuterOnlyPass,
+    transferLawScan,
+    pairEqualizationLawStatus: pairEqualizationLawSummary?.status ?? null,
+    pairEqualizationExactSelectedCount:
+      pairEqualizationLawSummary?.exactSelectedPassCount ?? null,
+    pairEqualizationExactControlCount:
+      pairEqualizationLawSummary?.exactControlPassCount ?? null,
     retainedWakeCouplingTransferAcceptedCount: 0,
     rows,
     status:
@@ -41490,6 +41505,7 @@ function createWakeCouplingTransferSliceTarget({
     selectedForTransferTarget,
     unitInertiaFractions: unitFractions,
     targetFourSubstepFractions: targetFractions,
+    effectiveLeverArms: slice?.effectiveLeverArms ?? {},
     transferFractionsNeededByRole,
     transferFractionSum,
     finiteBalancedTransferPass,
@@ -41515,6 +41531,279 @@ function transferFractionsMatch(left, right) {
       );
     })
   );
+}
+
+function createEqualFrequencyWakeCouplingTransferLawScan({
+  rows,
+  selectedTransferSliceIds,
+}) {
+  const scanRows = rows.map((row) =>
+    createWakeCouplingTransferLawScanRow({ row, selectedTransferSliceIds })
+  );
+  const lawIds = Array.from(
+    new Set(
+      scanRows.flatMap((row) =>
+        Object.values(row.slices).flatMap((slice) =>
+          slice.candidateLaws.map((law) => law.lawId)
+        )
+      )
+    )
+  );
+  const lawSummaries = lawIds.map((lawId) => {
+    const candidates = scanRows.flatMap((row) =>
+      Object.values(row.slices)
+        .map((slice) => slice.candidateLaws.find((law) => law.lawId === lawId))
+        .filter(Boolean)
+    );
+    const selectedCandidates = candidates.filter(
+      (candidate) => candidate.selectedForTransferTarget === true
+    );
+    const controlCandidates = candidates.filter(
+      (candidate) => candidate.selectedForTransferTarget !== true
+    );
+    const exactSelectedPassCount = selectedCandidates.filter(
+      (candidate) => candidate.exactPass === true
+    ).length;
+    const exactControlPassCount = controlCandidates.filter(
+      (candidate) => candidate.exactPass === true
+    ).length;
+    const selectedExactPass =
+      selectedCandidates.length > 0 &&
+      exactSelectedPassCount === selectedCandidates.length;
+    const controlExactPass =
+      controlCandidates.length > 0 &&
+      exactControlPassCount === controlCandidates.length;
+    return {
+      lawId,
+      derivationClass: candidates[0]?.derivationClass ?? null,
+      formula: candidates[0]?.formula ?? null,
+      selectedCandidateCount: selectedCandidates.length,
+      controlCandidateCount: controlCandidates.length,
+      exactSelectedPassCount,
+      exactControlPassCount,
+      selectedExactPass,
+      controlExactPass,
+      maxSelectedResidual: maxFinite(
+        selectedCandidates.map((candidate) => candidate.maxAbsResidual)
+      ),
+      maxControlResidual: maxFinite(
+        controlCandidates.map((candidate) => candidate.maxAbsResidual)
+      ),
+      status:
+        selectedExactPass === true
+          ? controlExactPass === true
+            ? "law_exact_on_selected_and_all_controls"
+            : "law_exact_on_selected_transfer_slices_only"
+          : exactSelectedPassCount > 0
+            ? "law_exact_on_selected_subset"
+            : "law_not_exact_on_selected_transfer_slices",
+    };
+  });
+  const pairEqualizationSummary =
+    lawSummaries.find(
+      (summary) =>
+        summary.lawId === "quadratic_middle_outer_pair_equalization"
+    ) ?? null;
+  const targetResidualSummary =
+    lawSummaries.find((summary) => summary.lawId === "direct_target_residual") ??
+    null;
+  return {
+    schema: "aaa-equal-frequency-wake-coupling-transfer-law-scan.v1",
+    claimLevel:
+      "finite candidate law scan for the current wake/coupling transfer target; not retained wake/coupling law acceptance",
+    selectedTransferSliceIds,
+    rowCount: scanRows.length,
+    lawSummaries,
+    pairEqualizationSelectedExactPass:
+      pairEqualizationSummary?.selectedExactPass ?? false,
+    pairEqualizationExactSelectedCount:
+      pairEqualizationSummary?.exactSelectedPassCount ?? 0,
+    pairEqualizationExactControlCount:
+      pairEqualizationSummary?.exactControlPassCount ?? 0,
+    targetResidualSelectedExactPass:
+      targetResidualSummary?.selectedExactPass ?? false,
+    retainedTransferLawAcceptedCount: 0,
+    rows: scanRows,
+    status:
+      pairEqualizationSummary?.selectedExactPass === true &&
+      pairEqualizationSummary?.exactControlPassCount === 0
+        ? "quadratic_middle_outer_pair_equalization_exact_on_hinge_slices_retained_law_missing"
+        : targetResidualSummary?.selectedExactPass === true
+          ? "target_residual_transfer_exact_pair_equalization_not_explained"
+          : "transfer_law_scan_no_exact_selected_law",
+    interpretation:
+      "The exact selected-slice transfer can be generated without directly copying the 2:1:1 target residual: equalize the middle and outer unit-inertia angular-momentum fractions while keeping the inner half fixed. Algebraically this gives Delta ell_O=-Delta ell_M=(ell_M^(0)-ell_O^(0))/2=(rho_M^2-rho_O^2)/(2 sum_a rho_a^2) under unit inertia and common omega. For the 5:4:3 selected lever arms this is 7/100.",
+    retainedReplayBurden:
+      "Derive this middle/outer pair-equalization as a retained wake, coupling, recoil, or branch-energy law on S_eq, or reject it in favor of a different retained transfer mechanism.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createWakeCouplingTransferLawScanRow({
+  row,
+  selectedTransferSliceIds,
+}) {
+  const slices = Object.fromEntries(
+    Object.entries(row.slices ?? {}).map(([sliceId, slice]) => [
+      sliceId,
+      createWakeCouplingTransferLawScanSlice({
+        sliceId,
+        slice,
+        selectedForTransferTarget: selectedTransferSliceIds.includes(sliceId),
+      }),
+    ])
+  );
+  return {
+    rowId: `S_eq-wake-coupling-transfer-law-scan-f${row.f}`,
+    retainedRowSetId: "S_eq",
+    sourceRowId: row.rowId,
+    caseId: row.caseId,
+    f: row.f,
+    phaseProfileId: row.phaseProfileId,
+    commonOmega: row.commonOmega,
+    slices,
+    retainedTransferLawAccepted: false,
+    retainedBranchClaim: false,
+  };
+}
+
+function createWakeCouplingTransferLawScanSlice({
+  sliceId,
+  slice,
+  selectedForTransferTarget,
+}) {
+  const unitFractions = slice?.unitInertiaFractions ?? {};
+  const targetTransferFractions = slice?.transferFractionsNeededByRole ?? {};
+  const unitAngularMomentumWeights = slice?.unitAngularMomentumWeights ?? {};
+  const leverArms = slice?.effectiveLeverArms ?? {};
+  const totalUnitWeight =
+    slice?.unitAngularMomentumTotal ??
+    sumFinite(Object.values(unitAngularMomentumWeights));
+  const middleUnitWeight = unitAngularMomentumWeights.middle;
+  const outerUnitWeight = unitAngularMomentumWeights.outer;
+  const middleOuterQuadraticGapTransfer =
+    Number.isFinite(middleUnitWeight) &&
+    Number.isFinite(outerUnitWeight) &&
+    Number.isFinite(totalUnitWeight) &&
+    Math.abs(totalUnitWeight) > ROOT_TOLERANCE
+      ? (middleUnitWeight - outerUnitWeight) / (2 * totalUnitWeight)
+      : null;
+  const leverArmSum = sumFinite(Object.values(leverArms));
+  const middleOuterLinearGapTransfer =
+    Number.isFinite(leverArms.middle) &&
+    Number.isFinite(leverArms.outer) &&
+    Number.isFinite(leverArmSum) &&
+    Math.abs(leverArmSum) > ROOT_TOLERANCE
+      ? (leverArms.middle - leverArms.outer) / (2 * leverArmSum)
+      : null;
+  const middleOuterFullGapTransfer =
+    Number.isFinite(unitFractions.middle) && Number.isFinite(unitFractions.outer)
+      ? unitFractions.middle - unitFractions.outer
+      : null;
+  const candidateLaws = [
+    createWakeCouplingTransferCandidateLaw({
+      lawId: "direct_target_residual",
+      derivationClass: "target_residual_definition",
+      formula: "Delta ell_a = ell_a^(target)-ell_a^(unit)",
+      predictedTransferFractions: targetTransferFractions,
+      targetTransferFractions,
+      selectedForTransferTarget,
+    }),
+    createWakeCouplingTransferCandidateLaw({
+      lawId: "quadratic_middle_outer_pair_equalization",
+      derivationClass: "conditional_unit_inertia_pair_symmetry_law",
+      formula:
+        "Delta ell_I=0, Delta ell_O=-Delta ell_M=(J_M^(unit)-J_O^(unit))/(2 J_tot^(unit))",
+      predictedTransferFractions: {
+        inner: 0,
+        middle: Number.isFinite(middleOuterQuadraticGapTransfer)
+          ? -middleOuterQuadraticGapTransfer
+          : null,
+        outer: middleOuterQuadraticGapTransfer,
+      },
+      targetTransferFractions,
+      selectedForTransferTarget,
+    }),
+    createWakeCouplingTransferCandidateLaw({
+      lawId: "linear_lever_arm_pair_equalization",
+      derivationClass: "independent_linear_lever_arm_gap_law",
+      formula:
+        "Delta ell_I=0, Delta ell_O=-Delta ell_M=(rho_M-rho_O)/(2 sum_a rho_a)",
+      predictedTransferFractions: {
+        inner: 0,
+        middle: Number.isFinite(middleOuterLinearGapTransfer)
+          ? -middleOuterLinearGapTransfer
+          : null,
+        outer: middleOuterLinearGapTransfer,
+      },
+      targetTransferFractions,
+      selectedForTransferTarget,
+    }),
+    createWakeCouplingTransferCandidateLaw({
+      lawId: "full_middle_outer_unit_fraction_gap",
+      derivationClass: "independent_unit_fraction_gap_law",
+      formula: "Delta ell_I=0, Delta ell_O=-Delta ell_M=ell_M^(unit)-ell_O^(unit)",
+      predictedTransferFractions: {
+        inner: 0,
+        middle: Number.isFinite(middleOuterFullGapTransfer)
+          ? -middleOuterFullGapTransfer
+          : null,
+        outer: middleOuterFullGapTransfer,
+      },
+      targetTransferFractions,
+      selectedForTransferTarget,
+    }),
+  ];
+  return {
+    sliceId,
+    label: slice?.label ?? null,
+    selectedForTransferTarget,
+    unitInertiaFractions: unitFractions,
+    targetTransferFractions,
+    candidateLaws,
+    bestCandidateLaw:
+      candidateLaws
+        .slice()
+        .sort((left, right) => {
+          const leftResidual = left.maxAbsResidual ?? Number.POSITIVE_INFINITY;
+          const rightResidual = right.maxAbsResidual ?? Number.POSITIVE_INFINITY;
+          if (leftResidual !== rightResidual) {
+            return leftResidual - rightResidual;
+          }
+          return left.lawId.localeCompare(right.lawId);
+        })[0] ?? null,
+  };
+}
+
+function createWakeCouplingTransferCandidateLaw({
+  lawId,
+  derivationClass,
+  formula,
+  predictedTransferFractions,
+  targetTransferFractions,
+  selectedForTransferTarget,
+}) {
+  const residuals = residualRoleWeights({
+    actual: predictedTransferFractions,
+    target: targetTransferFractions,
+  });
+  const maxAbsResidual = maxFinite(
+    Object.values(residuals).map((value) =>
+      Number.isFinite(value) ? Math.abs(value) : null
+    )
+  );
+  return {
+    lawId,
+    derivationClass,
+    formula,
+    selectedForTransferTarget,
+    predictedTransferFractions,
+    targetTransferFractions,
+    residuals,
+    maxAbsResidual,
+    exactPass:
+      Number.isFinite(maxAbsResidual) && maxAbsResidual <= ROOT_TOLERANCE,
+  };
 }
 
 function createSliceUnitInertiaActionLedger({ leverArms, commonOmega }) {
@@ -45332,7 +45621,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v35",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v36",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -45425,7 +45714,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v31",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v32",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -46060,6 +46349,18 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     wakeCouplingTransferStableAcrossRows:
       equalFrequencyEnergyRadiusAudit.wakeCouplingTransferTargetAudit
         ?.selectedTransferStableAcrossRows ?? null,
+    wakeCouplingTransferLawScanSchema:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferTargetAudit
+        ?.transferLawScan?.schema ?? null,
+    wakeCouplingTransferLawScanStatus:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferTargetAudit
+        ?.transferLawScan?.status ?? null,
+    wakeCouplingTransferPairEqualizationExactSelectedCount:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferTargetAudit
+        ?.transferLawScan?.pairEqualizationExactSelectedCount ?? null,
+    wakeCouplingTransferPairEqualizationExactControlCount:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferTargetAudit
+        ?.transferLawScan?.pairEqualizationExactControlCount ?? null,
     actionLedgerAuditSchema:
       equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.schema ?? null,
     actionLedgerStatus:
@@ -46657,6 +46958,19 @@ function printSummary(report, absoluteOutputPath) {
           `retainedAccepted=${wakeCouplingTransferTargetAudit.retainedWakeCouplingTransferAcceptedCount}`,
         ].join(" ")
       );
+      const transferLawScan =
+        wakeCouplingTransferTargetAudit.transferLawScan ?? null;
+      if (transferLawScan) {
+        console.log(
+          [
+            "wake/coupling transfer law scan:",
+            transferLawScan.status,
+            `pairSelected=${transferLawScan.pairEqualizationExactSelectedCount}`,
+            `pairControl=${transferLawScan.pairEqualizationExactControlCount}`,
+            `retainedAccepted=${transferLawScan.retainedTransferLawAcceptedCount}`,
+          ].join(" ")
+        );
+      }
     }
     const phaseDeformationBalanceAudit =
       equalFrequencyAudit.phaseDeformationBalanceAudit ?? null;
