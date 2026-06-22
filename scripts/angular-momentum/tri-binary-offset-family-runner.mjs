@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v29",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v31",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v29 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v30 reports.",
   };
 }
 
@@ -39765,6 +39765,12 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     createEqualFrequencyDeformationRegimeAudit(priorityCaseSummaries);
   const deformationContinuationAudit =
     createEqualFrequencyDeformationContinuationAudit(deformationRegimeAudit.rows);
+  const rhoOmegaDeformationSliceAudit =
+    createEqualFrequencyRhoOmegaDeformationSliceAudit(deformationContinuationAudit);
+  const fieldSpeedHingeSliceSelectorAudit =
+    createEqualFrequencyFieldSpeedHingeSliceSelectorAudit(
+      rhoOmegaDeformationSliceAudit
+    );
   const actionLedgerAudit =
     createEqualFrequencyActionLedgerAudit(priorityCaseSummaries);
   const energyAngularMomentumClosureAudit =
@@ -39836,7 +39842,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v28",
+    schema: "aaa-equal-frequency-energy-radius-audit.v30",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -39864,6 +39870,8 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     roleAssignmentAudit,
     deformationRegimeAudit,
     deformationContinuationAudit,
+    rhoOmegaDeformationSliceAudit,
+    fieldSpeedHingeSliceSelectorAudit,
     actionLedgerAudit,
     energyAngularMomentumClosureAudit,
     phaseDeformationBalanceAudit,
@@ -40488,6 +40496,388 @@ function createEqualFrequencyDeformationContinuationAudit(deformationRows) {
       "The priority equal-frequency rows admit a restricted reduced projection-continuation parameterization inside the general branch-state deformation family. The current witness connects an equal-envelope-axis spherical endpoint, the current oblate incidence slice, and a flattened-limit forecast; the retained replay must replace it with the general low-drift retained-row coordinate u_a and branch-derived q_a. This is stronger than disconnected chart rows, but it still does not derive branch energy, velocity selection, or retained phase/wake/action closure.",
     retainedReplayBurden:
       "Replace this kinematic witness with a retained velocity-deformation branch-continuation law for B_3B(q,v), then bind the selected projection rows to energy-radius stationarity, phase row-set identity, causal-root ledgers, wake/coupling rows, and the one-unit angular-momentum ledger on the same retained row set.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRhoOmegaDeformationSliceAudit(
+  deformationContinuationAudit
+) {
+  const continuationRows = deformationContinuationAudit?.rows ?? [];
+  const rows = continuationRows.map(createEqualFrequencyRhoOmegaDeformationSliceRow);
+  const sliceIds = [
+    "spherical_endpoint",
+    "current_oblate_slice",
+    "flattened_limit_projection",
+    "flat_limit_forecast",
+  ];
+  const sliceSummaries = sliceIds.map((sliceId) => {
+    const sliceRows = rows.map((row) => row.slices[sliceId]).filter(Boolean);
+    const roleProductStats = Object.fromEntries(
+      LAYER_ROLES.map((role) => [
+        role,
+        createFiniteStats(
+          sliceRows.map((sliceRow) => sliceRow.rhoOmegaProductsByRole[role])
+        ),
+      ])
+    );
+    const roleProductAcrossFInvariantPass = LAYER_ROLES.every((role) =>
+      finiteStatsConstantPass(roleProductStats[role], rows.length)
+    );
+    const targetSpeedSplitPassCount = sliceRows.filter(
+      (sliceRow) => sliceRow.targetSpeedSplitPass === true
+    ).length;
+    return {
+      sliceId,
+      rowCount: sliceRows.length,
+      roleProductStats,
+      roleProductAcrossFInvariantPass,
+      targetSpeedSplitPassCount,
+      targetSpeedSplitPass:
+        rows.length > 0 && targetSpeedSplitPassCount === rows.length,
+      retainedSliceAcceptedCount: 0,
+    };
+  });
+  const summaryBySliceId = new Map(
+    sliceSummaries.map((summary) => [summary.sliceId, summary])
+  );
+  const roleProductAcrossSliceStats = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      createFiniteStats(
+        rows.flatMap((row) =>
+          sliceIds.map((sliceId) => row.slices[sliceId]?.rhoOmegaProductsByRole[role])
+        )
+      ),
+    ])
+  );
+  const roleProductAcrossSliceInvariantPassByRole = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      finiteStatsConstantPass(
+        roleProductAcrossSliceStats[role],
+        rows.length * sliceIds.length
+      ),
+    ])
+  );
+  const allRolesAcrossSliceInvariantPass = LAYER_ROLES.every(
+    (role) => roleProductAcrossSliceInvariantPassByRole[role] === true
+  );
+  const currentOblateTargetSpeedSplitPass =
+    summaryBySliceId.get("current_oblate_slice")?.targetSpeedSplitPass === true;
+  const flattenedProjectionTargetSpeedSplitPass =
+    summaryBySliceId.get("flattened_limit_projection")?.targetSpeedSplitPass ===
+    true;
+  const sphericalEndpointTargetSpeedSplitPass =
+    summaryBySliceId.get("spherical_endpoint")?.targetSpeedSplitPass === true;
+  const flatForecastTargetSpeedSplitPass =
+    summaryBySliceId.get("flat_limit_forecast")?.targetSpeedSplitPass === true;
+  const targetSpeedSplitCurrentProjectionOnlyPass =
+    currentOblateTargetSpeedSplitPass === true &&
+    flattenedProjectionTargetSpeedSplitPass === true &&
+    sphericalEndpointTargetSpeedSplitPass === false &&
+    flatForecastTargetSpeedSplitPass === false;
+  return {
+    schema: "aaa-equal-frequency-rho-omega-deformation-slice-audit.v1",
+    claimLevel:
+      "current deformation-slice rho-omega audit; not retained branch-speed invariant acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    sourceDeformationContinuationAuditSchema:
+      deformationContinuationAudit?.schema ?? null,
+    auditedCaseCount: rows.length,
+    sliceSummaries,
+    roleProductAcrossSliceStats,
+    roleProductAcrossSliceInvariantPassByRole,
+    allRolesAcrossSliceInvariantPass,
+    currentOblateTargetSpeedSplitPass,
+    flattenedProjectionTargetSpeedSplitPass,
+    sphericalEndpointTargetSpeedSplitPass,
+    flatForecastTargetSpeedSplitPass,
+    targetSpeedSplitCurrentProjectionOnlyPass,
+    retainedBranchSpeedInvariantAcceptedCount: 0,
+    retainedDeformationLawAcceptedCount: 0,
+    status:
+      targetSpeedSplitCurrentProjectionOnlyPass === true &&
+      allRolesAcrossSliceInvariantPass === false
+        ? "rho_omega_target_speed_split_current_oblate_planar_only_retained_deformation_law_missing"
+        : currentOblateTargetSpeedSplitPass === true
+          ? "rho_omega_current_slice_target_speed_split_populated_deformation_classification_incomplete"
+          : rows.length > 0
+            ? "rho_omega_deformation_slice_audit_populated_target_speed_split_missing"
+            : "rho_omega_deformation_slice_audit_no_priority_rows",
+    rows,
+    interpretation:
+      "Each deformation slice carries rho_a omega_f products that are stable across the sampled f rows, but the target speed split is not a deformation-slice invariant. It is present on the current oblate slice and the flattened-limit projection, while the restricted spherical endpoint equalizes the products and the formal flat-limit forecast changes the middle and outer products.",
+    retainedReplayBurden:
+      "A retained replay must derive which deformation slice is selected by B_3B(q,v), and whether the target rho_a omega_f products are branch invariants, projection artifacts, or replaced by retained energy-radius and wake/coupling rows.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRhoOmegaDeformationSliceRow(row) {
+  const speedRatios = row.speedRatios ?? {};
+  const commonOmega = row.commonOmega;
+  const sliceInputs = [
+    {
+      sliceId: "spherical_endpoint",
+      label: row.sphericalEndpoint?.label ?? "restricted_spherical_endpoint",
+      chart: LOW_DRIFT_SPHERICAL_LATITUDE_CHART,
+      effectiveLeverArms: row.sphericalEndpoint?.effectiveLeverArms ?? {},
+      populated: row.sphericalEndpoint?.populated === true,
+    },
+    {
+      sliceId: "current_oblate_slice",
+      label: row.currentOblateSlice?.label ?? "current_oblate_slice",
+      chart: MOVING_OBLATE_INCIDENCE_CHART,
+      effectiveLeverArms: row.currentOblateSlice?.effectiveLeverArms ?? {},
+      populated: row.currentOblateSlice?.populated === true,
+    },
+    {
+      sliceId: "flattened_limit_projection",
+      label: "flattened_limit_projection_current_chart",
+      chart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+      effectiveLeverArms: row.effectiveLeverArms ?? {},
+      populated: row.planarProjectionAgreement?.pass === true,
+    },
+    {
+      sliceId: "flat_limit_forecast",
+      label: row.flatLimitForecast?.label ?? "formal_flattened_limit_forecast",
+      chart: "formal_flattened_limit_forecast",
+      effectiveLeverArms: row.flatLimitForecast?.effectiveLeverArms ?? {},
+      populated: row.flatLimitForecast?.populated === true,
+    },
+  ];
+  const slices = Object.fromEntries(
+    sliceInputs.map((sliceInput) => {
+      const rhoOmegaProductsByRole = Object.fromEntries(
+        LAYER_ROLES.map((role) => {
+          const rho = sliceInput.effectiveLeverArms[role];
+          return [
+            role,
+            Number.isFinite(rho) && Number.isFinite(commonOmega)
+              ? rho * commonOmega
+              : null,
+          ];
+        })
+      );
+      const residualsAgainstTargetSpeedSplit = residualRoleWeights({
+        actual: rhoOmegaProductsByRole,
+        target: speedRatios,
+      });
+      const maxAbsTargetSpeedResidual = maxFinite(
+        Object.values(residualsAgainstTargetSpeedSplit).map((value) =>
+          Number.isFinite(value) ? Math.abs(value) : null
+        )
+      );
+      return [
+        sliceInput.sliceId,
+        {
+          sliceId: sliceInput.sliceId,
+          label: sliceInput.label,
+          chart: sliceInput.chart,
+          populated: sliceInput.populated,
+          commonOmega,
+          effectiveLeverArms: sliceInput.effectiveLeverArms,
+          rhoOmegaProductsByRole,
+          targetSpeedRatios: speedRatios,
+          residualsAgainstTargetSpeedSplit,
+          maxAbsTargetSpeedResidual,
+          targetSpeedSplitPass:
+            sliceInput.populated === true &&
+            Number.isFinite(maxAbsTargetSpeedResidual) &&
+            maxAbsTargetSpeedResidual <= ROOT_TOLERANCE,
+        },
+      ];
+    })
+  );
+  const currentVsSphericalResidualsByRole = residualRoleWeights({
+    actual: slices.current_oblate_slice?.rhoOmegaProductsByRole ?? {},
+    target: slices.spherical_endpoint?.rhoOmegaProductsByRole ?? {},
+  });
+  const currentVsFlatForecastResidualsByRole = residualRoleWeights({
+    actual: slices.current_oblate_slice?.rhoOmegaProductsByRole ?? {},
+    target: slices.flat_limit_forecast?.rhoOmegaProductsByRole ?? {},
+  });
+  return {
+    rowId: `S_eq-rho-omega-deformation-slice-f${row.f}`,
+    retainedRowSetId: "S_eq",
+    caseId: row.caseId,
+    f: row.f,
+    phaseProfileId: row.phaseProfileId,
+    commonOmega,
+    targetSpeedRatios: speedRatios,
+    slices,
+    currentVsSphericalResidualsByRole,
+    currentVsFlatForecastResidualsByRole,
+    retainedBranchSpeedInvariantAccepted: false,
+    retainedDeformationLawAccepted: false,
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyFieldSpeedHingeSliceSelectorAudit(
+  rhoOmegaDeformationSliceAudit
+) {
+  const sourceRows = rhoOmegaDeformationSliceAudit?.rows ?? [];
+  const sliceIds =
+    rhoOmegaDeformationSliceAudit?.sliceSummaries?.map((summary) => summary.sliceId) ??
+    [];
+  const rows = sourceRows.map((row) =>
+    createEqualFrequencyFieldSpeedHingeSliceSelectorRow({ row, sliceIds })
+  );
+  const sliceSummaries = sliceIds.map((sliceId) => {
+    const sliceRows = rows.map((row) => row.slices[sliceId]).filter(Boolean);
+    const selectorPassCount = sliceRows.filter(
+      (sliceRow) => sliceRow.fieldSpeedHingeSelectorPass === true
+    ).length;
+    const middleHingePassCount = sliceRows.filter(
+      (sliceRow) => sliceRow.middleFieldSpeedHingePass === true
+    ).length;
+    const innerOuterBracketingPassCount = sliceRows.filter(
+      (sliceRow) => sliceRow.innerOuterFieldSpeedBracketingPass === true
+    ).length;
+    const targetSpeedSplitPassCount = sliceRows.filter(
+      (sliceRow) => sliceRow.targetSpeedSplitPass === true
+    ).length;
+    return {
+      sliceId,
+      rowCount: sliceRows.length,
+      middleHingePassCount,
+      innerOuterBracketingPassCount,
+      targetSpeedSplitPassCount,
+      selectorPassCount,
+      selectorPass: rows.length > 0 && selectorPassCount === rows.length,
+      retainedSliceSelectionAcceptedCount: 0,
+    };
+  });
+  const selectedCurrentProxySliceIds = sliceSummaries
+    .filter((summary) => summary.selectorPass === true)
+    .map((summary) => summary.sliceId);
+  const currentOblateSelected =
+    selectedCurrentProxySliceIds.includes("current_oblate_slice");
+  const planarProjectionSelected =
+    selectedCurrentProxySliceIds.includes("flattened_limit_projection");
+  const sphericalEndpointRejected =
+    selectedCurrentProxySliceIds.includes("spherical_endpoint") === false;
+  const flatForecastRejected =
+    selectedCurrentProxySliceIds.includes("flat_limit_forecast") === false;
+  const currentOblatePlanarOnlySelectorPass =
+    selectedCurrentProxySliceIds.length === 2 &&
+    currentOblateSelected === true &&
+    planarProjectionSelected === true &&
+    sphericalEndpointRejected === true &&
+    flatForecastRejected === true;
+  return {
+    schema: "aaa-equal-frequency-field-speed-hinge-slice-selector-audit.v1",
+    claimLevel:
+      "current field-speed hinge slice selector for equal-frequency rows; not retained branch slice-selection acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    sourceRhoOmegaDeformationSliceAuditSchema:
+      rhoOmegaDeformationSliceAudit?.schema ?? null,
+    fieldSpeed: FIELD_SPEED,
+    fieldSpeedTolerance: FIELD_SPEED_TOLERANCE,
+    auditedCaseCount: rows.length,
+    sliceSummaries,
+    selectedCurrentProxySliceIds,
+    currentOblateSelected,
+    planarProjectionSelected,
+    sphericalEndpointRejected,
+    flatForecastRejected,
+    currentOblatePlanarOnlySelectorPass,
+    retainedSliceSelectionAcceptedCount: 0,
+    rows,
+    status:
+      currentOblatePlanarOnlySelectorPass === true
+        ? "field_speed_hinge_selects_current_oblate_and_planar_projection_retained_slice_selection_missing"
+        : selectedCurrentProxySliceIds.length > 0
+          ? "field_speed_hinge_selector_populated_multiple_or_unexpected_slices"
+          : rows.length > 0
+            ? "field_speed_hinge_selector_populated_no_slice_selected"
+            : "field_speed_hinge_selector_no_priority_rows",
+    interpretation:
+      "The equal-frequency target speed split can be reframed as a field-speed hinge selector: the middle role sits at c_f, the inner role is above c_f, and the outer role is below c_f. Under the current reduced deformation slices this selects the current oblate slice and its flattened-limit projection, while rejecting the restricted spherical endpoint and the formal flat-limit forecast.",
+    retainedReplayBurden:
+      "A retained replay must derive a branch-state condition that selects the current oblate/planar slice on S_eq, or replace this current hinge selector with retained energy-radius, causal-delay speed, wake, or coupling rows.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyFieldSpeedHingeSliceSelectorRow({ row, sliceIds }) {
+  const slices = Object.fromEntries(
+    sliceIds.map((sliceId) => {
+      const sourceSlice = row.slices?.[sliceId] ?? {};
+      const speeds = sourceSlice.rhoOmegaProductsByRole ?? {};
+      const middleResidual =
+        Number.isFinite(speeds.middle) ? speeds.middle - FIELD_SPEED : null;
+      const innerMinusFieldSpeed =
+        Number.isFinite(speeds.inner) ? speeds.inner - FIELD_SPEED : null;
+      const fieldSpeedMinusOuter =
+        Number.isFinite(speeds.outer) ? FIELD_SPEED - speeds.outer : null;
+      const middleFieldSpeedHingePass =
+        Number.isFinite(middleResidual) &&
+        Math.abs(middleResidual) <= FIELD_SPEED_TOLERANCE;
+      const innerSuperFieldPass =
+        Number.isFinite(innerMinusFieldSpeed) &&
+        innerMinusFieldSpeed > FIELD_SPEED_TOLERANCE;
+      const outerSubFieldPass =
+        Number.isFinite(fieldSpeedMinusOuter) &&
+        fieldSpeedMinusOuter > FIELD_SPEED_TOLERANCE;
+      const innerOuterFieldSpeedBracketingPass =
+        innerSuperFieldPass === true && outerSubFieldPass === true;
+      const orderedSpeedSplitPass =
+        Number.isFinite(speeds.inner) &&
+        Number.isFinite(speeds.middle) &&
+        Number.isFinite(speeds.outer) &&
+        speeds.inner > speeds.middle + FIELD_SPEED_TOLERANCE &&
+        speeds.middle > speeds.outer + FIELD_SPEED_TOLERANCE;
+      const fieldSpeedHingeSelectorPass =
+        sourceSlice.populated === true &&
+        middleFieldSpeedHingePass === true &&
+        innerOuterFieldSpeedBracketingPass === true &&
+        orderedSpeedSplitPass === true &&
+        sourceSlice.targetSpeedSplitPass === true;
+      return [
+        sliceId,
+        {
+          sliceId,
+          label: sourceSlice.label ?? null,
+          chart: sourceSlice.chart ?? null,
+          populated: sourceSlice.populated === true,
+          speedsByRole: speeds,
+          fieldSpeed: FIELD_SPEED,
+          fieldSpeedTolerance: FIELD_SPEED_TOLERANCE,
+          middleResidual,
+          innerMinusFieldSpeed,
+          fieldSpeedMinusOuter,
+          middleFieldSpeedHingePass,
+          innerSuperFieldPass,
+          outerSubFieldPass,
+          innerOuterFieldSpeedBracketingPass,
+          orderedSpeedSplitPass,
+          targetSpeedSplitPass: sourceSlice.targetSpeedSplitPass === true,
+          fieldSpeedHingeSelectorPass,
+          retainedSliceSelectionAccepted: false,
+        },
+      ];
+    })
+  );
+  return {
+    rowId: `S_eq-field-speed-hinge-slice-selector-f${row.f}`,
+    retainedRowSetId: "S_eq",
+    caseId: row.caseId,
+    f: row.f,
+    phaseProfileId: row.phaseProfileId,
+    commonOmega: row.commonOmega,
+    slices,
+    selectedCurrentProxySliceIds: Object.values(slices)
+      .filter((slice) => slice.fieldSpeedHingeSelectorPass === true)
+      .map((slice) => slice.sliceId),
     retainedBranchClaim: false,
   };
 }
@@ -44184,7 +44574,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v30",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v32",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -44277,7 +44667,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v26",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v28",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -44830,6 +45220,37 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     planarProjectionAgreementPassCount:
       equalFrequencyEnergyRadiusAudit.deformationContinuationAudit
         ?.planarProjectionAgreementPassCount ?? null,
+    rhoOmegaDeformationSliceAuditSchema:
+      equalFrequencyEnergyRadiusAudit.rhoOmegaDeformationSliceAudit?.schema ?? null,
+    rhoOmegaDeformationSliceStatus:
+      equalFrequencyEnergyRadiusAudit.rhoOmegaDeformationSliceAudit?.status ?? null,
+    rhoOmegaCurrentOblateTargetSpeedSplitPass:
+      equalFrequencyEnergyRadiusAudit.rhoOmegaDeformationSliceAudit
+        ?.currentOblateTargetSpeedSplitPass ?? null,
+    rhoOmegaFlattenedProjectionTargetSpeedSplitPass:
+      equalFrequencyEnergyRadiusAudit.rhoOmegaDeformationSliceAudit
+        ?.flattenedProjectionTargetSpeedSplitPass ?? null,
+    rhoOmegaSphericalEndpointTargetSpeedSplitPass:
+      equalFrequencyEnergyRadiusAudit.rhoOmegaDeformationSliceAudit
+        ?.sphericalEndpointTargetSpeedSplitPass ?? null,
+    rhoOmegaFlatForecastTargetSpeedSplitPass:
+      equalFrequencyEnergyRadiusAudit.rhoOmegaDeformationSliceAudit
+        ?.flatForecastTargetSpeedSplitPass ?? null,
+    rhoOmegaAllRolesAcrossSliceInvariantPass:
+      equalFrequencyEnergyRadiusAudit.rhoOmegaDeformationSliceAudit
+        ?.allRolesAcrossSliceInvariantPass ?? null,
+    fieldSpeedHingeSliceSelectorAuditSchema:
+      equalFrequencyEnergyRadiusAudit.fieldSpeedHingeSliceSelectorAudit?.schema ??
+      null,
+    fieldSpeedHingeSliceSelectorStatus:
+      equalFrequencyEnergyRadiusAudit.fieldSpeedHingeSliceSelectorAudit?.status ??
+      null,
+    fieldSpeedHingeSelectedCurrentProxySliceIds:
+      equalFrequencyEnergyRadiusAudit.fieldSpeedHingeSliceSelectorAudit
+        ?.selectedCurrentProxySliceIds ?? null,
+    fieldSpeedHingeCurrentOblatePlanarOnlySelectorPass:
+      equalFrequencyEnergyRadiusAudit.fieldSpeedHingeSliceSelectorAudit
+        ?.currentOblatePlanarOnlySelectorPass ?? null,
     actionLedgerAuditSchema:
       equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.schema ?? null,
     actionLedgerStatus:
@@ -45357,6 +45778,34 @@ function printSummary(report, absoluteOutputPath) {
           );
         }
       }
+    }
+    const rhoOmegaDeformationSliceAudit =
+      equalFrequencyAudit.rhoOmegaDeformationSliceAudit ?? null;
+    if (rhoOmegaDeformationSliceAudit) {
+      console.log(
+        [
+          "rho-omega deformation slices:",
+          rhoOmegaDeformationSliceAudit.status,
+          `currentOblate=${rhoOmegaDeformationSliceAudit.currentOblateTargetSpeedSplitPass}`,
+          `planar=${rhoOmegaDeformationSliceAudit.flattenedProjectionTargetSpeedSplitPass}`,
+          `spherical=${rhoOmegaDeformationSliceAudit.sphericalEndpointTargetSpeedSplitPass}`,
+          `flatForecast=${rhoOmegaDeformationSliceAudit.flatForecastTargetSpeedSplitPass}`,
+          `allSliceInvariant=${rhoOmegaDeformationSliceAudit.allRolesAcrossSliceInvariantPass}`,
+        ].join(" ")
+      );
+    }
+    const fieldSpeedHingeSliceSelectorAudit =
+      equalFrequencyAudit.fieldSpeedHingeSliceSelectorAudit ?? null;
+    if (fieldSpeedHingeSliceSelectorAudit) {
+      console.log(
+        [
+          "field-speed hinge slice selector:",
+          fieldSpeedHingeSliceSelectorAudit.status,
+          `selected=${fieldSpeedHingeSliceSelectorAudit.selectedCurrentProxySliceIds.join(",")}`,
+          `currentOblatePlanarOnly=${fieldSpeedHingeSliceSelectorAudit.currentOblatePlanarOnlySelectorPass}`,
+          `retainedAccepted=${fieldSpeedHingeSliceSelectorAudit.retainedSliceSelectionAcceptedCount}`,
+        ].join(" ")
+      );
     }
     const phaseDeformationBalanceAudit =
       equalFrequencyAudit.phaseDeformationBalanceAudit ?? null;
