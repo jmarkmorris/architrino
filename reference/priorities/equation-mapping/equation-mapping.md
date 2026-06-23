@@ -37,7 +37,7 @@ Turn familiar equations from physics and cosmology into closure packets. Each pa
 - what proof, derivation, simulation, or constitutive response would close the map;
 - where successful material should later be promoted in `content/markdown/aaa`.
 
-Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column preserves the first-round maturity scores, and `6/23 b` is the blank column reserved for the next scoring pass.
+Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column preserves the first-round maturity scores, and `6/23 b` records worker-backed decisions from the 2026-06-23 team-agent closure pass where populated; blank `6/23 b` cells remain unscored in that pass.
 
 ## Discussion Capture
 
@@ -139,6 +139,7 @@ The workstream should stay internal until a line item produces a mature mathemat
 ## Related Priority Material
 
 - [Equation Mapping Detail](equation.md)
+- [Equation Closure Pass 2026-06-23 B](equation-closure-pass-2026-06-23-b.md)
 - [Cross-Theory Mapping Priority Candidates](../cross-theory-mapping/cross-theory-mapping.md)
 - [Cosmology Transfer-Function Closure](../cosmology-closure/cosmology-closure.md)
 - [Noether-Core Stability and First Mass Map](../mass-map/mass-map.md)
