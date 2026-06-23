@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v74",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v76",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v74 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v76 reports.",
   };
 }
 
@@ -765,7 +765,7 @@ function createPolicyDefinitions() {
 
 function createSolverArchitectureSummary() {
   return {
-    schema: "aaa-tri-binary-frequency-solver-architecture.v15",
+    schema: "aaa-tri-binary-frequency-solver-architecture.v17",
     status:
       "retained_branch_state_primary_velocity_deformation_projection_family_policy_family_layers",
     designRule:
@@ -39995,8 +39995,26 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedEventDomainLiftTarget,
       retainedEventDomainSelector,
     });
+  const retainedSourceEventLabelStringAcceptanceAudit =
+    createEqualFrequencyRetainedSourceEventLabelStringAcceptanceAudit({
+      retainedSourceEventCandidateIdentityAudit,
+      retainedSourceEventIdAcceptanceAttemptAudit,
+      retainedSourceEventDomainAcceptanceAttemptAudit,
+      retainedPhaseHistoryTemplatePopulationAttemptAudit,
+      retainedEventDomainSelector,
+    });
+  const retainedSourceEventLabelTokenizationAudit =
+    createEqualFrequencyRetainedSourceEventLabelTokenizationAudit({
+      retainedSourceEventLabelStringAcceptanceAudit,
+      retainedSourceEventCandidateIdentityAudit,
+      retainedSourceEventIdAcceptanceAttemptAudit,
+      retainedSourceEventDomainAcceptanceAttemptAudit,
+      retainedPhaseHistoryTemplatePopulationAttemptAudit,
+      retainedEventDomainSelector,
+    });
   const retainedSourceEventLabelSyntaxRuleAudit =
     createEqualFrequencyRetainedSourceEventLabelSyntaxRuleAudit({
+      retainedSourceEventLabelTokenizationAudit,
       retainedSourceEventCandidateIdentityAudit,
       retainedSourceEventIdAcceptanceAttemptAudit,
       retainedSourceEventDomainAcceptanceAttemptAudit,
@@ -40059,6 +40077,8 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedSourceEventDomainAcceptanceAttemptAudit,
       retainedSourceEventIdAcceptanceAttemptAudit,
       retainedSourceEventCandidateIdentityAudit,
+      retainedSourceEventLabelStringAcceptanceAudit,
+      retainedSourceEventLabelTokenizationAudit,
       retainedSourceEventLabelSyntaxRuleAudit,
       retainedSourceEventLabelAcceptanceAudit,
       retainedSourceEventIdentityConstructionAudit,
@@ -40099,6 +40119,8 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedSourceEventDomainAcceptanceAttemptAudit,
       retainedSourceEventIdAcceptanceAttemptAudit,
       retainedSourceEventCandidateIdentityAudit,
+      retainedSourceEventLabelStringAcceptanceAudit,
+      retainedSourceEventLabelTokenizationAudit,
       retainedSourceEventLabelSyntaxRuleAudit,
       retainedSourceEventLabelAcceptanceAudit,
       retainedSourceEventIdentityConstructionAudit,
@@ -40176,6 +40198,8 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedSourceEventDomainAcceptanceAttemptAudit,
       retainedSourceEventIdAcceptanceAttemptAudit,
       retainedSourceEventCandidateIdentityAudit,
+      retainedSourceEventLabelStringAcceptanceAudit,
+      retainedSourceEventLabelTokenizationAudit,
       retainedSourceEventLabelSyntaxRuleAudit,
       retainedSourceEventLabelAcceptanceAudit,
       retainedSourceEventIdentityConstructionAudit,
@@ -40196,7 +40220,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v71",
+    schema: "aaa-equal-frequency-energy-radius-audit.v73",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -40254,6 +40278,8 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     retainedSourceEventDomainAcceptanceAttemptAudit,
     retainedSourceEventIdAcceptanceAttemptAudit,
     retainedSourceEventCandidateIdentityAudit,
+    retainedSourceEventLabelStringAcceptanceAudit,
+    retainedSourceEventLabelTokenizationAudit,
     retainedSourceEventLabelSyntaxRuleAudit,
     retainedSourceEventLabelAcceptanceAudit,
     retainedSourceEventIdentityConstructionAudit,
@@ -51693,7 +51719,703 @@ function parseEqualFrequencySourceEventLabel(label) {
   };
 }
 
+function tokenizeEqualFrequencySourceEventLabel(label) {
+  if (typeof label !== "string") {
+    return null;
+  }
+  const tokens = label.split("-");
+  return {
+    rawLabel: label,
+    tokens,
+    tokenCount: tokens.length,
+    rowSetToken: tokens[0] ?? null,
+    frequencyToken: tokens[1] ?? null,
+    roleToken: tokens[2] ?? null,
+    eventKindTokens: tokens.slice(3),
+    eventKindToken: tokens.slice(3).join("-"),
+    roundTripLabel: tokens.join("-"),
+  };
+}
+
+function createEqualFrequencyRetainedSourceEventLabelStringAcceptanceAudit({
+  retainedSourceEventCandidateIdentityAudit,
+  retainedSourceEventIdAcceptanceAttemptAudit,
+  retainedSourceEventDomainAcceptanceAttemptAudit,
+  retainedPhaseHistoryTemplatePopulationAttemptAudit,
+  retainedEventDomainSelector,
+}) {
+  const candidateIdentityRow =
+    retainedSourceEventCandidateIdentityAudit?.rows?.[0] ?? null;
+  const sourceEventIdRow =
+    retainedSourceEventIdAcceptanceAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+        candidateIdentityRow?.sourceEventIdAcceptanceAttemptRowId
+    ) ??
+    retainedSourceEventIdAcceptanceAttemptAudit?.rows?.[0] ??
+    null;
+  const sourceEventDomainRow =
+    retainedSourceEventDomainAcceptanceAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+        candidateIdentityRow?.sourceEventDomainAcceptanceAttemptRowId
+    ) ??
+    retainedSourceEventDomainAcceptanceAttemptAudit?.rows?.[0] ??
+    null;
+  const templateRow =
+    retainedPhaseHistoryTemplatePopulationAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+          candidateIdentityRow?.sourceTemplatePopulationAttemptRowId ||
+        candidate.rowId ===
+          sourceEventIdRow?.sourceTemplatePopulationAttemptRowId ||
+        candidate.rowId ===
+          sourceEventDomainRow?.sourceTemplatePopulationAttemptRowId
+    ) ?? null;
+  const retainedRowSetId =
+    candidateIdentityRow?.retainedRowSetId ??
+    sourceEventIdRow?.retainedRowSetId ??
+    sourceEventDomainRow?.retainedRowSetId ??
+    templateRow?.retainedRowSetId ??
+    retainedSourceEventCandidateIdentityAudit?.retainedRowSetId ??
+    "S_eq";
+  const selectedEventDomainRoute =
+    candidateIdentityRow?.selectedEventDomainRoute ??
+    sourceEventIdRow?.selectedEventDomainRoute ??
+    sourceEventDomainRow?.selectedEventDomainRoute ??
+    templateRow?.selectedEventDomainRoute ??
+    retainedEventDomainSelector?.selectedRoute ??
+    null;
+  const sourceEventIdCandidate =
+    candidateIdentityRow?.sourceEventIdCandidate ??
+    sourceEventIdRow?.sourceEventIdCandidate ??
+    sourceEventDomainRow?.sourceEventIdCandidate ??
+    templateRow?.sourceEventIdCandidate ??
+    null;
+  const sourceRole =
+    candidateIdentityRow?.sourceRole ??
+    sourceEventIdRow?.sourceRole ??
+    sourceEventDomainRow?.sourceRole ??
+    templateRow?.sourceRole ??
+    null;
+  const receiverRole =
+    candidateIdentityRow?.receiverRole ??
+    sourceEventIdRow?.receiverRole ??
+    sourceEventDomainRow?.receiverRole ??
+    templateRow?.receiverRole ??
+    null;
+  const f =
+    candidateIdentityRow?.f ??
+    sourceEventIdRow?.f ??
+    sourceEventDomainRow?.f ??
+    templateRow?.f ??
+    null;
+  const carrierChannelId =
+    candidateIdentityRow?.carrierChannelId ??
+    sourceEventIdRow?.carrierChannelId ??
+    sourceEventDomainRow?.carrierChannelId ??
+    templateRow?.carrierChannelId ??
+    null;
+  const expectedLabel =
+    typeof retainedRowSetId === "string" &&
+    Number.isFinite(f) &&
+    typeof sourceRole === "string"
+      ? `${retainedRowSetId}-f${f}-${sourceRole}-source-event`
+      : null;
+  const labelParts = parseEqualFrequencySourceEventLabel(
+    sourceEventIdCandidate
+  );
+  const sourceEventIdRows =
+    retainedSourceEventIdAcceptanceAttemptAudit?.rows ?? [];
+  const matchingSourceLabelCount = sourceEventIdRows.filter(
+    (row) => row.sourceEventIdCandidate === sourceEventIdCandidate
+  ).length;
+  const retainedSourceEventLabelStringPass = false;
+  const residualChecks = candidateIdentityRow
+    ? [
+        {
+          residualId: "r_label_literal",
+          label: "source-event label literal",
+          currentProxyValue: sourceEventIdCandidate,
+          currentProxyPass:
+            typeof sourceEventIdCandidate === "string" &&
+            sourceEventIdCandidate.length > 0,
+          retainedAcceptancePass: false,
+          missingRetainedInput: "accepted_source_event_label_literal",
+          sourceSchema:
+            retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_label_canonical_string",
+          label: "source-event label canonical string",
+          currentProxyValue: expectedLabel,
+          currentProxyPass:
+            typeof expectedLabel === "string" &&
+            sourceEventIdCandidate === expectedLabel,
+          retainedAcceptancePass: false,
+          missingRetainedInput:
+            "accepted_source_event_label_canonical_string",
+          sourceSchema:
+            retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_label_candidate_identity_link",
+          label: "source-event candidate identity link",
+          currentProxyValue: candidateIdentityRow?.rowId ?? null,
+          currentProxyPass:
+            typeof candidateIdentityRow?.rowId === "string" &&
+            candidateIdentityRow.sourceEventIdCandidate ===
+              sourceEventIdCandidate,
+          retainedAcceptancePass: false,
+          missingRetainedInput:
+            "accepted_source_event_label_candidate_identity_link",
+          sourceSchema:
+            retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_label_event_id_link",
+          label: "source-event ID attempt link",
+          currentProxyValue: sourceEventIdRow?.rowId ?? null,
+          currentProxyPass:
+            typeof sourceEventIdRow?.rowId === "string" &&
+            sourceEventIdRow.sourceEventIdCandidate === sourceEventIdCandidate,
+          retainedAcceptancePass: false,
+          missingRetainedInput:
+            "accepted_source_event_label_event_id_link",
+          sourceSchema:
+            retainedSourceEventIdAcceptanceAttemptAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_label_event_domain_link",
+          label: "source-event/domain attempt link",
+          currentProxyValue: sourceEventDomainRow?.rowId ?? null,
+          currentProxyPass:
+            typeof sourceEventDomainRow?.rowId === "string" &&
+            sourceEventDomainRow.sourceEventIdCandidate ===
+              sourceEventIdCandidate,
+          retainedAcceptancePass: false,
+          missingRetainedInput:
+            "accepted_source_event_label_event_domain_link",
+          sourceSchema:
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_label_route_link",
+          label: "source-event label route link",
+          currentProxyValue: selectedEventDomainRoute,
+          currentProxyPass:
+            typeof selectedEventDomainRoute === "string" &&
+            retainedEventDomainSelector?.selectedRoute ===
+              selectedEventDomainRoute,
+          retainedAcceptancePass: false,
+          missingRetainedInput: "accepted_source_event_label_route_link",
+          sourceSchema:
+            retainedEventDomainSelector?.schema ??
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ??
+            null,
+        },
+        {
+          residualId: "r_label_role_frequency_link",
+          label: "source-event label role/frequency link",
+          currentProxyValue:
+            typeof sourceRole === "string" && Number.isFinite(f)
+              ? `${sourceRole}:f${f}`
+              : null,
+          currentProxyPass:
+            labelParts !== null &&
+            labelParts.rowSetId === retainedRowSetId &&
+            labelParts.role === sourceRole &&
+            labelParts.f === f &&
+            typeof carrierChannelId === "string" &&
+            carrierChannelId.startsWith(`${sourceRole}->`),
+          retainedAcceptancePass: false,
+          missingRetainedInput:
+            "accepted_source_event_label_role_frequency_link",
+          sourceSchema:
+            retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ??
+            retainedSourceEventCandidateIdentityAudit?.schema ??
+            null,
+        },
+        {
+          residualId: "r_label_scope",
+          label: "source-event label retained scope",
+          currentProxyValue: selectedEventDomainRoute,
+          currentProxyPass:
+            matchingSourceLabelCount === 1 &&
+            typeof receiverRole === "string" &&
+            typeof selectedEventDomainRoute === "string" &&
+            labelParts?.eventKind === "source-event",
+          retainedAcceptancePass: retainedSourceEventLabelStringPass,
+          missingRetainedInput: "accepted_source_event_label_retained_scope",
+          sourceSchema:
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ??
+            retainedEventDomainSelector?.schema ??
+            null,
+        },
+      ]
+    : [];
+  const currentEvidenceResidualCount = residualChecks.filter(
+    (check) => check.currentProxyPass === true
+  ).length;
+  const acceptedResidualCount = residualChecks.filter(
+    (check) => check.retainedAcceptancePass === true
+  ).length;
+  const residualCount = residualChecks.length;
+  const firstBlockingResidual =
+    residualChecks.find((check) => check.retainedAcceptancePass !== true) ??
+    null;
+  const firstMissingRetainedInputs = residualChecks
+    .filter((check) => check.retainedAcceptancePass !== true)
+    .map((check) => check.missingRetainedInput);
+  const currentProxyPass =
+    residualCount > 0 && currentEvidenceResidualCount === residualCount;
+  const rows = candidateIdentityRow
+    ? [
+        {
+          rowId: `${sourceEventIdCandidate}-source-event-label-string-acceptance-attempt`,
+          sourceEventCandidateIdentityAttemptRowId:
+            candidateIdentityRow.rowId,
+          sourceEventIdAcceptanceAttemptRowId:
+            candidateIdentityRow.sourceEventIdAcceptanceAttemptRowId ?? null,
+          sourceEventDomainAcceptanceAttemptRowId:
+            candidateIdentityRow.sourceEventDomainAcceptanceAttemptRowId ??
+            null,
+          sourceTemplatePopulationAttemptRowId:
+            candidateIdentityRow.sourceTemplatePopulationAttemptRowId ?? null,
+          retainedRowSetId,
+          selectedEventDomainRoute,
+          sourceEventIdCandidate,
+          expectedLabel,
+          labelParts,
+          f,
+          carrierChannelId,
+          sourceRole,
+          receiverRole,
+          matchingSourceLabelCount,
+          residualChecks,
+          residualCount,
+          currentEvidenceResidualCount,
+          acceptedResidualCount,
+          currentProxyPass,
+          retainedSourceEventLabelStringPass,
+          firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+          missingRetainedInputs: firstMissingRetainedInputs,
+          status:
+            retainedSourceEventLabelStringPass === true
+              ? "retained_source_event_label_string_accepted"
+              : currentProxyPass === true
+                ? "retained_source_event_label_string_current_proxy_populated_acceptance_missing"
+                : currentEvidenceResidualCount > 0
+                  ? "retained_source_event_label_string_partial_current_proxy"
+                  : "retained_source_event_label_string_missing",
+          retainedBranchClaim: false,
+        },
+      ]
+    : [];
+  return {
+    schema:
+      "aaa-equal-frequency-retained-source-event-label-string-acceptance-audit.v1",
+    claimLevel:
+      "first retained source-event label string acceptance audit under r_label_string; current proxy only",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    selectedEventDomainRoute,
+    sourceEventCandidateIdentityAuditSchema:
+      retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+    sourceEventIdAcceptanceAttemptAuditSchema:
+      retainedSourceEventIdAcceptanceAttemptAudit?.schema ?? null,
+    sourceEventDomainAcceptanceAttemptAuditSchema:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+    sourceTemplatePopulationAttemptAuditSchema:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ?? null,
+    residualVector:
+      "R_label_string=(r_label_literal,r_label_canonical_string,r_label_candidate_identity_link,r_label_event_id_link,r_label_event_domain_link,r_label_route_link,r_label_role_frequency_link,r_label_scope)",
+    stringEquation:
+      "label_string(src_event)=S_eq-f{f}-{source_role}-source-event, sourced by the same S_eq candidate identity, event-ID, event/domain, route, role, and frequency rows",
+    rowCount: rows.length,
+    attemptedLabelStringCount: rows.length,
+    currentEvidenceResidualCount,
+    acceptedResidualCount,
+    residualCount,
+    sourceEventLabelStringCurrentProxyPass: currentProxyPass,
+    retainedSourceEventLabelStringPass,
+    firstAttemptRowId: rows[0]?.rowId ?? null,
+    firstAttemptSourceEventIdCandidate: sourceEventIdCandidate,
+    firstAttemptExpectedLabel: expectedLabel,
+    firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+    firstMissingRetainedInputs,
+    rows,
+    blockingConditionIds: firstMissingRetainedInputs.map(
+      (id) => `${id}_missing`
+    ),
+    status:
+      retainedSourceEventLabelStringPass === true
+        ? "retained_source_event_label_string_accepted"
+        : currentProxyPass === true
+          ? "retained_source_event_label_string_current_proxy_populated_acceptance_missing"
+          : currentEvidenceResidualCount > 0
+            ? "retained_source_event_label_string_partial_current_proxy"
+            : "retained_source_event_label_string_missing",
+    interpretation:
+      "The first f=2 middle-to-outer source-event label string is canonically constructed from current S_eq candidate identity, event-ID, event/domain, route, role, and frequency rows, but it is not yet accepted retained event data.",
+    retainedReplayBurden:
+      "Accept the source-event label string as retained data by proving the literal, canonical string, identity link, event-ID link, event/domain link, route link, role/frequency link, and retained scope on the same S_eq event or positive-width domain.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedSourceEventLabelTokenizationAudit({
+  retainedSourceEventLabelStringAcceptanceAudit,
+  retainedSourceEventCandidateIdentityAudit,
+  retainedSourceEventIdAcceptanceAttemptAudit,
+  retainedSourceEventDomainAcceptanceAttemptAudit,
+  retainedPhaseHistoryTemplatePopulationAttemptAudit,
+  retainedEventDomainSelector,
+}) {
+  const candidateIdentityRow =
+    retainedSourceEventCandidateIdentityAudit?.rows?.[0] ?? null;
+  const sourceEventIdRow =
+    retainedSourceEventIdAcceptanceAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+        candidateIdentityRow?.sourceEventIdAcceptanceAttemptRowId
+    ) ??
+    retainedSourceEventIdAcceptanceAttemptAudit?.rows?.[0] ??
+    null;
+  const sourceEventDomainRow =
+    retainedSourceEventDomainAcceptanceAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+        candidateIdentityRow?.sourceEventDomainAcceptanceAttemptRowId
+    ) ??
+    retainedSourceEventDomainAcceptanceAttemptAudit?.rows?.[0] ??
+    null;
+  const templateRow =
+    retainedPhaseHistoryTemplatePopulationAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+          candidateIdentityRow?.sourceTemplatePopulationAttemptRowId ||
+        candidate.rowId ===
+          sourceEventIdRow?.sourceTemplatePopulationAttemptRowId ||
+        candidate.rowId ===
+          sourceEventDomainRow?.sourceTemplatePopulationAttemptRowId
+    ) ?? null;
+  const retainedRowSetId =
+    candidateIdentityRow?.retainedRowSetId ??
+    sourceEventIdRow?.retainedRowSetId ??
+    sourceEventDomainRow?.retainedRowSetId ??
+    templateRow?.retainedRowSetId ??
+    retainedSourceEventCandidateIdentityAudit?.retainedRowSetId ??
+    "S_eq";
+  const selectedEventDomainRoute =
+    candidateIdentityRow?.selectedEventDomainRoute ??
+    sourceEventIdRow?.selectedEventDomainRoute ??
+    sourceEventDomainRow?.selectedEventDomainRoute ??
+    templateRow?.selectedEventDomainRoute ??
+    retainedEventDomainSelector?.selectedRoute ??
+    null;
+  const sourceEventIdCandidate =
+    candidateIdentityRow?.sourceEventIdCandidate ??
+    sourceEventIdRow?.sourceEventIdCandidate ??
+    sourceEventDomainRow?.sourceEventIdCandidate ??
+    templateRow?.sourceEventIdCandidate ??
+    null;
+  const sourceRole =
+    candidateIdentityRow?.sourceRole ??
+    sourceEventIdRow?.sourceRole ??
+    sourceEventDomainRow?.sourceRole ??
+    templateRow?.sourceRole ??
+    null;
+  const f =
+    candidateIdentityRow?.f ??
+    sourceEventIdRow?.f ??
+    sourceEventDomainRow?.f ??
+    templateRow?.f ??
+    null;
+  const carrierChannelId =
+    candidateIdentityRow?.carrierChannelId ??
+    sourceEventIdRow?.carrierChannelId ??
+    sourceEventDomainRow?.carrierChannelId ??
+    templateRow?.carrierChannelId ??
+    null;
+  const labelTokens = tokenizeEqualFrequencySourceEventLabel(
+    sourceEventIdCandidate
+  );
+  const labelParts = parseEqualFrequencySourceEventLabel(
+    sourceEventIdCandidate
+  );
+  const expectedFrequencyToken = Number.isFinite(f) ? `f${f}` : null;
+  const expectedEventKindToken = "source-event";
+  const retainedSourceEventLabelTokenizationPass = false;
+  const residualChecks = candidateIdentityRow
+    ? [
+        {
+          residualId: "r_label_string",
+          label: "source-event label string",
+          currentProxyValue: sourceEventIdCandidate,
+          currentProxyPass:
+            retainedSourceEventLabelStringAcceptanceAudit
+              ?.sourceEventLabelStringCurrentProxyPass === true ||
+            typeof sourceEventIdCandidate === "string" &&
+            sourceEventIdCandidate.length > 0,
+          retainedAcceptancePass:
+            retainedSourceEventLabelStringAcceptanceAudit
+              ?.retainedSourceEventLabelStringPass === true,
+          missingRetainedInput:
+            retainedSourceEventLabelStringAcceptanceAudit
+              ?.firstMissingRetainedInputs?.[0] ??
+            "accepted_source_event_label_string",
+          sourceSchema:
+            retainedSourceEventLabelStringAcceptanceAudit?.schema ??
+            retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_label_delimiter_structure",
+          label: "source-event label delimiter structure",
+          currentProxyValue: labelTokens?.tokenCount ?? null,
+          currentProxyPass: labelTokens?.tokenCount === 5,
+          retainedAcceptancePass: false,
+          missingRetainedInput:
+            "accepted_source_event_label_delimiter_structure",
+          sourceSchema:
+            retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_label_row_set_segment",
+          label: "source-event label row-set segment",
+          currentProxyValue: labelTokens?.rowSetToken ?? null,
+          currentProxyPass:
+            labelTokens !== null &&
+            labelTokens.rowSetToken === retainedRowSetId &&
+            labelParts?.rowSetId === retainedRowSetId,
+          retainedAcceptancePass: false,
+          missingRetainedInput:
+            "accepted_source_event_label_row_set_segment",
+          sourceSchema:
+            retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_label_frequency_segment",
+          label: "source-event label frequency segment",
+          currentProxyValue: labelTokens?.frequencyToken ?? null,
+          currentProxyPass:
+            labelTokens !== null &&
+            labelTokens.frequencyToken === expectedFrequencyToken &&
+            labelParts?.f === f,
+          retainedAcceptancePass: false,
+          missingRetainedInput:
+            "accepted_source_event_label_frequency_segment",
+          sourceSchema:
+            retainedSourceEventIdAcceptanceAttemptAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_label_role_segment",
+          label: "source-event label role segment",
+          currentProxyValue: labelTokens?.roleToken ?? null,
+          currentProxyPass:
+            labelTokens !== null &&
+            labelTokens.roleToken === sourceRole &&
+            labelParts?.role === sourceRole &&
+            ["inner", "middle", "outer"].includes(labelTokens.roleToken),
+          retainedAcceptancePass: false,
+          missingRetainedInput: "accepted_source_event_label_role_segment",
+          sourceSchema:
+            retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_label_event_kind_segment",
+          label: "source-event label event-kind segment",
+          currentProxyValue: labelTokens?.eventKindToken ?? null,
+          currentProxyPass:
+            labelTokens !== null &&
+            labelTokens.eventKindToken === expectedEventKindToken &&
+            labelParts?.eventKind === expectedEventKindToken,
+          retainedAcceptancePass: false,
+          missingRetainedInput:
+            "accepted_source_event_label_event_kind_segment",
+          sourceSchema:
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_label_round_trip",
+          label: "source-event label tokenization round trip",
+          currentProxyValue: labelTokens?.roundTripLabel ?? null,
+          currentProxyPass:
+            labelTokens !== null &&
+            labelParts !== null &&
+            labelTokens.roundTripLabel === sourceEventIdCandidate,
+          retainedAcceptancePass: false,
+          missingRetainedInput:
+            "accepted_source_event_label_tokenization_round_trip",
+          sourceSchema:
+            retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_label_token_source",
+          label: "source-event label token source rows",
+          currentProxyValue: selectedEventDomainRoute,
+          currentProxyPass:
+            typeof carrierChannelId === "string" &&
+            typeof selectedEventDomainRoute === "string" &&
+            typeof sourceEventIdRow?.rowId === "string" &&
+            typeof sourceEventDomainRow?.rowId === "string",
+          retainedAcceptancePass: false,
+          missingRetainedInput: "accepted_source_event_label_token_source",
+          sourceSchema:
+            retainedEventDomainSelector?.schema ??
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ??
+            null,
+        },
+      ]
+    : [];
+  const currentEvidenceResidualCount = residualChecks.filter(
+    (check) => check.currentProxyPass === true
+  ).length;
+  const acceptedResidualCount = residualChecks.filter(
+    (check) => check.retainedAcceptancePass === true
+  ).length;
+  const residualCount = residualChecks.length;
+  const firstBlockingResidual =
+    residualChecks.find((check) => check.retainedAcceptancePass !== true) ??
+    null;
+  const firstMissingRetainedInputs = residualChecks
+    .filter((check) => check.retainedAcceptancePass !== true)
+    .map((check) => check.missingRetainedInput);
+  const currentProxyPass =
+    residualCount > 0 && currentEvidenceResidualCount === residualCount;
+  const rows = candidateIdentityRow
+    ? [
+        {
+          rowId: `${sourceEventIdCandidate}-source-event-label-tokenization-attempt`,
+          sourceEventCandidateIdentityAttemptRowId:
+            candidateIdentityRow.rowId,
+          sourceEventIdAcceptanceAttemptRowId:
+            candidateIdentityRow.sourceEventIdAcceptanceAttemptRowId ?? null,
+          sourceEventDomainAcceptanceAttemptRowId:
+            candidateIdentityRow.sourceEventDomainAcceptanceAttemptRowId ??
+            null,
+          sourceTemplatePopulationAttemptRowId:
+            candidateIdentityRow.sourceTemplatePopulationAttemptRowId ?? null,
+          retainedRowSetId,
+          selectedEventDomainRoute,
+          sourceEventIdCandidate,
+          labelTokens,
+          labelParts,
+          expectedFrequencyToken,
+          expectedEventKindToken,
+          f,
+          carrierChannelId,
+          sourceRole,
+          residualChecks,
+          residualCount,
+          currentEvidenceResidualCount,
+          acceptedResidualCount,
+          currentProxyPass,
+          retainedSourceEventLabelTokenizationPass,
+          firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+          missingRetainedInputs: firstMissingRetainedInputs,
+          status:
+            retainedSourceEventLabelTokenizationPass === true
+              ? "retained_source_event_label_tokenization_accepted"
+              : currentProxyPass === true
+                ? "retained_source_event_label_tokenization_current_proxy_populated_acceptance_missing"
+                : currentEvidenceResidualCount > 0
+                  ? "retained_source_event_label_tokenization_partial_current_proxy"
+                  : "retained_source_event_label_tokenization_missing",
+          retainedBranchClaim: false,
+        },
+      ]
+    : [];
+  return {
+    schema:
+      "aaa-equal-frequency-retained-source-event-label-tokenization-audit.v1",
+    claimLevel:
+      "first retained source-event label tokenization audit under r_label_tokenization; current proxy only",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    selectedEventDomainRoute,
+    sourceEventCandidateIdentityAuditSchema:
+      retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+    sourceEventIdAcceptanceAttemptAuditSchema:
+      retainedSourceEventIdAcceptanceAttemptAudit?.schema ?? null,
+    sourceEventDomainAcceptanceAttemptAuditSchema:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+    sourceTemplatePopulationAttemptAuditSchema:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ?? null,
+    retainedSourceEventLabelStringAcceptanceAuditSchema:
+      retainedSourceEventLabelStringAcceptanceAudit?.schema ?? null,
+    retainedSourceEventLabelStringAcceptanceStatus:
+      retainedSourceEventLabelStringAcceptanceAudit?.status ?? null,
+    retainedSourceEventLabelStringAcceptanceResidualVector:
+      retainedSourceEventLabelStringAcceptanceAudit?.residualVector ?? null,
+    retainedSourceEventLabelStringAcceptanceCurrentProxyPass:
+      retainedSourceEventLabelStringAcceptanceAudit
+        ?.sourceEventLabelStringCurrentProxyPass ?? null,
+    retainedSourceEventLabelStringAcceptanceCurrentEvidenceResidualCount:
+      retainedSourceEventLabelStringAcceptanceAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventLabelStringAcceptanceAcceptedResidualCount:
+      retainedSourceEventLabelStringAcceptanceAudit?.acceptedResidualCount ??
+      null,
+    retainedSourceEventLabelStringAcceptanceResidualCount:
+      retainedSourceEventLabelStringAcceptanceAudit?.residualCount ?? null,
+    retainedSourceEventLabelStringAcceptanceFirstBlockingResidualId:
+      retainedSourceEventLabelStringAcceptanceAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventLabelStringAcceptanceFirstMissingInputs:
+      retainedSourceEventLabelStringAcceptanceAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventLabelStringAcceptanceAccepted:
+      retainedSourceEventLabelStringAcceptanceAudit
+        ?.retainedSourceEventLabelStringPass ?? null,
+    residualVector:
+      "R_label_tokenization=(r_label_string,r_label_delimiter_structure,r_label_row_set_segment,r_label_frequency_segment,r_label_role_segment,r_label_event_kind_segment,r_label_round_trip,r_label_token_source)",
+    tokenizationRule:
+      "source_event_label tokens are [retained_row_set_id, f{integer}, source_role, source, event], with the final two tokens joined as source-event",
+    tokenizationEquation:
+      "tokenize(S_eq-f{f}-{source_role}-source-event) = (S_eq, f{f}, source_role, source-event)",
+    rowCount: rows.length,
+    attemptedTokenizationCount: rows.length,
+    currentEvidenceResidualCount,
+    acceptedResidualCount,
+    residualCount,
+    sourceEventLabelTokenizationCurrentProxyPass: currentProxyPass,
+    retainedSourceEventLabelTokenizationPass,
+    firstAttemptRowId: rows[0]?.rowId ?? null,
+    firstAttemptSourceEventIdCandidate: sourceEventIdCandidate,
+    firstAttemptLabelTokens: labelTokens,
+    firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+    firstMissingRetainedInputs,
+    rows,
+    blockingConditionIds: firstMissingRetainedInputs.map(
+      (id) => `${id}_missing`
+    ),
+    status:
+      retainedSourceEventLabelTokenizationPass === true
+        ? "retained_source_event_label_tokenization_accepted"
+        : currentProxyPass === true
+          ? "retained_source_event_label_tokenization_current_proxy_populated_acceptance_missing"
+          : currentEvidenceResidualCount > 0
+            ? "retained_source_event_label_tokenization_partial_current_proxy"
+            : "retained_source_event_label_tokenization_missing",
+    interpretation:
+      "The first f=2 middle-to-outer source-event label tokenizes into the expected row-set, frequency, role, and source-event kind segments as current proxy evidence, but none of those lexical segments is retained-accepted event data.",
+    retainedReplayBurden:
+      "Accept the source-event label tokenization on S_eq: the source-event label string, delimiter structure, row-set segment, frequency segment, role segment, event-kind segment, round trip, and token source rows must all be accepted on the same retained event or positive-width domain.",
+    retainedBranchClaim: false,
+  };
+}
+
 function createEqualFrequencyRetainedSourceEventLabelSyntaxRuleAudit({
+  retainedSourceEventLabelTokenizationAudit,
   retainedSourceEventCandidateIdentityAudit,
   retainedSourceEventIdAcceptanceAttemptAudit,
   retainedSourceEventDomainAcceptanceAttemptAudit,
@@ -51769,6 +52491,8 @@ function createEqualFrequencyRetainedSourceEventLabelSyntaxRuleAudit({
   const labelParts = parseEqualFrequencySourceEventLabel(
     sourceEventIdCandidate
   );
+  const tokenizationRow =
+    retainedSourceEventLabelTokenizationAudit?.rows?.[0] ?? null;
   const expectedLabel =
     typeof retainedRowSetId === "string" &&
     Number.isFinite(f) &&
@@ -51786,11 +52510,21 @@ function createEqualFrequencyRetainedSourceEventLabelSyntaxRuleAudit({
           residualId: "r_label_tokenization",
           label: "source-event label tokenization",
           currentProxyValue: sourceEventIdCandidate,
-          currentProxyPass: labelParts !== null,
-          retainedAcceptancePass: false,
-          missingRetainedInput: "accepted_source_event_label_tokenization",
+          currentProxyPass:
+            retainedSourceEventLabelTokenizationAudit
+              ?.sourceEventLabelTokenizationCurrentProxyPass === true ||
+            labelParts !== null,
+          retainedAcceptancePass:
+            retainedSourceEventLabelTokenizationAudit
+              ?.retainedSourceEventLabelTokenizationPass === true,
+          missingRetainedInput:
+            retainedSourceEventLabelTokenizationAudit
+              ?.firstMissingRetainedInputs?.[0] ??
+            "accepted_source_event_label_string",
           sourceSchema:
-            retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+            retainedSourceEventLabelTokenizationAudit?.schema ??
+            retainedSourceEventCandidateIdentityAudit?.schema ??
+            null,
         },
         {
           residualId: "r_label_row_set_token",
@@ -51899,6 +52633,8 @@ function createEqualFrequencyRetainedSourceEventLabelSyntaxRuleAudit({
     ? [
         {
           rowId: `${sourceEventIdCandidate}-source-event-label-syntax-rule-attempt`,
+          sourceEventLabelTokenizationAttemptRowId:
+            tokenizationRow?.rowId ?? null,
           syntaxRuleCandidateId,
           sourceEventCandidateIdentityAttemptRowId:
             candidateIdentityRow.rowId,
@@ -51957,6 +52693,31 @@ function createEqualFrequencyRetainedSourceEventLabelSyntaxRuleAudit({
       retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
     sourceTemplatePopulationAttemptAuditSchema:
       retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ?? null,
+    retainedSourceEventLabelTokenizationAuditSchema:
+      retainedSourceEventLabelTokenizationAudit?.schema ?? null,
+    retainedSourceEventLabelTokenizationStatus:
+      retainedSourceEventLabelTokenizationAudit?.status ?? null,
+    retainedSourceEventLabelTokenizationResidualVector:
+      retainedSourceEventLabelTokenizationAudit?.residualVector ?? null,
+    retainedSourceEventLabelTokenizationCurrentProxyPass:
+      retainedSourceEventLabelTokenizationAudit
+        ?.sourceEventLabelTokenizationCurrentProxyPass ?? null,
+    retainedSourceEventLabelTokenizationCurrentEvidenceResidualCount:
+      retainedSourceEventLabelTokenizationAudit?.currentEvidenceResidualCount ??
+      null,
+    retainedSourceEventLabelTokenizationAcceptedResidualCount:
+      retainedSourceEventLabelTokenizationAudit?.acceptedResidualCount ?? null,
+    retainedSourceEventLabelTokenizationResidualCount:
+      retainedSourceEventLabelTokenizationAudit?.residualCount ?? null,
+    retainedSourceEventLabelTokenizationFirstBlockingResidualId:
+      retainedSourceEventLabelTokenizationAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventLabelTokenizationFirstMissingInputs:
+      retainedSourceEventLabelTokenizationAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventLabelTokenizationAccepted:
+      retainedSourceEventLabelTokenizationAudit
+        ?.retainedSourceEventLabelTokenizationPass ?? null,
     residualVector:
       "R_label_syntax=(r_label_tokenization,r_label_row_set_token,r_label_frequency_token,r_label_role_token,r_label_event_kind_token,r_label_canonical_form,r_label_grammar_source,r_label_retained_rule)",
     grammarRule:
@@ -52107,7 +52868,7 @@ function createEqualFrequencyRetainedSourceEventLabelAcceptanceAudit({
           missingRetainedInput:
             retainedSourceEventLabelSyntaxRuleAudit
               ?.firstMissingRetainedInputs?.[0] ??
-            "accepted_source_event_label_syntax",
+            "accepted_source_event_label_string",
           sourceSchema:
             retainedSourceEventLabelSyntaxRuleAudit?.schema ??
             retainedSourceEventCandidateIdentityAudit?.schema ?? null,
@@ -52487,7 +53248,7 @@ function createEqualFrequencyRetainedSourceEventIdentityConstructionAudit({
           missingRetainedInput:
             retainedSourceEventLabelAcceptanceAudit
               ?.firstMissingRetainedInputs?.[0] ??
-            "accepted_source_event_label_syntax",
+            "accepted_source_event_label_string",
           sourceSchema:
             retainedSourceEventLabelAcceptanceAudit?.schema ??
             retainedSourceEventCandidateIdentityAudit?.schema ?? null,
@@ -53181,6 +53942,8 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
   retainedSourceEventDomainAcceptanceAttemptAudit,
   retainedSourceEventIdAcceptanceAttemptAudit,
   retainedSourceEventCandidateIdentityAudit,
+  retainedSourceEventLabelStringAcceptanceAudit,
+  retainedSourceEventLabelTokenizationAudit,
   retainedSourceEventLabelSyntaxRuleAudit,
   retainedSourceEventLabelAcceptanceAudit,
   retainedSourceEventIdentityConstructionAudit,
@@ -53198,6 +53961,10 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
       ?.sourceEventIdentityAcceptanceCurrentProxyPass === true ||
     retainedSourceEventCandidateIdentityAudit
       ?.sourceEventCandidateIdentityCurrentProxyPass === true ||
+    retainedSourceEventLabelStringAcceptanceAudit
+      ?.sourceEventLabelStringCurrentProxyPass === true ||
+    retainedSourceEventLabelTokenizationAudit
+      ?.sourceEventLabelTokenizationCurrentProxyPass === true ||
     retainedSourceEventIdAcceptanceAttemptAudit
       ?.sourceEventIdAcceptanceCurrentProxyPass === true ||
     retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
@@ -53208,6 +53975,10 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
       ?.retainedSourceEventIdentityAcceptancePass === true ||
     retainedSourceEventCandidateIdentityAudit
       ?.retainedSourceEventCandidateIdentityPass === true ||
+    retainedSourceEventLabelStringAcceptanceAudit
+      ?.retainedSourceEventLabelStringPass === true ||
+    retainedSourceEventLabelTokenizationAudit
+      ?.retainedSourceEventLabelTokenizationPass === true ||
     retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
       ?.retainedEventDomainBindingAttemptPass === true ||
     retainedEventDomainSelector?.retainedSelectorAcceptancePass === true;
@@ -53520,6 +54291,8 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
       currentEvidenceCount:
         retainedSourceEventIdentityAcceptanceAudit
           ?.currentEvidenceResidualCount ??
+        retainedSourceEventLabelStringAcceptanceAudit
+          ?.currentEvidenceResidualCount ??
         retainedSourceEventLabelSyntaxRuleAudit
           ?.currentEvidenceResidualCount ??
         retainedSourceEventCandidateIdentityAudit
@@ -53535,6 +54308,7 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
         null,
       acceptedEvidenceCount:
         retainedSourceEventIdentityAcceptanceAudit?.acceptedResidualCount ??
+        retainedSourceEventLabelStringAcceptanceAudit?.acceptedResidualCount ??
         retainedSourceEventCandidateIdentityAudit?.acceptedResidualCount ??
         retainedSourceEventIdAcceptanceAttemptAudit
           ?.acceptedResidualCount ??
@@ -53544,6 +54318,7 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
         null,
       sourceSchema:
         retainedSourceEventIdentityAcceptanceAudit?.schema ??
+        retainedSourceEventLabelStringAcceptanceAudit?.schema ??
         retainedSourceEventLabelSyntaxRuleAudit?.schema ??
         retainedSourceEventCandidateIdentityAudit?.schema ??
         retainedSourceEventIdAcceptanceAttemptAudit?.schema ??
@@ -53552,6 +54327,8 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
         null,
       missingRetainedInputs:
         retainedSourceEventIdentityAcceptanceAudit?.firstMissingRetainedInputs ??
+        retainedSourceEventLabelStringAcceptanceAudit
+          ?.firstMissingRetainedInputs ??
         retainedSourceEventLabelSyntaxRuleAudit?.firstMissingRetainedInputs ??
         retainedSourceEventCandidateIdentityAudit
           ?.firstMissingRetainedInputs ??
@@ -53677,6 +54454,56 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
     retainedSourceEventCandidateIdentityAccepted:
       retainedSourceEventCandidateIdentityAudit
         ?.retainedSourceEventCandidateIdentityPass ?? null,
+    retainedSourceEventLabelStringAcceptanceAuditSchema:
+      retainedSourceEventLabelStringAcceptanceAudit?.schema ?? null,
+    retainedSourceEventLabelStringAcceptanceStatus:
+      retainedSourceEventLabelStringAcceptanceAudit?.status ?? null,
+    retainedSourceEventLabelStringAcceptanceResidualVector:
+      retainedSourceEventLabelStringAcceptanceAudit?.residualVector ?? null,
+    retainedSourceEventLabelStringAcceptanceCurrentProxyPass:
+      retainedSourceEventLabelStringAcceptanceAudit
+        ?.sourceEventLabelStringCurrentProxyPass ?? null,
+    retainedSourceEventLabelStringAcceptanceCurrentEvidenceResidualCount:
+      retainedSourceEventLabelStringAcceptanceAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventLabelStringAcceptanceAcceptedResidualCount:
+      retainedSourceEventLabelStringAcceptanceAudit?.acceptedResidualCount ??
+      null,
+    retainedSourceEventLabelStringAcceptanceResidualCount:
+      retainedSourceEventLabelStringAcceptanceAudit?.residualCount ?? null,
+    retainedSourceEventLabelStringAcceptanceFirstBlockingResidualId:
+      retainedSourceEventLabelStringAcceptanceAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventLabelStringAcceptanceFirstMissingInputs:
+      retainedSourceEventLabelStringAcceptanceAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventLabelStringAcceptanceAccepted:
+      retainedSourceEventLabelStringAcceptanceAudit
+        ?.retainedSourceEventLabelStringPass ?? null,
+    retainedSourceEventLabelTokenizationAuditSchema:
+      retainedSourceEventLabelTokenizationAudit?.schema ?? null,
+    retainedSourceEventLabelTokenizationStatus:
+      retainedSourceEventLabelTokenizationAudit?.status ?? null,
+    retainedSourceEventLabelTokenizationResidualVector:
+      retainedSourceEventLabelTokenizationAudit?.residualVector ?? null,
+    retainedSourceEventLabelTokenizationCurrentProxyPass:
+      retainedSourceEventLabelTokenizationAudit
+        ?.sourceEventLabelTokenizationCurrentProxyPass ?? null,
+    retainedSourceEventLabelTokenizationCurrentEvidenceResidualCount:
+      retainedSourceEventLabelTokenizationAudit?.currentEvidenceResidualCount ??
+      null,
+    retainedSourceEventLabelTokenizationAcceptedResidualCount:
+      retainedSourceEventLabelTokenizationAudit?.acceptedResidualCount ?? null,
+    retainedSourceEventLabelTokenizationResidualCount:
+      retainedSourceEventLabelTokenizationAudit?.residualCount ?? null,
+    retainedSourceEventLabelTokenizationFirstBlockingResidualId:
+      retainedSourceEventLabelTokenizationAudit?.firstBlockingResidualId ?? null,
+    retainedSourceEventLabelTokenizationFirstMissingInputs:
+      retainedSourceEventLabelTokenizationAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventLabelTokenizationAccepted:
+      retainedSourceEventLabelTokenizationAudit
+        ?.retainedSourceEventLabelTokenizationPass ?? null,
     retainedSourceEventLabelSyntaxRuleAuditSchema:
       retainedSourceEventLabelSyntaxRuleAudit?.schema ?? null,
     retainedSourceEventLabelSyntaxRuleStatus:
@@ -53810,6 +54637,8 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
   retainedSourceEventDomainAcceptanceAttemptAudit,
   retainedSourceEventIdAcceptanceAttemptAudit,
   retainedSourceEventCandidateIdentityAudit,
+  retainedSourceEventLabelStringAcceptanceAudit,
+  retainedSourceEventLabelTokenizationAudit,
   retainedSourceEventLabelSyntaxRuleAudit,
   retainedSourceEventLabelAcceptanceAudit,
   retainedSourceEventIdentityConstructionAudit,
@@ -53906,6 +54735,18 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
   const retainedSourceEventCandidateIdentityPass =
     retainedSourceEventCandidateIdentityAudit
       ?.retainedSourceEventCandidateIdentityPass === true;
+  const retainedSourceEventLabelStringCurrentProxyPass =
+    retainedSourceEventLabelStringAcceptanceAudit
+      ?.sourceEventLabelStringCurrentProxyPass === true;
+  const retainedSourceEventLabelStringPass =
+    retainedSourceEventLabelStringAcceptanceAudit
+      ?.retainedSourceEventLabelStringPass === true;
+  const retainedSourceEventLabelTokenizationCurrentProxyPass =
+    retainedSourceEventLabelTokenizationAudit
+      ?.sourceEventLabelTokenizationCurrentProxyPass === true;
+  const retainedSourceEventLabelTokenizationPass =
+    retainedSourceEventLabelTokenizationAudit
+      ?.retainedSourceEventLabelTokenizationPass === true;
   const retainedSourceEventLabelSyntaxCurrentProxyPass =
     retainedSourceEventLabelSyntaxRuleAudit
       ?.sourceEventLabelSyntaxCurrentProxyPass === true;
@@ -53995,6 +54836,14 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
     retainedSourceEventCandidateIdentityPass,
     retainedSourceEventCandidateIdentityStatus:
       retainedSourceEventCandidateIdentityAudit?.status ?? null,
+    retainedSourceEventLabelStringCurrentProxyPass,
+    retainedSourceEventLabelStringPass,
+    retainedSourceEventLabelStringStatus:
+      retainedSourceEventLabelStringAcceptanceAudit?.status ?? null,
+    retainedSourceEventLabelTokenizationCurrentProxyPass,
+    retainedSourceEventLabelTokenizationPass,
+    retainedSourceEventLabelTokenizationStatus:
+      retainedSourceEventLabelTokenizationAudit?.status ?? null,
     retainedSourceEventLabelSyntaxCurrentProxyPass,
     retainedSourceEventLabelSyntaxPass,
     retainedSourceEventLabelSyntaxStatus:
@@ -54031,6 +54880,8 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
       "retained_source_event_domain_acceptance",
       "retained_source_event_id_acceptance",
       "retained_source_event_candidate_identity",
+      "retained_source_event_label_string_acceptance",
+      "retained_source_event_label_tokenization",
       "retained_source_event_label_syntax_rule",
       "retained_source_event_label_acceptance",
       "retained_source_event_identity_construction",
@@ -54057,6 +54908,8 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
       row.retainedSourceEventDomainAcceptanceCurrentProxyPass === true &&
       row.retainedSourceEventIdAcceptanceCurrentProxyPass === true &&
       row.retainedSourceEventCandidateIdentityCurrentProxyPass === true &&
+      row.retainedSourceEventLabelStringCurrentProxyPass === true &&
+      row.retainedSourceEventLabelTokenizationCurrentProxyPass === true &&
       row.retainedSourceEventLabelSyntaxCurrentProxyPass === true &&
       row.retainedSourceEventLabelAcceptanceCurrentProxyPass === true &&
       row.retainedSourceEventIdentityConstructionCurrentProxyPass === true &&
@@ -54092,6 +54945,10 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
       ...(retainedSourceEventIdAcceptanceAttemptAudit
         ?.blockingConditionIds ?? []),
       ...(retainedSourceEventCandidateIdentityAudit?.blockingConditionIds ??
+        []),
+      ...(retainedSourceEventLabelStringAcceptanceAudit?.blockingConditionIds ??
+        []),
+      ...(retainedSourceEventLabelTokenizationAudit?.blockingConditionIds ??
         []),
       ...(retainedSourceEventLabelSyntaxRuleAudit?.blockingConditionIds ?? []),
       ...(retainedSourceEventLabelAcceptanceAudit?.blockingConditionIds ?? []),
@@ -54434,6 +55291,32 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
     retainedSourceEventCandidateIdentityAccepted:
       retainedSourceEventCandidateIdentityAudit
         ?.retainedSourceEventCandidateIdentityPass ?? null,
+    retainedSourceEventLabelStringAcceptanceAuditSchema:
+      retainedSourceEventLabelStringAcceptanceAudit?.schema ?? null,
+    retainedSourceEventLabelStringAcceptanceStatus:
+      retainedSourceEventLabelStringAcceptanceAudit?.status ?? null,
+    retainedSourceEventLabelStringAcceptanceResidualVector:
+      retainedSourceEventLabelStringAcceptanceAudit?.residualVector ?? null,
+    retainedSourceEventLabelStringAcceptanceCurrentProxyPass:
+      retainedSourceEventLabelStringAcceptanceAudit
+        ?.sourceEventLabelStringCurrentProxyPass ?? null,
+    retainedSourceEventLabelStringAcceptanceCurrentEvidenceResidualCount:
+      retainedSourceEventLabelStringAcceptanceAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventLabelStringAcceptanceAcceptedResidualCount:
+      retainedSourceEventLabelStringAcceptanceAudit?.acceptedResidualCount ??
+      null,
+    retainedSourceEventLabelStringAcceptanceResidualCount:
+      retainedSourceEventLabelStringAcceptanceAudit?.residualCount ?? null,
+    retainedSourceEventLabelStringAcceptanceFirstBlockingResidualId:
+      retainedSourceEventLabelStringAcceptanceAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventLabelStringAcceptanceFirstMissingInputs:
+      retainedSourceEventLabelStringAcceptanceAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventLabelStringAcceptanceAccepted:
+      retainedSourceEventLabelStringAcceptanceAudit
+        ?.retainedSourceEventLabelStringPass ?? null,
     retainedSourceEventLabelSyntaxRuleAuditSchema:
       retainedSourceEventLabelSyntaxRuleAudit?.schema ?? null,
     retainedSourceEventLabelSyntaxRuleStatus:
@@ -54576,6 +55459,8 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
   retainedSourceEventDomainAcceptanceAttemptAudit,
   retainedSourceEventIdAcceptanceAttemptAudit,
   retainedSourceEventCandidateIdentityAudit,
+  retainedSourceEventLabelStringAcceptanceAudit,
+  retainedSourceEventLabelTokenizationAudit,
   retainedSourceEventLabelSyntaxRuleAudit,
   retainedSourceEventLabelAcceptanceAudit,
   retainedSourceEventIdentityConstructionAudit,
@@ -54647,6 +55532,8 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         retainedSourceEventIdentityAcceptanceAudit?.schema ??
         retainedSourceEventIdentityConstructionAudit?.schema ??
         retainedSourceEventLabelAcceptanceAudit?.schema ??
+        retainedSourceEventLabelStringAcceptanceAudit?.schema ??
+        retainedSourceEventLabelTokenizationAudit?.schema ??
         retainedSourceEventLabelSyntaxRuleAudit?.schema ??
         retainedSourceEventCandidateIdentityAudit?.schema ??
         retainedSourceEventIdAcceptanceAttemptAudit?.schema ??
@@ -54667,6 +55554,10 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
           ?.sourceEventIdentityConstructionCurrentProxyPass === true ||
         retainedSourceEventLabelAcceptanceAudit
           ?.sourceEventLabelAcceptanceCurrentProxyPass === true ||
+        retainedSourceEventLabelStringAcceptanceAudit
+          ?.sourceEventLabelStringCurrentProxyPass === true ||
+        retainedSourceEventLabelTokenizationAudit
+          ?.sourceEventLabelTokenizationCurrentProxyPass === true ||
         retainedSourceEventLabelSyntaxRuleAudit
           ?.sourceEventLabelSyntaxCurrentProxyPass === true ||
         retainedSourceEventCandidateIdentityAudit
@@ -54696,6 +55587,8 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         retainedSourceEventIdentityAcceptanceAudit?.status ??
         retainedSourceEventIdentityConstructionAudit?.status ??
         retainedSourceEventLabelAcceptanceAudit?.status ??
+        retainedSourceEventLabelStringAcceptanceAudit?.status ??
+        retainedSourceEventLabelTokenizationAudit?.status ??
         retainedSourceEventLabelSyntaxRuleAudit?.status ??
         retainedSourceEventCandidateIdentityAudit?.status ??
         retainedSourceEventIdAcceptanceAttemptAudit?.status ??
@@ -54715,6 +55608,10 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         retainedSourceEventIdentityConstructionAudit
           ?.currentEvidenceResidualCount ??
         retainedSourceEventLabelAcceptanceAudit?.currentEvidenceResidualCount ??
+        retainedSourceEventLabelStringAcceptanceAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventLabelTokenizationAudit
+          ?.currentEvidenceResidualCount ??
         retainedSourceEventLabelSyntaxRuleAudit?.currentEvidenceResidualCount ??
         retainedSourceEventCandidateIdentityAudit
           ?.currentEvidenceResidualCount ??
@@ -54745,6 +55642,9 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         retainedSourceEventIdentityConstructionAudit
           ?.firstMissingRetainedInputs ??
         retainedSourceEventLabelAcceptanceAudit?.firstMissingRetainedInputs ??
+        retainedSourceEventLabelStringAcceptanceAudit
+          ?.firstMissingRetainedInputs ??
+        retainedSourceEventLabelTokenizationAudit?.firstMissingRetainedInputs ??
         retainedSourceEventLabelSyntaxRuleAudit?.firstMissingRetainedInputs ??
         retainedSourceEventCandidateIdentityAudit
           ?.firstMissingRetainedInputs ??
@@ -54895,6 +55795,8 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         retainedBinaryToBinaryPhaseHistoryAudit?.schema ??
         retainedSourceEventIdentityAcceptanceAudit?.schema ??
         retainedSourceEventLabelAcceptanceAudit?.schema ??
+        retainedSourceEventLabelStringAcceptanceAudit?.schema ??
+        retainedSourceEventLabelTokenizationAudit?.schema ??
         retainedSourceEventLabelSyntaxRuleAudit?.schema ??
         retainedSourceEventCandidateIdentityAudit?.schema ??
         retainedSourceEventIdAcceptanceAttemptAudit?.schema ??
@@ -54919,6 +55821,10 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
           ?.sourceEventIdentityAcceptanceCurrentProxyPass === true ||
         retainedSourceEventLabelAcceptanceAudit
           ?.sourceEventLabelAcceptanceCurrentProxyPass === true ||
+        retainedSourceEventLabelStringAcceptanceAudit
+          ?.sourceEventLabelStringCurrentProxyPass === true ||
+        retainedSourceEventLabelTokenizationAudit
+          ?.sourceEventLabelTokenizationCurrentProxyPass === true ||
         retainedSourceEventLabelSyntaxRuleAudit
           ?.sourceEventLabelSyntaxCurrentProxyPass === true ||
         retainedSourceEventCandidateIdentityAudit
@@ -54971,6 +55877,8 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         retainedPhaseBundleHolonomyAudit?.status ??
         retainedSourceEventIdentityAcceptanceAudit?.status ??
         retainedSourceEventLabelAcceptanceAudit?.status ??
+        retainedSourceEventLabelStringAcceptanceAudit?.status ??
+        retainedSourceEventLabelTokenizationAudit?.status ??
         retainedSourceEventLabelSyntaxRuleAudit?.status ??
         retainedSourceEventCandidateIdentityAudit?.status ??
         retainedSourceEventIdAcceptanceAttemptAudit?.status ??
@@ -54994,6 +55902,10 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         retainedSourceEventIdentityAcceptanceAudit
           ?.currentEvidenceResidualCount ??
         retainedSourceEventLabelAcceptanceAudit?.currentEvidenceResidualCount ??
+        retainedSourceEventLabelStringAcceptanceAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventLabelTokenizationAudit
+          ?.currentEvidenceResidualCount ??
         retainedSourceEventLabelSyntaxRuleAudit?.currentEvidenceResidualCount ??
         retainedSourceEventCandidateIdentityAudit
           ?.currentEvidenceResidualCount ??
@@ -55041,6 +55953,10 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
           ...(retainedSourceEventIdentityAcceptanceAudit
             ?.firstMissingRetainedInputs ?? []),
           ...(retainedSourceEventLabelAcceptanceAudit
+            ?.firstMissingRetainedInputs ?? []),
+          ...(retainedSourceEventLabelStringAcceptanceAudit
+            ?.firstMissingRetainedInputs ?? []),
+          ...(retainedSourceEventLabelTokenizationAudit
             ?.firstMissingRetainedInputs ?? []),
           ...(retainedSourceEventLabelSyntaxRuleAudit
             ?.firstMissingRetainedInputs ?? []),
@@ -55114,7 +56030,7 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
     .filter((condition) => condition.retainedAcceptancePass !== true)
     .map((condition) => condition.id);
   return {
-    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v36",
+    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v38",
     claimLevel:
       "retained replay acceptance residual blueprint; no retained branch acceptance",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -56861,7 +57777,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v74",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v76",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -56954,7 +57870,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v70",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v72",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -57030,7 +57946,7 @@ function createFrequencyTripletPhaseRelationReview(rows) {
       (row) => row.candidateKey === "equal-frequency-energy-radius"
     ) ?? null;
   return {
-    schema: "aaa-tri-binary-frequency-triplet-phase-relation-review.v15",
+    schema: "aaa-tri-binary-frequency-triplet-phase-relation-review.v17",
     claimLevel:
       "phase-relation comparison across candidate frequency triples; current proxies only, not retained phase-bundle acceptance",
     fairComparisonRule:
@@ -57094,6 +58010,12 @@ function createFrequencyTripletPhaseRelationReviewRow(row) {
   const retainedSourceEventCandidateIdentityPass =
     isEqualFrequency &&
     row.retainedSourceEventCandidateIdentityCurrentProxyPass === true;
+  const retainedSourceEventLabelStringAcceptancePass =
+    isEqualFrequency &&
+    row.retainedSourceEventLabelStringAcceptanceCurrentProxyPass === true;
+  const retainedSourceEventLabelTokenizationPass =
+    isEqualFrequency &&
+    row.retainedSourceEventLabelTokenizationCurrentProxyPass === true;
   const retainedSourceEventLabelSyntaxRulePass =
     isEqualFrequency &&
     row.retainedSourceEventLabelSyntaxRuleCurrentProxyPass === true;
@@ -57149,6 +58071,8 @@ function createFrequencyTripletPhaseRelationReviewRow(row) {
     retainedSourceEventDomainAcceptanceAttemptPass,
     retainedSourceEventIdAcceptanceAttemptPass,
     retainedSourceEventCandidateIdentityPass,
+    retainedSourceEventLabelStringAcceptancePass,
+    retainedSourceEventLabelTokenizationPass,
     retainedSourceEventLabelSyntaxRulePass,
     retainedSourceEventLabelAcceptancePass,
     retainedSourceEventIdentityConstructionPass,
@@ -57208,6 +58132,8 @@ function createFrequencyTripletPhaseRelationReviewRow(row) {
     retainedSourceEventDomainAcceptanceAttemptPass,
     retainedSourceEventIdAcceptanceAttemptPass,
     retainedSourceEventCandidateIdentityPass,
+    retainedSourceEventLabelStringAcceptancePass,
+    retainedSourceEventLabelTokenizationPass,
     retainedSourceEventLabelSyntaxRulePass,
     retainedSourceEventLabelAcceptancePass,
     retainedSourceEventIdentityConstructionPass,
@@ -57271,7 +58197,7 @@ function createFrequencyTripletResidualMatrixReview(rows) {
       return left.missingResidualCount - right.missingResidualCount;
     });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-residual-matrix-review.v17",
+    schema: "aaa-tri-binary-frequency-triplet-residual-matrix-review.v19",
     claimLevel:
       "retained residual-vector comparison matrix; current proxies only, not branch selection",
     residualVector:
@@ -57473,6 +58399,14 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
     positiveNumberOrNull(
       row.retainedSourceEventCandidateIdentityCurrentEvidenceResidualCount
     );
+  const retainedSourceEventLabelStringAcceptanceCurrentResidualCount =
+    positiveNumberOrNull(
+      row.retainedSourceEventLabelStringAcceptanceCurrentEvidenceResidualCount
+    );
+  const retainedSourceEventLabelTokenizationCurrentResidualCount =
+    positiveNumberOrNull(
+      row.retainedSourceEventLabelTokenizationCurrentEvidenceResidualCount
+    );
   const retainedSourceEventLabelSyntaxRuleCurrentResidualCount =
     positiveNumberOrNull(
       row.retainedSourceEventLabelSyntaxRuleCurrentEvidenceResidualCount
@@ -57514,6 +58448,8 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         retainedSourceEventIdentityAcceptanceCurrentResidualCount !== null ||
         retainedSourceEventIdentityConstructionCurrentResidualCount !== null ||
         retainedSourceEventLabelAcceptanceCurrentResidualCount !== null ||
+        retainedSourceEventLabelStringAcceptanceCurrentResidualCount !== null ||
+        retainedSourceEventLabelTokenizationCurrentResidualCount !== null ||
         retainedSourceEventLabelSyntaxRuleCurrentResidualCount !== null ||
         retainedSourceEventCandidateIdentityCurrentResidualCount !== null ||
         retainedSourceEventIdAcceptanceCurrentResidualCount !== null ||
@@ -57533,6 +58469,8 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         row.retainedSourceEventIdentityAcceptanceAuditSchema ??
         row.retainedSourceEventIdentityConstructionAuditSchema ??
         row.retainedSourceEventLabelAcceptanceAuditSchema ??
+        row.retainedSourceEventLabelStringAcceptanceAuditSchema ??
+        row.retainedSourceEventLabelTokenizationAuditSchema ??
         row.retainedSourceEventLabelSyntaxRuleAuditSchema ??
         row.retainedSourceEventCandidateIdentityAuditSchema ??
         row.retainedSourceEventIdAcceptanceAttemptAuditSchema ??
@@ -57548,7 +58486,7 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         row.retainedEventDomainLiftTargetSchema,
       blocker: "same_retained_event_or_positive_width_domain",
       note:
-        "S_eq has a retained event/domain route selector, middle-to-outer event-domain templates, a first-row acceptance attempt, event-ID candidates, current event-ID provenance, point-event/domain rule candidates, same-event/domain binding candidates, a first source/receiver phase-history template population attempt, a first retained source-event/domain acceptance attempt, a first retained source-event-ID acceptance attempt, a first retained source-event candidate identity audit, a first retained source-event label syntax rule audit, a first retained source-event label acceptance audit, a first retained source-event identity construction audit, and a first retained source-event identity acceptance audit populated from current proxy evidence, but no accepted retained point event or positive-width retained domain.",
+        "S_eq has a retained event/domain route selector, middle-to-outer event-domain templates, a first-row acceptance attempt, event-ID candidates, current event-ID provenance, point-event/domain rule candidates, same-event/domain binding candidates, a first source/receiver phase-history template population attempt, a first retained source-event/domain acceptance attempt, a first retained source-event-ID acceptance attempt, a first retained source-event candidate identity audit, a first retained source-event label string acceptance audit, a first retained source-event label tokenization audit, a first retained source-event label syntax rule audit, a first retained source-event label acceptance audit, a first retained source-event identity construction audit, and a first retained source-event identity acceptance audit populated from current proxy evidence, but no accepted retained point event or positive-width retained domain.",
     }),
     r_P: createResidualEvidence({
       accepted: isFullPositiveCount(
@@ -57629,6 +58567,8 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         retainedSourceEventIdentityAcceptanceCurrentResidualCount !== null ||
         retainedSourceEventIdentityConstructionCurrentResidualCount !== null ||
         retainedSourceEventLabelAcceptanceCurrentResidualCount !== null ||
+        retainedSourceEventLabelStringAcceptanceCurrentResidualCount !== null ||
+        retainedSourceEventLabelTokenizationCurrentResidualCount !== null ||
         retainedSourceEventLabelSyntaxRuleCurrentResidualCount !== null ||
         retainedSourceEventCandidateIdentityCurrentResidualCount !== null ||
         retainedSourceEventIdAcceptanceCurrentResidualCount !== null ||
@@ -57666,6 +58606,10 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         row.retainedSourceEventIdentityConstructionAuditSchema !== null ||
         retainedSourceEventLabelAcceptanceCurrentResidualCount !== null ||
         row.retainedSourceEventLabelAcceptanceAuditSchema !== null ||
+        retainedSourceEventLabelStringAcceptanceCurrentResidualCount !== null ||
+        row.retainedSourceEventLabelStringAcceptanceAuditSchema !== null ||
+        retainedSourceEventLabelTokenizationCurrentResidualCount !== null ||
+        row.retainedSourceEventLabelTokenizationAuditSchema !== null ||
         retainedSourceEventLabelSyntaxRuleCurrentResidualCount !== null ||
         row.retainedSourceEventLabelSyntaxRuleAuditSchema !== null ||
         retainedSourceEventCandidateIdentityCurrentResidualCount !== null ||
@@ -57689,6 +58633,8 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         row.retainedSourceEventIdentityAcceptanceAuditSchema ??
         row.retainedSourceEventIdentityConstructionAuditSchema ??
         row.retainedSourceEventLabelAcceptanceAuditSchema ??
+        row.retainedSourceEventLabelStringAcceptanceAuditSchema ??
+        row.retainedSourceEventLabelTokenizationAuditSchema ??
         row.retainedSourceEventLabelSyntaxRuleAuditSchema ??
         row.retainedSourceEventCandidateIdentityAuditSchema ??
         row.retainedSourceEventIdAcceptanceAttemptAuditSchema ??
@@ -57707,7 +58653,7 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         row.phaseDeformationBalanceAuditSchema,
       blocker: "phase_deformation_wake_coupling_weight_balance",
       note:
-        "The phase-holonomy unit-clock W_a source audit, retained phase-bundle holonomy audit, retained binary-to-binary phase-history audit, first source/receiver phase-history template population attempt, first retained source-event/domain acceptance attempt, first retained source-event-ID acceptance attempt, first retained source-event candidate identity audit, first retained source-event label syntax rule audit, first retained source-event label acceptance audit, first retained source-event identity construction audit, first retained source-event identity acceptance audit, retained W_a source-acceptance attempt, retained W_a selection target, analytic phase/radius/action closure split, phase-current source-readiness residual, middle-to-outer event-domain row model, first-row acceptance attempt, event-ID candidates, current event-ID provenance, point-event/domain rule candidates, and same-event/domain binding candidates supply current proxy evidence only; retained phase-deformation, wake, recoil, or coupling balance is still missing.",
+        "The phase-holonomy unit-clock W_a source audit, retained phase-bundle holonomy audit, retained binary-to-binary phase-history audit, first source/receiver phase-history template population attempt, first retained source-event/domain acceptance attempt, first retained source-event-ID acceptance attempt, first retained source-event candidate identity audit, first retained source-event label string acceptance audit, first retained source-event label tokenization audit, first retained source-event label syntax rule audit, first retained source-event label acceptance audit, first retained source-event identity construction audit, first retained source-event identity acceptance audit, retained W_a source-acceptance attempt, retained W_a selection target, analytic phase/radius/action closure split, phase-current source-readiness residual, middle-to-outer event-domain row model, first-row acceptance attempt, event-ID candidates, current event-ID provenance, point-event/domain rule candidates, and same-event/domain binding candidates supply current proxy evidence only; retained phase-deformation, wake, recoil, or coupling balance is still missing.",
     }),
     r_J: createResidualEvidence({
       accepted: false,
@@ -57904,6 +58850,14 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
         .retainedSourceEventIdentityAcceptanceAudit?.status ??
       equalFrequencyEnergyRadiusAudit
         .retainedSourceEventCandidateIdentityAudit?.status ??
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventLabelStringAcceptanceAudit?.status ??
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventLabelTokenizationAudit?.status ??
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventLabelSyntaxRuleAudit
+        ?.status ??
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventLabelAcceptanceAudit
+        ?.status ??
       equalFrequencyEnergyRadiusAudit
         .retainedSourceEventIdAcceptanceAttemptAudit?.status ??
       equalFrequencyEnergyRadiusAudit
@@ -58614,6 +59568,72 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     retainedSourceEventCandidateIdentityAccepted:
       equalFrequencyEnergyRadiusAudit.retainedSourceEventCandidateIdentityAudit
         ?.retainedSourceEventCandidateIdentityPass ?? null,
+    retainedSourceEventLabelStringAcceptanceAuditSchema:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventLabelStringAcceptanceAudit?.schema ?? null,
+    retainedSourceEventLabelStringAcceptanceStatus:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventLabelStringAcceptanceAudit?.status ?? null,
+    retainedSourceEventLabelStringAcceptanceResidualVector:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventLabelStringAcceptanceAudit?.residualVector ?? null,
+    retainedSourceEventLabelStringAcceptanceCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventLabelStringAcceptanceAudit
+        ?.sourceEventLabelStringCurrentProxyPass ?? null,
+    retainedSourceEventLabelStringAcceptanceCurrentEvidenceResidualCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventLabelStringAcceptanceAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventLabelStringAcceptanceAcceptedResidualCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventLabelStringAcceptanceAudit?.acceptedResidualCount ??
+      null,
+    retainedSourceEventLabelStringAcceptanceResidualCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventLabelStringAcceptanceAudit?.residualCount ?? null,
+    retainedSourceEventLabelStringAcceptanceFirstBlockingResidualId:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventLabelStringAcceptanceAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedSourceEventLabelStringAcceptanceFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventLabelStringAcceptanceAudit
+        ?.firstMissingRetainedInputs ?? null,
+    retainedSourceEventLabelStringAcceptanceAccepted:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventLabelStringAcceptanceAudit
+        ?.retainedSourceEventLabelStringPass ?? null,
+    retainedSourceEventLabelTokenizationAuditSchema:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventLabelTokenizationAudit
+        ?.schema ?? null,
+    retainedSourceEventLabelTokenizationStatus:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventLabelTokenizationAudit
+        ?.status ?? null,
+    retainedSourceEventLabelTokenizationResidualVector:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventLabelTokenizationAudit
+        ?.residualVector ?? null,
+    retainedSourceEventLabelTokenizationCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventLabelTokenizationAudit
+        ?.sourceEventLabelTokenizationCurrentProxyPass ?? null,
+    retainedSourceEventLabelTokenizationCurrentEvidenceResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventLabelTokenizationAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventLabelTokenizationAcceptedResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventLabelTokenizationAudit
+        ?.acceptedResidualCount ?? null,
+    retainedSourceEventLabelTokenizationResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventLabelTokenizationAudit
+        ?.residualCount ?? null,
+    retainedSourceEventLabelTokenizationFirstBlockingResidualId:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventLabelTokenizationAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedSourceEventLabelTokenizationFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventLabelTokenizationAudit
+        ?.firstMissingRetainedInputs ?? null,
+    retainedSourceEventLabelTokenizationAccepted:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventLabelTokenizationAudit
+        ?.retainedSourceEventLabelTokenizationPass ?? null,
     retainedSourceEventLabelSyntaxRuleAuditSchema:
       equalFrequencyEnergyRadiusAudit.retainedSourceEventLabelSyntaxRuleAudit
         ?.schema ?? null,
@@ -59777,6 +60797,11 @@ function printSummary(report, absoluteOutputPath) {
       equalFrequencyAudit.retainedSourceEventIdAcceptanceAttemptAudit ?? null;
     const retainedSourceEventCandidateIdentityAudit =
       equalFrequencyAudit.retainedSourceEventCandidateIdentityAudit ?? null;
+    const retainedSourceEventLabelStringAcceptanceAudit =
+      equalFrequencyAudit.retainedSourceEventLabelStringAcceptanceAudit ??
+      null;
+    const retainedSourceEventLabelTokenizationAudit =
+      equalFrequencyAudit.retainedSourceEventLabelTokenizationAudit ?? null;
     const retainedSourceEventLabelSyntaxRuleAudit =
       equalFrequencyAudit.retainedSourceEventLabelSyntaxRuleAudit ?? null;
     const retainedSourceEventLabelAcceptanceAudit =
@@ -59785,6 +60810,28 @@ function printSummary(report, absoluteOutputPath) {
       equalFrequencyAudit.retainedSourceEventIdentityConstructionAudit ?? null;
     const retainedSourceEventIdentityAcceptanceAudit =
       equalFrequencyAudit.retainedSourceEventIdentityAcceptanceAudit ?? null;
+    if (retainedSourceEventLabelStringAcceptanceAudit) {
+      console.log(
+        [
+          "retained source-event label string:",
+          retainedSourceEventLabelStringAcceptanceAudit.status,
+          `current=${retainedSourceEventLabelStringAcceptanceAudit.currentEvidenceResidualCount}/${retainedSourceEventLabelStringAcceptanceAudit.residualCount}`,
+          `accepted=${retainedSourceEventLabelStringAcceptanceAudit.acceptedResidualCount}/${retainedSourceEventLabelStringAcceptanceAudit.residualCount}`,
+          `first=${retainedSourceEventLabelStringAcceptanceAudit.firstBlockingResidualId}`,
+        ].join(" ")
+      );
+    }
+    if (retainedSourceEventLabelTokenizationAudit) {
+      console.log(
+        [
+          "retained source-event label tokenization:",
+          retainedSourceEventLabelTokenizationAudit.status,
+          `current=${retainedSourceEventLabelTokenizationAudit.currentEvidenceResidualCount}/${retainedSourceEventLabelTokenizationAudit.residualCount}`,
+          `accepted=${retainedSourceEventLabelTokenizationAudit.acceptedResidualCount}/${retainedSourceEventLabelTokenizationAudit.residualCount}`,
+          `first=${retainedSourceEventLabelTokenizationAudit.firstBlockingResidualId}`,
+        ].join(" ")
+      );
+    }
     if (retainedSourceEventLabelSyntaxRuleAudit) {
       console.log(
         [
