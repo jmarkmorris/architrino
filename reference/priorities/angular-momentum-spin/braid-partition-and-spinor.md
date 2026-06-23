@@ -755,6 +755,21 @@ The nontrivial $2\pi$ lift must act on causal-root ledgers, phase branches, caus
 
 If $\mathcal T_{\gamma_{2\pi}}\tilde q=\tilde q$, the ordered frame closes as an ordinary $SO(3)$ object. If $\mathcal T_{\gamma_{4\pi}}\tilde q\ne\tilde q$, the proposed two-sheet lift fails as a fermion spinor closure target.
 
+**Exchange-statistics hard wall.** The ordered-frame $2\pi/4\pi$ holonomy target is necessary for spinor closure, but it is not by itself the full spin-statistics proof. Fermionic exchange requires a two-assembly loop. For an accepted ordered branch space $\mathcal Q_B^{\mathrm{ord}}$, define the identical-pair configuration space
+$$
+C_2(\mathcal Q_B^{\mathrm{ord}})
+=
+\left((\mathcal Q_B^{\mathrm{ord}}\times\mathcal Q_B^{\mathrm{ord}})\setminus\Delta\right)/S_2,
+$$
+where $\Delta$ removes coincident retained assembly configurations and $S_2$ identifies the two effective slots. The exchange proof must derive a branch-history holonomy
+$$
+\eta_{\mathrm{ex}}:
+\pi_1\!\left(C_2(\mathcal Q_B^{\mathrm{ord}})\right)
+\longrightarrow
+\{\pm1\}
+$$
+from framed Noether braid transport, causal-root ledgers, component-resolved causal-writhe data, and total angular-momentum conservation. The fermionic class requires the exchange generator to map to $-1$ while the bosonic or coherent planar class maps to $+1$ or to a symmetric occupation quotient. If $\eta_{\mathrm{ex}}$ is trivial on the realized branch component, or if the quotient removes the loop as gauge, the antisymmetric exchange projector has not been recovered from assembly topology and remains an inserted effective rule.
+
 In the planar alignment limit,
 
 $$

@@ -1,17 +1,18 @@
-# Master-Equation Closure for Lorentz, GR, Quantum, and Core Dynamics
+# Master-Equation Closure and Certified Eigen-Braid Root
 
 ## Workstream Metadata
 
 - Kind: `priority`
 - Rank: `1`
-- Value: `35.34`
-- Cost: `5.5`
-- ROI: `6.43`
+- Value: `43.13`
+- Cost: `6.0`
+- ROI: `7.19`
 - Status: `active`
 
 ## Task Queue
 
-1. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch
+1. `certified_eigen_braid` — Exhibit one certified eigen-braid branch with a populated retained packet: dual-mollified law, signed causal-root complex $(C_+,C_-)$, positive Jacobian floor $\nu_J>0$, inactive-gap and finite-memory rows, bounded $\mathcal R_{\mathrm{EOM}}$ and $\mathcal R_{\mathrm{per}}$, closed energy/action and Noether wake-history rows, and a projected non-symmetry Floquet or Conley margin. Status: `active`. Depends on: none.
+2. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch
    spiral roots realize negative weighted tangential drive with positive
    Jacobian floors and finite memory depth, using the promoted variable-pitch
    formulas, radial-turn inequality, and weighted tangential obstruction test.
@@ -101,8 +102,8 @@
    `sampled_remainder_constants_unstable` because the adjacent sampled $C_2$
    change is about $0.731$; it is therefore diagnostic support only until
    stable or outward constants close on the same A1 boxes. Depends on: none.
-2. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
-3. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
+3. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `certified_eigen_braid`.
+4. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
 
 ## Scope
 
@@ -110,16 +111,54 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../c
 
 This file remains the control surface for the workstream. No sibling detailed priority file is needed yet; if the program grows, the natural split is one action-kernel / Noether-boundary packet, one circular/spiral closure packet, and one Lorentz/GR bridge packet.
 
+## Closure Reprioritization 2026-06-22
+
+The workstream root is now the first certified eigen-braid. The causal-action theorem spine, signed delay-map theorem pack, circular obstruction, and forward-root-starvation propositions give the architecture a closed grammar, but they do not yet exhibit a stable assembly. Every downstream coefficient program inherits that absence: mass, Lorentz/GR coefficients, quantum Born weights, spin-statistics, and cosmology can develop forms and residual routing, but they cannot promote coefficient-level derivations until at least one retained eigen-braid exists.
+
+The immediate target is not the bare circular MCB. Current circular rows make the partner-only tangential obstruction and high-speed circular no-go too strong to treat the bare circular branch as the likely first success. The preferred constructive search is a collinear breather or a non-circular signed-sheet branch with $s\ge\pi/2$, where the negative self-sheet can supply an internal tangential cancellation channel. The branch-level cohomology target is
+$$
+[\omega_T]
++
+[\omega_{\mathrm{recoil}}]
++
+[\omega_{\partial W}]
++
+[\omega_{\mathrm{multi}}]
+=
+0,
+$$
+on the same retained row set. A candidate that cancels only a pointwise tangential residual without closing this cohomology balance remains a search hit, not a certified eigen-braid.
+
+The current priority order is:
+
+| Milestone | Priority | Closure object | Why it moves first |
+| :--- | :---: | :--- | :--- |
+| M0 | P0 | Certified eigen-braid packet | Root blocker for all coefficient programs; no stable assembly is currently certified. |
+| M3 | P0 red-team | Spin-statistics $\mathbb{Z}_2$ holonomy wall | Highest-risk falsification node for fermionic antisymmetry; a negative result reshapes the matter sector. |
+| M2 | P1 analytic | Curvature-bounded no-proliferation lemma | Needed so finite branch certificates cannot hide uncontrolled self-root accumulation. |
+| M1 | P1 consolidation | Branch-symplectic-promotion certificate | One certificate should serve binary closure, dyadic return, effective Hamiltonian promotion, and eigen-braid testing. |
+| M5 | P2 geometry | $|D_{\mathrm{plane}}|\to1\Rightarrow\|Q_{\mathcal A}\|\to0$ | Converts Lorentz, equivalence-principle, and anisotropy rows into one framing-isotropy theorem after a branch exists. |
+| M4 | P2 derived coefficients | Mass map and $\mathcal R_\alpha(A,A')$ across two species | Requires at least two certified eigen-braids, so it is decisive but downstream of M0. |
+
+Form-level mappings may be claimed now only with their inherited blockers. The GR bridge owns the effective metric and weak clock form; the quantum bridge owns the Madelung/Hamilton-Jacobi and Bohr-Sommerfeld forms; the cosmology bridge owns transport-redshift constraints and tired-light exclusion. None of those rows derives its coefficients until the eigen-braid, Noether sea response, and mass-map dependencies close.
+
 ## Foundation/Dynamics Impact 2026-06-21
 
 The updated [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) promotes the causal-root complex, singular-stratum routing, local-to-global branch-chart gluing target, finite-continuation cardinality, starvation scale for forward partner rows, and finite-window wake-escapement boundary identity into the core closure grammar. This does not restart the active spiral/A1 work. It tightens promotion: a local residual or pointwise branch trace is not enough unless the retained chart also reports signed root-complex data, fold versus higher-stratum routing, finite memory, overlap/gluing consistency where a global claim is made, and boundary wake-history charges on the same retained row set.
 
 Practical condition: active proof and simulation packets should treat this as `schema_update_required` for promoted branch certificates, not as rejection of existing diagnostics. Existing finite-collar, transport, and action-kernel rows remain useful evidence, but theorem-level promotion now needs the causal-root section data that lets local branch charts glue into a finite labeled continuation family.
 
+## Foundation/Dynamics Impact 2026-06-22
+
+The latest [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) refinement sharpens the same closure burden without restarting the workstream. A promoted branch certificate should now report the branch-chart local inverse data behind $\mathfrak B(\Gamma,\mathcal S;h,\eta,\epsilon_c)$, the $H^0$ global-section count for finite continuation, any $\check H^1$ gluing obstruction, separate $\eta$ versus $\epsilon_c$ regulator status, finite-window degree changes caused by memory-boundary starvation, and any $\ell=2$ quadrupole leakage $Q_A$ when a moving-loop Lorentz checkpoint is used.
+
+Practical condition: this is still `schema_update_required`, not `start_over`. Existing circular, spiral, A1, transport, finite-collar, and action-kernel rows remain valid diagnostics. The promotion threshold is higher: no branch chart is theorem-level until local reconstruction conditioning, gluing, regulator separation, memory-boundary degree bookkeeping, and no-proliferation scope are reported on the same retained row set.
+
 ## Promotion Map
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
+| `certified_eigen_braid` | This file, [Tri-Binary Configuration Space](../../../content/markdown/aaa/dynamics/tri-binary-configuration-space.md), [assembly topological charge](../../../content/markdown/aaa/dynamics/assembly-topological-charge.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), and the active proof-program packets | [tri-binary-configuration-space](../../../content/markdown/aaa/dynamics/tri-binary-configuration-space.md), [assembly-topological-charge](../../../content/markdown/aaa/dynamics/assembly-topological-charge.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) | One replayable retained branch packet reports the same causal-root ledger, signed-degree refinement, Noether wake-history charges, finite-memory window, group-velocity/response-center row, assembly topological charge, and positive non-symmetry stability margin under refinement. |
 | `circular_asymptotics` | This file and [circular-interval-certificate-report](circular-interval-certificate-report.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding and large-$\beta$ circular self-force asymptotics are extended beyond the current leading-order footholds. |
 | `spiral_branch_chart_test` | [spiral-branch-chart-certificate](spiral-branch-chart-certificate.md), [spiral-branch-chart-interval-report](spiral-branch-chart-interval-report.md), [spiral-vp1-current-interval-rows](spiral-vp1-current-interval-rows.json), [spiral-a1-current-interval-rows](spiral-a1-current-interval-rows.json), [spiral-a1-nonconstant-time-law-chart](spiral-a1-nonconstant-time-law-chart.md), [spiral-a1-retained-memory-profile](spiral-a1-retained-memory-profile.md), [spiral-a1-retained-memory-transport-lemma](spiral-a1-retained-memory-transport-lemma.md), [spiral-a1-finite-memory-transport-sampled-report](spiral-a1-finite-memory-transport-sampled-report.md), [spiral-a1-radial-transport-jet-report](spiral-a1-radial-transport-jet-report.md), [spiral-a1-second-variation-remainder-bound](spiral-a1-second-variation-remainder-bound.md), [spiral_a1_finite_memory_transport.py](spiral_a1_finite_memory_transport.py), and [spiral_branch_chart_certificate.py](spiral_branch_chart_certificate.py) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../dyadic-lock/dyadic-lock.md) | One admissible variable-pitch candidate reports partner and self roots, positive Jacobian floors, finite memory depth, radial-turn status, and weighted tangential-drive verdict with outward interval rows; for A1 specifically, the gate is now to certify or refute finite-collar radial closure after sampled endpoint-slope cancellation, while preserving the retained positive $C^2$ profile class, tangential transport, inactive gaps, Jacobian floors, finite memory, and the $3+1$ retained ledger. |
 | `lorentz_gr_bridge` | [lorentz-gr-bridge-handoff](lorentz-gr-bridge-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving tri-binary contraction and clock retuning are extracted first; only after that independent moving-assembly packet closes may coarse-grained medium response be used for weak-field GR and PPN targets. |
@@ -178,6 +217,7 @@ identify the admissible finite-amplitude channel that prevents such a bound.
 
 ## Live Targets
 
+- First certified eigen-braid packet for a six-body Noether braid branch, preferably a collinear breather or non-circular signed-sheet branch rather than the bare circular MCB.
 - Numerical branch-chart evaluation of the normalized delayed-interior characteristic-tail kernel and its Noether wake-history boundary terms under the stated pullback contract.
 - Bare-void branch response tensor for isolated assemblies, computed from branch-chart momentum susceptibility before Noether sea dressing.
 - Full 3D translating tri-binary NFDE / DDE control for emergent $\gamma$-scaling.

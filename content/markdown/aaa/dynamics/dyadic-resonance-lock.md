@@ -4,7 +4,7 @@ This chapter studies resonance lock for the nested Outer, Middle, and Inner bina
 
 It should be read together with [Binary Dynamics](binary-dynamics.md), [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), and [Noether Braid](../noether-braid/noether-braid.md), which provide the assembly geometry and scale-setting context for the lock relations derived here.
 
-The level distinctions matter throughout. Ontologically, the Outer, Middle, and Inner binaries are assembly layers built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. Inferentially, an integer lock is selected only after the phase-bundle holonomy, cancellation score, and stability gap all favor the same branch.
+The level distinctions matter throughout. Ontologically, the Outer, Middle, and Inner binaries are assembly layers built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. Inferentially, an integer lock is selected only after the phase-return degree/holonomy, cancellation score, and stability gap all favor the same branch.
 
 This chapter keeps the field speed $c_f$ explicit rather than setting it to one. We work with branch labels $k\in\{O,M,I\}$. Here $r_k$ is the characteristic layer radius and $v_k=\|\mathbf{v}_k\|$ is the scalar tangential speed of one member of layer $k$ around that layer's center.
 
@@ -77,6 +77,13 @@ $$
 Plain language: for any one ring, if we know any two of frequency, tangential speed, and radius, then the third is fixed.
 
 This identity is exact. It is not an assumption, and it does not select a lock by itself.
+The logical spine is therefore:
+
+1. **Kinematics:** $v_k=2\pi f_k r_k$ relates speed, frequency, and radius without introducing topology.
+2. **Integer closure:** Assumption 2 is the only place where the integer pair $(m,n)$ enters; it turns frequency commensurability into return-map degree/holonomy data.
+3. **Selection:** Assumption 4 and the finite-$\eta$ return map decide whether one already-integer-labeled sector is dynamically preferred.
+
+Everything before Assumption 2 is topology-free kinematics. Everything after Assumption 2 is selection among sectors that already carry integer phase-return data.
 
 ### Assumption 1 (Middle Caustic-Grazing Closure)
 
@@ -178,7 +185,15 @@ $$
 (\mathrm{mod}\ 2\pi)
 $$
 
-on the locked branch. Fixed relative phase then says these one-forms are flat on the retained return chart: their integrated values do not drift, and the constants $\phi_{MO}^\ast,\phi_{IO}^\ast$ are the residual flat-connection data. In the language of [Effective Lagrangian](effective-lagrangian.md#ordinary-hamiltonian-orientation), the integers $(m,n)$ are the phase-bundle winding data that make the reduced action-angle chart globally replayable rather than merely local.
+on the locked branch. Fixed relative phase then says these one-forms are flat on the retained return chart: their integrated values do not drift, and the constants $\phi_{MO}^\ast,\phi_{IO}^\ast$ are the residual flat-connection data. The discrete and continuous pieces should be kept separate:
+
+$$
+(m,n)=\text{covering degrees over }S^1_O,
+\qquad
+(\phi_{MO}^\ast,\phi_{IO}^\ast)=\text{flat-connection moduli}
+$$
+
+Thus the lock is a flat relative-phase connection with integer holonomy, not a literal first Chern class over the outer phase circle. In the language of [Effective Lagrangian](effective-lagrangian.md#ordinary-hamiltonian-orientation), the integers $(m,n)$ are the phase-return degree data that make the reduced action-angle chart globally replayable rather than merely local.
 
 The phase-bundle picture also requires genuine three-dimensional layer independence. Let $\hat{\mathbf{n}}_O,\hat{\mathbf{n}}_M,\hat{\mathbf{n}}_I$ be the orbital-plane normals of the three layer binaries and define
 
@@ -192,6 +207,11 @@ D_{\mathrm{plane}}
 $$
 
 The reduced $T^3$ lock is nondegenerate only while $D_{\mathrm{plane}}\neq0$. Mutual orthogonality gives $|D_{\mathrm{plane}}|=1$, while horizon-alignment or coplanar degeneration drives $D_{\mathrm{plane}}\to0$ and collapses the three-circle bundle to a lower-dimensional projection. The determinant is therefore the natural order parameter for the loss of dyadic precession at alignment.
+For a promoted finite-$\eta$ chart this is a conditioning floor,
+$$
+|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0.
+$$
+It is the phase-bundle analogue of the basis-conditioning and aperture floors in the frame-construction and detection chapters: $D_{\mathrm{plane}}\to0$ means the three plane normals no longer define a stable oriented frame. The codimension-one wall $D_{\mathrm{plane}}=0$ is also where the near-orthogonal tri-binary phase chart degenerates toward a coplanar cyclic sector, so crossing it is a sector-wall event rather than a harmless coordinate limit.
 
 ### Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)
 
@@ -269,6 +289,7 @@ $$
 \text{sum of the other two}
 $$
 The lemma is only a harmonic support statement. It shows where cancellation is possible; it does not show that the branch-derived amplitudes or the return-map stability actually select the dyadic lock.
+The selection therefore has two independent requirements. The topological requirement is that the all-layer resonance block is nonempty; for the dyadic candidate this is the $\nu=4$ block. The dynamical requirement is that the branch-derived complex amplitudes in that block can close a polygon after the caustic-weighted middle contribution is included. The first requirement belongs to the covering structure; the second belongs to the finite-$\eta$ delayed dynamics and cannot be inferred from topology alone.
 
 Topologically, the same $\nu=4$ statement says the dyadic lock is the first common cover of the three phase circles. The covering maps can be written
 
@@ -281,6 +302,11 @@ T^I
 $$
 
 when $m$ divides $n$. The dyadic case $m=2,\ n=4$ is the minimal nontrivial self-similar cover because each layer double-covers the one above it. More generally, self-similar covers obey $n=m^2$; after $1{:}2{:}4$, the next such comparison family is $1{:}3{:}9$, not $1{:}2{:}3$ or $1{:}3{:}6$. This does not prove the dyadic branch wins dynamically, but it explains why $1{:}2{:}4$ is the first topologically clean candidate before the amplitude calculation begins.
+Equivalently, the resonance blocks are the isotypic components of the integer action generated by the lock, and $\nu=\operatorname{lcm}(1,2,4)=4$ is the first common period of all three circles. The dyadic tower is the unique minimal repeated cover
+$$
+S^1\xleftarrow{\times 2}S^1\xleftarrow{\times 2}S^1
+$$
+among non-identity integer towers. This is why the dyadic family is also the natural candidate for a renormalization-style fixed point in the truncation analysis: repeated double covering is the simplest scale-similar phase organization.
 
 ### Non-Assumptions
 
@@ -440,7 +466,11 @@ $$
 C_{\eta}\,a^{-p_{\mathrm{fold}}}
 $$
 
-with $p_{\mathrm{fold}}$ fixed by the caustic normal form and the regulator. The finite-depth proof must therefore report the middle-caustic spectral exponent or cutoff, not only assert that high harmonics are small. In the RG analogy, the flat outer and inner harmonics are irrelevant tails, while the middle caustic block is the marginal channel that can still affect selection beyond the first all-layer block.
+with $p_{\mathrm{fold}}$ fixed by the caustic normal form and the regulator. For a generic Whitney $A_2$ fold, the normal form gives the square-root caustic scaling and the pre-cutoff exponent
+$$
+p_{\mathrm{fold}}=\frac{3}{2}.
+$$
+A cusp or higher catastrophe would change this exponent and therefore change the truncation budget. The finite-depth proof must therefore report the middle-caustic spectral exponent or cutoff, not only assert that high harmonics are small. In the RG analogy, the flat outer and inner harmonics are irrelevant tails, while the middle caustic block is the marginal channel that can still affect selection beyond the first all-layer block.
 
 For a candidate lock $(m,n)$, define the tail score
 $$
@@ -471,6 +501,13 @@ against the truncation error. A lock is selected by the finite calculation only 
 $$
 \Delta C_L>2\varepsilon_L
 $$
+For the generic $A_2$ fold exponent, the middle tail dominates the smooth outer and inner tails:
+$$
+|A_{M,a}|^2=O(a^{-3}),
+\qquad
+\varepsilon_L=O(L_{\mathrm{eff}}^{-2}).
+$$
+Thus a practical finite-depth certificate must choose $L_{\mathrm{eff}}$ large enough that the bound implied by $L_{\mathrm{eff}}^{-2}$ is less than $\frac12\Delta C_L$ on the same branch chart. This is a stopping rule for the selection calculation, not a new assumption about which lock wins.
 
 This turns "higher harmonics are small" into a checkable theorem target tied to the same branch-derived amplitudes used in
 $$
@@ -516,6 +553,16 @@ G_{\mathrm{rel}}
 $$
 
 where $T_{\mathrm{global}}$ is the global time or phase shift, $\mathfrak{so}(3)_{\mathrm{rot}}$ is the rigid spatial-rotation tangent space, $T_{\mathrm{flat}}=\operatorname{span}\{(\delta\phi_{MO},\delta\phi_{IO})\}$ is the flat-connection moduli space, and $G_{\mathrm{rel}}$ contains any declared relabeling symmetry of the retained branch chart. A lock is dynamically stable only if the return map contracts on the complement of $G$ and the flat-modulus directions remain genuinely neutral. If a flat-modulus direction becomes unstable, the frequency commensurability may remain while Assumption 3 fails through relative-phase drift.
+The quotient rule is strict. A direction in $T_{\mathrm{flat}}$ is treated as a symmetry only when the holonomy-defect coordinate
+$$
+\Theta(t)
+=
+\left(
+\phi_{MO}(t)-\phi_{MO}^\ast,\,
+\phi_{IO}(t)-\phi_{IO}^\ast
+\right)
+$$
+has zero Floquet exponent on the retained return map. If $\Theta$ has a positive exponent, the same direction is a lock-breaking instability, not a quotient direction. This is the tri-binary version of the embedded-binary warning in [Binary Dynamics](binary-dynamics.md): a reduced subsystem's apparent neutral direction cannot be removed unless it is neutral for the full retained branch chart.
 
 If the minimizer turns out to be the outer-normalized lock $1{:}2{:}4$, equivalently $(m,n)=(2,4)$, then the dyadic hierarchy would be a derived selection result rather than a starting assumption.
 
@@ -595,5 +642,10 @@ $$
 $$
 
 The two mechanisms can both reduce exposed causal-wake leakage, but they do it through different topology. Planar cyclic symmetry cancels inside one plane; the dyadic tri-binary lock distributes the phase-bundle covering across three independent orbital planes. The $\mathbb{Z}_3$ identity should therefore not be used as evidence for or against the frequency-selection assumptions above.
+The separating wall is the plane-degeneracy condition
+$$
+D_{\mathrm{plane}}=0.
+$$
+On one side, the near-orthogonal sector carries three independent phase circles and covering data. On the wall, the phase chart collapses into a coplanar cyclic configuration where cancellation is representation-theoretic inside one plane. Crossing this wall is therefore a change in cancellation topology, not a smooth deformation inside one sector. The reachable theorem target is that the dyadic sector and the coplanar $\mathbb{Z}_3$ sector cannot be connected by a path that preserves both $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$ and a positive non-symmetry Floquet gap.
 
 For neighboring closure problems, see [Planar Bridge Closure](../proof-programs/planar-bridge-closure.md) and [Horizon Chirality](../spacetime/horizon-chirality.md).

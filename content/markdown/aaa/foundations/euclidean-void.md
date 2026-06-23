@@ -77,6 +77,12 @@ O,
 $$
 The void contribution is exactly zero. Effective curvature, effective expansion, and effective anisotropy may be recovered from Noether sea state, assembly clock/ruler response, signal transport, and observer reconstruction, but they cannot be charged to the Euclidean container.
 
+This zero term is also a topology-and-bundle statement. Because the void is $\mathbb{R}^3$, it is contractible and parallelizable; its orthonormal frame bundle is globally trivial,
+$$
+F(\mathbb{R}^3)\cong \mathbb{R}^3\times SO(3).
+$$
+The flat Levi-Civita connection therefore has trivial holonomy. There is no ambient bundle curvature, monodromy, or topological obstruction that can supply effective curvature or an assembly label on behalf of the container.
+
 > **Plain language:** The void is ordinary three-dimensional Euclidean space with the familiar straight-line distance formula. Any two points have a unique, well-defined separation.
 
 ## Flat Geometry and Topology
@@ -105,6 +111,8 @@ $$
 whose solutions are straight lines.
 
 Topologically, the void is fixed as $\mathbb{R}^3$: contractible, simply connected, and without substrate-level topology change. Topological complexity such as linking, winding, particle identity, and assembly patterning resides in architrino worldlines and assembly configurations within the void, not in the topology of the void itself.
+
+Consequently, topological protection in $\mathbb{A}\mathbb{A}\mathbb{A}$ is not supplied by nontrivial cycles or torsion in the ambient container. Linking, framing, and assembly topological charge labels are invariants of worldline and braid configurations inside a trivial ambient space. They are protected only by branch-preserving deformation barriers, causal-root folds, collision or transversality floors, and finite action or energy gaps.
 
 ## Canonical Coordinates and Event Identity
 
@@ -293,6 +301,8 @@ Only physical interactions can bend a trajectory. The curvature of a trajectory 
 
 Thus deviations from straight-line motion arise from causal wakes, self-interaction, assembly structure, and medium response, not from spatial curvature.
 
+Substrate force terms must also carry provenance. A deviation from straight motion is admissible only when it is sourced by a causal-wake contribution, a self-hit row, an assembly interaction, or Noether sea response. A transverse or velocity-dependent term with no wake or medium provenance is a coordinate artifact of a non-inertial chart, or else it is not a substrate force in the ontology.
+
 ## Forbidden Transformations
 
 Allowed spatial isometries of the Euclidean void are those that preserve the Euclidean spatial metric:
@@ -330,13 +340,20 @@ a_{\mathrm{eff}}(t)=\mathcal{A}[\mathcal{N}_{\mathrm{sea}}(t),O(t)]
 $$
 Here $\mathcal{N}_{\mathrm{sea}}(t)$ denotes the relevant Noether sea state variables, and $O(t)$ denotes observer records and calibration data. The formula is a schematic inference map into the observer-level metric, not a new substrate law.
 It yields a scalar global scale factor only when the retained Noether sea record and observer family are statistically homogeneous and isotropic over the declared averaging cell. Without that condition, the honest output is a local or tensorial effective metric summary such as $g^{\mathrm{eff}}_{\mu\nu}(\mathbf{x},t)$, or an anisotropic scale response $a_{\mathrm{eff},ij}(\mathbf{x},t)$, not a single FRW-style $a_{\mathrm{eff}}(t)$.
+When a tensorial scale response is retained, the scalar FRW projection is the trace
+$$
+a_0(\mathbf{x},t)=\frac{1}{3}h^{ij}a_{\mathrm{eff},ij}(\mathbf{x},t),
+\qquad
+a_{\langle ij\rangle}=a_{\mathrm{eff},ij}-a_0 h_{ij}.
+$$
+The scalar scale-factor summary is admissible only in a sector where the trace-free obstruction $a_{\langle ij\rangle}$ is below the declared isotropy tolerance. The same obstruction appears as ruler anisotropy in response tensors such as $B_{ij}$ and in Hughes-Drever-style orientational residuals; it is a medium-and-assembly response question, not a hidden anisotropy of the void.
 They must not be interpreted as
 $$
 h_{ij}(t)=a_{\mathrm{eff}}^2(t)\delta_{ij}
 $$
 for the Euclidean void. The substrate spatial metric remains $h_{ij}=\delta_{ij}$, flat and unchanging, while any effective cosmological expansion factor belongs to observer-level metric reconstruction.
 
-This no-expanding-void commitment creates a specific observational burden. Any medium-and-observer redshift mechanism must still recover the tested expansion signatures normally carried by an FRW scale factor: the Tolman surface-brightness scaling $B_{\mathrm{obs}}\propto(1+z)^{-4}$ after the declared distance map is applied, supernova light-curve time dilation $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, and CMB temperature-redshift scaling $T_{\mathrm{CMB}}(z)\approx T_0(1+z)$ in the appropriate thermal record. The mechanism filter is transport rather than loss: the redshift must retune the signal clock rate through Noether sea transport, clock/ruler response, or both. Pure propagation loss can lower received energy, but it does not supply the observed time-dilation or thermal scaling rows. A fixed-void model that supplies redshift only by generic scattering loss, phase degradation, or photon fatigue falls into the excluded tired-light class. The cosmology branch owns the positive recovery: [Cosmology Ontology](../cosmology/cosmology-ontology.md) defines the shared fixed-void variables, [Expansion Mechanism](../cosmology/expansion-mechanism.md) carries the redshift and distance tests, and [CMB](../cosmology/CMB.md) carries the temperature and spectrum tests.
+This no-expanding-void commitment creates a specific observational burden. Any medium-and-observer redshift mechanism must still recover the tested expansion signatures normally carried by an FRW scale factor: the Tolman surface-brightness scaling $B_{\mathrm{obs}}\propto(1+z)^{-4}$ after the declared distance map is applied, supernova light-curve time dilation $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, and CMB temperature-redshift scaling $T_{\mathrm{CMB}}(z)\approx T_0(1+z)$ in the appropriate thermal record. The mechanism filter is transport rather than loss: the redshift must retune the signal clock rate through Noether sea transport, clock/ruler response, or both. Operationally, an admissible transport redshift is a phase-clock reparametrization of the received signal together with the matching distance and intensity bookkeeping; it is not merely attenuation of amplitude or untracked energy loss. Pure propagation loss can lower received energy, but it does not supply the observed time-dilation or thermal scaling rows. A fixed-void model that supplies redshift only by generic scattering loss, phase degradation, or photon fatigue falls into the excluded tired-light class. The cosmology branch owns the positive recovery: [Cosmology Ontology](../cosmology/cosmology-ontology.md) defines the shared fixed-void variables, [Expansion Mechanism](../cosmology/expansion-mechanism.md) carries the redshift and distance tests, and [CMB](../cosmology/CMB.md) carries the temperature and spectrum tests.
 
 ### Plenum of Potential
 
@@ -351,6 +368,8 @@ $$
 \{(a,s):s<t,\ \|\mathbf{x}-\mathbf{s}_a(s)\|_h=c_f(t-s)\}.
 $$
 This set records source identities and emission times whose causal isochrons pass through the point. It is a provenance index set, not a field: it has no independent state variables, stress, density, energy, or equation of motion.
+
+Equivalently, $\mathcal{P}(\mathbf{x},t)$ is the receiver-side fiber of the tagged-emission map before the received wake terms are summed into an untagged potential. The receiver-centered exhaustion problem is therefore a summability question over this fiber: the weighted counting measure on $\mathcal{P}(\mathbf{x},t)$ must converge after the branch-strength, distance, and causal-root Jacobian weights are applied. Convergence of the Noether sea background is not a new property of the void; it is a condition on the population of provenance labels and their wake weights.
 
 In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population. Noether sea density and response variables belong to $\mathcal{N}_{\mathrm{sea}}$; $\mathcal{P}(\mathbf{x},t)$ names only the wake-history provenance labels available at that point.
 

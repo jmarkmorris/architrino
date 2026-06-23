@@ -26,7 +26,11 @@ $$
 \sim
 \kappa\,\sigma_{ij}\frac{\lvert q_iq_j\rvert}{r_{ij}^2\lvert J_{ij}\rvert}\hat{\mathbf{r}}_{ij}
 $$
-Here $J_{ij}$ is not an adjustable constant. If $F_{ij}$ denotes the normalized causal-delay constraint on a retained source-time root, then $J_{ij}=\partial_s F_{ij}$ is the causal-root transversality Jacobian. In the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) notation, $c_fJ_{ij}=\partial_{t_0}g_{ij}$ up to the chosen normalization, so the factor $\lvert J_{ij}\rvert^{-1}$ is the simple-root Jacobian weight, not a free inverse-strength parameter. Using this branch denominator requires the corresponding simple-root floor, for example $\lvert\partial_{t_0}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$, before the schematic acceleration law is treated as an ordinary row rather than a caustic or regularized chart.
+Here $J_{ij}$ is not an adjustable constant. If $F_{ij}$ denotes the normalized causal-delay constraint on a retained source-time root, then $J_{ij}=\partial_s F_{ij}$ is the causal-root transversality Jacobian. In the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) notation, $c_fJ_{ij}=\partial_{t_0}g_{ij}$ up to the chosen normalization, so the factor $\lvert J_{ij}\rvert^{-1}$ is the simple-root Jacobian weight, not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map: the ordinary branch row is valid away from the Whitney-fold set
+$$
+\Sigma_{ij}=\{F_{ij}=0,\ \partial_s F_{ij}=0\},
+$$
+while approaching $\Sigma_{ij}$ moves the calculation into the caustic or fold-resolution chart. Using this branch denominator therefore requires the corresponding simple-root floor, for example $\lvert\partial_{t_0}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$, before the schematic acceleration law is treated as an ordinary row rather than a catastrophe-theoretic transition.
 
 In dimensional form $\kappa$ has units
 $$
@@ -73,7 +77,13 @@ The two polarity names are:
 
 Like polarities repel; unlike polarities attract in the universal interaction law. At the assembly level, electric charge is the coarse bookkeeping summary of the signed architrino inventory. For example, quark and lepton electric charges are built from integer counts of $\epsilon$ units in stable assembly patterns rather than from a separate primitive charge substance.
 
-The normalization $|e|=6\epsilon$ is currently an input parameter and a high-priority explanatory target. In this convention, the architrino polarity unit is primitive for bookkeeping, and the observed electron or positron charge is a six-unit assembly-level multiple. The current structural target is a closed six-polar-site axial-layer branch record: three polar dyads on the H/M/L axial frame, with each polar site occupied by one axial architrino of sign $\pm\epsilon$. If assembly closure retains exactly that six-site axial inventory, the allowed observer-level charge table follows as a finite signed inventory result. Deriving why the Noether braid supplies those six protected polar sites belongs to [Quantum Number Mapping](../assemblies/fermions/quantum-number-mapping.md#the-axial-layer) and [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), not to the primitive definition of an architrino.
+The normalization $|e|=6\epsilon$ is currently an input parameter and a high-priority explanatory target. In this convention, the architrino polarity unit is primitive for bookkeeping, and the observed electron or positron charge is a six-unit assembly-level multiple. The general structural target is a protected six-unit polarity inventory: six sign-carrying architrinos or six retained polarity slots whose signed sum supplies observer-level charge bookkeeping. This parent target does not yet decide whether the six units are internal to the Noether braid, externally coupled to it, embedded in its retained path-history, or realized by a non-axial coupled branch.
+
+The axial-layer model is one charged-fermion realization of that parent target. In that model, the six-unit inventory appears as a closed six-polar-site branch record: three polar dyads in a branch-defined axial frame, with each polar site occupied by one axial architrino of sign $\pm\epsilon$. Labels such as H/M/L are chart labels for a selected branch, not a primitive ordering of the three dyads. The protected-site version of the axial target asks for a finite site-stabilizer action $G_{\mathrm{ax}}$ on the Noether braid framing such that
+$$
+\lvert G_{\mathrm{ax}}\text{-orbit}\rvert=6,
+$$
+with each orbit site carrying a fixed polarity sign. If assembly closure retains exactly that six-unit inventory, the allowed observer-level charge table follows as a finite signed inventory result. Deriving why a charged-fermion Noether braid supplies six protected axial polar sites, or whether a more general non-axial six-unit carrier is required, belongs to [Quantum Number Mapping](../assemblies/fermions/quantum-number-mapping.md#the-axial-layer) and [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), not to the primitive definition of an architrino.
 
 ## Provenance and Persistence
 
@@ -104,7 +114,7 @@ $$
 +
 O(\epsilon_{\mathrm{prov}})
 $$
-This is only the provenance-leakage closure. It says that inaccessible architrino labels do not leak into observer-accessible quantities beyond the residual $\epsilon_{\mathrm{prov}}$. Fermionic and bosonic exchange statistics require the stronger projector residuals owned by [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md). Exact architrino identities remain present in $\mathbb{U}_{\text{now}}$; ordinary particle indistinguishability begins with the leakage bound and then depends on the separate exchange-statistics closure after the Physical Observer projection and effective assembly-state extraction are specified.
+This is only the provenance-leakage closure. It says that inaccessible architrino labels do not leak into observer-accessible quantities beyond the residual $\epsilon_{\mathrm{prov}}$. Fermionic and bosonic exchange statistics require the stronger projector residuals owned by [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md). The coarse leakage residual and the fine exchange-sign carrier are different objects: $\epsilon_{\mathrm{prov}}$ bounds label leakage through $\Pi_{\mathrm{obs}}$, while the substrate carrier for an exchange sign must live in the joint framed-braid class, including protected rows such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when those rows are part of the branch certificate; see [Absolute Time](absolute-time.md#provenance-and-identity-through-time). Exact architrino identities remain present in $\mathbb{U}_{\text{now}}$; ordinary particle indistinguishability begins with the leakage bound and then depends on the separate exchange-statistics closure after the Physical Observer projection and effective assembly-state extraction are specified.
 
 ## Non-Creation and Non-Destruction
 
@@ -139,9 +149,9 @@ The kernel $K$ is only a schematic placeholder here; the exact causal-root sets,
 
 Point-source causal-delay theories carry a known pathology class. Classical point-charge electrodynamics develops divergent self-energy at zero radius, runaway solution branches, and pre-acceleration in Abraham-Lorentz-Dirac-type reductions. This chapter does not solve those issues by naming the architrino primitive. It routes them to the dynamics layer: coincidence handling, self-hit admissibility, regularized or weak-limit kernels, Jacobian/transversality floors, and energy-momentum accounting must remove or quarantine those pathology channels in the branch being used.
 
-A retained point-transceiver branch is admissible as an ordinary ontology branch only if its regularized self-energy and self-force rows remain finite under the declared regulator removal $\eta\to0$ or weak limit, with the active causal roots still protected by a transversality floor such as $\kappa_{\mathrm{hit}} > 0$. If finite self-response or simple-root transversality fails, the branch is not an ordinary point-transceiver case; it must be rejected, moved to a caustic or regularized chart, or quarantined as a pathology channel in the dynamics chapter.
+A retained point-transceiver branch is admissible as an ordinary ontology branch only if its regularized self-energy and self-force rows remain finite under the declared regulator removal $\eta\to0$ or weak limit, with the active causal roots still protected by a transversality floor such as $\kappa_{\mathrm{hit}} > 0$. The two singular loci are not the same: the coincidence stratum $\{r_{ij}=0\}$ is a spatial point-kernel problem, while the caustic stratum $\{\partial_s F_{ij}=0\}$ is a causal-root fold problem. The former requires the declared spatial or weak-limit regularization; the latter requires a fold-resolution chart and the active-root floor. If finite self-response or simple-root transversality fails, the branch is not an ordinary point-transceiver case; it must be rejected, moved to a caustic or regularized chart, or quarantined as a pathology channel in the dynamics chapter.
 
-Ontologically, the causal wake is a **dynamical geometry**: a source-provenanced interaction structure generated by the path history of the source architrino. It is not a material ether or hidden fluid in the Euclidean void. Distinct wakes superpose perfectly and do not scatter, bind, fragment, or interact with one another as substances. Their entire substrate-level content is therefore computable from the historical trajectories of the source architrinos that emitted them.
+Ontologically, the causal wake is a **dynamical geometry**: a source-provenanced interaction structure generated by the path history of the source architrino. It is not a material ether or hidden fluid in the Euclidean void. Distinct wakes superpose perfectly and do not scatter, bind, fragment, or interact with one another as substances. This linearity is a statement about wake superposition, not about the receiver worldline: a wake can act on any architrino, including its own source, and that receiver response makes the dynamics nonlinear. Their entire substrate-level content is therefore computable from the historical trajectories of the source architrinos that emitted them.
 
 This page fixes the ontological commitments:
 
@@ -214,6 +224,12 @@ $$
 \mathbf{v}_a=\mathbf{0}
 $$
 emits a concentric wake stream centered on one fixed point of the Euclidean void. This state is physically distinct from nonzero motion, where wake centers trace a path and the wake stream becomes non-concentric.
+
+Over a diagnostic interval $I$, the relevant complete-state object is the source-tagged center curve
+$$
+Z_a(I)=\{\mathbf{z}_a(s):s\in I\}.
+$$
+Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
 
 The existence of a stationary architrino is sufficient for choosing a material origin and for exposing concentric stationary-source wakes, but it is not necessary for defining the preferred rest frame. If no architrino is stationary over a diagnostic interval, complete-state reconstruction may still recover the rest-frame structure from source-tagged wake centers. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](detecting-the-absolute-frame.md), [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 

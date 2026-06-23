@@ -10,6 +10,21 @@ The tri-binary hypothesis is a decomposition strategy, not an exhaustion theorem
 
 This also means that the word `binary` names a retained angular-momentum row, not necessarily a perfectly circular two-body orbit at every instant. A certified row may have a conserved or slowly bounded angular-momentum ledger while the actual architrino paths on the retained support are quasiperiodic, braided, or chaotic. On such a row, $f_a$ is a return or winding frequency, $r_a$ is a characteristic lever arm, $s_a$ is a speed row or speed statistic, and $E_a$ is the retained branch-energy row. A circular carrier chart is the cleanest comparison case, not the only admissible path geometry.
 
+In geometric language, the three rows are derived from three retained angular-momentum two-form classes on the branch, not from three assumed circular sub-orbits. Write these classes schematically as
+$$
+[\omega_J^{(a)}],
+\qquad
+a\in\{1,2,3\}.
+$$
+The plane normal $\hat{\mathbf n}_a$ is the Euclidean Hodge-dual direction extracted from that class,
+$$
+\hat{\mathbf n}_a
+=
+\frac{\star[\omega_J^{(a)}]}
+{\|\star[\omega_J^{(a)}]\|},
+$$
+whenever the numerator is nonzero. Thus axis language means a ledger direction derived from the retained branch record. It is not an assumption that constituent paths are axial, circular, or disjoint.
+
 ## Why Three Binaries
 
 The reason to begin with tri-binaries is geometric. Euclidean space has three independent spatial directions, and a stable three-dimensional assembly needs enough internal direction data to define an orientation frame rather than only a planar cycle. A single binary supplies one orbital plane and one plane normal. Two binaries can define a relative angle, but they do not by themselves supply a full nondegenerate three-axis frame. Three binaries can, when their plane normals are independent, define a local three-dimensional frame.
@@ -31,9 +46,25 @@ D_{\mathrm{plane}}
 $$
 The branch is genuinely three-dimensional only when $D_{\mathrm{plane}}\ne0$. Near $|D_{\mathrm{plane}}|=1$, the three planes are close to mutually orthogonal. Near $D_{\mathrm{plane}}=0$, the tri-binary degenerates toward a coplanar or lower-dimensional support. This determinant is therefore a natural order parameter for the transition between a volumetric Noether braid branch and a planar or horizon-aligned branch.
 
+For promotion work this becomes a nondegeneracy floor:
+$$
+|D_{\mathrm{plane}}|
+\ge
+\delta_{\mathrm{plane}}>0.
+$$
+It is the frame-bundle analogue of the Jacobian and separatrix floors used elsewhere: the map from three retained plane normals to an oriented internal frame loses conditioning when this determinant approaches zero. The wall $D_{\mathrm{plane}}=0$ is therefore the coplanar or horizon-aligned stratum where the tri-binary frame ceases to be rank three. In current sector language, this is the boundary between a volumetric near-orthogonal sector and a planar cyclic sector; the solver must determine which side a retained branch actually occupies.
+
 This is a statement about a derived orientation frame, not a claim that the constituent architrino paths are axial. The actual six paths may be braided, quasiperiodic, chaotic, shell-supported, or otherwise noncircular while still emitting retained angular-momentum rows from which principal directions can be extracted. Axis language in this chapter therefore means a ledger or envelope direction derived from the branch record, not a primitive path pattern.
 
 The claim is not that every stable assembly must be an exact tri-binary. The broader [Noether braid](../noether-braid/noether-braid.md) class permits six-body branches before exact binary grouping is certified. The tri-binary search is the minimal exact-binary architecture that can test full three-dimensional frame closure.
+
+Equivalently, the tri-binary locus is a sublocus of the six-body Noether braid configuration class:
+$$
+\mathcal{T}_{3B}^{\mathrm{locus}}
+\subset
+\mathcal{N}_{6\text{-body}}.
+$$
+A six-body branch belongs to this sublocus only when its retained angular-momentum record admits three independent rows, or equivalently a rank-three frame extraction with $D_{\mathrm{plane}}\ne0$. A planar, oblate, or lower-rank Noether braid may still be stable, but it is not a promoted tri-binary until the three-row frame condition is met.
 
 ## General Branch State
 
@@ -88,6 +119,8 @@ where $\mathbf{P}_{\mathfrak B}$ and $\mathbf{J}_{\mathfrak B}$ are the branch-t
 
 This distinction matters for the equivalence-principle and Lorentz-closure programs. In a validated low-energy regime, uniform group velocity should not become an observable composition-dependent force merely because two assemblies carry different internal plane orientations. That is an effective recovery target: the moving branch must retune its clock, ruler, and signal rows so that preferred-frame leakage stays below the declared bounds. It is not a reason to omit $\mathbf{V}_{\mathrm{grp}}$ from the dynamics. The correct statement is that $\mathbf{V}_{\mathrm{grp}}$ is a separate branch-transport variable whose observable leakage must be suppressed by common-channel closure.
 
+This variable is unambiguous only when the response-center theorem target closes on the same branch. The exposed-energy response center, inertial response center, and wake-momentum boundary ledger must agree up to the declared response residual $\mathcal R_{\mathrm{resp}}$. If they do not, the phrase "group velocity of the branch" can point to different moment maps, and the candidate is not ready for eigen-braid promotion. Thus $\mathbf{V}_{\mathrm{grp}}$ is part of the retained record, but its use as a single transport velocity is conditional on center-of-response closure.
+
 ## Eigen-Braid Candidates
 
 An **eigen-braid** is a theorem-target status for a Noether braid branch, not a new primitive substance. A branch is an eigen-braid candidate when its full retained record returns to itself under the delayed dynamics, up to declared symmetries. Since the dynamics are nonlinear and path-history dependent, `eigen` here means a relative fixed point or relative periodic orbit of the branch return map, not an eigenvector of a linear quantum operator.
@@ -107,6 +140,8 @@ g\cdot B_{3B}
 \epsilon_{\mathrm{eig}},
 $$
 on the same retained branch chart $\mathfrak B$, with the non-symmetry return directions carrying a positive stability margin. The metric $d_{\mathfrak B}$ must compare the same branch rows: causal-root ledger, energy/action ledger, angular-momentum rows, phase data, plane-orientation data, response-center motion, group velocity, Noether sea record, and assembly topological charge.
+
+The quotient group $\mathcal G_{\mathrm{sym}}$ is not a convenience list. It must be the neutral group of the retained return map: directions removed from the stability test have zero Floquet exponent because they are declared symmetries of the full branch chart. A direction that is neutral in an isolated sub-row but unstable in the enclosing tri-binary chart is not quotiented. In that sense, the eigen-braid certificate is the branch-symplectic-promotion test evaluated on the tri-binary chart: the finite-memory return map must recur modulo true neutral symmetries while contracting or bounding every non-symmetry direction.
 
 This definition keeps Lorentz behavior downstream. The branch-intrinsic conserved record may later be exported to observer components through a derived moving-assembly map,
 $$
@@ -165,6 +200,15 @@ $$
 $$
 where the weights $w_a$ are declared branch-action, branch-angular-momentum, or energy-row weights and the weighted normal sum is required to be nonzero. This is not yet a theorem: it is the axis-alignment row a solver must populate before claiming that the tri-binary rows faithfully decompose the assembly's conserved angular momentum.
 
+The stronger faithful-decomposition test is spectral. Build the symmetric branch angular-momentum frame tensor
+$$
+\mathsf{J}_{\mathfrak B}^{ij}
+=
+\sum_{a=1}^{3}
+J_a\,\hat n_a^i\hat n_a^j,
+$$
+with $J_a$ supplied by the retained branch-angular-momentum or action row. A promoted tri-binary should show that this tensor has three nonzero eigenvalues and that its eigenframe agrees with the retained normal frame up to the allowed $S_3$ relabeling and sign conventions. If diagonalizing $\mathsf{J}_{\mathfrak B}^{ij}$ produces a different frame, then $\mathcal{R}_{J\mathrm{-axis}}$ is not a mere visualization error: the three retained rows are not a faithful decomposition of the conserved angular-momentum ledger.
+
 The oblate spheroidal envelope is the coarse geometry associated with this decomposition. In the rest branch, $\mathbf{P}_{\mathfrak B}=0$, so the internal angular-momentum axes and plane determinant describe the retained three-dimensional support. In a moving branch, $\hat{\mathbf e}_{P}$ marks the drift direction relative to the Noether sea, and Lorentz-closure asks whether the envelope deforms with a longitudinal-to-transverse ratio
 $$
 \xi
@@ -204,6 +248,13 @@ $$
 \operatorname{fingerprint}(\mathcal T_a),
 $$
 but that quotient is an analysis summary, not the search domain. No branch is rejected merely because a symmetric relabeling has already appeared.
+
+When branch counts, continuation-family cardinalities, or basin weights are reported, the quotient must be applied explicitly. If a physical branch has stabilizer subgroup $\operatorname{Stab}_{S_3}(B)$, then its orbit size in the unquotiented cover is
+$$
+\frac{|S_3|}
+{|\operatorname{Stab}_{S_3}(B)|}.
+$$
+The unquotiented solver rows are useful evidence, but they are not independent physical branches. Any comparison to the finite-continuation family $\mathfrak S_{\Omega,W}^{\mathrm{ME},\eta}$ or to basin measures must reduce by the same $S_3$ orbit accounting rather than overcounting six label copies as six distinct eigen-braids.
 
 The general configuration ratios are
 $$
@@ -252,6 +303,12 @@ $$
 If one retained lever arm is large enough at the common frequency, then that layer has $s_a>c_f$.
 
 This is not a signal-speed claim. The primitive causal wake still propagates at $c_f$. A row with $s_a>c_f$ is a carrier-trajectory row in the retained branch chart. Its importance is dynamical: it changes the causal-root inventory. Super-field-speed carrier motion can create additional self-hit and partner-hit roots, force Jacobian sign changes, and move the branch into the fold and caustic regimes that feed the causal-root ledger. The possibility of one or more super-field-speed layers is therefore a reason to scan the full tri-binary configuration space rather than preselecting a single speed hierarchy.
+
+In a certified row, the important event is not speed alone but the appearance of same-source causal roots with the required transversality floors. Still, $s_a>c_f$ is the natural warning gate for the layer's self-hit signed-root complex:
+$$
+C_+^{(a)}\oplus C_-^{(a)}.
+$$
+A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
 
 ## Stability In A Sea Of Like Assemblies
 
@@ -303,6 +360,15 @@ $$
 $$
 The capture predicate must use the same causal-root, action, energy, and return-map conventions as the core branch. A site is not merely a low potential region. It must preserve the core ledger while giving the added architrino a persistent delayed-return row, finite energy exchange, and bounded phase drift.
 
+Topologically, capture preserves the assembly topological charge of the core branch while augmenting it with an accessory row. If $B_{\mathrm{core}}$ has assembly topological charge $[\mathfrak B_{\mathrm{core}}]_{\mathrm{top}}$, then an admissible captured branch should have
+$$
+[\mathfrak B_{\mathrm{core}}\cup\mathrm{acc}]_{\mathrm{top}}
+=
+[\mathfrak B_{\mathrm{core}}]_{\mathrm{top}}
++\Delta_{\mathrm{acc}},
+$$
+where $\Delta_{\mathrm{acc}}$ is supplied by the accessory row's own causal-root and return ledger while the core entries are unchanged. If the core values of $N_s$, $M_p$, $c_1$, signed degree, or phase-return data change, the event is not capture in this sense; it is a core reconfiguration through a fold, reconnection, or branch surgery.
+
 The architectural question is therefore:
 $$
 B
@@ -315,6 +381,33 @@ B
 \right).
 $$
 This gives the next level of search after core tri-binary stability: how many accessory architrinos can couple to the retained branch, which phase windows and polar regions they occupy, and how their capture changes the energy ledger. If the captured population becomes the six-site fermion organization, the canonical language is axial architrino, axial layer, polar site, polar dyad, and axial inventory.
+
+The six-site axial-layer target should therefore be read as a derived capture pattern, not as an assumed geometry of the core. The search question is whether there is a maximal accessory population whose capture preserves $[\mathfrak B_{\mathrm{core}}]_{\mathrm{top}}$ and organizes into a protected axial inventory. The arrangement may be axial, polar-dyadic, planar-degenerate, or another retained capture architecture until the branch certificate decides it.
+
+## Frame Orthogonality And Framing Anisotropy
+
+The configuration-space program also supplies a compact theorem target for anisotropy leakage. A faithful rank-three tri-binary has two related order parameters: the frame determinant $D_{\mathrm{plane}}$ and a trace-free framing quadrupole $Q_A$ extracted from the same retained normal/eigenframe data. Schematically,
+$$
+Q_A^{ij}
+=
+\sum_{a=1}^{3}
+\lambda_a
+\left(
+\hat n_a^i\hat n_a^j
+-\frac{1}{3}h^{ij}
+\right),
+\qquad
+\sum_a\lambda_a=0,
+$$
+with the weights $\lambda_a$ fixed by the retained action, energy, or angular-momentum tensor row rather than chosen after the fact.
+
+The reachable theorem target is:
+$$
+|D_{\mathrm{plane}}|\to1
+\quad\Longrightarrow\quad
+\|Q_A\|\ \text{small under faithful spectral weighting},
+$$
+while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing anisotropy. If this implication is proved for a retained branch class, the same geometric row would suppress Lorentz period anisotropy, clock-orientation leakage, Hughes-Drever-type inertial anisotropy, and scalar-mass anisotropy. This chapter does not prove that result; it defines the configuration-space objects on which that proof can be attempted.
 
 ## Relation To The Dyadic Chapter
 

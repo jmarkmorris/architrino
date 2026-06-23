@@ -40,6 +40,12 @@ $$
 \hat{\mathbf{z}}=\hat{\mathbf{x}}\times\hat{\mathbf{y}}
 $$
 
+Geometrically, the lemma constructs a section of the orthonormal frame bundle over the selected Euclidean point from a nondegenerate ordered tuple. The continuous freedoms removed are the translations and rotations of the Euclidean group
+$$
+E(3)=\mathbb{R}^3\rtimes SO(3),
+$$
+while the remaining parity choice is the disconnected component label of the full orthogonal group, $\pi_0(O(3))\cong\mathbb{Z}_2$. Thus the two signs are not an extra dynamical datum. They are the residual component choice left after the ordered tuple fixes the connected Euclidean-frame freedom.
+
 The construction fails precisely when the first displacement is coincident with the origin or the first two displacements are collinear:
 $$
 \|\mathbf{d}_1\|=0
@@ -54,6 +60,8 @@ $$
 \sin\theta_{\min} > 0
 $$
 on the retained reconstruction window. If this floor is small, the projection defining $\hat{\mathbf{y}}$ is ill-conditioned and the completed $\hat{\mathbf{z}}$ amplifies roundoff or perturbation error. The simulator should then choose a better-conditioned tuple rather than treating the near-collinear basis as an ordinary pass.
+
+This floor is one instance of the non-degeneracy floors used throughout the foundation stack. In each case the retained chart is accepted only when the smallest singular value of the relevant reconstruction map is bounded away from zero. For causal-root charts this is the transversality floor, such as $\lvert\partial_sF_{ij}\rvert\ge\kappa_{\mathrm{hit}}$; for basin partitions it is the separatrix floor; for this frame construction it is the smallest singular value of the Gram map determined by $(\mathbf{d}_1,\mathbf{d}_2)$, equivalently the sine floor above. The common mathematical content is controlled local invertibility: the map has a bounded inverse-Lipschitz constant on the retained chart, so small perturbations of the complete-state data do not create a different branch or frame.
 
 If a fourth architrino $C$ is introduced, it is non-coplanar with the first three exactly when
 $$
@@ -74,7 +82,7 @@ The lemma above is the full construction. Complete-state bookkeeping performs fo
 3. Choose a non-collinear architrino $B$ and use the orthogonal projection of $\mathbf{d}_2$ to define $\hat{\mathbf{y}}$. This fixes the remaining continuous roll around $\hat{\mathbf{x}}$.
 4. Declare a parity convention and set $\hat{\mathbf{z}}=\hat{\mathbf{x}}\times\hat{\mathbf{y}}$, or use a non-coplanar fourth architrino only as a side marker for reporting the chosen convention.
 
-The continuous freedoms removed are translation and rotation. Absolute time zero remains a separate temporal convention. The spatial basis does not need to be re-derived on every slice: once the chart is fixed on $\Sigma_{t_\ast}$, it transports rigidly across absolute-time slices because Euclidean-void points have fixed identity. The delayed root condition $\|\mathbf{s}_{o'}(t)-\mathbf{s}_j(s)\|=c_f(t-s)$ therefore compares positions at different times inside the same spatial chart, not inside separately reconstructed per-slice frames.
+The continuous freedoms removed are translation and rotation. Absolute time zero remains a separate temporal convention. The spatial basis does not need to be re-derived on every slice: once the chart is fixed on $\Sigma_{t_\ast}$, it transports rigidly across absolute-time slices because Euclidean-void points have fixed identity. In the selected $c_f$-isotropic rest frame, the dynamically completed Newton-Cartan connection is the flat representative described in [Absolute Timespace](absolute-timespace.md#newton-cartan-data), so this transport has trivial holonomy and is path-independent. The delayed root condition $\|\mathbf{s}_{o'}(t)-\mathbf{s}_j(s)\|=c_f(t-s)$ therefore compares positions at different times inside the same spatial chart, not inside separately reconstructed per-slice frames.
 
 The reconstruction fails only for degenerate or ill-conditioned reference data: $\|\mathbf{d}_1\|=0$, $\|\mathbf{d}_1\times\mathbf{d}_2\|=0$, or a violated conditioning floor. In that case complete-state bookkeeping must choose a different ordered tuple; the failure is not a failure of the Euclidean void.
 
@@ -86,6 +94,8 @@ V=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)
 $$
 with $V>0$ and $V<0$ selecting opposite sides of the plane after the orientation convention has been declared. The sign of $V$ does not turn coordinate parity into a dynamical handedness law.
 
+Equivalently, $\operatorname{sgn}V$ is gauge data for the selected coordinate chart, while dynamical chirality must be an invariant of the retained branch record. Coordinate parity lives in $\pi_0(O(3))$ for the chart; dynamical chirality lives in the connected-component data of framed worldline or assembly-branch configuration space. A simulation may align these signs as a reporting convention, but a nonzero $V$ does not imply that the assembly itself is chiral.
+
 Dynamical chirality is reserved for an assembly-level handed marker carried by the retained branch record. Ordered precession, axial-frame exposure, reaction provenance, and Noether braid handedness may feed that marker, but the deformation-stable object should be a framed topology invariant, such as framed self-linking parity
 $$
 Lk(\gamma,\gamma^{\mathrm{fr}})
@@ -93,6 +103,8 @@ Lk(\gamma,\gamma^{\mathrm{fr}})
 \operatorname{Wr}(\gamma)+\operatorname{Tw}(\gamma)
 $$
 for a closed framed constituent trace, or the linking number of distinct constituent worldlines. If that branch record supplies a nonzero handed marker, a simulation may choose the coordinate parity convention so that $\operatorname{sgn}V$ reports the same sign as $\operatorname{sgn}(Lk)$. If the framed self-linking or linking row is zero, uncomputed, or not protected under branch-preserving deformation, the coordinate parity remains a reporting convention with no dynamical chirality content.
+
+The self-linking row is defined only on a regular closed return cycle or on an explicitly closed and nonsingular framed trace. A raw open worldline does not by itself carry a deformation-invariant writhe, and a near self-hit or fold crossing is exactly where the framing can degenerate. Chirality is therefore a regular-branch certificate: it is admissible where the retained roots and nonsingular frame have positive floors, including $\kappa_{\mathrm{hit}}>0$ for the relevant causal-root rows. At a fold, reconnection, or framing slip, $Lk$ can jump; that jump is a branch-transition event, not a change in coordinate convention.
 
 ## Coordinate Frames Are Not Ontology
 
@@ -122,6 +134,12 @@ Physical Observers cannot directly measure the complete source-tagged wake-cente
 - **Relative velocities** via Doppler shifts and aberration
 
 The obstruction is structural: no operator acting on the superposed received potential alone recovers the source-tagged center set $\{\mathbf{z}_a(s)\}$ without provenance data already in hand. Source identity, emission time, and wake-center provenance are complete-state ledger entries; once a Physical Observer has only a summed effective record, those tags are not restored by a more clever coordinate reconstruction.
+
+This can be stated as a quotient obstruction. Let $\mathcal{T}$ denote the provenance-tagged configuration record containing source identity, emission time, and wake-center data, and let
+$$
+Q_{\mathrm{erase}}:\mathcal{T}\to\mathcal{T}/\!\sim_{\mathrm{erase}}
+$$
+be the map that forgets the labels retained only by complete-state bookkeeping. The summed observer record lies in the quotient fiber, not in $\mathcal{T}$ itself. Absolute-frame reconstruction requires a section of $Q_{\mathrm{erase}}$ selecting the correct tagged representative. No such section is determined by the superposed potential alone, because many tagged configurations can lie over the same unlabeled record. This is the same kind of label-erasure map that appears in the provenance-leakage bound of [Architrino](architrino.md#provenance-and-persistence).
 
 The reconstruction described here is a **foundational consistency proof**: it shows the theory has the mathematical structure necessary to define absolute rest and an absolute-frame coordinate system **in principle** from complete ontic data. It does not claim that an embedded observer can perform the reconstruction directly. At accessible energies, the Lorentz-closure target is that moving-assembly deformation, clock/ruler retuning, and two-way signal synchronization bound preferred-frame leakage enough that Physical Observers cannot detect the absolute frame operationally, while the frame remains the ontological background beneath the effective geometry.
 

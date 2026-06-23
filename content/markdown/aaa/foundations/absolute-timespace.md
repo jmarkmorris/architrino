@@ -120,6 +120,12 @@ $$
 
 Covariant derivatives then reduce to ordinary partial derivatives, and spatial geodesics within each slice are straight lines. Nonzero coefficients introduced by rotating or accelerating coordinates are non-inertial descriptions of the same fixed substrate, not background curvature.
 
+More geometrically, the compatible-connection freedom is an affine gauge freedom. Relative to a chosen flat rest connection, the rotational part of the Newton-Cartan freedom is modeled by rotation-valued 1-forms,
+$$
+\Omega^1(\mathcal{M})\otimes\mathfrak{so}(3)
+$$
+with the corresponding boost or acceleration terms supplying the usual non-inertial chart data. Thus the family of compatible descriptions is a torsor over the inertial-gauge data, while the wake law selects the unique flat representative in the $c_f$-isotropic frame. Rotating-frame Christoffel symbols are therefore pure-gauge representatives of that same flat $\nabla$; their Riemann curvature remains zero.
+
 ### Non-Inertial Coordinate Terms
 
 A rotating coordinate chart can make ordinary motion acquire extra coordinate terms. If $\mathbf{x}=R(t)\mathbf{x}'$ with angular velocity $\boldsymbol{\Omega}$, then the Cartesian-rest-frame acceleration decomposes as
@@ -137,6 +143,12 @@ $$
 The terms proportional to $2\boldsymbol{\Omega}\times\mathbf{v}'$, $\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf{x}')$, and $\dot{\boldsymbol{\Omega}}\times\mathbf{x}'$ are coordinate descriptions on absolute timespace. They do not add curvature to the Euclidean void, and they do not introduce a substrate magnetic field. Their value is diagnostic: they show how transverse-looking observer equations can arise from a choice of non-inertial chart while the underlying substrate remains $\mathbb{R}\times\mathbb{R}^3$ with the selected flat connection in the Euclidean-void rest frame.
 
 The provenance no-go is strict. A transverse velocity-dependent term produced only by a rotating or accelerating coordinate chart carries no source identity, emission time, causal-root label, or wake-energy ledger entry. It therefore cannot source a physical wake-mediated interaction or an emergent magnetic channel. A genuine transverse interaction must be traced to causal-wake provenance in the Master Equation or to an explicitly derived observer-level reduction of such provenance, not to inertial-coordinate algebra alone.
+
+Equivalently, let $\mathcal{P}[\mathcal{T}]$ denote the provenance payload of a candidate force term $\mathcal{T}$: source identity, emission time, causal-root label, and energy or wake-history row when those data exist. Pure inertial-coordinate terms satisfy
+$$
+\mathcal{P}[\mathcal{T}_{\mathrm{inertial}}]=\varnothing
+$$
+A physical wake-mediated transverse term must instead satisfy $\mathcal{P}[\mathcal{T}]\ne\varnothing$ after reduction to the retained branch record. This separates connection-gauge content from the image of the causal-wake provenance map.
 
 ## No Fundamental 4D Metric
 
@@ -234,7 +246,17 @@ $$
 
 Here $\mathcal{H}_A$ denotes the closed internal path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
 
-The isotropy of $\mathcal{M}^{\mathrm{resp}}_{ij}$ is an assembly-geometry claim, not an unexplained smallness assumption. If the symmetry group of the retained trajectory bundle and closed causal-history ledger has no preferred axis on the probed scale, the tensor response can reduce to $m\delta_{ij}$. If the branch retains an axial layer, six-site axial frame, or other framed orientation data, the leading correction is a quadrupole-like orientational residual in $\mathcal{M}^{\mathrm{resp}}_{ij}$ unless shielding and averaging cancel it. The Hughes-Drever row below is therefore a direct constraint on residual orientational symmetry breaking in the assembly framing.
+The isotropy of $\mathcal{M}^{\mathrm{resp}}_{ij}$ is an assembly-geometry claim, not an unexplained smallness assumption. If the symmetry group of the retained trajectory bundle and closed causal-history ledger has no preferred axis on the probed scale, the tensor response can reduce to $m\delta_{ij}$. If the branch retains an axial layer, six-site axial frame, or other framed orientation data, the leading correction is a quadrupole-like orientational residual in $\mathcal{M}^{\mathrm{resp}}_{ij}$ unless shielding and averaging cancel it. The branch-level carrier can be represented by a symmetric trace-free framing tensor
+$$
+Q_A^{ij}
+=
+\left\langle
+\hat n^i\hat n^j-\frac{1}{3}h^{ij}
+\right\rangle_A^{\mathrm{frame}}
+$$
+where the average is taken over the retained framed trajectory bundle or declared axial frame of the assembly. The Hughes-Drever row below is therefore a direct constraint on residual orientational symmetry breaking in the assembly framing.
+
+The same $Q_A^{ij}$ should feed the matter Hughes-Drever projection, the clock-orientation leakage row $\Delta^{\mathrm{ori}}$, and the ruler or metric-handoff anisotropy carried by $B_{ij}$. This does not prove those rows vanish. It states the economy target: one branch certificate bounding $\|Q_A\|$ should bound all three $\ell=2$ preferred-axis leakages, while $Q_A=0$ marks the limit in which the retained framed trajectory bundle has no preferred quadrupole axis at the tested scale.
 
 The isotropic limit is not merely a simplifying convention. Hughes-Drever-type clock-comparison tests constrain orientation-dependent matter-sector response, so the residual attached to $\mathcal{M}^{\mathrm{resp}}_{ij}$ must be declared alongside clock and photon anisotropy bounds. A representative matter-anisotropy row should track a projected residual such as
 $$
@@ -396,6 +418,16 @@ For standard-matter assemblies, the observer-level relativistic speed limit is a
 
 At the primitive branch level, as constituent architrino speeds approach the wake-speed threshold $c_f$, the constituents increasingly outrun the potential interactions that normally maintain internal closure. The leading side of the assembly encounters a strongly asymmetric wake ledger while trailing structure remains tied to older path-history contributions. The result is severe mechanical deformation rather than a substrate-level prohibition.
 
+A useful theorem-target diagnostic for this deformation is the active-root Euler characteristic of an assembly branch over a return cycle,
+$$
+\chi_{\mathrm{root}}(A)
+=
+\sum_{i,j\in A}
+\sum_{s\in\mathcal{C}_{ij}}
+\operatorname{sgn}\!\left(\partial_sF_{ij}\right)
+$$
+with the sums taken over the retained self-hit and partner-hit rows on the branch chart. On a regular chart this signed count is locally constant. A structural-integrity failure near the wake-speed threshold should therefore appear as a jump in $\chi_{\mathrm{root}}(A)$, or in the more detailed causal-root ledger it summarizes, rather than as a smooth kinematic slowing of the substrate background. This is a diagnostic target for Theorem G, not a proof that every branch fails at the same value of $\|\mathbf{v}\|$.
+
 This structural-integrity claim is the central Lorentz-closure theorem target for this chapter and is restated as Theorem G in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). It must prove more than the qualitative statement that assemblies fail mechanically near $c_f$. A successful recovered observer branch must show that the matter-assembly limiting speed, Noether sea dressed clock/ruler speed, photon-channel speed, and weak-homogeneous calibration speed collapse to one common limit:
 $$
 c_{\mathrm{mat}}^{\mathrm{lim}}
@@ -424,7 +456,11 @@ $$
 =
 \left(1-\frac{v^2}{c_0^2}\right)^{-1/2}
 $$
-The proposed mechanism is one structural claim, not four independent coincidences. Matter transport, clock/ruler retiming, photon transport, and weak-homogeneous calibration must all be projections of the same causal-root ledger through the same Noether sea dressing map in the tested branch. The Lorentz shape is the same claim expressed in deformation variables: near the wake-speed threshold, the leading longitudinal-versus-transverse asymmetry of a closed return cycle must generate the same $\gamma_0(v)$ in envelope shape and phase rate. The proof burden is to derive these relations from that shared ledger, dressing, and assembly deformation law. The theorem target fails if stable matter classes acquire composition-dependent limiting speeds, if $c_\gamma$ remains independently dressed from matter transport in the weak homogeneous branch, or if the leading deformation is non-Lorentzian after the $c_0$ calibration is fixed. The observer "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier only after this common-limit and Lorentz-shape closure is satisfied.
+The proposed mechanism is one structural claim, not four independent coincidences. Matter transport, clock/ruler retiming, photon transport, and weak-homogeneous calibration must all be projections of the same causal-root ledger through the same Noether sea dressing map in the tested branch. The Lorentz shape is the same claim expressed in deformation variables: near the wake-speed threshold, the leading longitudinal-versus-transverse asymmetry of a closed return cycle must generate the same $\gamma_0(v)$ in envelope shape and phase rate. A sharper formulation is that the translating branch's closed-cycle geometry should factor through one deformation family on its orbit moduli,
+$$
+\mathcal{D}(v)=\exp(vK)
+$$
+with a single generator $K$ producing both the envelope ratio and the clock-phase rate at the tested order. If the longitudinal envelope response and the phase-rate response require independent generators, the branch has not recovered Lorentzian shape even if one scalar speed limit happens to match. The proof burden is to derive these relations from that shared ledger, dressing, and assembly deformation law. The theorem target fails if stable matter classes acquire composition-dependent limiting speeds, if $c_\gamma$ remains independently dressed from matter transport in the weak homogeneous branch, or if the leading deformation is non-Lorentzian after the $c_0$ calibration is fixed. The observer "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier only after this common-limit and Lorentz-shape closure is satisfied.
 
 ## Coordinates and Forbidden Transformations
 
@@ -509,7 +545,19 @@ with any neutrality, screening, principal-value, or mean-field subtraction rule 
 
 This is an admissibility lemma for branches and continuum reductions: the branch is well-defined only when the receiver-centered limit exists under the declared subtraction or screening rule, and allowed refinements of the exhaustion do not change the resulting local acceleration. Inverse-square surface dilution alone is not enough in three spatial dimensions because the number of sources in a radial layer grows like $r^2\,dr$. The lemma supplies the convergence condition used by emergence arguments to justify effective locality and metastable assembly behavior.
 
-There is one important homogeneous case where the lemma becomes a theorem rather than a bare admissibility requirement. Its scope is a background-sea result: it guarantees convergence for a statistically neutral far population under the stated mixing assumptions, not for every coherent assembly embedded in that population. Suppose the far population is statistically homogeneous, isotropic, locally neutral, and mixing, with neutrality correlation length $\ell$. Partition space outside a fixed local ball into receiver-centered shells of thickness comparable to $\ell$, and group sources into neutral cells of diameter $O(\ell)$. Let $S_n$ be the vector acceleration contribution from shell $n$ after subtracting the local neutral mean. A shell at radius $r_n\sim n\ell$ contains $N_n=O(n^2)$ effectively independent cells, so signed fluctuations scale like $\sqrt{N_n}=O(n)$ while each cell contribution carries the inverse-square factor $O(r_n^{-2})=O(n^{-2})$. Hence
+There is one important homogeneous case where the lemma becomes a theorem rather than a bare admissibility requirement. Its scope is a background-sea result: it guarantees convergence for a statistically neutral far population under the stated mixing assumptions, not for every coherent assembly embedded in that population. Suppose the far population is statistically homogeneous, isotropic, locally neutral, and vector-mixing, with correlation length $\ell$ for the cell acceleration fluctuations. The required mixing is a condition on the vector sum, not only on scalar polarity neutrality; schematically, after subtracting the local neutral mean,
+$$
+\left|
+\mathbb{E}\!\left[
+\delta\mathbf{a}_{\mathrm{cell}}(\mathbf{r})
+\cdot
+\delta\mathbf{a}_{\mathrm{cell}}(\mathbf{r}')
+\right]
+\right|
+\le
+C\,e^{-\|\mathbf{r}-\mathbf{r}'\|/\ell}
+$$
+or a comparable summable vector-correlation bound. Partition space outside a fixed local ball into receiver-centered shells of thickness comparable to $\ell$, and group sources into neutral cells of diameter $O(\ell)$. Let $S_n$ be the vector acceleration contribution from shell $n$ after subtracting the local neutral mean. A shell at radius $r_n\sim n\ell$ contains $N_n=O(n^2)$ effectively independent cells, so signed fluctuations scale like $\sqrt{N_n}=O(n)$ while each cell contribution carries the inverse-square factor $O(r_n^{-2})=O(n^{-2})$. Hence
 $$
 \mathbb{E}\|S_n\|^2=O(n^{-2})
 $$
@@ -517,7 +565,7 @@ under the declared mixing bound, and therefore
 $$
 \sum_{n=1}^{\infty}\mathbb{E}\|S_n\|^2<\infty
 $$
-The shell series converges in $L^2$ and almost surely by the standard square-summable fluctuation criterion. Thus a homogeneous locally neutral Noether sea record supplies a convergent receiver-centered exhaustion under these assumptions. This result does not prove convergence for arbitrary inhomogeneous or coherent far populations. Every coherent assembly, anisotropic source family, or long-range correlated medium feature on top of the background must supply its own shielding, screening, finite active horizon, or explicit subtraction prescription before its many-source wake sum is treated as closed.
+The shell series converges in $L^2$ and almost surely by the standard square-summable fluctuation criterion. Thus a homogeneous locally neutral Noether sea record supplies a convergent receiver-centered exhaustion under these assumptions. This result does not prove convergence for arbitrary inhomogeneous or coherent far populations. A coherent far dipole texture, long-range orientational correlation, or anisotropic source family can defeat vector cancellation even when scalar polarity neutrality holds. Every coherent assembly, anisotropic source family, or long-range correlated medium feature on top of the background must supply its own shielding, screening, finite active horizon, or explicit subtraction prescription before its many-source wake sum is treated as closed.
 
 These assumptions are not additional ontology. They are the analytic conditions needed for the master equation and simulation approximations to be well-defined on the product background.
 

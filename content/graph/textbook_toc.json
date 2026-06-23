@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 178,
-      "sections": 1444
+      "sections": 1447
     }
   },
   "tocRoot": {
@@ -1632,6 +1632,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
                 "markdownSection": "Accessory-Architrino Capture",
                 "sectionKey": "accessory architrino capture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Frame Orthogonality And Framing Anisotropy",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Frame Orthogonality And Framing Anisotropy",
+                "sectionKey": "frame orthogonality and framing anisotropy",
                 "headingLevel": 2
               },
               {
@@ -6703,6 +6711,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Reproducible Transport Constraints",
+                "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+                "markdownSection": "Reproducible Transport Constraints",
+                "sectionKey": "reproducible transport constraints",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Effective Friedmann Bridge (Comparison Layer)",
                 "markdownPath": "content/markdown/aaa/cosmology/expansion-mechanism.md",
                 "markdownSection": "Effective Friedmann Bridge (Comparison Layer)",
@@ -9204,6 +9220,14 @@
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
                 "markdownSection": "Scoring Lens",
                 "sectionKey": "scoring lens",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Current Form-Level Recoveries",
+                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
+                "markdownSection": "Current Form-Level Recoveries",
+                "sectionKey": "current form level recoveries",
                 "headingLevel": 2
               },
               {

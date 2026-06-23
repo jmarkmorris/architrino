@@ -46,6 +46,10 @@ $$
 \nu_{\mathcal{Q},W,t}
 =
 (\Pi_{\mathcal{Q},W})_*\mu_t
+=
+(\Pi_{\mathcal{Q},W})_*
+\left(\mathcal{F}_{t_0\to t}\right)_*
+\nu_{\mathrm{prep}}
 $$
 
 and the corresponding observer-window entropy is
@@ -57,6 +61,8 @@ k_B\,\mathcal{H}\!\left(\nu_{\mathcal{Q},W,t}\right)
 $$
 
 where $\mathcal{H}$ is the entropy functional appropriate to the retained record measure.
+
+Thus the entropy is evaluated on the composite forgetting map from unresolved preparation history, through deterministic delayed evolution, into the retained record quotient. A quantity is entropy-relevant only when it is not constant on the fibers of this composite map. If two complete histories differ but project to the same retained record, that unresolved fiber contributes to the entropy; if an invariant remains constant across every compatible fiber, it does not create entropy in that coarse-graining.
 
 For a discrete coarse partition with probabilities $p_\alpha$, this reduces to the familiar Gibbs/Shannon form
 
@@ -79,6 +85,8 @@ where $\Gamma_{\mathcal{Q},W(t)}$ is the set of complete microhistories compatib
 Plain language: entropy is not counted over reality in the abstract. It is counted over the alternatives left unresolved after the record map, measure, coarse-graining, and access window have been specified.
 
 The exact-record limit is useful as a guardrail. If the retained partition distinguishes one complete deterministic history from every other complete deterministic history, then the active cell has probability one and the corresponding entropy is zero. That does not mean thermodynamics has disappeared from the world. It means the record has been refined until it no longer asks a thermodynamic question. A thermodynamic macrostate is a physically declared grouping of histories: a pressure, temperature, density, spectral, boundary, apparatus, or control-relevant record that a real system can retain and use.
+
+Equivalently, entropy is a functional on the quotient $\Gamma_t/\!\sim_{\mathcal Q,W}$. Refining the quotient shrinks fibers and cannot increase the log-fiber measure when the underlying preparation measure is held fixed; coarsening the quotient merges fibers and can increase it. The number therefore has physical content only after the quotient map, measure, access window, and comparison job are declared.
 
 ### Receiver Inference Fibers And Provenance Graphs
 
@@ -121,6 +129,8 @@ This is the entropy of the receiver's inference fiber. The electrino/positrino a
 When $\mathcal{H}$ is evaluated as a probability entropy, the restricted measure is normalized on $\Gamma_i^{\mathrm{hit}}(t)$. If the fiber has zero or undefined measure under the declared preparation, the receiver-hit entropy is not licensed for that packet.
 
 For windows with many retained roots, define the causal-wake provenance graph $G_{\mathrm{prov}}(W)$: vertices are retained causal roots in $W$, and two vertices are joined when their roots trace to a common emitter worldline segment in the compatible complete histories. This graph is the common native carrier for three entropy uses below: its connectedness supplies history-backed concordance, its edge cuts supply access-cut entropy, and its boundary-crossing edges supply the wake-escapement contribution to the arrow-of-time ledger.
+
+More precisely, $G_{\mathrm{prov}}(W)$ is the 1-skeleton of the receiver-source provenance complex retained by the packet. Its connected components give the local concordance structure, its cut space gives access-cut entropy, and its boundary operator records which provenance edges leave the retained window. The graph is therefore not an analogy for information. It is the combinatorial record of which emitter labels and path-history distinctions remain recoverable after the hit record has been projected.
 
 ## Minimum Specification
 
@@ -191,6 +201,19 @@ $$
 $$
 
 Here $\mathcal{C}^{\mathrm{ctrl}}_{\mathrm{shield}}$ is the possibly empty class of operations that can lower an assembly's shielding factor in the declared window. If topological assembly protection forbids such operations, $\mathcal{A}_{\mathrm{deshield}}$ is not available to the control family. If shielding is reversible or partially controllable, heat-death language is stronger than exposed-gradient exhaustion and must include the shielded-reservoir term.
+
+This reservoir term is not unlimited. The de-shielding operation must remain inside the same scalar-mass shielding window used by the mass map, so lowering $\zeta(A)$ is constrained by the positivity condition in [Energy](energy.md#emergent-inertia-mass-from-shielded-energy):
+
+$$
+\zeta(A)(1+\delta\mathcal M_0)
+>
+\frac{1}{3}
+\left|
+\mathcal Z_{\mathrm{tf},ab}(A)\delta\mathcal M_{\mathrm{tf}}^{ab}
+\right|
+$$
+
+If a control lowers $\zeta$ past that window, the assembly has stopped being the same matter reservoir whose work availability was being counted. Deep shielding increases the hidden internal-energy store, but it also tightens the allowed de-shielding path because the trace-free exposure and medium-response channels can destroy positive scalar inertial response.
 
 A heat-death statement for that control family means $\mathcal{A}_{\mathrm{use}}$ tends to zero or below the declared operational threshold. It does not prove that every possible future record system, assembly class, or Noether sea access channel has no usable distinction. It proves only the exhaustion of usable gradients and accessible shielded reservoirs for the stated comparison class.
 
@@ -285,6 +308,8 @@ $$
 
 where $\tau_{\text{retune}}$ is the relaxation time for the Noether sea response variables retained by the packet and $\tau_{\text{cycle}}$ is the duration of the reversible-comparison cycle. Clausius entropy is expected to be path-independent only in the regime $\Lambda_{\text{sea}}\ll1$. When $\Lambda_{\text{sea}}\gtrsim1$, the sea carries cycle-scale hysteresis, the heat channel is history-dependent, and $\oint\delta Q_{\mathrm{rev}}/T$ is not a well-defined state function for that record.
 
+In differential-form language, $\delta Q/T$ is an exact 1-form only in the fast-retuning regime where the Noether sea response closes before the comparison cycle completes. When $\Lambda_{\text{sea}}\gtrsim1$, the same form acquires a nonzero period around the cycle: the hysteresis-loop area is the observable obstruction to treating thermodynamic entropy as a state function on that packet. The predicted simulation signature is a loop area that grows with the sea-retuning lag rather than with an independently assigned entropy defect.
+
 Boltzmann entropy, $S=k_B\log \Omega$, maps to the count or measure of complete architrino and assembly histories compatible with the retained macrostate. The textbook counting form is the uniform-weight special case of Gibbs/Shannon entropy:
 
 $$
@@ -364,6 +389,8 @@ G_{\mathrm{prov}}(\Sigma),
 $$
 
 The global record can remain pure or closed because $G_{\mathrm{prov}}$ is connected in the complete history, while the retained subregion is mixed because the edge cut has hidden the complementary provenance.
+
+This gives a native area-law route. The access-cut entropy is bounded by the crossing-edge capacity $|E_{\Sigma}|$: it cannot exceed the log of the compatible assignments carried by provenance edges that thread the cut. For a horizon interface, the terminal-alignment target below becomes the special case in which the crossing-edge density is set by aligned Noether braid patches and their admissible labels $(\chi_u,N_{s,u},M_{p,u})$. The $1/4$ coefficient is then a statement about cut capacity per retained patch area, not a coefficient fitted after a separate horizon entropy has been assumed.
 
 For a coding record with source distribution $P=\{p_i\}$, the Shannon entropy in bits is
 
@@ -459,6 +486,8 @@ $$
 
 on a fixed coarse-graining and boundary convention. In words: observer-window entropy production is bounded below by the retained-history distinctions lost to escaping wakes, up to declared interior production and projection residuals. The thermodynamic arrow is therefore a theorem target about the same causal-wake boundary ledger used by finite-window energy bookkeeping, not a second primitive arrow.
 
+The same memory-boundary flux has several readings in the dynamics stack. As an energy 0-form it is wake escapement; as a corrected symplectic 2-form it is the $\omega_{\mathrm{mem}}$ leak in [Effective Lagrangian](effective-lagrangian.md#effective-hamiltonian-domain-gate); as a momentum 1-form it is the response-center drift obstruction in [Energy](energy.md#energy-conservation-and-exchange); and as a record count it is entropy production. A retained branch is energy-flat, Hamiltonian-promotable, response-center stable, and entropy-flat only when this memory-boundary flux is recurrent over the return window. A secular boundary flux is the common source of apparent dissipation, non-Hamiltonian projection, center drift, and observer-window entropy growth.
+
 ## Second Law And Same-Record Monotonicity
 
 The traditional second law has several equivalent-looking forms only after the comparison class has been fixed. Clausius uses a cycle or reversible-comparison statement, Kelvin-Planck forbids a cyclic device from converting heat from one reservoir wholly into work, Boltzmann says overwhelmingly many compatible microstates lie in larger macrostates, and Maxwell-demon analyses require memory and reset costs to be included. These are not four independent substances called entropy. They are four projections of the same discipline: the complete thermodynamic packet must not shrink the retained compatible-history record for free.
@@ -525,6 +554,8 @@ where all listed quantities are projections of the same $\theta_W$. If entropy i
 
 This rule is why entropy appears as a discipline across many chapters. It protects the Born-rule program from using one ensemble for outcome weights and another for apparatus thermodynamics. It protects horizon thermodynamics from assigning independent entropy, temperature, and stress records. It protects computation-cost claims from treating logical form as a free physical process.
 
+In the language of the core definition, the same-record rule says that entropy, temperature, heat flux, basin weights, and record costs must all factor through one projection of the same fiber. Fitting them from separate ensembles is a split-fiber error: the quantities may be individually meaningful, but the packet has not shown that they are compatible projections of one physical record.
+
 ## Entropy And Absolute Time
 
 Absolute time is the ordering parameter of the substrate law. Entropy does not create it. The causal arrow enters the dynamics through delayed causal wakes: only emissions from $t_0 < t$ can contribute to a receiver at $t$. Thermodynamic, biological, measurement, and cosmological arrows are finite-window consequences of dynamics, boundary conditions, and retained records.
@@ -566,7 +597,7 @@ $$
 }
 $$
 
-with the denominator restricted to the retained incoming roots in the declared window. History-backed records are expected to have $\mathcal{K}\to1$ because the same matter and Noether sea emitters illuminate a neighborhood with correlated causal timing. Isolated fluctuation records have $\mathcal{K}\to0$ unless they also fabricate shared-emitter concordance across neighboring receivers. Thus low-$\mathcal{K}$ configurations are dynamically suppressed by provenance mismatch, and high-$\mathcal{K}$ fluctuation records are costly because they require coherent emitter-history coincidences, not only a memory snapshot.
+with the denominator restricted to the retained incoming roots in the declared window. Equivalently, $\mathcal{K}$ is the local edge-connectivity fraction of $G_{\mathrm{prov}}$: it measures how many retained incoming roots share emitter-worldline edges with neighboring receivers' roots. History-backed records are expected to have $\mathcal{K}\to1$ because the same matter and Noether sea emitters illuminate a neighborhood with correlated causal timing. Isolated fluctuation records have $\mathcal{K}\to0$ unless they also fabricate shared-emitter concordance across neighboring receivers. Thus low-$\mathcal{K}$ configurations are dynamically suppressed by provenance mismatch, and high-$\mathcal{K}$ fluctuation records are costly because they require coherent emitter-history coincidences, not only a memory snapshot. At the present claim level, high-$\mathcal K$ fluctuations are treated as measure-suppressed rather than forbidden; forbiddance would require a separate theorem that no compatible emitter-history assignment exists.
 
 ## Measurement And Computation
 

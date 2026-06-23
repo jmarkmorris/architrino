@@ -106,6 +106,34 @@ This is the compact mass-trace composition formula. It says that scalar mass has
 
 No separate scalar fit row remains in the branch-preserving reversible regime.
 
+The composition formula is usable as a positive scalar mass only inside the scalar-positivity window
+
+$$
+M_{0}^{\mathrm{src}}(A)(1+\delta\mathcal{M}_{0})
+>
+\frac{1}{3}
+\left|
+E_{\text{internal}}(A)
+\mathcal{Z}_{\mathrm{tf},ab}(A)
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right|.
+$$
+
+Equivalently, in the $\zeta E_{\text{internal}}$ notation with $1+\delta\mathcal{M}_0>0$, a conservative sufficient condition is
+
+$$
+\zeta(A)
+>
+\frac{
+\left\|\mathcal{Z}_{\mathrm{tf}}(A)\right\|_h
+\left\|\delta\mathcal{M}_{\mathrm{tf}}\right\|_h
+}{
+3(1+\delta\mathcal{M}_0)
+}.
+$$
+
+This turns shielding into a bounded window. If a branch is strongly trace-free in its exposed pattern, it cannot also take $\zeta$ arbitrarily small while remaining a positive scalar mass source in an anisotropic medium-response record.
+
 ## Composed Trace Quotient-Descent Test
 
 The scalar no-hidden-mass-handle condition is necessary but not sufficient once tensor or pressure response is retained. The whole composed trace must descend through the same quotient.
@@ -379,6 +407,7 @@ The proof chain fails or must demote its claim level if any of the following occ
 | --- | --- |
 | `source-nondescent` | $M_0^{\mathrm{src}}$ changes across representatives identified by the scalar quotient. |
 | `trace-nondescent` | $M_0^{\mathrm{src}}$ descends but the projection of $E_{\text{internal}}\mathcal{Z}_{\mathrm{tf},ab}$ onto $\mathcal{V}_{\mathcal M}(A)$ does not descend. |
+| `scalar-positivity-window-fail` | the trace-free contraction overwhelms the scalar exposed source, so $m_{\mathrm{tr}}(A)$ is zero or negative in the retained response record. |
 | `response-span-escape` | An unretained trace-free response tensor contributes above $\mathcal{R}_{\mathrm{chain}}$ tolerance. |
 | `response-direction-label-drift` | A retained response direction $B_r^{ab}$ depends on the discarded representative label. |
 | `coefficient-fit-contamination` | The retained coefficients are tuned after benchmark mass comparison rather than emitted by the branch record. |

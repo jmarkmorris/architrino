@@ -24,6 +24,24 @@ $$
 $$
 We introduce a scalar causal-hit counting functional to make stability searches comparable across trajectories. This is not the exact Fokker-type variational action of [Effective Lagrangian](effective-lagrangian.md); it is the branch-density statistic obtained after retaining the received inverse-square and Jacobian weights while discarding line-of-action direction. Its appropriate use is to nominate dynamically preferred worldline classes, then test those nominations with the master-equation flow before interpreting them as discrete observer-level particle states.
 
+Geometrically, the statistic is the mass of a weighted causal-locus current. On a regular chart, let
+$$
+\mathsf C_\gamma
+=
+\left[\mathcal{L}_{\text{causal}},\tau_\gamma,w_\gamma\right],
+\qquad
+w_\gamma(t,t')
+=
+\frac{1}{r(t,t')^2J_\gamma(t,t')\|\nabla F_\gamma(t,t')\|}
+$$
+where $\tau_\gamma$ is the chosen orientation on each retained component. The coarea limit below reads
+$$
+\mathcal{A}_{\text{self}}[\gamma]
+=
+\mathbb{M}(\mathsf C_\gamma)
+$$
+up to the declared normalization: it is the weighted length, or current mass, of the causal locus. The force law uses the same support and weights but pairs the oriented current with the line-of-action direction field $\hat{\mathbf r}$. Thus the scalar statistic detects branch support and branch topology, while the vector dynamics require the oriented current pairing that the statistic has intentionally discarded.
+
 This integrates over all nontrivial pairs of points on a single worldline and counts only those pairs that are causally connected by a wake moving at speed $c_f$. The trivial diagonal $t=t'$ is excluded, either by a punctured domain or by a cutoff $|t-t'|\ge\tau_{\min}>0$. The inverse-square factor weights nearby self‑hits more strongly than distant ones, while $J_\gamma^{-1}$ accounts for the geometric bunching or dilation of the delayed flux along the active branch.
 Convention: this document distinguishes the compact symmetric selector $|t-t'|$ from the lifted delayed selector $\Delta_m=t-t'+mT$. The symmetric form is useful on one-period charts; the lifted delayed form is required when multi-period causal roots are active.
 Here $J_\gamma(t,t')$ denotes the branch Jacobian induced by the causal constraint. In lifted delay coordinates one may use the absolute root Jacobian $J_\gamma=\left|\partial_{t'}\big(\|\mathbf{x}(t)-\mathbf{x}(t')\|-c_f\Delta\big)\right|$; when comparing to the Master Equation, the dimensionless received-flux factor is the corresponding $1-\mathbf{v}\cdot\hat{\mathbf{r}}/c_f$, with constant factors absorbed into the declared normalization. This branch Jacobian is distinct from the coarea factor $\|\nabla F_\gamma\|$ that appears when the two-time integral is reduced to a one-dimensional causal locus.
@@ -148,8 +166,13 @@ We use the following minimal assumption set for theorem-level statements:
   $$
   \|\nabla F_\gamma\|\ge\nu>0
   $$
-  in a neighborhood of the zero level. Pointwise nonvanishing is the geometric condition; the uniform floor is the operative form used in coarea limits and simulations.
-- **(A5) Fixed topological class:** Deformations are taken inside one homotopy class on $T^2$ unless a bifurcation condition is crossed.
+  in a neighborhood of the zero level. Pointwise nonvanishing is the geometric condition; the uniform floor is the operative form used in coarea limits and simulations. On the retained compact chart this also gives a local uniform length bound
+  $$
+  \mathcal{H}^1\!\left(F_\gamma^{-1}(s)\cap K\right)\le L_{\max}
+  \qquad (|s|\le s_0)
+  $$
+  for each compact retained chart $K$, after reducing $s_0$ if necessary. This length bound is the measure-theoretic reason the coarea weak limit remains controlled rather than only pointwise transverse.
+- **(A5) Fixed topological class:** Deformations are taken inside one time-domain homotopy or relative-homology class on the retained torus or lifted strip unless a bifurcation condition is crossed. For cut components, endpoints may move along the declared diagonal-collar or memory-window boundary, but they may not cross into a different boundary component or leave the retained chart.
 - **(A6) Isolated system bookkeeping:** When connecting to dynamics, energy/momentum use the same $\eta$ and history window conventions as the master-equation diagnostics.
 
 These assumptions are deliberately local and testable. If any assumption fails, the
@@ -186,8 +209,14 @@ $$
 $$
 for a generic vertical fiber $\{t=t_0\}$. The algebraic sign is the branch-orientation sign, equivalently the sign convention used for the delayed-root Jacobian on that component. The unsigned sum $\sum_a|\iota_a|$ recovers the per-period self-hit count on the retained strip, while the signed sum recovers the signed degree used by the causal-root ledger. If a component also closes on the unpunctured torus with winding class $(p_a,q_a)$, then $\iota_a=q_a$ after the same orientation convention is fixed. The winding language is therefore valid for closed components, while the fiber-intersection degree is the bridge to the root-ledger entries used in the assembly topological charge.
 
+For components cut by the diagonal collar or finite-memory window, the precise object is a relative class
+$$
+[\mathcal{L}_a]\in H_1(S_{\tau,h},\partial S_{\tau,h};\mathbb{Z})
+$$
+together with its intersection pairing against the vertical fiber. The pairing is invariant while endpoints remain on the declared boundary pieces and do not migrate across the memory-wall convention $\Delta_m=h$ or the nontrivial-branch collar $\Delta_m=\tau_{\min}$. This is the same relative-versus-absolute distinction used by [Assembly Topological Charge](assembly-topological-charge.md): closed causal-locus components may carry torus winding data, while cut components feed the signed root degrees through $\iota_a$.
+
 As geometric control parameters change, the locus can undergo reconnection or fold events; these are the bifurcations where families appear or disappear, giving a branch-topology mechanism for discrete self-hit patterns. In the circular benchmark below, sub-$c_f$ motion leaves the retained causal locus empty after the trivial diagonal is removed, while super-$c_f$ motion creates branches whose lifted-strip intersections determine the integer self-hit count per period.
-The self-action integral is the **weighted arc length** of the retained causal locus with weight $1/(r^2 J_\gamma)$, so topology and metric weight enter together.
+The self-action integral is the **weighted arc length** of the retained causal locus, including the coarea factor in the weak limit. Equivalently, it is the mass $\mathbb M(\mathsf C_\gamma)$ of the weighted causal-locus current defined above, so topology and metric weight enter together.
 
 **Causal writhe (chirality):**
 $$
@@ -195,6 +224,11 @@ Wr_c[\gamma] = \iint_{\mathcal{L}_{\text{causal}}} \text{sign}\!\big(\mathbf{v}(
 $$
 where $\mathbf{r}(t,t')=\mathbf{x}(t)-\mathbf{x}(t')$ and $d\ell$ is the induced line measure on the causal locus. This is a candidate signed measure of handedness for the self‑interaction pattern. Nonzero $Wr_c$ is a possible topological handle for chirality/spin closure; it is not yet a proof that spin is fixed by the causal locus alone.
 The symmetric torus chart counts the same unordered self-hit pair twice. A chirality comparison must therefore either restrict the integral to the delayed half-domain $\Delta_m>0$ or divide the symmetric quotient value by two, with the orientation convention stated before comparing handedness between branches.
+The notation $Wr_c$ should not be confused with the full Călugăreanu writhe of a framed spatial curve. It is a Gauss-map-like signed density restricted to the causal-locus support, so it is a **causally weighted partial writhe**: it sees only pairs connected by accepted causal roots. The framed self-linking carrier needed by spin-statistics closure is the full invariant
+$$
+Lk=Wr+Tw
+$$
+on a declared framed spatial bundle. Whether $Wr_c$ equals, bounds, or merely correlates with that framed invariant is an open bridge problem; if the causal locus samples only part of the pair set, $Wr_c$ can undercount the chirality relevant to exchange statistics.
 
 **Topological vs Noether data:** Continuous symmetries (time shifts, rotations) identify Noether-charge targets: energy from time-translation symmetry and total angular momentum from rotational symmetry. In a closed symmetry-preserving delayed action these would become conserved history functionals. The winding class of closed components and the lifted-strip intersection degree supply candidate inputs to the assembly topological charge program. A generation-level claim would require a branch that is both Noether-stationary and topologically locked; dissociation would then require changing the causal-locus sector, i.e., a reconnection or fold transit of the retained causal locus.
 
@@ -216,6 +250,7 @@ $$
 \bar{\mathcal{A}}_{\text{total}}
 $$
 or a return-map spectrum for the actual delayed dynamics.
+This sector label lives on the **time-domain** chart: the torus or lifted strip whose coordinates are $(t,t')$ and whose intersections feed the self-hit and partner-hit ledgers $(N_s,M_p)$ and their signed refinements. Spatial knot, link, writhe, and framed self-linking data live on a different object: the spatial projection of the worldline or worldline bundle in $\Sigma_t$ over a declared period or history window. The two data sets may be correlated on a certified branch, but the chapter does not identify them. In particular, $Q_{\mathrm{causal}}$ is the root-ledger sector label, while framed chirality is a separate spatial-domain calculation.
 
 **Instanton-style path competition:** When two branch-topology sectors are connected only by passing through a transversality failure, the useful comparison object is not a new force law but a minimal regularized barrier in path space. For a one-parameter path of histories
 $$
@@ -235,6 +270,13 @@ B_{\eta,h}(\gamma_0\to\gamma_1)
 $$
 The infimum is taken over paths whose endpoints lie in the declared sectors and whose intermediate histories obey the same regularization convention. This is an instanton-like comparison only in the variational sense: it measures the least regularized action-counting barrier between sectors. It does not assert tunneling, supersymmetry, or Euclidean field-theory ontology.
 For this expression to be more than formal, take $\mathcal{H}_h$ to be a declared history space such as $C^2([-h,0];\mathbb{R}^{3N})$ with the $C^2$ norm, or a Sobolev closure strong enough to preserve the delayed root map. Under the finite-$\eta$ bounds above, $\bar{\mathcal{A}}_{\text{total},\eta,h}$ is continuous on an admissible chart. The physical mountain-pass hypothesis is then that different causal-locus sectors are separated by a transversality wall where $J_\gamma$ or $\|\nabla F_\gamma\|$ loses its floor. Across such a caustic wall the unregularized barrier is expected to diverge, while $B_{\eta,h}$ records the regulator-controlled cost of crossing the wall. This is the action-counting version of topological protection, not an additional force law.
+More precisely, the pass is a crossing of a fold stratum such as
+$$
+\Sigma_{ij}
+=
+\{F_{ij}=0,\ \partial_{t'}F_{ij}=0\}
+$$
+or its full coarea-degenerate analogue $\{F=0,\nabla F=0\}$ on the retained chart. The barrier height is therefore the regularized saddle height of $\bar{\mathcal A}$ over the codimension-one branch wall. The same reading connects this chapter to the assembly-gap program: a positive sector gap requires a lower bound on the fold-crossing barrier that survives the declared $\eta\to0^+$ refinement.
 
 **Multi-component topology:** For assemblies, project the spatial trajectories over one period, classify the resulting link, and when hyperbolic, use the volume of the link complement as a comparison measure. Brunnian or highly knotted complements are evidence for strong causal interlocking; higher action density remains a dynamical/statistical claim to be measured with the same kernel.
 
@@ -300,6 +342,7 @@ H(s)\equiv
 \frac{1}{r^2\,J_\gamma\,\|\nabla F_\gamma\|}\,d\ell
 $$
 By (A4), $\|\nabla F_\gamma\|\ge\nu>0$ on a tubular neighborhood of the retained zero level, so nearby level sets are regular 1-manifolds and $H(s)$ is continuous near $s=0$. By (A3) and (A3b), both $r^{-2}$ and $J_\gamma^{-1}$ are bounded on the active support, and the diagonal collar prevents accumulation on the excluded trivial branch. Hence $H(s)$ is locally bounded. Since $\phi_\eta$ is an approximate identity, $\int \phi_\eta(s)H(s)\,ds\to H(0)$ as $\eta\to0^+$. Dividing by $T^2$ yields the claimed limit.
+The compact-chart length bound in (A4) is the technical step behind this local boundedness: it prevents nearby regular level sets from acquiring unbounded total length while the zero level itself remains regular.
 
 ### Corollary 2.1 (Discrete branch labels)
 Closed connected components of $\mathcal{L}_{\text{causal}}$ carry winding numbers $(p,q)\in\mathbb{Z}^2$ on the unpunctured torus. Components retained on the lifted strip carry algebraic fiber-intersection degrees $\iota_a$ with generic vertical fibers. These labels are unchanged under smooth deformations that preserve (A4), keep the same diagonal-collar and memory-window convention, and remain inside one homotopy class (A5).
@@ -420,6 +463,12 @@ For (2), if $\xi_*$ is a simple root ($\partial_\xi g_\beta(\xi_*)\neq0$), the i
 
 For the principal circular branch, the bifurcation point occurs at $(\beta,\xi)=(1,0)$ in the limiting sense. Higher branches appear at interior tangencies where both equations hold with $\xi>0$. This is the 1D analog of Theorem 3 and provides an explicit, checkable bifurcation condition for the circular toy model.
 
+At an interior tangency the two equations imply the familiar branch condition $\tan\xi=\xi$ on the eligible signed sheet, together with the corresponding positive-$\beta$ sign constraint inherited from the root equation. This gives a reachable bridge to assembly topological charge: for a layer with winding or return degree $k_a$, the number and sign of circular self-hit births below the layer speed ratio can be computed by counting eligible tangency roots before that speed threshold. Because signed sheets and the absolute-value convention in the circular distance decide which intervals contribute, this chapter treats the resulting parity or lower-bound law
+$$
+D_s^{(a)}\equiv f(k_a)\pmod 2
+$$
+as a theorem target rather than as a proved formula. The useful point is narrower and established here: the tangency sequence supplies the concrete input from which such a layerwise self-hit degree constraint must be derived.
+
 ## Dynamical Interpretation
 - Candidate stable periodic orbits should first appear as **critical points** of $\bar{\mathcal{A}}_{\text{total}}$ constrained within a winding class. The delay flow need not be a gradient flow of this functional, so extremality is a branch-selection test, not a proof of asymptotic stability.
 - **Existence vs. stability:** Topology of $\mathcal{L}_{\text{causal}}$ constrains which families can exist by identifying bifurcations where branches reconnect. Linear spectra of the delay equation decide which of those families persist or attract. The causal locus gives the branch skeleton; Lyapunov exponents and return-map spectra test dynamical survival.
@@ -449,7 +498,16 @@ $$
 with small couplings $N=1+\lambda_t\mathcal{I}$ and $\Omega_s=1+\lambda_s\mathcal{I}$ in the weak-field regime. Here $c_\star$ must be declared: primitive branch charts may set $c_\star=c_f$, while observer-level metric comparisons normally use the dressed asymptotic channel speed. The full geometry program must also include the Noether sea lapse, shift/medium velocity, spatial metric response, stress, and PPN decision variables used by the spacetime chapters. Bianchi identities and weak-equivalence demands constrain the admissible scalar subcase; otherwise the emergent geometry reduces to a scalar-tensor approximation with potentially observable fifth forces. Matching the long-range limit of test-assembly motion to geodesics in $g^{\text{eff}}_{\mu\nu}$ is the consistency check linking microscopic causal hits to macroscopic effective curvature.
 Here, "fifth force" means an additional long-range interaction mediated by the scalar sector encoded in $\mathcal{I}$, on top of the shared effective-metric response. If that scalar coupling is not sufficiently constrained, test assemblies can acquire composition-dependent accelerations, producing weak-equivalence-principle violations and post-Newtonian deviations that are tightly bounded experimentally.
 Numerical check: evolve two assemblies with different internal $\bar{\mathcal{A}}_{\text{total}}$ through the same prescribed $\mathcal{I}(t,\mathbf{x})$ background and verify their centers follow the same geodesic to numerical tolerance.
-Mean-field view: in a dilute limit with many architrinos, the closure target is to derive a Vlasov equation for $f(t,\mathbf{x},\mathbf{v})$ whose force term is induced by the coarse-grained hit density. That derivation would provide the statistical bridge from causal-wake microdynamics to continuum geometry.
+Mean-field view: in a dilute limit with many architrinos, the closure target is not an ordinary instantaneous Vlasov equation but a delayed kinetic equation,
+$$
+\partial_t f
++
+\mathbf{v}\cdot\nabla_{\mathbf{x}}f
++
+\mathbf{F}_{\mathcal I_{\mathrm{hist}}}(t,\mathbf{x},\mathbf{v})\cdot\nabla_{\mathbf{v}}f
+=0
+$$
+where $\mathcal I_{\mathrm{hist}}$ is built from the past distribution along causal isochrons. That derivation would provide the statistical bridge from causal-wake microdynamics to continuum geometry. The transport coefficients used in [Effective Lagrangian](effective-lagrangian.md#native-continuum-action-closure-target) should be read as moment closures of this same Vlasov-delay system, not as independent continuum parameters.
 
 ## Implementation Notes (Appendix)
 - Use the same $\delta_\eta$ and $\eta$ for force and action estimators.
@@ -499,6 +557,7 @@ $$
 E_{\mathrm{closed}}(L)\to E_{\infty}<\infty\quad (L\to\infty)
 $$
 Combined with causal-locus class constraints, this would give a quantitative separation between confined open sectors and screened singlet sectors after the color-braid and singlet-sector proof is supplied. Until that proof is supplied, the equations are an effective closure target rather than a result of this chapter.
+In the action-counting language above, the same target can be stated as a barrier lower bound: the sector gap is positive only if the fold-crossing proxy $B_{\eta,h}$ between the open and closed branch classes remains bounded below under the declared regulator refinement. If that barrier collapses to zero as $\eta\to0^+$, the causal-locus sector has no action-counting protection even if its symbolic label is different.
 
 ### Integration map
 
@@ -550,6 +609,14 @@ $$
 \lambda_{\mathrm{sec}}>0
 $$
 The first condition marks a candidate branch class, the second tests whether the retained return map has the canonical structure expected of an action-derived conservative reduction, and the third checks local section persistence. A failure of $\mathcal{R}_{\Omega}$ does not falsify the Master EOM; it says that the scalar action-counting extremum has not yet been promoted to a reduced Hamiltonian branch certificate.
+
+This is the same branch-symplectic-promotion certificate used by the effective-Hamiltonian domain gate and by binary return-map packets. Because the underlying law is delayed, $\Omega_{\mathfrak B}$ is not assumed to be the naive instantaneous form. The tested two-form must include the retained memory correction,
+$$
+\Omega_{\mathfrak B}
+=
+\Omega_0+\Omega_{\mathrm{mem}}
+$$
+pulled back to the reduced section after the active causal-root rows and history-window boundary convention have been solved. A branch passes the promotion test only when the one-cycle return replays the memory segment congruently enough that this corrected form, not merely the instantaneous phase volume, is preserved to tolerance.
 
 **Hamilton-Jacobi branch phase target.** If a retained branch chart passes the action-derived return-map tests, one can ask for a Hamilton-Jacobi description of the same reduced motion. This is only a comparison target until the delayed action residual closes. Let $H_{\mathfrak{B}}(Q,\Pi,t)$ be the reduced Hamiltonian on the certified chart. A branch principal function $W_{\mathfrak{B}}(Q,t)$ should satisfy
 $$

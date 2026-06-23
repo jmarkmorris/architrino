@@ -4264,6 +4264,15 @@ u^i_{\text{sea}}\to0
 $$
 This is a constitutive equation, not a new fundamental four-dimensional metric on absolute timespace.
 
+As a form-level recovery, the same handoff already has the correct weak-field clock shape once the clock-channel potential has been matched to the Newtonian benchmark. In a weak, slow comparison window,
+$$
+\frac{d\tau_{\mathcal A}}{dt}
+\approx
+1-\frac{U_N}{c_0^2}
+-\frac{\|\mathbf w\|^2}{2c_0^2},
+$$
+where $U_N\ge0$ is the positive Newtonian potential and $\mathbf w$ is the clock drift through the local Noether sea. This reproduces the Newtonian-limit clock relation and the standard $g_{00}$ first-order structure as a comparison form. It is not yet coefficient-level GR closure: $\Phi_{\mathrm{eff}}=\Phi_N$, $G_{\mathrm{eff}}$, and any Einstein-equation analogue must still be derived from the same Noether sea response record that supplies $A$, $B_{ij}$, $c_{\text{eff}}$, and the photon channel.
+
 The retained weak-field coefficient map should therefore be expressed at the ADM/Cartan level before observable projections are evaluated. With
 $$
 \delta n\equiv n-1,\qquad

@@ -1,13 +1,15 @@
 # Quantum Number Mapping: Architrino Geometry to Standard Model
 
-This chapter is the canonical dictionary from assembly geometry to Standard Model quantum numbers. Its purpose is to tell the reader which structural features of the Noether braid and axial layer are supposed to map to charge, weak labels, color labels, generation, and related bookkeeping categories.
+This chapter is the canonical dictionary from assembly geometry to Standard Model quantum numbers. Its purpose is to tell the reader which structural features of the Noether braid, six-unit polarity inventory, and axial-layer realization are supposed to map to charge, weak labels, color labels, generation, and related bookkeeping categories.
 
 ## Purpose
 This document establishes the canonical dictionary translating **Nested Shell Braid Assembly Geometry** into **Standard Model (SM) Quantum Numbers**.
 
-For charged fermions and quarks, it adopts the **Noether braid + axial layer** model:
+The parent charge target is a protected six-unit polarity inventory whose signed sum supplies observer-level electric bookkeeping. For charged fermions and quarks, this chapter uses the **Noether braid + axial layer** model as the working realization of that target:
 1.  **The Noether braid:** A neutral, rotating nested shell braid structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
-2.  **The Axial Layer:** A layer of 6 axial architrinos occupying polar sites on the Noether braid, defining the effective electric-charge bookkeeping, weak isospin, and color-sector pattern.
+2.  **The Axial Layer:** A candidate realization in which the six-unit polarity inventory appears as 6 axial architrinos occupying polar sites on the Noether braid, defining the effective electric-charge bookkeeping, weak isospin, and color-sector pattern.
+
+This is a charged-fermion working model, not a proof that every six-unit charge carrier must be axial or external to the braid. The six units may ultimately be internal to the Noether braid, externally coupled to it, embedded in the retained path-history, or realized by a non-axial coupled branch. The axial layer remains useful because it supplies a concrete six-site geometry on which weak-triad and color-exceptionality hypotheses can be tested.
 
 Neutrinos are the current exception to this inventory model. They are treated as near-photon neutral pro/anti braid pairings; balanced $3P,3E$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](./neutrinos.md).
 
@@ -34,6 +36,7 @@ Every fermion contains a central engine composed of nested binary pairs.
 *   **Net Charge:** Always $0$.
 
 ### The Axial Layer
+This is the charged-fermion working realization of the more general six-unit polarity inventory.
 *   **Sites:** 6 polar sites available for axial occupancy.
 *   **Occupancy:** Stable charged leptons and quarks have all 6 sites filled. Neutrinos do not carry a stable charged-fermion-style axial layer in the current architecture.
 *   **Function:** This layer interacts through external effective-field channels (EM, Weak).
@@ -51,7 +54,7 @@ This gives a provisional dwelling mechanism for polar sites:
 - the binary axes define candidate attachment directions,
 - and the polar saddle structure selects six metastable docking regions for the axial layer.
 
-This remains a geometric hypothesis rather than a finished derivation. Its value is that it ties the six-site axial architecture to the already-existing delayed superposition picture, instead of treating the polar sites as unexplained labels pasted onto the core.
+This remains a geometric hypothesis rather than a finished derivation. Its value is that it ties one six-unit charge-carrier architecture to the already-existing delayed superposition picture, instead of treating the polar sites as unexplained labels pasted onto the core. A non-axial six-unit carrier would need to reproduce the same charge inventory while supplying a different geometry for weak exposure and color bookkeeping.
 
 ### Total Constituent Count (Charged Gen I)
 *   **Noether braid (6) + axial layer (6) = 12 architrinos.**
@@ -112,7 +115,7 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid** 
 In the Standard Model, the Weak Force only acts on "Left-Handed" particles. It transforms members of a doublet (e.g., $e^- \leftrightarrow \nu_e$) into each other. We map this to the **weak-coupling-triad hypothesis**.
 
 ### The Weak-Coupling Triad Geometry
-For charged leptons and quarks, every charged-fermion axial layer consists of 6 polar sites. We hypothesize that these are organized into two groups based on the nested shell braid rotation axis:
+In the axial-layer realization, every charged-fermion six-unit carrier consists of 6 polar sites. We hypothesize that these are organized into two groups based on the nested shell braid rotation axis:
 1.  **The Shielded Triad (3 sites):** Geometrically locked or obscured by the binary precession. These axial occupancies *cannot* be swapped without destroying the particle.
 2.  **The weak-coupling triad (3 sites):** Exposed to the Noether sea. These are the "switchable bits."
 
@@ -386,7 +389,7 @@ So the rule above should currently be read as a strong charged-fermion synthesis
 
 ### Charge quantization cross-check
 
-Because every charged-fermion axial layer fills six polar sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in [assemblies/gauge-structure-emergence.md](../gauge-structure-emergence.md#quantization-from-stability-selection-rules), section “Quantization from Stability”). The neutrino's neutral charge is instead carried by pro/anti near-photon cancellation plus the effective weak ledger.
+In the axial-layer realization, the charged-fermion six-unit carrier fills six polar sites with $\pm e/6$. The only stable net charges from the Active+Shielded split are then $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in [assemblies/gauge-structure-emergence.md](../gauge-structure-emergence.md#quantization-from-stability-selection-rules), section "Quantization from Stability"). The neutrino's neutral charge is instead carried by pro/anti near-photon cancellation plus the effective weak ledger.
 
 ### Baryon / lepton bookkeeping and anomaly cancellation
 
@@ -697,7 +700,7 @@ The explicit shared fitting packet lives in [Particle Masses](../particle-masses
 
 ### Core Depletion, Axial Vortices, and Lifetime (plain view)
 
-- **What the binaries do:** Each coherent shielding tier supplies axial-vortex support that helps hold the six axial architrinos in phase with the Noether braid and shares load into the Noether sea.
+- **What the binaries do:** In the axial-layer realization, each coherent shielding tier supplies axial-vortex support that helps hold the six axial architrinos in phase with the Noether braid and shares load into the Noether sea.
 - **Gen I (nested shell braid):** Three coherent shielding tiers give a stiff 3D support scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
 - **Gen II (bi-binary shielding branch):** The outer support tier is depleted. The H/M/L axial frame persists as a delayed branch record, but small perturbations reach the weakly bound axial layer more easily after causal propagation and relocking cycles. Lifetime drops.
 - **Gen III (uni-binary shielding branch):** Outer and middle support are depleted. The axial layer is metastable around the exposed inner engine, almost no outer screening remains for the deepest core energy, and the reaction corridor opens quickly. Very short-lived.
@@ -742,7 +745,7 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 
 | Quantum Number | Symbol | Standard Model Definition | Architrino Geometric Definition |
 | :--- | :---: | :--- | :--- |
-| **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | For charged fermions: **Net Axial Count**, $Q = \sum P - \sum E$, in the axial layer. For neutrinos: neutral pro/anti near-photon cancellation with an effective weak ledger. |
+| **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | For charged fermions: net signed count of the protected six-unit polarity inventory, $Q = \sum P - \sum E$; in the axial-layer realization this is the net axial count. For neutrinos: neutral pro/anti near-photon cancellation with an effective weak ledger. |
 | **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the weak-coupling triad.** The net charge state of the 3 exposed polar sites. (+1/2 = P-dominant, -1/2 = E-dominant). |
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any core offset. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which core axis is exceptional relative to the other two. |
@@ -845,7 +848,7 @@ where $\Delta_{\text{wake}}$ is the causal-wake/polarization correction of the N
 
 ### Charge normalization hook
 
-Using the six-site axial rule and substrate parameters:
+In the six-site axial realization, the charge normalization hook uses:
 $$
 e = 6\epsilon \sqrt{\kappa c_f}\,Z_e
 $$

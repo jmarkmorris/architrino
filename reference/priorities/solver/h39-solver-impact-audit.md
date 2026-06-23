@@ -52,6 +52,8 @@ The central solver can improve root, path-history, precision, replay, and ledger
 
 Foundation/dynamics impact 2026-06-21: the new [Assembly Topological Charge](../../../content/markdown/aaa/dynamics/assembly-topological-charge.md) chapter sharpens solver ledger vocabulary through $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$, but it does not change the H39 blocker. H39 can consume signed-root and assembly topological charge diagnostics as replay metadata, yet the live closure still requires the same-domain provider-object branch schema and upstream producer rows before aggregate $P$ is formed. Classification remains `h39_no_material_effect` for final H39 closure unless that provider-object surface is explicitly reopened.
 
+Master-equation sheaf refinement 2026-06-22: the latest [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) pass adds useful replay vocabulary for H39-style diagnostics: branch-chart local inverse data, $H^0$ global-section counts, $\check H^1$ gluing obstructions, separate $\eta$ versus $\epsilon_c$ regulator status, and finite-window degree changes at memory-boundary starvation. This still does not change the H39 final blocker. The missing object remains a same-domain branch-bearing provider object before aggregate $P$ is formed, so the impact classification remains `h39_no_material_effect` for final closure and `h39_refined_result` only for metadata-rich replay surfaces.
+
 Provisional classification before executable replay: `h39_same_result_faster`, bounded by `h39_no_material_effect` for final closure. The likely effect is sharper and faster diagnosis of solver-like subproblems, not automatic H39 closure.
 
 ## Historical Bottleneck Classes

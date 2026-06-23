@@ -94,6 +94,15 @@ $$
 \ell_{\mathrm{self},0}^{\mathrm{esc}}(1^+),
 $$
 with the right-hand side evaluated in the same finite-$\eta$ chart that regularizes the caustic. The older heuristic $\Delta L_c\mapsto2\Delta L_c$ is recovered only in the special case where the newly born principal self row exports exactly the same cycle increment as the pre-hinge partner ledger.
+More precisely, $\ell_{\mathrm{self},0}^{\mathrm{esc}}(1^+)$ is not the value of a divergent pointwise tangential coefficient at the hinge. It is the finite angular impulse
+$$
+\ell_{\mathrm{self},0}^{\mathrm{esc}}(1^+)
+=
+\lim_{\eta\to0^+}
+\int_{t^-}^{t^+}
+R(t)\,A_{\mathrm{self},0,\eta}^{\mathrm{tan}}(t)\,dt
+$$
+when that limit exists under the same finite-caustic transit convention used for the velocity impulse. If the impulse limit is regulator-dependent, the branch-birth jump remains a diagnostic row rather than a promoted angular-momentum ledger entry.
 
 This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history force sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self row inherits the caustic onset already displayed below; after finite-window averaging its branch-entry impulse should still report the $(s-1)^{-3/2}$ wall inherited from the self radial coefficient, while the sharper raw tangential coefficient must be regularized before it is used in a cycle ledger.
 
@@ -119,7 +128,7 @@ $$
 \qquad
 \frac{1}{\sin^2(\delta_s/2)\,|J_s|}\sim \mu^{-2}
 $$
-This is the first major consequence of restoring the causal Jacobian: the hinge is not merely a change in root count but a genuine **caustic onset**. The principal self branch turns on with a sharply amplified outward radial response and an even more singular tangential drive. Any candidate maximum-curvature balance must therefore confront a near-threshold Jacobian wall before appealing to higher-winding smoothing.
+This is the first major consequence of restoring the causal Jacobian: the hinge is not merely a change in root count but a genuine **caustic onset**. The principal self branch turns on with a sharply amplified outward radial response and an even more singular tangential drive. The tangential pump strengthens faster than the radial barrier as the hinge is approached, so the immediate super-hinge region cannot be treated as a quiet equilibrium. Any candidate maximum-curvature balance must therefore either avoid that region or supply a cancellation channel with comparable caustic scaling before appealing to higher-winding smoothing.
 
 ## Self-Hit: Definition and Diagnostics
 
@@ -223,6 +232,14 @@ $$
 M_b^{\mathrm{mem}}(u)=\frac{h_b^{\mathrm{lock}}(u)}{T_u},
 $$
 where $h_b^{\mathrm{lock}}$ is the declared retained-history depth of the moving branch and $\epsilon_h>0$ is a fixed normalization floor. If this residual diverges on the finite-$\eta$ moving chart, the two-body branch has run out of retained causal roots before it has derived Lorentz closure; the handoff must then move to a Noether-sea or larger assembly response rather than being booked as a bare-binary result.
+
+Equivalently, with finite retained memory $h_b^{\mathrm{lock}}$, the bare translating binary hits a root-ledger wall at
+$$
+u_{\mathrm{crit}}
+=
+c_f-\frac{d_{\min}}{h_b^{\mathrm{lock}}},
+$$
+for any retained forward row with separation floor $d_{\min}$. At or above this wall that row exits the memory window, so the active causal-root ledger cannot be preserved on the same two-body chart. This is the binary-level version of the forward partner-root starvation theorem in [Master Equation](master-equation.md#delay-map-theorem-pack-formalized): the obstruction is kinematic/topological before it is a force-balance residual.
 
 Let $C_i(t_\text{emit})$ denote the causal wake surface emitted by architrino $i$ at emission time $t_\text{emit}$. For uniform circular motion, self-hit events are discrete intersections between the worldline and its own wake surfaces. Define the **principal self-delay angle** $\tilde{\delta}_s \in (0, \pi]$ as the minimal angular separation between the current position and the emission point that yields a hit. Additional self-hits occur at longer delays indexed by winding number $m \ge 0$, giving a discrete family $\delta_s(m) = \tilde{\delta}_s + 2\pi m$.
 
@@ -380,7 +397,7 @@ In the same-sheet convention used for the first circular no-go, the full familie
 - The minimal separations $\tilde{\delta}_s$, $\tilde{\delta}_p$ determine the **same-sheet principal geometry** (chord lengths, force directions).
 - The winding index $m$ affects **timing/ordering** of multiple hits inside that same-sheet convention.
 
-**Signed-sheet completion:** A full circular root certificate must also track whether the full delay angle is represented as $2\pi m+\alpha$ or $2\pi m-\alpha$ for a minimal chord angle $\alpha\in(0,\pi]$. Opposite signed sheets can reverse the tangential projection of a self-hit line of action. The sign-invariant statements below are therefore certified only on the same-sheet principal branch chart unless the signed sheet has been explicitly included in the root ledger.
+**Signed-sheet completion:** A full circular root certificate must also track whether the full delay angle is represented as $2\pi m+\alpha$ or $2\pi m-\alpha$ for a minimal chord angle $\alpha\in(0,\pi]$. The same-sheet convention is the quotient that forgets the orientation of the delay direction; the signed sheet $\sigma\in\{+1,-1\}$ lifts the circular root to the orientation double cover of the retained delay strip. Opposite signed sheets can reverse the tangential projection of a self-hit line of action. The sign-invariant statements below are therefore certified only on the same-sheet principal branch chart unless the signed sheet has been explicitly included in the root ledger.
 
 For the full signed ledger, write
 $$
@@ -400,9 +417,9 @@ The corresponding tangential signs are $\sigma\cos(\alpha_s/2)$ for self roots a
 $$
 2\pi-\alpha=2s\sin(\alpha/2)
 $$
-and appears at $s=\pi/2$ with $\alpha=\pi$. For $s>\pi/2$ it contributes negative tangential drive. This does not prove circular closure, but it makes the $\sigma=-1$ sheet a necessary closure channel rather than a caveat. A useful floor conjecture is:
+and appears at $s=\pi/2$ with $\alpha=\pi$. For $s>\pi/2$ it contributes negative tangential drive. This does not prove circular closure, but it makes the $\sigma=-1$ sheet the first internal generator capable of carrying opposite period in the tangential cohomology class. A useful floor conjecture is:
 
-> No isolated, bare, constant-speed circular MCB branch can close for $s<\pi/2$, because the first negative same-source sheet is absent and the same-sheet tangential cohomology class has no internal cancellation channel.
+> No isolated, bare, constant-speed circular MCB branch can close for $s<\pi/2$, because the first negative same-source sheet is absent and the same-sheet tangential cohomology class has no internal cancellation generator. In cochain language, the space available to the retained two-body ledger has no opposite-period self-row before the $\sigma=-1$ wall at $s=\pi/2$.
 
 For $s\geq\pi/2$, closure is still not automatic. The negative sheet must survive the finite-$\eta$ branch chart, satisfy the Jacobian and inactive-gap floors, and balance the remaining tangential class through signed-root cancellation, wake escapement, recoil, or multi-body exchange.
 
@@ -637,7 +654,11 @@ with no boundary wake flux and no recoil term is impossible. Any MCB-like steady
 $$
 \omega_T^{(b)} = R\,T_{\mathrm{net}}^{(b)}(\theta)\,d\theta
 $$
-be the tangential torque one-form on the retained signed ledger $b$. Same-sheet rows give a positive period integral, so $\omega_T^{(b)}$ is not an exact derivative of a single-valued mechanical angular-momentum potential on the particle-only chart. Closure requires a coboundary supplied by retained non-particle channels:
+be the tangential torque one-form on the retained signed ledger $b$. Same-sheet rows give a positive period integral,
+$$
+\oint_{S^1}\omega_T^{(b)}>0,
+$$
+so $[\omega_T^{(b)}]\ne0$ in $H^1(S^1)$ and $\omega_T^{(b)}$ is not an exact derivative of a single-valued mechanical angular-momentum potential on the particle-only chart. Closure requires a coboundary supplied by retained non-particle channels:
 $$
 \left[\omega_T^{(b)}
 +\omega_{\partial W}^{(b)}
@@ -683,7 +704,7 @@ Two distinct balance mechanisms are now mathematically visible:
 
 **However**: Due to the same-sheet per-hit $T > 0$ result, this "maximum curvature" state remains unverified for the isolated two-body system. Its stability must be tested by the full, signed, multi-root time-averaged dynamics.
 
-Because the desired MCB branch is expected to graze the $J=0$ wall, the stability target is not only a smooth Floquet calculation. On smooth arcs with a fixed ledger, Floquet multipliers are the right local test. At the null separatrix itself, the branch is a caustic-grazing limit cycle: the appropriate theorem target is an isolating block in history space that straddles the $J=0$ wall and has a persistent Conley index under finite-$\eta$ continuation. In that reading, the MCB branch is stable only if the orbit returns through the grazing chart without escaping the isolating block or changing its declared signed ledger except at the certified fold rows.
+Because the desired MCB branch is expected to graze the $J=0$ wall, the stability target is not only a smooth Floquet calculation. On smooth arcs with a fixed ledger, Floquet multipliers are the right local test. At the null separatrix itself, the branch is a caustic-grazing limit cycle: the appropriate theorem target is an isolating block in history space that straddles the $J=0$ wall and has a persistent Conley index under finite-$\eta$ continuation. The concrete target is uniform index persistence: for sufficiently small $\eta>0$, the regularized return map must carry the same Conley index on one isolating neighborhood of the grazing orbit, with the finite-caustic impulse bound controlling the velocity jump through the wall. If the index changes as $\eta\to0^+$, the MCB is not a robust attractor. In that reading, the MCB branch is stable only if the orbit returns through the grazing chart without escaping the isolating block or changing its declared signed ledger except at the certified fold rows.
 
 ---
 
@@ -809,7 +830,7 @@ D_{ij}(s)
 \sum_{t_0\in\mathcal{C}_{ij}(t;s)}
 \operatorname{sign}\!\left(\partial_{t_0}F_{ij}(t_0;s)\right)
 $$
-is locally constant, while the unsigned counts $N_s$ and $M_p$ track the ranks of the same-source and partner-root rows. This is the binary version of the [assembly topological charge](assembly-topological-charge.md): the later tri-binary label $(N_s,M_p,c_1)$ uses the two root-complex integers from this chapter and the phase-bundle Chern data from the resonance-lock chart. A solver that reports only raw root counts loses the signed degree needed to distinguish a true branch fold from a harmless relabeling of rows.
+is locally constant, while the unsigned counts $N_s$ and $M_p$ track the ranks of the same-source and partner-root rows. This is the binary version of the [assembly topological charge](assembly-topological-charge.md): the later tri-binary label $(N_s,M_p,c_1)$ uses the two root-complex integers from this chapter and the phase-return degree data from the resonance-lock chart. A solver that reports only raw root counts loses the signed degree needed to distinguish a true branch fold from a harmless relabeling of rows.
 
 #### Parameter-Free Circular Branch Packet
 
@@ -1116,6 +1137,20 @@ $$
 
 with $\mathcal{H}$ the declared history norm and $\epsilon_{\mathcal{H}} > 0$ a fixed normalization floor.
 
+The packet must also report the signed-degree row
+$$
+D_s^{2\mathrm{B}}(b)
+=
+\sum_{\rho\in b_s}
+\operatorname{sign}J_\rho,
+\qquad
+D_p^{2\mathrm{B}}(b)
+=
+\sum_{\rho\in b_p}
+\operatorname{sign}J_\rho,
+$$
+where $b_s$ and $b_p$ are the retained self-hit and partner-hit rows. On a smooth certified window these integers must be constant. If the branch crosses a fold inside the window, the packet must log the corresponding $\Delta N=\pm2,\Delta D=0$ surgery rather than treating the unsigned root counts as conserved data.
+
 The branch-chart admissibility certificate is
 
 $$
@@ -1180,7 +1215,7 @@ $$
 
 where $E_\perp$ removes the neutral phase and symmetry directions. A numerical orbit without this projected return-map certificate is an existence candidate, not a stable binary certificate.
 
-For a standalone circular binary, the neutral quotient includes the global time phase, the period-reparameterization direction, and Euclidean translations and rotations of the complete history. When the same two-body packet is embedded into a phase-locked tri-binary or larger assembly chart, $E_\perp$ must also quotient the flat-connection moduli declared by that enclosing chart; otherwise a slow drift of relative phase can be hidden as an allowed symmetry even though it breaks the lock.
+For a standalone circular binary, the neutral quotient includes the global time phase, the period-reparameterization direction, and Euclidean translations and rotations of the complete history. When the same two-body packet is embedded into a phase-locked tri-binary or larger assembly chart, a neutral-direction audit is required: a direction may be removed from $E_\perp$ only if it is neutral for the full enclosing chart, not merely for the isolated subsystem. The flat-connection moduli declared by the enclosing chart are physical lock variables unless the full chart proves them neutral. Otherwise a slow drift of relative phase can be hidden as an allowed symmetry even though it breaks the lock.
 
 The energy packet is
 
@@ -1273,7 +1308,7 @@ $$
 =
 W^{1,\infty}\left([-h,0];(\mathbb{R}^3)^N\right),
 $$
-with $C^1$ regularity retained on smooth arcs and finite impulse transitions handled by the finite-$\eta$ kernel before any $\eta\to0$ statement is made. The existence theorem below is a smooth-chart theorem. A branch that crosses a $J=0$ wall must supply a separate impulse lemma or isolating-block continuation certificate showing that the finite-$\eta$ solutions converge in $\mathcal{H}_*$ with bounded velocity and finite total impulse.
+with $C^1$ regularity retained on smooth arcs and finite impulse transitions handled by the finite-$\eta$ kernel before any $\eta\to0$ statement is made. The existence theorem below is a smooth-chart theorem. A branch that crosses a $J=0$ wall must supply a separate impulse lemma or isolating-block continuation certificate showing that the finite-$\eta$ solutions converge in $\mathcal{H}_*$ with bounded velocity and finite total impulse. This makes $\mathcal{H}_*$ the common functional-analytic home for caustic-grazing two-body packets, dyadic middle-carrier caustics, and any later breather packet that relies on finite impulse rather than a globally $C^1$ path.
 
 Below, $\mathcal{H}$ denotes the declared history chart for the packet being tested. Unless a caustic-extension certificate is explicitly named, $\mathcal{H}=\mathcal{H}_{\mathrm{sm}}$.
 
