@@ -9008,6 +9008,14 @@ $$
 $$
 on the same retained window. If the Born weights and the thermodynamic summaries require incompatible measures, the model has hidden an ensemble retuning inside the measurement account.
 
+* **Born-Entropy Consistency Target:** The two-preparation comparison gives a compact witness tying the Born target to the thermodynamic ensemble target. For two effective pure preparations represented in the same retained Hilbert chart by $\psi_i$ and $\psi_j$, let $p_{ij}=|\langle \psi_i\mid\psi_j\rangle|^2$ and $\rho_{ij}^{(1/2)}=\tfrac12\rho_i+\tfrac12\rho_j$. The standard quantum comparison requires
+$$
+S_{\mathrm{vN}}\!\left(\rho_{ij}^{(1/2)}\right)
+=
+H_2\!\left(\frac{1+\sqrt{p_{ij}}}{2}\right)
+$$
+with $H_2(x)=-x\log x-(1-x)\log(1-x)$ in the chosen log base. The orthogonal case $p_{ij}=0$ is the record-level mutual-exclusivity limit: the equal mixture carries one full binary alternative when base-$2$ logs are used. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a new probability postulate. It is a consistency target on $\mu_{*,T}$: the same finite-window measure that supplies the basin weights must also push forward to mixture entropies with this two-state behavior. Otherwise $\Delta_{\mathrm{Born}}$ and $\Delta_{\mathrm{ens}}$ are being tuned independently rather than recovered from one preparation class, apparatus calibration, and record window.
+
 The same derived weights must also support ordinary empirical use. For a repeated preparation class and a fixed apparatus record channel, let $D_N=\{N_k\}$ be $N$ recorded outcomes and $\widehat f_k=N_k/N$ the observed frequencies. The inference-facing residual is
 $$
 \Delta_{\mathrm{freq}}(N,T)
