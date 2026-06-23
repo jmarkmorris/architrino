@@ -233,6 +233,56 @@ That is the main attraction: the angular-momentum unit can remain one conserved 
 
 This is not yet an acceptance claim. The proof burden is to show that the same retained event can carry one angular-momentum unit through the common-frequency branch without hiding missing angular momentum in the wake, recoil, transport, or endpoint-provider rows.
 
+## Neutrino Oscillation Comparison Target
+
+Neutrino oscillation is the strongest current single-fermion comparison pressure for this packet. In the local neutrino chapter, weak reactions create and detect flavor-basis states while propagation follows a three-mode geometric phase operator; see [neutrinos.md](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md). The standard comparison form is
+
+$$
+|\nu_\alpha\rangle=\sum_i U_{\alpha i}|\nu_i\rangle,
+\qquad
+\Delta_{ij}=\frac{\Delta\lambda_{ij}L}{4E}.
+$$
+
+This is valuable because the observed object is not merely a set of different fermions with different energies. A produced neutral lepton behaves as one coherent weak-channel state whose later readout depends on relative propagation phase. That is close to the equal-frequency tri-binary question: can one retained neutral branch carry three tightly coupled internal binary rows whose exterior exposure mostly cancels, while residual phase, energy-radius, wake, or coupling rows remain observable through the weak channel?
+
+The safe comparison target is not that the three binaries literally are the three PMNS propagation eigenstates. The safer mathematical route is to derive a neutral-lepton tri-binary phase operator from the same retained equal-frequency row set:
+
+$$
+H_{3B}^{(\nu)}
+=
+\omega_f C_0\mathbf 1
++
+\delta H_{3B}
+\left(
+\rho_a,\phi_a,W_a,L_{\mathrm{wake}},L_{\mathrm{coupling}},\mathcal L_{\mathrm{root}}
+\right),
+$$
+
+where the common-frequency term is a shared clock or global phase contribution, while the residual operator supplies the observable mass-squared-response gaps after diagonalization:
+
+$$
+H_{3B}^{(\nu)}
+=
+U_{\mathrm{PMNS}}\Lambda U_{\mathrm{PMNS}}^\dagger,
+\qquad
+\Delta\lambda_{ij}\ne 0.
+$$
+
+This keeps the equal-frequency idea compatible with oscillation data: if the common clock were the whole operator, all $\Delta\lambda_{ij}$ would vanish and neutrino oscillation would fail immediately. The candidate instead asks whether the shared clock can hide most exterior exposure while the branch-energy, lever-arm, phase-holonomy, wake/coupling, and weak-corridor rows produce the residual operator.
+
+The cancellation side should be tracked as a candidate retained residual:
+
+$$
+R_{\nu,\mathrm{cancel}}
+=
+\left|
+\sum_{a\in\{I,M,O\}}
+W_a^{(\nu)}e^{i\phi_a}
+\right|.
+$$
+
+The triadic $120^\circ$ phase profile gives exact phase-only cyclic cancellation in the current proxy, but neutrino comparison requires more than that identity. A retained neutral-lepton row must show that the same $S_{\mathrm{eq}}$ event or positive-width domain simultaneously supplies weak exterior suppression, nonzero PMNS-like phase gaps, energy and angular-momentum ledger closure, and the same weak-basis / propagation-basis distinction used in [weak-mixing-ckm.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md). The comparison fails if exact cancellation also forces $\delta H_{3B}=0$, if the PMNS matrix requires flavor-specific fitted terms unrelated to the tri-binary row set, or if weak detection cannot be recovered from the small residual exposure.
+
 ## Sampled Solver Row Population
 
 [tri-binary-offset-family-runner.mjs](../../../scripts/angular-momentum/tri-binary-offset-family-runner.mjs) is the current CLI harness for the frequency-candidate solver and now emits `aaa-tri-binary-frequency-candidate-solver-report.v76`. The v76 report exposes raw search labels `B_1:B_2:B_3`, emits `I:M:O` only as a role-assigned chart projection after a retained role map is supplied, and retains outer-normalized forms only as translation metadata. The solver includes an `equal-frequency` policy and an equal-frequency phase-profile catalog for the common-frequency relation `(f_1,f_2,f_3)=(f,f,f)`. The sampled replay

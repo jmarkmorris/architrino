@@ -5,6 +5,6 @@ This package contains app-icon export assets generated from the current Noether 
 - Source SVG: `noether-braid-ribbon-source.svg`
 - Review master: `noether-braid-ribbon-app-icon-1024.png`
 - Xcode-ready package: `AppIcon.appiconset/`
-- Live app icon status: not installed into `apps/ios/ArchitrinoReader/ArchitrinoReader/Assets.xcassets/AppIcon.appiconset/`
+- Live app icon status: installed into `apps/ios/ArchitrinoReader/ArchitrinoReader/Assets.xcassets/AppIcon.appiconset/`
 
 The export preserves the current logo conventions: red positrinos, blue electrinos, three orbit ellipses, and a ribbon treatment for the Noether Braid concept.
