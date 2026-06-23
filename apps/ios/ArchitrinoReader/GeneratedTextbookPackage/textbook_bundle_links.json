@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-23T09:58:20.241Z",
-  "total_links": 1556,
+  "generated_at": "2026-06-23T18:32:37.579Z",
+  "total_links": 1558,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -8586,6 +8586,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/reactions/synchrotron.md"
+    },
+    {
+      "sourceChapterId": "reactions",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
+      "target": "../../../../markdown/aaa/spacetime/gravitational-waves.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/gravitational-waves.md"
+    },
+    {
+      "sourceChapterId": "reactions",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
+      "target": "../../../../markdown/aaa/spacetime/gravitational-waves.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/gravitational-waves.md"
     },
     {
       "sourceChapterId": "reactions",

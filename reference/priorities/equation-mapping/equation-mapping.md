@@ -1,0 +1,144 @@
+# Equation Mapping Internal Priority
+
+## Workstream Metadata
+
+- Kind: `priority`
+- Rank: `unranked`
+- Value: `candidate-high`
+- Cost: `candidate`
+- ROI: `candidate`
+- Status: `draft`
+
+## Current
+
+This workstream stages an equation-first map from standard physics and cosmology formulas into $\mathbb{A}\mathbb{A}\mathbb{A}$ variables. It is internal priority material, not reader-facing canon.
+
+The working thesis is that the strongest near-term equation bridge runs through the Noether braid and Noether sea together:
+
+$$
+\text{Noether braid closure}
+\rightarrow
+(\xi,\Gamma_N,\chi_{\text{sea}},\rho_{\text{NS}})
+\rightarrow
+g_{\mu\nu}^{\mathrm{eff}}
+\rightarrow
+(H_{\mathrm{eff}},z,D(z),P(k,z)).
+$$
+
+Here $\xi=R_{\parallel}/R_{\perp}$ is the Noether braid envelope shape ratio, $\Gamma_N$ is the Noether sea braid cadence-stretch diagnostic, $\chi_{\text{sea}}$ is the Noether sea delay factor, and $\rho_{\text{NS}}$ is the physical Noether braid density.
+
+## Objective
+
+Turn familiar equations from physics and cosmology into closure packets. Each packet should say:
+
+- which equation is being recovered or compared;
+- which Noether braid or Noether sea variables carry the corresponding behavior;
+- whether the equation is already native, strongly mapped, partially mapped, or mostly unmapped;
+- what proof, derivation, simulation, or constitutive response would close the map;
+- where successful material should later be promoted in `content/markdown/aaa`.
+
+## Discussion Capture
+
+The operator asked for the physics and cosmology equations that should tie directly to the Noether sea and the Noether braid. The immediate context was that special relativity, the energy-momentum equation, and the geometry of the changing ellipsoid had already been considered.
+
+The corpus check clarified the canonical term for the changing ellipsoid:
+
+- use **oblate spheroidal envelope** for the moving Noether braid boundary in the Lorentz-geometry bridge;
+- use $\xi=R_{\parallel}/R_{\perp}$ for the Noether braid shape ratio;
+- in the weak homogeneous target, map $\xi\to1/\gamma_{\text{eff}}$;
+- keep any additional transverse scale factor separate as $\lambda(v,E,n)$.
+
+The strongest local bridge already in the corpus is the closed return-cycle map:
+
+$$
+\gamma_{\text{eff}}(v)
+=
+\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}},
+\qquad
+\xi(v)=\frac{R_{\parallel}(v)}{R_{\perp}(v)}
+\to
+\frac{1}{\gamma_{\text{eff}}(v)}.
+$$
+
+That bridge is not yet a derivation from the retained Noether braid root ledger. It is a mapping target: the branch ledger must generate the clock retuning, ruler deformation, two-way signal behavior, and bounded preferred-frame leakage.
+
+The first equation inventory identified these high-value groups:
+
+| Equation family | Direct tie |
+| --- | --- |
+| Lorentz kinematics: $\gamma$, $d\tau/dt$, $L_{\parallel}=L_0/\gamma$ | Noether braid closure geometry and the oblate spheroidal envelope. |
+| Energy-momentum: $E^2=p^2c^2+m_0^2c^4$ | Moving Noether braid energy ledger plus Noether sea-dressed response tensor. |
+| Noether conservation laws: energy, momentum, angular momentum | The braid must close action, wake, event, and conservation ledgers; the sea carries flux and residual terms. |
+| Continuity and transport | Direct Noether sea density, flow, energy, cadence, and orientation bookkeeping. |
+| Effective metric and GR observables | The Noether sea must supply lapse, drift, spatial compliance, and signal delay as one constitutive map. |
+| Einstein and Poisson limits | Observer-level recovery targets for Noether sea stress, density, and effective gravitational coupling. |
+| Photon equations | Photon-channel packets read through Noether sea delay, cadence, and path-history transfer. |
+| Quantum wave equations | Effective coarse-grained records of assembly resonance, basin flow, spin/statistics, and Noether sea background coupling. |
+| Fluid, elastic, and acoustic-medium equations | Useful only when derived from Noether braid population dynamics. |
+| Thermodynamic and statistical equations | Needed for CMB, thermalization, record irreversibility, and Noether sea energy partition. |
+
+For cosmology, the inventory identified:
+
+| Equation family | Direct tie |
+| --- | --- |
+| Redshift budgets | Endpoint Noether sea cadence $\Gamma_N$, source branch shift, launch geometry, and path-history propagation. |
+| Effective FRW metric | Observer-level projection of evolving Noether sea state, not expansion of the Euclidean void. |
+| Friedmann equations | Recovery target for fixed-void Noether sea evolution. |
+| Cosmological continuity | Provenance ledger for assembly transport, recycling, Noether sea exchange, or source terms. |
+| Dark energy equation of state | Noether sea tension, outer-binary relaxation, pressure, and effective negative-pressure behavior. |
+| Structure growth and matter power | Noether sea-mediated gravitational response plus neutral-assembly and dark-sector loading. |
+| CMB blackbody and acoustic equations | Noether sea thermalization, photon-channel decoupling, acoustic-mode propagation, and frame residuals. |
+| BBN rate and freezeout equations | Shared effective $H(t)$, thermal source record, photon and baryon loading, $N_{\text{eff}}$, and Noether sea state. |
+| BAO and distance ladder equations | Effective ruler and clock projections through the Noether sea, not literal void expansion. |
+
+## Scope Boundary
+
+This priority is equation-first. It should complement, not replace, [Cross-Theory Mapping Priority Candidates](../cross-theory-mapping/cross-theory-mapping.md), which is case-first and experiment-first.
+
+The workstream should stay internal until a line item produces a mature mathematical object:
+
+- a derived equation;
+- a reusable variable map;
+- a lemma or theorem target with assumptions;
+- a simulation target with concrete variables;
+- a validation residual that serves an existing proof route or tested observable.
+
+## Task Queue
+
+1. `equation_inventory` - Maintain the scored equation inventory in [equation.md](equation.md). Status: `draft`. Depends on: none.
+2. `lorentz_envelope_closure` - Drive $\xi$, $\Gamma_N$, moving-clock, moving-ruler, and energy-momentum maps into one retained Noether braid branch ledger. Status: `next`. Depends on: `equation_inventory`.
+3. `effective_metric_constitutive_map` - Build the shared Noether sea constitutive record that projects into lapse, spatial compliance, drift, signal delay, PPN rows, and weak-field GR observables. Status: `next`. Depends on: `equation_inventory`.
+4. `redshift_friedmann_transfer_map` - Convert redshift, FRW, Friedmann, continuity, and distance-ladder equations into one fixed-void Noether sea transfer map. Status: `next`. Depends on: `effective_metric_constitutive_map`.
+5. `quantum_photon_statistical_maps` - Assign photon, quantum-wave, thermodynamic, and statistical equations to Noether braid branch, Noether sea, record, and basin-measure closure packets. Status: `queued`. Depends on: `equation_inventory`.
+6. `multi_agent_closure_pass` - Use the new-thread prompt in [equation.md](equation.md#new-thread-prompt) to assign one line item per worker and integrate their closure packets. Status: `ready`. Depends on: `equation_inventory`.
+
+## Promotion Map
+
+| Equation group | Candidate promotion targets | Promotion condition |
+| --- | --- | --- |
+| Lorentz envelope and energy-momentum | `content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md`, `content/markdown/aaa/spacetime/lorentz-kinematics.md`, `content/markdown/aaa/assemblies/particle-masses.md` | One retained Noether braid ledger supplies $\xi$, clock rate, ruler behavior, and mass-shell response without separate fits. |
+| Noether sea continuum and constitutive response | `content/markdown/aaa/spacetime/noether-sea.md`, `content/markdown/aaa/spacetime/emergent-metric.md` | Density, cadence, delay, stress, and orientation moments form one shared constitutive map with residuals. |
+| Weak-field GR and PPN | `content/markdown/aaa/spacetime/general-relativity.md`, `content/markdown/aaa/spacetime/emergent-metric.md` | Redshift, Shapiro delay, lensing, precession, acceleration, and preferred-frame rows project from the same $\theta_W$. |
+| Redshift and effective cosmology | `content/markdown/aaa/cosmology/expansion-mechanism.md`, `content/markdown/aaa/cosmology/cosmology-ontology.md`, `content/markdown/aaa/cosmology/hubble-s8-tensions.md` | Endpoint cadence, launch, source, and path-history terms close one signed frequency-transfer ledger. |
+| Structure and CMB transfer | `content/markdown/aaa/cosmology/structure-formation.md`, `content/markdown/aaa/cosmology/CMB.md`, `content/markdown/aaa/cosmology/BBN-constraints.md` | One Noether sea and assembly record feeds CMB, BBN, $P(k,z)$, lensing, growth, and frame residuals. |
+| Photon and quantum equations | `content/markdown/aaa/assemblies/bosons/electroweak-bosons.md`, `content/markdown/aaa/quantum/wavefunction-ontology.md`, `content/markdown/aaa/quantum/measurement-ontology.md` | Photon-channel, Born-current, spin, basin, and detector records share the same branch and event-ledger grammar. |
+
+## Failure Modes
+
+| Failure code | Meaning |
+| --- | --- |
+| `equation_map.imported_formula` | A standard equation is copied in as an explanation rather than recovered or compared through declared AAA variables. |
+| `equation_map.hidden_retune` | Different observables use different Noether sea or Noether braid records without reporting the split. |
+| `equation_map.level_collapse` | Observer-level metric, field, fluid, or quantum language is promoted into substrate ontology. |
+| `equation_map.no_braid_carrier` | A claimed Noether braid map lacks a root ledger, branch label, clock/ruler channel, or event ledger. |
+| `equation_map.no_sea_constitutive_record` | A claimed Noether sea map lacks density, cadence, delay, stress, flow, orientation, or residual rows. |
+| `equation_map.score_overreach` | A line item receives a high score without a derived variable map, closure equation, or direct corpus support. |
+
+## Related Priority Material
+
+- [Equation Mapping Detail](equation.md)
+- [Cross-Theory Mapping Priority Candidates](../cross-theory-mapping/cross-theory-mapping.md)
+- [Cosmology Transfer-Function Closure](../cosmology-closure/cosmology-closure.md)
+- [Noether-Core Stability and First Mass Map](../mass-map/mass-map.md)
+- [Braid](../braid/braid.md)
+- [Geometry Bridge](../geometry-bridge/geometry-bridge.md)
