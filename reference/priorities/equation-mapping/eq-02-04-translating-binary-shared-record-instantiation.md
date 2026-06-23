@@ -435,6 +435,50 @@ For each sampled drift $u_k$, the run must output:
 | Medium-response row | $R_{\mathcal M}^{\mathrm{bin},ab}(u_k)$ with trace and trace-free parts. | Noether sea constitutive handoff. |
 | Split witnesses | $\mathcal S_{\mathrm{root}}^{02\text{-}04}$ and $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$. | Common-architecture pass/fail. |
 
+## Current Solver Proxy Intake
+
+The live tri-binary runner may be referenced here only as current solver-proxy evidence. Its solver report carries a nested `cases[].branchChartProjection.equationBearing` payload. That payload is fail-closed and does not yet populate $R_T^{\mathrm{bin}}$, $R_{\xi}^{\mathrm{bin}}$, $R_{\mathrm{tw}}^{\mathrm{bin}}$, $R_E^{\mathrm{bin}}$, $R_p^{\mathrm{bin},a}$, $R_{\mathrm{shell}}^{\mathrm{bin}}$, $R_{M_0}^{\mathrm{bin}}$, or $R_{\mathcal M}^{\mathrm{bin},ab}$ from one retained translating branch chart.
+
+The next score-neutral executable object is the retained-row extraction
+
+$$
+\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}(u_k):
+\texttt{equationBearing}(\mathfrak a,u_k)
+\longmapsto
+\left(
+\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k),
+\Theta_{02\text{-}04}^{\mathrm{bin}}(u_k),
+\mathcal R_{02\text{-}04}^{\mathrm{bin}}(u_k),
+\mathcal R_{01-05}^{\mathfrak B_{u_k}}(W_k),
+\mathcal S_{\mathrm{root}}^{02\text{-}04}(u_k),
+\mathcal S_{\mathrm{retune}}^{02\text{-}04}(u_k)
+\right),
+$$
+
+with `blocked_not_evaluable` returned for every component whose required projection is absent from the same retained branch chart.
+
+| Current `equationBearing` field | Use in this packet | Current disposition |
+| --- | --- | --- |
+| `roleFrequencyRowIMO` | Candidate-family display only until `roleMapRetained=true`; raw labels remain generic before retained role assignment. | Proxy only. |
+| `rootSignature` | May seed $\operatorname{RootSig}_X$ after `row_set_identity` clears. | Partial proxy; not same-root acceptance. |
+| `geometryEnergyResidual` | Identifies reduced geometry/energy rows and the missing energy route. | Blocked; does not populate the `EQ-02` through `EQ-04` residual vector. |
+| `eventLedgerResidual` | Points to wake, recoil, vector-partition, and energy-routing blockers. | Blocked; not $\mathcal R_{01-05}^{\mathfrak B_u}(W_u)$. |
+| `stabilityResidual` | Records whether the candidate survives retained branch stability checks. | Blocked. |
+
+Do not cite this solver payload as evidence for a score increase until the emitted retained-row extraction supplies the rows above with zero $\mathcal S_{\mathrm{root}}^{02\text{-}04}$, zero $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$, and a populated or inherited $\mathcal R_{01-05}^{\mathfrak B_{u_k}}(W_k)$.
+
+## Executable Emit Contract Check
+
+The current executable contract check is:
+
+```sh
+node scripts/equation-mapping/check-emit-02-04-contract.mjs --input <tri-binary-solver-report.json> --summary --pretty
+```
+
+The checker consumes `cases[].branchChartProjection.equationBearing`, maps it onto $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}(u_k)$, and reports missing retained projection rows instead of converting current-proxy rows into Lorentz, energy-momentum, or mass-shell evidence. Against the 2026-06-23 equal-frequency smoke report, the summary is `blocked_not_evaluable`: 0 evaluable cases, 7 blocked cases, `retainedBranchClaim=false`, and `scoreDecision=no_score_increase`.
+
+The checker keeps two row-name classes separate: `requiredRows` are retained $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}$ target rows, while `currentProxyRows` are current tri-binary solver-report rows. The aggregate missing rows identify the first concrete reducer burden. The common carrier is blocked by absent `retained_branch_chart`, `root_starvation_row`, `row_set_identity`, `tail_wake_pullback`, `vector_partition_retained`, `energy_routing`, and `retained_noether_sea_cell` rows. The reduced `root_chart_reduced` row remains proxy-only. The clock, envelope, two-way signal, energy, momentum, mass-shell, rest-mass, medium-response, and same-record witness projections are likewise blocked until the same retained branch chart supplies their declared rows. This is the intended fail-closed result: the common carrier has a checkable interface, but the current solver report has not earned a score increase.
+
 ## Drift Sampling And Local Expansion
 
 The first run should sample small and moderate primitive drift:

@@ -27,7 +27,7 @@ $$
 
 Here $\xi=R_{\parallel}/R_{\perp}$ is the Noether braid envelope shape ratio, $\Gamma_N$ is the Noether sea braid cadence-stretch diagnostic, $\chi_{\text{sea}}$ is the Noether sea delay factor, and $\rho_{\text{NS}}$ is the physical Noether braid density.
 
-The equation map now also feeds the stable tri-binary Noether braid configuration search through [Equation-Map Bearing On Braid Configuration Search](../braid-angular-momentum-spin/equation-map-bearing-on-braid-configuration-search.md). Candidate frequency families are search coordinates, not acceptance criteria. A retained candidate should be judged by the same root, geometry/energy, phase-operator, event-ledger, wake/recoil, stability, and observation residual rows. Role-assigned frequency triples use $I:M:O$; raw generator labels remain generic until the solver supplies a nested-role map.
+The equation map now also feeds the stable tri-binary Noether braid configuration search through [Equation-Map Bearing On Braid Configuration Search](../braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md). Candidate frequency families are search coordinates, not acceptance criteria. A retained candidate should be judged by the same root, geometry/energy, phase-operator, event-ledger, wake/recoil, stability, and observation residual rows. Role-assigned frequency triples use $I:M:O$; raw generator labels remain generic until the solver supplies a nested-role map.
 
 ## Objective
 
@@ -39,7 +39,7 @@ Turn familiar equations from physics and cosmology into closure packets. Each pa
 - what proof, derivation, simulation, or constitutive response would close the map;
 - where successful material should later be promoted in `content/markdown/aaa`.
 
-Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column preserves the first-round maturity scores, and `6/23 b` records accepted worker-backed decisions from the 2026-06-23 team-agent closure passes. The second pass filled the remaining `6/23 b` blanks and captured reusable common-equation candidates in [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md). The score-5 acceptance path for every row is staged in [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md).
+Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column preserves the first-round maturity scores, and `6/23 b` records accepted worker-backed decisions from the 2026-06-23 team-agent closure passes. The second pass filled the remaining `6/23 b` blanks and captured reusable common-equation candidates in [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md). [Equation Closure Pass 2026-06-23 D](equation-closure-pass-2026-06-23-d.md) adds score-neutral executable reducer targets; it does not change the score table. [Equation Closure Pass 2026-06-23 E](equation-closure-pass-2026-06-23-e.md) adds the first executable `Emit_02-04` contract checker and also leaves the score table unchanged because the check returns `blocked_not_evaluable`. The score-5 acceptance path for every row is staged in [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md).
 
 Closure packets should be durable working files. Prefer one packet per equation as soon as the equation has enough independent material to advance on its own. Keep a tightly coupled equation group in one packet only when splitting it would obscure a shared residual, shared branch ledger, or shared Noether sea record. Continue improving each packet until it is either marked `ready` for reader-facing promotion or marked `complete` after promotion into `content/markdown/aaa`. The `Promoted?` column in [equation.md](equation.md) accepts only blank, `ready`, or `complete`.
 
@@ -118,7 +118,7 @@ The workstream should stay internal until a line item produces a mature mathemat
 5. `redshift_friedmann_transfer_map` - Convert redshift, FRW, Friedmann, continuity, and distance-ladder equations into one fixed-void Noether sea transfer map. Status: `next`. Depends on: `effective_metric_constitutive_map`.
 6. `quantum_photon_statistical_maps` - Assign photon, quantum-wave, thermodynamic, and statistical equations to Noether braid branch, Noether sea, record, and basin-measure closure packets. Status: `queued`. Depends on: `score_five_closure_ladder`.
 7. `multi_agent_closure_pass` - Use the new-thread prompt in [equation.md](equation.md#new-thread-prompt) to assign one line item per worker and integrate their closure packets. Status: `ready`. Depends on: `equation_inventory`.
-8. `tri_binary_equation_bearing_search` - Feed mature equation residuals into the stable tri-binary configuration search via [Equation-Map Bearing On Braid Configuration Search](../braid-angular-momentum-spin/equation-map-bearing-on-braid-configuration-search.md), including $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=(f+1,f,f-1)$, $(I,M,O)=(f,f,f)$, $(I,M,O)=(4f,2f,f)$, and $(I,M,O)=(nf,mf,f)$. Status: `next`. Depends on: `score_five_closure_ladder` and the angular-momentum `tri_binary_partition_rule`.
+8. `tri_binary_equation_bearing_search` - Feed mature equation residuals into the stable tri-binary configuration search via [Equation-Map Bearing On Braid Configuration Search](../braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md), including $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=(f+1,f,f-1)$, $(I,M,O)=(f,f,f)$, $(I,M,O)=(4f,2f,f)$, and $(I,M,O)=(nf,mf,f)$. Status: `next`. Depends on: `score_five_closure_ladder` and the angular-momentum `tri_binary_partition_rule`.
 
 ## Promotion Map
 
@@ -147,10 +147,12 @@ The workstream should stay internal until a line item produces a mature mathemat
 - [Equation Mapping Detail](equation.md)
 - [Equation Closure Pass 2026-06-23 B](equation-closure-pass-2026-06-23-b.md)
 - [Equation Closure Pass 2026-06-23 C](equation-closure-pass-2026-06-23-c.md)
+- [Equation Closure Pass 2026-06-23 D](equation-closure-pass-2026-06-23-d.md)
+- [Equation Closure Pass 2026-06-23 E](equation-closure-pass-2026-06-23-e.md)
 - [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
 - [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md)
 - [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md)
-- [Equation-Map Bearing On Braid Configuration Search](../braid-angular-momentum-spin/equation-map-bearing-on-braid-configuration-search.md)
+- [Equation-Map Bearing On Braid Configuration Search](../braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md)
 - [Cross-Theory Mapping Priority Candidates](../cross-theory-mapping/cross-theory-mapping.md)
 - [Cosmology Transfer-Function Closure](../cosmology-closure/cosmology-closure.md)
 - [Noether-Core Stability and First Mass Map](../braid-mass-response-map/braid-mass-response-map.md)

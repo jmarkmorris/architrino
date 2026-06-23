@@ -537,6 +537,42 @@ $$
 
 The event is a Compton replay only when $\Delta_{\mathrm{share}}^{26/28}$, $\Delta_E^{\gamma e,0}$, $\Delta_{\mathbf p}^{\gamma e,0}$, $\Delta_{\mathbf J}$, $\Delta_{\mathrm{GateA}}$, $\Delta_{\mathrm{GateB}}$, and $\widehat{\Delta}_{C}^{\gamma e,0}$ are all small on the same $\mathsf e_{\gamma e}^{0}$ record. Any nonzero medium, recoil, remnant, or thermal term must remain an explicit ledger row before the wavelength benchmark is interpreted.
 
+### Cross-Row Precision Surface Use
+
+The next score-neutral use of the Compton replay is the projection map from one populated event to the adjacent photon/event-ledger rows. For the weak homogeneous record, define the row projections
+
+$$
+\mathsf e_{\gamma e}^{0}
+\longmapsto
+\left(
+\Pi_{12}\mathsf e_{\gamma e}^{0},
+\Pi_{13}\mathsf e_{\gamma e}^{0},
+\Pi_{26}\mathsf e_{\gamma e}^{0},
+\Pi_{28}\mathsf e_{\gamma e}^{0},
+\Pi_{29}^{m}\mathsf e_{\gamma e}^{0}
+\right).
+$$
+
+Here $\Pi_{12}$ reads the photon Gate A/B packet, null/eikonal row, and receiver frequency row; $\Pi_{13}$ reads the effective charge/current, stress, and gauge residuals only as coarse-grained comparison rows; $\Pi_{26}$ reads the shared $h$, $M_e^{\mathrm{exp}}$, $c_\gamma$, recoil convention, and atomic transition event convention; $\Pi_{28}$ reads the Compton balance rows above; and $\Pi_{29}^{m}$ reads a declared radiation source mechanism $m$ only through source depletion, trigger geometry, source cooling, recoil, medium, and spectrum rows.
+
+The composed precision residual is
+
+$$
+\mathbf R_{\gamma\text{-}\mathrm{evt}}^{0,m}
+=
+\left(
+\mathcal R_{\gamma,\mathrm{packet}}[\Pi_{12}\mathsf e_{\gamma e}^{0}],
+\mathcal G_{\mathrm{EM}}[\Pi_{13}\mathsf e_{\gamma e}^{0}],
+\Delta_{\mathrm{share}}^{26/28},
+\widehat{\Delta}_{C}^{\gamma e,0},
+\mathbf R_{29}^{m}[\Pi_{29}^{m}\mathsf e_{\gamma e}^{0}]
+\right).
+$$
+
+For the first replay, set $m=\text{Compton exchange}$ and require $\Pi_{29}^{m}$ to classify the event as a frequency-exchange or scattering-shift row, not as source emission. A later synchrotron or bremsstrahlung packet may change $\Pi_{29}^{m}$, but it must keep the photon carrier $(P_\gamma,E_\gamma,\mathbf p_\gamma,c_\gamma,\mathbf J_{\gamma}^{\mathrm{sub}})$ and the source-mechanism rows separate.
+
+This block is a residual-composition target, not a derivation of $E=h\nu$, Maxwell's equations, the Rydberg coefficient, the Compton shift, or any radiation-power law. A score change is allowed only after $\mathbf R_{\gamma\text{-}\mathrm{evt}}^{0,m}$ is populated on a finite event ledger with the same $h$, $c_\gamma$, $M_e^{\mathrm{exp}}$, recoil convention, Noether sea state, and Gate A/B rows across the projections.
+
 ### Failure Mode
 
 `eq28.frequency_loss_without_recoil`: Compton-like exchange is treated as phenomenological photon frequency loss, pair production is described as creation from nothing, photoelectric capture drops material/recoil rows, or the event uses a different $h$ or exposed mass response than atomic spectra.
@@ -789,6 +825,42 @@ $$
 where $\Delta_{\Phi}$ checks prepared flux mapping, $\Delta_K$ checks detector acceptance, $\Delta_{\sigma}$ checks rate normalization, $\Delta_F$ checks the finite exposure distribution, and $\Delta_{\mathrm{regime}}$ checks that elastic and inelastic event classes are not mixed.
 
 The elastic packet passes only if $\Delta_{\Phi}$, $\Delta_K$, $\Delta_{\sigma}$, $\Delta_F$, and $\Delta_{\mathrm{regime}}$ consume one prepared ensemble $\Gamma_a$, one transition map $\Phi_T$, one branch measure $\mu_a$, one detector kernel $K_{\mathrm{det}}$, and one exposure distribution $\rho_{\mathrm{exp}}^{\mathbb{A}\mathbb{A}\mathbb{A}}$. An imported amplitude or form factor may be used as a comparison surface, not as a substitute for the finite-window pushforward.
+
+For the detector-kernel component of $\mathbf R_{30}^{ep}$, define the detected class measure at record resolution $\ell$:
+
+$$
+A_b^{K,\ell}(T)
+=
+\int_{\Gamma_a}
+\mathbf 1_b(\Phi_T(x))
+K_{\mathrm{det}}^\ell(x)\,d\mu_a(x).
+$$
+
+Then the detector-kernel residual is
+
+$$
+\Delta_K
+=
+\max_b
+\frac{
+\left|
+A_b^{K,\ell/2}(T)-A_b^{K,\ell}(T)
+\right|
+}{
+A_b^{K,\ell}(T)+\varepsilon_K
+}
++
+\lambda_{\mathrm{retune}}
+\mathcal S_{\mathrm{retune}}
+\left(
+K_{\mathrm{det}}^\ell;
+\Gamma_a,\Phi_T,\mu_a,
+\rho_{\mathrm{exp}}^{\mathbb{A}\mathbb{A}\mathbb{A}},
+\theta_{\mathrm{sea}}
+\right).
+$$
+
+The same $K_{\mathrm{det}}^\ell$ must be reused when computing $\Delta_{\sigma}$, $\Delta_F$, and any `EQ-31` detector/classification residual. If $\Delta_K$ can be reduced only by changing $\mu_a$, $\rho_{\mathrm{exp}}^{\mathbb{A}\mathbb{A}\mathbb{A}}$, or $\theta_{\mathrm{sea}}$ per observable, the packet fails as hidden retuning.
 
 ### Failure Mode
 

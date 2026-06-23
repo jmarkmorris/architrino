@@ -41,7 +41,7 @@ Packets inspected for this second pass:
 - [EQ-21 Through EQ-23 And EQ-32 Structure/CMB/BBN/RAR Packet](eq-21-23-32-structure-cmb-bbn-rar-packet.md)
 - [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md)
 - [EQ-26 Through EQ-31 Observation-First Precision Packet](eq-26-31-observation-first-precision-packet.md)
-- [Equation-Map Bearing On Braid Configuration Search](../braid-angular-momentum-spin/equation-map-bearing-on-braid-configuration-search.md)
+- [Equation-Map Bearing On Braid Configuration Search](../braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md)
 
 The unpacketed inventory rows also matter architecturally:
 
@@ -627,6 +627,64 @@ This is the common Noether sea source behind mass response, metric response, Poi
 ### Proof Or Simulation Burden
 
 The first burden is one single-channel coefficient extraction where the same $\Theta_{\mathrm{sea}}$ predicts a perturbation speed and a stress/strain or metric response without changing rows. The second burden is a response-kernel check with delayed support or $\mathcal R_{\mathrm{KK}}$ behavior. A later burden is deriving $G_{\mathrm{eff}}$, $a_\star$, and $P_{\mathrm{eff}}$ as outputs of this same state rather than independent fits.
+
+### First Surface Slice
+
+The first score-neutral constitutive advance is a density-compression surface slice, not a new gate. For one retained window $\Theta_{\mathrm{sea}}^{(\ell,W)}$ and one declared channel $X$, define
+
+$$
+\mathbf y_{\mathrm{sea}}^X
+=
+\left(
+c_X^2,\,
+C_{ij}{}^{kl},\,
+N,\,
+\gamma_{ij},\,
+G_{\mathrm{eff}},\,
+P_{\mathrm{eff}},\,
+a_\star
+\right)^T,
+$$
+
+and require the first-order response
+
+$$
+\delta\mathbf y_{\mathrm{sea}}^X
+=
+\mathsf J_{\rho}^{X}
+\left[
+\Theta_{\mathrm{sea}}^{(\ell,W)}
+\right]
+\delta\ln n
++
+\mathbf r_{\rho}^{X}.
+$$
+
+Here $N$, $\gamma_{ij}$, $G_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, and $a_\star$ are observer-level projection outputs of the Noether sea constitutive state. They are not substrate geometry, fitted vacuum energy, or an imported low-acceleration ontology.
+
+Accept the slice as populated only when the same $\mathsf J_{\rho}^{X}$ supplies a perturbation speed and at least one stress/strain or metric-compliance coefficient, while weak-gravity, effective-pressure, and low-acceleration outputs are either projected from the same row or explicitly reported as missing:
+
+$$
+\mathcal R_{\rho\to\mathrm{surf}}^X
+=
+\frac{
+\left\|\mathbf r_{\rho}^{X}\right\|^2
+}{
+\left\|\delta\mathbf y_{\mathrm{sea}}^X\right\|^2
++
+\left\|\mathsf J_{\rho}^{X}\delta\ln n\right\|^2
++
+\varepsilon
+}
++
+\lambda_{\mathrm{KK}}\mathcal R_{\mathrm{KK}}(\chi_{AB}^{X})
++
+\lambda_{\mathrm{proj}}\mathcal R_{\mathrm{proj}}^X(\Theta_{\mathrm{sea}}^{(\ell,W)},\ell)
++
+\lambda_{\mathrm{retune}}\mathcal S_{\mathrm{retune}}^X.
+$$
+
+This residual is a surface-slice report for the existing constitutive-response program. It supports `EQ-06`, `EQ-07` through `EQ-11`, `EQ-20`, `EQ-24`, and `EQ-32` only after a retained window is populated and the missing-output rows are explicit.
 
 ## Common Component 7: Observer-Level Metric Projection
 
