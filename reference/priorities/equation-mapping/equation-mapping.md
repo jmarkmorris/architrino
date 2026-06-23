@@ -37,6 +37,8 @@ Turn familiar equations from physics and cosmology into closure packets. Each pa
 - what proof, derivation, simulation, or constitutive response would close the map;
 - where successful material should later be promoted in `content/markdown/aaa`.
 
+Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column preserves the first-round maturity scores, and `6/23 b` is the blank column reserved for the next scoring pass.
+
 ## Discussion Capture
 
 The operator asked for the physics and cosmology equations that should tie directly to the Noether sea and the Noether braid. The immediate context was that special relativity, the energy-momentum equation, and the geometry of the changing ellipsoid had already been considered.
