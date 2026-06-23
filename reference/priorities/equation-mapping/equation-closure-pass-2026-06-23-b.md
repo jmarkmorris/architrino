@@ -28,7 +28,7 @@ No reader-facing `content/markdown/aaa` files were edited. The output is interna
 
 ## `6/23 B` Score Decisions
 
-The coordinator accepted the worker-backed scores below into the `6/23 b` column. Rows not assigned in this pass remain blank in `6/23 b`.
+The coordinator accepted the worker-backed scores below into the `6/23 b` column during this first pass. Rows not assigned in this pass were completed by [Equation Closure Pass 2026-06-23 C](equation-closure-pass-2026-06-23-c.md).
 
 | ID | `6/23 a` | `6/23 b` | Decision |
 | --- | --- | --- | --- |
@@ -62,7 +62,7 @@ The coordinator accepted the worker-backed scores below into the `6/23 b` column
 | `EQ-31` | `2` | `2` | Hold. Resonance width/lifetime rows still lack a branch-stability calculation. |
 | `EQ-32` | `2` | `3` | Raise. RAR/BTFR now has a shared Noether sea constitutive-response residual and split-state witness. |
 
-Unassigned in this pass: `EQ-01`, `EQ-05`, `EQ-11`, and `EQ-20`. Their `6/23 b` cells remain blank.
+Unassigned in this pass: `EQ-01`, `EQ-05`, `EQ-11`, and `EQ-20`. Their `6/23 b` cells were completed by [Equation Closure Pass 2026-06-23 C](equation-closure-pass-2026-06-23-c.md).
 
 ## Concrete Mathematical Advances
 

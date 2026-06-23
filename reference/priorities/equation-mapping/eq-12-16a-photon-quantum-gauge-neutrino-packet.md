@@ -670,12 +670,12 @@ $$
 R_{\nu,\mathrm{cancel}}
 =
 \left|
-\sum_{a\in\{I,M,O\}}
+\sum_{a\in\{1,2,3\}}
 W_a^{(\nu)}e^{i\phi_a}
 \right|
 $$
 
-must be small without forcing $\delta H_{3B}=0$.
+must be small without forcing $\delta H_{3B}=0$. The labels $\{1,2,3\}$ are raw retained-row labels; attach `I:M:O` only after a retained branch supplies the nested role map.
 
 7. Ledger closure for weak reaction provenance, energy, momentum, angular momentum, wake/coupling transfer, Noether sea state, and detector readout.
 
@@ -735,3 +735,18 @@ Priority-only until a retained neutral-lepton branch exists. Later promotion tar
 - Do not promote any item from this packet directly into reader-facing prose until the named first mathematical object is populated with a retained branch, shared Noether sea state, and failure residual.
 - The most actionable next packet is `EQ-16A`, because it has a small, falsifiable object: $\omega_f C_0\mathbf 1+\delta H_{3B}$ with two observed phase gaps and a sharp failure if cancellation erases the residual operator.
 - The highest-risk overclaim is `EQ-13` or `EQ-16`: effective gauge and Maxwell equations are strong recovery targets, but they remain observer-level summaries until causal-wake provenance, exposure quotient, and Noether sea response rows are derived on the same branch record.
+
+## Promotion Classification
+
+Classification: `priority-only`.
+
+Promote now: no.
+
+Defer with blockers:
+
+- `EQ-12`: no retained photon event ledger yet derives $E=h\nu$, null/eikonal transport, helicity, path transfer, recoil/remnant rows, and receiver coupling on one record.
+- `EQ-13`: Maxwell and wave rows remain continuum recovery targets until charge/current continuity, stress, gauge, and energy-balance rows descend from causal wakes and photon-channel packets.
+- `EQ-14`: Born-current continuity has a finite-window pushforward target, but no populated measurement or scattering packet yet supplies density, current, detector, and event rows.
+- `EQ-15`: spinor and exchange rows need an ordered-frame, angular-momentum, exchange, and sector-exposure branch calculation before relativistic wave equations can be promoted.
+- `EQ-16`: gauge and Standard Model-facing rows need one weak/gauge exposure packet where `V-A`, CKM/PMNS overlap, reaction provenance, and covariance read from one sector-visible domain.
+- `EQ-16A`: the common-clock plus residual phase operator is sharp, but no retained neutral-lepton branch has yet populated $\Theta_{\nu,16A}$ or fail-closed the equal-frequency hypothesis.

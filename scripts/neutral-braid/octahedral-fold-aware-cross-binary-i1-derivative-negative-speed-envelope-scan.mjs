@@ -305,11 +305,11 @@ export function buildOctahedralFoldAwareCrossBinaryI1DerivativeNegativeSpeedEnve
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-forcing-derivative-atlas.md",
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-derivative-atlas.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.md",
     ],
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-derivative-negative-speed-envelope-scan.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-derivative-negative-speed-envelope-scan.md",
     source_derivative_atlas_check: {
       schema: derivativeAtlas.schema,
       valid: derivativeAtlasErrors.length === 0,

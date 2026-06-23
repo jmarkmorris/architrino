@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const DEFAULT_ROOTS = ["content/markdown/aaa", "reference/priorities/mass-map"];
+const DEFAULT_ROOTS = ["content/markdown/aaa", "reference/priorities/braid-mass-response-map"];
 const MARKDOWN_EXTENSIONS = new Set([".md"]);
 const rootDir = process.cwd();
 const args = process.argv.slice(2);

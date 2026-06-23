@@ -830,8 +830,8 @@ The promotion artifact `promotion_lemma_check.md` must list the exact priority-t
 ## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [mass-map](../mass-map/mass-map.md)
-- [dyadic-lock](../dyadic-lock/dyadic-lock.md)
+- [mass-map](../braid-mass-response-map/braid-mass-response-map.md)
+- [dyadic-lock](../braid-dyadic-lock/braid-dyadic-lock.md)
 - [quantum-closure](../quantum-closure/quantum-closure.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 

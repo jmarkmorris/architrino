@@ -40,6 +40,8 @@ $$
 
 where $\Gamma_{\mathrm{src}}$ is the retained source or prepared-branch state, $\mathcal H$ is the path-history and causal-root record, $\theta_{\mathrm{sea}}$ is only local shorthand for the declared Noether sea variable tuple consumed by the row, $I_{\mathsf e}$ is the selected finite channel set, $Y_{\mathsf e}$ lists outgoing assemblies, recoil, medium, photon, remnant, or exit rows, and $K_{\mathrm{det}}$ is the detector or readout kernel when the observable is statistical.
 
+This $\mathsf e$ is the compact carrier for the packet. Each precision row must declare a projection $\Pi_i\mathsf e$ and a shared-variable agreement check before its benchmark residual is interpreted. For statistical rows, $\mathsf e$ must be paired with the finite-window measure carrier $(\Phi_T,\mu_a,K_{\mathrm{det}})$, and the no-hidden-retune witness must show that source, detector, exposure, and Noether sea rows are not changed between the rate, form-factor, width, lifetime, and branching readouts.
+
 The event balance row should reduce to
 
 $$
@@ -284,6 +286,8 @@ $$
 
 for one branch and one apparatus configuration, with all four residuals consuming the same $\mathcal J_{\mathrm{core}}$, $M_\ell^{\mathrm{exp}}$, and $\mathcal V_{\mathrm{NS}}$.
 
+Score-5 acceptance would require the same $\mathcal J_{\mathrm{core}}$, $M_\ell^{\mathrm{exp}}$, $\mathcal V_{\mathrm{NS}}$, and $\Theta_{\mathrm{app}}$ to feed $\Delta_{\mu}$, $\Delta_{\omega_c}$, $\Delta_{\omega_L}$, and $\Delta_{a_\ell}$ with no lepton-family retune of the leading ledger. Naming the vector does not raise the score; a retained branch or apparatus calculation must populate it.
+
 ### Failure Mode
 
 `eq27.assigned_spin_label`: $g_\ell$ or $a_\ell$ is assigned from observer-level spin notation, the magnetic-state map changes between cyclotron and Larmor rows, QED loop diagrams are treated as literal substrate paths, or electron/muon/tau anomalies require independent leading ledgers.
@@ -402,6 +406,136 @@ $$
 $$
 
 for a weak homogeneous electron target and require the same $h$, $M_e^{\mathrm{exp}}$, $c_\gamma$, and recoil ledger used by `EQ-26`.
+
+For the first replay, specialize the event to a weak homogeneous electron target,
+
+$$
+\mathsf e_{\gamma e}^{0}
+=
+\left(
+X_{\gamma e}^{0},
+I_{\mathsf e},
+Y_{\mathsf e}
+\right),
+$$
+
+where $X_{\gamma e}^{0}$ carries the incoming photon-channel record, the exposed electron target record, the local Noether sea variables, and the same $h$, $M_e^{\mathrm{exp}}$, $c_\gamma$, and recoil convention used by the weak homogeneous `EQ-26` line-set packet. Before interpreting $\Delta_{\lambda}$, require the shared-variable agreement check
+
+$$
+\Delta_{\mathrm{share}}^{26/28}
+=
+\left|
+\frac{h_{28}-h_{26}}{h_{26}+\varepsilon_h}
+\right|
++
+\left|
+\frac{M_{e,28}^{\mathrm{exp}}-M_{e,26}^{\mathrm{exp}}}{M_{e,26}^{\mathrm{exp}}+\varepsilon_M}
+\right|
++
+\left|
+\frac{c_{\gamma,28}-c_{\gamma,26}}{c_{\gamma,26}+\varepsilon_c}
+\right|
++
+d_{\mathrm{recoil}}
+\left(
+\Pi_{\mathrm{recoil}}\mathsf e_{28},
+\Pi_{\mathrm{recoil}}\mathsf e_{26}
+\right).
+$$
+
+The Compton residual may be read only after $\Delta_{\mathrm{share}}^{26/28}$ is small on the declared weak homogeneous record. Otherwise the event has matched the wavelength-shift formula by retuning the photon-channel, exposed-mass, or recoil row rather than by replaying one event ledger.
+
+The shared-variable check is only the anti-retune witness. The replayable Compton object is the weak homogeneous electron-target event balance. In the isolated elastic limit, declare
+
+$$
+\mathbf p_\gamma=\frac{E_\gamma}{c_\gamma}\hat{\mathbf e},
+\qquad
+\mathbf p_{\gamma'}=\frac{E_{\gamma'}}{c_\gamma}\hat{\mathbf e}',
+\qquad
+E_{e'}
+=
+\sqrt{
+\left(M_e^{\mathrm{exp}}c_\gamma^2\right)^2
++c_\gamma^2\left\|\mathbf p_{e'}\right\|^2
+}.
+$$
+
+The event rows are
+
+$$
+\Delta_E^{\gamma e,0}
+=
+E_\gamma
++
+M_e^{\mathrm{exp}}c_\gamma^2
+-
+E_{\gamma'}
+-
+E_{e'}
+-
+\Delta E_{\mathrm{med}}
+-
+\Delta E_{\mathrm{rem}},
+$$
+
+$$
+\Delta_{\mathbf p}^{\gamma e,0}
+=
+\mathbf p_\gamma
+-
+\mathbf p_{\gamma'}
+-
+\mathbf p_{e'}
+-
+\Delta\mathbf p_{\mathrm{med}}
+-
+\Delta\mathbf p_{\mathrm{rem}}.
+$$
+
+After Gate A supplies $E_\gamma=h\nu=hc_\gamma/\lambda$, the derived recoil residual is
+
+$$
+\widehat{\Delta}_{C}^{\gamma e,0}
+=
+\frac{
+\left|
+\frac{1}{E_{\gamma'}}
+-
+\frac{1}{E_\gamma}
+-
+\frac{1-\hat{\mathbf e}\cdot\hat{\mathbf e}'}{M_e^{\mathrm{exp}}c_\gamma^2}
+\right|
+}{
+\frac{1}{E_{\gamma'}}
++
+\frac{1}{E_\gamma}
++
+\varepsilon_C
+}.
+$$
+
+Equivalently,
+
+$$
+\widehat{\Delta}_{\lambda}^{\gamma e,0}
+=
+\frac{
+\left|
+\lambda'
+-
+\lambda
+-
+\frac{h}{M_e^{\mathrm{exp}}c_\gamma}
+\left(
+1-\hat{\mathbf e}\cdot\hat{\mathbf e}'
+\right)
+\right|
+}{
+|\lambda'|+|\lambda|+\varepsilon_\lambda
+}.
+$$
+
+The event is a Compton replay only when $\Delta_{\mathrm{share}}^{26/28}$, $\Delta_E^{\gamma e,0}$, $\Delta_{\mathbf p}^{\gamma e,0}$, $\Delta_{\mathbf J}$, $\Delta_{\mathrm{GateA}}$, $\Delta_{\mathrm{GateB}}$, and $\widehat{\Delta}_{C}^{\gamma e,0}$ are all small on the same $\mathsf e_{\gamma e}^{0}$ record. Any nonzero medium, recoil, remnant, or thermal term must remain an explicit ledger row before the wavelength benchmark is interpreted.
 
 ### Failure Mode
 
@@ -654,6 +788,8 @@ $$
 
 where $\Delta_{\Phi}$ checks prepared flux mapping, $\Delta_K$ checks detector acceptance, $\Delta_{\sigma}$ checks rate normalization, $\Delta_F$ checks the finite exposure distribution, and $\Delta_{\mathrm{regime}}$ checks that elastic and inelastic event classes are not mixed.
 
+The elastic packet passes only if $\Delta_{\Phi}$, $\Delta_K$, $\Delta_{\sigma}$, $\Delta_F$, and $\Delta_{\mathrm{regime}}$ consume one prepared ensemble $\Gamma_a$, one transition map $\Phi_T$, one branch measure $\mu_a$, one detector kernel $K_{\mathrm{det}}$, and one exposure distribution $\rho_{\mathrm{exp}}^{\mathbb{A}\mathbb{A}\mathbb{A}}$. An imported amplitude or form factor may be used as a comparison surface, not as a substitute for the finite-window pushforward.
+
 ### Failure Mode
 
 `eq30.amplitude_import`: $\mathcal M$ or $F(Q^2)$ is copied from standard theory as a black-box fit, detector response is external to the recorded state, form factors become arbitrary profiles, or deep-inelastic and elastic limits require different ontologies.
@@ -774,6 +910,8 @@ $$
 $$
 
 with $\Delta_{\Gamma}$, $\Delta_{\tau}$, and $\Delta_B$ all derived from the same $\{\gamma_k\}$ rather than fitted independently.
+
+The line-shape residual $\Delta_{\mathrm{shape}}$ must use the same detector and interference rows as the escape/dephasing measure. Score-5 requires one retained branch producing $E_0$, $\Gamma$, $\tau$, and $B_k$ from one shared escape measure; the Breit-Wigner profile remains a downstream comparison until that measure is populated.
 
 ### Failure Mode
 

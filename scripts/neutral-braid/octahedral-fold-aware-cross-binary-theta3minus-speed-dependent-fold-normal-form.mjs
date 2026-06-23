@@ -452,12 +452,12 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-compact-complement-directed-rounded-interval-enclosure.md",
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-fold-square-limit-atlas.md",
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-compact-complement-directed-rounded-interval-enclosure.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-fold-square-limit-atlas.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.md",
     ],
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form.md",
     normal_form_parameters: {
       receiver_label: "1+",
       source_label: "3-",

@@ -42,15 +42,16 @@ The shortest path to many `5` scores is through shared carriers:
 | $H_X=\omega_{\mathrm{clk}}C_X\mathbf 1+\delta H_X$ | Separates common hidden cadence from observable phase gaps or beat frequencies. | `EQ-08`, `EQ-12`, `EQ-16A`, `EQ-17`, `EQ-26`. |
 | $\mathcal E_S(A)=Q_S[\Pi_S\mathcal L_A]$ | Forces mass, spin, weak, gauge, magnetic, form-factor, and detector rows to use one exposed-sector record. | `EQ-04`, `EQ-15`, `EQ-16`, `EQ-16A`, `EQ-27`, `EQ-30`. |
 | $\mu_{t+\Delta t}^{\mathcal Q,W}=\Pi_{\mathcal Q,W\,*}\Phi_{\Delta t\,*}\mu_t+\mathcal R_{\mathrm{coarse}}$ | Derives probability, entropy, cross sections, and resonance statistics as finite-window pushforwards. | `EQ-14`, `EQ-25`, `EQ-30`, `EQ-31`. |
+| $\mathcal R_{\mathrm{cfg}}(\mathfrak a)$ | Routes mature equation residuals into retained tri-binary candidate selection and blocks frequency-ratio-only acceptance. | `EQ-01` through `EQ-05`, `EQ-12`, `EQ-15`, `EQ-16A`, `EQ-27` through `EQ-31`. |
 
 ## Score-5 Ladder By Row
 
 | ID | Current `6/23 b` | Score-5 closure object | First reducer |
 | --- | --- | --- | --- |
 | `EQ-01` | `5` | Native per-hit causal wake law plus causal-root Jacobian. | Maintain dependency discipline; every downstream row must declare which reduced root, wake, event, or Noether sea record it consumes. |
-| `EQ-02` | `4` | Retained translating-binary or nested shell braid branch derives $T_q/T_0=\gamma_{\star}$ from causal roots with bounded two-way leakage. | Populate $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$ in [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md). |
-| `EQ-03` | `4` | Same retained branch derives $\xi=R_{\parallel}/R_{\perp}=1/\gamma_{\star}$ without assigning the envelope ratio. | Use the same $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$ run; require zero root split between clock and envelope rows. |
-| `EQ-04` | `4` | Same retained branch derives $E_{\mathrm{CM}}$, $p_{\mathrm{CM}}$, $M_0$, $R_{\mathrm{shell}}$, $\zeta(A)$, and $\mathcal M_{\mathrm{sea}}^{ab}$ without velocity-dependent rest mass. | Add energy, exposure, and medium-response rows to the translating-binary run; then repeat on the first accepted nested shell braid branch. |
+| `EQ-02` | `4` | Retained translating-binary or nested shell braid branch derives $T_q/T_0=\gamma_{\star}$ from causal roots with bounded two-way leakage. | Populate $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)$, then assemble $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$ and same-root conservation row in [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md). |
+| `EQ-03` | `4` | Same retained branch derives $\xi=R_{\parallel}/R_{\perp}=1/\gamma_{\star}$ without assigning the envelope ratio. | Use the same $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)$ projections; require zero root split between clock, envelope, and $\mathcal R_{01-05}^{\mathfrak B_u}(W_u)$ rows. |
+| `EQ-04` | `4` | Same retained branch derives $E_{\mathrm{CM}}$, $p_{\mathrm{CM}}$, $M_0$, $R_{\mathrm{shell}}$, $\zeta(A)$, and $\mathcal M_{\mathrm{sea}}^{ab}$ without velocity-dependent rest mass. | Add energy, exposure, medium-response, and finite-window conservation projections to the translating-binary retained record; then repeat on the first accepted nested shell braid branch. |
 | `EQ-05` | `4` | Finite-window conservation residual $\mathcal R_{01-05}^{\mathfrak B}(W)\to0$ for energy, momentum, angular momentum, wake, event, and boundary rows on one branch chart. | Instantiate [eq-01-05-root-conservation-packet.md](eq-01-05-root-conservation-packet.md) on the smallest branch with certified active roots and boundary flux. |
 | `EQ-06` | `4` | Noether sea continuity and moment rows derived as low-moment projections from retained Noether braid population dynamics with refinement convergence. | Prove or simulate $\mathcal R_{\mathrm{proj}}^X(\Theta_W,\ell)$ decreasing under retained-inventory and memory refinement. |
 | `EQ-07` | `4` | One Noether sea constitutive state derives lapse, drift, spatial compliance, signal delay, and observer metric coefficients. | Extract the first coefficient row in $\mathcal C_{\mathrm{sea}}$ and reuse it across clock, ruler, signal, and weak-field rows. |
@@ -86,17 +87,20 @@ The shortest path to many `5` scores is through shared carriers:
 The practical order is not row order. It is shared-carrier order:
 
 1. **Root and conservation floor:** `EQ-01` and `EQ-05`. Without finite-window conservation, energy-momentum, photon, reaction, thermal, and precision rows cannot honestly reach `5`.
-2. **Lorentz and mass-shell retained branch:** `EQ-02` through `EQ-04`. This is the compact branch calculation that tests whether clock, ruler, energy, momentum, and rest mass can share one retained branch.
-3. **Noether sea constitutive response:** `EQ-06` through `EQ-11`, `EQ-20`, `EQ-24`, and `EQ-32`. One coefficient extraction can unlock many rows, but hidden retune must be reported.
-4. **Photon and finite event ledger:** `EQ-12`, `EQ-13`, `EQ-17`, `EQ-26`, `EQ-28`, and `EQ-29`. Compton/recoil is the smallest event replay with many consumers.
-5. **Sector and quantum records:** `EQ-14` through `EQ-16A`, `EQ-27`, `EQ-30`, and `EQ-31`. These need deterministic pushforward and exposed-sector quotient rows before external wave or gauge equations are scored high.
-6. **Cosmology shared-observation residual:** `EQ-18`, `EQ-19`, `EQ-21`, `EQ-22`, `EQ-23`, and `EQ-32`. These should advance after the same Noether sea constitutive record has at least one local coefficient extraction.
+2. **Tri-binary equation-bearing search:** attach $\mathcal R_{\mathrm{cfg}}(\mathfrak a)$ to retained candidate records so $(f+2,f,f-1)$, $(f+1,f,f-1)$, $(f,f,f)$, $(4f,2f,f)$, and $(nf,mf,f)$ are compared by same-record residuals, not frequency labels alone.
+3. **Lorentz and mass-shell retained branch:** `EQ-02` through `EQ-04`. This is the compact branch calculation that tests whether clock, ruler, energy, momentum, and rest mass can share one retained branch.
+4. **Noether sea constitutive response:** `EQ-06` through `EQ-11`, `EQ-20`, `EQ-24`, and `EQ-32`. One coefficient extraction can unlock many rows, but hidden retune must be reported.
+5. **Photon and finite event ledger:** `EQ-12`, `EQ-13`, `EQ-17`, `EQ-26`, `EQ-28`, and `EQ-29`. Compton/recoil is the smallest event replay with many consumers.
+6. **Sector and quantum records:** `EQ-14` through `EQ-16A`, `EQ-27`, `EQ-30`, and `EQ-31`. These need deterministic pushforward and exposed-sector quotient rows before external wave or gauge equations are scored high.
+7. **Cosmology shared-observation residual:** `EQ-18`, `EQ-19`, `EQ-21`, `EQ-22`, `EQ-23`, and `EQ-32`. These should advance after the same Noether sea constitutive record has at least one local coefficient extraction.
 
 ## Next Score-5 Work Item
 
 The highest-value next concrete item remains the translating-binary retained-record run for `EQ-02` through `EQ-04`, because it is the smallest place where the common score-5 discipline can be tested end to end:
 
 $$
+\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)
+\longrightarrow
 \Theta_{02\text{-}04}^{\mathrm{bin}}(u)
 \longrightarrow
 \left(
@@ -108,12 +112,15 @@ R_p,
 R_{\mathrm{shell}},
 R_{M_0},
 R_{\mathcal M},
+\mathcal R_{01-05}^{\mathfrak B_u},
 \mathcal S_{\mathrm{root}},
 \mathcal S_{\mathrm{retune}}
 \right).
 $$
 
 If that run passes, it creates a real path for `EQ-02`, `EQ-03`, and `EQ-04` to reach `5`. If it fails cleanly, it still advances the program by identifying which common carrier breaks first.
+
+Parallel solver hook: the stable tri-binary configuration search now emits an `equationBearing` payload with $\mathcal R_{\mathrm{cfg}}(\mathfrak a)$ structure for each candidate branch-chart projection. That hook does not raise any row score by itself; it makes the score-5 ladder consumable by the branch-selection solver and keeps the $(f,f,f)$ candidate on equal footing with the offset and hierarchy families until retained residuals decide.
 
 ## Promotion Classification
 

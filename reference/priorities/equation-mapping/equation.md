@@ -254,9 +254,9 @@ $$
 
 ### Closure Status
 
-Score: `3`.
+Current `6/23 b` score: `4`.
 
-The conceptual and variable map is good, but the first branch-derived $E_{\mathrm{internal}}$, $\zeta(A)$, and $\mathcal M_{\mathrm{sea}}^{ab}$ remain active mass-map work.
+The conceptual and variable map is strong enough for the second-round score because it now sits inside the shared Lorentz-energy residual program. It remains below `5` because the first branch-derived $E_{\mathrm{internal}}$, $\zeta(A)$, and $\mathcal M_{\mathrm{sea}}^{ab}$ are still active mass-map work.
 
 ### Closure Burden
 
@@ -307,9 +307,9 @@ The corpus already warns that ordinary local Noether energy does not automatical
 
 ### Closure Status
 
-Score: `3`.
+Current `6/23 b` score: `4`.
 
-The bookkeeping standard exists. Exact conserved functionals remain conditional on action-level derivation and finite-window residuals.
+The bookkeeping standard and finite-window residual grammar are now explicit enough for the second-round score. Exact conserved functionals remain conditional on action-level derivation and finite-window residual evaluation.
 
 ### Closure Burden
 
@@ -473,7 +473,7 @@ $$
 
 ### Closure Status
 
-Scores: `4` for effective metric and clock rows, `3` for PPN and geodesic rows.
+Current `6/23 b` scores: `4` for effective metric, weak-clock, and PPN rows; `3` for the geodesic row.
 
 The map is equation-level, but coefficient closure and shared-record enforcement remain open.
 
@@ -524,9 +524,9 @@ These are not substrate laws in AAA. They are observer-level recovery targets. T
 
 ### Closure Status
 
-Score: `2`.
+Current `6/23 b` score: `3`.
 
-The recovery burden is much larger than the weak-field clock and PPN rows. Current material has the interface, not a full Einstein-equation analogue.
+The recovery burden is much larger than the weak-field clock and PPN rows. Current material has the shared constitutive interface, not a full Einstein-equation analogue.
 
 ### Closure Burden
 
@@ -590,7 +590,7 @@ The null condition belongs to the observer-level effective metric. The wave equa
 
 ### Closure Status
 
-Scores: `3` for photon energy/null transport, `2` for Maxwell and wave equations.
+Current `6/23 b` scores: `3` for photon energy/null transport and `3` for Maxwell and wave equations.
 
 ### Closure Burden
 
@@ -644,7 +644,7 @@ These equations should be treated as observer-level or effective-state recovery 
 
 ### Closure Status
 
-Scores: `2` for Schrodinger/Born-current continuity, `1` for Dirac/spinor and gauge equations.
+Current `6/23 b` scores: `3` for Schrodinger/Born-current continuity and `2` for Dirac/spinor and gauge equations.
 
 Current material names useful closure routes, but the deeper spinor and gauge maps remain early.
 
@@ -746,7 +746,7 @@ up to the common $1/E$ scaling and sign convention.
 
 The immediate lesson is not that the three tri-binary frequencies should literally be observed as three absolute neutrino clocks. The observed relation says something subtler: a common carrier phase can factor out, while a residual propagation operator supplies two independent observable phase gaps.
 
-The equal-frequency tri-binary candidate in [equal-frequency-energy-radius-candidate.md](../angular-momentum-spin/equal-frequency-energy-radius-candidate.md) is therefore a good match only if it has the form
+The equal-frequency tri-binary candidate in [equal-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/equal-frequency-energy-radius-candidate.md) is therefore a good match only if it has the form
 
 $$
 H_{3B}^{(\nu)}
@@ -840,16 +840,18 @@ $$
 R_{\nu,\mathrm{cancel}}
 =
 \left|
-\sum_{a\in\{I,M,O\}}
+\sum_{a\in\{1,2,3\}}
 W_a^{(\nu)}e^{i\phi_a}
 \right|.
 $$
+
+The raw labels $\{1,2,3\}$ should be mapped to `I:M:O` only after a retained branch supplies those roles.
 
 Small $R_{\nu,\mathrm{cancel}}$ is not enough. A neutral-lepton branch must also leave a nonzero residual phase operator that recovers the observed two-gap hierarchy.
 
 ### Closure Status
 
-Score: `2`.
+Current `6/23 b` score: `3`.
 
 The standard oscillation equations are precise, the local neutrino chapter already supplies a geometric phase-operator recovery target, and the equal-frequency packet now names the common-clock tri-binary interpretation. The missing object is a retained neutral-lepton tri-binary branch that derives $H_{3B}^{(\nu)}$, $U_{\mathrm{PMNS}}$, and the two independent phase gaps from the same row set.
 
@@ -1068,9 +1070,9 @@ The native hypothesis routes dark energy to Noether sea state:
 
 ### Closure Status
 
-Score: `2`.
+Current `6/23 b` score: `3`.
 
-The mechanism is plausible but still mostly constitutive scaffolding. A fitted $\Lambda$ is not a derivation.
+The mechanism is staged as a shared constitutive target, not merely a loose analogy. A fitted $\Lambda$ is still not a derivation.
 
 ### Closure Burden
 
@@ -1152,6 +1154,8 @@ $$
 
 without switching Noether sea state between linear and nonlinear packets.
 
+The row should be evaluated as a projection of $\mathcal R_{\mathrm{obs}}(\Theta_{\mathrm{obs}})$ from the shared-observation packet: growth uses the same readout and Noether sea response rows that later feed CMB lensing, BBN handoff, and low-acceleration galaxy comparisons.
+
 ### Agent Target
 
 Pick one growth observable, preferably $P(k,z)$ or $f\sigma_8$, and define the exact Noether sea variables needed to compute it.
@@ -1188,16 +1192,16 @@ The CMB packet must join:
 
 ### Closure Status
 
-Score: `2`.
+Current `6/23 b` score: `3`.
 
-The current material is rich but still narrative-heavy. The equation-level transfer pipeline remains a priority target.
+The current material now has a shared observation-record scaffold, but the equation-level transfer pipeline remains a priority target.
 
 ### Closure Burden
 
-The shared CMB record is
+The CMB projection is a local readout of the shared observation record,
 
 $$
-\Theta_{\mathrm{CMB}}
+\Pi_{\mathrm{CMB}}\Theta_{\mathrm{obs}}
 =
 \left(
 T_{\mathrm{src}},
@@ -1210,7 +1214,7 @@ Y_p,
 \right).
 $$
 
-A CMB branch fails if it fits microwave temperature while assigning helium abundance, neutrino history, foreground subtraction, or dipole correction to separate records.
+A CMB branch fails if it fits microwave temperature while assigning helium abundance, neutrino history, foreground subtraction, or dipole correction to separate records. The local CMB readout must reuse the shared $\Theta_{\mathrm{src}}$, $\Theta_{\mathrm{therm/prov}}$, $\Theta_{\mathrm{read}}$, and effective-coupling rows rather than introducing an independent $\Theta_{\mathrm{CMB}}$.
 
 ### Agent Target
 
@@ -1237,9 +1241,9 @@ BBN is an effective source-window and thermal-record constraint. The Noether sea
 
 ### Closure Status
 
-Score: `2`.
+Current `6/23 b` score: `3`.
 
-The constraint rows exist, but the native source-window mechanism is not predictive enough yet.
+The constraint rows and shared source-window dependencies are explicit, but the native source-window mechanism is not predictive enough yet.
 
 ### Closure Burden
 
@@ -1251,6 +1255,7 @@ One branch must recover:
 - $\eta$;
 - $N_{\mathrm{eff}}$;
 - same thermal, photon-loading, neutrino, and Noether sea state used by CMB and structure.
+- the same $\Theta_{\mathrm{src}}$ and $\Theta_{\mathrm{therm/prov}}$ consumed by $\mathcal R_{\mathrm{obs}}(\Theta_{\mathrm{obs}})$, so yields, photon loading, neutrino rows, and CMB handoff cannot be fit as separate source records.
 
 ### Agent Target
 
@@ -1337,9 +1342,9 @@ Key AAA carriers:
 
 ### Closure Status
 
-Score: `2`.
+Current `6/23 b` score: `3`.
 
-This is necessary for CMB, measurement, irreversibility, and statistical mechanics, but the mapping is early.
+This is necessary for CMB, measurement, irreversibility, and statistical mechanics. The mapping now has a finite-window pushforward target, but no populated closure calculation yet.
 
 ### Closure Burden
 
@@ -1397,7 +1402,7 @@ $$
 
 ### AAA Mapping
 
-The existing [Atomic Spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md) chapter already frames $R_\infty$ as a shared spectral coefficient-row target rather than a line-by-line fit. This row promotes that observation pressure into the equation map. The gross line scale should come from one atomic envelope Noether braid record, local photon-channel speed, local clock/rate conversion, and Noether sea cell. Fine structure, spin-orbit splitting, hyperfine splitting, Zeeman/Stark response, and Lamb-shift-class residuals are downstream consumers of the angular-momentum ledger, ordered-frame spinor closure, radiation ledger, and measurement-response model.
+The existing [Atomic Spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md) chapter already frames $R_\infty$ as a shared spectral coefficient-row target rather than a line-by-line fit. This row records that observation pressure in the equation map. The gross line scale should come from one atomic envelope Noether braid record, local photon-channel speed, local clock/rate conversion, and Noether sea cell. Fine structure, spin-orbit splitting, hyperfine splitting, Zeeman/Stark response, and Lamb-shift-class residuals are downstream consumers of the angular-momentum ledger, ordered-frame spinor closure, radiation ledger, and measurement-response model.
 
 The useful mapping is therefore not one equation but a nested benchmark:
 
@@ -1801,11 +1806,13 @@ n,
 \mathcal R_{\mathrm{RAR}}.
 $$
 
+This comparison belongs inside the same shared observation record as growth, CMB, and BBN. The low-acceleration scale $a_\star^\theta(E)$ and any apparent $a_0$ row should be outputs of the shared Noether sea response, not a separate galaxy-only constant.
+
 ### Closure Status
 
-Score: `2`.
+Current `6/23 b` score: `3`.
 
-The equation is a strong observational benchmark, but the current $\mathbb{A}\mathbb{A}\mathbb{A}$ map is only a constitutive-response target. It should not be imported as a new gravity ontology or as permission to bypass the effective-metric and cosmology rows.
+The equation is a strong observational benchmark, and the current $\mathbb{A}\mathbb{A}\mathbb{A}$ map is now a shared constitutive-response target. It should not be imported as a new gravity ontology or as permission to bypass the effective-metric and cosmology rows.
 
 ### Closure Burden
 
@@ -1822,6 +1829,8 @@ The row must show:
 Write a radial-acceleration closure packet that treats $a_0$ as an output candidate of the Noether sea constitutive law, identifies the shared gravity/cosmology constraints, and states the first failure mode.
 
 ## Ranked Closure Priorities
+
+Cross-cutting solver priority: the stable tri-binary configuration search should consume the equation map through [Equation-Map Bearing On Braid Configuration Search](../braid-angular-momentum-spin/equation-map-bearing-on-braid-configuration-search.md). The active role-assigned frequency families are $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=(f+1,f,f-1)$, $(I,M,O)=(f,f,f)$, $(I,M,O)=(4f,2f,f)$, and $(I,M,O)=(nf,mf,f)$. These are search candidates, not conclusions; acceptance should depend on the retained root, geometry/energy, phase-operator, event-ledger, wake/recoil, stability, and observation residuals emitted from the same branch record.
 
 1. `EQ-02` and `EQ-03`: Lorentz factor, clock/ruler retuning, and oblate spheroidal envelope. These already have the strongest visual and algebraic bridge.
 2. `EQ-04`: energy-momentum and rest energy. This should attach the Lorentz envelope to mass-map work.
@@ -1847,6 +1856,7 @@ Context:
 - The line items in `equation.md` use dated score columns from `0` to `5`; `6/23 a` is the first-round score, and `6/23 b` records accepted worker-backed scores where populated.
 - The current high-value bridge is:
   `Noether braid closure -> (xi, Gamma_N, chi_sea, rho_NS) -> g_eff -> (H_eff, z, D(z), P(k,z))`.
+- Stable tri-binary branch search uses role-assigned $I:M:O$ triples after generic binary labels are mapped. Active families include $(f+2,f,f-1)$, $(f+1,f,f-1)$, $(f,f,f)$, $(4f,2f,f)$, and $(nf,mf,f)$. Treat these as search coordinates and consume the fail-closed solver-facing `equationBearing` residual payload before ranking them.
 - The immediate objective is not broad prose. It is one closure packet per equation group: variables, assumptions, mapped equation, missing derivation, first proof/simulation step, failure mode, and promotion targets.
 - Multiple agents may be running at the same time. Treat the assignment list as a concurrency boundary: each worker owns only its assigned equation IDs unless the coordinator explicitly reassigns scope.
 

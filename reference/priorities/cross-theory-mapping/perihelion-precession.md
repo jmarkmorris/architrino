@@ -35,7 +35,7 @@ This case is a compact weak-field closure test. It requires the effective metric
 | --- | --- | --- |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Use precession as a weak-field metric benchmark alongside Shapiro and lensing. |
 | This file | [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Derive orbital correction from delayed dynamics and effective metric handoff. |
-| This file | [mass-map](../mass-map/mass-map.md) | Connect source mass exposure to orbital response. |
+| This file | [mass-map](../braid-mass-response-map/braid-mass-response-map.md) | Connect source mass exposure to orbital response. |
 
 ## Failure Modes
 

@@ -270,8 +270,8 @@ export function buildArtifact(options = {}) {
     artifact_id: "neutral_braid_finite_mode_search.audit_shape.v1",
     promotion_status: PROMOTION_STATUS,
     sources: [
-      "reference/priorities/braid/neutral-braid/neutral-braid-finite-mode-search.md",
-      "reference/priorities/braid/neutral-braid/all-pairs-root-ledger.md",
+      "reference/priorities/braid-retained-branch-closure/neutral-braid/neutral-braid-finite-mode-search.md",
+      "reference/priorities/braid-retained-branch-closure/neutral-braid/all-pairs-root-ledger.md",
     ],
     artifact_claim: {
       kind: "audit_emitter_surface",

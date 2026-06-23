@@ -97,13 +97,14 @@ $$
 \rho_{\mathrm{bar}},
 \rho_A,
 \mathcal{M}_{\mathrm{sea}}^{ab},
+G_{\mathrm{eff}}^\theta,
 a_\star^\theta(E),
 f^\theta(E),
 \mathcal{I}_{\mathrm{loc}}^\theta
 \right).
 $$
 
-Here $W_{\mathrm{src}}$ is the declared source window for the BBN-like thermal and provenance record. It may be a local-reactor, recycling, or compact-object comparison window, but it must be the same source-window record carried forward into the CMB photon-loading and structure-transfer handoff. $\Theta_{\mathrm{read}}$ is observer-level bookkeeping; it does not assert expansion of the Euclidean void.
+Here $W_{\mathrm{src}}$ is the declared source window for the BBN-like thermal and provenance record. It may be a local-reactor, recycling, or compact-object comparison window, but it must be the same source-window record carried forward into the CMB photon-loading and structure-transfer handoff. $\Theta_{\mathrm{read}}$ is observer-level bookkeeping supplied by the effective-FRW and Friedmann rows; it does not assert expansion of the Euclidean void, and it is not a separately fit readout state.
 
 The retained Noether sea slow state remains:
 
@@ -122,6 +123,50 @@ e_{\mathrm{sea}},
 \right).
 $$
 
+## Upstream FRW / Readout Handoff
+
+The downstream observation record must consume the effective-FRW and Friedmann readout from the upstream metric/cosmology packet rather than fitting a separate readout state. Let $\theta_{\mathrm{cos}}$ denote the retained record used by the `EQ-07` through `EQ-10` and `EQ-17` through `EQ-19` packet. Then the observation-family readout must satisfy
+
+$$
+\Theta_{\mathrm{read}}
+\stackrel{!}{=}
+\Pi_{\mathrm{read}}\Pi_{\mathrm{FRW}}\theta_{\mathrm{cos}},
+\qquad
+z_X^\theta
+=
+\exp(Z_X[\theta_{\mathrm{cos}}])-1.
+$$
+
+The corresponding interface residual is
+
+$$
+\begin{aligned}
+\mathcal R_{\mathrm{FRW}\to\mathrm{obs}}
+=&
+d_{\mathrm{read}}
+\left(
+\Theta_{\mathrm{read}},
+\Pi_{\mathrm{read}}\Pi_{\mathrm{FRW}}\theta_{\mathrm{cos}}
+\right)
++
+\lambda_Z
+d_z
+\left(
+z_X^\theta,
+\exp(Z_X[\theta_{\mathrm{cos}}])-1
+\right)
+\\
+&+\lambda_H R_H(\theta_{\mathrm{cos}})^2
++\lambda_\rho R_\rho(\theta_{\mathrm{cos}})^2
++\lambda_{\mathrm{retune}}
+\mathcal S_{\mathrm{retune}}^{\mathrm{cos}\to\mathrm{obs}}.
+\end{aligned}
+$$
+
+Here $\mathcal S_{\mathrm{retune}}^{\mathrm{cos}\to\mathrm{obs}}$ reports any split between the upstream redshift/FRW/Friedmann record and the downstream growth, CMB, BBN, and RAR/BTFR projections. It checks shared rows such as $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, $\Gamma_N$, $\mathbf u_{\mathrm{sea}}$, $\mathcal M_{\mathrm{sea}}^{ab}$, $G_{\mathrm{eff}}^\theta$, $a_{\mathrm{eff}}^\theta$, $H_{\mathrm{eff}}^\theta$, $\rho_{\mathrm{bar}}$, $\rho_A$, $\eta^\theta$, $N_{\text{eff}}^\theta$, and $\mathbf Y_{\mathrm{BBN}}^\theta$ wherever those rows overlap.
+
+This is an equation-mapping interface residual, not a new score gate. A nonzero value may be acceptable only when the branch declares a physical transformation row between source, path, and readout windows; otherwise it is hidden retuning.
+
 ## Shared-Observation Residual
 
 Define the second-round residual as:
@@ -135,19 +180,23 @@ $$
 +\lambda_{\mathrm{BBN}}\mathcal{R}_{\mathrm{BBN}}
 +\lambda_{\mathrm{RAR}}\mathcal{R}_{\mathrm{RAR/BTFR}}
 \\
-&+\lambda_{\mathrm{handoff}}\mathcal{R}_{\mathrm{handoff}}
+&+\lambda_{\mathrm{FRW}}\mathcal R_{\mathrm{FRW}\to\mathrm{obs}}
++\lambda_{\mathrm{handoff}}\mathcal{R}_{\mathrm{handoff}}
 +\lambda_{\mathrm{prov}}\mathcal{R}_{\mathrm{therm/prov}}
 +\lambda_{\mathrm{retune}}\mathcal{S}_{\mathrm{retune}}.
 \end{aligned}
 $$
 
-The first four terms are the familiar observation residuals. The last three are the second-round discipline:
+The first four terms are the familiar observation residuals. The remaining terms are the second-round discipline:
 
+- $\mathcal R_{\mathrm{FRW}\to\mathrm{obs}}$ checks that the downstream readout is the upstream effective-FRW, redshift, and Friedmann projection, not a separate observer state.
 - $\mathcal{R}_{\mathrm{handoff}}$ checks that BBN, CMB, growth, and galaxy projections exchange the same shared rows.
 - $\mathcal{R}_{\mathrm{therm/prov}}$ checks that energy, photon, baryon, neutrino, and Noether sea work terms close through one provenance ledger.
 - $\mathcal{S}_{\mathrm{retune}}$ checks that a fit is not achieved by changing the shared Noether sea or assembly state between observables.
 
 This residual is a reusable equation-mapping object, not a new validation gate. It should be populated only after a branch declares $\Theta_{\mathrm{obs}}$ and the data windows used by each projection.
+
+The effective-coupling row $G_{\mathrm{eff}}^\theta$ is part of the shared handoff. Growth, CMB lensing, RAR/BTFR, local-gravity, and Friedmann-style comparisons must consume one compatible effective-coupling record or report a split through $\mathcal S_{\mathrm{retune}}$.
 
 ## Projection Terms
 

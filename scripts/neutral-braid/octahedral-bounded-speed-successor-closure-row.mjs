@@ -112,9 +112,9 @@ export function buildOctahedralBoundedSpeedSuccessorClosureRow(options = {}) {
     source_diagonal_affine_solver:
       "scripts/neutral-braid/octahedral-diagonal-affine-zero-mean-solver.mjs",
     source_priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-diagonal-affine-zero-mean-solver.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-diagonal-affine-zero-mean-solver.md",
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-bounded-speed-successor-closure-row.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-bounded-speed-successor-closure-row.md",
     source_trace_candidate: {
       scale: formatNumber(traceScale),
       phase_sample_count: phaseSamples,

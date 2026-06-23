@@ -7471,11 +7471,11 @@ export function buildOctahedralFoldAwareCrossBinaryI1BracketLocalDerivativePeakB
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.md",
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-variation-certificate.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-local-zero-isolation-burden-reduction.md",
     ],
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-peak-budget-reduction.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-peak-budget-reduction.md",
     variation_certificate_check: {
       schema: variationCertificate.schema,
       valid: variationCertificateErrors.length === 0,

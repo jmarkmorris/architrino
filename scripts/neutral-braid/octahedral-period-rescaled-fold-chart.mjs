@@ -540,8 +540,8 @@ export function buildOctahedralPeriodRescaledFoldChart(options = {}) {
     schema: OCTAHEDRAL_PERIOD_RESCALED_FOLD_CHART_SCHEMA,
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
-    predecessor_packet: "reference/priorities/geometry-bridge/octahedral-period-rescaled-trace-scan.md",
-    priority_packet: "reference/priorities/geometry-bridge/octahedral-period-rescaled-fold-chart.md",
+    predecessor_packet: "reference/priorities/braid-geometry-export-bridge/octahedral-period-rescaled-trace-scan.md",
+    priority_packet: "reference/priorities/braid-geometry-export-bridge/octahedral-period-rescaled-fold-chart.md",
     scan_parameters: {
       speed_constraint: "none; speed_ratio is a fold-chart probe, not an admissibility band",
       fold_window_speed_ratio: formatNumber(speedRatio),

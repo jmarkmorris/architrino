@@ -368,11 +368,11 @@ export function buildOctahedralFoldAwareCrossBinaryBridgePredicateCertificate(
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-source-atlas-interval-implication.md",
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-forcing-sign-bracket-certificate.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-source-atlas-interval-implication.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-sign-bracket-certificate.md",
     ],
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-bridge-predicate-certificate.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-bridge-predicate-certificate.md",
     source_interval_implication_check: {
       schema: intervalImplication.schema,
       valid: implicationErrors.length === 0,

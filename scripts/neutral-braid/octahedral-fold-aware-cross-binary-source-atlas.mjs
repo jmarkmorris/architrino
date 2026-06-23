@@ -411,9 +411,9 @@ export function buildOctahedralFoldAwareCrossBinarySourceAtlas(options = {}) {
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-quarter-profile-certificate.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-quarter-profile-certificate.md",
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-source-atlas.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-source-atlas.md",
     source_quarter_profile_check: {
       schema: predecessor.schema,
       valid: predecessorErrors.length === 0,

@@ -32,12 +32,16 @@ The common components below should be treated as reusable mathematical objects, 
 
 Packets inspected for this second pass:
 
+- [EQ-01 And EQ-05 Root-Conservation Closure Packet](eq-01-05-root-conservation-packet.md)
 - [EQ-02 Through EQ-04 Lorentz-Energy Closure Packet](eq-02-04-lorentz-energy-packet.md)
 - [EQ-06, EQ-24, And EQ-25 Continuum, Medium, And Thermodynamic Closure Packet](eq-06-24-25-continuum-medium-thermo-packet.md)
 - [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md)
+- [EQ-11 And EQ-20 Gravity / Dark-Energy Packet](eq-11-20-gravity-dark-energy-packet.md)
 - [EQ-12 Through EQ-16A Photon, Quantum, Gauge, And Neutrino Packet](eq-12-16a-photon-quantum-gauge-neutrino-packet.md)
 - [EQ-21 Through EQ-23 And EQ-32 Structure/CMB/BBN/RAR Packet](eq-21-23-32-structure-cmb-bbn-rar-packet.md)
+- [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md)
 - [EQ-26 Through EQ-31 Observation-First Precision Packet](eq-26-31-observation-first-precision-packet.md)
+- [Equation-Map Bearing On Braid Configuration Search](../braid-angular-momentum-spin/equation-map-bearing-on-braid-configuration-search.md)
 
 The unpacketed inventory rows also matter architecturally:
 
@@ -45,6 +49,121 @@ The unpacketed inventory rows also matter architecturally:
 - `EQ-05` supplies the finite-window conservation and event-ledger grammar.
 - `EQ-11` is the Poisson/Einstein-limit consumer of the shared Noether sea constitutive state and observer-level metric projection.
 - `EQ-20` is the pressure and effective $\Lambda$ consumer of the same constitutive state.
+
+## Common Component 0: Compact Carrier And Row Projections
+
+### Candidate Equation Form
+
+For a tightly coupled packet $G$, define a compact carrier $\mathcal C_G$ before defining the full retained record $\Theta_G$:
+
+$$
+\mathcal C_G
+=
+\left(
+\mathcal L_{\mathrm{branch}},
+\mathcal N_{\mathrm{sea}},
+\mathcal L_{\mathrm{root}},
+\mathcal L_{\mathrm{wake}},
+\mathcal L_{E\mathbf p\mathbf J}
+\right)_G,
+\qquad
+\Theta_G
+=
+\left(
+\mathcal C_G,
+\mathcal E_G,
+\mathcal M_G,
+\Pi_{\mathrm{obs},G}
+\right).
+$$
+
+Rows that are native to the branch or event ledger read from projections of $\mathcal C_G$; rows that need exposure, dressed medium response, or detector/readout rows read from projections of $\Theta_G$:
+
+$$
+\mathcal R_G(\Theta_G)
+=
+\left(
+R_i\!\left[\Pi_i\mathcal C_G\right],
+R_j\!\left[\Pi_j\Theta_G\right]
+\right)_{i,j\in G}.
+$$
+
+The retune witness then has a simple first check: overlapping variables in $\Pi_i\mathcal C_G$ and $\Pi_j\mathcal C_G$ must be identical before any residual norm is interpreted as physical closure.
+
+### Equations It Connects
+
+- `EQ-02` through `EQ-04`: the translating-binary packet now specializes this as $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)$ before assembling $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$.
+- `EQ-07` through `EQ-11`, `EQ-17` through `EQ-20`, and `EQ-32`: weak-field, redshift, cosmology, and low-acceleration rows need the same compact Noether sea carrier before metric, pressure, and observation projections are compared.
+- `EQ-12`, `EQ-16`, `EQ-26`, `EQ-28`, and `EQ-29`: photon, reaction, atomic, recoil, and radiation rows need a compact event carrier before source, path, receiver, remnant, and detector rows are allowed to differ.
+- `EQ-14`, `EQ-25`, `EQ-30`, and `EQ-31`: probability, entropy, cross-section, and resonance rows need a finite-window measure carrier before statistical projections are interpreted as independent observables.
+
+### AAA Carrier Variables
+
+The reusable carrier variables are the branch label, active causal-root ledger, wake ledger, finite-window event ledger, local Noether sea state, retained branch chart, boundary history, exposure quotient, medium-response tensor, detector/readout kernel, and observer projection.
+
+### Architectural Clarification
+
+This factorization is a notation discipline with mathematical consequences. It keeps the common part visible before residuals are written, and it prevents a packet from hiding row-specific branch charts, Noether sea cells, speed conventions, exposure coefficients, or detector kernels behind a single large $\Theta$ symbol.
+
+For the precision packet, the finite event or observation record $\mathsf e$ is the compact event carrier. Statistical rows then add the finite-window measure carrier from Common Component 8 before cross sections, detector rates, or resonance widths are interpreted as physical residuals.
+
+### Proof Or Simulation Burden
+
+Each grouped packet should identify its smallest useful $\mathcal C_G$ and list the projections consumed by each row. A packet should not receive a score increase merely for naming $\mathcal C_G$; the score rises only when the populated carrier, residuals, and split/retune witnesses reduce the actual closure burden.
+
+## Common Component 0A: Equation-Bearing Configuration Search Vector
+
+### Candidate Equation Form
+
+For a retained tri-binary candidate $\mathfrak a$ generated from a branch state $B_{3B}(q,v)$, route equation-map pressure into the branch-selection law through
+
+$$
+B_{3B}(q,v)
+\longrightarrow
+\mathcal A_N(B^-,\Gamma_{\mathrm{coupl}},W)
+\longrightarrow
+\operatorname{Sel}_B
+\longrightarrow
+\mathcal R_{\mathrm{cfg}}(\mathfrak a).
+$$
+
+The equation-bearing configuration residual is
+
+$$
+\mathcal R_{\mathrm{cfg}}(\mathfrak a)
+=
+\left(
+R_{\mathrm{root}},
+R_{\mathrm{geo/E}},
+R_{\mathrm{phase}},
+R_{\mathrm{event}},
+R_{\mathrm{spin/exposure}},
+R_{\mathrm{precision}},
+R_{\mathrm{obs}}
+\right).
+$$
+
+This vector is a solver-routing object, not a new score gate. Its job is to prevent a frequency-ratio match from being mistaken for retained-branch closure.
+
+### Equations It Connects
+
+- `EQ-01` and `EQ-05`: same-root identity, active-root coverage, Jacobian floors, finite-window conservation, and event-ledger checks.
+- `EQ-02` through `EQ-04`: clock period, oblate geometry, two-way leakage, exposed mass, energy/radius, mass-shell, and retune rows.
+- `EQ-16A`: common clock plus residual phase-operator checks for the equal-frequency candidate.
+- `EQ-12`, `EQ-28`, and `EQ-29`: photon, recoil, radiation, wake, and same-event energy-routing rows.
+- `EQ-15`, `EQ-27`, `EQ-30`, and `EQ-31`: later spinor, magnetic, scattering, and branch-stability discriminators once the root and event rows survive.
+
+### Candidate Families
+
+The active role-assigned frequency families are $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=(f+1,f,f-1)$, $(I,M,O)=(f,f,f)$, $(I,M,O)=(4f,2f,f)$, and $(I,M,O)=(nf,mf,f)$. These are inputs to the retained-record evaluator. They should not be ranked ahead of the retained root, geometry/energy, phase, event, wake/recoil, stability, and observation residuals.
+
+### Architectural Clarification
+
+This component keeps the solver general. The frequency family is an input coordinate; the architecture remains the velocity-deforming tri-binary Noether braid branch state with effective lever arms, phase offsets, branch angular momenta, wake rows, principal-direction rows, and coupling rows. Flattened circular rows are projection views of that object, not the model itself.
+
+### Proof Or Simulation Burden
+
+The first executable hook is now an `equationBearing` payload on each tri-binary candidate branch-chart projection. It reports the candidate family, raw binary frequency row, role-assigned $I:M:O$ row, root signature, geometry/energy residual, common-clock phase residual, event-ledger residual, stability residual, and precision/readout residual. Missing fields fail closed unless they are explicitly outside the candidate's declared comparison scope. The hook does not certify a retained branch; it makes the branch-selection solver consume the same residual architecture as the equation map.
 
 ## Common Component 1: Same-Record / No-Hidden-Retune Residual
 
@@ -78,15 +197,15 @@ Here $\Pi_i$ is the declared projection consumed by observable row $i$, $\mathca
 ### Equations It Connects
 
 - `EQ-02` through `EQ-04`: clock, oblate spheroidal envelope, two-way signal, energy, momentum, mass-shell, rest-invariance, and Noether sea response residuals.
-- `EQ-07` through `EQ-10` and `EQ-17` through `EQ-19`: weak-field metric, redshift factorization, PPN, effective FRW, Friedmann, and continuity rows.
+- `EQ-07` through `EQ-11` and `EQ-17` through `EQ-20`: weak-field metric, redshift factorization, PPN, effective FRW, Friedmann, continuity, Poisson/Einstein-limit, and pressure rows.
 - `EQ-12` through `EQ-16A`: photon, Maxwell, Born-current, spinor, gauge, and neutrino rows through one finite-window sector record.
 - `EQ-21` through `EQ-23` and `EQ-32`: growth, CMB, BBN, and RAR/BTFR projections through the split-state witness.
-- `EQ-26` through `EQ-31`: precision rows where one event or observation record must feed the benchmark residual vector.
+- `EQ-26` through `EQ-31`: precision rows where one event or observation record must feed the benchmark residual vector. In particular, `EQ-27` compares $\{\boldsymbol\mu_\ell,\omega_c,\omega_L,a_\ell\}$, `EQ-30` compares $\{\sigma_{a\to b},F_{\mathbb{A}\mathbb{A}\mathbb{A}}(\mathbf q)\}$, and `EQ-31` compares $\{\Gamma,\tau,B_k,\sigma(E)\}$ only after the shared carrier is declared.
 - `EQ-06`, `EQ-24`, and `EQ-25`: continuum, medium, and thermodynamic rows where the same retained Noether sea record must support density, cadence, response, and statistical laws.
 
 ### AAA Carrier Variables
 
-The shared carriers are branch label $q$, retained branch ledger $\mathcal L_{\mathrm{branch}}$, local Noether sea state $\mathcal N_{\mathrm{sea}}$, $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, $\Gamma_N$, $\mathbf u_{\mathrm{sea}}$, $\mathcal M_{\mathrm{sea}}^{ab}$, event ledger $\mathcal L_{E\mathbf p\mathbf J}$, sector projection $\Pi_S$, quotient $Q_S$, and detector/readout kernel $K_{\mathrm{det}}$ where applicable.
+The shared carriers are branch label $q$, retained branch ledger $\mathcal L_{\mathrm{branch}}$, local Noether sea state $\mathcal N_{\mathrm{sea}}$, $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, $\Gamma_N$, $\mathbf u_{\mathrm{sea}}$, $\mathcal M_{\mathrm{sea}}^{ab}$, event ledger $\mathcal L_{E\mathbf p\mathbf J}$, sector projection $\Pi_S$, quotient $Q_S$, detector/readout kernel $K_{\mathrm{det}}$, source-window record $\Theta_{\mathrm{src}}$, readout record $\Theta_{\mathrm{read}}$, and thermal/provenance residual $\mathcal R_{\mathrm{therm/prov}}$ where applicable.
 
 ### Architectural Clarification
 
@@ -239,6 +358,8 @@ This component makes conservation and identity routing the common precondition f
 
 The best first simulation is a replayable Compton/recoil packet. It is compact, uses photon Gate A/B, exposed mass response, recoil, angular momentum, and event balance, and it also checks whether the same $h$, $c_\gamma$, and exposed mass response used by atomic spectra survive in an event ledger.
 
+The main child components to keep synchronized with this row are `same_root_conservation_checksum`, `flux_boundary_balance_equation`, `wake_energy_crosswalk_residual`, `ledger_transition_gauge_matching`, and the photon Gate A/B/C handoff rows. They remain child components of the finite-window event and conservation residual, not separate score gates.
+
 ## Common Component 4: Source-Path-Receiver Frequency Transfer
 
 ### Candidate Equation Form
@@ -305,11 +426,17 @@ H_X(\Theta)
 +
 \delta H_X(\Theta),
 \qquad
+\bar H_X
+=
+\delta H_X
+-
+\frac{1}{N_X}\operatorname{tr}(\delta H_X)\mathbf 1,
+\qquad
 \Delta\omega_{ij}
 =
-\lambda_i(\delta H_X)
+\lambda_i(\bar H_X)
 -
-\lambda_j(\delta H_X).
+\lambda_j(\bar H_X).
 $$
 
 For the neutral-lepton packet this specializes to
@@ -348,8 +475,19 @@ w_{\mathrm{add}}
 \right|
 +
 w_{\mathrm{zero}}
-\left\|\delta H_X\right\|_{\mathrm{fail}}.
+\left\|\bar H_X\right\|_{\mathrm{fail}}
++
+w_{\mathrm{inv}}
+\mathcal I_{\mathrm{hidden}}.
 $$
+
+The hidden-frequency invariance check $\mathcal I_{\mathrm{hidden}}$ requires observable gaps and probabilities to be invariant under
+
+$$
+H_X\mapsto H_X+\alpha\mathbf 1,
+$$
+
+while still rejecting the all-zero residual case $\bar H_X=0$ when measured beat frequencies exist.
 
 ### Equations It Connects
 
@@ -364,7 +502,7 @@ The carriers are retained equal-frequency row set $S_{\mathrm{eq}}$, common freq
 
 ### Architectural Clarification
 
-This component distinguishes common phase or clock rows from observable beat rows. It protects the equal-frequency idea from two errors: treating three absolute clocks as observables, or allowing exact cancellation to erase the residual phase operator needed for measured gaps.
+This component distinguishes common phase or clock rows from observable beat rows. It protects the equal-frequency idea from three errors: treating three absolute clocks as observables, allowing exact cancellation to erase the residual phase operator needed for measured gaps, or confusing static phase offsets with phase-rate gaps.
 
 ### Proof Or Simulation Burden
 
@@ -446,6 +584,29 @@ $$
 }.
 $$
 
+The gravity/dark-energy packet uses the same constitutive component through
+
+$$
+\mathcal R_{11\text{-}20}(\Theta;W_{\mathrm{weak}},W_{\Lambda})
+=
+\lambda_\Phi
+\left\|R_\Phi^{11}\right\|^2
++
+\lambda_{\mathrm{curv}}
+\left\|R_{\mu\nu}^{11}\right\|^2
++
+\lambda_p
+\left\|R_p^{20}\right\|^2
++
+\lambda_G
+\left\|R_G^{\mathrm{shared}}\right\|^2
++
+\lambda_{\mathrm{retune}}
+\mathcal S_{\mathrm{retune}}^{11\text{-}20}.
+$$
+
+Here $R_G^{\mathrm{shared}}$ and $\mathcal S_{\mathrm{retune}}^{11\text{-}20}$ are not independent cosmology handles. They are checks that local gravity, pressure, growth, CMB lensing, RAR/BTFR, and Friedmann bookkeeping consume one compatible $\mathcal C_{\mathrm{sea}}$ record.
+
 ### Equations It Connects
 
 - `EQ-04`: mass, rest response, moving energy, and $\mathcal M_{\mathrm{sea}}^{ab}$.
@@ -457,11 +618,11 @@ $$
 
 ### AAA Carrier Variables
 
-The carriers are $\rho_{\text{NS}}$, $n$, $\mathbf u_{\mathrm{sea}}$, $e_{\mathrm{sea}}$, $\boldsymbol\theta_{\mathrm{sea}}$, $f_N$, $J_\nu$, $\chi_{\text{sea}}$, $\Gamma_N$, $\mathcal M_{\mathrm{sea}}^{ab}$, $\Sigma_{\mathrm{sea},X}^{ab}$, stress/compliance tensors, orientation/strain rows, $K(a)$, $S(a)$, $\zeta_{\text{bulk}}(a)$, $\eta(a)$, $m_L(a)$, $g_m(a)$, and $M_L(a)$ when the linear medium-response approximation is used.
+The carriers are $\rho_{\text{NS}}$, $n$, $\mathbf u_{\mathrm{sea}}$, $e_{\mathrm{sea}}$, $\boldsymbol\theta_{\mathrm{sea}}$, $f_N$, $J_\nu$, $\chi_{\text{sea}}$, $\Gamma_N$, $\mathcal M_{\mathrm{sea}}^{ab}$, $\Sigma_{\mathrm{sea},X}^{ab}$, stress/compliance tensors, orientation/strain rows, effective pressure $P_{\mathrm{eff}}$, effective coupling $G_{\mathrm{eff}}$, pressure/tension/relaxation rows, $K(a)$, $S(a)$, $\zeta_{\text{bulk}}(a)$, $\eta(a)$, $m_L(a)$, $g_m(a)$, and $M_L(a)$ when the linear medium-response approximation is used.
 
 ### Architectural Clarification
 
-This is the common Noether sea source behind mass response, metric response, acoustic response, growth response, galaxy low-acceleration response, dark-energy pressure, and observer-level field dressing. It prevents each comparison surface from receiving its own private medium coefficient.
+This is the common Noether sea source behind mass response, metric response, Poisson handoff, curvature readout, acoustic response, growth response, galaxy low-acceleration response, dark-energy pressure, and observer-level field dressing. It prevents each comparison surface from receiving its own private medium coefficient.
 
 ### Proof Or Simulation Burden
 
@@ -674,23 +835,25 @@ The first burden is one weak/gauge exposure packet where `V-A`, CKM/PMNS overlap
 
 The highest-value reusable equations to stabilize first are:
 
-1. Same-record / no-hidden-retune residual $\mathcal R_{\mathrm{shared}}$. It is the coordinator-level equation that prevents independent fits across the whole inventory.
+1. Compact carrier plus same-record residual $\mathcal C_G\to\Theta_G\to\mathcal R_{\mathrm{shared}}$. This is the coordinator-level equation pair that exposes the common branch, sea, event, or measure carrier before preventing independent fits across the whole inventory.
 2. Noether sea constitutive state $\mathcal C_{\mathrm{sea}}$. It is the shared source of metric, mass, acoustic, growth, RAR/BTFR, pressure, and field-response projections.
 3. Finite-window event ledger $\mathcal L_{E\mathbf p\mathbf J}(\mathsf e)$. It is the common precision-equation carrier for photon, recoil, radiation, reaction, thermalization, and conservation rows.
 4. Common clock plus residual phase operator $H_X=\omega_{\mathrm{clk}}C_X\mathbf 1+\delta H_X$. It is the smallest sharp object for `EQ-16A` and also clarifies clock, redshift, photon, and atomic-frequency rows.
 5. Observer-level metric projection $\Pi_{\mathrm{metric}}\Theta_W$. It is the shared recovery interface for PPN, null transport, cosmology, lensing, and low-acceleration dynamics.
+6. Equation-bearing configuration vector $\mathcal R_{\mathrm{cfg}}(\mathfrak a)$. It is the stable-braid search bridge that keeps frequency families subordinate to retained branch residuals.
 
-The projection/refinement residual and finite-window statistical pushforward should be developed alongside these because they supply the proof language that turns all five into controlled observer-level equations rather than new ontological assertions.
+The projection/refinement residual and finite-window statistical pushforward should be developed alongside these because they supply the proof language that turns this set into controlled observer-level equations rather than new ontological assertions.
 
 ## Recommended Coordinator Actions
 
 1. Treat `EQ-01`, `EQ-05`, `EQ-11`, and `EQ-20` as common-architecture rows before assigning them as isolated packets. `EQ-01` is the root dependency, `EQ-05` is the event-ledger equation, `EQ-11` is a metric/constitutive projection consumer, and `EQ-20` is a pressure/constitutive projection consumer.
 2. Add a later coordinator pass that links packet residuals to this common architecture after concurrent edits settle. Do not edit [equation.md](equation.md) or [equation-mapping.md](equation-mapping.md) while other agents are changing them.
-3. Instantiate $\mathcal R_{\mathrm{shared}}$ first on the translating binary benchmark for `EQ-02` through `EQ-04`, because it is compact and already has clock, envelope, mass-shell, rest-invariance, and Noether sea response rows.
+3. Instantiate $\mathcal C_G\to\Theta_G\to\mathcal R_{\mathrm{shared}}$ first on the translating binary benchmark for `EQ-02` through `EQ-04`, because it is compact and already has clock, envelope, mass-shell, rest-invariance, and Noether sea response rows.
 4. Build the Noether sea constitutive state as the next shared target for `EQ-07` through `EQ-11`, `EQ-18` through `EQ-21`, `EQ-24`, and `EQ-32`. Require one coefficient extraction before any score increase.
 5. Use Compton/recoil as the first finite-window event-ledger replay. It cross-checks photon packets, atomic spectra, exposed mass, recoil, angular momentum, and medium updates in one event.
 6. Run the neutral-lepton phase-operator packet as a focused `EQ-16A` follow-up. It has a crisp falsifier: common-clock cancellation must not erase $\delta H_{3B}$, and the residual spectrum must not collapse into all-zero or equal-spacing gaps.
-7. Defer reader-facing promotion. These components are architecture candidates and closure targets until a packet supplies a derived equation, coefficient extraction, executable residual, or retained branch calculation.
+7. Keep the `equationBearing` payload attached to the stable tri-binary configuration search so $(f+2,f,f-1)$, $(f+1,f,f-1)$, $(f,f,f)$, $(4f,2f,f)$, and $(nf,mf,f)$ candidates are compared by retained residuals, not by ratio labels alone.
+8. Defer reader-facing promotion. These components are architecture candidates and closure targets until a packet supplies a derived equation, coefficient extraction, executable residual, or retained branch calculation.
 
 ## Promotion Classification
 

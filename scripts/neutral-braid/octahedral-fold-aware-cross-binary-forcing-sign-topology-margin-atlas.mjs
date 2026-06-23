@@ -533,9 +533,9 @@ export function buildOctahedralFoldAwareCrossBinaryForcingSignTopologyMarginAtla
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-forcing-sign-bracket-certificate.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-sign-bracket-certificate.md",
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-sign-topology-margin-atlas.md",
     source_forcing_sign_certificate_check: {
       schema: signCertificate.schema,
       valid: signCertificateErrors.length === 0,

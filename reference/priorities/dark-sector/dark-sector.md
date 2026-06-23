@@ -20,7 +20,7 @@
 
 This workstream preserves speculative dark-sector subjects when they are assembly candidates, release-channel candidates, transport modes, or dark-visible conversion hypotheses. It is a priority lane for disciplined ideation, not a ranked closure workstream yet.
 
-The lane does not replace [strong-field-closure](../strong-field-closure/strong-field-closure.md), [cosmology-closure](../cosmology-closure/cosmology-closure.md), [Radiation](../../../content/markdown/aaa/reactions/radiation.md), or the shared [residual-routing event ledger](../nested-shell-braid-causal-closure/residual-routing-event-ledger.md). It packages candidate assemblies until one of them gains a boundary condition, equation, simulation target, or discriminating observable strong enough for promotion.
+The lane does not replace [strong-field-closure](../strong-field-closure/strong-field-closure.md), [cosmology-closure](../cosmology-closure/cosmology-closure.md), [Radiation](../../../content/markdown/aaa/reactions/radiation.md), or the shared [residual-routing event ledger](../braid-nested-shell-causal-closure/residual-routing-event-ledger.md). It packages candidate assemblies until one of them gains a boundary condition, equation, simulation target, or discriminating observable strong enough for promotion.
 
 WIMP/neutralino language in this lane is comparison language only. It may organize relic abundance, scattering, annihilation, direct detection, indirect detection, and null-result constraints, but it must not identify a native assembly with a supersymmetric neutralino or treat supersymmetry as Noether braid ontology without a separate ledger-preserving transformation theorem.
 
@@ -65,7 +65,7 @@ where $A_{\mathrm{int}}$ is the internal action or assembly record, $\mathcal{B}
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 - [strong-field hypothesis bank](../strong-field-closure/hypothesis-bank.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
-- [braid](../braid/braid.md)
+- [braid](../braid-retained-branch-closure/braid-retained-branch-closure.md)
 - [radiation](../../../content/markdown/aaa/reactions/radiation.md)
 - [validation-gates](../validation-gates/validation-gates.md)
 

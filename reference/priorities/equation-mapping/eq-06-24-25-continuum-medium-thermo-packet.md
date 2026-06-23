@@ -317,9 +317,9 @@ $$
 
 ### `6/23 b` Score Recommendation
 
-Recommend `4` if the coordinator accepts this packet as the first coefficient-level map; otherwise hold at `3`.
+Accepted table score: `3`.
 
-Justification: EQ-24 now has a direct coefficient translation table, declared missing rows, and explicit residuals for metric, constitutive, causality, and correlation closure. The remaining open work is proof and coefficient extraction from branch population dynamics, which is the normal gap for a score `4`. If the score pass requires executed coefficients rather than a packet-level coefficient map, keep `3`.
+Justification: EQ-24 now has a direct coefficient translation table, declared missing rows, and explicit residuals for metric, constitutive, causality, and correlation closure. The row remains at `3` because no acoustic, elastic, stress-strain, delayed-support, or $\mathcal R_{\mathrm{KK}}$ coefficient has been executed from a retained Noether sea population. The next score-4 route is one shared coefficient extraction that predicts a perturbation speed and stress/strain or metric response without changing $\Theta_{\mathrm{sea}}^{(\ell,W)}$.
 
 ### First Mathematical Object
 
@@ -333,6 +333,54 @@ $$
 $$
 
 The first proof or simulation step is to choose one channel $X$ and verify that the same coefficient row predicts both a perturbation speed and a stress/strain response without changing $\Theta_{\mathrm{sea}}^{(\ell,W)}$.
+
+The smallest shared extraction is the density-compression column of the constitutive row. For one declared channel $X$ and one retained window $\Theta_{\mathrm{sea}}^{(\ell,W)}$, define
+
+$$
+\delta\mathbf y_X
+=
+\left(
+\delta c_X^2,
+\delta C_{ij}{}^{kl},
+\delta N,
+\delta\gamma_{ij},
+\delta G_{\mathrm{eff}},
+\delta P_{\mathrm{eff}},
+\delta a_\star
+\right)^T
+=
+\mathsf J_{\mathrm{sea}}^X
+\left[
+\Theta_{\mathrm{sea}}^{(\ell,W)}
+\right]
+\delta\ln n
++
+\mathbf r_X.
+$$
+
+Accept the coefficient extraction only if the same $\mathsf J_{\mathrm{sea}}^X$ supplies the perturbation speed and at least one stress/strain or metric-compliance coefficient, while $G_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, and $a_\star$ are either projected from that same row or explicitly reported as missing outputs.
+
+$$
+\mathcal R_{\mathrm{CJ}}^X
+=
+\frac{
+\left\|\mathbf r_X\right\|
+}{
+\left\|\delta\mathbf y_X\right\|
++
+\left\|\mathsf J_{\mathrm{sea}}^X\delta\ln n\right\|
++
+\varepsilon
+}
++
+\lambda_{\mathrm{proj}}
+\mathcal R_{\mathrm{proj}}^X(\Theta_{\mathrm{sea}}^{(\ell,W)},\ell)
++
+\lambda_{\mathrm{retune}}
+\mathcal S_{\mathrm{retune}}^X.
+$$
+
+This row is a shared coefficient-extraction target, not a new score gate. It can support later `EQ-06`, `EQ-07` through `EQ-11`, `EQ-20`, `EQ-24`, and `EQ-32` movement only after it is populated on a retained window, reports refinement behavior, and does not split $\Theta_{\mathrm{sea}}^{(\ell,W)}$ between perturbation speed, stress/metric response, effective coupling, pressure, and low-acceleration response.
 
 ### Failure Mode
 
@@ -492,7 +540,7 @@ Promote only after a chosen finite window supplies a real measure, event ledger,
 | ID | `6/23 a` | Recommended `6/23 b` | Reason |
 | --- | --- | --- | --- |
 | `EQ-06` | `4` | `4` | Native continuity and moment residual are strong, but convergence from resolved Noether braid population dynamics is still open. |
-| `EQ-24` | `3` | `4` conditional | The coefficient map and residual rows now meet score-4 structure if packet-level maps count; hold `3` if the score pass requires executed coefficients. |
+| `EQ-24` | `3` | `3` | The accepted `6/23 b` table holds this row at `3` because no acoustic, elastic, stress-strain, delayed-support, or $\mathcal R_{\mathrm{KK}}$ coefficient has been executed. The packet contains a plausible score-4 route once one shared coefficient row is extracted. |
 | `EQ-25` | `2` | `3` | Finite-window entropy, deterministic pushforward, and thermalization rows are now named, but no concrete collision operator or entropy-production proof exists yet. |
 
 ## Promotion Classification

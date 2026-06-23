@@ -97,12 +97,12 @@ is nonempty. Local sector success is therefore not mature until at least one sha
 
 ## Related Priorities
 
-- [braid](../braid/braid.md)
+- [braid](../braid-retained-branch-closure/braid-retained-branch-closure.md)
 - [quantum-closure](../quantum-closure/quantum-closure.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
-- [mass-map](../mass-map/mass-map.md)
+- [mass-map](../braid-mass-response-map/braid-mass-response-map.md)
 - [simulations](../simulations/simulations.md)
 
 ## Related AAA Notes

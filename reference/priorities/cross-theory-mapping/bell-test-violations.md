@@ -27,7 +27,7 @@ Bell is a hard replacement constraint, not an ontology shortcut. The corpus alre
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | [angular-momentum-spin/photon-measurement-bell-gates](../angular-momentum-spin/photon-measurement-bell-gates.md) | Keep Bell downstream of spin/photon detector-response closure. |
+| This file | [angular-momentum-spin/photon-measurement-bell-gates](../braid-angular-momentum-spin/photon-measurement-bell-gates.md) | Keep Bell downstream of spin/photon detector-response closure. |
 | This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Make Bell a joint basin-measure and pair-provenance proof target. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Add Bell/CHSH/Tsirelson as a replacement constraint with no-signaling. |
 

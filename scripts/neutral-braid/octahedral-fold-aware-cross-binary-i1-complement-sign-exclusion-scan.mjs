@@ -245,7 +245,7 @@ function buildFoldCollarCheck(foldCollarTransportRow) {
   return {
     fold_collar_row_id: "fold.3-.left-fold-collar-sign-transport",
     source_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.md",
     valid,
     row: foldCollarTransportRow,
     role:
@@ -372,11 +372,11 @@ export function buildOctahedralFoldAwareCrossBinaryI1ComplementSignExclusionScan
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.md",
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-f1-critical-exhaustion-integration.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.md",
     ],
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-complement-sign-exclusion-scan.md",
     scan_parameters: {
       receiver_label: "1+",
       theta_domain: "[0,H/4]",

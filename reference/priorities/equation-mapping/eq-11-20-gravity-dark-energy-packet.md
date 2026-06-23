@@ -106,6 +106,21 @@ $$
 
 prevents the gravity row from importing matter density as an unledgered external input. The same source loading must remain compatible with mass-map, conservation-law, structure-growth, CMB, BBN, and low-acceleration packets.
 
+The packet-level compact carrier is therefore
+
+$$
+\mathcal C_{11\text{-}20}^{(\ell,W)}
+=
+\left(
+\Theta_{\mathrm{sea}}^{(\ell,W)},
+\Theta_{\mathrm{src}}^{(W)},
+\mathcal L_{E\mathbf p\mathbf J}^{(W)},
+\mathcal H_{\partial W}
+\right).
+$$
+
+$\mathcal C_{\mathrm{NS}}$ is the constitutive-response component that maps this carrier into $\mathcal K_{\mathrm{eff}}$, $\mathcal G_{\mathrm{eff}}$, $\mathcal P_{\mathrm{sea}}$, and $\mathcal R_{\mathrm{relax}}$. It is not the whole retained record and must not become a private coefficient handle for weak gravity or dark-energy pressure.
+
 ## Current Mapped Form
 
 The useful second-round mathematical object is a shared constitutive-response row:
@@ -314,25 +329,28 @@ $$
 \mathcal S_{\mathrm{retune}}^{11\text{-}20}.
 $$
 
-The shared-coupling residual should start as
+The shared-coupling residual should start as a normalized split witness, not as a signed sum whose differences can cancel:
 
 $$
 R_G^{\mathrm{shared}}
 =
-\left(
-G_{\mathrm{eff}}^{\mathrm{local}}
+\sum_{X\in\{\mathrm{local},\mathrm{cos},\mathrm{growth},\mathrm{CMBlens},\mathrm{RAR}\}}
+w_X
+\left[
+\frac{
+G_{\mathrm{eff}}^X
 -
-G_{\mathrm{eff}}^{\mathrm{cos}}
-\right)
+\Pi_XG_{\mathrm{eff}}[\mathcal C_{\mathrm{NS}}]
+}{
+\sigma_{G,X}+\varepsilon_G
+}
+\right]^2
 +
-\left(
-G_{\mathrm{eff}}^{\mathrm{growth}}
--
-G_{\mathrm{eff}}^{\mathrm{cos}}
-\right),
+\lambda_{\mathrm{prov}}
+\mathcal P_{\mathrm{prov}}(G_{\mathrm{eff}}).
 $$
 
-with the understanding that each term must later be normalized by its declared observational or proof-window tolerance.
+Here $\Pi_XG_{\mathrm{eff}}[\mathcal C_{\mathrm{NS}}]$ is the projection of the same constitutive-response component into window $X$, $\sigma_{G,X}$ is the declared proof-window or observational tolerance, and $\mathcal P_{\mathrm{prov}}(G_{\mathrm{eff}})$ fails when the effective coupling lacks provenance from $\mathcal M_{\mathrm{sea}}^{ab}$, stress, pressure, tension, relaxation, source loading, or boundary rows. This residual may report a physical scale dependence only when the transformation from $\mathcal C_{\mathrm{NS}}$ to $G_{\mathrm{eff}}^X$ is declared; otherwise nonzero terms are hidden retune.
 
 The first proof route is a constitutive-response lemma:
 

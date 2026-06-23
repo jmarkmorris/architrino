@@ -169,7 +169,7 @@ try {
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
     sourcePriorityFile:
-      "reference/priorities/angular-momentum-spin/braid-partition-and-spinor.md",
+      "reference/priorities/braid-angular-momentum-spin/braid-partition-and-spinor.md",
     frequencyTripletNotation: createFrequencyTripletNotation(),
     layerRoleOrder: LAYER_ROLES,
     solverGeometryPublicContract: createSolverGeometryPublicContract(),
@@ -1474,7 +1474,7 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
     byLayer,
   });
 
-  return {
+  const branchChartProjection = {
     schema: "aaa-tri-binary-retained-branch-chart-projection.v4",
     claimLevel: "reduced solver projection; retained branch-chart certificate remains blocked",
     retainedBranchClaim: false,
@@ -1654,6 +1654,18 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
         missing:
           "A finite retained competitor set with the same residual-vector entries, including wake or recoil alternatives.",
       }),
+      createBlockedProjectionRow({
+        id: "precision_readout",
+        mapsTo: ["precision_readout", "r_precision"],
+        missing:
+          "A finite-window precision readout tying photon, recoil, atomic, scattering, and detector projections to the same retained event ledger.",
+      }),
+      createBlockedProjectionRow({
+        id: "observation_residual",
+        mapsTo: ["observation_residual", "r_obs"],
+        missing:
+          "An observation readout consuming shared effective-FRW, Noether sea, and event-ledger rows instead of fitting a separate observer state.",
+      }),
     ],
     residualVectorProjection: {
       r_rows:
@@ -1674,6 +1686,13 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
     phaseAtHitProbe,
     torqueWakeDiagnosticProbe,
   };
+  branchChartProjection.equationBearing = createEquationBearingPayload({
+    caseId,
+    family,
+    frequencyTriplet: branchChartProjection.frequencyTriplet,
+    branchChartProjection,
+  });
+  return branchChartProjection;
 }
 
 function createEqualFrequencyProjectionRows({
@@ -3077,6 +3096,227 @@ function findBranchChartProjectionRow(selectedCase, id) {
   );
 }
 
+function createEquationBearingPayload({
+  caseId,
+  family,
+  frequencyTriplet,
+  branchChartProjection,
+}) {
+  const populatedRows = branchChartProjection.populatedRows ?? [];
+  const blockedRows = branchChartProjection.blockedRows ?? [];
+  const populatedRowsById = new Map(populatedRows.map((row) => [row.id, row]));
+  const blockedRowsById = new Map(blockedRows.map((row) => [row.id, row]));
+  const residualVectorProjection =
+    branchChartProjection.residualVectorProjection ?? {};
+  const payload = {
+    schema: "aaa-tri-binary-equation-bearing-payload.v1",
+    claimLevel:
+      "same-record equation-bearing residual payload; not retained-branch certification",
+    candidateFamily: getEquationBearingCandidateFamily(family),
+    candidateFamilyId: family.id,
+    phaseProfileId: family.phaseProfile?.id ?? null,
+    rawBinaryFrequencyRow: createEquationBearingRawFrequencyRow(
+      frequencyTriplet
+    ),
+    roleFrequencyRowIMO: {
+      order: "I:M:O",
+      relation: family.roleAssignedRelation ?? null,
+      values: frequencyTriplet.roleAssignedValues,
+      label: frequencyTriplet.roleAssignedLabel,
+      roleMapRetained: false,
+    },
+    sameRecordStatus:
+      branchChartProjection.branchSelectionResidualStatus ??
+      "blocked_not_evaluable",
+    retainedBranchClaim: false,
+    failClosed: true,
+    residuals: {
+      rootSignature: createEquationBearingResidualGroup({
+        status: residualVectorProjection.r_root ?? "blocked_not_evaluable",
+        populatedRowsById,
+        blockedRowsById,
+        populatedIds: ["root_chart_reduced", "active_row_lineage_probe"],
+        blockedIds: ["row_set_identity"],
+      }),
+      geometryEnergyResidual: createEquationBearingResidualGroup({
+        status: "blocked_with_reduced_geometry_energy_rows",
+        populatedRowsById,
+        blockedRowsById,
+        populatedIds: [
+          "outer_speed",
+          "middle_hinge",
+          "inner_self_hit",
+          "equal_frequency_lever_arm_speed_relation",
+          "energy_frequency_target",
+          "equal_frequency_transaction_frequency_collapse",
+        ],
+        blockedIds: ["energy_routing"],
+      }),
+      commonClockPhaseResidual: {
+        ...createEquationBearingResidualGroup({
+          status: residualVectorProjection.r_phi ?? "blocked_not_evaluable",
+          populatedRowsById,
+          blockedRowsById,
+          populatedIds: [
+            "cycle_phase_closure_proxy",
+            "phase_at_hit_rows",
+            "equal_frequency_common_clock",
+            "triadic_120_phase_profile",
+          ],
+          blockedIds: ["phase_lock"],
+        }),
+        normalizedSpectrumInvariant: {
+          status: "not_populated",
+          required:
+            "For neutrino-bearing equal-frequency rows, populate the identity-shift-invariant normalized residual spectrum from phase-rate gaps before scoring EQ-16A.",
+        },
+      },
+      eventLedgerResidual: createEquationBearingResidualGroup({
+        status: residualVectorProjection.r_route ?? "blocked_not_evaluable",
+        populatedRowsById,
+        blockedRowsById,
+        populatedIds: ["torque_wake_same_row_diagnostic"],
+        blockedIds: [
+          "tail_wake_pullback",
+          "vector_partition_retained",
+          "energy_routing",
+        ],
+      }),
+      spinExposureResidual: createEquationBearingResidualGroup({
+        status: "blocked_not_evaluable",
+        populatedRowsById,
+        blockedRowsById,
+        populatedIds: ["self_root_parity_index_proxy"],
+        blockedIds: ["row_set_identity"],
+      }),
+      stabilityResidual: createEquationBearingResidualGroup({
+        status: residualVectorProjection.r_stab ?? "blocked_not_evaluable",
+        populatedRowsById,
+        blockedRowsById,
+        populatedIds: [],
+        blockedIds: ["section_stability", "non_minimal_retained_competitors"],
+      }),
+      precisionReadoutResidual: createEquationBearingResidualGroup({
+        status: "blocked_not_evaluable",
+        populatedRowsById,
+        blockedRowsById,
+        populatedIds: [],
+        blockedIds: ["precision_readout"],
+      }),
+      observationResidual: createEquationBearingResidualGroup({
+        status: "blocked_not_evaluable",
+        populatedRowsById,
+        blockedRowsById,
+        populatedIds: [],
+        blockedIds: ["observation_residual"],
+      }),
+    },
+    sourceRecordRefs: {
+      caseId,
+      populatedRowIds: populatedRows.map((row) => row.id),
+      blockedRowIds: blockedRows.map((row) => row.id),
+      residualVectorProjection,
+    },
+    blockingFields: blockedRows.map((row) => ({
+      id: row.id,
+      mapsTo: row.mapsTo,
+      missing: row.missing,
+    })),
+  };
+  assertEquationBearingBlockedResidualsHaveRowRefs(payload);
+  return payload;
+}
+
+function assertEquationBearingBlockedResidualsHaveRowRefs(payload) {
+  for (const [name, group] of Object.entries(payload.residuals ?? {})) {
+    const status = String(group?.status ?? "");
+    if (!status.includes("blocked")) {
+      continue;
+    }
+    const hasBlockedRows = (group.blockedRowRefs ?? []).length > 0;
+    const hasOutsideScopeReason =
+      typeof group.outsideScopeReason === "string" && group.outsideScopeReason.length > 0;
+    if (!hasBlockedRows && !hasOutsideScopeReason) {
+      throw new Error(
+        `equationBearing residual ${name} is blocked without blockedRowRefs or outsideScopeReason`
+      );
+    }
+  }
+}
+
+function getEquationBearingCandidateFamily(family) {
+  if (family.id === "middle-hinge-offset") {
+    return "offset_f_plus_2_f_f_minus_1";
+  }
+  if (family.id === "symmetric-control") {
+    return "offset_f_plus_1_f_f_minus_1";
+  }
+  if (family.equalFrequencyCandidate === true) {
+    return "equal_frequency_f_f_f";
+  }
+  if (family.id === "dyadic-lock-4-2-1") {
+    return "dyadic_4f_2f_f";
+  }
+  if (family.id?.startsWith("integer-lock-")) {
+    return "integer_nf_mf_f";
+  }
+  return family.id ?? "unknown";
+}
+
+function createEquationBearingRawFrequencyRow(frequencyTriplet) {
+  return {
+    order: "B_1:B_2:B_3",
+    labels: frequencyTriplet.rawSearchLabels,
+    executableLayerValues: frequencyTriplet.legacyOuterNormalized.values,
+    roleAssignmentRetained: false,
+    note:
+      "Raw search rows are generic before a retained branch supplies the I:M:O role map.",
+  };
+}
+
+function createEquationBearingResidualGroup({
+  status,
+  populatedRowsById,
+  blockedRowsById,
+  populatedIds,
+  blockedIds,
+}) {
+  const populatedRows = populatedIds
+    .map((id) => populatedRowsById.get(id))
+    .filter(Boolean)
+    .map(projectEquationBearingPopulatedRow);
+  const blockedRows = blockedIds
+    .map((id) => blockedRowsById.get(id))
+    .filter(Boolean)
+    .map(projectEquationBearingBlockedRow);
+  return {
+    status,
+    populatedRowRefs: populatedRows,
+    blockedRowRefs: blockedRows,
+    failClosed: true,
+  };
+}
+
+function projectEquationBearingPopulatedRow(row) {
+  return {
+    id: row.id,
+    mapsTo: row.mapsTo,
+    status: row.status,
+    certificatePass: row.certificatePass === true,
+    retainedLimitation: row.retainedLimitation,
+  };
+}
+
+function projectEquationBearingBlockedRow(row) {
+  return {
+    id: row.id,
+    mapsTo: row.mapsTo,
+    status: row.status,
+    missing: row.missing,
+    certificatePass: row.certificatePass === true,
+  };
+}
+
 function createProjectionRow({
   id,
   mapsTo,
@@ -3204,6 +3444,8 @@ function createSelectedRetainedLineagePhaseProbe(cases, comparisons) {
       "energy_routing",
       "section_stability",
       "non_minimal_retained_competitors",
+      "precision_readout",
+      "observation_residual",
     ],
   };
 }

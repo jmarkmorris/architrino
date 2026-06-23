@@ -7,6 +7,7 @@
 - Detail source: [Equation Mapping Detail](equation.md)
 - Assigned IDs: `EQ-21`, `EQ-22`, `EQ-23`, `EQ-32`
 - Status: `worker-packet`
+- Packet status note: prior detailed worker packet; refined by [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md).
 - Scope: priority-only; do not promote to reader-facing corpus until the shared residual below is computed by one branch record.
 
 ## Local Source Basis

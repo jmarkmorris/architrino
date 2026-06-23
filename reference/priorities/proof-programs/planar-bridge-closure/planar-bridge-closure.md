@@ -72,7 +72,7 @@ Each of these outcomes is still informative because it identifies the exact geom
 
 - [breather-proof](../breather-proof/breather-proof.md)
 - [master-equation-closure](../../master-equation-closure/master-equation-closure.md)
-- [dyadic-lock](../../dyadic-lock/dyadic-lock.md)
+- [dyadic-lock](../../braid-dyadic-lock/braid-dyadic-lock.md)
 - [strong-field hypothesis bank](../../strong-field-closure/hypothesis-bank.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

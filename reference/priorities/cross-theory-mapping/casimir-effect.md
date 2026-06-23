@@ -33,7 +33,7 @@ This case is useful but risky. It can sharpen boundary-sensitive Noether sea sta
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | [mass-map/condensed-matter-medium-transport](../mass-map/condensed-matter-medium-transport.md) | Route material boundary response through medium transport rather than empty-space ontology. |
+| This file | [mass-map/condensed-matter-medium-transport](../braid-mass-response-map/condensed-matter-medium-transport.md) | Route material boundary response through medium transport rather than empty-space ontology. |
 | This file | [Radiation](../../../content/markdown/aaa/reactions/radiation.md) | Test photon-channel mode restrictions and event-ledger balance. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Prevent Casimir reasoning from importing unconstrained vacuum-energy claims. |
 

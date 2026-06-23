@@ -396,6 +396,13 @@ These candidates are reusable enough to become independent equation rows or name
 | `wake_energy_crosswalk_residual` | $\epsilon_{\mathrm{cross}}^{\mathfrak{B}}$ comparing action-boundary, work-integral, and boundary-flux routes. | Delay-energy, effective Lagrangian, thermodynamics, and no-runaway claims. | Internal/candidate; required when more than one wake-energy construction is invoked. |
 | `ledger_transition_gauge_matching` | Equality of pre/post branch energy gauges plus declared $\Delta_{\mathrm{ledger}}$ at root changes. | Action quantization, nested shell braid energy routing, and branch-transition packets. | Internal/candidate; strong local use in energy bookkeeping, no general theorem yet. |
 
+## Score Alignment
+
+| ID | Accepted `6/23 b` | Reason |
+| --- | --- | --- |
+| `EQ-01` | `5` | The per-hit causal wake law and causal-root Jacobian are native substrate equations. The maintenance burden is dependency discipline, not a mapping proof. |
+| `EQ-05` | `4` | The finite-window conservation grammar, same-root checksum, event ledger, boundary-flux row, and wake-energy crosswalk are explicit. The row remains below `5` until $\mathcal{R}_{01-05}^{\mathfrak{B}}(W)$ is populated on a retained branch with event, boundary, and wake-history rows closed. |
+
 ## First Mathematical Object To Add Next
 
 Instantiate `finite_window_conservation_residual` on the smallest branch where all required rows are available:
@@ -439,6 +446,8 @@ The first proof step is not to prove all conservation laws globally. It is to sh
 ## Promotion Classification
 
 Classification: `priority-only`.
+
+Promote now: no.
 
 `EQ-01` is already native as the causal wake law and causal-root Jacobian. The new material in this packet is not a completed derivation of `EQ-05`; it is a same-root conservation residual grammar. Candidate promotion targets, after a worked residual closes, are:
 

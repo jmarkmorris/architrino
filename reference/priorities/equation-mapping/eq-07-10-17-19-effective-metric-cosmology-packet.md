@@ -24,7 +24,31 @@ g_{\mu\nu}^{\mathrm{eff}}
 (H_{\mathrm{eff}},z,D(z),P(k,z)).
 $$
 
-The near-term closure target is a single retained record $\theta$ whose projections supply:
+The near-term closure target is a compact carrier followed by a single retained record:
+
+$$
+\mathcal C_{07\text{-}10,17\text{-}19}^{(W,X)}
+=
+\left(
+\mathcal N_{\mathrm{sea}}(W),
+\mathcal L_{\mathrm{root}}(W),
+\mathcal L_{\mathrm{wake}}(W),
+\mathcal L_{E\mathbf p\mathbf J}(W),
+\mathcal H_{\partial W},
+X
+\right),
+\qquad
+\theta
+=
+\left(
+\mathcal C_{07\text{-}10,17\text{-}19}^{(W,X)},
+\Pi_{\mathrm{metric}},
+\Pi_{\mathrm{red}},
+\Pi_{\mathrm{FRW}}
+\right).
+$$
+
+Its projections supply:
 
 $$
 \Pi_{\mathrm{metric}}\theta
@@ -245,6 +269,8 @@ $$
 \left(
 Z_X[\theta]-Z_X^{\mathrm{obs}}
 \right)^2
++\lambda_{\mathrm{null}}\mathcal R_{\mathrm{null}}(\theta;W)
++\lambda_{\mathrm{geo}}\mathcal R_{\mathrm{geo}}(\theta;W)
 +\lambda_H R_H(\theta)^2
 +\lambda_\rho R_\rho(\theta)^2
 +\lambda_{\mathrm{retune}}\mathcal{S}_{\mathrm{retune}}(\theta),
@@ -269,6 +295,8 @@ R_{\mathrm{acc}}\\
 $$
 
 This is not a new validation gate. It is the first reusable equation-mapping residual for the assigned IDs. It should be populated first in a weak solar-system window $W_{\odot}$ plus one clean spectral line family $X$, then extended to an effective cosmology window only after the source/provenance rows are declared.
+
+$\mathcal R_{\mathrm{null}}$ and $\mathcal R_{\mathrm{geo}}$ are terms inside the same metric-observable residual. They do not promote geodesic behavior into substrate ontology; they check whether null/eikonal and proper-time action readouts follow from the same observer-level metric projection that already supplies redshift, Shapiro delay, lensing, acceleration, and PPN rows.
 
 ## Failure Modes And Falsifiers
 

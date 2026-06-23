@@ -26,7 +26,7 @@ The angular-momentum and spin closure lane already identifies Stern-Gerlach resp
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | [angular-momentum-spin/photon-measurement-bell-gates](../angular-momentum-spin/photon-measurement-bell-gates.md) | Treat Stern-Gerlach as the first concrete measurement-response proof target. |
+| This file | [angular-momentum-spin/photon-measurement-bell-gates](../braid-angular-momentum-spin/photon-measurement-bell-gates.md) | Treat Stern-Gerlach as the first concrete measurement-response proof target. |
 | This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Route outcome weights through basin measures and detector kernels. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Add discrete spin outcome recovery and no-signaling discipline. |
 

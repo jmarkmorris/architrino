@@ -2,7 +2,7 @@
   "schema": "pressure-replay-fit-runner/v1",
   "metadata": {
     "claim": "Empty Fe/Cr pressure replay fixture",
-    "source_packet": "reference/priorities/mass-map/pressure-replay-fe-cr-empirical-skeleton.md",
+    "source_packet": "reference/priorities/braid-mass-response-map/pressure-replay-fe-cr-empirical-skeleton.md",
     "status": "fail-closed fixture; no empirical rows"
   },
   "feature_order": [

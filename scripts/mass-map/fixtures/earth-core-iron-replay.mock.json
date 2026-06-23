@@ -2,7 +2,7 @@
   "schema": "earth-core-iron-replay/v1",
   "metadata": {
     "claim": "Mock Earth-core iron residual replay",
-    "source_packet": "reference/priorities/mass-map/pressure-dependent-noether-sea-constitutive-response.md",
+    "source_packet": "reference/priorities/braid-mass-response-map/pressure-dependent-noether-sea-constitutive-response.md",
     "status": "mock scaffold, not empirical geophysics",
     "guardrail": "Core pressure retunes existing iron assemblies; it does not create iron nuclei."
   },

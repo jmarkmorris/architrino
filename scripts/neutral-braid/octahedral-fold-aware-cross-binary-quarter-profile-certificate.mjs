@@ -240,11 +240,11 @@ export function buildOctahedralFoldAwareCrossBinaryQuarterProfileCertificate(opt
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-representative-profile-decomposition.md",
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-clock-length-chart-closure-proof.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-representative-profile-decomposition.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-chart-closure-proof.md",
     ],
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-quarter-profile-certificate.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-quarter-profile-certificate.md",
     source_decomposition_check: {
       schema: decomposition.schema,
       valid: decompositionErrors.length === 0,

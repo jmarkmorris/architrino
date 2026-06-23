@@ -507,7 +507,7 @@ export function buildOctahedralAffineForceMeanDerivative(options = {}) {
     promotion_status: PROMOTION_STATUS,
     source_root_ledger: "scripts/neutral-braid/octahedral-root-ledger.mjs",
     source_speed_ode: "scripts/neutral-braid/octahedral-speed-ode-diagnostic.mjs",
-    priority_packet: "reference/priorities/geometry-bridge/octahedral-affine-force-mean-derivative.md",
+    priority_packet: "reference/priorities/braid-geometry-export-bridge/octahedral-affine-force-mean-derivative.md",
     conventions: {
       seed: "rigid-octahedral-carrier",
       coordinate_chart: "nine-dimensional affine branch-coordinate variation delta Y_i = H Y_i",

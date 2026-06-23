@@ -317,11 +317,11 @@ export function buildOctahedralFoldAwareZeroBracketCertificate(options = {}) {
     promotion_status: PROMOTION_STATUS,
     predecessor_schema: OCTAHEDRAL_FOLD_AWARE_MULTIROOT_PERIOD_INTEGRAL_SCHEMA,
     predecessor_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-multiroot-period-integral.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-multiroot-period-integral.md",
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-zero-bracket-certificate.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-zero-bracket-certificate.md",
     successor_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-dynamics-handoff.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-dynamics-handoff.md",
     scan_parameters: {
       speed_constraint: "none; the bracket is a certified positive speed-ratio zero enclosure",
       zero_speed_ratio_bracket: zeroSpeedRatioBracket.map(formatNumber),

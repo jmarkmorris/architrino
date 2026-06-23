@@ -2580,7 +2580,7 @@ export function buildOctahedralZeroMeanCorrectionIntake(options = {}) {
     promotion_status: PROMOTION_STATUS,
     sources: [
       "scripts/neutral-braid/octahedral-speed-ode-diagnostic.mjs",
-      "reference/priorities/braid/shell-braid/bounded-speed-factor-speed-ode-zero-mean-correction-target.md",
+      "reference/priorities/braid-retained-branch-closure/shell-braid/bounded-speed-factor-speed-ode-zero-mean-correction-target.md",
     ],
     artifact_claim: {
       kind: "zero_mean_correction_intake",

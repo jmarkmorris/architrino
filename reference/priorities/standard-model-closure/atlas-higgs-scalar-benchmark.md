@@ -70,7 +70,7 @@ The immediate reader-facing promotion should say that any native scalar or mass-
 | Target | Proposed promotion | Gate |
 | --- | --- | --- |
 | [standard-model-closure.md](standard-model-closure.md) | Keep `scalar_boson_acceptance` tied to mass, signal strength, production, branching, detector provenance, and excluded scalar windows. | Must not reduce the Higgs benchmark to a mass-only fit. |
-| [mass-map.md](../mass-map/mass-map.md) | Use the scalar residual as a downstream mass-map benchmark after branch, shielding, and medium-response records are fixed. | Must not use observed Higgs properties as branch-search or shielding inputs. |
+| [mass-map.md](../braid-mass-response-map/braid-mass-response-map.md) | Use the scalar residual as a downstream mass-map benchmark after branch, shielding, and medium-response records are fixed. | Must not use observed Higgs properties as branch-search or shielding inputs. |
 | [particle-masses.md](../../../content/markdown/aaa/assemblies/particle-masses.md) and [electroweak-bosons.md](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Add the ATLAS Higgs mass, signal-strength, and channel ledger as hard closure benchmarks. | Must not claim Higgs derivation until the mass-map residual is solved. |
 
 ## Deferred Or Rejected Moves

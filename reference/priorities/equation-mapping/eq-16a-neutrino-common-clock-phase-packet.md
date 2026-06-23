@@ -24,7 +24,7 @@ The active source signals are:
 
 - [equation.md](equation.md): `EQ-16A` is scored as a partial map whose closure driver is to factor a common hidden clock while deriving two independent observed phase gaps from one retained neutral-lepton branch.
 - [Neutrinos](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md): the reader-facing chapter already states the geometric phase-operator target $H_{\mathrm{geo}}=U_{\mathrm{PMNS}}\Lambda U_{\mathrm{PMNS}}^\dagger$ and keeps flavor-basis preparation/detection separate from propagation-basis evolution.
-- [equal-frequency-energy-radius-candidate.md](../angular-momentum-spin/equal-frequency-energy-radius-candidate.md): the equal-frequency candidate supplies current-proxy evidence for `(f,f,f)` with phase offsets and different effective lever-arm / speed relations, but retained row-set acceptance is still missing.
+- [equal-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/equal-frequency-energy-radius-candidate.md): the equal-frequency candidate supplies current-proxy evidence for `(f,f,f)` with phase offsets and different effective lever-arm / speed relations, but retained row-set acceptance is still missing.
 - [neutrino-oscillations.md](../cross-theory-mapping/neutrino-oscillations.md): the cross-theory packet names the phase, weak projection, PMNS import, and matter-effect failure modes.
 - [weak-sector-gauge-closure.md](../standard-model-closure/weak-sector-gauge-closure.md): PMNS recovery must use the same weak-exposure domain as `V-A`, CKM overlap, and weak-reaction provenance.
 
@@ -152,6 +152,37 @@ $$
 \bar\lambda_3-\bar\lambda_1\approx33.5\delta_\nu.
 $$
 
+The solver-facing check should use an identity-shift-invariant normalized spectrum, not raw eigenvalues. Define
+
+$$
+\widehat{\boldsymbol\lambda}_{\nu}
+=
+\frac{1}{\Delta\lambda_{21}}
+\left(\bar\lambda_1,\bar\lambda_2,\bar\lambda_3\right),
+$$
+
+after the ordering convention has been declared. For normal ordering, let
+
+$$
+r_{32/21}
+\equiv
+\frac{\Delta\lambda_{32}}{\Delta\lambda_{21}}.
+$$
+
+Then the normalized traceless target is
+
+$$
+\widehat{\boldsymbol\lambda}_{\nu}^{\mathrm{NO}}
+=
+\left(
+-\frac{r_{32/21}+2}{3},
+\frac{1-r_{32/21}}{3},
+\frac{2r_{32/21}+1}{3}
+\right).
+$$
+
+This check is invariant under $H_{\nu}^{\mathrm{eff}}\mapsto H_{\nu}^{\mathrm{eff}}+\alpha\mathbf 1$. It must be populated from phase-rate gaps, not from static offsets $\phi_i^{(0)}$.
+
 Static phase offsets can shift an interference origin or enter a mixing convention, but they do not by themselves recover the observed $L/E$ oscillation frequency. In propagation form,
 
 $$
@@ -208,10 +239,12 @@ $$
 R_{\nu,\mathrm{cancel}}
 =
 \left|
-\sum_{a\in\{I,M,O\}}
+\sum_{a\in\{1,2,3\}}
 W_a^{(\nu)}e^{i\phi_a}
 \right|.
 $$
+
+The labels $\{1,2,3\}$ are raw retained-row labels. They may be replaced by $\{I,M,O\}$ only after the solver supplies a declared `I:M:O` role map for the retained neutral-lepton branch.
 
 Small $R_{\nu,\mathrm{cancel}}$ is necessary for weak exterior exposure, but it is not sufficient for neutrino oscillation. The packet fails if the same cancellation forces
 
@@ -238,6 +271,7 @@ B_{3B}^{(\nu)},
 \bar H_{\nu}^{\mathrm{res}},
 U_{\mathrm{read}},
 \bar\Lambda,
+\widehat{\boldsymbol\lambda}_{\nu},
 R_{\nu,\mathrm{cancel}},
 \mathcal R_{\nu,16A}
 \right).
@@ -267,12 +301,14 @@ w_{\mathrm{zero}}\mathcal Z(\bar H_{\nu}^{\mathrm{res}})
 +
 w_{\mathrm{shape}}\mathcal S_{\mathrm{dbl+sgl}}
 +
+w_{\mathrm{norm}}\mathcal S_{\widehat\lambda}
++
 w_{\mathrm{PMNS}}\mathcal R_{\mathrm{PMNS}}
 +
 w_{\mathrm{domain}}\mathcal R_{\mathrm{weak,domain}}.
 $$
 
-Here $r_{\mathrm{atm/sol}}$ is the updateable atmospheric-to-solar gap benchmark, $\mathcal Z$ penalizes an all-zero residual, $\mathcal S_{\mathrm{dbl+sgl}}$ penalizes equal residual spacing when the target is doublet-plus-singlet, $\mathcal R_{\mathrm{PMNS}}$ measures readout mismatch, and $\mathcal R_{\mathrm{weak,domain}}$ reports any split weak-exposure domain.
+Here $r_{\mathrm{atm/sol}}$ is the updateable atmospheric-to-solar gap benchmark, $\mathcal Z$ penalizes an all-zero residual, $\mathcal S_{\mathrm{dbl+sgl}}$ penalizes equal residual spacing when the target is doublet-plus-singlet, $\mathcal S_{\widehat\lambda}$ checks the identity-shift-invariant normalized spectrum, $\mathcal R_{\mathrm{PMNS}}$ measures readout mismatch, and $\mathcal R_{\mathrm{weak,domain}}$ reports any split weak-exposure domain.
 
 ## Common Equation Candidates
 

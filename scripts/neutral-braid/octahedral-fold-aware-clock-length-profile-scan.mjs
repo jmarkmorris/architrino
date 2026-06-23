@@ -150,11 +150,11 @@ export function buildOctahedralFoldAwareClockLengthProfileScan(options = {}) {
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-clock-length-criterion.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-criterion.md",
     successor_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-clock-length-orbit-scan.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-orbit-scan.md",
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-clock-length-profile-scan.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-clock-length-profile-scan.md",
     source_criterion_check: {
       schema: criterion.schema,
       valid: criterionErrors.length === 0,

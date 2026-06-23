@@ -26,7 +26,7 @@ The queue favors app concepts that make the theory's native mechanisms visible: 
 ## Priority Queue
 
 1. [Causal Delay Feedback Depth](../causal-delay-feedback-app/causal-delay-feedback-app.md). Status: `promoted`.
-2. [Assembly Configuration Explorer](../assembly-explorer/assembly-configuration-explorer.md). Status: `promoted`.
+2. [Assembly Configuration Explorer](../braid-assembly-explorer/braid-assembly-explorer.md). Status: `promoted`.
 3. `path_history_ledger` - Path-History Ledger. Status: `idea`.
 4. `self_hit_near_cf` - Self-Hit Near $c_f$. Status: `idea`.
 5. `branch_geometry_explorer` - Branch Geometry Explorer. Status: `idea`.
@@ -50,7 +50,7 @@ The queue favors app concepts that make the theory's native mechanisms visible: 
 - The dedicated app packet owns the description, visualization, controls, diagnostics, and first-build requirements.
 - Summary: one main canvas shows a moving source, Virtual Observer, retained causal-delay paths, arriving pulses, and a contribution stack so users can see how active path-history changes the present Virtual Observer readout.
 
-### 2. [Assembly Configuration Explorer](../assembly-explorer/assembly-configuration-explorer.md)
+### 2. [Assembly Configuration Explorer](../braid-assembly-explorer/braid-assembly-explorer.md)
 
 - Status: `promoted`.
 - The dedicated app packet owns the unquotiented tri-binary dataset contract, comparison diagnostics, and solver-output adapter boundary.
