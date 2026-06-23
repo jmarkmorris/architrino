@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 178,
-      "sections": 1448
+      "sections": 1449
     }
   },
   "tocRoot": {
@@ -11817,6 +11817,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "The Two Stories",
                         "sectionKey": "the two stories",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Observer-Level Minkowski Export",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
+                        "markdownSection": "Observer-Level Minkowski Export",
+                        "sectionKey": "observer level minkowski export",
                         "headingLevel": 2
                       },
                       {

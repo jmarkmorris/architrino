@@ -348,7 +348,10 @@ $$
 of light is constant.
 
 **Conceptual View:** Time and space mix under Lorentz transformations. Time dilation
-and length contraction follow from invariant spacetime intervals.
+and length contraction follow from invariant spacetime intervals. Geometrically,
+boosts act like hyperbolic rotations: they preserve the interval, keep the null
+cone fixed, and move equal-interval unit marks along hyperbolas rather than
+circles.
 
 **Key Equation:** Minkowski interval:
 $$
@@ -434,7 +437,7 @@ S = -\frac{T}{2}\int d^2\sigma \sqrt{-h} h^{ab}\partial_a X^\mu \partial_b X_\mu
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ does not posit fundamental strings or extra dimensions; these appear, at best, as effective models of certain extended architrino assembly patterns (e.g., long coherent trains or vortex lines in the Noether sea). String actions then summarize the dynamics of these extended excitations in a particular limit rather than define the underlying substrate.
 
-**What Still Works:** String Theory remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
+**What Still Works:** String Theory remains valuable as a quantum-gravity consistency laboratory, especially for anomaly cancellation, extended-object dynamics, dualities, black-hole accounting, and controlled model systems. Those achievements should be preserved as comparison pressure, but they do not by themselves license extra dimensions, hidden sectors, or landscape populations as recovered ontology for the observed universe.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
@@ -719,6 +722,8 @@ $$
 a bounce leads to expansion.
 
 The current Turok--Boyle CPT-symmetric cosmology line should be tracked separately from this older Steinhardt--Turok ekpyrotic/cyclic entry. Its useful pressure is boundary-condition discipline: can a cosmology state a symmetric continuation, entropy-arrow account, particle-sector content, and CMB/BBN/growth residuals with fewer adjustable interpretive commitments? For $\mathbb{A}\mathbb{A}\mathbb{A}$, that is a comparison question rather than an import of CPT-mirror ontology or a right-handed-neutrino dark sector by default.
+
+The source-mined update sharpens the comparison: the live Turok--Boyle line tries to trade speculative inventory for concrete particle-sector consequences, especially a stable right-handed-neutrino dark-matter candidate and an exactly massless light-neutrino consequence. Those are not $\mathbb{A}\mathbb{A}\mathbb{A}$ claims; they are useful examples of a cosmology making its ontology answerable to a finite residual rather than only to narrative simplicity.
 
 **Key Equation:** Contracting equation-of-state:
 $$

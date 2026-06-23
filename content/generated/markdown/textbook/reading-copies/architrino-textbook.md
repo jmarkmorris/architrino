@@ -60943,6 +60943,8 @@ with $B_k$ the record-forming attractor basins that satisfy the record, persiste
 
 Born-rule statements must also stay at the preparation-to-record level. In a destructive channel, a formal comparison state need not survive as an outstate after the apparatus interaction. Photon absorption by a polarizer is the standard example: the admissible question is the probability that the declared preparation is routed into a record class such as transmitted, absorbed, or scattered by the apparatus kernel. The post-measurement state catalog is a later record update, not the object whose existence supplies the Born weight.
 
+Probability is therefore not a property of a formal state label by itself. It is the record-facing weight produced when preparation, apparatus coupling, retained path-history, and coarse-grained dynamics route a system into a durable record class.
+
 The measurement ontology therefore connects directly to the basin-measure program in [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and the separatrix-time program in [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md).
 
 This also fixes how external probability geometries should be used. A comparison framework may assign a natural measure to a space of possible configurations or records, but that measure is not automatically the Born rule. In this chapter, a candidate record map $\pi:\mathcal{M}\to\mathcal{R}$ is admissible only if the probabilities are pulled forward from the same deterministic flow that creates the apparatus record:
@@ -63334,7 +63336,7 @@ r^\theta
 $$
 A branch that claims a slow-roll-like scalar/tensor match should therefore supply $\{\varepsilon_\theta,\eta_\theta,N_\theta,\Delta_{\mathrm{s}}^{2,\theta},\Delta_{\mathrm{t}}^{2,\theta},n_{\mathrm{s}}^\theta,r^\theta\}$ from one high-curvature release record. If it also predicts a bispectrum, the single-field slow-roll comparison target is $f_{\mathrm{NL}}^\theta=O(\varepsilon_\theta,\eta_\theta)$; a large non-Gaussian residual requires an explicit additional interaction, branch, or source-measure record.
 
-Eternal-inflation and landscape language add no ontology by themselves. They become useful only when they nominate data products that can be tested without assuming the multiverse interpretation. Two examples are the effective spatial-curvature channel and localized CMB residuals. For a candidate high-curvature release record $\theta$, define a comparison-only residual
+Eternal-inflation and landscape language add no ontology by themselves. A cosmological ensemble does not explain observed parameters merely by containing them somewhere; its explanatory content comes from the physical mechanism that generates the sampling measure and connects that measure to this observed record. These frameworks become useful only when they nominate data products that can be tested without assuming the multiverse interpretation. Two examples are the effective spatial-curvature channel and localized CMB residuals. For a candidate high-curvature release record $\theta$, define a comparison-only residual
 $$
 \mathcal{R}_{\mathrm{EI}}(\theta)
 =
@@ -73884,6 +73886,8 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ this translates into concrete governance: su
 
 A further distinction matters for replacement theory. A model is not scientifically useful merely because it can name a distant measurement that would eventually rule it out. The hypothesis must also close a real inconsistency, recover the tested regime it claims to replace, and expose a failure condition that is tied to its own mechanism rather than to an arbitrary parameter extension. Otherwise the theory can be formally falsifiable while adding no disciplined explanatory burden.
 
+One practical test of seriousness is whether a model can tolerate being wrong in a specific way. A candidate that names a residual, accepts a rising-significance anomaly as a real threat, and does not immediately convert each null result into a new auxiliary sector is healthier than one that survives by interpretive agility. Falsifiability is therefore not only a yes-or-no property of a claim; it is a stance toward failure during model development.
+
 This is especially important for data-starved domains. A mathematically elaborate framework may be interesting as a comparison tool while still being unready for corpus promotion. A compact promotion guard is
 $$
 \operatorname{promote}(\theta)=1
@@ -74019,6 +74023,8 @@ Another methodological error appears when the failure of one concrete model is t
 
 Scientific consensus also requires more careful treatment than either naive trust or blanket dismissal allows. Consensus is not simply identical to arbitrary belief, because it is often grounded in real evidential convergence. Yet under crisis conditions, especially in fields with expensive experiments, long training pipelines, strong hierarchy, and high career risk for dissent, consensus may also reflect institutional stabilization of a dominant interpretation. The method should therefore ask not only what the consensus is, but how it was formed, which alternatives received serious technical scrutiny, and whether social cost has narrowed the visible theory space.
 
+Training structure matters in the same record. Early specialization, standardized filtering, grant pressure, citation pressure, and senior-dependent doctoral apprenticeship can all reduce the number of people with both technical command and permission to question foundations. That does not make dissent correct. It means a crisis review should treat institutional narrowing of the live theory space as part of the inference environment rather than as irrelevant sociology.
+
 Theory-guided experiment must also be handled explicitly. In data-starved foundational regimes, instruments, reduction variables, and auxiliary hypotheses are usually shaped by the dominant theory. The absence of a single decisive anomaly is therefore not identical to ontological closure. It also does not make every alternative equally live. It raises the burden on a replacement architecture: it must name the preserved data product, the accepted calibration assumptions, the effective model being rederived, the ontological inference being challenged, and the residual that would count against the replacement.
 
 For a crisis review, the minimum inference record is:
@@ -74092,6 +74098,8 @@ $$
 $$
 
 and a nonempty residual pattern $R_{\mathrm{fail}}$ that could reject that interpretation. High predictive accuracy therefore improves the status of $M_{\mathrm{eff}}$ but does not, by itself, promote $O_{\mathrm{ont}}$ into settled ontology.
+
+This includes AI-like discovery systems. They may be valuable for reference recovery, algebraic compression, pattern search, and large correlation scans, but they do not become ontology authorities by reproducing the dominant interpretation at scale. Under crisis governance, an AI-assisted result earns only the status its mechanism map and residual record earn.
 
 The same discipline applies to theory-guided quantities. Let $D_{W,\epsilon}$ be the finite data product over window $W$ with tolerance vector $\epsilon$, and let $\widehat D_\theta$ be the data predicted by candidate record $\theta$. Ordinary observational fit first requires
 
@@ -74948,6 +74956,8 @@ The historical source is straightforward. When a framework is productive but inc
 The issue is not parameter count by itself. Some parameters are unavoidable in any serious theory. The problem arises when their pattern suggests that the theory is describing outcomes without deriving why those values, couplings, or sectors exist. At that point the framework risks becoming a highly organized ledger of what must be inserted rather than a mechanism that explains why those inserts take the values they do.
 
 This is especially visible when new anomalies are met primarily by local augmentation. A parameter here, a sector there, a symmetry-breaking scale elsewhere, a prior adjustment in another context: each repair may be defensible, but the cumulative pattern can reveal a theory that is preserving operational closure by distributing ignorance rather than reducing it.
+
+A sharper version appears when the observational record becomes simpler while explanatory inventory grows. A near-flat large-scale universe, nearly Gaussian CMB fluctuations, and repeated null results for expected new low-energy sectors can be read not as embarrassments to hide, but as positive clues that nature may not be using the added sectors. The methodological error is to answer a simplifying data product with an ever larger ontology unless the new inventory produces constrained residuals of its own.
 
 ##### What Current Physics Gets Right
 
@@ -75939,7 +75949,10 @@ $$
 of light is constant.
 
 **Conceptual View:** Time and space mix under Lorentz transformations. Time dilation
-and length contraction follow from invariant spacetime intervals.
+and length contraction follow from invariant spacetime intervals. Geometrically,
+boosts act like hyperbolic rotations: they preserve the interval, keep the null
+cone fixed, and move equal-interval unit marks along hyperbolas rather than
+circles.
 
 **Key Equation:** Minkowski interval:
 $$
@@ -76025,7 +76038,7 @@ S = -\frac{T}{2}\int d^2\sigma \sqrt{-h} h^{ab}\partial_a X^\mu \partial_b X_\mu
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ does not posit fundamental strings or extra dimensions; these appear, at best, as effective models of certain extended architrino assembly patterns (e.g., long coherent trains or vortex lines in the Noether sea). String actions then summarize the dynamics of these extended excitations in a particular limit rather than define the underlying substrate.
 
-**What Still Works:** String Theory remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
+**What Still Works:** String Theory remains valuable as a quantum-gravity consistency laboratory, especially for anomaly cancellation, extended-object dynamics, dualities, black-hole accounting, and controlled model systems. Those achievements should be preserved as comparison pressure, but they do not by themselves license extra dimensions, hidden sectors, or landscape populations as recovered ontology for the observed universe.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
@@ -76310,6 +76323,8 @@ $$
 a bounce leads to expansion.
 
 The current Turok--Boyle CPT-symmetric cosmology line should be tracked separately from this older Steinhardt--Turok ekpyrotic/cyclic entry. Its useful pressure is boundary-condition discipline: can a cosmology state a symmetric continuation, entropy-arrow account, particle-sector content, and CMB/BBN/growth residuals with fewer adjustable interpretive commitments? For $\mathbb{A}\mathbb{A}\mathbb{A}$, that is a comparison question rather than an import of CPT-mirror ontology or a right-handed-neutrino dark sector by default.
+
+The source-mined update sharpens the comparison: the live Turok--Boyle line tries to trade speculative inventory for concrete particle-sector consequences, especially a stable right-handed-neutrino dark-matter candidate and an exactly massless light-neutrino consequence. Those are not $\mathbb{A}\mathbb{A}\mathbb{A}$ claims; they are useful examples of a cosmology making its ontology answerable to a finite residual rather than only to narrative simplicity.
 
 **Key Equation:** Contracting equation-of-state:
 $$
@@ -88173,6 +88188,26 @@ This chapter does not own:
 | The invariant speed $c$ is a postulate of the observer-level theory. | The observed signal speed is the effective propagation speed $c_{\text{eff}}$ of photon-like and clock-synchronization channels in the local Noether sea, approaching $c_f$ in the homogeneous weak-field limit. |
 | Lorentz symmetry is a spacetime symmetry. | Lorentz symmetry is an emergent operational symmetry of assemblies whose clocks, rulers, and signal channels are all built from the same finite-speed delayed closure dynamics. |
 
+###### Observer-Level Minkowski Export
+
+The Minkowski diagram is useful here because it shows exactly what the bridge must export, and also what it must not promote to substrate ontology. In the inherited observer-level geometry, equal interval from an event is a hyperbola rather than a Euclidean circle, null directions are the zero-interval boundaries, and a Lorentz boost is a hyperbolic rotation that preserves the interval. For drift speed $\|\mathbf{w}\|$ through a homogeneous Noether sea cell, define the effective rapidity
+$$
+\tanh\varphi_{\text{eff}}
+=
+\beta_{\text{eff}}
+\equiv
+\frac{\|\mathbf{w}\|}{c_{\text{eff}}}
+$$
+so that
+$$
+\gamma_{\text{eff}}=\cosh\varphi_{\text{eff}},
+\qquad
+\gamma_{\text{eff}}\beta_{\text{eff}}=\sinh\varphi_{\text{eff}}.
+$$
+Those equations are not substrate kinematics. They are the target export seen by Physical Observers after clock, ruler, and signal channels are built from the same branch record. The native proof obligation is therefore stronger than reproducing time dilation alone: the moving assembly must export one hyperbolic-rotation parameter whose clock factor, ruler factor, light-cone readout, energy response, and momentum response all agree up to the declared preferred-frame leakage residual.
+
+In this language, the equal-interval hyperbola is a useful recovery target. If the clock channel supplies one $\varphi_{\text{eff}}$, the ruler channel another, and photon synchronization a third, then Physical Observers would not reconstruct one Minkowski diagram. Lorentz closure requires the same branch update $B_q\to B_{q'}$ to supply the shared rapidity parameter that makes the effective interval, null boundary, and unit hyperbolas cohere.
+
 ###### Clock Channel
 
 In special relativity, the moving-clock law is usually written
@@ -90843,6 +90878,7 @@ Another recurring pattern is failure to revisit earlier assumption sets after la
 | 1960s-1970s (Wheeler's collapse and law-without-law turn) | Gravitational-collapse singularity pressure, black-hole no-hair compression, and Wheeler's claim that baryon and lepton conservation lose operational content in collapse | Lawfulness could have been treated as an emergent closure whose conservation records survive only where the accessible exterior variables still carry the needed provenance | Collapse and no-hair results redirected Wheeler from lawlike geometrodynamics toward law-without-law, participatory cosmology, and universe-evolution language |
 | 1964-1982 (Bell + Aspect era) | Nonlocal correlations experimentally robust | Absolute-time nonlocal substrate dynamics without signaling | The discourse framed options as "local realism dead" rather than "which nonlocal ontology?" |
 | 1970s-1990s (SM success + naturalness programs) | Precision particle physics with many free parameters | Assembly geometry as origin of masses/charges/mixing patterns | Parameter-fit pragmatism displaced geometric micro-construction programs |
+| 1980s-2020s (string, extra dimensions, and landscape cosmology) | GUT, supergravity, string, anomaly-cancellation, and quantum-gravity consistency programs with rich mathematics but limited direct empirical separation | Null results and simple cosmological data could have been read as pressure to revisit assumptions from the 1960s-1980s before adding hidden dimensions, hidden sectors, or ensemble explanations | Mathematical consistency and model-space abundance made auxiliary dimensions, sectors, and multiverse selection look like explanatory depth even where controlled observational recovery lagged |
 | 1998-2010s (Dark energy and precision cosmology) | Accelerated expansion inferred from distance-redshift data | Medium-relaxation / clock-comparison interpretation in fixed void | $\Lambda$ as baseline closure model hardened into ontology, not just effective fit |
 | 2000s-2020s (Dark matter null detections vs gravity evidence) | Strong gravitational evidence, weak direct particle confirmation | Neutral assembly sectors + medium response hybrid possibilities | WIMP-first then piecemeal model proliferation delayed unified substrate reinterpretation |
 | 2010s-2020s (Hubble and $S_8$ tensions) | Persistent background-vs-growth mismatches | One medium-history explanation for both expansion and growth channels | Tensions were often treated as separate parameter patches instead of shared ontology failures |

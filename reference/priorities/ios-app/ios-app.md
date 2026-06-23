@@ -138,19 +138,31 @@ Treat these as backlog tickets in execution order. Keep each ticket one engineer
 12. `search_and_bookmarks_ux` - Build dedicated search and bookmarks screens/panes with deterministic navigation into active sections. Status: `implemented`.
 13. `iPad_reading_layout` - Implement split-view reading workspace with a persistent TOC sidebar, reading pane, adaptive reader controls, and constrained modal sheet content. Status: `implemented; physical iPad smoke test required before first release`.
 
+### Phase 2.5: App Store Release Planning
+
+14. `app_store_distribution_pricing_plan` - Finalize the first-release App Store distribution and pricing plan before archive submission. Status: `planned`.
+    - Confirm that Unlisted App Store distribution still requires Apple Developer Program membership, App Store Connect setup, ordinary App Review, and the unlisted-app request flow.
+    - Keep the first public distribution target as Unlisted App Store distribution unless the release goal changes from direct-link distribution to public App Store discovery.
+    - Choose the first-release price from an explicit set that includes free, low-friction paid, textbook/reference paid, and premium technical-reference paid options.
+    - If charging for the app, complete the Paid Apps Agreement, tax, and banking setup before App Review submission.
+    - Evaluate App Store Small Business Program eligibility before launch so commission planning uses the right 15 percent or 30 percent Apple cut.
+    - Document any temporary launch promotion in App Store Connect as a scheduled price change, for example a one-day 99-cent launch price that returns to the regular price afterward.
+    - Use promo codes for selected free access without changing the public App Store price when reviewer, collaborator, or early-reader access is the real need.
+    - Re-check Apple's current App Store Connect pricing, promo-code, and unlisted-distribution docs immediately before submission because storefront policy and price-point behavior can change.
+
 ### Phase 3: Visualization (Post-v1)
 
-14. `molecule_entry_points` - Add deep links from canonical textbook sections into Molecule routes. Status: `deferred`.
-15. `molecule_embed_or_bridge` - Choose and implement one of two concrete paths for version 0:
+15. `molecule_entry_points` - Add deep links from canonical textbook sections into Molecule routes. Status: `deferred`.
+16. `molecule_embed_or_bridge` - Choose and implement one of two concrete paths for version 0:
     1. embed existing Molecule web runtime in a SwiftUI/WebKit container using canonical scene JSON and runtime bundle;
     2. implement native SwiftUI/SceneKit equivalent for Molecule interaction if the embedding path blocks launch quality.
     Status: `deferred`.
-16. `molecule_tab_integration` - Add Visualizations tab item with list-detail flow and only minimal controls needed for the concept. Status: `deferred`.
+17. `molecule_tab_integration` - Add Visualizations tab item with list-detail flow and only minimal controls needed for the concept. Status: `deferred`.
 
 ### Post-Prototype
 
-17. `download_update_path` - Add a non-blocking background plan for remote updates after app-bundle contract stabilizes.
-18. `sync_and_export` - Add optional cross-device sync and optional sharing links once core package and reader parity are stable.
+18. `download_update_path` - Add a non-blocking background plan for remote updates after app-bundle contract stabilizes.
+19. `sync_and_export` - Add optional cross-device sync and optional sharing links once core package and reader parity are stable.
 
 ## Required Capabilities
 

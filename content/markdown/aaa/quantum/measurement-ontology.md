@@ -815,6 +815,8 @@ with $B_k$ the record-forming attractor basins that satisfy the record, persiste
 
 Born-rule statements must also stay at the preparation-to-record level. In a destructive channel, a formal comparison state need not survive as an outstate after the apparatus interaction. Photon absorption by a polarizer is the standard example: the admissible question is the probability that the declared preparation is routed into a record class such as transmitted, absorbed, or scattered by the apparatus kernel. The post-measurement state catalog is a later record update, not the object whose existence supplies the Born weight.
 
+Probability is therefore not a property of a formal state label by itself. It is the record-facing weight produced when preparation, apparatus coupling, retained path-history, and coarse-grained dynamics route a system into a durable record class.
+
 The measurement ontology therefore connects directly to the basin-measure program in [wavefunction-ontology.md](./wavefunction-ontology.md) and the separatrix-time program in [superposition-mechanism.md](../philosophy-history/theory-bridges/superposition-mechanism.md).
 
 This also fixes how external probability geometries should be used. A comparison framework may assign a natural measure to a space of possible configurations or records, but that measure is not automatically the Born rule. In this chapter, a candidate record map $\pi:\mathcal{M}\to\mathcal{R}$ is admissible only if the probabilities are pulled forward from the same deterministic flow that creates the apparatus record:

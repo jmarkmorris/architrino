@@ -556,6 +556,8 @@ The issue is not parameter count by itself. Some parameters are unavoidable in a
 
 This is especially visible when new anomalies are met primarily by local augmentation. A parameter here, a sector there, a symmetry-breaking scale elsewhere, a prior adjustment in another context: each repair may be defensible, but the cumulative pattern can reveal a theory that is preserving operational closure by distributing ignorance rather than reducing it.
 
+A sharper version appears when the observational record becomes simpler while explanatory inventory grows. A near-flat large-scale universe, nearly Gaussian CMB fluctuations, and repeated null results for expected new low-energy sectors can be read not as embarrassments to hide, but as positive clues that nature may not be using the added sectors. The methodological error is to answer a simplifying data product with an ever larger ontology unless the new inventory produces constrained residuals of its own.
+
 ### What Current Physics Gets Right
 
 What current physics gets right is flexibility under evidence. Adjustable structure allows theories to remain responsive to increasingly precise data rather than collapsing prematurely. Parameterization also encodes genuine ignorance in a transparent way. A parameter is often better than an unspoken assumption.

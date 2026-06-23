@@ -30,7 +30,7 @@
 - Value: `high`
 - Cost: `unscored`
 - ROI: `unscored`
-- Status: `closed-current-queue`
+- Status: `open-lower-priority-follow-up`
 
 ## Repo Inventory
 
@@ -1258,9 +1258,9 @@ The app-side geometry inventory is closed in [geometry-centralization-inventory]
 
 ## Task Queue
 
-No active solver task-queue items remain in the current priority packet. Future
-solver work should enter as a new, scoped task rather than reopening a closed
-contract artifact without new evidence.
+Lower-priority solver task-queue items:
+
+1. `gpu_feasibility_harness_followup` - Priority: low. Keep production GPU acceleration deferred, but continue [gpu-feasibility-harness](gpu-feasibility-harness.md) as a learning and measurement track. The next useful work is to test whether a more solver-representative GPU kernel can beat the CPU by a large, repeatable margin after setup, transfer, dispatch, readback, and CPU verification costs are included. Candidate improvements include persistent GPU buffers, dispatch-only timing, GPU-side reduction or checksum readback, workgroup-size tuning, larger source-receiver and time-slab packets, and an optional native Metal/C++ comparison harness. Do not migrate app-facing solver paths to GPU unless the promotion criteria in the feasibility harness are met.
 
 ## Related Priorities
 
@@ -1272,6 +1272,7 @@ contract artifact without new evidence.
 - [cpp-clang-runtime-validation](cpp-clang-runtime-validation.md)
 - [geometry-centralization-inventory](geometry-centralization-inventory.md)
 - [gpu-acceleration-deferral](gpu-acceleration-deferral.md)
+- [gpu-feasibility-harness](gpu-feasibility-harness.md)
 - [ideal-braid-adapter](ideal-braid-adapter.md)
 - [model-contract](model-contract.md)
 - [minimal-causal-root-core](minimal-causal-root-core.md)
