@@ -1565,6 +1565,12 @@ The row must show:
 
 Build a Compton/recoil event packet: declare the incoming photon-channel record, target assembly record, outgoing photon record, recoil row, and residual. Then show which assumptions are needed to recover the standard $\Delta\lambda$ form.
 
+### Executable Reducer Status
+
+[compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs) now replays the weak homogeneous comparison event for this row. The default run closes the algebraic comparison surface with status `comparison_replay_closed_native_rows_missing`: energy, momentum, inverse-energy Compton, and wavelength residuals are below `1e-10`, and the shared `EQ-26` variables match.
+
+No score change follows from that result. The run is still missing native photon Gate A/B rows, target and recoil retained branches, angular-momentum ledger update, Noether sea state row, and the energy-momentum event ledger on the same $\mathsf e_{\gamma e}^{0}$ record. The checker's `--require-native-closed` mode exits nonzero until those rows are accepted.
+
 ## EQ-29: Larmor/Lienard Radiation, Synchrotron, Bremsstrahlung, And Thermal Channels
 
 ### Standard Form

@@ -573,6 +573,41 @@ For the first replay, set $m=\text{Compton exchange}$ and require $\Pi_{29}^{m}$
 
 This block is a residual-composition target, not a derivation of $E=h\nu$, Maxwell's equations, the Rydberg coefficient, the Compton shift, or any radiation-power law. A score change is allowed only after $\mathbf R_{\gamma\text{-}\mathrm{evt}}^{0,m}$ is populated on a finite event ledger with the same $h$, $c_\gamma$, $M_e^{\mathrm{exp}}$, recoil convention, Noether sea state, and Gate A/B rows across the projections.
 
+### Executable Compton Replay Check
+
+The score-neutral executable reducer is [compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs). It consumes a weak homogeneous Compton/recoil event input and evaluates the shared $h$, $c_\gamma$, $M_e^{\mathrm{exp}}$, recoil convention, energy balance, momentum balance, inverse-energy Compton residual, and wavelength-shift residual.
+
+Command:
+
+```sh
+node scripts/equation-mapping/compton-recoil-event-replay.mjs --summary --pretty
+```
+
+Default summary:
+
+| Field | Result |
+| --- | --- |
+| Event | `e_gamma_e_0` |
+| Status | `comparison_replay_closed_native_rows_missing` |
+| Score decision | `no_score_increase` |
+| Shared `EQ-26` rows | `shared_rows_match` |
+| Energy residual | `3.70e-17` |
+| Momentum residual | `0` |
+| Compton inverse-energy residual | `7.40e-17` |
+| Wavelength residual | `7.40e-17` |
+
+The checker is deliberately fail-closed. The comparison replay closes because the weak homogeneous output photon energy is computed from the Compton relation and the recoil momentum is then balanced. It is not a native $\mathbb{A}\mathbb{A}\mathbb{A}$ event-ledger certificate until these rows are accepted on the same $\mathsf e_{\gamma e}^{0}$ record:
+
+- `photon_gate_A_input_output`
+- `photon_gate_B_transverse_handoff`
+- `target_retained_branch`
+- `recoil_branch`
+- `angular_momentum_ledger_delta_J`
+- `noether_sea_state_row`
+- `energy_momentum_event_ledger`
+
+Running the same checker with `--require-native-closed` exits nonzero while those rows are missing. That behavior is the intended guardrail: the script verifies the algebraic comparison surface and the shared-variable anti-retune witness, but it does not raise `EQ-28` or any adjacent row.
+
 ### Failure Mode
 
 `eq28.frequency_loss_without_recoil`: Compton-like exchange is treated as phenomenological photon frequency loss, pair production is described as creation from nothing, photoelectric capture drops material/recoil rows, or the event uses a different $h$ or exposed mass response than atomic spectra.

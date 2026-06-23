@@ -72,6 +72,7 @@ function parseArgs(argv) {
   const parsed = {
     input: null,
     out: null,
+    summary: false,
     pretty: false,
     requireNativeClosed: false,
     tolerance: DEFAULT_TOLERANCE,
@@ -90,6 +91,8 @@ function parseArgs(argv) {
       parsed.input = argv[++index];
     } else if (arg === "--out") {
       parsed.out = argv[++index];
+    } else if (arg === "--summary") {
+      parsed.summary = true;
     } else if (arg === "--pretty") {
       parsed.pretty = true;
     } else if (arg === "--require-native-closed") {
@@ -124,6 +127,7 @@ function printHelp() {
 Options:
   --input PATH              Optional Compton event JSON input.
   --out PATH                Write JSON output to PATH.
+  --summary                 Emit only status, missing-row, and residual summary.
   --pretty                  Pretty-print JSON output.
   --require-native-closed   Exit nonzero unless native AAA rows are accepted.
   --tolerance N             Residual tolerance. Defaults to ${DEFAULT_TOLERANCE}.
@@ -169,12 +173,36 @@ function readJson(filePath) {
 }
 
 function writeOutput(output, parsedArgs) {
-  const text = JSON.stringify(output, null, parsedArgs.pretty ? 2 : 0);
+  const payload = parsedArgs.summary ? summarizeOutput(output) : output;
+  const text = JSON.stringify(payload, null, parsedArgs.pretty ? 2 : 0);
   if (parsedArgs.out) {
     fs.writeFileSync(path.resolve(parsedArgs.out), `${text}\n`);
   } else {
     console.log(text);
   }
+}
+
+function summarizeOutput(output) {
+  return {
+    schema: output.schema,
+    generatedAt: output.generatedAt,
+    event: {
+      id: output.eventCarrier.id,
+      label: output.eventCarrier.label,
+      claimLevel: output.eventCarrier.claimLevel,
+    },
+    summary: output.summary,
+    residuals: {
+      energy: output.residuals.energy.normalized,
+      momentum: output.residuals.momentum.normalized,
+      comptonEnergy: output.residuals.comptonEnergy.normalized,
+      wavelength: output.residuals.wavelength.normalized,
+      angularMomentum: output.residuals.angularMomentum.status,
+      gateA: output.residuals.gateA.status,
+      gateB: output.residuals.gateB.status,
+    },
+    projectionUse: output.projectionUse,
+  };
 }
 
 function replayComptonEvent(input, parsedArgs) {
