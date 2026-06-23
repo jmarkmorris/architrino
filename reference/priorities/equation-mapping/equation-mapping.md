@@ -37,7 +37,9 @@ Turn familiar equations from physics and cosmology into closure packets. Each pa
 - what proof, derivation, simulation, or constitutive response would close the map;
 - where successful material should later be promoted in `content/markdown/aaa`.
 
-Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column preserves the first-round maturity scores, and `6/23 b` records worker-backed decisions from the 2026-06-23 team-agent closure pass where populated; blank `6/23 b` cells remain unscored in that pass.
+Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column preserves the first-round maturity scores, and `6/23 b` records accepted worker-backed decisions from the 2026-06-23 team-agent closure passes. The second pass filled the remaining `6/23 b` blanks and captured reusable common-equation candidates in [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md).
+
+Closure packets should be durable working files. Prefer one packet per equation as soon as the equation has enough independent material to advance on its own. Keep a tightly coupled equation group in one packet only when splitting it would obscure a shared residual, shared branch ledger, or shared Noether sea record. Continue improving each packet until it is either marked `ready` for reader-facing promotion or marked `complete` after promotion into `content/markdown/aaa`. The `Promoted?` column in [equation.md](equation.md) accepts only blank, `ready`, or `complete`.
 
 ## Discussion Capture
 
@@ -140,6 +142,8 @@ The workstream should stay internal until a line item produces a mature mathemat
 
 - [Equation Mapping Detail](equation.md)
 - [Equation Closure Pass 2026-06-23 B](equation-closure-pass-2026-06-23-b.md)
+- [Equation Closure Pass 2026-06-23 C](equation-closure-pass-2026-06-23-c.md)
+- [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
 - [Cross-Theory Mapping Priority Candidates](../cross-theory-mapping/cross-theory-mapping.md)
 - [Cosmology Transfer-Function Closure](../cosmology-closure/cosmology-closure.md)
 - [Noether-Core Stability and First Mass Map](../mass-map/mass-map.md)
