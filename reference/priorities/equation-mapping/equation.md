@@ -17,7 +17,7 @@ This is internal priority material. It is not a reader-facing claim that these e
 | `1` | Important external benchmark with only a loose AAA relation so far. |
 | `0` | Not currently mapped or out of scope. |
 
-Use each dated score as a maturity indicator, not as a value judgment. A low-score equation can still be important if it protects contact with tested physics. The `Promoted?` column tracks reader-facing promotion state: leave it blank when the packet is not promotion-ready, use `ready` when the priority packet is mature enough for promotion work, and use `complete` only after the material has been promoted into `content/markdown/aaa`.
+Use each dated score as a maturity indicator, not as a value judgment. A low-score equation can still be important if it protects contact with tested physics. Scores should be conservative audit-facing evidence labels, not motivational targets. Assume a hostile but technically competent review: a row should rise only when its retained branch, Noether sea record, event ledger, residual, or proof route can survive close inspection without hidden retuning. The `Promoted?` column tracks reader-facing promotion state: leave it blank when the packet is not promotion-ready, use `ready` when the priority packet is mature enough for promotion work, and use `complete` only after the material has been promoted into `content/markdown/aaa`.
 
 ## Summary Table
 

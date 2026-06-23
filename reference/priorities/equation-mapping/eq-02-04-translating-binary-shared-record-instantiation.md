@@ -92,22 +92,34 @@ This packet extends that triple into the `EQ-02` through `EQ-04` same-record res
 
 ## Retained Record To Populate
 
-For a drift value $0<u<c_f$, retain one branch record
+For a drift value $0<u<c_f$, retain one packet-local common carrier
 
 $$
-\Theta_{02\text{-}04}^{\mathrm{bin}}(u)
+\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)
 =
 \left(
 \mathfrak B_u,
 \mathcal N_0,
 \mathcal L_{\mathrm{root}}(u),
 \mathcal L_{\mathrm{wake}}(u),
-\mathcal L_{E\mathbf p\mathbf J}(u),
+\mathcal L_{E\mathbf p\mathbf J}(u)
+\right).
+$$
+
+This carrier is the shared object consumed by the clock, envelope, two-way signal, energy, momentum, and mass-shell rows. The full retained record then adds exposure, medium response, and observer projection:
+
+$$
+\Theta_{02\text{-}04}^{\mathrm{bin}}(u)
+=
+\left(
+\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u),
 \mathcal E_{\mathrm{exp}}(u),
 \mathcal M_{\mathrm{sea}}^{ab}(u),
 \Pi_{\mathrm{obs}}(u)
 \right).
 $$
+
+The distinction is structural rather than ontological: $\mathcal C_{02\text{-}04}^{\mathrm{bin}}$ is the common carrier that must not be retuned between rows, while $\Theta_{02\text{-}04}^{\mathrm{bin}}$ is the complete same-record object used by the residual evaluator.
 
 The branch chart is
 
@@ -145,7 +157,7 @@ c_{\star}=c_f
 \right).
 $$
 
-Observer-facing replay may later replace $c_{\star}=c_f$ with a declared $c_{\text{eff}}=c_f/\chi_{\text{sea}}$, but that replay must be a projection of the same retained record plus declared Noether sea dressing rows. It cannot change the branch ledger to make the mass or clock rows pass.
+Observer-facing replay may later replace $c_{\star}=c_f$ with a declared $c_{\text{eff}}=c_f/\chi_{\text{sea}}$, but that replay must be a projection of the same common carrier and retained record plus declared Noether sea dressing rows. It cannot change the branch ledger to make the mass or clock rows pass.
 
 ## Same-Record Residual Specialization
 
@@ -168,34 +180,76 @@ $$
 \mathcal S_{\mathrm{root}}^{02\text{-}04}(u).
 $$
 
-The residual vector is
+For readability below, write $\mathcal C_u\equiv\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)$ and $\Theta_u\equiv\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$. The row projections are
+
+$$
+\begin{aligned}
+\Pi_T\mathcal C_u
+&=
+\left(T_u,T_0,b_u,\mathcal N_0\right),
+\\
+\Pi_{\xi}\mathcal C_u
+&=
+\left(R_{\parallel,u},R_{\perp,u},\boldsymbol{\rho}_u,b_u,\mathcal N_0\right),
+\\
+\Pi_{\mathrm{shape}}\mathcal C_u
+&=
+\left(\boldsymbol{\rho}_u,\Pi_{\mathrm{ell}},b_u,\mathcal N_0\right),
+\\
+\Pi_{\mathrm{tw}}\mathcal C_u
+&=
+\left(\Delta_{\mathrm{tw}}^{\mathrm{bin}},\beta_f,\theta,b_u,\mathcal N_0\right),
+\\
+\Pi_E\Theta_u
+&=
+\left(E_{\mathrm{CM},u},M_0^{\mathrm{bin}},c_f,\mathcal C_u,\mathcal E_{\mathrm{exp}}(u)\right),
+\\
+\Pi_{\mathbf p}^{a}\Theta_u
+&=
+\left(p_{\mathrm{CM},u}^{a},M_0^{\mathrm{bin}},c_f,u,\hat e^a,\mathcal C_u,\mathcal E_{\mathrm{exp}}(u)\right),
+\\
+\Pi_{\mathrm{shell}}\Theta_u
+&=
+\left(E_{\mathrm{CM},u},p_{\mathrm{CM},u}^{a},M_0^{\mathrm{bin}},c_f,h_{ab},\mathcal C_u\right),
+\\
+\Pi_{M_0}\Theta_u
+&=
+\left(M_0^{\mathrm{bin}}(u),M_0^{\mathrm{bin}}(0),\mathcal C_u\right),
+\\
+\Pi_{\mathcal M}\Theta_u
+&=
+\left(\mathcal M_{\mathrm{sea}}^{ab}(u),h^{ab},\mathcal N_0,c_f\right).
+\end{aligned}
+$$
+
+The residual vector is therefore
 
 $$
 \mathcal R_{02\text{-}04}^{\mathrm{bin}}(u)
 =
 \left(
-R_T^{\mathrm{bin}},
-R_{\xi}^{\mathrm{bin}},
-R_{\mathrm{shape}}^{\mathrm{bin}},
-R_{\mathrm{tw}}^{\mathrm{bin}},
-R_E^{\mathrm{bin}},
-R_p^{\mathrm{bin}},
-R_{\mathrm{shell}}^{\mathrm{bin}},
-R_{M_0}^{\mathrm{bin}},
-R_{\mathcal M}^{\mathrm{bin}}
+R_T^{\mathrm{bin}}\!\left[\Pi_T\mathcal C_u\right],
+R_{\xi}^{\mathrm{bin}}\!\left[\Pi_{\xi}\mathcal C_u\right],
+R_{\mathrm{shape}}^{\mathrm{bin}}\!\left[\Pi_{\mathrm{shape}}\mathcal C_u\right],
+R_{\mathrm{tw}}^{\mathrm{bin}}\!\left[\Pi_{\mathrm{tw}}\mathcal C_u\right],
+R_E^{\mathrm{bin}}\!\left[\Pi_E\Theta_u\right],
+R_p^{\mathrm{bin},a}\!\left[\Pi_{\mathbf p}^{a}\Theta_u\right],
+R_{\mathrm{shell}}^{\mathrm{bin}}\!\left[\Pi_{\mathrm{shell}}\Theta_u\right],
+R_{M_0}^{\mathrm{bin}}\!\left[\Pi_{M_0}\Theta_u\right],
+R_{\mathcal M}^{\mathrm{bin}}\!\left[\Pi_{\mathcal M}\Theta_u\right]
 \right)(u).
 $$
 
-The branch-level clock and envelope rows are
+The branch-level clock and envelope projection rows are
 
 $$
-R_T^{\mathrm{bin}}(u)
+R_T^{\mathrm{bin}}\!\left[\Pi_T\mathcal C_u;u\right]
 =
 \frac{T_u}{T_0}
 -
 \gamma_f(u),
 \qquad
-R_{\xi}^{\mathrm{bin}}(u)
+R_{\xi}^{\mathrm{bin}}\!\left[\Pi_{\xi}\mathcal C_u;u\right]
 =
 \frac{R_{\parallel,u}}{R_{\perp,u}}
 -
@@ -205,7 +259,7 @@ $$
 The shape residual records all non-ellipsoidal branch deformation not captured by the principal-axis ratio:
 
 $$
-R_{\mathrm{shape}}^{\mathrm{bin}}(u)
+R_{\mathrm{shape}}^{\mathrm{bin}}\!\left[\Pi_{\mathrm{shape}}\mathcal C_u;u\right]
 =
 \frac{
 \left\|
@@ -221,7 +275,7 @@ $$
 The two-way leakage row is
 
 $$
-R_{\mathrm{tw}}^{\mathrm{bin}}(u,\theta)
+R_{\mathrm{tw}}^{\mathrm{bin}}\!\left[\Pi_{\mathrm{tw}}\mathcal C_u;u,\theta\right]
 =
 \Delta_{\mathrm{tw}}^{\mathrm{bin}}(\beta_f,\theta),
 \qquad
@@ -231,7 +285,7 @@ $$
 The energy and momentum rows are
 
 $$
-R_E^{\mathrm{bin}}(u)
+R_E^{\mathrm{bin}}\!\left[\Pi_E\Theta_u;u\right]
 =
 \frac{
 E_{\mathrm{CM},u}
@@ -243,7 +297,7 @@ M_0^{\mathrm{bin}}c_f^2
 $$
 
 $$
-R_p^{\mathrm{bin},a}(u)
+R_p^{\mathrm{bin},a}\!\left[\Pi_{\mathbf p}^{a}\Theta_u;u\right]
 =
 \frac{
 p_{\mathrm{CM},u}^{a}
@@ -257,7 +311,7 @@ $$
 The primitive mass-shell residual is
 
 $$
-R_{\mathrm{shell}}^{\mathrm{bin}}(u)
+R_{\mathrm{shell}}^{\mathrm{bin}}\!\left[\Pi_{\mathrm{shell}}\Theta_u;u\right]
 =
 \frac{
 E_{\mathrm{CM},u}^{2}
@@ -273,7 +327,7 @@ $$
 The rest-invariance row is
 
 $$
-R_{M_0}^{\mathrm{bin}}(u)
+R_{M_0}^{\mathrm{bin}}\!\left[\Pi_{M_0}\Theta_u;u\right]
 =
 \frac{
 M_0^{\mathrm{bin}}(u)
@@ -287,7 +341,7 @@ $$
 The medium-response row is a null check in the primitive homogeneous cell and a carrier for later dressed replay:
 
 $$
-R_{\mathcal M}^{\mathrm{bin},ab}(u)
+R_{\mathcal M}^{\mathrm{bin},ab}\!\left[\Pi_{\mathcal M}\Theta_u;u\right]
 =
 c_f^2
 \left(
@@ -345,6 +399,7 @@ For each sampled drift $u_k$, the run must output:
 
 | Output | Required content | Consumed by |
 | --- | --- | --- |
+| Common carrier | $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ with one shared branch chart, Noether sea cell, root ledger, wake ledger, and energy-momentum-angular-momentum ledger. | All row projections. |
 | Retained branch chart | $\boldsymbol{\rho}_{u_k}$, $T_{u_k}$, $\Omega_{u_k}$, $b_{u_k}$, $h_{u_k}$, $\eta_{u_k}$, $\epsilon_{c,u_k}$, $J_{0,u_k}$, and inactive-root gaps. | Same-record eligibility. |
 | Clock row | $T_{u_k}/T_0$, $\gamma_f(u_k)$, and $R_T^{\mathrm{bin}}(u_k)$. | `EQ-02`. |
 | Envelope row | $R_{\parallel,u_k}$, $R_{\perp,u_k}$, $\xi_{u_k}$, $R_{\xi}^{\mathrm{bin}}(u_k)$, and $R_{\mathrm{shape}}^{\mathrm{bin}}(u_k)$. | `EQ-03`. |
@@ -457,12 +512,12 @@ Classification: `priority-only`.
 
 Promote now: no.
 
-Defer with blocker: no executed branch calculation has populated $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$ or evaluated $\mathcal R_{\mathrm{shared}}^{02\text{-}04}$. The packet is ready to guide a solver or proof pass, not a reader-facing promotion.
+Defer with blocker: no executed branch calculation has populated $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)$, assembled $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$, or evaluated $\mathcal R_{\mathrm{shared}}^{02\text{-}04}$. The packet is ready to guide a solver or proof pass, not a reader-facing promotion.
 
 ## Next Solver Target
 
 The next solver-facing task is:
 
-> Populate $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$ for a small grid of $0<u<c_f$ using the certified rest binary as the seed, then report $\mathcal R_{\mathrm{shared}}^{02\text{-}04}$, $\mathcal S_{\mathrm{root}}^{02\text{-}04}$, and $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$ with all residuals assigned to named branch, wake, event, boundary, regularization, or Noether sea rows.
+> Populate $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)$ and then assemble $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$ for a small grid of $0<u<c_f$ using the certified rest binary as the seed. Report the projection inputs, $\mathcal R_{\mathrm{shared}}^{02\text{-}04}$, $\mathcal S_{\mathrm{root}}^{02\text{-}04}$, and $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$ with all residuals assigned to named branch, wake, event, boundary, regularization, or Noether sea rows.
 
 That task should use the general solver architecture. It should not add a one-off Lorentz solver path that bypasses the same retained-record schema needed by the other equation-map rows.
