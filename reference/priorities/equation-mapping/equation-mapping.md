@@ -110,7 +110,7 @@ The workstream should stay internal until a line item produces a mature mathemat
 ## Task Queue
 
 1. `equation_inventory` - Maintain the scored equation inventory in [equation.md](equation.md). Status: `draft`. Depends on: none.
-2. `lorentz_envelope_closure` - Drive $\xi$, $\Gamma_N$, moving-clock, moving-ruler, and energy-momentum maps into one retained Noether braid branch ledger. Status: `next`. Depends on: `equation_inventory`.
+2. `lorentz_envelope_closure` - Drive $\xi$, $\Gamma_N$, moving-clock, moving-ruler, and energy-momentum maps into one retained Noether braid branch ledger. The translating-binary same-record instantiation is staged in [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md). Status: `next`. Depends on: `equation_inventory`.
 3. `effective_metric_constitutive_map` - Build the shared Noether sea constitutive record that projects into lapse, spatial compliance, drift, signal delay, PPN rows, and weak-field GR observables. Status: `next`. Depends on: `equation_inventory`.
 4. `redshift_friedmann_transfer_map` - Convert redshift, FRW, Friedmann, continuity, and distance-ladder equations into one fixed-void Noether sea transfer map. Status: `next`. Depends on: `effective_metric_constitutive_map`.
 5. `quantum_photon_statistical_maps` - Assign photon, quantum-wave, thermodynamic, and statistical equations to Noether braid branch, Noether sea, record, and basin-measure closure packets. Status: `queued`. Depends on: `equation_inventory`.
@@ -144,6 +144,7 @@ The workstream should stay internal until a line item produces a mature mathemat
 - [Equation Closure Pass 2026-06-23 B](equation-closure-pass-2026-06-23-b.md)
 - [Equation Closure Pass 2026-06-23 C](equation-closure-pass-2026-06-23-c.md)
 - [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
+- [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md)
 - [Cross-Theory Mapping Priority Candidates](../cross-theory-mapping/cross-theory-mapping.md)
 - [Cosmology Transfer-Function Closure](../cosmology-closure/cosmology-closure.md)
 - [Noether-Core Stability and First Mass Map](../mass-map/mass-map.md)

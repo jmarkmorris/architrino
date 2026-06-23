@@ -1,0 +1,468 @@
+# EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation
+
+## Workstream Metadata
+
+- Kind: `priority-packet`
+- Status: `draft`
+- Parent packet: [EQ-02 Through EQ-04 Lorentz-Energy Closure Packet](eq-02-04-lorentz-energy-packet.md)
+- Common architecture: [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
+- Owned IDs: `EQ-02`, `EQ-03`, `EQ-04`
+- Claim level: derivation/closure target and simulation target
+- Promotion status: priority-only
+
+## Purpose
+
+This packet instantiates the common same-record residual on the translating maximum-curvature binary benchmark. The goal is to turn `lorentz_mass_shell_common_branch_residual` from a packet-level residual grammar into a concrete retained-record contract.
+
+The test is intentionally smaller than the full nested shell braid. It asks whether the first available moving two-body branch can produce the same Lorentz factor in:
+
+- clock period;
+- oblate spheroidal envelope ratio;
+- two-way signal leakage;
+- moving energy and momentum;
+- mass-shell closure;
+- rest-mass invariance;
+- Noether sea medium response.
+
+The packet does not claim that the translating binary already proves Lorentz behavior, mass shell recovery, or rest-energy closure. It defines the first fail-closed calculation that would decide whether those rows share one branch or split into independent fits.
+
+## Source Basis
+
+The reader-facing Lorentz chapter already defines the translating binary benchmark. For opposite-polarity architrinos $\sigma\in\{+1,-1\}$ and drift direction $\hat{\mathbf e}$, the branch ansatz is
+
+$$
+\mathbf{x}_{\sigma}(t)
+=
+u t\,\hat{\mathbf e}
++
+\sigma\,\boldsymbol{\rho}_u(\theta(t)),
+\qquad
+\theta(t+T_u)=\theta(t)+2\pi.
+$$
+
+For a root emitted by $\sigma'$ and received by $\sigma$, the delay equation is
+
+$$
+G_{\sigma\sigma'}(\tau;\theta,u)
+\equiv
+\left\|
+u\tau\,\hat{\mathbf e}
++
+\sigma\,\boldsymbol{\rho}_u(\theta)
+-
+\sigma'\,\boldsymbol{\rho}_u(\theta-\Omega_u\tau)
+\right\|
+-c_f\tau
+=0,
+\qquad
+\Omega_u\equiv\frac{2\pi}{T_u}.
+$$
+
+The branch Jacobian is
+
+$$
+J_{\sigma\sigma'}(\tau;\theta,u)
+=
+1-
+\frac{
+\left(
+u\hat{\mathbf e}
++
+\sigma'\Omega_u\boldsymbol{\rho}'_u(\theta-\Omega_u\tau)
+\right)
+\cdot\hat{\mathbf r}_{\sigma\sigma'}
+}{c_f}.
+$$
+
+The primitive Lorentz benchmark is the residual triple
+
+$$
+\mathcal{R}_{\mathrm{bin}}(u)
+=
+\left(
+R_T^{\mathrm{bin}}(u),
+R_{\xi}^{\mathrm{bin}}(u),
+R_{\mathrm{shape}}^{\mathrm{bin}}(u)
+\right),
+\qquad
+\gamma_f(u)=\left(1-\frac{u^2}{c_f^2}\right)^{-1/2}.
+$$
+
+This packet extends that triple into the `EQ-02` through `EQ-04` same-record residual so the Lorentz rows and mass-shell rows cannot be tuned separately.
+
+## Retained Record To Populate
+
+For a drift value $0<u<c_f$, retain one branch record
+
+$$
+\Theta_{02\text{-}04}^{\mathrm{bin}}(u)
+=
+\left(
+\mathfrak B_u,
+\mathcal N_0,
+\mathcal L_{\mathrm{root}}(u),
+\mathcal L_{\mathrm{wake}}(u),
+\mathcal L_{E\mathbf p\mathbf J}(u),
+\mathcal E_{\mathrm{exp}}(u),
+\mathcal M_{\mathrm{sea}}^{ab}(u),
+\Pi_{\mathrm{obs}}(u)
+\right).
+$$
+
+The branch chart is
+
+$$
+\mathfrak B_u
+=
+\left(
+\boldsymbol{\rho}_u,
+T_u,
+\Omega_u,
+b_u,
+h_u,
+\eta_u,
+\epsilon_{c,u},
+J_{0,u},
+\mathcal I_u,
+\mathcal H_{\partial W,u}
+\right),
+$$
+
+where $b_u$ is the active causal-root ledger, $h_u$ is the retained memory depth, $\eta_u$ is the regularization row, $\epsilon_{c,u}$ is the core or collision cutoff, $J_{0,u}$ is the Jacobian floor, $\mathcal I_u$ is the inactive-root gap cover, and $\mathcal H_{\partial W,u}$ is the boundary history.
+
+The local Noether sea cell for the first primitive run is
+
+$$
+\mathcal N_0
+=
+\left(
+\mathbf u_{\mathrm{sea}}=0,\,
+G_{\mathrm{grad}}=0,\,
+n=1,\,
+\chi_{\text{sea}}=1,\,
+\Gamma_N=1,\,
+c_{\star}=c_f
+\right).
+$$
+
+Observer-facing replay may later replace $c_{\star}=c_f$ with a declared $c_{\text{eff}}=c_f/\chi_{\text{sea}}$, but that replay must be a projection of the same retained record plus declared Noether sea dressing rows. It cannot change the branch ledger to make the mass or clock rows pass.
+
+## Same-Record Residual Specialization
+
+The common architecture residual specializes here to
+
+$$
+\mathcal R_{\mathrm{shared}}^{02\text{-}04}
+\left(
+\Theta_{02\text{-}04}^{\mathrm{bin}}(u)
+\right)
+=
+\left\|
+\mathcal R_{02\text{-}04}^{\mathrm{bin}}(u)
+\right\|_{W_{02\text{-}04}}
++
+\lambda_{\mathrm{retune}}
+\mathcal S_{\mathrm{retune}}^{02\text{-}04}(u)
++
+\lambda_{\mathrm{split}}
+\mathcal S_{\mathrm{root}}^{02\text{-}04}(u).
+$$
+
+The residual vector is
+
+$$
+\mathcal R_{02\text{-}04}^{\mathrm{bin}}(u)
+=
+\left(
+R_T^{\mathrm{bin}},
+R_{\xi}^{\mathrm{bin}},
+R_{\mathrm{shape}}^{\mathrm{bin}},
+R_{\mathrm{tw}}^{\mathrm{bin}},
+R_E^{\mathrm{bin}},
+R_p^{\mathrm{bin}},
+R_{\mathrm{shell}}^{\mathrm{bin}},
+R_{M_0}^{\mathrm{bin}},
+R_{\mathcal M}^{\mathrm{bin}}
+\right)(u).
+$$
+
+The branch-level clock and envelope rows are
+
+$$
+R_T^{\mathrm{bin}}(u)
+=
+\frac{T_u}{T_0}
+-
+\gamma_f(u),
+\qquad
+R_{\xi}^{\mathrm{bin}}(u)
+=
+\frac{R_{\parallel,u}}{R_{\perp,u}}
+-
+\frac{1}{\gamma_f(u)}.
+$$
+
+The shape residual records all non-ellipsoidal branch deformation not captured by the principal-axis ratio:
+
+$$
+R_{\mathrm{shape}}^{\mathrm{bin}}(u)
+=
+\frac{
+\left\|
+\boldsymbol{\rho}_u
+-
+\Pi_{\mathrm{ell}}\boldsymbol{\rho}_u
+\right\|_{\mathrm{cyc}}
+}{
+\left\|\boldsymbol{\rho}_u\right\|_{\mathrm{cyc}}+\varepsilon_{\rho}
+}.
+$$
+
+The two-way leakage row is
+
+$$
+R_{\mathrm{tw}}^{\mathrm{bin}}(u,\theta)
+=
+\Delta_{\mathrm{tw}}^{\mathrm{bin}}(\beta_f,\theta),
+\qquad
+\beta_f=\frac{u}{c_f}.
+$$
+
+The energy and momentum rows are
+
+$$
+R_E^{\mathrm{bin}}(u)
+=
+\frac{
+E_{\mathrm{CM},u}
+}{
+M_0^{\mathrm{bin}}c_f^2
+}
+-
+\gamma_f(u),
+$$
+
+$$
+R_p^{\mathrm{bin},a}(u)
+=
+\frac{
+p_{\mathrm{CM},u}^{a}
+}{
+M_0^{\mathrm{bin}}c_f
+}
+-
+\gamma_f(u)\frac{u\hat e^a}{c_f}.
+$$
+
+The primitive mass-shell residual is
+
+$$
+R_{\mathrm{shell}}^{\mathrm{bin}}(u)
+=
+\frac{
+E_{\mathrm{CM},u}^{2}
+-
+c_f^2h_{ab}p_{\mathrm{CM},u}^{a}p_{\mathrm{CM},u}^{b}
+-
+\left(M_0^{\mathrm{bin}}\right)^2c_f^4
+}{
+\left(M_0^{\mathrm{bin}}\right)^2c_f^4+\varepsilon_{\mathrm{shell}}
+}.
+$$
+
+The rest-invariance row is
+
+$$
+R_{M_0}^{\mathrm{bin}}(u)
+=
+\frac{
+M_0^{\mathrm{bin}}(u)
+-
+M_0^{\mathrm{bin}}(0)
+}{
+M_0^{\mathrm{bin}}(0)+\varepsilon_M
+}.
+$$
+
+The medium-response row is a null check in the primitive homogeneous cell and a carrier for later dressed replay:
+
+$$
+R_{\mathcal M}^{\mathrm{bin},ab}(u)
+=
+c_f^2
+\left(
+\mathcal M_{\mathrm{sea}}^{ab}(u)
+-
+\frac{h^{ab}}{c_f^2}
+\right).
+$$
+
+For the first primitive run, any nonzero $R_{\mathcal M}^{\mathrm{bin},ab}$ must be classified as a declared Noether sea dressing row or an error. It cannot be used as a hidden compensator for failed clock, envelope, or mass-shell rows.
+
+## Split And Retune Witnesses
+
+The root-signature split witness is
+
+$$
+\mathcal S_{\mathrm{root}}^{02\text{-}04}(u)
+=
+\sum_{X<Y}
+d_{\mathrm{root}}
+\left(
+\operatorname{RootSig}_X(u),
+\operatorname{RootSig}_Y(u)
+\right),
+$$
+
+where $X,Y$ range over clock, envelope, two-way signal, energy, momentum, rest mass, mass shell, and medium-response rows. It must vanish for a same-record pass.
+
+The retune witness is
+
+$$
+\mathcal S_{\mathrm{retune}}^{02\text{-}04}(u)
+=
+d_b(b_T,b_{\xi})
++d_b(b_T,b_E)
++d_b(b_T,b_p)
++d_{\mathcal N}(\mathcal N_T,\mathcal N_E)
++d_c(c_T,c_E)
++d_M(M_{0,T},M_{0,E}).
+$$
+
+It reports whether the packet secretly changed the branch ledger, Noether sea cell, speed convention, or rest-mass row between observables. The pass condition requires
+
+$$
+\mathcal S_{\mathrm{root}}^{02\text{-}04}(u)=0,
+\qquad
+\mathcal S_{\mathrm{retune}}^{02\text{-}04}(u)=0,
+$$
+
+before any small residual is interpreted as a physical Lorentz or mass-map leakage.
+
+## Outputs Required From The First Calculation
+
+For each sampled drift $u_k$, the run must output:
+
+| Output | Required content | Consumed by |
+| --- | --- | --- |
+| Retained branch chart | $\boldsymbol{\rho}_{u_k}$, $T_{u_k}$, $\Omega_{u_k}$, $b_{u_k}$, $h_{u_k}$, $\eta_{u_k}$, $\epsilon_{c,u_k}$, $J_{0,u_k}$, and inactive-root gaps. | Same-record eligibility. |
+| Clock row | $T_{u_k}/T_0$, $\gamma_f(u_k)$, and $R_T^{\mathrm{bin}}(u_k)$. | `EQ-02`. |
+| Envelope row | $R_{\parallel,u_k}$, $R_{\perp,u_k}$, $\xi_{u_k}$, $R_{\xi}^{\mathrm{bin}}(u_k)$, and $R_{\mathrm{shape}}^{\mathrm{bin}}(u_k)$. | `EQ-03`. |
+| Two-way signal row | $\Delta_{\mathrm{tw}}^{\mathrm{bin}}(\beta_f,\theta)$ and angular decomposition of any leakage. | `EQ-02`, `EQ-07`, `EQ-09`. |
+| Energy row | $E_{\mathrm{internal}}(u_k)$, wake-energy convention, boundary flux, event updates, and $E_{\mathrm{CM},u_k}$. | `EQ-04`, `EQ-05`. |
+| Exposure row | Preliminary $\zeta^{\mathrm{bin}}$ or a declared absence of shielding extraction for this two-body benchmark. | Mass-map handoff. |
+| Momentum row | $p_{\mathrm{CM},u_k}^a$, recoil/boundary exchange, and $R_p^{\mathrm{bin},a}(u_k)$. | `EQ-04`, `EQ-05`. |
+| Rest-mass row | $M_0^{\mathrm{bin}}(0)$, $M_0^{\mathrm{bin}}(u_k)$, and $R_{M_0}^{\mathrm{bin}}(u_k)$. | Rest-invariance check. |
+| Mass-shell row | $R_{\mathrm{shell}}^{\mathrm{bin}}(u_k)$. | `EQ-04`. |
+| Medium-response row | $R_{\mathcal M}^{\mathrm{bin},ab}(u_k)$ with trace and trace-free parts. | Noether sea constitutive handoff. |
+| Split witnesses | $\mathcal S_{\mathrm{root}}^{02\text{-}04}$ and $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$. | Common-architecture pass/fail. |
+
+## Drift Sampling And Local Expansion
+
+The first run should sample small and moderate primitive drift:
+
+$$
+0
+=
+\beta_0
+<
+\beta_1
+<
+\cdots
+<
+\beta_K
+<
+1,
+\qquad
+\beta_k=\frac{u_k}{c_f}.
+$$
+
+Near $\beta=0$, fit even-power rows for clock and envelope:
+
+$$
+\frac{T_u}{T_0}
+=
+1+a_2\beta^2+a_4\beta^4+R_T^{(6)},
+\qquad
+\frac{R_{\parallel,u}}{R_{\perp,u}}
+=
+1+b_2\beta^2+b_4\beta^4+R_{\xi}^{(6)}.
+$$
+
+The Lorentz target coefficients are
+
+$$
+a_2=\frac{1}{2},
+\qquad
+a_4=\frac{3}{8},
+\qquad
+b_2=-\frac{1}{2},
+\qquad
+b_4=-\frac{1}{8}.
+$$
+
+If the branch chart supplies the more detailed coefficient vector
+
+$$
+\mathbf c_{\mathrm L}
+=
+\left(
+k_2,\ell_2,k_4,\ell_4
+\right),
+$$
+
+it should be compared to the existing Lorentz-kinematics target
+
+$$
+\mathbf{c}_{\mathrm{L}}
+=
+\left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right)
++O(\epsilon_{\mathrm{br}}+\epsilon_{\mathrm{hier}}+\epsilon_{\mathrm{reg}}),
+$$
+
+with the coefficient definitions carried over from the retained branch chart that computes $\mathbf c_{\mathrm L}$. The two coefficient checks must not be mixed unless their projection relation is declared.
+
+## Negative Controls
+
+The first executable should include four negative controls:
+
+1. **Clock-only retune:** adjust $T_u$ to match $\gamma_f$ while holding the branch ledger fixed incorrectly. This must pass $R_T$ and fail $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$ or $R_{\xi}$.
+2. **Envelope-only retune:** impose $R_{\parallel}/R_{\perp}=1/\gamma_f$ without the root ledger. This must pass $R_{\xi}$ and fail $\mathcal S_{\mathrm{root}}^{02\text{-}04}$.
+3. **Velocity-dependent rest mass:** let $M_0(u)$ absorb energy-momentum error. This must fail $R_{M_0}^{\mathrm{bin}}$ even if $R_{\mathrm{shell}}$ shrinks.
+4. **Medium-response compensator:** change $\mathcal M_{\mathrm{sea}}^{ab}$ inside the primitive homogeneous cell to repair momentum. This must fail $R_{\mathcal M}^{\mathrm{bin},ab}$ or the declared Noether sea cell equality.
+
+These controls are useful because they test whether the same-record residual detects the most tempting ways to manufacture a Lorentz-looking result without deriving it.
+
+## Pass Classes
+
+| Class | Meaning | Consequence |
+| --- | --- | --- |
+| `pass.native_binary` | $\mathcal R_{\mathrm{shared}}^{02\text{-}04}$ is within tolerance with zero root split and zero retune witness in the primitive cell. | The binary benchmark becomes a serious theorem route for Lorentz plus mass-shell closure. |
+| `pass.with_declared_residual` | Clock, envelope, and mass-shell rows share one branch, but residuals are nonzero and assigned to named branch-transition, finite-memory, shape-mode, or Noether sea dressing rows. | The next task is to prove the residual source survives nested shell braid averaging without hidden retune. |
+| `fail.clock_envelope_split` | Clock and envelope rows need different branches, roots, or speed conventions. | `EQ-02` and `EQ-03` cannot be raised; nested shell braid closure must repair a real primitive failure. |
+| `fail.mass_shell_split` | Mass shell or momentum rows pass only by changing $M_0$, $\zeta$, $\mathcal M_{\mathrm{sea}}^{ab}$, or $c_{\star}$. | `EQ-04` remains a residual grammar, not a recovery result. |
+| `fail.no_branch` | No stable translating branch exists for the sampled drift domain. | The Lorentz program must move to a different retained branch family or explain why the binary is not the right primitive test. |
+
+## Relationship To Other Equation Rows
+
+- `EQ-01` supplies the active causal roots and Jacobian floors. This packet cannot bypass the native per-hit law.
+- `EQ-05` supplies event, wake, boundary, and finite-window conservation rows. Energy-momentum closure in this packet is invalid without them.
+- `EQ-06`, `EQ-07`, and `EQ-11` consume the Noether sea response rows after the primitive cell is replaced by a dressed cell.
+- `EQ-12`, `EQ-17`, and `EQ-26` consume the same clock/frequency discipline when photon, redshift, and atomic-frequency rows are tested.
+- `EQ-20`, `EQ-21`, `EQ-22`, and `EQ-32` inherit the same Noether sea constitutive-state discipline if the metric and growth rows later use $\mathcal M_{\mathrm{sea}}^{ab}$ or $G_{\mathrm{eff}}$.
+
+## Promotion Classification
+
+Classification: `priority-only`.
+
+Promote now: no.
+
+Defer with blocker: no executed branch calculation has populated $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$ or evaluated $\mathcal R_{\mathrm{shared}}^{02\text{-}04}$. The packet is ready to guide a solver or proof pass, not a reader-facing promotion.
+
+## Next Solver Target
+
+The next solver-facing task is:
+
+> Populate $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$ for a small grid of $0<u<c_f$ using the certified rest binary as the seed, then report $\mathcal R_{\mathrm{shared}}^{02\text{-}04}$, $\mathcal S_{\mathrm{root}}^{02\text{-}04}$, and $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$ with all residuals assigned to named branch, wake, event, boundary, regularization, or Noether sea rows.
+
+That task should use the general solver architecture. It should not add a one-off Lorentz solver path that bypasses the same retained-record schema needed by the other equation-map rows.

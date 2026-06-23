@@ -346,4 +346,4 @@ This packet remains priority-only until the common residual has an accepted bran
 
 ## Worker Handoff
 
-This packet is a priority-side closure object. It does not claim derivation closure. The useful next pass is to instantiate the residual vector on the translating binary benchmark, then decide which residual rows can survive into the nested shell braid branch without independent retuning.
+This packet is a priority-side closure object. It does not claim derivation closure. The translating-binary instantiation is now staged in [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md). The useful next pass is to populate that retained record in the solver, then decide which residual rows can survive into the nested shell braid branch without independent retuning.

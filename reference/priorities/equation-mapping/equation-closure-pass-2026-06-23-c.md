@@ -71,7 +71,7 @@ This is stronger than a list of external formulas. It says many standard equatio
 
 ## Next Mathematical Targets
 
-1. Instantiate $\mathcal R_{\mathrm{shared}}$ on the translating binary benchmark for `EQ-02` through `EQ-04`.
+1. Populate the translating-binary retained record specified in [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md).
 2. Instantiate $\mathcal R_{01-05}^{\mathfrak B}(W)$ on the smallest branch chart with certified active roots, event rows, and boundary flux.
 3. Extract one Noether sea constitutive coefficient from a declared retained state before raising any constitutive-response row above its current score.
 4. Use Compton/recoil as the first compact event-ledger replay because it cross-checks photon packets, exposed mass, recoil, angular momentum, and medium updates.
