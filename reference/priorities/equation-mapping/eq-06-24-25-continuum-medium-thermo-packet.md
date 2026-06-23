@@ -332,7 +332,7 @@ $$
 (A_X,c_X,\gamma_{ij}^{X},C_{ij}{}^{kl},\mathcal R_{\mathrm{metric}}^{X},\mathcal R_{\mathrm{KK}}^{X}).
 $$
 
-The first proof or simulation step is to choose one channel $X$ and verify that the same coefficient row predicts both a perturbation speed and a stress/strain response without changing $\Theta_{\mathrm{sea}}^{(\ell,W)}$.
+The first proof or simulation step is to choose one channel $X$ and verify that the same coefficient row predicts both a perturbation speed and a stress/strain response without changing $\Theta_{\mathrm{sea}}^{(\ell,W)}$. The conservative first route is the stress/strain path, not the metric path: speed plus one bulk stress/strain coefficient is enough for the first retained coefficient packet, while lapse, spatial metric, effective coupling, pressure, and low-acceleration outputs should remain explicitly missing until derived from the same retained window.
 
 The smallest shared extraction is the density-compression column of the constitutive row. For one declared channel $X$ and one retained window $\Theta_{\mathrm{sea}}^{(\ell,W)}$, define
 
@@ -360,6 +360,31 @@ $$
 
 Accept the coefficient extraction only if the same $\mathsf J_{\mathrm{sea}}^X$ supplies the perturbation speed and at least one stress/strain or metric-compliance coefficient, while $G_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, and $a_\star$ are either projected from that same row or explicitly reported as missing outputs.
 
+For the first accepted stress/strain packet, the minimal target is
+
+$$
+\delta\mathbf y_{\rho}^{X,\min}
+=
+\left(
+\delta c_X^2,\,
+\delta C_{\mathrm{bulk}}^X,\,
+\varnothing,\,
+\varnothing,\,
+\varnothing,\,
+\varnothing,\,
+\varnothing
+\right)^T
+=
+\mathsf J_{\rho}^{X}
+\left[
+\Theta_{\mathrm{sea}}^{(\ell,W)}
+\right]\delta\ln n
++
+\mathbf r_{\rho}^{X}.
+$$
+
+This target does not claim metric, weak-gravity, pressure, or low-acceleration recovery. It only tests whether one retained Noether sea window supplies speed plus bulk stress/strain without hidden retune.
+
 $$
 \mathcal R_{\mathrm{CJ}}^X
 =
@@ -381,6 +406,31 @@ $$
 $$
 
 This row is a shared coefficient-extraction target, not a new score gate. It can support later `EQ-06`, `EQ-07` through `EQ-11`, `EQ-20`, `EQ-24`, and `EQ-32` movement only after it is populated on a retained window, reports refinement behavior, and does not split $\Theta_{\mathrm{sea}}^{(\ell,W)}$ between perturbation speed, stress/metric response, effective coupling, pressure, and low-acceleration response.
+
+### Executable Density-Compression Surface Slice
+
+The score-neutral runner is [noether-sea-density-compression-surface-slice.mjs](../../../scripts/spacetime/noether-sea-density-compression-surface-slice.mjs), with a deliberately incomplete mock input in [noether-sea-density-compression-surface-slice-mock.json](../../../scripts/spacetime/noether-sea-density-compression-surface-slice-mock.json) and a retained-attempt skeleton in [noether-sea-density-compression-surface-slice-retained-attempt.v1.json](../../../scripts/spacetime/noether-sea-density-compression-surface-slice-retained-attempt.v1.json).
+
+Command:
+
+```sh
+node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --summary --pretty
+```
+
+Default summary:
+
+| Field | Result |
+| --- | --- |
+| Status | `blocked_missing_rows` |
+| Score decision | `no_score_increase` |
+| Supported rows | `EQ-06`, `EQ-07`, `EQ-08`, `EQ-09`, `EQ-10`, `EQ-11`, `EQ-20`, `EQ-24`, `EQ-32` |
+| Missing $\Theta_{\mathrm{sea}}$ rows | `rho_NS`, `n`, `u_sea`, `e_sea`, `theta_sea`, `f_N`, `event_ledger_ref` |
+| Missing response rows | `channel_declaration_row`, `speed_row`, `causality_row`, `correlation_row`, `stress_strain_row_or_metric_embedding_row` |
+| Missing outputs | `delta_C_ij_kl`, `delta_gamma_ij`, `delta_G_eff`, `delta_a_star` |
+| Same-record gate | `fail` |
+| Speed plus stress/metric gate | `fail` |
+
+The mock surface vector computes only the declared entries: `delta_c_X_squared=0.0025`, `delta_N=-0.0005`, and `delta_P_eff=0.0012` for `delta_ln_n=0.001`. The retained-attempt skeleton also declares a stress/strain coefficient, but it still blocks because `attempt` rows are not accepted retained rows. The runner now reports row-level status maps for retained $\Theta_{\mathrm{sea}}$ rows, required response rows, and stress/metric rows; in the retained attempt, all retained $\Theta_{\mathrm{sea}}$ rows and required response rows report `attempt`, `stress_strain_row` reports `attempt`, and `metric_embedding_row` reports `declared_missing_output`. The runner requires retained row references, a speed coefficient plus stress/strain or metric-compliance coefficient content, delayed-support and correlation evidence, explicit missing outputs, and a zero-retune witness before returning `populated`. Running with `--require-populated` exits nonzero until those rows are supplied.
 
 ### Failure Mode
 

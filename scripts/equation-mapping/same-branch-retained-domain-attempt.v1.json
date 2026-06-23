@@ -1,0 +1,126 @@
+{
+  "schema": "aaa-equation-map-same-branch-retained-domain-packet.v1",
+  "claimLevel": "retained event/domain attempt skeleton; score-neutral and not accepted",
+  "targetRow": "same_branch_chart_identity",
+  "retainedRowSetId": "S_eq",
+  "domain": {
+    "id": "S_eq_retained_domain_attempt_0001",
+    "kind": "positive_width_domain",
+    "status": "attempt",
+    "rowId": "domain_support_attempt",
+    "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+  },
+  "rowBindings": {
+    "raw_labeled_rows_preserved_on_retained_history": {
+      "status": "attempt",
+      "rowId": "raw_labeled_rows_attempt",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "six_body_polarity_neutral_inventory_preserved": {
+      "status": "attempt",
+      "rowId": "six_body_inventory_attempt",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "role_map_selected_or_quotient_policy_declared": {
+      "status": "attempt",
+      "rowId": "role_map_policy_attempt",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "path_history_rows_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "path_history_rows_attempt",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "causal_root_ledger_rows_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "causal_root_ledger_attempt",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "wake_tail_rows_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "wake_tail_rows_attempt",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "energy_action_rows_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "energy_action_rows_attempt",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "momentum_and_angular_momentum_rows_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "momentum_angular_momentum_rows_attempt",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "phase_rows_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "phase_rows_attempt",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "retained_plane_orientation_rows_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "plane_orientation_rows_attempt",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "response_center_and_group_velocity_rows_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "response_center_group_velocity_rows_attempt",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "Noether_sea_record_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "noether_sea_record_attempt",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "binary_to_binary_phase_row_set_identity": {
+      "status": "attempt",
+      "rowId": "binary_phase_row_set_identity_attempt",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    }
+  },
+  "witnesses": {
+    "split_witness_zero": {
+      "status": "attempt",
+      "rowId": "split_witness_zero_attempt",
+      "residual": 0,
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "retune_witness_zero": {
+      "status": "attempt",
+      "rowId": "retune_witness_zero_attempt",
+      "residual": 0,
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    },
+    "overlap_preimage_identity": {
+      "status": "attempt",
+      "rowId": "overlap_preimage_identity_attempt",
+      "consistent": false,
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+    }
+  }
+}

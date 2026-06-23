@@ -479,6 +479,43 @@ The checker consumes `cases[].branchChartProjection.equationBearing`, maps it on
 
 The checker keeps two row-name classes separate: `requiredRows` are retained $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}$ target rows, while `currentProxyRows` are current tri-binary solver-report rows. The aggregate missing rows identify the first concrete reducer burden. The common carrier is blocked by absent `retained_branch_chart`, `root_starvation_row`, `row_set_identity`, `tail_wake_pullback`, `vector_partition_retained`, `energy_routing`, and `retained_noether_sea_cell` rows. The reduced `root_chart_reduced` row remains proxy-only. The clock, envelope, two-way signal, energy, momentum, mass-shell, rest-mass, medium-response, and same-record witness projections are likewise blocked until the same retained branch chart supplies their declared rows. This is the intended fail-closed result: the common carrier has a checkable interface, but the current solver report has not earned a score increase.
 
+## Executable Same-Branch Identity Check
+
+The same-row-set acceptance extractor is:
+
+```sh
+node scripts/equation-mapping/check-same-branch-chart-identity.mjs --input <tri-binary-solver-report.json> --summary --pretty
+```
+
+It consumes `frequencyTripletSearch.equalFrequencyEnergyRadiusAudit`, especially the `retainedRowSetScaffold` and `retainedRowSetIdentityStructuralWitnessAudit` rows for $S_{\mathrm{eq}}$. Against the 2026-06-23 equal-frequency smoke report, it returns `blocked_current_proxy_only`, `scoreDecision=no_score_increase`, `retainedBranchClaim=false`, `currentProxyEvidencePopulatedCount=7`, `structuralWitnessCurrentPopulatedCount=15`, and `acceptedRetainedIdentityRequirementCount=0` out of 14.
+
+The same command now also accepts a direct retained-domain packet:
+
+```sh
+node scripts/equation-mapping/check-same-branch-chart-identity.mjs --input scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json --summary --pretty
+```
+
+That attempt packet returns `blocked_missing_retained_event_or_domain`, `scoreDecision=no_score_increase`, and `acceptedRetainedIdentityRequirementCount=0` out of 14. It exists to make the retained event or positive-width domain shape executable; because its support and rows are marked `attempt`, it does not populate `same_branch_chart_identity`. The summary now also reports `retainedRequirementStatuses` and `domainWitnessStatuses`; in the current attempt all 14 retained requirements and all three witnesses report `attempt`.
+
+The result is useful but not score evidence. It shows that the current solver rows are consistently pointing at $S_{\mathrm{eq}}$, but no retained identity has been accepted. The missing retained inputs are:
+
+- raw labeled rows preserved on retained history;
+- six-body polarity-neutral inventory preserved;
+- role map or quotient-sector policy declared;
+- shared retained event or positive-width domain;
+- path-history rows bound to $S_{\mathrm{eq}}$;
+- causal-root ledger rows bound to $S_{\mathrm{eq}}$;
+- wake-tail rows bound to $S_{\mathrm{eq}}$;
+- energy/action rows bound to $S_{\mathrm{eq}}$;
+- momentum and angular-momentum rows bound to $S_{\mathrm{eq}}$;
+- phase rows bound to $S_{\mathrm{eq}}$;
+- retained plane-orientation rows bound to $S_{\mathrm{eq}}$;
+- response-center and group-velocity rows bound to $S_{\mathrm{eq}}$;
+- Noether sea record bound to $S_{\mathrm{eq}}$;
+- binary-to-binary phase row-set identity.
+
+Running the checker with `--require-accepted` exits nonzero for both the current solver report and the retained-domain attempt while these retained inputs are missing. That is the intended guardrail: current proxy row-set alignment is a useful search signal, but `same_branch_chart_identity` is not populated until a retained event or retained positive-width domain binds the rows above and supplies zero split, zero hidden-retune, and overlap-preimage witnesses.
+
 ## Drift Sampling And Local Expansion
 
 The first run should sample small and moderate primitive drift:

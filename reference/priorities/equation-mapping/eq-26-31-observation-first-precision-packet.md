@@ -608,6 +608,16 @@ The checker is deliberately fail-closed. The comparison replay closes because th
 
 Running the same checker with `--require-native-closed` exits nonzero while those rows are missing. That behavior is the intended guardrail: the script verifies the algebraic comparison surface and the shared-variable anti-retune witness, but it does not raise `EQ-28` or any adjacent row.
 
+Native rows and event-ledger support rows must be structured retained row objects with concrete `rowId`, `sourcePath`, and `eventId` fields tied to the same event carrier. Accepted `medium` and `remnant` support rows must also carry explicit `delta_E` and `delta_p` fields; omitted deltas report `accepted_without_explicit_delta`, and nonzero weak-homogeneous deltas report `accepted_nonzero_weak_homogeneous_delta`. A bare `accepted` string is reported as `accepted_without_retained_reference`, and a row whose `eventId` does not match the event carrier is reported as `accepted_event_id_mismatch`. None of those statuses closes the native event ledger.
+
+The direct native-event attempt packet is [compton-recoil-native-event-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/compton-recoil-event-replay.mjs --input scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json --summary --pretty
+```
+
+It returns `comparison_replay_closed_native_rows_missing`, `scoreDecision=no_score_increase`, and `nativeLedgerStatus=native_rows_missing`; the `nativeRowStatuses` map reports all seven required rows as `attempt`, and the `eventLedgerSupportStatuses` map reports `medium=attempt` and `remnant=attempt`. Running the same input with `--require-native-closed` exits nonzero. The packet therefore fixes the retained event-ledger shape while leaving the score-moving burden exactly where it belongs: accepted photon Gate A/B, target branch, recoil branch, angular-momentum delta, Noether sea state, energy-momentum ledger, and explicit medium/remnant support rows on the same $\mathsf e_{\gamma e}^{0}$ record.
+
 ### Failure Mode
 
 `eq28.frequency_loss_without_recoil`: Compton-like exchange is treated as phenomenological photon frequency loss, pair production is described as creation from nothing, photoelectric capture drops material/recoil rows, or the event uses a different $h$ or exposed mass response than atomic spectra.

@@ -5,9 +5,78 @@ import path from "node:path";
 
 const OUTPUT_SCHEMA = "aaa-equation-map-same-branch-chart-identity-check/v1";
 const INPUT_SCHEMA_PREFIX = "aaa-tri-binary-frequency-candidate-solver-report";
+const RETAINED_DOMAIN_SCHEMA_PREFIX =
+  "aaa-equation-map-same-branch-retained-domain-packet";
 const SOURCE_AUDIT_PATH =
   "frequencyTripletSearch.equalFrequencyEnergyRadiusAudit";
 const TARGET_ROW = "same_branch_chart_identity";
+const ACCEPTED_STATUSES = new Set(["accepted", "populated", "passed"]);
+const RETAINED_ROW_SET_ID = "S_eq";
+const SUPPORT_KINDS = new Set([
+  "finite_event",
+  "retained_event",
+  "positive_width_domain",
+]);
+const ZERO_TOLERANCE = 1e-12;
+const RETAINED_IDENTITY_REQUIREMENTS = [
+  {
+    id: "raw_labeled_rows_preserved_on_retained_history",
+    source: (packet) => packet.rowBindings?.raw_labeled_rows_preserved_on_retained_history,
+  },
+  {
+    id: "six_body_polarity_neutral_inventory_preserved",
+    source: (packet) => packet.rowBindings?.six_body_polarity_neutral_inventory_preserved,
+  },
+  {
+    id: "role_map_selected_or_quotient_policy_declared",
+    source: (packet) => packet.rowBindings?.role_map_selected_or_quotient_policy_declared,
+  },
+  {
+    id: "shared_retained_event_or_positive_width_domain",
+    source: (packet) => packet.domain,
+    support: true,
+  },
+  {
+    id: "path_history_rows_bound_to_S_eq",
+    source: (packet) => packet.rowBindings?.path_history_rows_bound_to_S_eq,
+  },
+  {
+    id: "causal_root_ledger_rows_bound_to_S_eq",
+    source: (packet) => packet.rowBindings?.causal_root_ledger_rows_bound_to_S_eq,
+  },
+  {
+    id: "wake_tail_rows_bound_to_S_eq",
+    source: (packet) => packet.rowBindings?.wake_tail_rows_bound_to_S_eq,
+  },
+  {
+    id: "energy_action_rows_bound_to_S_eq",
+    source: (packet) => packet.rowBindings?.energy_action_rows_bound_to_S_eq,
+  },
+  {
+    id: "momentum_and_angular_momentum_rows_bound_to_S_eq",
+    source: (packet) => packet.rowBindings?.momentum_and_angular_momentum_rows_bound_to_S_eq,
+  },
+  {
+    id: "phase_rows_bound_to_S_eq",
+    source: (packet) => packet.rowBindings?.phase_rows_bound_to_S_eq,
+  },
+  {
+    id: "retained_plane_orientation_rows_bound_to_S_eq",
+    source: (packet) => packet.rowBindings?.retained_plane_orientation_rows_bound_to_S_eq,
+  },
+  {
+    id: "response_center_and_group_velocity_rows_bound_to_S_eq",
+    source: (packet) => packet.rowBindings?.response_center_and_group_velocity_rows_bound_to_S_eq,
+  },
+  {
+    id: "Noether_sea_record_bound_to_S_eq",
+    source: (packet) => packet.rowBindings?.Noether_sea_record_bound_to_S_eq,
+  },
+  {
+    id: "binary_to_binary_phase_row_set_identity",
+    source: (packet) => packet.rowBindings?.binary_to_binary_phase_row_set_identity,
+  },
+];
 
 const args = parseArgs(process.argv.slice(2));
 if (args.help) {
@@ -62,16 +131,16 @@ function printUsage() {
   console.log(`Usage: node scripts/equation-mapping/check-same-branch-chart-identity.mjs --input PATH [options]
 
 Options:
-  --input PATH          Tri-binary solver report JSON.
+  --input PATH          Tri-binary solver report JSON or retained-domain packet.
   --out PATH            Write JSON output to PATH.
   --summary             Emit compact summary JSON.
   --pretty              Pretty-print JSON output.
   --require-accepted    Exit nonzero unless same-branch identity is accepted.
   --help                Show this help.
 
-This checker consumes ${SOURCE_AUDIT_PATH} and reports whether the current
-equal-frequency row-set evidence has become an accepted retained
-${TARGET_ROW} row. Current proxy evidence never counts as acceptance.`);
+This checker consumes either ${SOURCE_AUDIT_PATH} from a tri-binary solver
+report or a direct retained-domain packet for S_eq. Current proxy evidence and
+attempt rows never count as accepted retained ${TARGET_ROW} evidence.`);
 }
 
 function readJson(filePath) {
@@ -89,6 +158,13 @@ function writeOutput(parsedArgs, output) {
 }
 
 function createOutput({ report, inputPath }) {
+  if (isRetainedDomainPacket(report)) {
+    return createRetainedDomainOutput({ packet: report, inputPath });
+  }
+  return createSolverReportOutput({ report, inputPath });
+}
+
+function createSolverReportOutput({ report, inputPath }) {
   const audit = report.frequencyTripletSearch?.equalFrequencyEnergyRadiusAudit ?? null;
   const scaffold = audit?.retainedRowSetScaffold ?? null;
   const witness = audit?.retainedRowSetIdentityStructuralWitnessAudit ?? null;
@@ -114,6 +190,7 @@ function createOutput({ report, inputPath }) {
     generatedAt: new Date().toISOString(),
     input: {
       path: inputPath,
+      kind: "tri_binary_solver_report",
       schema: report.schema ?? null,
       schemaOk:
         typeof report.schema === "string" &&
@@ -163,6 +240,124 @@ function createOutput({ report, inputPath }) {
   };
 }
 
+function createRetainedDomainOutput({ packet, inputPath }) {
+  const retainedRowSetId = packet.retainedRowSetId ?? packet.rowSetId ?? null;
+  const domainId = packet.domain?.id ?? null;
+  const targetRow = packet.targetRow ?? TARGET_ROW;
+  const targetRowPass = targetRow === TARGET_ROW;
+  const retainedRowSetPass = retainedRowSetId === RETAINED_ROW_SET_ID;
+  const requirementChecks = RETAINED_IDENTITY_REQUIREMENTS.map((requirement) =>
+    evaluateRetainedRequirement({
+      requirement,
+      packet,
+      retainedRowSetId,
+      domainId,
+    }),
+  );
+  const acceptedRequirementCount = requirementChecks.filter(
+    (check) => check.accepted,
+  ).length;
+  const missingRetainedInputs = requirementChecks
+    .filter((check) => !check.accepted)
+    .map((check) => check.id);
+  const splitWitness = evaluateZeroWitness(
+    packet.witnesses?.split_witness_zero ?? packet.split_witness_zero,
+  );
+  const retuneWitness = evaluateZeroWitness(
+    packet.witnesses?.retune_witness_zero ?? packet.retune_witness_zero,
+  );
+  const overlapPreimage = evaluateOverlapPreimage(
+    packet.overlapPreimageAudit ??
+      packet.witnesses?.overlap_preimage_identity,
+  );
+  const missingDomainWitnesses = [
+    splitWitness.accepted ? null : "split_witness_zero",
+    retuneWitness.accepted ? null : "retune_witness_zero",
+    overlapPreimage.accepted ? null : "overlap_preimage_identity",
+  ].filter(Boolean);
+  const retainedRequirementsPass =
+    acceptedRequirementCount === RETAINED_IDENTITY_REQUIREMENTS.length;
+  const domainWitnessPass = missingDomainWitnesses.length === 0;
+  const accepted =
+    targetRowPass &&
+    retainedRowSetPass &&
+    retainedRequirementsPass &&
+    domainWitnessPass;
+  const hasAttemptRows = requirementChecks.some((check) => check.present);
+  const status = accepted
+    ? "accepted"
+    : !targetRowPass
+      ? "blocked_invalid_retained_domain_packet"
+      : !retainedRowSetPass
+        ? "blocked_wrong_retained_row_set"
+        : missingRetainedInputs.includes(
+              "shared_retained_event_or_positive_width_domain",
+            )
+          ? "blocked_missing_retained_event_or_domain"
+          : retainedRequirementsPass && !domainWitnessPass
+            ? "blocked_split_or_retune_witness"
+            : hasAttemptRows
+              ? "blocked_retained_domain_rows_missing"
+              : "blocked_missing_retained_domain_rows";
+
+  return {
+    schema: OUTPUT_SCHEMA,
+    generatedAt: new Date().toISOString(),
+    input: {
+      path: inputPath,
+      kind: "retained_domain_packet",
+      schema: packet.schema ?? null,
+      schemaOk: true,
+      sourceAuditPath: null,
+    },
+    target: {
+      row: targetRow,
+      retainedRowSetId,
+      claimLevel:
+        "direct retained-domain acceptance extractor; attempt rows and current proxies are not score evidence",
+    },
+    summary: {
+      status,
+      scoreDecision: "no_score_increase",
+      retainedBranchClaim: accepted,
+      retainedRowSetIdentityPass: accepted,
+      currentProxyEvidencePopulatedCount: null,
+      currentProxyEvidenceSourceCount: null,
+      retainedAcceptancePassCount: acceptedRequirementCount,
+      structuralWitnessCurrentPass: null,
+      structuralWitnessCurrentPopulatedCount: null,
+      structuralWitnessSourceCount: null,
+      structuralWitnessRetainedPass: domainWitnessPass,
+      acceptedRetainedIdentityRequirementCount: acceptedRequirementCount,
+      retainedIdentityRequirementCount: RETAINED_IDENTITY_REQUIREMENTS.length,
+      targetRowPass,
+      retainedRowSetPass,
+      missingRetainedInputs,
+      retainedRequirementStatuses: Object.fromEntries(
+        requirementChecks.map((check) => [check.id, check.status]),
+      ),
+      missingDomainWitnesses,
+      domainWitnessStatuses: {
+        split_witness_zero: splitWitness.status,
+        retune_witness_zero: retuneWitness.status,
+        overlap_preimage_identity: overlapPreimage.status,
+      },
+      supportKind: packet.domain?.kind ?? null,
+      supportId: domainId,
+      splitWitnessPass: splitWitness.accepted,
+      retuneWitnessPass: retuneWitness.accepted,
+      overlapPreimagePass: overlapPreimage.accepted,
+    },
+    retainedDomain: summarizeRetainedDomain(packet),
+    requirementChecks,
+    domainWitnesses: {
+      splitWitness,
+      retuneWitness,
+      overlapPreimage,
+    },
+  };
+}
+
 function summarizeOutput(output) {
   return {
     schema: output.schema,
@@ -170,6 +365,151 @@ function summarizeOutput(output) {
     input: output.input,
     target: output.target,
     summary: output.summary,
+  };
+}
+
+function isRetainedDomainPacket(report) {
+  return (
+    typeof report.schema === "string" &&
+    report.schema.startsWith(RETAINED_DOMAIN_SCHEMA_PREFIX)
+  );
+}
+
+function evaluateRetainedRequirement({
+  requirement,
+  packet,
+  retainedRowSetId,
+  domainId,
+}) {
+  const row = requirement.source(packet);
+  const rowCheck = requirement.support
+    ? evaluateDomainSupport(row)
+    : evaluateRetainedRowBinding({ row, retainedRowSetId, domainId });
+  return {
+    id: requirement.id,
+    present: row !== undefined && row !== null,
+    accepted: rowCheck.accepted,
+    status: rowCheck.status,
+    reason: rowCheck.reason,
+    rowId: row?.rowId ?? null,
+    sourcePath: row?.sourcePath ?? row?.source ?? null,
+  };
+}
+
+function evaluateDomainSupport(row) {
+  if (!row || typeof row !== "object" || Array.isArray(row)) {
+    return { accepted: false, status: "missing", reason: "missing_support" };
+  }
+  if (!SUPPORT_KINDS.has(row.kind)) {
+    return {
+      accepted: false,
+      status: row.status ?? "declared",
+      reason: "invalid_or_missing_support_kind",
+    };
+  }
+  if (!ACCEPTED_STATUSES.has(row.status)) {
+    return {
+      accepted: false,
+      status: row.status ?? "declared",
+      reason: "support_not_accepted",
+    };
+  }
+  if (!concreteString(row.id) || !concreteString(row.rowId)) {
+    return {
+      accepted: false,
+      status: row.status,
+      reason: "support_identity_not_concrete",
+    };
+  }
+  if (!concreteString(row.sourcePath ?? row.source)) {
+    return {
+      accepted: false,
+      status: row.status,
+      reason: "support_source_not_concrete",
+    };
+  }
+  return { accepted: true, status: row.status, reason: "accepted" };
+}
+
+function evaluateRetainedRowBinding({ row, retainedRowSetId, domainId }) {
+  if (!row || typeof row !== "object" || Array.isArray(row)) {
+    return { accepted: false, status: "missing", reason: "missing_row" };
+  }
+  const status = row.status ?? "declared";
+  if (!ACCEPTED_STATUSES.has(status)) {
+    return { accepted: false, status, reason: "row_not_accepted" };
+  }
+  if (
+    !concreteString(row.rowId) ||
+    !concreteString(row.sourcePath ?? row.source)
+  ) {
+    return { accepted: false, status, reason: "row_reference_not_concrete" };
+  }
+  if (retainedRowSetId && row.retainedRowSetId !== retainedRowSetId) {
+    return { accepted: false, status, reason: "retained_row_set_mismatch" };
+  }
+  const rowDomainId = row.domainId ?? row.supportId ?? row.eventId ?? null;
+  if (domainId && rowDomainId !== domainId) {
+    return { accepted: false, status, reason: "support_mismatch" };
+  }
+  return { accepted: true, status, reason: "accepted" };
+}
+
+function evaluateZeroWitness(witness) {
+  if (!witness || typeof witness !== "object" || Array.isArray(witness)) {
+    return { accepted: false, status: "missing", reason: "missing_witness" };
+  }
+  const status = witness.status ?? "declared";
+  if (!ACCEPTED_STATUSES.has(status)) {
+    return { accepted: false, status, reason: "witness_not_accepted" };
+  }
+  if (
+    !concreteString(witness.rowId) ||
+    !concreteString(witness.sourcePath ?? witness.source)
+  ) {
+    return { accepted: false, status, reason: "witness_reference_not_concrete" };
+  }
+  const residual = Number(witness.residual ?? witness.value ?? 0);
+  if (!Number.isFinite(residual) || Math.abs(residual) > ZERO_TOLERANCE) {
+    return { accepted: false, status, reason: "witness_not_zero", residual };
+  }
+  return { accepted: true, status, reason: "accepted", residual };
+}
+
+function evaluateOverlapPreimage(witness) {
+  if (!witness || typeof witness !== "object" || Array.isArray(witness)) {
+    return { accepted: false, status: "missing", reason: "missing_witness" };
+  }
+  const status = witness.status ?? "declared";
+  if (!ACCEPTED_STATUSES.has(status)) {
+    return { accepted: false, status, reason: "witness_not_accepted" };
+  }
+  if (
+    !concreteString(witness.rowId) ||
+    !concreteString(witness.sourcePath ?? witness.source)
+  ) {
+    return { accepted: false, status, reason: "witness_reference_not_concrete" };
+  }
+  if (witness.consistent !== true) {
+    return { accepted: false, status, reason: "overlap_preimage_not_consistent" };
+  }
+  return { accepted: true, status, reason: "accepted" };
+}
+
+function summarizeRetainedDomain(packet) {
+  return {
+    schema: packet.schema ?? null,
+    claimLevel: packet.claimLevel ?? null,
+    retainedRowSetId: packet.retainedRowSetId ?? packet.rowSetId ?? null,
+    domain: packet.domain
+      ? {
+          id: packet.domain.id ?? null,
+          kind: packet.domain.kind ?? null,
+          status: packet.domain.status ?? null,
+          rowId: packet.domain.rowId ?? null,
+          sourcePath: packet.domain.sourcePath ?? packet.domain.source ?? null,
+        }
+      : null,
   };
 }
 
@@ -262,4 +602,14 @@ function numberOrZero(value) {
 
 function uniqueStrings(values) {
   return [...new Set(values.filter((value) => typeof value === "string"))];
+}
+
+function concreteString(value) {
+  return (
+    typeof value === "string" &&
+    value.trim() !== "" &&
+    value.trim() !== "..." &&
+    !value.includes("<") &&
+    !value.toLowerCase().includes("todo")
+  );
 }

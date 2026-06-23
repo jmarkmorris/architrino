@@ -111,6 +111,71 @@ For the precision packet, the finite event or observation record $\mathsf e$ is 
 
 Each grouped packet should identify its smallest useful $\mathcal C_G$ and list the projections consumed by each row. A packet should not receive a score increase merely for naming $\mathcal C_G$; the score rises only when the populated carrier, residuals, and split/retune witnesses reduce the actual closure burden.
 
+## Common Component 0B: Retained Event Or Positive-Width Domain
+
+### Candidate Equation Form
+
+The current executable reducers all ask for the same intermediate object: a retained event or positive-width domain carrier that binds a row set before any projection residual is interpreted. For a row family $R$, use the working priority-only notation
+
+$$
+\mathfrak D_R
+=
+\left(
+\mathsf D,\,
+\Theta_D,\,
+S_D,\,
+\iota_D,\,
+\{\Pi_r\}_{r\in R},\,
+\mathcal R_D
+\right),
+$$
+
+where $\mathsf D$ is either a finite event $\mathsf e$ or a positive-width retained window/domain, $\Theta_D$ is the retained record on that support, $S_D$ is the retained row set, $\iota_D$ preserves raw row identity, inventory, and role or quotient policy, $\Pi_r$ are the declared row projections, and $\mathcal R_D$ combines same-record, no-hidden-retune, conservation/projection, and lane residuals.
+
+The row-identity predicate is then
+
+$$
+\operatorname{RowId}_R(\mathfrak D_R)
+=1
+\quad\Longleftrightarrow\quad
+\forall r_i,r_j\in R,\;
+\iota_D(r_i)=\iota_D(r_j)
+\;\text{on every retained overlap row}
+\;\text{and}\;
+\mathcal R_D
+\text{ has zero split and hidden-retune witnesses}
+$$
+
+with row-specific residuals read only after this predicate passes or after the missing rows are explicitly reported.
+
+### Equations It Connects
+
+- `EQ-02` through `EQ-04`: $\mathfrak D_R$ carries $S_{\mathrm{eq}}$ and is the missing retained event or positive-width domain behind `same_branch_chart_identity`.
+- `EQ-12`, `EQ-26`, `EQ-28`, and `EQ-29`: $\mathfrak D_R$ carries $\mathsf e_{\gamma e}^{0}$ and is the native Compton/recoil event ledger before photon, recoil, angular-momentum, and source-mechanism projections are read.
+- `EQ-06`, `EQ-07` through `EQ-11`, `EQ-20`, `EQ-24`, and `EQ-32`: $\mathfrak D_R$ carries $\Theta_{\mathrm{sea}}^{(\ell,W)}$ and is the retained Noether sea window before a density-compression coefficient is allowed to project into speed, stress, metric, pressure, or low-acceleration outputs.
+
+### AAA Carrier Variables
+
+The shared carrier variables are event/domain identity, support interval or point-event certificate, retained raw labels, branch or channel inventory, causal-root ledger, path-history rows, wake-tail rows, energy/action rows, momentum and angular-momentum rows, Noether sea state, projection maps, explicit missing-output rows, and split/retune witnesses.
+
+### Architectural Clarification
+
+This component is a shared acceptance object, not a new ontology term. Its purpose is to stop current proxy alignment from masquerading as retained closure. A solver report may show that many reduced rows point to the same candidate row set; it still fails $\operatorname{RowId}_R(\mathfrak D_R)$ until the retained event or positive-width domain binds the row support and the split/retune witnesses vanish.
+
+### Proof Or Simulation Burden
+
+The first lemma target is a projection-identity lemma:
+
+$$
+\operatorname{RowId}_R(\mathfrak D_R)=1
+\;\Longrightarrow\;
+\Pi_a\Theta_D\cap\Pi_b\Theta_D
+\text{ share the same preimage under }\iota_D
+\text{ on every overlap row.}
+$$
+
+If the overlap preimage is absent or inconsistent, the run is a split-domain or hidden-retune failure. The first executable target is not another summary checker. It is a minimal retained input packet for one lane: either $S_{\mathrm{eq}}$ with a retained point event or positive-width domain, $\mathsf e_{\gamma e}^{0}$ with native photon/recoil rows, or $\Theta_{\mathrm{sea}}^{(\ell,W)}$ with a retained coefficient row. A failure of this object should name which row binding breaks first instead of lowering the score silently or allowing a private fit.
+
 ## Common Component 0A: Equation-Bearing Configuration Search Vector
 
 ### Candidate Equation Form
@@ -626,7 +691,7 @@ This is the common Noether sea source behind mass response, metric response, Poi
 
 ### Proof Or Simulation Burden
 
-The first burden is one single-channel coefficient extraction where the same $\Theta_{\mathrm{sea}}$ predicts a perturbation speed and a stress/strain or metric response without changing rows. The second burden is a response-kernel check with delayed support or $\mathcal R_{\mathrm{KK}}$ behavior. A later burden is deriving $G_{\mathrm{eff}}$, $a_\star$, and $P_{\mathrm{eff}}$ as outputs of this same state rather than independent fits.
+The first burden is one single-channel coefficient extraction where the same $\Theta_{\mathrm{sea}}$ predicts a perturbation speed and a stress/strain or metric response without changing rows. The conservative first route is speed plus one bulk stress/strain coefficient; metric, weak-gravity, pressure, and low-acceleration outputs should remain explicit missing outputs unless the same retained window actually projects them. The second burden is a response-kernel check with delayed support or $\mathcal R_{\mathrm{KK}}$ behavior. A later burden is deriving $G_{\mathrm{eff}}$, $a_\star$, and $P_{\mathrm{eff}}$ as outputs of this same state rather than independent fits.
 
 ### First Surface Slice
 
@@ -685,6 +750,8 @@ $$
 $$
 
 This residual is a surface-slice report for the existing constitutive-response program. It supports `EQ-06`, `EQ-07` through `EQ-11`, `EQ-20`, `EQ-24`, and `EQ-32` only after a retained window is populated and the missing-output rows are explicit.
+
+The executable score-neutral slice runner is [noether-sea-density-compression-surface-slice.mjs](../../../scripts/spacetime/noether-sea-density-compression-surface-slice.mjs). Its default mock reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and a partial declared surface vector while blocking on missing retained $\Theta_{\mathrm{sea}}$ row references, retained response rows, delayed-support/correlation evidence, and zero-retune evidence. The retained-attempt skeleton [noether-sea-density-compression-surface-slice-retained-attempt.v1.json](../../../scripts/spacetime/noether-sea-density-compression-surface-slice-retained-attempt.v1.json) has the intended field shape but still fails because `attempt` rows are not accepted retained rows. This is the correct current disposition: it makes $\mathsf J_{\rho}^{X}[\Theta_{\mathrm{sea}}^{(\ell,W)}]\delta\ln n$ executable as a packet shape, but it does not populate the shared Noether sea constitutive state.
 
 ## Common Component 7: Observer-Level Metric Projection
 
@@ -894,11 +961,12 @@ The first burden is one weak/gauge exposure packet where `V-A`, CKM/PMNS overlap
 The highest-value reusable equations to stabilize first are:
 
 1. Compact carrier plus same-record residual $\mathcal C_G\to\Theta_G\to\mathcal R_{\mathrm{shared}}$. This is the coordinator-level equation pair that exposes the common branch, sea, event, or measure carrier before preventing independent fits across the whole inventory.
-2. Noether sea constitutive state $\mathcal C_{\mathrm{sea}}$. It is the shared source of metric, mass, acoustic, growth, RAR/BTFR, pressure, and field-response projections.
-3. Finite-window event ledger $\mathcal L_{E\mathbf p\mathbf J}(\mathsf e)$. It is the common precision-equation carrier for photon, recoil, radiation, reaction, thermalization, and conservation rows.
-4. Common clock plus residual phase operator $H_X=\omega_{\mathrm{clk}}C_X\mathbf 1+\delta H_X$. It is the smallest sharp object for `EQ-16A` and also clarifies clock, redshift, photon, and atomic-frequency rows.
-5. Observer-level metric projection $\Pi_{\mathrm{metric}}\Theta_W$. It is the shared recovery interface for PPN, null transport, cosmology, lensing, and low-acceleration dynamics.
-6. Equation-bearing configuration vector $\mathcal R_{\mathrm{cfg}}(\mathfrak a)$. It is the stable-braid search bridge that keeps frequency families subordinate to retained branch residuals.
+2. Retained event or positive-width domain carrier $\mathfrak D_R$ with $\operatorname{RowId}_R(\mathfrak D_R)$. This is the acceptance object behind same-branch identity, native event ledgers, and retained Noether sea coefficient windows.
+3. Noether sea constitutive state $\mathcal C_{\mathrm{sea}}$. It is the shared source of metric, mass, acoustic, growth, RAR/BTFR, pressure, and field-response projections.
+4. Finite-window event ledger $\mathcal L_{E\mathbf p\mathbf J}(\mathsf e)$. It is the common precision-equation carrier for photon, recoil, radiation, reaction, thermalization, and conservation rows.
+5. Common clock plus residual phase operator $H_X=\omega_{\mathrm{clk}}C_X\mathbf 1+\delta H_X$. It is the smallest sharp object for `EQ-16A` and also clarifies clock, redshift, photon, and atomic-frequency rows.
+6. Observer-level metric projection $\Pi_{\mathrm{metric}}\Theta_W$. It is the shared recovery interface for PPN, null transport, cosmology, lensing, and low-acceleration dynamics.
+7. Equation-bearing configuration vector $\mathcal R_{\mathrm{cfg}}(\mathfrak a)$. It is the stable-braid search bridge that keeps frequency families subordinate to retained branch residuals.
 
 The projection/refinement residual and finite-window statistical pushforward should be developed alongside these because they supply the proof language that turns this set into controlled observer-level equations rather than new ontological assertions.
 
@@ -906,12 +974,13 @@ The projection/refinement residual and finite-window statistical pushforward sho
 
 1. Treat `EQ-01`, `EQ-05`, `EQ-11`, and `EQ-20` as common-architecture rows before assigning them as isolated packets. `EQ-01` is the root dependency, `EQ-05` is the event-ledger equation, `EQ-11` is a metric/constitutive projection consumer, and `EQ-20` is a pressure/constitutive projection consumer.
 2. Add a later coordinator pass that links packet residuals to this common architecture after concurrent edits settle. Do not edit [equation.md](equation.md) or [equation-mapping.md](equation-mapping.md) while other agents are changing them.
-3. Instantiate $\mathcal C_G\to\Theta_G\to\mathcal R_{\mathrm{shared}}$ first on the translating binary benchmark for `EQ-02` through `EQ-04`, because it is compact and already has clock, envelope, mass-shell, rest-invariance, and Noether sea response rows.
-4. Build the Noether sea constitutive state as the next shared target for `EQ-07` through `EQ-11`, `EQ-18` through `EQ-21`, `EQ-24`, and `EQ-32`. Require one coefficient extraction before any score increase.
-5. Use Compton/recoil as the first finite-window event-ledger replay. It cross-checks photon packets, atomic spectra, exposed mass, recoil, angular momentum, and medium updates in one event.
-6. Run the neutral-lepton phase-operator packet as a focused `EQ-16A` follow-up. It has a crisp falsifier: common-clock cancellation must not erase $\delta H_{3B}$, and the residual spectrum must not collapse into all-zero or equal-spacing gaps.
-7. Keep the `equationBearing` payload attached to the stable tri-binary configuration search so $(f+2,f,f-1)$, $(f+1,f,f-1)$, $(f,f,f)$, $(4f,2f,f)$, and $(nf,mf,f)$ candidates are compared by retained residuals, not by ratio labels alone.
-8. Defer reader-facing promotion. These components are architecture candidates and closure targets until a packet supplies a derived equation, coefficient extraction, executable residual, or retained branch calculation.
+3. Instantiate the retained event or positive-width domain carrier $\mathfrak D_R$ first on $S_{\mathrm{eq}}$, $\mathsf e_{\gamma e}^{0}$, or $\Theta_{\mathrm{sea}}^{(\ell,W)}$; the first successful instance should show which row binding is easiest to certify.
+4. Instantiate $\mathcal C_G\to\Theta_G\to\mathcal R_{\mathrm{shared}}$ first on the translating binary benchmark for `EQ-02` through `EQ-04`, because it is compact and already declares clock, envelope, mass-shell, rest-invariance, and Noether sea response projection slots.
+5. Build the Noether sea constitutive state as the next shared target for `EQ-07` through `EQ-11`, `EQ-18` through `EQ-21`, `EQ-24`, and `EQ-32`. Require one coefficient extraction before any score increase.
+6. Use Compton/recoil as the first finite-window event-ledger replay. It cross-checks photon packets, atomic spectra, exposed mass, recoil, angular momentum, and medium updates in one event.
+7. Run the neutral-lepton phase-operator packet as a focused `EQ-16A` follow-up. It has a crisp falsifier: common-clock cancellation must not erase $\delta H_{3B}$, and the residual spectrum must not collapse into all-zero or equal-spacing gaps.
+8. Keep the `equationBearing` payload attached to the stable tri-binary configuration search so $(f+2,f,f-1)$, $(f+1,f,f-1)$, $(f,f,f)$, $(4f,2f,f)$, and $(nf,mf,f)$ candidates are compared by retained residuals, not by ratio labels alone.
+9. Defer reader-facing promotion. These components are architecture candidates and closure targets until a packet supplies a derived equation, coefficient extraction, executable residual, or retained branch calculation.
 
 ## Promotion Classification
 

@@ -1,0 +1,60 @@
+{
+  "schema": "aaa-noether-sea-density-compression-surface-slice-input/v1",
+  "claimLevel": "mock density-compression surface slice; retained Noether sea window rows are not complete",
+  "window": {
+    "windowId": "theta-sea-density-compression-mock",
+    "ell": "ell_mock",
+    "thetaSeaRows": {
+      "rho_NS": "declared",
+      "n": "declared",
+      "u_sea": "declared",
+      "e_sea": "declared",
+      "theta_sea": "declared",
+      "f_N": "declared",
+      "event_ledger_ref": "missing"
+    }
+  },
+  "channel": {
+    "id": "X_density_compression_acoustic_mock",
+    "type": "acoustic"
+  },
+  "delta_ln_n": 0.001,
+  "jacobian": {
+    "delta_c_X_squared": 2.5,
+    "delta_C_ij_kl": null,
+    "delta_N": -0.5,
+    "delta_gamma_ij": null,
+    "delta_G_eff": null,
+    "delta_P_eff": 1.2,
+    "delta_a_star": null
+  },
+  "rows": {
+    "channel_declaration_row": {
+      "status": "declared"
+    },
+    "speed_row": {
+      "status": "declared"
+    },
+    "stress_strain_row": {
+      "status": "missing"
+    },
+    "causality_row": {
+      "status": "missing"
+    },
+    "metric_embedding_row": {
+      "status": "missing"
+    },
+    "correlation_row": {
+      "status": "missing"
+    }
+  },
+  "missing_outputs": [
+    "delta_C_ij_kl",
+    "delta_gamma_ij",
+    "delta_G_eff",
+    "delta_a_star"
+  ],
+  "retune": {
+    "status": "not_evaluated"
+  }
+}

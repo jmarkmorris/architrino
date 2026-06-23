@@ -5,8 +5,11 @@ import path from "node:path";
 
 const INPUT_SCHEMA = "aaa-equation-map-compton-recoil-event-input/v1";
 const OUTPUT_SCHEMA = "aaa-equation-map-compton-recoil-event-replay/v1";
+const EVENT_ID = "e_gamma_e_0";
 const DEFAULT_TOLERANCE = 1e-10;
 const DEFAULT_EPSILON = 1e-12;
+const LEDGER_ZERO_TOLERANCE = 1e-12;
+const ACCEPTED_NATIVE_STATUSES = new Set(["accepted", "populated", "passed"]);
 const DEFAULT_INPUT = {
   schema: INPUT_SCHEMA,
   claimLevel:
@@ -23,6 +26,7 @@ const DEFAULT_INPUT = {
     recoil_convention: "relativistic_elastic_recoil",
   },
   event: {
+    id: EVENT_ID,
     label: "weak-homogeneous-compton-recoil-default",
     recoil_convention: "relativistic_elastic_recoil",
     incident_photon: {
@@ -54,6 +58,8 @@ const REQUIRED_NATIVE_ROWS = [
   "energy_momentum_event_ledger",
 ];
 
+const REQUIRED_EVENT_LEDGER_SUPPORT = ["medium", "remnant"];
+
 const args = parseArgs(process.argv.slice(2));
 if (args.help) {
   printHelp();
@@ -64,7 +70,7 @@ const input = args.input ? readJson(path.resolve(args.input)) : createDefaultInp
 const output = replayComptonEvent(input, args);
 writeOutput(output, args);
 
-if (args.requireNativeClosed && output.summary.nativeLedgerStatus !== "native_rows_accepted") {
+if (args.requireNativeClosed && output.summary.nativeLedgerStatus !== "native_event_accepted") {
   process.exitCode = 1;
 }
 
@@ -209,7 +215,8 @@ function replayComptonEvent(input, parsedArgs) {
   const constants = parseConstants(input.constants ?? {});
   const event = parseEvent(input.event ?? {}, constants);
   const comparison = computeComparisonRows(event, constants, parsedArgs);
-  const nativeRows = evaluateNativeRows(event.nativeRows);
+  const nativeRows = evaluateNativeRows(event.nativeRows, event.id);
+  const eventLedgerSupport = evaluateEventLedgerSupport(event);
   const sharedRows = evaluateSharedRows(input.eq26_reference, event, constants, parsedArgs);
   const closedComparison =
     comparison.residuals.energy.normalized <= parsedArgs.tolerance &&
@@ -217,6 +224,8 @@ function replayComptonEvent(input, parsedArgs) {
     comparison.residuals.comptonEnergy.normalized <= parsedArgs.tolerance &&
     comparison.residuals.wavelength.normalized <= parsedArgs.tolerance;
   const nativeRowsAccepted = nativeRows.missing.length === 0;
+  const eventLedgerSupportAccepted = eventLedgerSupport.missing.length === 0;
+  const nativeEventAccepted = nativeRowsAccepted && eventLedgerSupportAccepted;
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -227,7 +236,7 @@ function replayComptonEvent(input, parsedArgs) {
       claimLevel: input.claimLevel ?? null,
     },
     eventCarrier: {
-      id: "e_gamma_e_0",
+      id: event.id,
       label: event.label,
       claimLevel:
         "weak homogeneous comparison replay; native AAA rows must be populated separately",
@@ -240,24 +249,33 @@ function replayComptonEvent(input, parsedArgs) {
     },
     summary: {
       status: closedComparison
-        ? nativeRowsAccepted
+        ? nativeEventAccepted
           ? "native_event_replay_closed"
-          : "comparison_replay_closed_native_rows_missing"
+          : nativeRowsAccepted
+            ? "comparison_replay_closed_event_ledger_support_missing"
+            : "comparison_replay_closed_native_rows_missing"
         : "comparison_replay_failed",
       scoreDecision: "no_score_increase",
       comparisonReplayClosed: closedComparison,
-      nativeLedgerStatus: nativeRowsAccepted
-        ? "native_rows_accepted"
-        : "native_rows_missing",
+      nativeLedgerStatus: nativeEventAccepted
+        ? "native_event_accepted"
+        : nativeRowsAccepted
+          ? "event_ledger_support_missing"
+          : "native_rows_missing",
       sharedEq26Status: sharedRows.status,
       residualTolerance: parsedArgs.tolerance,
       requiredNativeRows: REQUIRED_NATIVE_ROWS,
       missingNativeRows: nativeRows.missing,
+      nativeRowStatuses: nativeRows.statuses,
+      requiredEventLedgerSupport: REQUIRED_EVENT_LEDGER_SUPPORT,
+      missingEventLedgerSupport: eventLedgerSupport.missing,
+      eventLedgerSupportStatuses: eventLedgerSupport.statuses,
     },
     eventRows: comparison.eventRows,
     residuals: comparison.residuals,
     sharedRows,
     nativeRows,
+    eventLedgerSupport,
     projectionUse: {
       EQ12: "photon Gate A/B packet and null/eikonal comparison consumer",
       EQ26: "shared h, exposed electron mass, photon-channel speed, and recoil convention",
@@ -300,6 +318,7 @@ function parseEvent(event, constants) {
   const remnant = parseLedgerDelta(event.remnant, "event.remnant");
 
   return {
+    id: event.id ?? EVENT_ID,
     label: event.label ?? "weak-homogeneous-compton-recoil",
     recoilConvention: event.recoil_convention ?? "relativistic_elastic_recoil",
     incidentEnergy,
@@ -335,9 +354,17 @@ function directionFromTheta(theta, incidentDirection) {
 
 function parseLedgerDelta(value, label) {
   const packet = value ?? {};
+  const deltaEExplicit = Object.hasOwn(packet, "delta_E") || Object.hasOwn(packet, "deltaE");
+  const deltaPExplicit = Object.hasOwn(packet, "delta_p") || Object.hasOwn(packet, "deltaP");
   return {
     deltaE: finiteNumber(packet.delta_E ?? packet.deltaE ?? 0, `${label}.delta_E`),
     deltaP: vector3(packet.delta_p ?? packet.deltaP ?? [0, 0, 0], `${label}.delta_p`),
+    deltaEExplicit,
+    deltaPExplicit,
+    status: packet.status ?? "declared",
+    rowId: packet.rowId ?? null,
+    sourcePath: packet.sourcePath ?? packet.source ?? null,
+    eventId: packet.eventId ?? null,
   };
 }
 
@@ -480,7 +507,7 @@ function evaluateSharedRows(eq26Reference, event, constants, parsedArgs) {
   };
 }
 
-function evaluateNativeRows(nativeRows) {
+function evaluateNativeRows(nativeRows, eventId) {
   if (!nativeRows || typeof nativeRows !== "object" || Array.isArray(nativeRows)) {
     throw new Error("event.native_rows must be an object when supplied.");
   }
@@ -488,7 +515,8 @@ function evaluateNativeRows(nativeRows) {
   const accepted = [];
   const statuses = {};
   for (const rowName of REQUIRED_NATIVE_ROWS) {
-    const status = nativeRows[rowName] ?? "missing";
+    const row = nativeRows[rowName];
+    const status = normalizeNativeRowStatus(row, eventId);
     statuses[rowName] = status;
     if (status === "accepted") {
       accepted.push(rowName);
@@ -502,6 +530,85 @@ function evaluateNativeRows(nativeRows) {
     missing,
     statuses,
   };
+}
+
+function evaluateEventLedgerSupport(event) {
+  const missing = [];
+  const accepted = [];
+  const statuses = {};
+  for (const ledgerName of REQUIRED_EVENT_LEDGER_SUPPORT) {
+    const row = event[ledgerName];
+    const status = normalizeLedgerSupportStatus(row, event.id);
+    statuses[ledgerName] = status;
+    if (status === "accepted") {
+      accepted.push(ledgerName);
+    } else {
+      missing.push(ledgerName);
+    }
+  }
+  return {
+    required: REQUIRED_EVENT_LEDGER_SUPPORT,
+    accepted,
+    missing,
+    statuses,
+  };
+}
+
+function normalizeLedgerSupportStatus(row, eventId) {
+  if (!row || typeof row !== "object" || Array.isArray(row)) {
+    return "missing";
+  }
+  const status = row.status ?? "declared";
+  if (!ACCEPTED_NATIVE_STATUSES.has(status)) {
+    return status;
+  }
+  if (
+    !concreteString(row.rowId) ||
+    !concreteString(row.sourcePath ?? row.source) ||
+    !concreteString(row.eventId)
+  ) {
+    return "accepted_without_retained_reference";
+  }
+  if (row.eventId !== eventId) {
+    return "accepted_event_id_mismatch";
+  }
+  if (row.deltaEExplicit !== true || row.deltaPExplicit !== true) {
+    return "accepted_without_explicit_delta";
+  }
+  if (
+    Math.abs(row.deltaE) > LEDGER_ZERO_TOLERANCE ||
+    norm(row.deltaP) > LEDGER_ZERO_TOLERANCE
+  ) {
+    return "accepted_nonzero_weak_homogeneous_delta";
+  }
+  return "accepted";
+}
+
+function normalizeNativeRowStatus(row, eventId) {
+  if (row === undefined || row === null) {
+    return "missing";
+  }
+  if (typeof row === "string") {
+    return row === "accepted" ? "accepted_without_retained_reference" : row;
+  }
+  if (typeof row === "object" && !Array.isArray(row)) {
+    const status = row.status ?? "declared";
+    if (!ACCEPTED_NATIVE_STATUSES.has(status)) {
+      return status;
+    }
+    if (
+      !concreteString(row.rowId) ||
+      !concreteString(row.sourcePath ?? row.source) ||
+      !concreteString(row.eventId)
+    ) {
+      return "accepted_without_retained_reference";
+    }
+    if (row.eventId !== eventId) {
+      return "accepted_event_id_mismatch";
+    }
+    return "accepted";
+  }
+  return "invalid";
 }
 
 function finiteNumber(value, label) {
@@ -577,4 +684,14 @@ function normalizeVectorResidual(raw, scaleValue, epsilon) {
     norm: norm(raw),
     normalized: norm(raw) / (Math.abs(scaleValue) + epsilon),
   };
+}
+
+function concreteString(value) {
+  return (
+    typeof value === "string" &&
+    value.trim() !== "" &&
+    value.trim() !== "..." &&
+    !value.includes("<") &&
+    !value.toLowerCase().includes("todo")
+  );
 }

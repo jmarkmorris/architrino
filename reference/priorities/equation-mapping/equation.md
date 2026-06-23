@@ -272,6 +272,16 @@ A closure packet must show that the same branch supplies:
 
 Compose the mass-map priority packets with the Lorentz envelope packet. The immediate result should be a mass-shell closure theorem target with explicit dependency on $\xi$, $\Gamma_N$, $\zeta(A)$, $E_{\mathrm{internal}}$, and $\mathcal M_{\mathrm{sea}}^{ab}$.
 
+### Shared Branch Identity Reducer Status
+
+[check-same-branch-chart-identity.mjs](../../../scripts/equation-mapping/check-same-branch-chart-identity.mjs) now extracts the `same_branch_chart_identity` acceptance status for the equal-frequency $S_{\mathrm{eq}}$ row-set audit. The current run reports `blocked_current_proxy_only`: 7/7 current proxy evidence sources and 15/15 structural witnesses point at $S_{\mathrm{eq}}$, but 0/14 retained identity requirements are accepted.
+
+The same extractor also consumes [same-branch-retained-domain-attempt.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json), a direct retained event/domain packet shape for $S_{\mathrm{eq}}$. That attempt reports `blocked_missing_retained_event_or_domain`, `scoreDecision=no_score_increase`, and 0/14 accepted retained identity requirements because its support and row bindings are marked `attempt`.
+
+The retained-domain summary now reports `retainedRequirementStatuses` and `domainWitnessStatuses`; the current direct attempt reports all retained requirements and all split/retune/overlap witnesses as `attempt`.
+
+No score change follows from that result. `EQ-02`, `EQ-03`, and `EQ-04` still need a retained event or retained positive-width domain that binds raw row labels, inventory, role map, path history, causal roots, wake tails, energy/action, momentum/angular momentum, phase, plane orientation, response center, group velocity, Noether sea record, and binary-to-binary phase identity on the same branch chart.
+
 ## EQ-05: Noether Conservation Laws
 
 ### Standard Form
@@ -1307,6 +1317,14 @@ Then show which perturbation, clock, or signal channels actually read this metri
 
 Pick one ordinary medium equation, preferably acoustic metric or stress-strain response, and translate every coefficient into a Noether sea variable or an explicit missing coefficient.
 
+### Executable Surface-Slice Status
+
+[noether-sea-density-compression-surface-slice.mjs](../../../scripts/spacetime/noether-sea-density-compression-surface-slice.mjs) now evaluates the first density-compression surface-slice packet for one declared channel and one Noether sea window. The default mock run reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and a partial declared surface vector; the retained-attempt skeleton has the intended field shape but also blocks because its rows are not accepted retained rows.
+
+The retained-attempt summary now reports `thetaSeaRowStatuses`, `requiredRowStatuses`, and `stressOrMetricRowStatuses`. Current retained-attempt rows remain `attempt`, with `metric_embedding_row` explicitly reported as `declared_missing_output`.
+
+No score change follows from that result. `EQ-24` still needs one retained $\Theta_{\mathrm{sea}}^{(\ell,W)}$ whose same coefficient row supplies a perturbation speed plus stress/strain or metric-compliance output without hidden retune.
+
 ## EQ-25: Thermodynamic, Boltzmann, Entropy, And Fluctuation Equations
 
 ### Standard Form
@@ -1569,7 +1587,9 @@ Build a Compton/recoil event packet: declare the incoming photon-channel record,
 
 [compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs) now replays the weak homogeneous comparison event for this row. The default run closes the algebraic comparison surface with status `comparison_replay_closed_native_rows_missing`: energy, momentum, inverse-energy Compton, and wavelength residuals are below `1e-10`, and the shared `EQ-26` variables match.
 
-No score change follows from that result. The run is still missing native photon Gate A/B rows, target and recoil retained branches, angular-momentum ledger update, Noether sea state row, and the energy-momentum event ledger on the same $\mathsf e_{\gamma e}^{0}$ record. The checker's `--require-native-closed` mode exits nonzero until those rows are accepted.
+The direct native-event attempt [compton-recoil-native-event-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json) fixes the row-reference shape for $\mathsf e_{\gamma e}^{0}$ and reports every required native row as `attempt`, so it also returns `comparison_replay_closed_native_rows_missing` and `scoreDecision=no_score_increase`. Native rows and the `medium`/`remnant` support rows must carry concrete retained references and the same `eventId`; accepted support rows must also carry explicit `delta_E` and `delta_p` fields. Bare `accepted` strings, event-id mismatches, omitted support deltas, and nonzero weak-homogeneous support deltas do not close the ledger.
+
+No score change follows from that result. The run is still missing native photon Gate A/B rows, target and recoil retained branches, angular-momentum ledger update, Noether sea state row, the energy-momentum event ledger, and accepted medium/remnant support rows on the same $\mathsf e_{\gamma e}^{0}$ record. The checker's `--require-native-closed` mode exits nonzero until those rows are accepted.
 
 ## EQ-29: Larmor/Lienard Radiation, Synchrotron, Bremsstrahlung, And Thermal Channels
 
