@@ -365,8 +365,8 @@ export function buildOctahedralPhaseOffsetScan(options = {}) {
     artifact_id: "neutral_braid_octahedral_phase_offset_scan.sampled_diagnostic.v1",
     promotion_status: PROMOTION_STATUS,
     sources: [
-      "reference/priorities/braid/shell-braid/rigid-carrier-dynamics-results.md",
-      "reference/priorities/braid/neutral-braid/octahedral-force-residual-diagnostic.md",
+      "reference/priorities/braid-retained-branch-closure/shell-braid/rigid-carrier-dynamics-results.md",
+      "reference/priorities/braid-retained-branch-closure/neutral-braid/octahedral-force-residual-diagnostic.md",
     ],
     artifact_claim: {
       kind: "sampled_phase_offset_scan",

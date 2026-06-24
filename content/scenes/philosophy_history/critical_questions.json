@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "critical_questions",
+    "title": "Critical Questions",
+    "type": "Scene-Markdown-Split",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "critical_questions_overview",
+    "layout": {
+      "type": "rings"
+    },
+    "labelDocIconOwnLine": true,
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/critical-questions.md",
+      "split": {
+        "headingLevel": 2,
+        "maxDepth": 1,
+        "overrides": {
+          "overview": {
+            "id": "critical_questions_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "mode": "doc"
+          },
+          "standard luminary prompt": {
+            "id": "critical_questions_standard_prompt",
+            "labelTitle": "Standard Prompt",
+            "labelBadge": "prompt"
+          },
+          "response contract": {
+            "id": "critical_questions_response_contract",
+            "labelTitle": "Response Contract",
+            "labelBadge": "rules"
+          },
+          "critical question set": {
+            "id": "critical_questions_question_set",
+            "labelTitle": "Question Set",
+            "labelBadge": "questions"
+          }
+        }
+      }
+    },
+    "view": {
+      "columns": 1
+    }
+  },
+  "objects": []
+}

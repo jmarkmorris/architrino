@@ -259,12 +259,12 @@ export function buildOctahedralFoldAwareCrossBinaryI1BracketLocalZeroIsolationMe
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.md",
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.md",
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-forcing-bracket-interval-enclosure.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.md",
     ],
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-bracket-local-zero-isolation-mesh-composition.md",
     forcing_bracket_certificate_check: {
       schema: forcingPacket.schema,
       valid: forcingErrors.length === 0,

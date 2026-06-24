@@ -46,6 +46,10 @@
         "scenePath": "content/scenes/philosophy_history/historical_context_missed_opportunities.json"
       },
       {
+        "nodeId": "critical_questions",
+        "scenePath": "content/scenes/philosophy_history/critical_questions.json"
+      },
+      {
         "nodeId": "major_thinkers",
         "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
       },
@@ -60,6 +64,10 @@
       {
         "nodeId": "agency_and_internal_causation",
         "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json"
+      },
+      {
+        "nodeId": "monologues",
+        "scenePath": "content/scenes/philosophy_history/monologues.json"
       }
     ]
   },
@@ -124,6 +132,14 @@
       "labelTitle": "Historical Context and Missed Opportunities"
     },
     {
+      "id": "critical_questions",
+      "title": "Critical Questions",
+      "radius": 2.688,
+      "color": "#5b6f4a",
+      "labelTitle": "Critical Questions",
+      "labelBadge": "prompt"
+    },
+    {
       "id": "major_thinkers",
       "title": "Major Thinkers",
       "radius": 2.688,
@@ -151,6 +167,14 @@
       "color": "#6a3c3c",
       "labelTitle": "Agency and Internal Causation",
       "labelBadge": "doc"
+    },
+    {
+      "id": "monologues",
+      "title": "Monologues",
+      "radius": 2.688,
+      "color": "#6f4a8f",
+      "labelTitle": "Monologues",
+      "labelBadge": "scene"
     }
   ]
 }

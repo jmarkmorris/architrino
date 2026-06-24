@@ -85,7 +85,7 @@ The remaining-target item can stay unchanged. It already asks for a maximum-curv
 
 ## Defer From Authored Corpus Prose
 
-Do not promote A1 into [dyadic-lock](../dyadic-lock/dyadic-lock.md), tri-binary stability, particle-mass, black-hole, cosmology, or maximum-curvature-binary prose as a physical closure result. The combined result rejects one prescribed constant-$\Omega$ isolated two-body history at the turn center; it does not close the broader stability or assembly program.
+Do not promote A1 into [dyadic-lock](../braid-dyadic-lock/braid-dyadic-lock.md), tri-binary stability, particle-mass, black-hole, cosmology, or maximum-curvature-binary prose as a physical closure result. The combined result rejects one prescribed constant-$\Omega$ isolated two-body history at the turn center; it does not close the broader stability or assembly program.
 
 Do not add a new validation gate, checker, ledger, or requirement. The result belongs under the existing `spiral_branch_chart_test` branch-chart method as a concrete no-go result. Adding another obligation artifact would duplicate the current route and would not improve the native derivation.
 

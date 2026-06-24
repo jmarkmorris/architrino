@@ -7,7 +7,7 @@ Provide the symmetry, invariant, and conservation-law backbone for $\mathbb{A}\m
 - Anchor substrate symmetry analysis in `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, and the interaction assumptions in `validation/parameter-ledger.md`.
 - Distinguish substrate symmetries from emergent observer symmetries using `foundations/ontology.md`, `foundations/absolute-timespace.md`, `spacetime/lorentz-kinematics.md`, and `spacetime/emergent-metric.md`.
 - Attach conservation-law diagnostics to `validation/simulations/run-protocols.md`, `validation/simulations/a0-branch-certificate-protocol.md`, `validation/constraint-ledger.md`, and `validation/failure-criteria.md`.
-- Treat `reference/priorities/nested-shell-braid-causal-closure/nested-shell-braid-dependency-map.md` as the active theorem-burden ledger for Lorentz, mass, photon, and effective-metric closure claims.
+- Treat `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md` as the active theorem-burden ledger for Lorentz, mass, photon, and effective-metric closure claims.
 
 ## Core Responsibilities
 

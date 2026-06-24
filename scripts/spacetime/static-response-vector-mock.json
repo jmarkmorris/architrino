@@ -113,7 +113,7 @@
         1
       ],
       "pressure_bridge": {
-        "source": "reference/priorities/mass-map/pressure-replay-fe-cr-toy.md",
+        "source": "reference/priorities/braid-mass-response-map/pressure-replay-fe-cr-toy.md",
         "projection": "isotropic_static",
         "material_id": "Fe",
         "step": 1,

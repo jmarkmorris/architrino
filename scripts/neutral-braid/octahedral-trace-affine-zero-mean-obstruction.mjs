@@ -130,7 +130,7 @@ export function buildOctahedralTraceAffineZeroMeanObstruction(options = {}) {
     source_speed_ode: "scripts/neutral-braid/octahedral-speed-ode-diagnostic.mjs",
     source_affine_force_mean_derivative:
       "scripts/neutral-braid/octahedral-affine-force-mean-derivative.mjs",
-    priority_packet: "reference/priorities/geometry-bridge/octahedral-trace-affine-zero-mean-obstruction.md",
+    priority_packet: "reference/priorities/braid-geometry-export-bridge/octahedral-trace-affine-zero-mean-obstruction.md",
     deformation: {
       trace_scale: "Y_s=sY, T_s=sT",
       admissible_scale_domain: "s>0",

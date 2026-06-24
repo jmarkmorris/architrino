@@ -353,9 +353,9 @@ export function buildOctahedralFoldAwareCrossBinaryFoldCollarSignTransportCertif
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-interval-sign-enclosure-target-atlas.md",
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-fold-collar-sign-transport-certificate.md",
     source_interval_sign_target_atlas_check: {
       schema: targetAtlas.schema,
       valid: targetErrors.length === 0,

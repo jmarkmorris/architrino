@@ -1,0 +1,227 @@
+{
+  "schema": "aaa-equation-map-eq25-thermodynamic-record-input/v1",
+  "claimLevel": "score-neutral finite-window thermodynamic record attempt; accepted retained rows are required before score movement",
+  "residualId": "R_25_thermodynamic_record_attempt_0001",
+  "commonCarrierId": "theta_therm_CMB_attempt_0001",
+  "tolerances": {
+    "carrier": 1e-12,
+    "measure": 1e-12,
+    "pushforward": 1e-12,
+    "collision": 1e-12,
+    "entropy": 1e-12,
+    "thermalization": 1e-12,
+    "fluctuation": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12
+  },
+  "packet": {
+    "id": "theta_therm_CMB_attempt_0001",
+    "rows": {
+      "theta_therm": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+      },
+      "state_space_row": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/dynamics/entropy.md"
+      },
+      "coarse_graining_row": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/dynamics/entropy.md"
+      },
+      "measure_row": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier.mjs"
+      },
+      "deterministic_pushforward_row": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+      },
+      "coarse_projection_row": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+      },
+      "collision_operator_row": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+      },
+      "entropy_balance_row": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/dynamics/entropy.md"
+      },
+      "thermalization_depth_row": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+      },
+      "fluctuation_row": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/dynamics/entropy.md"
+      },
+      "event_ledger_row": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/validation/reaction-ledger.md"
+      },
+      "shared_noether_sea_row": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/spacetime/noether-sea.md"
+      },
+      "source_provenance": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md"
+      },
+      "no_hidden_retune_witness": {
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+      }
+    },
+    "sharedKeys": [
+      {
+        "key": "theta_therm_id",
+        "values": [
+          "theta_therm_CMB_attempt_0001",
+          "theta_therm_CMB_attempt_0001",
+          "theta_therm_CMB_attempt_0001"
+        ]
+      },
+      {
+        "key": "rho_NS",
+        "values": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "key": "chi_sea",
+        "values": [
+          1.002,
+          1.002,
+          1.002
+        ]
+      },
+      {
+        "key": "Gamma_N",
+        "values": [
+          1.0000010100010202,
+          1.0000010100010202,
+          1.0000010100010202
+        ]
+      }
+    ],
+    "thermodynamicRecord": {
+      "stateSpace": {
+        "regionId": "W_CMB_attempt",
+        "coarseGrainingId": "Q_CMB_attempt",
+        "measureMass": 1
+      },
+      "deterministicPushforward": {
+        "mu_t": [
+          0.2,
+          0.3,
+          0.5
+        ],
+        "projected_pushforward_mu": [
+          0.18,
+          0.32,
+          0.5
+        ],
+        "mu_t_delta": [
+          0.18,
+          0.32,
+          0.5
+        ]
+      },
+      "collisionOperator": {
+        "source": "deterministic_unresolved",
+        "df_dt": [
+          0.01,
+          -0.01
+        ],
+        "C_eff": [
+          0.008,
+          -0.012
+        ],
+        "R_boltz": [
+          0.002,
+          0.002
+        ]
+      },
+      "entropyBalance": {
+        "dS_dt": 0.032,
+        "sigma_W": 0.04,
+        "boundary_flux": 0.01,
+        "R_Q": 0.002,
+        "deltaS_window": 0.03,
+        "deltaS_boundary_env": 0.01,
+        "epsilon_fluc": 0.001
+      },
+      "thermalizationDepth": {
+        "D_th": 12,
+        "minimum": 10,
+        "photon_chemical_potential": 0
+      },
+      "fluctuation": {
+        "covariance_symmetry_residual": 0,
+        "min_covariance_eigenvalue": 0.001
+      },
+      "sourceProvenance": {
+        "residual": 0
+      },
+      "noHiddenRetune": {
+        "maxResidual": 0
+      }
+    },
+    "negativeControls": [
+      {
+        "id": "entropy_without_boundary_balance",
+        "expectedFailedCheck": "entropyBalance",
+        "overrides": {
+          "entropyBalance": {
+            "dS_dt": 0.02
+          }
+        }
+      },
+      {
+        "id": "boltzmann_postulate_import",
+        "expectedFailedCheck": "collisionOperator",
+        "overrides": {
+          "collisionOperator": {
+            "source": "imported_postulate"
+          }
+        }
+      },
+      {
+        "id": "insufficient_thermalization_depth",
+        "expectedFailedCheck": "thermalizationDepth",
+        "overrides": {
+          "thermalizationDepth": {
+            "D_th": 0.5
+          }
+        }
+      },
+      {
+        "id": "hidden_thermo_retune",
+        "expectedFailedCheck": "noHiddenRetune",
+        "overrides": {
+          "noHiddenRetune": {
+            "maxResidual": 0.000001
+          }
+        }
+      }
+    ]
+  }
+}

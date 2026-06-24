@@ -649,9 +649,9 @@ export function buildOctahedralFoldAwareCrossBinaryForcingDerivativeAtlas(
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-fold-square-limit-atlas.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-fold-square-limit-atlas.md",
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-forcing-derivative-atlas.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-derivative-atlas.md",
     source_critical_value_atlas_check: {
       schema: criticalValueAtlas.schema,
       valid: criticalValueAtlasErrors.length === 0,

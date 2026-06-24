@@ -1,0 +1,287 @@
+{
+  "schema": "aaa-equation-map-effective-frw-handoff-input/v1",
+  "claimLevel": "EQ-18/EQ-19 effective-FRW handoff attempt skeleton; score-neutral and not accepted",
+  "residualId": "R_effective_FRW_EQ18_EQ19_attempt_0001",
+  "constants": {
+    "c0": 1,
+    "pi": 3.141592653589793
+  },
+  "tolerances": {
+    "carrier": 1e-12,
+    "hubble": 1e-12,
+    "friedmann": 1e-12,
+    "continuity": 1e-12,
+    "sharedKey": 1e-12,
+    "sourceProvenance": 1e-12,
+    "fixedVoid": 1e-12,
+    "retune": 1e-12
+  },
+  "handoff": {
+    "id": "Theta_cos_FRW_handoff_attempt_0001",
+    "commonCarrierId": "theta_cos_attempt_0001",
+    "rows": {
+      "theta_cos": {
+        "id": "theta_cos_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "cosmology_carrier": {
+        "id": "C_07-10_17-19_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "noether_sea_window": {
+        "id": "W_NS_cos_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "assembly_provenance_record": {
+        "id": "S_eff_prov_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "metric_projection": {
+        "id": "Pi_metric_cos_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "redshift_transfer_handoff": {
+        "id": "Z_handoff_cos_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "pi_frw": {
+        "id": "Pi_FRW_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "theta_read": {
+        "id": "Theta_read_FRW_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "scale_factor_row": {
+        "id": "a_eff_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "hubble_row": {
+        "id": "H_eff_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "effective_density_row": {
+        "id": "rho_eff_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "effective_pressure_row": {
+        "id": "P_eff_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "effective_coupling_row": {
+        "id": "G_eff_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "effective_lambda_row": {
+        "id": "Lambda_eff_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "curvature_row": {
+        "id": "k_eff_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "source_term_row": {
+        "id": "S_eff_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "friedmann_residual": {
+        "id": "R_H_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "continuity_residual": {
+        "id": "R_rho_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "source_provenance": {
+        "id": "S_eff_source_provenance_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      },
+      "no_hidden_retune_witness": {
+        "id": "S_retune_FRW_attempt_0001",
+        "status": "attempt",
+        "carrierId": "theta_cos_attempt_0001",
+        "sourcePath": "pending-retained-source"
+      }
+    },
+    "frwProjection": {
+      "aBefore": 1,
+      "aAfter": 1.1,
+      "aEff": 1,
+      "deltaTau": 1,
+      "H_eff": 0.1,
+      "k": 0,
+      "tauClockId": "tau_c_attempt_0001",
+      "fixedVoidMetricId": "void_metric_attempt_0001"
+    },
+    "friedmann": {
+      "H_eff": 0.1,
+      "G_eff": 1,
+      "rho_eff": 0.001193662073189215,
+      "a_eff": 1,
+      "k": 0,
+      "Lambda_eff": 0
+    },
+    "continuity": {
+      "rhoDot": -0.0003580986219567645,
+      "H_eff": 0.1,
+      "rho_eff": 0.001193662073189215,
+      "P_eff": 0,
+      "S_eff": 0
+    },
+    "sourceProvenance": {
+      "residual": 0,
+      "rows": [
+        {
+          "id": "S_eff_transport_attempt_0001",
+          "kind": "transport",
+          "contribution": 0,
+          "provenanceId": "S_eff_prov_attempt_0001"
+        },
+        {
+          "id": "S_eff_noether_sea_exchange_attempt_0001",
+          "kind": "noether_sea_exchange",
+          "contribution": 0,
+          "provenanceId": "S_eff_prov_attempt_0001"
+        }
+      ]
+    },
+    "fixedVoid": {
+      "euclideanVoidExpansion": false,
+      "voidScaleDrift": 0
+    },
+    "sharedKeys": [
+      {
+        "key": "theta_cos_id",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source",
+        "projectionValues": {
+          "metric": 1,
+          "redshift": 1,
+          "frw": 1,
+          "friedmann": 1,
+          "continuity": 1,
+          "readout": 1
+        }
+      },
+      {
+        "key": "a_eff",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source",
+        "projectionValues": {
+          "frw": 1,
+          "friedmann": 1,
+          "readout": 1
+        }
+      },
+      {
+        "key": "H_eff",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source",
+        "projectionValues": {
+          "frw": 0.1,
+          "friedmann": 0.1,
+          "continuity": 0.1,
+          "readout": 0.1
+        }
+      },
+      {
+        "key": "rho_eff",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source",
+        "projectionValues": {
+          "friedmann": 0.001193662073189215,
+          "continuity": 0.001193662073189215,
+          "readout": 0.001193662073189215
+        }
+      },
+      {
+        "key": "P_eff",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source",
+        "projectionValues": {
+          "continuity": 0,
+          "readout": 0
+        }
+      },
+      {
+        "key": "G_eff",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source",
+        "projectionValues": {
+          "friedmann": 1,
+          "readout": 1
+        }
+      },
+      {
+        "key": "Lambda_eff",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source",
+        "projectionValues": {
+          "friedmann": 0,
+          "readout": 0
+        }
+      },
+      {
+        "key": "k",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source",
+        "projectionValues": {
+          "frw": 0,
+          "friedmann": 0,
+          "readout": 0
+        }
+      },
+      {
+        "key": "S_eff",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source",
+        "projectionValues": {
+          "continuity": 0,
+          "source_provenance": 0,
+          "readout": 0
+        }
+      }
+    ],
+    "noHiddenRetune": {
+      "residual": 0
+    }
+  }
+}

@@ -31,7 +31,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ has causal-wake regularization, mollification, 
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md) | Keep $g-2$ downstream of spin and magnetic-response closure. |
+| This file | [angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md) | Keep $g-2$ downstream of spin and magnetic-response closure. |
 | This file | [Radiation](../../../content/markdown/aaa/reactions/radiation.md) | Route radiative corrections through photon and event-ledger gates. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Classify QED precision as a hard benchmark but not an early ontology source. |
 

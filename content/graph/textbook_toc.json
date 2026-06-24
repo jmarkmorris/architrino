@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 178,
-      "sections": 1447
+      "entries": 182,
+      "sections": 1455
     }
   },
   "tocRoot": {
@@ -5565,6 +5565,14 @@
             "scenePath": "content/scenes/reactions/radiation.json",
             "markdownPath": "content/markdown/aaa/reactions/radiation.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Forms At A Glance",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Forms At A Glance",
+                "sectionKey": "forms at a glance",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Foundation-Up Mechanism",
@@ -11813,6 +11821,14 @@
                       },
                       {
                         "kind": "markdown-section",
+                        "title": "Observer-Level Minkowski Export",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
+                        "markdownSection": "Observer-Level Minkowski Export",
+                        "sectionKey": "observer level minkowski export",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
                         "title": "Clock Channel",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
                         "markdownSection": "Clock Channel",
@@ -12618,6 +12634,40 @@
             ]
           },
           {
+            "id": "critical_questions",
+            "title": "Critical Questions",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
+            "scenePath": "content/scenes/philosophy_history/critical_questions.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/critical-questions.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Standard Prompt",
+                "markdownPath": "content/markdown/aaa/philosophy-history/critical-questions.md",
+                "markdownSection": "Standard Luminary Prompt",
+                "sectionKey": "standard luminary prompt",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Response Contract",
+                "markdownPath": "content/markdown/aaa/philosophy-history/critical-questions.md",
+                "markdownSection": "Response Contract",
+                "sectionKey": "response contract",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Question Set",
+                "markdownPath": "content/markdown/aaa/philosophy-history/critical-questions.md",
+                "markdownSection": "Critical Question Set",
+                "sectionKey": "critical question set",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "major_thinkers",
             "title": "Major Thinkers",
             "kind": "markdown-tree",
@@ -13352,6 +13402,59 @@
                 "markdownSection": "Closing Statement",
                 "sectionKey": "closing statement",
                 "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "philosophy_history__monologues",
+            "title": "Monologues",
+            "kind": "scene-index",
+            "sceneType": "Scene-Index",
+            "scenePath": "content/scenes/philosophy_history/monologues.json",
+            "children": [
+              {
+                "id": "philosophy_history__monologues_overview",
+                "title": "Monologues",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/monologues/overview.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/monologues.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Shared Prompt",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/monologues.md",
+                    "markdownSection": "Shared Prompt",
+                    "sectionKey": "shared prompt",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Monologue Index",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/monologues.md",
+                    "markdownSection": "Monologue Index",
+                    "sectionKey": "monologue index",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "philosophy_history__monologue_william_thurston",
+                "title": "William Thurston",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/monologues/william_thurston.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Monologue",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+                    "markdownSection": "Monologue",
+                    "sectionKey": "monologue",
+                    "headingLevel": 2
+                  }
+                ]
               }
             ]
           }

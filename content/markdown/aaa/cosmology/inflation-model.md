@@ -167,7 +167,7 @@ r^\theta
 $$
 A branch that claims a slow-roll-like scalar/tensor match should therefore supply $\{\varepsilon_\theta,\eta_\theta,N_\theta,\Delta_{\mathrm{s}}^{2,\theta},\Delta_{\mathrm{t}}^{2,\theta},n_{\mathrm{s}}^\theta,r^\theta\}$ from one high-curvature release record. If it also predicts a bispectrum, the single-field slow-roll comparison target is $f_{\mathrm{NL}}^\theta=O(\varepsilon_\theta,\eta_\theta)$; a large non-Gaussian residual requires an explicit additional interaction, branch, or source-measure record.
 
-Eternal-inflation and landscape language add no ontology by themselves. They become useful only when they nominate data products that can be tested without assuming the multiverse interpretation. Two examples are the effective spatial-curvature channel and localized CMB residuals. For a candidate high-curvature release record $\theta$, define a comparison-only residual
+Eternal-inflation and landscape language add no ontology by themselves. A cosmological ensemble does not explain observed parameters merely by containing them somewhere; its explanatory content comes from the physical mechanism that generates the sampling measure and connects that measure to this observed record. These frameworks become useful only when they nominate data products that can be tested without assuming the multiverse interpretation. Two examples are the effective spatial-curvature channel and localized CMB residuals. For a candidate high-curvature release record $\theta$, define a comparison-only residual
 $$
 \mathcal{R}_{\mathrm{EI}}(\theta)
 =

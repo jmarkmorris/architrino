@@ -225,7 +225,7 @@ The mathematical challenge is to rigorously connect these scales:
 ## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [mass-map](../mass-map/mass-map.md)
+- [mass-map](../braid-mass-response-map/braid-mass-response-map.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 - [quantum-closure](../quantum-closure/quantum-closure.md)
 

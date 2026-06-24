@@ -351,11 +351,11 @@ export function buildOctahedralFoldAwareCrossBinaryI1BracketDerivativeMeshBarrie
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packets: [
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.md",
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-derivative-negative-speed-envelope-scan.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-derivative-negative-speed-envelope-scan.md",
     ],
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-i1-bracket-derivative-mesh-barrier.md",
     zero_isolation_scan_check: {
       schema: zeroIsolationScan.schema,
       valid: zeroIsolationScanErrors.length === 0,

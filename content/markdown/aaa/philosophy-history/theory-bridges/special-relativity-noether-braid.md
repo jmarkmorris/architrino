@@ -39,6 +39,26 @@ This chapter does not own:
 | The invariant speed $c$ is a postulate of the observer-level theory. | The observed signal speed is the effective propagation speed $c_{\text{eff}}$ of photon-like and clock-synchronization channels in the local Noether sea, approaching $c_f$ in the homogeneous weak-field limit. |
 | Lorentz symmetry is a spacetime symmetry. | Lorentz symmetry is an emergent operational symmetry of assemblies whose clocks, rulers, and signal channels are all built from the same finite-speed delayed closure dynamics. |
 
+## Observer-Level Minkowski Export
+
+The Minkowski diagram is useful here because it shows exactly what the bridge must export, and also what it must not promote to substrate ontology. In the inherited observer-level geometry, equal interval from an event is a hyperbola rather than a Euclidean circle, null directions are the zero-interval boundaries, and a Lorentz boost is a hyperbolic rotation that preserves the interval. For drift speed $\|\mathbf{w}\|$ through a homogeneous Noether sea cell, define the effective rapidity
+$$
+\tanh\varphi_{\text{eff}}
+=
+\beta_{\text{eff}}
+\equiv
+\frac{\|\mathbf{w}\|}{c_{\text{eff}}}
+$$
+so that
+$$
+\gamma_{\text{eff}}=\cosh\varphi_{\text{eff}},
+\qquad
+\gamma_{\text{eff}}\beta_{\text{eff}}=\sinh\varphi_{\text{eff}}.
+$$
+Those equations are not substrate kinematics. They are the target export seen by Physical Observers after clock, ruler, and signal channels are built from the same branch record. The native proof obligation is therefore stronger than reproducing time dilation alone: the moving assembly must export one hyperbolic-rotation parameter whose clock factor, ruler factor, light-cone readout, energy response, and momentum response all agree up to the declared preferred-frame leakage residual.
+
+In this language, the equal-interval hyperbola is a useful recovery target. If the clock channel supplies one $\varphi_{\text{eff}}$, the ruler channel another, and photon synchronization a third, then Physical Observers would not reconstruct one Minkowski diagram. Lorentz closure requires the same branch update $B_q\to B_{q'}$ to supply the shared rapidity parameter that makes the effective interval, null boundary, and unit hyperbolas cohere.
+
 ## Clock Channel
 
 In special relativity, the moving-clock law is usually written

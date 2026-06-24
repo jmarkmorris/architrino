@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-23T09:58:20.241Z",
-  "total_links": 1556,
+  "generated_at": "2026-06-24T05:42:49.187Z",
+  "total_links": 1563,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -6126,6 +6126,30 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/critical-questions.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/critical-questions.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/critical-questions.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/critical-questions.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/critical-questions.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/critical-questions.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/geometry-and-ontology.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -6210,6 +6234,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/major-thinkers.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/monologues.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/monologues.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -8586,6 +8626,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/reactions/synchrotron.md"
+    },
+    {
+      "sourceChapterId": "reactions",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
+      "target": "../../../../markdown/aaa/spacetime/gravitational-waves.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/gravitational-waves.md"
+    },
+    {
+      "sourceChapterId": "reactions",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
+      "target": "../../../../markdown/aaa/spacetime/gravitational-waves.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/gravitational-waves.md"
     },
     {
       "sourceChapterId": "reactions",

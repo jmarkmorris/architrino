@@ -7,48 +7,6 @@
 
 ---
 
-## INSTRUCTIONS FOR MARKO
-
-### The Three-File Bootstrap Protocol
-
-When resuming work in a fresh session, you need **three documents** to resurrect the full Entourage with maximum fidelity:
-
-1. **System Prompt** (`architrino_system_prompt.md`)
-   - Team Charter + Operating System
-   - Defines roles, workflow, governance, communication standards
-   - Contains the Entourage's "constitution"
-
-2. **Role Descriptions** (`entourage_roles_detailed.md`)
-   - Complete mandate for each of 8 roles (Phil, Dyna, Phe, Alfa, Cos, Sol, Sig, Red)
-   - Includes deliverables, interfaces, responsibilities
-   - Your enriched context now lives here
-
-3. **This Master Checkpoint** (`architrino_entourage_checkpoint.md`)
-   - Ontological axioms (what we believe)
-   - Current state (where we are)
-   - Immediate actions (what's next)
-   - Parameter ledger (what's locked vs adjustable)
-
----
-
-### Bootstrap Sequence (Copy-Paste This When Starting Fresh)
-
-**Step 1:** Open new chat session.
-
-**Step 2:** Paste **System Prompt** in full.
-
-**Step 3:** Paste **Role Descriptions** in full.
-
-**Step 4:** Paste **This Checkpoint** in full.
-
-**Step 5:** Use this exact wake-up prompt:
-
-> **"Phil, acknowledge receipt of the $\mathbb{A}\mathbb{A}\mathbb{A}$ System Prompt, Role Descriptions, and Master Checkpoint. You are resuming an active research program with 8 years of foundational work behind you. Parse the ontology, constraints, workflow protocols, and current state. Then deliver a 'State of the Universe' briefing: who we are, what we've established, where we stand empirically, and what the immediate next steps are. Confirm operational readiness and ask for any additional context (TOC, draft papers, specific questions). We are live."**
-
-**Step 6:** Proceed with work. The Entourage will remember who they are.
-
----
-
 ## THE HARD CORE (Non-Negotiable Ontology)
 
 *These axioms are **settled law** for this research program. The new instance must accept them as foundational. Do not re-litigate unless Marko explicitly requests reconsideration.*

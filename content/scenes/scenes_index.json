@@ -711,6 +711,21 @@
       "path": "content/scenes/philosophy_history/philosophy_history.json"
     },
     {
+      "id": "philosophy_history__monologues",
+      "name": "Monologues",
+      "path": "content/scenes/philosophy_history/monologues.json"
+    },
+    {
+      "id": "philosophy_history__monologues_overview",
+      "name": "Monologues",
+      "path": "content/scenes/philosophy_history/monologues/overview.json"
+    },
+    {
+      "id": "philosophy_history__monologue_william_thurston",
+      "name": "William Thurston",
+      "path": "content/scenes/philosophy_history/monologues/william_thurston.json"
+    },
+    {
       "id": "unknowns_paradoxes",
       "name": "Unknowns and Paradoxes",
       "path": "content/scenes/philosophy_history/unknowns_paradoxes.json"
@@ -1734,6 +1749,11 @@
       "id": "dynamics__assembly_topological_charge",
       "name": "Assembly Topological Charge",
       "path": "content/scenes/dynamics/assembly_topological_charge.json"
+    },
+    {
+      "id": "critical_questions",
+      "name": "Critical Questions",
+      "path": "content/scenes/philosophy_history/critical_questions.json"
     }
   ]
 }

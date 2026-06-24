@@ -407,9 +407,9 @@ export function buildOctahedralFoldAwareCrossBinaryPrimitiveCriticalAtlas(
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction.md",
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-primitive-critical-atlas.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-primitive-critical-atlas.md",
     source_quarter_cell_reduction_check: {
       schema: reduction.schema,
       valid: reductionErrors.length === 0,

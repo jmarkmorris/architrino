@@ -1,0 +1,66 @@
+{
+  "schema": "aaa-equation-map-spin-magnetic-certificate-input/v1",
+  "claimLevel": "retained spin-to-magnetic-moment certificate attempt skeleton; score-neutral and not accepted",
+  "certificateId": "spin-to-mu-attempt-0001",
+  "sameRecordId": "spin-to-mu-retained-record-attempt-0001",
+  "tolerances": {
+    "gauge": 1e-12,
+    "angularMomentum": 1e-9,
+    "gLead": 1e-12
+  },
+  "rows": {
+    "ordered_frame_loop": {
+      "status": "attempt",
+      "rowId": "Phi-star-loop-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-attempt-0001",
+      "sourcePath": "pending-retained-source"
+    },
+    "spin_lift": {
+      "status": "attempt",
+      "rowId": "spin-lift-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-attempt-0001",
+      "etaSpin": 1,
+      "doubledPathRestores": true,
+      "sourcePath": "pending-retained-source"
+    },
+    "gauge_control": {
+      "status": "attempt",
+      "rowId": "gauge-control-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-attempt-0001",
+      "deltaGauge": 0,
+      "sourcePath": "pending-retained-source"
+    },
+    "angular_momentum_ledger": {
+      "status": "attempt",
+      "rowId": "angular-momentum-ledger-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-attempt-0001",
+      "deltaJ": 0,
+      "sourcePath": "pending-retained-source"
+    },
+    "moment_map_magnetic": {
+      "status": "attempt",
+      "rowId": "moment-map-magnetic-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-attempt-0001",
+      "mu_E": [
+        0,
+        0,
+        1
+      ],
+      "sourcePath": "pending-retained-source"
+    },
+    "covering_degree_g2": {
+      "status": "attempt",
+      "rowId": "covering-degree-g2-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-attempt-0001",
+      "gLead": 2,
+      "sourcePath": "pending-retained-source"
+    },
+    "exposure_fiber_residual": {
+      "status": "attempt",
+      "rowId": "exposure-fiber-residual-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-attempt-0001",
+      "R_fib": 0.003,
+      "sourcePath": "pending-retained-source"
+    }
+  }
+}

@@ -1,0 +1,306 @@
+{
+  "schema": "aaa-equation-map-shared-observation-residual-input/v1",
+  "claimLevel": "shared-observation residual attempt skeleton; score-neutral and not accepted",
+  "residualId": "R_obs_attempt_0001",
+  "tolerances": {
+    "residual": 1,
+    "retune": 1e-12,
+    "handoff": 1e-12,
+    "provenance": 1e-12,
+    "sharedKey": 1e-12
+  },
+  "observationRecord": {
+    "id": "Theta_obs_attempt_0001",
+    "status": "attempt",
+    "sourcePath": "pending-retained-source",
+    "subrecords": {
+      "theta_src": {
+        "id": "Theta_src_attempt_0001",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source"
+      },
+      "theta_read": {
+        "id": "Theta_read_attempt_0001",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source"
+      },
+      "theta_therm_prov": {
+        "id": "Theta_therm_prov_attempt_0001",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source"
+      },
+      "theta_gal": {
+        "id": "Theta_gal_attempt_0001",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source"
+      },
+      "event_ledger": {
+        "id": "L_EpJ_obs_attempt_0001",
+        "status": "attempt",
+        "sourcePath": "pending-retained-source"
+      }
+    },
+    "frwHandoff": {
+      "id": "R_FRW_to_obs_attempt_0001",
+      "status": "attempt",
+      "residual": 0,
+      "sourcePath": "pending-retained-source"
+    },
+    "thermalProvenanceLedger": {
+      "id": "R_therm_prov_attempt_0001",
+      "status": "attempt",
+      "residual": 0,
+      "sourcePath": "pending-retained-source"
+    },
+    "noHiddenRetuneWitness": {
+      "id": "S_retune_obs_attempt_0001",
+      "status": "attempt",
+      "residual": 0,
+      "sourcePath": "pending-retained-source"
+    }
+  },
+  "projections": {
+    "BBN": {
+      "id": "Pi_BBN_attempt_0001",
+      "status": "attempt",
+      "residual": 0.02,
+      "consumedKeys": [
+        "rho_NS",
+        "n",
+        "chi_sea",
+        "eta",
+        "N_eff",
+        "Y_p",
+        "H_eff"
+      ],
+      "sourcePath": "pending-retained-source"
+    },
+    "CMB": {
+      "id": "Pi_CMB_attempt_0001",
+      "status": "attempt",
+      "residual": 0.03,
+      "consumedKeys": [
+        "rho_NS",
+        "n",
+        "chi_sea",
+        "eta",
+        "N_eff",
+        "Y_p",
+        "H_eff",
+        "a_eff"
+      ],
+      "sourcePath": "pending-retained-source"
+    },
+    "growth": {
+      "id": "Pi_growth_attempt_0001",
+      "status": "attempt",
+      "residual": 0.04,
+      "consumedKeys": [
+        "rho_NS",
+        "n",
+        "chi_sea",
+        "Gamma_N",
+        "M_sea_ab",
+        "rho_bar",
+        "rho_A",
+        "H_eff",
+        "a_eff"
+      ],
+      "sourcePath": "pending-retained-source"
+    },
+    "RAR": {
+      "id": "Pi_RAR_attempt_0001",
+      "status": "attempt",
+      "residual": 0.05,
+      "consumedKeys": [
+        "rho_NS",
+        "n",
+        "chi_sea",
+        "u_sea",
+        "M_sea_ab",
+        "rho_bar",
+        "rho_A"
+      ],
+      "sourcePath": "pending-retained-source"
+    }
+  },
+  "sharedKeys": [
+    {
+      "key": "rho_NS",
+      "status": "attempt",
+      "sourcePath": "pending-retained-source",
+      "projectionValues": {
+        "BBN": 1,
+        "CMB": 1,
+        "growth": 1,
+        "RAR": 1
+      }
+    },
+    {
+      "key": "n",
+      "status": "attempt",
+      "sourcePath": "pending-retained-source",
+      "projectionValues": {
+        "BBN": 1,
+        "CMB": 1,
+        "growth": 1,
+        "RAR": 1
+      }
+    },
+    {
+      "key": "chi_sea",
+      "status": "attempt",
+      "sourcePath": "pending-retained-source",
+      "projectionValues": {
+        "BBN": 1,
+        "CMB": 1,
+        "growth": 1,
+        "RAR": 1
+      }
+    },
+    {
+      "key": "Gamma_N",
+      "status": "attempt",
+      "sourcePath": "pending-retained-source",
+      "projectionValues": {
+        "BBN": 0.1,
+        "CMB": 0.1,
+        "growth": 0.1,
+        "RAR": 0.1
+      }
+    },
+    {
+      "key": "u_sea",
+      "status": "attempt",
+      "sourcePath": "pending-retained-source",
+      "projectionValues": {
+        "BBN": 0,
+        "CMB": 0,
+        "growth": 0,
+        "RAR": 0
+      }
+    },
+    {
+      "key": "M_sea_ab",
+      "status": "attempt",
+      "sourcePath": "pending-retained-source",
+      "projectionValues": {
+        "BBN": 1,
+        "CMB": 1,
+        "growth": 1,
+        "RAR": 1
+      }
+    },
+    {
+      "key": "rho_bar",
+      "status": "attempt",
+      "sourcePath": "pending-retained-source",
+      "projectionValues": {
+        "BBN": 0.05,
+        "CMB": 0.05,
+        "growth": 0.05,
+        "RAR": 0.05
+      }
+    },
+    {
+      "key": "rho_A",
+      "status": "attempt",
+      "sourcePath": "pending-retained-source",
+      "projectionValues": {
+        "BBN": 0.25,
+        "CMB": 0.25,
+        "growth": 0.25,
+        "RAR": 0.25
+      }
+    },
+    {
+      "key": "eta",
+      "status": "attempt",
+      "sourcePath": "pending-retained-source",
+      "projectionValues": {
+        "BBN": 6.1e-10,
+        "CMB": 6.1e-10,
+        "growth": 6.1e-10,
+        "RAR": 6.1e-10
+      }
+    },
+    {
+      "key": "N_eff",
+      "status": "attempt",
+      "sourcePath": "pending-retained-source",
+      "projectionValues": {
+        "BBN": 3.046,
+        "CMB": 3.046,
+        "growth": 3.046,
+        "RAR": 3.046
+      }
+    },
+    {
+      "key": "Y_p",
+      "status": "attempt",
+      "sourcePath": "pending-retained-source",
+      "projectionValues": {
+        "BBN": 0.245,
+        "CMB": 0.245,
+        "growth": 0.245,
+        "RAR": 0.245
+      }
+    },
+    {
+      "key": "H_eff",
+      "status": "attempt",
+      "sourcePath": "pending-retained-source",
+      "projectionValues": {
+        "BBN": 70,
+        "CMB": 70,
+        "growth": 70,
+        "RAR": 70
+      }
+    },
+    {
+      "key": "a_eff",
+      "status": "attempt",
+      "sourcePath": "pending-retained-source",
+      "projectionValues": {
+        "BBN": 1,
+        "CMB": 1,
+        "growth": 1,
+        "RAR": 1
+      }
+    }
+  ],
+  "residualComponents": {
+    "growth": {
+      "value": 0.04,
+      "weight": 1
+    },
+    "CMB": {
+      "value": 0.03,
+      "weight": 1
+    },
+    "BBN": {
+      "value": 0.02,
+      "weight": 1
+    },
+    "RAR_BTFR": {
+      "value": 0.05,
+      "weight": 1
+    },
+    "FRW_to_obs": {
+      "value": 0,
+      "weight": 1
+    },
+    "handoff": {
+      "value": 0,
+      "weight": 1
+    },
+    "therm_prov": {
+      "value": 0,
+      "weight": 1
+    },
+    "S_retune": {
+      "value": 0,
+      "weight": 1
+    }
+  }
+}

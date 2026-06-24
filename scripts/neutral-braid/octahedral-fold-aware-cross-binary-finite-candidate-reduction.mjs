@@ -308,9 +308,9 @@ export function buildOctahedralFoldAwareCrossBinaryFiniteCandidateReduction(
     packet_id: PACKET_ID,
     promotion_status: PROMOTION_STATUS,
     predecessor_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-forcing-topology-atlas.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-forcing-topology-atlas.md",
     priority_packet:
-      "reference/priorities/geometry-bridge/octahedral-fold-aware-cross-binary-finite-candidate-reduction.md",
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-finite-candidate-reduction.md",
     source_forcing_topology_atlas_check: {
       schema: topologyAtlas.schema,
       valid: topologyErrors.length === 0,

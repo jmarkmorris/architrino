@@ -99,12 +99,12 @@ This projection is a provenance channel from detector signals to benchmark varia
 | Draft case family | Candidate promotion target | Promotion gate |
 | --- | --- | --- |
 | Redshift and cosmology | [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md) | Redshift, clock, CMB, supernova, BAO, and $H(z)$ records consume the same Noether sea variables without tired-light image or time-dilation failure. |
-| Lorentz, Sagnac, and Fizeau | [braid](../braid/braid.md), [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Two-way light speed, time dilation, length contraction, rotation, and moving-medium transport recover observer-level formulas while bounding preferred-frame leakage. |
-| Weak-field metric | [validation-gates](../validation-gates/validation-gates.md), [mass-map](../mass-map/mass-map.md) | One $\mathcal{M}_{\mathrm{sea}}^{ab}$ maps to redshift, Shapiro delay, lensing, precession, and PPN coefficients. |
+| Lorentz, Sagnac, and Fizeau | [braid](../braid-retained-branch-closure/braid-retained-branch-closure.md), [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Two-way light speed, time dilation, length contraction, rotation, and moving-medium transport recover observer-level formulas while bounding preferred-frame leakage. |
+| Weak-field metric | [validation-gates](../validation-gates/validation-gates.md), [mass-map](../braid-mass-response-map/braid-mass-response-map.md) | One $\mathcal{M}_{\mathrm{sea}}^{ab}$ maps to redshift, Shapiro delay, lensing, precession, and PPN coefficients. |
 | Radiation and gravitational waves | [Radiation](../../../content/markdown/aaa/reactions/radiation.md), [strong-field-closure](../strong-field-closure/strong-field-closure.md) | Energy, momentum, angular momentum, recoil, medium updates, and waveform phase close in one event-ledger grammar. |
-| Quantum phase, spin, and Bell | [quantum-closure](../quantum-closure/quantum-closure.md), [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md) | Phase, spin, photon-analyzer response, detector basins, Born weights, no-signaling, and Bell correlations derive from path history and measure closure rather than postulated probabilities. |
-| Topological and statistical emergence | [validation-gates](../validation-gates/validation-gates.md), [mass-map](../mass-map/mass-map.md) | Robust integer/fractional invariants and fluctuation-dissipation limits emerge from stable basins and transport maps. |
-| Collider reconstruction provenance | [standard-model-closure](../standard-model-closure/standard-model-closure.md), [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md), [validation-gates](../validation-gates/validation-gates.md) | Reconstructed objects, missing transverse momentum, heavy-flavor tags, boosted substructure, fiducial cross sections, and upper limits are compared as observer-level projections of one event-ledger and detector-response record. |
+| Quantum phase, spin, and Bell | [quantum-closure](../quantum-closure/quantum-closure.md), [angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md) | Phase, spin, photon-analyzer response, detector basins, Born weights, no-signaling, and Bell correlations derive from path history and measure closure rather than postulated probabilities. |
+| Topological and statistical emergence | [validation-gates](../validation-gates/validation-gates.md), [mass-map](../braid-mass-response-map/braid-mass-response-map.md) | Robust integer/fractional invariants and fluctuation-dissipation limits emerge from stable basins and transport maps. |
+| Collider reconstruction provenance | [standard-model-closure](../standard-model-closure/standard-model-closure.md), [angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md), [validation-gates](../validation-gates/validation-gates.md) | Reconstructed objects, missing transverse momentum, heavy-flavor tags, boosted substructure, fiducial cross sections, and upper limits are compared as observer-level projections of one event-ledger and detector-response record. |
 
 ## Failure Modes
 
@@ -121,10 +121,10 @@ This projection is a provenance channel from detector signals to benchmark varia
 ## Related Priorities
 
 - [validation-gates](../validation-gates/validation-gates.md)
-- [braid](../braid/braid.md)
+- [braid](../braid-retained-branch-closure/braid-retained-branch-closure.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [mass-map](../mass-map/mass-map.md)
+- [mass-map](../braid-mass-response-map/braid-mass-response-map.md)
 - [quantum-closure](../quantum-closure/quantum-closure.md)
-- [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md)
+- [angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)

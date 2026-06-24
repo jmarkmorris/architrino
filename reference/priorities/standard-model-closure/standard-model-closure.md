@@ -21,7 +21,7 @@
 
 ## Scope
 
-This workstream owns the remaining Standard Model-facing closure tasks that are not already carried by [mass-map](../mass-map/mass-map.md), [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md), or [quantum-closure](../quantum-closure/quantum-closure.md).
+This workstream owns the remaining Standard Model-facing closure tasks that are not already carried by [mass-map](../braid-mass-response-map/braid-mass-response-map.md), [angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md), or [quantum-closure](../quantum-closure/quantum-closure.md).
 
 The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in place. The remaining leverage is mass prediction, explicit overlap-integral flavor mixing, confinement energetics, weak-sector exposure/gauge closure, and nuclear coarse-graining. Weak `V-A` chirality and weak-reaction provenance are preserved as subgates of `weak_sector_gauge_closure`, not as separate top-level queue items.
 
@@ -571,13 +571,13 @@ Failure modes:
 | `overlap_integrals` | [geometry-first-program.md](geometry-first-program.md) | [weak-mixing-ckm](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md) | CKM and PMNS entries stated as geometry-derived overlap integrals rather than fit knobs. |
 | `confinement_energetics` | [geometry-first-program.md](geometry-first-program.md) | [color-charge-su3](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) | Confinement-scale behavior derived from topological or strain energetics with a color-singlet bound-state check. |
 | `weak_sector_gauge_closure` | [weak-sector-gauge-closure.md](weak-sector-gauge-closure.md) | [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [weak-mixing-ckm](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md), [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), [gauge-symmetries](../../../content/markdown/aaa/assemblies/gauge-symmetries.md), and [gauge-structure-emergence](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md) | One weak-exposure domain supports `V-A`, CKM/PMNS overlap, weak-reaction provenance, and effective gauge covariance without leading-order preferred-frame leakage. |
-| `scalar_boson_acceptance` | [atlas-higgs-scalar-benchmark.md](atlas-higgs-scalar-benchmark.md) and [mass-map](../mass-map/mass-map.md) | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md) and [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | The ATLAS Higgs scalar benchmark is recovered as one mass, coupling, production, branching, and excluded-window residual rather than as a mass-only fit. |
+| `scalar_boson_acceptance` | [atlas-higgs-scalar-benchmark.md](atlas-higgs-scalar-benchmark.md) and [mass-map](../braid-mass-response-map/braid-mass-response-map.md) | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md) and [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | The ATLAS Higgs scalar benchmark is recovered as one mass, coupling, production, branching, and excluded-window residual rather than as a mass-only fit. |
 | `nuclear_potential_derivation` | [nuclear-binding-closure.md](nuclear-binding-closure.md) | [nuclear-binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md), [nucleon-structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md), and [mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md) | The promoted benchmark gates gain a derived or constrained $V_{NN}$ whose signs, ranges, saturation behavior, and residual-channel provenance bind $p+n$, avoid an unphysical $p+p$ bound state, explain alpha-like enhancement, and keep beta stability in one ledger. |
 | `hydrogen_fermion_sea_boundary` | This file | [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) and [nested-shell-braid-geometry](../../../content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md) | The hydrogen atom is used to derive the distinction between exact fermion assembly membership, dynamic exclusion envelope, electron resonance envelope, and ambient Noether sea coarse-graining. |
 
 ## Related Priorities
 
-- [mass-map](../mass-map/mass-map.md)
+- [mass-map](../braid-mass-response-map/braid-mass-response-map.md)
 - [3x3](../deferred/3x3/3x3.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [validation-gates](../validation-gates/validation-gates.md)

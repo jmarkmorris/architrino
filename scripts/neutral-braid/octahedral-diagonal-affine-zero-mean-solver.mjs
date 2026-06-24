@@ -697,7 +697,7 @@ export function buildOctahedralDiagonalAffineZeroMeanSolver(options = {}) {
     source_root_ledger: "scripts/neutral-braid/octahedral-root-ledger.mjs",
     source_affine_force_mean_derivative:
       "scripts/neutral-braid/octahedral-affine-force-mean-derivative.mjs",
-    priority_packet: "reference/priorities/geometry-bridge/octahedral-diagonal-affine-zero-mean-solver.md",
+    priority_packet: "reference/priorities/braid-geometry-export-bridge/octahedral-diagonal-affine-zero-mean-solver.md",
     artifact_claim: {
       finite_family: "positive diagonal affine scales A=diag(s1,s2,s3)",
       solves_dynamics: false,

@@ -24,7 +24,7 @@ The main black-hole and strong-field chapter architecture is already in place. T
 
 This file remains the control surface for strong-field quantitative closure. The sibling [hypothesis-bank.md](hypothesis-bank.md) preserves exploratory strong-field and tri-binary ideas without keeping a separate ranked top-level workstream. If the quantitative work expands, the natural future split is an embedded-boundary packet and a horizon-interface label-ensemble packet.
 
-Release-channel accounting consumes the shared [residual-routing event-ledger theorem](../nested-shell-braid-causal-closure/residual-routing-event-ledger.md). This workstream owns the strong-field boundary conditions, label ensemble, channel candidates, and observables; the shared packet owns the general rule that any release route must close $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ without untracked loss or missing remnant state.
+Release-channel accounting consumes the shared [residual-routing event-ledger theorem](../braid-nested-shell-causal-closure/residual-routing-event-ledger.md). This workstream owns the strong-field boundary conditions, label ensemble, channel candidates, and observables; the shared packet owns the general rule that any release route must close $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ without untracked loss or missing remnant state.
 
 ## Detailed Priority Files
 
@@ -42,7 +42,7 @@ Release-channel accounting consumes the shared [residual-routing event-ledger th
 | `embedded_boundary_conditions` | This file | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) and [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) | Horizon-interface solutions are formulated as Noether sea boundary-condition problems with named $\rho_{\text{NS}}$, $\Sigma_{\text{medium}}$, $\mathbf{u}_{\text{medium}}$, $\Lambda_{\text{NS}}$, and $\partial\Omega$ data. |
 | `observer_predictions` | This file | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [General Relativity](../../../content/markdown/aaa/spacetime/general-relativity.md), and [gravitational-waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md) | The embedded boundary formulation produces observer-level predictions rather than only interpretive prose. |
 | `horizon_entropy_packet` | This file, [terminal-alignment-enumerator.md](terminal-alignment-enumerator.md), and [holographic-entropy-boundary-data-benchmark.md](holographic-entropy-boundary-data-benchmark.md) | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) and [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) | The horizon-interface label ensemble and local block entropy density are defined from admissible $\Lambda_{\text{NS}}$ states and used to state entropy-area and Page-curve recovery targets, including tests of proposed horizon identifications, without importing them as ontology. |
-| `release_channel_selection` | This file and [residual-routing-event-ledger](../nested-shell-braid-causal-closure/residual-routing-event-ledger.md) | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | Jets, diffuse outflow, dark-sector escape, and candidate dark-sector photon-like modes are separated as release channels with event-ledger and information-accounting consequences. |
+| `release_channel_selection` | This file and [residual-routing-event-ledger](../braid-nested-shell-causal-closure/residual-routing-event-ledger.md) | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | Jets, diffuse outflow, dark-sector escape, and candidate dark-sector photon-like modes are separated as release channels with event-ledger and information-accounting consequences. |
 | `discriminating_observable` | This file | [General Relativity](../../../content/markdown/aaa/spacetime/general-relativity.md), [gravitational-waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md), and [ppn-parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | At least one strong-field observable is stated in a way that can differ from GR-like behavior. |
 | `hypothesis_bank_review` | [hypothesis-bank.md](hypothesis-bank.md) | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), and [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) | Preserved hypotheses remain explicitly non-foundational until they acquire a boundary condition, equation, simulation target, or observable. |
 
@@ -203,7 +203,7 @@ Failure modes to retain:
 ## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [braid](../braid/braid.md)
+- [braid](../braid-retained-branch-closure/braid-retained-branch-closure.md)
 - [dark-sector](../dark-sector/dark-sector.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [simulations](../simulations/simulations.md)

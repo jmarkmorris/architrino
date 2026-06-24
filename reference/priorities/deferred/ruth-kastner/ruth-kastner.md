@@ -387,4 +387,4 @@ These themes overlap conceptually with live $\mathbb{A}\mathbb{A}\mathbb{A}$ que
 
 - [quantum-closure](../../quantum-closure/quantum-closure.md)
 - [source-mining](../../source-mining/source-mining.md)
-- [angular-momentum-spin](../../angular-momentum-spin/angular-momentum-spin.md)
+- [angular-momentum-spin](../../braid-angular-momentum-spin/braid-angular-momentum-spin.md)

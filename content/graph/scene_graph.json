@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 527,
-      "edges": 1281,
-      "scenes": 347,
+      "nodes": 534,
+      "edges": 1288,
+      "scenes": 351,
       "markdownIndexes": 0,
-      "markdownDocs": 167,
+      "markdownDocs": 170,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -998,6 +998,24 @@
       "id": "philosophy_history",
       "name": "Philosophy-History",
       "path": "content/scenes/philosophy_history/philosophy_history.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__monologues",
+      "name": "Monologues",
+      "path": "content/scenes/philosophy_history/monologues.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__monologues_overview",
+      "name": "Monologues",
+      "path": "content/scenes/philosophy_history/monologues/overview.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__monologue_william_thurston",
+      "name": "William Thurston",
+      "path": "content/scenes/philosophy_history/monologues/william_thurston.json",
       "nodeType": "scene"
     },
     {
@@ -2231,6 +2249,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "critical_questions",
+      "name": "Critical Questions",
+      "path": "content/scenes/philosophy_history/critical_questions.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2651,6 +2675,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/philosophy-history/critical-questions.md",
+      "name": "Critical Questions",
+      "path": "content/markdown/aaa/philosophy-history/critical-questions.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
       "name": "Geometry and Ontology",
       "path": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
@@ -2672,6 +2702,18 @@
       "id": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "name": "Major Thinkers in the Foundations of Nature: Impact Analysis for the Architrino Framework",
       "path": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/monologues.md",
+      "name": "Monologues",
+      "path": "content/markdown/aaa/philosophy-history/monologues.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "name": "William Thurston",
+      "path": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5215,6 +5257,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/critical_questions.json",
+      "nodeType": "scene",
+      "id": "critical_questions",
+      "name": "Critical Questions",
+      "path": "content/scenes/philosophy_history/critical_questions.json",
+      "searchTarget": "content/scenes/philosophy_history/critical_questions.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/geometry_and_ontology.json",
       "nodeType": "scene",
       "id": "philosophy_history__geometry_and_ontology",
@@ -5257,6 +5308,33 @@
       "name": "Major Thinkers",
       "path": "content/scenes/philosophy_history/major_thinkers.json",
       "searchTarget": "content/scenes/philosophy_history/major_thinkers.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/monologues.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__monologues",
+      "name": "Monologues",
+      "path": "content/scenes/philosophy_history/monologues.json",
+      "searchTarget": "content/scenes/philosophy_history/monologues.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/monologues/overview.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__monologues_overview",
+      "name": "Monologues",
+      "path": "content/scenes/philosophy_history/monologues/overview.json",
+      "searchTarget": "content/scenes/philosophy_history/monologues/overview.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/monologues/william_thurston.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__monologue_william_thurston",
+      "name": "William Thurston",
+      "path": "content/scenes/philosophy_history/monologues/william_thurston.json",
+      "searchTarget": "content/scenes/philosophy_history/monologues/william_thurston.json",
       "implicit": false
     },
     {
@@ -6988,6 +7066,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/critical-questions.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/critical-questions.md",
+      "name": "Critical Questions",
+      "path": "content/markdown/aaa/philosophy-history/critical-questions.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/critical-questions.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
@@ -7021,6 +7108,24 @@
       "name": "Major Thinkers in the Foundations of Nature: Impact Analysis for the Architrino Framework",
       "path": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/monologues.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/monologues.md",
+      "name": "Monologues",
+      "path": "content/markdown/aaa/philosophy-history/monologues.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/monologues.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "name": "William Thurston",
+      "path": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
       "implicit": false
     },
     {
@@ -11368,11 +11473,25 @@
       "field": "scene.children[0]"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/monologues.json",
+      "to": "scene:content/scenes/philosophy_history/monologues/overview.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/monologues.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/monologues.json",
+      "to": "scene:content/scenes/philosophy_history/monologues/william_thurston.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/monologues.json",
+      "field": "scene.children[1]"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11380,6 +11499,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/critical_questions.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11400,7 +11526,7 @@
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11414,7 +11540,14 @@
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/monologues.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11435,7 +11568,7 @@
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12824,6 +12957,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/critical_questions.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/critical-questions.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/critical_questions.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/geometry_and_ontology.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
       "edgeType": "markdown_doc",
@@ -12849,6 +12989,20 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/major-thinkers.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/major_thinkers.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/monologues/overview.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/monologues.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/monologues/overview.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/monologues/william_thurston.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/monologues/william_thurston.json",
       "field": "scene.source.path"
     },
     {

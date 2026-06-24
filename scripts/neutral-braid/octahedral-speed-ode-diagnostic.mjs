@@ -514,8 +514,8 @@ export function buildOctahedralSpeedOdeDiagnostic(options = {}) {
     sources: [
       "scripts/neutral-braid/octahedral-root-ledger.mjs",
       "scripts/neutral-braid/octahedral-force-residual.mjs",
-      "reference/priorities/braid/shell-braid/bounded-speed-factor-speed-ode-solvability.md",
-      "reference/priorities/braid/shell-braid/bounded-speed-factor-all-pairs-ledger-handoff-contract.md",
+      "reference/priorities/braid-retained-branch-closure/shell-braid/bounded-speed-factor-speed-ode-solvability.md",
+      "reference/priorities/braid-retained-branch-closure/shell-braid/bounded-speed-factor-all-pairs-ledger-handoff-contract.md",
     ],
     artifact_claim: {
       kind: "frozen_fixed_ledger_speed_ode_diagnostic",

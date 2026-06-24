@@ -2,7 +2,7 @@
   "schema": "fe-silicate-segregation-toy/v1",
   "metadata": {
     "claim": "Toy Fe/silicate dense-medium segregation replay",
-    "source_packet": "reference/priorities/mass-map/fe-silicate-dense-medium-segregation.md",
+    "source_packet": "reference/priorities/braid-mass-response-map/fe-silicate-dense-medium-segregation.md",
     "status": "finite-eta closed-return deformation witness, not empirical geophysics"
   },
   "feature_order": [

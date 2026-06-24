@@ -204,6 +204,8 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ this translates into concrete governance: su
 
 A further distinction matters for replacement theory. A model is not scientifically useful merely because it can name a distant measurement that would eventually rule it out. The hypothesis must also close a real inconsistency, recover the tested regime it claims to replace, and expose a failure condition that is tied to its own mechanism rather than to an arbitrary parameter extension. Otherwise the theory can be formally falsifiable while adding no disciplined explanatory burden.
 
+One practical test of seriousness is whether a model can tolerate being wrong in a specific way. A candidate that names a residual, accepts a rising-significance anomaly as a real threat, and does not immediately convert each null result into a new auxiliary sector is healthier than one that survives by interpretive agility. Falsifiability is therefore not only a yes-or-no property of a claim; it is a stance toward failure during model development.
+
 This is especially important for data-starved domains. A mathematically elaborate framework may be interesting as a comparison tool while still being unready for corpus promotion. A compact promotion guard is
 $$
 \operatorname{promote}(\theta)=1
@@ -339,6 +341,8 @@ Another methodological error appears when the failure of one concrete model is t
 
 Scientific consensus also requires more careful treatment than either naive trust or blanket dismissal allows. Consensus is not simply identical to arbitrary belief, because it is often grounded in real evidential convergence. Yet under crisis conditions, especially in fields with expensive experiments, long training pipelines, strong hierarchy, and high career risk for dissent, consensus may also reflect institutional stabilization of a dominant interpretation. The method should therefore ask not only what the consensus is, but how it was formed, which alternatives received serious technical scrutiny, and whether social cost has narrowed the visible theory space.
 
+Training structure matters in the same record. Early specialization, standardized filtering, grant pressure, citation pressure, and senior-dependent doctoral apprenticeship can all reduce the number of people with both technical command and permission to question foundations. That does not make dissent correct. It means a crisis review should treat institutional narrowing of the live theory space as part of the inference environment rather than as irrelevant sociology.
+
 Theory-guided experiment must also be handled explicitly. In data-starved foundational regimes, instruments, reduction variables, and auxiliary hypotheses are usually shaped by the dominant theory. The absence of a single decisive anomaly is therefore not identical to ontological closure. It also does not make every alternative equally live. It raises the burden on a replacement architecture: it must name the preserved data product, the accepted calibration assumptions, the effective model being rederived, the ontological inference being challenged, and the residual that would count against the replacement.
 
 For a crisis review, the minimum inference record is:
@@ -412,6 +416,8 @@ $$
 $$
 
 and a nonempty residual pattern $R_{\mathrm{fail}}$ that could reject that interpretation. High predictive accuracy therefore improves the status of $M_{\mathrm{eff}}$ but does not, by itself, promote $O_{\mathrm{ont}}$ into settled ontology.
+
+This includes AI-like discovery systems. They may be valuable for reference recovery, algebraic compression, pattern search, and large correlation scans, but they do not become ontology authorities by reproducing the dominant interpretation at scale. Under crisis governance, an AI-assisted result earns only the status its mechanism map and residual record earn.
 
 The same discipline applies to theory-guided quantities. Let $D_{W,\epsilon}$ be the finite data product over window $W$ with tolerance vector $\epsilon$, and let $\widehat D_\theta$ be the data predicted by candidate record $\theta$. Ordinary observational fit first requires
 
