@@ -13406,52 +13406,52 @@
             ]
           },
           {
-            "id": "philosophy_history__monologues",
-            "title": "Monologues",
+            "id": "philosophy_history__perspectives",
+            "title": "Perspectives",
             "kind": "scene-index",
             "sceneType": "Scene-Index",
-            "scenePath": "content/scenes/philosophy_history/monologues.json",
+            "scenePath": "content/scenes/philosophy_history/perspectives.json",
             "children": [
               {
-                "id": "philosophy_history__monologues_overview",
-                "title": "Monologues",
+                "id": "philosophy_history__perspectives_overview",
+                "title": "Perspectives",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/monologues/overview.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/monologues.md",
+                "scenePath": "content/scenes/philosophy_history/perspectives/overview.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
                     "title": "Shared Prompt",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/monologues.md",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
                     "markdownSection": "Shared Prompt",
                     "sectionKey": "shared prompt",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Monologue Index",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/monologues.md",
-                    "markdownSection": "Monologue Index",
-                    "sectionKey": "monologue index",
+                    "title": "Perspective Index",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Perspective Index",
+                    "sectionKey": "perspective index",
                     "headingLevel": 2
                   }
                 ]
               },
               {
-                "id": "philosophy_history__monologue_william_thurston",
+                "id": "philosophy_history__perspective_william_thurston",
                 "title": "William Thurston",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/monologues/william_thurston.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+                "scenePath": "content/scenes/philosophy_history/perspectives/william_thurston.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Monologue",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
-                    "markdownSection": "Monologue",
-                    "sectionKey": "monologue",
+                    "title": "Perspective",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
+                    "markdownSection": "Perspective",
+                    "sectionKey": "perspective",
                     "headingLevel": 2
                   }
                 ]

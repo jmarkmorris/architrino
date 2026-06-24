@@ -1,6 +1,6 @@
 # Critical Questions
 
-Critical Questions defines the shared prompt for the luminary monologue scene. Every monologue should be readable as one response to this same question set, so readers can compare perspectives across eras without losing source-status discipline.
+Critical Questions defines the shared prompt for the luminary perspective scene. Every perspective should be readable as one response to this same question set, so readers can compare perspectives across eras without losing source-status discipline.
 
 The prompt is interpretive, not evidentiary. It does not claim that the real historical figure would have endorsed $\mathbb{A}\mathbb{A}\mathbb{A}$, and it does not turn an imagined voice into historical testimony. It gives each response the same pressure: preserve what the inherited theory saw correctly, identify where effective description was mistaken for ontology, explain why the deeper architecture was missed, and state what the current proof program still owes.
 

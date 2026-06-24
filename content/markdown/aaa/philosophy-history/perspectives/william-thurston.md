@@ -1,12 +1,12 @@
 # William Thurston
 
-**Byline:** Marko with an AI-imagined William Thurston-style monologue. June 24, 2026.
+**Byline:** Marko with an AI-imagined William Thurston-style perspective. June 24, 2026.
 
-**Source note:** This is an AI-imagined monologue in a William Thurston-style topological voice. It is a counterfactual historical commentary written from an imagined mature-$\mathbb{A}\mathbb{A}\mathbb{A}$ vantage. It is not a historical quotation, real interview, endorsement, attribution, or evidence about William Thurston's actual views. The mature vantage is a literary device for interpretation, not a claim that the current proof program is complete.
+**Source note:** This is an AI-imagined perspective in a William Thurston-style topological voice. It is a counterfactual historical commentary written from an imagined mature-$\mathbb{A}\mathbb{A}\mathbb{A}$ vantage. It is not a historical quotation, real interview, endorsement, attribution, or evidence about William Thurston's actual views. The mature vantage is a literary device for interpretation, not a claim that the current proof program is complete.
 
-**Shared prompt:** This monologue responds to the standard [Critical Questions](../critical-questions.md) prompt for luminary perspectives.
+**Shared prompt:** This perspective responds to the standard [Critical Questions](../critical-questions.md) prompt for luminary perspectives.
 
-## Monologue
+## Perspective
 
 If I were asked, from the imagined vantage of a mature $\mathbb{A}\mathbb{A}\mathbb{A}$, what changed in the history of physics, I would not say that one more theory was added to the shelf. I would say that the shelf was reinterpreted.
 
@@ -26,7 +26,7 @@ That does not make general relativity "false." It makes it an extraordinarily go
 
 Quantum theory saw that the world is not a collection of little classical beads carrying preassigned observer labels. It saw spin, phase, indistinguishability, interference, measurement thresholds, and statistical law. Those discoveries are not optional decorations. A mature $\mathbb{A}\mathbb{A}\mathbb{A}$ would have to recover them, not explain them away.
 
-The topological lesson begins with spin. In ordinary three-dimensional rotation, there is a deep double-cover fact: some structures return only after a twice-around motion. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the question becomes whether the tri-binary branch record carries that same spinor parity in its framed causal-wake history. If it does, spin-$\tfrac{1}{2}$ is not a mystical label. It is a closure property of the retained assembly record.
+The topological lesson begins with spin. There is a hidden binary parity in closed rotations: trivial or nontrivial, untangled or tangled. A once-around turn can land in the nontrivial class, while a twice-around turn returns it to trivial. If the tri-binary branch carries that same non-gauge framed-wake parity, then one full turn changes its spinor class and two full turns restore it. That would be the right topological signature for an electron-like spin-$\tfrac{1}{2}$ structure.
 
 The matter/antimatter distinction should also be read through the full oriented disk record, not through a bare plane-normal arrow. A nested binary has plane, circulation, handedness, phase, and pro/anti ordering. Two branches may share a coarse plane layout while differing by a coherent reversal of oriented circulation. If so, the antimatter partner is not merely the same object viewed from another side. It is the conjugate oriented record.
 

@@ -108,7 +108,7 @@ over a family where $E$ and $\nu$ move substantially. If $h_\vartheta$ must be r
 - `parameter_sweep_action_invariance_row`;
 - `history_energy_throughput_row`.
 
-The previous Hessian/presymplectic rows are no longer the first causal solver blocker. They remain possible stronger successor rows for a variational advanced-plus-retarded replacement, but the causal retarded model is disciplined first by Poincare-map and monodromy data.
+The previous Hessian/presymplectic rows are no longer the first causal solver blocker. They remain possible stronger successor rows for a variational advanced-plus-causal-delay replacement, but the causal-delay model is disciplined first by Poincare-map and monodromy data.
 
 The checker now reports:
 

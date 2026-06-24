@@ -693,7 +693,7 @@ $$
 
 The state-dependent delay $\tau(x)=\tau_0+\beta x$ is deferred until the constant-delay orbit is hyperbolic-modulo-time-shift; then $\beta$ can be introduced as a persistence/continuation parameter. The reason is structural: state-dependent delay is not $C^1$ on the standard continuous history space and threatens the differentiability needed by a Hessian-based first model.
 
-For the causal retarded self-hit model, the primary finite-dimensional object is the Poincare return map and its monodromy spectrum. A variational advanced-plus-retarded replacement may later support a global Hessian or presymplectic row, but the first causal solver target should not require that structure. The action unit is the Poincare-Cartan orbit integral on the certified retained orbit:
+For the causal-delay self-hit model, the primary finite-dimensional object is the Poincare return map and its monodromy spectrum. A variational advanced-plus-causal-delay replacement may later support a global Hessian or presymplectic row, but the first causal solver target should not require that structure. The action unit is the Poincare-Cartan orbit integral on the certified retained orbit:
 
 $$
 h_\vartheta
@@ -807,7 +807,7 @@ Current `6/23 b` score: `2`.
 
 The row is high priority because many mature equations already consume $h$ or $\hbar$. It remains low-scored because the current material uses those constants as bridge readouts or residual inputs; it does not yet derive the action unit from retained braid geometry.
 
-Executable status: [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) evaluates the score-neutral Planck/alpha residual family for `EQ-12A`, `EQ-22A`, and `EQ-26A`. The attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json) is designed to pass the normalized constant-delay retained-orbit, Hopf birth, first-Lyapunov, monodromy/Floquet, Poincare-Cartan, readout-refinement, parameter-sweep, blackbody, $\alpha(\mu)$, source-provenance, hidden-retune, and negative-control diagnostics while remaining score-neutral until accepted retained rows exist.
+Executable status: [constant-delay-retained-orbit-certificate.mjs](../../../scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs) now isolates the `EQ-12A` retained-orbit certificate. The attempt fixture [constant-delay-retained-orbit-certificate-attempt.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-certificate-attempt.v1.json) passes the constant-delay model, Hopf birth, first-Lyapunov, monodromy/Floquet, Poincare-section, Poincare-Cartan, four-readout action, refinement, sweep-invariance, history-throughput, non-resonance, and negative-control diagnostics while remaining score-neutral at `missing_accepted_retained_orbit_reduction_row`. [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) continues to evaluate the broader `EQ-12A`, `EQ-22A`, and `EQ-26A` Planck/alpha residual family.
 
 ### Closure Burden
 

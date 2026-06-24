@@ -1001,24 +1001,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "philosophy_history__monologues",
-      "name": "Monologues",
-      "path": "content/scenes/philosophy_history/monologues.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "philosophy_history__monologues_overview",
-      "name": "Monologues",
-      "path": "content/scenes/philosophy_history/monologues/overview.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "philosophy_history__monologue_william_thurston",
-      "name": "William Thurston",
-      "path": "content/scenes/philosophy_history/monologues/william_thurston.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "unknowns_paradoxes",
       "name": "Unknowns and Paradoxes",
       "path": "content/scenes/philosophy_history/unknowns_paradoxes.json",
@@ -2255,6 +2237,24 @@
       "nodeType": "scene"
     },
     {
+      "id": "philosophy_history__perspectives",
+      "name": "Perspectives",
+      "path": "content/scenes/philosophy_history/perspectives.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__perspectives_overview",
+      "name": "Perspectives",
+      "path": "content/scenes/philosophy_history/perspectives/overview.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__perspective_william_thurston",
+      "name": "William Thurston",
+      "path": "content/scenes/philosophy_history/perspectives/william_thurston.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2705,15 +2705,15 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/monologues.md",
-      "name": "Monologues",
-      "path": "content/markdown/aaa/philosophy-history/monologues.md",
+      "id": "content/markdown/aaa/philosophy-history/perspectives.md",
+      "name": "Perspectives",
+      "path": "content/markdown/aaa/philosophy-history/perspectives.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
       "name": "William Thurston",
-      "path": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5311,39 +5311,39 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/monologues.json",
-      "nodeType": "scene",
-      "id": "philosophy_history__monologues",
-      "name": "Monologues",
-      "path": "content/scenes/philosophy_history/monologues.json",
-      "searchTarget": "content/scenes/philosophy_history/monologues.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/monologues/overview.json",
-      "nodeType": "scene",
-      "id": "philosophy_history__monologues_overview",
-      "name": "Monologues",
-      "path": "content/scenes/philosophy_history/monologues/overview.json",
-      "searchTarget": "content/scenes/philosophy_history/monologues/overview.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/monologues/william_thurston.json",
-      "nodeType": "scene",
-      "id": "philosophy_history__monologue_william_thurston",
-      "name": "William Thurston",
-      "path": "content/scenes/philosophy_history/monologues/william_thurston.json",
-      "searchTarget": "content/scenes/philosophy_history/monologues/william_thurston.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/philosophy_history/overview.json",
       "nodeType": "scene",
       "id": "philosophy_history__overview",
       "name": "Philosophy and History",
       "path": "content/scenes/philosophy_history/overview.json",
       "searchTarget": "content/scenes/philosophy_history/overview.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspectives",
+      "name": "Perspectives",
+      "path": "content/scenes/philosophy_history/perspectives.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/overview.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspectives_overview",
+      "name": "Perspectives",
+      "path": "content/scenes/philosophy_history/perspectives/overview.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/overview.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/william_thurston.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspective_william_thurston",
+      "name": "William Thurston",
+      "path": "content/scenes/philosophy_history/perspectives/william_thurston.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/william_thurston.json",
       "implicit": false
     },
     {
@@ -7111,21 +7111,21 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/monologues.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/monologues.md",
-      "name": "Monologues",
-      "path": "content/markdown/aaa/philosophy-history/monologues.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/monologues.md",
+      "id": "content/markdown/aaa/philosophy-history/perspectives.md",
+      "name": "Perspectives",
+      "path": "content/markdown/aaa/philosophy-history/perspectives.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives.md",
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
       "name": "William Thurston",
-      "path": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
       "implicit": false
     },
     {
@@ -11473,17 +11473,17 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/monologues.json",
-      "to": "scene:content/scenes/philosophy_history/monologues/overview.json",
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/overview.json",
       "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/monologues.json",
+      "source": "content/scenes/philosophy_history/perspectives.json",
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/monologues.json",
-      "to": "scene:content/scenes/philosophy_history/monologues/william_thurston.json",
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/william_thurston.json",
       "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/monologues.json",
+      "source": "content/scenes/philosophy_history/perspectives.json",
       "field": "scene.children[1]"
     },
     {
@@ -11544,17 +11544,17 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/monologues.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[13]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/overview.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12992,24 +12992,24 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/monologues/overview.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/monologues.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/monologues/overview.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/monologues/william_thurston.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/monologues/william_thurston.json",
-      "field": "scene.source.path"
-    },
-    {
       "from": "scene:content/scenes/philosophy_history/overview.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-history.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/overview.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/overview.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/overview.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/william_thurston.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/william_thurston.json",
       "field": "scene.source.path"
     },
     {

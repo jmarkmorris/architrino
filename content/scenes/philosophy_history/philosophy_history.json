@@ -66,8 +66,8 @@
         "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json"
       },
       {
-        "nodeId": "monologues",
-        "scenePath": "content/scenes/philosophy_history/monologues.json"
+        "nodeId": "perspectives",
+        "scenePath": "content/scenes/philosophy_history/perspectives.json"
       }
     ]
   },
@@ -169,11 +169,11 @@
       "labelBadge": "doc"
     },
     {
-      "id": "monologues",
-      "title": "Monologues",
+      "id": "perspectives",
+      "title": "Perspectives",
       "radius": 2.688,
       "color": "#6f4a8f",
-      "labelTitle": "Monologues",
+      "labelTitle": "Perspectives",
       "labelBadge": "scene"
     }
   ]

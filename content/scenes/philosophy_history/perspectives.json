@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "philosophy_history__monologues",
-    "title": "Monologues",
+    "id": "philosophy_history__perspectives",
+    "title": "Perspectives",
     "type": "Scene-Index",
     "units": "relative",
     "wrapLabels": true,
@@ -14,33 +14,32 @@
     },
     "children": [
       {
-        "nodeId": "monologues_overview",
-        "scenePath": "content/scenes/philosophy_history/monologues/overview.json"
+        "nodeId": "perspectives_overview",
+        "scenePath": "content/scenes/philosophy_history/perspectives/overview.json"
       },
       {
-        "nodeId": "monologue_william_thurston",
-        "scenePath": "content/scenes/philosophy_history/monologues/william_thurston.json"
+        "nodeId": "perspective_william_thurston",
+        "scenePath": "content/scenes/philosophy_history/perspectives/william_thurston.json"
       }
     ]
   },
   "objects": [
     {
-      "id": "monologues_overview",
-      "title": "Monologues",
+      "id": "perspectives_overview",
+      "title": "Perspectives",
       "radius": 2.688,
       "color": "#4f5d75",
       "labelTitle": "Overview",
       "labelBadge": "doc"
     },
     {
-      "id": "monologue_william_thurston",
+      "id": "perspective_william_thurston",
       "title": "William Thurston",
       "radius": 2.688,
       "color": "#6f4a8f",
       "labelTitle": "William Thurston",
       "labelSubtitle": "June 24, 2026",
-      "labelBadge": "monologue"
+      "labelBadge": "perspective"
     }
   ]
 }
-
