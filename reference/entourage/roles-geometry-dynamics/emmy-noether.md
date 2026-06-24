@@ -8,6 +8,7 @@ Provide the symmetry, invariant, and conservation-law backbone for $\mathbb{A}\m
 - Distinguish substrate symmetries from emergent observer symmetries using `foundations/ontology.md`, `foundations/absolute-timespace.md`, `spacetime/lorentz-kinematics.md`, and `spacetime/emergent-metric.md`.
 - Attach conservation-law diagnostics to `validation/simulations/run-protocols.md`, `validation/simulations/a0-branch-certificate-protocol.md`, `validation/constraint-ledger.md`, and `validation/failure-criteria.md`.
 - Treat `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md` as the active theorem-burden ledger for Lorentz, mass, photon, and effective-metric closure claims.
+- Treat `reference/priorities/braid-mass-response-map/braid-mass-response-map.md` as the active mass-side ledger for $E_{\text{internal}}(A)$, $\zeta(A)$, exposed inertial-response trace, and $\mathcal{M}_{\text{sea}}^{ab}$.
 
 ## Core Responsibilities
 
@@ -16,24 +17,27 @@ Provide the symmetry, invariant, and conservation-law backbone for $\mathbb{A}\m
 - Identify the exact global symmetry group of the microscopic theory, beginning with $E(3)\times\mathbb{R}$ time translation and the allowed discrete symmetries.
 - Derive the corresponding delay-system invariants for total polarity, momentum, angular momentum, and energy-like quantities, including wake or history-channel terms when the local particle-only expression is incomplete.
 - State which invariants survive self-hit, which require regularization, and which are only meaningful on closed branch charts.
+- Keep exact substrate invariants separate from effective gauge, Lorentz, metric, and sector symmetries until a declared observer-export map supplies the latter.
 
 ### Delay-system Noether framework
 
 - Determine whether the causal-action functional supports a genuine variational Noether theorem for state-dependent delays and self-hit.
 - If a local action is impossible, formulate the weakest correct quasi-Noether replacement with explicit hypotheses, boundary terms, and failure modes.
-- Supply Sol with conserved or nearly conserved quantities that can be audited in simulations and certificate packets.
+- Supply conserved or nearly conserved quantities that can be audited in simulations and certificate packets.
 
 ### Effective symmetry handoff
 
 - Classify which symmetries are substrate-level, medium-level, assembly-level, and observer-level.
 - Explain how local Lorentz behavior, gauge-like redundancy, and effective diffeomorphism invariance enter as closure targets rather than fundamental postulates.
 - Police the distinction between primitive wake speed $c_f$, Noether sea dressed speed $c_{\text{eff}}$, photon-channel speed $c_\gamma$, and measured asymptotic speed $c_0$.
+- Require mass, photon, metric, and gauge handoffs to report the symmetry rows consumed from the same retained branch record, rather than inventing independent conservation statements for each channel.
 
 ### Bifurcations and invariant branch labels
 
 - Formalize separator events, self-hit onset, and deterministic multistability as symmetry and branch-ledger problems.
 - Identify which quantities remain invariant across coexisting attractor branches and which can jump by signed-degree, parity, or root-count changes.
 - Support the $A_0$ branch certificate by specifying which root-ledger and Floquet quantities count as invariant evidence rather than numerical artifacts.
+- Specify how event ledgers close across reactions, photon emission/absorption, pair channels, and medium exchange before a conservation statement is promoted.
 
 ## Deliverables
 
@@ -41,6 +45,7 @@ Provide the symmetry, invariant, and conservation-law backbone for $\mathbb{A}\m
 - **Delay Noether Ledger**: conserved, quasi-conserved, and broken quantities for the master equation and causal-action functional.
 - **Branch-Invariant Checklist**: root-count, parity, Floquet, shielding, and medium-response quantities that $A_0$ and later certificates must report.
 - **Effective Symmetry Handoff**: clear conditions under which Lorentz, gauge, metric, and conservation language may be used in observer-level prose.
+- **Event-Ledger Conservation Packet**: energy, momentum, angular momentum, polarity, wake, medium, and remnant rows needed for reactions and photon gates.
 
 ## Failure Conditions
 

@@ -34,17 +34,13 @@ Ask what a substrate-first or assembly-first path could have looked like at the 
 
 This is where the question of missed opportunity should become precise. If $\mathbb{A}\mathbb{A}\mathbb{A}$ looks retrospectively accessible by about 1900, was the obstacle mainly mathematical, experimental, philosophical, sociological, or architectural? Was the missing move the absence of architrinos, the absence of a causal-root ledger, the absence of self-hit branch analysis, the absence of Noether sea language, or the absence of a reason to treat matter and medium as one ontology?
 
-### Why Was The Miss Rational Then?
+### Why The Miss Was Rational And Why It Persisted
 
-Explain why the dominant choice was reasonable under the constraints of its time. What would the substrate path have had to prove, and why would it have looked underdeveloped, metaphysical, regressive, or computationally intractable? Which failures of earlier media, ether, vortex, hidden-variable, or compositeness programs made the field distrust the very class of explanation that a later architecture might rehabilitate?
+Explain why the dominant choice was reasonable under the constraints of its time, and why later success made the deeper architecture harder, not easier, to see. What would the substrate path have had to prove, and why would it have looked underdeveloped, metaphysical, regressive, or computationally intractable? Which failures of earlier media, ether, vortex, hidden-variable, or compositeness programs made the field distrust the very class of explanation that a later architecture might rehabilitate?
 
 This question prevents retrospective triumphalism. A near miss is not the same thing as a blunder. Many rejected paths were rejected for good local reasons. The difficult historical issue is whether those reasons remained decisive after later discoveries changed the admissible state space.
 
-### Why Did The Miss Persist?
-
-Trace how later success made the deeper architecture harder, not easier, to see. Special relativity made observer invariance look foundational. General relativity made geometry look ontological. Quantum mechanics made probability and state-space formalism operationally dominant. Quantum field theory and the Standard Model made continuum gauge precision the main language of particle physics. Lambda-CDM made fitted cosmic reconstruction into the default grammar of cosmology.
-
-Each success solved a real problem and raised the cost of reopening the substrate question. A perspective should therefore ask how intellectual lock-in accumulated: through equations, instrumentation, curricula, journal standards, metaphysical caution, and the sheer reliability of inherited formalisms inside their tested domains.
+Then trace how intellectual lock-in accumulated. Special relativity made observer invariance look foundational. General relativity made geometry look ontological. Quantum mechanics made probability and state-space formalism operationally dominant. Quantum field theory and the Standard Model made continuum gauge precision the main language of particle physics. Lambda-CDM made fitted cosmic reconstruction into the default grammar of cosmology. Each success solved a real problem and raised the cost of reopening the substrate question through equations, instrumentation, curricula, journal standards, metaphysical caution, and the reliability of inherited formalisms inside their tested domains.
 
 ### What Moves From Ontology To Description?
 

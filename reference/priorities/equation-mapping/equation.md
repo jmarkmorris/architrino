@@ -224,7 +224,15 @@ R_{\xi}^{(q)}(\mathbf w)
 \frac{1}{\gamma_{\star}(\mathbf w)}.
 $$
 
-The pass condition should require both residuals to use the same root ledger, speed convention, branch label, and Noether sea state.
+The pass condition should require both residuals to use the same root ledger, speed convention, branch label, and Noether sea state. The stronger Cartan-style target is a gamma-free moving coframe $e^A_u$ built from causal-root and wake-return data over the drift base, with
+
+$$
+e^0_u(\partial_t)=\lambda(u),
+\qquad
+\frac{e^\parallel_u}{e^\perp_u}=\lambda(u)^{-1}.
+$$
+
+Under that target, `EQ-02` and `EQ-03` are not two fits to the Lorentz factor. They are reciprocal readings of one coframe. The comparison $\lambda(u)=\gamma_f(u)$ is allowed only after the coframe has been constructed without using $\gamma_f$ as an input.
 
 ### Agent Target
 
@@ -274,6 +282,18 @@ p_{\mathrm{int}}^a
 \mathcal M_{\mathrm{sea}}^{ab}V_{\mathrm{cm},b}.
 $$
 
+The mass-shell row should be treated as the norm of the same moving coframe used by the clock and envelope rows. In the primitive homogeneous cell, $\mathcal M_{\mathrm{sea}}^{ab}$ is a constitutive response consumed by the coframe and mass-shell readout, not a source allowed to manufacture the Lorentz factor. A regulator-free shell diagnostic is therefore the coframe norm of a unit energy-momentum covector,
+
+$$
+\mathcal R_{\mathrm{shell}}^{\mathrm{cof}}
+=
+\left|
+\eta^{AB}\pi_A\pi_B-1
+\right|,
+$$
+
+with raw and normalized shell defects retained as diagnostics rather than acceptance handles.
+
 ### Closure Status
 
 Current `6/23 b` score: `4`.
@@ -302,9 +322,11 @@ The same extractor also consumes [same-branch-retained-domain-attempt.v1.json](.
 
 The retained-domain summary now reports `retainedRequirementStatuses`, `retainedRequirementReasons`, `domainWitnessStatuses`, `domainWitnessReasons`, and `nextBlocker`; the current direct attempt reports all retained requirements and all split/retune/overlap witnesses as `attempt`, with row and witness reasons remaining `row_not_accepted`, `support_not_accepted`, or `witness_not_accepted`. Accepted-looking rows whose source reference does not resolve to an existing file are rejected with source-not-found reasons instead of being counted as retained evidence.
 
-No score change follows from that result. `EQ-02`, `EQ-03`, and `EQ-04` still need a retained event or retained positive-width domain that binds raw row labels, inventory, role map, path history, causal roots, wake tails, energy/action, momentum/angular momentum, phase, plane orientation, response center, group velocity, Noether sea record, and binary-to-binary phase identity on the same branch chart.
+No score change follows from that result. `EQ-02`, `EQ-03`, and `EQ-04` still need a positive-width invariant cell in truncated delay-state space. The preferred evidence object is a transverse section $\Sigma_N$, first-return map $P_N$, box $B_N\subset\Sigma_N$ with $\mu_{\perp}(B_N)>0$, and Krawczyk or interval Newton inclusion $\mathcal K_{P_N}(B_N)\subset B_N$. Only on that certified support should the packet accept raw row labels, inventory, role map, path history, causal roots, wake tails, energy/action, momentum/angular momentum, phase, plane orientation, response center, group velocity, Noether sea record, and binary-to-binary phase identity on the same branch chart.
 
-[eq02-04-translating-binary-retained-record.mjs](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs) now evaluates the direct retained-record shape for $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$. The attempt fixture [eq02-04-translating-binary-retained-record-attempt.v1.json](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record-attempt.v1.json) reports `blocked_same_branch_identity`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. Its numeric residual diagnostics and four negative-control diagnostics pass for the illustrative $\beta_f=0.6$ row, but every retained-record row and witness is still `attempt`, so `EQ-02`, `EQ-03`, and `EQ-04` remain at `4`.
+[eq02-04-translating-binary-retained-record.mjs](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs) now evaluates the direct retained-record shape for $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$. The attempt fixture [eq02-04-translating-binary-retained-record-attempt.v1.json](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record-attempt.v1.json) reports `blocked_same_branch_identity`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. Its numeric residual diagnostics and four negative-control diagnostics pass for the illustrative $\beta_f=0.6$ row, but every retained-record row and witness is still `attempt`, and a single operating point is not invariant-branch evidence. `EQ-02`, `EQ-03`, and `EQ-04` remain at `4` until the support certificate persists under refinement, window-length, transverse-displacement, section-placement, and phase-permutation controls.
+
+The retained-domain fiber product is necessary but not sufficient for no-retune. The strengthened reducer should split the witness into $W_{\mathrm{supp}}$, which proves shared support on the accepted invariant cell, and $W_{\mathrm{hol}}$, which proves that all row sections are parallel transports under one connection over the drift base. The first raw-label row should therefore become a flat reference section at $u=0$ plus a recorded transport rule to $u\neq0$, not just a list of preserved labels.
 
 ## EQ-04A: Koide Charged-Lepton Mass Relation
 
@@ -372,7 +394,43 @@ M_{\ell,0}+M_{\ell,1}+M_{\ell,2}
 \right|.
 $$
 
-This row must not become a fit target. It is useful only if the same mass map that predicts the charged-lepton hierarchy also produces a small $\mathcal R_{04A}^{\mathrm{Koide}}$ after the masses are fixed.
+This row must not become a fit target. It is useful only if the same mass map that predicts the charged-lepton hierarchy also produces a small $\mathcal R_{04A}^{\mathrm{Koide}}$ after the masses are fixed by independent rows.
+
+The sharper geometric reading treats $\mathbf R_{\ell}$ as a root/coframe section. Square-root masses are the linear root coordinates and masses are their quadratic norms. With
+
+$$
+\mathbf R_{\ell}
+=
+R_d\hat{\mathbf d}
++\mathbf R_{\mathrm{tr}},
+$$
+
+where $\mathbf R_{\mathrm{tr}}$ is the traceless generation-plane component, the Koide angle is the moment-map/equipartition condition
+
+$$
+\mathcal J_K
+=
+\lVert\mathbf R_{\mathrm{tr}}\rVert^2
+-
+\left|R_d\right|^2
+=0.
+$$
+
+This is a useful theorem target only after the charged-lepton generation-by-shielding map fixes one transported root section. Until then it is a diagnostic, not a derived invariant.
+
+The first comparison is a frozen-parameter residual, not an invariant claim. If $\hat\theta_M$ is the already-fixed mass-map parameter set and $\Sigma_M$ is the propagated mass-readout uncertainty, the packet should report the induced band for
+
+$$
+\cos^2\theta_{\ell}(\hat\theta_M)
+=
+\frac{
+\left(\mathbf R_{\ell}(\hat\theta_M)\cdot\hat{\mathbf d}\right)^2
+}{
+\lVert\mathbf R_{\ell}(\hat\theta_M)\rVert^2
+}.
+$$
+
+A hit requires the band to land near $1/2$ while remaining narrow enough that generic nearby mass maps would miss. A miss under the same frozen map is also a useful result. Only after multiple fixed branch-family predictions should this become a family statistic, and only after a generation-map derivation should it be called an invariant.
 
 ### Closure Status
 
@@ -387,6 +445,7 @@ A score-moving packet must show:
 - one shared charged-lepton branch family $A_{\ell,0}$, $A_{\ell,1}$, $A_{\ell,2}$;
 - one exposure, shielding, internal-energy, and Noether sea response map for all three charged leptons;
 - declared mass convention and scale;
+- propagated uncertainty or interval band for the mass-root angle;
 - no direct tuning to $Q_{\ell}=2/3$ or its inverse $3/2$ form;
 - compatibility with the `EQ-04` mass-shell response and the broader generation-mass hierarchy;
 - quark non-agreement treated as expected strong-sector contamination, not as an automatic failure.

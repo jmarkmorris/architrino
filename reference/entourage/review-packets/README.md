@@ -16,8 +16,10 @@ This folder holds self-contained packets for outside-style entourage review. Eac
 | [henri-poincare-retained-orbit-reduction-response-2026-06-24.md](henri-poincare-retained-orbit-reduction-response-2026-06-24.md) | Henri Poincare | Source response integrated |
 | [terence-tao-constant-delay-action-period-2026-06-24.md](terence-tao-constant-delay-action-period-2026-06-24.md) | Terence Tao | Response integrated |
 | [terence-tao-constant-delay-action-period-response-2026-06-24.md](terence-tao-constant-delay-action-period-response-2026-06-24.md) | Terence Tao | Source response integrated |
-| [andrey-kolmogorov-eq02-04a-retained-evidence-2026-06-24.md](andrey-kolmogorov-eq02-04a-retained-evidence-2026-06-24.md) | Andrey Kolmogorov | Ready for review |
-| [elie-cartan-eq02-04a-retained-evidence-2026-06-24.md](elie-cartan-eq02-04a-retained-evidence-2026-06-24.md) | Elie Cartan | Ready for review |
+| [andrey-kolmogorov-eq02-04a-retained-evidence-2026-06-24.md](andrey-kolmogorov-eq02-04a-retained-evidence-2026-06-24.md) | Andrey Kolmogorov | Response integrated |
+| [andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md](andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md) | Andrey Kolmogorov | Source response integrated |
+| [elie-cartan-eq02-04a-retained-evidence-2026-06-24.md](elie-cartan-eq02-04a-retained-evidence-2026-06-24.md) | Elie Cartan | Response integrated |
+| [elie-cartan-eq02-04a-retained-evidence-response-2026-06-24.md](elie-cartan-eq02-04a-retained-evidence-response-2026-06-24.md) | Elie Cartan | Source response integrated |
 
 ## Packet Discipline
 

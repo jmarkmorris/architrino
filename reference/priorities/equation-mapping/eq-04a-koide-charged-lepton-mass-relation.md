@@ -241,6 +241,82 @@ $$
 
 The residual is admissible only after the charged-lepton masses have been fixed by the shared mass map. If $\theta$ is chosen by minimizing $\mathcal R_{04A}^{\mathrm{Koide}}$ directly, the packet is a comparison fit and cannot raise the score.
 
+## Frozen-Parameter Prediction Rule
+
+The first serious Koide use is a frozen-parameter post-prediction residual. The mass map must be fixed by independent branch, mass-shell, exposure, shielding, and Noether sea response rows before the Koide angle is evaluated. Let $\hat\theta_M$ denote the already-fixed mass-map parameters and let $\Sigma_M$ denote the propagated uncertainty or interval enclosure of the three mass readouts. The admissible comparison is
+
+$$
+\cos^2\theta_{\ell}(\hat\theta_M)
+=
+\frac{
+\left(\mathbf R_{\ell}(\hat\theta_M)\cdot\hat{\mathbf d}\right)^2
+}{
+\lVert\mathbf R_{\ell}(\hat\theta_M)\rVert^2
+}
+\quad
+\text{with propagated band}\quad
+\Delta_{\theta}[\Sigma_M].
+$$
+
+A disciplined hit requires
+
+$$
+\left|
+\cos^2\theta_{\ell}(\hat\theta_M)-\frac{1}{2}
+\right|
+\le
+\Delta_{\theta}[\Sigma_M],
+$$
+
+with $\Delta_{\theta}$ narrow enough that generic nearby mass maps would miss. A disciplined miss is the same frozen calculation landing outside the propagated band. A broad band that makes many unrelated mass triples acceptable is not evidence.
+
+The claim ladder is:
+
+1. **Residual:** one frozen mass triplet is checked after prediction.
+2. **Family statistic:** a branch family predicts multiple fixed mass triples with no per-state Koide parameter.
+3. **Invariant:** the $45^\circ$ mass-root angle is derived from the generation map itself.
+
+This packet is currently at the residual stage. It should not call Koide an invariant until the same charged-lepton branch family proves the angle across its generation map without adding a free angle or a post hoc scale handle.
+
+## Mass-Root Bundle And Moment-Map Diagnostic
+
+The Cartan-style strengthening is to treat $\mathbf R_{\ell}$ as the transported object, not the mass vector. In this reading, each square-root mass is a root coframe-leg length or amplitude-like branch readout, and the mass is its quadratic norm:
+
+$$
+M_{\ell,g}
+=
+\lVert R_{\ell,g}\rVert^2.
+$$
+
+That makes $\sqrt M$ the natural linear coordinate in the root/coframe bundle, while $M$ remains the scalar norm read by the exposed mass map. The Koide angle should therefore be tested on the root section
+
+$$
+\mathbf R_{\ell}
+=
+R_d\hat{\mathbf d}
++\mathbf R_{\mathrm{tr}},
+\qquad
+\mathbf R_{\mathrm{tr}}
+=
+\mathbf R_{\ell}
+-
+\left(\mathbf R_{\ell}\cdot\hat{\mathbf d}\right)\hat{\mathbf d},
+$$
+
+where $\hat{\mathbf d}=(1,1,1)/\sqrt3$ is the democratic direction and $\mathbf R_{\mathrm{tr}}$ lies in the traceless two-plane. The moment-map/equipartition diagnostic is
+
+$$
+\mathcal J_K
+=
+\lVert \mathbf R_{\mathrm{tr}}\rVert^2
+-
+\left|
+R_d
+\right|^2.
+$$
+
+The Koide angle condition is exactly $\mathcal J_K=0$: the root vector splits its squared norm equally between the democratic trace direction and the traceless generation plane. This is a stronger geometric target than matching the scalar ratio after the fact, but it is still not an accepted derivation. It becomes evidence only if the charged-lepton generation-by-shielding map first fixes one root section and then the moment-map residual vanishes without adding a Koide angle handle.
+
 ## No-Retune Witness
 
 The packet should report a hidden-retune witness:
@@ -276,7 +352,8 @@ To move above `1`, the packet needs:
 - an accepted or attempt-level charged-lepton branch family $A_{\ell,0}$, $A_{\ell,1}$, $A_{\ell,2}$ with declared generation map;
 - one mass readout $M_{\ell,g}(\theta)$ for all three charged leptons;
 - a declared mass convention and scale;
-- a Koide residual computed after the mass map is fixed;
+- a Koide residual computed after the mass map is fixed by independent rows;
+- a propagated uncertainty or interval band for $\cos^2\theta_{\ell}$ narrow enough to make the residual falsifiable;
 - the angle residual $\mathcal R_{04A}^{\mathrm{angle}}$ reported as a geometric diagnostic;
 - a hidden-retune witness showing no direct Koide tuning;
 - compatibility with `EQ-04` mass-shell response and the broader generation-mass hierarchy.
@@ -293,9 +370,11 @@ To move toward `5`, the same branch family must derive the mass triplet and the 
 | `koide.quark_overreach` | The packet demands quark agreement without strong-sector contamination terms. |
 | `koide.mass_shell_disconnect` | The Koide row is detached from the `EQ-04` mass-shell and internal-energy response. |
 | `koide.accepted_branch_missing` | The Koide residual is evaluated before a retained charged-lepton branch family and shared mass-shell carrier are accepted. |
+| `koide.error_band_too_wide` | The propagated mass uncertainty admits broad unrelated mass triples, so an apparent hit is not falsifiable. |
+| `koide.invariant_overclaim` | A single frozen residual or branch-family statistic is described as a derived invariant before the generation map proves it. |
 
 ## First Concrete Artifact
 
-Build a small fail-closed `EQ-04A` residual packet that consumes three charged-lepton masses from the same generation-by-shielding record, computes $\mathcal R_{04A}^{\mathrm{Koide}}$ and $\mathcal R_{04A}^{\mathrm{angle}}$, and reports `no_score_increase` unless the masses come from a declared non-Koide mass map with an accepted or explicitly inherited `EQ-04` mass-shell carrier.
+Build a small fail-closed `EQ-04A` residual packet that consumes three charged-lepton masses from the same generation-by-shielding record, computes $\mathcal R_{04A}^{\mathrm{Koide}}$ and $\mathcal R_{04A}^{\mathrm{angle}}$, propagates the mass-readout uncertainty to $\cos^2\theta_{\ell}$, and reports `no_score_increase` unless the masses come from a declared non-Koide mass map with an accepted or explicitly inherited `EQ-04` mass-shell carrier.
 
 The first useful result is a disciplined miss or hit. A disciplined miss weakens the idea that generation lifting alone tightly fixes the charged-lepton triplet. A disciplined hit would make Koide a strong clue that the exposure map has hidden geometric rigidity, especially if the $45^\circ$ mass-root angle is produced by branch geometry rather than by tuning the masses.
