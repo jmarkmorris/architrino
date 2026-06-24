@@ -89,7 +89,7 @@ R_{\mathrm{shape}}^{\mathrm{bin}}(u)
 \gamma_f(u)=\left(1-\frac{u^2}{c_f^2}\right)^{-1/2}.
 $$
 
-This packet extends that triple into the `EQ-02` through `EQ-04` same-record residual so the Lorentz rows and mass-shell rows cannot be tuned separately.
+This packet extends that triple into the `EQ-02` through `EQ-04` same-record residual so the Lorentz rows and mass-shell rows are forced onto one retained support before no-retune is tested. Same-record support is necessary, but the connection witness $W_{\mathrm{hol}}$ is what rules out separately tuned fibers over that support.
 
 ## Retained Record To Populate
 
@@ -120,7 +120,7 @@ $$
 \right).
 $$
 
-The distinction is structural rather than ontological: $\mathcal C_{02\text{-}04}^{\mathrm{bin}}$ is the common carrier that must not be retuned between rows, while $\Theta_{02\text{-}04}^{\mathrm{bin}}$ is the complete same-record object used by the residual evaluator. Every clock, envelope, two-way signal, energy, momentum, rest-mass, mass-shell, and medium-response row must therefore be a declared projection of $\mathcal C_{02\text{-}04}^{\mathrm{bin}}$ or a declared projection of $\Theta_{02\text{-}04}^{\mathrm{bin}}$ whose first shared dependency is that same carrier.
+The distinction is structural rather than ontological: $\mathcal C_{02\text{-}04}^{\mathrm{bin}}$ is the common carrier on which support sharing is tested, while $\Theta_{02\text{-}04}^{\mathrm{bin}}$ is the complete same-record object used by the residual evaluator. Every clock, envelope, two-way signal, energy, momentum, rest-mass, mass-shell, and medium-response row must therefore be a declared projection of $\mathcal C_{02\text{-}04}^{\mathrm{bin}}$ or a declared projection of $\Theta_{02\text{-}04}^{\mathrm{bin}}$ whose first shared dependency is that same carrier. The no-retune claim still requires $W_{\mathrm{hol}}=0$ on the same support.
 
 The branch chart is
 
@@ -405,7 +405,7 @@ d_b(b_T,b_{\xi})
 +d_M(M_{0,T},M_{0,E}).
 $$
 
-It reports whether the packet secretly changed the branch ledger, Noether sea cell, speed convention, or rest-mass row between observables. The pass condition requires
+It reports whether the packet visibly changed the branch ledger, Noether sea cell, speed convention, or rest-mass row between observables. This is a support-and-row consistency witness, not the final no-retune certificate. The pass condition requires
 
 $$
 \mathcal S_{\mathrm{root}}^{02\text{-}04}(u)=0,
@@ -413,7 +413,7 @@ $$
 \mathcal S_{\mathrm{retune}}^{02\text{-}04}(u)=0,
 $$
 
-before any small residual is interpreted as a physical Lorentz or mass-map leakage.
+before any small residual is interpreted as a physical Lorentz or mass-map leakage; $W_{\mathrm{hol}}=0$ is still required before the row family can be treated as transported rather than co-fitted.
 
 ## Outputs Required From The First Calculation
 
@@ -527,7 +527,7 @@ node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs --s
 
 It consumes [eq02-04-translating-binary-retained-record-attempt.v1.json](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record-attempt.v1.json), inherits the same-branch identity result from [same-branch-retained-domain-attempt.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json), and evaluates the retained-record residual shape for `EQ-02` through `EQ-04`.
 
-The current attempt returns `status=blocked_same_branch_identity`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. Its drift row has `beta_f=0.6` and `gamma_f=1.25`. The arithmetic diagnostics for clock, envelope, gamma-free coframe reciprocity, two-way signal, energy, exposure, momentum, rest mass, mass shell, medium response, same-root conservation, root starvation, support witness, holonomy witness, split witness, and retune witness pass numerically. The separate `coframeExtraction` diagnostic is `not_evaluated`, because the current row has declared reciprocal legs but no accepted wake-return extraction evidence. The six negative controls pass as diagnostics: `clock_only_retune`, `envelope_only_retune`, `velocity_dependent_rest_mass`, `medium_response_compensator`, `gamma_inserted_coframe`, and `reciprocal_unextracted_coframe`. None of this is score evidence because all 15 retained-record rows and all four local witnesses are still `attempt`. More sharply, a single operating point is not retained-branch evidence; it is one trajectory/configuration sample until an invariant support is certified.
+The current attempt returns `status=blocked_same_branch_identity`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. Its drift row has `beta_f=0.6` and `gamma_f=1.25`. The arithmetic diagnostics for clock, envelope, gamma-free coframe reciprocity, two-way signal, energy, exposure, momentum, rest mass, mass shell, medium response, same-root conservation, root starvation, support witness, holonomy witness, split witness, and retune witness pass numerically. These numerical witness diagnostics are not accepted $W_{\mathrm{supp}}$ or $W_{\mathrm{hol}}$ evidence. The separate `coframeExtraction` diagnostic is `not_evaluated`, because the current row has declared reciprocal legs but no accepted wake-return extraction evidence. The six negative controls pass as diagnostics: `clock_only_retune`, `envelope_only_retune`, `velocity_dependent_rest_mass`, `medium_response_compensator`, `gamma_inserted_coframe`, and `reciprocal_unextracted_coframe`. None of this is score evidence because all 15 retained-record rows and all four local witnesses are still `attempt`. More sharply, a single operating point is not retained-branch evidence; it is one trajectory/configuration sample until an invariant support is certified.
 
 This is not score evidence. It is the direct shape of the retained-record evaluator that must later be populated with accepted source-backed rows. Running
 
@@ -539,7 +539,7 @@ exits nonzero until the inherited `S_eq` same-branch identity, retained-record r
 
 ### First Accepted Invariant Cell
 
-The next pass should not add another score-neutral runner for this lane. The score-moving object is the first source-backed retained-domain fixture that makes the existing same-branch and retained-record evaluators leave `attempt` status without changing their acceptance rules.
+The next score-moving object is the first source-backed retained-domain fixture that makes the existing same-branch and retained-record evaluators leave `attempt` status without changing their acceptance rules. Score-neutral guardrails are useful only when they sharpen that acceptance path, as in the split between support-transport and holonomy-transport residuals.
 
 The atomic evidence object is an accepted invariant cell, not an isolated accepted row. Let $\mathcal H_N$ be the truncated delay-state space with declared maximal wake-memory window, discretization or collocation order $N$, and a stated truncation error. Let $\Sigma_N\subset\mathcal H_N$ be a transverse section through the candidate retained branch, and let
 
@@ -691,6 +691,8 @@ The witness split should be explicit:
 - $W_{\mathrm{hol}}$ is the connection witness. It asks whether all row sections are parallel transports of the same reference section under $\omega$.
 
 $W_{\mathrm{supp}}=0$ is necessary. $W_{\mathrm{hol}}=0$ is the real no-retune certificate. A row family that shares support but fails holonomy is still a collection of co-fitted observables.
+
+The current producer-level scalar guardrail splits support transport from holonomy transport. `connection_support_transport_residual_bound` protects the support side, while `connection_holonomy_transport_residual_bound` is the first executable shadow of $W_{\mathrm{hol}}$. Passing both scalar checks is still weaker than accepted $W_{\mathrm{hol}}=0$ because it does not yet prove that the connection was constructed as a source-backed transport of a rest reference section rather than fitted after row residuals already matched.
 
 The mass-shell row should also be expressed as a regulator-free coframe norm before normalized residuals are used. With unit energy-momentum covector
 

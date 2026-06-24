@@ -236,7 +236,7 @@ Under that target, `EQ-02` and `EQ-03` are not two fits to the Lorentz factor. T
 
 ### Agent Target
 
-Integrate the active Cartan $W_{\mathrm{hol}}$ response for the gamma-free coframe boundary before adding transport-step fields or treating reciprocal coframe arithmetic as accepted no-retune evidence.
+Define the minimum source-backed transport comparison behind $W_{\mathrm{hol}}$ after the scalar support-transport and holonomy-transport residuals have been split. Reciprocal coframe arithmetic, shared retained support, zero torsion, zero phase holonomy, and zero scalar transport residuals remain guardrails, not accepted no-retune evidence.
 
 ## EQ-04: Energy-Momentum And Rest Energy
 
@@ -339,6 +339,8 @@ The provisional connection side now also has one isolated negative control. A so
 The phase-holonomy side now has the matching isolated negative control. A source report with source-backed support, row bindings, stable refinement steps, reciprocal coframe legs, zero torsion, and zero transport residuals blocks exactly at `connection_phase_holonomy_bound` when `connection.phaseHolonomyT2` exceeds tolerance. This tests only the current producer's phase-holonomy bound; zero transport residuals in the fixture are isolation controls, not accepted Cartan transport evidence. The final role of $\Phi_{T^2}(u)$ and $W_{\mathrm{hol}}$ remains deferred until the Cartan transport packet is integrated.
 
 The gamma-free input boundary now has a source-internal negative control as well. A source report with source-backed support, row bindings, stable refinement steps, reciprocal coframe legs, zero torsion, zero phase holonomy, and zero transport residuals blocks exactly at `extraction_basis_gamma_free` when `gamma_f` is inserted into `extractionBasis`. This separates forbidden Lorentz/mass-shell/fitted inputs from ordinary unknown-basis errors and protects the coframe construction before any $W_{\mathrm{hol}}$ transport semantics are added.
+
+The scalar transport side is now split into support transport and holonomy transport. A source report with source-backed support, row bindings, stable refinement steps, reciprocal coframe legs, zero torsion, zero phase holonomy, and zero support-transport residual blocks exactly at `connection_holonomy_transport_residual_bound` when `connection.holonomyTransportResidual` exceeds tolerance. This prevents a passing support-transport residual from hiding a holonomy mismatch, but it is still only a guardrail for $W_{\mathrm{hol}}$, not a proof that the connection was constructed independently of the fitted target rows.
 
 The retained-domain fiber product is necessary but not sufficient for no-retune. The strengthened reducer should split the witness into $W_{\mathrm{supp}}$, which proves shared support on the accepted invariant cell, and $W_{\mathrm{hol}}$, which proves that all row sections are parallel transports under one connection over the drift base. The first raw-label row should therefore become a flat reference section at $u=0$ plus a recorded transport rule to $u\neq0$, not just a list of preserved labels.
 
