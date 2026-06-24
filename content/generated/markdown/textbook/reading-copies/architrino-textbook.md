@@ -73669,7 +73669,7 @@ Do not use this lane as the primary home for:
 
 #### Reading Order
 
-Start with [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) for a compact comparison of inherited frameworks. Use [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md) when a reader needs to know which inherited concepts are carried forward as mathematics, benchmarks, effective limits, or directional comparison pressure rather than as ontology. Use [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md) when a concept needs explicit stack placement and relation-type classification. Use [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) when a reader needs the philosophical distinction between primitive substance, causal wake structure, Euclidean void, Noether sea, and effective description. Use [Geometry and Ontology](../../../../markdown/aaa/philosophy-history/geometry-and-ontology.md) when a reader needs the distinction between fundamental Euclidean geometry, generated causal and assembly geometry, and recovered effective metric geometry. Use [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), and [Historical Context and Missed Opportunities](../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) to understand why closure targets matter. Use [Critical Questions](../../../../markdown/aaa/philosophy-history/critical-questions.md) for the shared prompt that luminary perspectives answer, then use [Perspectives](../../../../markdown/aaa/philosophy-history/perspectives.md) for reader-facing historical commentaries that compare $\mathbb{A}\mathbb{A}\mathbb{A}$ with prior models of nature, ask why the deeper architecture was missed, and preserve source status. Use [Philosophy of Science](../../../../markdown/aaa/philosophy-history/philosophy-of-science.md), [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md), and [Agency and Internal Causation](../../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md) for methodological and interpretive discipline.
+Start with [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) for a compact comparison of inherited frameworks. Use [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md) when a reader needs to know which inherited concepts are carried forward as mathematics, benchmarks, effective limits, or directional comparison pressure rather than as ontology. Use [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md) when a concept needs explicit stack placement and relation-type classification. Use [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) when a reader needs the philosophical distinction between primitive substance, causal wake structure, Euclidean void, Noether sea, and effective description. Use [Geometry and Ontology](../../../../markdown/aaa/philosophy-history/geometry-and-ontology.md) when a reader needs the distinction between fundamental Euclidean geometry, generated causal and assembly geometry, and recovered effective metric geometry. Use [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), and [Historical Context and Missed Opportunities](../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) to understand why closure targets matter. Use [Perspectives](../../../../markdown/aaa/philosophy-history/perspectives.md) for reader-facing historical commentaries that compare $\mathbb{A}\mathbb{A}\mathbb{A}$ with prior models of nature, answer the shared questions, ask why the deeper architecture was missed, and preserve source status. Use [Philosophy of Science](../../../../markdown/aaa/philosophy-history/philosophy-of-science.md), [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md), and [Agency and Internal Causation](../../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md) for methodological and interpretive discipline.
 
 #### Local Discipline
 
@@ -91431,52 +91431,6 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly supportive only u
 
 The long-term relevance of this section is permanent as a closure rule. Recovery would mean that at least some of the historical near-miss hypotheses are converted into explicit comparative tests, and that the theory either passes them or is revised openly. If that does not happen, the responsible verdict is that the history was suggestive but insufficient.
 
-### Critical Questions
-
-Critical Questions defines the shared prompt for the luminary perspective scene. Every perspective should be readable as one response to this same question set, so readers can compare perspectives across eras without losing source-status discipline.
-
-The prompt is interpretive, not evidentiary. It does not claim that the real historical figure would have endorsed $\mathbb{A}\mathbb{A}\mathbb{A}$, and it does not turn an imagined voice into historical testimony. It gives each response the same pressure: preserve what the inherited theory saw correctly, identify where effective description was mistaken for ontology, explain why the deeper architecture was missed, and state what the current proof program still owes.
-
-#### Standard Luminary Prompt
-
-From the counterfactual vantage of a mature $\mathbb{A}\mathbb{A}\mathbb{A}$, speak in a voice disciplined by your known intellectual sensibility and explain how the history of nature-theory changes if Marko's architecture is the deeper solution. Address what your era saw correctly, what it misplaced ontologically, why the available ingredients did not crystallize into this architecture earlier, why later theoretical successes made the architecture harder to see, and what the present proof program must still establish before the reinterpretation is earned.
-
-#### Response Contract
-
-- State the source status clearly: real statement, AI-imagined reconstruction, edited note, or mixed source.
-- Preserve the figure's known intellectual sensibility without claiming endorsement by the real person.
-- Treat inherited frameworks at their strongest before identifying their limits.
-- Separate substrate ontology, effective description, mathematical formalism, and observational inference.
-- Compare with general relativity, quantum theory, thermodynamics, the Standard Model, and Lambda-CDM when those frameworks are relevant to the chosen voice.
-- Explain why the deeper construction was historically missed, including what each successful theory made easier to see and harder to imagine.
-- State the proof burden that remains for $\mathbb{A}\mathbb{A}\mathbb{A}$ before the historical reinterpretation is earned.
-
-#### Critical Question Set
-
-##### What Did This Era See Correctly?
-
-The response should begin by granting the real achievement of the relevant era, theory, or thinker. General relativity, quantum theory, thermodynamics, the Standard Model, and Lambda-CDM are not treated as mistakes. They are treated as successful effective grammars whose survival constrains any deeper account.
-
-##### What Was Misplaced Ontologically?
-
-The response should identify where a successful description may have been lifted too high in the explanatory stack. The central contrast is between what the framework correctly computes or organizes and what it mistakenly treats as final ontology.
-
-##### Why Was The Architecture Missed?
-
-The response should ask why the available ingredients did not crystallize into $\mathbb{A}\mathbb{A}\mathbb{A}$. This includes the pre-1900 missed opportunity: Euclidean space, absolute time, waves, media, finite propagation, vortex models, and early topology were present in some form, but not joined by a retained causal-wake ledger, architrino-level dynamics, or computable assembly record.
-
-##### Why Did The Miss Persist?
-
-The response should examine how each later success narrowed the path. Relativity made effective observer geometry feel final. Quantum theory encoded phase, spin, and probability in Hilbert-space formalism. Quantum field theory and the Standard Model made gauge-field precision dominant. Lambda-CDM made fitted cosmic reconstruction operationally powerful. Each success solved real problems while making a substrate-first reconstruction less thinkable.
-
-##### What Does $\mathbb{A}\mathbb{A}\mathbb{A}$ Recover?
-
-The response should state what the mature theory would need to recover from prior models: tested relativistic behavior, quantum statistics, Standard Model phenomenology, thermodynamics, conservation laws, and cosmological observations. The inherited framework survives as a recovery target, effective limit, or comparison grammar, not as discarded history.
-
-##### What Still Must Be Proven?
-
-The response should close by naming what remains a proof obligation. A mature historical interpretation is earned only if the arithmetic, simulations, invariants, and closure proofs recover the benchmark phenomena without separate tuning or rhetorical substitution.
-
 ### Major Thinkers
 
 ---
@@ -93832,9 +93786,35 @@ The form is interpretive, not evidentiary. A perspective may speak from an imagi
 
 Use this scene for polished public commentaries that connect $\mathbb{A}\mathbb{A}\mathbb{A}$ to prior models of nature, especially general relativity, quantum theory, thermodynamics, the Standard Model, and Lambda-CDM cosmology. Each perspective should preserve source-status clarity while giving the chosen voice enough conceptual room to interpret both history and the current theory in development. When relevant, the perspective should ask why an architecture that may look available in hindsight, even by about 1900, did not crystallize then and became harder to see after each major theoretical success.
 
-##### Shared Prompt
+##### Questions
 
-Each perspective responds to the shared [Critical Questions](../../../../markdown/aaa/philosophy-history/critical-questions.md) prompt. The prompt keeps the scene coherent: every luminary perspective answers the same historical and theoretical pressures, while each voice supplies a different emphasis, sensibility, and comparison point.
+Each perspective responds to the same questions, so readers can compare perspectives across eras without losing source-status discipline. The shared prompt is:
+
+From the counterfactual vantage of a mature $\mathbb{A}\mathbb{A}\mathbb{A}$, speak in a voice disciplined by your known intellectual sensibility and explain how the history of nature-theory changes if Marko's architecture is the deeper solution. Address what your era saw correctly, what it misplaced ontologically, why the available ingredients did not crystallize into this architecture earlier, why later theoretical successes made the architecture harder to see, and what the present proof program must still establish before the reinterpretation is earned.
+
+###### What Did This Era See Correctly?
+
+The response should begin by granting the real achievement of the relevant era, theory, or thinker. General relativity, quantum theory, thermodynamics, the Standard Model, and Lambda-CDM are not treated as mistakes. They are treated as successful effective grammars whose survival constrains any deeper account.
+
+###### What Was Misplaced Ontologically?
+
+The response should identify where a successful description may have been lifted too high in the explanatory stack. The central contrast is between what the framework correctly computes or organizes and what it mistakenly treats as final ontology.
+
+###### Why Was The Architecture Missed?
+
+The response should ask why the available ingredients did not crystallize into $\mathbb{A}\mathbb{A}\mathbb{A}$. This includes the pre-1900 missed opportunity: Euclidean space, absolute time, waves, media, finite propagation, vortex models, and early topology were present in some form, but not joined by a retained causal-wake ledger, architrino-level dynamics, or computable assembly record.
+
+###### Why Did The Miss Persist?
+
+The response should examine how each later success narrowed the path. Relativity made effective observer geometry feel final. Quantum theory encoded phase, spin, and probability in Hilbert-space formalism. Quantum field theory and the Standard Model made gauge-field precision dominant. Lambda-CDM made fitted cosmic reconstruction operationally powerful. Each success solved real problems while making a substrate-first reconstruction less thinkable.
+
+###### What Does $\mathbb{A}\mathbb{A}\mathbb{A}$ Recover?
+
+The response should state what the mature theory would need to recover from prior models: tested relativistic behavior, quantum statistics, Standard Model phenomenology, thermodynamics, conservation laws, and cosmological observations. The inherited framework survives as a recovery target, effective limit, or comparison grammar, not as discarded history.
+
+###### What Still Must Be Proven?
+
+The response should close by naming what remains a proof obligation. A mature historical interpretation is earned only if the arithmetic, simulations, invariants, and closure proofs recover the benchmark phenomena without separate tuning or rhetorical substitution.
 
 ##### Perspective Index
 
@@ -93850,7 +93830,7 @@ An AI-imagined William Thurston-style perspective on how a mature $\mathbb{A}\ma
 
 **Source note:** This is an AI-imagined perspective in a William Thurston-style topological voice. It is a counterfactual historical commentary written from an imagined mature-$\mathbb{A}\mathbb{A}\mathbb{A}$ vantage. It is not a historical quotation, real interview, endorsement, attribution, or evidence about William Thurston's actual views. The mature vantage is a literary device for interpretation, not a claim that the current proof program is complete.
 
-**Shared prompt:** This perspective responds to the standard [Critical Questions](../../../../markdown/aaa/philosophy-history/critical-questions.md) prompt for luminary perspectives.
+**Shared prompt:** This perspective responds to the standard [Questions](../../../../markdown/aaa/philosophy-history/perspectives.md#questions) for luminary perspectives.
 
 ##### Perspective
 

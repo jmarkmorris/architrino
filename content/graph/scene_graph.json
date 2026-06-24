@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 534,
-      "edges": 1288,
-      "scenes": 351,
+      "nodes": 532,
+      "edges": 1286,
+      "scenes": 350,
       "markdownIndexes": 0,
-      "markdownDocs": 170,
+      "markdownDocs": 169,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2231,12 +2231,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "critical_questions",
-      "name": "Critical Questions",
-      "path": "content/scenes/philosophy_history/critical_questions.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "philosophy_history__perspectives",
       "name": "Perspectives",
       "path": "content/scenes/philosophy_history/perspectives.json",
@@ -2672,12 +2666,6 @@
       "id": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "name": "Crisis in Physics",
       "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/philosophy-history/critical-questions.md",
-      "name": "Critical Questions",
-      "path": "content/markdown/aaa/philosophy-history/critical-questions.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5257,15 +5245,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/critical_questions.json",
-      "nodeType": "scene",
-      "id": "critical_questions",
-      "name": "Critical Questions",
-      "path": "content/scenes/philosophy_history/critical_questions.json",
-      "searchTarget": "content/scenes/philosophy_history/critical_questions.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/philosophy_history/geometry_and_ontology.json",
       "nodeType": "scene",
       "id": "philosophy_history__geometry_and_ontology",
@@ -7063,15 +7042,6 @@
       "name": "Crisis in Physics",
       "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/critical-questions.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/critical-questions.md",
-      "name": "Critical Questions",
-      "path": "content/markdown/aaa/philosophy-history/critical-questions.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/critical-questions.md",
       "implicit": false
     },
     {
@@ -11491,7 +11461,7 @@
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11499,13 +11469,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/critical_questions.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11526,7 +11489,7 @@
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11540,7 +11503,7 @@
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11554,7 +11517,7 @@
       "to": "scene:content/scenes/philosophy_history/perspectives.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[13]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11568,7 +11531,7 @@
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12954,13 +12917,6 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/crisis_in_physics.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/critical_questions.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/critical-questions.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/critical_questions.json",
       "field": "scene.source.path"
     },
     {

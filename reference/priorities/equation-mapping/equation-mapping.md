@@ -69,6 +69,8 @@ Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column p
 
 [Equation Closure Pass 2026-06-24 D](equation-closure-pass-2026-06-24-d.md) adds the dedicated score-neutral `EQ-12A` constant-delay retained-orbit certificate checker. It separates the retained-orbit proof obligations from the broader Planck/alpha residual, makes $h_E$, $h_\Phi$, $h_p$, and $h_J$ readouts explicit, and blocks first at `missing_accepted_retained_orbit_reduction_row` because all certificate rows remain attempt-level.
 
+[Equation Closure Pass 2026-06-24 E](equation-closure-pass-2026-06-24-e.md) integrates the second Terence Tao-style action-period response. It demotes the scalar Hopf orbit from candidate action-unit source to scalar falsifier/scaffold, because Hopf action is generically a continuously rescalable amplitude datum. The positive `EQ-12A` target is now a mode-locked equal-frequency tri-binary relative equilibrium with middle-binary speed pinning, integer winding, four-readout coincidence, and positive Floquet margin on one retained branch. No scores change.
+
 Closure packets should be durable working files. Prefer one packet per equation as soon as the equation has enough independent material to advance on its own. Keep a tightly coupled equation group in one packet only when splitting it would obscure a shared residual, shared branch ledger, or shared Noether sea record. Continue improving each packet until it is either marked `ready` for reader-facing promotion or marked `complete` after promotion into `content/markdown/aaa`. The `Promoted?` column in [equation.md](equation.md) accepts only blank, `ready`, or `complete`.
 
 ## Discussion Capture

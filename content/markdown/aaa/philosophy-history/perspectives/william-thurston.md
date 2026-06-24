@@ -4,7 +4,7 @@
 
 **Source note:** This is an AI-imagined perspective in a William Thurston-style topological voice. It is a counterfactual historical commentary written from an imagined mature-$\mathbb{A}\mathbb{A}\mathbb{A}$ vantage. It is not a historical quotation, real interview, endorsement, attribution, or evidence about William Thurston's actual views. The mature vantage is a literary device for interpretation, not a claim that the current proof program is complete.
 
-**Shared prompt:** This perspective responds to the standard [Critical Questions](../critical-questions.md) prompt for luminary perspectives.
+**Shared prompt:** This perspective responds to the standard [Questions](../perspectives.md#questions) for luminary perspectives.
 
 ## Perspective
 

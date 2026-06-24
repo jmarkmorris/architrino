@@ -1,6 +1,6 @@
 {
   "schema": "aaa-equation-map-constant-delay-retained-orbit-input/v1",
-  "claimLevel": "EQ-12A constant-delay retained-orbit certificate attempt; score-neutral and not accepted",
+  "claimLevel": "EQ-12A constant-delay retained-orbit scaffold and scalar falsifier attempt; score-neutral and not accepted",
   "certificateId": "R_EQ12A_constant_delay_retained_orbit_attempt_0001",
   "commonCarrierId": "theta_constant_delay_retained_orbit_attempt_0001",
   "tolerances": {

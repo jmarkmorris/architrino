@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 182,
-      "sections": 1455
+      "entries": 181,
+      "sections": 1452
     }
   },
   "tocRoot": {
@@ -12634,40 +12634,6 @@
             ]
           },
           {
-            "id": "critical_questions",
-            "title": "Critical Questions",
-            "kind": "markdown-split",
-            "sceneType": "Scene-Markdown-Split",
-            "scenePath": "content/scenes/philosophy_history/critical_questions.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/critical-questions.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Standard Prompt",
-                "markdownPath": "content/markdown/aaa/philosophy-history/critical-questions.md",
-                "markdownSection": "Standard Luminary Prompt",
-                "sectionKey": "standard luminary prompt",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Response Contract",
-                "markdownPath": "content/markdown/aaa/philosophy-history/critical-questions.md",
-                "markdownSection": "Response Contract",
-                "sectionKey": "response contract",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Question Set",
-                "markdownPath": "content/markdown/aaa/philosophy-history/critical-questions.md",
-                "markdownSection": "Critical Question Set",
-                "sectionKey": "critical question set",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "major_thinkers",
             "title": "Major Thinkers",
             "kind": "markdown-tree",
@@ -13422,10 +13388,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Shared Prompt",
+                    "title": "Questions",
                     "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
-                    "markdownSection": "Shared Prompt",
-                    "sectionKey": "shared prompt",
+                    "markdownSection": "Questions",
+                    "sectionKey": "questions",
                     "headingLevel": 2
                   },
                   {
