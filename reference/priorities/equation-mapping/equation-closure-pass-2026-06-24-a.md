@@ -199,6 +199,8 @@ New rows enter the score table at `2`:
 
 The Emmy Noether-style response has been preserved as [emmy-noether-planck-alpha-response-2026-06-24.md](../../entourage/review-packets/emmy-noether-planck-alpha-response-2026-06-24.md). Its central correction is now integrated here: $h$ is the period of one retained action one-form $\vartheta$, not an independently inserted constant in $E=h\nu$, $\mathbf p=\hbar\mathbf k$, and $\oint p\,dq=nh$. The response also sharpens the blackbody proof route to maximum entropy plus mode counting, and turns running $\alpha(\mu)$ into a falsifier for any scale-dependent action period.
 
+Supersession note: [Equation Closure Pass 2026-06-24 B](equation-closure-pass-2026-06-24-b.md) refines this pass by replacing the raw history-space period target with a retained-orbit reduction, replacing the shared action/photon fiber product with a sea-state fibration, and requiring $h_\vartheta$ to be geometry-derived before blackbody or fine-structure rows consume it.
+
 ## Next Reducer
 
 The next useful reducer is not a broader constants catalog. It is the first accepted retained action one-form and period-uniqueness packet:

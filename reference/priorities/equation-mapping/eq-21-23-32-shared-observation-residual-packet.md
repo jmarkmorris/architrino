@@ -239,7 +239,11 @@ $$
 \text{ while fixing }(E,\mathbf p,\mathbf J).
 $$
 
-Finite-window $\mu_\gamma^\theta\ne0$ is a leakage diagnostic for incomplete thermal/provenance closure. It may be visible before refinement, but it must vanish in the accepted blackbody row.
+Finite-window $\mu_\gamma^\theta\ne0$ is a leakage diagnostic for incomplete thermal/provenance closure. It may be visible before refinement, but it must vanish in the accepted blackbody row. The proof order is therefore:
+
+1. no conserved photon-number current, hence $\mu_\gamma^\theta=0$;
+2. photon-channel transversality, hence the two-mode factor;
+3. maximum entropy on the resulting mode measure, hence the Planck occupancy shape.
 
 The benchmark residual is the mode-occupancy and energy-density check
 
@@ -253,7 +257,7 @@ u_i^\theta
 g_{\nu,i}^\theta h_\vartheta\nu_i\bar n_i^\theta.
 $$
 
-The row remains `2` until the same finite-window thermal record derives mode density, zero photon chemical potential, sufficient thermalization depth, and shared $h$, $T_\theta$, and $c_\gamma$ rows. [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) currently evaluates this as an attempt-level sub-residual and blocks first at `missing_accepted_theta_gamma_packet`.
+The row remains `2` until the same finite-window thermal record derives mode density, zero photon chemical potential, sufficient thermalization depth, and shared geometry-derived $h_\vartheta$, $T_\theta$, and $c_\gamma$ rows. [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) currently evaluates this as an attempt-level sub-residual and blocks first at `missing_accepted_theta_gamma_packet`.
 
 ## Projection Terms
 

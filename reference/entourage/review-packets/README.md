@@ -10,7 +10,10 @@ This folder holds self-contained packets for outside-style entourage review. Eac
 | --- | --- | --- |
 | [emmy-noether-planck-alpha-2026-06-24.md](emmy-noether-planck-alpha-2026-06-24.md) | Emmy Noether | Response integrated |
 | [emmy-noether-planck-alpha-response-2026-06-24.md](emmy-noether-planck-alpha-response-2026-06-24.md) | Emmy Noether | Source response integrated |
-| [terence-tao-period-quantization-2026-06-24.md](terence-tao-period-quantization-2026-06-24.md) | Terence Tao | Ready to submit |
+| [terence-tao-period-quantization-2026-06-24.md](terence-tao-period-quantization-2026-06-24.md) | Terence Tao | Response integrated |
+| [terence-tao-period-quantization-response-2026-06-24.md](terence-tao-period-quantization-response-2026-06-24.md) | Terence Tao | Source response integrated |
+| [henri-poincare-retained-orbit-reduction-2026-06-24.md](henri-poincare-retained-orbit-reduction-2026-06-24.md) | Henri Poincare | Response integrated |
+| [henri-poincare-retained-orbit-reduction-response-2026-06-24.md](henri-poincare-retained-orbit-reduction-response-2026-06-24.md) | Henri Poincare | Source response integrated |
 
 ## Packet Discipline
 

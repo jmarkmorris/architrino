@@ -655,68 +655,126 @@ $$
 
 ### AAA Mapping
 
-This row owns the action quantum itself. `EQ-12` may use $h\nu$ as a photon packet readout, but `EQ-12A` asks whether $h$ and $\hbar$ can be recovered as projections of one retained braid action one-form. The target is a retained nested shell braid or photon packet domain whose phase cycle, history-space action ledger, energy ledger, and angular-momentum ledger expose one shared period:
+This row owns the action quantum itself. `EQ-12` may use $h\nu$ as a photon packet readout, but `EQ-12A` asks whether $h$ and $\hbar$ can be recovered as projections of one geometry-derived retained action period. The target is no longer an abstract integrality claim on the raw delay-history space. The first executable target is now a constant-delay retained orbit with a Poincare-map and monodromy certificate, not a state-dependent delay Hessian problem.
 
 $$
 \Theta_h
 =
 \left(
+\mathcal H_\tau,
+\Phi_T,
+\Sigma,
+\mathcal U,
 \mathfrak B_{\mathrm{cyc}},
-\vartheta,
-\Omega_h,
 \gamma_0,
+\vartheta_{\mathrm{PC}},
 \mathcal L_{\mathrm{root}},
 \mathcal L_{E\mathbf p\mathbf J},
 P_\gamma,
-c_\gamma,
-\theta_{\mathrm{sea}}
+\mathcal T_\gamma
 \right).
 $$
 
-In a delayed Noether braid system, the closed-cycle action cannot be treated as a naive instantaneous $\oint p\,dq$ integral. The action row must live on an extended history space:
+Here $\mathcal H_\tau=C^1([-\tau,0])$ is the constant-delay history space with compatibility conditions, $\Phi_T$ is the period-$T$ flow, $\Sigma$ is a Poincare section, $\mathcal U=D\Phi_T$ is the monodromy operator, $\gamma_0$ is the retained periodic orbit, and $\vartheta_{\mathrm{PC}}$ is the local Poincare-Cartan one-form pulled back to that orbit. $\mathcal T_\gamma$ is the photon-channel transversality data used by the blackbody and photon rows.
+
+The first toy model should be constant-delay, nonlinear, and orbit-isolating:
 
 $$
-\Omega_h
+\ddot x(t)
 =
-\mathrm d p\wedge \mathrm d q
+-\omega^2x(t)
 +
-\int_{-\tau_{\max}}^{0}
-\mathrm d p_{\mathrm{hist}}(\sigma)
-\wedge
-\mathrm d q(\sigma)\,
-w(\sigma)\,\mathrm d\sigma,
-\qquad
-\mathrm d\vartheta=\Omega_h.
+g\,x(t-\tau)
+-
+\gamma\dot x(t)
++
+\mu x(t)\left(1-x(t)^2\right).
 $$
 
-The action unit is then the period of the one-form on the generating retained cycle:
+The state-dependent delay $\tau(x)=\tau_0+\beta x$ is deferred until the constant-delay orbit is hyperbolic-modulo-time-shift; then $\beta$ can be introduced as a persistence/continuation parameter. The reason is structural: state-dependent delay is not $C^1$ on the standard continuous history space and threatens the differentiability needed by a Hessian-based first model.
+
+For the causal retarded self-hit model, the primary finite-dimensional object is the Poincare return map and its monodromy spectrum. A variational advanced-plus-retarded replacement may later support a global Hessian or presymplectic row, but the first causal solver target should not require that structure. The action unit is the Poincare-Cartan orbit integral on the certified retained orbit:
 
 $$
 h_\vartheta
 =
-\oint_{\gamma_0}\vartheta,
+\oint_{\gamma_0}\vartheta_{\mathrm{PC}}
+=
+\int_0^T p(t)\dot q(t)\,dt,
 \qquad
 \hbar_\vartheta=\frac{h_\vartheta}{2\pi}.
 $$
 
-The useful residual is therefore not a stack of independently inserted $h$ comparisons. It is a period-uniqueness residual for the projections of $\vartheta$:
+The theorem target should be stated as a Retained-Orbit Birth and Action-Readout Lemma. A weak first version says: if the constant-delay equation has a simple Hopf crossing for
+
+$$
+\Delta(\lambda)
+=
+\lambda^2+\gamma\lambda+\omega^2-g e^{-\lambda\tau}=0,
+$$
+
+all other roots are stable, the crossing is transverse, the first Lyapunov coefficient $\ell_1$ is nonzero, and the monodromy certificate has exactly one unit Floquet multiplier with the rest bounded inside the unit disk,
+
+$$
+\mathrm{spec}(\mathcal U)
+=
+\{1\}\cup\{\mu_k\},
+\qquad
+|\mu_k|\le\rho<1,
+\qquad
+1-\rho\ge\delta_{\mathrm{gap}},
+$$
+
+then $\gamma_0$ is isolated and hyperbolic modulo time shift, the local Poincare-Cartan integral $h_\vartheta=\oint_{\gamma_0}\vartheta_{\mathrm{PC}}$ is meaningful on the retained orbit, and readout independence can be tested by refinement. Integrality remains a retained-orbit selection condition, not a theorem on raw history space.
+
+The useful residual is therefore not a stack of independently inserted $h$ comparisons. It is a retained-orbit and readout residual:
 
 $$
 \mathcal R_h^\vartheta(\Theta_h)
 =
 \left(
+\mathcal R_{\mathrm{red}},
+\mathcal R_{\mathrm{Hopf}},
+\mathcal R_{\ell_1},
+\mathcal R_{\mathrm{Floquet}},
 \frac{E_\gamma-h_\vartheta\nu}{E_\gamma+\varepsilon_E},
 \frac{\|\mathbf p_\gamma-\hbar_\vartheta\mathbf k\|}{\|\mathbf p_\gamma\|+\varepsilon_p},
 \frac{\left|\oint_\gamma\vartheta-nh_\vartheta\right|}{\left|\oint_\gamma\vartheta\right|+\varepsilon_I},
 \frac{|J-n\hbar_\vartheta|}{|J|+\varepsilon_J},
 \max_{a,b}
 \frac{|h_a-h_b|}{|h_\vartheta|+\varepsilon_h},
+\mathcal R_{\mathrm{ref}},
+\left|\frac{\partial h_\vartheta}{\partial g}\right|_{\mathrm{fam}},
 \mathcal H_{\mathrm{hist}},
+\mathcal N_{\mathrm{res}},
 \mathcal S_{\mathrm{retune}}
 \right).
 $$
 
-Here $h_a$ are the action periods extracted from the energy, momentum, and angular-momentum readouts. The history-balance term requires wake storage and flux to close over a retained period:
+Here $\mathcal R_{\mathrm{red}}$ carries the finite-dimensional Poincare/monodromy reduction and fibration-constancy residuals; $\mathcal R_{\mathrm{Hopf}}$ carries the simple-crossing, transversality, and stable-root checks; $\mathcal R_{\ell_1}$ rejects the degenerate Bautin case $\ell_1=0$; $\mathcal R_{\mathrm{Floquet}}$ rejects extra near-unit multipliers; and $\mathcal R_{\mathrm{ref}}$ checks collocation refinement, Poincare-section relocation, and retained-mode stability. The $h_a$ are the action periods extracted from the energy-clock, phase-loop, momentum, and angular-momentum readouts. Readout independence is not automatic; it is accepted only when $h_E=E_\gamma/\nu$ and $h_\Phi=\oint_{\gamma_0}p\,dq$ converge to the same value under refinement and section relocation. The non-resonance certificate $\mathcal N_{\mathrm{res}}$ should bound the relevant small divisors:
+
+$$
+\mathcal N_{\mathrm{res}}
+=
+\frac{\max(0,\delta_{\min}-\min_k |\Delta_k|)}
+{\delta_{\min}+\varepsilon_\delta}.
+$$
+
+The history-balance term is secondary to the monodromy certificate. For the constant-delay model it should measure return of the history-energy functional over one retained period; for the causal dissipative model it measures stable self-hit energy throughput rather than exact closure:
+
+$$
+\frac{d}{dt}
+\left(
+E_{\mathrm{inst}}
++
+\int_{-\tau}^{0}\mathcal P(t,\sigma)\dot q(t+\sigma)\,d\sigma
+\right)
++
+\nabla\cdot\mathbf\Phi_{\mathrm{flux}}
+=0.
+$$
+
+The corresponding residual over a retained period is:
 
 $$
 \mathcal H_{\mathrm{hist}}
@@ -731,30 +789,17 @@ $$
 {|h_\vartheta|+\varepsilon_h}.
 $$
 
-This is also the natural home for the $h$ unit of angular momentum: equal action per retained cycle must be reconciled with the tri-binary phase and angular-momentum ledger before $h$ is treated as more than a measured conversion constant. The theorem target is a Period Quantization Lemma: on a retained closed branch chart, the de Rham class of $\vartheta$ should be integral and the generator period $h_\vartheta$ should be independent of which conjugate readout projects it. The open burden is proving that self-hit and history-space holonomy do not introduce irrational or readout-dependent periods.
+This is also the natural home for the $h$ unit of angular momentum: equal action per retained cycle must be reconciled with the tri-binary phase and angular-momentum ledger before $h$ is treated as more than a measured conversion constant. The open burden is no longer "prove integrality in raw history space" or "force a Hessian onto a causal self-hit equation." It is: produce a constant-delay retained orbit, prove it is isolated by $\ell_1\ne0$ and the monodromy gap, compute $h_\vartheta$ from Poincare-Cartan geometry, compare energy-clock and phase-loop readouts under refinement, then run a $g$- or $\mu$-sweep showing $h_\vartheta$ is not a fitted constant.
 
-The shared Planck/blackbody/coupling carrier must also be a fiber product, not a loose product of rows:
+The shared Planck/blackbody/coupling structure should be a sea-state fibration rather than a fiber product over a carrier that includes all constitutive inputs. Let $\mathcal M_{\mathrm{PC}}$ denote the local finite-dimensional carrier supplied by the Poincare/monodromy reduction. Then
 
 $$
-\Theta_\star
-=
-\left(
-\vartheta,
-P_\gamma,
-c_\gamma,
-\theta_{\mathrm{sea}}
-\right),
+\pi:\mathcal M_{\mathrm{PC}}\to B_{\mathrm{sea}},
 \qquad
-\Theta_{h\alpha}
-=
-\Theta_h
-\times_{\Theta_\star}
-\Theta_{\mathrm{bb}}
-\times_{\Theta_\star}
-\Theta_\alpha.
+\vartheta_{\mathrm{PC}}\in\Omega^1(\mathcal M_{\mathrm{PC}}/B_{\mathrm{sea}}).
 $$
 
-Under this form, $\mathcal S_{\mathrm{retune}}$ is the cocycle obstruction to gluing the three projections over one $\Theta_\star$.
+The Noether sea state, $c_\gamma$, and response kernels are base or constitutive rows. The common action object is the fiberwise Poincare-Cartan period plus photon-channel transversality data. The scale-invariance target becomes local constancy of $h_\vartheta$ over the relevant base patch; running $\alpha(\mu)$ may change only the electromagnetic response kernel and threshold inventory.
 
 ### Closure Status
 
@@ -762,7 +807,7 @@ Current `6/23 b` score: `2`.
 
 The row is high priority because many mature equations already consume $h$ or $\hbar$. It remains low-scored because the current material uses those constants as bridge readouts or residual inputs; it does not yet derive the action unit from retained braid geometry.
 
-Executable status: [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) evaluates the score-neutral Planck/alpha residual family for `EQ-12A`, `EQ-22A`, and `EQ-26A`. The attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json) is designed to pass the normalized Planck-action, period-uniqueness, blackbody, $\alpha(\mu)$, source-provenance, hidden-retune, and negative-control diagnostics while remaining score-neutral until accepted retained rows exist.
+Executable status: [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) evaluates the score-neutral Planck/alpha residual family for `EQ-12A`, `EQ-22A`, and `EQ-26A`. The attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json) is designed to pass the normalized constant-delay retained-orbit, Hopf birth, first-Lyapunov, monodromy/Floquet, Poincare-Cartan, readout-refinement, parameter-sweep, blackbody, $\alpha(\mu)$, source-provenance, hidden-retune, and negative-control diagnostics while remaining score-neutral until accepted retained rows exist.
 
 ### Closure Burden
 
@@ -770,15 +815,23 @@ The row must recover:
 
 - one action unit from a retained closed cycle, not from assigning $h$ in each comparison equation;
 - one $\hbar=h/(2\pi)$ relation shared by phase, spin/angular-momentum, and photon packet rows;
-- the extended history-space symplectic row $\Omega_h$ and action one-form $\vartheta$, including wake-storage and radiated/self-hit flux closure over one retained period;
-- a period-uniqueness certificate showing that energy, momentum, and angular-momentum readouts extract the same $h_\vartheta$;
+- a constant-delay retained-orbit model before state-dependent delay is reintroduced by persistence;
+- a Hopf birth row with simple imaginary crossing, transversality, and all other roots stable;
+- a first Lyapunov coefficient row with $\ell_1\ne0$, rejecting the Bautin/continuum case;
+- a monodromy/Floquet row with exactly one unit multiplier and a positive gap to the remaining spectrum;
+- a Poincare section and local Poincare-Cartan orbit integral row;
+- an energy-clock versus phase-loop readout certificate showing $h_E$ and $h_\Phi$ converge under refinement and Poincare-section relocation;
+- a parameter-sweep invariance row showing $h_\vartheta$ is not fitted as $g$, $\mu$, $E$, and $\nu$ move;
+- a history-energy throughput row whose numerical violation is $\mathcal H_{\mathrm{hist}}$;
+- a non-resonance certificate for Floquet/slaved history modes and tri-binary frequency small divisors;
+- a geometry-derived action period, not an action period inferred from $\alpha$ data;
 - common $h$, $\hbar$, $c_\gamma$, event-ledger, and Noether sea rows across `EQ-12`, `EQ-22A`, `EQ-26`, `EQ-26A`, and `EQ-28`;
 - a no-hidden-retune witness showing that action, frequency, momentum, and angular momentum are not fitted independently;
-- a $\Theta_\star$ fiber-product witness binding $\Theta_h$, $\Theta_{\mathrm{bb}}$, and $\Theta_\alpha$ through the same action one-form, photon packet, photon-channel speed, and Noether sea state.
+- a sea-state fibration row $\pi:\mathcal M_{\mathrm{PC}}\to B_{\mathrm{sea}}$ showing that $h_\vartheta$ is locally constant over the base patch used by the blackbody and coupling projections.
 
 ### Agent Target
 
-Build the first retained cycle-action row: declare $\mathfrak B_{\mathrm{cyc}}$, define $\vartheta$ on the extended history space, compute $h_\vartheta=\oint_{\gamma_0}\vartheta$, bind it to $\mathcal L_{E\mathbf p\mathbf J}$, and test whether the same $h_\vartheta$ and $\hbar_\vartheta$ close photon energy, de Broglie momentum, angular-momentum, wake-storage, and flux readouts on one record.
+Build the first retained-orbit reduction row: solve the constant-delay Hopf equations, compute $\ell_1$, continue the bifurcated orbit to finite amplitude, compute the monodromy spectrum, verify exactly one unit Floquet multiplier, compute $h_E=E_\gamma/\nu$ and $h_\Phi=\oint_{\gamma_0}p\,dq$, refine and relocate the Poincare section, and run a $g$- or $\mu$-sweep to test whether $h_\vartheta$ remains invariant while $E$ and $\nu$ move.
 
 ## EQ-14 Through EQ-16: Quantum Wave, Spinor, And Gauge Equations
 

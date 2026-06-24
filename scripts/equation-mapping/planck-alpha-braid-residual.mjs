@@ -14,11 +14,22 @@ const TWO_PI = 2 * Math.PI;
 
 const REQUIRED_ROWS = [
   "theta_gamma_packet",
-  "theta_star_common_action_photon_carrier",
+  "retained_orbit_reduction_row",
+  "constant_delay_self_hit_model_row",
+  "hopf_retained_orbit_birth_row",
+  "first_lyapunov_coefficient_row",
+  "monodromy_floquet_certificate",
+  "poincare_section_reduction_row",
+  "poincare_cartan_orbit_integral_row",
+  "energy_clock_readout_row",
+  "phase_loop_area_readout_row",
+  "readout_refinement_independence_row",
+  "parameter_sweep_action_invariance_row",
+  "history_energy_throughput_row",
+  "non_resonance_certificate",
+  "sea_state_fibration_row",
+  "geometry_derived_action_period_row",
   "planck_braid_carrier",
-  "braid_action_one_form_row",
-  "history_space_symplectic_row",
-  "period_uniqueness_row",
   "photon_action_quantum_row",
   "phase_cycle_angular_momentum_row",
   "photon_packet_row",
@@ -30,7 +41,6 @@ const REQUIRED_ROWS = [
   "local_photon_speed_row",
   "vacuum_polarization_wake_dressing_row",
   "energy_scale_running_row",
-  "fiber_product_cocycle_witness",
   "source_provenance",
   "no_hidden_retune_witness",
 ];
@@ -104,10 +114,13 @@ Options:
   --help                Show this help.
 
 This checker evaluates a score-neutral Planck/alpha braid residual bundle:
-Planck-Einstein action closure through a retained action one-form, Planck
-blackbody mode occupancy, and fine-structure coupling/running. Attempt rows,
-per-bin thermal fits, scale-independent alpha, carrier splits, mu-dependent
-action periods, and hidden retunes never raise scores.`);
+Planck-Einstein action closure through a retained constant-delay orbit,
+Poincare/monodromy reduction, a Poincare-Cartan orbit integral, Planck blackbody
+mode occupancy, and fine-structure coupling/running. Attempt rows, degenerate
+Hopf points, extra neutral Floquet multipliers, per-bin thermal fits,
+scale-independent alpha, carrier splits, mu-dependent action periods, resonant
+readout splits, alpha-fit action periods, projection artifacts, parameter-sweep
+retunes, and hidden retunes never raise scores.`);
 }
 
 function readJson(filePath) {
@@ -160,7 +173,7 @@ function evaluatePlanckAlphaBraid(input, inputPath) {
       rows: ["EQ-12A", "EQ-22A", "EQ-26A"],
       supportedRows: ["EQ-12", "EQ-22", "EQ-25", "EQ-26", "EQ-27", "EQ-29"],
       claimLevel:
-        "score-neutral Planck/alpha braid residual over a minimal common action/photon carrier; accepted retained rows are required before score movement",
+        "score-neutral Planck/alpha braid residual over constant-delay retained orbit, Poincare/monodromy reduction, and sea-state fibration; accepted retained rows are required before score movement",
     },
     tolerances,
     summary: {
@@ -176,7 +189,21 @@ function evaluatePlanckAlphaBraid(input, inputPath) {
       }),
       commonCarrierPass: carrierBinding.passed,
       planckQuantumPass: residual.planckQuantum.passed,
+      retainedOrbitReductionPass: residual.planckQuantum.retainedOrbitReduction.passed,
+      constantDelayModelPass: residual.planckQuantum.retainedOrbitReduction.constantDelayModel.passed,
+      hopfRetainedOrbitBirthPass: residual.planckQuantum.retainedOrbitReduction.hopfBirth.passed,
+      firstLyapunovCoefficientPass: residual.planckQuantum.retainedOrbitReduction.firstLyapunovCoefficient.passed,
+      monodromyFloquetPass: residual.planckQuantum.retainedOrbitReduction.monodromyFloquet.passed,
+      poincareCartanOrbitIntegralPass:
+        residual.planckQuantum.retainedOrbitReduction.poincareCartanOrbitIntegral.passed,
+      readoutRefinementIndependencePass:
+        residual.planckQuantum.retainedOrbitReduction.readoutRefinementIndependence.passed,
+      parameterSweepActionInvariancePass:
+        residual.planckQuantum.retainedOrbitReduction.parameterSweepActionInvariance.passed,
+      periodReadoutIndependencePass: residual.planckQuantum.periodUniqueness.passed,
       periodUniquenessPass: residual.planckQuantum.periodUniqueness.passed,
+      nonResonancePass: residual.planckQuantum.retainedOrbitReduction.nonResonance.passed,
+      geometryDerivedActionPass: residual.planckQuantum.retainedOrbitReduction.geometryDerivedAction.passed,
       blackbodyPass: residual.blackbody.passed,
       alphaRunningPass: residual.alphaRunning.passed,
       sourceProvenancePass: residual.sourceProvenance.passed,
@@ -264,6 +291,7 @@ function evaluateResidualBundle(packet, tolerances) {
 }
 
 function evaluatePlanckQuantum(row, tolerance) {
+  const retainedOrbitReduction = evaluateRetainedOrbitReduction(row.retainedOrbitReduction ?? {}, tolerance);
   const energyFrequency = evaluateEnergyFrequency(row.energyFrequency ?? {}, tolerance);
   const angularEnergy = evaluateAngularEnergy(row.angularEnergy ?? {}, tolerance);
   const actionCycle = evaluateActionCycle(row.actionCycle ?? {}, tolerance);
@@ -273,6 +301,7 @@ function evaluatePlanckQuantum(row, tolerance) {
     tolerance,
   );
   const maxResidual = Math.max(
+    retainedOrbitReduction.residual,
     energyFrequency.residual,
     angularEnergy.residual,
     actionCycle.residual,
@@ -282,6 +311,7 @@ function evaluatePlanckQuantum(row, tolerance) {
 
   return {
     passed:
+      retainedOrbitReduction.passed &&
       energyFrequency.passed &&
       angularEnergy.passed &&
       actionCycle.passed &&
@@ -289,11 +319,159 @@ function evaluatePlanckQuantum(row, tolerance) {
       angularMomentumUnit.passed,
     maxResidual,
     tolerance,
+    retainedOrbitReduction,
     energyFrequency,
     angularEnergy,
     actionCycle,
     periodUniqueness,
     angularMomentumUnit,
+  };
+}
+
+function evaluateRetainedOrbitReduction(row, tolerance) {
+  if (row.maxResidual !== undefined || row.residual !== undefined) {
+    const scalar = evaluateScalarResidual(row.maxResidual ?? row.residual, tolerance);
+    return {
+      ...scalar,
+      finiteDimensionalReduction: scalar,
+      constantDelayModel: scalar,
+      hopfBirth: scalar,
+      firstLyapunovCoefficient: scalar,
+      monodromyFloquet: scalar,
+      poincareSectionReduction: scalar,
+      poincareCartanOrbitIntegral: scalar,
+      readoutRefinementIndependence: scalar,
+      parameterSweepActionInvariance: scalar,
+      historyEnergyThroughput: scalar,
+      seaStateFibration: scalar,
+      nonResonance: scalar,
+      geometryDerivedAction: scalar,
+    };
+  }
+
+  const finiteDimensionalReduction = evaluateScalarResidual(
+    row.finiteDimensionalReductionResidual ?? 0,
+    tolerance,
+  );
+  const constantDelayModel = combineChecks(
+    {
+      constantDelayModel: evaluateBooleanExpected(
+        row.constantDelayModel ?? true,
+        true,
+        "planckQuantum.retainedOrbitReduction.constantDelayModel",
+      ),
+      stateDependentDelayDeferred: evaluateBooleanExpected(
+        row.stateDependentDelayDeferred ?? true,
+        true,
+        "planckQuantum.retainedOrbitReduction.stateDependentDelayDeferred",
+      ),
+    },
+    tolerance,
+  );
+  const hopfBirth = combineChecks(
+    {
+      hopfBirth: evaluateScalarResidual(row.hopfBirthResidual ?? 0, tolerance),
+      transversality: evaluateScalarResidual(row.transversalityResidual ?? 0, tolerance),
+      otherRootsStable: evaluateBooleanExpected(
+        row.allOtherRootsStable ?? true,
+        true,
+        "planckQuantum.retainedOrbitReduction.allOtherRootsStable",
+      ),
+    },
+    tolerance,
+  );
+  const firstLyapunovCoefficient = evaluateThresholdFloor(
+    Math.abs(
+      finiteNumber(
+        row.firstLyapunovCoefficient ?? row.lyapunovCoefficientMagnitude ?? 1,
+        "planckQuantum.retainedOrbitReduction.firstLyapunovCoefficient",
+      ),
+    ),
+    row.minLyapunovCoefficientMagnitude ?? 0,
+    "planckQuantum.retainedOrbitReduction.firstLyapunovCoefficientMagnitude",
+    tolerance,
+  );
+  const monodromyFloquet = combineChecks(
+    {
+      floquetGap: evaluateThresholdFloor(
+        row.floquetGap,
+        row.minFloquetGap ?? 0,
+        "planckQuantum.retainedOrbitReduction.floquetGap",
+        tolerance,
+      ),
+      maxNontrivialFloquetModulus: evaluateThresholdCeiling(
+        row.maxNontrivialFloquetModulus ?? row.floquetRho ?? 0,
+        row.maxAllowedNontrivialFloquetModulus ?? 1,
+        "planckQuantum.retainedOrbitReduction.maxNontrivialFloquetModulus",
+        tolerance,
+      ),
+      extraNearUnitMultipliers: evaluateScalarResidual(row.extraNearUnitMultiplierCount ?? 0, tolerance),
+    },
+    tolerance,
+  );
+  const poincareSectionReduction = evaluateScalarResidual(row.poincareSectionResidual ?? 0, tolerance);
+  const poincareCartanOrbitIntegral = evaluateScalarResidual(
+    row.poincareCartanOrbitIntegralResidual ?? row.localOneFormResidual ?? 0,
+    tolerance,
+  );
+  const readoutRefinementIndependence = combineChecks(
+    {
+      energyPhaseReadout: evaluateScalarResidual(row.energyPhaseReadoutResidual ?? 0, tolerance),
+      refinementDrift: evaluateScalarResidual(row.refinementDriftResidual ?? 0, tolerance),
+      sectionRelocationDrift: evaluateScalarResidual(row.sectionRelocationDriftResidual ?? 0, tolerance),
+      retainedModeDrift: evaluateScalarResidual(row.retainedModeDriftResidual ?? 0, tolerance),
+    },
+    tolerance,
+  );
+  const parameterSweepActionInvariance = evaluateScalarResidual(row.actionSweepDerivativeResidual ?? 0, tolerance);
+  const historyEnergyThroughput = evaluateScalarResidual(
+    row.historyEnergyThroughputDriftResidual ?? row.noetherActionBalanceResidual ?? 0,
+    tolerance,
+  );
+  const seaStateFibration = evaluateScalarResidual(row.seaStateFibrationResidual ?? 0, tolerance);
+  const nonResonance = evaluateThresholdFloor(
+    row.minSmallDivisor,
+    row.minAllowedSmallDivisor ?? 0,
+    "planckQuantum.retainedOrbitReduction.minSmallDivisor",
+    tolerance,
+  );
+  const geometryDerivedAction = evaluateBooleanResidual(
+    row.geometryDerivedActionPeriod,
+    "planckQuantum.retainedOrbitReduction.geometryDerivedActionPeriod",
+  );
+  const residual = Math.max(
+    finiteDimensionalReduction.residual,
+    constantDelayModel.residual,
+    hopfBirth.residual,
+    firstLyapunovCoefficient.residual,
+    monodromyFloquet.residual,
+    poincareSectionReduction.residual,
+    poincareCartanOrbitIntegral.residual,
+    readoutRefinementIndependence.residual,
+    parameterSweepActionInvariance.residual,
+    historyEnergyThroughput.residual,
+    seaStateFibration.residual,
+    nonResonance.residual,
+    geometryDerivedAction.residual,
+  );
+
+  return {
+    passed: residual <= tolerance,
+    residual,
+    tolerance,
+    finiteDimensionalReduction,
+    constantDelayModel,
+    hopfBirth,
+    firstLyapunovCoefficient,
+    monodromyFloquet,
+    poincareSectionReduction,
+    poincareCartanOrbitIntegral,
+    readoutRefinementIndependence,
+    parameterSweepActionInvariance,
+    historyEnergyThroughput,
+    seaStateFibration,
+    nonResonance,
+    geometryDerivedAction,
   };
 }
 
@@ -528,6 +706,32 @@ function evaluateNegativeControl(packet, control, tolerances) {
       tolerance: result.tolerance,
     };
   }
+  if (
+    [
+      "state_dependent_delay_first_model",
+      "hopf_degeneracy_bautin",
+      "floquet_extra_neutral_multiplier",
+      "action_readout_projection_artifact",
+      "parameter_sweep_fitted_action",
+      "small_divisor_resonance",
+      "alpha_fitted_action_period",
+    ].includes(control.kind)
+  ) {
+    const row = {
+      ...(packet.planckQuantum ?? {}),
+      retainedOrbitReduction: {
+        ...(packet.planckQuantum?.retainedOrbitReduction ?? {}),
+        ...(control.retainedOrbitReduction ?? {}),
+      },
+    };
+    const result = evaluatePlanckQuantum(row, tolerances.planckQuantum);
+    return {
+      failedAsExpected: !result.passed,
+      reason: result.passed ? `${control.kind}_passed` : `${control.kind}_failed`,
+      residual: result.maxResidual,
+      tolerance: result.tolerance,
+    };
+  }
   if (control.kind === "wrong_mode_count") {
     const row = {
       ...(packet.blackbody ?? {}),
@@ -694,6 +898,36 @@ function firstBlocker({ status, missingRows, carrierBinding, residual, negativeC
     return "carrier_split_or_missing_common_carrier";
   }
   if (!residual.planckQuantum.passed) {
+    if (!residual.planckQuantum.retainedOrbitReduction.passed) {
+      if (!residual.planckQuantum.retainedOrbitReduction.constantDelayModel.passed) {
+        return "constant_delay_model_or_deferred_state_dependence_failed";
+      }
+      if (!residual.planckQuantum.retainedOrbitReduction.hopfBirth.passed) {
+        return "hopf_retained_orbit_birth_failed";
+      }
+      if (!residual.planckQuantum.retainedOrbitReduction.firstLyapunovCoefficient.passed) {
+        return "first_lyapunov_coefficient_degenerate";
+      }
+      if (!residual.planckQuantum.retainedOrbitReduction.monodromyFloquet.passed) {
+        return "monodromy_floquet_certificate_failed";
+      }
+      if (!residual.planckQuantum.retainedOrbitReduction.poincareCartanOrbitIntegral.passed) {
+        return "poincare_cartan_orbit_integral_failed";
+      }
+      if (!residual.planckQuantum.retainedOrbitReduction.readoutRefinementIndependence.passed) {
+        return "readout_refinement_independence_failed";
+      }
+      if (!residual.planckQuantum.retainedOrbitReduction.parameterSweepActionInvariance.passed) {
+        return "parameter_sweep_action_invariance_failed";
+      }
+      if (!residual.planckQuantum.retainedOrbitReduction.nonResonance.passed) {
+        return "non_resonance_certificate_failed";
+      }
+      if (!residual.planckQuantum.retainedOrbitReduction.geometryDerivedAction.passed) {
+        return "geometry_derived_action_period_failed";
+      }
+      return "retained_orbit_reduction_failed";
+    }
     if (!residual.planckQuantum.periodUniqueness.passed) {
       return "period_uniqueness_residual_failed";
     }
@@ -724,6 +958,65 @@ function relativeResidual(observedValue, expectedValue, epsilonValue = 0) {
   const epsilon = finiteNumber(epsilonValue, "relativeResidual.epsilon");
   const scale = Math.max(Math.abs(observed), Math.abs(expected), epsilon, 1);
   return Math.abs(observed - expected) / scale;
+}
+
+function combineChecks(checks, tolerance) {
+  const residual = Math.max(...Object.values(checks).map((check) => check.residual));
+  return {
+    passed: residual <= tolerance,
+    residual,
+    tolerance,
+    ...checks,
+  };
+}
+
+function evaluateThresholdFloor(value, minimumValue, label, tolerance) {
+  const minimum = finiteNumber(minimumValue, `${label}.minimum`);
+  const observed = finiteNumber(value ?? minimum, label);
+  const residual = minimum <= 0 ? 0 : Math.max(0, minimum - observed) / Math.max(Math.abs(minimum), 1);
+  return {
+    passed: residual <= tolerance,
+    residual,
+    value: observed,
+    minimum,
+  };
+}
+
+function evaluateThresholdCeiling(value, maximumValue, label, tolerance) {
+  const maximum = finiteNumber(maximumValue, `${label}.maximum`);
+  const observed = finiteNumber(value ?? maximum, label);
+  const residual = Math.max(0, observed - maximum) / Math.max(Math.abs(maximum), 1);
+  return {
+    passed: residual <= tolerance,
+    residual,
+    value: observed,
+    maximum,
+  };
+}
+
+function evaluateBooleanExpected(value, expected, label) {
+  if (typeof value !== "boolean") {
+    throw new Error(`Expected boolean for ${label}`);
+  }
+  const residual = value === expected ? 0 : 1;
+  return {
+    passed: residual === 0,
+    residual,
+    value,
+    expected,
+  };
+}
+
+function evaluateBooleanResidual(value, label) {
+  if (typeof value !== "boolean") {
+    throw new Error(`Expected boolean for ${label}`);
+  }
+  const residual = value ? 0 : 1;
+  return {
+    passed: residual === 0,
+    residual,
+    value,
+  };
 }
 
 function finiteNumber(value, label) {

@@ -22,33 +22,99 @@
         "status": "attempt",
         "carrierId": "theta_planck_alpha_braid_attempt_0001"
       },
-      "theta_star_common_action_photon_carrier": {
-        "id": "theta_star_common_action_photon_carrier_attempt_0001",
-        "rowId": "theta_star_common_action_photon_carrier_attempt_row",
+      "retained_orbit_reduction_row": {
+        "id": "retained_orbit_reduction_attempt_0001",
+        "rowId": "retained_orbit_reduction_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "constant_delay_self_hit_model_row": {
+        "id": "constant_delay_self_hit_model_attempt_0001",
+        "rowId": "constant_delay_self_hit_model_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "hopf_retained_orbit_birth_row": {
+        "id": "hopf_retained_orbit_birth_attempt_0001",
+        "rowId": "hopf_retained_orbit_birth_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "first_lyapunov_coefficient_row": {
+        "id": "first_lyapunov_coefficient_attempt_0001",
+        "rowId": "first_lyapunov_coefficient_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "monodromy_floquet_certificate": {
+        "id": "monodromy_floquet_certificate_attempt_0001",
+        "rowId": "monodromy_floquet_certificate_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "poincare_section_reduction_row": {
+        "id": "poincare_section_reduction_attempt_0001",
+        "rowId": "poincare_section_reduction_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "poincare_cartan_orbit_integral_row": {
+        "id": "poincare_cartan_orbit_integral_attempt_0001",
+        "rowId": "poincare_cartan_orbit_integral_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "energy_clock_readout_row": {
+        "id": "energy_clock_readout_attempt_0001",
+        "rowId": "energy_clock_readout_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "phase_loop_area_readout_row": {
+        "id": "phase_loop_area_readout_attempt_0001",
+        "rowId": "phase_loop_area_readout_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "readout_refinement_independence_row": {
+        "id": "readout_refinement_independence_attempt_0001",
+        "rowId": "readout_refinement_independence_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "parameter_sweep_action_invariance_row": {
+        "id": "parameter_sweep_action_invariance_attempt_0001",
+        "rowId": "parameter_sweep_action_invariance_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "history_energy_throughput_row": {
+        "id": "history_energy_throughput_attempt_0001",
+        "rowId": "history_energy_throughput_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "non_resonance_certificate": {
+        "id": "non_resonance_certificate_attempt_0001",
+        "rowId": "non_resonance_certificate_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "sea_state_fibration_row": {
+        "id": "sea_state_fibration_attempt_0001",
+        "rowId": "sea_state_fibration_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "geometry_derived_action_period_row": {
+        "id": "geometry_derived_action_period_attempt_0001",
+        "rowId": "geometry_derived_action_period_attempt_row",
         "status": "attempt",
         "carrierId": "theta_planck_alpha_braid_attempt_0001"
       },
       "planck_braid_carrier": {
         "id": "planck_braid_carrier_attempt_0001",
         "rowId": "planck_braid_carrier_attempt_row",
-        "status": "attempt",
-        "carrierId": "theta_planck_alpha_braid_attempt_0001"
-      },
-      "braid_action_one_form_row": {
-        "id": "braid_action_one_form_attempt_0001",
-        "rowId": "braid_action_one_form_attempt_row",
-        "status": "attempt",
-        "carrierId": "theta_planck_alpha_braid_attempt_0001"
-      },
-      "history_space_symplectic_row": {
-        "id": "history_space_symplectic_attempt_0001",
-        "rowId": "history_space_symplectic_attempt_row",
-        "status": "attempt",
-        "carrierId": "theta_planck_alpha_braid_attempt_0001"
-      },
-      "period_uniqueness_row": {
-        "id": "period_uniqueness_attempt_0001",
-        "rowId": "period_uniqueness_attempt_row",
         "status": "attempt",
         "carrierId": "theta_planck_alpha_braid_attempt_0001"
       },
@@ -118,12 +184,6 @@
         "status": "attempt",
         "carrierId": "theta_planck_alpha_braid_attempt_0001"
       },
-      "fiber_product_cocycle_witness": {
-        "id": "fiber_product_cocycle_attempt_0001",
-        "rowId": "fiber_product_cocycle_attempt_row",
-        "status": "attempt",
-        "carrierId": "theta_planck_alpha_braid_attempt_0001"
-      },
       "source_provenance": {
         "id": "source_provenance_attempt_0001",
         "rowId": "source_provenance_attempt_row",
@@ -139,6 +199,33 @@
     },
     "planckAlpha": {
       "planckQuantum": {
+        "retainedOrbitReduction": {
+          "finiteDimensionalReductionResidual": 0,
+          "constantDelayModel": true,
+          "stateDependentDelayDeferred": true,
+          "hopfBirthResidual": 0,
+          "transversalityResidual": 0,
+          "allOtherRootsStable": true,
+          "firstLyapunovCoefficient": -0.2,
+          "minLyapunovCoefficientMagnitude": 0.1,
+          "maxNontrivialFloquetModulus": 0.8,
+          "maxAllowedNontrivialFloquetModulus": 0.9,
+          "extraNearUnitMultiplierCount": 0,
+          "poincareSectionResidual": 0,
+          "poincareCartanOrbitIntegralResidual": 0,
+          "energyPhaseReadoutResidual": 0,
+          "refinementDriftResidual": 0,
+          "sectionRelocationDriftResidual": 0,
+          "retainedModeDriftResidual": 0,
+          "actionSweepDerivativeResidual": 0,
+          "historyEnergyThroughputDriftResidual": 0,
+          "seaStateFibrationResidual": 0,
+          "floquetGap": 0.2,
+          "minFloquetGap": 0.1,
+          "minSmallDivisor": 0.2,
+          "minAllowedSmallDivisor": 0.1,
+          "geometryDerivedActionPeriod": true
+        },
         "energyFrequency": {
           "energy": 2,
           "planckConstant": 1,
@@ -202,6 +289,44 @@
     },
     "negativeControls": [
       {
+        "id": "state_dependent_delay_first_model",
+        "kind": "state_dependent_delay_first_model",
+        "retainedOrbitReduction": {
+          "constantDelayModel": false,
+          "stateDependentDelayDeferred": false
+        }
+      },
+      {
+        "id": "hopf_degeneracy_bautin",
+        "kind": "hopf_degeneracy_bautin",
+        "retainedOrbitReduction": {
+          "firstLyapunovCoefficient": 0,
+          "minLyapunovCoefficientMagnitude": 0.1
+        }
+      },
+      {
+        "id": "floquet_extra_neutral_multiplier",
+        "kind": "floquet_extra_neutral_multiplier",
+        "retainedOrbitReduction": {
+          "extraNearUnitMultiplierCount": 1
+        }
+      },
+      {
+        "id": "action_readout_projection_artifact",
+        "kind": "action_readout_projection_artifact",
+        "retainedOrbitReduction": {
+          "energyPhaseReadoutResidual": 0.01,
+          "sectionRelocationDriftResidual": 0.01
+        }
+      },
+      {
+        "id": "parameter_sweep_fitted_action",
+        "kind": "parameter_sweep_fitted_action",
+        "retainedOrbitReduction": {
+          "actionSweepDerivativeResidual": 0.01
+        }
+      },
+      {
         "id": "planck_quantum_detuned",
         "kind": "planck_quantum_detuned",
         "energyFrequency": {
@@ -224,6 +349,21 @@
             1.01,
             1
           ]
+        }
+      },
+      {
+        "id": "small_divisor_resonance",
+        "kind": "small_divisor_resonance",
+        "retainedOrbitReduction": {
+          "minSmallDivisor": 0.01,
+          "minAllowedSmallDivisor": 0.1
+        }
+      },
+      {
+        "id": "alpha_fitted_action_period",
+        "kind": "alpha_fitted_action_period",
+        "retainedOrbitReduction": {
+          "geometryDerivedActionPeriod": false
         }
       },
       {
