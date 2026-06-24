@@ -71,7 +71,7 @@ This pass adds a provisional fail-closed phase-holonomy falsifier, not accepted 
 
 ## Next Action
 
-Submit the pass W Cartan packet and integrate the response before adding:
+Integrate the active no-retune holonomy guardrails packet response before adding:
 
 - connection transport-step fields;
 - connection-id stability checks;

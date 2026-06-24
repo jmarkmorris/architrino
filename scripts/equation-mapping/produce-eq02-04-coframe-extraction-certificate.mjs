@@ -351,23 +351,27 @@ function produceCertificate({ source, inputPath, retainedRecord }) {
     connection.holonomyTransportResidual,
   );
   check(
-    "connection_transport_residuals_present",
-    supportTransportResidual !== null && holonomyTransportResidual !== null,
+    "connection_support_transport_residual_present",
+    supportTransportResidual !== null,
+    { supportTransportResidual: connection.supportTransportResidual ?? null },
+  );
+  check(
+    "connection_holonomy_transport_residual_present",
+    holonomyTransportResidual !== null,
+    { holonomyTransportResidual: connection.holonomyTransportResidual ?? null },
+  );
+  check(
+    "connection_support_transport_residual_bound",
+    supportTransportResidual !== null && Math.abs(supportTransportResidual) <= tolerance,
     {
-      supportTransportResidual: connection.supportTransportResidual ?? null,
-      holonomyTransportResidual: connection.holonomyTransportResidual ?? null,
+      supportTransportResidual,
+      tolerance,
     },
   );
   check(
-    "connection_transport_residuals_bound",
-    supportTransportResidual !== null &&
-      holonomyTransportResidual !== null &&
-      Math.max(
-        Math.abs(supportTransportResidual),
-        Math.abs(holonomyTransportResidual),
-      ) <= tolerance,
+    "connection_holonomy_transport_residual_bound",
+    holonomyTransportResidual !== null && Math.abs(holonomyTransportResidual) <= tolerance,
     {
-      supportTransportResidual,
       holonomyTransportResidual,
       tolerance,
     },
@@ -456,6 +460,8 @@ function produceCertificate({ source, inputPath, retainedRecord }) {
       omegaStatus: connection.omegaStatus ?? null,
       torsionMaxAbs: torsionMaxAbs ?? null,
       phaseHolonomyT2,
+      supportTransportResidual,
+      holonomyTransportResidual,
     },
     residuals: {
       extractionResidual,

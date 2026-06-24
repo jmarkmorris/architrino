@@ -236,7 +236,7 @@ Under that target, `EQ-02` and `EQ-03` are not two fits to the Lorentz factor. T
 
 ### Agent Target
 
-Start from the special-relativity bridge and Lorentz kinematics chapter. Build one closure packet that states the common-limit theorem target joining $\xi$, $T_q/T_0$, two-way signal speed, preferred-frame leakage, and energy-momentum closure.
+Integrate the active Cartan $W_{\mathrm{hol}}$ response for the gamma-free coframe boundary before adding transport-step fields or treating reciprocal coframe arithmetic as accepted no-retune evidence.
 
 ## EQ-04: Energy-Momentum And Rest Energy
 
