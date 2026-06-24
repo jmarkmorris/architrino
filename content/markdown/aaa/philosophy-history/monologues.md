@@ -6,6 +6,10 @@ The form is interpretive, not evidentiary. A monologue may speak from an imagine
 
 Use this scene for polished public commentaries that connect $\mathbb{A}\mathbb{A}\mathbb{A}$ to prior models of nature, especially general relativity, quantum theory, thermodynamics, the Standard Model, and Lambda-CDM cosmology. Each monologue should preserve source-status clarity while giving the chosen voice enough conceptual room to interpret both history and the current theory in development. When relevant, the monologue should ask why an architecture that may look available in hindsight, even by about 1900, did not crystallize then and became harder to see after each major theoretical success.
 
+## Shared Prompt
+
+Each monologue responds to the shared [Critical Questions](critical-questions.md) prompt. The prompt keeps the scene coherent: every luminary perspective answers the same historical and theoretical pressures, while each voice supplies a different emphasis, sensibility, and comparison point.
+
 ## Monologue Index
 
 ### [William Thurston](monologues/william-thurston.md)

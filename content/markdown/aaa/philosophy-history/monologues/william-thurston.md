@@ -4,6 +4,8 @@
 
 **Source note:** This is an AI-imagined monologue in a William Thurston-style topological voice. It is a counterfactual historical commentary written from an imagined mature-$\mathbb{A}\mathbb{A}\mathbb{A}$ vantage. It is not a historical quotation, real interview, endorsement, attribution, or evidence about William Thurston's actual views. The mature vantage is a literary device for interpretation, not a claim that the current proof program is complete.
 
+**Shared prompt:** This monologue responds to the standard [Critical Questions](../critical-questions.md) prompt for luminary perspectives.
+
 ## Monologue
 
 If I were asked, from the imagined vantage of a mature $\mathbb{A}\mathbb{A}\mathbb{A}$, what changed in the history of physics, I would not say that one more theory was added to the shelf. I would say that the shelf was reinterpreted.

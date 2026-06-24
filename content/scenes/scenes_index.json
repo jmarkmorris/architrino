@@ -1749,6 +1749,11 @@
       "id": "dynamics__assembly_topological_charge",
       "name": "Assembly Topological Charge",
       "path": "content/scenes/dynamics/assembly_topological_charge.json"
+    },
+    {
+      "id": "critical_questions",
+      "name": "Critical Questions",
+      "path": "content/scenes/philosophy_history/critical_questions.json"
     }
   ]
 }

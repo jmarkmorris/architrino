@@ -169,3 +169,7 @@ J-n\hbar,
 $$
 
 If that packet can be populated with durable source-backed rows, it becomes the common action-unit carrier for photon transfer, blackbody occupancy, atomic spectra, Compton/recoil, resonance lifetime, and fine-structure coupling work.
+
+## Entourage Review Packet
+
+The self-contained Emmy Noether review packet for this pass lives at [emmy-noether-planck-alpha-2026-06-24.md](../../entourage/review-packets/emmy-noether-planck-alpha-2026-06-24.md).
