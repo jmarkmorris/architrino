@@ -139,7 +139,7 @@ The new negative controls are:
 
 No score changes follow from this pass.
 
-The result is a sharper first blocker map, not accepted retained evidence. `EQ-12A`, `EQ-22A`, and `EQ-26A` remain at `2`. The first accepted-row candidate is no longer a Hessian-derived history pairing; it is the constant-delay retained-orbit certificate with $\ell_1\ne0$, a one-multiplier Floquet spectrum, stable action readouts, and parameter-sweep invariance.
+The result is a sharper first blocker map, not accepted retained evidence. `EQ-12A`, `EQ-22A`, and `EQ-26A` remain at `2`. This pass made the constant-delay retained-orbit certificate the first executable action-period scaffold. [Equation Closure Pass 2026-06-24 E](equation-closure-pass-2026-06-24-e.md) refines its role: the scalar orbit is now the falsifier for rescalable action area, while the positive unit-source target moves to locked equal-frequency tri-binary branch evidence.
 
 ## Promotion Classification
 
@@ -147,4 +147,4 @@ Classification: `priority-only`.
 
 Promote now: no.
 
-Defer with blocker: promotion waits for the constant-delay retained-orbit solver certificate or a counterexample showing that the action period is a projection artifact.
+Defer with blocker: promotion waits for the scalar continuation falsifier and, if the scalar action area is rescalable as expected, a locked equal-frequency tri-binary branch whose winding plateau, four readouts, and Floquet margin close on one retained branch.

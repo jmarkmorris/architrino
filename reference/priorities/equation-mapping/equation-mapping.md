@@ -71,6 +71,10 @@ Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column p
 
 [Equation Closure Pass 2026-06-24 E](equation-closure-pass-2026-06-24-e.md) integrates the second Terence Tao-style action-period response. It demotes the scalar Hopf orbit from candidate action-unit source to scalar falsifier/scaffold, because Hopf action is generically a continuously rescalable amplitude datum. The positive `EQ-12A` target is now a mode-locked equal-frequency tri-binary relative equilibrium with middle-binary speed pinning, integer winding, four-readout coincidence, and positive Floquet margin on one retained branch. No scores change.
 
+[Equation Closure Pass 2026-06-24 F](equation-closure-pass-2026-06-24-f.md) adds conservative suffix row `EQ-04A` for the Koide charged-lepton mass relation. It creates [EQ-04A Koide Charged-Lepton Mass Relation](eq-04a-koide-charged-lepton-mass-relation.md) and scores the row at `1`, because Koide is useful only as a post-prediction residual of a shared charged-lepton generation-by-shielding mass map, not as a direct fit target. No existing score changes.
+
+[Equation Closure Pass 2026-06-24 G](equation-closure-pass-2026-06-24-g.md) narrows `EQ-02` through `EQ-04A` to the first accepted retained evidence object: a source-backed `S_eq` retained-domain fixture, beginning with `raw_labeled_rows_preserved_on_retained_history`, then the populated `EQ-02` through `EQ-04` retained-record drift row, and only later the `EQ-04A` Koide mass-root residual. No scores change.
+
 Closure packets should be durable working files. Prefer one packet per equation as soon as the equation has enough independent material to advance on its own. Keep a tightly coupled equation group in one packet only when splitting it would obscure a shared residual, shared branch ledger, or shared Noether sea record. Continue improving each packet until it is either marked `ready` for reader-facing promotion or marked `complete` after promotion into `content/markdown/aaa`. The `Promoted?` column in [equation.md](equation.md) accepts only blank, `ready`, or `complete`.
 
 ## Discussion Capture
@@ -104,6 +108,7 @@ The first equation inventory identified these high-value groups:
 | --- | --- |
 | Lorentz kinematics: $\gamma$, $d\tau/dt$, $L_{\parallel}=L_0/\gamma$ | Noether braid closure geometry and the oblate spheroidal envelope. |
 | Energy-momentum: $E^2=p^2c^2+m_0^2c^4$ | Moving Noether braid energy ledger plus Noether sea-dressed response tensor. |
+| Koide charged-lepton mass relation | Charged-lepton generation-by-shielding ladder; benchmark whether one mass map predicts $(m_e,m_\mu,m_\tau)$ and only then lands near the Koide surface. |
 | Noether conservation laws: energy, momentum, angular momentum | The braid must close action, wake, event, and conservation ledgers; the sea carries flux and residual terms. |
 | Continuity and transport | Direct Noether sea density, flow, energy, cadence, and orientation bookkeeping. |
 | Effective metric and GR observables | The Noether sea must supply lapse, drift, spatial compliance, and signal delay as one constitutive map. |
@@ -145,18 +150,20 @@ The workstream should stay internal until a line item produces a mature mathemat
 
 1. `equation_inventory` - Maintain the scored equation inventory in [equation.md](equation.md). Status: `draft`. Depends on: none.
 2. `score_five_closure_ladder` - Keep the score-5 acceptance object for every row explicit in [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md). Status: `draft`. Depends on: `equation_inventory`.
-3. `lorentz_envelope_closure` - Drive $\xi$, $\Gamma_N$, moving-clock, moving-ruler, and energy-momentum maps into one retained Noether braid branch ledger. The translating-binary same-record instantiation is staged in [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md). Status: `next`. Depends on: `score_five_closure_ladder`.
+3. `lorentz_envelope_closure` - Drive $\xi$, $\Gamma_N$, moving-clock, moving-ruler, and energy-momentum maps into one retained Noether braid branch ledger. The translating-binary same-record instantiation is staged in [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md), with the next pass focused on a source-backed `S_eq` retained-domain fixture rather than another proxy runner. Status: `next`. Depends on: `score_five_closure_ladder`.
 4. `effective_metric_constitutive_map` - Build the shared Noether sea constitutive record that projects into lapse, spatial compliance, drift, signal delay, PPN rows, and weak-field GR observables. Status: `next`. Depends on: `score_five_closure_ladder`.
 5. `redshift_friedmann_transfer_map` - Convert redshift, FRW, Friedmann, continuity, and distance-ladder equations into one fixed-void Noether sea transfer map. Status: `next`. Depends on: `effective_metric_constitutive_map`.
 6. `quantum_photon_statistical_maps` - Assign photon, quantum-wave, thermodynamic, and statistical equations to Noether braid branch, Noether sea, record, and basin-measure closure packets. Status: `queued`. Depends on: `score_five_closure_ladder`.
 7. `multi_agent_closure_pass` - Use the new-thread prompt in [equation.md](equation.md#new-thread-prompt) to assign one line item per worker and integrate their closure packets. Status: `ready`. Depends on: `equation_inventory`.
 8. `tri_binary_equation_bearing_search` - Feed mature equation residuals into the stable tri-binary configuration search via [Equation-Map Bearing On Braid Configuration Search](../braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md), including $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=(f+1,f,f-1)$, $(I,M,O)=(f,f,f)$, $(I,M,O)=(4f,2f,f)$, and $(I,M,O)=(nf,mf,f)$. Status: `next`. Depends on: `score_five_closure_ladder` and the angular-momentum `tri_binary_partition_rule`.
+9. `koide_charged_lepton_mass_residual` - Treat `EQ-04A` as a no-retune residual on the charged-lepton generation-by-shielding mass map. Status: `queued`. Depends on: `lorentz_envelope_closure` and `score_five_closure_ladder`.
 
 ## Promotion Map
 
 | Equation group | Candidate promotion targets | Promotion condition |
 | --- | --- | --- |
 | Lorentz envelope and energy-momentum | `content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md`, `content/markdown/aaa/spacetime/lorentz-kinematics.md`, `content/markdown/aaa/assemblies/particle-masses.md` | One retained Noether braid ledger supplies $\xi$, clock rate, ruler behavior, and mass-shell response without separate fits. |
+| Charged-lepton Koide benchmark | `content/markdown/aaa/assemblies/particle-masses.md` | One shared generation-by-shielding mass map predicts the charged-lepton triplet before the Koide residual is checked; no direct Koide tuning is allowed. |
 | Noether sea continuum and constitutive response | `content/markdown/aaa/spacetime/noether-sea.md`, `content/markdown/aaa/spacetime/emergent-metric.md` | Density, cadence, delay, stress, and orientation moments form one shared constitutive map with residuals. |
 | Weak-field GR and PPN | `content/markdown/aaa/spacetime/general-relativity.md`, `content/markdown/aaa/spacetime/emergent-metric.md` | Redshift, Shapiro delay, lensing, precession, acceleration, and preferred-frame rows project from the same $\theta_W$. |
 | Redshift and effective cosmology | `content/markdown/aaa/cosmology/expansion-mechanism.md`, `content/markdown/aaa/cosmology/cosmology-ontology.md`, `content/markdown/aaa/cosmology/hubble-s8-tensions.md` | Endpoint cadence, launch, source, and path-history terms close one signed frequency-transfer ledger. |

@@ -8,7 +8,7 @@ Each perspective file should be named for the primary historical or contemporary
 
 ## Perspective Rules
 
-- State the source status near the top: real statement, AI-imagined reconstruction, edited notes, or mixed source.
+- State the source provenance near the top: real statement, AI-imagined reconstruction, edited notes, or mixed source.
 - For AI-imagined reconstructions, state that the text is not a historical quotation, endorsement, attribution, or evidence about the person's actual views.
 - Treat the mature-$\mathbb{A}\mathbb{A}\mathbb{A}$ vantage as a counterfactual interpretive device unless the proof state actually warrants a stronger claim.
 - Shape each perspective as a polished public commentary rather than a raw transcript or staged debate.
@@ -26,7 +26,7 @@ No active priority-staged perspective files.
 
 ## Response Contract
 
-- State the source status clearly: real statement, AI-imagined reconstruction, edited note, or mixed source.
+- State the source provenance clearly: real statement, AI-imagined reconstruction, edited note, or mixed source.
 - Preserve the figure's known intellectual sensibility without claiming endorsement by the real person.
 - Treat inherited frameworks at their strongest before identifying their limits.
 - Separate substrate ontology, effective description, mathematical formalism, and observational inference.

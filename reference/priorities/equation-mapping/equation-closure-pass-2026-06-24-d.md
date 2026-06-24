@@ -90,6 +90,8 @@ The value of this step is architectural and mathematical: the row family now has
 
 ## Next Closure Target
 
+This target is refined by [Equation Closure Pass 2026-06-24 E](equation-closure-pass-2026-06-24-e.md). The constant-delay orbit remains useful, but now primarily as a scalar falsifier for rescalable action area rather than as sufficient positive evidence for the physical action unit.
+
 Replace the attempt-level supplied fields with solver-generated evidence:
 
 - compute the stable-root margin instead of supplying it;

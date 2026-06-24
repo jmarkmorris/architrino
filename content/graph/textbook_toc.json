@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 181,
-      "sections": 1452
+      "sections": 1451
     }
   },
   "tocRoot": {
@@ -13392,14 +13392,6 @@
                     "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
                     "markdownSection": "Questions",
                     "sectionKey": "questions",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Perspective Index",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
-                    "markdownSection": "Perspective Index",
-                    "sectionKey": "perspective index",
                     "headingLevel": 2
                   }
                 ]

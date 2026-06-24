@@ -7,6 +7,7 @@
 - Parent packet: [EQ-02 Through EQ-04 Lorentz-Energy Closure Packet](eq-02-04-lorentz-energy-packet.md)
 - Common architecture: [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
 - Owned IDs: `EQ-02`, `EQ-03`, `EQ-04`
+- Related downstream ID: `EQ-04A`
 - Claim level: derivation/closure target and simulation target
 - Promotion status: priority-only
 
@@ -536,6 +537,51 @@ node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs --r
 
 exits nonzero until the inherited `S_eq` same-branch identity, retained-record rows, split witness, retune witness, and residual diagnostics all pass on the same common carrier.
 
+### First Accepted Evidence Object
+
+The next pass should not add another score-neutral runner for this lane. The score-moving object is the first source-backed retained-domain fixture that makes the existing same-branch and retained-record evaluators leave `attempt` status without changing their acceptance rules.
+
+The narrowest acceptable target is therefore:
+
+$$
+\mathfrak D_{S_{\mathrm{eq}}}^{02\text{-}04}
+\longrightarrow
+\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)
+\longrightarrow
+\Theta_{02\text{-}04}^{\mathrm{bin}}(u_k),
+$$
+
+with the first accepted row still fixed by the reducer:
+
+$$
+B_R\!\left(\mathfrak D_{S_{\mathrm{eq}}}^{02\text{-}04}\right)
+=
+\texttt{missing\_accepted\_raw\_labeled\_rows\_preserved\_on\_retained\_history}.
+$$
+
+In plain terms, the first accepted retained branch object is not a low Lorentz residual and not a display of a tri-binary candidate. It is the durable row extraction proving that raw generator labels, path-history rows, causal-root rows, wake rows, energy/action rows, momentum/angular-momentum rows, phase rows, plane-orientation rows, response-center/group-velocity rows, and the local Noether sea row are all bound to the same retained support before any `I:M:O` role assignment or quotient policy is imposed.
+
+Once that object exists, the retained-record evaluator may test the drift row:
+
+$$
+\beta_f=\frac{u_k}{c_f},
+\qquad
+\gamma_f=\left(1-\beta_f^2\right)^{-1/2},
+$$
+
+and only then may the numeric rows for clock, envelope, two-way leakage, energy, momentum, rest mass, mass shell, and medium response be treated as branch evidence.
+
+For `EQ-04A`, this same evidence object has one downstream consequence: it can supply the first lawful mass-shell and exposure carrier for a charged-lepton generation-by-shielding mass map. Koide does not feed back into the accepted-branch test. It is a later residual on the mass map produced from that test. Therefore the closure order is:
+
+1. source-backed `S_eq` retained-domain identity;
+2. `EQ-02` through `EQ-04` retained-record population on the same carrier;
+3. nested shell or charged-lepton branch-family specialization of the same mass response;
+4. `EQ-04A` Koide mass-root residual with zero hidden retune.
+
+If the next solver pass cannot produce the full retained-domain fixture, the only useful partial win is one accepted, durable row on this same support. The highest-value partial row remains `raw_labeled_rows_preserved_on_retained_history`; the next Noether sea partial row is `Noether_sea_record_bound_to_S_eq`. Either partial row is useful only if it is source-backed, bound to the same `domainId` and `commonCarrierId`, and keeps the current evaluators fail-closed for every still-missing row.
+
+This rule prevents a common failure mode: treating a numerically coherent attempt packet as accepted branch evidence. The current arithmetic passes at $\beta_f=0.6$ and $\gamma_f=1.25$ are valuable diagnostics, but they stay score-neutral until the retained support and row bindings are source-backed.
+
 ### Minimum Accepted `S_eq` Retained-Domain Fixture
 
 The next score-moving artifact is not another proxy summary. It is a source-backed retained-domain packet that can replace [same-branch-retained-domain-attempt.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json) without changing the checker. In the notation of the common architecture, the fixture must instantiate
@@ -749,6 +795,7 @@ These controls are useful because they test whether the same-record residual det
 - `EQ-01` supplies the active causal roots and Jacobian floors. This packet cannot bypass the native per-hit law.
 - `EQ-05` supplies event, wake, boundary, and finite-window conservation rows. Energy-momentum closure in this packet is invalid without them.
 - `EQ-06`, `EQ-07`, and `EQ-11` consume the Noether sea response rows after the primitive cell is replaced by a dressed cell.
+- `EQ-04A` consumes the mass-shell, exposure, and Noether sea response rows only after a charged-lepton branch family predicts three mass readouts without fitting the Koide residual.
 - `EQ-12`, `EQ-17`, and `EQ-26` consume the same clock/frequency discipline when photon, redshift, and atomic-frequency rows are tested.
 - `EQ-20`, `EQ-21`, `EQ-22`, and `EQ-32` inherit the same Noether sea constitutive-state discipline if the metric and growth rows later use $\mathcal M_{\mathrm{sea}}^{ab}$ or $G_{\mathrm{eff}}$.
 

@@ -1632,6 +1632,5 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - **Ch 11.13** [Perspectives](../../../scenes/philosophy_history/perspectives.json)
     - **Ch 11.13.1** [Perspectives](../../../scenes/philosophy_history/perspectives/overview.json)
       - **Ch 11.13.1.1** [Questions](../../../markdown/aaa/philosophy-history/perspectives.md?section=Questions)
-      - **Ch 11.13.1.2** [Perspective Index](../../../markdown/aaa/philosophy-history/perspectives.md?section=Perspective+Index)
     - **Ch 11.13.2** [William Thurston](../../../scenes/philosophy_history/perspectives/william_thurston.json)
       - **Ch 11.13.2.1** [Perspective](../../../markdown/aaa/philosophy-history/perspectives/william-thurston.md?section=Perspective)
