@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 530,
-      "edges": 1284,
+      "edges": 1283,
       "scenes": 349,
       "markdownIndexes": 0,
       "markdownDocs": 168,
@@ -12496,13 +12496,6 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/terminology_usage.json",
       "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
-      "to": "markdown_doc:content/generated/markdown/textbook/toc.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
-      "field": "pdf_snapshot_overview.source.path"
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",

@@ -6,9 +6,11 @@
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
-    "centerOn": "pdf_snapshot_overview",
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
     "source": {
       "type": "markdown",
@@ -21,33 +23,10 @@
   },
   "objects": [
     {
-      "id": "pdf_snapshot_overview",
-      "title": "Overview",
-      "radius": 2.4,
-      "color": "#7a5a2f",
-      "hideSphere": true,
-      "position": [0, 0, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
-      "labelTitle": "Overview",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/toc.md"
-      },
-      "view": {
-        "columns": 1,
-        "autoOpen": true
-      }
-    },
-    {
       "id": "pdf_snapshot_full_textbook",
       "title": "Full Textbook",
       "radius": 1.55,
       "color": "#6a5a8f",
-      "position": [0, 10.3, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
       "labelTitle": "Full Textbook",
       "labelBadge": "pdf",
       "source": {
@@ -63,9 +42,6 @@
       "title": "Foundations",
       "radius": 1.55,
       "color": "#3a5f9f",
-      "position": [-4.79, 9.12, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
       "labelTitle": "Foundations",
       "labelBadge": "pdf",
       "source": {
@@ -81,9 +57,6 @@
       "title": "Dynamics",
       "radius": 1.55,
       "color": "#355c9a",
-      "position": [-8.48, 5.85, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
       "labelTitle": "Dynamics",
       "labelBadge": "pdf",
       "source": {
@@ -99,9 +72,6 @@
       "title": "Noether Sea and Effective Spacetime",
       "radius": 1.55,
       "color": "#2f6b6f",
-      "position": [-10.22, 1.24, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
       "labelTitle": "Noether Sea and Effective Spacetime",
       "labelBadge": "pdf",
       "source": {
@@ -117,9 +87,6 @@
       "title": "Noether Braid",
       "radius": 1.55,
       "color": "#2f6b6f",
-      "position": [-9.63, -3.65, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
       "labelTitle": "Noether Braid",
       "labelBadge": "pdf",
       "source": {
@@ -135,9 +102,6 @@
       "title": "Standard Model Assemblies",
       "radius": 1.55,
       "color": "#6a3c3c",
-      "position": [-6.83, -7.71, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
       "labelTitle": "Standard Model Assemblies",
       "labelBadge": "pdf",
       "source": {
@@ -153,9 +117,6 @@
       "title": "Atomic and Nuclear Assemblies",
       "radius": 1.55,
       "color": "#2f4f7a",
-      "position": [-2.46, -10, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
       "labelTitle": "Atomic and Nuclear Assemblies",
       "labelBadge": "pdf",
       "source": {
@@ -171,9 +132,6 @@
       "title": "Reactions",
       "radius": 1.55,
       "color": "#7a4a1f",
-      "position": [2.46, -10, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
       "labelTitle": "Reactions",
       "labelBadge": "pdf",
       "source": {
@@ -189,9 +147,6 @@
       "title": "Quantum",
       "radius": 1.55,
       "color": "#5a1f2e",
-      "position": [6.83, -7.71, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
       "labelTitle": "Quantum",
       "labelBadge": "pdf",
       "source": {
@@ -207,9 +162,6 @@
       "title": "Cosmology",
       "radius": 1.55,
       "color": "#4b0082",
-      "position": [9.63, -3.65, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
       "labelTitle": "Cosmology",
       "labelBadge": "pdf",
       "source": {
@@ -225,9 +177,6 @@
       "title": "Validation",
       "radius": 1.55,
       "color": "#2246a3",
-      "position": [10.22, 1.24, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
       "labelTitle": "Validation",
       "labelBadge": "pdf",
       "source": {
@@ -243,9 +192,6 @@
       "title": "Philosophy-History",
       "radius": 1.55,
       "color": "#8b6f3a",
-      "position": [8.48, 5.85, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
       "labelTitle": "Philosophy-History",
       "labelBadge": "pdf",
       "source": {
@@ -261,9 +207,6 @@
       "title": "Comparative Glossary",
       "radius": 1.55,
       "color": "#2f6b6f",
-      "position": [4.79, 9.12, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
       "labelTitle": "Comparative Glossary",
       "labelBadge": "pdf",
       "source": {

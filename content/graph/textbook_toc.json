@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1457
+      "sections": 1455
     }
   },
   "tocRoot": {
@@ -13396,50 +13396,34 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "William Thurston: The Charts Must Glue",
+                    "title": "Structure, Dynamics, And Causal Records",
                     "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
-                    "markdownSection": "William Thurston: The Charts Must Glue",
-                    "sectionKey": "william thurston the charts must glue",
+                    "markdownSection": "Structure, Dynamics, And Causal Records",
+                    "sectionKey": "structure dynamics and causal records",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Henri Poincare: The Return Map Must Close",
+                    "title": "Relativity, Measurement, And Invariance",
                     "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
-                    "markdownSection": "Henri Poincare: The Return Map Must Close",
-                    "sectionKey": "henri poincare the return map must close",
+                    "markdownSection": "Relativity, Measurement, And Invariance",
+                    "sectionKey": "relativity measurement and invariance",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "James Clerk Maxwell: Wakes Must Become Fields",
+                    "title": "Quantum Records, Gauge Charge, Generations, And Entanglement",
                     "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
-                    "markdownSection": "James Clerk Maxwell: Wakes Must Become Fields",
-                    "sectionKey": "james clerk maxwell wakes must become fields",
+                    "markdownSection": "Quantum Records, Gauge Charge, Generations, And Entanglement",
+                    "sectionKey": "quantum records gauge charge generations and entanglement",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Ludwig Boltzmann: Measures Must Converge",
+                    "title": "Cosmology, Expansion, And Recycling",
                     "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
-                    "markdownSection": "Ludwig Boltzmann: Measures Must Converge",
-                    "sectionKey": "ludwig boltzmann measures must converge",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Emmy Noether: The History Must Conserve",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
-                    "markdownSection": "Emmy Noether: The History Must Conserve",
-                    "sectionKey": "emmy noether the history must conserve",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Albert Einstein: Observers Must Recover Relativity",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
-                    "markdownSection": "Albert Einstein: Observers Must Recover Relativity",
-                    "sectionKey": "albert einstein observers must recover relativity",
+                    "markdownSection": "Cosmology, Expansion, And Recycling",
+                    "sectionKey": "cosmology expansion and recycling",
                     "headingLevel": 2
                   },
                   {
