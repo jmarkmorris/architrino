@@ -1098,6 +1098,8 @@ body {
     padding: 0 !important;
     color: #111111 !important;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-variant-ligatures: none !important;
+    font-feature-settings: "liga" 0, "clig" 0, "dlig" 0, "hlig" 0 !important;
     font-size: 11pt !important;
     line-height: 1.5 !important;
   }

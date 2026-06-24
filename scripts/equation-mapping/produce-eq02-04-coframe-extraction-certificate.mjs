@@ -277,20 +277,26 @@ function produceCertificate({ source, inputPath, retainedRecord }) {
     "mass_shell_target",
     "fitted_clock_envelope",
   ];
+  const usedForbiddenBasis = forbiddenBasis.filter((basis) =>
+    extractionBasis.includes(basis),
+  );
+  const unknownBasis = extractionBasis.filter(
+    (basis) => !allowedBasis.has(basis) && !forbiddenBasis.includes(basis),
+  );
   check(
     "extraction_basis_required",
     requiredBasis.every((basis) => extractionBasis.includes(basis)),
     { extractionBasis, requiredBasis },
   );
   check(
-    "extraction_basis_allowed",
-    extractionBasis.every((basis) => allowedBasis.has(basis)),
-    { extractionBasis },
+    "extraction_basis_gamma_free",
+    usedForbiddenBasis.length === 0,
+    { extractionBasis, forbiddenBasis, usedForbiddenBasis },
   );
   check(
-    "extraction_basis_gamma_free",
-    forbiddenBasis.every((basis) => !extractionBasis.includes(basis)),
-    { extractionBasis, forbiddenBasis },
+    "extraction_basis_allowed",
+    unknownBasis.length === 0,
+    { extractionBasis, allowedBasis: [...allowedBasis], unknownBasis },
   );
 
   const extractedLegs = source.extractedLegs ?? source.coframeLegs ?? {};

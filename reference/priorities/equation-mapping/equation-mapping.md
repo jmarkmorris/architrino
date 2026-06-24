@@ -109,6 +109,12 @@ Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column p
 
 [Equation Closure Pass 2026-06-24 X](equation-closure-pass-2026-06-24-x.md) adds a provisional source-internal connection torsion negative control using the existing producer checks. The fixture keeps support, row bindings, refinement steps, support id, coframe legs, phase holonomy, and transport residuals valid, but sets `connection.torsionMaxAbs` above tolerance, so the producer blocks exactly at `connection_torsion_bound`. This tests the current guardrail without adding new connection/holonomy transport semantics before the Cartan response. No scores change.
 
+[Equation Closure Pass 2026-06-24 Y](equation-closure-pass-2026-06-24-y.md) adds the sibling provisional phase-holonomy negative control. The fixture keeps support, row bindings, refinement steps, support id, coframe legs, torsion, and transport residuals valid, but sets `connection.phaseHolonomyT2` above tolerance, so the source-internal producer run blocks exactly at `connection_phase_holonomy_bound`. This is only a current-producer guardrail; the final role of $\Phi_{T^2}(u)$ and $W_{\mathrm{hol}}$ remains deferred to the Cartan transport response. No scores change.
+
+[Equation Closure Pass 2026-06-24 Z](equation-closure-pass-2026-06-24-z.md) adds the source-internal forbidden-basis negative control for the same producer. The fixture keeps support, row bindings, refinement, reciprocal coframe legs, torsion, phase holonomy, and transport residuals valid, but appends `gamma_f` to `extractionBasis`, so the source-internal producer run blocks exactly at `extraction_basis_gamma_free`. The producer now separates explicitly forbidden gamma/Lorentz/mass-shell/fitted inputs from unknown basis tokens. A separate unknown-basis fixture is intentionally deferred as allow-list hygiene rather than live no-retune progress. No scores change.
+
+The active Cartan review packet is now [Elie Cartan EQ-02-04 No-Retune Holonomy Guardrails 2026-06-24](../../entourage/review-packets/elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-06-24.md). It supersedes the broader connection/holonomy prompt by attacking one object: $W_{\mathrm{hol}}(\Theta_D,\omega_u,e^A_u,T^A_u,\Phi_{T^2}(u))$ over an already source-backed retained-domain certificate.
+
 Closure packets should be durable working files. Prefer one packet per equation as soon as the equation has enough independent material to advance on its own. Keep a tightly coupled equation group in one packet only when splitting it would obscure a shared residual, shared branch ledger, or shared Noether sea record. Continue improving each packet until it is either marked `ready` for reader-facing promotion or marked `complete` after promotion into `content/markdown/aaa`. The `Promoted?` column in [equation.md](equation.md) accepts only blank, `ready`, or `complete`.
 
 ## Discussion Capture
@@ -273,6 +279,8 @@ The workstream should stay internal until a line item produces a mature mathemat
 - [Equation Closure Pass 2026-06-24 V](equation-closure-pass-2026-06-24-v.md)
 - [Equation Closure Pass 2026-06-24 W](equation-closure-pass-2026-06-24-w.md)
 - [Equation Closure Pass 2026-06-24 X](equation-closure-pass-2026-06-24-x.md)
+- [Equation Closure Pass 2026-06-24 Y](equation-closure-pass-2026-06-24-y.md)
+- [Equation Closure Pass 2026-06-24 Z](equation-closure-pass-2026-06-24-z.md)
 - [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
 - [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md)
 - [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md)

@@ -22,7 +22,8 @@ This folder holds self-contained packets for outside-style entourage review. Eac
 | [elie-cartan-eq02-04a-retained-evidence-response-2026-06-24.md](elie-cartan-eq02-04a-retained-evidence-response-2026-06-24.md) | Elie Cartan | Source response integrated |
 | [elie-cartan-gamma-free-coframe-reciprocity-2026-06-24.md](elie-cartan-gamma-free-coframe-reciprocity-2026-06-24.md) | Elie Cartan | Prompt ready |
 | [elie-cartan-eq02-04-source-contract-split-2026-06-24.md](elie-cartan-eq02-04-source-contract-split-2026-06-24.md) | Elie Cartan | Superseded by narrower connection/holonomy packet |
-| [elie-cartan-eq02-04-connection-holonomy-transport-2026-06-24.md](elie-cartan-eq02-04-connection-holonomy-transport-2026-06-24.md) | Elie Cartan | Prompt ready |
+| [elie-cartan-eq02-04-connection-holonomy-transport-2026-06-24.md](elie-cartan-eq02-04-connection-holonomy-transport-2026-06-24.md) | Elie Cartan | Superseded by narrower no-retune holonomy guardrails packet |
+| [elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-06-24.md](elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-06-24.md) | Elie Cartan | Prompt ready |
 | [henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-06-24.md](henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-06-24.md) | Henri Poincare | Prompt ready |
 | [andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md](andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md) | Andrey Kolmogorov | Prompt ready |
 
