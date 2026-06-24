@@ -22,9 +22,9 @@ What statistical mechanics had was the moral structure of the answer: hidden mic
 
 ### What The Victorious Frameworks Achieved
 
-Thermodynamics and statistical mechanics achieved a disciplined bridge between microdynamics and macroscopic law. Quantum mechanics later achieved an equally disciplined bridge between preparation, measurement, and outcome statistics. Quantum field theory then made those statistical predictions extraordinarily precise. Lambda-CDM extended statistical inference to the sky, using distributions, spectra, fluctuations, and large-scale structure as evidence.
+Thermodynamics and statistical mechanics achieved a disciplined bridge between microdynamics and macroscopic law. Quantum mechanics later achieved an equally disciplined bridge between preparation, measurement, and outcome statistics. The shared lesson is not merely that probabilities work. It is that probabilities become scientific only when the state space, measure, and observable partition are controlled.
 
-A mature $\mathbb{A}\mathbb{A}\mathbb{A}$ recovers all of that. It explains thermodynamic irreversibility, quantum outcome frequencies, equilibrium and nonequilibrium transport, and cosmological statistical records. It does not stop at saying "deterministic underneath"; it derives the weights that observers actually measure.
+A mature $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover that discipline for quantum records. It does not stop at saying "deterministic underneath"; it derives the weights that observers actually measure.
 
 The strongest inherited lesson is that probability can be both effective and objective. The question is what mechanism makes it objective in a deterministic universe.
 
@@ -34,13 +34,13 @@ In quantum theory, the effective probability calculus became so successful that 
 
 From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, the wavefunction may be like a thermodynamic variable: indispensable, reproducible, and not fundamental. A temperature is not an illusion, but it is not the microstate. Likewise, a quantum state may be an effective chart over unresolved assembly, wake, apparatus, and Noether sea conditions.
 
-The danger is overcorrection. It would be just as wrong to say "probability is only ignorance" without deriving the measure. The statistical description has its own discipline. From the mature $\mathbb{A}\mathbb{A}\mathbb{A}$ vantage, frequencies are stable, apparatuses agree, records become robust, and different microscopic preparations lead to the same effective law because the underlying basin measures have become reproducible record statistics.
+The danger is overcorrection. It would be just as wrong to say "probability is only ignorance" without deriving the measure. From the mature $\mathbb{A}\mathbb{A}\mathbb{A}$ vantage, the statistical description is earned only when basin measures become reproducible record statistics.
 
 ### What Alternative Was Available In Principle
 
-The alternative was to generalize statistical mechanics beyond gases. One could have asked whether quantum outcomes are basin resolutions in a deterministic but high-dimensional dynamics. One could have asked whether measurement devices are not passive observers but record-forming dynamical systems. One could have asked whether a tiny remote causal-wake perturbation can decide a near-separatrix event while the full universe-state remains lawful.
+The alternative was to generalize statistical mechanics beyond gases. One could have asked whether quantum outcomes are basin resolutions in a deterministic but high-dimensional dynamics, and whether measurement devices are record-forming dynamical systems rather than passive observers.
 
-That alternative required more than philosophical hidden variables. It required a full-state space $\mathbb{U}_{\text{now}}\equiv S(t)$, finite-memory path-history states, apparatus basins, Noether sea environmental variables, and a physically justified measure. It required the ability to say which microstates lead to which record and why the resulting weights converge.
+That alternative required more than philosophical hidden variables. It required a full-state space $\mathbb{U}_{\text{now}}\equiv S(t)$, finite-memory path-history states, apparatus basins, Noether sea environmental variables, and a physically justified incoming measure.
 
 Statistical mechanics supplied the analogy. $\mathbb{A}\mathbb{A}\mathbb{A}$ must supply the ledger.
 
@@ -62,6 +62,6 @@ For quantum comparison, the important historical point is that a two-outcome bas
 
 ### What Statistical Mechanics Repositions
 
-From the mature $\mathbb{A}\mathbb{A}\mathbb{A}$ vantage, probability moves from fundamental law into effective record statistics. Entropy becomes a coarse-grained measure over unresolved substrate histories. Temperature and pressure become Noether sea and assembly ensemble variables. Quantum probabilities become basin measures over unresolved full-state, apparatus, and wake conditions.
+From the mature $\mathbb{A}\mathbb{A}\mathbb{A}$ vantage, probability moves from fundamental law into effective record statistics. Entropy remains a coarse-grained measure over unresolved substrate histories, and quantum probabilities become basin measures over unresolved full-state, apparatus, and wake conditions.
 
 The deeper ontological claim is not that randomness disappears from the observer's life. It is that randomness is not primitive. The observer sees probabilities because the observer cannot resolve the full state and because nature's branch basins have stable measures. That is a strong claim, but it is also a measurable one.

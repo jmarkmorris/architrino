@@ -22,9 +22,7 @@ The pre-relativistic world therefore had the question but not the mechanism. How
 
 ### What The Victorious Frameworks Achieved
 
-Special relativity achieved a profound discipline: it made inertial measurement coherent without unnecessary hidden structure. General relativity achieved more: it made gravitation a geometry of clocks, rulers, and freely falling motion. Quantum mechanics achieved a different discipline: it tied preparation and measurement to precise statistical predictions. Quantum field theory and the Standard Model made those predictions extraordinarily exact. Lambda-CDM organized cosmic observation in a compact relativistic framework.
-
-These achievements define the burden that mature $\mathbb{A}\mathbb{A}\mathbb{A}$ carries. It recovers time dilation, length contraction, synchronization behavior, light propagation, gravitational redshift, lensing, orbital precession, gravitational waves, quantum statistics, and cosmological observations without separate tuning for each phenomenon.
+Special relativity achieved a profound discipline: it made inertial measurement coherent without unnecessary hidden structure. General relativity achieved more: it made gravitation a geometry of clocks, rulers, and freely falling motion. These achievements define the burden that mature $\mathbb{A}\mathbb{A}\mathbb{A}$ carries in this essay: time dilation, length contraction, synchronization behavior, light propagation, gravitational redshift, lensing, orbital precession, and gravitational-wave propagation must not be recovered by separate tuning.
 
 This is why the mature recovery matters historically. Absolute time becomes a deeper truth only because the operational content of relativity is recovered rather than bypassed.
 
@@ -48,7 +46,7 @@ For cosmology, the alternative was to ask whether expansion variables are observ
 
 The miss was rational because the older substrate pictures failed where relativity succeeded. They could not explain the null results, the universality of light-speed measurement, or the operational behavior of clocks and rods. Relativity removed a confused mechanism and replaced it with a clean principle.
 
-The miss persisted because the clean principle became the preferred foundation. Once spacetime geometry worked, a fixed Euclidean void seemed like a step backward. Once quantum formalism worked, hidden records seemed like metaphysics. Once field theory worked, assembly interiors seemed unnecessary. The more successful the effective theories became, the higher the price of reopening ontology.
+The miss persisted because the clean principle became the preferred foundation. Once spacetime geometry worked, a fixed Euclidean void seemed like a step backward. Later quantum and field successes raised the same price for hidden records and assembly interiors.
 
 That price remains appropriate. Mature $\mathbb{A}\mathbb{A}\mathbb{A}$ does not ask for leniency. Its historical force comes from deriving the successful theories from a stricter substrate account.
 
@@ -62,8 +60,8 @@ The gravitational version was the shared metric test. Redshift, Shapiro delay, l
 
 ### What Relativity Repositions
 
-From the mature $\mathbb{A}\mathbb{A}\mathbb{A}$ vantage, spacetime moves from substrate ontology into observer-level geometry. Absolute time and the Euclidean void are the underlying container. Physical clocks, rulers, and signals are assemblies and causal processes inside that container. The metric summarizes how those physical systems behave.
+From the mature $\mathbb{A}\mathbb{A}\mathbb{A}$ vantage, spacetime moves from substrate ontology into observer-level geometry. Absolute time and the Euclidean void are the underlying container; physical clocks, rulers, and signals are assemblies and causal processes inside that container. The metric summarizes how those systems behave.
 
-This would not make relativity false. It would make relativity a brilliant effective theory of physical measurement. The deeper claim would be that nature preserves relativistic behavior for observers because the assemblies making observers are themselves governed by causal-wake dynamics and Noether sea response.
+This would not make relativity false. It would make relativity a brilliant effective theory of physical measurement, recovered because observer-building assemblies are themselves governed by causal-wake dynamics and Noether sea response.
 
 That is a formidable claim. Its historical importance is that it explains why the most successful descriptions of the last century work while still leaving room for a deeper intelligible world.

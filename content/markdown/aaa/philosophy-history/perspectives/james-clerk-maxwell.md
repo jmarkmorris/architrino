@@ -22,17 +22,15 @@ The period therefore oscillated between two incomplete pictures: matter as littl
 
 ### What The Victorious Frameworks Achieved
 
-Maxwellian electrodynamics achieved a stunning compression. It joined electricity, magnetism, and light in one mathematical language. Relativity later clarified the operational meaning of light speed and inertial measurement. Quantum theory and quantum field theory then explained spectra, emission, absorption, scattering, and particle creation with a precision no medium picture had matched. Lambda-CDM, at the cosmic scale, gave a disciplined fit to light arriving from the early and distant universe.
-
-Those achievements remain constraints. A mature $\mathbb{A}\mathbb{A}\mathbb{A}$ recovers Maxwellian limits, polarization, radiation, interference, photon energy and momentum, scattering behavior, and the observed constancy of light speed in weak homogeneous conditions. It also explains when field variables are legitimate continuum summaries and when they are convenient shadows of a causal-wake ledger.
+Maxwellian electrodynamics achieved a stunning compression. It joined electricity, magnetism, and light in one mathematical language, and it taught physics to take distributed energy, stress, and finite propagation seriously. Later relativity and quantum field theory strengthened that lesson rather than weakening it: any deeper account must recover field limits, polarization, radiation, interference, photon energy and momentum, scattering behavior, and the observed constancy of light speed in weak homogeneous conditions.
 
 The strongest inherited lesson is that field equations work. The question is whether their success identifies fundamental ontology or an effective description of a more granular causal process.
 
 ### Where Effective Description Became Ontology
 
-Field language became ontology when the continuum summary was treated as the thing itself. In classical electrodynamics, the field became the natural carrier of energy and momentum. In quantum field theory, field operators became the language of particles and interactions. In cosmology, radiation fields and background distributions became the principal record of the universe's early state.
+Field language became ontology when the continuum summary was treated as the thing itself. In classical electrodynamics, the field became the natural carrier of energy and momentum; in quantum field theory, field operators became the language of particles and interactions.
 
-From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, the error would not be that fields are false. The error would be to stop at the field chart. A field may be the effective coarse-grained variable obtained when many causal wakes overlap and when finite observers cannot resolve source provenance. That is a powerful description, but it is not automatically fundamental substance.
+From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, the error would not be that fields are false. The error would be to stop at the field chart. A field may be the effective coarse-grained variable obtained when many causal wakes overlap and finite observers cannot resolve source provenance.
 
 The same caution applies to the medium. Calling the Noether sea a medium does no work unless the response variables, transport laws, stress terms, and conservation rows are supplied. A medium without equations is nostalgia. A medium with closure is physics.
 
@@ -50,7 +48,7 @@ The miss was rational because mechanical medium theories overpromised and underd
 
 The persistence of the miss followed from the triumph of smooth mathematics. Once fields became calculationally autonomous, it was natural to treat them as primitive. Quantum field theory deepened this habit: if the field formalism predicts scattering amplitudes with extraordinary accuracy, why ask for a lower-level assembly and wake ledger?
 
-The answer is that prediction is not the only scientific virtue. Compression across domains matters. From the mature $\mathbb{A}\mathbb{A}\mathbb{A}$ vantage, the same causal-wake architecture explains electromagnetic field limits, photon structure, mass response, quantum statistics, and effective metric behavior. The medium question returns in a stronger form because it is no longer a picture competing with field equations; it is the substrate account from which the effective field equations descend.
+The answer is that prediction is not the only scientific virtue. Provenance matters too. The medium question returns in a stronger form because it is no longer a picture competing with field equations; it is the substrate account from which effective field variables, transport laws, and stress rows descend.
 
 ### The Missing Wake-To-Field Test
 
@@ -62,6 +60,6 @@ For light, the historical hinge would have been shared speed and polarization cl
 
 ### What Field Theory Repositions
 
-From the mature $\mathbb{A}\mathbb{A}\mathbb{A}$ vantage, fields move from fundamental ontology into effective description without losing their importance. The causal wake is the substrate emission record. The effective field is the observer-level continuum summary. The Noether sea is not empty space, not the Euclidean void, and not a vague historical medium; it is the ambient substrate contents whose response is mathematically specified.
+From the mature $\mathbb{A}\mathbb{A}\mathbb{A}$ vantage, fields move from fundamental ontology into effective description without losing their importance. The causal wake is the substrate emission record. The effective field is the observer-level continuum summary. The Noether sea is not empty space, not the Euclidean void, and not a vague historical medium; it is the ambient substrate contents whose response must be mathematically specified.
 
 The historical correction would be subtle. The field theorists were right to take distributed structure seriously. The medium mechanists were right that unseen substrate behavior may matter. Both were incomplete because neither had the retained causal ledger. $\mathbb{A}\mathbb{A}\mathbb{A}$ earns the right to reinterpret them only if it turns causal wakes into field equations without losing the source record that field equations normally hide.
