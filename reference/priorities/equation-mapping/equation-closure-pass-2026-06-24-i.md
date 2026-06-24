@@ -139,10 +139,10 @@ The pass raises the no-retune burden and clarifies the solver output target, but
 
 ## Next Action
 
-Run the cheapest decisive test on the current $\beta_f=0.6$ drift row: extract $e^A_u$ from wake-return timing without inserting $\gamma_f$, then check whether
+The first executable form of this test is now recorded in [Equation Closure Pass 2026-06-24 J](equation-closure-pass-2026-06-24-j.md). The current attempt fixture declares a gamma-free coframe row and checks whether
 
 $$
 e^0_u(\partial_t)\frac{e^\parallel_u}{e^\perp_u}=1
 $$
 
-inside the certified arithmetic and truncation band. A pass would justify building the full $W_{\mathrm{hol}}$ certificate; a fail would show that the clock and envelope rows are still independent fits.
+inside the arithmetic band. The remaining score-moving task is to replace the declared attempt legs with a wake-return extraction on certified invariant support and then build the full $W_{\mathrm{hol}}$ certificate.

@@ -45,6 +45,12 @@ const ROWS = [
     consumes: ["EQ-02", "EQ-03", "EQ-04"],
   },
   {
+    key: "gamma_free_coframe_row",
+    row: "gamma-free coframe row",
+    consumes: ["EQ-02", "EQ-03", "EQ-04"],
+    diagnostic: "coframeReciprocity",
+  },
+  {
     key: "clock_row",
     row: "clock row",
     consumes: ["EQ-02"],
@@ -101,6 +107,16 @@ const ROWS = [
 ];
 
 const WITNESSES = [
+  {
+    key: "support_witness_zero",
+    row: "support witness",
+    diagnostic: "supportWitness",
+  },
+  {
+    key: "holonomy_witness_zero",
+    row: "holonomy witness",
+    diagnostic: "holonomyWitness",
+  },
   {
     key: "split_witness_zero",
     row: "split witness",
@@ -172,7 +188,9 @@ Options:
 
 This runner evaluates the direct retained-record shape for the EQ-02 through
 EQ-04 translating-binary closure target. It is score-neutral unless every row,
-witness, and residual is accepted on one common carrier.`);
+witness, and residual is accepted on one common carrier. The gamma-free coframe
+diagnostic checks reciprocity only after the input declares that gamma, fitted
+Lorentz rows, and shell targets were not used to construct the coframe.`);
 }
 
 function readJson(filePath) {
@@ -536,6 +554,11 @@ function evaluateDiagnostics({ input, drift, tolerances }) {
       value: rows.same_root_conservation_row?.residual,
       tolerance: tolerance(tolerances, "sameRootConservation"),
     }),
+    coframeReciprocity: coframeReciprocityDiagnostic(
+      rows.gamma_free_coframe_row,
+      drift,
+      tolerance(tolerances, "coframeReciprocity"),
+    ),
     clock: clockDiagnostic(rows.clock_row, drift, tolerance(tolerances, "clock")),
     envelope: envelopeDiagnostic(rows.envelope_row, drift, tolerances),
     twoWaySignal: residualDiagnostic({
@@ -551,6 +574,14 @@ function evaluateDiagnostics({ input, drift, tolerances }) {
       rows.medium_response_row,
       tolerance(tolerances, "mediumResponse"),
     ),
+    supportWitness: residualDiagnostic({
+      value: input.witnesses?.support_witness_zero?.residual,
+      tolerance: tolerance(tolerances, "witness"),
+    }),
+    holonomyWitness: residualDiagnostic({
+      value: input.witnesses?.holonomy_witness_zero?.residual,
+      tolerance: tolerance(tolerances, "witness"),
+    }),
     splitWitness: residualDiagnostic({
       value: input.witnesses?.split_witness_zero?.residual,
       tolerance: tolerance(tolerances, "witness"),
@@ -587,6 +618,12 @@ function evaluateNegativeControls({ controls, tolerances }) {
       control: controls.medium_response_compensator,
       fitKeys: ["momentumResidual"],
       failureKeys: ["mediumResponseResidual"],
+      tolerance: limit,
+    }),
+    gamma_inserted_coframe: negativeControlDiagnostic({
+      control: controls.gamma_inserted_coframe,
+      fitKeys: ["reciprocityResidual"],
+      failureKeys: ["forbiddenInputResidual", "holonomyResidual"],
       tolerance: limit,
     }),
   };
@@ -669,6 +706,97 @@ function envelopeDiagnostic(row, drift, tolerances) {
       envelope: envelopeResult,
       shape: shapeResult,
     },
+  };
+}
+
+function coframeReciprocityDiagnostic(row, drift, limit) {
+  if (!row || typeof row !== "object" || Array.isArray(row)) {
+    return notEvaluated("missing_gamma_free_coframe_row");
+  }
+  const declaration = evaluateGammaFreeDeclaration(row.inputDeclaration);
+  if (declaration.status === "failed") {
+    return {
+      status: "failed",
+      reason: declaration.reason,
+      residual: null,
+      absoluteResidual: null,
+      tolerance: limit,
+      details: { inputDeclaration: declaration },
+    };
+  }
+  if (declaration.status !== "passed") {
+    return notEvaluated(declaration.reason);
+  }
+  const timeLeg = positiveFiniteNumberOrNull(row.e0_dt ?? row.timeLeg);
+  const parallelLeg = finiteNumberOrNull(row.e_parallel ?? row.parallelLeg);
+  const perpendicularLeg = positiveFiniteNumberOrNull(row.e_perp ?? row.perpLeg);
+  if (timeLeg === null || parallelLeg === null || perpendicularLeg === null) {
+    return notEvaluated("missing_coframe_leg");
+  }
+  const reciprocalLeg = parallelLeg / perpendicularLeg;
+  const residual = timeLeg * reciprocalLeg - 1;
+  const result = scalarResult(residual, limit, {
+    e0_dt: timeLeg,
+    e_parallel: parallelLeg,
+    e_perp: perpendicularLeg,
+    reciprocalLeg,
+    inputDeclaration: declaration,
+    lambdaMinusGamma:
+      drift.status === "passed" && drift.gamma !== null ? timeLeg - drift.gamma : null,
+    gamma_f_for_comparison_only: drift.gamma ?? null,
+  });
+  return {
+    ...result,
+    reason: result.status === "passed" ? "passed_gamma_free_reciprocity" : "failed_reciprocity",
+  };
+}
+
+function evaluateGammaFreeDeclaration(declaration) {
+  if (!declaration || typeof declaration !== "object" || Array.isArray(declaration)) {
+    return {
+      status: "not_evaluated",
+      reason: "missing_coframe_input_declaration",
+    };
+  }
+  const forbiddenFlags = [
+    "usesGammaInput",
+    "usesLorentzTargetCoefficients",
+    "usesMassShellTarget",
+    "usesFittedClockEnvelopeRows",
+  ];
+  const usedForbiddenInputs = forbiddenFlags.filter((key) => declaration[key] === true);
+  if (usedForbiddenInputs.length > 0) {
+    return {
+      status: "failed",
+      reason: "forbidden_coframe_input_used",
+      usedForbiddenInputs,
+    };
+  }
+  const undeclaredFlags = forbiddenFlags.filter((key) => declaration[key] !== false);
+  if (undeclaredFlags.length > 0) {
+    return {
+      status: "not_evaluated",
+      reason: "missing_forbidden_input_declaration",
+      undeclaredFlags,
+    };
+  }
+  const allowedInputs = arrayOfStringsOrEmpty(declaration.allowedInputs);
+  const requiredAllowedInputs = ["c_f", "u", "L_root", "L_wake"];
+  const missingAllowedInputs = requiredAllowedInputs.filter(
+    (inputName) => !allowedInputs.includes(inputName),
+  );
+  if (missingAllowedInputs.length > 0) {
+    return {
+      status: "not_evaluated",
+      reason: "missing_required_allowed_coframe_input",
+      missingAllowedInputs,
+      allowedInputs,
+    };
+  }
+  return {
+    status: "passed",
+    reason: "gamma_free_input_declaration_passed",
+    allowedInputs,
   };
 }
 
@@ -920,6 +1048,12 @@ function matrixOrNull(value) {
   }
   const matrix = value.map(vectorOrNull);
   return matrix.every((row) => row !== null) ? matrix : null;
+}
+
+function arrayOfStringsOrEmpty(value) {
+  return Array.isArray(value)
+    ? value.filter((entry) => typeof entry === "string")
+    : [];
 }
 
 function vectorNorm(vector) {

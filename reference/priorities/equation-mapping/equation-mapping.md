@@ -79,6 +79,8 @@ Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column p
 
 [Equation Closure Pass 2026-06-24 I](equation-closure-pass-2026-06-24-i.md) integrates the Elie Cartan-style common-carrier response. It keeps the invariant-cell requirement but strengthens no-retune from shared support to connection holonomy: `EQ-02` through `EQ-04` should be parallel readings of one gamma-free coframe over the drift base, with $W_{\mathrm{supp}}$ and $W_{\mathrm{hol}}$ reported separately. The pass also adds torsion as the wake-tail/self-hit asymmetry row, keeps $\mathcal M_{\mathrm{sea}}^{ab}$ as a constitutive consumer in the primitive run, and reframes `EQ-04A` Koide as a mass-root moment-map/equipartition diagnostic. No scores change.
 
+[Equation Closure Pass 2026-06-24 J](equation-closure-pass-2026-06-24-j.md) implements the first score-neutral gamma-free coframe reciprocity diagnostic inside the existing `EQ-02` through `EQ-04` retained-record runner. The current $\beta_f=0.6$ attempt reports $e^0_u(\partial_t)=1.25$, $e^\parallel_u/e^\perp_u=0.8$, product $1$, and a passing `gamma_inserted_coframe` negative control, while still blocking score movement at `missing_accepted_raw_labeled_rows_preserved_on_retained_history`. No scores change.
+
 Closure packets should be durable working files. Prefer one packet per equation as soon as the equation has enough independent material to advance on its own. Keep a tightly coupled equation group in one packet only when splitting it would obscure a shared residual, shared branch ledger, or shared Noether sea record. Continue improving each packet until it is either marked `ready` for reader-facing promotion or marked `complete` after promotion into `content/markdown/aaa`. The `Promoted?` column in [equation.md](equation.md) accepts only blank, `ready`, or `complete`.
 
 ## Discussion Capture
@@ -228,6 +230,7 @@ The workstream should stay internal until a line item produces a mature mathemat
 - [Equation Closure Pass 2026-06-23 AM](equation-closure-pass-2026-06-23-am.md)
 - [Equation Closure Pass 2026-06-23 AN](equation-closure-pass-2026-06-23-an.md)
 - [Equation Closure Pass 2026-06-24 I](equation-closure-pass-2026-06-24-i.md)
+- [Equation Closure Pass 2026-06-24 J](equation-closure-pass-2026-06-24-j.md)
 - [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
 - [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md)
 - [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md)

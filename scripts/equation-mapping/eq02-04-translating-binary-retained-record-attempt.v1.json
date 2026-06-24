@@ -53,6 +53,33 @@
       "commonCarrierId": "C_02-04_bin_u_attempt_0001",
       "domainId": "D_02-04_bin_u_attempt_0001"
     },
+    "gamma_free_coframe_row": {
+      "status": "attempt",
+      "rowId": "gamma_free_coframe_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "inputDeclaration": {
+        "allowedInputs": [
+          "c_f",
+          "u",
+          "L_root",
+          "L_wake",
+          "retained_boundary_history"
+        ],
+        "usesGammaInput": false,
+        "usesLorentzTargetCoefficients": false,
+        "usesMassShellTarget": false,
+        "usesFittedClockEnvelopeRows": false
+      },
+      "e0_dt": 1.25,
+      "e_parallel": 0.8,
+      "e_perp": 1,
+      "connectionStatus": "attempt",
+      "torsionMaxAbs": 0,
+      "phaseHolonomyT2": [0, 0],
+      "seaConstitutiveConsumerOnly": true
+    },
     "clock_row": {
       "status": "attempt",
       "rowId": "clock_row_attempt",
@@ -154,6 +181,22 @@
     }
   },
   "witnesses": {
+    "support_witness_zero": {
+      "status": "attempt",
+      "rowId": "support_witness_zero_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "residual": 0
+    },
+    "holonomy_witness_zero": {
+      "status": "attempt",
+      "rowId": "holonomy_witness_zero_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "residual": 0
+    },
     "split_witness_zero": {
       "status": "attempt",
       "rowId": "split_witness_zero_attempt",
@@ -188,6 +231,11 @@
     "medium_response_compensator": {
       "momentumResidual": 0,
       "mediumResponseResidual": 0.1
+    },
+    "gamma_inserted_coframe": {
+      "reciprocityResidual": 0,
+      "forbiddenInputResidual": 0.1,
+      "holonomyResidual": 0.1
     }
   },
   "tolerances": {
@@ -200,6 +248,7 @@
     "restMass": 1e-12,
     "massShell": 1e-12,
     "mediumResponse": 1e-12,
+    "coframeReciprocity": 1e-12,
     "rootStarvation": 1e-12,
     "sameRootConservation": 1e-12,
     "witness": 1e-12,
