@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1455
+      "sections": 1456
     }
   },
   "tocRoot": {
@@ -13392,6 +13392,14 @@
                     "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
                     "markdownSection": "Opening Frame",
                     "sectionKey": "opening frame",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Paradigms, Research Programs, And Anomalies",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Paradigms, Research Programs, And Anomalies",
+                    "sectionKey": "paradigms research programs and anomalies",
                     "headingLevel": 2
                   },
                   {

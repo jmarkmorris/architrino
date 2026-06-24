@@ -299,6 +299,8 @@ J_{\mathrm{eff},\mu}^{\theta}
 \right].
 $$
 
+Solved Maxwell or scalar-wave families should be treated as inverse clues. Retarded Green functions constrain causal support and source provenance; plane waves and eikonal solutions constrain dispersion and phase/group velocity; cavity and boundary modes constrain mode counting and boundary readout; scattering solutions constrain phase shifts and flux ledgers. These are acceptance tests for the coarse-grained wake/photon-channel map, not substrate fields.
+
 The row should score only through a residual such as
 
 $$
@@ -384,6 +386,8 @@ $$
 $$
 
 The comparison with ordinary wave mechanics uses $\rho_\psi=|\psi|^2$ and $\mathbf J_\psi$, but the native row is record-facing basin flow.
+
+Known solved Schrödinger packets and bound states are useful here as inverse tests. A free Gaussian packet, stationary bound-state spectrum, tunneling solution, or scattering phase shift can constrain the finite-window measure, detector kernel, branch-flow map, and record-current continuity row. The solved $\psi$ itself remains an effective comparison chart unless it is recovered from the same retained carrier that supplies $\rho_{\mathrm{rec}}$ and $\mathbf J_{\mathrm{rec}}$.
 
 ### Mapped Form
 

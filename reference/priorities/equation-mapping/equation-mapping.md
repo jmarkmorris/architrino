@@ -199,6 +199,7 @@ The workstream should stay internal until a line item produces a mature mathemat
 7. `multi_agent_closure_pass` - Use the new-thread prompt in [equation.md](equation.md#new-thread-prompt) to assign one line item per worker and integrate their closure packets. Status: `ready`. Depends on: `equation_inventory`.
 8. `tri_binary_equation_bearing_search` - Feed mature equation residuals into the stable tri-binary configuration search via [Equation-Map Bearing On Braid Configuration Search](../braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md), including $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=(f+1,f,f-1)$, $(I,M,O)=(f,f,f)$, $(I,M,O)=(4f,2f,f)$, and $(I,M,O)=(nf,mf,f)$. Status: `next`. Depends on: `score_five_closure_ladder` and the angular-momentum `tri_binary_partition_rule`.
 9. `koide_charged_lepton_mass_residual` - Treat `EQ-04A` as a no-retune residual on the charged-lepton generation-by-shielding mass map. Status: `queued`. Depends on: `lorentz_envelope_closure` and `score_five_closure_ladder`.
+10. `solved_wave_inverse_clue_audit` - Mine solved wave-equation families for inverse clues and acceptance tests, especially Green functions, dispersion $\omega(k)$, eikonal limits, normal modes, scattering phase shifts, continuity currents, and packet spreading. Status: `queued`. Depends on: `quantum_photon_statistical_maps` and `score_five_closure_ladder`.
 
 ## Promotion Map
 

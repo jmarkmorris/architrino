@@ -119,6 +119,17 @@ Every downstream row must either consume the active-root law directly or consume
 
 The common failure mode is `equation_map.imported_formula`: a later row matches a standard equation while its causal-root, wake, event, retained-branch, or Noether sea provenance is absent or split. The common success marker is a same-record residual whose root, wake, event, and Noether sea inputs are declared before coefficients are compared.
 
+### Solved Wave Solutions As Inverse-Clue Benchmarks
+
+Solved wave equations are useful to this workstream as inverse clues, not as substrate ontology. A closed-form plane wave, Green function, normal mode, eikonal solution, scattering phase shift, or bound-state spectrum may expose conserved currents, dispersion $\omega(k)$, causal support, mode counting, boundary quantization, phase/group velocity, and kernel structure that a retained Noether braid or Noether sea coarse-graining must reproduce.
+
+The mapping direction is therefore bidirectional but level-disciplined:
+
+1. Native-to-effective: start from active roots, wake ledgers, retained branch charts, event ledgers, Noether sea moments, and finite-window measures; derive the effective equation and then compare its solved families.
+2. Effective-to-native: use known solved wave families to infer which native carrier, kernel, invariant, or no-retune witness must exist; do not import the solved field itself as the carrier.
+
+For `EQ-13` through `EQ-15`, solved wave data are especially high value as acceptance tests: Green-function causal support for Maxwell-like rows, mode-counting and dispersion for photon and Planck rows, Schrödinger Gaussian packets and continuity currents for record-flow rows, and Klein-Gordon/Dirac dispersion or spinor phase structure for ordered-frame rows. A solved wave comparison should score only when the solution family is tied back to one source-backed coarse-graining map, retained event/window, or branch carrier. Otherwise it remains another form of `equation_map.imported_formula`.
+
 ### Agent Target
 
 Keep this dependency note current as new suffix rows are added. `EQ-01` is already mapped; its continuing job is to police downstream dependency discipline and prevent imported-formula shortcuts.
@@ -792,6 +803,8 @@ The photon-channel packet is not a primitive field quantum. It should be mapped 
 
 The null condition belongs to the observer-level effective metric. The wave equation belongs to a continuum field summary of many causal wakes and photon-channel packets.
 
+Solved wave-equation families are admissible here as inverse clues and acceptance tests. A Green function, plane-wave dispersion row, eikonal family, cavity or boundary mode, or scattering solution can constrain the required Noether sea response kernel, photon-channel packet ledger, source-event provenance, and gauge residual. It cannot replace those rows; the solved field is an effective comparison object unless the coarse-graining map from causal wakes and photon packets is declared.
+
 ### Closure Status
 
 Current `6/23 b` scores: `3` for photon energy/null transport and `3` for Maxwell and wave equations.
@@ -1111,6 +1124,8 @@ These equations should be treated as observer-level or effective-state recovery 
 - angular-momentum and exchange ledger;
 - sector exposure quotient;
 - detector-response kernel.
+
+Solved Schrödinger, Klein-Gordon, Dirac, and spinor wave families should be mined for inverse constraints: continuity currents, Gaussian packet spreading, bound-state spectra, relativistic dispersion, spinor phase transport, scattering phase shifts, and mode normalizations. Those constraints are useful only after they are expressed as retained branch, finite-window measure, ordered-frame, or detector-kernel residuals; they should not be treated as primitive wavefunction or field ontology.
 
 ### Closure Status
 
