@@ -383,6 +383,20 @@ r_\star,
 \qquad s\in[0,2].
 $$
 
+Equivalently, the $2\pi/4\pi$ behavior is a lift obstruction for the retained ordered-frame loop. If
+
+$$
+\Phi:\mathfrak D_R\to SO(3)
+$$
+
+is the closed period-loop map for the retained branch domain, then the spinor row asks whether the loop represents the nontrivial class in
+
+$$
+\pi_1(SO(3))=\mathbb Z/2
+$$
+
+and whether the doubled path lifts consistently to $\mathrm{Spin}(3)=SU(2)$. A row move is a gauge quotient move only when it preserves this $\mathbb Z/2$ holonomy class; a move that changes the class is a physical history-sheet change, not a gauge simplification.
+
 The downstream label is admissible only when
 
 $$

@@ -9,6 +9,8 @@ const DEFAULT_TOLERANCES = {
   massClosure: 1e-12,
   invariance: 1e-3,
   retune: 1e-12,
+  nullSeparatrix: 1e-3,
+  refinement: 1e-3,
 };
 const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
 const SCORE_DECISION = "no_score_increase";
@@ -53,6 +55,12 @@ const DEFAULT_INPUT = {
       retainedStatus: "toy",
       classes: ["stable_remnant", "corridor_alpha", "corridor_beta"],
     },
+    corridorSemantics: {
+      mode: "first_exit",
+      basinId: "B_star_eq31_toy",
+      boundaryId: "partial_B_star_eq31_toy",
+      detectorKernelStage: "post_escape_pushforward",
+    },
     exitCorridors: [
       {
         id: "C_alpha",
@@ -67,6 +75,17 @@ const DEFAULT_INPUT = {
         ledgerStatus: "toy",
       },
     ],
+    nullSeparatrix: {
+      epsilon: 0.01,
+      neighborhoodMass: 0.002,
+      tolerance: 0.001,
+      retainedStatus: "toy",
+    },
+    refinementCompatibility: {
+      cocycleDefect: 0.02,
+      tolerance: 0.001,
+      retainedStatus: "toy",
+    },
     noHiddenRetuneWitness: {
       id: "S_retune_eq31_toy",
       residual: 0,
@@ -160,6 +179,7 @@ function summarizeOutput(output) {
     missingAcceptedRows: output.retainedAcceptance.missingAcceptedRows,
     rowStatuses: output.retainedAcceptance.rowStatuses,
     rowReasons: output.retainedAcceptance.rowReasons,
+    corridorDiagnostics: output.corridorDiagnostics,
   };
 }
 
@@ -174,7 +194,13 @@ function evaluateCarrier(input) {
   const retainedAcceptance = evaluateRetainedAcceptance(carrier, tolerances);
   const massRows = computeMassRows(corridors, totalMass, tolerances);
   const eq31 = computeEq31Rows(corridors, constants);
-  const status = decideStatus(retainedAcceptance, massRows, carrier);
+  const corridorDiagnostics = evaluateCorridorDiagnostics(carrier, tolerances);
+  const status = decideStatus(
+    retainedAcceptance,
+    massRows,
+    carrier,
+    corridorDiagnostics,
+  );
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -201,7 +227,17 @@ function evaluateCarrier(input) {
       hiddenRetunePassed: retainedAcceptance.hiddenRetunePassed,
       eq31RowsComputed: eq31.computed,
       corridorCount: corridors.length,
-      nextBlocker: firstBlocker(retainedAcceptance, massRows, eq31),
+      firstExitCorridorsDeclared:
+        corridorDiagnostics.firstExitCorridorsDeclared,
+      nullSeparatrixPassed: corridorDiagnostics.nullSeparatrixPassed,
+      refinementCompatibilityPassed:
+        corridorDiagnostics.refinementCompatibilityPassed,
+      nextBlocker: firstBlocker(
+        retainedAcceptance,
+        massRows,
+        eq31,
+        corridorDiagnostics,
+      ),
     },
     finiteWindowCarrier: {
       window: summarizeRow(carrier.window),
@@ -211,10 +247,26 @@ function evaluateCarrier(input) {
       coarseGraining: summarizeRow(carrier.coarseGraining),
       detectorKernel: summarizeRow(carrier.detectorKernel),
       outcomePartition: summarizeRow(carrier.outcomePartition, ["classes"]),
+      corridorSemantics: summarizeRow(carrier.corridorSemantics, [
+        "mode",
+        "basinId",
+        "boundaryId",
+        "detectorKernelStage",
+      ]),
+      nullSeparatrix: summarizeRow(carrier.nullSeparatrix, [
+        "epsilon",
+        "neighborhoodMass",
+        "tolerance",
+      ]),
+      refinementCompatibility: summarizeRow(
+        carrier.refinementCompatibility,
+        ["cocycleDefect", "tolerance"],
+      ),
       noHiddenRetuneWitness: summarizeRow(carrier.noHiddenRetuneWitness, ["residual"]),
     },
     retainedAcceptance,
     massRows,
+    corridorDiagnostics,
     eq31,
   };
 }
@@ -236,6 +288,14 @@ function parseTolerances(raw) {
       "tolerances.invariance",
     ),
     retune: positiveNumber(raw.retune ?? DEFAULT_TOLERANCES.retune, "tolerances.retune"),
+    nullSeparatrix: positiveNumber(
+      raw.nullSeparatrix ?? DEFAULT_TOLERANCES.nullSeparatrix,
+      "tolerances.nullSeparatrix",
+    ),
+    refinement: positiveNumber(
+      raw.refinement ?? DEFAULT_TOLERANCES.refinement,
+      "tolerances.refinement",
+    ),
   };
 }
 
@@ -294,6 +354,50 @@ function computeEq31Rows(corridors, constants) {
     GammaCmp: constants.hbar * gammaTotal,
     tauCmp: computed ? 1 / gammaTotal : null,
     branchingFractions,
+  };
+}
+
+function evaluateCorridorDiagnostics(carrier, tolerances) {
+  const corridorSemantics = carrier.corridorSemantics ?? {};
+  const detectorKernelStage = corridorSemantics.detectorKernelStage ?? null;
+  const firstExitCorridorsDeclared =
+    corridorSemantics.mode === "first_exit" &&
+    concreteString(corridorSemantics.basinId) &&
+    concreteString(corridorSemantics.boundaryId) &&
+    (detectorKernelStage === null ||
+      detectorKernelStage === "post_escape_pushforward");
+
+  const nullSeparatrix = carrier.nullSeparatrix ?? {};
+  const nullSeparatrixMass = finiteNumberOrNull(
+    nullSeparatrix.neighborhoodMass ?? nullSeparatrix.mass,
+  );
+  const nullSeparatrixTolerance =
+    finiteNumberOrNull(nullSeparatrix.tolerance) ?? tolerances.nullSeparatrix;
+  const nullSeparatrixPassed =
+    nullSeparatrixMass !== null &&
+    nullSeparatrixMass <= nullSeparatrixTolerance;
+
+  const refinementCompatibility = carrier.refinementCompatibility ?? {};
+  const refinementCocycleDefect = finiteNumberOrNull(
+    refinementCompatibility.cocycleDefect ??
+      refinementCompatibility.residual,
+  );
+  const refinementTolerance =
+    finiteNumberOrNull(refinementCompatibility.tolerance) ??
+    tolerances.refinement;
+  const refinementCompatibilityPassed =
+    refinementCocycleDefect !== null &&
+    refinementCocycleDefect <= refinementTolerance;
+
+  return {
+    firstExitCorridorsDeclared,
+    detectorKernelStage,
+    nullSeparatrixMass,
+    nullSeparatrixTolerance,
+    nullSeparatrixPassed,
+    refinementCocycleDefect,
+    refinementTolerance,
+    refinementCompatibilityPassed,
   };
 }
 
@@ -452,7 +556,7 @@ function summarizeRow(row, extraKeys = []) {
   return summary;
 }
 
-function decideStatus(retainedAcceptance, massRows, carrier) {
+function decideStatus(retainedAcceptance, massRows, carrier, corridorDiagnostics) {
   if (!massRows.massClosurePassed) {
     return "blocked_corridor_measure_exceeds_window_measure";
   }
@@ -464,10 +568,19 @@ function decideStatus(retainedAcceptance, massRows, carrier) {
   if (!retainedAcceptance.accepted) {
     return "blocked_missing_accepted_retained_rows";
   }
+  if (!corridorDiagnostics.firstExitCorridorsDeclared) {
+    return "blocked_missing_first_exit_corridor_semantics";
+  }
+  if (!corridorDiagnostics.nullSeparatrixPassed) {
+    return "blocked_null_separatrix_positive_mass";
+  }
+  if (!corridorDiagnostics.refinementCompatibilityPassed) {
+    return "blocked_refinement_cocycle_defect";
+  }
   return "accepted_retained_statistical_carrier";
 }
 
-function firstBlocker(retainedAcceptance, massRows, eq31) {
+function firstBlocker(retainedAcceptance, massRows, eq31, corridorDiagnostics) {
   if (!massRows.massClosurePassed) {
     return "corridor_measure_exceeds_window_measure";
   }
@@ -482,6 +595,15 @@ function firstBlocker(retainedAcceptance, massRows, eq31) {
   }
   if (!retainedAcceptance.hiddenRetunePassed) {
     return "no_hidden_retune_witness";
+  }
+  if (!corridorDiagnostics.firstExitCorridorsDeclared) {
+    return "missing_first_exit_corridor_semantics";
+  }
+  if (!corridorDiagnostics.nullSeparatrixPassed) {
+    return "null_separatrix_positive_mass";
+  }
+  if (!corridorDiagnostics.refinementCompatibilityPassed) {
+    return "refinement_cocycle_defect";
   }
   return null;
 }

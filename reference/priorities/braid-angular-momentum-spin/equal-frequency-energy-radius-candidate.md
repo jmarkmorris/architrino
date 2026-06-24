@@ -80,7 +80,7 @@ B_{3B}(q,v)
 =
 \left(
 R_{\parallel},R_{\perp},\xi;\,
-\omega_a,J_a,\phi_a,\mathbf{N}_a;\,
+\omega_a,J_a,\phi_a,\mathcal B_a;\,
 \rho_a,s_a;\,
 \mathbf{P}_{\mathrm{branch}},\mathbf{J}_{\mathrm{branch}};\,
 \mathcal{L}_{\mathrm{root}};\,
@@ -92,6 +92,7 @@ E_{\mathrm{branch}};\,
 $$
 
 where $a\in\{1,2,3\}$ names the generic binaries before any $I:M:O$ role map is attached. Here $\mathbf{N}_a$ denotes a plane-sector normal or angular-momentum bivector when that sector chart is certified, $\rho_a$ is the retained effective-lever-arm projection emitted by the branch state, and the coupling rows are whatever external assembly, field, or retained event interacts with the tri-binary Noether braid. The branch-total momentum and angular-momentum ledgers include retained wake contribution. A return-map pass is not enough for promotion if the reported principal-direction rows fail to decompose $\mathbf{J}_{\mathrm{branch}}$ or if the moving-envelope axis is inconsistent with $\mathbf{P}_{\mathrm{branch}}$. The retained replay must solve a velocity-deformation map
+where $a\in\{1,2,3\}$ names the generic binaries before any $I:M:O$ role map is attached. Here $\mathcal B_a$ is the retained oriented plane bivector; its Hodge-dual normal is a chart diagnostic, not the certificate carrier. The effective lever arm $\rho_a$ is emitted by the branch state, and the coupling rows are whatever external assembly, field, or retained event interacts with the tri-binary Noether braid. The branch-total momentum and angular-momentum ledgers include retained wake contribution. A return-map pass is not enough for promotion if the reported principal-direction rows fail to decompose $\mathbf{J}_{\mathrm{branch}}$ or if the moving-envelope axis is inconsistent with $\mathbf{P}_{\mathrm{branch}}$. The retained replay must solve a velocity-deformation map
 
 $$
 \mathcal D_v(B_{3B}):
@@ -333,7 +334,7 @@ $$
 1+e^{i2\pi/3}+e^{i4\pi/3}=0
 $$
 
-is the planar $\mathbb{Z}_3$ cyclic cancellation used as an ancillary symmetry check in the dyadic-lock chapter. It is useful, but it is not by itself evidence for a near-orthogonal tri-binary sector. For the equal-frequency Noether-braid candidate, triadic $120^\circ$ therefore remains a high-priority phase target, but the retained replay must also report retained plane normals or bivectors $N_a$, phase-bundle holonomy, a plane determinant or $D_{\mathrm{plane}}$ row, and a sector discriminator that decides whether the row is coplanar cyclic, near-orthogonal tri-binary, or another retained branch sector.
+is the planar $\mathbb{Z}_3$ cyclic cancellation used as an ancillary symmetry check in the dyadic-lock chapter. It is useful, but it is not by itself evidence for a near-orthogonal tri-binary sector. For the equal-frequency Noether-braid candidate, triadic $120^\circ$ therefore remains a high-priority phase target, but the retained replay must also report retained oriented bivectors $\mathcal B_a$, phases $\phi_a$, effective lever arms $\rho_a$, the bivector Gram matrix $\ell_{ab}=\mathcal B_a\cdot\mathcal B_b$, normalized Gram rank/conditioning, phase-bundle holonomy $\Theta$, braid-closure linking number $\mathrm{Lk}(\overline{\mathfrak b}_{3B})$, and a sector discriminator that decides whether the row is coplanar cyclic, near-orthogonal tri-binary, or another retained branch sector.
 
 The v73 equal-frequency audit now emits `aaa-equal-frequency-phase-deformation-balance-audit.v3` to make this distinction executable. Across the seven priority triadic rows, the phase-only balance passes in seven of seven rows, but lever-arm weighted balance, common-$\omega$ speed weighted balance, unit-inertia action weighted balance, and target $2:1:1$ root/action weighted balance all pass in zero of seven rows. The two sampled lever-speed detuned controls pass lever-arm and common-$\omega$ speed weighted balance in seven of seven rows while failing phase-only and action-weighted balance; the sampled middle/outer opposition control passes the unit-inertia and target $2:1:1$ action balances in seven of seven rows while failing phase-only and lever-speed balance. For the $f=2$ priority triadic representative row, the normalized residuals are:
 
@@ -373,7 +374,7 @@ $$
 
 This target prevents the ledger split from remaining a prose blocker: a retained replay must either derive exactly one physical $W_a$ source on $S_{\mathrm{eq}}$ or declare a reconciliation law that binds the phase offsets, branch energy/radius rows, wake/coupling transfer rows, and one-unit angular-momentum ledger on the same accepted event or positive-width domain.
 
-The v73 audit also emits `aaa-equal-frequency-retained-weight-ledger-source-acceptance-attempt-audit.v1`. This expands the retained $W_a$ target into six attempted source rows on $S_{\mathrm{eq}}$: one row for each candidate source above. All six rows have current proxy evidence, zero rows are retained-accepted, and the first blocking row is `phase_holonomy_unit_clock_weight`. Its missing retained inputs are retained phase-bundle holonomy $\Theta$, retained plane normals or angular-momentum bivectors $N_a$, retained plane-sector disposition, same retained row-set identity, and the same retained event or positive-width domain. This turns $W_a$ from a named selection burden into executable row-level acceptance attempts.
+The v73 audit also emits `aaa-equal-frequency-retained-weight-ledger-source-acceptance-attempt-audit.v1`. This expands the retained $W_a$ target into six attempted source rows on $S_{\mathrm{eq}}$: one row for each candidate source above. All six rows have current proxy evidence, zero rows are retained-accepted, and the first blocking row is `phase_holonomy_unit_clock_weight`. Its missing retained inputs are retained phase-bundle holonomy $\Theta$, retained oriented bivectors $\mathcal B_a$ with Gram-sector disposition, same retained row-set identity, and the same retained event or positive-width domain. This turns $W_a$ from a named selection burden into executable row-level acceptance attempts.
 
 The v73 audit now emits `aaa-equal-frequency-retained-phase-bundle-holonomy-audit.v1`. It evaluates
 
@@ -477,7 +478,7 @@ $$
 R_{W,\mathrm{clock}}=(r_{\Theta},r_D,r_{\mathrm{rows}},r_{\mathrm{evt}},r_{\mathrm{source}}),
 $$
 
-where $r_{\Theta}$ is the retained phase-bundle holonomy audit above, $r_D$ is retained plane-sector disposition, $r_{\mathrm{rows}}$ is same retained row-set identity, $r_{\mathrm{evt}}$ is the same retained event or positive-width domain, and $r_{\mathrm{source}}$ is the unit-clock $W_a=1$ source row. The replay reports five of five current residuals populated, zero of five retained residuals accepted, and first blocker `r_Theta`; the missing retained inputs are retained phase-bundle holonomy $\Theta$, retained plane normals or angular-momentum bivectors $N_a$, retained plane-sector disposition, same retained row-set identity, and the same retained event or positive-width domain. This keeps the attractive unit-clock reading live while making the acceptance burden explicit.
+where $r_{\Theta}$ is the retained phase-bundle holonomy audit above, $r_D$ is retained bivector Gram-sector disposition, $r_{\mathrm{rows}}$ is same retained row-set identity, $r_{\mathrm{evt}}$ is the same retained event or positive-width domain, and $r_{\mathrm{source}}$ is the unit-clock $W_a=1$ source row. The replay reports five of five current residuals populated, zero of five retained residuals accepted, and first blocker `r_Theta`; the missing retained inputs are retained phase-bundle holonomy $\Theta$, retained oriented bivectors $\mathcal B_a$, retained Gram-sector disposition, same retained row-set identity, and the same retained event or positive-width domain. This keeps the attractive unit-clock reading live while making the acceptance burden explicit.
 
 The v73 audit now emits `aaa-equal-frequency-return-period-frequency-audit.v1` and `aaa-equal-frequency-plane-sector-discriminator-audit.v1`. The return-period audit reports `current_chart_return_period_identity_populated_retained_frequency_certificate_missing`: seven of seven priority rows recover the sampled common $\omega_f$ from $P_a=2\pi/\omega_a$ in the reduced chart, while zero of seven rows have a retained branch return-period or locked-harmonic certificate. The plane-sector discriminator reports `current_chart_coplanar_z3_sector_populated_retained_plane_sector_discriminator_missing`: seven of seven priority rows are coplanar in the flattened-limit chart, seven of seven carry the planar $\mathbb{Z}_3$ phase cancellation, zero of seven are near-orthogonal in the current chart, and zero of seven have a retained plane-sector certificate.
 
@@ -531,7 +532,7 @@ The v73 audit now emits `aaa-equal-frequency-same-event-transfer-lift-dependency
 
 The v73 audit also emits `aaa-equal-frequency-first-retained-packet-template.v2`. It converts the first runnable retained packet into two explicit row templates: `branch_return_period_or_locked_harmonic_frequency_row` for $r_P$ and `plane_topology_sector_discriminator_row` for $r_D$. Both templates take `retained_row_set_S_eq_id` as an input, both have current proxy evidence populated, both have zero retained acceptance rows, and both remain blocked.
 
-The v73 audit now emits `aaa-equal-frequency-retained-frequency-phase-packet.v1`. This turns the template into seven row-level packet candidates, `S_eq-frequency-phase-f2` through `S_eq-frequency-phase-f8`. Each packet row binds the current $r_P$ return-frequency proxy and the current $r_D$ coplanar $\mathbb{Z}_3$ phase-sector proxy to $S_{\mathrm{eq}}$, and also records an exact triadic phase-bundle proxy with $\Theta=0$ in the current chart. The packet status is `retained_frequency_phase_packet_populated_current_proxy_only_event_domain_missing`: seven of seven rows have current frequency, sector, and holonomy proxy evidence, while zero of seven rows have retained acceptance. This narrows the next solver action to the missing retained inputs: branch-history $P_a$ or locked harmonics, retained plane normals or bivectors $N_a$, retained phase-bundle holonomy $\Theta$, retained $D_{\mathrm{plane}}$, same-row-set sector disposition, and an accepted retained event or positive-width retained domain.
+The v73 audit now emits `aaa-equal-frequency-retained-frequency-phase-packet.v1`. This turns the template into seven row-level packet candidates, `S_eq-frequency-phase-f2` through `S_eq-frequency-phase-f8`. Each packet row binds the current $r_P$ return-frequency proxy and the current $r_D$ coplanar $\mathbb{Z}_3$ phase-sector proxy to $S_{\mathrm{eq}}$, and also records an exact triadic phase-bundle proxy with $\Theta=0$ in the current chart. The packet status is `retained_frequency_phase_packet_populated_current_proxy_only_event_domain_missing`: seven of seven rows have current frequency, sector, and holonomy proxy evidence, while zero of seven rows have retained acceptance. This narrows the next solver action to the missing retained inputs: branch-history $P_a$ or locked harmonics, retained oriented bivectors $\mathcal B_a$, retained phase-bundle holonomy $\Theta$, retained normalized Gram matrix rank/conditioning, same-row-set sector disposition, and an accepted retained event or positive-width retained domain.
 
 The v73 audit also emits `aaa-equal-frequency-retained-replay-acceptance-blueprint.v38`. This is the retained acceptance residual target for the equal-frequency family:
 
@@ -848,13 +849,38 @@ $$
 \Phi_{ij}^{\mathrm{hit}}(\phi_1,\phi_2,\phi_3;q,v)
 $$
 
-on the same retained row set, plus a plane-sector discriminator:
+on the same retained row set, plus an oriented plane-sector discriminator. Plane normals are useful display coordinates, but the retained certificate should use oriented bivectors. To avoid collision with raw binary labels $B_1,B_2,B_3$, write the plane bivector as $\mathcal B_a$:
 
 $$
-(N_1,N_2,N_3,\Theta,D_{\mathrm{plane}})
+\mathcal B_a
+=
+\rho_a\,\hat e_a^{(1)}\wedge\hat e_a^{(2)}
+\in\Lambda^2\mathbb R^3
+$$
+
+so orientation sign and composition are retained. The minimal sector certificate is
+
+$$
+\mathfrak c_{3B}
+=
+\left(
+\{\mathcal B_a\},
+\{\phi_a\},
+\{\rho_a\},
+\ell_{ab}=\mathcal B_a\cdot\mathcal B_b,
+\mathrm{Lk}(\overline{\mathfrak b}_{3B})
+\right),
+$$
+
+and the sector map is
+
+$$
+(\{\mathcal B_a\},\Theta,\operatorname{rank}\ell,\mathrm{Lk})
 \longmapsto
 \{\text{coplanar cyclic},\text{near-orthogonal tri-binary},\text{other retained sector}\}.
 $$
+
+Coplanar cyclic rows are rank-one or nearly rank-one in the bivector Gram matrix $\ell_{ab}$; near-orthogonal rows are full-rank. The braid-closure linking number $\mathrm{Lk}$ carries the discrete sector label after the continuous sector geometry is fixed.
 
 In the current chart, the common-clock, speed, hinge, deformation-support, reduced circular-path kinetic proxy, phase-deformation balance proxy, reduced-chart return-period identity, coplanar $\mathbb{Z}_3$ sector discriminator, retained row-set scaffold, target-weighted effective-inertia law-scan rows, and phase-current retained-kernel target are populated as current proxy evidence. The retained row-set identity acceptance, retained energy-radius law, branch return-period or locked-harmonic frequency certificate, retained plane-topology sector discriminator, same-event one-unit angular-momentum ledger, retained phase row-set identity, and retained phase-current kernel derivation are still missing. The angular-momentum row is the direct $h$-unit target: the retained replay must show whether the common-frequency branch supplies one accepted action unit without undeclared wake, recoil, endpoint-provider, or coupling slack.
 

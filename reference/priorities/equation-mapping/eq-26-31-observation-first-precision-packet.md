@@ -241,6 +241,17 @@ $$
 
 Here $\mathcal J_{\mathrm{core}}$ is the retained angular-momentum/spinor ledger, $M_\ell^{\mathrm{exp}}$ is exposed mass response, $\mathcal V_{\mathrm{NS}}$ is the Noether sea anisotropy/effective magnetic-state row, and $\Theta_{\mathrm{app}}$ is the precession apparatus record.
 
+The leading-$g$ theorem route should reuse the ordered-frame/exposure quotient from `EQ-15`, not assign a spin label. Let $\Phi:S^1\to SO(3)$ be the retained ordered-frame period loop and let $\mathcal E_S$ be the exposed-sector measure. The magnetic moment target is a moment-map row
+
+$$
+\boldsymbol\mu
+=
+\int_{\mathfrak D_R}
+(\mathbf r\times\mathbf j_{\mathrm{exp}})\,d\mathcal E_S,
+$$
+
+with precession read as the connection holonomy around $\Phi$. The leading comparison $g=2$ becomes a covering-degree theorem target: prove that the relevant loop traverses the $SO(3)$ holonomy once while its lift to $\mathrm{Spin}(3)=SU(2)$ carries the spin transport as the double-cover generator. The anomaly $g-2$ is then reserved for nonuniform exposure, dressing, apparatus, and Noether sea response residuals.
+
 ### Noether Braid Variables
 
 - Branch-resolved $\mathbf L_{\text{mech}}+\mathbf L_{\text{wake}}$ ledger.
@@ -285,6 +296,23 @@ $$
 $$
 
 for one branch and one apparatus configuration, with all four residuals consuming the same $\mathcal J_{\mathrm{core}}$, $M_\ell^{\mathrm{exp}}$, and $\mathcal V_{\mathrm{NS}}$.
+
+The first decisive combined certificate should report
+
+$$
+\mathfrak C_{\mathrm{spin}\to\mu}
+=
+\left(
+\Phi_\star,\widetilde\Phi_\star,\eta_{\mathrm{spin}},
+\Delta_{\mathrm{gauge}},
+\Delta_{\mathbf J},
+\boldsymbol\mu_{\mathcal E},
+g_{\mathrm{lead}},
+\mathcal R_{\mathrm{fib}}
+\right).
+$$
+
+The intended first pass is $\eta_{\mathrm{spin}}=1$, doubled-path restoration, $\Delta_{\mathrm{gauge}}=0$, $\Delta_{\mathbf J}\le\varepsilon_{\mathbf J}$, and $g_{\mathrm{lead}}=2$ as a covering-degree result. $\mathcal R_{\mathrm{fib}}$ then carries exposure-measure nonuniformity and becomes the first anomaly residual rather than a fitted spin-label correction.
 
 Score-5 acceptance would require the same $\mathcal J_{\mathrm{core}}$, $M_\ell^{\mathrm{exp}}$, $\mathcal V_{\mathrm{NS}}$, and $\Theta_{\mathrm{app}}$ to feed $\Delta_{\mu}$, $\Delta_{\omega_c}$, $\Delta_{\omega_L}$, and $\Delta_{a_\ell}$ with no lepton-family retune of the leading ledger. Naming the vector does not raise the score; a retained branch or apparatus calculation must populate it.
 
@@ -890,6 +918,16 @@ $$
 
 using $\Gamma_a\subset W$, $\mu_a$ as the prepared branch measure, $\mathcal B=\{B_b\}$ as the final-state partition, and an empty or inert $\mathcal C$ unless the elastic packet is coupled to a metastable exit-corridor row. Then $\Delta_{\sigma}$ and $\Delta_F$ are projections of the same carrier rather than separately normalized fits.
 
+For form factors, the exposure quotient is comparison-grade only when the quotient action preserves the spatial measure. The test row is rotational covariance of
+
+$$
+F_{\mathbb{A}\mathbb{A}\mathbb{A}}(\mathbf q)
+=
+\int e^{i\mathbf q\cdot\mathbf x}\,d\mathcal E_S(\mathbf x).
+$$
+
+If the retained quotient acts by isometries and $\mathcal E_S$ is invariant under the residual stabilizer, then $\lvert F(\mathbf q)\rvert$ depends only on $\lvert\mathbf q\rvert$ or the declared residual point-group orbit. If a non-isometric relabeling is used as a quotient, the form factor is detector-tuned and cannot support `EQ-30`.
+
 The elastic packet passes only if $\Delta_{\Phi}$, $\Delta_K$, $\Delta_{\sigma}$, $\Delta_F$, and $\Delta_{\mathrm{regime}}$ consume one prepared ensemble $\Gamma_a$, one transition map $\Phi_T$, one branch measure $\mu_a$, one detector kernel $K_{\mathrm{det}}$, and one exposure distribution $\rho_{\mathrm{exp}}^{\mathbb{A}\mathbb{A}\mathbb{A}}$. An imported amplitude or form factor may be used as a comparison surface, not as a substitute for the finite-window pushforward.
 
 For the detector-kernel component of $\mathbf R_{30}^{ep}$, define the detected class measure at record resolution $\ell$:
@@ -983,6 +1021,25 @@ x\in B_\star:
 \gamma_{\mathrm{tot}}=\sum_k\gamma_k.
 $$
 
+The additive version defines corridors intrinsically through the first-exit map:
+
+$$
+\tau(x)=\inf\{t:\Phi_t(x)\notin B_\star\},
+\qquad
+e(x)=\Phi_{\tau(x)}(x)\in\partial B_\star.
+$$
+
+Then $C_k$ are measurable components of $\operatorname{image}(e)$ in the boundary collar and
+
+$$
+\gamma_k^{\mathbb{A}\mathbb{A}\mathbb{A}}
+=
+\frac{1}{T}
+\mu_T\{x\in B_\star:e(x)\in C_k\}.
+$$
+
+This separates intrinsic escape additivity from detector classification. The detector kernel $K_{\mathrm{det}}$ acts later on the already-additive corridor measures.
+
 The comparison width and branching fractions are then
 
 $$
@@ -1009,6 +1066,7 @@ The Breit-Wigner-like profile is a comparison-layer shape recovered only after t
 - Exit corridors $C_k$ with identity, energy, momentum, angular-momentum, polarity, and path-history ledgers.
 - Branch interference or dephasing row when the resonance line shape is measured through scattering.
 - Detector classification kernel for observed final states.
+- Null-separatrix estimate $\mu_T(N_\epsilon(\partial\mathcal B))\to0$ so corridor measures are not detector-tuned.
 
 ### Noether Sea Variables
 

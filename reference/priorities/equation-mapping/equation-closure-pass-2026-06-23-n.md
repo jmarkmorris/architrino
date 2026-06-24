@@ -26,6 +26,30 @@ The current blocker is not missing notation. It is missing retained-row data for
 
 The populated null-control material remains ordinary visible $SO(3)$ closure. It is not spinor support.
 
+The sharper theorem route is a covering-space obstruction. A retained ordered-frame loop should supply
+
+$$
+\Phi_\star:S^1\to SO(3),
+\qquad
+p\circ\widetilde\Phi_\star=\Phi_\star,
+\qquad
+p:\mathrm{Spin}(3)=SU(2)\to SO(3).
+$$
+
+The score-moving scalar is the endpoint class
+
+$$
+\eta_{\mathrm{spin}}(\Phi_\star)
+=
+\begin{cases}
+0,& \widetilde\Phi_\star(1)=\widetilde\Phi_\star(0),\\
+1,& \widetilde\Phi_\star(1)=-\widetilde\Phi_\star(0),
+\end{cases}
+\in\mathbb Z/2.
+$$
+
+A gauge quotient move must preserve $\eta_{\mathrm{spin}}$; a move changing it is a physical history-sheet change.
+
 ## Score Disposition
 
 No score changes. `EQ-15` remains `2` in `6/23 b`. A score move to `3` requires one retained non-gauge row with odd $2\pi$ parity, $4\pi$ restoration, gauge-control pass, quotient witness, and angular-momentum residuals on the same branch record.
@@ -51,3 +75,20 @@ q_{r_\star}^{4\pi},
 $$
 
 plus a populated gauge-probe table and physical-vs-gauge witness. Until that exists, `EQ-15` is a well-posed proof target rather than a recovered spinor equation.
+
+The target certificate is
+
+$$
+\mathfrak C_{\mathrm{spin}\to\mu}
+=
+\left(
+\Phi_\star,\widetilde\Phi_\star,\eta_{\mathrm{spin}},
+\Delta_{\mathrm{gauge}},
+\Delta_{\mathbf J},
+\boldsymbol\mu_{\mathcal E},
+g_{\mathrm{lead}},
+\mathcal R_{\mathrm{fib}}
+\right),
+$$
+
+where $\mathcal R_{\mathrm{fib}}$ is the exposure-fiber nonuniformity residual that later feeds the first $g-2$ row.

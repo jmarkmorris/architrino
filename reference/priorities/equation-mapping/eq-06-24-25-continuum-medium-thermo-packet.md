@@ -433,6 +433,59 @@ Default summary:
 
 The mock surface vector computes only the declared entries: `delta_c_X_squared=0.0025`, `delta_N=-0.0005`, and `delta_P_eff=0.0012` for `delta_ln_n=0.001`. The retained-attempt skeleton also declares a stress/strain coefficient, but it still blocks because `attempt` rows are not accepted retained rows. The retained-attempt run reports `nextBlocker=missing_accepted_theta_sea_rho_NS`. The runner now reports row-level status maps for retained $\Theta_{\mathrm{sea}}$ rows, required response rows, and stress/metric rows; in the retained attempt, all retained $\Theta_{\mathrm{sea}}$ rows and required response rows report `attempt`, `stress_strain_row` reports `attempt`, and `metric_embedding_row` reports `declared_missing_output`. The runner requires retained row references, a speed coefficient plus stress/strain or metric-compliance coefficient content, delayed-support and correlation evidence, explicit missing outputs, and a source-backed zero-retune witness before returning `populated`. Accepted-looking rows with placeholder source strings such as pending or placeholder sources are reported as non-concrete rather than accepted; accepted-looking rows with nonresolving source references report `accepted_without_existing_source`; accepted-looking retune witnesses without source-backed witness references report `accepted_without_concrete_retune_source`, `accepted_without_existing_retune_source`, or `accepted_without_retune_witness_reference`. Source references must resolve to durable source/evidence files, not temp files or generated reading copies. Running with `--require-populated` exits nonzero until those rows are supplied.
 
+#### Minimum Accepted Density-Compression Bundle
+
+The nearest single-row score movement is `EQ-24` from `3` to `4`, but only if one retained window populates a source-backed density-compression coefficient bundle. The minimum accepted bundle is:
+
+| Bundle coordinate | Minimum accepted content | Current blocker state |
+| --- | --- | --- |
+| $\rho_{\text{NS}}$ | Accepted physical Noether braid density row on $\Theta_{\mathrm{sea}}^{(\ell,W)}$. | First blocker: `missing_accepted_theta_sea_rho_NS`. |
+| $n$ | Accepted normalized density row on the same retained window. | `attempt`. |
+| $\mathbf u_{\mathrm{sea}}$ | Accepted Noether sea flow row on the same retained window. | `attempt`. |
+| $e_{\mathrm{sea}}$ | Accepted energy row on the same retained window. | `attempt`. |
+| $\boldsymbol\theta_{\mathrm{sea}}$ | Accepted orientation/strain row on the same retained window. | `attempt`. |
+| $f_N$ | Accepted cadence row on the same retained window. | `attempt`. |
+| `event_ledger_ref` | Accepted event/window ledger reference binding the retained support. | `attempt`. |
+| `channel_declaration_row` | Accepted declaration of the density-compression acoustic or elastic channel $X$. | `attempt`. |
+| `speed_row` | Accepted row producing $\delta c_X^2$ from $\mathsf J_{\rho}^{X}\delta\ln n$. | `attempt`. |
+| `stress_strain_row` | Accepted row producing at least $\delta C_{\mathrm{bulk}}^X$ from the same $\mathsf J_{\rho}^{X}\delta\ln n$. | `attempt`. |
+| `causality_row` | Accepted delayed-support or $\mathcal R_{\mathrm{KK}}$ row for the same response kernel. | `attempt`. |
+| `correlation_row` | Accepted same-window deterministic-history correlation row. | `attempt`. |
+| Missing-output declarations | Explicit declarations for $\delta N$, $\delta\gamma_{ij}$, $\delta G_{\mathrm{eff}}$, $\delta P_{\mathrm{eff}}$, and $\delta a_\star$ until derived. | Declared missing in the retained attempt. |
+| Retune witness | Accepted source-backed witness with residual zero and no changed rows. | `attempt`. |
+
+Every accepted row must use status `accepted`, `passed`, or `populated`, include a concrete row or event reference, and resolve to a durable source/evidence file. A placeholder source, generated reading copy, temp artifact, directory path, or bare retained label does not count.
+
+This bundle is the score-4 evidence object. It does not claim metric, weak-gravity, pressure, or low-acceleration recovery; those remain explicit missing outputs until projected from the same retained coefficient row.
+
+The artifact-vs-physics discriminator is same-window agreement between acoustic speed and elastic response. For one channel $X$, compute
+
+$$
+c_{X,\mathrm{disp}}^2
+\quad\text{from the dispersion slope,}
+\qquad
+c_{X,\mathrm{el}}^2
+=
+\frac{C_{1111}^{X}}{\rho_{\text{NS}}}
+\quad\text{from the elastic coefficient.}
+$$
+
+An accepted density-compression packet must satisfy
+
+$$
+\left|
+c_{X,\mathrm{disp}}^2-c_{X,\mathrm{el}}^2
+\right|
+\le
+\varepsilon_{\mathrm{ref}}(\ell),
+\qquad
+\varepsilon_{\mathrm{ref}}(\ell)\to0
+\quad\text{as}\quad
+\ell\to0,
+$$
+
+with both values read from the same $\Theta_{\mathrm{sea}}^{(\ell,W)}$, the same $\mathsf J_{\rho}^{X}$, and the same delayed-support or $\mathcal R_{\mathrm{KK}}$ response row. A coefficient that agrees only at one discretization scale is an artifact signal, not `EQ-24` score evidence.
+
 ### Failure Mode
 
 EQ-24 fails if the acoustic metric is imported as a visual analogy, if $c_s$ is replaced by an unconstrained fitted speed, if scalar $\chi_{\text{sea}}$ is treated as a full metric without $N$, $u^i_{\mathrm{sea}}$, $e^a{}_i$, and $\gamma_{ij}$, if stress-strain coefficients are tuned per material/observable, or if the response kernel violates delayed support.

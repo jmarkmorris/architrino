@@ -4,7 +4,7 @@
 
 - `EQ-14`, `EQ-25`, `EQ-30`, and `EQ-31` statistical rows.
 - Shared finite-window measure and statistical pushforward component.
-- Bill Thurston review trigger for expert geometric/topological acceleration.
+- External geometry/topology review follow-up for refinement stability.
 
 ## Result
 
@@ -27,6 +27,8 @@ K_{\mathrm{det}},
 $$
 
 where $W$ is the retained window, $T$ is the observation window, $\Phi_T$ is the deterministic substrate transition map, $\mu_{*,T}$ is the finite-window measure, $\mathcal Q$ is the coarse-graining, $K_{\mathrm{det}}$ is the detector/readout kernel when present, $\mathcal B$ is the basin or outcome partition, $\mathcal C$ is the exit-corridor family when metastability is in scope, and $\mathcal S_{\mathrm{retune}}$ is the no-hidden-retune witness.
+
+The tuple above is the reducer-facing coordinate chart. The mathematical carrier should be developed as a sheaf of path-history measures over refinement windows, with $\mathcal R_{\mathrm{coarse}}$ measuring failure of coarse-graining and restriction maps to commute. The first well-definedness calculation is a null-separatrix estimate, $\mu_{*,T}(N_\epsilon(\partial\mathcal B))\to0$, so basin/corridor measures are not detector-tuned.
 
 Consumer rows should be projections
 
@@ -51,17 +53,9 @@ This is a common equation object, not a score increase. It sharpens the burden: 
 
 No score changes. `EQ-30` and `EQ-31` remain `2` in `6/23 b`; the carrier has not been populated by an accepted retained branch ensemble, detector kernel, exposure distribution, or metastable escape measure.
 
-## Bill Thurston Review Trigger
+## Review Disposition
 
-Ask for Bill Thurston input when a round exposes a compact mathematical structure whose topology, dynamics, or quotient behavior could be advanced faster by expert geometric judgment. The prompt packet should be a temporary consolidated file. It should ask first for overall insights, corrections, and advancements to the material, then list specific questions, then append the review material.
-
-Preferred comment count per round: 10 comments. That is enough to get broad mathematical guidance without turning the response into an unfocused review dump.
-
-Candidate questions for a Bill round once the next retained example is selected:
-
-1. Does $\mathcal C_{\mathrm{stat}}^{W,T}$ have the right mathematical shape, or should the carrier be formulated as a groupoid/measure-on-paths object rather than a windowed pushforward?
-2. For the spinor and gauge rows, is the ordered-frame pullback closer to a covering-space obstruction, a holonomy obstruction, or a quotient-bundle construction?
-3. For resonance widths, can escape corridors be made topologically stable enough that $\Gamma$, $\tau$, and $B_k$ are naturally measures of one exit-corridor family rather than fitted rates?
+The external geometry/topology review was integrated in [Equation Closure Pass 2026-06-23 U](equation-closure-pass-2026-06-23-u.md). The durable result is not a score change; it is the stronger requirement that the finite-window carrier prove at least one refinement-stable object, beginning with the null-separatrix estimate and first-exit corridor additivity.
 
 ## Next Closure Step
 

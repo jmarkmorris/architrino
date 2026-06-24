@@ -326,7 +326,7 @@ The retained branch must provide:
 
 1. a retained equal-frequency row set $S_{\mathrm{eq}}$ or a fail-closed replacement row set;
 2. a branch return-period or locked-harmonic certificate for $\omega_f$ rather than inferring frequency only from $s_a/\rho_a$;
-3. effective lever-arm, speed, phase, plane-sector, and binary-to-binary phase-history rows on the same branch record;
+3. effective lever-arm, speed, phase, bivector Gram sector, braid-closure linking, and binary-to-binary phase-history rows on the same branch record;
 4. a nonzero traceless residual operator with exactly two independent phase-rate gaps;
 5. a doublet-plus-singlet residual spectrum, not all-zero or equal residual spacing;
 6. a weak readout projection that produces $U_{\mathrm{PMNS}}$ from the same weak-exposure domain used by weak chirality and reaction provenance;

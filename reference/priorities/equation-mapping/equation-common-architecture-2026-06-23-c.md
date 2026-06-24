@@ -107,6 +107,8 @@ This factorization is a notation discipline with mathematical consequences. It k
 
 For the precision packet, the finite event or observation record $\mathsf e$ is the compact event carrier. Statistical rows then add the finite-window measure carrier from Common Component 8 before cross sections, detector rates, or resonance widths are interpreted as physical residuals.
 
+Notation alone is never score evidence. For retained-domain rows, the populated projections must actually glue over the shared carrier; for finite-window rows, at least one refinement or covariance theorem must hold on the populated retained object.
+
 ### Proof Or Simulation Burden
 
 Each grouped packet should identify its smallest useful $\mathcal C_G$ and list the projections consumed by each row. A packet should not receive a score increase merely for naming $\mathcal C_G$; the score rises only when the populated carrier, residuals, and split/retune witnesses reduce the actual closure burden.
@@ -148,6 +150,37 @@ $$
 
 with row-specific residuals read only after this predicate passes or after the missing rows are explicitly reported.
 
+The current fail-closed reducers also expose the same acceptance-vector structure. For the row family $R$, use the working priority-only notation
+
+$$
+\mathbf A_R(\mathfrak D_R)
+=
+\left(
+A_D,\,
+A_{\iota},\,
+\{A_r\}_{r\in R},\,
+A_{\mathrm{src}},\,
+A_{\mathrm{overlap}},\,
+A_{\mathrm{split}},\,
+A_{\mathrm{retune}},\,
+A_{\mathrm{lane}}
+\right),
+$$
+
+where $A_D$ is retained support acceptance, $A_{\iota}$ is raw row identity/inventory preservation, $A_r$ is row-level accepted concrete source-backed binding, $A_{\mathrm{src}}$ is durable evidence resolution, $A_{\mathrm{overlap}}$ is overlap-preimage consistency, $A_{\mathrm{split}}$ and $A_{\mathrm{retune}}$ are zero split and hidden-retune witnesses, and $A_{\mathrm{lane}}$ is the row-family residual after support and rows are accepted. The first-blocker operator
+
+$$
+B_R(\mathfrak D_R)
+=
+\min_{\prec_R}
+\left\{
+x\in\operatorname{coords}\mathbf A_R:
+A_x(\mathfrak D_R)=0
+\right\}
+$$
+
+uses the reducer's declared row order $\prec_R$. The same structure explains why $S_{\mathrm{eq}}$, $\Theta_{\mathrm{sea}}^{(\ell,W)}$, $\mathsf e_{\gamma e}^{0}$, and $\mathcal C_{\mathrm{stat}}^{W,T}$ can all fail closed without score movement while still giving a useful next row to populate.
+
 ### Equations It Connects
 
 - `EQ-02` through `EQ-04`: $\mathfrak D_R$ carries $S_{\mathrm{eq}}$ and is the missing retained event or positive-width domain behind `same_branch_chart_identity`.
@@ -173,6 +206,28 @@ $$
 \text{ share the same preimage under }\iota_D
 \text{ on every overlap row.}
 $$
+
+For the `S_eq` fixture this lemma has a cleaner fiber-product form. Let $\mathcal C_u$ be the common translating-binary carrier used by the clock, envelope, two-way signal, energy, momentum, phase, and Noether sea rows. The retained-domain record should be
+
+$$
+\Theta_D
+=
+\Theta_{\mathrm{clock}}
+\times_{\mathcal C_u}
+\Theta_{\mathrm{env}}
+\times_{\mathcal C_u}
+\Theta_{\mathrm{tw}}
+\times_{\mathcal C_u}
+\Theta_E
+\times_{\mathcal C_u}
+\Theta_{\mathbf p}
+\times_{\mathcal C_u}
+\Theta_{\mathrm{phase}}
+\times_{\mathcal C_u}
+\Theta_{\mathrm{sea}}.
+$$
+
+Then $A_{\mathrm{split}}=1$ is not just a separate bookkeeping witness. It is the assertion that the legs glue as the fiber product over $\mathcal C_u$ rather than as separately tuned projections inside a product space. In this interpretation, $\mathbf A_R(\mathfrak D_R)=\mathbf 1$ proves that the fiber-product legs are nonempty, source-backed, and bound to the same retained domain, which makes the row-identity conclusion a universal-property consequence rather than a row-label convention.
 
 If the overlap preimage is absent or inconsistent, the run is a split-domain or hidden-retune failure. The first executable target is not another summary checker. It is a minimal retained input packet for one lane: either $S_{\mathrm{eq}}$ with a retained point event or positive-width domain, $\mathsf e_{\gamma e}^{0}$ with native photon/recoil rows, or $\Theta_{\mathrm{sea}}^{(\ell,W)}$ with a retained coefficient row. A failure of this object should name which row binding breaks first instead of lowering the score silently or allowing a private fit.
 
@@ -691,7 +746,7 @@ This is the common Noether sea source behind mass response, metric response, Poi
 
 ### Proof Or Simulation Burden
 
-The first burden is one single-channel coefficient extraction where the same $\Theta_{\mathrm{sea}}$ predicts a perturbation speed and a stress/strain or metric response without changing rows. The conservative first route is speed plus one bulk stress/strain coefficient; metric, weak-gravity, pressure, and low-acceleration outputs should remain explicit missing outputs unless the same retained window actually projects them. The second burden is a response-kernel check with delayed support or $\mathcal R_{\mathrm{KK}}$ behavior. A later burden is deriving $G_{\mathrm{eff}}$, $a_\star$, and $P_{\mathrm{eff}}$ as outputs of this same state rather than independent fits.
+The first burden is one single-channel coefficient extraction where the same $\Theta_{\mathrm{sea}}$ predicts a perturbation speed and a stress/strain or metric response without changing rows. The conservative first route is speed plus one longitudinal or bulk stress/strain coefficient; metric, weak-gravity, pressure, and low-acceleration outputs should remain explicit missing outputs unless the same retained window actually projects them. The speed must also pass an acoustic/elastic consistency residual $\mathcal R_{\mathrm{ac/el}}^X$ comparing the low-$k$ dispersion slope to $C_{1111}^X/\rho_{\text{NS}}$ within refinement error. The second burden is a response-kernel check with delayed support or $\mathcal R_{\mathrm{KK}}$ behavior. A later burden is deriving $G_{\mathrm{eff}}$, $a_\star$, and $P_{\mathrm{eff}}$ as outputs of this same state rather than independent fits.
 
 ### First Surface Slice
 
@@ -743,6 +798,8 @@ $$
 }
 +
 \lambda_{\mathrm{KK}}\mathcal R_{\mathrm{KK}}(\chi_{AB}^{X})
++
+\lambda_{\mathrm{ac/el}}\mathcal R_{\mathrm{ac/el}}^X
 +
 \lambda_{\mathrm{proj}}\mathcal R_{\mathrm{proj}}^X(\Theta_{\mathrm{sea}}^{(\ell,W)},\ell)
 +
@@ -841,7 +898,7 @@ $$
 \mathcal R_{\mathrm{coarse}}.
 $$
 
-For reuse across rows, package the common input as the finite-window statistical carrier
+For reuse across rows, the reducer-facing row payload is the finite-window statistical carrier
 
 $$
 \mathcal C_{\mathrm{stat}}^{W,T}
@@ -871,6 +928,18 @@ O_{\alpha}^{\mathrm{stat}}
 $$
 
 with the no-hidden-retune witness carried by the same $\mathcal C_{\mathrm{stat}}^{W,T}$ rather than rebuilt per observable.
+
+Mathematically, this carrier should be read as a sheaf of path-history measures over refinement windows. Let $\mathscr W$ be the poset of finite windows ordered by $(W',\ell',T')\preceq(W,\ell,T)$ when $W'\subseteq W$, $\ell'\le\ell$, and $T'\le T$. The compatibility target is
+
+$$
+\Pi_{\mathcal Q,W'\,*}\operatorname{res}_{W\to W'}\Phi_{T\,*}\mu_{*,T}^{W,\ell}
+=
+\operatorname{res}_{W\to W'}\Pi_{\mathcal Q,W\,*}\Phi_{T\,*}\mu_{*,T}^{W,\ell}
++
+\mathcal R_{\mathrm{coarse}}(W,W').
+$$
+
+Thus $\mathcal R_{\mathrm{coarse}}$ is the cocycle-defect row for refinement compatibility. Score movement requires more than a populated tuple: it requires a retained carrier whose defect decreases or vanishes under refinement, without changing $\Phi_T$, $\mu_{*,T}$, $\mathcal Q$, $K_{\mathrm{det}}$, or the event/domain support.
 
 Specific consumers are projections of the same object:
 
@@ -913,6 +982,16 @@ x\in B_\star:\Phi_T(x)\in C_k
 \right\}.
 $$
 
+For resonance corridors, additivity should be defined before detector readout. Let
+
+$$
+\tau(x)=\inf\{t:\Phi_t(x)\notin B_\star\},
+\qquad
+e(x)=\Phi_{\tau(x)}(x)\in\partial B_\star.
+$$
+
+The admissible $C_k$ are measurable components of $\operatorname{image}(e)$ in the boundary collar. The detector kernel is a later pushforward on these already-additive escape measures, not the definition of the corridors.
+
 ### Equations It Connects
 
 - `EQ-14`: Born-current continuity as record-facing basin flow.
@@ -932,6 +1011,17 @@ This component unifies probability, entropy, cross sections, detector statistics
 ### Proof Or Simulation Burden
 
 The first useful test is a toy measurement or elastic scattering packet where density, current, detector response, event classes, and residuals are all pushed from the same finite-window measure. A second test should derive $\gamma_k$, $\Gamma_{\mathrm{cmp}}$, $\tau_{\mathrm{cmp}}$, and $B_k$ from one metastable branch escape measure.
+
+The first scalar calculation is the null-separatrix estimate
+
+$$
+\mu_{*,T}\!\left(N_\epsilon(\partial\mathcal B)\right)
+\to0
+\quad\text{as}\quad
+\epsilon\to0.
+$$
+
+If a basin separatrix or corridor boundary has positive measure, $\gamma_k$ is detector-tuned and the statistical carrier cannot move scores no matter how many row fields are populated.
 
 Defining $\mathcal C_{\mathrm{stat}}^{W,T}$ is score-neutral. It does not supply a retained branch, detector kernel, or escape measure; it only gives the shared object that `EQ-14`, `EQ-25`, `EQ-30`, and `EQ-31` must instantiate before their statistical readouts can rise.
 
@@ -987,16 +1077,26 @@ The carriers are $\mathcal L_A$, $\Pi_S$, $Q_S$, active-root rows, axial-layer g
 
 This component is the bridge between retained branch structure and observer-visible sectors. It prevents hidden handles: mass, weak chirality, gauge covariance, magnetic moment, and form factor rows cannot be scored by changing what part of the branch is exposed per observable.
 
+For form factors, $Q_S$ is legitimate only when the quotient action preserves the spatial exposure measure. A comparison-grade exposure form factor
+
+$$
+F_{\mathbb{A}\mathbb{A}\mathbb{A}}(\mathbf q)
+=
+\int e^{i\mathbf q\cdot\mathbf x}\,d\mathcal E_S(\mathbf x)
+$$
+
+must be covariant under void-rotation conjugation of the quotient: $F_Q(\mathbf q)$ and $F_{gQg^{-1}}(g\mathbf q)$ should agree up to the declared residual point-group orbit. If the quotient is a non-isometric relabeling, the form factor is detector-tuned rather than an exposure invariant.
+
 ### Proof Or Simulation Burden
 
-The first burden is one weak/gauge exposure packet where `V-A`, CKM/PMNS overlap, reaction provenance, and effective gauge covariance read from one weak-visible domain. A lower-risk sibling is a mass/exposure packet where $\zeta(A)$ and $M_\ell^{\mathrm{exp}}$ are computed once and reused by atomic, recoil, and magnetic rows.
+The first burden is one weak/gauge exposure packet where `V-A`, CKM/PMNS overlap, reaction provenance, and effective gauge covariance read from one weak-visible domain. A lower-risk sibling is a mass/exposure packet where $\zeta(A)$ and $M_\ell^{\mathrm{exp}}$ are computed once and reused by atomic, recoil, and magnetic rows. For `EQ-30`, a sibling burden is one exposure quotient whose form factor passes the rotation-conjugacy covariance check before detector kernels are applied.
 
 ## Highest-Value Common Equations
 
 The highest-value reusable equations to stabilize first are:
 
 1. Compact carrier plus same-record residual $\mathcal C_G\to\Theta_G\to\mathcal R_{\mathrm{shared}}$. This is the coordinator-level equation pair that exposes the common branch, sea, event, or measure carrier before preventing independent fits across the whole inventory.
-2. Retained event or positive-width domain carrier $\mathfrak D_R$ with $\operatorname{RowId}_R(\mathfrak D_R)$. This is the acceptance object behind same-branch identity, native event ledgers, and retained Noether sea coefficient windows.
+2. Retained event or positive-width domain carrier $\mathfrak D_R$ with $\operatorname{RowId}_R(\mathfrak D_R)$, acceptance vector $\mathbf A_R(\mathfrak D_R)$, and first-blocker operator $B_R(\mathfrak D_R)$. This is the acceptance object behind same-branch identity, native event ledgers, retained Noether sea coefficient windows, and finite-window carrier population.
 3. Noether sea constitutive state $\mathcal C_{\mathrm{sea}}$. It is the shared source of metric, mass, acoustic, growth, RAR/BTFR, pressure, and field-response projections.
 4. Finite-window event ledger $\mathcal L_{E\mathbf p\mathbf J}(\mathsf e)$. It is the common precision-equation carrier for photon, recoil, radiation, reaction, thermalization, and conservation rows.
 5. Common clock plus residual phase operator $H_X=\omega_{\mathrm{clk}}C_X\mathbf 1+\delta H_X$. It is the smallest sharp object for `EQ-16A` and also clarifies clock, redshift, photon, and atomic-frequency rows.

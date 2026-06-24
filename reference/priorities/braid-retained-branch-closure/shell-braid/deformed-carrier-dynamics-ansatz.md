@@ -630,6 +630,8 @@ $$
 \mathbf{n}_a(t)=Q_a(t)\mathbf{n}_a^{0}.
 $$
 
+In this local precession chart, $\mathbf n_a(t)$ is the Hodge-dual normal of the oriented plane bivector. Retained sector certification is carried by $\mathcal B_a$ and its Gram matrix, not by the normal alone.
+
 ### Constraints
 
 The $Q_a$ row preserves radius exactly to first order:

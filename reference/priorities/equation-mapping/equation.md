@@ -1315,7 +1315,7 @@ Then show which perturbation, clock, or signal channels actually read this metri
 
 ### Agent Target
 
-Pick one ordinary medium equation, preferably acoustic metric or stress-strain response, and translate every coefficient into a Noether sea variable or an explicit missing coefficient.
+Extract one acoustic density-compression channel where the same retained $\Theta_{\mathrm{sea}}^{(\ell,W)}$ supplies $c_{X,\mathrm{disp}}^2$, $C_{1111}^X$, $\rho_{\text{NS}}$, $\mathcal R_{\mathrm{proj}}^X$, and $\mathcal R_{\mathrm{KK}}^X$. Accept only if $c_{X,\mathrm{disp}}^2=C_{1111}^X/\rho_{\text{NS}}$ within refinement error and no hidden retune occurs.
 
 ### Executable Surface-Slice Status
 
@@ -1760,7 +1760,7 @@ $$
 
 This row asks whether a metastable Noether braid branch has a native leakage corridor. The central energy $E_0$ should be a branch energy or externally exposed mass response. The width $\Gamma$ should be a finite-window escape, dephasing, or decay-corridor rate, not an unexplained parameter. Branching fractions should come from the relative measure of admissible exit ledgers after conservation, weak/strong/electromagnetic exposure, and detector response are held fixed.
 
-The same finite-window statistical carrier $\mathcal C_{\mathrm{stat}}^{W,T}$ should specialize to the metastable case by taking the retained branch window as $W$, the exit corridors as $\mathcal C=\{C_k\}$, and the observed final-state classes as the outcome partition. Then $\Gamma$, $\tau$, $B_k$, and detector line-shape residuals are projections from one escape/dephasing measure.
+The same finite-window statistical carrier $\mathcal C_{\mathrm{stat}}^{W,T}$ should specialize to the metastable case by taking the retained branch window as $W$, the exit corridors as first-exit components $\mathcal C=\{C_k\}$, and the observed final-state classes as the outcome partition. Then $\Gamma$, $\tau$, $B_k$, and detector line-shape residuals are projections from one escape/dephasing measure. The first-exit map should be intrinsic to the basin boundary; detector kernels enter afterward as readout pushforwards.
 
 The current executable carrier evaluator computes those projection rows for a two-corridor toy packet and correctly returns `toy_structure_only` with `scoreDecision: no_score_increase`. It is useful because it fixes the required input shape before a retained metastable branch exists; it does not change the `EQ-31` score.
 

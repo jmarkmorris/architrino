@@ -516,6 +516,79 @@ The result is useful but not score evidence. It shows that the current solver ro
 
 Running the checker with `--require-accepted` exits nonzero for both the current solver report and the retained-domain attempt while these retained inputs are missing. That is the intended guardrail: current proxy row-set alignment is a useful search signal, but `same_branch_chart_identity` is not populated until a retained event or retained positive-width domain binds the rows above and supplies zero split, zero hidden-retune, and overlap-preimage witnesses.
 
+### Minimum Accepted `S_eq` Retained-Domain Fixture
+
+The next score-moving artifact is not another proxy summary. It is a source-backed retained-domain packet that can replace [same-branch-retained-domain-attempt.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json) without changing the checker. In the notation of the common architecture, the fixture must instantiate
+
+$$
+\mathfrak D_{S_{\mathrm{eq}}}
+=
+\left(
+D,\Theta_D,S_{\mathrm{eq}},\iota_D,\{\Pi_r\}_{r\in S_{\mathrm{eq}}},\mathcal R_D
+\right),
+$$
+
+where $D$ is one accepted finite event, retained event, or positive-width domain, and $\Theta_D$ contains the same $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ carrier consumed by the clock, envelope, two-way signal, energy, momentum, rest-mass, mass-shell, phase, and Noether sea rows.
+
+The same condition can be stated more sharply as a fiber product over the common carrier. For this packet, write $\mathcal C_u=\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ and require
+
+$$
+\Theta_D
+=
+\Theta_{\mathrm{clock}}
+\times_{\mathcal C_u}
+\Theta_{\mathrm{env}}
+\times_{\mathcal C_u}
+\Theta_{\mathrm{tw}}
+\times_{\mathcal C_u}
+\Theta_E
+\times_{\mathcal C_u}
+\Theta_{\mathbf p}
+\times_{\mathcal C_u}
+\Theta_{\mathrm{phase}}
+\times_{\mathcal C_u}
+\Theta_{\mathrm{sea}}.
+$$
+
+Under this reading, the acceptance vector is the source-backed existence proof for every leg of the fiber product. The split witness is the failure row for this universal property: $\mathcal S_{\mathrm{split}}=0$ says the packet is not merely a subset of separately tuned row products but a genuine same-carrier retained-domain object.
+
+The minimum fixture contract is:
+
+| Packet field | Minimum accepted content | Acceptance-vector coordinate |
+| --- | --- | --- |
+| `domain` | `status` is `accepted`, `passed`, or `populated`; `id`, `kind`, `rowId`, and `sourcePath` or `source` are concrete; the source resolves to a durable evidence file. | $A_D$, $A_{\mathrm{src}}$ |
+| `rowBindings.raw_labeled_rows_preserved_on_retained_history` | Accepted row proving raw generator labels are preserved on the retained history before any `I:M:O` role map is imposed. This is the current first blocker. | $A_{\iota}$, $A_r$ |
+| `rowBindings.six_body_polarity_neutral_inventory_preserved` | Accepted row preserving six-body polarity-neutral inventory on the same support. | $A_{\iota}$, $A_r$ |
+| `rowBindings.role_map_selected_or_quotient_policy_declared` | Accepted row declaring either the retained nested-role map or the quotient policy that keeps raw labels role-neutral. | $A_{\iota}$, $A_r$ |
+| `rowBindings.shared_retained_event_or_positive_width_domain` | Accepted support binding when represented as a row binding rather than only as `domain`. | $A_D$, $A_r$ |
+| `rowBindings.path_history_rows_bound_to_S_eq` | Accepted path-history rows bound to `retainedRowSetId: "S_eq"` and the same `domainId`. | $A_r$ |
+| `rowBindings.causal_root_ledger_rows_bound_to_S_eq` | Accepted causal-root ledger rows on the same support. | $A_r$ |
+| `rowBindings.wake_tail_rows_bound_to_S_eq` | Accepted wake-tail rows on the same support. | $A_r$ |
+| `rowBindings.energy_action_rows_bound_to_S_eq` | Accepted energy/action rows on the same support. | $A_r$ |
+| `rowBindings.momentum_and_angular_momentum_rows_bound_to_S_eq` | Accepted momentum and angular-momentum rows on the same support. | $A_r$ |
+| `rowBindings.phase_rows_bound_to_S_eq` | Accepted phase rows on the same support, including the equal-frequency common-clock row and residual phase rows when present. | $A_r$ |
+| `rowBindings.retained_plane_orientation_rows_bound_to_S_eq` | Accepted oriented-bivector sector rows on the same support, including local $\mathcal B_a$, effective lever arms $\rho_a$, Gram matrix $\ell_{ab}$, rank/conditioning, and derived normals only when a chart needs them. | $A_r$ |
+| `rowBindings.response_center_and_group_velocity_rows_bound_to_S_eq` | Accepted response-center and group-velocity rows on the same support. | $A_r$ |
+| `rowBindings.Noether_sea_record_bound_to_S_eq` | Accepted local Noether sea row bound to the same retained domain. | $A_r$ |
+| `rowBindings.binary_to_binary_phase_row_set_identity` | Accepted binary-to-binary phase row-set identity on the same retained domain. | $A_{\mathrm{overlap}}$, $A_r$ |
+| `witnesses.split_witness_zero` | Accepted, source-backed witness with zero split residual. | $A_{\mathrm{split}}$ |
+| `witnesses.retune_witness_zero` | Accepted, source-backed witness with zero hidden-retune residual. | $A_{\mathrm{retune}}$ |
+| `witnesses.overlap_preimage_identity` | Accepted, source-backed witness with `consistent: true`. | $A_{\mathrm{overlap}}$ |
+
+Every accepted row binding must include concrete `rowId`, `retainedRowSetId: "S_eq"`, matching `domainId`, and a durable `sourcePath` or `source`. A row label, current proxy row, temporary file, generated reading copy, or nonresolving source path does not count.
+
+Current structural witnesses and ignored temporary frequency reports remain useful search signals, but they are not durable retained-domain evidence. The next accepted source object must be tracked source-backed row extraction, beginning with `raw_labeled_rows_preserved_on_retained_history`, not a pointer to a current proxy report.
+
+The expected acceptance command is:
+
+```sh
+node scripts/equation-mapping/check-same-branch-chart-identity.mjs \
+  --input scripts/equation-mapping/<source-backed-S_eq-fixture>.json \
+  --summary --pretty --require-accepted
+```
+
+Until that command passes, `EQ-02`, `EQ-03`, and `EQ-04` keep their current scores.
+
 ## Drift Sampling And Local Expansion
 
 The first run should sample small and moderate primitive drift:

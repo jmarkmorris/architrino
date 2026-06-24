@@ -18,6 +18,8 @@ The scoring posture is deliberately conservative. Treat the table as if it will 
 
 The goal is not to make all rows look equally mature. The goal is to concentrate work on common mathematical objects that raise many rows together.
 
+In particular, finite-window statistical and quotient-exposure rows do not become score-moving from notation alone. They need one proven refinement limit, sheaf/gluing compatibility result, null-boundary estimate, or covariance theorem on a populated retained object before their comparison readouts can rise.
+
 ## Score-5 Rule
 
 An equation row can be raised to `5` only if one of the following is true:
@@ -31,6 +33,8 @@ Formula matching is not enough. A row that matches a standard equation by changi
 
 Accepted retained rows must also carry durable source evidence. Reducer rows marked `accepted`, `populated`, or `passed` cannot count toward score movement when their source reference is a placeholder, missing file, temp artifact, generated reading copy, or directory path.
 
+For retained event/domain lanes, the common score-moving test is the acceptance vector $\mathbf A_R(\mathfrak D_R)$. Its first failed coordinate $B_R(\mathfrak D_R)$ is the reducer's first blocker. Score movement is not eligible until retained support, raw row identity, source-backed row bindings, overlap preimage, zero split witness, zero hidden-retune witness, and lane residual all pass for the same event or positive-width domain. When the row family has a distinguished common carrier, as `S_eq` does, this means the accepted rows realize the fiber product over that carrier, not merely a product of separately labeled rows.
+
 ## Shared Score-5 Carriers
 
 The shortest path to many `5` scores is through shared carriers:
@@ -43,8 +47,9 @@ The shortest path to many `5` scores is through shared carriers:
 | $\mathcal C_{\mathrm{sea}}[\Theta_{\mathrm{sea}}]$ | Derives metric, mass response, pressure, growth, and low-acceleration response from one Noether sea constitutive state. | `EQ-04`, `EQ-06` through `EQ-11`, `EQ-18` through `EQ-21`, `EQ-24`, `EQ-32`. |
 | $H_X=\omega_{\mathrm{clk}}C_X\mathbf 1+\delta H_X$ | Separates common hidden cadence from observable phase gaps or beat frequencies. | `EQ-08`, `EQ-12`, `EQ-16A`, `EQ-17`, `EQ-26`. |
 | $\mathcal E_S(A)=Q_S[\Pi_S\mathcal L_A]$ | Forces mass, spin, weak, gauge, magnetic, form-factor, and detector rows to use one exposed-sector record. | `EQ-04`, `EQ-15`, `EQ-16`, `EQ-16A`, `EQ-27`, `EQ-30`. |
-| $\mu_{t+\Delta t}^{\mathcal Q,W}=\Pi_{\mathcal Q,W\,*}\Phi_{\Delta t\,*}\mu_t+\mathcal R_{\mathrm{coarse}}$ | Derives probability, entropy, cross sections, and resonance statistics as finite-window pushforwards. | `EQ-14`, `EQ-25`, `EQ-30`, `EQ-31`. |
+| $\mu_{t+\Delta t}^{\mathcal Q,W}=\Pi_{\mathcal Q,W\,*}\Phi_{\Delta t\,*}\mu_t+\mathcal R_{\mathrm{coarse}}$ | Derives probability, entropy, cross sections, and resonance statistics as finite-window pushforwards; refinement stability is the sheaf/gluing condition for path-history measures. | `EQ-14`, `EQ-25`, `EQ-30`, `EQ-31`. |
 | $\mathcal R_{\mathrm{cfg}}(\mathfrak a)$ | Routes mature equation residuals into retained tri-binary candidate selection and blocks frequency-ratio-only acceptance. | `EQ-01` through `EQ-05`, `EQ-12`, `EQ-15`, `EQ-16A`, `EQ-27` through `EQ-31`. |
+| $\mathbf A_R(\mathfrak D_R)$ and $B_R(\mathfrak D_R)$ | Names the accepted-support, source-backed row-binding, overlap, split, retune, and first-blocker coordinates shared by retained-domain reducers. | `EQ-02` through `EQ-04`, `EQ-06` through `EQ-11`, `EQ-20`, `EQ-24`, `EQ-28`, `EQ-29`, `EQ-31`, `EQ-32`. |
 
 ## Score-5 Ladder By Row
 
@@ -74,10 +79,10 @@ The shortest path to many `5` scores is through shared carriers:
 | `EQ-21` | `3` | Structure growth, matter power, weak lensing/RSD, CMB lensing, and halo/cluster residuals computed from one Noether sea and assembly record. | Populate $\mathcal R_{\mathrm{obs}}(\Theta_{\mathrm{obs}})$ from [eq-21-23-32-shared-observation-residual-packet.md](eq-21-23-32-shared-observation-residual-packet.md). |
 | `EQ-22` | `3` | CMB transfer, blackbody, acoustic, lensing, and frame rows derived from shared thermal/provenance, source, path, and growth records. | Reuse the same $\Theta_{\mathrm{obs}}$ as `EQ-21` and add photon-loading and blackbody residual rows. |
 | `EQ-23` | `3` | BBN freezeout, light-element yields, $\eta$, $N_{\text{eff}}$, photon loading, and neutrino rows derived from one source-window thermal record. | Reuse $\Theta_{\mathrm{src}}$ and $\Theta_{\mathrm{therm/prov}}$ inside $\Theta_{\mathrm{obs}}$; forbid independent source-zone parameters. |
-| `EQ-24` | `3` | Acoustic, elastic, stress-strain, and medium equations derived as low-moment Noether sea response projections. | Extract one acoustic or stress-strain coefficient from $\mathcal C_{\mathrm{sea}}$ with delayed-support or response-kernel checks. |
+| `EQ-24` | `3` | Acoustic, elastic, stress-strain, and medium equations derived as low-moment Noether sea response projections. | Extract one acoustic or stress-strain coefficient from $\mathcal C_{\mathrm{sea}}$ with delayed-support or response-kernel checks; require $c_X^2$ from dispersion and $C_{1111}/\rho_{\text{NS}}$ from elasticity to agree within refinement error on the same window. |
 | `EQ-25` | `3` | Boltzmann-like operator, entropy production, fluctuation, and thermalization rows derived from deterministic finite-window coarse-grained pushforward. | Populate one entropy or thermalization residual from the same event/boundary ledger used by `EQ-05` and `EQ-22`. |
 | `EQ-26` | `3` | Rydberg scale, transition frequency, and local clock/photon channel rows derived from one atomic envelope Noether braid and Noether sea cell. | Derive one hydrogen spectral coefficient row from a declared atomic branch instead of line-inferred cadence fitting. |
-| `EQ-27` | `2` | Magnetic moment, Larmor/cyclotron precession, and g-2 derived from exposed internal-current geometry, ordered-frame spin, and measurement-response rows. | Compute one magnetic moment row from the same exposure quotient and angular-momentum ledger used by `EQ-15`. |
+| `EQ-27` | `2` | Magnetic moment, Larmor/cyclotron precession, and g-2 derived from exposed internal-current geometry, ordered-frame spin, and measurement-response rows. | Compute one moment-map magnetic row from the same ordered-frame/exposure quotient and angular-momentum ledger used by `EQ-15`; keep leading $g=2$ as a covering-degree theorem target until proven. |
 | `EQ-28` | `3` | Compton, photoelectric, pair-threshold, and recoil equations recovered from one photon-channel event ledger with energy, momentum, angular momentum, recoil, remnant, and medium update. | Use [compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs) as the comparison replay guardrail, then populate native Gate A/B, target, recoil, angular-momentum, Noether sea, and event-ledger rows on the same $\mathsf e_{\gamma e}^{0}$ record. |
 | `EQ-29` | `3` | Larmor/Lienard, synchrotron, bremsstrahlung, and thermal radiation rows derived from source depletion, acceleration, photon packet selection, recoil, and spectrum rows. | After `EQ-28`, choose one radiation mechanism and close source depletion plus emitted power/spectrum on one ledger. |
 | `EQ-30` | `2` | Cross sections and form factors derived from prepared branch ensembles, exposure distributions, detector kernels, and finite-window event statistics. | Run a finite-window pushforward for elastic scattering with detector kernel and event classes declared. |
@@ -93,7 +98,7 @@ The practical order is not row order. It is shared-carrier order:
 3. **Lorentz and mass-shell retained branch:** `EQ-02` through `EQ-04`. This is the compact branch calculation that tests whether clock, ruler, energy, momentum, and rest mass can share one retained branch; [check-same-branch-chart-identity.mjs](../../../scripts/equation-mapping/check-same-branch-chart-identity.mjs) is the current fail-closed guardrail for the required same-branch identity row.
 4. **Noether sea constitutive response:** `EQ-06` through `EQ-11`, `EQ-20`, `EQ-24`, and `EQ-32`. One coefficient extraction can unlock many rows, but hidden retune must be reported; [noether-sea-density-compression-surface-slice.mjs](../../../scripts/spacetime/noether-sea-density-compression-surface-slice.mjs) is the current score-neutral guardrail for the first density-compression slice.
 5. **Photon and finite event ledger:** `EQ-12`, `EQ-13`, `EQ-17`, `EQ-26`, `EQ-28`, and `EQ-29`. Compton/recoil is the smallest event replay with many consumers; the current executable replay is comparison-only, and [compton-recoil-native-event-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json) remains an attempt packet until accepted native rows and accepted `medium`/`remnant` support rows populate the same $\mathsf e_{\gamma e}^{0}$ event carrier.
-6. **Sector and quantum records:** `EQ-14` through `EQ-16A`, `EQ-27`, `EQ-30`, and `EQ-31`. These need deterministic pushforward and exposed-sector quotient rows before external wave or gauge equations are scored high.
+6. **Sector and quantum records:** `EQ-14` through `EQ-16A`, `EQ-27`, `EQ-30`, and `EQ-31`. These need deterministic pushforward, sheaf/refinement stability, exposed-sector quotient rows, ordered-frame holonomy, and null-separatrix control before external wave or gauge equations are scored high.
 7. **Cosmology shared-observation residual:** `EQ-18`, `EQ-19`, `EQ-21`, `EQ-22`, `EQ-23`, and `EQ-32`. These should advance after the same Noether sea constitutive record has at least one local coefficient extraction.
 
 ## Next Score-5 Work Item

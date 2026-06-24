@@ -334,7 +334,7 @@ G_{\ell m}\equiv\mathbf{n}_\ell\cdot\mathbf{n}_m,
 \equiv
 \left(\theta_I,\theta_M,\theta_O\right)/S^1_{\mathbf{k}}.
 $$
-The two period ratios record time-scale separation alongside the radius ratios. The Gram data $G_{\ell m}$ records the inter-plane angles after global rotations are removed, $\chi_N$ records the orientation class of the ordered plane-normal frame, the three $H_\ell$ record layer handedness, and $\Phi_{\text{rel}}$ records phase offsets after the common time-origin gauge is removed. For nonzero winding vector $\mathbf{k}=(k_I,k_M,k_O)$, $\Phi_{\text{rel}}$ is a two-dimensional phase torus; an implementation may choose any two integer phase combinations orthogonal to $\mathbf{k}$.
+The two period ratios record time-scale separation alongside the radius ratios. The Gram data $G_{\ell m}$ should be read as bivector Gram data $\ell_{\ell m}=\mathcal B_\ell\cdot\mathcal B_m$ after global rotations are removed. The quantity $\chi_N$ records the derived orientation class of the Hodge-dual normal frame when that chart is used, the three $H_\ell$ record layer handedness, and $\Phi_{\text{rel}}$ records phase offsets after the common time-origin gauge is removed. For nonzero winding vector $\mathbf{k}=(k_I,k_M,k_O)$, $\Phi_{\text{rel}}$ is a two-dimensional phase torus; an implementation may choose any two integer phase combinations orthogonal to $\mathbf{k}$.
 
 The stability object on the quotient is the residual-gap functional
 $$

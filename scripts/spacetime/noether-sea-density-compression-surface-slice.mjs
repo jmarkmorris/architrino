@@ -123,6 +123,10 @@ function evaluateSlice(input) {
   const thetaSeaRows = input.window?.thetaSeaRows ?? {};
   const rowStatuses = input.rows ?? {};
   const surfaceVector = computeSurfaceVector(input.jacobian ?? {}, input.delta_ln_n);
+  const acousticElasticAgreement = evaluateAcousticElasticAgreement(
+    input.coefficientChecks?.acousticElasticAgreement ??
+      input.acousticElasticAgreement,
+  );
   const missingThetaRows = missingRetainedRows(THETA_SEA_ROWS, thetaSeaRows);
   const missingRequiredRows = [
     ...missingRetainedRows(REQUIRED_ROWS, rowStatuses),
@@ -162,11 +166,14 @@ function evaluateSlice(input) {
   const sameRecordGatePass = sameThetaSeaRecord && retunePassed;
   const speedStressMetricGatePass =
     speedPresent && (stressPresent || metricPresent) && coefficientGatePass;
+  const acousticElasticAgreementGatePass =
+    acousticElasticAgreement.status === "passed";
   const status = retuneFailed
     ? "failed_retune"
     : missingRowsAll.length === 0 &&
         sameRecordGatePass &&
-        speedStressMetricGatePass
+        speedStressMetricGatePass &&
+        acousticElasticAgreementGatePass
       ? "populated"
       : "blocked_missing_rows";
 
@@ -208,6 +215,7 @@ function evaluateSlice(input) {
         retuneFailed,
         retunePassed,
         speedStressMetricGatePass,
+        acousticElasticAgreement,
       }),
       thetaSeaRowStatuses: Object.fromEntries(
         THETA_SEA_ROWS.map((row) => [row, normalizeStatus(thetaSeaRows[row])])
@@ -220,6 +228,9 @@ function evaluateSlice(input) {
       ),
       retuneStatus,
       retuneResidual,
+      acousticElasticAgreementStatus: acousticElasticAgreement.status,
+      acousticElasticAgreementResidual:
+        acousticElasticAgreement.absoluteResidual,
     },
     row: {
       windowId: input.window?.windowId ?? null,
@@ -242,6 +253,10 @@ function evaluateSlice(input) {
       residuals: {
         rho_to_surface: status === "populated" ? 0 : null,
         projection_refinement: null,
+        acoustic_elastic_agreement:
+          acousticElasticAgreement.status === "passed"
+            ? acousticElasticAgreement.absoluteResidual
+            : null,
         kk_or_delayed_support: isAcceptedRetainedRow(rowStatuses.causality_row)
           ? 0
           : null,
@@ -250,9 +265,11 @@ function evaluateSlice(input) {
       gates: {
         same_theta_sea_record: sameRecordGatePass ? "pass" : "fail",
         speed_plus_stress_or_metric: speedStressMetricGatePass ? "pass" : "fail",
+        acoustic_elastic_agreement: acousticElasticAgreement.status,
         missing_outputs_declared:
           undeclaredMissingOutputs.length === 0 ? "pass" : "fail",
       },
+      acousticElasticAgreement,
     },
   };
 }
@@ -265,6 +282,7 @@ function summarizeOutput(output) {
     summary: output.summary,
     surfaceVector: output.row.surfaceVector,
     gates: output.row.gates,
+    acousticElasticAgreement: output.row.acousticElasticAgreement,
   };
 }
 
@@ -286,6 +304,7 @@ function nextBlockerForSlice({
   retuneFailed,
   retunePassed,
   speedStressMetricGatePass,
+  acousticElasticAgreement,
 }) {
   if (status === "populated") {
     return null;
@@ -305,10 +324,62 @@ function nextBlockerForSlice({
   if (!speedStressMetricGatePass) {
     return "missing_speed_plus_stress_or_metric_coefficient";
   }
+  if (acousticElasticAgreement.status === "not_evaluated") {
+    return "missing_acoustic_elastic_agreement";
+  }
+  if (acousticElasticAgreement.status === "failed") {
+    return "acoustic_elastic_agreement_residual";
+  }
   if (undeclaredMissingOutputs.length > 0) {
     return `undeclared_missing_output_${undeclaredMissingOutputs[0]}`;
   }
   return status;
+}
+
+function evaluateAcousticElasticAgreement(raw) {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
+    return {
+      status: "not_evaluated",
+      cDispSquared: null,
+      C1111: null,
+      rhoNS: null,
+      cElasticSquared: null,
+      absoluteResidual: null,
+      normalizedResidual: null,
+      refinementError: null,
+    };
+  }
+  const cDispSquared = finiteNumber(
+    raw.c_X_disp_squared ?? raw.cDispSquared ?? raw.c_disp_squared,
+    "coefficientChecks.acousticElasticAgreement.c_X_disp_squared",
+  );
+  const C1111 = finiteNumber(
+    raw.C1111_X ?? raw.C1111 ?? raw.c1111,
+    "coefficientChecks.acousticElasticAgreement.C1111_X",
+  );
+  const rhoNS = positiveFiniteNumber(
+    raw.rho_NS ?? raw.rhoNS,
+    "coefficientChecks.acousticElasticAgreement.rho_NS",
+  );
+  const refinementError = nonnegativeFiniteNumber(
+    raw.refinementError ?? raw.epsilon_ref ?? raw.tolerance,
+    "coefficientChecks.acousticElasticAgreement.refinementError",
+  );
+  const cElasticSquared = C1111 / rhoNS;
+  const absoluteResidual = Math.abs(cDispSquared - cElasticSquared);
+  const normalizedResidual =
+    absoluteResidual /
+    (Math.abs(cDispSquared) + Math.abs(cElasticSquared) + Number.EPSILON);
+  return {
+    status: absoluteResidual <= refinementError ? "passed" : "failed",
+    cDispSquared,
+    C1111,
+    rhoNS,
+    cElasticSquared,
+    absoluteResidual,
+    normalizedResidual,
+    refinementError,
+  };
 }
 
 function isAcceptedRetainedRow(value) {
@@ -443,6 +514,22 @@ function finiteNumber(value, label) {
   const number = Number(value);
   if (!Number.isFinite(number)) {
     throw new Error(`${label} must be a finite number.`);
+  }
+  return number;
+}
+
+function positiveFiniteNumber(value, label) {
+  const number = finiteNumber(value, label);
+  if (number <= 0) {
+    throw new Error(`${label} must be positive.`);
+  }
+  return number;
+}
+
+function nonnegativeFiniteNumber(value, label) {
+  const number = finiteNumber(value, label);
+  if (number < 0) {
+    throw new Error(`${label} must be nonnegative.`);
   }
   return number;
 }
