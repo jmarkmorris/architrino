@@ -204,9 +204,10 @@
       <div id="hover-tooltip" role="tooltip" aria-hidden="true"></div>
       <div id="zoom-toast" aria-hidden="true" role="status">Click a sphere with a glow halo to zoom</div>
       <div id="markdown-panel" aria-hidden="true" class="two-columns">
-        <div id="markdown-content">
-          <div id="markdown-body"></div>
-        </div>
+        <main id="markdown-content" tabindex="-1" aria-labelledby="markdown-title">
+          <div id="markdown-title" class="visually-hidden"></div>
+          <article id="markdown-body" class="markdown-article"></article>
+        </main>
       </div>
       <div id="animator-overlay" aria-hidden="true">
         <div class="animator-header">

@@ -23,10 +23,11 @@ Use each dated score as a maturity indicator, not as a value judgment. A low-sco
 
 | ID | Equation or equation group | Representative equation | Primary AAA carrier | 6/23 a | 6/23 b | Closure driver | Promoted? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `EQ-01` | Causal wake master equation and per-hit law | $\mathbf{a}_{o'\leftarrow o}\propto r^{-2}J^{-1}\hat{\mathbf r}$ | Architrino causal wakes, causal-root ledger | `5` | `5` | Keep all later maps tied to active roots, Jacobians, line-of-action hits, and event ledgers. |  |
+| `EQ-01` | Causal wake master equation and per-hit law | $\mathbf{a}_{o'\leftarrow o}\propto r^{-2}J^{-1}\hat{\mathbf r}$ | Architrino causal wakes, causal-root ledger | `5` | `5` | Keep all later maps tied to active roots, Jacobians, line-of-action hits, and event ledgers. | ready |
 | `EQ-02` | Lorentz factor, clock rate, and ruler contraction | $\gamma_{\star}=(1-\beta_{\star}^2)^{-1/2}$; $d\tau/dt=1/\gamma_{\star}$ | Moving Noether braid through local Noether sea | `4` | `4` | Derive moving-clock and moving-ruler factors from one branch ledger. |  |
 | `EQ-03` | Oblate spheroidal envelope ratio | $\xi=R_{\parallel}/R_{\perp}\to1/\gamma_{\mathrm{eff}}$ | Noether braid envelope geometry | `4` | `4` | Prove return-cycle closure produces the axis ratio, not just a visual match. |  |
 | `EQ-04` | Energy-momentum and rest energy | $E^2=p^2c_{\mathrm{eff}}^2+M_0^2c_{\mathrm{eff}}^4$ | Closed internal causal-history ledger, shielding, Noether sea response | `3` | `4` | Compose branch energy, exposure quotient, and medium-response tensor. |  |
+| `EQ-04A` | Koide charged-lepton mass relation | $\frac{(\sqrt{m_e}+\sqrt{m_\mu}+\sqrt{m_\tau})^2}{m_e+m_\mu+m_\tau}=\frac{3}{2}$ | Charged-lepton generation-by-shielding ladder and exposed mass response | `1` | `1` | Test whether one charged-lepton mass map lands near the Koide surface without fitting to it. |  |
 | `EQ-05` | Noether conservation laws | $dE_{\mathrm{tot}}/dt=0$; $\mathbf{P}_{\mathrm{tot}}=\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}$ | Delay action, wake channels, event ledgers | `3` | `4` | Construct finite-window conserved totals with boundary flux and residuals. |  |
 | `EQ-06` | Noether sea continuity and moment closure | $\partial_t\rho_{\mathrm{NS}}+\nabla\cdot(\rho_{\mathrm{NS}}\mathbf u_{\mathrm{sea}})=S_{\rho}+r_{\rho}$ | Noether sea density, flow, energy, cadence, orientation | `4` | `4` | Derive continuum rows as low-moment projections of braid population dynamics. |  |
 | `EQ-07` | Effective metric ADM/Cartan map | $ds_{\rm eff}^2=-N^2c_0^2dt^2+\gamma_{ij}(dx^i-u^i_{\mathrm{sea}}dt)(dx^j-u^j_{\mathrm{sea}}dt)$ | Noether sea lapse, drift, spatial compliance | `4` | `4` | Derive one constitutive map into clock, ruler, and signal channels. |  |
@@ -100,9 +101,27 @@ Score: `5`.
 
 The equation is native. The open work is not to map it into AAA, but to prevent higher-level equations from bypassing it. Every later formula should identify which reduced record of active roots, wake energy, event ledgers, or Noether sea moments it consumes.
 
+Promotion disposition: `ready`. The row is native and the dependency note below is now explicit enough for reader-facing promotion work. Promotion should still preserve the internal/external distinction: `EQ-01` can be promoted as the root causal-wake equation, while downstream recovery claims remain at their current scores until their retained branch, event, or Noether sea records close.
+
+### Dependency Note
+
+Every downstream row must either consume the active-root law directly or consume a declared coarse-graining of it through a wake ledger, event ledger, retained branch chart, or Noether sea moment. A standard equation cannot count as mapped if it bypasses the causal-root source and only imports an observer-level formula.
+
+| Downstream rows | Required `EQ-01` dependency |
+| --- | --- |
+| `EQ-02` through `EQ-04`, plus `EQ-04A` | Moving clocks, oblate spheroidal envelope rows, energy-momentum, exposed mass, and charged-lepton mass-root benchmarks must share one retained branch chart with active roots, causal-root Jacobians, wake tails, line-of-action geometry, and no hidden retune between clock, envelope, energy, and mass readouts. |
+| `EQ-05` | Conservation rows must include wake energy, wake momentum, angular momentum, event work, and boundary flux on the same finite window; ordinary local mechanical totals alone are not enough in a delay system. |
+| `EQ-06`, `EQ-24`, and `EQ-25` | Noether sea continuity, medium response, acoustic/elastic rows, and thermal/statistical rows must be low-moment or finite-window projections of retained Noether braid population dynamics, not independent continuum postulates. |
+| `EQ-07` through `EQ-11`, `EQ-17` through `EQ-20`, and `EQ-32` | Effective metric, weak-gravity, redshift, cosmology, dark-energy, and low-acceleration rows must project from Noether sea density, cadence, delay, stress, flow, and response variables whose source record is ultimately a coarse-grained causal-root and wake ledger. |
+| `EQ-12`, `EQ-12A`, `EQ-22A`, `EQ-26`, `EQ-26A`, `EQ-28`, and `EQ-29` | Photon, action-quantum, blackbody, atomic, coupling, recoil, and radiation rows must preserve source-event provenance, photon-channel event balance, recoil/remnant rows, and wake/Noether sea exchange rather than assigning $h$, $\alpha$, $c_\gamma$, or emitted power independently. |
+| `EQ-13`, `EQ-15`, `EQ-16`, `EQ-16A`, and `EQ-27` | Field, spinor, gauge, neutrino, and magnetic-moment rows must retain branch identity, ordered-frame or phase-history data, angular-momentum ledgers, and exposed-sector records back to a causal-root branch instead of importing field labels as substrate ontology. |
+| `EQ-14`, `EQ-30`, and `EQ-31` | Probability-current, cross-section, form-factor, width, lifetime, and branching-fraction rows must arise from finite-window branch pushforwards, event outcome partitions, detector kernels, and admissible escape corridors seeded by retained causal-root histories. |
+
+The common failure mode is `equation_map.imported_formula`: a later row matches a standard equation while its causal-root, wake, event, retained-branch, or Noether sea provenance is absent or split. The common success marker is a same-record residual whose root, wake, event, and Noether sea inputs are declared before coefficients are compared.
+
 ### Agent Target
 
-Write a dependency note showing, for each equation group below, which variables must ultimately descend from causal roots, Jacobians, wake ledgers, or coarse-grained Noether sea moments.
+Keep this dependency note current as new suffix rows are added. `EQ-01` is already mapped; its continuing job is to police downstream dependency discipline and prevent imported-formula shortcuts.
 
 ## EQ-02 And EQ-03: Lorentz Factor, Clock/Ruler Laws, And Oblate Spheroidal Envelope
 
@@ -205,11 +224,19 @@ R_{\xi}^{(q)}(\mathbf w)
 \frac{1}{\gamma_{\star}(\mathbf w)}.
 $$
 
-The pass condition should require both residuals to use the same root ledger, speed convention, branch label, and Noether sea state.
+The pass condition should require both residuals to use the same root ledger, speed convention, branch label, and Noether sea state. The stronger Cartan-style target is a gamma-free moving coframe $e^A_u$ built from causal-root and wake-return data over the drift base, with
+
+$$
+e^0_u(\partial_t)=\lambda(u),
+\qquad
+\frac{e^\parallel_u}{e^\perp_u}=\lambda(u)^{-1}.
+$$
+
+Under that target, `EQ-02` and `EQ-03` are not two fits to the Lorentz factor. They are reciprocal readings of one coframe. The comparison $\lambda(u)=\gamma_f(u)$ is allowed only after the coframe has been constructed without using $\gamma_f$ as an input.
 
 ### Agent Target
 
-Start from the special-relativity bridge and Lorentz kinematics chapter. Build one closure packet that states the common-limit theorem target joining $\xi$, $T_q/T_0$, two-way signal speed, preferred-frame leakage, and energy-momentum closure.
+Define the minimum source-backed transport comparison behind $W_{\mathrm{hol}}$ after the scalar support-transport and holonomy-transport residuals have been split. Reciprocal coframe arithmetic, shared retained support, zero torsion, zero phase holonomy, and zero scalar transport residuals remain guardrails, not accepted no-retune evidence.
 
 ## EQ-04: Energy-Momentum And Rest Energy
 
@@ -255,6 +282,18 @@ p_{\mathrm{int}}^a
 \mathcal M_{\mathrm{sea}}^{ab}V_{\mathrm{cm},b}.
 $$
 
+The mass-shell row should be treated as the norm of the same moving coframe used by the clock and envelope rows. In the primitive homogeneous cell, $\mathcal M_{\mathrm{sea}}^{ab}$ is a constitutive response consumed by the coframe and mass-shell readout, not a source allowed to manufacture the Lorentz factor. A regulator-free shell diagnostic is therefore the coframe norm of a unit energy-momentum covector,
+
+$$
+\mathcal R_{\mathrm{shell}}^{\mathrm{cof}}
+=
+\left|
+\eta^{AB}\pi_A\pi_B-1
+\right|,
+$$
+
+with raw and normalized shell defects retained as diagnostics rather than acceptance handles.
+
 ### Closure Status
 
 Current `6/23 b` score: `4`.
@@ -283,9 +322,153 @@ The same extractor also consumes [same-branch-retained-domain-attempt.v1.json](.
 
 The retained-domain summary now reports `retainedRequirementStatuses`, `retainedRequirementReasons`, `domainWitnessStatuses`, `domainWitnessReasons`, and `nextBlocker`; the current direct attempt reports all retained requirements and all split/retune/overlap witnesses as `attempt`, with row and witness reasons remaining `row_not_accepted`, `support_not_accepted`, or `witness_not_accepted`. Accepted-looking rows whose source reference does not resolve to an existing file are rejected with source-not-found reasons instead of being counted as retained evidence.
 
-No score change follows from that result. `EQ-02`, `EQ-03`, and `EQ-04` still need a retained event or retained positive-width domain that binds raw row labels, inventory, role map, path history, causal roots, wake tails, energy/action, momentum/angular momentum, phase, plane orientation, response center, group velocity, Noether sea record, and binary-to-binary phase identity on the same branch chart.
+No score change follows from that result. `EQ-02`, `EQ-03`, and `EQ-04` still need a positive-width invariant cell in truncated delay-state space. The preferred evidence object is a transverse section $\Sigma_N$, first-return map $P_N$, box $B_N\subset\Sigma_N$ with $\mu_{\perp}(B_N)>0$, and Krawczyk or interval Newton inclusion $\mathcal K_{P_N}(B_N)\subset B_N$. Only on that certified support should the packet accept raw row labels, inventory, role map, path history, causal roots, wake tails, energy/action, momentum/angular momentum, phase, plane orientation, response center, group velocity, Noether sea record, and binary-to-binary phase identity on the same branch chart.
 
-[eq02-04-translating-binary-retained-record.mjs](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs) now evaluates the direct retained-record shape for $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$. The attempt fixture [eq02-04-translating-binary-retained-record-attempt.v1.json](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record-attempt.v1.json) reports `blocked_same_branch_identity`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. Its numeric residual diagnostics and four negative-control diagnostics pass for the illustrative $\beta_f=0.6$ row, but every retained-record row and witness is still `attempt`, so `EQ-02`, `EQ-03`, and `EQ-04` remain at `4`.
+[eq02-04-translating-binary-retained-record.mjs](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs) now evaluates the direct retained-record shape for $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$. The attempt fixture [eq02-04-translating-binary-retained-record-attempt.v1.json](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record-attempt.v1.json) reports `blocked_same_branch_identity`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. Its numeric residual diagnostics, gamma-free coframe reciprocity diagnostic, support/holonomy witness diagnostics, and six negative-control diagnostics pass for the illustrative $\beta_f=0.6$ row. The coframe reciprocity diagnostic reports $e^0_u(\partial_t)=1.25$, $e^\parallel_u/e^\perp_u=0.8$, and product $1$, with $\gamma_f$ used only as a comparison output. The separate `coframeExtraction` diagnostic loads [eq02-04-coframe-extraction-attempt.v1.json](../../../scripts/equation-mapping/eq02-04-coframe-extraction-attempt.v1.json) and is `not_evaluated` with `reason=coframe_extraction_evidence_not_accepted`, because the certificate is still attempt-level. This is still not score evidence: every retained-record row and witness is `attempt`, and a single operating point is not invariant-branch evidence. `EQ-02`, `EQ-03`, and `EQ-04` remain at `4` until the support certificate persists under refinement, window-length, transverse-displacement, section-placement, and phase-permutation controls.
+
+The coframe extraction producer now enforces that refinement burden directly. Accepted-looking source reports must show source-bound row bindings on the same `S_eq`, common carrier, domain, and support; a decreasing step/window sequence; increasing memory-depth sequence; bounded support-set stability; bounded scalar-residual convergence; and margin-bearing negative controls including `window_length`. A bare row-binding shell now blocks at `row_binding_raw_labeled_rows_preserved_on_retained_history`, and a populated return-map shell with no refinement path blocks at `refinement_persistence`, so the executable acceptance contract no longer treats one sampled crossing or fitted row bundle as retained-branch evidence.
+
+The same producer also calibrates negative controls against declared evidence scale. Accepted source reports must declare `acceptBand`, `arithmeticNoiseFloor`, `truncationNoiseFloor`, and `negativeMarginFactor > 1`; the accept band must sit above the combined noise floor, and every required negative control must clear `negativeMarginFactor * acceptBand`. A source report with otherwise accepted-looking support, rows, refinement, connection, and residuals but under-margin violated controls now blocks at `negative_control_window_length_margin_calibrated`.
+
+Refinement persistence is also step-backed now. The producer requires `support.refinementPersistence.steps[]` with at least three accepted steps, strictly decreasing `h`, strictly increasing `N`, durable per-step source references, a support id matching the source report support id, and bounded inclusion, support, and scalar residuals at every step. An otherwise accepted-looking source report whose refinement steps have no durable sources now blocks at `refinement_persistence_step_sources`; support-id drift is reported separately as `refinement_persistence_support_id_stability`.
+
+The support-id drift branch now has its own isolated negative control. A source report with valid per-step sources, decreasing `h`, increasing `N`, bounded step residuals, and otherwise accepted-looking evidence blocks exactly at `refinement_persistence_support_id_stability` when its refinement steps bind to a different support id. This keeps refinement persistence attached to the same retained support instead of any accepted-looking neighboring support path.
+
+The provisional connection side now also has one isolated negative control. A source report with source-backed support, row bindings, stable refinement steps, reciprocal coframe legs, zero phase holonomy, and zero transport residuals blocks exactly at `connection_torsion_bound` when `connection.torsionMaxAbs` exceeds tolerance. This is a guardrail for the current producer, not the final $W_{\mathrm{hol}}$ definition; connection transport fields and holonomy-step checks remain deferred until the Cartan transport packet is integrated.
+
+The phase-holonomy side now has the matching isolated negative control. A source report with source-backed support, row bindings, stable refinement steps, reciprocal coframe legs, zero torsion, and zero transport residuals blocks exactly at `connection_phase_holonomy_bound` when `connection.phaseHolonomyT2` exceeds tolerance. This tests only the current producer's phase-holonomy bound; zero transport residuals in the fixture are isolation controls, not accepted Cartan transport evidence. The final role of $\Phi_{T^2}(u)$ and $W_{\mathrm{hol}}$ remains deferred until the Cartan transport packet is integrated.
+
+The gamma-free input boundary now has a source-internal negative control as well. A source report with source-backed support, row bindings, stable refinement steps, reciprocal coframe legs, zero torsion, zero phase holonomy, and zero transport residuals blocks exactly at `extraction_basis_gamma_free` when `gamma_f` is inserted into `extractionBasis`. This separates forbidden Lorentz/mass-shell/fitted inputs from ordinary unknown-basis errors and protects the coframe construction before any $W_{\mathrm{hol}}$ transport semantics are added.
+
+The scalar transport side is now split into support transport and holonomy transport. A source report with source-backed support, row bindings, stable refinement steps, reciprocal coframe legs, zero torsion, zero phase holonomy, and zero support-transport residual blocks exactly at `connection_holonomy_transport_residual_bound` when `connection.holonomyTransportResidual` exceeds tolerance. This prevents a passing support-transport residual from hiding a holonomy mismatch, but it is still only a guardrail for $W_{\mathrm{hol}}$, not a proof that the connection was constructed independently of the fitted target rows.
+
+The retained-domain fiber product is necessary but not sufficient for no-retune. The strengthened reducer should split the witness into $W_{\mathrm{supp}}$, which proves shared support on the accepted invariant cell, and $W_{\mathrm{hol}}$, which proves that all row sections are parallel transports under one connection over the drift base. The first raw-label row should therefore become a flat reference section at $u=0$ plus a recorded transport rule to $u\neq0$, not just a list of preserved labels.
+
+## EQ-04A: Koide Charged-Lepton Mass Relation
+
+Detailed packet: [EQ-04A Koide Charged-Lepton Mass Relation](eq-04a-koide-charged-lepton-mass-relation.md).
+
+### Standard Form
+
+For the charged leptons, the empirical Koide benchmark is usually written as
+
+$$
+Q_{\ell}
+=
+\frac{
+m_e+m_\mu+m_\tau
+}{
+\left(\sqrt{m_e}+\sqrt{m_\mu}+\sqrt{m_\tau}\right)^2
+}
+\approx
+\frac{2}{3},
+$$
+
+equivalently
+
+$$
+\frac{
+\left(\sqrt{m_e}+\sqrt{m_\mu}+\sqrt{m_\tau}\right)^2
+}{
+m_e+m_\mu+m_\tau
+}
+\approx
+\frac{3}{2}.
+$$
+
+The benchmark is sensitive to the mass convention. The first comparison should use the charged-lepton rest/pole-mass triplet unless a future packet explicitly declares a running-mass scheme and scale.
+
+The same relation also has a geometric form: the vector $(\sqrt{m_e},\sqrt{m_\mu},\sqrt{m_\tau})$ makes a $45^\circ$ angle with the democratic axis $(1,1,1)/\sqrt3$. That makes `EQ-04A` a natural mass-root projection benchmark for a generation-by-shielding map, not merely a scalar ratio to fit.
+
+### Mapping
+
+The only conservative carrier is the charged-lepton generation-by-shielding ladder. Let $A_{\ell,g}$, $g=0,1,2$, denote one retained charged-lepton branch family and let
+
+$$
+M_{\ell,g}(\theta)
+=
+\Pi_M
+\left[
+\mathcal E_{\ell}(A_{\ell,g};\theta),
+\mathcal C_{\mathrm{sea}}(\theta)
+\right]
+$$
+
+be the mass readout predicted by the same exposure, shielding, internal-energy, and Noether sea response rows used by `EQ-04`. Koide then becomes a post-prediction residual:
+
+$$
+\mathcal R_{04A}^{\mathrm{Koide}}(\theta)
+=
+\left|
+\frac{
+M_{\ell,0}+M_{\ell,1}+M_{\ell,2}
+}{
+\left(\sqrt{M_{\ell,0}}+\sqrt{M_{\ell,1}}+\sqrt{M_{\ell,2}}\right)^2
+}
+-
+\frac{2}{3}
+\right|.
+$$
+
+This row must not become a fit target. It is useful only if the same mass map that predicts the charged-lepton hierarchy also produces a small $\mathcal R_{04A}^{\mathrm{Koide}}$ after the masses are fixed by independent rows.
+
+The sharper geometric reading treats $\mathbf R_{\ell}$ as a root/coframe section. Square-root masses are the linear root coordinates and masses are their quadratic norms. With
+
+$$
+\mathbf R_{\ell}
+=
+R_d\hat{\mathbf d}
++\mathbf R_{\mathrm{tr}},
+$$
+
+where $\mathbf R_{\mathrm{tr}}$ is the traceless generation-plane component, the Koide angle is the moment-map/equipartition condition
+
+$$
+\mathcal J_K
+=
+\lVert\mathbf R_{\mathrm{tr}}\rVert^2
+-
+\left|R_d\right|^2
+=0.
+$$
+
+This is a useful theorem target only after the charged-lepton generation-by-shielding map fixes one transported root section. Until then it is a diagnostic, not a derived invariant.
+
+The first comparison is a frozen-parameter residual, not an invariant claim. If $\hat\theta_M$ is the already-fixed mass-map parameter set and $\Sigma_M$ is the propagated mass-readout uncertainty, the packet should report the induced band for
+
+$$
+\cos^2\theta_{\ell}(\hat\theta_M)
+=
+\frac{
+\left(\mathbf R_{\ell}(\hat\theta_M)\cdot\hat{\mathbf d}\right)^2
+}{
+\lVert\mathbf R_{\ell}(\hat\theta_M)\rVert^2
+}.
+$$
+
+A hit requires the band to land near $1/2$ while remaining narrow enough that generic nearby mass maps would miss. A miss under the same frozen map is also a useful result. Only after multiple fixed branch-family predictions should this become a family statistic, and only after a generation-map derivation should it be called an invariant.
+
+### Closure Status
+
+Current `6/23 b` score: `1`.
+
+The relation is already recorded in the particle-mass material as a speculative charged-lepton benchmark, but no branch-derived mass map currently predicts the electron, muon, and tau masses before checking the Koide residual. The score is therefore deliberately low.
+
+### Closure Burden
+
+A score-moving packet must show:
+
+- one shared charged-lepton branch family $A_{\ell,0}$, $A_{\ell,1}$, $A_{\ell,2}$;
+- one exposure, shielding, internal-energy, and Noether sea response map for all three charged leptons;
+- declared mass convention and scale;
+- propagated uncertainty or interval band for the mass-root angle;
+- no direct tuning to $Q_{\ell}=2/3$ or its inverse $3/2$ form;
+- compatibility with the `EQ-04` mass-shell response and the broader generation-mass hierarchy;
+- quark non-agreement treated as expected strong-sector contamination, not as an automatic failure.
+
+### Agent Target
+
+Build the first `EQ-04A` residual packet by connecting the charged-lepton generation-by-shielding row to the `EQ-04` mass map. The first useful artifact is not a high-precision Koide fit; it is a fail-closed residual that reports whether the same predicted lepton masses land near the Koide surface without hidden retuning.
 
 ## EQ-05: Noether Conservation Laws
 
@@ -655,68 +838,151 @@ $$
 
 ### AAA Mapping
 
-This row owns the action quantum itself. `EQ-12` may use $h\nu$ as a photon packet readout, but `EQ-12A` asks whether $h$ and $\hbar$ can be recovered as projections of one retained braid action one-form. The target is a retained nested shell braid or photon packet domain whose phase cycle, history-space action ledger, energy ledger, and angular-momentum ledger expose one shared period:
+This row owns the action quantum itself. `EQ-12` may use $h\nu$ as a photon packet readout, but `EQ-12A` asks whether $h$ and $\hbar$ can be recovered as projections of one geometry-derived retained action period. The target is no longer an abstract integrality claim on the raw delay-history space. The first executable target is now a constant-delay retained orbit with a Poincare-map and monodromy certificate, not a state-dependent delay Hessian problem. After the action-period review, that scalar target is explicitly a scaffold and falsifier: a Hopf-born scalar orbit can have a rigid frequency but a continuously rescalable action area, so it cannot by itself source a physical unit.
 
 $$
 \Theta_h
 =
 \left(
+\mathcal H_\tau,
+\Phi_T,
+\Sigma,
+\mathcal U,
 \mathfrak B_{\mathrm{cyc}},
-\vartheta,
-\Omega_h,
 \gamma_0,
+\vartheta_{\mathrm{PC}},
 \mathcal L_{\mathrm{root}},
 \mathcal L_{E\mathbf p\mathbf J},
 P_\gamma,
-c_\gamma,
-\theta_{\mathrm{sea}}
+\mathcal T_\gamma
 \right).
 $$
 
-In a delayed Noether braid system, the closed-cycle action cannot be treated as a naive instantaneous $\oint p\,dq$ integral. The action row must live on an extended history space:
+Here $\mathcal H_\tau=C^1([-\tau,0])$ is the constant-delay history space with compatibility conditions, $\Phi_T$ is the period-$T$ flow, $\Sigma$ is a Poincare section, $\mathcal U=D\Phi_T$ is the monodromy operator, $\gamma_0$ is the retained periodic orbit, and $\vartheta_{\mathrm{PC}}$ is the local Poincare-Cartan one-form pulled back to that orbit. $\mathcal T_\gamma$ is the photon-channel transversality data used by the blackbody and photon rows.
+
+The first toy model should be constant-delay, nonlinear, and orbit-isolating:
 
 $$
-\Omega_h
+\ddot x(t)
 =
-\mathrm d p\wedge \mathrm d q
+-\omega^2x(t)
 +
-\int_{-\tau_{\max}}^{0}
-\mathrm d p_{\mathrm{hist}}(\sigma)
-\wedge
-\mathrm d q(\sigma)\,
-w(\sigma)\,\mathrm d\sigma,
-\qquad
-\mathrm d\vartheta=\Omega_h.
+g\,x(t-\tau)
+-
+\gamma\dot x(t)
++
+\mu x(t)\left(1-x(t)^2\right).
 $$
 
-The action unit is then the period of the one-form on the generating retained cycle:
+The state-dependent delay $\tau(x)=\tau_0+\beta x$ is deferred until the constant-delay orbit is hyperbolic-modulo-time-shift; then $\beta$ can be introduced as a persistence/continuation parameter. The reason is structural: state-dependent delay is not $C^1$ on the standard continuous history space and threatens the differentiability needed by a Hessian-based first model.
+
+The scalar continuation falsifier is now part of the claim discipline. Near Hopf birth,
+
+$$
+T
+=
+\frac{2\pi}{\Omega_c}
++O(|\eta-\eta_c|),
+\qquad
+A^2
+\propto
+\frac{\eta-\eta_c}{-\ell_1},
+$$
+
+so the phase-area proxy behaves as
+
+$$
+h_\Phi
+=
+\oint p\,dq
+\sim
+\pi \Omega_c A^2.
+$$
+
+If $h_\Phi$ varies smoothly under continuation while the frequency stays near $\Omega_c$, then the scalar retained orbit is disqualified as an action-unit source. That negative result would be useful: it would show why the physical $h_\vartheta$ target needs tri-binary locking, integer winding, or an exact Noether-charge row rather than a soft scalar amplitude.
+
+For the causal-delay self-hit model, the primary finite-dimensional object is the Poincare return map and its monodromy spectrum. A variational advanced-plus-causal-delay replacement may later support a global Hessian or presymplectic row, but the first causal solver target should not require that structure. The action unit is the Poincare-Cartan orbit integral on the certified retained orbit:
 
 $$
 h_\vartheta
 =
-\oint_{\gamma_0}\vartheta,
+\oint_{\gamma_0}\vartheta_{\mathrm{PC}}
+=
+\int_0^T p(t)\dot q(t)\,dt,
 \qquad
 \hbar_\vartheta=\frac{h_\vartheta}{2\pi}.
 $$
 
-The useful residual is therefore not a stack of independently inserted $h$ comparisons. It is a period-uniqueness residual for the projections of $\vartheta$:
+The theorem target should be stated as a Retained-Orbit Birth and Action-Readout Lemma. A weak first version says: if the constant-delay equation has a simple Hopf crossing for
+
+$$
+\Delta(\lambda)
+=
+\lambda^2+\gamma\lambda+\omega^2-g e^{-\lambda\tau}=0,
+$$
+
+all other roots are stable, the crossing is transverse, the first Lyapunov coefficient $\ell_1$ is nonzero, and the monodromy certificate has exactly one unit Floquet multiplier with the rest bounded inside the unit disk,
+
+$$
+\mathrm{spec}(\mathcal U)
+=
+\{1\}\cup\{\mu_k\},
+\qquad
+|\mu_k|\le\rho<1,
+\qquad
+1-\rho\ge\delta_{\mathrm{gap}},
+$$
+
+then $\gamma_0$ is isolated and hyperbolic modulo time shift, the local Poincare-Cartan integral $h_\vartheta=\oint_{\gamma_0}\vartheta_{\mathrm{PC}}$ is meaningful on the retained orbit, and readout independence can be tested by refinement. This is not yet a derivation of a physical unit; it is the obstruction test for whether a retained orbit area is merely scalable. Integrality remains a retained-orbit selection condition, not a theorem on raw history space.
+
+The useful residual is therefore not a stack of independently inserted $h$ comparisons. It is a retained-orbit and readout residual:
 
 $$
 \mathcal R_h^\vartheta(\Theta_h)
 =
 \left(
+\mathcal R_{\mathrm{red}},
+\mathcal R_{\mathrm{Hopf}},
+\mathcal R_{\ell_1},
+\mathcal R_{\mathrm{Floquet}},
 \frac{E_\gamma-h_\vartheta\nu}{E_\gamma+\varepsilon_E},
 \frac{\|\mathbf p_\gamma-\hbar_\vartheta\mathbf k\|}{\|\mathbf p_\gamma\|+\varepsilon_p},
 \frac{\left|\oint_\gamma\vartheta-nh_\vartheta\right|}{\left|\oint_\gamma\vartheta\right|+\varepsilon_I},
 \frac{|J-n\hbar_\vartheta|}{|J|+\varepsilon_J},
 \max_{a,b}
 \frac{|h_a-h_b|}{|h_\vartheta|+\varepsilon_h},
+\mathcal R_{\mathrm{ref}},
+\left|\frac{\partial h_\vartheta}{\partial g}\right|_{\mathrm{fam}},
 \mathcal H_{\mathrm{hist}},
+\mathcal N_{\mathrm{res}},
 \mathcal S_{\mathrm{retune}}
 \right).
 $$
 
-Here $h_a$ are the action periods extracted from the energy, momentum, and angular-momentum readouts. The history-balance term requires wake storage and flux to close over a retained period:
+Here $\mathcal R_{\mathrm{red}}$ carries the finite-dimensional Poincare/monodromy reduction and fibration-constancy residuals; $\mathcal R_{\mathrm{Hopf}}$ carries the simple-crossing, transversality, and stable-root checks; $\mathcal R_{\ell_1}$ rejects the degenerate Bautin case $\ell_1=0$; $\mathcal R_{\mathrm{Floquet}}$ rejects extra near-unit multipliers; and $\mathcal R_{\mathrm{ref}}$ checks collocation refinement, Poincare-section relocation, and retained-mode stability. The $h_a$ are the action periods extracted from the energy-clock, phase-loop, momentum, and angular-momentum readouts. Readout independence is not automatic; it is accepted only when $h_E=E_\gamma/\nu$ and $h_\Phi=\oint_{\gamma_0}p\,dq$ converge to the same value under refinement and section relocation. The non-resonance certificate $\mathcal N_{\mathrm{res}}$ should bound the relevant small divisors:
+
+$$
+\mathcal N_{\mathrm{res}}
+=
+\frac{\max(0,\delta_{\min}-\min_k |\Delta_k|)}
+{\delta_{\min}+\varepsilon_\delta}.
+$$
+
+The history-balance term is secondary to the monodromy certificate. For the constant-delay model it should measure return of the history-energy functional over one retained period; for the causal dissipative model it measures stable self-hit energy throughput rather than exact closure:
+
+$$
+\frac{d}{dt}
+\left(
+E_{\mathrm{inst}}
++
+\int_{-\tau}^{0}\mathcal P(t,\sigma)\dot q(t+\sigma)\,d\sigma
+\right)
++
+\nabla\cdot\mathbf\Phi_{\mathrm{flux}}
+=0.
+$$
+
+The corresponding residual over a retained period is:
 
 $$
 \mathcal H_{\mathrm{hist}}
@@ -731,30 +997,53 @@ $$
 {|h_\vartheta|+\varepsilon_h}.
 $$
 
-This is also the natural home for the $h$ unit of angular momentum: equal action per retained cycle must be reconciled with the tri-binary phase and angular-momentum ledger before $h$ is treated as more than a measured conversion constant. The theorem target is a Period Quantization Lemma: on a retained closed branch chart, the de Rham class of $\vartheta$ should be integral and the generator period $h_\vartheta$ should be independent of which conjugate readout projects it. The open burden is proving that self-hit and history-space holonomy do not introduce irrational or readout-dependent periods.
+This is also the natural home for the $h$ unit of angular momentum: equal action per retained cycle must be reconciled with the tri-binary phase and angular-momentum ledger before $h$ is treated as more than a measured conversion constant. The open burden is no longer "prove integrality in raw history space" or "force a Hessian onto a causal self-hit equation." It is now split in two: first, run the scalar constant-delay continuation to test whether the apparent action period is only a tunable orbit area; second, seek the positive action-unit source in a mode-locked equal-frequency tri-binary branch whose integer winding and middle-binary speed pinning protect the common action unit.
 
-The shared Planck/blackbody/coupling carrier must also be a fiber product, not a loose product of rows:
+The positive theorem target is therefore a Mode-Locked Tri-Binary Action-Unit Lemma. A weak first version says: if the retained equal-frequency row set has
 
 $$
-\Theta_\star
-=
-\left(
-\vartheta,
-P_\gamma,
-c_\gamma,
-\theta_{\mathrm{sea}}
-\right),
+(f_1,f_2,f_3)=(f,f,f),
 \qquad
-\Theta_{h\alpha}
-=
-\Theta_h
-\times_{\Theta_\star}
-\Theta_{\mathrm{bb}}
-\times_{\Theta_\star}
-\Theta_\alpha.
+\omega_1=\omega_2=\omega_3=\omega_f,
 $$
 
-Under this form, $\mathcal S_{\mathrm{retune}}$ is the cocycle obstruction to gluing the three projections over one $\Theta_\star$.
+fixed retained phase offsets, a middle-binary speed-pinning row
+
+$$
+s_M=\rho_M\omega_f=c_f,
+$$
+
+an angular-momentum momentum-map row
+
+$$
+J=\sum_a m_a\rho_a^2\omega_f,
+$$
+
+and a stable mode-locking plateau with integer winding $n$, then the score-moving evidence is not a single scalar orbit area. It is the same-branch coincidence
+
+$$
+h_E
+=
+h_\Phi
+=
+h_p
+=
+h_J
+=
+h_\vartheta
+$$
+
+inside the plateau, together with visible splitting of the readouts at the tongue or resonance boundary and a positive Floquet stability margin.
+
+The shared Planck/blackbody/coupling structure should be a sea-state fibration rather than a fiber product over a carrier that includes all constitutive inputs. Let $\mathcal M_{\mathrm{PC}}$ denote the local finite-dimensional carrier supplied by the Poincare/monodromy reduction. Then
+
+$$
+\pi:\mathcal M_{\mathrm{PC}}\to B_{\mathrm{sea}},
+\qquad
+\vartheta_{\mathrm{PC}}\in\Omega^1(\mathcal M_{\mathrm{PC}}/B_{\mathrm{sea}}).
+$$
+
+The Noether sea state, $c_\gamma$, and response kernels are base or constitutive rows. The common action object is the fiberwise Poincare-Cartan period plus photon-channel transversality data. The scale-invariance target becomes local constancy of $h_\vartheta$ over the relevant base patch; running $\alpha(\mu)$ may change only the electromagnetic response kernel and threshold inventory.
 
 ### Closure Status
 
@@ -762,7 +1051,7 @@ Current `6/23 b` score: `2`.
 
 The row is high priority because many mature equations already consume $h$ or $\hbar$. It remains low-scored because the current material uses those constants as bridge readouts or residual inputs; it does not yet derive the action unit from retained braid geometry.
 
-Executable status: [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) evaluates the score-neutral Planck/alpha residual family for `EQ-12A`, `EQ-22A`, and `EQ-26A`. The attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json) is designed to pass the normalized Planck-action, period-uniqueness, blackbody, $\alpha(\mu)$, source-provenance, hidden-retune, and negative-control diagnostics while remaining score-neutral until accepted retained rows exist.
+Executable status: [constant-delay-retained-orbit-certificate.mjs](../../../scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs) now isolates the `EQ-12A` retained-orbit scaffold and scalar falsifier. The attempt fixture [constant-delay-retained-orbit-certificate-attempt.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-certificate-attempt.v1.json) passes the constant-delay model, Hopf birth, first-Lyapunov, monodromy/Floquet, Poincare-section, Poincare-Cartan, four-readout action, refinement, sweep-invariance, history-throughput, non-resonance, and negative-control diagnostics while remaining score-neutral at `missing_accepted_retained_orbit_reduction_row`. The broader positive route now points to locked equal-frequency tri-binary evidence: winding plateau, four-readout coincidence, and Floquet margin on one retained branch. [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) continues to evaluate the broader `EQ-12A`, `EQ-22A`, and `EQ-26A` Planck/alpha residual family.
 
 ### Closure Burden
 
@@ -770,15 +1059,24 @@ The row must recover:
 
 - one action unit from a retained closed cycle, not from assigning $h$ in each comparison equation;
 - one $\hbar=h/(2\pi)$ relation shared by phase, spin/angular-momentum, and photon packet rows;
-- the extended history-space symplectic row $\Omega_h$ and action one-form $\vartheta$, including wake-storage and radiated/self-hit flux closure over one retained period;
-- a period-uniqueness certificate showing that energy, momentum, and angular-momentum readouts extract the same $h_\vartheta$;
+- a scalar constant-delay retained-orbit falsifier before state-dependent delay is reintroduced by persistence;
+- a Hopf birth row with simple imaginary crossing, transversality, and all other roots stable;
+- a first Lyapunov coefficient row with $\ell_1\ne0$, rejecting the Bautin/continuum case;
+- a monodromy/Floquet row with exactly one unit multiplier and a positive gap to the remaining spectrum;
+- a Poincare section and local Poincare-Cartan orbit integral row;
+- an energy-clock versus phase-loop readout certificate showing $h_E$ and $h_\Phi$ converge under refinement and Poincare-section relocation;
+- a scalar continuation result showing whether $h_\Phi$ is continuously rescalable under $g$ or $\mu$;
+- a locked equal-frequency tri-binary branch with middle-binary speed pinning, integer winding plateau, four-readout coincidence, and positive Floquet margin;
+- a history-energy throughput row whose numerical violation is $\mathcal H_{\mathrm{hist}}$;
+- a non-resonance certificate for Floquet/slaved history modes and tri-binary frequency small divisors;
+- a geometry-derived action period, not an action period inferred from $\alpha$ data;
 - common $h$, $\hbar$, $c_\gamma$, event-ledger, and Noether sea rows across `EQ-12`, `EQ-22A`, `EQ-26`, `EQ-26A`, and `EQ-28`;
 - a no-hidden-retune witness showing that action, frequency, momentum, and angular momentum are not fitted independently;
-- a $\Theta_\star$ fiber-product witness binding $\Theta_h$, $\Theta_{\mathrm{bb}}$, and $\Theta_\alpha$ through the same action one-form, photon packet, photon-channel speed, and Noether sea state.
+- a sea-state fibration row $\pi:\mathcal M_{\mathrm{PC}}\to B_{\mathrm{sea}}$ showing that $h_\vartheta$ is locally constant over the base patch used by the blackbody and coupling projections.
 
 ### Agent Target
 
-Build the first retained cycle-action row: declare $\mathfrak B_{\mathrm{cyc}}$, define $\vartheta$ on the extended history space, compute $h_\vartheta=\oint_{\gamma_0}\vartheta$, bind it to $\mathcal L_{E\mathbf p\mathbf J}$, and test whether the same $h_\vartheta$ and $\hbar_\vartheta$ close photon energy, de Broglie momentum, angular-momentum, wake-storage, and flux readouts on one record.
+Build the scalar falsifier first: solve the constant-delay Hopf equations, compute $\ell_1$, continue the bifurcated orbit to finite amplitude, compute the monodromy spectrum, and test whether $\oint p\,dq$ varies continuously while the frequency remains near the Hopf crossing. If that expected falsifier passes, move the positive action-unit search to the equal-frequency tri-binary branch: compute the winding plateau, four readouts $h_E,h_\Phi,h_p,h_J$, and Floquet margin on one retained branch with middle-binary speed pinning.
 
 ## EQ-14 Through EQ-16: Quantum Wave, Spinor, And Gauge Equations
 
@@ -2285,7 +2583,7 @@ Cross-cutting solver priority: the stable tri-binary configuration search should
 Current executable reducer guardrail: `scripts/equation-mapping/check-emit-02-04-contract.mjs` consumes the solver report's `cases[].branchChartProjection.equationBearing` payload and maps it onto $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}(u_k)$. The 2026-06-23 equal-frequency smoke result is `blocked_not_evaluable` with 0 evaluable cases, 7 blocked cases, `retainedBranchClaim=false`, and `scoreDecision=no_score_increase`. This checker sharpens the `EQ-02` through `EQ-04` reducer burden but does not justify any `6/23 b` score change.
 
 1. `EQ-02` and `EQ-03`: Lorentz factor, clock/ruler retuning, and oblate spheroidal envelope. These already have the strongest visual and algebraic bridge.
-2. `EQ-04`: energy-momentum and rest energy. This should attach the Lorentz envelope to mass-map work.
+2. `EQ-04` and `EQ-04A`: energy-momentum, rest energy, and the Koide charged-lepton benchmark. This should attach the Lorentz envelope to mass-map work, then check whether one charged-lepton mass map lands near the Koide surface without direct fitting.
 3. `EQ-07` through `EQ-10`: effective metric and weak-field observables. This turns local braid/sea response into GR-facing tests.
 4. `EQ-17` through `EQ-19`: redshift, effective FRW, and Friedmann transfer. This is the main cosmology bridge.
 5. `EQ-21` through `EQ-23` plus `EQ-22A`: structure, CMB, Planck blackbody mode occupancy, and BBN transfer. These are large but necessary for cosmology closure.
@@ -2305,7 +2603,7 @@ Use the AAA corpus advancement skill in team-agent mode.
 Context:
 - Priority folder: `reference/priorities/equation-mapping/`.
 - Start with `reference/priorities/equation-mapping/equation-mapping.md` and `reference/priorities/equation-mapping/equation.md`.
-- The line items in `equation.md` use dated score columns from `0` to `5`; `6/23 a` is the first-round score, and `6/23 b` records accepted worker-backed scores where populated. Suffix rows such as `EQ-12A`, `EQ-22A`, and `EQ-26A` are first-class rows for tightly coupled constants or sub-equation closures that should not renumber the existing inventory.
+- The line items in `equation.md` use dated score columns from `0` to `5`; `6/23 a` is the first-round score, and `6/23 b` records accepted worker-backed scores where populated. Suffix rows such as `EQ-04A`, `EQ-12A`, `EQ-22A`, and `EQ-26A` are first-class rows for tightly coupled constants or sub-equation closures that should not renumber the existing inventory.
 - The current high-value bridge is:
   `Noether braid closure -> (xi, Gamma_N, chi_sea, rho_NS) -> g_eff -> (H_eff, z, D(z), P(k,z))`.
 - Stable tri-binary branch search uses role-assigned $I:M:O$ triples after generic binary labels are mapped. Active families include $(f+2,f,f-1)$, $(f+1,f,f-1)$, $(f,f,f)$, $(4f,2f,f)$, and $(nf,mf,f)$. Treat these as search coordinates and consume the fail-closed solver-facing `equationBearing` residual payload before ranking them.
@@ -2317,7 +2615,7 @@ Task:
 2. Read the two equation-mapping files.
 3. Start parallel workers if the environment supports it. Assign one line item or tightly related group per worker, and tell each worker which equation IDs it owns. Prefer these first if worker count is limited:
    - `EQ-02` and `EQ-03`: Lorentz factor, clock/ruler retuning, and oblate spheroidal envelope.
-   - `EQ-04`: energy-momentum and rest energy.
+   - `EQ-04` and `EQ-04A`: energy-momentum, rest energy, charged-lepton generation-by-shielding, and Koide as a no-retune mass-map residual.
    - `EQ-07` through `EQ-10`: effective metric, weak-field clocks, PPN, and geodesic benchmarks.
    - `EQ-17` through `EQ-19`: redshift, effective FRW, Friedmann, and cosmological continuity.
    - `EQ-21` through `EQ-23` plus `EQ-22A`: structure growth, CMB transfer, Planck blackbody mode occupancy, and BBN yields.

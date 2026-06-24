@@ -212,7 +212,7 @@ $$
 =
 \left(
 q_{\mathrm{obs}},
-\hbar_{\mathbb A},
+\hbar_\vartheta,
 c_\gamma,
 \mathcal E_S,
 \mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}}),
@@ -220,7 +220,7 @@ I_\mu
 \right),
 $$
 
-where $\hbar_{\mathbb A}$ must come from the `EQ-12A` action row, $q_{\mathrm{obs}}$ is the observer charge/exposure row, and $I_\mu$ is the charged-threshold inventory. The useful residual is
+where $\hbar_\vartheta=h_\vartheta/2\pi$ must come from the `EQ-12A` retained-orbit period reduction before this row consumes it, $q_{\mathrm{obs}}$ is the scheme-pinned observer charge/exposure row, and $I_\mu$ is the charged-threshold inventory. The useful residual is
 
 $$
 \mathbf R_{26A}
@@ -247,29 +247,32 @@ I_\mu
 ].
 $$
 
-This makes the strongest falsifier simple: extract $h_\vartheta$ from $\alpha(0)$, one atomic fine-structure anchor, and one running point using the `EQ-12A` action one-form row. If the inferred action period changes with $\mu$, the row fails rather than retuning the Planck-action carrier.
+This makes the strongest falsifier simple: derive $h_\vartheta$ from retained-orbit geometry first, pin the charge-exposure convention for $q_{\mathrm{obs}}$, and then compare the low-energy coupling, one atomic fine-structure anchor, and one running point. If matching the three anchors requires fitting $h_\vartheta$ from $\alpha$ data or changing it with $\mu$, the row fails rather than retuning the Planck-action carrier.
 
 ### Rows Needed
 
-- Observer charge/exposure row.
-- `EQ-12A` action-unit row for $\hbar_{\mathbb A}$.
+- Scheme-pinned observer charge/exposure row for $q_{\mathrm{obs}}$.
+- `EQ-12A` retained-orbit period reduction row deriving $h_\vartheta$ and $\hbar_\vartheta$ from geometry before alpha consumes them.
 - Local photon-channel speed row.
 - Effective gauge/coupling covariance row.
 - Charged-threshold inventory row for the scale window.
 - $\alpha(\mu)$ running row.
 - Rydberg and fine-structure anchor rows tied back to `EQ-26`.
-- Period-uniqueness row showing that all $\alpha$ anchors infer the same $h_\vartheta$.
+- Period-readout independence row showing that coupling anchors do not force a different $h_\vartheta$.
+- Alpha-fitted action-period negative control.
 - Source provenance and no-hidden-retune witness.
 
 ### Executable Status
 
-[planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) evaluates this as one sub-residual of the score-neutral Planck/alpha bundle. The attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json) blocks first at `missing_accepted_theta_gamma_packet`; after photon/action closure, the coupling-specific blockers are accepted effective charge/current continuity, gauge covariance, charged-threshold inventory, and running rows.
+[planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) evaluates this as one sub-residual of the score-neutral Planck/alpha bundle. The attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json) blocks first at `missing_accepted_theta_gamma_packet`; after photon/action closure, the coupling-specific blockers are geometry-derived $h_\vartheta$, a scheme-pinned charge/current exposure convention, gauge covariance, charged-threshold inventory, and running rows.
 
 ### Failure Mode
 
 `eq26a.alpha_hidden_retune`: $h_\vartheta$, $c_\gamma$, charge exposure, gauge domain, or Noether sea state changes between the low-energy reference coupling, atomic fine-structure anchor, and higher-energy running readout.
 
 `eq26a.mu_dependent_action_period`: matching $\alpha(\mu)$ requires $\partial h_\vartheta/\partial\ln\mu\ne0$ or inconsistent extracted action periods across the three anchors.
+
+`eq26a.alpha_fitted_action_period`: the row chooses $h_\vartheta$ by inverting the observed fine-structure constant rather than deriving $h_\vartheta$ from the retained-orbit period reduction.
 
 ## EQ-27: Magnetic Moment, Larmor/Cyclotron Precession, And $g-2$
 

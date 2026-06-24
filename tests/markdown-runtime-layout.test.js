@@ -85,8 +85,14 @@ function createFakeElement() {
     querySelectorAll() {
       return [];
     },
+    removeAttribute(key) {
+      attributes.delete(key);
+    },
     setAttribute(key, value) {
       attributes.set(key, String(value));
+    },
+    focus() {
+      this.focused = true;
     },
   };
 }
@@ -109,6 +115,7 @@ function createFakeDocument() {
   const clickedLinks = [];
   return {
     clickedLinks,
+    title: "architrino",
     body: {
       children: [],
       appendChild(child) {
@@ -140,6 +147,66 @@ function createFakeDocument() {
     },
   };
 }
+
+test("markdown panels expose a focused article surface for browser read aloud", async (t) => {
+  const originalFetch = globalThis.fetch;
+  const originalWindow = globalThis.window;
+
+  globalThis.fetch = async () => ({
+    ok: true,
+    async text() {
+      return "# Test\n\nReadable body.";
+    },
+  });
+  globalThis.window = {};
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+    globalThis.window = originalWindow;
+  });
+
+  const markdownPanel = createFakeElement();
+  const markdownTitle = createFakeElement();
+  const markdownContent = createFakeElement();
+  const markdownBody = createFakeElement();
+  const documentLike = createFakeDocument();
+  const runtime = createMarkdownRuntime({
+    markdownPanel,
+    markdownTitle,
+    markdownContent,
+    markdownBody,
+    markdownLayoutToggle: createFakeElement(),
+    markdownRenderer: null,
+    markdownCache: new Map(),
+    markdownSectionCache: new Map(),
+    extractMarkdownSection: () => null,
+    appendCacheBust: (path) => path,
+    documentLike,
+  });
+
+  await runtime.showMarkdownPanel({
+    name: "Readable Test",
+    markdownPath: "content/markdown/test.md",
+    markdownColumns: 1,
+  });
+
+  assert.equal(markdownPanel.attributes.get("aria-hidden"), "false");
+  assert.equal(markdownPanel.attributes.get("aria-label"), "Readable Test");
+  assert.equal(markdownTitle.textContent, "Readable Test");
+  assert.equal(markdownContent.attributes.get("aria-label"), "Readable Test");
+  assert.equal(markdownContent.attributes.get("tabindex"), "-1");
+  assert.equal(markdownContent.focused, true);
+  assert.equal(documentLike.title, "Readable Test - architrino");
+  assert.match(markdownBody.innerHTML, /Readable body/);
+
+  runtime.hideMarkdownPanel();
+
+  assert.equal(markdownPanel.attributes.get("aria-hidden"), "true");
+  assert.equal(markdownPanel.attributes.has("aria-label"), false);
+  assert.equal(markdownContent.attributes.has("aria-label"), false);
+  assert.equal(markdownBody.innerHTML, "");
+  assert.equal(documentLike.title, "architrino");
+});
 
 test("markdown document HTML entrypoints load local KaTeX assets", () => {
   const markdownEntrypoints = collectHtmlFiles()

@@ -339,6 +339,8 @@ function renderReviewHtml({ record, markdownText, htmlDir }) {
 
       body {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-variant-ligatures: none;
+        font-feature-settings: "liga" 0, "clig" 0, "dlig" 0, "hlig" 0;
         font-size: 12pt;
         line-height: 1.42;
       }

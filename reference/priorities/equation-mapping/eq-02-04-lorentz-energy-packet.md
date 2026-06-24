@@ -297,6 +297,8 @@ with the error budget allocated to named causal-root features, Noether sea dress
 
 ## First Mathematical Object To Add Next
 
+Current supersession note: the residual vector below remains useful grammar, but it is no longer the next acceptance object by itself. The current solver-facing boundary is source-backed retained support plus the Cartan witness split $W_{\mathrm{supp}}/W_{\mathrm{hol}}$. A common residual vector can become score-moving only after the rows are extracted on the same source-backed support and the holonomy witness rules out row-by-row retuning.
+
 Add the residual definition `lorentz_mass_shell_common_branch_residual` as a priority-side theorem target:
 
 $$
@@ -354,4 +356,4 @@ Defer with blocker: the packet has a shared residual grammar, but no accepted br
 
 ## Worker Handoff
 
-This packet is a priority-side closure object. It does not claim derivation closure. The translating-binary instantiation is now staged in [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md). The useful next pass is to populate that retained record in the solver, then decide which residual rows can survive into the nested shell braid branch without independent retuning.
+This packet is a priority-side closure object. It does not claim derivation closure. The translating-binary instantiation is now staged in [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md). The useful next pass is to populate the source-backed retained support and the $W_{\mathrm{hol}}$ transport witness in the solver, then decide which residual rows can survive into the nested shell braid branch without independent retuning.

@@ -1,0 +1,45 @@
+{
+  "schema": "aaa-equation-map-eq02-04-coframe-extraction-certificate/v1",
+  "claimLevel": "attempt-level coframe extraction contract; score-neutral and not accepted evidence",
+  "status": "attempt",
+  "certificateId": "coframe_extraction_attempt_0001",
+  "sourceKind": "wake_return_extraction_certificate",
+  "sourcePath": "scripts/equation-mapping/eq02-04-coframe-extraction-attempt.v1.json",
+  "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+  "domainId": "D_02-04_bin_u_attempt_0001",
+  "retainedRowSetId": "S_eq",
+  "supportKind": "positive_width_invariant_cell",
+  "supportId": "S_eq_retained_domain_attempt_0001",
+  "support": {
+    "status": "attempt",
+    "B_N": "B_N_attempt",
+    "Sigma_N": "Sigma_N_attempt",
+    "P_N": "P_N_attempt",
+    "K_P_N": "K_P_N_attempt",
+    "positiveTransverseWidth": null,
+    "returnInclusion": "attempt"
+  },
+  "extractionBasis": [
+    "c_f",
+    "u",
+    "L_root",
+    "L_wake",
+    "retained_boundary_history"
+  ],
+  "extractedLegs": {
+    "e0_dt": 1.25,
+    "e_parallel": 0.8,
+    "e_perp": 1
+  },
+  "connection": {
+    "status": "attempt",
+    "omegaStatus": "attempt",
+    "torsionMaxAbs": 0,
+    "phaseHolonomyT2": [0, 0]
+  },
+  "residuals": {
+    "extractionResidual": 0,
+    "supportBindingResidual": 0,
+    "holonomyResidual": 0
+  }
+}

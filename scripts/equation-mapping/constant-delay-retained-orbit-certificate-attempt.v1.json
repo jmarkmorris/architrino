@@ -1,0 +1,323 @@
+{
+  "schema": "aaa-equation-map-constant-delay-retained-orbit-input/v1",
+  "claimLevel": "EQ-12A constant-delay retained-orbit scaffold and scalar falsifier attempt; score-neutral and not accepted",
+  "certificateId": "R_EQ12A_constant_delay_retained_orbit_attempt_0001",
+  "commonCarrierId": "theta_constant_delay_retained_orbit_attempt_0001",
+  "tolerances": {
+    "carrier": 1e-12,
+    "hopfResidual": 1e-10,
+    "transversality": 1e-6,
+    "stableRootMargin": 1e-6,
+    "firstLyapunov": 1e-6,
+    "monodromy": 1e-8,
+    "floquetGap": 1e-6,
+    "section": 1e-8,
+    "actionReadout": 1e-10,
+    "refinement": 1e-8,
+    "sweep": 1e-8,
+    "sweepMovingRange": 1e-3,
+    "historyThroughput": 1e-8,
+    "nonResonance": 1e-6,
+    "negativeControl": 1e-12
+  },
+  "packet": {
+    "id": "theta_constant_delay_retained_orbit_attempt_0001",
+    "commonCarrierId": "theta_constant_delay_retained_orbit_attempt_0001",
+    "rows": {
+      "retained_orbit_reduction_row": {
+        "id": "retained_orbit_reduction_attempt_0002",
+        "rowId": "retained_orbit_reduction_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      },
+      "constant_delay_self_hit_model_row": {
+        "id": "constant_delay_self_hit_model_attempt_0002",
+        "rowId": "constant_delay_self_hit_model_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      },
+      "hopf_retained_orbit_birth_row": {
+        "id": "hopf_retained_orbit_birth_attempt_0002",
+        "rowId": "hopf_retained_orbit_birth_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      },
+      "first_lyapunov_coefficient_row": {
+        "id": "first_lyapunov_coefficient_attempt_0002",
+        "rowId": "first_lyapunov_coefficient_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      },
+      "monodromy_floquet_certificate": {
+        "id": "monodromy_floquet_certificate_attempt_0002",
+        "rowId": "monodromy_floquet_certificate_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      },
+      "poincare_section_reduction_row": {
+        "id": "poincare_section_reduction_attempt_0002",
+        "rowId": "poincare_section_reduction_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      },
+      "poincare_cartan_orbit_integral_row": {
+        "id": "poincare_cartan_orbit_integral_attempt_0002",
+        "rowId": "poincare_cartan_orbit_integral_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      },
+      "energy_clock_readout_row": {
+        "id": "energy_clock_readout_attempt_0002",
+        "rowId": "energy_clock_readout_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      },
+      "phase_loop_area_readout_row": {
+        "id": "phase_loop_area_readout_attempt_0002",
+        "rowId": "phase_loop_area_readout_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      },
+      "readout_refinement_independence_row": {
+        "id": "readout_refinement_independence_attempt_0002",
+        "rowId": "readout_refinement_independence_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      },
+      "parameter_sweep_action_invariance_row": {
+        "id": "parameter_sweep_action_invariance_attempt_0002",
+        "rowId": "parameter_sweep_action_invariance_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      },
+      "history_energy_throughput_row": {
+        "id": "history_energy_throughput_attempt_0002",
+        "rowId": "history_energy_throughput_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      },
+      "non_resonance_certificate": {
+        "id": "non_resonance_certificate_attempt_0002",
+        "rowId": "non_resonance_certificate_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      },
+      "geometry_derived_action_period_row": {
+        "id": "geometry_derived_action_period_attempt_0002",
+        "rowId": "geometry_derived_action_period_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_constant_delay_retained_orbit_attempt_0001"
+      }
+    },
+    "certificate": {
+      "id": "constant_delay_retained_orbit_attempt_0001",
+      "model": {
+        "equationId": "constant_delay_self_hit_hopf_normal_form_proxy",
+        "delayKind": "constant",
+        "stateDependentDelayDeferred": true,
+        "parameters": {
+          "omega": 1,
+          "gamma": 0.1,
+          "g": 0.21023796041628637,
+          "tau": 6.489790093558712,
+          "mu": 0.12,
+          "hopfFrequency": 0.9
+        }
+      },
+      "hopfBirth": {
+        "simpleImaginaryCrossing": true,
+        "otherRootsStable": true,
+        "stableRootMargin": 0.025
+      },
+      "normalForm": {
+        "firstLyapunovCoefficient": -0.18,
+        "rejectsBautinDegeneracy": true
+      },
+      "monodromyFloquet": {
+        "unitMultiplierResidual": 2e-12,
+        "extraNearUnitMultiplierCount": 0,
+        "maxNontrivialFloquetModulus": 0.72,
+        "maxAllowedNontrivialFloquetModulus": 0.9,
+        "floquetGap": 0.28
+      },
+      "poincareSection": {
+        "sectionTransversality": 0.43,
+        "minSectionTransversality": 0.01,
+        "returnTimeResidual": 3e-12,
+        "sectionRelocationDrift": 4e-12
+      },
+      "poincareCartanOrbitIntegral": {
+        "oneForm": "theta_PC = p dq on retained Poincare-Cartan carrier",
+        "actionIntegral": 1,
+        "cycleCount": 1
+      },
+      "actionReadouts": {
+        "energyClock": {
+          "energy": 1.35,
+          "frequency": 1.35
+        },
+        "phaseLoop": {
+          "actionIntegral": 1,
+          "cycleCount": 1
+        },
+        "momentumWave": {
+          "momentum": 1,
+          "waveNumber": 6.283185307179586
+        },
+        "angularMomentum": {
+          "angularMomentum": 0.15915494309189535,
+          "quantumNumber": 1
+        }
+      },
+      "readoutRefinement": {
+        "maxCollocationDrift": 5e-12,
+        "maxSectionRelocationDrift": 6e-12,
+        "maxRetainedModeDrift": 4e-12
+      },
+      "parameterSweep": {
+        "hiddenRetuneCount": 0,
+        "points": [
+          {
+            "control": "g",
+            "controlValue": 0.19,
+            "energy": 0.82,
+            "frequency": 0.82,
+            "phaseAction": 1
+          },
+          {
+            "control": "g",
+            "controlValue": 0.21023796041628637,
+            "energy": 1,
+            "frequency": 1,
+            "phaseAction": 1
+          },
+          {
+            "control": "g",
+            "controlValue": 0.23,
+            "energy": 1.21,
+            "frequency": 1.21,
+            "phaseAction": 1
+          }
+        ]
+      },
+      "historyEnergyThroughput": {
+        "historyEnergyReturnResidual": 3e-12,
+        "fluxBalanceResidual": 4e-12
+      },
+      "nonResonance": {
+        "minimumSmallDivisor": 0.041,
+        "minimumAllowedSmallDivisor": 0.001,
+        "checkedDivisorCount": 24
+      }
+    },
+    "negativeControls": [
+      {
+        "id": "state_dependent_delay_first_model",
+        "kind": "state_dependent_delay_first_model",
+        "certificateOverride": {
+          "model": {
+            "delayKind": "state_dependent",
+            "stateDependentDelayDeferred": false
+          }
+        }
+      },
+      {
+        "id": "hopf_detuned_crossing",
+        "kind": "hopf_detuned_crossing",
+        "certificateOverride": {
+          "model": {
+            "parameters": {
+              "tau": 6.2
+            }
+          }
+        }
+      },
+      {
+        "id": "hopf_degeneracy_bautin",
+        "kind": "hopf_degeneracy_bautin",
+        "certificateOverride": {
+          "normalForm": {
+            "firstLyapunovCoefficient": 0,
+            "rejectsBautinDegeneracy": false
+          }
+        }
+      },
+      {
+        "id": "floquet_extra_neutral_multiplier",
+        "kind": "floquet_extra_neutral_multiplier",
+        "certificateOverride": {
+          "monodromyFloquet": {
+            "extraNearUnitMultiplierCount": 1,
+            "maxNontrivialFloquetModulus": 1
+          }
+        }
+      },
+      {
+        "id": "action_readout_projection_artifact",
+        "kind": "action_readout_projection_artifact",
+        "certificateOverride": {
+          "actionReadouts": {
+            "phaseLoop": {
+              "actionIntegral": 1.07
+            }
+          }
+        }
+      },
+      {
+        "id": "parameter_sweep_fitted_action",
+        "kind": "parameter_sweep_fitted_action",
+        "certificateOverride": {
+          "parameterSweep": {
+            "hiddenRetuneCount": 3,
+            "points": [
+              {
+                "control": "g",
+                "controlValue": 0.19,
+                "energy": 0.82,
+                "frequency": 0.82,
+                "phaseAction": 0.92
+              },
+              {
+                "control": "g",
+                "controlValue": 0.21023796041628637,
+                "energy": 1,
+                "frequency": 1,
+                "phaseAction": 1
+              },
+              {
+                "control": "g",
+                "controlValue": 0.23,
+                "energy": 1.21,
+                "frequency": 1.21,
+                "phaseAction": 1.08
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "history_throughput_leak",
+        "kind": "history_throughput_leak",
+        "certificateOverride": {
+          "historyEnergyThroughput": {
+            "historyEnergyReturnResidual": 0.03
+          }
+        }
+      },
+      {
+        "id": "small_divisor_resonance",
+        "kind": "small_divisor_resonance",
+        "certificateOverride": {
+          "nonResonance": {
+            "minimumSmallDivisor": 1e-8
+          }
+        }
+      },
+      {
+        "id": "carrier_split",
+        "kind": "carrier_split",
+        "splitRow": "phase_loop_area_readout_row"
+      }
+    ]
+  }
+}

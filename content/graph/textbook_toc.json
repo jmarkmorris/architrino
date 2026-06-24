@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 182,
-      "sections": 1455
+      "entries": 186,
+      "sections": 1456
     }
   },
   "tocRoot": {
@@ -12634,40 +12634,6 @@
             ]
           },
           {
-            "id": "critical_questions",
-            "title": "Critical Questions",
-            "kind": "markdown-split",
-            "sceneType": "Scene-Markdown-Split",
-            "scenePath": "content/scenes/philosophy_history/critical_questions.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/critical-questions.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Standard Prompt",
-                "markdownPath": "content/markdown/aaa/philosophy-history/critical-questions.md",
-                "markdownSection": "Standard Luminary Prompt",
-                "sectionKey": "standard luminary prompt",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Response Contract",
-                "markdownPath": "content/markdown/aaa/philosophy-history/critical-questions.md",
-                "markdownSection": "Response Contract",
-                "sectionKey": "response contract",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Question Set",
-                "markdownPath": "content/markdown/aaa/philosophy-history/critical-questions.md",
-                "markdownSection": "Critical Question Set",
-                "sectionKey": "critical question set",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "major_thinkers",
             "title": "Major Thinkers",
             "kind": "markdown-tree",
@@ -13406,52 +13372,134 @@
             ]
           },
           {
-            "id": "philosophy_history__monologues",
-            "title": "Monologues",
+            "id": "philosophy_history__perspectives",
+            "title": "Perspectives",
             "kind": "scene-index",
             "sceneType": "Scene-Index",
-            "scenePath": "content/scenes/philosophy_history/monologues.json",
+            "scenePath": "content/scenes/philosophy_history/perspectives.json",
             "children": [
               {
-                "id": "philosophy_history__monologues_overview",
-                "title": "Monologues",
+                "id": "philosophy_history__perspectives_overview",
+                "title": "Perspectives",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/monologues/overview.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/monologues.md",
+                "scenePath": "content/scenes/philosophy_history/perspectives/overview.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Shared Prompt",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/monologues.md",
-                    "markdownSection": "Shared Prompt",
-                    "sectionKey": "shared prompt",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Monologue Index",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/monologues.md",
-                    "markdownSection": "Monologue Index",
-                    "sectionKey": "monologue index",
+                    "title": "Questions",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Questions",
+                    "sectionKey": "questions",
                     "headingLevel": 2
                   }
                 ]
               },
               {
-                "id": "philosophy_history__monologue_william_thurston",
+                "id": "philosophy_history__perspective_william_thurston",
                 "title": "William Thurston",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/monologues/william_thurston.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+                "scenePath": "content/scenes/philosophy_history/perspectives/william_thurston.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Monologue",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
-                    "markdownSection": "Monologue",
-                    "sectionKey": "monologue",
+                    "title": "Perspective",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
+                    "markdownSection": "Perspective",
+                    "sectionKey": "perspective",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "philosophy_history__perspective_henri_poincare",
+                "title": "Henri Poincare",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/perspectives/henri_poincare.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Perspective",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+                    "markdownSection": "Perspective",
+                    "sectionKey": "perspective",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "philosophy_history__perspective_james_clerk_maxwell",
+                "title": "James Clerk Maxwell",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Perspective",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+                    "markdownSection": "Perspective",
+                    "sectionKey": "perspective",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "philosophy_history__perspective_ludwig_boltzmann",
+                "title": "Ludwig Boltzmann",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Perspective",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+                    "markdownSection": "Perspective",
+                    "sectionKey": "perspective",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "philosophy_history__perspective_emmy_noether",
+                "title": "Emmy Noether",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/perspectives/emmy_noether.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Perspective",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+                    "markdownSection": "Perspective",
+                    "sectionKey": "perspective",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "philosophy_history__perspective_albert_einstein",
+                "title": "Albert Einstein",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/perspectives/albert_einstein.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Perspective",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+                    "markdownSection": "Perspective",
+                    "sectionKey": "perspective",
                     "headingLevel": 2
                   }
                 ]

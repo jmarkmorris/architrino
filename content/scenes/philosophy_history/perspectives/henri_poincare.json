@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "philosophy_history__monologue_william_thurston",
-    "title": "William Thurston",
+    "id": "philosophy_history__perspective_henri_poincare",
+    "title": "Henri Poincare",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md"
+      "path": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md"
     },
     "view": {
       "columns": 1,
@@ -20,4 +20,3 @@
   },
   "objects": []
 }
-

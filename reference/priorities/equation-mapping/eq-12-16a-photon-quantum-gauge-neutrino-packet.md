@@ -179,37 +179,90 @@ E=h\nu=\hbar\omega,
 J=n\hbar.
 $$
 
-The mapped carrier is a retained action one-form packet $\Theta_h$ whose phase, energy, momentum, and angular-momentum ledgers expose one shared period $h_\vartheta$ and $\hbar_\vartheta=h_\vartheta/(2\pi)$:
+The mapped carrier is a retained-orbit reduction packet whose phase, energy, momentum, and angular-momentum ledgers expose one shared geometry-derived period $h_\vartheta$ and $\hbar_\vartheta=h_\vartheta/(2\pi)$. The first executable model is constant-delay and Poincare-map based:
 
 $$
 \Theta_h
 =
 \left(
+\mathcal H_\tau,
+\Phi_T,
+\Sigma,
+\mathcal U,
 \mathfrak B_{\mathrm{cyc}},
-\vartheta,
-\Omega_h,
 \gamma_0,
+\vartheta_{\mathrm{PC}},
 \mathcal L_{E\mathbf p\mathbf J},
 P_\gamma,
-c_\gamma,
-\theta_{\mathrm{sea}}
+\mathcal T_\gamma
 \right),
 \qquad
-h_\vartheta=\oint_{\gamma_0}\vartheta.
+h_\vartheta=\oint_{\gamma_0}\vartheta_{\mathrm{PC}}.
 $$
 
-Because the Noether braid row carries causal-delay history, the cycle action is not a naive instantaneous $\oint p\,dq$ unless the wake-storage and flux terms close over the retained period:
+The first toy row should use
 
 $$
-\Delta\int_{-\tau}^{0}\mathcal P(t,\sigma)\dot q(t+\sigma)\,d\sigma
+\ddot x(t)
+=
+-\omega^2x(t)
 +
-\Delta\Phi_{\mathrm{flux}}
+g\,x(t-\tau)
+-
+\gamma\dot x(t)
++
+\mu x(t)\left(1-x(t)^2\right),
+$$
+
+not the state-dependent delay $\tau(x)=\tau_0+\beta x$ as the first model. The state-dependent case is deferred until the constant-delay orbit is hyperbolic-modulo-time-shift and can be continued by persistence. For the causal self-hit model, the primary finite-dimensional object is the Poincare return map and monodromy operator $\mathcal U=D\Phi_T$, not a global Hessian-derived symplectic form.
+
+The first theorem target is therefore a retained-orbit birth and action-readout row: solve the Hopf characteristic equation
+
+$$
+\Delta(\lambda)
+=
+\lambda^2+\gamma\lambda+\omega^2-g e^{-\lambda\tau}=0,
+$$
+
+require a simple transverse crossing, all other roots stable, $\ell_1\ne0$, and a Floquet certificate
+
+$$
+\mathrm{spec}(\mathcal U)
+=
+\{1\}\cup\{\mu_k\},
+\qquad
+|\mu_k|\le\rho<1,
+\qquad
+1-\rho\ge\delta_{\mathrm{gap}}.
+$$
+
+Then compute $h_\vartheta$ as the local Poincare-Cartan orbit integral
+
+$$
+h_\vartheta
+=
+\oint_{\gamma_0}p\,dq
+=
+\int_0^T p(t)\dot q(t)\,dt.
+$$
+
+The wake-storage and flux terms remain a secondary history-throughput row:
+
+$$
+\frac{d}{dt}
+\left(
+E_{\mathrm{inst}}
++
+\int_{-\tau}^{0}\mathcal P(t,\sigma)\dot q(t+\sigma)\,d\sigma
+\right)
++
+\nabla\cdot\mathbf\Phi_{\mathrm{flux}}
 =0.
 $$
 
-The theorem target is a Period Quantization Lemma: the de Rham class of $\vartheta$ is integral on the retained closed branch chart, and energy, momentum, and angular-momentum projections all extract the same $h_\vartheta$. The first executable status is [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs), with attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json). The run is score-neutral and blocks first at `missing_accepted_theta_gamma_packet`.
+Readout independence is tested by comparing $h_E=E_\gamma/\nu$ against $h_\Phi=\oint_{\gamma_0}p\,dq$ under collocation refinement, Poincare-section relocation, and retained-mode variation. A $g$- or $\mu$-sweep should move $E$ and $\nu$ while leaving $h_\vartheta$ stable; otherwise the action unit is being fitted. Integrality is a retained-orbit selection condition, not the first theorem. The dedicated executable status is [constant-delay-retained-orbit-certificate.mjs](../../../scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs), with attempt fixture [constant-delay-retained-orbit-certificate-attempt.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-certificate-attempt.v1.json). After the action-period review, this scalar checker is a scaffold and falsifier: a soft Hopf amplitude should vary continuously unless the branch has an additional locking or Noether-charge row. The positive path is therefore the locked equal-frequency tri-binary branch, where $h_E$, $h_\Phi$, $h_p$, and $h_J$ must coincide on a winding plateau and split at its boundary. The broader Planck/alpha bundle remains covered by [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs). Both runs are score-neutral.
 
-The score remains `2` until a retained action one-form row proves that the same action period supports photon energy, de Broglie momentum, angular momentum, and downstream Planck/atomic/coupling consumers without hidden retuning or a scale-dependent $h_\vartheta$.
+The score remains `2` until a retained reduction proves that the same geometry-derived action period supports photon energy, de Broglie momentum, angular momentum, and downstream Planck/atomic/coupling consumers without state-dependent-delay first-model failure, Hopf degeneracy, extra neutral Floquet multipliers, projection artifacts, hidden retuning, small-divisor readout splitting, alpha-fitted action, parameter-sweep fitting, or a scale-dependent $h_\vartheta$.
 
 ## EQ-13 Maxwell And Wave Equations
 

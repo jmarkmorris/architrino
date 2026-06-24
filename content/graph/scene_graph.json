@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 534,
-      "edges": 1288,
-      "scenes": 351,
+      "nodes": 542,
+      "edges": 1296,
+      "scenes": 355,
       "markdownIndexes": 0,
-      "markdownDocs": 170,
+      "markdownDocs": 174,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -998,24 +998,6 @@
       "id": "philosophy_history",
       "name": "Philosophy-History",
       "path": "content/scenes/philosophy_history/philosophy_history.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "philosophy_history__monologues",
-      "name": "Monologues",
-      "path": "content/scenes/philosophy_history/monologues.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "philosophy_history__monologues_overview",
-      "name": "Monologues",
-      "path": "content/scenes/philosophy_history/monologues/overview.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "philosophy_history__monologue_william_thurston",
-      "name": "William Thurston",
-      "path": "content/scenes/philosophy_history/monologues/william_thurston.json",
       "nodeType": "scene"
     },
     {
@@ -2249,9 +2231,51 @@
       "nodeType": "scene"
     },
     {
-      "id": "critical_questions",
-      "name": "Critical Questions",
-      "path": "content/scenes/philosophy_history/critical_questions.json",
+      "id": "philosophy_history__perspectives",
+      "name": "Perspectives",
+      "path": "content/scenes/philosophy_history/perspectives.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__perspectives_overview",
+      "name": "Perspectives",
+      "path": "content/scenes/philosophy_history/perspectives/overview.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__perspective_henri_poincare",
+      "name": "Henri Poincare",
+      "path": "content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__perspective_james_clerk_maxwell",
+      "name": "James Clerk Maxwell",
+      "path": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__perspective_ludwig_boltzmann",
+      "name": "Ludwig Boltzmann",
+      "path": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__perspective_emmy_noether",
+      "name": "Emmy Noether",
+      "path": "content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__perspective_albert_einstein",
+      "name": "Albert Einstein",
+      "path": "content/scenes/philosophy_history/perspectives/albert_einstein.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__perspective_william_thurston",
+      "name": "William Thurston",
+      "path": "content/scenes/philosophy_history/perspectives/william_thurston.json",
       "nodeType": "scene"
     },
     {
@@ -2675,12 +2699,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/critical-questions.md",
-      "name": "Critical Questions",
-      "path": "content/markdown/aaa/philosophy-history/critical-questions.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
       "name": "Geometry and Ontology",
       "path": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
@@ -2705,15 +2723,45 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/monologues.md",
-      "name": "Monologues",
-      "path": "content/markdown/aaa/philosophy-history/monologues.md",
+      "id": "content/markdown/aaa/philosophy-history/perspectives.md",
+      "name": "Perspectives",
+      "path": "content/markdown/aaa/philosophy-history/perspectives.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+      "name": "Albert Einstein",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "name": "Emmy Noether",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "name": "Henri Poincare",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "name": "James Clerk Maxwell",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+      "name": "Ludwig Boltzmann",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
       "name": "William Thurston",
-      "path": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5257,15 +5305,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/critical_questions.json",
-      "nodeType": "scene",
-      "id": "critical_questions",
-      "name": "Critical Questions",
-      "path": "content/scenes/philosophy_history/critical_questions.json",
-      "searchTarget": "content/scenes/philosophy_history/critical_questions.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/philosophy_history/geometry_and_ontology.json",
       "nodeType": "scene",
       "id": "philosophy_history__geometry_and_ontology",
@@ -5311,39 +5350,84 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/monologues.json",
-      "nodeType": "scene",
-      "id": "philosophy_history__monologues",
-      "name": "Monologues",
-      "path": "content/scenes/philosophy_history/monologues.json",
-      "searchTarget": "content/scenes/philosophy_history/monologues.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/monologues/overview.json",
-      "nodeType": "scene",
-      "id": "philosophy_history__monologues_overview",
-      "name": "Monologues",
-      "path": "content/scenes/philosophy_history/monologues/overview.json",
-      "searchTarget": "content/scenes/philosophy_history/monologues/overview.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/monologues/william_thurston.json",
-      "nodeType": "scene",
-      "id": "philosophy_history__monologue_william_thurston",
-      "name": "William Thurston",
-      "path": "content/scenes/philosophy_history/monologues/william_thurston.json",
-      "searchTarget": "content/scenes/philosophy_history/monologues/william_thurston.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/philosophy_history/overview.json",
       "nodeType": "scene",
       "id": "philosophy_history__overview",
       "name": "Philosophy and History",
       "path": "content/scenes/philosophy_history/overview.json",
       "searchTarget": "content/scenes/philosophy_history/overview.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspectives",
+      "name": "Perspectives",
+      "path": "content/scenes/philosophy_history/perspectives.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/albert_einstein.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspective_albert_einstein",
+      "name": "Albert Einstein",
+      "path": "content/scenes/philosophy_history/perspectives/albert_einstein.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/albert_einstein.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspective_emmy_noether",
+      "name": "Emmy Noether",
+      "path": "content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspective_henri_poincare",
+      "name": "Henri Poincare",
+      "path": "content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspective_james_clerk_maxwell",
+      "name": "James Clerk Maxwell",
+      "path": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspective_ludwig_boltzmann",
+      "name": "Ludwig Boltzmann",
+      "path": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/overview.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspectives_overview",
+      "name": "Perspectives",
+      "path": "content/scenes/philosophy_history/perspectives/overview.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/overview.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/william_thurston.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspective_william_thurston",
+      "name": "William Thurston",
+      "path": "content/scenes/philosophy_history/perspectives/william_thurston.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/william_thurston.json",
       "implicit": false
     },
     {
@@ -7066,15 +7150,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/critical-questions.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/critical-questions.md",
-      "name": "Critical Questions",
-      "path": "content/markdown/aaa/philosophy-history/critical-questions.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/critical-questions.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
@@ -7111,21 +7186,66 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/monologues.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/monologues.md",
-      "name": "Monologues",
-      "path": "content/markdown/aaa/philosophy-history/monologues.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/monologues.md",
+      "id": "content/markdown/aaa/philosophy-history/perspectives.md",
+      "name": "Perspectives",
+      "path": "content/markdown/aaa/philosophy-history/perspectives.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives.md",
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+      "name": "Albert Einstein",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "name": "Emmy Noether",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "name": "Henri Poincare",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "name": "James Clerk Maxwell",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+      "name": "Ludwig Boltzmann",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
       "name": "William Thurston",
-      "path": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
       "implicit": false
     },
     {
@@ -11473,17 +11593,52 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/monologues.json",
-      "to": "scene:content/scenes/philosophy_history/monologues/overview.json",
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/albert_einstein.json",
       "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/monologues.json",
+      "source": "content/scenes/philosophy_history/perspectives.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/perspectives.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/perspectives.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/perspectives.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/perspectives.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/overview.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/perspectives.json",
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/monologues.json",
-      "to": "scene:content/scenes/philosophy_history/monologues/william_thurston.json",
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/william_thurston.json",
       "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/monologues.json",
+      "source": "content/scenes/philosophy_history/perspectives.json",
       "field": "scene.children[1]"
     },
     {
@@ -11491,7 +11646,7 @@
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11499,13 +11654,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/critical_questions.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11526,7 +11674,7 @@
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11540,14 +11688,7 @@
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/monologues.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[13]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11555,6 +11696,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11568,7 +11716,7 @@
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12957,13 +13105,6 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/critical_questions.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/critical-questions.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/critical_questions.json",
-      "field": "scene.source.path"
-    },
-    {
       "from": "scene:content/scenes/philosophy_history/geometry_and_ontology.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
       "edgeType": "markdown_doc",
@@ -12992,24 +13133,59 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/monologues/overview.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/monologues.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/monologues/overview.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/monologues/william_thurston.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/monologues/william-thurston.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/monologues/william_thurston.json",
-      "field": "scene.source.path"
-    },
-    {
       "from": "scene:content/scenes/philosophy_history/overview.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-history.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/overview.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/albert_einstein.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/albert_einstein.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/overview.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/overview.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/william_thurston.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/william_thurston.json",
       "field": "scene.source.path"
     },
     {

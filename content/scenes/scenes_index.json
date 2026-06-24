@@ -711,21 +711,6 @@
       "path": "content/scenes/philosophy_history/philosophy_history.json"
     },
     {
-      "id": "philosophy_history__monologues",
-      "name": "Monologues",
-      "path": "content/scenes/philosophy_history/monologues.json"
-    },
-    {
-      "id": "philosophy_history__monologues_overview",
-      "name": "Monologues",
-      "path": "content/scenes/philosophy_history/monologues/overview.json"
-    },
-    {
-      "id": "philosophy_history__monologue_william_thurston",
-      "name": "William Thurston",
-      "path": "content/scenes/philosophy_history/monologues/william_thurston.json"
-    },
-    {
       "id": "unknowns_paradoxes",
       "name": "Unknowns and Paradoxes",
       "path": "content/scenes/philosophy_history/unknowns_paradoxes.json"
@@ -1751,9 +1736,44 @@
       "path": "content/scenes/dynamics/assembly_topological_charge.json"
     },
     {
-      "id": "critical_questions",
-      "name": "Critical Questions",
-      "path": "content/scenes/philosophy_history/critical_questions.json"
+      "id": "philosophy_history__perspectives",
+      "name": "Perspectives",
+      "path": "content/scenes/philosophy_history/perspectives.json"
+    },
+    {
+      "id": "philosophy_history__perspectives_overview",
+      "name": "Perspectives",
+      "path": "content/scenes/philosophy_history/perspectives/overview.json"
+    },
+    {
+      "id": "philosophy_history__perspective_henri_poincare",
+      "name": "Henri Poincare",
+      "path": "content/scenes/philosophy_history/perspectives/henri_poincare.json"
+    },
+    {
+      "id": "philosophy_history__perspective_james_clerk_maxwell",
+      "name": "James Clerk Maxwell",
+      "path": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json"
+    },
+    {
+      "id": "philosophy_history__perspective_ludwig_boltzmann",
+      "name": "Ludwig Boltzmann",
+      "path": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json"
+    },
+    {
+      "id": "philosophy_history__perspective_emmy_noether",
+      "name": "Emmy Noether",
+      "path": "content/scenes/philosophy_history/perspectives/emmy_noether.json"
+    },
+    {
+      "id": "philosophy_history__perspective_albert_einstein",
+      "name": "Albert Einstein",
+      "path": "content/scenes/philosophy_history/perspectives/albert_einstein.json"
+    },
+    {
+      "id": "philosophy_history__perspective_william_thurston",
+      "name": "William Thurston",
+      "path": "content/scenes/philosophy_history/perspectives/william_thurston.json"
     }
   ]
 }

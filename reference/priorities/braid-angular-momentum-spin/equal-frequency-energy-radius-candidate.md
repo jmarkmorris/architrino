@@ -234,6 +234,48 @@ That is the main attraction: the angular-momentum unit can remain one conserved 
 
 This is not yet an acceptance claim. The proof burden is to show that the same retained event can carry one angular-momentum unit through the common-frequency branch without hiding missing angular momentum in the wake, recoil, transport, or endpoint-provider rows.
 
+## Mode-Locking And Action-Unit Implication
+
+The action-period review sharpens why this packet matters for the $h$ and $\hbar$ rows. A scalar Hopf orbit can have a stable frequency while its phase-area action remains continuously rescalable by amplitude. That means the scalar constant-delay orbit is a useful falsifier, but not a sufficient source of an action unit.
+
+The equal-frequency tri-binary branch supplies the missing rigidity candidate. A stable locked branch should behave as a relative equilibrium: the retained configuration repeats under one common phase advance, while the discrete phase/winding data are held fixed by the branch. The positive action-unit target is therefore not "any closed orbit has an area." It is:
+
+$$
+(f_1,f_2,f_3)=(f,f,f),
+\qquad
+s_M=\rho_M\omega_f=c_f,
+\qquad
+J=\sum_a m_a\rho_a^2\omega_f,
+$$
+
+with a locally constant winding or rotation number $n$ on a mode-locking plateau. Inside that plateau the same retained branch should produce
+
+$$
+h_E
+=
+h_\Phi
+=
+h_p
+=
+h_J
+=
+h_\vartheta,
+$$
+
+where
+
+$$
+h_E=\frac{E}{\nu},
+\qquad
+h_\Phi=\oint p\,dq,
+\qquad
+h_p=\frac{2\pi p}{k},
+\qquad
+h_J=\frac{2\pi J}{n}.
+$$
+
+The expected solver signature is threefold: a flat integer winding plateau, four-readout coincidence on the plateau, and a positive Floquet margin. The expected failure signature is also sharp: the four readouts split when the candidate leaves the locked tongue or crosses a resonance boundary. This converts the equal-frequency packet from a frequency-ratio idea into the leading action-unit protection target.
+
 ## Neutrino Oscillation Comparison Target
 
 Neutrino oscillation is the strongest current single-fermion comparison pressure for this packet. In the local neutrino chapter, weak reactions create and detect flavor-basis states while propagation follows a three-mode geometric phase operator; see [neutrinos.md](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md). The standard comparison form is

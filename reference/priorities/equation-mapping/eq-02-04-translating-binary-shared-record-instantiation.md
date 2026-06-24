@@ -7,6 +7,7 @@
 - Parent packet: [EQ-02 Through EQ-04 Lorentz-Energy Closure Packet](eq-02-04-lorentz-energy-packet.md)
 - Common architecture: [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
 - Owned IDs: `EQ-02`, `EQ-03`, `EQ-04`
+- Related downstream ID: `EQ-04A`
 - Claim level: derivation/closure target and simulation target
 - Promotion status: priority-only
 
@@ -88,7 +89,7 @@ R_{\mathrm{shape}}^{\mathrm{bin}}(u)
 \gamma_f(u)=\left(1-\frac{u^2}{c_f^2}\right)^{-1/2}.
 $$
 
-This packet extends that triple into the `EQ-02` through `EQ-04` same-record residual so the Lorentz rows and mass-shell rows cannot be tuned separately.
+This packet extends that triple into the `EQ-02` through `EQ-04` same-record residual so the Lorentz rows and mass-shell rows are forced onto one retained support before no-retune is tested. Same-record support is necessary, but the connection witness $W_{\mathrm{hol}}$ is what rules out separately tuned fibers over that support.
 
 ## Retained Record To Populate
 
@@ -119,7 +120,7 @@ $$
 \right).
 $$
 
-The distinction is structural rather than ontological: $\mathcal C_{02\text{-}04}^{\mathrm{bin}}$ is the common carrier that must not be retuned between rows, while $\Theta_{02\text{-}04}^{\mathrm{bin}}$ is the complete same-record object used by the residual evaluator. Every clock, envelope, two-way signal, energy, momentum, rest-mass, mass-shell, and medium-response row must therefore be a declared projection of $\mathcal C_{02\text{-}04}^{\mathrm{bin}}$ or a declared projection of $\Theta_{02\text{-}04}^{\mathrm{bin}}$ whose first shared dependency is that same carrier.
+The distinction is structural rather than ontological: $\mathcal C_{02\text{-}04}^{\mathrm{bin}}$ is the common carrier on which support sharing is tested, while $\Theta_{02\text{-}04}^{\mathrm{bin}}$ is the complete same-record object used by the residual evaluator. Every clock, envelope, two-way signal, energy, momentum, rest-mass, mass-shell, and medium-response row must therefore be a declared projection of $\mathcal C_{02\text{-}04}^{\mathrm{bin}}$ or a declared projection of $\Theta_{02\text{-}04}^{\mathrm{bin}}$ whose first shared dependency is that same carrier. The no-retune claim still requires $W_{\mathrm{hol}}=0$ on the same support.
 
 The branch chart is
 
@@ -404,7 +405,7 @@ d_b(b_T,b_{\xi})
 +d_M(M_{0,T},M_{0,E}).
 $$
 
-It reports whether the packet secretly changed the branch ledger, Noether sea cell, speed convention, or rest-mass row between observables. The pass condition requires
+It reports whether the packet visibly changed the branch ledger, Noether sea cell, speed convention, or rest-mass row between observables. This is a support-and-row consistency witness, not the final no-retune certificate. The pass condition requires
 
 $$
 \mathcal S_{\mathrm{root}}^{02\text{-}04}(u)=0,
@@ -412,7 +413,7 @@ $$
 \mathcal S_{\mathrm{retune}}^{02\text{-}04}(u)=0,
 $$
 
-before any small residual is interpreted as a physical Lorentz or mass-map leakage.
+before any small residual is interpreted as a physical Lorentz or mass-map leakage; $W_{\mathrm{hol}}=0$ is still required before the row family can be treated as transported rather than co-fitted.
 
 ## Outputs Required From The First Calculation
 
@@ -514,7 +515,7 @@ The result is useful but not score evidence. It shows that the current solver ro
 - Noether sea record bound to $S_{\mathrm{eq}}$;
 - binary-to-binary phase row-set identity.
 
-Running the checker with `--require-accepted` exits nonzero for both the current solver report and the retained-domain attempt while these retained inputs are missing. That is the intended guardrail: current proxy row-set alignment is a useful search signal, but `same_branch_chart_identity` is not populated until a retained event or retained positive-width domain binds the rows above and supplies zero split, zero hidden-retune, and overlap-preimage witnesses.
+Running the checker with `--require-accepted` exits nonzero for both the current solver report and the retained-domain attempt while these retained inputs are missing. That is the intended guardrail: current proxy row-set alignment is a useful search signal, but `same_branch_chart_identity` is not populated until a certified invariant positive-width cell binds the rows above and supplies zero split, zero hidden-retune, and overlap-preimage witnesses.
 
 ## Executable Direct Retained-Record Evaluator
 
@@ -526,7 +527,7 @@ node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs --s
 
 It consumes [eq02-04-translating-binary-retained-record-attempt.v1.json](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record-attempt.v1.json), inherits the same-branch identity result from [same-branch-retained-domain-attempt.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json), and evaluates the retained-record residual shape for `EQ-02` through `EQ-04`.
 
-The current attempt returns `status=blocked_same_branch_identity`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. Its drift row has `beta_f=0.6` and `gamma_f=1.25`. The arithmetic diagnostics for clock, envelope, two-way signal, energy, exposure, momentum, rest mass, mass shell, medium response, same-root conservation, root starvation, split witness, and retune witness pass numerically. The four negative controls also pass as diagnostics: `clock_only_retune`, `envelope_only_retune`, `velocity_dependent_rest_mass`, and `medium_response_compensator`. None of this is score evidence because all 14 retained-record rows and both local witnesses are still `attempt`.
+The current attempt returns `status=blocked_same_branch_identity`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. Its drift row has `beta_f=0.6` and `gamma_f=1.25`. The arithmetic diagnostics for clock, envelope, gamma-free coframe reciprocity, two-way signal, energy, exposure, momentum, rest mass, mass shell, medium response, same-root conservation, root starvation, support witness, holonomy witness, split witness, and retune witness pass numerically. These numerical witness diagnostics are not accepted $W_{\mathrm{supp}}$ or $W_{\mathrm{hol}}$ evidence. The separate `coframeExtraction` diagnostic is `not_evaluated`, because the current row has declared reciprocal legs but no accepted wake-return extraction evidence. The six negative controls pass as diagnostics: `clock_only_retune`, `envelope_only_retune`, `velocity_dependent_rest_mass`, `medium_response_compensator`, `gamma_inserted_coframe`, and `reciprocal_unextracted_coframe`. None of this is score evidence because all 15 retained-record rows and all four local witnesses are still `attempt`. More sharply, a single operating point is not retained-branch evidence; it is one trajectory/configuration sample until an invariant support is certified.
 
 This is not score evidence. It is the direct shape of the retained-record evaluator that must later be populated with accepted source-backed rows. Running
 
@@ -534,7 +535,218 @@ This is not score evidence. It is the direct shape of the retained-record evalua
 node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs --require-populated --out /tmp/eq02-04-retained-record-required.json
 ```
 
-exits nonzero until the inherited `S_eq` same-branch identity, retained-record rows, split witness, retune witness, and residual diagnostics all pass on the same common carrier.
+exits nonzero until the inherited `S_eq` same-branch identity, retained-record rows, support witness, holonomy witness, split witness, retune witness, and residual diagnostics all pass on the same common carrier.
+
+### First Accepted Invariant Cell
+
+The next score-moving object is the first source-backed retained-domain fixture that makes the existing same-branch and retained-record evaluators leave `attempt` status without changing their acceptance rules. Score-neutral guardrails are useful only when they sharpen that acceptance path, as in the split between support-transport and holonomy-transport residuals.
+
+The atomic evidence object is an accepted invariant cell, not an isolated accepted row. Let $\mathcal H_N$ be the truncated delay-state space with declared maximal wake-memory window, discretization or collocation order $N$, and a stated truncation error. Let $\Sigma_N\subset\mathcal H_N$ be a transverse section through the candidate retained branch, and let
+
+$$
+P_N:\Sigma_N\dashrightarrow\Sigma_N
+$$
+
+be the first-return map of the truncated delayed flow. The first accepted object is a box $B_N\subset\Sigma_N$ with positive transverse measure
+
+$$
+\mu_{\perp}(B_N)>0
+$$
+
+and a certified self-return. The preferred certificate is an interval Newton or Krawczyk inclusion
+
+$$
+\mathcal K_{P_N}(B_N)\subset B_N,
+$$
+
+or a stronger direct enclosure $P_N(B_N)\subseteq B_N$ with uniqueness or isolation data reported separately. This proves that the truncated return map has a retained periodic orbit in $B_N$ rather than merely a numerically coherent point. The full accepted target is therefore:
+
+$$
+\left(B_N,\Sigma_N,P_N,\mathcal K_{P_N}\right)
+\longrightarrow
+\mathfrak D_{S_{\mathrm{eq}}}^{02\text{-}04}
+\longrightarrow
+\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)
+\longrightarrow
+\Theta_{02\text{-}04}^{\mathrm{bin}}(u_k).
+$$
+
+The checker still reports `missing_accepted_raw_labeled_rows_preserved_on_retained_history` as the first row-level blocker, but that row should not be chased in isolation. It becomes meaningful only when evaluated on the certified invariant cell. In plain terms, the first accepted retained branch object is not a low Lorentz residual and not a display of a tri-binary candidate. It is a positive-width, source-backed invariant support on which raw generator labels, path-history rows, causal-root rows, wake rows, energy/action rows, momentum/angular-momentum rows, phase rows, plane-orientation rows, response-center/group-velocity rows, and the local Noether sea row are all bound before any `I:M:O` role assignment or quotient policy is imposed.
+
+Once that object exists, the retained-record evaluator may test the drift row with $\beta_f=u_k/c_f$ and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Only then may the numeric rows for clock, envelope, two-way leakage, energy, momentum, rest mass, mass shell, and medium response be treated as branch evidence.
+
+The support certificate must report a scale hierarchy:
+
+$$
+\epsilon_{\mathrm{reg}}
+\le
+\epsilon_{\mathrm{arith}}
+\le
+\tau_{\mathrm{accept}}
+\ll
+\Delta_{\mathrm{neg}},
+$$
+
+where $\epsilon_{\mathrm{reg}}$ covers regularizers such as $\varepsilon_{\mathrm{shell}}$ and $\varepsilon_M$, $\epsilon_{\mathrm{arith}}$ is the interval-certified arithmetic or truncation noise floor, $\tau_{\mathrm{accept}}$ is the row accept band, and $\Delta_{\mathrm{neg}}$ is the smallest margin of the deliberately violated negative controls. A regularizer larger than the arithmetic noise floor is treated as a hidden-retune risk. For the mass-shell row, the packet must report both the raw shell defect
+
+$$
+\Delta_{\mathrm{shell}}
+=
+E_{\mathrm{CM},u}^{2}
+-c_f^2h_{ab}p_{\mathrm{CM},u}^{a}p_{\mathrm{CM},u}^{b}
+-\left(M_0^{\mathrm{bin}}\right)^2c_f^4
+$$
+
+and the normalized $R_{\mathrm{shell}}^{\mathrm{bin}}$ residual.
+
+The row bindings must also survive refinement:
+
+$$
+h\to h/2\to h/4,
+\qquad
+N\to N+1\to N+2,
+$$
+
+with persistence of the return-box inclusion and convergence of row residuals at the declared integrator order. Time-averaged diagnostics must additionally pass window doubling $T\to2T$ before being treated as stable quantities.
+
+The split and retune witnesses are not bare equalities. They are accepted only when the genuine witness is within $\tau_{\mathrm{accept}}$ and deliberately violated sibling runs exceed it by a calibrated factor:
+
+$$
+\mathcal S_{\mathrm{genuine}}\le\tau_{\mathrm{accept}},
+\qquad
+\mathcal S_{\mathrm{violated}}\ge K_{\mathrm{neg}}\tau_{\mathrm{accept}},
+\qquad
+K_{\mathrm{neg}}\gg1.
+$$
+
+The existing retained-record negative controls test retune failures, including the gamma-inserted-coframe circularity control. The later invariant-cell pass must also add four branch-retention controls: window-length control, transverse-displacement control, section-placement control, and phase-permutation control. The transverse-displacement control is the decisive falsifier: a retained branch must remain enclosed or return under admissible off-cell perturbations, while a sampled crossing should escape.
+
+For `EQ-04A`, this same evidence object has one downstream consequence: it can supply the first lawful mass-shell and exposure carrier for a charged-lepton generation-by-shielding mass map. Koide does not feed back into the accepted-branch test. It is a later residual on the mass map produced from that test. Therefore the closure order is:
+
+1. positive-width invariant-cell certificate in truncated delay-state space;
+2. source-backed `S_eq` retained-domain identity on that cell;
+3. `EQ-02` through `EQ-04` retained-record population on the same carrier;
+4. nested shell or charged-lepton branch-family specialization of the same mass response;
+5. `EQ-04A` Koide mass-root residual with zero hidden retune.
+
+If the next solver pass cannot produce the full retained-domain fixture, the only useful partial win is a certified positive-width return box or a durable row evaluated on such a box. The highest-value row remains `raw_labeled_rows_preserved_on_retained_history`; the next Noether sea row is `Noether_sea_record_bound_to_S_eq`. Either row is useful only if it rides on the same certified invariant support, is source-backed, is bound to the same `domainId` and `commonCarrierId`, and keeps the current evaluators fail-closed for every still-missing row.
+
+This rule prevents a common failure mode: treating a numerically coherent attempt packet as accepted branch evidence. The current arithmetic passes at $\beta_f=0.6$ and $\gamma_f=1.25$ are valuable diagnostics, but they stay score-neutral until the positive-width invariant support, truncation/refinement controls, and row bindings are source-backed.
+
+### Connection And Holonomy No-Retune Target
+
+The invariant-cell certificate proves shared support. It does not by itself prove no-retune. The no-retune target is stronger: the clock, envelope, two-way signal, energy, momentum, mass-shell, phase, and Noether sea rows must be parallel readings of one connection over the drift branch, not merely separately tuned fibers above the same carrier label.
+
+Use the one-dimensional drift base
+
+$$
+B_{02\text{-}04}
+=
+\{(\mathfrak B_0,\mathcal N_0,u):-c_f<u<c_f\}.
+$$
+
+The strengthened common carrier is a bundle over $B_{02\text{-}04}$ with connection $\omega$. Its associated row bundles carry the clock, envelope, two-way signal, energy, momentum, mass-shell, phase, and Noether sea readouts. The rest branch supplies the flat reference section at $u=0$; the accepted moving branch must provide the transport rule from that reference section to $u\neq0$.
+
+The connection target introduces a moving coframe
+
+$$
+e^A_u=\left(e^0_u,e^\parallel_u,e^\perp_u\right),
+$$
+
+with connection one-form $\omega^A{}_{B,u}$ and torsion
+
+$$
+T^A_u
+=
+de^A_u+\omega^A{}_{B,u}\wedge e^B_u.
+$$
+
+In the primitive homogeneous cell, the expected torsion row is $T^A_u=0$. In dressed wake-tail or self-hit-asymmetric rows, nonzero $T^A_u$ becomes a falsifiable wake-tail invariant rather than an unnamed residual.
+
+The coframe construction has a hard forbidden-input declaration. It may reference $c_f$, $u$, $\mathcal L_{\mathrm{root}}(u)$, $\mathcal L_{\mathrm{wake}}(u)$, and retained boundary history. It may not reference $\gamma_f(u)$, the Lorentz target coefficients, the shell residual, or any fitted clock/envelope row as an input. Under this discipline, $\gamma_f$ can be compared only after the coframe is built.
+
+The compact theorem target is:
+
+$$
+e^0_u(\partial_t)=\lambda(u),
+\qquad
+\frac{e^\parallel_u}{e^\perp_u}=\lambda(u)^{-1},
+\qquad
+\eta_{AB}e^A_u e^B_u\ \text{is drift-invariant}.
+$$
+
+If the same $\lambda(u)$ exists, `EQ-02` reads the time leg, `EQ-03` reads the reciprocal envelope leg, and `EQ-04` reads the coframe norm of the energy-momentum covector. Only after that should $\lambda(u)$ be compared with $\gamma_f(u)=(1-u^2/c_f^2)^{-1/2}$. The intended decisive local test at $\beta_f=0.6$ is therefore not "did the residuals match $\gamma_f=1.25$ after inserting it," but whether the gamma-free wake-return coframe satisfies
+
+$$
+e^0_u(\partial_t)
+\frac{e^\parallel_u}{e^\perp_u}
+=1
+$$
+
+within the certified arithmetic and truncation band.
+
+The witness split should be explicit:
+
+- $W_{\mathrm{supp}}$ is the set-level shared-support witness. It asks whether all rows live on the same accepted support, `domainId`, and `commonCarrierId`.
+- $W_{\mathrm{hol}}$ is the connection witness. It asks whether all row sections are parallel transports of the same reference section under $\omega$.
+
+$W_{\mathrm{supp}}=0$ is necessary. $W_{\mathrm{hol}}=0$ is the real no-retune certificate. A row family that shares support but fails holonomy is still a collection of co-fitted observables.
+
+The current producer-level scalar guardrail splits support transport from holonomy transport. `connection_support_transport_residual_bound` protects the support side, while `connection_holonomy_transport_residual_bound` is the first executable shadow of $W_{\mathrm{hol}}$. Passing both scalar checks is still weaker than accepted $W_{\mathrm{hol}}=0$ because it does not yet prove that the connection was constructed as a source-backed transport of a rest reference section rather than fitted after row residuals already matched.
+
+The mass-shell row should also be expressed as a regulator-free coframe norm before normalized residuals are used. With unit energy-momentum covector
+
+$$
+\pi_A
+=
+\left(
+\frac{E}{M_0c_f^2},
+\frac{p_a}{M_0c_f}
+\right)
+$$
+
+in the orthonormal coframe, the intrinsic shell diagnostic is
+
+$$
+\mathcal R_{\mathrm{shell}}^{\mathrm{cof}}
+=
+\left|
+\eta^{AB}\pi_A\pi_B-1
+\right|.
+$$
+
+The older raw shell defect and normalized residual remain useful diagnostics, but the acceptance row should not depend on a regulator choice. The Noether sea tensor $\mathcal M_{\mathrm{sea}}^{ab}(u)$ is likewise a consumer of the drift and coframe solution in the primitive run. It may dress the effective coframe after extraction; it may not be the source used to manufacture $\lambda(u)$ or $\gamma_f(u)$.
+
+The solver-facing output per drift sample should therefore include:
+
+$$
+\left(
+B_N,\Sigma_N,P_N,\mathcal K_{P_N},
+e^A_u,
+\omega^A{}_{B,u},
+T^A_u,
+\Phi_{T^2}(u),
+\mathcal M_{\mathrm{sea}}^{ab}(u),
+W_{\mathrm{supp}},
+W_{\mathrm{hol}}
+\right),
+$$
+
+where $\Phi_{T^2}(u)$ is the holonomy of the equal-frequency tri-binary phase bundle on $T^3/S^1\simeq T^2$. Free phase offsets are a tuning channel; phase offsets transported by the connection are admissible retained-row data.
+
+The current executable retained-record evaluator now includes a first score-neutral gamma-free coframe diagnostic. In the attempt fixture at $\beta_f=0.6$, the declared coframe row reports
+
+$$
+e^0_u(\partial_t)=1.25,
+\qquad
+\frac{e^\parallel_u}{e^\perp_u}=0.8,
+\qquad
+e^0_u(\partial_t)\frac{e^\parallel_u}{e^\perp_u}=1.
+$$
+
+The input declaration also states that $\gamma_f$, Lorentz target coefficients, mass-shell targets, and fitted clock/envelope rows were not used to construct the coframe. The evaluator treats this as an arithmetic diagnostic only. The row remains `attempt` until those legs are extracted from accepted wake-return data on a certified invariant support. The separate `coframeExtraction` diagnostic now loads an external extraction certificate contract, but the current certificate is still `attempt`, so the diagnostic fails closed as `not_evaluated` with `reason=coframe_extraction_evidence_not_accepted`. Accepted extraction evidence must provide a durable solver or proof source, matching `commonCarrierId`, matching `domainId`, certified support kind, required extraction basis, and residuals for extraction, support binding, and holonomy.
+
+The `gamma_inserted_coframe` negative control catches the failure mode where the reciprocity product is made to pass by inserting $\gamma_f$ or an equivalent fitted target into the coframe construction. The `reciprocal_unextracted_coframe` negative control catches the distinct failure mode where reciprocal legs pass arithmetically while extraction source, support binding, or holonomy evidence remains absent.
 
 ### Minimum Accepted `S_eq` Retained-Domain Fixture
 
@@ -548,9 +760,9 @@ D,\Theta_D,S_{\mathrm{eq}},\iota_D,\{\Pi_r\}_{r\in S_{\mathrm{eq}}},\mathcal R_D
 \right),
 $$
 
-where $D$ is one accepted finite event, retained event, or positive-width domain, and $\Theta_D$ contains the same $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ carrier consumed by the clock, envelope, two-way signal, energy, momentum, rest-mass, mass-shell, phase, and Noether sea rows.
+where $D$ is the accepted positive-width invariant cell or the fixed/periodic point enclosed by that cell, and $\Theta_D$ contains the same $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ carrier consumed by the clock, envelope, two-way signal, energy, momentum, rest-mass, mass-shell, phase, and Noether sea rows. A single event is admissible only as the proven fixed/periodic point inside a certified positive-width cell, not as a standalone crossing.
 
-The same condition can be stated more sharply as a fiber product over the common carrier. For this packet, write $\mathcal C_u=\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ and require
+A necessary set-level condition can be stated as a fiber product over the common carrier. For this packet, write $\mathcal C_u=\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ and require
 
 $$
 \Theta_D
@@ -570,14 +782,14 @@ $$
 \Theta_{\mathrm{sea}}.
 $$
 
-Under this reading, the acceptance vector is the source-backed existence proof for every leg of the fiber product. The split witness is the failure row for this universal property: $\mathcal S_{\mathrm{split}}=0$ says the packet is not merely a subset of separately tuned row products but a genuine same-carrier retained-domain object.
+Under this reading, the acceptance vector is the source-backed existence proof for every set-level leg of the fiber product. The support witness is the failure row for this universal property: $W_{\mathrm{supp}}=0$ says the packet is not merely a subset of separately labeled row products but a genuine same-carrier retained-domain object. The separate holonomy witness $W_{\mathrm{hol}}=0$ is still needed to rule out co-fitted row fibers over that support.
 
 The minimum fixture contract is:
 
 | Packet field | Minimum accepted content | Acceptance-vector coordinate |
 | --- | --- | --- |
 | `commonCarrierId` | Concrete id for the retained $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ carrier. Every accepted row binding and witness must match this id. | fiber-product carrier leg |
-| `domain` | `status` is `accepted`, `passed`, or `populated`; `id`, `kind`, `rowId`, and `sourcePath` or `source` are concrete; the source resolves to a durable evidence file. | $A_D$, $A_{\mathrm{src}}$ |
+| `domain` | `status` is `accepted`, `passed`, or `populated`; `id`, `kind`, `rowId`, and `sourcePath` or `source` are concrete; the source resolves to a durable evidence file; positive transverse width and self-return data are reported. | $A_D$, $A_{\mathrm{src}}$ |
 | `rowBindings.raw_labeled_rows_preserved_on_retained_history` | Accepted row proving raw generator labels are preserved on the retained history before any `I:M:O` role map is imposed. This is the current first blocker. | $A_{\iota}$, $A_r$ |
 | `rowBindings.six_body_polarity_neutral_inventory_preserved` | Accepted row preserving six-body polarity-neutral inventory on the same support. | $A_{\iota}$, $A_r$ |
 | `rowBindings.role_map_selected_or_quotient_policy_declared` | Accepted row declaring either the retained nested-role map or the quotient policy that keeps raw labels role-neutral. | $A_{\iota}$, $A_r$ |
@@ -598,7 +810,9 @@ The minimum fixture contract is:
 
 Every accepted row binding must include concrete `rowId`, `retainedRowSetId: "S_eq"`, matching `domainId`, matching `commonCarrierId`, and a durable `sourcePath` or `source`. A row label, current proxy row, temporary file, generated reading copy, or nonresolving source path does not count. The current attempt fixture now declares `commonCarrierId: "C_02-04_bin_u_attempt_0001"` and reports `fiberProductCarrierPass: true`, but this is only structural: all row bindings remain `attempt`, so the first score-moving blocker is still `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
 
-Current structural witnesses and ignored temporary frequency reports remain useful search signals, but they are not durable retained-domain evidence. The next accepted source object must be tracked source-backed row extraction, beginning with `raw_labeled_rows_preserved_on_retained_history`, not a pointer to a current proxy report.
+In the connection refinement, the fiber product is the necessary set-level shadow of the no-retune object. It becomes score-moving only when it is paired with $W_{\mathrm{hol}}=0$ for the same accepted invariant cell. The raw-label blocker should therefore be accepted as a local trivialization and flat reference section at $u=0$, with a recorded gamma-free transport rule to $u\neq0$, not as a preserved list of labels alone.
+
+Current structural witnesses and ignored temporary frequency reports remain useful search signals, but they are not durable retained-domain evidence. The next accepted source object must be a tracked invariant-cell certificate, followed by source-backed row extraction on that cell, not a pointer to a current proxy report.
 
 The expected acceptance command is:
 
@@ -725,12 +939,14 @@ This row is evaluable only when $(k_2,\ell_2,k_4,\ell_4)$, $T_u/T_0$, and $R_{\p
 
 ## Negative Controls
 
-The first executable should include four negative controls:
+The first executable includes six negative controls:
 
 1. **Clock-only retune:** adjust $T_u$ to match $\gamma_f$ while holding the branch ledger fixed incorrectly. This must pass $R_T$ and fail $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$ or $R_{\xi}$.
 2. **Envelope-only retune:** impose $R_{\parallel}/R_{\perp}=1/\gamma_f$ without the root ledger. This must pass $R_{\xi}$ and fail $\mathcal S_{\mathrm{root}}^{02\text{-}04}$.
 3. **Velocity-dependent rest mass:** let $M_0(u)$ absorb energy-momentum error. This must fail $R_{M_0}^{\mathrm{bin}}$ even if $R_{\mathrm{shell}}$ shrinks.
 4. **Medium-response compensator:** change $\mathcal M_{\mathrm{sea}}^{ab}$ inside the primitive homogeneous cell to repair momentum. This must fail $R_{\mathcal M}^{\mathrm{bin},ab}$ or the declared Noether sea cell equality.
+5. **Gamma-inserted coframe:** make $e^0_u(\partial_t)(e^\parallel_u/e^\perp_u)=1$ by inserting $\gamma_f$ or an equivalent fitted Lorentz target into the coframe construction. This must pass the arithmetic reciprocity residual and fail the forbidden-input or holonomy residual.
+6. **Reciprocal-unextracted coframe:** make $e^0_u(\partial_t)(e^\parallel_u/e^\perp_u)=1$ with declared legs but no accepted wake-return extraction evidence. This must pass the arithmetic reciprocity residual and fail extraction-source, support-binding, or holonomy residuals.
 
 These controls are useful because they test whether the same-record residual detects the most tempting ways to manufacture a Lorentz-looking result without deriving it.
 
@@ -749,6 +965,7 @@ These controls are useful because they test whether the same-record residual det
 - `EQ-01` supplies the active causal roots and Jacobian floors. This packet cannot bypass the native per-hit law.
 - `EQ-05` supplies event, wake, boundary, and finite-window conservation rows. Energy-momentum closure in this packet is invalid without them.
 - `EQ-06`, `EQ-07`, and `EQ-11` consume the Noether sea response rows after the primitive cell is replaced by a dressed cell.
+- `EQ-04A` consumes the mass-shell, exposure, and Noether sea response rows only after a charged-lepton branch family predicts three mass readouts without fitting the Koide residual.
 - `EQ-12`, `EQ-17`, and `EQ-26` consume the same clock/frequency discipline when photon, redshift, and atomic-frequency rows are tested.
 - `EQ-20`, `EQ-21`, `EQ-22`, and `EQ-32` inherit the same Noether sea constitutive-state discipline if the metric and growth rows later use $\mathcal M_{\mathrm{sea}}^{ab}$ or $G_{\mathrm{eff}}$.
 

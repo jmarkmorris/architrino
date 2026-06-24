@@ -2,6 +2,7 @@ export function createMarkdownRuntime(deps) {
   const {
     markdownPanel,
     markdownTitle,
+    markdownContent,
     markdownBody,
     markdownLayoutToggle,
     markdownRenderer,
@@ -17,6 +18,7 @@ export function createMarkdownRuntime(deps) {
   let activeMarkdownSourcePath = null;
   let markdownColumnCount = 2;
   let markdownPreferredColumnCount = 2;
+  let previousDocumentTitle = null;
   const textbookTocMarkdownPath = "content/generated/markdown/textbook/toc.md";
   const supportResearchMarkdownPath = "content/markdown/aaa/archie/support-architrino-research.md";
   const liberapayWidgetScriptSrc = "https://liberapay.com/Architrino/widgets/button.js";
@@ -437,11 +439,19 @@ export function createMarkdownRuntime(deps) {
     markdownPanel.classList.remove("is-open");
     markdownPanel.setAttribute("aria-hidden", "true");
     markdownPanel.inert = true;
+    markdownPanel.removeAttribute("aria-label");
     if (markdownTitle) {
       markdownTitle.textContent = "";
     }
+    if (markdownContent) {
+      markdownContent.removeAttribute("aria-label");
+    }
     if (markdownBody) {
       markdownBody.innerHTML = "";
+    }
+    if (documentLike && previousDocumentTitle !== null) {
+      documentLike.title = previousDocumentTitle;
+      previousDocumentTitle = null;
     }
     activeMarkdownPath = null;
     activeMarkdownSourcePath = null;
@@ -663,6 +673,18 @@ export function createMarkdownRuntime(deps) {
     markdownPanel.classList.add("is-open");
     markdownPanel.setAttribute("aria-hidden", "false");
     markdownPanel.inert = false;
+    const readableTitle = level.name ?? "Notes";
+    markdownPanel.setAttribute("aria-label", readableTitle);
+    if (markdownContent) {
+      markdownContent.setAttribute("aria-label", readableTitle);
+      markdownContent.setAttribute("tabindex", "-1");
+    }
+    if (documentLike && typeof documentLike.title === "string") {
+      if (previousDocumentTitle === null) {
+        previousDocumentTitle = documentLike.title;
+      }
+      documentLike.title = `${readableTitle} - architrino`;
+    }
     activeMarkdownPath = cacheKey;
     activeMarkdownSourcePath = markdownPath;
     setMarkdownKind(markdownPath);
@@ -670,6 +692,13 @@ export function createMarkdownRuntime(deps) {
     typesetMarkdownWithRetry(startTypesetRetryCycle());
     decorateTextbookToc();
     decorateSupportResearch();
+    if (markdownContent && typeof markdownContent.focus === "function") {
+      try {
+        markdownContent.focus({ preventScroll: true });
+      } catch (_error) {
+        markdownContent.focus();
+      }
+    }
   }
 
   if (markdownBody && typeof navigateToTarget === "function") {

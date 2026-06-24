@@ -1,0 +1,199 @@
+{
+  "schema": "aaa-equation-map-eq02-04-invariant-cell-coframe-source/v1",
+  "claimLevel": "attempt-level invariant-cell/coframe source report shape; score-neutral and not accepted evidence",
+  "status": "attempt",
+  "sourceId": "eq02_04_invariant_cell_coframe_source_attempt_0001",
+  "certificateId": "eq02_04_source_attempt_coframe_certificate_0001",
+  "sourceKind": "invariant_cell_certificate",
+  "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+  "domainId": "D_02-04_bin_u_attempt_0001",
+  "retainedRowSetId": "S_eq",
+  "supportKind": "positive_width_invariant_cell",
+  "supportId": "S_eq_retained_domain_attempt_0001",
+  "tolerance": 1e-12,
+  "acceptBand": null,
+  "arithmeticNoiseFloor": null,
+  "truncationNoiseFloor": null,
+  "negativeMarginFactor": null,
+  "drift": {
+    "u": 0.6,
+    "c_f": 1,
+    "beta_f": 0.6
+  },
+  "support": {
+    "kind": "positive_width_invariant_cell",
+    "status": "attempt",
+    "N": null,
+    "truncationError": null,
+    "B_N": {
+      "status": "attempt",
+      "id": "B_N_attempt",
+      "coordinates": null,
+      "radius": null,
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-attempt.v1.json"
+    },
+    "Sigma_N": {
+      "status": "attempt",
+      "id": "Sigma_N_attempt",
+      "sectionRule": null,
+      "transversalityMargin": null,
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-attempt.v1.json"
+    },
+    "P_N": {
+      "status": "attempt",
+      "id": "P_N_attempt",
+      "returnTime": null,
+      "mapNormBound": null,
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-attempt.v1.json"
+    },
+    "K_P_N": {
+      "status": "attempt",
+      "id": "K_P_N_attempt",
+      "inclusionResidual": null,
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-attempt.v1.json"
+    },
+    "positiveTransverseWidth": null,
+    "returnInclusion": "attempt",
+    "refinementPersistence": {
+      "status": "attempt",
+      "hSequence": [],
+      "NSequence": [],
+      "supportSetStability": {
+        "status": "attempt",
+        "hausdorffResidual": null
+      },
+      "scalarResidualConvergence": {
+        "status": "attempt",
+        "maxResidual": null
+      },
+      "controls": {
+        "windowLength": "attempt",
+        "sectionPlacement": "attempt",
+        "transverseDisplacement": "attempt",
+        "phasePermutation": "attempt"
+      }
+    }
+  },
+  "rowBindings": {
+    "raw_labeled_rows_preserved_on_retained_history": {
+      "status": "attempt",
+      "rowId": "raw_labeled_rows_preserved_on_retained_history_attempt",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "supportId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-attempt.v1.json"
+    },
+    "causal_root_ledger_rows_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "causal_root_ledger_rows_bound_to_S_eq_attempt",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "supportId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-attempt.v1.json"
+    },
+    "wake_tail_rows_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "wake_tail_rows_bound_to_S_eq_attempt",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "supportId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-attempt.v1.json"
+    },
+    "energy_action_rows_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "energy_action_rows_bound_to_S_eq_attempt",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "supportId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-attempt.v1.json"
+    },
+    "momentum_and_angular_momentum_rows_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "momentum_and_angular_momentum_rows_bound_to_S_eq_attempt",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "supportId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-attempt.v1.json"
+    },
+    "phase_rows_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "phase_rows_bound_to_S_eq_attempt",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "supportId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-attempt.v1.json"
+    },
+    "Noether_sea_record_bound_to_S_eq": {
+      "status": "attempt",
+      "rowId": "Noether_sea_record_bound_to_S_eq_attempt",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "supportId": "S_eq_retained_domain_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-attempt.v1.json"
+    }
+  },
+  "extractionBasis": [
+    "c_f",
+    "u",
+    "L_root",
+    "L_wake",
+    "retained_boundary_history"
+  ],
+  "extractedLegs": {
+    "e0_dt": 1.25,
+    "e_parallel": 0.8,
+    "e_perp": 1
+  },
+  "connection": {
+    "status": "attempt",
+    "omegaStatus": "attempt",
+    "torsionMaxAbs": 0,
+    "phaseHolonomyT2": [0, 0],
+    "supportTransportResidual": null,
+    "holonomyTransportResidual": null
+  },
+  "residuals": {
+    "extractionResidual": 0,
+    "supportBindingResidual": 0,
+    "holonomyResidual": 0
+  },
+  "negativeControls": {
+    "window_length": {
+      "status": "attempt",
+      "expectedFailure": "retained_inclusion_not_stable_under_window_length_change",
+      "violationMargin": null
+    },
+    "section_relocation": {
+      "status": "attempt",
+      "expectedFailure": "support_not_persistent_under_section_relocation",
+      "violationMargin": null
+    },
+    "transverse_displacement": {
+      "status": "attempt",
+      "expectedFailure": "sampled_crossing_escapes_invariant_cell",
+      "violationMargin": null
+    },
+    "phase_permutation": {
+      "status": "attempt",
+      "expectedFailure": "binary_label_or_phase_permutation_breaks_row_identity",
+      "violationMargin": null
+    },
+    "reciprocal_unextracted_coframe": {
+      "status": "attempt",
+      "expectedFailure": "reciprocal_legs_without_return_map_source",
+      "violationMargin": null
+    },
+    "holonomy_retune": {
+      "status": "attempt",
+      "expectedFailure": "row_sections_reciprocal_but_not_parallel_transported",
+      "violationMargin": null
+    }
+  }
+}

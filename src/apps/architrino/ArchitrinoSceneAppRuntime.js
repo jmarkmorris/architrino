@@ -6620,6 +6620,7 @@ function showZoomToastIfNeeded() {
 const markdownRuntime = createMarkdownRuntime({
   markdownPanel,
   markdownTitle,
+  markdownContent,
   markdownBody,
   markdownLayoutToggle,
   markdownRenderer,
