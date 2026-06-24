@@ -177,6 +177,10 @@ function createSolverReportOutput({ report, inputPath }) {
     scaffold?.currentProxyEvidencePopulated === true ||
     numberOrZero(scaffold?.currentProxyEvidencePopulatedCount) > 0 ||
     witness?.currentStructuralWitnessPass === true;
+  const missingRetainedInputs = uniqueStrings([
+    ...(scaffold?.blockingRequirementIds ?? []),
+    ...(witness?.firstMissingRetainedIdentityInputs ?? []),
+  ]);
   const status = !audit
     ? "blocked_missing_equal_frequency_audit"
     : accepted
@@ -229,10 +233,12 @@ function createSolverReportOutput({ report, inputPath }) {
         witness?.acceptedRetainedIdentityRequirementCount ?? null,
       retainedIdentityRequirementCount:
         witness?.retainedIdentityRequirementCount ?? null,
-      missingRetainedInputs: uniqueStrings([
-        ...(scaffold?.blockingRequirementIds ?? []),
-        ...(witness?.firstMissingRetainedIdentityInputs ?? []),
-      ]),
+      missingRetainedInputs,
+      nextBlocker: nextBlockerForRetainedIdentity({
+        status,
+        missingRetainedInputs,
+        missingDomainWitnesses: [],
+      }),
     },
     scaffold: summarizeScaffold(scaffold),
     structuralWitness: summarizeWitness(witness),
@@ -336,12 +342,25 @@ function createRetainedDomainOutput({ packet, inputPath }) {
       retainedRequirementStatuses: Object.fromEntries(
         requirementChecks.map((check) => [check.id, check.status]),
       ),
+      retainedRequirementReasons: Object.fromEntries(
+        requirementChecks.map((check) => [check.id, check.reason]),
+      ),
       missingDomainWitnesses,
       domainWitnessStatuses: {
         split_witness_zero: splitWitness.status,
         retune_witness_zero: retuneWitness.status,
         overlap_preimage_identity: overlapPreimage.status,
       },
+      domainWitnessReasons: {
+        split_witness_zero: splitWitness.reason,
+        retune_witness_zero: retuneWitness.reason,
+        overlap_preimage_identity: overlapPreimage.reason,
+      },
+      nextBlocker: nextBlockerForRetainedIdentity({
+        status,
+        missingRetainedInputs,
+        missingDomainWitnesses,
+      }),
       supportKind: packet.domain?.kind ?? null,
       supportId: domainId,
       splitWitnessPass: splitWitness.accepted,
@@ -428,6 +447,13 @@ function evaluateDomainSupport(row) {
       reason: "support_source_not_concrete",
     };
   }
+  if (!sourceReferenceExists(row.sourcePath) && !sourceReferenceExists(row.source)) {
+    return {
+      accepted: false,
+      status: row.status,
+      reason: "support_source_not_found",
+    };
+  }
   return { accepted: true, status: row.status, reason: "accepted" };
 }
 
@@ -444,6 +470,9 @@ function evaluateRetainedRowBinding({ row, retainedRowSetId, domainId }) {
     !concreteString(row.sourcePath ?? row.source)
   ) {
     return { accepted: false, status, reason: "row_reference_not_concrete" };
+  }
+  if (!sourceReferenceExists(row.sourcePath) && !sourceReferenceExists(row.source)) {
+    return { accepted: false, status, reason: "row_source_not_found" };
   }
   if (retainedRowSetId && row.retainedRowSetId !== retainedRowSetId) {
     return { accepted: false, status, reason: "retained_row_set_mismatch" };
@@ -469,6 +498,12 @@ function evaluateZeroWitness(witness) {
   ) {
     return { accepted: false, status, reason: "witness_reference_not_concrete" };
   }
+  if (
+    !sourceReferenceExists(witness.sourcePath) &&
+    !sourceReferenceExists(witness.source)
+  ) {
+    return { accepted: false, status, reason: "witness_source_not_found" };
+  }
   const residual = Number(witness.residual ?? witness.value ?? 0);
   if (!Number.isFinite(residual) || Math.abs(residual) > ZERO_TOLERANCE) {
     return { accepted: false, status, reason: "witness_not_zero", residual };
@@ -489,6 +524,12 @@ function evaluateOverlapPreimage(witness) {
     !concreteString(witness.sourcePath ?? witness.source)
   ) {
     return { accepted: false, status, reason: "witness_reference_not_concrete" };
+  }
+  if (
+    !sourceReferenceExists(witness.sourcePath) &&
+    !sourceReferenceExists(witness.source)
+  ) {
+    return { accepted: false, status, reason: "witness_source_not_found" };
   }
   if (witness.consistent !== true) {
     return { accepted: false, status, reason: "overlap_preimage_not_consistent" };
@@ -604,12 +645,62 @@ function uniqueStrings(values) {
   return [...new Set(values.filter((value) => typeof value === "string"))];
 }
 
+function nextBlockerForRetainedIdentity({
+  status,
+  missingRetainedInputs,
+  missingDomainWitnesses,
+}) {
+  if (status === "accepted") {
+    return null;
+  }
+  const firstRetainedInput = missingRetainedInputs[0];
+  if (firstRetainedInput) {
+    return `missing_accepted_${firstRetainedInput}`;
+  }
+  const firstWitness = missingDomainWitnesses[0];
+  if (firstWitness) {
+    return `missing_accepted_${firstWitness}`;
+  }
+  if (status === "blocked_missing_equal_frequency_audit") {
+    return "missing_equal_frequency_energy_radius_audit";
+  }
+  return status;
+}
+
 function concreteString(value) {
+  const text = typeof value === "string" ? value.trim() : "";
+  const lowerText = text.toLowerCase();
   return (
-    typeof value === "string" &&
-    value.trim() !== "" &&
-    value.trim() !== "..." &&
-    !value.includes("<") &&
-    !value.toLowerCase().includes("todo")
+    text !== "" &&
+    text !== "..." &&
+    !text.includes("<") &&
+    !lowerText.includes("todo") &&
+    !lowerText.includes("pending") &&
+    !lowerText.includes("placeholder")
+  );
+}
+
+function sourceReferenceExists(value) {
+  if (!concreteString(value)) {
+    return false;
+  }
+  const resolvedPath = path.resolve(value.trim());
+  if (isNonDurableSourcePath(resolvedPath)) {
+    return false;
+  }
+  try {
+    return fs.statSync(resolvedPath).isFile();
+  } catch {
+    return false;
+  }
+}
+
+function isNonDurableSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  return (
+    normalized.startsWith(`${path.normalize("/tmp")}${path.sep}`) ||
+    normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
+    normalized.includes(`${path.sep}content${path.sep}generated${path.sep}`) ||
+    path.basename(normalized).includes(".tmp")
   );
 }

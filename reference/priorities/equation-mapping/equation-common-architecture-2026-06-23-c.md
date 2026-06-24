@@ -841,6 +841,37 @@ $$
 \mathcal R_{\mathrm{coarse}}.
 $$
 
+For reuse across rows, package the common input as the finite-window statistical carrier
+
+$$
+\mathcal C_{\mathrm{stat}}^{W,T}
+\equiv
+\left(
+W,
+T,
+\Phi_T,
+\mu_{*,T},
+\mathcal Q,
+K_{\mathrm{det}},
+\mathcal B,
+\mathcal C,
+\mathcal S_{\mathrm{retune}}
+\right),
+$$
+
+where $\mathcal B$ is the basin or outcome partition and $\mathcal C$ is the exit-corridor family when the row concerns metastability. A statistical comparison row is then a projection
+
+$$
+O_{\alpha}^{\mathrm{stat}}
+=
+\Pi_{\alpha}^{\mathrm{stat}}
+\mathcal C_{\mathrm{stat}}^{W,T}
++
+\mathcal R_{\alpha}^{\mathrm{stat}},
+$$
+
+with the no-hidden-retune witness carried by the same $\mathcal C_{\mathrm{stat}}^{W,T}$ rather than rebuilt per observable.
+
 Specific consumers are projections of the same object:
 
 $$
@@ -901,6 +932,10 @@ This component unifies probability, entropy, cross sections, detector statistics
 ### Proof Or Simulation Burden
 
 The first useful test is a toy measurement or elastic scattering packet where density, current, detector response, event classes, and residuals are all pushed from the same finite-window measure. A second test should derive $\gamma_k$, $\Gamma_{\mathrm{cmp}}$, $\tau_{\mathrm{cmp}}$, and $B_k$ from one metastable branch escape measure.
+
+Defining $\mathcal C_{\mathrm{stat}}^{W,T}$ is score-neutral. It does not supply a retained branch, detector kernel, or escape measure; it only gives the shared object that `EQ-14`, `EQ-25`, `EQ-30`, and `EQ-31` must instantiate before their statistical readouts can rise.
+
+Instantiating $\mathcal C_{\mathrm{stat}}^{W,T}$ means populating source-backed accepted rows for the window, transition map, finite measure, coarse-graining, detector kernel, outcome partition, corridor family when present, and no-hidden-retune witness. A retained label without durable source evidence does not make the carrier accepted.
 
 ## Common Component 9: Exposure And Sector Quotient
 
@@ -967,6 +1002,7 @@ The highest-value reusable equations to stabilize first are:
 5. Common clock plus residual phase operator $H_X=\omega_{\mathrm{clk}}C_X\mathbf 1+\delta H_X$. It is the smallest sharp object for `EQ-16A` and also clarifies clock, redshift, photon, and atomic-frequency rows.
 6. Observer-level metric projection $\Pi_{\mathrm{metric}}\Theta_W$. It is the shared recovery interface for PPN, null transport, cosmology, lensing, and low-acceleration dynamics.
 7. Equation-bearing configuration vector $\mathcal R_{\mathrm{cfg}}(\mathfrak a)$. It is the stable-braid search bridge that keeps frequency families subordinate to retained branch residuals.
+8. Finite-window statistical carrier $\mathcal C_{\mathrm{stat}}^{W,T}$. It is the common object behind Born-current continuity, entropy, scattering rates, detector statistics, resonance widths, lifetimes, and branching fractions.
 
 The projection/refinement residual and finite-window statistical pushforward should be developed alongside these because they supply the proof language that turns this set into controlled observer-level equations rather than new ontological assertions.
 

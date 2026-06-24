@@ -263,6 +263,7 @@ function replayComptonEvent(input, parsedArgs) {
           ? "event_ledger_support_missing"
           : "native_rows_missing",
       sharedEq26Status: sharedRows.status,
+      nextBlocker: firstNativeBlocker(nativeRows, eventLedgerSupport),
       residualTolerance: parsedArgs.tolerance,
       requiredNativeRows: REQUIRED_NATIVE_ROWS,
       missingNativeRows: nativeRows.missing,
@@ -569,6 +570,9 @@ function normalizeLedgerSupportStatus(row, eventId) {
   ) {
     return "accepted_without_retained_reference";
   }
+  if (!sourceReferenceExists(row.sourcePath) && !sourceReferenceExists(row.source)) {
+    return "accepted_without_existing_source";
+  }
   if (row.eventId !== eventId) {
     return "accepted_event_id_mismatch";
   }
@@ -603,12 +607,25 @@ function normalizeNativeRowStatus(row, eventId) {
     ) {
       return "accepted_without_retained_reference";
     }
+    if (!sourceReferenceExists(row.sourcePath) && !sourceReferenceExists(row.source)) {
+      return "accepted_without_existing_source";
+    }
     if (row.eventId !== eventId) {
       return "accepted_event_id_mismatch";
     }
     return "accepted";
   }
   return "invalid";
+}
+
+function firstNativeBlocker(nativeRows, eventLedgerSupport) {
+  if (nativeRows.missing.length > 0) {
+    return `missing_accepted_${nativeRows.missing[0]}`;
+  }
+  if (eventLedgerSupport.missing.length > 0) {
+    return `missing_accepted_${eventLedgerSupport.missing[0]}_support`;
+  }
+  return null;
 }
 
 function finiteNumber(value, label) {
@@ -687,11 +704,38 @@ function normalizeVectorResidual(raw, scaleValue, epsilon) {
 }
 
 function concreteString(value) {
+  const text = typeof value === "string" ? value.trim() : "";
   return (
-    typeof value === "string" &&
-    value.trim() !== "" &&
-    value.trim() !== "..." &&
-    !value.includes("<") &&
-    !value.toLowerCase().includes("todo")
+    text !== "" &&
+    text !== "..." &&
+    !text.includes("<") &&
+    !text.toLowerCase().includes("todo") &&
+    !text.toLowerCase().includes("pending") &&
+    !text.toLowerCase().includes("placeholder")
+  );
+}
+
+function sourceReferenceExists(value) {
+  if (!concreteString(value)) {
+    return false;
+  }
+  const resolvedPath = path.resolve(value.trim());
+  if (isNonDurableSourcePath(resolvedPath)) {
+    return false;
+  }
+  try {
+    return fs.statSync(resolvedPath).isFile();
+  } catch {
+    return false;
+  }
+}
+
+function isNonDurableSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  return (
+    normalized.startsWith(`${path.normalize("/tmp")}${path.sep}`) ||
+    normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
+    normalized.includes(`${path.sep}content${path.sep}generated${path.sep}`) ||
+    path.basename(normalized).includes(".tmp")
   );
 }

@@ -47,6 +47,7 @@ This file is the agent's living feedback backlog for improving operator/develope
 - [ ] Split parallel agents by disjoint write ownership rather than broad topic.
 - [ ] Give each worker a file ownership boundary and nearby files to avoid.
 - [ ] Use explorer agents for read-only codebase questions whose answers can unblock later work.
+- [ ] When Bill Thurston input can accelerate closure, create one temporary review packet that asks first for overall insights, corrections, and advancements, then lists specific questions, desired comment count, and appended review material.
 - [ ] Use a verification agent only after the main implementation surface is stable enough to test.
 - [ ] Avoid launching multiple agents on the same priority item unless their outputs are explicitly different.
 - [ ] Ask workers to return changed file paths, tests run, residual risks, and any priority item removed.

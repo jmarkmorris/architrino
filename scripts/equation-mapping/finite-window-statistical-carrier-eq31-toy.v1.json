@@ -1,0 +1,69 @@
+{
+  "schema": "aaa-equation-map-finite-window-statistical-carrier-input/v1",
+  "claimLevel": "toy finite-window statistical carrier; structure-faithful, not retained evidence",
+  "constants": {
+    "hbar": 1
+  },
+  "tolerances": {
+    "massClosure": 1e-12,
+    "invariance": 0.001,
+    "retune": 1e-12
+  },
+  "carrier": {
+    "id": "eq31_two_corridor_toy",
+    "row": "EQ-31",
+    "retainedStatus": "toy",
+    "window": {
+      "id": "W_eq31_toy",
+      "kind": "toy_metastable_window",
+      "retainedStatus": "toy"
+    },
+    "duration": 10,
+    "transitionMap": {
+      "id": "Phi_T_eq31_toy",
+      "retainedStatus": "toy"
+    },
+    "finiteMeasure": {
+      "id": "mu_star_T_eq31_toy",
+      "totalMass": 1,
+      "invarianceResidual": 0.02,
+      "retainedStatus": "toy"
+    },
+    "coarseGraining": {
+      "id": "Q_eq31_toy",
+      "retainedStatus": "toy"
+    },
+    "detectorKernel": {
+      "id": "K_det_eq31_toy",
+      "retainedStatus": "toy"
+    },
+    "outcomePartition": {
+      "id": "B_eq31_toy",
+      "retainedStatus": "toy",
+      "classes": [
+        "stable_remnant",
+        "corridor_alpha",
+        "corridor_beta"
+      ]
+    },
+    "exitCorridors": [
+      {
+        "id": "C_alpha",
+        "measure": 0.03,
+        "retainedStatus": "toy",
+        "ledgerStatus": "toy"
+      },
+      {
+        "id": "C_beta",
+        "measure": 0.01,
+        "retainedStatus": "toy",
+        "ledgerStatus": "toy"
+      }
+    ],
+    "noHiddenRetuneWitness": {
+      "id": "S_retune_eq31_toy",
+      "residual": 0,
+      "retainedStatus": "toy"
+    }
+  }
+}

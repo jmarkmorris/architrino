@@ -487,7 +487,7 @@ The same-row-set acceptance extractor is:
 node scripts/equation-mapping/check-same-branch-chart-identity.mjs --input <tri-binary-solver-report.json> --summary --pretty
 ```
 
-It consumes `frequencyTripletSearch.equalFrequencyEnergyRadiusAudit`, especially the `retainedRowSetScaffold` and `retainedRowSetIdentityStructuralWitnessAudit` rows for $S_{\mathrm{eq}}$. Against the 2026-06-23 equal-frequency smoke report, it returns `blocked_current_proxy_only`, `scoreDecision=no_score_increase`, `retainedBranchClaim=false`, `currentProxyEvidencePopulatedCount=7`, `structuralWitnessCurrentPopulatedCount=15`, and `acceptedRetainedIdentityRequirementCount=0` out of 14.
+It consumes `frequencyTripletSearch.equalFrequencyEnergyRadiusAudit`, especially the `retainedRowSetScaffold` and `retainedRowSetIdentityStructuralWitnessAudit` rows for $S_{\mathrm{eq}}$. Against the 2026-06-23 equal-frequency smoke report, it returns `blocked_current_proxy_only`, `scoreDecision=no_score_increase`, `retainedBranchClaim=false`, `currentProxyEvidencePopulatedCount=7`, `structuralWitnessCurrentPopulatedCount=15`, `acceptedRetainedIdentityRequirementCount=0` out of 14, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
 
 The same command now also accepts a direct retained-domain packet:
 
@@ -495,7 +495,7 @@ The same command now also accepts a direct retained-domain packet:
 node scripts/equation-mapping/check-same-branch-chart-identity.mjs --input scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json --summary --pretty
 ```
 
-That attempt packet returns `blocked_missing_retained_event_or_domain`, `scoreDecision=no_score_increase`, and `acceptedRetainedIdentityRequirementCount=0` out of 14. It exists to make the retained event or positive-width domain shape executable; because its support and rows are marked `attempt`, it does not populate `same_branch_chart_identity`. The summary now also reports `retainedRequirementStatuses` and `domainWitnessStatuses`; in the current attempt all 14 retained requirements and all three witnesses report `attempt`.
+That attempt packet returns `blocked_missing_retained_event_or_domain`, `scoreDecision=no_score_increase`, `acceptedRetainedIdentityRequirementCount=0` out of 14, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. It exists to make the retained event or positive-width domain shape executable; because its support and rows are marked `attempt`, it does not populate `same_branch_chart_identity`. The summary now also reports `retainedRequirementStatuses`, `retainedRequirementReasons`, `domainWitnessStatuses`, and `domainWitnessReasons`; in the current attempt all 14 retained requirements and all three witnesses report `attempt`, with row and witness reasons remaining explicit. Accepted-looking supports, row bindings, and witnesses are rejected with source-not-found reasons when their source reference does not resolve to an existing file.
 
 The result is useful but not score evidence. It shows that the current solver rows are consistently pointing at $S_{\mathrm{eq}}$, but no retained identity has been accepted. The missing retained inputs are:
 

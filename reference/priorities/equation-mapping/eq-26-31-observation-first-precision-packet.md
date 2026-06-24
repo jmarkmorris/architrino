@@ -608,7 +608,7 @@ The checker is deliberately fail-closed. The comparison replay closes because th
 
 Running the same checker with `--require-native-closed` exits nonzero while those rows are missing. That behavior is the intended guardrail: the script verifies the algebraic comparison surface and the shared-variable anti-retune witness, but it does not raise `EQ-28` or any adjacent row.
 
-Native rows and event-ledger support rows must be structured retained row objects with concrete `rowId`, `sourcePath`, and `eventId` fields tied to the same event carrier. Accepted `medium` and `remnant` support rows must also carry explicit `delta_E` and `delta_p` fields; omitted deltas report `accepted_without_explicit_delta`, and nonzero weak-homogeneous deltas report `accepted_nonzero_weak_homogeneous_delta`. A bare `accepted` string is reported as `accepted_without_retained_reference`, and a row whose `eventId` does not match the event carrier is reported as `accepted_event_id_mismatch`. None of those statuses closes the native event ledger.
+Native rows and event-ledger support rows must be structured retained row objects with concrete `rowId`, source reference, and `eventId` fields tied to the same event carrier. Accepted source references must resolve to durable source/evidence files; placeholder strings, missing files, temp files, and generated reading copies report `accepted_without_retained_reference` or `accepted_without_existing_source` rather than closing the row. Accepted `medium` and `remnant` support rows must also carry explicit `delta_E` and `delta_p` fields; omitted deltas report `accepted_without_explicit_delta`, and nonzero weak-homogeneous deltas report `accepted_nonzero_weak_homogeneous_delta`. A bare `accepted` string is reported as `accepted_without_retained_reference`, and a row whose `eventId` does not match the event carrier is reported as `accepted_event_id_mismatch`. None of those statuses closes the native event ledger.
 
 The direct native-event attempt packet is [compton-recoil-native-event-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json):
 
@@ -616,7 +616,7 @@ The direct native-event attempt packet is [compton-recoil-native-event-attempt.v
 node scripts/equation-mapping/compton-recoil-event-replay.mjs --input scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json --summary --pretty
 ```
 
-It returns `comparison_replay_closed_native_rows_missing`, `scoreDecision=no_score_increase`, and `nativeLedgerStatus=native_rows_missing`; the `nativeRowStatuses` map reports all seven required rows as `attempt`, and the `eventLedgerSupportStatuses` map reports `medium=attempt` and `remnant=attempt`. Running the same input with `--require-native-closed` exits nonzero. The packet therefore fixes the retained event-ledger shape while leaving the score-moving burden exactly where it belongs: accepted photon Gate A/B, target branch, recoil branch, angular-momentum delta, Noether sea state, energy-momentum ledger, and explicit medium/remnant support rows on the same $\mathsf e_{\gamma e}^{0}$ record.
+It returns `comparison_replay_closed_native_rows_missing`, `scoreDecision=no_score_increase`, `nativeLedgerStatus=native_rows_missing`, and `nextBlocker=missing_accepted_photon_gate_A_input_output`; the `nativeRowStatuses` map reports all seven required rows as `attempt`, and the `eventLedgerSupportStatuses` map reports `medium=attempt` and `remnant=attempt`. Running the same input with `--require-native-closed` exits nonzero. The packet therefore fixes the retained event-ledger shape while leaving the score-moving burden exactly where it belongs: accepted photon Gate A/B, target branch, recoil branch, angular-momentum delta, Noether sea state, energy-momentum ledger, and explicit medium/remnant support rows on the same $\mathsf e_{\gamma e}^{0}$ record.
 
 ### Failure Mode
 
@@ -720,7 +720,8 @@ where $m$ is a declared source mechanism and $Z_m$ is its observer-level compari
 
 ### Rows Needed
 
-- Source mechanism declaration row: atomic transition, bremsstrahlung, synchrotron, thermal/free-free, Compton-like exchange, reaction product, or gravitational-wave tensor disturbance.
+- Carrier/channel-family declaration row: photon-channel output, frequency-exchange/scattering shift, reaction-product carrier, or gravitational-wave/effective-metric tensor disturbance.
+- Source mechanism declaration row: atomic transition, bremsstrahlung, synchrotron, thermal/free-free, reaction-product source, or another declared source ledger.
 - Closure residual and planar-mode threshold row.
 - Power and spectrum benchmark row.
 - Source cooling and recoil row.
@@ -868,6 +869,26 @@ $$
 $$
 
 where $\Delta_{\Phi}$ checks prepared flux mapping, $\Delta_K$ checks detector acceptance, $\Delta_{\sigma}$ checks rate normalization, $\Delta_F$ checks the finite exposure distribution, and $\Delta_{\mathrm{regime}}$ checks that elastic and inelastic event classes are not mixed.
+
+This packet should instantiate the common finite-window statistical carrier
+
+$$
+\mathcal C_{\mathrm{stat}}^{W,T}
+=
+\left(
+W,
+T,
+\Phi_T,
+\mu_{*,T},
+\mathcal Q,
+K_{\mathrm{det}},
+\mathcal B,
+\mathcal C,
+\mathcal S_{\mathrm{retune}}
+\right),
+$$
+
+using $\Gamma_a\subset W$, $\mu_a$ as the prepared branch measure, $\mathcal B=\{B_b\}$ as the final-state partition, and an empty or inert $\mathcal C$ unless the elastic packet is coupled to a metastable exit-corridor row. Then $\Delta_{\sigma}$ and $\Delta_F$ are projections of the same carrier rather than separately normalized fits.
 
 The elastic packet passes only if $\Delta_{\Phi}$, $\Delta_K$, $\Delta_{\sigma}$, $\Delta_F$, and $\Delta_{\mathrm{regime}}$ consume one prepared ensemble $\Gamma_a$, one transition map $\Phi_T$, one branch measure $\mu_a$, one detector kernel $K_{\mathrm{det}}$, and one exposure distribution $\rho_{\mathrm{exp}}^{\mathbb{A}\mathbb{A}\mathbb{A}}$. An imported amplitude or form factor may be used as a comparison surface, not as a substitute for the finite-window pushforward.
 
@@ -1028,7 +1049,13 @@ $$
 
 with $\Delta_{\Gamma}$, $\Delta_{\tau}$, and $\Delta_B$ all derived from the same $\{\gamma_k\}$ rather than fitted independently.
 
+This is the metastable specialization of the same finite-window statistical carrier $\mathcal C_{\mathrm{stat}}^{W,T}$. Here $W$ contains the retained metastable branch $B_\star$, $\mathcal B$ is the observed final-state classification, and $\mathcal C=\{C_k\}$ is the admissible exit-corridor family. The width, lifetime, branching, and detector-classification residuals must all consume this single carrier.
+
 The line-shape residual $\Delta_{\mathrm{shape}}$ must use the same detector and interference rows as the escape/dephasing measure. Score-5 requires one retained branch producing $E_0$, $\Gamma$, $\tau$, and $B_k$ from one shared escape measure; the Breit-Wigner profile remains a downstream comparison until that measure is populated.
+
+The score-neutral carrier evaluator [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs) now computes the `EQ-31` projection rows from a supplied $\mathcal C_{\mathrm{stat}}^{W,T}$. The included toy input [finite-window-statistical-carrier-eq31-toy.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-toy.v1.json) reports `toy_structure_only`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_W`; it is an executable shape check, not retained evidence.
+
+Accepted finite-window carrier rows must be structured row objects with `accepted`, `populated`, or `passed` status and a `sourcePath` or `source` reference that resolves to a durable source/evidence file. The label `retained` is not an accepted status. Toy, attempt, placeholder, missing-source, temp-file, generated-reading-copy, and nonzero-retune rows remain blockers.
 
 ### Failure Mode
 

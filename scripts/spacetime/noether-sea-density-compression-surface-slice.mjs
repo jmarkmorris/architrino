@@ -12,6 +12,7 @@ const INPUT_SCHEMA =
   "aaa-noether-sea-density-compression-surface-slice-input/v1";
 const OUTPUT_SCHEMA =
   "aaa-noether-sea-density-compression-surface-slice-result/v1";
+const ACCEPTED_ROW_STATUSES = new Set(["accepted", "populated", "passed"]);
 
 const THETA_SEA_ROWS = [
   "rho_NS",
@@ -141,11 +142,12 @@ function evaluateSlice(input) {
   const stressCoefficientPresent = surfaceVector.delta_C_ij_kl !== null;
   const metricCoefficientPresent =
     surfaceVector.delta_N !== null || surfaceVector.delta_gamma_ij !== null;
-  const retuneStatus = input.retune?.status ?? "not_evaluated";
+  const rawRetuneStatus = input.retune?.status ?? "not_evaluated";
+  const retuneStatus = normalizeRetuneStatus(input.retune);
   const retuneResidual = optionalFiniteNumber(input.retune?.residual, "retune.residual");
   const retuneFailed =
-    retuneStatus === "failed" ||
-    retuneStatus === "retuned" ||
+    rawRetuneStatus === "failed" ||
+    rawRetuneStatus === "retuned" ||
     (retuneResidual !== null && retuneResidual !== 0);
   const retunePassed =
     (retuneStatus === "passed" || retuneStatus === "accepted") &&
@@ -198,6 +200,15 @@ function evaluateSlice(input) {
       missingRequiredRows,
       missingOutputs,
       undeclaredMissingOutputs,
+      nextBlocker: nextBlockerForSlice({
+        status,
+        missingThetaRows,
+        missingRequiredRows,
+        undeclaredMissingOutputs,
+        retuneFailed,
+        retunePassed,
+        speedStressMetricGatePass,
+      }),
       thetaSeaRowStatuses: Object.fromEntries(
         THETA_SEA_ROWS.map((row) => [row, normalizeStatus(thetaSeaRows[row])])
       ),
@@ -267,19 +278,54 @@ function missingStressOrMetricRows(rows) {
   return stressAccepted || metricAccepted ? [] : ["stress_strain_row_or_metric_embedding_row"];
 }
 
+function nextBlockerForSlice({
+  status,
+  missingThetaRows,
+  missingRequiredRows,
+  undeclaredMissingOutputs,
+  retuneFailed,
+  retunePassed,
+  speedStressMetricGatePass,
+}) {
+  if (status === "populated") {
+    return null;
+  }
+  if (retuneFailed) {
+    return "retune_failed";
+  }
+  if (missingThetaRows.length > 0) {
+    return `missing_accepted_theta_sea_${missingThetaRows[0]}`;
+  }
+  if (missingRequiredRows.length > 0) {
+    return `missing_accepted_${missingRequiredRows[0]}`;
+  }
+  if (!retunePassed) {
+    return "missing_accepted_retune_witness_zero";
+  }
+  if (!speedStressMetricGatePass) {
+    return "missing_speed_plus_stress_or_metric_coefficient";
+  }
+  if (undeclaredMissingOutputs.length > 0) {
+    return `undeclared_missing_output_${undeclaredMissingOutputs[0]}`;
+  }
+  return status;
+}
+
 function isAcceptedRetainedRow(value) {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     return false;
   }
-  if (!["accepted", "populated", "passed"].includes(value.status)) {
+  if (!ACCEPTED_ROW_STATUSES.has(value.status)) {
     return false;
   }
   const sourceOk = concreteString(value.sourcePath) || concreteString(value.source);
+  const sourceFound =
+    sourceReferenceExists(value.sourcePath) || sourceReferenceExists(value.source);
   const idOk =
     concreteString(value.rowId) ||
     concreteString(value.eventId) ||
     concreteString(value.eventLedgerRef);
-  return sourceOk && idOk;
+  return sourceOk && sourceFound && idOk;
 }
 
 function normalizeStatus(value) {
@@ -290,7 +336,61 @@ function normalizeStatus(value) {
     return value;
   }
   if (typeof value === "object" && !Array.isArray(value)) {
-    return value.status ?? "declared";
+    const status = value.status ?? "declared";
+    if (!ACCEPTED_ROW_STATUSES.has(status)) {
+      return status;
+    }
+    const sourceOk = concreteString(value.sourcePath) || concreteString(value.source);
+    const sourceFound =
+      sourceReferenceExists(value.sourcePath) || sourceReferenceExists(value.source);
+    const idOk =
+      concreteString(value.rowId) ||
+      concreteString(value.eventId) ||
+      concreteString(value.eventLedgerRef);
+    if (!sourceOk) {
+      return "accepted_without_concrete_source";
+    }
+    if (!sourceFound) {
+      return "accepted_without_existing_source";
+    }
+    if (!idOk) {
+      return "accepted_without_row_reference";
+    }
+    return status;
+  }
+  return "invalid";
+}
+
+function normalizeRetuneStatus(value) {
+  if (value === undefined || value === null) {
+    return "not_evaluated";
+  }
+  if (typeof value === "string") {
+    return value;
+  }
+  if (typeof value === "object" && !Array.isArray(value)) {
+    const status = value.status ?? "declared";
+    if (!ACCEPTED_ROW_STATUSES.has(status)) {
+      return status;
+    }
+    const sourceOk = concreteString(value.sourcePath) || concreteString(value.source);
+    const sourceFound =
+      sourceReferenceExists(value.sourcePath) || sourceReferenceExists(value.source);
+    const idOk =
+      concreteString(value.rowId) ||
+      concreteString(value.witnessId) ||
+      concreteString(value.eventId) ||
+      concreteString(value.eventLedgerRef);
+    if (!sourceOk) {
+      return "accepted_without_concrete_retune_source";
+    }
+    if (!sourceFound) {
+      return "accepted_without_existing_retune_source";
+    }
+    if (!idOk) {
+      return "accepted_without_retune_witness_reference";
+    }
+    return status;
   }
   return "invalid";
 }
@@ -348,11 +448,38 @@ function finiteNumber(value, label) {
 }
 
 function concreteString(value) {
+  const text = typeof value === "string" ? value.trim() : "";
   return (
-    typeof value === "string" &&
-    value.trim() !== "" &&
-    value.trim() !== "..." &&
-    !value.includes("<") &&
-    !value.toLowerCase().includes("todo")
+    text !== "" &&
+    text !== "..." &&
+    !text.includes("<") &&
+    !text.toLowerCase().includes("todo") &&
+    !text.toLowerCase().includes("pending") &&
+    !text.toLowerCase().includes("placeholder")
+  );
+}
+
+function sourceReferenceExists(value) {
+  if (!concreteString(value)) {
+    return false;
+  }
+  const resolvedPath = path.resolve(value.trim());
+  if (isNonDurableSourcePath(resolvedPath)) {
+    return false;
+  }
+  try {
+    return fs.statSync(resolvedPath).isFile();
+  } catch {
+    return false;
+  }
+}
+
+function isNonDurableSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  return (
+    normalized.startsWith(`${path.normalize("/tmp")}${path.sep}`) ||
+    normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
+    normalized.includes(`${path.sep}content${path.sep}generated${path.sep}`) ||
+    path.basename(normalized).includes(".tmp")
   );
 }

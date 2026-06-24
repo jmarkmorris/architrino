@@ -1,5 +1,15 @@
 Closure goal: [GOAL]
 
+# Scope
+
+Use this template as the default meta-optimization wrapper for any Codex thread in this repository.
+
+This applies to implementation, review, planning, source mining, issue work, verification, theory advancement, follow-up threads, restarted threads, and parallel worker threads. Specialized workflow prompts may add procedure-specific details, but they inherit this meta procedure unless the operator/developer explicitly overrides it.
+
+The purpose is to make the model self-optimize its execution strategy: choose the right working mode, manage context deliberately, decide whether to stay single-agent or split work, drive toward closure, verify before reporting, and preserve useful state for continuation.
+
+---
+
 # Objective
 
 Your primary objective is to achieve the following goal:
@@ -48,6 +58,8 @@ Before beginning significant work, briefly evaluate:
 - likelihood of context bloat.
 
 Then choose an execution plan.
+
+If this repository's execution plan uses multiple Codex threads, use `reference/op/codex-multiprompt.md` for worker prompt boundaries, split ownership, integration rules, and return fields.
 
 ---
 

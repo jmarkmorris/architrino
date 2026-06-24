@@ -274,11 +274,11 @@ Compose the mass-map priority packets with the Lorentz envelope packet. The imme
 
 ### Shared Branch Identity Reducer Status
 
-[check-same-branch-chart-identity.mjs](../../../scripts/equation-mapping/check-same-branch-chart-identity.mjs) now extracts the `same_branch_chart_identity` acceptance status for the equal-frequency $S_{\mathrm{eq}}$ row-set audit. The current run reports `blocked_current_proxy_only`: 7/7 current proxy evidence sources and 15/15 structural witnesses point at $S_{\mathrm{eq}}$, but 0/14 retained identity requirements are accepted.
+[check-same-branch-chart-identity.mjs](../../../scripts/equation-mapping/check-same-branch-chart-identity.mjs) now extracts the `same_branch_chart_identity` acceptance status for the equal-frequency $S_{\mathrm{eq}}$ row-set audit. The current run reports `blocked_current_proxy_only`: 7/7 current proxy evidence sources and 15/15 structural witnesses point at $S_{\mathrm{eq}}$, but 0/14 retained identity requirements are accepted. Its first reported blocker is `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
 
 The same extractor also consumes [same-branch-retained-domain-attempt.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json), a direct retained event/domain packet shape for $S_{\mathrm{eq}}$. That attempt reports `blocked_missing_retained_event_or_domain`, `scoreDecision=no_score_increase`, and 0/14 accepted retained identity requirements because its support and row bindings are marked `attempt`.
 
-The retained-domain summary now reports `retainedRequirementStatuses` and `domainWitnessStatuses`; the current direct attempt reports all retained requirements and all split/retune/overlap witnesses as `attempt`.
+The retained-domain summary now reports `retainedRequirementStatuses`, `retainedRequirementReasons`, `domainWitnessStatuses`, `domainWitnessReasons`, and `nextBlocker`; the current direct attempt reports all retained requirements and all split/retune/overlap witnesses as `attempt`, with row and witness reasons remaining `row_not_accepted`, `support_not_accepted`, or `witness_not_accepted`. Accepted-looking rows whose source reference does not resolve to an existing file are rejected with source-not-found reasons instead of being counted as retained evidence.
 
 No score change follows from that result. `EQ-02`, `EQ-03`, and `EQ-04` still need a retained event or retained positive-width domain that binds raw row labels, inventory, role map, path history, causal roots, wake tails, energy/action, momentum/angular momentum, phase, plane orientation, response center, group velocity, Noether sea record, and binary-to-binary phase identity on the same branch chart.
 
@@ -1704,6 +1704,8 @@ K_{\mathrm{det}}(x)\,d\mu_a(x)
 \mathcal R_{\sigma}.
 $$
 
+The `6/23 b` common-architecture refinement factors this as a projection of the finite-window statistical carrier $\mathcal C_{\mathrm{stat}}^{W,T}$. That carrier holds the retained window, transition map, branch measure, coarse-graining, detector kernel, outcome partition, optional corridor family, and no-hidden-retune witness once, so rate and form-factor rows cannot be normalized independently.
+
 ### Closure Status
 
 Score: `2`.
@@ -1757,6 +1759,10 @@ $$
 ### AAA Mapping
 
 This row asks whether a metastable Noether braid branch has a native leakage corridor. The central energy $E_0$ should be a branch energy or externally exposed mass response. The width $\Gamma$ should be a finite-window escape, dephasing, or decay-corridor rate, not an unexplained parameter. Branching fractions should come from the relative measure of admissible exit ledgers after conservation, weak/strong/electromagnetic exposure, and detector response are held fixed.
+
+The same finite-window statistical carrier $\mathcal C_{\mathrm{stat}}^{W,T}$ should specialize to the metastable case by taking the retained branch window as $W$, the exit corridors as $\mathcal C=\{C_k\}$, and the observed final-state classes as the outcome partition. Then $\Gamma$, $\tau$, $B_k$, and detector line-shape residuals are projections from one escape/dephasing measure.
+
+The current executable carrier evaluator computes those projection rows for a two-corridor toy packet and correctly returns `toy_structure_only` with `scoreDecision: no_score_increase`. It is useful because it fixes the required input shape before a retained metastable branch exists; it does not change the `EQ-31` score.
 
 ### Closure Status
 

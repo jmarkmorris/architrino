@@ -427,6 +427,23 @@ $$
 5. Exchange loop pullback for spin-statistics.
 6. Effective $C_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, $T_{\mathrm{eff}}$, and weak/matter compatibility only as downstream consumers.
 
+### Retained-Row Status Map
+
+Current status: `blocked_missing_retained_non_gauge_spinor_row`.
+
+Score decision: `no_score_increase`. `EQ-15` remains `2` until a retained non-coplanar row populates the same-record pullback and passes gauge-control, quotient, and angular-momentum residuals.
+
+| Required row family | Required fields | Current status |
+| --- | --- | --- |
+| Non-coplanar path row | $D_{HML}(s)$, $\mu_{\mathrm{nc}}^{2\pi}$, $\mu_{\mathrm{nc}}^{4\pi}$, $\gamma_{2\pi}$, $\gamma_{4\pi}$ | `uncomputed` |
+| Active-root transport row | $t_{0,r_\star}^{(b_\star)}(s)$, root margins, $k_{r_\star}(s)$, $\Psi_{r_\star}(s)$ | `missing_retained_row` |
+| Emission / causal-writhe / chirality row | $\mathcal E_{r_\star}(s)$, $\Delta e$, $W_{r_\star}(s)$, $\Pi_{W,r_\star}$, $\Delta w$, $\operatorname{Prov}_\chi$, $\Delta\chi$ | `uncomputed` |
+| Quotient and gauge-control row | $q_{r_\star}^{2\pi}$, $q_{r_\star}^{4\pi}$, gauge probe table $g\cdot\widetilde r$, $\Delta_{\mathrm{flip}}$, physical-vs-gauge witness | `blocked_missing_probe_table` |
+| Conservation and return row | $\mathcal J_{\mathrm{tot}}^{\mathrm{path}}(s)$, $\Delta_{\mathbf J}^{2\pi}$, $\Delta_{\mathbf J}^{4\pi}$, doubled-path return map | `missing_retained_row` |
+| Downstream exchange/sign pullback | $\Pi_{W,r_\star}^{2\pi}=1$, $\Pi_{W,r_\star}^{4\pi}=0$, gauge-control pass, quotient witness, angular-momentum residual pass | `blocked_until_same_row_passes` |
+
+The populated null-control material only shows ordinary visible $SO(3)$ closure. It is not spinor support. A score move to `3` requires a retained row with odd $2\pi$ parity, $4\pi$ restoration, gauge-control pass, quotient witness, and angular-momentum residuals on the same branch record.
+
 ### First Mathematical Object
 
 The first object is the same-record pullback residual
