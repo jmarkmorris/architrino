@@ -93,7 +93,7 @@ $$
 \epsilon\to0.
 $$
 
-If the separatrix or corridor boundary carries positive measure, the apparent $\gamma_k$ is detector-tuned and the statistical lane must stay below score movement.
+If the separatrix or corridor boundary carries positive measure, the apparent $\gamma_k$ is detector-tuned and the statistical lane must stay below score movement. [Equation Closure Pass 2026-06-23 V](equation-closure-pass-2026-06-23-v.md) makes this score-neutral burden executable as first-exit, null-separatrix, and refinement-cocycle diagnostics on the finite-window carrier runner.
 
 ## `S_eq` Fiber Product
 
@@ -128,7 +128,7 @@ $$
 \operatorname{RowId}_R(\mathfrak D_R)=1.
 $$
 
-This is still score-neutral until the first retained row, `raw_labeled_rows_preserved_on_retained_history`, is accepted and source-backed.
+This is still score-neutral until the first retained row, `raw_labeled_rows_preserved_on_retained_history`, is accepted and source-backed. The retained-domain checker now also reports whether all legs share the declared `commonCarrierId`; the attempt scaffold passes that structural fiber-product carrier check but remains unaccepted evidence.
 
 ## `EQ-24` Same-Window Coefficient Discriminator
 
@@ -158,7 +158,7 @@ c_{X,\mathrm{disp}}^2-c_{X,\mathrm{el}}^2
 \ell\to0,
 $$
 
-with delayed support or $\mathcal R_{\mathrm{KK}}$ behavior on the same response kernel. This is the first real same-window stress/strain or acoustic-speed result. A coefficient that passes only at one discretization scale remains a numerical artifact and cannot raise `EQ-24`.
+with delayed support or $\mathcal R_{\mathrm{KK}}$ behavior on the same response kernel. This is the first real same-window stress/strain or acoustic-speed result. The executable reducer now separates `numericAgreementStatus` from accepted `acousticElasticAgreementStatus`; a coefficient that passes only at one discretization scale, or passes numerically on an unaccepted agreement row, remains an artifact signal and cannot raise `EQ-24`.
 
 ## Spinor And Magnetic Moment Route
 
@@ -186,6 +186,8 @@ $$
 $$
 
 with precession read as connection holonomy around the ordered-frame period loop. The leading $g=2$ claim should remain a theorem target: prove the holonomy-to-spin transport ratio is $2:1$ for the double-cover generator, then assign $g-2$ to nonuniform exposure, dressing, apparatus, and Noether sea response residuals.
+
+[Equation Closure Pass 2026-06-23 W](equation-closure-pass-2026-06-23-w.md) turns this route into a score-neutral checker. The checker-ready route is not evidence-ready: the attempt fixture has $\eta_{\mathrm{spin}}=1$ and $g_{\mathrm{lead}}=2$ numerically, but it still blocks at `missing_accepted_ordered_frame_loop`.
 
 ## Tri-Binary Bivector Sector Certificate
 
@@ -218,10 +220,10 @@ The Gram matrix $\ell_{ab}$ separates continuous sector geometry: coplanar cycli
 
 No score changes. The review supplies better mathematical shapes and first calculations, but it does not supply accepted retained evidence. Current reducers still report:
 
-- `S_eq`: `blocked_missing_retained_event_or_domain`, first blocker `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
-- Noether sea density-compression: `blocked_missing_rows`, first blocker `missing_accepted_theta_sea_rho_NS`.
+- `S_eq`: `blocked_missing_retained_event_or_domain`, first blocker `missing_accepted_raw_labeled_rows_preserved_on_retained_history`; the attempt fixture now reports `fiberProductCarrierPass: true` only as structural evidence.
+- Noether sea density-compression: `blocked_missing_rows`, first blocker `missing_accepted_theta_sea_rho_NS`; the attempt fixture reports `numericAgreementStatus: passed` but `acousticElasticAgreementStatus: attempt_numeric_passed`.
 - Native Compton/recoil: `comparison_replay_closed_native_rows_missing`, first blocker `missing_accepted_photon_gate_A_input_output`.
-- Finite-window statistics: `toy_structure_only`, first blocker `missing_accepted_W`.
+- Finite-window statistics: `toy_structure_only`, first blocker `missing_accepted_W`; the toy reports first-exit corridor semantics but fails null-separatrix and refinement compatibility diagnostics.
 
 ## Promotion Classification
 

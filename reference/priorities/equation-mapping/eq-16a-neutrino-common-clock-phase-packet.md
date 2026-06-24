@@ -310,6 +310,23 @@ $$
 
 Here $r_{\mathrm{atm/sol}}$ is the updateable atmospheric-to-solar gap benchmark, $\mathcal Z$ penalizes an all-zero residual, $\mathcal S_{\mathrm{dbl+sgl}}$ penalizes equal residual spacing when the target is doublet-plus-singlet, $\mathcal S_{\widehat\lambda}$ checks the identity-shift-invariant normalized spectrum, $\mathcal R_{\mathrm{PMNS}}$ measures readout mismatch, and $\mathcal R_{\mathrm{weak,domain}}$ reports any split weak-exposure domain.
 
+## Executable Phase-Operator Checker Status
+
+[neutrino-common-clock-phase-operator.mjs](../../../scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs) now implements the score-neutral checker for $\Theta_{\nu,16A}$. It consumes the retained neutral-lepton branch, $S_{\mathrm{eq}}$, common clock, residual operator, phase gaps, spectrum shape, PMNS readout, weak domain, matter correction, cancellation, and event-ledger rows.
+
+The current attempt fixture [neutrino-common-clock-phase-attempt.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json) has the intended `(f,f,f)` common-clock and residual-gap numeric shape: the equal clock factors out, $\bar H_{\nu}^{\mathrm{res}}$ is traceless and nonzero, $\Delta\lambda_{31}=\Delta\lambda_{32}+\Delta\lambda_{21}$, the atmospheric-to-solar schematic ratio is $32.5$, the spectrum is doublet-plus-singlet, and cancellation does not erase the residual operator.
+
+Those numeric passes are not score evidence because every source-bearing row is still `attempt`. The run is:
+
+```text
+status: blocked_missing_rows
+scoreDecision: no_score_increase
+nextBlocker: missing_accepted_neutral_lepton_retained_branch
+inheritedSEqBlocker: missing_accepted_raw_labeled_rows_preserved_on_retained_history
+```
+
+This is the intended disposition. The checker is a common-clock/residual-phase guardrail, not a PMNS fit and not proof that `(f,f,f)` has been retained.
+
 ## Common Equation Candidates
 
 | Candidate | Equation pattern | Reuse outside neutrinos |

@@ -501,6 +501,20 @@ $$
 
 The pass condition is not that every row is perfect. The pass condition is that the residual decomposition reports exactly which shared row is responsible for each mismatch and whether the same row is reused by the other observables.
 
+## Executable Residual Checker Status
+
+[shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now implements the score-neutral checker for this packet. It consumes $\Theta_{\mathrm{obs}}$, the four subrecords $\Theta_{\mathrm{src}}$, $\Theta_{\mathrm{read}}$, $\Theta_{\mathrm{therm/prov}}$, and $\Theta_{\mathrm{gal}}$, the provenance ledger $\mathcal L_{E\mathbf p\mathbf J}$, `BBN`, `CMB`, `growth`, and `RAR` projection rows, and the shared-key set $\mathcal K$.
+
+The current attempt fixture [shared-observation-residual-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-residual-attempt.v1.json) declares all expected shared keys and computes a residual vector, but every source-bearing row is still `attempt`. The run is therefore:
+
+```text
+status: blocked_missing_rows
+scoreDecision: no_score_increase
+nextBlocker: missing_accepted_theta_obs
+```
+
+This is the intended disposition. The checker is a residual-ledger guardrail, not a cosmology fit and not score evidence until one retained branch populates an accepted, durable-source $\Theta_{\mathrm{obs}}$ row.
+
 ## Failure Modes And Falsifiers
 
 | Failure mode | Falsifier |

@@ -11,6 +11,10 @@ const DEFAULT_TOLERANCES = {
   retune: 1e-12,
   nullSeparatrix: 1e-3,
   refinement: 1e-3,
+  detectorRefinement: 1e-3,
+  crossSection: 1e-3,
+  formFactorCovariance: 1e-3,
+  regimePurity: 1e-3,
 };
 const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
 const SCORE_DECISION = "no_score_increase";
@@ -64,12 +68,16 @@ const DEFAULT_INPUT = {
     exitCorridors: [
       {
         id: "C_alpha",
+        boundaryComponentId: "partial_B_star_alpha",
+        measureStage: "pre_detector_escape",
         measure: 0.03,
         retainedStatus: "toy",
         ledgerStatus: "toy",
       },
       {
         id: "C_beta",
+        boundaryComponentId: "partial_B_star_beta",
+        measureStage: "pre_detector_escape",
         measure: 0.01,
         retainedStatus: "toy",
         ledgerStatus: "toy",
@@ -82,6 +90,8 @@ const DEFAULT_INPUT = {
       retainedStatus: "toy",
     },
     refinementCompatibility: {
+      parentWindowId: "W_eq31_parent_toy",
+      childWindowId: "W_eq31_toy",
       cocycleDefect: 0.02,
       tolerance: 0.001,
       retainedStatus: "toy",
@@ -175,10 +185,12 @@ function summarizeOutput(output) {
     generatedAt: output.generatedAt,
     carrier: output.carrier,
     summary: output.summary,
+    eq30: output.eq30,
     eq31: output.eq31,
     missingAcceptedRows: output.retainedAcceptance.missingAcceptedRows,
     rowStatuses: output.retainedAcceptance.rowStatuses,
     rowReasons: output.retainedAcceptance.rowReasons,
+    eq30Acceptance: output.eq30Acceptance,
     corridorDiagnostics: output.corridorDiagnostics,
   };
 }
@@ -193,6 +205,8 @@ function evaluateCarrier(input) {
   const corridors = parseCorridors(carrier.exitCorridors ?? [], duration, constants);
   const retainedAcceptance = evaluateRetainedAcceptance(carrier, tolerances);
   const massRows = computeMassRows(corridors, totalMass, tolerances);
+  const eq30 = computeEq30Rows(carrier, duration, tolerances);
+  const eq30Acceptance = evaluateEq30Acceptance(carrier);
   const eq31 = computeEq31Rows(corridors, constants);
   const corridorDiagnostics = evaluateCorridorDiagnostics(carrier, tolerances);
   const status = decideStatus(
@@ -200,6 +214,8 @@ function evaluateCarrier(input) {
     massRows,
     carrier,
     corridorDiagnostics,
+    eq30,
+    eq30Acceptance,
   );
 
   return {
@@ -225,6 +241,13 @@ function evaluateCarrier(input) {
       acceptedCarrierRows: retainedAcceptance.accepted,
       massClosurePassed: massRows.massClosurePassed,
       hiddenRetunePassed: retainedAcceptance.hiddenRetunePassed,
+      eq30RowsComputed: eq30.computed,
+      eq30RowsAccepted: eq30Acceptance.accepted,
+      eq30PreparedFluxPassed: eq30.preparedFluxPass,
+      eq30DetectorRefinementPassed: eq30.detectorRefinementPass,
+      eq30CrossSectionPassed: eq30.crossSectionPass,
+      eq30FormFactorCovariancePassed: eq30.formFactorCovariancePass,
+      eq30RegimePurityPassed: eq30.regimePurityPass,
       eq31RowsComputed: eq31.computed,
       corridorCount: corridors.length,
       firstExitCorridorsDeclared:
@@ -232,12 +255,15 @@ function evaluateCarrier(input) {
       nullSeparatrixPassed: corridorDiagnostics.nullSeparatrixPassed,
       refinementCompatibilityPassed:
         corridorDiagnostics.refinementCompatibilityPassed,
-      nextBlocker: firstBlocker(
+      nextBlocker: firstBlocker({
         retainedAcceptance,
         massRows,
+        carrier,
+        eq30,
+        eq30Acceptance,
         eq31,
         corridorDiagnostics,
-      ),
+      }),
     },
     finiteWindowCarrier: {
       window: summarizeRow(carrier.window),
@@ -263,10 +289,19 @@ function evaluateCarrier(input) {
         ["cocycleDefect", "tolerance"],
       ),
       noHiddenRetuneWitness: summarizeRow(carrier.noHiddenRetuneWitness, ["residual"]),
+      preparedEnsemble: summarizeRow(carrier.preparedEnsemble),
+      fluxCalibration: summarizeRow(carrier.fluxCalibration, ["incomingFlux"]),
+      exposureDistribution: summarizeRow(
+        carrier.exposureDistribution,
+        ["measurePreservingQuotient"],
+      ),
+      regime: summarizeRow(carrier.regime, ["elasticClassId", "inelasticLeakage"]),
     },
     retainedAcceptance,
+    eq30Acceptance,
     massRows,
     corridorDiagnostics,
+    eq30,
     eq31,
   };
 }
@@ -296,6 +331,22 @@ function parseTolerances(raw) {
       raw.refinement ?? DEFAULT_TOLERANCES.refinement,
       "tolerances.refinement",
     ),
+    detectorRefinement: positiveNumber(
+      raw.detectorRefinement ?? DEFAULT_TOLERANCES.detectorRefinement,
+      "tolerances.detectorRefinement",
+    ),
+    crossSection: positiveNumber(
+      raw.crossSection ?? DEFAULT_TOLERANCES.crossSection,
+      "tolerances.crossSection",
+    ),
+    formFactorCovariance: positiveNumber(
+      raw.formFactorCovariance ?? DEFAULT_TOLERANCES.formFactorCovariance,
+      "tolerances.formFactorCovariance",
+    ),
+    regimePurity: positiveNumber(
+      raw.regimePurity ?? DEFAULT_TOLERANCES.regimePurity,
+      "tolerances.regimePurity",
+    ),
   };
 }
 
@@ -311,6 +362,8 @@ function parseCorridors(rawCorridors, duration, constants) {
     const gamma = measure / duration;
     return {
       id: corridor.id ?? `corridor_${index}`,
+      boundaryComponentId: corridor.boundaryComponentId ?? null,
+      measureStage: corridor.measureStage ?? null,
       measure,
       gamma,
       widthContribution: constants.hbar * gamma,
@@ -357,15 +410,211 @@ function computeEq31Rows(corridors, constants) {
   };
 }
 
+function computeEq30Rows(carrier, duration, tolerances) {
+  const fluxCalibration = carrier.fluxCalibration ?? {};
+  const incomingFlux = finiteNumberOrNull(fluxCalibration.incomingFlux);
+  const preparedEnsemble = carrier.preparedEnsemble ?? {};
+  const detectedClassMeasures = parseDetectedClassMeasures(
+    carrier.detectedClassMeasures ?? [],
+    tolerances,
+  );
+  const classMeasureById = new Map(
+    detectedClassMeasures.map((row) => [row.classId, row.measure]),
+  );
+  const crossSectionComparisons = parseCrossSectionComparisons({
+    rawComparisons: carrier.crossSectionComparisons ?? [],
+    classMeasureById,
+    incomingFlux,
+    duration,
+    tolerances,
+  });
+  const formFactorSamples = parseFormFactorSamples(
+    carrier.formFactorSamples ?? [],
+    tolerances,
+  );
+  const exposureDistribution = carrier.exposureDistribution ?? {};
+  const regime = carrier.regime ?? {};
+  const regimePurityResidual = finiteNumberOrNull(
+    regime.inelasticLeakage ?? regime.regimePurityResidual ?? regime.residual,
+  );
+  const totalDetectedMass = detectedClassMeasures.reduce(
+    (sum, row) => sum + row.measure,
+    0,
+  );
+  const preparedFluxPass =
+    concreteString(preparedEnsemble.id) &&
+    incomingFlux !== null &&
+    incomingFlux > 0;
+  const detectorRefinementPass =
+    detectedClassMeasures.length > 0 &&
+    detectedClassMeasures.every((row) => row.detectorRefinementPass);
+  const crossSectionPass =
+    crossSectionComparisons.length > 0 &&
+    crossSectionComparisons.every((row) => row.crossSectionPass);
+  const formFactorCovariancePass =
+    exposureDistribution.measurePreservingQuotient === true &&
+    formFactorSamples.length > 0 &&
+    formFactorSamples.every((row) => row.formFactorCovariancePass);
+  const regimePurityPass =
+    regimePurityResidual !== null &&
+    regimePurityResidual <= tolerances.regimePurity;
+
+  return {
+    computed:
+      preparedFluxPass &&
+      detectedClassMeasures.length > 0 &&
+      crossSectionComparisons.length > 0 &&
+      formFactorSamples.length > 0,
+    preparedEnsembleId: preparedEnsemble.id ?? null,
+    incomingFlux,
+    duration,
+    preparedFluxPass,
+    detectedClassMeasures,
+    totalDetectedMass,
+    detectorRefinementPass,
+    crossSectionComparisons,
+    crossSectionPass,
+    exposureDistribution: {
+      id: exposureDistribution.id ?? null,
+      measurePreservingQuotient:
+        exposureDistribution.measurePreservingQuotient ?? null,
+    },
+    formFactorSamples,
+    formFactorCovariancePass,
+    regime: {
+      id: regime.id ?? null,
+      elasticClassId: regime.elasticClassId ?? null,
+      inelasticLeakage: regimePurityResidual,
+      tolerance: tolerances.regimePurity,
+      regimePurityPass,
+    },
+    regimePurityPass,
+  };
+}
+
+function parseDetectedClassMeasures(rawRows, tolerances) {
+  if (!Array.isArray(rawRows)) {
+    return [];
+  }
+  return rawRows.map((row, index) => {
+    const measure = nonnegativeNumber(
+      row.measure,
+      `carrier.detectedClassMeasures[${index}].measure`,
+    );
+    const detectorRefinementResidual = finiteNumberOrNull(
+      row.detectorRefinementResidual ?? row.refinementResidual ?? row.residual,
+    );
+    return {
+      classId: row.classId ?? row.id ?? `class_${index}`,
+      measure,
+      detectorRefinementResidual,
+      tolerance: tolerances.detectorRefinement,
+      detectorRefinementPass:
+        detectorRefinementResidual !== null &&
+        detectorRefinementResidual <= tolerances.detectorRefinement,
+      retainedStatus: row.retainedStatus ?? row.status ?? null,
+    };
+  });
+}
+
+function parseCrossSectionComparisons({
+  rawComparisons,
+  classMeasureById,
+  incomingFlux,
+  duration,
+  tolerances,
+}) {
+  if (!Array.isArray(rawComparisons)) {
+    return [];
+  }
+  return rawComparisons.map((row, index) => {
+    const classId = row.classId ?? row.id ?? `comparison_${index}`;
+    const measure = classMeasureById.get(classId) ?? null;
+    const targetSigma = finiteNumberOrNull(row.targetSigma ?? row.observedSigma);
+    const computedSigma =
+      measure !== null && incomingFlux !== null && incomingFlux > 0
+        ? measure / (incomingFlux * duration)
+        : null;
+    const absoluteResidual =
+      computedSigma === null || targetSigma === null
+        ? null
+        : Math.abs(computedSigma - targetSigma);
+    const normalizedResidual =
+      absoluteResidual === null || targetSigma === null
+        ? null
+        : absoluteResidual / Math.max(Math.abs(targetSigma), 1);
+    return {
+      classId,
+      measure,
+      computedSigma,
+      targetSigma,
+      absoluteResidual,
+      normalizedResidual,
+      tolerance: finiteNumberOrNull(row.tolerance) ?? tolerances.crossSection,
+      crossSectionPass:
+        normalizedResidual !== null &&
+        normalizedResidual <=
+          (finiteNumberOrNull(row.tolerance) ?? tolerances.crossSection),
+      retainedStatus: row.retainedStatus ?? row.status ?? null,
+    };
+  });
+}
+
+function parseFormFactorSamples(rawRows, tolerances) {
+  if (!Array.isArray(rawRows)) {
+    return [];
+  }
+  return rawRows.map((row, index) => {
+    const value = finiteNumberOrNull(row.F_Q ?? row.value);
+    const rotatedValue = finiteNumberOrNull(row.F_rotated ?? row.rotatedValue);
+    const covarianceResidual =
+      finiteNumberOrNull(row.covarianceResidual ?? row.residual) ??
+      (value !== null && rotatedValue !== null
+        ? Math.abs(value - rotatedValue)
+        : null);
+    const tolerance =
+      finiteNumberOrNull(row.tolerance) ?? tolerances.formFactorCovariance;
+    return {
+      qId: row.qId ?? row.id ?? `q_${index}`,
+      value,
+      rotatedValue,
+      covarianceResidual,
+      tolerance,
+      formFactorCovariancePass:
+        covarianceResidual !== null && covarianceResidual <= tolerance,
+      retainedStatus: row.retainedStatus ?? row.status ?? null,
+    };
+  });
+}
+
 function evaluateCorridorDiagnostics(carrier, tolerances) {
   const corridorSemantics = carrier.corridorSemantics ?? {};
   const detectorKernelStage = corridorSemantics.detectorKernelStage ?? null;
-  const firstExitCorridorsDeclared =
+  const corridorRows = (carrier.exitCorridors ?? []).map((corridor, index) => {
+    const boundaryComponentId = corridor.boundaryComponentId ?? null;
+    const measureStage = corridor.measureStage ?? null;
+    const passed =
+      concreteString(corridor.id) &&
+      concreteString(boundaryComponentId) &&
+      measureStage === "pre_detector_escape";
+    return {
+      id: corridor.id ?? `corridor_${index}`,
+      boundaryComponentId,
+      measureStage,
+      passed,
+      reason: passed ? "passed" : "corridor_not_first_exit_pre_detector",
+    };
+  });
+  const firstExitHeaderPassed =
     corridorSemantics.mode === "first_exit" &&
     concreteString(corridorSemantics.basinId) &&
     concreteString(corridorSemantics.boundaryId) &&
     (detectorKernelStage === null ||
       detectorKernelStage === "post_escape_pushforward");
+  const firstExitCorridorsDeclared =
+    firstExitHeaderPassed &&
+    corridorRows.length > 0 &&
+    corridorRows.every((row) => row.passed);
 
   const nullSeparatrix = carrier.nullSeparatrix ?? {};
   const nullSeparatrixMass = finiteNumberOrNull(
@@ -390,6 +639,37 @@ function evaluateCorridorDiagnostics(carrier, tolerances) {
     refinementCocycleDefect <= refinementTolerance;
 
   return {
+    firstExit: {
+      mode: corridorSemantics.mode ?? null,
+      basinId: corridorSemantics.basinId ?? null,
+      boundaryId: corridorSemantics.boundaryId ?? null,
+      detectorKernelStage,
+      headerPassed: firstExitHeaderPassed,
+      corridorRows,
+      passed: firstExitCorridorsDeclared,
+      reason: firstExitCorridorsDeclared
+        ? "passed"
+        : "first_exit_corridors_not_declared_before_detector",
+    },
+    nullSeparatrix: {
+      epsilon: nullSeparatrix.epsilon ?? null,
+      neighborhoodMass: nullSeparatrixMass,
+      tolerance: nullSeparatrixTolerance,
+      passed: nullSeparatrixPassed,
+      reason: nullSeparatrixPassed
+        ? "passed"
+        : "null_separatrix_mass_above_tolerance_or_missing",
+    },
+    refinementCompatibility: {
+      parentWindowId: refinementCompatibility.parentWindowId ?? null,
+      childWindowId: refinementCompatibility.childWindowId ?? null,
+      cocycleDefect: refinementCocycleDefect,
+      tolerance: refinementTolerance,
+      passed: refinementCompatibilityPassed,
+      reason: refinementCompatibilityPassed
+        ? "passed"
+        : "refinement_cocycle_defect_above_tolerance_or_missing",
+    },
     firstExitCorridorsDeclared,
     detectorKernelStage,
     nullSeparatrixMass,
@@ -409,9 +689,11 @@ function evaluateRetainedAcceptance(carrier, tolerances) {
     rowStatus("Q", carrier.coarseGraining),
     rowStatus("K_det", carrier.detectorKernel),
     rowStatus("B", carrier.outcomePartition),
-    corridorFamilyRowStatus("C", carrier.exitCorridors ?? []),
     rowStatus("S_retune", carrier.noHiddenRetuneWitness),
   ];
+  if (requiresCorridorFamily(carrier)) {
+    rowStatuses.push(corridorFamilyRowStatus("C", carrier.exitCorridors ?? []));
+  }
   const missingAcceptedRows = rowStatuses
     .filter((row) => !row.accepted)
     .map((row) => row.id);
@@ -436,6 +718,96 @@ function evaluateRetainedAcceptance(carrier, tolerances) {
     rowStatuses,
     rowReasons,
   };
+}
+
+function evaluateEq30Acceptance(carrier) {
+  if (carrier.row !== "EQ-30") {
+    return {
+      applicable: false,
+      accepted: true,
+      missingAcceptedRows: [],
+      rowStatuses: [],
+      rowReasons: {},
+    };
+  }
+  const rowStatuses = [
+    rowStatus("Gamma_a", carrier.preparedEnsemble),
+    rowStatus("Phi_in", carrier.fluxCalibration),
+    rowFamilyStatus("detected_class_measures", carrier.detectedClassMeasures ?? []),
+    rowFamilyStatus("cross_section_comparisons", carrier.crossSectionComparisons ?? []),
+    rowStatus("rho_exp", carrier.exposureDistribution),
+    rowFamilyStatus("form_factor_samples", carrier.formFactorSamples ?? []),
+    rowStatus("elastic_regime", carrier.regime),
+  ];
+  const missingAcceptedRows = rowStatuses
+    .filter((row) => !row.accepted)
+    .map((row) => row.id);
+  return {
+    applicable: true,
+    accepted: missingAcceptedRows.length === 0,
+    missingAcceptedRows,
+    rowStatuses,
+    rowReasons: Object.fromEntries(rowStatuses.map((row) => [row.id, row.reason])),
+  };
+}
+
+function rowFamilyStatus(id, rows) {
+  if (!Array.isArray(rows) || rows.length === 0) {
+    return {
+      id,
+      status: null,
+      accepted: false,
+      reason: "missing_row_family",
+    };
+  }
+  const firstMissingRetained = rows.find(
+    (row) => !isAcceptedStatus(row.retainedStatus ?? row.status),
+  );
+  if (firstMissingRetained) {
+    return {
+      id,
+      status: firstMissingRetained.retainedStatus ?? firstMissingRetained.status ?? null,
+      accepted: false,
+      reason: "row_family_not_accepted",
+    };
+  }
+  const firstMissingIdentity = rows.find(
+    (row) => !concreteString(row.id ?? row.classId ?? row.qId),
+  );
+  if (firstMissingIdentity) {
+    return {
+      id,
+      status: "accepted",
+      accepted: false,
+      reason: "row_family_identity_not_concrete",
+    };
+  }
+  const firstMissingSource = rows.find(
+    (row) =>
+      !sourceReferenceExists(row.sourcePath) &&
+      !sourceReferenceExists(row.source),
+  );
+  if (firstMissingSource) {
+    return {
+      id,
+      status: "accepted",
+      accepted: false,
+      reason: "row_family_source_not_found",
+    };
+  }
+  return {
+    id,
+    status: "accepted",
+    accepted: true,
+    reason: "accepted",
+  };
+}
+
+function requiresCorridorFamily(carrier) {
+  return (
+    carrier.row === "EQ-31" ||
+    (Array.isArray(carrier.exitCorridors) && carrier.exitCorridors.length > 0)
+  );
 }
 
 function corridorFamilyRowStatus(id, corridors) {
@@ -556,7 +928,14 @@ function summarizeRow(row, extraKeys = []) {
   return summary;
 }
 
-function decideStatus(retainedAcceptance, massRows, carrier, corridorDiagnostics) {
+function decideStatus(
+  retainedAcceptance,
+  massRows,
+  carrier,
+  corridorDiagnostics,
+  eq30,
+  eq30Acceptance,
+) {
   if (!massRows.massClosurePassed) {
     return "blocked_corridor_measure_exceeds_window_measure";
   }
@@ -568,23 +947,57 @@ function decideStatus(retainedAcceptance, massRows, carrier, corridorDiagnostics
   if (!retainedAcceptance.accepted) {
     return "blocked_missing_accepted_retained_rows";
   }
-  if (!corridorDiagnostics.firstExitCorridorsDeclared) {
-    return "blocked_missing_first_exit_corridor_semantics";
+  if (carrier.row === "EQ-30") {
+    if (!eq30Acceptance.accepted) {
+      return "blocked_missing_accepted_eq30_rows";
+    }
+    if (!eq30.computed) {
+      return "blocked_missing_eq30_projection_rows";
+    }
+    if (!eq30.preparedFluxPass) {
+      return "blocked_prepared_flux_mapping";
+    }
+    if (!eq30.detectorRefinementPass) {
+      return "blocked_detector_refinement";
+    }
+    if (!eq30.crossSectionPass) {
+      return "blocked_cross_section_residual";
+    }
+    if (!eq30.formFactorCovariancePass) {
+      return "blocked_form_factor_covariance";
+    }
+    if (!eq30.regimePurityPass) {
+      return "blocked_regime_purity";
+    }
+    return "accepted_retained_statistical_carrier";
   }
-  if (!corridorDiagnostics.nullSeparatrixPassed) {
-    return "blocked_null_separatrix_positive_mass";
-  }
-  if (!corridorDiagnostics.refinementCompatibilityPassed) {
-    return "blocked_refinement_cocycle_defect";
+  if (requiresCorridorFamily(carrier)) {
+    if (!corridorDiagnostics.firstExitCorridorsDeclared) {
+      return "blocked_missing_first_exit_corridor_semantics";
+    }
+    if (!corridorDiagnostics.nullSeparatrixPassed) {
+      return "blocked_null_separatrix_positive_mass";
+    }
+    if (!corridorDiagnostics.refinementCompatibilityPassed) {
+      return "blocked_refinement_cocycle_defect";
+    }
   }
   return "accepted_retained_statistical_carrier";
 }
 
-function firstBlocker(retainedAcceptance, massRows, eq31, corridorDiagnostics) {
+function firstBlocker({
+  retainedAcceptance,
+  massRows,
+  carrier,
+  eq30,
+  eq30Acceptance,
+  eq31,
+  corridorDiagnostics,
+}) {
   if (!massRows.massClosurePassed) {
     return "corridor_measure_exceeds_window_measure";
   }
-  if (!eq31.computed) {
+  if (requiresCorridorFamily(carrier) && !eq31.computed) {
     return "missing_positive_escape_measure";
   }
   if (retainedAcceptance.missingAcceptedRows.length > 0) {
@@ -596,14 +1009,40 @@ function firstBlocker(retainedAcceptance, massRows, eq31, corridorDiagnostics) {
   if (!retainedAcceptance.hiddenRetunePassed) {
     return "no_hidden_retune_witness";
   }
-  if (!corridorDiagnostics.firstExitCorridorsDeclared) {
-    return "missing_first_exit_corridor_semantics";
+  if (carrier.row === "EQ-30") {
+    if (eq30Acceptance.missingAcceptedRows.length > 0) {
+      return `missing_accepted_${eq30Acceptance.missingAcceptedRows[0]}`;
+    }
+    if (!eq30.computed) {
+      return "missing_eq30_projection_rows";
+    }
+    if (!eq30.preparedFluxPass) {
+      return "prepared_flux_mapping";
+    }
+    if (!eq30.detectorRefinementPass) {
+      return "detector_refinement_residual";
+    }
+    if (!eq30.crossSectionPass) {
+      return "cross_section_residual";
+    }
+    if (!eq30.formFactorCovariancePass) {
+      return "form_factor_covariance";
+    }
+    if (!eq30.regimePurityPass) {
+      return "regime_purity";
+    }
+    return null;
   }
-  if (!corridorDiagnostics.nullSeparatrixPassed) {
-    return "null_separatrix_positive_mass";
-  }
-  if (!corridorDiagnostics.refinementCompatibilityPassed) {
-    return "refinement_cocycle_defect";
+  if (requiresCorridorFamily(carrier)) {
+    if (!corridorDiagnostics.firstExitCorridorsDeclared) {
+      return "missing_first_exit_corridor_semantics";
+    }
+    if (!corridorDiagnostics.nullSeparatrixPassed) {
+      return "null_separatrix_positive_mass";
+    }
+    if (!corridorDiagnostics.refinementCompatibilityPassed) {
+      return "refinement_cocycle_defect";
+    }
   }
   return null;
 }

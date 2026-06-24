@@ -55,8 +55,8 @@ No score changes. `EQ-30` and `EQ-31` remain `2` in `6/23 b`; the carrier has no
 
 ## Review Disposition
 
-The external geometry/topology review was integrated in [Equation Closure Pass 2026-06-23 U](equation-closure-pass-2026-06-23-u.md). The durable result is not a score change; it is the stronger requirement that the finite-window carrier prove at least one refinement-stable object, beginning with the null-separatrix estimate and first-exit corridor additivity.
+The external geometry/topology review was integrated in [Equation Closure Pass 2026-06-23 U](equation-closure-pass-2026-06-23-u.md), and the score-neutral runner hardening was implemented in [Equation Closure Pass 2026-06-23 V](equation-closure-pass-2026-06-23-v.md). The durable result is not a score change; it is the stronger requirement that the finite-window carrier prove at least one refinement-stable object, beginning with the null-separatrix estimate, first-exit corridor additivity, and refinement-cocycle compatibility.
 
 ## Next Closure Step
 
-Pick one retained or toy-but-structure-faithful example and instantiate $\mathcal C_{\mathrm{stat}}^{W,T}$ through all fields. The lowest-risk options are an elastic scattering packet for `EQ-30` or a metastable escape-measure packet for `EQ-31`.
+Replace the toy `EQ-31` carrier with one retained source-backed carrier whose `W`, $\Phi_T$, $\mu_{*,T}$, $\mathcal Q$, detector kernel, outcome partition, corridor family, no-hidden-retune witness, first-exit corridor rows, null-separatrix estimate, and refinement-cocycle row all pass together. The lowest-risk options are an elastic scattering packet for `EQ-30` or a metastable escape-measure packet for `EQ-31`.

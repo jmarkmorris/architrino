@@ -391,7 +391,7 @@ These candidates are reusable enough to become independent equation rows or name
 | `same_root_conservation_checksum` | $\mathcal{R}_{\mathrm{same}}(X,Y;\mathfrak{B})=0$ | Every equation row that claims common branch provenance. | Internal/candidate; native root data exist, but no all-row checksum is executed. |
 | `event_ledger_balance_equation` | $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf 0$ | Photon, reaction, radiation, measurement, recoil, resonance, and branch-transition rows. | Already established as priority grammar; needs sector instantiations. |
 | `flux_boundary_balance_equation` | $\Delta_W Q_{\mathrm{ret}}+\Phi_{Q,\partial\Omega}-Q_{\mathrm{ext}}-Q_{\mathrm{event}}=R_{Q,W}$ | Noether sea transport, thermodynamics, cosmology, entropy, and finite detector windows. | Internal/candidate; energy version has native support, vector rows need worked examples. |
-| `finite_window_conservation_residual` | $\mathcal{R}_{01-05}^{\mathfrak{B}}(W)$ with $(\epsilon_E,\epsilon_P,\epsilon_J)$ | Mass-shell, Lorentz, effective metric, photon, and precision rows. | Internal/candidate; equation grammar is explicit, executed residual absent. |
+| `finite_window_conservation_residual` | $\mathcal{R}_{01-05}^{\mathfrak{B}}(W)$ with $(\epsilon_E,\epsilon_P,\epsilon_J)$ | Mass-shell, Lorentz, effective metric, photon, and precision rows. | Executable attempt exists in [finite-window-conservation-residual.mjs](../../../scripts/equation-mapping/finite-window-conservation-residual.mjs); current fixture blocks at `missing_accepted_branch_chart`. |
 | `same_source_self_hit_policy` | $\operatorname{SelfRootSig}_{i}(\mathfrak{B})$ attached to $\operatorname{RootSig}_X$ | Self-hit energy, angular momentum, photon branch maintenance, and nested shell braid transitions. | Internal/candidate; prevents same-source rows from being hidden inside cross-site ledgers. |
 | `wake_energy_crosswalk_residual` | $\epsilon_{\mathrm{cross}}^{\mathfrak{B}}$ comparing action-boundary, work-integral, and boundary-flux routes. | Delay-energy, effective Lagrangian, thermodynamics, and no-runaway claims. | Internal/candidate; required when more than one wake-energy construction is invoked. |
 | `ledger_transition_gauge_matching` | Equality of pre/post branch energy gauges plus declared $\Delta_{\mathrm{ledger}}$ at root changes. | Action quantization, nested shell braid energy routing, and branch-transition packets. | Internal/candidate; strong local use in energy bookkeeping, no general theorem yet. |
@@ -405,7 +405,7 @@ These candidates are reusable enough to become independent equation rows or name
 
 ## First Mathematical Object To Add Next
 
-Instantiate `finite_window_conservation_residual` on the smallest branch where all required rows are available:
+The executable shape now exists in [finite-window-conservation-attempt.v1.json](../../../scripts/equation-mapping/finite-window-conservation-attempt.v1.json). The next mathematical object is the first accepted instantiation of `finite_window_conservation_residual` on the smallest branch where all required rows are available:
 
 $$
 \mathcal{R}_{01-05}^{\mathfrak{B}}(W)
@@ -463,6 +463,7 @@ Promotion should wait until one retained branch calculation demonstrates the sam
 ## Worker Handoff
 
 - Completed now: one priority-only packet tying the native per-hit causal wake equation to finite-window Noether conservation residuals.
+- Executable now: [finite-window-conservation-residual.mjs](../../../scripts/equation-mapping/finite-window-conservation-residual.mjs) evaluates the residual grammar and reports first blockers.
 - Reusable common equations named now: same-root checksum, event-ledger balance, flux-boundary balance, finite-window conservation residual, same-source self-hit policy, wake-energy crosswalk residual, and ledger-transition gauge matching.
-- Open blocker: no executed branch calculation currently populates $\mathcal{R}_{01-05}^{\mathfrak{B}}(W)$ with all event, boundary, and wake-history rows.
-- Next mathematical object: instantiate the residual on the smallest branch chart with certified active roots and a declared action or work-integral route.
+- Open blocker: no accepted branch calculation currently populates $\mathcal{R}_{01-05}^{\mathfrak{B}}(W)$ with source-backed event, boundary, and wake-history rows.
+- Next mathematical object: replace the attempt fixture with an accepted branch chart carrying certified active roots and a declared action or work-integral route.

@@ -67,10 +67,20 @@
   "coefficientChecks": {
     "acousticElasticAgreement": {
       "status": "attempt",
+      "rowId": "acoustic-elastic-agreement-retained-0001",
+      "windowId": "theta-sea-density-compression-retained-0001",
+      "ell": "ell_retained_attempt",
+      "channelId": "X_density_compression_acoustic_retained_0001",
+      "responseKernelId": "chi-AB-density-compression-retained-0001",
+      "speedRowId": "speed-row-retained-0001",
+      "stressStrainRowId": "stress-strain-row-retained-0001",
+      "rhoRowId": "rho-NS-retained-0001",
+      "retuneWitnessId": "retune-witness-retained-0001",
       "c_X_disp_squared": 2.5,
       "C1111_X": 2.49,
       "rho_NS": 1,
-      "refinementError": 0.02,
+      "epsilon_ref": 0.02,
+      "refinementFamilyId": "density-compression-refinement-family-retained-0001",
       "sourcePath": "pending-retained-source"
     }
   },
@@ -121,6 +131,7 @@
   ],
   "retune": {
     "status": "attempt",
+    "witnessId": "retune-witness-retained-0001",
     "residual": 0,
     "changedRows": []
   }

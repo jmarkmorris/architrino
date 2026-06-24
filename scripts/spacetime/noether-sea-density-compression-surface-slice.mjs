@@ -123,10 +123,14 @@ function evaluateSlice(input) {
   const thetaSeaRows = input.window?.thetaSeaRows ?? {};
   const rowStatuses = input.rows ?? {};
   const surfaceVector = computeSurfaceVector(input.jacobian ?? {}, input.delta_ln_n);
-  const acousticElasticAgreement = evaluateAcousticElasticAgreement(
-    input.coefficientChecks?.acousticElasticAgreement ??
+  const acousticElasticAgreement = evaluateAcousticElasticAgreement({
+    raw:
+      input.coefficientChecks?.acousticElasticAgreement ??
       input.acousticElasticAgreement,
-  );
+    input,
+    thetaSeaRows,
+    rowStatuses,
+  });
   const missingThetaRows = missingRetainedRows(THETA_SEA_ROWS, thetaSeaRows);
   const missingRequiredRows = [
     ...missingRetainedRows(REQUIRED_ROWS, rowStatuses),
@@ -167,7 +171,7 @@ function evaluateSlice(input) {
   const speedStressMetricGatePass =
     speedPresent && (stressPresent || metricPresent) && coefficientGatePass;
   const acousticElasticAgreementGatePass =
-    acousticElasticAgreement.status === "passed";
+    acousticElasticAgreement.accepted === true;
   const status = retuneFailed
     ? "failed_retune"
     : missingRowsAll.length === 0 &&
@@ -229,6 +233,7 @@ function evaluateSlice(input) {
       retuneStatus,
       retuneResidual,
       acousticElasticAgreementStatus: acousticElasticAgreement.status,
+      numericAgreementStatus: acousticElasticAgreement.numericStatus,
       acousticElasticAgreementResidual:
         acousticElasticAgreement.absoluteResidual,
     },
@@ -330,16 +335,22 @@ function nextBlockerForSlice({
   if (acousticElasticAgreement.status === "failed") {
     return "acoustic_elastic_agreement_residual";
   }
+  if (acousticElasticAgreement.accepted !== true) {
+    return "missing_accepted_acoustic_elastic_agreement";
+  }
   if (undeclaredMissingOutputs.length > 0) {
     return `undeclared_missing_output_${undeclaredMissingOutputs[0]}`;
   }
   return status;
 }
 
-function evaluateAcousticElasticAgreement(raw) {
+function evaluateAcousticElasticAgreement({ raw, input, thetaSeaRows, rowStatuses }) {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
     return {
       status: "not_evaluated",
+      numericStatus: "not_evaluated",
+      accepted: false,
+      missingAcceptedInputs: ["acousticElasticAgreement"],
       cDispSquared: null,
       C1111: null,
       rhoNS: null,
@@ -370,8 +381,23 @@ function evaluateAcousticElasticAgreement(raw) {
   const normalizedResidual =
     absoluteResidual /
     (Math.abs(cDispSquared) + Math.abs(cElasticSquared) + Number.EPSILON);
+  const numericPassed = absoluteResidual <= refinementError;
+  const missingAcceptedInputs = acousticElasticAgreementMissingInputs({
+    raw,
+    input,
+    thetaSeaRows,
+    rowStatuses,
+  });
+  const accepted = numericPassed && missingAcceptedInputs.length === 0;
   return {
-    status: absoluteResidual <= refinementError ? "passed" : "failed",
+    status: !numericPassed
+      ? "failed"
+      : accepted
+        ? "passed"
+        : "attempt_numeric_passed",
+    numericStatus: numericPassed ? "passed" : "failed",
+    accepted,
+    missingAcceptedInputs,
     cDispSquared,
     C1111,
     rhoNS,
@@ -380,6 +406,51 @@ function evaluateAcousticElasticAgreement(raw) {
     normalizedResidual,
     refinementError,
   };
+}
+
+function acousticElasticAgreementMissingInputs({
+  raw,
+  input,
+  thetaSeaRows,
+  rowStatuses,
+}) {
+  const missing = [];
+  if (!isAcceptedRetainedRow(raw)) {
+    missing.push("accepted_agreement_row");
+  }
+  if (raw.windowId !== input.window?.windowId) {
+    missing.push("same_window_id");
+  }
+  if (raw.ell !== input.window?.ell) {
+    missing.push("same_ell");
+  }
+  if (raw.channelId !== input.channel?.id) {
+    missing.push("same_channel_id");
+  }
+  if (!concreteString(raw.responseKernelId)) {
+    missing.push("response_kernel_id");
+  }
+  if (raw.speedRowId !== rowStatuses.speed_row?.rowId) {
+    missing.push("speed_row_id");
+  }
+  if (raw.stressStrainRowId !== rowStatuses.stress_strain_row?.rowId) {
+    missing.push("stress_strain_row_id");
+  }
+  if (raw.rhoRowId !== thetaSeaRows.rho_NS?.rowId) {
+    missing.push("rho_row_id");
+  }
+  const retuneWitnessId =
+    input.retune?.witnessId ??
+    input.retune?.rowId ??
+    input.retune?.eventLedgerRef ??
+    null;
+  if (!concreteString(retuneWitnessId) || raw.retuneWitnessId !== retuneWitnessId) {
+    missing.push("retune_witness_id");
+  }
+  if (!concreteString(raw.refinementFamilyId)) {
+    missing.push("refinement_family_id");
+  }
+  return missing;
 }
 
 function isAcceptedRetainedRow(value) {

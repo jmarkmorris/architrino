@@ -316,9 +316,19 @@ The intended first pass is $\eta_{\mathrm{spin}}=1$, doubled-path restoration, $
 
 Score-5 acceptance would require the same $\mathcal J_{\mathrm{core}}$, $M_\ell^{\mathrm{exp}}$, $\mathcal V_{\mathrm{NS}}$, and $\Theta_{\mathrm{app}}$ to feed $\Delta_{\mu}$, $\Delta_{\omega_c}$, $\Delta_{\omega_L}$, and $\Delta_{a_\ell}$ with no lepton-family retune of the leading ledger. Naming the vector does not raise the score; a retained branch or apparatus calculation must populate it.
 
+The score-neutral executable checker is [spin-magnetic-moment-certificate.mjs](../../../scripts/equation-mapping/spin-magnetic-moment-certificate.mjs), with the attempt fixture [spin-magnetic-moment-certificate-attempt.v1.json](../../../scripts/equation-mapping/spin-magnetic-moment-certificate-attempt.v1.json). The current run reports:
+
+```text
+status: blocked_missing_rows
+scoreDecision: no_score_increase
+nextBlocker: missing_accepted_ordered_frame_loop
+```
+
+The fixture has the intended numeric shape, including $\eta_{\mathrm{spin}}=1$ and $g_{\mathrm{lead}}=2$, but all rows remain `attempt`. The checker therefore treats numeric leading-$g$ structure as non-score evidence until the ordered-frame loop, spin lift, gauge-control row, angular-momentum ledger, moment-map magnetic row, covering-degree row, and exposure-fiber residual are accepted and source-backed on the same record.
+
 ### Failure Mode
 
-`eq27.assigned_spin_label`: $g_\ell$ or $a_\ell$ is assigned from observer-level spin notation, the magnetic-state map changes between cyclotron and Larmor rows, QED loop diagrams are treated as literal substrate paths, or electron/muon/tau anomalies require independent leading ledgers.
+`eq27.assigned_spin_label`: $g_\ell$ or $a_\ell$ is assigned from observer-level spin notation, the magnetic-state map changes between cyclotron and Larmor rows, QED loop diagrams are treated as literal substrate paths, electron/muon/tau anomalies require independent leading ledgers, or the checker reports `missing_accepted_ordered_frame_loop`, `missing_accepted_moment_map_magnetic`, or `blocked_leading_g_not_two`.
 
 ### Promotion Targets
 
@@ -965,6 +975,12 @@ K_{\mathrm{det}}^\ell;
 $$
 
 The same $K_{\mathrm{det}}^\ell$ must be reused when computing $\Delta_{\sigma}$, $\Delta_F$, and any `EQ-31` detector/classification residual. If $\Delta_K$ can be reduced only by changing $\mu_a$, $\rho_{\mathrm{exp}}^{\mathbb{A}\mathbb{A}\mathbb{A}}$, or $\theta_{\mathrm{sea}}$ per observable, the packet fails as hidden retuning.
+
+### Executable Status
+
+The shared carrier evaluator [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs) now computes the `EQ-30` scattering and form-factor projection rows from $\mathcal C_{\mathrm{stat}}^{W,T}$. The toy input [finite-window-statistical-carrier-eq30-elastic-toy.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-toy.v1.json) reports `toy_structure_only`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_W`, and passing numeric diagnostics for prepared flux, detector refinement, cross-section normalization, form-factor covariance, and elastic-regime purity.
+
+This is an executable shape check only. Score movement still requires accepted, source-backed parent carrier rows `W`, `Phi_T`, `mu_star_T`, `Q`, `K_det`, `B`, and `S_retune`, followed by accepted `EQ-30` rows for `Gamma_a`, `Phi_in`, detected class measures, cross-section comparisons, $\rho_{\mathrm{exp}}$, form-factor samples, and elastic-regime purity.
 
 ### Failure Mode
 

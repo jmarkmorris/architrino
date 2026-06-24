@@ -92,3 +92,13 @@ g_{\mathrm{lead}},
 $$
 
 where $\mathcal R_{\mathrm{fib}}$ is the exposure-fiber nonuniformity residual that later feeds the first $g-2$ row.
+
+[Equation Closure Pass 2026-06-23 W](equation-closure-pass-2026-06-23-w.md) makes this certificate executable through [spin-magnetic-moment-certificate.mjs](../../../scripts/equation-mapping/spin-magnetic-moment-certificate.mjs). The current attempt fixture reports:
+
+```text
+status: blocked_missing_rows
+scoreDecision: no_score_increase
+nextBlocker: missing_accepted_ordered_frame_loop
+```
+
+This does not change the `EQ-15` score. It only makes the first retained-row blocker explicit for the shared spinor and magnetic-moment route.

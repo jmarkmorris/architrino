@@ -249,6 +249,7 @@ function createSolverReportOutput({ report, inputPath }) {
 function createRetainedDomainOutput({ packet, inputPath }) {
   const retainedRowSetId = packet.retainedRowSetId ?? packet.rowSetId ?? null;
   const domainId = packet.domain?.id ?? null;
+  const commonCarrierId = retainedDomainCommonCarrierId(packet);
   const targetRow = packet.targetRow ?? TARGET_ROW;
   const targetRowPass = targetRow === TARGET_ROW;
   const retainedRowSetPass = retainedRowSetId === RETAINED_ROW_SET_ID;
@@ -258,6 +259,7 @@ function createRetainedDomainOutput({ packet, inputPath }) {
       packet,
       retainedRowSetId,
       domainId,
+      commonCarrierId,
     }),
   );
   const acceptedRequirementCount = requirementChecks.filter(
@@ -268,14 +270,21 @@ function createRetainedDomainOutput({ packet, inputPath }) {
     .map((check) => check.id);
   const splitWitness = evaluateZeroWitness(
     packet.witnesses?.split_witness_zero ?? packet.split_witness_zero,
+    { commonCarrierId, domainId },
   );
   const retuneWitness = evaluateZeroWitness(
     packet.witnesses?.retune_witness_zero ?? packet.retune_witness_zero,
+    { commonCarrierId, domainId },
   );
   const overlapPreimage = evaluateOverlapPreimage(
     packet.overlapPreimageAudit ??
       packet.witnesses?.overlap_preimage_identity,
+    { commonCarrierId, domainId },
   );
+  const fiberProductCarrier = evaluateFiberProductCarrier({
+    packet,
+    commonCarrierId,
+  });
   const missingDomainWitnesses = [
     splitWitness.accepted ? null : "split_witness_zero",
     retuneWitness.accepted ? null : "retune_witness_zero",
@@ -288,7 +297,8 @@ function createRetainedDomainOutput({ packet, inputPath }) {
     targetRowPass &&
     retainedRowSetPass &&
     retainedRequirementsPass &&
-    domainWitnessPass;
+    domainWitnessPass &&
+    fiberProductCarrier.accepted;
   const hasAttemptRows = requirementChecks.some((check) => check.present);
   const status = accepted
     ? "accepted"
@@ -302,9 +312,13 @@ function createRetainedDomainOutput({ packet, inputPath }) {
           ? "blocked_missing_retained_event_or_domain"
           : retainedRequirementsPass && !domainWitnessPass
             ? "blocked_split_or_retune_witness"
-            : hasAttemptRows
-              ? "blocked_retained_domain_rows_missing"
-              : "blocked_missing_retained_domain_rows";
+            : retainedRequirementsPass &&
+                domainWitnessPass &&
+                !fiberProductCarrier.accepted
+              ? "blocked_fiber_product_carrier"
+              : hasAttemptRows
+                ? "blocked_retained_domain_rows_missing"
+                : "blocked_missing_retained_domain_rows";
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -345,6 +359,10 @@ function createRetainedDomainOutput({ packet, inputPath }) {
       retainedRequirementReasons: Object.fromEntries(
         requirementChecks.map((check) => [check.id, check.reason]),
       ),
+      commonCarrierId,
+      fiberProductCarrierPass: fiberProductCarrier.accepted,
+      fiberProductCarrierReason: fiberProductCarrier.reason,
+      fiberProductLegStatuses: fiberProductCarrier.legStatuses,
       missingDomainWitnesses,
       domainWitnessStatuses: {
         split_witness_zero: splitWitness.status,
@@ -399,11 +417,17 @@ function evaluateRetainedRequirement({
   packet,
   retainedRowSetId,
   domainId,
+  commonCarrierId,
 }) {
   const row = requirement.source(packet);
   const rowCheck = requirement.support
-    ? evaluateDomainSupport(row)
-    : evaluateRetainedRowBinding({ row, retainedRowSetId, domainId });
+    ? evaluateDomainSupport(row, { commonCarrierId })
+    : evaluateRetainedRowBinding({
+        row,
+        retainedRowSetId,
+        domainId,
+        commonCarrierId,
+      });
   return {
     id: requirement.id,
     present: row !== undefined && row !== null,
@@ -415,7 +439,7 @@ function evaluateRetainedRequirement({
   };
 }
 
-function evaluateDomainSupport(row) {
+function evaluateDomainSupport(row, { commonCarrierId } = {}) {
   if (!row || typeof row !== "object" || Array.isArray(row)) {
     return { accepted: false, status: "missing", reason: "missing_support" };
   }
@@ -454,10 +478,22 @@ function evaluateDomainSupport(row) {
       reason: "support_source_not_found",
     };
   }
+  if (!carrierMatches(row, commonCarrierId)) {
+    return {
+      accepted: false,
+      status: row.status,
+      reason: "common_carrier_mismatch",
+    };
+  }
   return { accepted: true, status: row.status, reason: "accepted" };
 }
 
-function evaluateRetainedRowBinding({ row, retainedRowSetId, domainId }) {
+function evaluateRetainedRowBinding({
+  row,
+  retainedRowSetId,
+  domainId,
+  commonCarrierId,
+}) {
   if (!row || typeof row !== "object" || Array.isArray(row)) {
     return { accepted: false, status: "missing", reason: "missing_row" };
   }
@@ -481,10 +517,13 @@ function evaluateRetainedRowBinding({ row, retainedRowSetId, domainId }) {
   if (domainId && rowDomainId !== domainId) {
     return { accepted: false, status, reason: "support_mismatch" };
   }
+  if (!carrierMatches(row, commonCarrierId)) {
+    return { accepted: false, status, reason: "common_carrier_mismatch" };
+  }
   return { accepted: true, status, reason: "accepted" };
 }
 
-function evaluateZeroWitness(witness) {
+function evaluateZeroWitness(witness, { commonCarrierId, domainId } = {}) {
   if (!witness || typeof witness !== "object" || Array.isArray(witness)) {
     return { accepted: false, status: "missing", reason: "missing_witness" };
   }
@@ -508,10 +547,21 @@ function evaluateZeroWitness(witness) {
   if (!Number.isFinite(residual) || Math.abs(residual) > ZERO_TOLERANCE) {
     return { accepted: false, status, reason: "witness_not_zero", residual };
   }
+  if (!witnessSupportMatches(witness, domainId)) {
+    return { accepted: false, status, reason: "support_mismatch", residual };
+  }
+  if (!carrierMatches(witness, commonCarrierId)) {
+    return {
+      accepted: false,
+      status,
+      reason: "common_carrier_mismatch",
+      residual,
+    };
+  }
   return { accepted: true, status, reason: "accepted", residual };
 }
 
-function evaluateOverlapPreimage(witness) {
+function evaluateOverlapPreimage(witness, { commonCarrierId, domainId } = {}) {
   if (!witness || typeof witness !== "object" || Array.isArray(witness)) {
     return { accepted: false, status: "missing", reason: "missing_witness" };
   }
@@ -534,7 +584,74 @@ function evaluateOverlapPreimage(witness) {
   if (witness.consistent !== true) {
     return { accepted: false, status, reason: "overlap_preimage_not_consistent" };
   }
+  if (!witnessSupportMatches(witness, domainId)) {
+    return { accepted: false, status, reason: "support_mismatch" };
+  }
+  if (!carrierMatches(witness, commonCarrierId)) {
+    return { accepted: false, status, reason: "common_carrier_mismatch" };
+  }
   return { accepted: true, status, reason: "accepted" };
+}
+
+function retainedDomainCommonCarrierId(packet) {
+  return (
+    packet.commonCarrierId ??
+    packet.commonCarrier?.id ??
+    packet.carrier?.commonCarrierId ??
+    packet.domain?.commonCarrierId ??
+    null
+  );
+}
+
+function evaluateFiberProductCarrier({ packet, commonCarrierId }) {
+  const legs = [
+    ["domain", packet.domain],
+    ...Object.entries(packet.rowBindings ?? {}),
+    ...Object.entries(packet.witnesses ?? {}),
+  ];
+  const legStatuses = Object.fromEntries(
+    legs.map(([id, value]) => [id, fiberProductLegStatus(value, commonCarrierId)]),
+  );
+  if (!concreteString(commonCarrierId)) {
+    return {
+      accepted: false,
+      reason: "missing_common_carrier_id",
+      legStatuses,
+    };
+  }
+  const firstMismatch = Object.entries(legStatuses).find(
+    ([, status]) => status !== "matched",
+  );
+  return {
+    accepted: !firstMismatch,
+    reason: firstMismatch
+      ? `carrier_leg_${firstMismatch[0]}_${firstMismatch[1]}`
+      : "accepted",
+    legStatuses,
+  };
+}
+
+function fiberProductLegStatus(value, commonCarrierId) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return "missing";
+  }
+  if (!concreteString(commonCarrierId)) {
+    return "common_carrier_not_declared";
+  }
+  return value.commonCarrierId === commonCarrierId ? "matched" : "mismatch";
+}
+
+function carrierMatches(row, commonCarrierId) {
+  return concreteString(commonCarrierId) && row.commonCarrierId === commonCarrierId;
+}
+
+function witnessSupportMatches(witness, domainId) {
+  if (!domainId) {
+    return true;
+  }
+  const witnessDomainId =
+    witness.domainId ?? witness.supportId ?? witness.eventId ?? null;
+  return witnessDomainId === domainId;
 }
 
 function summarizeRetainedDomain(packet) {

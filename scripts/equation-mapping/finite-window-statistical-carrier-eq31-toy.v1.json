@@ -46,20 +46,43 @@
         "corridor_beta"
       ]
     },
+    "corridorSemantics": {
+      "mode": "first_exit",
+      "basinId": "B_star_eq31_toy",
+      "boundaryId": "partial_B_star_eq31_toy",
+      "detectorKernelStage": "post_escape_pushforward"
+    },
     "exitCorridors": [
       {
         "id": "C_alpha",
+        "boundaryComponentId": "partial_B_star_alpha",
+        "measureStage": "pre_detector_escape",
         "measure": 0.03,
         "retainedStatus": "toy",
         "ledgerStatus": "toy"
       },
       {
         "id": "C_beta",
+        "boundaryComponentId": "partial_B_star_beta",
+        "measureStage": "pre_detector_escape",
         "measure": 0.01,
         "retainedStatus": "toy",
         "ledgerStatus": "toy"
       }
     ],
+    "nullSeparatrix": {
+      "epsilon": 0.01,
+      "neighborhoodMass": 0.002,
+      "tolerance": 0.001,
+      "retainedStatus": "toy"
+    },
+    "refinementCompatibility": {
+      "parentWindowId": "W_eq31_parent_toy",
+      "childWindowId": "W_eq31_toy",
+      "cocycleDefect": 0.02,
+      "tolerance": 0.001,
+      "retainedStatus": "toy"
+    },
     "noHiddenRetuneWitness": {
       "id": "S_retune_eq31_toy",
       "residual": 0,

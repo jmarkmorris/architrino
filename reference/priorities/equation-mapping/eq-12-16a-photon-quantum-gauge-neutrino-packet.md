@@ -458,6 +458,18 @@ Score decision: `no_score_increase`. `EQ-15` remains `2` until a retained non-co
 
 The populated null-control material only shows ordinary visible $SO(3)$ closure. It is not spinor support. A score move to `3` requires a retained row with odd $2\pi$ parity, $4\pi$ restoration, gauge-control pass, quotient witness, and angular-momentum residuals on the same branch record.
 
+### Executable Spin-To-Magnetic Certificate Status
+
+The score-neutral checker [spin-magnetic-moment-certificate.mjs](../../../scripts/equation-mapping/spin-magnetic-moment-certificate.mjs) consumes the shared `EQ-15`/`EQ-27` certificate $\mathfrak C_{\mathrm{spin}\to\mu}$ and reports whether the ordered-frame loop, spin lift, gauge-control row, angular-momentum ledger, moment-map magnetic row, leading $g=2$ row, and exposure-fiber residual are accepted on one same-record support. The attempt fixture [spin-magnetic-moment-certificate-attempt.v1.json](../../../scripts/equation-mapping/spin-magnetic-moment-certificate-attempt.v1.json) has the intended numerical shape but remains score-neutral:
+
+```text
+status: blocked_missing_rows
+scoreDecision: no_score_increase
+nextBlocker: missing_accepted_ordered_frame_loop
+```
+
+This checker protects the row from two overreads: visible $SO(3)$ closure is not retained spinor support, and a numeric $g_{\mathrm{lead}}=2$ shape is not evidence without an accepted ordered-frame loop and moment-map magnetic row.
+
 ### First Mathematical Object
 
 The first object is the same-record pullback residual

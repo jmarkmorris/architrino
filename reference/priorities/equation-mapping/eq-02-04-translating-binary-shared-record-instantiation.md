@@ -556,6 +556,7 @@ The minimum fixture contract is:
 
 | Packet field | Minimum accepted content | Acceptance-vector coordinate |
 | --- | --- | --- |
+| `commonCarrierId` | Concrete id for the retained $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ carrier. Every accepted row binding and witness must match this id. | fiber-product carrier leg |
 | `domain` | `status` is `accepted`, `passed`, or `populated`; `id`, `kind`, `rowId`, and `sourcePath` or `source` are concrete; the source resolves to a durable evidence file. | $A_D$, $A_{\mathrm{src}}$ |
 | `rowBindings.raw_labeled_rows_preserved_on_retained_history` | Accepted row proving raw generator labels are preserved on the retained history before any `I:M:O` role map is imposed. This is the current first blocker. | $A_{\iota}$, $A_r$ |
 | `rowBindings.six_body_polarity_neutral_inventory_preserved` | Accepted row preserving six-body polarity-neutral inventory on the same support. | $A_{\iota}$, $A_r$ |
@@ -575,7 +576,7 @@ The minimum fixture contract is:
 | `witnesses.retune_witness_zero` | Accepted, source-backed witness with zero hidden-retune residual. | $A_{\mathrm{retune}}$ |
 | `witnesses.overlap_preimage_identity` | Accepted, source-backed witness with `consistent: true`. | $A_{\mathrm{overlap}}$ |
 
-Every accepted row binding must include concrete `rowId`, `retainedRowSetId: "S_eq"`, matching `domainId`, and a durable `sourcePath` or `source`. A row label, current proxy row, temporary file, generated reading copy, or nonresolving source path does not count.
+Every accepted row binding must include concrete `rowId`, `retainedRowSetId: "S_eq"`, matching `domainId`, matching `commonCarrierId`, and a durable `sourcePath` or `source`. A row label, current proxy row, temporary file, generated reading copy, or nonresolving source path does not count. The current attempt fixture now declares `commonCarrierId: "C_02-04_bin_u_attempt_0001"` and reports `fiberProductCarrierPass: true`, but this is only structural: all row bindings remain `attempt`, so the first score-moving blocker is still `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
 
 Current structural witnesses and ignored temporary frequency reports remain useful search signals, but they are not durable retained-domain evidence. The next accepted source object must be tracked source-backed row extraction, beginning with `raw_labeled_rows_preserved_on_retained_history`, not a pointer to a current proxy report.
 

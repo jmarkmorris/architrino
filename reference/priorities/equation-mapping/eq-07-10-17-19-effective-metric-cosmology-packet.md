@@ -257,7 +257,7 @@ Here $\mathcal{S}_{\mathrm{eff}}$ is allowed only when it is a projection of ass
 
 ## First Mathematical Object To Add Next
 
-Add a joint shared-record residual under this priority packet:
+The `EQ-17` source-path-receiver slice is now executable in [signed-frequency-transfer-ledger.mjs](../../../scripts/equation-mapping/signed-frequency-transfer-ledger.mjs). Its attempt fixture [signed-frequency-transfer-attempt.v1.json](../../../scripts/equation-mapping/signed-frequency-transfer-attempt.v1.json) blocks at `missing_accepted_theta_transfer` while the signed transfer, receiver-frequency, segment-energy, path-quality, and no-hidden-retune numeric diagnostics pass. The broader next object is still a joint shared-record residual under this priority packet:
 
 $$
 \mathcal{R}_{07\text{-}10,17\text{-}19}(\theta;W,X)

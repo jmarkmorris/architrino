@@ -321,6 +321,8 @@ Current `6/23 b` score: `4`.
 
 The bookkeeping standard and finite-window residual grammar are now explicit enough for the second-round score. Exact conserved functionals remain conditional on action-level derivation and finite-window residual evaluation.
 
+Executable status: [finite-window-conservation-residual.mjs](../../../scripts/equation-mapping/finite-window-conservation-residual.mjs) now evaluates $\mathcal R_{01-05}^{\mathfrak B}(W)$ as a same-root finite-window conservation packet. The attempt fixture [finite-window-conservation-attempt.v1.json](../../../scripts/equation-mapping/finite-window-conservation-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_branch_chart`, and passing numeric checks for same-root signatures, energy, momentum, angular momentum, event ledger, boundary flux, wake crosswalk, and no-double-count residuals. Those numeric passes are not score evidence because the required branch-chart and conservation rows remain `attempt`.
+
 ### Closure Burden
 
 A candidate finite-window residual should have the form
@@ -684,6 +686,8 @@ $$
 
 not a field equation imported as ontology.
 
+The score-neutral executable route for the spinor side is now [spin-magnetic-moment-certificate.mjs](../../../scripts/equation-mapping/spin-magnetic-moment-certificate.mjs). Its attempt fixture reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_ordered_frame_loop`. The fixture has the intended spin-lift and leading-$g$ numeric shape, but all rows remain `attempt`, so `EQ-15` stays at `2`.
+
 ### Agent Target
 
 Pick either the Born-current row or the spinor row. Build the smallest equation-level packet that states the AAA variables, current evidence, missing derivation, and first falsifier.
@@ -867,6 +871,8 @@ The standard oscillation equations are precise, the local neutrino chapter alrea
 
 Claim level: derivation-closure target. This is not a corpus claim that $(f,f,f)$ already explains PMNS data. It is a high-value equation-level benchmark because it tests exactly the structure the equal-frequency idea needs: one hidden shared clock plus residual splittings.
 
+Executable status: [neutrino-common-clock-phase-operator.mjs](../../../scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs) now evaluates the common-clock/residual-phase packet for `EQ-16A`. The attempt fixture has the intended `(f,f,f)` common-clock and doublet-plus-singlet residual-gap shape, but it reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_neutral_lepton_retained_branch`; inherited `S_eq` support still blocks at `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
+
 ### Closure Burden
 
 The retained branch must show, on one event or positive-width domain:
@@ -946,6 +952,8 @@ $$
 Score: `4`.
 
 The formula is explicit, but the path-history propagation term and energy-exchange residuals still need derivation and validation.
+
+Executable status: [signed-frequency-transfer-ledger.mjs](../../../scripts/equation-mapping/signed-frequency-transfer-ledger.mjs) now evaluates the `EQ-17` source-path-receiver transfer budget. The attempt fixture [signed-frequency-transfer-attempt.v1.json](../../../scripts/equation-mapping/signed-frequency-transfer-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_theta_transfer`, and passing numeric checks for the signed transfer budget, receiver frequency, segment energy exchange, path quality, and no-hidden-retune residual. Those numeric passes are not score evidence because the parent transfer record and shared-key rows remain `attempt`.
 
 ### Closure Burden
 
@@ -1166,6 +1174,8 @@ without switching Noether sea state between linear and nonlinear packets.
 
 The row should be evaluated as a projection of $\mathcal R_{\mathrm{obs}}(\Theta_{\mathrm{obs}})$ from the shared-observation packet: growth uses the same readout and Noether sea response rows that later feed CMB lensing, BBN handoff, and low-acceleration galaxy comparisons.
 
+Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-21` score increase follows from the structural run.
+
 ### Agent Target
 
 Pick one growth observable, preferably $P(k,z)$ or $f\sigma_8$, and define the exact Noether sea variables needed to compute it.
@@ -1205,6 +1215,8 @@ The CMB packet must join:
 Current `6/23 b` score: `3`.
 
 The current material now has a shared observation-record scaffold, but the equation-level transfer pipeline remains a priority target.
+
+Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-22` score increase follows from the structural run.
 
 ### Closure Burden
 
@@ -1254,6 +1266,8 @@ BBN is an effective source-window and thermal-record constraint. The Noether sea
 Current `6/23 b` score: `3`.
 
 The constraint rows and shared source-window dependencies are explicit, but the native source-window mechanism is not predictive enough yet.
+
+Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-23` score increase follows from the structural run.
 
 ### Closure Burden
 
@@ -1321,7 +1335,7 @@ Extract one acoustic density-compression channel where the same retained $\Theta
 
 [noether-sea-density-compression-surface-slice.mjs](../../../scripts/spacetime/noether-sea-density-compression-surface-slice.mjs) now evaluates the first density-compression surface-slice packet for one declared channel and one Noether sea window. The default mock run reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and a partial declared surface vector; the retained-attempt skeleton has the intended field shape but also blocks because its rows are not accepted retained rows.
 
-The retained-attempt summary now reports `thetaSeaRowStatuses`, `requiredRowStatuses`, and `stressOrMetricRowStatuses`. Current retained-attempt rows remain `attempt`, with `metric_embedding_row` explicitly reported as `declared_missing_output`.
+The retained-attempt summary now reports `thetaSeaRowStatuses`, `requiredRowStatuses`, `stressOrMetricRowStatuses`, and `acousticElasticAgreement`. Current retained-attempt rows remain `attempt`, with `metric_embedding_row` explicitly reported as `declared_missing_output`. The same-window acoustic/elastic numbers pass arithmetically (`numericAgreementStatus: passed`), but the accepted agreement row reports `attempt_numeric_passed`, so it is not score evidence.
 
 No score change follows from that result. `EQ-24` still needs one retained $\Theta_{\mathrm{sea}}^{(\ell,W)}$ whose same coefficient row supplies a perturbation speed plus stress/strain or metric-compliance output without hidden retune.
 
@@ -1505,6 +1519,8 @@ $$
 Score: `2`.
 
 The angular-momentum proof program names the right consumers, but the current map does not yet derive $g_\ell$, $a_\ell$, or the magnetic precession frequencies from one retained Noether braid branch.
+
+Current executable guardrail: [spin-magnetic-moment-certificate.mjs](../../../scripts/equation-mapping/spin-magnetic-moment-certificate.mjs) consumes the shared `EQ-15`/`EQ-27` certificate $\mathfrak C_{\mathrm{spin}\to\mu}$. The retained-attempt fixture reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_ordered_frame_loop`; numeric $\eta_{\mathrm{spin}}=1$ and $g_{\mathrm{lead}}=2$ are not score evidence without accepted ordered-frame, moment-map, and exposure-fiber rows.
 
 ### Closure Burden
 
@@ -1712,6 +1728,8 @@ Score: `2`.
 
 The quantum/Born-current rows provide the broad statistical target, but the equation map does not yet connect specific scattering amplitudes, detector kernels, exposure distributions, and form factors to Noether braid branch statistics.
 
+Executable status: [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs) now evaluates the `EQ-30` elastic scattering/form-factor projection from the shared finite-window statistical carrier. The toy fixture [finite-window-statistical-carrier-eq30-elastic-toy.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-toy.v1.json) reports `toy_structure_only`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_W`, and passing numeric checks for prepared flux, detector refinement, cross-section normalization, form-factor covariance, and elastic-regime purity. These numeric passes are not score evidence because the parent carrier rows and `EQ-30` projection rows are toy/pending-source rows.
+
 ### Closure Burden
 
 The row must show:
@@ -1762,7 +1780,7 @@ This row asks whether a metastable Noether braid branch has a native leakage cor
 
 The same finite-window statistical carrier $\mathcal C_{\mathrm{stat}}^{W,T}$ should specialize to the metastable case by taking the retained branch window as $W$, the exit corridors as first-exit components $\mathcal C=\{C_k\}$, and the observed final-state classes as the outcome partition. Then $\Gamma$, $\tau$, $B_k$, and detector line-shape residuals are projections from one escape/dephasing measure. The first-exit map should be intrinsic to the basin boundary; detector kernels enter afterward as readout pushforwards.
 
-The current executable carrier evaluator computes those projection rows for a two-corridor toy packet and correctly returns `toy_structure_only` with `scoreDecision: no_score_increase`. It is useful because it fixes the required input shape before a retained metastable branch exists; it does not change the `EQ-31` score.
+The current executable carrier evaluator computes those projection rows for a two-corridor toy packet and correctly returns `toy_structure_only` with `scoreDecision: no_score_increase`. It now also reports first-exit corridor semantics, null-separatrix mass, and refinement-cocycle diagnostics. The toy declares first-exit corridors but keeps null-separatrix and refinement compatibility failing, and the first score-moving blocker remains `missing_accepted_W`. It is useful because it fixes the required input shape before a retained metastable branch exists; it does not change the `EQ-31` score.
 
 ### Closure Status
 
@@ -1845,6 +1863,8 @@ This comparison belongs inside the same shared observation record as growth, CMB
 Current `6/23 b` score: `3`.
 
 The equation is a strong observational benchmark, and the current $\mathbb{A}\mathbb{A}\mathbb{A}$ map is now a shared constitutive-response target. It should not be imported as a new gravity ontology or as permission to bypass the effective-metric and cosmology rows.
+
+Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-32` score increase follows from the structural run.
 
 ### Closure Burden
 

@@ -337,7 +337,7 @@ The coordinator should first define $d_{\mathrm{shared}}$ for overlapping variab
 
 - the translating binary residual for `EQ-02` through `EQ-04`;
 - a weak solar-system window plus one spectral family for `EQ-07` through `EQ-10` and `EQ-17`;
-- a shared growth/CMB/BBN/RAR record for `EQ-21` through `EQ-23` and `EQ-32`;
+- a shared growth/CMB/BBN/RAR record for `EQ-21` through `EQ-23` and `EQ-32`, with [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now serving as the score-neutral first-blocker checker;
 - a Compton/recoil event record for the precision packet.
 
 ## Common Component 2: Projection And Refinement Residual
@@ -480,6 +480,8 @@ The best first simulation is a replayable Compton/recoil packet. It is compact, 
 
 The main child components to keep synchronized with this row are `same_root_conservation_checksum`, `flux_boundary_balance_equation`, `wake_energy_crosswalk_residual`, `ledger_transition_gauge_matching`, and the photon Gate A/B/C handoff rows. They remain child components of the finite-window event and conservation residual, not separate score gates.
 
+The score-neutral executable checker is now [finite-window-conservation-residual.mjs](../../../scripts/equation-mapping/finite-window-conservation-residual.mjs). Its current attempt fixture [finite-window-conservation-attempt.v1.json](../../../scripts/equation-mapping/finite-window-conservation-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, and first blocker `missing_accepted_branch_chart` while the same-root, energy, momentum, angular-momentum, event-ledger, boundary-flux, wake-crosswalk, and no-double-count numeric diagnostics pass. This is the intended current disposition: the conservation residual is executable, but `EQ-05` cannot reach `5` until the branch chart and row provenance are accepted.
+
 ## Common Component 4: Source-Path-Receiver Frequency Transfer
 
 ### Candidate Equation Form
@@ -532,6 +534,8 @@ This component prevents frequency change from collapsing into one fitted redshif
 ### Proof Or Simulation Burden
 
 The first proof route should choose one clean case: endpoint gravitational redshift, Doppler launch, or Compton/recoil. The record must show which terms belong to endpoint cadence, source branch shift, launch geometry, path-history transport, recoil, remnant, and Noether sea update.
+
+The score-neutral executable checker is now [signed-frequency-transfer-ledger.mjs](../../../scripts/equation-mapping/signed-frequency-transfer-ledger.mjs). Its current attempt fixture [signed-frequency-transfer-attempt.v1.json](../../../scripts/equation-mapping/signed-frequency-transfer-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, and first blocker `missing_accepted_theta_transfer` while the signed budget, receiver-frequency, segment-energy, path-quality, and no-hidden-retune numeric diagnostics pass. This is the intended current disposition: the transfer equation is executable, but `EQ-17` cannot rise until one source-backed transfer record binds endpoint cadence, source branch, launch geometry, path-history propagation, event ledger, and path-quality rows.
 
 ## Common Component 5: Common Clock Plus Residual Phase Operator
 
@@ -939,7 +943,7 @@ $$
 \mathcal R_{\mathrm{coarse}}(W,W').
 $$
 
-Thus $\mathcal R_{\mathrm{coarse}}$ is the cocycle-defect row for refinement compatibility. Score movement requires more than a populated tuple: it requires a retained carrier whose defect decreases or vanishes under refinement, without changing $\Phi_T$, $\mu_{*,T}$, $\mathcal Q$, $K_{\mathrm{det}}$, or the event/domain support.
+Thus $\mathcal R_{\mathrm{coarse}}$ is the cocycle-defect row for refinement compatibility. Score movement requires more than a populated tuple: it requires a retained carrier whose defect decreases or vanishes under refinement, without changing $\Phi_T$, $\mu_{*,T}$, $\mathcal Q$, $K_{\mathrm{det}}$, or the event/domain support. The current executable carrier names the `EQ-30` projection diagnostics as `eq30.preparedFluxPass`, `eq30.detectorRefinementPass`, `eq30.crossSectionPass`, `eq30.formFactorCovariancePass`, and `eq30.regimePurityPass`, and names the `EQ-31` diagnostics as `corridorDiagnostics.firstExit`, `corridorDiagnostics.nullSeparatrix`, and `corridorDiagnostics.refinementCompatibility`. These are scalar guardrails for prepared-flux binding, detector refinement, rate normalization, form-factor covariance, elastic-regime purity, first-exit additivity before detector readout, null-separatrix mass, and sheaf/refinement compatibility.
 
 Specific consumers are projections of the same object:
 
@@ -1010,7 +1014,7 @@ This component unifies probability, entropy, cross sections, detector statistics
 
 ### Proof Or Simulation Burden
 
-The first useful test is a toy measurement or elastic scattering packet where density, current, detector response, event classes, and residuals are all pushed from the same finite-window measure. A second test should derive $\gamma_k$, $\Gamma_{\mathrm{cmp}}$, $\tau_{\mathrm{cmp}}$, and $B_k$ from one metastable branch escape measure.
+The first useful elastic scattering test is now executable as [finite-window-statistical-carrier-eq30-elastic-toy.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-toy.v1.json): it computes the prepared-flux, detector-refinement, cross-section, form-factor covariance, and elastic-regime diagnostics from the same finite-window carrier, but remains score-neutral because the parent rows are toy/pending-source. A second test should derive $\gamma_k$, $\Gamma_{\mathrm{cmp}}$, $\tau_{\mathrm{cmp}}$, and $B_k$ from one metastable branch escape measure.
 
 The first scalar calculation is the null-separatrix estimate
 
@@ -1089,7 +1093,7 @@ must be covariant under void-rotation conjugation of the quotient: $F_Q(\mathbf 
 
 ### Proof Or Simulation Burden
 
-The first burden is one weak/gauge exposure packet where `V-A`, CKM/PMNS overlap, reaction provenance, and effective gauge covariance read from one weak-visible domain. A lower-risk sibling is a mass/exposure packet where $\zeta(A)$ and $M_\ell^{\mathrm{exp}}$ are computed once and reused by atomic, recoil, and magnetic rows. For `EQ-30`, a sibling burden is one exposure quotient whose form factor passes the rotation-conjugacy covariance check before detector kernels are applied.
+The first burden is one weak/gauge exposure packet where `V-A`, CKM/PMNS overlap, reaction provenance, and effective gauge covariance read from one weak-visible domain. A lower-risk sibling is a mass/exposure packet where $\zeta(A)$ and $M_\ell^{\mathrm{exp}}$ are computed once and reused by atomic, recoil, and magnetic rows. The `EQ-15`/`EQ-27` sibling is the score-neutral $\mathfrak C_{\mathrm{spin}\to\mu}$ checker: it requires the ordered-frame loop, spin lift, gauge-control row, angular-momentum ledger, moment-map magnetic row, leading $g=2$ row, and exposure-fiber residual to share one record before the magnetic moment can consume spinor support. For `EQ-30`, a sibling burden is one exposure quotient whose form factor passes the rotation-conjugacy covariance check before detector kernels are applied.
 
 ## Highest-Value Common Equations
 
@@ -1099,7 +1103,7 @@ The highest-value reusable equations to stabilize first are:
 2. Retained event or positive-width domain carrier $\mathfrak D_R$ with $\operatorname{RowId}_R(\mathfrak D_R)$, acceptance vector $\mathbf A_R(\mathfrak D_R)$, and first-blocker operator $B_R(\mathfrak D_R)$. This is the acceptance object behind same-branch identity, native event ledgers, retained Noether sea coefficient windows, and finite-window carrier population.
 3. Noether sea constitutive state $\mathcal C_{\mathrm{sea}}$. It is the shared source of metric, mass, acoustic, growth, RAR/BTFR, pressure, and field-response projections.
 4. Finite-window event ledger $\mathcal L_{E\mathbf p\mathbf J}(\mathsf e)$. It is the common precision-equation carrier for photon, recoil, radiation, reaction, thermalization, and conservation rows.
-5. Common clock plus residual phase operator $H_X=\omega_{\mathrm{clk}}C_X\mathbf 1+\delta H_X$. It is the smallest sharp object for `EQ-16A` and also clarifies clock, redshift, photon, and atomic-frequency rows.
+5. Common clock plus residual phase operator $H_X=\omega_{\mathrm{clk}}C_X\mathbf 1+\delta H_X$. It is the smallest sharp object for `EQ-16A` and also clarifies clock, redshift, photon, and atomic-frequency rows; [neutrino-common-clock-phase-operator.mjs](../../../scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs) is the current score-neutral executable instance.
 6. Observer-level metric projection $\Pi_{\mathrm{metric}}\Theta_W$. It is the shared recovery interface for PPN, null transport, cosmology, lensing, and low-acceleration dynamics.
 7. Equation-bearing configuration vector $\mathcal R_{\mathrm{cfg}}(\mathfrak a)$. It is the stable-braid search bridge that keeps frequency families subordinate to retained branch residuals.
 8. Finite-window statistical carrier $\mathcal C_{\mathrm{stat}}^{W,T}$. It is the common object behind Born-current continuity, entropy, scattering rates, detector statistics, resonance widths, lifetimes, and branching fractions.
@@ -1114,7 +1118,7 @@ The projection/refinement residual and finite-window statistical pushforward sho
 4. Instantiate $\mathcal C_G\to\Theta_G\to\mathcal R_{\mathrm{shared}}$ first on the translating binary benchmark for `EQ-02` through `EQ-04`, because it is compact and already declares clock, envelope, mass-shell, rest-invariance, and Noether sea response projection slots.
 5. Build the Noether sea constitutive state as the next shared target for `EQ-07` through `EQ-11`, `EQ-18` through `EQ-21`, `EQ-24`, and `EQ-32`. Require one coefficient extraction before any score increase.
 6. Use Compton/recoil as the first finite-window event-ledger replay. It cross-checks photon packets, atomic spectra, exposed mass, recoil, angular momentum, and medium updates in one event.
-7. Run the neutral-lepton phase-operator packet as a focused `EQ-16A` follow-up. It has a crisp falsifier: common-clock cancellation must not erase $\delta H_{3B}$, and the residual spectrum must not collapse into all-zero or equal-spacing gaps.
+7. Populate the neutral-lepton phase-operator packet as the focused `EQ-16A` follow-up. The executable checker now reports `missing_accepted_neutral_lepton_retained_branch`; its crisp falsifier remains that common-clock cancellation must not erase $\delta H_{3B}$, and the residual spectrum must not collapse into all-zero or equal-spacing gaps.
 8. Keep the `equationBearing` payload attached to the stable tri-binary configuration search so $(f+2,f,f-1)$, $(f+1,f,f-1)$, $(f,f,f)$, $(4f,2f,f)$, and $(nf,mf,f)$ candidates are compared by retained residuals, not by ratio labels alone.
 9. Defer reader-facing promotion. These components are architecture candidates and closure targets until a packet supplies a derived equation, coefficient extraction, executable residual, or retained branch calculation.
 
