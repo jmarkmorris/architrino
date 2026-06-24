@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-24T05:42:49.187Z",
-  "total_links": 1563,
+  "generated_at": "2026-06-24T19:03:21.921Z",
+  "total_links": 1571,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -5694,6 +5694,14 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/assembly-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/dynamics/causal-action-functional.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -5738,6 +5746,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -6126,30 +6142,6 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/critical-questions.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/critical-questions.md"
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/critical-questions.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/critical-questions.md"
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/critical-questions.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/critical-questions.md"
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/geometry-and-ontology.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -6238,18 +6230,90 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/monologues.md",
+      "target": "../../../../markdown/aaa/philosophy-history/perspectives.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/monologues.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/perspectives.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/monologues/william-thurston.md",
+      "target": "../../../../markdown/aaa/philosophy-history/perspectives.md#questions",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/monologues/william-thurston.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/perspectives.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/perspectives.md#questions",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/perspectives.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/perspectives.md#questions",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/perspectives.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/perspectives.md#questions",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/perspectives.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/perspectives.md#questions",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/perspectives.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/perspectives.md#questions",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/perspectives.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md"
     },
     {
       "sourceChapterId": "philosophy_history",

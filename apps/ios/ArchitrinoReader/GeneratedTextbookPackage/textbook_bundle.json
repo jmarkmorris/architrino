@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-24T05:42:49.187Z",
-  "package_version": "1.0.0-f846478e",
+  "generated_at": "2026-06-24T19:03:21.921Z",
+  "package_version": "1.0.0-adb2e199",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "f846478ef02b68fb1625c6ab84a99b70e2890b0f5216cccb4b334b0002339573",
-    "size": 691570
+    "sha256": "adb2e199e66a819ff55cfd79cecbe2b90d84387f4546cdf066885926ea11cb95",
+    "size": 694113
   },
   "chapters": [
     {
@@ -164,8 +164,8 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 692024,
-      "sha256": "f846478ef02b68fb1625c6ab84a99b70e2890b0f5216cccb4b334b0002339573"
+      "size": 694567,
+      "sha256": "adb2e199e66a819ff55cfd79cecbe2b90d84387f4546cdf066885926ea11cb95"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.html",
@@ -268,16 +268,16 @@
       "sourcePath": "__generated__/reading-copies/philosophy-history.html",
       "role": "chapter",
       "type": "html",
-      "size": 9668842,
-      "sha256": "36a0c33853f1cc98d7514ace50f8a193872ca92d06f032220b3419550e0a61d9"
+      "size": 9752166,
+      "sha256": "ee0b57ee7fdb3a65ebe0247e501b2988084f75d60febd671702dc402f8c8cbc8"
     },
     {
       "path": "reading-copies/philosophy-history.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1649889,
-      "sha256": "4016c644512e7e952dd8a03fb08181f871d52d61a2684f7fbaf9cb7359b9e98d"
+      "size": 1700501,
+      "sha256": "10d374b7b365045f0a27186edd7187e46be0ab1631f84f4348cb78fb01ef1c1d"
     },
     {
       "path": "reading-copies/quantum.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 9024865,
-      "sha256": "20b2880b6d8330b8be2cc1d833cda59f455778fb0b93987516285e93ddeaa274"
+      "size": 9126852,
+      "sha256": "1ef7e8ce1a97d6e81fc28cf897be29ec377c3d628a3e7b7fc5a31bb87316d2e6"
     }
   ],
   "links": []
