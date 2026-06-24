@@ -4,7 +4,7 @@ Perspectives is the Philosophy-History scene for counterfactual historical inter
 
 The genre is a historical stress test. A perspective should preserve the genuine achievements of inherited theories while asking whether their success caused effective descriptions to be mistaken for final ontology. General relativity, quantum theory, thermodynamics, the Standard Model, and Lambda-CDM are not treated as errors to be dismissed. They are treated as powerful, regime-tested grammars whose survival fixes the benchmark burden for any deeper architecture.
 
-A good perspective therefore asks two kinds of question at once. The first is historical: what did a period actually know, what choices were rational then, and why did certain interpretive commitments become durable? The second is architectural: if $\mathbb{A}\mathbb{A}\mathbb{A}$ is the deeper solution, which inherited concepts become effective limits, which become comparison tools, which become observer-level reconstructions, and which claims must still be earned by derivation rather than asserted by reinterpretation?
+A good perspective therefore asks two kinds of question at once. The first is historical: what did a period actually know, what choices were rational then, and why did certain interpretive commitments become durable? The second is architectural: from a mature $\mathbb{A}\mathbb{A}\mathbb{A}$ vantage, which inherited concepts become effective limits, which become comparison tools, which become observer-level reconstructions, and which historical reinterpretations are earned by derivation rather than asserted by preference?
 
 ## Questions
 
@@ -18,7 +18,7 @@ This question is especially important for the pre-1900 opening. Euclidean space,
 
 ### What Did The Victorious Framework Achieve?
 
-State the achievement before assessing its limits. What did the dominant framework make calculable, measurable, teachable, or conceptually stable? Which anomalies did it resolve? Which new research practices did it enable? Which later precision benchmarks does $\mathbb{A}\mathbb{A}\mathbb{A}$ have to recover if its reinterpretation is to be taken seriously?
+State the achievement before assessing its limits. What did the dominant framework make calculable, measurable, teachable, or conceptually stable? Which anomalies did it resolve? Which new research practices did it enable? Which later precision benchmarks does mature $\mathbb{A}\mathbb{A}\mathbb{A}$ recover, preserve, or reclassify?
 
 The answer should avoid caricature. Relativity, quantum mechanics, quantum field theory, statistical mechanics, and precision cosmology survived because they did real work. A perspective that cannot explain the rational authority of the inherited framework has not yet understood the historical problem.
 
@@ -36,11 +36,17 @@ This is where the question of missed opportunity should become precise. If $\mat
 
 ### Why The Miss Was Rational And Why It Persisted
 
-Explain why the dominant choice was reasonable under the constraints of its time, and why later success made the deeper architecture harder, not easier, to see. What would the substrate path have had to prove, and why would it have looked underdeveloped, metaphysical, regressive, or computationally intractable? Which failures of earlier media, ether, vortex, hidden-variable, or compositeness programs made the field distrust the very class of explanation that a later architecture might rehabilitate?
+Explain why the dominant choice was reasonable under the constraints of its time, and why later success made the deeper architecture harder, not easier, to see. What would the substrate path have had to prove, and why would it have looked underdeveloped, metaphysical, regressive, or computationally intractable? Which failures of earlier medium, vortex, hidden-variable, or compositeness programs made the field distrust the very class of explanation that a later architecture might rehabilitate?
 
 This question prevents retrospective triumphalism. A near miss is not the same thing as a blunder. Many rejected paths were rejected for good local reasons. The difficult historical issue is whether those reasons remained decisive after later discoveries changed the admissible state space.
 
 Then trace how intellectual lock-in accumulated. Special relativity made observer invariance look foundational. General relativity made geometry look ontological. Quantum mechanics made probability and state-space formalism operationally dominant. Quantum field theory and the Standard Model made continuum gauge precision the main language of particle physics. Lambda-CDM made fitted cosmic reconstruction into the default grammar of cosmology. Each success solved a real problem and raised the cost of reopening the substrate question through equations, instrumentation, curricula, journal standards, metaphysical caution, and the reliability of inherited formalisms inside their tested domains.
+
+### What Missing Test Would Have Changed The History?
+
+Ask which calculation, comparison, construction, or conceptual test would have made the deeper architecture visible from that thinker's vantage if a mature $\mathbb{A}\mathbb{A}\mathbb{A}$ had been available. This is a retrospective history-of-science question, not a live research task list. The answer should identify the decisive missing test that would have connected scattered period knowledge into a single architecture.
+
+The response should be specific to the sensibility of the figure. A geometer might name a gluing or invariant test. A dynamicist might name a return-map test. A field theorist might name a wake-to-field reduction. A statistical mechanician might name basin-measure convergence. A symmetry theorist might name a conserved-history residual. A relativist might name the clock-ruler-signal closure that makes a preferred background operationally hidden. The point is to show what history could not yet ask cleanly, and why that missing test mattered.
 
 ### What Moves From Ontology To Description?
 

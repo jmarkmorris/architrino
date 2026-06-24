@@ -527,7 +527,7 @@ node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs --s
 
 It consumes [eq02-04-translating-binary-retained-record-attempt.v1.json](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record-attempt.v1.json), inherits the same-branch identity result from [same-branch-retained-domain-attempt.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json), and evaluates the retained-record residual shape for `EQ-02` through `EQ-04`.
 
-The current attempt returns `status=blocked_same_branch_identity`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. Its drift row has `beta_f=0.6` and `gamma_f=1.25`. The arithmetic diagnostics for clock, envelope, gamma-free coframe reciprocity, two-way signal, energy, exposure, momentum, rest mass, mass shell, medium response, same-root conservation, root starvation, support witness, holonomy witness, split witness, and retune witness pass numerically. The five negative controls also pass as diagnostics: `clock_only_retune`, `envelope_only_retune`, `velocity_dependent_rest_mass`, `medium_response_compensator`, and `gamma_inserted_coframe`. None of this is score evidence because all 15 retained-record rows and all four local witnesses are still `attempt`. More sharply, a single operating point is not retained-branch evidence; it is one trajectory/configuration sample until an invariant support is certified.
+The current attempt returns `status=blocked_same_branch_identity`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. Its drift row has `beta_f=0.6` and `gamma_f=1.25`. The arithmetic diagnostics for clock, envelope, gamma-free coframe reciprocity, two-way signal, energy, exposure, momentum, rest mass, mass shell, medium response, same-root conservation, root starvation, support witness, holonomy witness, split witness, and retune witness pass numerically. The separate `coframeExtraction` diagnostic is `not_evaluated`, because the current row has declared reciprocal legs but no accepted wake-return extraction evidence. The six negative controls pass as diagnostics: `clock_only_retune`, `envelope_only_retune`, `velocity_dependent_rest_mass`, `medium_response_compensator`, `gamma_inserted_coframe`, and `reciprocal_unextracted_coframe`. None of this is score evidence because all 15 retained-record rows and all four local witnesses are still `attempt`. More sharply, a single operating point is not retained-branch evidence; it is one trajectory/configuration sample until an invariant support is certified.
 
 This is not score evidence. It is the direct shape of the retained-record evaluator that must later be populated with accepted source-backed rows. Running
 
@@ -742,7 +742,9 @@ e^0_u(\partial_t)=1.25,
 e^0_u(\partial_t)\frac{e^\parallel_u}{e^\perp_u}=1.
 $$
 
-The input declaration also states that $\gamma_f$, Lorentz target coefficients, mass-shell targets, and fitted clock/envelope rows were not used to construct the coframe. The evaluator treats this as an arithmetic diagnostic only. The row remains `attempt` until those legs are extracted from accepted wake-return data on a certified invariant support. A new `gamma_inserted_coframe` negative control catches the failure mode where the reciprocity product is made to pass by inserting $\gamma_f$ or an equivalent fitted target into the coframe construction.
+The input declaration also states that $\gamma_f$, Lorentz target coefficients, mass-shell targets, and fitted clock/envelope rows were not used to construct the coframe. The evaluator treats this as an arithmetic diagnostic only. The row remains `attempt` until those legs are extracted from accepted wake-return data on a certified invariant support. The separate `coframeExtraction` diagnostic now loads an external extraction certificate contract, but the current certificate is still `attempt`, so the diagnostic fails closed as `not_evaluated` with `reason=coframe_extraction_evidence_not_accepted`. Accepted extraction evidence must provide a durable solver or proof source, matching `commonCarrierId`, matching `domainId`, certified support kind, required extraction basis, and residuals for extraction, support binding, and holonomy.
+
+The `gamma_inserted_coframe` negative control catches the failure mode where the reciprocity product is made to pass by inserting $\gamma_f$ or an equivalent fitted target into the coframe construction. The `reciprocal_unextracted_coframe` negative control catches the distinct failure mode where reciprocal legs pass arithmetically while extraction source, support binding, or holonomy evidence remains absent.
 
 ### Minimum Accepted `S_eq` Retained-Domain Fixture
 
@@ -935,13 +937,14 @@ This row is evaluable only when $(k_2,\ell_2,k_4,\ell_4)$, $T_u/T_0$, and $R_{\p
 
 ## Negative Controls
 
-The first executable includes five negative controls:
+The first executable includes six negative controls:
 
 1. **Clock-only retune:** adjust $T_u$ to match $\gamma_f$ while holding the branch ledger fixed incorrectly. This must pass $R_T$ and fail $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$ or $R_{\xi}$.
 2. **Envelope-only retune:** impose $R_{\parallel}/R_{\perp}=1/\gamma_f$ without the root ledger. This must pass $R_{\xi}$ and fail $\mathcal S_{\mathrm{root}}^{02\text{-}04}$.
 3. **Velocity-dependent rest mass:** let $M_0(u)$ absorb energy-momentum error. This must fail $R_{M_0}^{\mathrm{bin}}$ even if $R_{\mathrm{shell}}$ shrinks.
 4. **Medium-response compensator:** change $\mathcal M_{\mathrm{sea}}^{ab}$ inside the primitive homogeneous cell to repair momentum. This must fail $R_{\mathcal M}^{\mathrm{bin},ab}$ or the declared Noether sea cell equality.
 5. **Gamma-inserted coframe:** make $e^0_u(\partial_t)(e^\parallel_u/e^\perp_u)=1$ by inserting $\gamma_f$ or an equivalent fitted Lorentz target into the coframe construction. This must pass the arithmetic reciprocity residual and fail the forbidden-input or holonomy residual.
+6. **Reciprocal-unextracted coframe:** make $e^0_u(\partial_t)(e^\parallel_u/e^\perp_u)=1$ with declared legs but no accepted wake-return extraction evidence. This must pass the arithmetic reciprocity residual and fail extraction-source, support-binding, or holonomy residuals.
 
 These controls are useful because they test whether the same-record residual detects the most tempting ways to manufacture a Lorentz-looking result without deriving it.
 

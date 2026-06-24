@@ -1,0 +1,233 @@
+{
+  "schema": "aaa-equation-map-eq02-04-invariant-cell-coframe-source/v1",
+  "claimLevel": "accepted-looking step-backed refinement negative control for the invariant-cell/coframe source producer; score-neutral and not evidence",
+  "status": "accepted",
+  "sourceId": "eq02_04_invariant_cell_coframe_source_refinement_step_negative_0001",
+  "certificateId": "eq02_04_source_refinement_step_negative_coframe_certificate_0001",
+  "sourceKind": "invariant_cell_certificate",
+  "commonCarrierId": "C_02-04_bin_u_refinement_step_negative_0001",
+  "domainId": "D_02-04_bin_u_refinement_step_negative_0001",
+  "retainedRowSetId": "S_eq",
+  "supportKind": "positive_width_invariant_cell",
+  "supportId": "S_eq_retained_domain_refinement_step_negative_0001",
+  "tolerance": 1e-12,
+  "acceptBand": 0.000001,
+  "arithmeticNoiseFloor": 1e-12,
+  "truncationNoiseFloor": 0,
+  "negativeMarginFactor": 10,
+  "drift": {
+    "u": 0.6,
+    "c_f": 1,
+    "beta_f": 0.6
+  },
+  "support": {
+    "kind": "positive_width_invariant_cell",
+    "status": "accepted",
+    "N": 16,
+    "truncationError": 0,
+    "B_N": {
+      "status": "accepted",
+      "id": "B_N_refinement_step_negative_0001",
+      "intervalHull": [[-0.01, 0.01], [-0.01, 0.01]],
+      "coordinates": [0, 0],
+      "radius": 0.01,
+      "measureLowerBound": 0.0001,
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-refinement-step-negative-control.v1.json"
+    },
+    "Sigma_N": {
+      "status": "accepted",
+      "id": "Sigma_N_refinement_step_negative_0001",
+      "sectionRule": "theta_root_0_crossing_with_positive_wake_flux",
+      "transversalityMargin": 0.01,
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-refinement-step-negative-control.v1.json"
+    },
+    "P_N": {
+      "status": "accepted",
+      "id": "P_N_refinement_step_negative_0001",
+      "returnTime": 1.25,
+      "mapNormBound": 1.1,
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-refinement-step-negative-control.v1.json"
+    },
+    "K_P_N": {
+      "status": "accepted",
+      "id": "K_P_N_refinement_step_negative_0001",
+      "inclusionResidual": 0,
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-refinement-step-negative-control.v1.json"
+    },
+    "positiveTransverseWidth": 0.01,
+    "returnInclusion": "accepted",
+    "refinementPersistence": {
+      "status": "accepted",
+      "hSequence": [0.01, 0.005, 0.0025],
+      "NSequence": [16, 17, 18],
+      "supportSetStability": {
+        "status": "accepted",
+        "hausdorffResidual": 0
+      },
+      "scalarResidualConvergence": {
+        "status": "accepted",
+        "maxResidual": 0
+      },
+      "controls": {
+        "windowLength": "accepted",
+        "sectionPlacement": "accepted",
+        "transverseDisplacement": "accepted",
+        "phasePermutation": "accepted"
+      },
+      "steps": [
+        {
+          "status": "accepted",
+          "h": 0.01,
+          "N": 16,
+          "supportId": "S_eq_retained_domain_refinement_step_negative_0001",
+          "sourcePath": null,
+          "inclusionResidual": 0,
+          "supportResidual": 0,
+          "scalarResidual": 0
+        },
+        {
+          "status": "accepted",
+          "h": 0.005,
+          "N": 17,
+          "supportId": "S_eq_retained_domain_refinement_step_negative_0001",
+          "sourcePath": null,
+          "inclusionResidual": 0,
+          "supportResidual": 0,
+          "scalarResidual": 0
+        },
+        {
+          "status": "accepted",
+          "h": 0.0025,
+          "N": 18,
+          "supportId": "S_eq_retained_domain_refinement_step_negative_0001",
+          "sourcePath": null,
+          "inclusionResidual": 0,
+          "supportResidual": 0,
+          "scalarResidual": 0
+        }
+      ]
+    }
+  },
+  "rowBindings": {
+    "raw_labeled_rows_preserved_on_retained_history": {
+      "status": "accepted",
+      "rowId": "raw_labeled_rows_preserved_on_retained_history_refinement_step_negative_0001",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_refinement_step_negative_0001",
+      "domainId": "D_02-04_bin_u_refinement_step_negative_0001",
+      "supportId": "S_eq_retained_domain_refinement_step_negative_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-refinement-step-negative-control.v1.json"
+    },
+    "causal_root_ledger_rows_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "causal_root_ledger_rows_bound_to_S_eq_refinement_step_negative_0001",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_refinement_step_negative_0001",
+      "domainId": "D_02-04_bin_u_refinement_step_negative_0001",
+      "supportId": "S_eq_retained_domain_refinement_step_negative_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-refinement-step-negative-control.v1.json"
+    },
+    "wake_tail_rows_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "wake_tail_rows_bound_to_S_eq_refinement_step_negative_0001",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_refinement_step_negative_0001",
+      "domainId": "D_02-04_bin_u_refinement_step_negative_0001",
+      "supportId": "S_eq_retained_domain_refinement_step_negative_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-refinement-step-negative-control.v1.json"
+    },
+    "energy_action_rows_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "energy_action_rows_bound_to_S_eq_refinement_step_negative_0001",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_refinement_step_negative_0001",
+      "domainId": "D_02-04_bin_u_refinement_step_negative_0001",
+      "supportId": "S_eq_retained_domain_refinement_step_negative_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-refinement-step-negative-control.v1.json"
+    },
+    "momentum_and_angular_momentum_rows_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "momentum_and_angular_momentum_rows_bound_to_S_eq_refinement_step_negative_0001",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_refinement_step_negative_0001",
+      "domainId": "D_02-04_bin_u_refinement_step_negative_0001",
+      "supportId": "S_eq_retained_domain_refinement_step_negative_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-refinement-step-negative-control.v1.json"
+    },
+    "phase_rows_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "phase_rows_bound_to_S_eq_refinement_step_negative_0001",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_refinement_step_negative_0001",
+      "domainId": "D_02-04_bin_u_refinement_step_negative_0001",
+      "supportId": "S_eq_retained_domain_refinement_step_negative_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-refinement-step-negative-control.v1.json"
+    },
+    "Noether_sea_record_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "Noether_sea_record_bound_to_S_eq_refinement_step_negative_0001",
+      "retainedRowSetId": "S_eq",
+      "commonCarrierId": "C_02-04_bin_u_refinement_step_negative_0001",
+      "domainId": "D_02-04_bin_u_refinement_step_negative_0001",
+      "supportId": "S_eq_retained_domain_refinement_step_negative_0001",
+      "sourcePath": "scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-refinement-step-negative-control.v1.json"
+    }
+  },
+  "extractionBasis": [
+    "c_f",
+    "u",
+    "L_root",
+    "L_wake",
+    "retained_boundary_history"
+  ],
+  "extractedLegs": {
+    "e0_dt": 1.25,
+    "e_parallel": 0.8,
+    "e_perp": 1
+  },
+  "connection": {
+    "status": "accepted",
+    "omegaStatus": "accepted",
+    "torsionMaxAbs": 0,
+    "phaseHolonomyT2": [0, 0],
+    "supportTransportResidual": 0,
+    "holonomyTransportResidual": 0
+  },
+  "residuals": {
+    "extractionResidual": 0,
+    "supportBindingResidual": 0,
+    "holonomyResidual": 0
+  },
+  "negativeControls": {
+    "window_length": {
+      "status": "accepted",
+      "expectedFailure": "retained_inclusion_not_stable_under_window_length_change",
+      "violationMargin": 0.1
+    },
+    "section_relocation": {
+      "status": "accepted",
+      "expectedFailure": "support_not_persistent_under_section_relocation",
+      "violationMargin": 0.1
+    },
+    "transverse_displacement": {
+      "status": "accepted",
+      "expectedFailure": "sampled_crossing_escapes_invariant_cell",
+      "violationMargin": 0.1
+    },
+    "phase_permutation": {
+      "status": "accepted",
+      "expectedFailure": "binary_label_or_phase_permutation_breaks_row_identity",
+      "violationMargin": 0.1
+    },
+    "reciprocal_unextracted_coframe": {
+      "status": "accepted",
+      "expectedFailure": "reciprocal_legs_without_return_map_source",
+      "violationMargin": 0.1
+    },
+    "holonomy_retune": {
+      "status": "accepted",
+      "expectedFailure": "row_sections_reciprocal_but_not_parallel_transported",
+      "violationMargin": 0.1
+    }
+  }
+}

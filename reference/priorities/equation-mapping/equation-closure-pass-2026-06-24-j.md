@@ -49,7 +49,7 @@ The comparison value $\gamma_f=1.25$ is reported only after the coframe calculat
 
 ## Negative Control
 
-The runner now includes `gamma_inserted_coframe`. This negative control allows the reciprocity residual to pass while forcing a nonzero forbidden-input or holonomy residual. Its role is to catch the fatal circularity:
+The runner includes `gamma_inserted_coframe`. This negative control allows the reciprocity residual to pass while forcing a nonzero forbidden-input or holonomy residual. Its role is to catch the fatal circularity:
 
 $$
 \gamma_f
@@ -59,7 +59,7 @@ e^A_u
 \text{recovered }\gamma_f.
 $$
 
-The current attempt fixture passes this negative control.
+The current attempt fixture passes this negative control. A later hardening pass adds a separate `coframeExtraction` diagnostic and `reciprocal_unextracted_coframe` negative control so this reciprocity result is not mistaken for extracted wake-return evidence.
 
 ## Current Output
 
@@ -78,8 +78,8 @@ returns:
 - `gamma_inserted_coframe=passed`;
 - `rowCount=15`, with all retained rows still `attempt`;
 - `witnessCount=4`, with support, holonomy, split, and retune witnesses still `attempt`;
-- `diagnosticPassCount=16`;
-- `negativeControlPassCount=5`.
+- `diagnosticPassCount=16` in the original pass-J output;
+- `negativeControlPassCount=5` in the original pass-J output.
 
 Running
 

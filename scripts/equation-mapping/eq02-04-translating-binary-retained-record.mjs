@@ -13,6 +13,10 @@ const INPUT_SCHEMA =
   "aaa-equation-map-eq02-04-translating-binary-retained-record-input/v1";
 const OUTPUT_SCHEMA =
   "aaa-equation-map-eq02-04-translating-binary-retained-record-check/v1";
+const COFRAME_EXTRACTION_SCHEMA =
+  "aaa-equation-map-eq02-04-coframe-extraction-certificate/v1";
+const COFRAME_EXTRACTION_PRODUCER_SCHEMA =
+  "aaa-equation-map-eq02-04-coframe-extraction-producer/v1";
 const ACCEPTED_STATUSES = new Set(["accepted", "populated", "passed"]);
 const EPSILON = 1e-12;
 
@@ -189,8 +193,9 @@ Options:
 This runner evaluates the direct retained-record shape for the EQ-02 through
 EQ-04 translating-binary closure target. It is score-neutral unless every row,
 witness, and residual is accepted on one common carrier. The gamma-free coframe
-diagnostic checks reciprocity only after the input declares that gamma, fitted
-Lorentz rows, and shell targets were not used to construct the coframe.`);
+diagnostics separate reciprocal arithmetic from extraction evidence: reciprocity
+can pass on declared legs, but extraction remains not evaluated until the input
+supplies accepted wake-return coframe evidence on the same retained support.`);
 }
 
 function readJson(filePath) {
@@ -559,6 +564,10 @@ function evaluateDiagnostics({ input, drift, tolerances }) {
       drift,
       tolerance(tolerances, "coframeReciprocity"),
     ),
+    coframeExtraction: coframeExtractionDiagnostic(
+      rows.gamma_free_coframe_row,
+      tolerance(tolerances, "coframeExtraction"),
+    ),
     clock: clockDiagnostic(rows.clock_row, drift, tolerance(tolerances, "clock")),
     envelope: envelopeDiagnostic(rows.envelope_row, drift, tolerances),
     twoWaySignal: residualDiagnostic({
@@ -624,6 +633,16 @@ function evaluateNegativeControls({ controls, tolerances }) {
       control: controls.gamma_inserted_coframe,
       fitKeys: ["reciprocityResidual"],
       failureKeys: ["forbiddenInputResidual", "holonomyResidual"],
+      tolerance: limit,
+    }),
+    reciprocal_unextracted_coframe: negativeControlDiagnostic({
+      control: controls.reciprocal_unextracted_coframe,
+      fitKeys: ["reciprocityResidual"],
+      failureKeys: [
+        "extractionSourceResidual",
+        "supportBindingResidual",
+        "holonomyResidual",
+      ],
       tolerance: limit,
     }),
   };
@@ -748,6 +767,564 @@ function coframeReciprocityDiagnostic(row, drift, limit) {
   return {
     ...result,
     reason: result.status === "passed" ? "passed_gamma_free_reciprocity" : "failed_reciprocity",
+  };
+}
+
+function coframeExtractionDiagnostic(row, limit) {
+  if (!row || typeof row !== "object" || Array.isArray(row)) {
+    return notEvaluated("missing_gamma_free_coframe_row");
+  }
+  const loaded = resolveCoframeExtractionEvidence(
+    row.extractionEvidence ?? { certificatePath: row.extractionEvidencePath },
+  );
+  if (loaded.status === "failed") {
+    return {
+      status: "failed",
+      reason: loaded.reason,
+      residual: null,
+      absoluteResidual: null,
+      tolerance: limit,
+      details: loaded.details,
+    };
+  }
+  if (loaded.status !== "passed") {
+    return notEvaluatedWithDetails(loaded.reason, loaded.details);
+  }
+  const evidence = loaded.evidence;
+  const status = normalizeStatus(evidence);
+  if (!ACCEPTED_STATUSES.has(status)) {
+    return notEvaluatedWithDetails("coframe_extraction_evidence_not_accepted", {
+      evidenceStatus: status,
+      certificatePath: loaded.certificatePath,
+      schema: evidence.schema ?? null,
+    });
+  }
+  if (!concreteString(evidence.certificateId)) {
+    return notEvaluated("missing_coframe_extraction_certificate_id");
+  }
+  const producerRecord = evaluateCoframeExtractionProducerRecord(
+    evidence.producer,
+    limit,
+  );
+  if (producerRecord.status !== "passed") {
+    return producerRecord;
+  }
+  const sourcePath = evidence.sourcePath ?? evidence.source ?? null;
+  if (!sourceReferenceExists(sourcePath)) {
+    return {
+      status: "failed",
+      reason: "coframe_extraction_source_not_durable",
+      residual: null,
+      absoluteResidual: null,
+      tolerance: limit,
+      details: { sourcePath },
+    };
+  }
+  const sourceIndependence = evaluateCoframeExtractionSourceIndependence({
+    sourcePath,
+    certificatePath: loaded.certificatePath,
+    limit,
+  });
+  if (sourceIndependence.status !== "passed") {
+    return sourceIndependence;
+  }
+  const sourceKind = evidence.sourceKind ?? null;
+  const acceptedSourceKinds = new Set([
+    "solver_certificate",
+    "proof_certificate",
+    "invariant_cell_certificate",
+    "wake_return_extraction_certificate",
+  ]);
+  if (!acceptedSourceKinds.has(sourceKind)) {
+    return {
+      status: "failed",
+      reason: "coframe_extraction_source_kind_not_evidence",
+      residual: null,
+      absoluteResidual: null,
+      tolerance: limit,
+      details: { sourceKind },
+    };
+  }
+  if (evidence.commonCarrierId !== row.commonCarrierId) {
+    return {
+      status: "failed",
+      reason: "coframe_extraction_common_carrier_mismatch",
+      residual: null,
+      absoluteResidual: null,
+      tolerance: limit,
+      details: {
+        evidenceCommonCarrierId: evidence.commonCarrierId ?? null,
+        rowCommonCarrierId: row.commonCarrierId ?? null,
+      },
+    };
+  }
+  const expectedRetainedRowSetId = row.retainedRowSetId ?? "S_eq";
+  if (evidence.retainedRowSetId !== expectedRetainedRowSetId) {
+    return {
+      status: "failed",
+      reason: "coframe_extraction_retained_row_set_mismatch",
+      residual: null,
+      absoluteResidual: null,
+      tolerance: limit,
+      details: {
+        evidenceRetainedRowSetId: evidence.retainedRowSetId ?? null,
+        rowRetainedRowSetId: expectedRetainedRowSetId,
+      },
+    };
+  }
+  if (evidence.domainId !== row.domainId) {
+    return {
+      status: "failed",
+      reason: "coframe_extraction_domain_mismatch",
+      residual: null,
+      absoluteResidual: null,
+      tolerance: limit,
+      details: {
+        evidenceDomainId: evidence.domainId ?? null,
+        rowDomainId: row.domainId ?? null,
+      },
+    };
+  }
+  const supportKinds = new Set([
+    "positive_width_invariant_cell",
+    "fixed_or_periodic_point_in_certified_cell",
+  ]);
+  if (!supportKinds.has(evidence.supportKind)) {
+    return {
+      status: "failed",
+      reason: "coframe_extraction_support_not_certified",
+      residual: null,
+      absoluteResidual: null,
+      tolerance: limit,
+      details: { supportKind: evidence.supportKind ?? null },
+    };
+  }
+  if (!concreteString(evidence.supportId)) {
+    return notEvaluated("missing_coframe_extraction_support_id");
+  }
+  if (concreteString(row.supportId) && evidence.supportId !== row.supportId) {
+    return {
+      status: "failed",
+      reason: "coframe_extraction_support_id_mismatch",
+      residual: null,
+      absoluteResidual: null,
+      tolerance: limit,
+      details: {
+        evidenceSupportId: evidence.supportId ?? null,
+        rowSupportId: row.supportId,
+      },
+    };
+  }
+  const supportCertificate = evaluateCoframeInvariantSupport(evidence.support, limit);
+  if (supportCertificate.status !== "passed") {
+    return supportCertificate;
+  }
+  const extractionBasis = arrayOfStringsOrEmpty(evidence.extractionBasis);
+  const requiredBasis = ["c_f", "u", "L_root", "L_wake"];
+  const missingBasis = requiredBasis.filter((basis) => !extractionBasis.includes(basis));
+  if (missingBasis.length > 0) {
+    return notEvaluated("missing_coframe_extraction_basis");
+  }
+  const allowedBasis = new Set([
+    "c_f",
+    "u",
+    "L_root",
+    "L_wake",
+    "retained_boundary_history",
+  ]);
+  const unsupportedBasis = extractionBasis.filter((basis) => !allowedBasis.has(basis));
+  if (unsupportedBasis.length > 0) {
+    return {
+      status: "failed",
+      reason: "unsupported_coframe_extraction_basis_used",
+      residual: null,
+      absoluteResidual: null,
+      tolerance: limit,
+      details: { unsupportedBasis },
+    };
+  }
+  const forbiddenBasis = ["gamma_f", "Lorentz_target", "mass_shell_target", "fitted_clock_envelope"];
+  const usedForbiddenBasis = forbiddenBasis.filter((basis) => extractionBasis.includes(basis));
+  if (usedForbiddenBasis.length > 0) {
+    return {
+      status: "failed",
+      reason: "forbidden_coframe_extraction_basis_used",
+      residual: null,
+      absoluteResidual: null,
+      tolerance: limit,
+      details: { usedForbiddenBasis },
+    };
+  }
+  const certificateLegs =
+    evidence.extractedLegs && typeof evidence.extractedLegs === "object"
+      ? evidence.extractedLegs
+      : evidence.coframeLegs && typeof evidence.coframeLegs === "object"
+        ? evidence.coframeLegs
+        : {};
+  const certificateTimeLeg = positiveFiniteNumberOrNull(
+    certificateLegs.e0_dt ?? certificateLegs.timeLeg,
+  );
+  const certificateParallelLeg = finiteNumberOrNull(
+    certificateLegs.e_parallel ?? certificateLegs.parallelLeg,
+  );
+  const certificatePerpLeg = positiveFiniteNumberOrNull(
+    certificateLegs.e_perp ?? certificateLegs.perpLeg,
+  );
+  if (
+    certificateTimeLeg === null ||
+    certificateParallelLeg === null ||
+    certificatePerpLeg === null
+  ) {
+    return notEvaluated("missing_coframe_extraction_legs");
+  }
+  const rowTimeLeg = positiveFiniteNumberOrNull(row.e0_dt ?? row.timeLeg);
+  const rowParallelLeg = finiteNumberOrNull(row.e_parallel ?? row.parallelLeg);
+  const rowPerpLeg = positiveFiniteNumberOrNull(row.e_perp ?? row.perpLeg);
+  if (rowTimeLeg === null || rowParallelLeg === null || rowPerpLeg === null) {
+    return notEvaluated("missing_coframe_leg");
+  }
+  const legResidual = Math.max(
+    Math.abs(certificateTimeLeg - rowTimeLeg),
+    Math.abs(certificateParallelLeg - rowParallelLeg),
+    Math.abs(certificatePerpLeg - rowPerpLeg),
+  );
+  if (legResidual > limit) {
+    return {
+      status: "failed",
+      reason: "coframe_extraction_leg_mismatch",
+      residual: legResidual,
+      absoluteResidual: legResidual,
+      tolerance: limit,
+      details: {
+        rowLegs: {
+          e0_dt: rowTimeLeg,
+          e_parallel: rowParallelLeg,
+          e_perp: rowPerpLeg,
+        },
+        certificateLegs: {
+          e0_dt: certificateTimeLeg,
+          e_parallel: certificateParallelLeg,
+          e_perp: certificatePerpLeg,
+        },
+      },
+    };
+  }
+  const residuals =
+    evidence.residuals && typeof evidence.residuals === "object" ? evidence.residuals : evidence;
+  const extractionResidual = finiteNumberOrNull(residuals.extractionResidual);
+  const supportBindingResidual = finiteNumberOrNull(residuals.supportBindingResidual);
+  const holonomyResidual = finiteNumberOrNull(residuals.holonomyResidual);
+  if (
+    extractionResidual === null ||
+    supportBindingResidual === null ||
+    holonomyResidual === null
+  ) {
+    return notEvaluated("missing_coframe_extraction_residual");
+  }
+  const residual = Math.max(
+    Math.abs(extractionResidual),
+    Math.abs(supportBindingResidual),
+    Math.abs(holonomyResidual),
+  );
+  return scalarResult(residual, limit, {
+    sourcePath,
+    sourceKind,
+    certificatePath: loaded.certificatePath,
+    producer: producerRecord.details,
+    supportKind: evidence.supportKind,
+    support: supportCertificate.details,
+    extractionBasis,
+    legResidual,
+    extractionResidual,
+    supportBindingResidual,
+    holonomyResidual,
+  });
+}
+
+function evaluateCoframeInvariantSupport(support, limit) {
+  if (!support || typeof support !== "object" || Array.isArray(support)) {
+    return failedCoframeExtractionSupport(
+      "missing_coframe_extraction_support_certificate",
+      limit,
+      {},
+    );
+  }
+  const supportStatus = normalizeStatus(support);
+  if (!ACCEPTED_STATUSES.has(supportStatus)) {
+    return failedCoframeExtractionSupport(
+      "coframe_extraction_support_certificate_not_accepted",
+      limit,
+      { supportStatus },
+    );
+  }
+  const requiredFields = ["B_N", "Sigma_N", "P_N", "K_P_N"];
+  const missingFields = requiredFields.filter(
+    (field) => !supportFieldIsCertified(support[field]),
+  );
+  if (missingFields.length > 0) {
+    return failedCoframeExtractionSupport(
+      "missing_coframe_extraction_support_field",
+      limit,
+      { missingFields },
+    );
+  }
+  const positiveTransverseWidth = positiveFiniteNumberOrNull(
+    support.positiveTransverseWidth,
+  );
+  if (positiveTransverseWidth === null) {
+    return failedCoframeExtractionSupport(
+      "missing_positive_transverse_width",
+      limit,
+      { positiveTransverseWidth: support.positiveTransverseWidth ?? null },
+    );
+  }
+  if (!returnInclusionIsCertified(support.returnInclusion)) {
+    return failedCoframeExtractionSupport(
+      "coframe_extraction_return_inclusion_not_certified",
+      limit,
+      { returnInclusion: support.returnInclusion ?? null },
+    );
+  }
+  return {
+    status: "passed",
+    residual: 0,
+    absoluteResidual: 0,
+    tolerance: limit,
+    details: {
+      supportStatus,
+      B_N: support.B_N,
+      Sigma_N: support.Sigma_N,
+      P_N: support.P_N,
+      K_P_N: support.K_P_N,
+      positiveTransverseWidth,
+      returnInclusion: support.returnInclusion,
+    },
+  };
+}
+
+function failedCoframeExtractionSupport(reason, limit, details) {
+  return {
+    status: "failed",
+    reason,
+    residual: null,
+    absoluteResidual: null,
+    tolerance: limit,
+    details,
+  };
+}
+
+function evaluateCoframeExtractionProducerRecord(producer, limit) {
+  if (!producer || typeof producer !== "object" || Array.isArray(producer)) {
+    return failedCoframeExtractionSupport(
+      "missing_coframe_extraction_producer_record",
+      limit,
+      {},
+    );
+  }
+  if (producer.schema !== COFRAME_EXTRACTION_PRODUCER_SCHEMA) {
+    return failedCoframeExtractionSupport(
+      "invalid_coframe_extraction_producer_schema",
+      limit,
+      { schema: producer.schema ?? null },
+    );
+  }
+  const producerStatus = normalizeStatus(producer);
+  if (!ACCEPTED_STATUSES.has(producerStatus)) {
+    return failedCoframeExtractionSupport(
+      "coframe_extraction_producer_not_accepted",
+      limit,
+      { producerStatus },
+    );
+  }
+  const failedChecks = arrayOfStringsOrEmpty(producer.failedChecks);
+  if (failedChecks.length > 0) {
+    return failedCoframeExtractionSupport(
+      "coframe_extraction_producer_failed_checks",
+      limit,
+      { failedChecks },
+    );
+  }
+  return {
+    status: "passed",
+    residual: 0,
+    absoluteResidual: 0,
+    tolerance: limit,
+    details: {
+      producerStatus,
+      generatedAt: producer.generatedAt ?? null,
+      scoreDecision: producer.scoreDecision ?? null,
+    },
+  };
+}
+
+function evaluateCoframeExtractionSourceIndependence({
+  sourcePath,
+  certificatePath,
+  limit,
+}) {
+  const resolvedSourcePath = path.isAbsolute(sourcePath)
+    ? sourcePath
+    : path.resolve(process.cwd(), sourcePath);
+  const resolvedCertificatePath = concreteString(certificatePath)
+    ? path.resolve(certificatePath)
+    : null;
+  if (
+    resolvedCertificatePath &&
+    resolvedSourcePath === resolvedCertificatePath
+  ) {
+    return failedCoframeExtractionSupport(
+      "coframe_extraction_source_is_certificate",
+      limit,
+      { sourcePath: resolvedSourcePath, certificatePath: resolvedCertificatePath },
+    );
+  }
+  if (path.extname(resolvedSourcePath) !== ".json") {
+    return {
+      status: "passed",
+      residual: 0,
+      absoluteResidual: 0,
+      tolerance: limit,
+      details: { sourcePath: resolvedSourcePath },
+    };
+  }
+  let parsed;
+  try {
+    parsed = readJson(resolvedSourcePath);
+  } catch (error) {
+    return failedCoframeExtractionSupport(
+      "coframe_extraction_source_json_invalid",
+      limit,
+      {
+        sourcePath: resolvedSourcePath,
+        error: String(error?.message ?? error),
+      },
+    );
+  }
+  if (parsed.schema === COFRAME_EXTRACTION_SCHEMA) {
+    return failedCoframeExtractionSupport(
+      "coframe_extraction_source_is_certificate_schema",
+      limit,
+      { sourcePath: resolvedSourcePath, schema: parsed.schema },
+    );
+  }
+  return {
+    status: "passed",
+    residual: 0,
+    absoluteResidual: 0,
+    tolerance: limit,
+    details: { sourcePath: resolvedSourcePath, sourceSchema: parsed.schema ?? null },
+  };
+}
+
+function supportFieldIsCertified(value) {
+  if (typeof value === "string") {
+    return concreteNonPlaceholderString(value);
+  }
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return false;
+  }
+  const status = normalizeStatus(value);
+  if (!ACCEPTED_STATUSES.has(status)) {
+    return false;
+  }
+  const id =
+    value.id ??
+    value.rowId ??
+    value.certificateId ??
+    value.sourcePath ??
+    value.source ??
+    null;
+  if (!concreteNonPlaceholderString(id)) {
+    return false;
+  }
+  const sourcePath = value.sourcePath ?? value.source ?? null;
+  if (concreteString(sourcePath) && !sourceReferenceExists(sourcePath)) {
+    return false;
+  }
+  return true;
+}
+
+function returnInclusionIsCertified(value) {
+  if (value === true) {
+    return true;
+  }
+  if (typeof value === "string") {
+    return ACCEPTED_STATUSES.has(value);
+  }
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return false;
+  }
+  return ACCEPTED_STATUSES.has(normalizeStatus(value));
+}
+
+function resolveCoframeExtractionEvidence(rawEvidence) {
+  if (!rawEvidence || typeof rawEvidence !== "object" || Array.isArray(rawEvidence)) {
+    return {
+      status: "not_evaluated",
+      reason: "missing_coframe_extraction_evidence",
+      details: {},
+      evidence: null,
+      certificatePath: null,
+    };
+  }
+  const certificatePath = rawEvidence.certificatePath ?? null;
+  if (!concreteString(certificatePath)) {
+    return {
+      status: "passed",
+      reason: "inline_coframe_extraction_evidence",
+      details: {},
+      evidence: rawEvidence,
+      certificatePath: null,
+    };
+  }
+  const resolvedCertificatePath = path.isAbsolute(certificatePath)
+    ? certificatePath
+    : path.resolve(process.cwd(), certificatePath);
+  if (!sourceReferenceExists(resolvedCertificatePath)) {
+    return {
+      status: "not_evaluated",
+      reason: "missing_coframe_extraction_certificate",
+      details: { certificatePath: resolvedCertificatePath },
+      evidence: null,
+      certificatePath: resolvedCertificatePath,
+    };
+  }
+  let parsed;
+  try {
+    parsed = readJson(resolvedCertificatePath);
+  } catch (error) {
+    return {
+      status: "failed",
+      reason: "invalid_coframe_extraction_certificate_json",
+      details: {
+        certificatePath: resolvedCertificatePath,
+        error: String(error?.message ?? error),
+      },
+      evidence: null,
+      certificatePath: resolvedCertificatePath,
+    };
+  }
+  if (parsed.schema !== COFRAME_EXTRACTION_SCHEMA) {
+    return {
+      status: "failed",
+      reason: "invalid_coframe_extraction_certificate_schema",
+      details: {
+        certificatePath: resolvedCertificatePath,
+        schema: parsed.schema ?? null,
+      },
+      evidence: null,
+      certificatePath: resolvedCertificatePath,
+    };
+  }
+  return {
+    status: "passed",
+    reason: "loaded_coframe_extraction_certificate",
+    details: { certificatePath: resolvedCertificatePath },
+    evidence: {
+      ...parsed,
+      certificatePath: resolvedCertificatePath,
+    },
+    certificatePath: resolvedCertificatePath,
   };
 }
 
@@ -933,6 +1510,17 @@ function notEvaluated(reason) {
   };
 }
 
+function notEvaluatedWithDetails(reason, details) {
+  return {
+    status: "not_evaluated",
+    reason,
+    residual: null,
+    absoluteResidual: null,
+    tolerance: null,
+    details,
+  };
+}
+
 function nextBlockerForRecord({
   status,
   sameBranchIdentity,
@@ -996,6 +1584,22 @@ function normalizeStatus(value) {
 
 function concreteString(value) {
   return typeof value === "string" && value.trim().length > 0;
+}
+
+function concreteNonPlaceholderString(value) {
+  if (!concreteString(value)) {
+    return false;
+  }
+  return !(
+    value.includes("attempt") ||
+    value.includes("pending") ||
+    value.includes("placeholder") ||
+    value.includes("mock") ||
+    value.includes("toy") ||
+    value.includes("/tmp/") ||
+    value.includes("/private/tmp/") ||
+    value.includes("content/generated/")
+  );
 }
 
 function sourceReferenceExists(value) {

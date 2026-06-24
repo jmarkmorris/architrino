@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 532,
-      "edges": 1286,
-      "scenes": 350,
+      "nodes": 542,
+      "edges": 1296,
+      "scenes": 355,
       "markdownIndexes": 0,
-      "markdownDocs": 169,
+      "markdownDocs": 174,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2243,6 +2243,36 @@
       "nodeType": "scene"
     },
     {
+      "id": "philosophy_history__perspective_henri_poincare",
+      "name": "Henri Poincare",
+      "path": "content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__perspective_james_clerk_maxwell",
+      "name": "James Clerk Maxwell",
+      "path": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__perspective_ludwig_boltzmann",
+      "name": "Ludwig Boltzmann",
+      "path": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__perspective_emmy_noether",
+      "name": "Emmy Noether",
+      "path": "content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__perspective_albert_einstein",
+      "name": "Albert Einstein",
+      "path": "content/scenes/philosophy_history/perspectives/albert_einstein.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "philosophy_history__perspective_william_thurston",
       "name": "William Thurston",
       "path": "content/scenes/philosophy_history/perspectives/william_thurston.json",
@@ -2696,6 +2726,36 @@
       "id": "content/markdown/aaa/philosophy-history/perspectives.md",
       "name": "Perspectives",
       "path": "content/markdown/aaa/philosophy-history/perspectives.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+      "name": "Albert Einstein",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "name": "Emmy Noether",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "name": "Henri Poincare",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "name": "James Clerk Maxwell",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+      "name": "Ludwig Boltzmann",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5308,6 +5368,51 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/albert_einstein.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspective_albert_einstein",
+      "name": "Albert Einstein",
+      "path": "content/scenes/philosophy_history/perspectives/albert_einstein.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/albert_einstein.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspective_emmy_noether",
+      "name": "Emmy Noether",
+      "path": "content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspective_henri_poincare",
+      "name": "Henri Poincare",
+      "path": "content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspective_james_clerk_maxwell",
+      "name": "James Clerk Maxwell",
+      "path": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__perspective_ludwig_boltzmann",
+      "name": "Ludwig Boltzmann",
+      "path": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+      "searchTarget": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/perspectives/overview.json",
       "nodeType": "scene",
       "id": "philosophy_history__perspectives_overview",
@@ -7087,6 +7192,51 @@
       "name": "Perspectives",
       "path": "content/markdown/aaa/philosophy-history/perspectives.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/perspectives.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+      "name": "Albert Einstein",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "name": "Emmy Noether",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "name": "Henri Poincare",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "name": "James Clerk Maxwell",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+      "name": "Ludwig Boltzmann",
+      "path": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
       "implicit": false
     },
     {
@@ -11444,6 +11594,41 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/albert_einstein.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/perspectives.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/perspectives.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/perspectives.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/perspectives.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
+      "to": "scene:content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/perspectives.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives.json",
       "to": "scene:content/scenes/philosophy_history/perspectives/overview.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/perspectives.json",
@@ -12952,6 +13137,41 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-history.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/overview.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/albert_einstein.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/albert_einstein.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/emmy_noether.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/henri_poincare.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
       "field": "scene.source.path"
     },
     {

@@ -81,6 +81,34 @@ Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column p
 
 [Equation Closure Pass 2026-06-24 J](equation-closure-pass-2026-06-24-j.md) implements the first score-neutral gamma-free coframe reciprocity diagnostic inside the existing `EQ-02` through `EQ-04` retained-record runner. The current $\beta_f=0.6$ attempt reports $e^0_u(\partial_t)=1.25$, $e^\parallel_u/e^\perp_u=0.8$, product $1$, and a passing `gamma_inserted_coframe` negative control, while still blocking score movement at `missing_accepted_raw_labeled_rows_preserved_on_retained_history`. No scores change.
 
+[Equation Closure Pass 2026-06-24 K](equation-closure-pass-2026-06-24-k.md) narrows the next just-in-time review loop to the gamma-free coframe extraction contract for `EQ-02` through `EQ-04`. The new Cartan-style packet asks whether $e^0_u(\partial_t)e^\parallel_u/e^\perp_u=1$ is the right invariant target, what wake-return data the solver must report, and which failure mode or negative control should be added before replacing declared attempt legs with extracted coframe legs. No scores change.
+
+[Equation Closure Pass 2026-06-24 L](equation-closure-pass-2026-06-24-l.md) implements the smallest score-neutral hardening implied by that target: the retained-record runner now separates `coframeReciprocity` from `coframeExtraction`. The current attempt still passes reciprocity at $\beta_f=0.6$, but extraction is `not_evaluated` until accepted wake-return coframe evidence exists; `reciprocal_unextracted_coframe` now catches reciprocal legs without extraction source, support binding, or holonomy evidence. No scores change.
+
+[Equation Closure Pass 2026-06-24 M](equation-closure-pass-2026-06-24-m.md) adds the explicit external coframe extraction certificate contract. The retained-record attempt now points to an attempt-level certificate with a durable certificate id, matching carrier/domain ids, retained-row-set id, certified-support id, bounded extraction basis, extracted coframe legs, connection slots, and residual slots. The runner loads the certificate and now reports `coframeExtraction.reason=coframe_extraction_evidence_not_accepted` instead of a missing-evidence blocker. No scores change.
+
+[Equation Closure Pass 2026-06-24 N](equation-closure-pass-2026-06-24-n.md) records the next just-in-time review packet for the first accepted source-backed invariant-cell/coframe extraction certificate. The current repo has reusable fail-closed patterns but no accepted `S_eq` support evidence, so the Poincare-style packet asks whether the score-moving object should be a positive-width Krawczyk/interval-Newton cell, an interval-enclosed periodic point, a persistent branch family, or a stricter connection-and-holonomy return-map object. No scores change.
+
+[Equation Closure Pass 2026-06-24 O](equation-closure-pass-2026-06-24-o.md) hardens the accepted-evidence path for the coframe extraction certificate. An accepted outer certificate now still fails unless its inner support certificate is accepted and carries concrete `B_N`, `Sigma_N`, `P_N`, `K_P_N`, positive transverse width, and certified return inclusion. This prevents a status flip from turning attempt labels into invariant-cell evidence. No scores change.
+
+[Equation Closure Pass 2026-06-24 P](equation-closure-pass-2026-06-24-p.md) adds the fail-closed coframe extraction producer for `EQ-02` through `EQ-04`. The producer consumes a durable invariant-cell/coframe source report and emits the existing certificate schema only as `accepted` when the source report supplies accepted return-map support, refinement persistence, gamma-free extraction basis, matching coframe legs, connection/holonomy data, and zero residuals. The retained-record runner now also requires the accepted producer record, so a hand-written certificate shell cannot bypass the source-backed producer path. No scores change.
+
+[Equation Closure Pass 2026-06-24 Q](equation-closure-pass-2026-06-24-q.md) adds the first durable source-report shape for that producer and records the next Kolmogorov-style review packet. The new source report uses the expected invariant-cell/coframe source schema, remains `attempt`, and now lets the producer block at `source_status` rather than `source_schema`. The review asks whether one combined source object is mathematically sound or should split into retained-domain support plus wake-return coframe extraction over that support. No scores change.
+
+[Equation Closure Pass 2026-06-24 R](equation-closure-pass-2026-06-24-r.md) adds an accepted-looking source-shell negative control for the `EQ-02` through `EQ-04` coframe extraction producer. The fixture uses accepted outer statuses, concrete ids, accepted row bindings, and accepted-looking connection/residual rows, but leaves `B_N`, `Sigma_N`, `P_N`, and `K_P_N` mathematically empty. The producer blocks it at `support_B_N_certified`, confirming that named source shells cannot pass without substantive return-map geometry. No scores change.
+
+[Equation Closure Pass 2026-06-24 S](equation-closure-pass-2026-06-24-s.md) integrates the retained-evidence row-binding and refinement corrections into the same producer. Row bindings must now be source-bound objects on the same `S_eq`, common carrier, domain, and support; accepted-looking negative controls need concrete violated margins; `window_length` joins the required negative controls; and refinement persistence now requires a decreasing step/window sequence, increasing memory-depth sequence, support-set stability, scalar-residual convergence, and accepted window/section/transverse/phase controls. The new row-binding fixture blocks at `row_binding_raw_labeled_rows_preserved_on_retained_history`, while the populated-but-unrefined fixture blocks at `refinement_persistence`. No scores change.
+
+[Equation Closure Pass 2026-06-24 T](equation-closure-pass-2026-06-24-t.md) calibrates the negative-control margins against an explicit accept band and arithmetic/truncation noise floors. Source reports must now declare `acceptBand`, `arithmeticNoiseFloor`, `truncationNoiseFloor`, and `negativeMarginFactor > 1`; every required negative control must have `violationMargin >= negativeMarginFactor * acceptBand`, with the accept band at or above the declared noise floor and producer tolerance. The new margin fixture blocks at `negative_control_window_length_margin_calibrated`. No scores change.
+
+[Equation Closure Pass 2026-06-24 U](equation-closure-pass-2026-06-24-u.md) makes refinement persistence step-backed. Source reports must now provide `support.refinementPersistence.steps[]` with durable per-step sources, stable support id, strictly decreasing step size, strictly increasing memory depth, and bounded inclusion, support, and scalar residuals. The new refinement-step fixture blocks at `refinement_persistence_step_sources`, while the older shell, row-binding, refinement, and margin fixtures keep their intended first blockers. No scores change.
+
+[Equation Closure Pass 2026-06-24 V](equation-closure-pass-2026-06-24-v.md) adds the isolated support-id instability negative control for the step-backed refinement path. The new fixture supplies valid per-step sources and bounded residuals but binds the refinement steps to a different support id, so the producer blocks exactly at `refinement_persistence_support_id_stability`. No scores change.
+
+[Equation Closure Pass 2026-06-24 W](equation-closure-pass-2026-06-24-w.md) narrows the next just-in-time Cartan review packet to connection/holonomy transport over an already source-backed retained support. It supersedes the broader source-contract split packet because passes U and V changed the active question: the next implementation should define $W_{\mathrm{hol}}$ and the minimal transport certificate before adding connection-step fields. No scores change.
+
+[Equation Closure Pass 2026-06-24 X](equation-closure-pass-2026-06-24-x.md) adds a provisional source-internal connection torsion negative control using the existing producer checks. The fixture keeps support, row bindings, refinement steps, support id, coframe legs, phase holonomy, and transport residuals valid, but sets `connection.torsionMaxAbs` above tolerance, so the producer blocks exactly at `connection_torsion_bound`. This tests the current guardrail without adding new connection/holonomy transport semantics before the Cartan response. No scores change.
+
 Closure packets should be durable working files. Prefer one packet per equation as soon as the equation has enough independent material to advance on its own. Keep a tightly coupled equation group in one packet only when splitting it would obscure a shared residual, shared branch ledger, or shared Noether sea record. Continue improving each packet until it is either marked `ready` for reader-facing promotion or marked `complete` after promotion into `content/markdown/aaa`. The `Promoted?` column in [equation.md](equation.md) accepts only blank, `ready`, or `complete`.
 
 ## Discussion Capture
@@ -231,6 +259,20 @@ The workstream should stay internal until a line item produces a mature mathemat
 - [Equation Closure Pass 2026-06-23 AN](equation-closure-pass-2026-06-23-an.md)
 - [Equation Closure Pass 2026-06-24 I](equation-closure-pass-2026-06-24-i.md)
 - [Equation Closure Pass 2026-06-24 J](equation-closure-pass-2026-06-24-j.md)
+- [Equation Closure Pass 2026-06-24 K](equation-closure-pass-2026-06-24-k.md)
+- [Equation Closure Pass 2026-06-24 L](equation-closure-pass-2026-06-24-l.md)
+- [Equation Closure Pass 2026-06-24 M](equation-closure-pass-2026-06-24-m.md)
+- [Equation Closure Pass 2026-06-24 N](equation-closure-pass-2026-06-24-n.md)
+- [Equation Closure Pass 2026-06-24 O](equation-closure-pass-2026-06-24-o.md)
+- [Equation Closure Pass 2026-06-24 P](equation-closure-pass-2026-06-24-p.md)
+- [Equation Closure Pass 2026-06-24 Q](equation-closure-pass-2026-06-24-q.md)
+- [Equation Closure Pass 2026-06-24 R](equation-closure-pass-2026-06-24-r.md)
+- [Equation Closure Pass 2026-06-24 S](equation-closure-pass-2026-06-24-s.md)
+- [Equation Closure Pass 2026-06-24 T](equation-closure-pass-2026-06-24-t.md)
+- [Equation Closure Pass 2026-06-24 U](equation-closure-pass-2026-06-24-u.md)
+- [Equation Closure Pass 2026-06-24 V](equation-closure-pass-2026-06-24-v.md)
+- [Equation Closure Pass 2026-06-24 W](equation-closure-pass-2026-06-24-w.md)
+- [Equation Closure Pass 2026-06-24 X](equation-closure-pass-2026-06-24-x.md)
 - [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
 - [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md)
 - [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md)

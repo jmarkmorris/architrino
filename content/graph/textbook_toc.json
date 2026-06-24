@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 181,
-      "sections": 1451
+      "entries": 186,
+      "sections": 1456
     }
   },
   "tocRoot": {
@@ -13408,6 +13408,96 @@
                     "kind": "markdown-section",
                     "title": "Perspective",
                     "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
+                    "markdownSection": "Perspective",
+                    "sectionKey": "perspective",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "philosophy_history__perspective_henri_poincare",
+                "title": "Henri Poincare",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/perspectives/henri_poincare.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Perspective",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
+                    "markdownSection": "Perspective",
+                    "sectionKey": "perspective",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "philosophy_history__perspective_james_clerk_maxwell",
+                "title": "James Clerk Maxwell",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Perspective",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
+                    "markdownSection": "Perspective",
+                    "sectionKey": "perspective",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "philosophy_history__perspective_ludwig_boltzmann",
+                "title": "Ludwig Boltzmann",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Perspective",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
+                    "markdownSection": "Perspective",
+                    "sectionKey": "perspective",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "philosophy_history__perspective_emmy_noether",
+                "title": "Emmy Noether",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/perspectives/emmy_noether.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Perspective",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
+                    "markdownSection": "Perspective",
+                    "sectionKey": "perspective",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "philosophy_history__perspective_albert_einstein",
+                "title": "Albert Einstein",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/perspectives/albert_einstein.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Perspective",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
                     "markdownSection": "Perspective",
                     "sectionKey": "perspective",
                     "headingLevel": 2
