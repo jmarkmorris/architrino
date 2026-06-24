@@ -1,0 +1,95 @@
+{
+  "schema": "aaa-equation-map-finite-window-statistical-carrier-input/v1",
+  "claimLevel": "toy EQ-14 record-current projection; structure-faithful, not retained evidence",
+  "constants": {
+    "hbar": 1
+  },
+  "tolerances": {
+    "massClosure": 1e-12,
+    "invariance": 0.001,
+    "retune": 1e-12,
+    "recordContinuity": 0.001,
+    "densityReference": 0.001,
+    "currentReference": 0.001
+  },
+  "carrier": {
+    "id": "eq14_record_current_toy",
+    "row": "EQ-14",
+    "retainedStatus": "toy",
+    "window": {
+      "id": "W_eq14_record_current_toy",
+      "kind": "toy_measurement_window",
+      "retainedStatus": "toy"
+    },
+    "duration": 2,
+    "transitionMap": {
+      "id": "Phi_T_eq14_record_current_toy",
+      "retainedStatus": "toy"
+    },
+    "finiteMeasure": {
+      "id": "mu_star_T_eq14_record_current_toy",
+      "totalMass": 1,
+      "invarianceResidual": 0.02,
+      "retainedStatus": "toy"
+    },
+    "coarseGraining": {
+      "id": "Q_eq14_record_current_toy",
+      "retainedStatus": "toy"
+    },
+    "detectorKernel": {
+      "id": "K_det_eq14_record_current_toy",
+      "retainedStatus": "toy"
+    },
+    "outcomePartition": {
+      "id": "B_eq14_record_current_toy",
+      "retainedStatus": "toy",
+      "classes": [
+        "left_record_cell",
+        "right_record_cell"
+      ]
+    },
+    "noHiddenRetuneWitness": {
+      "id": "S_retune_eq14_record_current_toy",
+      "residual": 0,
+      "retainedStatus": "toy"
+    },
+    "recordCurrentProjection": {
+      "id": "Theta_rhoJ_eq14_record_current_toy",
+      "positionProjectionId": "pi_x_eq14_record_current_toy",
+      "densityMeasureId": "mu_star_T_eq14_record_current_toy",
+      "currentMeasureId": "mu_star_T_eq14_record_current_toy",
+      "densityFlowId": "Phi_T_eq14_record_current_toy",
+      "currentFlowId": "Phi_T_eq14_record_current_toy",
+      "retainedStatus": "toy",
+      "sourcePath": "pending-retained-source"
+    },
+    "recordCurrentSamples": [
+      {
+        "id": "left_record_cell_eq14_toy",
+        "densityBefore": 0.5,
+        "densityAfter": 0.48,
+        "deltaT": 1,
+        "currentDivergence": 0.02,
+        "densityRecord": 0.48,
+        "densityReference": 0.4804,
+        "currentRecord": 0.12,
+        "currentReference": 0.1203,
+        "retainedStatus": "toy",
+        "sourcePath": "pending-retained-source"
+      },
+      {
+        "id": "right_record_cell_eq14_toy",
+        "densityBefore": 0.3,
+        "densityAfter": 0.31,
+        "deltaT": 1,
+        "currentDivergence": -0.01,
+        "densityRecord": 0.31,
+        "densityReference": 0.3097,
+        "currentRecord": -0.08,
+        "currentReference": -0.0796,
+        "retainedStatus": "toy",
+        "sourcePath": "pending-retained-source"
+      }
+    ]
+  }
+}

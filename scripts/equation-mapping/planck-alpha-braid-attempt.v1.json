@@ -1,0 +1,213 @@
+{
+  "schema": "aaa-equation-map-planck-alpha-braid-input/v1",
+  "claimLevel": "EQ-12A, EQ-22A, and EQ-26A Planck/alpha braid attempt skeleton; score-neutral and not accepted",
+  "residualId": "R_EQ12A_22A_26A_planck_alpha_braid_attempt_0001",
+  "commonCarrierId": "theta_planck_alpha_braid_attempt_0001",
+  "tolerances": {
+    "carrier": 1e-12,
+    "planckQuantum": 1e-12,
+    "blackbody": 1e-12,
+    "alpha": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12,
+    "negativeControl": 1e-12
+  },
+  "packet": {
+    "id": "theta_planck_alpha_braid_attempt_0001",
+    "commonCarrierId": "theta_planck_alpha_braid_attempt_0001",
+    "rows": {
+      "theta_gamma_packet": {
+        "id": "theta_gamma_packet_attempt_0001",
+        "rowId": "theta_gamma_packet_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "planck_braid_carrier": {
+        "id": "planck_braid_carrier_attempt_0001",
+        "rowId": "planck_braid_carrier_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "photon_action_quantum_row": {
+        "id": "photon_action_quantum_attempt_0001",
+        "rowId": "photon_action_quantum_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "phase_cycle_angular_momentum_row": {
+        "id": "phase_cycle_angular_momentum_attempt_0001",
+        "rowId": "phase_cycle_angular_momentum_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "photon_packet_row": {
+        "id": "photon_packet_attempt_0001",
+        "rowId": "photon_packet_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "thermal_mode_counting_row": {
+        "id": "thermal_mode_counting_attempt_0001",
+        "rowId": "thermal_mode_counting_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "planck_occupancy_row": {
+        "id": "planck_occupancy_attempt_0001",
+        "rowId": "planck_occupancy_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "temperature_clock_conversion_row": {
+        "id": "temperature_clock_conversion_attempt_0001",
+        "rowId": "temperature_clock_conversion_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "alpha_coupling_row": {
+        "id": "alpha_coupling_attempt_0001",
+        "rowId": "alpha_coupling_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "charge_exposure_row": {
+        "id": "charge_exposure_attempt_0001",
+        "rowId": "charge_exposure_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "local_photon_speed_row": {
+        "id": "local_photon_speed_attempt_0001",
+        "rowId": "local_photon_speed_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "vacuum_polarization_wake_dressing_row": {
+        "id": "vacuum_polarization_wake_dressing_attempt_0001",
+        "rowId": "vacuum_polarization_wake_dressing_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "energy_scale_running_row": {
+        "id": "energy_scale_running_attempt_0001",
+        "rowId": "energy_scale_running_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "source_provenance": {
+        "id": "source_provenance_attempt_0001",
+        "rowId": "source_provenance_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "no_hidden_retune_witness": {
+        "id": "no_hidden_retune_attempt_0001",
+        "rowId": "no_hidden_retune_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      }
+    },
+    "planckAlpha": {
+      "planckQuantum": {
+        "energyFrequency": {
+          "energy": 2,
+          "planckConstant": 1,
+          "frequency": 2,
+          "epsilonEnergy": 1e-30
+        },
+        "angularEnergy": {
+          "energy": 2,
+          "reducedPlanckConstant": 0.15915494309189535,
+          "angularFrequency": 12.566370614359172,
+          "epsilonEnergy": 1e-30
+        },
+        "actionCycle": {
+          "action": 1,
+          "planckConstant": 1,
+          "reducedPlanckConstant": 0.15915494309189535,
+          "cycleAngle": 6.283185307179586,
+          "epsilonAction": 1e-30
+        },
+        "angularMomentumUnit": {
+          "maxResidual": 0
+        }
+      },
+      "blackbody": {
+        "planckConstant": 1,
+        "frequency": 2,
+        "boltzmannConstant": 1,
+        "temperature": 2,
+        "photonSpeed": 1,
+        "photonChemicalPotential": 0,
+        "thermalizationDepth": 10,
+        "minThermalizationDepth": 1,
+        "meanOccupancy": 0.5819767068693265,
+        "modeDensity": 100.53096491487338,
+        "energyDensity": 117.01335979910762
+      },
+      "alphaRunning": {
+        "alphaReference": 0.0072973525692838015,
+        "alphaAtScale": 0.007323465554914065,
+        "chargeExposureSquared": 0.014594705138567603,
+        "epsilon0": 1,
+        "reducedPlanckConstant": 0.15915494309189535,
+        "photonSpeed": 1,
+        "referenceScale": 1,
+        "scale": 10,
+        "betaLogCoefficient": 0.2122065907891938
+      },
+      "sourceProvenance": {
+        "maxResidual": 0
+      },
+      "noHiddenRetune": {
+        "maxResidual": 0
+      }
+    },
+    "negativeControls": [
+      {
+        "id": "planck_quantum_detuned",
+        "kind": "planck_quantum_detuned",
+        "energyFrequency": {
+          "energy": 2.1
+        }
+      },
+      {
+        "id": "wrong_mode_count_dimension",
+        "kind": "wrong_mode_count",
+        "blackbody": {
+          "modeDensity": 50.26548245743669
+        }
+      },
+      {
+        "id": "per_bin_temperature_fit",
+        "kind": "per_bin_temperature_fit",
+        "temperatureSpread": 0.02
+      },
+      {
+        "id": "blackbody_without_thermalization",
+        "kind": "blackbody_without_thermalization",
+        "blackbody": {
+          "photonChemicalPotential": 0.1,
+          "thermalizationDepth": 0.2
+        }
+      },
+      {
+        "id": "longitudinal_mode_leakage",
+        "kind": "longitudinal_mode_leakage",
+        "longitudinalLeakage": 0.01
+      },
+      {
+        "id": "alpha_constant_across_scales",
+        "kind": "alpha_constant_across_scales",
+        "alphaRunning": {
+          "alphaAtScale": 0.0072973525692838015
+        }
+      },
+      {
+        "id": "hidden_retune",
+        "kind": "hidden_retune",
+        "retuneResidual": 0.01
+      }
+    ]
+  }
+}

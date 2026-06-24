@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Status: `draft`
-- Scope: `EQ-26`, `EQ-27`, `EQ-28`, `EQ-29`, `EQ-30`, `EQ-31`
+- Scope: `EQ-26`, `EQ-26A`, `EQ-27`, `EQ-28`, `EQ-29`, `EQ-30`, `EQ-31`
 - Source priority files: [equation-mapping.md](equation-mapping.md), [equation.md](equation.md)
 - Promotion decision: priority-only. Do not promote to reader-facing corpus until at least one row below supplies a derived variable map, residual, simulation target, or branch certificate rather than a comparison scaffold.
 
@@ -15,6 +15,7 @@ This packet groups the observation-first precision rows that discipline atomic s
 | ID | Current `6/23 a` | Recommended `6/23 b` | Reason |
 | --- | --- | --- | --- |
 | `EQ-26` | `3` | `3` | The Rydberg coefficient-row residual and hydrogen spectral scaffold are explicit, but the native envelope-gap derivation and spin-sensitive residuals are still open. |
+| `EQ-26A` | `2` | `2` | The fine-structure coupling and running row is now explicit, but charge exposure, action-unit, photon-speed, gauge/coupling, and scale-threshold rows are not accepted. |
 | `EQ-27` | `2` | `2` | The angular-momentum and measurement-response ledgers name the right consumers, but no retained branch yet derives $g_\ell$, $a_\ell$, or precession frequencies. |
 | `EQ-28` | `3` | `3` | The event-ledger grammar is strong; the Compton shift, photoelectric threshold, and pair-threshold cases still need one compact replayable event derivation. |
 | `EQ-29` | `3` | `3` | Radiation, bremsstrahlung, and synchrotron documents define the residual/event rows, but emitted power, spectrum, and polarization recovery are not yet derived from one source ledger. |
@@ -181,6 +182,76 @@ Build the residual vector $\mathbf R_{26}$ for one chosen hydrogen line set $\ma
 - `content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md`
 
 Promotion condition: one hydrogen packet derives the envelope gaps, shared coefficient row, event ledger, and clock/rate conversion from the same branch record.
+
+## EQ-26A: Fine-Structure Constant, Electromagnetic Coupling, And Energy Running
+
+### Standard Equation / Regime
+
+The low-energy coupling benchmark is
+
+$$
+\alpha
+=
+\frac{e^2}{4\pi\epsilon_0\hbar c_\gamma},
+$$
+
+with running treated as a declared scale-dependent projection, not as a fixed universal number:
+
+$$
+\frac{d\alpha^{-1}}{d\ln\mu}
+=
+-b(\mu).
+$$
+
+### Mapped Form
+
+The mapped carrier is
+
+$$
+\Theta_\alpha
+=
+\left(
+q_{\mathrm{obs}},
+\hbar_{\mathbb A},
+c_\gamma,
+\mathcal E_S,
+\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}}),
+I_\mu
+\right),
+$$
+
+where $\hbar_{\mathbb A}$ must come from the `EQ-12A` action row, $q_{\mathrm{obs}}$ is the observer charge/exposure row, and $I_\mu$ is the charged-threshold inventory. The useful residual is
+
+$$
+\mathbf R_{26A}
+=
+\left(
+\Delta_{\alpha(0)},
+\Delta_{\mathrm{Ryd}},
+\Delta_{\mathrm{fs}},
+\Delta_{\mathrm{run}},
+\mathcal S_{\mathrm{retune}}
+\right).
+$$
+
+### Rows Needed
+
+- Observer charge/exposure row.
+- `EQ-12A` action-unit row for $\hbar_{\mathbb A}$.
+- Local photon-channel speed row.
+- Effective gauge/coupling covariance row.
+- Charged-threshold inventory row for the scale window.
+- $\alpha(\mu)$ running row.
+- Rydberg and fine-structure anchor rows tied back to `EQ-26`.
+- Source provenance and no-hidden-retune witness.
+
+### Executable Status
+
+[planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) evaluates this as one sub-residual of the score-neutral Planck/alpha bundle. The attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json) blocks first at `missing_accepted_theta_gamma_packet`; after photon/action closure, the coupling-specific blockers are accepted effective charge/current continuity, gauge covariance, charged-threshold inventory, and running rows.
+
+### Failure Mode
+
+`eq26a.alpha_hidden_retune`: $h$, $c_\gamma$, charge exposure, gauge domain, or Noether sea state changes between the low-energy reference coupling, atomic fine-structure anchor, and higher-energy running readout.
 
 ## EQ-27: Magnetic Moment, Larmor/Cyclotron Precession, And $g-2$
 
@@ -613,7 +684,7 @@ This block is a residual-composition target, not a derivation of $E=h\nu$, Maxwe
 
 ### Executable Compton Replay Check
 
-The score-neutral executable reducer is [compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs). It consumes a weak homogeneous Compton/recoil event input and evaluates the shared $h$, $c_\gamma$, $M_e^{\mathrm{exp}}$, recoil convention, energy balance, momentum balance, inverse-energy Compton residual, and wavelength-shift residual.
+The score-neutral executable reducer is [compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs). It consumes a weak homogeneous Compton/recoil event input and evaluates the shared $h$, $c_\gamma$, $M_e^{\mathrm{exp}}$, recoil convention, energy balance, momentum balance, inverse-energy Compton residual, and wavelength-shift residual. It also reports the adjacent `EQ-13` effective EM gate projection, but that projection inherits the native event blockers and cannot raise `EQ-13` while photon Gate A/B/C, effective charge/current, stress, gauge, and event-ledger rows remain attempt-level.
 
 Command:
 
@@ -789,6 +860,8 @@ $$
 $$
 
 with all entries consuming one $\Gamma_{e^\pm}$, $\mathcal V_{\mathrm{NS}}$, $G_{\text{grad}}$, $\mathcal R_{\Theta}^{\mathrm{syn}}$, and photon event ledger.
+
+Executable status: [eq29-radiation-source-ledger-residual.mjs](../../../scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs) implements this score-neutral synchrotron source-ledger residual. The attempt fixture [eq29-synchrotron-source-ledger-attempt.v1.json](../../../scripts/equation-mapping/eq29-synchrotron-source-ledger-attempt.v1.json) passes the power, characteristic-frequency, cooling, polarization, event-balance, source-provenance, hidden-retune, and negative-control diagnostics, but blocks first at `missing_accepted_radiation_source_carrier` because every row is still attempt-level.
 
 ### Failure Mode
 
@@ -1128,6 +1201,14 @@ This is the metastable specialization of the same finite-window statistical carr
 The line-shape residual $\Delta_{\mathrm{shape}}$ must use the same detector and interference rows as the escape/dephasing measure. Score-5 requires one retained branch producing $E_0$, $\Gamma$, $\tau$, and $B_k$ from one shared escape measure; the Breit-Wigner profile remains a downstream comparison until that measure is populated.
 
 The score-neutral carrier evaluator [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs) now computes the `EQ-31` projection rows from a supplied $\mathcal C_{\mathrm{stat}}^{W,T}$. The included toy input [finite-window-statistical-carrier-eq31-toy.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-toy.v1.json) reports `toy_structure_only`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_W`; it is an executable shape check, not retained evidence.
+
+The refined toy input [finite-window-statistical-carrier-eq31-null-separatrix-refinement-toy.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-null-separatrix-refinement-toy.v1.json) adds three Bill-response diagnostics without changing the score:
+
+- pre-detector first-exit preimage rows whose additivity residual is zero;
+- an epsilon sequence for $\mu_T(N_\epsilon(\partial\mathcal B))$ with final mass `0.0004` below tolerance;
+- restriction rows and a refinement-defect sequence with computed cocycle defect `0.00035`.
+
+That fixture reports `firstExitAdditivityPassed: true`, `nullSeparatrixPassed: true`, and `refinementCompatibilityPassed: true`, while still returning `toy_structure_only` and `nextBlocker: missing_accepted_W`. The result demonstrates the row grammar for a retained metastable calculation; it does not make the toy corridor family accepted evidence.
 
 Accepted finite-window carrier rows must be structured row objects with `accepted`, `populated`, or `passed` status and a `sourcePath` or `source` reference that resolves to a durable source/evidence file. The label `retained` is not an accepted status. Toy, attempt, placeholder, missing-source, temp-file, generated-reading-copy, and nonzero-retune rows remain blockers.
 

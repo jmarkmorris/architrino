@@ -59,6 +59,12 @@ const REQUIRED_NATIVE_ROWS = [
 ];
 
 const REQUIRED_EVENT_LEDGER_SUPPORT = ["medium", "remnant"];
+const REQUIRED_EM_GATE_ROWS = [
+  "effective_charge_current_continuity",
+  "em_stress_poynting_control_volume",
+  "effective_gauge_chart_witness",
+  "photon_gate_C_compton_vertex_handoff",
+];
 
 const args = parseArgs(process.argv.slice(2));
 if (args.help) {
@@ -207,6 +213,7 @@ function summarizeOutput(output) {
       gateA: output.residuals.gateA.status,
       gateB: output.residuals.gateB.status,
     },
+    effectiveEmGate: output.effectiveEmGate,
     projectionUse: output.projectionUse,
   };
 }
@@ -218,6 +225,14 @@ function replayComptonEvent(input, parsedArgs) {
   const nativeRows = evaluateNativeRows(event.nativeRows, event.id);
   const eventLedgerSupport = evaluateEventLedgerSupport(event);
   const sharedRows = evaluateSharedRows(input.eq26_reference, event, constants, parsedArgs);
+  const effectiveEmGate = evaluateEffectiveEmGate({
+    event,
+    comparison,
+    nativeRows,
+    eventLedgerSupport,
+    sharedRows,
+    tolerance: parsedArgs.tolerance,
+  });
   const closedComparison =
     comparison.residuals.energy.normalized <= parsedArgs.tolerance &&
     comparison.residuals.momentum.normalized <= parsedArgs.tolerance &&
@@ -271,14 +286,20 @@ function replayComptonEvent(input, parsedArgs) {
       requiredEventLedgerSupport: REQUIRED_EVENT_LEDGER_SUPPORT,
       missingEventLedgerSupport: eventLedgerSupport.missing,
       eventLedgerSupportStatuses: eventLedgerSupport.statuses,
+      effectiveEmGateStatus: effectiveEmGate.status,
+      effectiveEmGateNextBlocker: effectiveEmGate.nextBlocker,
+      effectiveEmGateNumericPass: effectiveEmGate.numericPass,
+      missingEffectiveEmGateRows: effectiveEmGate.rows.missing,
     },
     eventRows: comparison.eventRows,
     residuals: comparison.residuals,
     sharedRows,
+    effectiveEmGate,
     nativeRows,
     eventLedgerSupport,
     projectionUse: {
       EQ12: "photon Gate A/B packet and null/eikonal comparison consumer",
+      EQ13: "effective EM gate continuity, stress, gauge, and same-event ledger projection",
       EQ26: "shared h, exposed electron mass, photon-channel speed, and recoil convention",
       EQ28: "Compton/recoil event balance and wavelength-shift benchmark",
       EQ29: "Compton exchange classification as frequency-exchange/scattering-shift row",
@@ -334,6 +355,8 @@ function parseEvent(event, constants) {
       ? vector3(event.recoil.p, "event.recoil.p")
       : null,
     nativeRows: event.native_rows ?? {},
+    emGateRows: event.em_gate_rows ?? event.emGateRows ?? {},
+    emGateResiduals: event.em_gate_residuals ?? event.emGateResiduals ?? {},
   };
 }
 
@@ -555,6 +578,136 @@ function evaluateEventLedgerSupport(event) {
   };
 }
 
+function evaluateEffectiveEmGate({
+  event,
+  comparison,
+  nativeRows,
+  eventLedgerSupport,
+  sharedRows,
+  tolerance,
+}) {
+  const rows = evaluateEmGateRows(event.emGateRows, event.id);
+  const residuals = {
+    continuity: scalarResidualFromRaw(
+      event.emGateResiduals.continuityResidual ??
+        event.emGateResiduals.Delta_cont ??
+        0,
+    ),
+    energy: comparison.residuals.energy,
+    momentum: comparison.residuals.momentum,
+    angularMomentum: scalarResidualFromRaw(
+      event.emGateResiduals.angularMomentumResidual ??
+        event.emGateResiduals.Delta_J ??
+        0,
+    ),
+    gauge: scalarResidualFromRaw(
+      event.emGateResiduals.gaugeResidual ??
+        event.emGateResiduals.Delta_gauge ??
+        0,
+    ),
+    share13_28: scalarResidualFromRaw(
+      event.emGateResiduals.shareResidual ??
+        event.emGateResiduals.Delta_share_13_28 ??
+        (sharedRows.status === "shared_rows_match" ? 0 : 1),
+    ),
+    retune: scalarResidualFromRaw(
+      event.emGateResiduals.retuneResidual ??
+        event.emGateResiduals.S_retune ??
+        0,
+    ),
+  };
+  const numericPass = Object.values(residuals).every(
+    (row) => row.normalized !== null && row.normalized <= tolerance,
+  );
+  const status = decideEffectiveEmGateStatus({
+    nativeRows,
+    eventLedgerSupport,
+    rows,
+    numericPass,
+  });
+  return {
+    status,
+    scoreDecision: "no_score_increase",
+    nextBlocker: firstEffectiveEmGateBlocker({
+      nativeRows,
+      eventLedgerSupport,
+      rows,
+      numericPass,
+    }),
+    requiredRows: REQUIRED_EM_GATE_ROWS,
+    rows,
+    numericPass,
+    residuals,
+  };
+}
+
+function evaluateEmGateRows(emGateRows, eventId) {
+  if (!emGateRows || typeof emGateRows !== "object" || Array.isArray(emGateRows)) {
+    throw new Error("event.em_gate_rows must be an object when supplied.");
+  }
+  const missing = [];
+  const accepted = [];
+  const statuses = {};
+  for (const rowName of REQUIRED_EM_GATE_ROWS) {
+    const row = emGateRows[rowName];
+    const status = normalizeNativeRowStatus(row, eventId);
+    statuses[rowName] = status;
+    if (status === "accepted") {
+      accepted.push(rowName);
+    } else {
+      missing.push(rowName);
+    }
+  }
+  return {
+    required: REQUIRED_EM_GATE_ROWS,
+    accepted,
+    missing,
+    statuses,
+  };
+}
+
+function decideEffectiveEmGateStatus({
+  nativeRows,
+  eventLedgerSupport,
+  rows,
+  numericPass,
+}) {
+  if (nativeRows.missing.length > 0) {
+    return "blocked_missing_native_event_rows";
+  }
+  if (eventLedgerSupport.missing.length > 0) {
+    return "blocked_missing_event_ledger_support";
+  }
+  if (rows.missing.length > 0) {
+    return "blocked_missing_em_gate_rows";
+  }
+  if (!numericPass) {
+    return "blocked_em_gate_residual_above_tolerance";
+  }
+  return "effective_em_gate_populated";
+}
+
+function firstEffectiveEmGateBlocker({
+  nativeRows,
+  eventLedgerSupport,
+  rows,
+  numericPass,
+}) {
+  if (nativeRows.missing.length > 0) {
+    return `missing_accepted_${nativeRows.missing[0]}`;
+  }
+  if (eventLedgerSupport.missing.length > 0) {
+    return `missing_accepted_${eventLedgerSupport.missing[0]}_support`;
+  }
+  if (rows.missing.length > 0) {
+    return `missing_accepted_${rows.missing[0]}`;
+  }
+  if (!numericPass) {
+    return "em_gate_residual_above_tolerance";
+  }
+  return null;
+}
+
 function normalizeLedgerSupportStatus(row, eventId) {
   if (!row || typeof row !== "object" || Array.isArray(row)) {
     return "missing";
@@ -692,6 +845,20 @@ function normalizeScalarResidual(raw, scaleValue, epsilon) {
   return {
     raw,
     normalized: Math.abs(raw) / (Math.abs(scaleValue) + epsilon),
+  };
+}
+
+function scalarResidualFromRaw(raw) {
+  const value = Number(raw);
+  if (!Number.isFinite(value)) {
+    return {
+      raw,
+      normalized: null,
+    };
+  }
+  return {
+    raw: value,
+    normalized: Math.abs(value),
   };
 }
 

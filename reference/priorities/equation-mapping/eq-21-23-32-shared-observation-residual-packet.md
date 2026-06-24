@@ -7,17 +7,18 @@
 - Detail source: [Equation Mapping Detail](equation.md)
 - Prior packet: [EQ-21 Through EQ-23 And EQ-32 Structure/CMB/BBN/RAR Packet](eq-21-23-32-structure-cmb-bbn-rar-packet.md)
 - Upstream interface: [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md)
-- Assigned IDs: `EQ-21`, `EQ-22`, `EQ-23`, `EQ-32`
+- Assigned IDs: `EQ-21`, `EQ-22`, `EQ-22A`, `EQ-23`, `EQ-32`
 - Status: `second-round residual packet`
 - Scope: priority-only; no reader-facing corpus promotion and no score-table edits in this packet
 - Claim bucket: derivation/closure target with observer-level effective summaries
 
 ## Closure Thesis
 
-`EQ-21`, `EQ-22`, `EQ-23`, and `EQ-32` should be evaluated as one shared-observation family. The useful object is not four independent fits to growth, CMB, BBN, and galaxy acceleration. The useful object is a retained record whose projections recover:
+`EQ-21`, `EQ-22`, `EQ-22A`, `EQ-23`, and `EQ-32` should be evaluated as one shared-observation family. The useful object is not independent fits to growth, CMB, BBN, Planck blackbody occupancy, and galaxy acceleration. The useful object is a retained record whose projections recover:
 
 - structure growth and matter power;
 - CMB transfer, blackbody preservation, acoustic phase, and CMB lensing;
+- Planck blackbody occupancy, mode counting, zero photon chemical potential, and thermalization depth;
 - BBN freezeout, light-element yields, photon loading, and neutrino rows;
 - baryonic Tully-Fisher and radial-acceleration behavior in the low-acceleration galaxy regime.
 
@@ -167,6 +168,8 @@ Here $\mathcal S_{\mathrm{retune}}^{\mathrm{cos}\to\mathrm{obs}}$ reports any sp
 
 This is an equation-mapping interface residual, not a new score gate. A nonzero value may be acceptable only when the branch declares a physical transformation row between source, path, and readout windows; otherwise it is hidden retuning.
 
+The upstream handoff shape is now executable in [effective-frw-handoff-residual.mjs](../../../scripts/equation-mapping/effective-frw-handoff-residual.mjs). Its attempt fixture [effective-frw-handoff-attempt.v1.json](../../../scripts/equation-mapping/effective-frw-handoff-attempt.v1.json) produces the score-neutral `frw_handoff` precursor and blocks first at `missing_accepted_theta_cos`. The downstream observation residual should consume that accepted handoff once it exists; it should not invent a separate $\Theta_{\mathrm{read}}$ or re-fit $H_{\mathrm{eff}}$, $\rho_{\mathrm{eff}}$, $G_{\mathrm{eff}}$, $\Lambda_{\mathrm{eff}}$, or $\mathcal S_{\mathrm{eff}}$.
+
 ## Shared-Observation Residual
 
 Define the second-round residual as:
@@ -197,6 +200,38 @@ The first four terms are the familiar observation residuals. The remaining terms
 This residual is a reusable equation-mapping object, not a new validation gate. It should be populated only after a branch declares $\Theta_{\mathrm{obs}}$ and the data windows used by each projection.
 
 The effective-coupling row $G_{\mathrm{eff}}^\theta$ is part of the shared handoff. Growth, CMB lensing, RAR/BTFR, local-gravity, and Friedmann-style comparisons must consume one compatible effective-coupling record or report a split through $\mathcal S_{\mathrm{retune}}$.
+
+### Planck Blackbody Core
+
+`EQ-22A` isolates the Planck-law core from the broader `EQ-22` CMB transfer row. Its carrier is
+
+$$
+\Theta_{\mathrm{bb}}
+=
+\left(
+\Theta_{\mathrm{therm}},
+P_\gamma,
+g_\nu^\theta,
+T_\theta,
+\mu_\gamma^\theta,
+\mathcal D_{\mathrm{th}},
+\theta_{\mathrm{sea}}
+\right).
+$$
+
+The benchmark residual is the mode-occupancy and energy-density check
+
+$$
+\bar n_i^\theta
+=
+\frac{1}{\exp((h\nu_i-\mu_\gamma^\theta)/(k_BT_\theta))-1},
+\qquad
+u_i^\theta
+\stackrel{!}{=}
+g_{\nu,i}^\theta h\nu_i\bar n_i^\theta.
+$$
+
+The row remains `2` until the same finite-window thermal record derives mode density, zero photon chemical potential, sufficient thermalization depth, and shared $h$, $T_\theta$, and $c_\gamma$ rows. [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) currently evaluates this as an attempt-level sub-residual and blocks first at `missing_accepted_theta_gamma_packet`.
 
 ## Projection Terms
 
@@ -504,6 +539,8 @@ The pass condition is not that every row is perfect. The pass condition is that 
 ## Executable Residual Checker Status
 
 [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now implements the score-neutral checker for this packet. It consumes $\Theta_{\mathrm{obs}}$, the four subrecords $\Theta_{\mathrm{src}}$, $\Theta_{\mathrm{read}}$, $\Theta_{\mathrm{therm/prov}}$, and $\Theta_{\mathrm{gal}}$, the provenance ledger $\mathcal L_{E\mathbf p\mathbf J}$, `BBN`, `CMB`, `growth`, and `RAR` projection rows, and the shared-key set $\mathcal K$.
+
+The upstream effective-FRW producer is [effective-frw-handoff-residual.mjs](../../../scripts/equation-mapping/effective-frw-handoff-residual.mjs). It currently reports `blocked_missing_rows` with first blocker `missing_accepted_theta_cos`; therefore this shared-observation checker remains downstream of a missing accepted cosmology carrier.
 
 The current attempt fixture [shared-observation-residual-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-residual-attempt.v1.json) declares all expected shared keys and computes a residual vector, but every source-bearing row is still `attempt`. The run is therefore:
 

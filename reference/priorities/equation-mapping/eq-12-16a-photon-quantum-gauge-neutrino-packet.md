@@ -3,7 +3,7 @@
 ## Status
 
 - Kind: `priority`
-- Scope: equation-mapping closure packet for `EQ-12`, `EQ-13`, `EQ-14`, `EQ-15`, `EQ-16`, and `EQ-16A`
+- Scope: equation-mapping closure packet for `EQ-12`, `EQ-12A`, `EQ-13`, `EQ-14`, `EQ-15`, `EQ-16`, and `EQ-16A`
 - Claim level: derivation-closure targets and effective-summary recovery targets
 - Edit boundary: priority-only; no reader-facing corpus promotion in this packet
 
@@ -14,6 +14,7 @@ This packet keeps photon, quantum, spinor, gauge, and neutrino equations in the 
 | ID | `6/23 a` | `6/23 b` recommendation | Rationale |
 | --- | --- | --- | --- |
 | `EQ-12` | `3` | `3` | Photon Gate A/B/C variables are strong, but the event ledger has not yet derived $E_\gamma=h\nu$, null transport, and receiver energy from one accepted branch. |
+| `EQ-12A` | `2` | `2` | The Planck action quantum is now an explicit closure target, but $h$ and $\hbar$ are still bridge constants until a retained cycle-action row derives them. |
 | `EQ-13` | `2` | `3` | Maxwell/wave recovery now has a concrete effective EM residual target, but remains an effective continuum summary rather than a native field law. |
 | `EQ-14` | `2` | `3` | Born-current continuity has a named basin-measure pushforward and residual, with the real derivation still open. |
 | `EQ-15` | `1` | `2` | The ordered-frame spinor proof program names the right row-local objects and falsifiers, but no retained non-gauge spinor row has passed. |
@@ -154,6 +155,8 @@ $$
 
 The same packet must declare which terms are source, photon, path, receiver, recoil, wake, medium, or remnant rows.
 
+Executable status: [photon-packet-transfer-residual.mjs](../../../scripts/equation-mapping/photon-packet-transfer-residual.mjs) implements this score-neutral residual. The attempt fixture [photon-packet-transfer-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-attempt.v1.json) passes the energy-frequency, null/eikonal, helicity, event-balance, path-frequency, source-provenance, hidden-retune, and negative-control diagnostics, but blocks first at `missing_accepted_theta_gamma_packet` because every row is still attempt-level.
+
 ### Failure Mode
 
 `equation_map.hidden_retune` if $E=h\nu$, null transport, and receiver frequency use different photon or Noether sea records. `equation_map.level_collapse` if the effective metric or photon field summary is treated as substrate ontology. `photon.longitudinal_leakage` if a free longitudinal photon mode is accepted as a third polarization.
@@ -161,6 +164,24 @@ The same packet must declare which terms are source, photon, path, receiver, rec
 ### Promotion Targets
 
 Priority-only until a retained packet passes. Later promotion targets are `content/markdown/aaa/assemblies/bosons/electroweak-bosons.md`, `content/markdown/aaa/spacetime/emergent-metric.md`, `content/markdown/aaa/spacetime/lorentz-kinematics.md`, `content/markdown/aaa/reactions/radiation.md`, and `content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md`.
+
+## EQ-12A Planck Action Quantum And Braid Action Scale
+
+`EQ-12A` is split out so that `EQ-12` can keep photon transport while the action unit itself becomes a closure target. The benchmark relations are
+
+$$
+E=h\nu=\hbar\omega,
+\qquad
+\mathbf p=\hbar\mathbf k,
+\qquad
+\oint p\,dq=nh,
+\qquad
+J=n\hbar.
+$$
+
+The mapped carrier is a retained cycle-action packet $\Theta_h$ whose phase, energy, momentum, and angular-momentum ledgers expose one shared $h$ and $\hbar$. The first executable status is [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs), with attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json). The run is score-neutral and blocks first at `missing_accepted_theta_gamma_packet`.
+
+The score remains `2` until a retained closed-cycle action row proves that the same action unit supports photon energy, de Broglie momentum, angular momentum, and downstream Planck/atomic/coupling consumers without hidden retuning.
 
 ## EQ-13 Maxwell And Wave Equations
 
@@ -254,6 +275,12 @@ $$
 
 on one radiative or scattering event record. The useful first channel is Compton-like scattering or atomic-transition radiation because both force photon, recoil, source, and receiver rows to close.
 
+### Executable Status
+
+The score-neutral Compton replay checker [compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs) now reports an `effectiveEmGate` block for the `EQ-13` projection $\Pi_{13}\mathsf e_{\gamma e}^{0}$. The native attempt fixture [compton-recoil-native-event-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json) includes attempt-level rows for effective charge/current continuity, EM stress/Poynting control volume, effective gauge chart witness, and photon Gate C Compton-vertex handoff.
+
+Current status is score-neutral: the checker reports `effectiveEmGateStatus: blocked_missing_native_event_rows`, `effectiveEmGateNextBlocker: missing_accepted_photon_gate_A_input_output`, and `effectiveEmGateNumericPass: true`. The gate does not make Maxwell's equations native; it prevents Maxwell-level summaries from bypassing the photon Gate A/B/C, recoil, Noether sea, medium/remnant, and event-ledger rows.
+
 ### Failure Mode
 
 `equation_map.imported_formula` if $\Box A_\mu=J_\mu$ is copied in without a coarse-graining map. `equation_map.level_collapse` if $A_\mu$ is treated as a separate substrate field. `equation_map.no_sea_constitutive_record` if absorption, dispersion, and photon speed use unrelated Noether sea rows.
@@ -345,6 +372,10 @@ $$
 $$
 
 for one controlled branch or toy measurement channel. The packet passes only if $\rho_{\mathrm{rec}}$ and $\mathbf J_{\mathrm{rec}}$ are pushed from the same measure and flow.
+
+The score-neutral carrier evaluator [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs) now implements this as an `EQ-14` projection. The toy input [finite-window-statistical-carrier-eq14-born-current-toy.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq14-born-current-toy.v1.json) reports `toy_structure_only`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_W`; it passes same-measure/same-flow, finite-difference continuity, density-reference, and current-reference diagnostics. This is executable shape evidence only. A score-moving row still needs accepted source-backed $W$, $\Phi_T$, $\mu_{*,T}$, $\mathcal Q$, $K_{\mathrm{det}}$, $\mathcal B$, no-hidden-retune, and $\Theta_{\rho J}$ rows.
+
+The basin partition also inherits the finite-window well-definedness burden from the statistical carrier: the separatrix must be null under the retained measure, and the record projection must remain compatible under refinement. Without that, a record density/current row can be detector-tuned even when the finite-difference continuity residual is small.
 
 ### Failure Mode
 
@@ -605,6 +636,12 @@ $$
 \right|.
 $$
 
+### Executable Status
+
+The score-neutral weak/gauge exposure-domain checker [weak-gauge-exposure-domain.mjs](../../../scripts/equation-mapping/weak-gauge-exposure-domain.mjs) now evaluates the `EQ-16` prerequisite that `V-A`, CKM/PMNS overlap, weak reaction provenance, and effective gauge covariance share one weak-visible retained domain. The attempt fixture [weak-gauge-exposure-domain-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, and first blocker `missing_accepted_weak_visible_branch_ledger`.
+
+The attempt run also reports `domainPass: true`, `gaugeBranchRecordStable: true`, and passing covariance, `V-A`, CKM, PMNS, provenance, and retune numeric residuals. Those passes are only shape checks: they do not derive Yang-Mills, QED, QCD, weak chirality, CKM, or PMNS, and they cannot move `EQ-16` while every required row remains attempt-level.
+
 ### Failure Mode
 
 `weak.hidden_domain_split` if chirality, CKM/PMNS overlap, and provenance require different exposure domains. `gauge.branch_record_changed` if a pure gauge relabeling changes the physical branch ledger. `equation_map.imported_formula` if Yang-Mills or QED equations are used as explanation without causal-wake, axial-layer, Noether sea, and event-ledger provenance.
@@ -787,7 +824,7 @@ Promote now: no.
 
 Defer with blockers:
 
-- `EQ-12`: no retained photon event ledger yet derives $E=h\nu$, null/eikonal transport, helicity, path transfer, recoil/remnant rows, and receiver coupling on one record.
+- `EQ-12`: no retained photon event ledger yet derives $E=h\nu$, null/eikonal transport, helicity, path transfer, recoil/remnant rows, and receiver coupling on one record. The executable packet-transfer checker names the current first blocker as `missing_accepted_theta_gamma_packet`.
 - `EQ-13`: Maxwell and wave rows remain continuum recovery targets until charge/current continuity, stress, gauge, and energy-balance rows descend from causal wakes and photon-channel packets.
 - `EQ-14`: Born-current continuity has a finite-window pushforward target, but no populated measurement or scattering packet yet supplies density, current, detector, and event rows.
 - `EQ-15`: spinor and exchange rows need an ordered-frame, angular-momentum, exchange, and sector-exposure branch calculation before relativistic wave equations can be promoted.

@@ -305,6 +305,10 @@ It should be zero only when the weak-gravity and dark-energy projections use the
 
 ## First Mathematical Object To Add Next
 
+The `EQ-20` pressure/$\Lambda_{\mathrm{eff}}$ slice is now executable in [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). Its attempt fixture [eq20-pressure-effective-lambda-attempt.v1.json](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-attempt.v1.json) blocks first at `missing_accepted_theta_sea_rho_NS` while the pressure-law, equation-of-state, $\Lambda_{\mathrm{eff}}$, source-provenance, shared-key, FRW-handoff, and no-hidden-retune numeric diagnostics pass. The inherited FRW handoff blocker remains `missing_accepted_theta_cos`, so this is an executable residual shape, not a dark-energy derivation.
+
+The `EQ-11` weak-gravity side is now executable in [eq11-weak-gravity-constitutive-residual.mjs](../../../scripts/equation-mapping/eq11-weak-gravity-constitutive-residual.mjs). Its attempt fixture [eq11-weak-gravity-constitutive-attempt.v1.json](../../../scripts/equation-mapping/eq11-weak-gravity-constitutive-attempt.v1.json) blocks first at `missing_accepted_theta_11_20` while the Poisson handoff, curvature readout, effective-coupling continuity, PPN handoff, source-provenance, no-hidden-retune, and negative-control diagnostics pass. This makes the weak-gravity route fail closed without raising scores: accepted source-backed Noether sea, source loading, constitutive response, $G_{\mathrm{eff}}$, Poisson, curvature, stress-energy, PPN-handoff, coupling-continuity, provenance, and no-hidden-retune rows are still missing.
+
 Add the shared residual
 
 $$
@@ -390,12 +394,12 @@ Do not update [equation.md](equation.md) from this packet. Recommended next scor
 | ID | `6/23 a` | Recommended `6/23 b` | Reason |
 | --- | --- | --- | --- |
 | `EQ-11` | `2` | `3` | This packet gives the right shared Noether sea variables, a Poisson handoff, curvature-readout residual, effective-coupling continuity row, and hidden-retune check. It should not rise to `4` until one weak-field window derives or populates $G_{\mathrm{eff}}$, $R_\Phi^{11}$, and $R_{\mu\nu}^{11}$ from the same constitutive coefficients used by the metric/PPN rows. |
-| `EQ-20` | `2` | `3` | The dark-energy row now has a pressure/tension/relaxation residual and explicit coupling to the same $G_{\mathrm{eff}}$ record as weak gravity. It should not rise to `4` until a concrete $p_{\mathrm{sea}}$ law or relaxation calculation produces $w_{\mathrm{eff}}$ and $\Lambda_{\mathrm{eff}}$ without fitted $\Lambda$ or split cosmology records. |
+| `EQ-20` | `2` | `3` | The dark-energy row now has a pressure/tension/relaxation residual, executable pressure/$\Lambda_{\mathrm{eff}}$ checker, and explicit coupling to the same $G_{\mathrm{eff}}$ record as weak gravity. It should not rise to `4` until a concrete $p_{\mathrm{sea}}$ law or relaxation calculation produces $w_{\mathrm{eff}}$ and $\Lambda_{\mathrm{eff}}$ from accepted retained rows without fitted $\Lambda$ or split cosmology records. |
 
 ## Promotion Classification
 
 - Claim bucket: derivation/closure target with observer-level effective summaries.
 - Corpus promotion status: priority-only.
 - Promote now: no.
-- Defer with blocker: no populated weak-field window, no derived $G_{\mathrm{eff}}$ coefficient row, no native pressure law, no relaxation calculation, and no shared local/cosmology hidden-retune evaluation.
+- Defer with blocker: no populated weak-field window, no accepted `theta_sea_rho_NS` row, no derived $G_{\mathrm{eff}}$ coefficient row, no native pressure law, no relaxation calculation, and no accepted shared local/cosmology hidden-retune evaluation.
 - Next safe action: instantiate $\mathcal R_{11\text{-}20}$ on a weak solar-system window and one homogeneous effective-cosmology window, then report which coefficient rows split before attempting any score above `3`.

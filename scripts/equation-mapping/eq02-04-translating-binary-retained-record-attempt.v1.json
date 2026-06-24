@@ -1,0 +1,208 @@
+{
+  "schema": "aaa-equation-map-eq02-04-translating-binary-retained-record-input/v1",
+  "claimLevel": "EQ-02 through EQ-04 translating-binary retained-record attempt skeleton; score-neutral and not accepted",
+  "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+  "domainId": "D_02-04_bin_u_attempt_0001",
+  "sameBranchIdentity": {
+    "inputPath": "scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json"
+  },
+  "drift": {
+    "u": 0.6,
+    "c_f": 1,
+    "uVector": [0.6, 0, 0],
+    "hat_e": [1, 0, 0]
+  },
+  "rows": {
+    "common_carrier": {
+      "status": "attempt",
+      "rowId": "C_02-04_bin_u_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001"
+    },
+    "retained_branch_chart": {
+      "status": "attempt",
+      "rowId": "retained_branch_chart_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001"
+    },
+    "root_starvation_row": {
+      "status": "attempt",
+      "rowId": "root_starvation_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "d_min": 0.42,
+      "h_b_lock": 10,
+      "T_u": 1.25,
+      "rootStarvationResidual": 0
+    },
+    "same_root_conservation_row": {
+      "status": "attempt",
+      "rowId": "same_root_conservation_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "residual": 0
+    },
+    "same_branch_chart_identity": {
+      "status": "attempt",
+      "rowId": "same_branch_chart_identity_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001"
+    },
+    "clock_row": {
+      "status": "attempt",
+      "rowId": "clock_row_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "T_u_T0": 1.25
+    },
+    "envelope_row": {
+      "status": "attempt",
+      "rowId": "envelope_row_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "R_parallel": 0.8,
+      "R_perp": 1,
+      "shapeResidual": 0
+    },
+    "two_way_signal_row": {
+      "status": "attempt",
+      "rowId": "two_way_signal_row_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "delta_tw": 0
+    },
+    "energy_row": {
+      "status": "attempt",
+      "rowId": "energy_row_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "E_CM_u": 1.25,
+      "M0_bin": 1,
+      "c_f": 1
+    },
+    "exposure_row": {
+      "status": "attempt",
+      "rowId": "exposure_row_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "zeta_bin": null,
+      "shieldingExtractionAbsent": true
+    },
+    "momentum_row": {
+      "status": "attempt",
+      "rowId": "momentum_row_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "p_CM_u": [0.75, 0, 0],
+      "M0_bin": 1,
+      "c_f": 1,
+      "uVector": [0.6, 0, 0]
+    },
+    "rest_mass_row": {
+      "status": "attempt",
+      "rowId": "rest_mass_row_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "M0_u": 1,
+      "M0_0": 1
+    },
+    "mass_shell_row": {
+      "status": "attempt",
+      "rowId": "mass_shell_row_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "E_CM_u": 1.25,
+      "p_CM_u": [0.75, 0, 0],
+      "M0_bin": 1,
+      "c_f": 1,
+      "h_ab": [
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, 1]
+      ]
+    },
+    "medium_response_row": {
+      "status": "attempt",
+      "rowId": "medium_response_row_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "M_sea_ab": [
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, 1]
+      ],
+      "h_ab": [
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, 1]
+      ],
+      "c_f": 1
+    }
+  },
+  "witnesses": {
+    "split_witness_zero": {
+      "status": "attempt",
+      "rowId": "split_witness_zero_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "residual": 0
+    },
+    "retune_witness_zero": {
+      "status": "attempt",
+      "rowId": "retune_witness_zero_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "commonCarrierId": "C_02-04_bin_u_attempt_0001",
+      "domainId": "D_02-04_bin_u_attempt_0001",
+      "residual": 0
+    }
+  },
+  "negativeControls": {
+    "clock_only_retune": {
+      "clockResidual": 0,
+      "envelopeResidual": 0.1,
+      "retuneResidual": 0.1
+    },
+    "envelope_only_retune": {
+      "envelopeResidual": 0,
+      "rootSplitResidual": 0.1
+    },
+    "velocity_dependent_rest_mass": {
+      "massShellResidual": 0,
+      "restMassResidual": 0.1
+    },
+    "medium_response_compensator": {
+      "momentumResidual": 0,
+      "mediumResponseResidual": 0.1
+    }
+  },
+  "tolerances": {
+    "clock": 1e-12,
+    "envelope": 1e-12,
+    "shape": 1e-12,
+    "twoWaySignal": 1e-12,
+    "energy": 1e-12,
+    "momentum": 1e-12,
+    "restMass": 1e-12,
+    "massShell": 1e-12,
+    "mediumResponse": 1e-12,
+    "rootStarvation": 1e-12,
+    "sameRootConservation": 1e-12,
+    "witness": 1e-12,
+    "negativeControl": 1e-12
+  }
+}

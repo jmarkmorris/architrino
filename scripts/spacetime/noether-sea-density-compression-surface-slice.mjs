@@ -180,6 +180,22 @@ function evaluateSlice(input) {
         acousticElasticAgreementGatePass
       ? "populated"
       : "blocked_missing_rows";
+  const firstBlocker = nextBlockerForSlice({
+    status,
+    missingThetaRows,
+    missingRequiredRows,
+    undeclaredMissingOutputs,
+    retuneFailed,
+    retunePassed,
+    speedStressMetricGatePass,
+    acousticElasticAgreement,
+  });
+  const consumerReadiness = evaluateConsumerReadiness({
+    status,
+    firstBlocker,
+    surfaceVector,
+    input,
+  });
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -211,16 +227,7 @@ function evaluateSlice(input) {
       missingRequiredRows,
       missingOutputs,
       undeclaredMissingOutputs,
-      nextBlocker: nextBlockerForSlice({
-        status,
-        missingThetaRows,
-        missingRequiredRows,
-        undeclaredMissingOutputs,
-        retuneFailed,
-        retunePassed,
-        speedStressMetricGatePass,
-        acousticElasticAgreement,
-      }),
+      nextBlocker: firstBlocker,
       thetaSeaRowStatuses: Object.fromEntries(
         THETA_SEA_ROWS.map((row) => [row, normalizeStatus(thetaSeaRows[row])])
       ),
@@ -275,6 +282,7 @@ function evaluateSlice(input) {
           undeclaredMissingOutputs.length === 0 ? "pass" : "fail",
       },
       acousticElasticAgreement,
+      consumerReadiness,
     },
   };
 }
@@ -287,8 +295,110 @@ function summarizeOutput(output) {
     summary: output.summary,
     surfaceVector: output.row.surfaceVector,
     gates: output.row.gates,
+    consumerReadiness: output.row.consumerReadiness,
     acousticElasticAgreement: output.row.acousticElasticAgreement,
   };
+}
+
+function evaluateConsumerReadiness({ status, firstBlocker, surfaceVector, input }) {
+  return {
+    EQ24_density_compression: readinessForConsumer({
+      row: "EQ-24",
+      purpose: "score-4 density-compression coefficient bundle",
+      status,
+      firstBlocker,
+      surfaceVector,
+      input,
+      requiredOutputs: ["delta_c_X_squared", "delta_C_ij_kl"],
+    }),
+    EQ11_weak_gravity: readinessForConsumer({
+      row: "EQ-11",
+      purpose: "weak-gravity metric/coupling projection",
+      status,
+      firstBlocker,
+      surfaceVector,
+      input,
+      requiredOutputs: ["delta_N", "delta_gamma_ij", "delta_G_eff"],
+    }),
+    EQ20_pressure_lambda: readinessForConsumer({
+      row: "EQ-20",
+      purpose: "pressure/effective-Lambda projection",
+      status,
+      firstBlocker,
+      surfaceVector,
+      input,
+      requiredOutputs: ["delta_P_eff"],
+    }),
+    EQ32_low_acceleration: readinessForConsumer({
+      row: "EQ-32",
+      purpose: "low-acceleration response projection",
+      status,
+      firstBlocker,
+      surfaceVector,
+      input,
+      requiredOutputs: ["delta_a_star"],
+    }),
+  };
+}
+
+function readinessForConsumer({
+  row,
+  purpose,
+  status,
+  firstBlocker,
+  surfaceVector,
+  input,
+  requiredOutputs,
+}) {
+  const outputStatuses = Object.fromEntries(
+    requiredOutputs.map((key) => [key, outputStatus(key, surfaceVector, input)])
+  );
+  const blockedOutput = Object.entries(outputStatuses).find(
+    ([, value]) => value !== "projected"
+  );
+  const projectionStatus = blockedOutput
+    ? `blocked_${blockedOutput[1]}`
+    : "projected";
+  const readiness =
+    status === "populated" && !blockedOutput
+      ? "ready_for_consumer_review"
+      : "blocked";
+  return {
+    row,
+    purpose,
+    readiness,
+    sliceBlocker: firstBlocker,
+    projectionBlocker: blockedOutput ? blockedOutput[0] : null,
+    projectionStatus,
+    requiredOutputs,
+    outputStatuses,
+  };
+}
+
+function outputStatus(key, surfaceVector, input) {
+  if (hasProjectedOutput(surfaceVector[key])) {
+    return "projected";
+  }
+  if (declaredMissingOutputs(input).includes(key)) {
+    return "declared_missing_output";
+  }
+  return "undeclared_missing_output";
+}
+
+function hasProjectedOutput(value) {
+  if (value === null || value === undefined) {
+    return false;
+  }
+  if (typeof value === "number") {
+    return Number.isFinite(value);
+  }
+  if (Array.isArray(value)) {
+    return value.some((entry) => hasProjectedOutput(entry));
+  }
+  if (typeof value === "object") {
+    return Object.values(value).some((entry) => hasProjectedOutput(entry));
+  }
+  return false;
 }
 
 function missingRetainedRows(required, rows) {

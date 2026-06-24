@@ -1,0 +1,171 @@
+{
+  "schema": "aaa-equation-map-finite-window-statistical-carrier-input/v1",
+  "claimLevel": "toy EQ-31 null-separatrix/refinement sweep; structure-faithful, not retained evidence",
+  "constants": {
+    "hbar": 1
+  },
+  "tolerances": {
+    "massClosure": 1e-12,
+    "invariance": 0.001,
+    "retune": 1e-12,
+    "nullSeparatrix": 0.001,
+    "refinement": 0.001
+  },
+  "carrier": {
+    "id": "eq31_two_corridor_null_refinement_toy",
+    "row": "EQ-31",
+    "retainedStatus": "toy",
+    "window": {
+      "id": "W_eq31_null_refinement_toy",
+      "kind": "toy_metastable_window",
+      "retainedStatus": "toy"
+    },
+    "duration": 10,
+    "transitionMap": {
+      "id": "Phi_T_eq31_null_refinement_toy",
+      "retainedStatus": "toy"
+    },
+    "finiteMeasure": {
+      "id": "mu_star_T_eq31_null_refinement_toy",
+      "totalMass": 1,
+      "invarianceResidual": 0.02,
+      "retainedStatus": "toy"
+    },
+    "coarseGraining": {
+      "id": "Q_eq31_null_refinement_toy",
+      "retainedStatus": "toy"
+    },
+    "detectorKernel": {
+      "id": "K_det_eq31_null_refinement_toy",
+      "retainedStatus": "toy"
+    },
+    "outcomePartition": {
+      "id": "B_eq31_null_refinement_toy",
+      "retainedStatus": "toy",
+      "classes": [
+        "stable_remnant",
+        "corridor_alpha",
+        "corridor_beta"
+      ]
+    },
+    "corridorSemantics": {
+      "mode": "first_exit",
+      "basinId": "B_star_eq31_null_refinement_toy",
+      "boundaryId": "partial_B_star_eq31_null_refinement_toy",
+      "firstExitMapId": "tau_exit_eq31_null_refinement_toy",
+      "detectorKernelStage": "post_escape_pushforward",
+      "firstExitPreimageRows": [
+        {
+          "id": "alpha_preimage_eq31_toy",
+          "kind": "corridor_preimage",
+          "corridorId": "C_alpha",
+          "measureStage": "pre_detector_escape",
+          "measure": 0.03
+        },
+        {
+          "id": "beta_preimage_eq31_toy",
+          "kind": "corridor_preimage",
+          "corridorId": "C_beta",
+          "measureStage": "pre_detector_escape",
+          "measure": 0.01
+        }
+      ]
+    },
+    "exitCorridors": [
+      {
+        "id": "C_alpha",
+        "boundaryComponentId": "partial_B_star_alpha",
+        "measureStage": "pre_detector_escape",
+        "measure": 0.03,
+        "retainedStatus": "toy",
+        "ledgerStatus": "toy"
+      },
+      {
+        "id": "C_beta",
+        "boundaryComponentId": "partial_B_star_beta",
+        "measureStage": "pre_detector_escape",
+        "measure": 0.01,
+        "retainedStatus": "toy",
+        "ledgerStatus": "toy"
+      }
+    ],
+    "nullSeparatrix": {
+      "epsilon": 0.01,
+      "tolerance": 0.001,
+      "retainedStatus": "toy",
+      "measureRows": [
+        {
+          "id": "separatrix_strip_eq31_toy",
+          "kind": "null_separatrix_neighborhood",
+          "epsilon": 0.01,
+          "measure": 0.0004
+        }
+      ],
+      "epsilonSequence": [
+        {
+          "id": "sep_eps_004_eq31_toy",
+          "epsilon": 0.04,
+          "neighborhoodMass": 0.0016
+        },
+        {
+          "id": "sep_eps_002_eq31_toy",
+          "epsilon": 0.02,
+          "neighborhoodMass": 0.0008
+        },
+        {
+          "id": "sep_eps_001_eq31_toy",
+          "epsilon": 0.01,
+          "neighborhoodMass": 0.0004
+        }
+      ]
+    },
+    "refinementCompatibility": {
+      "parentWindowId": "W_eq31_null_refinement_toy_h0",
+      "childWindowId": "W_eq31_null_refinement_toy_h1",
+      "tolerance": 0.001,
+      "retainedStatus": "toy",
+      "restrictionRows": [
+        {
+          "id": "alpha_restrict_eq31_toy",
+          "corridorId": "C_alpha",
+          "parentMeasure": 0.03,
+          "childPushforwardMeasure": 0.0302
+        },
+        {
+          "id": "beta_restrict_eq31_toy",
+          "corridorId": "C_beta",
+          "parentMeasure": 0.01,
+          "childPushforwardMeasure": 0.0099
+        },
+        {
+          "id": "sep_restrict_eq31_toy",
+          "regionId": "N_epsilon_boundary",
+          "parentMeasure": 0.0004,
+          "childPushforwardMeasure": 0.00035
+        }
+      ],
+      "defectSequence": [
+        {
+          "id": "defect_h0_eq31_toy",
+          "ell": 0.04,
+          "cocycleDefect": 0.0012
+        },
+        {
+          "id": "defect_h1_eq31_toy",
+          "ell": 0.02,
+          "cocycleDefect": 0.0007
+        },
+        {
+          "id": "defect_h2_eq31_toy",
+          "ell": 0.01,
+          "cocycleDefect": 0.00035
+        }
+      ]
+    },
+    "noHiddenRetuneWitness": {
+      "id": "S_retune_eq31_null_refinement_toy",
+      "residual": 0,
+      "retainedStatus": "toy"
+    }
+  }
+}

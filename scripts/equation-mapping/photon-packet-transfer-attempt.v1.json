@@ -1,0 +1,197 @@
+{
+  "schema": "aaa-equation-map-photon-packet-transfer-input/v1",
+  "claimLevel": "EQ-12 photon packet-transfer attempt skeleton; score-neutral and not accepted",
+  "residualId": "R_EQ12_photon_packet_transfer_attempt_0001",
+  "commonCarrierId": "theta_gamma_packet_attempt_0001",
+  "tolerances": {
+    "carrier": 1e-12,
+    "energyFrequency": 1e-12,
+    "nullEikonal": 1e-12,
+    "helicity": 1e-12,
+    "eventBalance": 1e-12,
+    "pathFrequency": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12,
+    "negativeControl": 1e-12
+  },
+  "weights": {
+    "energyFrequency": 1,
+    "nullEikonal": 1,
+    "helicity": 1,
+    "eventBalance": 1,
+    "pathFrequency": 1
+  },
+  "packet": {
+    "id": "theta_gamma_packet_attempt_0001",
+    "commonCarrierId": "theta_gamma_packet_attempt_0001",
+    "rows": {
+      "theta_gamma_packet": {
+        "id": "theta_gamma_packet_attempt_0001",
+        "rowId": "theta_gamma_packet_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "photon_branch_packet": {
+        "id": "P_gamma_pair_attempt_0001",
+        "rowId": "photon_branch_packet_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "gate_a_kinematics_row": {
+        "id": "gate_a_kinematics_attempt_0001",
+        "rowId": "gate_a_kinematics_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "gate_b_transverse_row": {
+        "id": "gate_b_transverse_attempt_0001",
+        "rowId": "gate_b_transverse_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "gate_c_event_routing_row": {
+        "id": "gate_c_event_routing_attempt_0001",
+        "rowId": "gate_c_event_routing_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "emission_source_row": {
+        "id": "emission_source_attempt_0001",
+        "rowId": "emission_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "path_history_transfer_row": {
+        "id": "path_history_transfer_attempt_0001",
+        "rowId": "path_history_transfer_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "receiver_coupling_row": {
+        "id": "receiver_coupling_attempt_0001",
+        "rowId": "receiver_coupling_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "energy_frequency_row": {
+        "id": "energy_frequency_attempt_0001",
+        "rowId": "energy_frequency_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "null_eikonal_row": {
+        "id": "null_eikonal_attempt_0001",
+        "rowId": "null_eikonal_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "helicity_ledger_row": {
+        "id": "helicity_ledger_attempt_0001",
+        "rowId": "helicity_ledger_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "event_balance_row": {
+        "id": "event_balance_attempt_0001",
+        "rowId": "event_balance_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "source_depletion_row": {
+        "id": "source_depletion_attempt_0001",
+        "rowId": "source_depletion_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "recoil_wake_remnant_row": {
+        "id": "recoil_wake_remnant_attempt_0001",
+        "rowId": "recoil_wake_remnant_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "noether_sea_path_row": {
+        "id": "noether_sea_path_attempt_0001",
+        "rowId": "noether_sea_path_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "source_provenance": {
+        "id": "source_provenance_attempt_0001",
+        "rowId": "source_provenance_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      },
+      "no_hidden_retune_witness": {
+        "id": "no_hidden_retune_attempt_0001",
+        "rowId": "no_hidden_retune_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_gamma_packet_attempt_0001"
+      }
+    },
+    "photonPacket": {
+      "energyFrequency": {
+        "energy": 6.62607015e-19,
+        "planckConstant": 6.62607015e-34,
+        "frequency": 1e15,
+        "epsilonEnergy": 1e-30
+      },
+      "nullEikonal": {
+        "maxResidual": 0
+      },
+      "helicity": {
+        "maxResidual": 0
+      },
+      "eventBalance": {
+        "components": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "pathFrequency": {
+        "emittedFrequency": 1e15,
+        "receivedFrequency": 9.5e14,
+        "transferFactor": 0.95,
+        "residual": 0
+      },
+      "sourceProvenance": {
+        "maxResidual": 0
+      },
+      "noHiddenRetune": {
+        "maxResidual": 0
+      }
+    },
+    "negativeControls": [
+      {
+        "id": "energy_frequency_detuned",
+        "kind": "energy_frequency_detuned",
+        "energyFrequency": {
+          "energy": 6.72607015e-19
+        }
+      },
+      {
+        "id": "longitudinal_leakage",
+        "kind": "longitudinal_leakage",
+        "longitudinalLeakage": 0.01
+      },
+      {
+        "id": "split_packet_carrier",
+        "kind": "split_packet_carrier",
+        "carrierIds": [
+          "theta_gamma_packet_attempt_0001",
+          "theta_gamma_path_attempt_split"
+        ]
+      },
+      {
+        "id": "hidden_retune",
+        "kind": "hidden_retune",
+        "retuneResidual": 0.01
+      }
+    ]
+  }
+}

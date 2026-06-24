@@ -82,6 +82,39 @@
         "sourcePath": "reference/priorities/equation-mapping/eq-26-31-observation-first-precision-packet.md",
         "eventId": "e_gamma_e_0"
       }
+    },
+    "em_gate_rows": {
+      "effective_charge_current_continuity": {
+        "status": "attempt",
+        "rowId": "effective-charge-current-continuity-attempt",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "eventId": "e_gamma_e_0"
+      },
+      "em_stress_poynting_control_volume": {
+        "status": "attempt",
+        "rowId": "em-stress-poynting-control-volume-attempt",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "eventId": "e_gamma_e_0"
+      },
+      "effective_gauge_chart_witness": {
+        "status": "attempt",
+        "rowId": "effective-gauge-chart-witness-attempt",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "eventId": "e_gamma_e_0"
+      },
+      "photon_gate_C_compton_vertex_handoff": {
+        "status": "attempt",
+        "rowId": "photon-gate-C-compton-vertex-handoff-attempt",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "eventId": "e_gamma_e_0"
+      }
+    },
+    "em_gate_residuals": {
+      "continuityResidual": 0,
+      "angularMomentumResidual": 0,
+      "gaugeResidual": 0,
+      "shareResidual": 0,
+      "retuneResidual": 0
     }
   }
 }

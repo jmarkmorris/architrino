@@ -60,6 +60,10 @@
       {
         "nodeId": "agency_and_internal_causation",
         "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json"
+      },
+      {
+        "nodeId": "monologues",
+        "scenePath": "content/scenes/philosophy_history/monologues.json"
       }
     ]
   },
@@ -151,6 +155,14 @@
       "color": "#6a3c3c",
       "labelTitle": "Agency and Internal Causation",
       "labelBadge": "doc"
+    },
+    {
+      "id": "monologues",
+      "title": "Monologues",
+      "radius": 2.688,
+      "color": "#6f4a8f",
+      "labelTitle": "Monologues",
+      "labelBadge": "scene"
     }
   ]
 }

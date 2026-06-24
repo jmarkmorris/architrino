@@ -516,6 +516,26 @@ The result is useful but not score evidence. It shows that the current solver ro
 
 Running the checker with `--require-accepted` exits nonzero for both the current solver report and the retained-domain attempt while these retained inputs are missing. That is the intended guardrail: current proxy row-set alignment is a useful search signal, but `same_branch_chart_identity` is not populated until a retained event or retained positive-width domain binds the rows above and supplies zero split, zero hidden-retune, and overlap-preimage witnesses.
 
+## Executable Direct Retained-Record Evaluator
+
+The direct retained-record evaluator is:
+
+```sh
+node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs --summary --pretty
+```
+
+It consumes [eq02-04-translating-binary-retained-record-attempt.v1.json](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record-attempt.v1.json), inherits the same-branch identity result from [same-branch-retained-domain-attempt.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json), and evaluates the retained-record residual shape for `EQ-02` through `EQ-04`.
+
+The current attempt returns `status=blocked_same_branch_identity`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. Its drift row has `beta_f=0.6` and `gamma_f=1.25`. The arithmetic diagnostics for clock, envelope, two-way signal, energy, exposure, momentum, rest mass, mass shell, medium response, same-root conservation, root starvation, split witness, and retune witness pass numerically. The four negative controls also pass as diagnostics: `clock_only_retune`, `envelope_only_retune`, `velocity_dependent_rest_mass`, and `medium_response_compensator`. None of this is score evidence because all 14 retained-record rows and both local witnesses are still `attempt`.
+
+This is not score evidence. It is the direct shape of the retained-record evaluator that must later be populated with accepted source-backed rows. Running
+
+```sh
+node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs --require-populated --out /tmp/eq02-04-retained-record-required.json
+```
+
+exits nonzero until the inherited `S_eq` same-branch identity, retained-record rows, split witness, retune witness, and residual diagnostics all pass on the same common carrier.
+
 ### Minimum Accepted `S_eq` Retained-Domain Fixture
 
 The next score-moving artifact is not another proxy summary. It is a source-backed retained-domain packet that can replace [same-branch-retained-domain-attempt.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json) without changing the checker. In the notation of the common architecture, the fixture must instantiate

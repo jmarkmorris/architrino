@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 527,
-      "edges": 1281,
-      "scenes": 347,
+      "nodes": 532,
+      "edges": 1286,
+      "scenes": 350,
       "markdownIndexes": 0,
-      "markdownDocs": 167,
+      "markdownDocs": 169,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -998,6 +998,24 @@
       "id": "philosophy_history",
       "name": "Philosophy-History",
       "path": "content/scenes/philosophy_history/philosophy_history.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__dialogues",
+      "name": "Dialogues",
+      "path": "content/scenes/philosophy_history/dialogues.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__dialogues_overview",
+      "name": "Dialogues",
+      "path": "content/scenes/philosophy_history/dialogues/overview.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__dialogue_william_thurston",
+      "name": "William Thurston",
+      "path": "content/scenes/philosophy_history/dialogues/william_thurston.json",
       "nodeType": "scene"
     },
     {
@@ -2648,6 +2666,18 @@
       "id": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "name": "Crisis in Physics",
       "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/dialogues.md",
+      "name": "Dialogues",
+      "path": "content/markdown/aaa/philosophy-history/dialogues.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/dialogues/william-thurston.md",
+      "name": "William Thurston",
+      "path": "content/markdown/aaa/philosophy-history/dialogues/william-thurston.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5215,6 +5245,33 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/dialogues.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__dialogues",
+      "name": "Dialogues",
+      "path": "content/scenes/philosophy_history/dialogues.json",
+      "searchTarget": "content/scenes/philosophy_history/dialogues.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/dialogues/overview.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__dialogues_overview",
+      "name": "Dialogues",
+      "path": "content/scenes/philosophy_history/dialogues/overview.json",
+      "searchTarget": "content/scenes/philosophy_history/dialogues/overview.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/dialogues/william_thurston.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__dialogue_william_thurston",
+      "name": "William Thurston",
+      "path": "content/scenes/philosophy_history/dialogues/william_thurston.json",
+      "searchTarget": "content/scenes/philosophy_history/dialogues/william_thurston.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/geometry_and_ontology.json",
       "nodeType": "scene",
       "id": "philosophy_history__geometry_and_ontology",
@@ -6985,6 +7042,24 @@
       "name": "Crisis in Physics",
       "path": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/dialogues.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/dialogues.md",
+      "name": "Dialogues",
+      "path": "content/markdown/aaa/philosophy-history/dialogues.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/dialogues.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/dialogues/william-thurston.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/dialogues/william-thurston.md",
+      "name": "William Thurston",
+      "path": "content/markdown/aaa/philosophy-history/dialogues/william-thurston.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/dialogues/william-thurston.md",
       "implicit": false
     },
     {
@@ -11340,6 +11415,20 @@
       "field": "scene.children[0]"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/dialogues.json",
+      "to": "scene:content/scenes/philosophy_history/dialogues/overview.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/dialogues.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/dialogues.json",
+      "to": "scene:content/scenes/philosophy_history/dialogues/william_thurston.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/dialogues.json",
+      "field": "scene.children[1]"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "edgeType": "subscene",
@@ -11380,6 +11469,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/dialogues.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12821,6 +12917,20 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/crisis-in-physics.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/crisis_in_physics.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/dialogues/overview.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/dialogues.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/dialogues/overview.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/dialogues/william_thurston.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/dialogues/william-thurston.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/dialogues/william_thurston.json",
       "field": "scene.source.path"
     },
     {
