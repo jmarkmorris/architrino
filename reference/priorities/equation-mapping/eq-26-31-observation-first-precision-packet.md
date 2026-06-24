@@ -234,6 +234,21 @@ $$
 \right).
 $$
 
+The scale split is part of the closure target. The action period $h_\vartheta$, $q_{\mathrm{obs}}$, $c_\gamma$ at fixed $\theta_{\mathrm{sea}}$, and $\theta_{\mathrm{sea}}$ are fixed across the low-energy coupling, atomic fine-structure anchor, and higher-energy running readout. The scale-dependent part is confined to $\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}})$ and the charged-threshold inventory $I_\mu$:
+
+$$
+\frac{\partial h_\vartheta}{\partial\ln\mu}=0,
+\qquad
+\alpha(\mu)
+=
+\alpha[
+\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}}),
+I_\mu
+].
+$$
+
+This makes the strongest falsifier simple: extract $h_\vartheta$ from $\alpha(0)$, one atomic fine-structure anchor, and one running point using the `EQ-12A` action one-form row. If the inferred action period changes with $\mu$, the row fails rather than retuning the Planck-action carrier.
+
 ### Rows Needed
 
 - Observer charge/exposure row.
@@ -243,6 +258,7 @@ $$
 - Charged-threshold inventory row for the scale window.
 - $\alpha(\mu)$ running row.
 - Rydberg and fine-structure anchor rows tied back to `EQ-26`.
+- Period-uniqueness row showing that all $\alpha$ anchors infer the same $h_\vartheta$.
 - Source provenance and no-hidden-retune witness.
 
 ### Executable Status
@@ -251,7 +267,9 @@ $$
 
 ### Failure Mode
 
-`eq26a.alpha_hidden_retune`: $h$, $c_\gamma$, charge exposure, gauge domain, or Noether sea state changes between the low-energy reference coupling, atomic fine-structure anchor, and higher-energy running readout.
+`eq26a.alpha_hidden_retune`: $h_\vartheta$, $c_\gamma$, charge exposure, gauge domain, or Noether sea state changes between the low-energy reference coupling, atomic fine-structure anchor, and higher-energy running readout.
+
+`eq26a.mu_dependent_action_period`: matching $\alpha(\mu)$ requires $\partial h_\vartheta/\partial\ln\mu\ne0$ or inconsistent extracted action periods across the three anchors.
 
 ## EQ-27: Magnetic Moment, Larmor/Cyclotron Precession, And $g-2$
 

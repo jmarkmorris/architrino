@@ -22,9 +22,33 @@
         "status": "attempt",
         "carrierId": "theta_planck_alpha_braid_attempt_0001"
       },
+      "theta_star_common_action_photon_carrier": {
+        "id": "theta_star_common_action_photon_carrier_attempt_0001",
+        "rowId": "theta_star_common_action_photon_carrier_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
       "planck_braid_carrier": {
         "id": "planck_braid_carrier_attempt_0001",
         "rowId": "planck_braid_carrier_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "braid_action_one_form_row": {
+        "id": "braid_action_one_form_attempt_0001",
+        "rowId": "braid_action_one_form_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "history_space_symplectic_row": {
+        "id": "history_space_symplectic_attempt_0001",
+        "rowId": "history_space_symplectic_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
+      "period_uniqueness_row": {
+        "id": "period_uniqueness_attempt_0001",
+        "rowId": "period_uniqueness_attempt_row",
         "status": "attempt",
         "carrierId": "theta_planck_alpha_braid_attempt_0001"
       },
@@ -94,6 +118,12 @@
         "status": "attempt",
         "carrierId": "theta_planck_alpha_braid_attempt_0001"
       },
+      "fiber_product_cocycle_witness": {
+        "id": "fiber_product_cocycle_attempt_0001",
+        "rowId": "fiber_product_cocycle_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_planck_alpha_braid_attempt_0001"
+      },
       "source_provenance": {
         "id": "source_provenance_attempt_0001",
         "rowId": "source_provenance_attempt_row",
@@ -127,6 +157,13 @@
           "reducedPlanckConstant": 0.15915494309189535,
           "cycleAngle": 6.283185307179586,
           "epsilonAction": 1e-30
+        },
+        "periodUniqueness": {
+          "extractedActionPeriods": [
+            1,
+            1,
+            1
+          ]
         },
         "angularMomentumUnit": {
           "maxResidual": 0
@@ -176,6 +213,17 @@
         "kind": "wrong_mode_count",
         "blackbody": {
           "modeDensity": 50.26548245743669
+        }
+      },
+      {
+        "id": "mu_dependent_action_period",
+        "kind": "mu_dependent_action_period",
+        "periodUniqueness": {
+          "extractedActionPeriods": [
+            1,
+            1.01,
+            1
+          ]
         }
       },
       {

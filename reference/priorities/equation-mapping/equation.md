@@ -655,13 +655,16 @@ $$
 
 ### AAA Mapping
 
-This row owns the action quantum itself. `EQ-12` may use $h\nu$ as a photon packet readout, but `EQ-12A` asks whether $h$ and $\hbar$ can be recovered as closed-cycle Noether braid action readouts. The target is a retained nested shell braid or photon packet domain whose phase cycle, action ledger, energy ledger, and angular-momentum ledger expose one shared unit:
+This row owns the action quantum itself. `EQ-12` may use $h\nu$ as a photon packet readout, but `EQ-12A` asks whether $h$ and $\hbar$ can be recovered as projections of one retained braid action one-form. The target is a retained nested shell braid or photon packet domain whose phase cycle, history-space action ledger, energy ledger, and angular-momentum ledger expose one shared period:
 
 $$
 \Theta_h
 =
 \left(
 \mathfrak B_{\mathrm{cyc}},
+\vartheta,
+\Omega_h,
+\gamma_0,
 \mathcal L_{\mathrm{root}},
 \mathcal L_{E\mathbf p\mathbf J},
 P_\gamma,
@@ -670,21 +673,88 @@ c_\gamma,
 \right).
 $$
 
-The useful residual is
+In a delayed Noether braid system, the closed-cycle action cannot be treated as a naive instantaneous $\oint p\,dq$ integral. The action row must live on an extended history space:
 
 $$
-\mathcal R_h(\Theta_h)
+\Omega_h
+=
+\mathrm d p\wedge \mathrm d q
++
+\int_{-\tau_{\max}}^{0}
+\mathrm d p_{\mathrm{hist}}(\sigma)
+\wedge
+\mathrm d q(\sigma)\,
+w(\sigma)\,\mathrm d\sigma,
+\qquad
+\mathrm d\vartheta=\Omega_h.
+$$
+
+The action unit is then the period of the one-form on the generating retained cycle:
+
+$$
+h_\vartheta
+=
+\oint_{\gamma_0}\vartheta,
+\qquad
+\hbar_\vartheta=\frac{h_\vartheta}{2\pi}.
+$$
+
+The useful residual is therefore not a stack of independently inserted $h$ comparisons. It is a period-uniqueness residual for the projections of $\vartheta$:
+
+$$
+\mathcal R_h^\vartheta(\Theta_h)
 =
 \left(
-\frac{E_\gamma-h\nu}{E_\gamma+\varepsilon_E},
-\frac{\|\mathbf p_\gamma-\hbar\mathbf k\|}{\|\mathbf p_\gamma\|+\varepsilon_p},
-\frac{I_{\mathrm{cyc}}-nh}{I_{\mathrm{cyc}}+\varepsilon_I},
-\frac{J-n\hbar}{J+\varepsilon_J},
+\frac{E_\gamma-h_\vartheta\nu}{E_\gamma+\varepsilon_E},
+\frac{\|\mathbf p_\gamma-\hbar_\vartheta\mathbf k\|}{\|\mathbf p_\gamma\|+\varepsilon_p},
+\frac{\left|\oint_\gamma\vartheta-nh_\vartheta\right|}{\left|\oint_\gamma\vartheta\right|+\varepsilon_I},
+\frac{|J-n\hbar_\vartheta|}{|J|+\varepsilon_J},
+\max_{a,b}
+\frac{|h_a-h_b|}{|h_\vartheta|+\varepsilon_h},
+\mathcal H_{\mathrm{hist}},
 \mathcal S_{\mathrm{retune}}
 \right).
 $$
 
-This is also the natural home for the $h$ unit of angular momentum: equal action per retained cycle must be reconciled with the tri-binary phase and angular-momentum ledger before $h$ is treated as more than a measured conversion constant.
+Here $h_a$ are the action periods extracted from the energy, momentum, and angular-momentum readouts. The history-balance term requires wake storage and flux to close over a retained period:
+
+$$
+\mathcal H_{\mathrm{hist}}
+=
+\frac{
+\left|
+\Delta\int_{-\tau}^{0}\mathcal P(t,\sigma)\dot q(t+\sigma)\,d\sigma
++
+\Delta\Phi_{\mathrm{flux}}
+\right|
+}
+{|h_\vartheta|+\varepsilon_h}.
+$$
+
+This is also the natural home for the $h$ unit of angular momentum: equal action per retained cycle must be reconciled with the tri-binary phase and angular-momentum ledger before $h$ is treated as more than a measured conversion constant. The theorem target is a Period Quantization Lemma: on a retained closed branch chart, the de Rham class of $\vartheta$ should be integral and the generator period $h_\vartheta$ should be independent of which conjugate readout projects it. The open burden is proving that self-hit and history-space holonomy do not introduce irrational or readout-dependent periods.
+
+The shared Planck/blackbody/coupling carrier must also be a fiber product, not a loose product of rows:
+
+$$
+\Theta_\star
+=
+\left(
+\vartheta,
+P_\gamma,
+c_\gamma,
+\theta_{\mathrm{sea}}
+\right),
+\qquad
+\Theta_{h\alpha}
+=
+\Theta_h
+\times_{\Theta_\star}
+\Theta_{\mathrm{bb}}
+\times_{\Theta_\star}
+\Theta_\alpha.
+$$
+
+Under this form, $\mathcal S_{\mathrm{retune}}$ is the cocycle obstruction to gluing the three projections over one $\Theta_\star$.
 
 ### Closure Status
 
@@ -692,7 +762,7 @@ Current `6/23 b` score: `2`.
 
 The row is high priority because many mature equations already consume $h$ or $\hbar$. It remains low-scored because the current material uses those constants as bridge readouts or residual inputs; it does not yet derive the action unit from retained braid geometry.
 
-Executable status: [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) evaluates the score-neutral Planck/alpha residual family for `EQ-12A`, `EQ-22A`, and `EQ-26A`. The attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json) is designed to pass the normalized Planck-action, blackbody, $\alpha(\mu)$, source-provenance, hidden-retune, and negative-control diagnostics while remaining score-neutral until accepted retained rows exist.
+Executable status: [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) evaluates the score-neutral Planck/alpha residual family for `EQ-12A`, `EQ-22A`, and `EQ-26A`. The attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json) is designed to pass the normalized Planck-action, period-uniqueness, blackbody, $\alpha(\mu)$, source-provenance, hidden-retune, and negative-control diagnostics while remaining score-neutral until accepted retained rows exist.
 
 ### Closure Burden
 
@@ -700,12 +770,15 @@ The row must recover:
 
 - one action unit from a retained closed cycle, not from assigning $h$ in each comparison equation;
 - one $\hbar=h/(2\pi)$ relation shared by phase, spin/angular-momentum, and photon packet rows;
+- the extended history-space symplectic row $\Omega_h$ and action one-form $\vartheta$, including wake-storage and radiated/self-hit flux closure over one retained period;
+- a period-uniqueness certificate showing that energy, momentum, and angular-momentum readouts extract the same $h_\vartheta$;
 - common $h$, $\hbar$, $c_\gamma$, event-ledger, and Noether sea rows across `EQ-12`, `EQ-22A`, `EQ-26`, `EQ-26A`, and `EQ-28`;
-- a no-hidden-retune witness showing that action, frequency, momentum, and angular momentum are not fitted independently.
+- a no-hidden-retune witness showing that action, frequency, momentum, and angular momentum are not fitted independently;
+- a $\Theta_\star$ fiber-product witness binding $\Theta_h$, $\Theta_{\mathrm{bb}}$, and $\Theta_\alpha$ through the same action one-form, photon packet, photon-channel speed, and Noether sea state.
 
 ### Agent Target
 
-Build the first retained cycle-action row: declare $\mathfrak B_{\mathrm{cyc}}$, compute $I_{\mathrm{cyc}}$, bind it to $\mathcal L_{E\mathbf p\mathbf J}$, and test whether the same $h$ and $\hbar$ close photon energy, de Broglie momentum, and angular-momentum readouts on one record.
+Build the first retained cycle-action row: declare $\mathfrak B_{\mathrm{cyc}}$, define $\vartheta$ on the extended history space, compute $h_\vartheta=\oint_{\gamma_0}\vartheta$, bind it to $\mathcal L_{E\mathbf p\mathbf J}$, and test whether the same $h_\vartheta$ and $\hbar_\vartheta$ close photon energy, de Broglie momentum, angular-momentum, wake-storage, and flux readouts on one record.
 
 ## EQ-14 Through EQ-16: Quantum Wave, Spinor, And Gauge Equations
 
@@ -1405,6 +1478,26 @@ $$
 \frac{\max(0,D_{\min}-\mathcal D_{\mathrm{th}})}{D_{\min}}.
 $$
 
+The first proof route should be maximum entropy on the photon mode measure with energy, mode-number bookkeeping, and exchange symmetry explicit:
+
+$$
+\bar n_i^\theta
+=
+\frac{1}
+{\exp((h_\vartheta\nu_i-\mu_\gamma^\theta)/(k_BT_\theta))-1}.
+$$
+
+The transverse factor inside the standard $8\pi\nu^2/c_\gamma^3$ mode density is a Gate B gauge-transversality row: the longitudinal photon mode is absent only if the photon-channel redundancy removes it. The zero chemical potential row should likewise be an absence-of-symmetry result, not an assumption:
+
+$$
+\mu_\gamma^\theta=0
+\quad\Longleftrightarrow\quad
+\text{no conserved photon-number charge shifts }N_\gamma
+\text{ while fixing }(E,\mathbf p,\mathbf J).
+$$
+
+A nonzero $\mu_\gamma^\theta$ over finite windows is therefore a physical leakage diagnostic. It may appear before refinement, but it must vanish as the thermal/provenance record closes or the no-photon-number theorem fails.
+
 ### Closure Status
 
 Current `6/23 b` score: `2`.
@@ -1419,7 +1512,8 @@ The row must recover:
 
 - $h$ from the same action row used by `EQ-12A`, not from an independent blackbody fit;
 - exactly the photon-channel mode count allowed by Gate B transverse geometry;
-- zero photon chemical potential as a thermal/provenance consequence;
+- zero photon chemical potential as absence of a conserved photon-number symmetry, with finite-window leakage reported as $\mu_\gamma^\theta/(k_BT_\theta)$ rather than hidden as numerical noise;
+- a maximum-entropy derivation of the occupancy law from energy, mode-number bookkeeping, and exchange symmetry;
 - adequate thermalization depth from the finite-window thermodynamic record;
 - shared $T_\theta$, $c_\gamma$, $\theta_{\mathrm{sea}}$, and photon packet rows with `EQ-22`, `EQ-25`, and `EQ-12A`.
 
@@ -1732,6 +1826,23 @@ b_\theta(\mu_j)
 {|b_\theta(\mu_j)|+\varepsilon_b}.
 $$
 
+The scale split is part of the row. The action period $h_\vartheta$, charge quantum, $q_{\mathrm{obs}}$, $c_\gamma$ at fixed Noether sea state, and $\theta_{\mathrm{sea}}$ are fixed across anchors. The running is allowed only in the response kernel and threshold inventory:
+
+$$
+\frac{\partial h_\vartheta}{\partial\ln\mu}=0,
+\qquad
+\frac{\partial c_\gamma}{\partial\ln\mu}=0
+\text{ at fixed }\theta_{\mathrm{sea}},
+\qquad
+\alpha(\mu)=
+\alpha[
+\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}}),
+I_\mu
+].
+$$
+
+The strongest falsifier is the single-period test: fit $\alpha(0)$, an atomic fine-structure anchor, and one running point, then extract the implied $h_\vartheta$ from each through the `EQ-12A` action one-form row. If the extracted periods disagree under numerical refinement, or if matching $\alpha(\mu)$ requires $\partial h_\vartheta/\partial\ln\mu\ne0$, the Planck/action/coupling program is incoherent.
+
 ### Closure Status
 
 Current `6/23 b` score: `2`.
@@ -1748,6 +1859,7 @@ The row must recover:
 - the Rydberg and fine-structure scaling as consumers of the same $\alpha$ row rather than independent atomic fit knobs;
 - a charged-threshold inventory and scale variable $\mu$ tied to detector or scattering resolution;
 - a running residual that changes with energy scale through declared electromagnetic response, not through hidden changes in $h$, $c_\gamma$, charge exposure, or Noether sea state;
+- a period-uniqueness falsifier showing that $\alpha(0)$, atomic fine structure, and a running point infer the same $h_\vartheta$ rather than a scale-dependent action unit;
 - compatibility with `EQ-16` gauge/exposure rows, `EQ-27` magnetic moment rows, and `EQ-30` scattering/form-factor rows.
 
 ### Agent Target

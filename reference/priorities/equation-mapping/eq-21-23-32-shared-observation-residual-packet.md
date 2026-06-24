@@ -219,16 +219,38 @@ T_\theta,
 \right).
 $$
 
+The proof route should start from maximum entropy on the photon mode measure, with energy, mode-number bookkeeping, and exchange symmetry explicit. The occupation row is
+
+$$
+\bar n_i^\theta
+=
+\frac{1}
+{\exp((h_\vartheta\nu_i-\mu_\gamma^\theta)/(k_BT_\theta))-1},
+$$
+
+where $h_\vartheta$ is inherited from `EQ-12A`. The mode density must carry the Gate B transversality count: the factor of two in the standard $8\pi\nu^2/c_\gamma^3$ coefficient is the two transverse photon-channel modes, and a longitudinal leakage residual must fail rather than be absorbed into $T_\theta$ or $g_\nu^\theta$.
+
+The zero chemical-potential row is not an input assumption. It is the absence of a conserved photon-number charge:
+
+$$
+\mu_\gamma^\theta=0
+\quad\Longleftrightarrow\quad
+\text{no conserved photon-number symmetry shifts }N_\gamma
+\text{ while fixing }(E,\mathbf p,\mathbf J).
+$$
+
+Finite-window $\mu_\gamma^\theta\ne0$ is a leakage diagnostic for incomplete thermal/provenance closure. It may be visible before refinement, but it must vanish in the accepted blackbody row.
+
 The benchmark residual is the mode-occupancy and energy-density check
 
 $$
 \bar n_i^\theta
 =
-\frac{1}{\exp((h\nu_i-\mu_\gamma^\theta)/(k_BT_\theta))-1},
+\frac{1}{\exp((h_\vartheta\nu_i-\mu_\gamma^\theta)/(k_BT_\theta))-1},
 \qquad
 u_i^\theta
 \stackrel{!}{=}
-g_{\nu,i}^\theta h\nu_i\bar n_i^\theta.
+g_{\nu,i}^\theta h_\vartheta\nu_i\bar n_i^\theta.
 $$
 
 The row remains `2` until the same finite-window thermal record derives mode density, zero photon chemical potential, sufficient thermalization depth, and shared $h$, $T_\theta$, and $c_\gamma$ rows. [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) currently evaluates this as an attempt-level sub-residual and blocks first at `missing_accepted_theta_gamma_packet`.

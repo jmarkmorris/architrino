@@ -8,7 +8,8 @@ This folder holds self-contained packets for outside-style entourage review. Eac
 
 | Packet | Intended reviewer | Status |
 | --- | --- | --- |
-| [emmy-noether-planck-alpha-2026-06-24.md](emmy-noether-planck-alpha-2026-06-24.md) | Emmy Noether | Ready to submit |
+| [emmy-noether-planck-alpha-2026-06-24.md](emmy-noether-planck-alpha-2026-06-24.md) | Emmy Noether | Response integrated |
+| [emmy-noether-planck-alpha-response-2026-06-24.md](emmy-noether-planck-alpha-response-2026-06-24.md) | Emmy Noether | Source response integrated |
 
 ## Packet Discipline
 

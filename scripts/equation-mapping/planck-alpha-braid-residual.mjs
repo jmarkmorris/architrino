@@ -14,7 +14,11 @@ const TWO_PI = 2 * Math.PI;
 
 const REQUIRED_ROWS = [
   "theta_gamma_packet",
+  "theta_star_common_action_photon_carrier",
   "planck_braid_carrier",
+  "braid_action_one_form_row",
+  "history_space_symplectic_row",
+  "period_uniqueness_row",
   "photon_action_quantum_row",
   "phase_cycle_angular_momentum_row",
   "photon_packet_row",
@@ -26,6 +30,7 @@ const REQUIRED_ROWS = [
   "local_photon_speed_row",
   "vacuum_polarization_wake_dressing_row",
   "energy_scale_running_row",
+  "fiber_product_cocycle_witness",
   "source_provenance",
   "no_hidden_retune_witness",
 ];
@@ -99,9 +104,10 @@ Options:
   --help                Show this help.
 
 This checker evaluates a score-neutral Planck/alpha braid residual bundle:
-Planck-Einstein action closure, Planck blackbody mode occupancy, and
-fine-structure coupling/running. Attempt rows, per-bin thermal fits, scale-
-independent alpha, carrier splits, and hidden retunes never raise scores.`);
+Planck-Einstein action closure through a retained action one-form, Planck
+blackbody mode occupancy, and fine-structure coupling/running. Attempt rows,
+per-bin thermal fits, scale-independent alpha, carrier splits, mu-dependent
+action periods, and hidden retunes never raise scores.`);
 }
 
 function readJson(filePath) {
@@ -154,7 +160,7 @@ function evaluatePlanckAlphaBraid(input, inputPath) {
       rows: ["EQ-12A", "EQ-22A", "EQ-26A"],
       supportedRows: ["EQ-12", "EQ-22", "EQ-25", "EQ-26", "EQ-27", "EQ-29"],
       claimLevel:
-        "score-neutral Planck/alpha braid residual; accepted retained rows are required before score movement",
+        "score-neutral Planck/alpha braid residual over a minimal common action/photon carrier; accepted retained rows are required before score movement",
     },
     tolerances,
     summary: {
@@ -170,6 +176,7 @@ function evaluatePlanckAlphaBraid(input, inputPath) {
       }),
       commonCarrierPass: carrierBinding.passed,
       planckQuantumPass: residual.planckQuantum.passed,
+      periodUniquenessPass: residual.planckQuantum.periodUniqueness.passed,
       blackbodyPass: residual.blackbody.passed,
       alphaRunningPass: residual.alphaRunning.passed,
       sourceProvenancePass: residual.sourceProvenance.passed,
@@ -260,6 +267,7 @@ function evaluatePlanckQuantum(row, tolerance) {
   const energyFrequency = evaluateEnergyFrequency(row.energyFrequency ?? {}, tolerance);
   const angularEnergy = evaluateAngularEnergy(row.angularEnergy ?? {}, tolerance);
   const actionCycle = evaluateActionCycle(row.actionCycle ?? {}, tolerance);
+  const periodUniqueness = evaluatePeriodUniqueness(row.periodUniqueness ?? {}, tolerance);
   const angularMomentumUnit = evaluateScalarResidual(
     row.angularMomentumUnit?.residual ?? row.angularMomentumUnit?.maxResidual,
     tolerance,
@@ -268,6 +276,7 @@ function evaluatePlanckQuantum(row, tolerance) {
     energyFrequency.residual,
     angularEnergy.residual,
     actionCycle.residual,
+    periodUniqueness.residual,
     angularMomentumUnit.residual,
   );
 
@@ -276,12 +285,14 @@ function evaluatePlanckQuantum(row, tolerance) {
       energyFrequency.passed &&
       angularEnergy.passed &&
       actionCycle.passed &&
+      periodUniqueness.passed &&
       angularMomentumUnit.passed,
     maxResidual,
     tolerance,
     energyFrequency,
     angularEnergy,
     actionCycle,
+    periodUniqueness,
     angularMomentumUnit,
   };
 }
@@ -332,6 +343,28 @@ function evaluateActionCycle(row, tolerance) {
     action,
     expectedAction: h,
     hFromHbar,
+  };
+}
+
+function evaluatePeriodUniqueness(row, tolerance) {
+  if (row.maxResidual !== undefined || row.residual !== undefined) {
+    return evaluateScalarResidual(row.maxResidual ?? row.residual, tolerance);
+  }
+  const extractedPeriods = (row.extractedActionPeriods ?? []).map((value, index) =>
+    finiteNumber(value, `planckQuantum.periodUniqueness.extractedActionPeriods.${index}`),
+  );
+  if (extractedPeriods.length === 0) {
+    return evaluateScalarResidual(Number.POSITIVE_INFINITY, tolerance);
+  }
+  const mean = extractedPeriods.reduce((sum, value) => sum + value, 0) / extractedPeriods.length;
+  const maxDeviation = Math.max(...extractedPeriods.map((value) => Math.abs(value - mean)));
+  const residual = maxDeviation / Math.max(Math.abs(mean), 1);
+  return {
+    passed: residual <= tolerance,
+    residual,
+    tolerance,
+    extractedActionPeriods: extractedPeriods,
+    mean,
   };
 }
 
@@ -475,6 +508,22 @@ function evaluateNegativeControl(packet, control, tolerances) {
     return {
       failedAsExpected: !result.passed,
       reason: result.passed ? "detuned_planck_quantum_passed" : "detuned_planck_quantum_failed",
+      residual: result.maxResidual,
+      tolerance: result.tolerance,
+    };
+  }
+  if (control.kind === "mu_dependent_action_period") {
+    const row = {
+      ...(packet.planckQuantum ?? {}),
+      periodUniqueness: {
+        ...(packet.planckQuantum?.periodUniqueness ?? {}),
+        ...(control.periodUniqueness ?? {}),
+      },
+    };
+    const result = evaluatePlanckQuantum(row, tolerances.planckQuantum);
+    return {
+      failedAsExpected: !result.passed,
+      reason: result.passed ? "mu_dependent_action_period_passed" : "mu_dependent_action_period_failed",
       residual: result.maxResidual,
       tolerance: result.tolerance,
     };
@@ -645,6 +694,9 @@ function firstBlocker({ status, missingRows, carrierBinding, residual, negativeC
     return "carrier_split_or_missing_common_carrier";
   }
   if (!residual.planckQuantum.passed) {
+    if (!residual.planckQuantum.periodUniqueness.passed) {
+      return "period_uniqueness_residual_failed";
+    }
     return "planck_quantum_residual_failed";
   }
   if (!residual.blackbody.passed) {

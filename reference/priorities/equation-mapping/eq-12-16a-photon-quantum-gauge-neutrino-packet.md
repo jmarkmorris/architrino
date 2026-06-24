@@ -179,9 +179,37 @@ E=h\nu=\hbar\omega,
 J=n\hbar.
 $$
 
-The mapped carrier is a retained cycle-action packet $\Theta_h$ whose phase, energy, momentum, and angular-momentum ledgers expose one shared $h$ and $\hbar$. The first executable status is [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs), with attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json). The run is score-neutral and blocks first at `missing_accepted_theta_gamma_packet`.
+The mapped carrier is a retained action one-form packet $\Theta_h$ whose phase, energy, momentum, and angular-momentum ledgers expose one shared period $h_\vartheta$ and $\hbar_\vartheta=h_\vartheta/(2\pi)$:
 
-The score remains `2` until a retained closed-cycle action row proves that the same action unit supports photon energy, de Broglie momentum, angular momentum, and downstream Planck/atomic/coupling consumers without hidden retuning.
+$$
+\Theta_h
+=
+\left(
+\mathfrak B_{\mathrm{cyc}},
+\vartheta,
+\Omega_h,
+\gamma_0,
+\mathcal L_{E\mathbf p\mathbf J},
+P_\gamma,
+c_\gamma,
+\theta_{\mathrm{sea}}
+\right),
+\qquad
+h_\vartheta=\oint_{\gamma_0}\vartheta.
+$$
+
+Because the Noether braid row carries causal-delay history, the cycle action is not a naive instantaneous $\oint p\,dq$ unless the wake-storage and flux terms close over the retained period:
+
+$$
+\Delta\int_{-\tau}^{0}\mathcal P(t,\sigma)\dot q(t+\sigma)\,d\sigma
++
+\Delta\Phi_{\mathrm{flux}}
+=0.
+$$
+
+The theorem target is a Period Quantization Lemma: the de Rham class of $\vartheta$ is integral on the retained closed branch chart, and energy, momentum, and angular-momentum projections all extract the same $h_\vartheta$. The first executable status is [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs), with attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json). The run is score-neutral and blocks first at `missing_accepted_theta_gamma_packet`.
+
+The score remains `2` until a retained action one-form row proves that the same action period supports photon energy, de Broglie momentum, angular momentum, and downstream Planck/atomic/coupling consumers without hidden retuning or a scale-dependent $h_\vartheta$.
 
 ## EQ-13 Maxwell And Wave Equations
 
