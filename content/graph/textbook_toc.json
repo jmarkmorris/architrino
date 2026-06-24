@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 186,
-      "sections": 1456
+      "entries": 180,
+      "sections": 1457
     }
   },
   "tocRoot": {
@@ -13380,7 +13380,7 @@
             "children": [
               {
                 "id": "philosophy_history__perspectives_overview",
-                "title": "Perspectives",
+                "title": "Perspectives: A Chain Of Witnesses",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/philosophy_history/perspectives/overview.json",
@@ -13388,118 +13388,66 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Questions",
+                    "title": "Opening Frame",
                     "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
-                    "markdownSection": "Questions",
-                    "sectionKey": "questions",
+                    "markdownSection": "Opening Frame",
+                    "sectionKey": "opening frame",
                     "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "philosophy_history__perspective_william_thurston",
-                "title": "William Thurston",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/perspectives/william_thurston.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
-                "sections": [
+                  },
                   {
                     "kind": "markdown-section",
-                    "title": "Perspective",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
-                    "markdownSection": "Perspective",
-                    "sectionKey": "perspective",
+                    "title": "William Thurston: The Charts Must Glue",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "William Thurston: The Charts Must Glue",
+                    "sectionKey": "william thurston the charts must glue",
                     "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "philosophy_history__perspective_henri_poincare",
-                "title": "Henri Poincare",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/perspectives/henri_poincare.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
-                "sections": [
+                  },
                   {
                     "kind": "markdown-section",
-                    "title": "Perspective",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
-                    "markdownSection": "Perspective",
-                    "sectionKey": "perspective",
+                    "title": "Henri Poincare: The Return Map Must Close",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Henri Poincare: The Return Map Must Close",
+                    "sectionKey": "henri poincare the return map must close",
                     "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "philosophy_history__perspective_james_clerk_maxwell",
-                "title": "James Clerk Maxwell",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
-                "sections": [
+                  },
                   {
                     "kind": "markdown-section",
-                    "title": "Perspective",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
-                    "markdownSection": "Perspective",
-                    "sectionKey": "perspective",
+                    "title": "James Clerk Maxwell: Wakes Must Become Fields",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "James Clerk Maxwell: Wakes Must Become Fields",
+                    "sectionKey": "james clerk maxwell wakes must become fields",
                     "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "philosophy_history__perspective_ludwig_boltzmann",
-                "title": "Ludwig Boltzmann",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
-                "sections": [
+                  },
                   {
                     "kind": "markdown-section",
-                    "title": "Perspective",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
-                    "markdownSection": "Perspective",
-                    "sectionKey": "perspective",
+                    "title": "Ludwig Boltzmann: Measures Must Converge",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Ludwig Boltzmann: Measures Must Converge",
+                    "sectionKey": "ludwig boltzmann measures must converge",
                     "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "philosophy_history__perspective_emmy_noether",
-                "title": "Emmy Noether",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/perspectives/emmy_noether.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
-                "sections": [
+                  },
                   {
                     "kind": "markdown-section",
-                    "title": "Perspective",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
-                    "markdownSection": "Perspective",
-                    "sectionKey": "perspective",
+                    "title": "Emmy Noether: The History Must Conserve",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Emmy Noether: The History Must Conserve",
+                    "sectionKey": "emmy noether the history must conserve",
                     "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "philosophy_history__perspective_albert_einstein",
-                "title": "Albert Einstein",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/perspectives/albert_einstein.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
-                "sections": [
+                  },
                   {
                     "kind": "markdown-section",
-                    "title": "Perspective",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
-                    "markdownSection": "Perspective",
-                    "sectionKey": "perspective",
+                    "title": "Albert Einstein: Observers Must Recover Relativity",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Albert Einstein: Observers Must Recover Relativity",
+                    "sectionKey": "albert einstein observers must recover relativity",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Closing Synthesis",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Closing Synthesis",
+                    "sectionKey": "closing synthesis",
                     "headingLevel": 2
                   }
                 ]
