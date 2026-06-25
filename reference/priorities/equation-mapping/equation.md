@@ -1237,6 +1237,20 @@ up to the common $1/E$ scaling and sign convention.
 
 The immediate lesson is not that the three tri-binary frequencies should literally be observed as three absolute neutrino clocks. The observed relation says something subtler: a common carrier phase can factor out, while a residual propagation operator supplies two independent observable phase gaps.
 
+The near-photon interpretation adds a second inverse clue. A neutrino should sit close enough to the photon channel to explain high propagation speed and weak exterior exposure, but it must fail to complete the photon lock. If the pro/anti planar pair fully locked, the residual internal-binary rows would be hidden inside a photon-channel ledger and no neutrino oscillation operator would remain. The target is therefore an almost-locked neutral branch with a large common propagation phase and a nonzero internal-binary residual:
+
+$$
+\Omega^{(\nu)}
+=
+\omega_{\nu 0}\mathbf{1}
++
+\delta\Omega_{\mathrm{bin}}
+\qquad
+\delta\Omega_{\mathrm{bin}}\neq0
+$$
+
+The constituent-binary intuition belongs in $\delta\Omega_{\mathrm{bin}}$: it is the retained behavior of internal binary phase, lever-arm, wake/coupling, and exposure rows after the common near-photon phase has been factored out.
+
 The equal-frequency tri-binary candidate in [equal-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/equal-frequency-energy-radius-candidate.md) is therefore a good match only if it has the form
 
 $$
@@ -1355,6 +1369,7 @@ Executable status: [neutrino-common-clock-phase-operator.mjs](../../../scripts/e
 The retained branch must show, on one event or positive-width domain:
 
 - common-frequency factorization: $\omega_1=\omega_2=\omega_3=\omega_f$ enters only through a common phase or shared clock row;
+- near-photon lock boundary: the branch remains close to the photon planar-pair channel, propagates at high speed, and remains weakly exposed, while an incomplete lock preserves nonzero internal-binary phase rows;
 - nonzero residual gaps: $\delta H_{3B}$ has three eigenvalues with exactly two independent differences;
 - hierarchy recovery: $|\Delta\lambda_{3\ell}|/\Delta\lambda_{21}$ lands near the observed atmospheric-to-solar ratio instead of a small integer triplet chosen by hand;
 - residual-spectrum shape: after the common clock is removed, the neutral-lepton row produces a near doublet plus separated singlet rather than equal residual spacing;

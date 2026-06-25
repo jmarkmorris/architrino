@@ -16,6 +16,7 @@ Definition (geometric, working): A neutrino is a near-planar pro/anti Noether br
 - Near-photon boundary:
   - The photon state is the fully coherent coaxial contra-rotating pro/anti planar pair transport channel.
   - The neutrino sits just off that lock: close enough to be neutral, fast, and weakly coupled, but not coherent enough to propagate as a photon train.
+  - The incomplete photon lock is the important difference. A photon hides the pro/anti planar pair inside one massless transverse transport ledger. A neutrino remains close to that boundary, so its exterior coupling is small and its propagation speed is high, but the residual internal-binary rows do not collapse into one photon-channel phase.
   - This "not quite photon" status gives the neutrino a small observer-facing mass channel and a nontrivial oscillation ledger.
 
 - Propagation:
@@ -25,6 +26,7 @@ Definition (geometric, working): A neutrino is a near-planar pro/anti Noether br
 - Flavor and oscillation (revealed internal ledger):
   - "Flavor" labels which residual internal-binary energy and phase mode is exposed to the weak channel.
   - Oscillation is the distance-dependent revealing of those internal binaries as the near-planar pro/anti pair precesses through its almost-photon geometry.
+  - The constituent-binary intuition should be read as residual internal-binary behavior, not as a new inventory of ordinary constituent particles. The same near-photon assembly is sampled through different weak-channel alignments as its internal binary phases beat against one another.
   - The beat pattern arises from residual internal phase dynamics and path-history geometry; it is not a stable six-site axial layer flipping among ordinary charged-fermion configurations.
 
 - Chirality (handedness bias):
@@ -33,7 +35,17 @@ Definition (geometric, working): A neutrino is a near-planar pro/anti Noether br
 - Weak interactions as corridor re-coupling:
   - Charged-current processes correspond to brief, localized corridor connections that reassign the weak-coupling ledger and axial architrinos between the participating assemblies (W-like), while neutral-current scattering corresponds to energy/momentum exchange with zero net charge transfer (Z-like). Cross sections are tiny because the neutrino’s exterior field is only a faint residue; compare [Electroweak Bosons: Photons, W/Z, and Higgs](../bosons/electroweak-bosons.md).
 
-Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar pro/anti lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation.
+At the phase-generator level, the intended split is
+$$
+\Omega^{(\nu)}
+=
+\omega_{\nu 0}\mathbf{1}
++
+\delta\Omega_{\mathrm{bin}}
+$$
+where $\omega_{\nu 0}\mathbf{1}$ is the large near-photon common propagation term and $\delta\Omega_{\mathrm{bin}}$ is the residual internal-binary phase operator. The common term is why the neutrino is a high-speed neutral channel. The residual term is why it can oscillate instead of becoming an ordinary photon.
+
+Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar pro/anti lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation. If the lock completed, the object would be read as a photon-channel packet; because it does not complete, the remaining internal-binary rhythm is still available to the weak channel.
 
 ## Conversion and Reaction-Provenance Questions
 
