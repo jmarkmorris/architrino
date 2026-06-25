@@ -345,6 +345,10 @@ M_{\mathrm{Ch}}\propto Y_e^2M_\odot
 $$
 Electron capture lowers $Y_e$, so a core can cross the support boundary by changing its active assembly inventory, not only by adding mass.
 
+The inverse-clue discipline is to keep three scale notions separate. Atomic orbital compression belongs to the pre-white-dwarf and condensed-matter regime. The Chandrasekhar pressure law belongs to the delocalized electron Fermi reservoir, where the relevant spacing is $\ell_e\sim n_e^{-1/3}$ and the relativistic border is $p_F/(m_ec)\sim1$. Material Noether braid scale compression is the separate native row $\lambda_A=R_{\perp,A}/R_{\perp,A,0}$. A valid derivation may connect these three levels, but it must not use one as an unstated substitute for another.
+
+The historical level placement also matters. Chandrasekhar's limiting law used special relativity in the electron energy-momentum relation and Newtonian hydrostatic balance for the stellar support comparison. TOV pressure-gravity balance is the later general-relativistic compact-object benchmark. This packet should therefore recover both the support calculation with an ordinary Euclidean radial coordinate and the TOV correction as comparison rows rather than treating either as substrate ontology.
+
 The $\mathbb{A}\mathbb{A}\mathbb{A}$-native derivation target is a compact support residual
 $$
 \mathcal{R}_{\mathrm{coll}\text{-}\mathrm{support}}(\theta;\Omega,W)
