@@ -4,8 +4,10 @@ This package contains simple QR-code plus Noether Braid logo composites for prin
 
 - QR source: `../../../../content/assets/animator/images/qr.png`
 - Logo source: `../noether-braid-ribbon-app-icon/noether-braid-ribbon-app-icon-1024.png`
+- QR background: `#ece4f2`, the selected 75% standard-purple tint
 - Horizontal exports are `1200 x 600` PNG files.
 - Vertical exports are `600 x 1200` PNG files.
+- The logo and QR artwork abut with no divider line and no backing card.
 
 ## Exports
 
