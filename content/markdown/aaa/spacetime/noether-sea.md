@@ -72,6 +72,29 @@ not a primitive frame-free photon scalar. The redshift task is to compute the en
 
 The Noether sea is composed of neutral Noether braid assemblies. In the present corpus the best-developed Noether braid case is the nested shell braid, made from three nested electrino:positrino binaries. A Noether braid itself is not elementary; its stability is a downstream assembly result.
 
+This composition statement is a theorem target, not a permission to ignore other possible architrino assemblies. The universe-state inventory may contain many finite assembly classes: bare binaries, transient multi-body reaction corridors, larger $N$-site branches, charged assemblies, photon-channel packets, neutrino-like near-photon assemblies, and strong-field branch variants. Most of those may be physically real without being the ambient Noether sea population. The medium claim is that one neutral assembly class supplies the weak homogeneous background whose coarse variables recover clocks, rulers, signal speeds, pressure, inertia, and effective metric behavior.
+
+For a candidate ambient assembly class $\mathfrak C$, define the selection residual
+
+$$
+\mathcal R_{\mathrm{sea\text{-}class}}(\mathfrak C)
+=
+\max\!\left(
+\mathcal R_{\mathrm{ret}},
+\mathcal R_{\mathrm{neutral}},
+\mathcal R_{\mathrm{conv}},
+\mathcal R_{\mathrm{pack}},
+\mathcal R_{\mathrm{trans}},
+\mathcal R_{\mathrm{resp}},
+\mathcal R_{\mathrm{build}},
+\mathcal R_{\mathrm{abund}}
+\right)
+$$
+
+The entries are, respectively: retained-branch closure; local polarity neutrality and pro/anti balance; convergence of the far-population wake sum; dense packing without uncontrolled branch disruption; weak homogeneous transparency to ordinary matter, photon-channel packets, and neutrino-like assemblies; a shared constitutive response for $n$, $\chi_{\text{sea}}$, $\Gamma_N$, stress, and effective metric channels; compatibility with the particle-building branch program; and a production, recycling, or relaxation route that gives the class sufficient abundance.
+
+The nested shell braid-centered Noether sea claim is therefore the statement that the corresponding class $\mathfrak C_{\mathrm{nest}}$ can drive $\mathcal R_{\mathrm{sea\text{-}class}}(\mathfrak C_{\mathrm{nest}})$ below the accepted tolerance while other candidate classes either fail one of the rows or are classified as localized matter, radiation, reaction, or strong-field branches. This is stronger than saying that nested shell braid exclusion volumes are visually plausible. It is a comparative selection problem over assembly classes.
+
 The large-scale Noether sea is modeled as a balanced population of complementary Noether braid orientations.
 
 This pro/anti distinction is geometric and topological, not a net electric-charge distinction. Both orientations are electrically neutral at the core level. Their coupled balance is part of the working explanation for how the Noether sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response.
@@ -949,4 +972,4 @@ This page does not own:
 
 ## Summary Commitment
 
-> **Medium Commitment (Noether sea):** The Noether sea is the emergent physical medium formed by coupled neutral Noether braid assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void itself. Matter assemblies and Noether braid branches are physically meaningful as local retained branches embedded in this medium record; isolated branch calculations are seed charts or limiting cases unless their Noether sea state and nearby-assembly boundary residuals are statused.
+> **Medium Commitment (Noether sea):** The Noether sea is the emergent physical medium formed by coupled neutral Noether braid assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void itself. Matter assemblies and Noether braid branches are physically meaningful as local retained branches embedded in this medium record; isolated branch calculations are seed charts or limiting cases unless their Noether sea state and nearby-assembly boundary residuals are statused. The claim that nested shell braid-like neutral assemblies dominate the weak homogeneous medium remains a comparative selection target: other architrino assembly classes must be rejected, subordinated, or classified by the same ambient selection residual before Noether sea composition is closed.

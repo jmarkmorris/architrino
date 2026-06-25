@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1461
+      "sections": 1462
     }
   },
   "tocRoot": {
@@ -2538,6 +2538,14 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
                 "markdownSection": "Retained-Branch Certificate Target",
                 "sectionKey": "retained branch certificate target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Medium-Selection Burden",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
+                "markdownSection": "Medium-Selection Burden",
+                "sectionKey": "medium selection burden",
                 "headingLevel": 2
               },
               {

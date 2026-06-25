@@ -3,15 +3,24 @@
 Promotion status: `priority-only`. Task id:
 `assembly_braid_fallback_investigation`.
 
-Priority status: `low-priority-fallback`. This packet is conditional on stalls
-in the neutral braid, shell braid, and nested shell braid closure programs. It
-does not replace [Neutral Braid Base Certificate](neutral-braid/neutral-braid-base-certificate.md),
+Priority status: `low-priority-fallback-with-selection-guardrail`. This packet
+is conditional on stalls in the neutral braid, shell braid, and nested shell
+braid closure programs. It does not replace [Neutral Braid Base Certificate](neutral-braid/neutral-braid-base-certificate.md),
 [Shell Braid Reduction Row](shell-braid/shell-braid-reduction-row.md), or
 [Nested Shell Braid Reduction Row](nested-shell-braid/nested-shell-braid-reduction-row.md).
 It also does not modify the central-inventory bookkeeping in
 [central-inventory-and-event-ledgers.md](shell-braid/central-inventory-and-event-ledgers.md)
 or the hollow-support packet in
 [central-inventory-hollow-support.md](neutral-braid/central-inventory-hollow-support.md).
+
+This packet is not the full ambient-medium selection problem. Even a retained
+six-site or nested shell braid branch must still win the Noether sea selection
+residual promoted in [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md#composition):
+it must show why its assembly class dominates the weak homogeneous medium
+rather than another possible architrino assembly class. The fallback packet
+only controls the larger $N$-site route when the existing six-site,
+central-inventory, or axial-interface rows require extra labels in one shared
+ledger.
 
 The fallback question is narrow:
 
