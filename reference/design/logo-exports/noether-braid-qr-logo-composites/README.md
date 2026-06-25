@@ -8,6 +8,7 @@ This package contains simple QR-code plus Noether Braid logo composites for prin
 - Horizontal exports are `1200 x 600` PNG files.
 - Vertical exports are `600 x 1200` PNG files.
 - The logo and QR artwork abut with no divider line and no backing card.
+- Reader-facing landscape copy: `../../../../content/assets/images/brand/architrino-logo-qr-landscape.png`
 
 ## Exports
 

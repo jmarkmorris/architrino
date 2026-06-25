@@ -880,6 +880,23 @@ body {
   margin: 8px 0;
 }
 
+#markdown-content img.markdown-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+
+#markdown-content .markdown-image-block {
+  margin: 14px 0 16px;
+  break-inside: avoid;
+}
+
+#markdown-content .markdown-image-block img.markdown-image {
+  display: block;
+  width: min(100%, 680px);
+  margin: 0 auto;
+}
+
 #markdown-content ul,
 #markdown-content ol {
   margin: 12px 0 12px 32px;
@@ -998,11 +1015,16 @@ body {
 #markdown-panel.multi-columns #markdown-content pre,
 #markdown-panel.multi-columns #markdown-content blockquote,
 #markdown-panel.multi-columns #markdown-content table,
+#markdown-panel.multi-columns #markdown-content .markdown-image-block,
 #markdown-panel.multi-columns #markdown-content .math-block,
 #markdown-panel.multi-columns #markdown-content .markdown-math-block,
 #markdown-panel.multi-columns #markdown-content .katex-display,
 #markdown-panel.multi-columns #markdown-content mjx-container {
   break-inside: avoid;
+}
+
+#markdown-panel.multi-columns #markdown-content .markdown-image-block {
+  column-span: all;
 }
 
 @media (max-width: 980px) {

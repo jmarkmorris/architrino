@@ -1644,3 +1644,4 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - **Ch 11.13.1.5** [Quantum Records, Nuclear Architecture, Gauge Charge, Generations, And Entanglement](../../../markdown/aaa/philosophy-history/perspectives.md?section=Quantum+Records%2C+Nuclear+Architecture%2C+Gauge+Charge%2C+Generations%2C+And+Entanglement)
       - **Ch 11.13.1.6** [Cosmology, Expansion, And Recycling](../../../markdown/aaa/philosophy-history/perspectives.md?section=Cosmology%2C+Expansion%2C+And+Recycling)
       - **Ch 11.13.1.7** [Closing Synthesis](../../../markdown/aaa/philosophy-history/perspectives.md?section=Closing+Synthesis)
+    - **Ch 11.13.2** [Chapter Read Aloud Test](../../../scenes/philosophy_history/perspectives/chapter_read_aloud_test.json)

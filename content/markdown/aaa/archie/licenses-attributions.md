@@ -16,6 +16,8 @@
 
 - Electromagnetic Spectrum, Extended To The Planck Scale diagram: created by the Architrino project, 2026; project-owned; [local asset](../../../assets/images/physics/electromagnetic-spectrum-planck-scale.svg). Full catalog entry: [image manifest](../../../assets/images/images.json).
 
+- Architrino logo and QR code landscape image: created by the Architrino project, 2026; project-owned; [local asset](../../../assets/images/brand/architrino-logo-qr-landscape.png). Full catalog entry: [image manifest](../../../assets/images/images.json).
+
 - Bremsstrahlung schematic: Journey234 assumed by Wikimedia Commons; Public Domain; [local asset](../../../assets/images/effects/bremsstrahlung.svg); [Wikimedia Commons source](https://commons.wikimedia.org/wiki/File:Bremsstrahlung.svg). Full catalog entry: [image manifest](../../../assets/images/images.json).
 
 - Three.js runtime: MIT license (see header in [vendor/three/three.module.js](../../../../vendor/three/three.module.js)).

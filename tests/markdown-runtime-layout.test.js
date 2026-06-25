@@ -88,6 +88,9 @@ function createFakeElement() {
     removeAttribute(key) {
       attributes.delete(key);
     },
+    getAttribute(key) {
+      return attributes.get(key) ?? null;
+    },
     setAttribute(key, value) {
       attributes.set(key, String(value));
     },
@@ -206,6 +209,67 @@ test("markdown panels expose a focused article surface for browser read aloud", 
   assert.equal(markdownContent.attributes.has("aria-label"), false);
   assert.equal(markdownBody.innerHTML, "");
   assert.equal(documentLike.title, "architrino");
+});
+
+test("markdown image sources resolve relative to the markdown document", async (t) => {
+  const originalFetch = globalThis.fetch;
+  const originalWindow = globalThis.window;
+
+  globalThis.fetch = async () => ({
+    ok: true,
+    async text() {
+      return [
+        "# Support",
+        "",
+        "![Architrino logo and QR code](../../../assets/images/brand/architrino-logo-qr-landscape.png)",
+      ].join("\n");
+    },
+  });
+  globalThis.window = {};
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+    globalThis.window = originalWindow;
+  });
+
+  const imageParent = createFakeElement();
+  imageParent.tagName = "P";
+  const image = createFakeElement();
+  image.tagName = "IMG";
+  image.parentElement = imageParent;
+  image.setAttribute("src", "../../../assets/images/brand/architrino-logo-qr-landscape.png");
+
+  const markdownBody = createFakeElement();
+  markdownBody.querySelectorAll = (selector) => (selector === "img[src]" ? [image] : []);
+  const runtime = createMarkdownRuntime({
+    markdownPanel: createFakeElement(),
+    markdownBody,
+    markdownLayoutToggle: createFakeElement(),
+    markdownRenderer: {
+      render() {
+        return '<p><img src="../../../assets/images/brand/architrino-logo-qr-landscape.png" alt="Architrino logo and QR code"></p>';
+      },
+    },
+    markdownCache: new Map(),
+    markdownSectionCache: new Map(),
+    extractMarkdownSection: () => null,
+    appendCacheBust: (path) => `${path}?v=test`,
+  });
+
+  await runtime.showMarkdownPanel({
+    name: "Support",
+    markdownPath: "content/markdown/aaa/archie/support-architrino-research.md",
+    markdownColumns: 1,
+  });
+
+  assert.equal(
+    image.getAttribute("src"),
+    "content/assets/images/brand/architrino-logo-qr-landscape.png?v=test"
+  );
+  assert.equal(image.getAttribute("loading"), "lazy");
+  assert.equal(image.getAttribute("decoding"), "async");
+  assert.equal(image.classList.contains("markdown-image"), true);
+  assert.equal(imageParent.classList.contains("markdown-image-block"), true);
 });
 
 test("markdown document HTML entrypoints load local KaTeX assets", () => {

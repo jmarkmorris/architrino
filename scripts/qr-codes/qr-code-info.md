@@ -7,6 +7,7 @@ This directory owns the QR-code generator for the committed Architrino QR asset.
 - Canonical payload: `https://www.architrino.com`
 - Generator: `scripts/qr-codes/build-architrino-qr-assets.py`
 - Canonical QR output: `reference/design/logo-exports/architrino-qr-code/qr.png`
+- Reader-facing landscape logo-plus-QR output: `content/assets/images/brand/architrino-logo-qr-landscape.png`
 - Current QR dimensions: `600 x 600` PNG
 - Current module palette: pure red, pure blue, pure magenta
 - Current background: `#ece4f2`, 75% of the darkest conservative standard-purple tint
@@ -34,13 +35,13 @@ Create a one-off reproduction file while still checking the committed asset:
 VIRTUAL_ENV=/Users/markmorris/vibe/.venv /Users/markmorris/vibe/.venv/bin/python scripts/qr-codes/build-architrino-qr-assets.py --check --output /tmp/architrino-qr-recreated.png
 ```
 
-Regenerate the selected logo-plus-QR composites:
+Regenerate the selected logo-plus-QR composites and reader-facing landscape asset:
 
 ```bash
 VIRTUAL_ENV=/Users/markmorris/vibe/.venv /Users/markmorris/vibe/.venv/bin/python scripts/qr-codes/build-architrino-qr-assets.py --write-logo-composites
 ```
 
-Regenerate the committed QR asset and selected logo-plus-QR composites together:
+Regenerate the committed QR asset, selected logo-plus-QR composites, and reader-facing landscape asset together:
 
 ```bash
 VIRTUAL_ENV=/Users/markmorris/vibe/.venv /Users/markmorris/vibe/.venv/bin/python scripts/qr-codes/build-architrino-qr-assets.py --write-all

@@ -23,6 +23,10 @@ LOGO_SOURCE_PATH = (
     / "reference/design/logo-exports/noether-braid-ribbon-app-icon/noether-braid-ribbon-app-icon-1024.png"
 )
 LOGO_COMPOSITES_OUTPUT_DIR = REPO_ROOT / "reference/design/logo-exports/noether-braid-qr-logo-composites"
+READER_FACING_BRAND_OUTPUT_DIR = REPO_ROOT / "content/assets/images/brand"
+READER_FACING_LANDSCAPE_LOGO_QR_PATH = (
+    READER_FACING_BRAND_OUTPUT_DIR / "architrino-logo-qr-landscape.png"
+)
 
 QR_SIZE_PX = 600
 QR_BORDER_MODULES = 2
@@ -196,16 +200,23 @@ def check_canonical_asset(generated: Image.Image) -> int:
 def write_logo_composites(qr_image: Image.Image) -> None:
     logo = read_image(LOGO_SOURCE_PATH)
     LOGO_COMPOSITES_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    READER_FACING_BRAND_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
+    landscape_composite = make_2x1_composite(logo, qr_image)
     save_png(
-        make_2x1_composite(logo, qr_image),
+        landscape_composite,
         LOGO_COMPOSITES_OUTPUT_DIR / "noether-braid-qr-logo-2x1-logo-left-qr-right.png",
     )
+    save_png(landscape_composite, READER_FACING_LANDSCAPE_LOGO_QR_PATH)
     save_png(
         make_1x2_composite(logo, qr_image),
         LOGO_COMPOSITES_OUTPUT_DIR / "noether-braid-qr-logo-1x2-logo-top-qr-bottom.png",
     )
     print(f"Wrote logo QR composites: {LOGO_COMPOSITES_OUTPUT_DIR.relative_to(REPO_ROOT)}")
+    print(
+        "Wrote reader-facing logo QR asset: "
+        f"{READER_FACING_LANDSCAPE_LOGO_QR_PATH.relative_to(REPO_ROOT)}"
+    )
 
 
 def parse_args() -> argparse.Namespace:
