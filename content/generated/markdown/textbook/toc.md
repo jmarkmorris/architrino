@@ -1641,6 +1641,6 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - **Ch 11.13.1.2** [Paradigms, Research Programs, And Anomalies](../../../markdown/aaa/philosophy-history/perspectives.md?section=Paradigms%2C+Research+Programs%2C+And+Anomalies)
       - **Ch 11.13.1.3** [Structure, Dynamics, And Causal Records](../../../markdown/aaa/philosophy-history/perspectives.md?section=Structure%2C+Dynamics%2C+And+Causal+Records)
       - **Ch 11.13.1.4** [Relativity, Measurement, And Invariance](../../../markdown/aaa/philosophy-history/perspectives.md?section=Relativity%2C+Measurement%2C+And+Invariance)
-      - **Ch 11.13.1.5** [Quantum Records, Gauge Charge, Generations, And Entanglement](../../../markdown/aaa/philosophy-history/perspectives.md?section=Quantum+Records%2C+Gauge+Charge%2C+Generations%2C+And+Entanglement)
+      - **Ch 11.13.1.5** [Quantum Records, Nuclear Architecture, Gauge Charge, Generations, And Entanglement](../../../markdown/aaa/philosophy-history/perspectives.md?section=Quantum+Records%2C+Nuclear+Architecture%2C+Gauge+Charge%2C+Generations%2C+And+Entanglement)
       - **Ch 11.13.1.6** [Cosmology, Expansion, And Recycling](../../../markdown/aaa/philosophy-history/perspectives.md?section=Cosmology%2C+Expansion%2C+And+Recycling)
       - **Ch 11.13.1.7** [Closing Synthesis](../../../markdown/aaa/philosophy-history/perspectives.md?section=Closing+Synthesis)

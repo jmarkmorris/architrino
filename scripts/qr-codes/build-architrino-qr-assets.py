@@ -17,7 +17,7 @@ from qrcode.constants import ERROR_CORRECT_H
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 CANONICAL_PAYLOAD = "https://www.architrino.com"
-CANONICAL_OUTPUT_PATH = REPO_ROOT / "content/assets/animator/images/qr.png"
+CANONICAL_OUTPUT_PATH = REPO_ROOT / "reference/design/logo-exports/architrino-qr-code/qr.png"
 LOGO_SOURCE_PATH = (
     REPO_ROOT
     / "reference/design/logo-exports/noether-braid-ribbon-app-icon/noether-braid-ribbon-app-icon-1024.png"
@@ -214,12 +214,12 @@ def parse_args() -> argparse.Namespace:
     mode.add_argument(
         "--check",
         action="store_true",
-        help="Validate content/assets/animator/images/qr.png against the generated QR asset (default).",
+        help="Validate reference/design/logo-exports/architrino-qr-code/qr.png against the generated QR asset (default).",
     )
     mode.add_argument(
         "--write",
         action="store_true",
-        help="Regenerate content/assets/animator/images/qr.png.",
+        help="Regenerate reference/design/logo-exports/architrino-qr-code/qr.png.",
     )
     mode.add_argument(
         "--write-logo-composites",

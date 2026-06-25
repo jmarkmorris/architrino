@@ -6,7 +6,7 @@ This directory owns the QR-code generator for the committed Architrino QR asset.
 
 - Canonical payload: `https://www.architrino.com`
 - Generator: `scripts/qr-codes/build-architrino-qr-assets.py`
-- Canonical QR output: `content/assets/animator/images/qr.png`
+- Canonical QR output: `reference/design/logo-exports/architrino-qr-code/qr.png`
 - Current QR dimensions: `600 x 600` PNG
 - Current module palette: pure red, pure blue, pure magenta
 - Current background: `#ece4f2`, 75% of the darkest conservative standard-purple tint
