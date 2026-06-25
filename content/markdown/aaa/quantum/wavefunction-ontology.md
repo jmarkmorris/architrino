@@ -27,6 +27,20 @@ When standard non-relativistic, fixed-particle-number quantum mechanics uses a u
 
 That statement is licensed only after the action-to-envelope handoff supplies a controlled residual. The effective wavefunction chart must name the coarse fields, the phase-amplitude map, and the retained record window; it must pass the action-to-envelope residual $\mathcal{R}_{\mathrm{env}}\le\epsilon_{\mathrm{env}}$ in [Effective Lagrangian](../dynamics/effective-lagrangian.md#closure-interface-action-to-envelope-reduction), and any later update must pass the record-autonomy tests in [Measurement Ontology](measurement-ontology.md#what-makes-an-interaction-a-record). Otherwise $\psi$ remains a useful fitting envelope, not a promoted quantum closure.
 
+### Particle-Wave Duality As Assembly And Wake
+
+The standard phrase particle-wave duality is a comparison label, not native ontology. It records two true experimental facts: detections are localized and countable, while propagation histories show interference, diffraction, and phase sensitivity. In $\mathbb{A}\mathbb{A}\mathbb{A}$ those facts are not assigned to one object switching identity. They are assigned to two coupled pieces of one causal process: the assembly and its causal wake.
+
+For a declared preparation and apparatus channel, the retained effective state should be read as a lossy projection of a substrate packet
+$$
+\Gamma_\theta(t)=\left(X_{\mathrm{asm}}(t),\mathcal{W}_\theta(t),Z_\theta(t)\right)
+$$
+where $X_{\mathrm{asm}}$ denotes the localized assembly coordinates retained by the chart, $\mathcal{W}_\theta$ denotes the causal-wake/path-history data still relevant to the record channel, and $Z_\theta$ denotes retained Noether sea and apparatus-environment context. Localization and countable detector records belong primarily to the assembly and apparatus basin. Interference and phase transport belong primarily to unresolved wake history in $\mathcal{W}_\theta$.
+
+The double-slit lesson is therefore not that an ontic particle becomes a wave before becoming a particle again. The lesson is that a localized assembly can leave and receive distributed wake structure whose path history remains live until an apparatus creates a restartable record. If no which-path record has formed at the slit plane, the effective wavefunction must continue to carry the unresolved branch envelope. If a which-path apparatus forms a durable record, the record channel changes and interference is removed by apparatus coupling, not by an observer's act of looking.
+
+This is the conceptual bridge to the restartability test below. Particle-like detection is the record-facing side of the assembly. Wave-like behavior is the unresolved wake-history side of the same preparation. The wavefunction is the effective chart that carries both until the declared apparatus channel has either preserved interference or produced a completed record.
+
 ### Effective State-Vector Contract
 
 The standard state-vector formalism supplies a precise observer-level contract that the $\mathbb{A}\mathbb{A}\mathbb{A}$ reduction must recover, not an ontological replacement for architrino trajectories. For a declared effective chart $\theta=(M_\theta,\mathcal{Q},W,T)$, the comparison Hilbert space is

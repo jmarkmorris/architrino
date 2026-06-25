@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1456
+      "sections": 1461
     }
   },
   "tocRoot": {
@@ -2688,6 +2688,30 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Braid Symmetry-Breaking Point",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+                "markdownSection": "Braid Symmetry-Breaking Point",
+                "sectionKey": "braid symmetry breaking point",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Planar Tri-Binary Reduced Chart",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+                "markdownSection": "Planar Tri-Binary Reduced Chart",
+                "sectionKey": "planar tri binary reduced chart",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Local Black-Hole Duality Target",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+                "markdownSection": "Local Black-Hole Duality Target",
+                "sectionKey": "local black hole duality target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Mass Thesis as a Dynamics Target",
                 "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Mass Thesis as a Dynamics Target",
@@ -4172,6 +4196,14 @@
                     "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
                     "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ View",
                     "sectionKey": "mathbb a mathbb a mathbb a view",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "AdS/CFT Regime Map",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                    "markdownSection": "AdS/CFT Regime Map",
+                    "sectionKey": "ads cft regime map",
                     "headingLevel": 2
                   },
                   {
@@ -6282,6 +6314,14 @@
                 "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
                 "markdownSection": "No Heisenberg Cut",
                 "sectionKey": "no heisenberg cut",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Schrodinger's Cat As A Record-Channel Problem",
+                "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                "markdownSection": "Schrodinger's Cat As A Record-Channel Problem",
+                "sectionKey": "schrodinger s cat as a record channel problem",
                 "headingLevel": 2
               },
               {

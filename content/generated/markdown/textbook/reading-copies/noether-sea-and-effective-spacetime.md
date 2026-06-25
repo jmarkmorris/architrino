@@ -6410,6 +6410,10 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, a black hole is not a hole in the Euclidean
 
 This should be read as one constitutive continuum rather than three disconnected objects. The black-hole vocabulary remains useful at the effective level, but the ontic content is a regime map of the Noether sea.
 
+The same regime map already appears locally inside the nested shell braid. The middle binary is the symmetry-breaking threshold, the inner self-hit binary is the beyond-threshold interior row, and the outer binary is the exterior-coupling row that strong-field collapse drives toward terminal alignment. In this sense a Noether braid contains the primitive black-hole dual: a local horizon/interior pattern that can later be population-amplified into an observer-level compact object. This is not an imported primordial-black-hole model. It is the native claim that black-hole structure is the large-scale continuation of a branch pattern already present in the assembly ontology.
+
+When the local branch is described from the assembly side, this transition is the braid symmetry-breaking point: the middle hinge remains at $c_f$, the outer row is driven to the same terminal threshold, and the inner self-hit row supplies the interior continuation.
+
 #### Collapse-Response Ladder
 
 The route from ordinary matter to a black-hole interior is not a single increase in temperature or a simple rise in material density. It is a sequence of assembly-regime changes in which more of the matter ledger becomes exposed to the surrounding Noether sea. In stable low-energy matter, the Noether sea normally receives only the externally exposed residual of shielded assemblies, not the full internal causal-history energy stored inside those assemblies. In compact collapse, that weak-response approximation progressively fails.
@@ -6680,6 +6684,43 @@ At this interface:
 - information flow is compressed into an interface-like channel rather than ordinary volumetric propagation.
 
 This is why the project treats holographic language as suggestive but not primitive. The horizon behaves like an information-compression interface because the constitutive degrees of freedom have been forced into a constrained alignment state. That motivates the analogy to holography and AdS/CFT without requiring a literal boundary-field ontology.
+
+##### Horizon-Adjacent Photon Channel
+
+The horizon interface is not modeled as a smooth geometric shell surrounding an otherwise empty interior. It is an active Noether sea regime in which ordinary volumetric assemblies, photon-channel packets, dark-sector photon-channel-adjacent modes, and terminally aligned Noether braid states can all be near the same symmetry-breaking threshold. The interface is therefore closer to a high-energy transport and selection layer than to a passive surface.
+
+The photon connection is especially sharp because the photon carrier is a coaxial contra-rotating pro/anti planar pair. A photon is not a horizon, but it is a moving planar-pair record built from the same pro/anti flattening logic that the horizon exposes under strong-field alignment. Near a black-hole interface the question is therefore not only whether light is redshifted on escape. The stronger native question is which photon-channel or photon-channel-adjacent records enter, are blueshifted, are trapped, are converted, or are released by the same horizon-interface ledger.
+
+For a horizon-adjacent photon path $\Gamma_H$, retain the signed strong-field frequency row
+$$
+Y_{\gamma,H}
+=
+\sum_{j\in\Gamma_H}\Delta Y_{\gamma,H,j},
+\qquad
+\Delta Y_{\gamma,H,j}
+=
+-\ln
+\frac{\nu_{\gamma,j}^{+}}{\nu_{\gamma,j}^{-}}
+$$
+
+so $\Delta Y_{\gamma,H,j}<0$ records a blueshift segment and $\Delta Y_{\gamma,H,j}>0$ records a redshift segment relative to the local comparison clock. Interior-facing segments can therefore drive photon-channel packets to energies not directly sampled by exterior observers, while exterior-facing segments may redshift those packets before they become visible or before they are thermalized into a background. The corresponding energy ledger is
+$$
+\mathcal{R}_{H\gamma\text{-}\mathrm{ex}}
+=
+\sum_{j\in\Gamma_H}
+\frac{
+\left|
+h(\nu_{\gamma,j}^{+}-\nu_{\gamma,j}^{-})
++\Delta E_{H,j}
++\Delta E_{\mathrm{med},j}
++\Delta E_{\mathrm{recoil},j}
++\Delta E_{\mathrm{rem},j}
+\right|
+}{\epsilon_{E,j}}
+$$
+where $\Delta E_{H,j}$ is the horizon-interface or interior strong-field row and the other terms record medium, recoil, and remnant exchange. A high-energy photon output claim is admissible only when this residual closes and the outgoing packet still carries the required photon Gate A and Gate B handoffs. If those handoffs fail, the channel has become absorption, re-emission, pair production, or another release reaction.
+
+This is the disciplined version of the "roiling horizon" intuition. The horizon interface may contain intense photon-channel and photon-adjacent activity, and some of it may be routed into jets, diffuse radiative outflow, dark-sector escape, or later visible conversion. But each proposed route must state the release selector, the energy-frequency ledger, the polarization and angular-momentum handoff, and the coupling to the surrounding Noether sea. Otherwise the claim has only renamed black-hole radiation rather than deriving a strong-field transport channel.
 
 Modern holographic entropy work, including Ryu-Takayanagi, island, and replica-wormhole calculations, should be treated in this chapter as a comparison framework rather than as imported ontology. Its value is that it sharpens a high-value consistency target: a mature horizon-interface model should explain how compressed interface bookkeeping can remain compatible with Page-curve recovery and smooth effective horizons. It does not, by itself, supply the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. The native task is still to derive entropy and information accounting from terminal nested shell braid alignment, path-history bookkeeping, Noether sea storage, and release-channel selection.
 
@@ -7507,6 +7548,8 @@ The horizon question becomes clearer when compared against the main assembly sec
 
 This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed nested shell braid advertises its branch structure when driven into the strongest alignment regime.
 
+The photon row is also an interface to the radiation and cosmology stack. Because the photon carrier is already a moving planar pro/anti pair, it is the ordinary transport channel most naturally comparable to the flat symmetry-breaking state. That does not make every photon a horizon fragment, but it does make horizon-adjacent photon processing a serious candidate mechanism: the same planar branch logic can appear as free photon propagation, horizon-interface compression, strong-field blueshift, outward redshift, or release-channel conversion depending on the surrounding Noether sea record.
+
 #### Exterior Planar Angular-Momentum Basis
 
 Fix one exterior viewing direction normal to the horizon disk. From that viewpoint, each planar binary appears to rotate either clockwise (`CW`) or counterclockwise (`CCW`). If the three binaries remain distinguishable by role as `H`, `M`, and `L`, then the full planar angular-momentum sign space contains exactly $2^3 = 8$ possibilities.
@@ -7840,6 +7883,8 @@ The same restraint applies to Ryu-Takayanagi, island, and replica-wormhole entro
 
 The more precise architrino picture is a radial alignment state in which all three nested shell braid components share one axis while occupying different speed and deformation regimes. In that sense, "inside," "horizon," and "outside" should be read as a constitutive continuum parameterized by nested shell braid deformation rather than as three disconnected ontological zones.
 
+That continuum has both a local and a macroscopic reading. Locally, the Noether braid already carries the primitive black-hole dual: inner self-hit behavior, a middle symmetry-breaking interface, and an outer exterior-coupling row. Macroscopically, the same regime split appears as black-hole interior, horizon interface, and exterior observer region. The holographic comparison is therefore not a separate metaphysics added on top of the theory; it is a dual-language description of a transition pattern already present in nested shell braid dynamics.
+
 For this reason the preferred local term is **Horizon interface**: surface degrees of freedom with Planck-aligned nested shell braids, without asserting that the interface is literally a conventional CFT. Horizon interface means:
 
 - Assemblies fixed at $v=c_f$ tangentially (middle and outer loops locked),
@@ -7848,6 +7893,16 @@ For this reason the preferred local term is **Horizon interface**: surface degre
 - Ready to bifurcate into volumetric Noether braids as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or Noether sea content).
 
 That yields a disciplined shorthand: Horizon interface for the Planck-aligned interface layer, bulk for $v<c_f$ volumetric cores, and AdS-like for the $v>c_f$ self-hit interior, all treated as regimes on one constitutive continuum.
+
+#### AdS/CFT Regime Map
+
+Maldacena's AdS/CFT correspondence is useful here as a precise comparison chart, not as imported ontology. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading, the CFT-like side corresponds to the exterior, observer-facing regime where assemblies, clocks, rulers, and light channels export volumetric expansion or contraction. The horizon interface corresponds to the symmetry-breaking threshold at $v=c_f$, where ordinary volumetric export is compressed into boundary-like records. The AdS-like side corresponds to the self-hit interior regime, where the same record no longer exports as ordinary exterior volume.
+
+The "mirror" in holographic language is therefore not a separate ontological screen. It is the regime break itself: the point at which a single causal record crosses from partner-only volumetric behavior into interface bookkeeping and then into self-hit interior behavior. The comparison is strongest when the boundary description is read as an effective compression law for accessible records, not as a claim that the boundary field theory is the substrate.
+
+The inward and outward readings should be treated as direction-sensitive effective exports of one horizon-interface record. On inward approach, the oblate spheroidal envelope is driven toward terminal alignment, so the AdS-like comparison reads as compression or deflation relative to the exterior observer chart. On outward release, the same branch can export an inflation-like expansion record as it returns through the horizon interface toward volumetric Noether braid or Noether sea behavior. This is a mapping target: it must be derived from the same envelope variables, layer-speed regimes, causal-root ledger, and clock-export rows, not assigned separately for the exterior and interior descriptions.
+
+Time follows the same rule. Absolute time remains the substrate parameter. Exterior CFT-like time is the clock reconstruction available to observer-facing assemblies outside the horizon interface. At $v=c_f$, clock export is compressed with the boundary-like record. In the AdS-like self-hit interior, the relevant cadence is the retained self-hit cadence of the branch rather than ordinary exterior clock behavior. A successful map must show how these exported time descriptions are projections of one retained horizon-interface record.
 
 #### Status
 
@@ -7863,4 +7918,5 @@ That yields a disciplined shorthand: Horizon interface for the Planck-aligned in
 
 - Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit nested shell braid states.
 - Show which elements of boundary encoding survive as effective compression laws without requiring fundamental boundary ontology.
+- Derive the AdS/CFT regime map from one horizon-interface record: exterior CFT-like clock and volume export, $v=c_f$ boundary compression, AdS-like self-hit cadence, inward deflationary compression, and outward inflation-like release.
 - Treat black-hole entropy and Page-curve recovery as downstream consistency targets after the native horizon-interface mechanism is specified, not as source derivations for the ontology.

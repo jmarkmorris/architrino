@@ -2625,6 +2625,28 @@ This statistic is a validation target, not a permission to import an external co
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The Big Bang timeline is reinterpreted as the effective history of a large-scale recycling event sourced by SMBH environments. Dark-sector photon-like modes, recycled dark-sector assemblies, and other outbound excitations from SMBH horizon interfaces can propagate through the Noether sea, thermalize, and redshift into the observed CMB directly or after further conversion into visible channels. Jets and surface outflows remain plausible observer-level manifestations of this release, but they are not the only allowed morphology. The three intrinsic nested shell braid energy scales (outer/middle/inner) provide natural mode seeds for acoustic peaks, with coupling in the medium generating the harmonic ladder observed today. The CMB source interpretation is therefore a closure target for steady-state recycling dynamics in a fixed Euclidean void, not a singular origin event nor literal metric stretching of the container.
 
+#### Horizon-Interface Photon Release Candidate
+
+The strong-field version of this source story should keep a specific candidate channel visible. A photon-channel packet is a coaxial contra-rotating pro/anti planar pair, while the black-hole horizon interface is the regime where nested shell braid assemblies are driven toward planar symmetry-breaking lock at $v=c_f$. The shared planar-pair geometry makes the horizon a natural candidate site for photon-channel or photon-channel-adjacent release, not merely a place where already-formed photons suffer an exterior gravitational redshift.
+
+The same signed row can contain both sides of the process. Interior or interface segments may blueshift photon-channel packets, raising their receiver-facing phase cadence and energy relative to local exterior standards. Outward transport through the surrounding Noether sea may then redshift, thermalize, scatter, or convert those packets before they become visible to ordinary observers. The existence of such high-energy interior photon records is therefore a plausible branch of the CMB source program, but it is not a shortcut around the CMB constraints.
+
+For a horizon-sourced contribution to the CMB bath, the source packet should be recorded schematically as
+$$
+\Theta_{H\gamma}
+=
+\left(
+\mathcal{B}_{H},
+Y_{\gamma,H},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{H\gamma},
+\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}},
+\mathcal{P}_{E\to R}
+\right)
+$$
+where $\mathcal{B}_{H}$ is the horizon-interface label ensemble, $Y_{\gamma,H}$ is the signed strong-field photon-frequency exchange row, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{H\gamma}$ is the energy, momentum, angular-momentum, provenance, and medium-update ledger for the released channel, $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}$ is the thermalization depth, and $\mathcal{P}_{E\to R}$ is the path-history propagation factor. This packet is admissible only if it feeds the same blackbody, anisotropy, polarization, damping, lensing, redshift, and BBN handoff records already required by the CMB module.
+
+The candidate is strong because it links several otherwise separate clues: black-hole recycling, horizon-interface planar lock, photon planar-pair ontology, signed redshift/blueshift transport, and CMB thermalization. Its failure mode is equally clear. If the horizon contribution can explain only an energy scale while spoiling the near-blackbody spectrum, erasing TT/TE/EE information, overproducing spectral distortions, or requiring a different Noether sea state from the one used for redshift and growth, then it is not a valid CMB source branch.
+
 #### QSSC Contrast (Conceptual)
 
 | Axis | QSSC-like families | $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation |
@@ -2640,6 +2662,7 @@ Within the same ontology, CMB sourcing can be represented through:
 1. SMBH release from horizon-interface recycling sites, including jet-like, diffuse, and initially dark-sector channels accumulated over long history,
 2. medium-relaxation radiation from Noether sea state transitions,
 3. conversion or dissociation channels from high-velocity or dark-sector assembly states into photon assemblies.
+4. strong-field photon-channel or photon-channel-adjacent release near the horizon-interface symmetry-breaking threshold, followed by redshift, thermalization, scattering, or conversion during outward transport.
 
 These channels are treated as parts of one shared thermalization and decoupling story; they are not separate ontologies.
 

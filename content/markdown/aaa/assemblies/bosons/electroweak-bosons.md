@@ -25,6 +25,14 @@ At the finest scale, the photon unit is a composite assembly:
 *   **Canonical description:** A photon is a **coaxial contra-rotating pro/anti planar pair**.
 *   **Neutrality:** The paired static charge-like exposures cancel, leaving a transverse oscillatory action signature.
 
+### Relation To The Symmetry-Breaking Threshold
+
+The photon carrier is therefore close to the same planar geometry that appears at the nested shell braid symmetry-breaking threshold. At a horizon interface the middle and outer nested shell braid layers are driven toward $v=c_f$ and terminal coplanarity; in the photon channel, the carrier is already a propagating pair of planarized pro/anti Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared geometry: planar lock, paired pro/anti balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
+
+The reduced bridge is the planar tri-binary Noether braid chart. In that chart, the same three binary ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating pro/anti planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
+
+This gives a useful interpretation of photon redshift and blueshift. A photon-channel packet does not merely carry an abstract frequency label. It carries a phase-cycle record of the coaxial contra-rotating pro/anti planar pair. Redshift means that the receiver-facing phase cadence has been reduced after endpoint, launch, source-branch, and path-history terms are separated; blueshift means that the packet has gained receiver-facing phase cadence from a source, medium, or strong-field segment. In either direction the Gate A and Gate B records must survive. If the planar pair loses its kinematic or transverse ledger, the event is no longer simple frequency shift; it is absorption plus re-emission, pair production, medium excitation, or another reaction-channel record.
+
 ### Propagation: The Planar-Pair Mode Train
 A photon manifests as a **phase-locked planar-pair mode train** of delayed actions.
 *   **Mode train:** A quasi-cylindrical propagation structure aligned with $\hat{\mathbf{e}}$ carrying the superposed $1/r^2$ wake surfaces.
