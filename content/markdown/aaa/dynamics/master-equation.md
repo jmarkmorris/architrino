@@ -684,6 +684,8 @@ $$
 \|\mathbf{x}_i(t) - \mathbf{x}_i(t_0)\| = c_f(t - t_0), \quad t_0 < t
 $$
 
+This equation nominates a same-source causal root. It becomes an admitted self-hit contribution only on a retained branch chart: the coincident $t_0=t$ branch is excluded by the $H(0)=0$ convention, the root has positive separation or explicit regularization data, the transversality/Jacobian floor is positive, the active-root count is controlled, inactive-root gaps and finite memory are certified, and the stability/action ledger rows required by the claimed assembly branch close.
+
 **Interval-speed lemma.** Let $\Delta=t-t_0>0$ and suppose $\mathbf{x}_i$ is absolutely continuous on $[t_0,t]$. If
 $$
 \|\mathbf{x}_i(t)-\mathbf{x}_i(t_0)\|=c_f\Delta
@@ -698,6 +700,7 @@ This follows immediately from the triangle inequality. Therefore strict sub-fiel
 
 1. **Curvature**: Straight-line motion admits no self-hits (the worldline never intersects its own past causal isochrons).
 2. **Super-field-speed interval history**: along the interval from emission to reception, the architrino must have exceeded $c_f$ somewhere, unless the branch is the degenerate straight field-speed case excluded by the simple-root assumptions.
+3. **Regular branch admissibility**: the same-source root must be retained on a branch chart with a positive transversality/Jacobian floor, controlled distance or regularization data, inactive-root gaps, finite memory, and the stability/action ledger rows required by the claimed assembly branch.
 
 **Key clarification:**
 
