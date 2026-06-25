@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This file lists the standard physics and cosmology equations that should tie directly to the Noether sea, the Noether braid, or both. It records dated maturity scores for each map in current $\mathbb{A}\mathbb{A}\mathbb{A}$ material and gives a closure packet for each equation group.
+This file lists established physics and cosmology formulae and equations that should map bidirectionally with $\mathbb{A}\mathbb{A}\mathbb{A}$. The forward direction asks how each established equation is recovered, reclassified, or compared through Noether sea, Noether braid, event-ledger, and retained-record variables. The reverse direction treats each established formula as an inverse clue about native $\mathbb{A}\mathbb{A}\mathbb{A}$ variables, proof obligations, simulation targets, and missing records. The file records dated maturity scores for each map in current $\mathbb{A}\mathbb{A}\mathbb{A}$ material and gives a closure packet for each equation group.
 
 This is internal priority material. It is not a reader-facing claim that these equations have all been derived.
 
@@ -2600,12 +2600,13 @@ Current executable reducer guardrail: `scripts/equation-mapping/check-emit-02-04
 1. `EQ-02` and `EQ-03`: Lorentz factor, clock/ruler retuning, and oblate spheroidal envelope. These already have the strongest visual and algebraic bridge.
 2. `EQ-04` and `EQ-04A`: energy-momentum, rest energy, and the Koide charged-lepton benchmark. This should attach the Lorentz envelope to mass-map work, then check whether one charged-lepton mass map lands near the Koide surface without direct fitting.
 3. `EQ-07` through `EQ-10`: effective metric and weak-field observables. This turns local braid/sea response into GR-facing tests.
-4. `EQ-17` through `EQ-19`: redshift, effective FRW, and Friedmann transfer. This is the main cosmology bridge.
-5. `EQ-21` through `EQ-23` plus `EQ-22A`: structure, CMB, Planck blackbody mode occupancy, and BBN transfer. These are large but necessary for cosmology closure.
-6. `EQ-12` through `EQ-16A` plus `EQ-12A`: photon, Planck action quantum, Maxwell, quantum, spinor, gauge, and neutrino phase-gap equations. These are central but require more branch and record machinery; `EQ-12A` is the shared action-unit row and `EQ-16A` is the smallest precise weak-sector packet because neutrino oscillation supplies a two-gap benchmark.
-7. `EQ-26` through `EQ-31` plus `EQ-26A`: atomic spectra, fine-structure coupling/running, magnetic moments, recoil/radiation, scattering, and resonance widths. These are observation-first precision surfaces that should discipline the Noether braid event, spin, radiation, coupling, and branch-stability ledgers.
-8. `EQ-32`: baryonic Tully-Fisher and radial-acceleration relation. This is a high-value low-acceleration constitutive-response benchmark, but it should stay downstream of the effective-metric and cosmology rows.
-9. `EQ-24` and `EQ-25`: medium and thermodynamic equations. These are broad support equations that should be driven by concrete consumers.
+4. `EQ-07` through `EQ-10` plus compact-object support benchmarks: collapse-scale compression. Recover Chandrasekhar support scaling, TOV pressure-gravity comparison, material Noether braid scale compression, and effective spatial-compliance response from one retained compact-region record.
+5. `EQ-17` through `EQ-19`: redshift, effective FRW, and Friedmann transfer. This is the main cosmology bridge.
+6. `EQ-21` through `EQ-23` plus `EQ-22A`: structure, CMB, Planck blackbody mode occupancy, and BBN transfer. These are large but necessary for cosmology closure.
+7. `EQ-12` through `EQ-16A` plus `EQ-12A`: photon, Planck action quantum, Maxwell, quantum, spinor, gauge, and neutrino phase-gap equations. These are central but require more branch and record machinery; `EQ-12A` is the shared action-unit row and `EQ-16A` is the smallest precise weak-sector packet because neutrino oscillation supplies a two-gap benchmark.
+8. `EQ-26` through `EQ-31` plus `EQ-26A`: atomic spectra, fine-structure coupling/running, magnetic moments, recoil/radiation, scattering, and resonance widths. These are observation-first precision surfaces that should discipline the Noether braid event, spin, radiation, coupling, and branch-stability ledgers.
+9. `EQ-32`: baryonic Tully-Fisher and radial-acceleration relation. This is a high-value low-acceleration constitutive-response benchmark, but it should stay downstream of the effective-metric and cosmology rows.
+10. `EQ-24` and `EQ-25`: medium and thermodynamic equations. These are broad support equations that should be driven by concrete consumers.
 
 ## New-Thread Prompt
 
@@ -2621,8 +2622,9 @@ Context:
 - The line items in `equation.md` use dated score columns from `0` to `5`; `6/23 a` is the first-round score, and `6/23 b` records accepted worker-backed scores where populated. Suffix rows such as `EQ-04A`, `EQ-12A`, `EQ-22A`, and `EQ-26A` are first-class rows for tightly coupled constants or sub-equation closures that should not renumber the existing inventory.
 - The current high-value bridge is:
   `Noether braid closure -> (xi, Gamma_N, chi_sea, rho_NS) -> g_eff -> (H_eff, z, D(z), P(k,z))`.
+- The collapse-scale compression bridge is now first-class. Use `reference/priorities/equation-mapping/eq-07-10-17-19-effective-metric-cosmology-packet.md#collapse-scale-derivation-expansion-target` to flesh out Chandrasekhar support scaling, TOV pressure-gravity comparison, material Noether braid scale compression, compact-region energy/reaction ledgers, and the shared $\mathcal{S}_{\mathrm{mat}}\to\mathcal{S}_{\mathrm{metric}}$ projection from one retained carrier.
 - Stable tri-binary branch search uses role-assigned $I:M:O$ triples after generic binary labels are mapped. Active families include $(f+2,f,f-1)$, $(f+1,f,f-1)$, $(f,f,f)$, $(4f,2f,f)$, and $(nf,mf,f)$. Treat these as search coordinates and consume the fail-closed solver-facing `equationBearing` residual payload before ranking them.
-- The immediate objective is not broad prose. It is one closure packet per equation group: variables, assumptions, mapped equation, missing derivation, first proof/simulation step, failure mode, and promotion targets.
+- The immediate objective is not broad prose. It is one bidirectional closure packet per equation group: established equation, $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery map, inverse clues from the established formula back into native variables, assumptions, missing derivation, first proof/simulation step, failure mode, and promotion targets.
 - Multiple agents may be running at the same time. Treat the assignment list as a concurrency boundary: each worker owns only its assigned equation IDs unless the coordinator explicitly reassigns scope.
 
 Task:
@@ -2632,6 +2634,7 @@ Task:
    - `EQ-02` and `EQ-03`: Lorentz factor, clock/ruler retuning, and oblate spheroidal envelope.
    - `EQ-04` and `EQ-04A`: energy-momentum, rest energy, charged-lepton generation-by-shielding, and Koide as a no-retune mass-map residual.
    - `EQ-07` through `EQ-10`: effective metric, weak-field clocks, PPN, and geodesic benchmarks.
+   - `EQ-07` through `EQ-10` collapse-scale branch: Chandrasekhar support scaling, TOV comparison pressure, material scale compression, compact-region energy/reaction ledgers, and the shared $\mathcal{S}_{\mathrm{mat}}\to\mathcal{S}_{\mathrm{metric}}$ projection.
    - `EQ-17` through `EQ-19`: redshift, effective FRW, Friedmann, and cosmological continuity.
    - `EQ-21` through `EQ-23` plus `EQ-22A`: structure growth, CMB transfer, Planck blackbody mode occupancy, and BBN yields.
    - `EQ-12` through `EQ-16A` plus `EQ-12A`: photon, Planck action quantum, Maxwell, quantum-wave, spinor, gauge, and neutrino phase-gap equations.
@@ -2639,9 +2642,10 @@ Task:
    - `EQ-32`: baryonic Tully-Fisher and radial-acceleration relation as Noether sea constitutive-response benchmarks.
    - `EQ-06`, `EQ-24`, and `EQ-25`: Noether sea continuum, medium equations, and thermodynamic/statistical equations.
 4. Each worker must inspect the relevant canonical and priority files before writing. Use targeted `rg` searches for the equation family, the AAA variables, and the target documents listed in the promotion map.
-5. Each worker should produce a closure packet with:
+5. Each worker should produce a bidirectional closure packet with:
    - standard equation and regime;
-   - current AAA mapped form;
+   - current $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery or comparison form;
+   - inverse clues from the established formula back into native variables, records, or missing derivations;
    - required Noether braid variables;
    - required Noether sea variables;
    - event, wake, branch, record, or residual rows needed;

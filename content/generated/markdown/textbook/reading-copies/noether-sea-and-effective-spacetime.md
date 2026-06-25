@@ -6431,6 +6431,78 @@ The useful ladder is:
 
 This ladder does not add a new validation gate. It identifies which existing variables must stop being interpreted in their weak-response limit as collapse progresses.
 
+##### Chandrasekhar Scaling and Assembly Compression
+
+The first mathematical warning that ordinary compact matter could lose its support branch is the Chandrasekhar scaling argument. In a white-dwarf-like object, electrons form a degenerate Fermi reservoir. If the electron number density is $n_e$, the Fermi momentum scales as
+$$
+p_F\sim \hbar n_e^{1/3}
+$$
+and the pressure law depends on whether those electrons are nonrelativistic or relativistic. In the nonrelativistic regime,
+$$
+P_e\propto n_e^{5/3}\propto \rho^{5/3}
+$$
+while in the relativistic regime,
+$$
+P_e\propto n_e^{4/3}\propto \rho^{4/3}
+$$
+
+For a star of mass $M$ and radius $R$, the rough hydrostatic comparison is
+$$
+\rho\sim\frac{M}{R^3},
+\qquad
+P_{\mathrm{grav}}\sim\frac{GM^2}{R^4}
+$$
+Nonrelativistic electron pressure scales like $M^{5/3}/R^5$, so it rises faster than the gravitational pressure estimate as $R$ decreases. A smaller equilibrium radius can still be found. Relativistic electron pressure scales like $M^{4/3}/R^4$, the same radius dependence as the gravity estimate. Once the coefficient balance is lost, no smaller white-dwarf radius restores support. That is the standard origin of the Chandrasekhar mass scale,
+$$
+M_{\mathrm{Ch}}\approx \frac{5.83}{\mu_e^2}M_\odot
+$$
+with $\mu_e$ the nucleons-per-electron composition factor. In a collapsing iron core, electron capture lowers the electron fraction $Y_e=1/\mu_e$, so the effective support limit falls as the active core is already compressed.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading is that the Chandrasekhar calculation is not merely a historical astrophysics result. It is an observer-level signature of an assembly support channel losing authority. In the white-dwarf branch, electron assemblies still act as a pressure reservoir: their volumetric nested shell braid envelopes supply effective exclusion and packing response while nuclei remain identifiable. As compression drives the electron population into the relativistic regime, additional inward work no longer returns as a proportionally stronger outward support law. The same work is increasingly routed into cadence, exposed response, heat, neutrino channels, nuclear breakup, Noether sea stress, and remnant bookkeeping.
+
+The local scale-compression variable for an assembly $A$ is
+$$
+\lambda_A(t)=\frac{R_{\perp,A}(t)}{R_{\perp,A,0}},
+\qquad
+\mathcal{S}_{\mathrm{mat}}(\Omega,t)
+=
+\left\langle
+\ln\lambda_A(t)
+\right\rangle_{\Omega}
+$$
+The energy is not created by the shrinkage. It is binding work and reaction work entering the local ledger:
+$$
+\Delta E_{\mathrm{bind}}
++
+\Delta E_{\mathrm{rxn}}
+\rightarrow
+\Delta E_{\mathrm{cad}}
++
+\Delta E_{\mathrm{heat}}
++
+\Delta E_{\nu}
++
+\Delta E_{\mathrm{break}}
++
+\Delta E_{\mathrm{sea}}
++
+\Delta E_{\mathrm{rem}}
+$$
+This is a ledger identity target, not yet a derived equation of state. It says which channels must be accounted for before one may claim that material Noether braids have scaled down rather than merely that a standard pressure formula was imported.
+
+The strong claim is that this material scale ledger should also project into the effective spatial-compliance ledger used by the metric description. If $\gamma_{ij}$ is the observer-level spatial compliance metric and $h_{ij}$ is the fixed Euclidean spatial metric, the corresponding isotropic scale readout is
+$$
+\mathcal{S}_{\mathrm{metric}}(\Omega,t)
+=
+\left\langle
+\frac{1}{6}
+\ln
+\frac{\det\gamma_{ij}(\mathbf{x},t)}
+{\det h_{ij}}
+\right\rangle_{\Omega}
+$$
+The factor $1/6$ appears because an isotropic spatial metric factor $\gamma_{ij}=a^2h_{ij}$ gives a determinant ratio $a^6$. The closure target is not that $\mathcal{S}_{\mathrm{mat}}$ and $\mathcal{S}_{\mathrm{metric}}$ merely correlate after fitting. The same retained compact-region record must generate the electron-support failure, the assembly scale compression, the Noether sea response, and the effective metric readout without hidden retuning.
+
 ##### Iron-Core Collapse Handoff
 
 For an iron-group stellar core, the central Standard Model transition is electron capture,

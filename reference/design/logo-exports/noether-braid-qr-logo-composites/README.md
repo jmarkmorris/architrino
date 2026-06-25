@@ -9,7 +9,5 @@ This package contains simple QR-code plus Noether Braid logo composites for prin
 
 ## Exports
 
-- `noether-braid-qr-logo-2x1-qr-left-logo-right.png`
 - `noether-braid-qr-logo-2x1-logo-left-qr-right.png`
-- `noether-braid-qr-logo-1x2-qr-top-logo-bottom.png`
 - `noether-braid-qr-logo-1x2-logo-top-qr-bottom.png`

@@ -11,7 +11,7 @@
 
 ## Current
 
-This workstream stages an equation-first map from standard physics and cosmology formulas into $\mathbb{A}\mathbb{A}\mathbb{A}$ variables. It is internal priority material, not reader-facing canon.
+This workstream stages bidirectional maps between established physics and cosmology formulae and equations and $\mathbb{A}\mathbb{A}\mathbb{A}$. One direction asks how an established equation is recovered, reclassified, or compared through Noether braid, Noether sea, event-ledger, and retained-record variables. The reverse direction asks what each established formula reveals as an inverse clue about the native $\mathbb{A}\mathbb{A}\mathbb{A}$ variables, proof obligations, simulation targets, and possible missing records. It is internal priority material, not reader-facing canon.
 
 The working thesis is that the strongest near-term equation bridge runs through the Noether braid and Noether sea together:
 
@@ -31,10 +31,11 @@ The equation map now also feeds the stable tri-binary Noether braid configuratio
 
 ## Objective
 
-Turn familiar equations from physics and cosmology into closure packets. Each packet should say:
+Turn familiar equations from physics and cosmology into bidirectional closure packets. Each packet should say:
 
 - which equation is being recovered or compared;
 - which Noether braid or Noether sea variables carry the corresponding behavior;
+- what the established formula reveals as an inverse clue about native $\mathbb{A}\mathbb{A}\mathbb{A}$ variables, records, or missing derivations;
 - whether the equation is already native, strongly mapped, partially mapped, or mostly unmapped;
 - what proof, derivation, simulation, or constitutive response would close the map;
 - where successful material should later be promoted in `content/markdown/aaa`.
@@ -154,6 +155,7 @@ The first equation inventory identified these high-value groups:
 | Noether conservation laws: energy, momentum, angular momentum | The braid must close action, wake, event, and conservation ledgers; the sea carries flux and residual terms. |
 | Continuity and transport | Direct Noether sea density, flow, energy, cadence, and orientation bookkeeping. |
 | Effective metric and GR observables | The Noether sea must supply lapse, drift, spatial compliance, and signal delay as one constitutive map. |
+| Compact-object collapse and scale compression | Dense-matter Noether braid scale rows and effective spatial-compliance rows must be recovered from one retained record, not treated as unrelated matter and metric effects. |
 | Einstein and Poisson limits | Observer-level recovery targets for Noether sea stress, density, and effective gravitational coupling. |
 | Photon equations | Photon-channel packets read through Noether sea delay, cadence, and path-history transfer. |
 | Planck action quantum and de Broglie relations | Closed-cycle Noether braid action and angular-momentum ledgers must derive $h$, $\hbar$, $E=h\nu$, $\mathbf p=\hbar\mathbf k$, and $J=n\hbar$ as one shared unit. |
@@ -193,13 +195,14 @@ The workstream should stay internal until a line item produces a mature mathemat
 1. `equation_inventory` - Maintain the scored equation inventory in [equation.md](equation.md). Status: `draft`. Depends on: none.
 2. `score_five_closure_ladder` - Keep the score-5 acceptance object for every row explicit in [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md). Status: `draft`. Depends on: `equation_inventory`.
 3. `lorentz_envelope_closure` - Drive $\xi$, $\Gamma_N$, moving-clock, moving-ruler, and energy-momentum maps into one retained Noether braid branch ledger. The translating-binary same-record instantiation is staged in [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md). Passes U-AA now harden the source-backed retained-domain, gamma-free coframe, and scalar holonomy-transport guardrails. The current next boundary is the minimum source-backed transport comparison behind $W_{\mathrm{hol}}$, before connection transport-step fields, connection-id stability, holonomy-step bounds, or score-moving no-retune claims can be accepted. Status: `next`. Depends on: `score_five_closure_ladder`.
-4. `effective_metric_constitutive_map` - Build the shared Noether sea constitutive record that projects into lapse, spatial compliance, drift, signal delay, PPN rows, and weak-field GR observables. Status: `next`. Depends on: `score_five_closure_ladder`.
-5. `redshift_friedmann_transfer_map` - Convert redshift, FRW, Friedmann, continuity, and distance-ladder equations into one fixed-void Noether sea transfer map. Status: `next`. Depends on: `effective_metric_constitutive_map`.
-6. `quantum_photon_statistical_maps` - Assign photon, quantum-wave, thermodynamic, and statistical equations to Noether braid branch, Noether sea, record, and basin-measure closure packets. Status: `queued`. Depends on: `score_five_closure_ladder`.
-7. `multi_agent_closure_pass` - Use the new-thread prompt in [equation.md](equation.md#new-thread-prompt) to assign one line item per worker and integrate their closure packets. Status: `ready`. Depends on: `equation_inventory`.
-8. `tri_binary_equation_bearing_search` - Feed mature equation residuals into the stable tri-binary configuration search via [Equation-Map Bearing On Braid Configuration Search](../braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md), including $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=(f+1,f,f-1)$, $(I,M,O)=(f,f,f)$, $(I,M,O)=(4f,2f,f)$, and $(I,M,O)=(nf,mf,f)$. Status: `next`. Depends on: `score_five_closure_ladder` and the angular-momentum `tri_binary_partition_rule`.
-9. `koide_charged_lepton_mass_residual` - Treat `EQ-04A` as a no-retune residual on the charged-lepton generation-by-shielding mass map. Status: `queued`. Depends on: `lorentz_envelope_closure` and `score_five_closure_ladder`.
-10. `solved_wave_inverse_clue_audit` - Mine solved wave-equation families for inverse clues and acceptance tests, especially Green functions, dispersion $\omega(k)$, eikonal limits, normal modes, scattering phase shifts, continuity currents, and packet spreading. Status: `queued`. Depends on: `quantum_photon_statistical_maps` and `score_five_closure_ladder`.
+4. `effective_metric_constitutive_map` - Build the shared Noether sea constitutive record that projects into lapse, spatial compliance, drift, signal delay, PPN rows, weak-field GR observables, and compact-object scale-compression rows. Status: `next`. Depends on: `score_five_closure_ladder`.
+5. `collapse_scale_compression_derivation` - Flesh out the compact-object collapse row in [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md#collapse-scale-derivation-expansion-target): recover Chandrasekhar $5/3\to4/3$ support scaling, $M_{\mathrm{Ch}}\propto Y_e^2$, the TOV pressure-gravity comparison, assembly scale/cadence compression, electron-capture and photodisintegration inventory changes, compact-region energy ledger closure, and the shared $\mathcal{S}_{\mathrm{mat}}\to\mathcal{S}_{\mathrm{metric}}$ projection from one retained carrier. Status: `next`. Depends on: `effective_metric_constitutive_map` and `score_five_closure_ladder`.
+6. `redshift_friedmann_transfer_map` - Convert redshift, FRW, Friedmann, continuity, and distance-ladder equations into one fixed-void Noether sea transfer map. Status: `next`. Depends on: `effective_metric_constitutive_map`.
+7. `quantum_photon_statistical_maps` - Assign photon, quantum-wave, thermodynamic, and statistical equations to Noether braid branch, Noether sea, record, and basin-measure closure packets. Status: `queued`. Depends on: `score_five_closure_ladder`.
+8. `multi_agent_closure_pass` - Use the new-thread prompt in [equation.md](equation.md#new-thread-prompt) to assign one line item per worker and integrate their closure packets. Status: `ready`. Depends on: `equation_inventory`.
+9. `tri_binary_equation_bearing_search` - Feed mature equation residuals into the stable tri-binary configuration search via [Equation-Map Bearing On Braid Configuration Search](../braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md), including $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=(f+1,f,f-1)$, $(I,M,O)=(f,f,f)$, $(I,M,O)=(4f,2f,f)$, and $(I,M,O)=(nf,mf,f)$. Status: `next`. Depends on: `score_five_closure_ladder` and the angular-momentum `tri_binary_partition_rule`.
+10. `koide_charged_lepton_mass_residual` - Treat `EQ-04A` as a no-retune residual on the charged-lepton generation-by-shielding mass map. Status: `queued`. Depends on: `lorentz_envelope_closure` and `score_five_closure_ladder`.
+11. `solved_wave_inverse_clue_audit` - Mine solved wave-equation families for inverse clues and acceptance tests, especially Green functions, dispersion $\omega(k)$, eikonal limits, normal modes, scattering phase shifts, continuity currents, and packet spreading. Status: `queued`. Depends on: `quantum_photon_statistical_maps` and `score_five_closure_ladder`.
 
 ## Promotion Map
 
@@ -209,6 +212,7 @@ The workstream should stay internal until a line item produces a mature mathemat
 | Charged-lepton Koide benchmark | `content/markdown/aaa/assemblies/particle-masses.md` | One shared generation-by-shielding mass map predicts the charged-lepton triplet before the Koide residual is checked; no direct Koide tuning is allowed. |
 | Noether sea continuum and constitutive response | `content/markdown/aaa/spacetime/noether-sea.md`, `content/markdown/aaa/spacetime/emergent-metric.md` | Density, cadence, delay, stress, and orientation moments form one shared constitutive map with residuals. |
 | Weak-field GR and PPN | `content/markdown/aaa/spacetime/general-relativity.md`, `content/markdown/aaa/spacetime/emergent-metric.md` | Redshift, Shapiro delay, lensing, precession, acceleration, and preferred-frame rows project from the same $\theta_W$. |
+| Strong-collapse scale compression | `content/markdown/aaa/spacetime/singularity-resolution.md`, `content/markdown/aaa/spacetime/black-holes.md` | One retained record maps material Noether braid scale compression to effective spatial compliance and horizon-interface continuation without a separate metric retune. |
 | Redshift and effective cosmology | `content/markdown/aaa/cosmology/expansion-mechanism.md`, `content/markdown/aaa/cosmology/cosmology-ontology.md`, `content/markdown/aaa/cosmology/hubble-s8-tensions.md` | Endpoint cadence, launch, source, and path-history terms close one signed frequency-transfer ledger. |
 | Structure and CMB transfer | `content/markdown/aaa/cosmology/structure-formation.md`, `content/markdown/aaa/cosmology/CMB.md`, `content/markdown/aaa/cosmology/BBN-constraints.md` | One Noether sea and assembly record feeds CMB, BBN, $P(k,z)$, lensing, growth, and frame residuals. |
 | Photon and quantum equations | `content/markdown/aaa/assemblies/bosons/electroweak-bosons.md`, `content/markdown/aaa/quantum/wavefunction-ontology.md`, `content/markdown/aaa/quantum/measurement-ontology.md` | Photon-channel, Born-current, spin, basin, and detector records share the same branch and event-ledger grammar. |
@@ -217,7 +221,7 @@ The workstream should stay internal until a line item produces a mature mathemat
 
 | Failure code | Meaning |
 | --- | --- |
-| `equation_map.imported_formula` | A standard equation is copied in as an explanation rather than recovered or compared through declared AAA variables. |
+| `equation_map.imported_formula` | A standard equation is copied in as an explanation rather than recovered or compared through declared $\mathbb{A}\mathbb{A}\mathbb{A}$ variables. |
 | `equation_map.hidden_retune` | Different observables use different Noether sea or Noether braid records without reporting the split. |
 | `equation_map.level_collapse` | Observer-level metric, field, fluid, or quantum language is promoted into substrate ontology. |
 | `equation_map.no_braid_carrier` | A claimed Noether braid map lacks a root ledger, branch label, clock/ruler channel, or event ledger. |

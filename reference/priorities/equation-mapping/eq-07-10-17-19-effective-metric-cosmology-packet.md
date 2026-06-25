@@ -222,6 +222,7 @@ Here $\mathcal{S}_{\mathrm{eff}}$ is allowed only when it is a projection of ass
 | $\xi=R_{\parallel}/R_{\perp}$ | Moving Noether braid envelope ratio; supplies the homogeneous clock/deformation target $\Gamma_N\to1/\xi\to\gamma$ when that branch closes. |
 | $\lambda=R_{\perp}/R_{\perp,0}$ | Separate scale channel; must not be folded into $\xi$ or $\Gamma_N$ without a branch derivation. |
 | $R_{\text{core}}/R_{\text{core},0}$ | Representative Noether braid scale entering the $\Gamma_N$ extraction record. |
+| $\lambda_A=R_{\perp,A}/R_{\perp,A,0}$ | Assembly-specific material scale-compression row for dense matter and collapse windows; must remain source-bound to the same branch ledger as the metric projection. |
 | $\Omega_N(\mathbf{x},t)$ and $T_N=2\pi/\Omega_N$ | Local Noether sea braid cadence from which $\Gamma_N=\Omega_{N0}/\Omega_N$ is extracted. |
 | Branch label $q$ and retained root ledger | Carries the causal-root, clock/ruler, and branch-history data behind the effective metric row. |
 | Noether braid orientation, stress, and envelope deformation rows | Feed $e^a{}_i$, $\gamma_{ij}$, $S_{ij}$, anisotropic residuals, and preferred-frame leakage checks. |
@@ -253,7 +254,130 @@ Here $\mathcal{S}_{\mathrm{eff}}$ is allowed only when it is a projection of ass
 | Path-quality constraints | image-sharpness variance, chromaticity, spectral coherence, and $(1+z)$ time-dilation residuals | Falsify stochastic loss or object-specific propagation coefficients. |
 | Effective FRW projection | $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}$, $\tau_c$, $k$, $D(z)$, $\Omega_i^\theta$ | Preserve standard data-product language while keeping the Euclidean void fixed. |
 | Friedmann / continuity residual | $R_H$, $R_\rho$, $\mathcal{S}_{\mathrm{eff}}$, $\Delta M_{\mathrm{eff}}$ | Require provenance for effective density sources, recycling, transport, or Noether sea exchange. |
+| Collapse scale-compression | $\mathcal{S}_{\mathrm{mat}}$, $\mathcal{S}_{\mathrm{metric}}$, $\mathcal{F}_{\mathrm{scale}}$, $\mathcal{R}_{\mathrm{collapse}\to\mathrm{metric}}$ | Test whether dense-matter assembly compression and effective spatial-compliance response are one shared scale ledger rather than two separately fitted explanations. |
 | Shared-record guardrail | $\mathcal{S}_{\mathrm{retune}}(\theta)$ | Fails the packet when different rows require independently tuned Noether sea records. |
+
+## Supernova Collapse Scale-Compression Row
+
+Compact-object and supernova-collapse windows add a useful strong-field pressure to the same packet. In the mature reading, a collapsing stellar core should not require one mechanism for material scale change and another unrelated mechanism for observer-level metric scale. The priority target is to test whether the material Noether braid scale row and the effective spatial-compliance row are projections of one retained record.
+
+For a compact matter region $\Omega$ over an absolute-time window $W$, define the material assembly scale compression as
+$$
+\mathcal{S}_{\mathrm{mat}}(\Omega,t)
+\equiv
+\left\langle
+\ln\lambda_A(t)
+\right\rangle_{\Omega}
+\qquad
+\lambda_A(t)
+=
+\frac{R_{\perp,A}(t)}{R_{\perp,A,0}}
+$$
+
+Define the observer-level spatial scale readout from the effective metric projection as the local isotropic determinant component
+$$
+\mathcal{S}_{\mathrm{metric}}(\Omega,t)
+\equiv
+\left\langle
+\frac{1}{6}
+\ln
+\frac{\det\gamma_{ij}(\mathbf{x},t)}
+{\det h_{ij}}
+\right\rangle_{\Omega}
+$$
+
+The candidate shared-scale map is
+$$
+\mathcal{S}_{\mathrm{metric}}(\Omega,t)
+=
+\mathcal{F}_{\mathrm{scale}}
+\left(
+\mathcal{S}_{\mathrm{mat}}(\Omega,t),
+\rho_{\text{NS}},
+\chi_{\text{sea}},
+\Sigma_{\text{sea}},
+\mathbf{u}_{\text{sea}},
+\mathcal{L}_{\mathrm{root}},
+\mathcal{L}_{E\mathbf p\mathbf J}
+\right)
+$$
+where the right-hand side must be read from the same retained carrier $\theta$ used for the clock, ruler, signal, redshift, and effective-FRW rows.
+
+The corresponding residual is
+$$
+\mathcal{R}_{\mathrm{collapse}\to\mathrm{metric}}(\theta;\Omega,W)
+=
+\left\|
+\mathcal{S}_{\mathrm{metric}}
+-
+\mathcal{F}_{\mathrm{scale}}
+\left(
+\mathcal{S}_{\mathrm{mat}},
+\rho_{\text{NS}},
+\chi_{\text{sea}},
+\Sigma_{\text{sea}},
+\mathbf{u}_{\text{sea}},
+\mathcal{L}_{\mathrm{root}},
+\mathcal{L}_{E\mathbf p\mathbf J}
+\right)
+\right\|_{\Omega,W}^2
++
+\lambda_{\mathrm{retune}}\mathcal{S}_{\mathrm{retune}}(\theta)
+$$
+
+This row is not a new public claim. It is a fail-closed equation-mapping hook for the collapse clue: if stellar-core material compression and effective metric compression require different retained records, different scale variables, or unreported coefficient retuning, the proposed one-mechanism reading fails in that window.
+
+## Collapse-Scale Derivation Expansion Target
+
+The collapse row now needs its own focused derivation pass. The pass should not import the Chandrasekhar and TOV results as ontology. It should use them as observer-level support benchmarks that the retained compact-region record must reproduce.
+
+The standard support comparison begins with the white-dwarf scaling pair
+$$
+P_{e,\mathrm{nr}}\propto \rho^{5/3},
+\qquad
+P_{e,\mathrm{rel}}\propto \rho^{4/3},
+\qquad
+P_{\mathrm{grav}}\sim\frac{GM^2}{R^4}
+$$
+with $\rho\sim M/R^3$ and the composition dependence
+$$
+M_{\mathrm{Ch}}\propto Y_e^2M_\odot
+$$
+Electron capture lowers $Y_e$, so a core can cross the support boundary by changing its active assembly inventory, not only by adding mass.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$-native derivation target is a compact support residual
+$$
+\mathcal{R}_{\mathrm{coll}\text{-}\mathrm{support}}(\theta;\Omega,W)
+=
+\left\|
+P_{\mathrm{pack}}^\theta
+-
+P_{\mathrm{std}}(M,R,Y_e)
+\right\|_{\Omega,W}^2
++
+\lambda_{\dot S}
+\left\|
+\dot{\mathcal{S}}_{\mathrm{mat}}
+-
+\mathcal{V}_{\mathrm{coll}}^\theta
+\right\|_{\Omega,W}^2
++
+\lambda_E
+\mathcal{R}_{E\mathbf p\mathbf J}^{(\Omega)}
++
+\lambda_{\mathrm{scale}}
+\mathcal{R}_{\mathrm{collapse}\to\mathrm{metric}}(\theta;\Omega,W)
+$$
+Here $P_{\mathrm{pack}}^\theta$ is the assembly-level pressure/packing projection of the retained record, $P_{\mathrm{std}}$ is the standard Chandrasekhar/TOV comparison pressure for the declared regime, $\mathcal{V}_{\mathrm{coll}}^\theta$ is the material-scale velocity predicted by the same record, and $\mathcal{R}_{E\mathbf p\mathbf J}^{(\Omega)}$ is the compact-region energy, momentum, angular-momentum, reaction, neutrino, heat, medium-update, and remnant ledger residual.
+
+The derivation pass should populate four rows before any score movement:
+
+| Row | Required content | Failure condition |
+| --- | --- | --- |
+| Standard support benchmark | Recover the $5/3\to4/3$ degeneracy-pressure transition, the $M_{\mathrm{Ch}}\propto Y_e^2$ dependence, and the TOV pressure-gravity comparison as observer-level benchmarks. | The standard formula is copied in without declaring the comparison regime and composition variable. |
+| Assembly scale/cadence ledger | Derive $\dot{\mathcal{S}}_{\mathrm{mat}}$ from $\lambda_A$, branch cadence, inward work, and retained root/event rows. | Material shrinkage is asserted without energy and cadence bookkeeping. |
+| Reaction inventory transition | Bind electron capture, photodisintegration, neutrino transport, heat, and remnant rows into the same compact-region ledger. | The support transition is explained by pressure prose while reactions and carried-away energy are outside the record. |
+| Metric compliance projection | Use the same carrier $\theta$ to project $\mathcal{S}_{\mathrm{metric}}$, lapse, spatial compliance, and horizon-interface conditions. | Matter scale compression and effective metric compression require different $\theta$ records or hidden retuning. |
 
 ## First Mathematical Object To Add Next
 
@@ -277,7 +401,9 @@ Z_X[\theta]-Z_X^{\mathrm{obs}}
 +\lambda_{\mathrm{geo}}\mathcal R_{\mathrm{geo}}(\theta;W)
 +\lambda_H R_H(\theta)^2
 +\lambda_\rho R_\rho(\theta)^2
-+\lambda_{\mathrm{retune}}\mathcal{S}_{\mathrm{retune}}(\theta),
++\lambda_{\mathrm{scale}}
+\mathcal{R}_{\mathrm{collapse}\to\mathrm{metric}}(\theta;\Omega,W)
++\lambda_{\mathrm{retune}}\mathcal{S}_{\mathrm{retune}}(\theta)
 $$
 
 where
@@ -315,6 +441,7 @@ The weak-field metric side is now executable in [effective-metric-weak-field-res
 | `path_history.tired_light_failure` | A nonzero $Y_{X,E\to R}$ violates image sharpness, spectral coherence, chromaticity, or $(1+z)$ time-dilation consistency. |
 | `cosmology.void_expansion_level_collapse` | $a_{\mathrm{eff}}$ or $H_{\mathrm{eff}}$ is written as expansion of the Euclidean void rather than an observer-level Noether sea projection. |
 | `cosmology.source_without_provenance` | $\mathcal{S}_{\mathrm{eff}}$ is inserted to satisfy continuity but lacks assembly association, dissociation, recycling, transport, or Noether sea exchange in $S(t)$. |
+| `collapse.metric_matter_split` | Stellar-core material scale compression and effective spatial-compliance compression are fitted from different branch or Noether sea records. |
 | `ppn.preferred_frame_leakage` | $(\alpha_1,\alpha_2,\alpha_3)$ or SME-style residuals exceed the recorded bounds after the same metric record is used for clock/ruler/signal rows. |
 
 ## `6/23 b` Score Recommendation
@@ -339,6 +466,7 @@ Promote only after the shared residual above is populated for at least one decla
 | --- | --- | --- |
 | Effective metric map | [Emergent Metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [PPN Parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | One $\theta$ supplies $N$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, Shapiro, lensing, acceleration, and PPN rows without retuning. |
 | Clock and cadence extraction | [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md) | $\mathbf{b}_N$ derives $\Gamma_N=1$, $\Gamma_N\to1/\xi$, and $\Gamma_N\approx1-\Phi_N/c_0^2$ in declared limits. |
+| Strong-collapse scale compression | [Singularity Resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [Black Holes](../../../content/markdown/aaa/spacetime/black-holes.md) | One retained record maps material Noether braid scale compression to effective spatial compliance and horizon-interface continuation without a separate metric retune. |
 | Redshift factorization | [Expansion Mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), [Cosmology Ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md) | Endpoint cadence, source branch, launch geometry, and path-history terms close as separate projections of one absolute record. |
 | Effective FRW / Friedmann | [Cosmology Ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [Hubble and S8 Tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}$, $\rho_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, $\Lambda_{\mathrm{eff}}$, and $\mathcal{S}_{\mathrm{eff}}$ are generated from one fixed-void Noether sea and assembly record. |
 | Downstream transfer functions | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [Structure Formation](../../../content/markdown/aaa/cosmology/structure-formation.md), [BBN Constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md) | Use only after this packet supplies the shared redshift/distance/cosmology interface consumed by `EQ-21` through `EQ-23`. |

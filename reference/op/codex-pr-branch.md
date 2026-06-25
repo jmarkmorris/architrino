@@ -82,6 +82,14 @@ Textbook regeneration has two generated layers:
 - `node scripts/build-scene-graph.mjs --write --strict` regenerates the scene graph, Textbook TOC data, and Textbook TOC markdown.
 - `node scripts/build-textbook-md-pdf.mjs --write` regenerates the textbook reading-copy markdown under `content/generated/markdown/textbook/reading-copies/`.
 
+Use a full regeneration checkpoint when the operator/developer requests `regenerate`, `full regeneration`, `full regen`, `regeneration checkpoint`, or the exact prompt:
+
+```text
+Closure goal: Regenerate.
+```
+
+A full regeneration checkpoint means running both write commands above, then the check pass below. Do not run the write commands after every small code or documentation edit. For priority-only math packets, such as [adjoint-cokernel-equations.md](../priorities/braid-retained-branch-closure/shell-braid/adjoint-cokernel-equations.md), stay in the targeted edit/check loop unless the packet is promoted into textbook-facing corpus material, changes scene/TOC inputs, the operator/developer asks for a full regeneration checkpoint, or a required check reports generated drift.
+
 Regenerate both layers before the final check pass whenever a PR touches any source that can affect textbook PDF reading copies:
 
 - textbook-facing markdown under `content/markdown/aaa/`,
