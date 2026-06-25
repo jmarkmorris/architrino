@@ -16,10 +16,6 @@
       {
         "nodeId": "perspectives_overview",
         "scenePath": "content/scenes/philosophy_history/perspectives/overview.json"
-      },
-      {
-        "nodeId": "chapter_read_aloud_test",
-        "scenePath": "content/scenes/philosophy_history/perspectives/chapter_read_aloud_test.json"
       }
     ]
   },
@@ -31,14 +27,6 @@
       "color": "#4f5d75",
       "labelTitle": "Chain Of Witnesses",
       "labelBadge": "doc"
-    },
-    {
-      "id": "chapter_read_aloud_test",
-      "title": "Chapter Read Aloud Test",
-      "radius": 2.0,
-      "color": "#7a5430",
-      "labelTitle": "Read Aloud Test",
-      "labelBadge": "test"
     }
   ]
 }

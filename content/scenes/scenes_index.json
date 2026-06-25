@@ -1744,11 +1744,6 @@
       "id": "philosophy_history__perspectives_overview",
       "name": "Perspectives",
       "path": "content/scenes/philosophy_history/perspectives/overview.json"
-    },
-    {
-      "id": "philosophy_history__perspectives_chapter_read_aloud_test",
-      "name": "Chapter Read Aloud Test",
-      "path": "content/scenes/philosophy_history/perspectives/chapter_read_aloud_test.json"
     }
   ]
 }

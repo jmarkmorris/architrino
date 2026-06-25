@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 532,
-      "edges": 1285,
-      "scenes": 350,
+      "nodes": 530,
+      "edges": 1283,
+      "scenes": 349,
       "markdownIndexes": 0,
-      "markdownDocs": 169,
+      "markdownDocs": 168,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2243,12 +2243,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "philosophy_history__perspectives_chapter_read_aloud_test",
-      "name": "Chapter Read Aloud Test",
-      "path": "content/scenes/philosophy_history/perspectives/chapter_read_aloud_test.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2696,12 +2690,6 @@
       "id": "content/markdown/aaa/philosophy-history/perspectives.md",
       "name": "Perspectives: A Chain Of Witnesses",
       "path": "content/markdown/aaa/philosophy-history/perspectives.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/philosophy-history/perspectives/chapter-read-aloud-test.md",
-      "name": "Chapter Read Aloud Test",
-      "path": "content/markdown/aaa/philosophy-history/perspectives/chapter-read-aloud-test.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5308,15 +5296,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/perspectives/chapter_read_aloud_test.json",
-      "nodeType": "scene",
-      "id": "philosophy_history__perspectives_chapter_read_aloud_test",
-      "name": "Chapter Read Aloud Test",
-      "path": "content/scenes/philosophy_history/perspectives/chapter_read_aloud_test.json",
-      "searchTarget": "content/scenes/philosophy_history/perspectives/chapter_read_aloud_test.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/philosophy_history/perspectives/overview.json",
       "nodeType": "scene",
       "id": "philosophy_history__perspectives_overview",
@@ -7087,15 +7066,6 @@
       "name": "Perspectives: A Chain Of Witnesses",
       "path": "content/markdown/aaa/philosophy-history/perspectives.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/perspectives.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/chapter-read-aloud-test.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/perspectives/chapter-read-aloud-test.md",
-      "name": "Chapter Read Aloud Test",
-      "path": "content/markdown/aaa/philosophy-history/perspectives/chapter-read-aloud-test.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives/chapter-read-aloud-test.md",
       "implicit": false
     },
     {
@@ -11444,13 +11414,6 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/perspectives.json",
-      "to": "scene:content/scenes/philosophy_history/perspectives/chapter_read_aloud_test.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/perspectives.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/perspectives.json",
       "to": "scene:content/scenes/philosophy_history/perspectives/overview.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/perspectives.json",
@@ -12945,13 +12908,6 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-history.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/overview.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/perspectives/chapter_read_aloud_test.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives/chapter-read-aloud-test.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/perspectives/chapter_read_aloud_test.json",
       "field": "scene.source.path"
     },
     {

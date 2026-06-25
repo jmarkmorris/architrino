@@ -584,6 +584,14 @@ export function createMarkdownRuntime(deps) {
     );
   }
 
+  function resetMarkdownScroll() {
+    if (!markdownContent) {
+      return;
+    }
+    markdownContent.scrollTop = 0;
+    markdownContent.scrollLeft = 0;
+  }
+
   function resolveAuthoredMarkdownColumns(level) {
     const columns = level?.markdownColumns;
     return columns === 1 || columns === 2 || columns === 3 ? columns : null;
@@ -734,6 +742,7 @@ export function createMarkdownRuntime(deps) {
     typesetMarkdownWithRetry(startTypesetRetryCycle());
     decorateTextbookToc();
     decorateSupportResearch();
+    resetMarkdownScroll();
     if (markdownContent && typeof markdownContent.focus === "function") {
       try {
         markdownContent.focus({ preventScroll: true });

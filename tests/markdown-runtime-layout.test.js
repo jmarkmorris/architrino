@@ -71,6 +71,8 @@ function createFakeElement() {
     disabled: false,
     inert: false,
     innerHTML: "",
+    scrollLeft: 0,
+    scrollTop: 0,
     textContent: "",
     style: {
       props: styleProps,
@@ -150,6 +152,57 @@ function createFakeDocument() {
     },
   };
 }
+
+test("plain markdown document navigation resets the panel scroll position", async (t) => {
+  const originalFetch = globalThis.fetch;
+  const originalWindow = globalThis.window;
+
+  globalThis.fetch = async (path) => ({
+    ok: true,
+    async text() {
+      return String(path).includes("second.md")
+        ? "# Second\n\nTop of second document."
+        : "# First\n\nTop of first document.";
+    },
+  });
+  globalThis.window = {};
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+    globalThis.window = originalWindow;
+  });
+
+  const markdownContent = createFakeElement();
+  const runtime = createMarkdownRuntime({
+    markdownPanel: createFakeElement(),
+    markdownContent,
+    markdownBody: createFakeElement(),
+    markdownLayoutToggle: createFakeElement(),
+    markdownRenderer: null,
+    markdownCache: new Map(),
+    markdownSectionCache: new Map(),
+    extractMarkdownSection: () => null,
+    appendCacheBust: (path) => path,
+  });
+
+  await runtime.showMarkdownPanel({
+    name: "First",
+    markdownPath: "content/markdown/first.md",
+    markdownColumns: 1,
+  });
+
+  markdownContent.scrollTop = 640;
+  markdownContent.scrollLeft = 24;
+
+  await runtime.showMarkdownPanel({
+    name: "Second",
+    markdownPath: "content/markdown/second.md",
+    markdownColumns: 1,
+  });
+
+  assert.equal(markdownContent.scrollTop, 0);
+  assert.equal(markdownContent.scrollLeft, 0);
+});
 
 test("markdown panels expose a focused article surface for browser read aloud", async (t) => {
   const originalFetch = globalThis.fetch;
