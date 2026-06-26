@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1466
+      "sections": 1465
     }
   },
   "tocRoot": {
@@ -13464,14 +13464,6 @@
                     "markdownPath": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
                     "markdownSection": "Why Physics Missed The Architecture Of The Universe",
                     "sectionKey": "why physics missed the architecture of the universe",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Opening Frame",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
-                    "markdownSection": "Opening Frame",
-                    "sectionKey": "opening frame",
                     "headingLevel": 2
                   },
                   {

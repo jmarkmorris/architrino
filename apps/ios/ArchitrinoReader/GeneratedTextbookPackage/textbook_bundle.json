@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-26T21:00:12.344Z",
-  "package_version": "1.0.0-07796988",
+  "generated_at": "2026-06-26T22:24:05.958Z",
+  "package_version": "1.0.0-f407ca7c",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "07796988ae83952f5f5ff2d165c663ef1b416b7d4205ff988dda82992442a3ad",
-    "size": 695944
+    "sha256": "f407ca7c8d36bbf96ee441d0e8d1217c4c604ca4b631e33b28b0e07c1f9f9ef8",
+    "size": 695554
   },
   "chapters": [
     {
@@ -164,8 +164,8 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 696398,
-      "sha256": "07796988ae83952f5f5ff2d165c663ef1b416b7d4205ff988dda82992442a3ad"
+      "size": 696008,
+      "sha256": "f407ca7c8d36bbf96ee441d0e8d1217c4c604ca4b631e33b28b0e07c1f9f9ef8"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.html",
@@ -204,16 +204,16 @@
       "sourcePath": "__generated__/reading-copies/dynamics.html",
       "role": "chapter",
       "type": "html",
-      "size": 24635784,
-      "sha256": "efa4b517407385a226d720c42e6e76c7d996ee2c5b2028960322a18d9ace6d66"
+      "size": 24650120,
+      "sha256": "ffb41d9c595670ecb8ee8b37d3bc7b63bbb5b2c6acd2e13e089b110372166225"
     },
     {
       "path": "reading-copies/dynamics.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1394526,
-      "sha256": "2cebeaf75cd87d126bcfd2c9be201a06c3e17c45e94a6f709753a4dd3e724784"
+      "size": 1395592,
+      "sha256": "5d6cf22f5da25f7b388b4eb551ce652b0937f17d6bc079b5283c7bb6f4b851f5"
     },
     {
       "path": "reading-copies/foundations.html",
@@ -236,16 +236,16 @@
       "sourcePath": "__generated__/reading-copies/noether-braid.html",
       "role": "chapter",
       "type": "html",
-      "size": 3449180,
-      "sha256": "6f3492a27dc5f25205daab8f2091da6e76c00db45d5f91872bc78531315f738c"
+      "size": 3449675,
+      "sha256": "a869ad1b64f655c39e25ad9ab0d99c208ee1029af4060302102eda67aca0351e"
     },
     {
       "path": "reading-copies/noether-braid.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 178634,
-      "sha256": "26dc13a868a281cff9f38f28571b2873a309f8b74d40f1b81101a0a379de83c7"
+      "size": 179123,
+      "sha256": "ca1d0bcd001a1f6dd95794bf8b6ff18a9c9546a87edc51ea8f2b9c74cbdddb31"
     },
     {
       "path": "reading-copies/noether-sea-and-effective-spacetime.html",
@@ -268,16 +268,16 @@
       "sourcePath": "__generated__/reading-copies/philosophy-history.html",
       "role": "chapter",
       "type": "html",
-      "size": 9859290,
-      "sha256": "1e643bd66f56ed9f30611607b51c7efffc2e3a21e33d1865b07e311d9c940ef4"
+      "size": 9862641,
+      "sha256": "25ed64e9fb1934be639d304cadfb87925e85ddb7a7ba4f295d66ab17993bf35d"
     },
     {
       "path": "reading-copies/philosophy-history.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1813778,
-      "sha256": "0842feba7323a59d61a9f179a3f8d4a5cbf22593a766bca84f6862eb0ce656f3"
+      "size": 1814723,
+      "sha256": "64f704ba3b79c4f1832dfb26ba9de3ba031e3b6222527f2d2a8c7dc94e603aeb"
     },
     {
       "path": "reading-copies/quantum.html",
@@ -332,16 +332,16 @@
       "sourcePath": "__generated__/reading-copies/validation.html",
       "role": "chapter",
       "type": "html",
-      "size": 5579331,
-      "sha256": "a1ca4b476552e9e2ce4da42717cfb3ed20d3d2ddbe314e36db43679c714a5cbf"
+      "size": 5598561,
+      "sha256": "ce78252ae96994c04ece32dd9f9f512bbebdb29de4edec8315208cf9edded8b7"
     },
     {
       "path": "reading-copies/validation.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 483696,
-      "sha256": "d705427f8faef8065abc297624f39f0858511f6f60d8cb29d0c986bed36326c5"
+      "size": 484901,
+      "sha256": "eb81f63e90c5a5613199ebf27330eb730d23d0d184a4086a4b1709636bcd4e1d"
     },
     {
       "path": "references/academic-style-guide.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 9336872,
-      "sha256": "b476e4f08f0505c05a559d0e571afc3593083eb730861abac5282500abc5ebba"
+      "size": 9341221,
+      "sha256": "9f29b4872d6308d101c963bc30574e82d9c46cd997e77dfbf2c8fbbac3b9997a"
     }
   ],
   "links": []
