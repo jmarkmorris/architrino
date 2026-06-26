@@ -98,6 +98,246 @@ No row has completed two substantive passes yet. All rows through score `3` rema
 
 No score changes.
 
+## Restart Checkpoint 11: Weak-Field And Weak-Gravity Source Guards
+
+- Time: 2026-06-26 15:32 EDT.
+- Runtime status: active two-hour continuation; score `3` work remains meaningful and score `4` remains unreached.
+- Agents completed since Restart Checkpoint 10:
+  - `Hubble`: second-pass `EQ-07A` scout; confirmed `missing_accepted_compact_region_carrier` and proposed a compact-window `theta_sea_rho_NS` sidecar under the compact-star carrier.
+  - `Harvey`: `EQ-10`/`EQ-11` carrier pass; confirmed `missing_accepted_theta_W` and `missing_accepted_theta_11_20`, and recommended coordination-source controls before any accepted-looking row is trusted.
+  - `Gibbs`: `EQ-13`/`EQ-14`/`EQ-28` scout; confirmed Gate A and finite-window `W` routes should advance exactly one accepted-evidence blocker at a time.
+  - `Halley`: `EQ-18`/`EQ-19` pass; confirmed `missing_accepted_theta_cos` and recommended a `status_flip` source-concreteness control before any accepted-looking cosmology row is used.
+  - `Planck`: `EQ-12`/`EQ-16A` pass; confirmed `missing_accepted_theta_gamma_packet` for `EQ-12` and `missing_accepted_neutral_lepton_retained_branch` for `EQ-16A`.
+  - `Copernicus`: `EQ-20` through `EQ-23` shared-observation pass; confirmed `theta_sea_rho_NS` for `EQ-20` and `Theta_src` as the next shared source object for `EQ-21` through `EQ-23`.
+  - `Schrodinger`: `EQ-24`/`EQ-25`/`EQ-26`/`EQ-29`/`EQ-32` pass; confirmed `theta_sea_rho_NS`, `theta_therm`, `theta_H_spec`, `radiation_source_carrier`, and `delta_a_star` as the row-specific first native carriers.
+- Active agents at checkpoint:
+  - `EQ-16A` neutral-lepton source-attempt recipe.
+  - `EQ-21` through `EQ-23` `Theta_src` source-attempt recipe.
+  - `EQ-25` `theta_therm_CMB` source-chain recipe.
+  - `EQ-26` versus `EQ-29` implementation-target comparison.
+- Coordinator targets completed since Restart Checkpoint 10:
+  - Hardened [effective-metric-weak-field-residual.mjs](../../../scripts/equation-mapping/effective-metric-weak-field-residual.mjs) so priority packets, authored AAA prose, generated files, temporary files, attempt fixtures, mocks, and negative-control fixtures do not count as accepted weak-field evidence sources.
+  - Hardened [eq11-weak-gravity-constitutive-residual.mjs](../../../scripts/equation-mapping/eq11-weak-gravity-constitutive-residual.mjs) with the same evidence-source boundary for weak-gravity rows.
+  - Added [effective-metric-weak-field-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-coordination-source-negative-control.v1.json). Accepted-looking `theta_W` rows sourced to priority/authored/attempt files now remain blocked at `missing_accepted_theta_W` with `accepted_without_evidence_source`.
+  - Added [eq11-weak-gravity-constitutive-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11-weak-gravity-constitutive-coordination-source-negative-control.v1.json). Accepted-looking `theta_11_20` rows sourced to priority/authored/attempt files now remain blocked at `missing_accepted_theta_11_20` with `accepted_without_evidence_source`.
+  - Updated [EQ-10 Theta-W Source-Field Map](eq-10-theta-w-source-field-map.md), [EQ-11 And EQ-20 Gravity / Dark-Energy Constitutive-Response Packet](eq-11-20-gravity-dark-energy-packet.md), and [equation.md](equation.md) so the new controls are discoverable from the row maps.
+- Files edited since Restart Checkpoint 10:
+  - [eq-10-theta-w-source-field-map.md](eq-10-theta-w-source-field-map.md)
+  - [eq-11-20-gravity-dark-energy-packet.md](eq-11-20-gravity-dark-energy-packet.md)
+  - [equation.md](equation.md)
+  - [effective-metric-weak-field-residual.mjs](../../../scripts/equation-mapping/effective-metric-weak-field-residual.mjs)
+  - [eq11-weak-gravity-constitutive-residual.mjs](../../../scripts/equation-mapping/eq11-weak-gravity-constitutive-residual.mjs)
+  - [effective-metric-weak-field-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-coordination-source-negative-control.v1.json)
+  - [eq11-weak-gravity-constitutive-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11-weak-gravity-constitutive-coordination-source-negative-control.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node --check scripts/equation-mapping/effective-metric-weak-field-residual.mjs`: passed.
+  - `node --check scripts/equation-mapping/eq11-weak-gravity-constitutive-residual.mjs`: passed.
+  - `node scripts/equation-mapping/effective-metric-weak-field-residual.mjs --summary`: passed as score-neutral with `nextBlocker=missing_accepted_theta_W`.
+  - `node scripts/equation-mapping/effective-metric-weak-field-residual.mjs --input scripts/equation-mapping/effective-metric-weak-field-coordination-source-negative-control.v1.json --summary`: passed as fail-closed with accepted-looking rows reporting `accepted_without_evidence_source`.
+  - Same `EQ-10` coordination-source control with `--require-populated`: exited nonzero as intended.
+  - `node scripts/equation-mapping/eq11-weak-gravity-constitutive-residual.mjs --summary`: passed as score-neutral with `nextBlocker=missing_accepted_theta_11_20`.
+  - `node scripts/equation-mapping/eq11-weak-gravity-constitutive-residual.mjs --input scripts/equation-mapping/eq11-weak-gravity-constitutive-coordination-source-negative-control.v1.json --summary`: passed as fail-closed with accepted-looking rows reporting `accepted_without_evidence_source`.
+  - Same `EQ-11` coordination-source control with `--require-populated`: exited nonzero as intended.
+  - Full validation passed before this checkpoint append: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+### Best Breakthrough Candidates At Restart Checkpoint 11
+
+| Rank | Candidate | Why it matters | Current first blocker |
+| --- | --- | --- | --- |
+| 1 | `theta_sea_rho_NS` retained-window row | Shared Noether sea coefficient route for `EQ-24`, `EQ-20`, `EQ-32`, and compact-region sidecars. | `missing_accepted_theta_sea_rho_NS` |
+| 2 | `theta_gamma_packet` parent support | Shared photon parent for `EQ-12`, `EQ-22A`, `EQ-26A`, and Gate A/B consumers. | `missing_accepted_theta_gamma_packet` |
+| 3 | `Theta_src` shared source window | Best source-window object for `EQ-21`, `EQ-22`, and `EQ-23`, with BBN/CMB/growth child rows. | `missing_accepted_theta_obs`; sharper child route `missing_accepted_theta_src` |
+| 4 | `theta_W` weak-field record | Local metric/PPN/geodesic carrier for `EQ-10` and weak-field consumers, now protected against priority/authored source false positives. | `missing_accepted_theta_W` |
+| 5 | `theta_11_20` weak-gravity constitutive record | Poisson, curvature, coupling-continuity, and PPN handoff for `EQ-11`, now protected against priority/authored source false positives. | `missing_accepted_theta_11_20` |
+
+### Remaining Queue After Restart Checkpoint 11
+
+Meaningful work remains in the score `3` queue. The next implementation target should prefer a checker-consumable source-attempt from active agent returns: `EQ-16A` neutral-lepton retained branch, `Theta_src`, `EQ-25` `theta_therm_CMB`, or the smaller of `EQ-26` `theta_H_spec` and `EQ-29` `radiation_source_carrier`. No score changes.
+
+## Restart Checkpoint 12: EQ-16A Neutral-Lepton Source Attempt
+
+- Time: 2026-06-26 15:39 EDT.
+- Runtime status: active two-hour continuation; score `3` work remains meaningful.
+- Agents completed since Restart Checkpoint 11:
+  - `Hume`: designed the smallest checker-consumable `EQ-16A` neutral-lepton retained-branch source-attempt fixture.
+  - `Mendel`: compared `EQ-26` and `EQ-29`, recommending `EQ-29` as the smaller safe route because its checker already consumes source-attempt fixtures.
+  - `Parfit`: designed an `EQ-25` `theta_therm_CMB` source-chain attempt recipe.
+  - `Boole`: confirmed that a child-only `Theta_src` fixture is not currently consumed by the shared-observation checker; the safe route is a full shared-observation input fixture or diagnostic-only focus reporting.
+- Coordinator target completed since Restart Checkpoint 11:
+  - Added [neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json). It replaces pending source placeholders with a concrete neutral-lepton retained-branch source shape while keeping every row `attempt`.
+  - Updated [eq-16a-neutrino-common-clock-phase-packet.md](eq-16a-neutrino-common-clock-phase-packet.md) and [equation.md](equation.md) so the new source-attempt fixture is discoverable.
+- Files edited since Restart Checkpoint 11:
+  - [eq-16a-neutrino-common-clock-phase-packet.md](eq-16a-neutrino-common-clock-phase-packet.md)
+  - [equation.md](equation.md)
+  - [neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs --input scripts/equation-mapping/neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json --summary --pretty`: passed as score-neutral with `nextBlocker=missing_accepted_neutral_lepton_retained_branch`, inherited `S_eq` blocker `missing_accepted_raw_labeled_rows_preserved_on_retained_history`, and common-clock/residual-gap diagnostics passing.
+  - Same source-attempt with `--require-populated`: exited nonzero as intended.
+  - `node scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs --input scripts/equation-mapping/neutrino-common-clock-phase-domain-split-negative-control.v1.json --summary --pretty`: passed as fail-closed at `weak_hidden_domain_split`.
+  - Same domain-split control with `--require-populated`: exited nonzero as intended.
+  - Full validation passed after the batch: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+### Remaining Queue After Restart Checkpoint 12
+
+Meaningful score `3` source-attempt work remains. Best next concrete targets are `EQ-25` `theta_therm_CMB` source-chain attempt, a full-input `Theta_src` shared-observation source-attempt, or a focused `EQ-29` source-attempt refinement. No score changes.
+
+## Restart Checkpoint 13: EQ-25 CMB Source-Chain Attempt
+
+- Time: 2026-06-26 15:42 EDT.
+- Runtime status: active two-hour continuation; score `3` shared-observation work remains meaningful.
+- Coordinator target completed since Restart Checkpoint 12:
+  - Added [eq25-thermodynamic-record-cmb-source-chain-attempt.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-cmb-source-chain-attempt.v1.json). It binds every required `EQ-25` thermodynamic row to `theta_therm_CMB_attempt_0001`, one CMB source-to-decoupling window, one coarse-graining id, one thermal-provenance id, one event ledger, and one transport path, while keeping every row `attempt`.
+  - Updated [EQ-25 Theta-Therm CMB Source-Field Map](eq-25-theta-therm-cmb-source-field-map.md) and [equation.md](equation.md) so the new fixture is discoverable.
+- Files edited since Restart Checkpoint 12:
+  - [eq-25-theta-therm-cmb-source-field-map.md](eq-25-theta-therm-cmb-source-field-map.md)
+  - [equation.md](equation.md)
+  - [eq25-thermodynamic-record-cmb-source-chain-attempt.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-cmb-source-chain-attempt.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs --input scripts/equation-mapping/eq25-thermodynamic-record-cmb-source-chain-attempt.v1.json --summary --pretty`: passed as score-neutral with `nextBlocker=missing_accepted_theta_therm`, `sourceIdentityAccepted=true`, `thermodynamicNumericPass=true`, and `negativeControlPassCount=4`.
+  - Same source-chain fixture with `--require-populated`: exited nonzero as intended.
+  - `node scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs --input scripts/equation-mapping/eq25-thermodynamic-record-source-window-split-negative-control.v1.json --summary`: passed as fail-closed at `source_window_split`.
+  - `node scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs --input scripts/equation-mapping/eq25-thermodynamic-record-coordination-source-negative-control.v1.json --summary`: passed as fail-closed at `accepted_without_evidence_source`.
+  - Full validation passed after the batch: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+### Remaining Queue After Restart Checkpoint 13
+
+Meaningful score `3` source-attempt work remains. Best next concrete target is the full-input `Theta_src` shared-observation source-attempt, because the current checker cannot consume a child-only source fixture and the shared source-window route affects `EQ-21`, `EQ-22`, and `EQ-23`. No score changes.
+
+## Restart Checkpoint 14: Shared-Observation Theta-Src Source Attempt
+
+- Time: 2026-06-26 15:46 EDT.
+- Runtime status: active two-hour continuation; score `3` source-evidence guard work remains meaningful.
+- Coordinator targets completed since Restart Checkpoint 13:
+  - Added diagnostic-only `--focus-row` support to [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs). It reports a focused required-row blocker without changing `summary.nextBlocker`, `scoreDecision`, required rows, or `--require-populated`.
+  - Added [shared-observation-theta-src-source-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-theta-src-source-attempt.v1.json). It gives the existing checker a full-input `Theta_src` source-window shape while keeping all rows, projections, and shared keys `attempt`.
+  - Updated [EQ-21/EQ-22/EQ-23 Theta-Src Source-Field Map](eq-21-22-23-theta-src-source-field-map.md) and [equation.md](equation.md) so the fixture and diagnostic boundary are discoverable.
+- Files edited since Restart Checkpoint 13:
+  - [eq-21-22-23-theta-src-source-field-map.md](eq-21-22-23-theta-src-source-field-map.md)
+  - [equation.md](equation.md)
+  - [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs)
+  - [shared-observation-theta-src-source-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-theta-src-source-attempt.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node --check scripts/equation-mapping/shared-observation-residual.mjs`: passed.
+  - `node scripts/equation-mapping/shared-observation-residual.mjs --input scripts/equation-mapping/shared-observation-theta-src-source-attempt.v1.json --summary --pretty --focus-row theta_src`: passed as score-neutral with summary `nextBlocker=missing_accepted_theta_obs` and diagnostic `focusedBlockers.theta_src.nextBlocker=missing_accepted_theta_src`.
+  - Same source-attempt with `--require-populated`: exited nonzero as intended.
+  - Full validation passed after the batch: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+### Remaining Queue After Restart Checkpoint 14
+
+Meaningful score `3` work remains. The next narrow guard target is checking whether shared-observation accepted-looking rows sourced to priority packets, authored prose, attempt fixtures, mocks, or negative-control fixtures can falsely populate; if so, add a source-evidence guard and fail-closed control without changing score semantics.
+
+## Restart Checkpoint 10: EQ-26A Theta-Alpha Source Attempt
+
+- Time: 2026-06-26 15:25 EDT.
+- Runtime status: active two-hour continuation; score `3` sweep has started while second-role score `2` agents remain active.
+- Agents active after this checkpoint:
+  - `Hubble`: `EQ-07A` breakthrough-scout pass.
+  - `Aristotle`: `EQ-22A` breakthrough-scout pass.
+  - `Harvey`: `EQ-10`/`EQ-11` carrier/evidence pass.
+  - `Gibbs`: `EQ-13`/`EQ-14`/`EQ-28` breakthrough-scout pass.
+  - `Halley`: `EQ-18`/`EQ-19` carrier/evidence pass.
+- Agent completed since Restart Checkpoint 9:
+  - `Anscombe`: `EQ-26A` breakthrough-scout pass; recommended a score-neutral `theta_alpha` source-attempt contract rooted in `charge_exposure_row`, with running $\alpha(\mu)$ treated as a no-retune discriminator rather than a fitted success.
+- Coordinator target completed:
+  - Added [planck-alpha-braid-theta-alpha-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-alpha-source-attempt.v1.json). The fixture names `theta_alpha_source_attempt_0001`, begins the local alpha route at `charge_exposure_row`, declares the $q_{\mathrm{obs}}$ scheme, binds `alpha_coupling_row`, `local_photon_speed_row`, `vacuum_polarization_wake_dressing_row`, `energy_scale_running_row`, and the charged-threshold inventory id, and keeps all rows `attempt`.
+  - Updated [eq-26a-theta-alpha-source-field-map.md](eq-26a-theta-alpha-source-field-map.md) with the source-attempt contract and checker command.
+- Files edited since Restart Checkpoint 9:
+  - [eq-26a-theta-alpha-source-field-map.md](eq-26a-theta-alpha-source-field-map.md)
+  - [planck-alpha-braid-theta-alpha-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-alpha-source-attempt.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/planck-alpha-braid-residual.mjs --input scripts/equation-mapping/planck-alpha-braid-theta-alpha-source-attempt.v1.json --summary --pretty`: passed as score-neutral, with `nextBlocker=missing_accepted_theta_gamma_packet`, `alphaRunningPass=true`, and all 15 negative controls passing.
+  - Same `theta_alpha` source-attempt with `--require-populated`: exited nonzero as intended.
+  - Full validation passed after this batch: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+### EQ-26A Attack Card Update
+
+- Current score and closure driver: score `2`; derive $\alpha(\mu)$ as scale-dependent electromagnetic response from one exposure domain, not a fitted constant.
+- Primary AAA carrier: `Theta_alpha=(q_obs,h_vartheta,c_gamma,E_S,K_EM,I_mu)` on one action-period, charge-exposure, photon-speed, gauge-domain, threshold-inventory, and Noether sea record.
+- Smallest score-moving evidence object: accepted source-backed `theta_alpha` packet rooted first in `charge_exposure_row`, then `alpha_coupling_row`, `vacuum_polarization_wake_dressing_row`, charged-threshold inventory, and `energy_scale_running_row`.
+- Exact first blocker: parent `missing_accepted_theta_gamma_packet`; local source-field first row after the parent is `missing_accepted_charge_exposure_row`.
+- Existing scripts/fixtures/packets found: shared Planck/alpha runner, default attempt, theta-bb source attempt, theta-alpha source attempt, and theta-gamma coordination-source negative control.
+- Candidate breakthrough angle: use running $\alpha(\mu)$ as a hidden-retune discriminator. Only $\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}})$ and $I_\mu$ may run; $h_\vartheta$, $q_{\mathrm{obs}}$, $c_\gamma$, and fixed Noether sea state must remain shared across anchors.
+- Fail-closed negative control: `eq26a.alpha_hidden_retune`.
+- Next action smaller than broad report: create one durable `theta_alpha` source report beginning with `charge_exposure_row`; until then, keep all checker results score-neutral.
+
+No score changes.
+
+## Restart Checkpoint 9: Score-2 Shared Photon/Alpha Guardrail
+
+- Time: 2026-06-26 15:21 EDT.
+- Runtime status: active two-hour continuation; `EQ-07A` and `EQ-26A` agents remain active, and meaningful score `2` work remains.
+- Agents completed since Restart Checkpoint 8:
+  - `Faraday`: `EQ-28A` card; confirmed `missing_accepted_path_frequency_exchange_carrier`, existing source-attempt fixture, and coordination-source negative control.
+  - `Carver`: `EQ-22A` card; independently identified the need for an accepted-looking priority-source guard on the shared Planck/alpha runner.
+- Coordinator target completed:
+  - Hardened [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) so accepted rows reject priority packets, generated files, attempt files, mock files, negative-control files, and temporary paths as retained evidence.
+  - Added [planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json). It marks `theta_gamma_packet` accepted-looking while sourcing it only to the theta-gamma priority packet; the checker keeps `nextBlocker=missing_accepted_theta_gamma_packet` and reports row reason `source_not_durable`.
+  - Linked the coordination-source guard from the `EQ-22A` and `EQ-26A` maps.
+- Files edited since Restart Checkpoint 8:
+  - [eq-22a-theta-bb-source-field-map.md](eq-22a-theta-bb-source-field-map.md)
+  - [eq-26a-theta-alpha-source-field-map.md](eq-26a-theta-alpha-source-field-map.md)
+  - [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs)
+  - [planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/planck-alpha-braid-residual.mjs --summary --pretty`: passed as score-neutral, with `nextBlocker=missing_accepted_theta_gamma_packet`.
+  - `node scripts/equation-mapping/planck-alpha-braid-residual.mjs --input scripts/equation-mapping/planck-alpha-braid-theta-bb-source-attempt.v1.json --summary --pretty`: passed as score-neutral, with `nextBlocker=missing_accepted_theta_gamma_packet`.
+  - Same `theta_bb` source-attempt with `--require-populated`: exited nonzero as intended.
+  - `node scripts/equation-mapping/planck-alpha-braid-residual.mjs --input scripts/equation-mapping/planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json --summary --pretty`: passed as score-neutral, with accepted-looking `theta_gamma_packet` rejected as `source_not_durable`.
+  - Full validation passed after this batch: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+### EQ-22A And EQ-28A Attack Card Updates
+
+- `EQ-22A` current blocker: `missing_accepted_theta_gamma_packet`; local child blocker after parent acceptance is `missing_accepted_thermal_mode_counting_row`.
+- `EQ-22A` smallest evidence object: accepted source-backed `theta_bb` packet under accepted `theta_gamma_packet`, beginning with `thermal_mode_counting_row`, `planck_occupancy_row`, and `temperature_clock_conversion_row`.
+- `EQ-22A` fail-closed negative control: the new `theta_gamma_packet` coordination-source guard; arithmetic controls still include `wrong_mode_count_dimension`.
+- `EQ-28A` current blocker: `missing_accepted_path_frequency_exchange_carrier`.
+- `EQ-28A` smallest evidence object: accepted source-backed `Theta_nu-ex(W)` carrier binding photon in/out, electron/medium, Noether sea path history, exchange ledger, recoil/remnant, and finite-window thermal record on one `commonCarrierId`.
+- `EQ-28A` next action: probe one candidate durable retained-evidence source for only the carrier; if accepted, the checker should advance to a child blocker such as `missing_accepted_theta_gamma_packet` without score movement.
+
+No score changes.
+
+## Restart Checkpoint 8: Score-1 EQ-04A Guardrail
+
+- Time: 2026-06-26 15:18 EDT.
+- Runtime status: active two-hour continuation; the remaining score `2` queue is under fresh agent review.
+- Agents launched after the score `1` pass:
+  - `Nietzsche`: `EQ-07A` carrier/evidence pass.
+  - `Carver`: `EQ-22A` carrier/evidence pass.
+  - `Anscombe`: `EQ-26A` breakthrough-scout pass.
+  - `Faraday`: `EQ-28A` carrier/evidence and breakthrough-scout pass.
+- Coordinator target completed:
+  - Added [eq04a-koide-residual-split-generation-map-negative-control.v1.json](../../../scripts/equation-mapping/eq04a-koide-residual-split-generation-map-negative-control.v1.json). It keeps the observed near-Koide mass triplet but gives one generation a private shielding id, so the checker rejects the row at `koide.split_generation_map`.
+  - Updated [eq-04a-koide-charged-lepton-mass-relation.md](eq-04a-koide-charged-lepton-mass-relation.md) with the executable attempt status and split-generation control.
+- Files edited since Restart Checkpoint 7:
+  - [eq-04a-koide-charged-lepton-mass-relation.md](eq-04a-koide-charged-lepton-mass-relation.md)
+  - [eq04a-koide-residual-split-generation-map-negative-control.v1.json](../../../scripts/equation-mapping/eq04a-koide-residual-split-generation-map-negative-control.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/eq04a-koide-residual.mjs --summary --pretty`: passed as score-neutral, with `status=blocked_inherited_carrier`, `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`, `RAngle=0.000004616434583493145`, and `normalizedJ_K=-0.000009232869166904428`.
+  - `node scripts/equation-mapping/eq04a-koide-residual.mjs --input scripts/equation-mapping/eq04a-koide-residual-direct-fit-negative-control.v1.json --summary --pretty`: passed as score-neutral, with `nextBlocker=koide.direct_fit`.
+  - `node scripts/equation-mapping/eq04a-koide-residual.mjs --input scripts/equation-mapping/eq04a-koide-residual-split-generation-map-negative-control.v1.json --summary --pretty`: passed as score-neutral, with `nextBlocker=koide.split_generation_map`.
+  - Same split-generation control with `--require-populated`: exited nonzero as intended.
+  - Full validation passed after the score `1` batch: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+### EQ-04A Attack Card Update
+
+- Current score and closure driver: score `1`; Koide remains a speculative charged-lepton benchmark until the upstream `EQ-04` retained mass-shell carrier and charged-lepton mass map are accepted.
+- Primary AAA carrier: `Theta_l^04A`, the retained charged-lepton generation-by-shielding branch family plus shared mass readout, exposed-sector record, Noether sea response, mass-shell residual, and no-retune witness.
+- Smallest score-moving evidence object: accepted `S_eq` retained-domain row object for `EQ-02` through `EQ-04`, especially `raw_labeled_rows_preserved_on_retained_history` on the same domain/carrier/support ids.
+- Exact first blocker: `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
+- Existing scripts/fixtures/packets found: `eq04a-koide-residual.mjs`, default attempt, direct-fit negative control, split-generation negative control, and the upstream `EQ-02` through `EQ-04` retained-record checker.
+- Candidate breakthrough angle: treat Koide as a retained mass-root section and moment-map diagnostic over predicted shielding-energy products, not as an observed-mass fit.
+- Fail-closed negative control: `koide.split_generation_map`.
+- Next action smaller than broad report: produce a source-backed positive-width `S_eq` retained-domain row object or a score-neutral mass-root-section probe that consumes predicted $X_g$ products rather than observed masses.
+
+No score changes.
+
 ## Restart Checkpoint 7: Unscored Identity Checkers And Score-1 Route
 
 - Time: 2026-06-26 15:15 EDT.

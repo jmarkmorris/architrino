@@ -64,12 +64,31 @@ $$
 
 The UV-failure test is therefore two-sided: the mapping fails if it leaves the Rayleigh-Jeans divergence in place, and it also fails if it inserts an unmotivated cutoff without deriving the Planck occupation and thermalization record.
 
+## Field-Speed Binary Precursor
+
+Legacy binary-energy intuition should enter this file only as a precursor diagnostic. Before a field-speed-hinge or Planck-scale binary argument is used to support photon production, mode-count truncation, or blackbody recovery, run a branch-resolved speed sweep for an opposite-polarity binary on a declared chart $\mathfrak{B}$. A minimal sweep record is
+
+$$
+\mathcal{E}_{\mathrm{bin}}^{(\eta)}(s;\mathfrak{B},\Omega)
+=
+\left(
+K_{\mu}^{(\eta)}(s),
+U_{\mathfrak{B}}^{(\eta)}(s),
+E_{\text{wake},\mathfrak{B}}^{(\eta)}(s),
+E_{\mathrm{sea},\Omega}^{(\eta)}(s),
+\mathcal{S}_{\gamma}(s)
+\right),
+$$
+
+sampled across $s<c_f$, $s\approx c_f$, and $s>c_f$ when those regimes are admissible on the same path-history family. Here $U_{\mathfrak{B}}^{(\eta)}$ is a comparison potential reconstructed from branch work, not a primitive gravitational or electromagnetic bucket, and $\mathcal{S}_{\gamma}$ is the planar-mode drive used by the radiation Gate C scaffold. The record must also carry active causal-root counts, Jacobian floors, finite-window boundary exchange, and any retained Noether sea contribution. A blackbody or photon-production argument fails at this precursor stage if it treats the field-speed hinge as a photon source by itself, imports a Planck-law peak from a single binary, or changes branch chart when moving between kinetic, potential, wake, and planar-mode rows.
+
 ## Task Queue
 
-1. `mode_count_gate` — Define the allowed photon-channel mode density from Gate A/B geometry, including the maximum-curvature or Planck-alignment scale only where the local variables justify it. Status: `draft`.
-2. `occupation_measure_gate` — Derive or approximate Planck occupation from basin/thermal measures and detailed balance rather than assigned probabilities. Status: `draft`.
-3. `cmb_blackbody_handoff` — Tie local blackbody recovery to CMB photon-loading, thermalization depth, damping, anisotropy, polarization, and redshift records. Status: `draft`.
-4. `continuum_excess_bridge` — State exactly how this case represents the continuum-excess canon without treating blackbody recovery as a complete solution to all QFT UV divergences. Status: `draft`.
+1. `field_speed_binary_speed_sweep` — Compute the branch-resolved opposite-polarity binary energy record across sub-field-speed, hinge, and super-field-speed regimes before using hinge intuition in photon or blackbody claims. Status: `draft`.
+2. `mode_count_gate` — Define the allowed photon-channel mode density from Gate A/B geometry, including the maximum-curvature or Planck-alignment scale only where the local variables justify it. Status: `draft`.
+3. `occupation_measure_gate` — Derive or approximate Planck occupation from basin/thermal measures and detailed balance rather than assigned probabilities. Status: `draft`.
+4. `cmb_blackbody_handoff` — Tie local blackbody recovery to CMB photon-loading, thermalization depth, damping, anisotropy, polarization, and redshift records. Status: `draft`.
+5. `continuum_excess_bridge` — State exactly how this case represents the continuum-excess canon without treating blackbody recovery as a complete solution to all QFT UV divergences. Status: `draft`.
 
 ## Closure Objects
 
@@ -77,6 +96,7 @@ The UV-failure test is therefore two-sided: the mapping fails if it leaves the R
 - Occupation measure: $\mu_*(B_\nu)$ or equivalent thermal basin measure.
 - Event ledger for absorption, emission, recoil, heat, and medium update.
 - CMB thermalization depth and zero effective photon chemical potential.
+- Binary precursor record: $\mathcal{E}_{\mathrm{bin}}^{(\eta)}(s;\mathfrak{B},\Omega)$ with kinetic, branch-work, wake, Noether sea, planar-mode drive, root-count, Jacobian, and boundary-exchange rows on one declared chart.
 - Cutoff-scale record: $r_{\min}$ / $R_{\min}$ for local maximum-curvature assembly limits, or $R_{\text{align}}$ for Planck-alignment contexts, with the choice justified by the event record.
 
 ## Promotion Map

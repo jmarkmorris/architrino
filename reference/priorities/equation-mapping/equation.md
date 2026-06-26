@@ -692,7 +692,7 @@ Current `6/23 b` scores: `4` for effective metric, weak-clock, and PPN rows; `3`
 
 The map is equation-level, but coefficient closure and shared-record enforcement remain open.
 
-Executable status: [effective-metric-weak-field-residual.mjs](../../../scripts/equation-mapping/effective-metric-weak-field-residual.mjs) now evaluates the weak-field effective-metric residual for `EQ-07` through `EQ-10`. The attempt fixture [effective-metric-weak-field-attempt.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_theta_W`. Its static-response, shared-delay, weak-clock, Shapiro, lensing, acceleration, PPN, null/eikonal, geodesic-action, source-provenance, hidden-retune, and negative-control diagnostics pass, but those passes are not score evidence because every required weak-field row remains `attempt`.
+Executable status: [effective-metric-weak-field-residual.mjs](../../../scripts/equation-mapping/effective-metric-weak-field-residual.mjs) now evaluates the weak-field effective-metric residual for `EQ-07` through `EQ-10`. The attempt fixture [effective-metric-weak-field-attempt.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_theta_W`. Its static-response, shared-delay, weak-clock, Shapiro, lensing, acceleration, PPN, null/eikonal, geodesic-action, source-provenance, hidden-retune, and negative-control diagnostics pass, but those passes are not score evidence because every required weak-field row remains `attempt`. The coordination-source control [effective-metric-weak-field-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-coordination-source-negative-control.v1.json) keeps accepted-looking priority/authored/attempt sources blocked at the same first blocker with `accepted_without_evidence_source`.
 
 ### Closure Burden
 
@@ -823,7 +823,7 @@ Current `6/23 b` score: `3`.
 
 The recovery burden is much larger than the weak-field clock and PPN rows. Current material has the shared constitutive interface, not a full Einstein-equation analogue.
 
-Executable status: [eq11-weak-gravity-constitutive-residual.mjs](../../../scripts/equation-mapping/eq11-weak-gravity-constitutive-residual.mjs) now evaluates the `EQ-11` Poisson/curvature/effective-coupling route. The attempt fixture [eq11-weak-gravity-constitutive-attempt.v1.json](../../../scripts/equation-mapping/eq11-weak-gravity-constitutive-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_theta_11_20`. Its Poisson, curvature, effective-coupling continuity, PPN-handoff, source-provenance, hidden-retune, and negative-control diagnostics pass, but those passes are not score evidence because every retained weak-gravity row remains `attempt`.
+Executable status: [eq11-weak-gravity-constitutive-residual.mjs](../../../scripts/equation-mapping/eq11-weak-gravity-constitutive-residual.mjs) now evaluates the `EQ-11` Poisson/curvature/effective-coupling route. The attempt fixture [eq11-weak-gravity-constitutive-attempt.v1.json](../../../scripts/equation-mapping/eq11-weak-gravity-constitutive-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_theta_11_20`. Its Poisson, curvature, effective-coupling continuity, PPN-handoff, source-provenance, hidden-retune, and negative-control diagnostics pass, but those passes are not score evidence because every retained weak-gravity row remains `attempt`. The coordination-source control [eq11-weak-gravity-constitutive-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11-weak-gravity-constitutive-coordination-source-negative-control.v1.json) keeps accepted-looking priority/authored/attempt sources blocked at the same first blocker with `accepted_without_evidence_source`.
 
 ### Closure Burden
 
@@ -1559,7 +1559,7 @@ The standard oscillation equations are precise, the local neutrino chapter alrea
 
 Claim level: derivation-closure target. This is not a corpus claim that $(f,f,f)$ already explains PMNS data. It is a high-value equation-level benchmark because it tests exactly the structure the equal-frequency idea needs: one hidden shared clock plus residual splittings.
 
-Executable status: [neutrino-common-clock-phase-operator.mjs](../../../scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs) now evaluates the common-clock/residual-phase packet for `EQ-16A`. The attempt fixture has the intended `(f,f,f)` common-clock and doublet-plus-singlet residual-gap shape, but it reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_neutral_lepton_retained_branch`; inherited `S_eq` support still blocks at `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
+Executable status: [neutrino-common-clock-phase-operator.mjs](../../../scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs) now evaluates the common-clock/residual-phase packet for `EQ-16A`. The attempt fixture has the intended `(f,f,f)` common-clock and doublet-plus-singlet residual-gap shape, but it reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_neutral_lepton_retained_branch`; inherited `S_eq` support still blocks at `missing_accepted_raw_labeled_rows_preserved_on_retained_history`. The source-attempt fixture [neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json) replaces pending source placeholders with a concrete neutral-lepton retained-branch shape while keeping every row `attempt`, so it preserves the same blocker and score decision.
 
 ### Closure Burden
 
@@ -1867,7 +1867,7 @@ without switching Noether sea state between linear and nonlinear packets.
 
 The row should be evaluated as a projection of $\mathcal R_{\mathrm{obs}}(\Theta_{\mathrm{obs}})$ from the shared-observation packet: growth uses the same readout and Noether sea response rows that later feed CMB lensing, BBN handoff, and low-acceleration galaxy comparisons.
 
-Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-21` score increase follows from the structural run.
+Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-21` score increase follows from the structural run. The full-input source-attempt fixture [shared-observation-theta-src-source-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-theta-src-source-attempt.v1.json) gives `theta_src` a concrete source-window shape while keeping all rows `attempt`; `--focus-row theta_src` reports `missing_accepted_theta_src` as diagnostic detail only.
 
 ### Agent Target
 
@@ -1909,7 +1909,7 @@ Current `6/23 b` score: `3`.
 
 The current material now has a shared observation-record scaffold, but the equation-level transfer pipeline remains a priority target.
 
-Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-22` score increase follows from the structural run.
+Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-22` score increase follows from the structural run. The full-input source-attempt fixture [shared-observation-theta-src-source-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-theta-src-source-attempt.v1.json) gives `theta_src` a concrete source-window shape while keeping all rows `attempt`; `--focus-row theta_src` reports `missing_accepted_theta_src` as diagnostic detail only.
 
 ### Closure Burden
 
@@ -2183,7 +2183,7 @@ Current `6/23 b` score: `3`.
 
 The constraint rows and shared source-window dependencies are explicit, but the native source-window mechanism is not predictive enough yet.
 
-Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-23` score increase follows from the structural run.
+Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-23` score increase follows from the structural run. The full-input source-attempt fixture [shared-observation-theta-src-source-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-theta-src-source-attempt.v1.json) gives `theta_src` a concrete source-window shape while keeping all rows `attempt`; `--focus-row theta_src` reports `missing_accepted_theta_src` as diagnostic detail only.
 
 ### Closure Burden
 
@@ -2294,7 +2294,7 @@ Current `6/23 b` score: `3`.
 
 This is necessary for CMB, measurement, irreversibility, and statistical mechanics. The mapping now has a finite-window pushforward target, but no populated closure calculation yet.
 
-Executable status: [eq25-thermodynamic-record-residual.mjs](../../../scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs) now evaluates the `EQ-25` finite-window thermodynamic record. The attempt fixture [eq25-thermodynamic-record-attempt.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_theta_therm`. Its state-space, deterministic-pushforward, collision-operator, entropy-balance, thermalization-depth, fluctuation, source-provenance, hidden-retune, and negative-control diagnostics pass, but those passes are not score evidence because every thermodynamic row remains `attempt`.
+Executable status: [eq25-thermodynamic-record-residual.mjs](../../../scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs) now evaluates the `EQ-25` finite-window thermodynamic record. The attempt fixture [eq25-thermodynamic-record-attempt.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_theta_therm`. Its state-space, deterministic-pushforward, collision-operator, entropy-balance, thermalization-depth, fluctuation, source-provenance, hidden-retune, and negative-control diagnostics pass, but those passes are not score evidence because every thermodynamic row remains `attempt`. The CMB source-chain fixture [eq25-thermodynamic-record-cmb-source-chain-attempt.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-cmb-source-chain-attempt.v1.json) binds those rows to one source-to-decoupling identity while keeping every row `attempt`, so it preserves the same blocker and score decision.
 
 ### Closure Burden
 
@@ -3014,7 +3014,7 @@ Current `6/23 b` score: `3`.
 
 The equation is a strong observational benchmark, and the current $\mathbb{A}\mathbb{A}\mathbb{A}$ map is now a shared constitutive-response target. It should not be imported as a new gravity ontology or as permission to bypass the effective-metric and cosmology rows.
 
-Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-32` score increase follows from the structural run.
+Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-32` score increase follows from the structural run. The full-input source-attempt fixture [shared-observation-theta-src-source-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-theta-src-source-attempt.v1.json) gives `theta_src` a concrete source-window shape while keeping all rows `attempt`; `--focus-row theta_src` reports `missing_accepted_theta_src` as diagnostic detail only, while the sharper physical `EQ-32` route still depends on `theta_sea_rho_NS` and `delta_a_star`.
 
 ### Closure Burden
 

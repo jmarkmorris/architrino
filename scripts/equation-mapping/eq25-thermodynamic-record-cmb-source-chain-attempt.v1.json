@@ -1,0 +1,350 @@
+{
+  "schema": "aaa-equation-map-eq25-thermodynamic-record-input/v1",
+  "claimLevel": "EQ-25 theta_therm CMB source-chain attempt; score-neutral and not accepted retained evidence",
+  "residualId": "R_25_theta_therm_CMB_source_chain_attempt_0001",
+  "commonCarrierId": "theta_therm_CMB_attempt_0001",
+  "tolerances": {
+    "carrier": 1e-12,
+    "measure": 1e-12,
+    "pushforward": 1e-12,
+    "collision": 1e-12,
+    "entropy": 1e-12,
+    "thermalization": 1e-12,
+    "fluctuation": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12
+  },
+  "packet": {
+    "id": "theta_therm_CMB_source_chain_attempt_0001",
+    "commonCarrierId": "theta_therm_CMB_attempt_0001",
+    "sourceIdentity": {
+      "thetaThermId": "theta_therm_CMB_attempt_0001",
+      "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+      "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+      "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+      "coarseGrainingId": "Q_CMB_source_to_decoupling_attempt_0001",
+      "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+      "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+      "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+    },
+    "rows": {
+      "theta_therm": {
+        "id": "theta_therm_cmb_source_chain_attempt_0001",
+        "rowId": "theta_therm_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-25-theta-therm-cmb-source-field-map.md",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      },
+      "state_space_row": {
+        "id": "state_space_cmb_source_chain_attempt_0001",
+        "rowId": "state_space_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/dynamics/entropy.md",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      },
+      "coarse_graining_row": {
+        "id": "coarse_graining_cmb_source_chain_attempt_0001",
+        "rowId": "coarse_graining_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/dynamics/entropy.md",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      },
+      "measure_row": {
+        "id": "measure_cmb_source_chain_attempt_0001",
+        "rowId": "measure_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier.mjs",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      },
+      "deterministic_pushforward_row": {
+        "id": "pushforward_cmb_source_chain_attempt_0001",
+        "rowId": "pushforward_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      },
+      "coarse_projection_row": {
+        "id": "projection_cmb_source_chain_attempt_0001",
+        "rowId": "projection_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      },
+      "collision_operator_row": {
+        "id": "collision_cmb_source_chain_attempt_0001",
+        "rowId": "collision_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/cosmology/CMB.md",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      },
+      "entropy_balance_row": {
+        "id": "entropy_balance_cmb_source_chain_attempt_0001",
+        "rowId": "entropy_balance_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/dynamics/entropy.md",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      },
+      "thermalization_depth_row": {
+        "id": "thermalization_depth_cmb_source_chain_attempt_0001",
+        "rowId": "thermalization_depth_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      },
+      "fluctuation_row": {
+        "id": "fluctuation_cmb_source_chain_attempt_0001",
+        "rowId": "fluctuation_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/dynamics/entropy.md",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      },
+      "event_ledger_row": {
+        "id": "event_ledger_cmb_source_chain_attempt_0001",
+        "rowId": "event_ledger_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/validation/reaction-ledger.md",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      },
+      "shared_noether_sea_row": {
+        "id": "shared_noether_sea_cmb_source_chain_attempt_0001",
+        "rowId": "shared_noether_sea_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/spacetime/noether-sea.md",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      },
+      "source_provenance": {
+        "id": "source_provenance_cmb_source_chain_attempt_0001",
+        "rowId": "source_provenance_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      },
+      "no_hidden_retune_witness": {
+        "id": "no_hidden_retune_cmb_source_chain_attempt_0001",
+        "rowId": "no_hidden_retune_cmb_source_chain_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_therm_CMB_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md",
+        "thetaSrcId": "theta_src_CMB_source_to_decoupling_attempt_0001",
+        "sourceFamilyId": "theta_therm_CMB_source_to_decoupling_family_attempt_0001",
+        "sourceWindowId": "W_CMB_source_to_decoupling_attempt_0001",
+        "thermalProvenanceId": "theta_therm_prov_CMB_source_to_decoupling_attempt_0001",
+        "eventLedgerId": "cmb_source_to_decoupling_event_ledger_attempt_0001",
+        "transportPathId": "cmb_source_to_decoupling_transport_path_attempt_0001"
+      }
+    },
+    "sharedKeys": [
+      {
+        "key": "theta_therm_id",
+        "values": [
+          "theta_therm_CMB_attempt_0001",
+          "theta_therm_CMB_attempt_0001",
+          "theta_therm_CMB_attempt_0001"
+        ]
+      },
+      {
+        "key": "rho_NS",
+        "values": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "key": "chi_sea",
+        "values": [
+          1.002,
+          1.002,
+          1.002
+        ]
+      },
+      {
+        "key": "Gamma_N",
+        "values": [
+          1.0000010100010202,
+          1.0000010100010202,
+          1.0000010100010202
+        ]
+      }
+    ],
+    "thermodynamicRecord": {
+      "stateSpace": {
+        "regionId": "W_CMB_source_to_decoupling_attempt_0001",
+        "coarseGrainingId": "Q_CMB_source_to_decoupling_attempt_0001",
+        "measureMass": 1
+      },
+      "deterministicPushforward": {
+        "mu_t": [
+          0.2,
+          0.3,
+          0.5
+        ],
+        "projected_pushforward_mu": [
+          0.18,
+          0.32,
+          0.5
+        ],
+        "mu_t_delta": [
+          0.18,
+          0.32,
+          0.5
+        ]
+      },
+      "collisionOperator": {
+        "source": "deterministic_unresolved",
+        "df_dt": [
+          0.01,
+          -0.01
+        ],
+        "C_eff": [
+          0.008,
+          -0.012
+        ],
+        "R_boltz": [
+          0.002,
+          0.002
+        ]
+      },
+      "entropyBalance": {
+        "dS_dt": 0.032,
+        "sigma_W": 0.04,
+        "boundary_flux": 0.01,
+        "R_Q": 0.002,
+        "deltaS_window": 0.03,
+        "deltaS_boundary_env": 0.01,
+        "epsilon_fluc": 0.001
+      },
+      "thermalizationDepth": {
+        "D_th": 12,
+        "minimum": 10,
+        "photon_chemical_potential": 0
+      },
+      "fluctuation": {
+        "covariance_symmetry_residual": 0,
+        "min_covariance_eigenvalue": 0.001
+      },
+      "sourceProvenance": {
+        "residual": 0
+      },
+      "noHiddenRetune": {
+        "maxResidual": 0
+      }
+    },
+    "negativeControls": [
+      {
+        "id": "entropy_without_boundary_balance",
+        "expectedFailedCheck": "entropyBalance",
+        "overrides": {
+          "entropyBalance": {
+            "dS_dt": 0.02
+          }
+        }
+      },
+      {
+        "id": "boltzmann_postulate_import",
+        "expectedFailedCheck": "collisionOperator",
+        "overrides": {
+          "collisionOperator": {
+            "source": "imported_postulate"
+          }
+        }
+      },
+      {
+        "id": "insufficient_thermalization_depth",
+        "expectedFailedCheck": "thermalizationDepth",
+        "overrides": {
+          "thermalizationDepth": {
+            "D_th": 0.5
+          }
+        }
+      },
+      {
+        "id": "hidden_thermo_retune",
+        "expectedFailedCheck": "noHiddenRetune",
+        "overrides": {
+          "noHiddenRetune": {
+            "maxResidual": 0.000001
+          }
+        }
+      }
+    ]
+  }
+}

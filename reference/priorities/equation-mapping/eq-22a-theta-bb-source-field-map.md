@@ -7,6 +7,7 @@
 - Source runner: [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs)
 - Source fixture: [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json)
 - Source-attempt fixture: [planck-alpha-braid-theta-bb-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-bb-source-attempt.v1.json)
+- Coordination-source negative control: [planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json)
 - Rows served: `EQ-22A`, with support from `EQ-12`, `EQ-12A`, `EQ-22`, and `EQ-25`
 - Claim level: candidate source-field map and attack card
 - Promotion status: priority-only
@@ -103,3 +104,10 @@ Expected result: `blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gam
 `scoreDecision=no_score_increase`, `blackbodyPass=true`, and all 15 negative controls
 passing. The same command with `--require-populated` must exit nonzero. Until the
 parent and child rows are accepted, the correct result remains no score movement.
+
+The shared Planck/alpha runner now rejects priority packets, generated files,
+attempt files, mock files, negative-control files, and temporary paths as
+accepted retained evidence. The coordination-source control marks
+`theta_gamma_packet` accepted-looking while sourcing it only to the theta-gamma
+priority packet; it must remain blocked at `missing_accepted_theta_gamma_packet`
+with the row reason `source_not_durable`.

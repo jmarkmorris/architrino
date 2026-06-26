@@ -7,6 +7,7 @@
 - Source runner: [eq25-thermodynamic-record-residual.mjs](../../../scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs)
 - Source fixtures:
   - [eq25-thermodynamic-record-attempt.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-attempt.v1.json)
+  - [eq25-thermodynamic-record-cmb-source-chain-attempt.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-cmb-source-chain-attempt.v1.json)
   - [eq25-thermodynamic-record-source-window-split-negative-control.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-source-window-split-negative-control.v1.json)
   - [eq25-thermodynamic-record-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-coordination-source-negative-control.v1.json)
 - Row served: `EQ-25`
@@ -51,6 +52,8 @@ The live attempt fixture declares:
 | `sharedKeys` | `theta_therm_id`, `rho_NS`, `chi_sea`, `Gamma_N` |
 
 The normal checker run reports `status=blocked_missing_rows`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_theta_therm`. Carrier binding, shared keys, numeric thermodynamic diagnostics, and all four negative controls pass, but every required evidence row remains attempt-level.
+
+The CMB source-chain attempt fixture [eq25-thermodynamic-record-cmb-source-chain-attempt.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-cmb-source-chain-attempt.v1.json) binds every required row to `theta_therm_CMB_attempt_0001`, one `theta_src`, one source family, one source-to-decoupling window, one coarse-graining id, one thermal-provenance id, one event ledger, and one transport path. It still keeps every row `attempt`, so the checker preserves `missing_accepted_theta_therm`; its value is source-chain shape, not evidence.
 
 ## Source Inventory
 
@@ -112,6 +115,7 @@ Expected result: `status=blocked_source_evidence`, `nextBlocker=accepted_without
 Create one durable source-backed `theta_therm` CMB carrier row, then run:
 
 ```sh
+node scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs --input scripts/equation-mapping/eq25-thermodynamic-record-cmb-source-chain-attempt.v1.json --summary --pretty
 node scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs --summary --pretty
 ```
 
