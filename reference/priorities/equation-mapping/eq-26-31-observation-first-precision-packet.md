@@ -418,6 +418,8 @@ nextBlocker: missing_accepted_ordered_frame_loop
 
 The fixture has the intended numeric shape, including $\eta_{\mathrm{spin}}=1$ and $g_{\mathrm{lead}}=2$, but all rows remain `attempt`. The checker therefore treats numeric leading-$g$ structure as non-score evidence until the ordered-frame loop, spin lift, gauge-control row, angular-momentum ledger, moment-map magnetic row, covering-degree row, and exposure-fiber residual are accepted and source-backed on the same record.
 
+The priority-only [EQ-15 And EQ-27 Ordered-Frame Loop Source-Field Map](eq-15-27-ordered-frame-loop-source-field-map.md) narrows the shared first blocker to one source-backed non-gauge `ordered_frame_loop` on a retained branch record. No score changes.
+
 ### Failure Mode
 
 `eq27.assigned_spin_label`: $g_\ell$ or $a_\ell$ is assigned from observer-level spin notation, the magnetic-state map changes between cyclotron and Larmor rows, QED loop diagrams are treated as literal substrate paths, electron/muon/tau anomalies require independent leading ledgers, or the checker reports `missing_accepted_ordered_frame_loop`, `missing_accepted_moment_map_magnetic`, or `blocked_leading_g_not_two`.

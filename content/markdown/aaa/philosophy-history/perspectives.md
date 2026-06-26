@@ -14,11 +14,11 @@ The witnesses below are grouped by area rather than by a single timeline. Within
 
 The chronology nevertheless has a ratchet structure. Michelson and Morley narrowed the admissible medium picture; Lienard and Wiechert left causal delay inside field calculation; the quantum settlement made operational success feel sufficient; particle physics turned hidden structure into representation data; cosmology converted redshift and background radiation into an origin chart; inflation repaired that chart rather than reopening its ontology. None of those moves was foolish in isolation. Together they pushed the assembly question into no recognized discipline.
 
-The recurring clues fall into a few families. The methodological family includes overhasty abstraction, anomaly management, research-program protection, abduction, crisis self-detection, root-cause analysis, Planck scale access limits, primitive ontology, the reality of time, and observation-to-theory contact. The structure-and-dynamics family includes geometry, recurrence, finite propagation, source-time point-charge causality, and the possibility that stable matter is a retained causal-return object. The relativity-and-invariance family includes interferometer null results, preferred-frame compensation, operational measurement, equivalence principle insight, invariance, background independence, quantum geometry, and extended-object consistency.
-
-The quantum-and-particle family includes hidden multiplicity, particle-wave duality, complementarity, pilot-wave realism, threshold discreteness, observable-only quantum mechanics, exclusion and matter stability, spinor structure, antimatter, record-channel paradoxes, nuclear identity, beta reaction bookkeeping, path histories, bootstrap consistency, collider event reconstruction, fractional charge, confinement, asymptotic freedom, mass-from-internal-energy, generation hierarchy, and nonlocal correlations. The cosmology-and-recycling family includes redshift mapping, metric expansion, redshift testing, low-acceleration galaxy regularities, cosmological-principle stress tests, dark-sector skepticism, dark-sector lensing maps, supermassive-black-hole seeding, black-hole signal astronomy, finite cosmic topology, background-radiation interpretation, temporal typicality, observer-selection framing, cosmological origin stories, inflationary repair, inflationary schism, bounce cosmology, compact-object collapse, black-hole thermodynamics, horizon complementarity, horizon encoding, black-hole entropy, and cyclic cosmology.
+The recurring clues fall into four arcs. Methodological witnesses show how successful abstractions can protect the wrong primitives and normalize open fractures. Source-and-dynamics witnesses keep returning to finite propagation, recurrence, retained causal history, and the possibility that stable matter is an assembly rather than a given particle. Observer-record witnesses show how measurement, invariance, quantum discreteness, gauge representation, and detector evidence can be real while remaining observer-level exports. Cosmology-and-recycling witnesses carry the same displacement to scale: redshift, background radiation, dark-sector inference, horizons, and black-hole thermodynamics become signs of source/release history rather than final proof that the effective chart is the ontology.
 
 ## Paradigms, Research Programs, And Anomalies
+
+This first arc asks why a field capable of extraordinary self-correction can still miss an architecture-level diagnosis. The witnesses here establish the method problem: successful abstraction, anomaly management, abductive discipline, scale access, and primitive ontology determine whether local success becomes a path to deeper explanation or a protection layer around the wrong primitives.
 
 Chapter One.
 
@@ -96,6 +96,8 @@ Maudlin's force in this chapter is that the foundational demand was never option
 
 ## Structure, Dynamics, And Causal Records
 
+This arc moves from method into the object that method failed to see. Geometry, recurrence, finite propagation, and delayed source history all approached a retained causal ledger, but each stopped short of treating stable matter as assembly dynamics built from architrinos, causal wakes, and source records.
+
 Chapter Six.
 
 ### William Thurston: Geometry Without The Ledger
@@ -157,6 +159,8 @@ The later failure of classical electron theory then overgeneralized the verdict.
 The rational reason is clear. Around 1900 the electron itself was new, atomic structure was not yet settled, nonlinear dynamics was not yet a standard many-body toolkit, and the computational means to explore branch-sensitive causal systems did not exist. Lienard and Wiechert leave the source-time conclusion intact: pre-relativistic physics already had a sharp causal-delay chart, but not the ontological reversal that point transceivers interacting through finite-speed history might generate assemblies, particles, and observer-level fields together.
 
 ## Relativity, Measurement, And Invariance
+
+This arc follows the moment when measurement law became so powerful that it could be mistaken for final ontology. The witnesses preserve the triumph of relativity, invariance, and operational reconstruction while asking what must be true of rods, clocks, signals, symmetries, and effective geometry for embedded observers to recover those laws.
 
 Chapter Ten.
 
@@ -257,6 +261,8 @@ The interface with the Architrino architecture is disciplined comparison. Keep t
 The string-theory line shows how a high-dimensional grammar for consistency can miss the low-level physical ledger that would make consistency constructive. The historical opportunity was to treat string theory as an interface laboratory, not as the final material of nature.
 
 ## Quantum Records, Nuclear Architecture, Gauge Charge, Generations, And Entanglement
+
+This middle arc follows record formation through quantum theory, nuclear physics, particle identity, gauge structure, and nonlocal correlation. Its pressure is cumulative: probability, discreteness, spin, charge, confinement, generations, detector records, and Bell constraints each remain real, but each reads differently when treated as an observer-level export of assembly dynamics.
 
 Chapter Sixteen.
 
@@ -499,6 +505,8 @@ The interpretive cost was that action-at-a-distance language remained close at h
 Bell's constraint remains severe in both registers. The current academic canon treats it as a theorem-governed limit on hidden-variable programs; the Architrino architecture treats it as a boundary condition for substrate realism, not an argument for giving up on substrate realism. The field learned that naive local factorization fails. It did not seriously reopen the possibility that the correct causal object is the whole-state record, not the separated measurement schematic.
 
 ## Cosmology, Expansion, And Recycling
+
+This final arc carries the same displacement to cosmic scale. Redshift, background radiation, dark-sector inference, inflation, horizons, black-hole thermodynamics, and cyclic cosmology are treated as successful effective maps whose missing substrate is source/release history, Noether sea evolution, and black-hole recycling.
 
 Chapter Thirty-Two.
 
