@@ -170,6 +170,8 @@ Recommend `3`. The variable map and residual grammar are explicit, but the nativ
 
 Build the residual vector $\mathbf R_{26}$ for one chosen hydrogen line set $\mathcal L_{\mathrm H}^{0}$ and require all entries to use the same $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$, $\Gamma_N^{(\ell)}$, $\chi_{\text{sea}}^{(\ell)}$, and $c_{\gamma,0}^{(\ell)}$.
 
+The priority-only [EQ-26 Hydrogen Spectral Carrier Source-Field Map](eq-26-hydrogen-spectral-carrier-source-field-map.md) narrows this first object to a two-line, two-resolution `theta_H_spec` contract for `H_alpha_3_to_2` and `H_beta_4_to_2`. No score changes.
+
 ### Failure Mode
 
 `eq26.per_line_fit`: $R_\infty$ or $\Gamma_N$ is retuned line by line, $(n,\ell,m)$ are used as inputs rather than recovered labels, $n$ and $\chi_{\text{sea}}$ collapse into one parameter, or reduced-mass/recoil/Lamb-shift terms are hidden inside the gross line fit.
@@ -265,6 +267,8 @@ This makes the strongest falsifier simple: derive $h_\vartheta$ from retained-or
 ### Executable Status
 
 [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) evaluates this as one sub-residual of the score-neutral Planck/alpha bundle. The attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json) blocks first at `missing_accepted_theta_gamma_packet`; after photon/action closure, the coupling-specific blockers are geometry-derived $h_\vartheta$, a scheme-pinned charge/current exposure convention, gauge covariance, charged-threshold inventory, and running rows.
+
+The priority-only [EQ-26A Theta-Alpha Source-Field Map](eq-26a-theta-alpha-source-field-map.md) narrows the local source-field route to a scheme-pinned `charge_exposure_row` before `alpha_coupling_row`, running, threshold, and no-retune rows are reviewed. No score changes.
 
 ### Failure Mode
 
@@ -924,6 +928,8 @@ $$
 with all entries consuming one $\Gamma_{e^\pm}$, $\mathcal V_{\mathrm{NS}}$, $G_{\text{grad}}$, $\mathcal R_{\Theta}^{\mathrm{syn}}$, and photon event ledger.
 
 Executable status: [eq29-radiation-source-ledger-residual.mjs](../../../scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs) implements this score-neutral synchrotron source-ledger residual. The attempt fixture [eq29-synchrotron-source-ledger-attempt.v1.json](../../../scripts/equation-mapping/eq29-synchrotron-source-ledger-attempt.v1.json) passes the power, characteristic-frequency, cooling, polarization, event-balance, source-provenance, hidden-retune, and negative-control diagnostics, but blocks first at `missing_accepted_radiation_source_carrier` because every row is still attempt-level.
+
+The priority-only [EQ-29 Radiation Source Carrier Source-Field Map](eq-29-radiation-source-carrier-source-field-map.md) narrows the first blocker to one mechanism-declared synchrotron source ledger on a single `radiation_source_carrier`. Photon Gate A/B output may be consumed by this carrier, but it cannot replace the source-mechanism row. No score changes.
 
 ### Failure Mode
 

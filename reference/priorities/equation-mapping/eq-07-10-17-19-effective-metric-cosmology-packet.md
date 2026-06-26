@@ -436,6 +436,8 @@ $\mathcal R_{\mathrm{null}}$ and $\mathcal R_{\mathrm{geo}}$ are terms inside th
 
 The weak-field metric side is now executable in [effective-metric-weak-field-residual.mjs](../../../scripts/equation-mapping/effective-metric-weak-field-residual.mjs). Its attempt fixture [effective-metric-weak-field-attempt.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-attempt.v1.json) blocks first at `missing_accepted_theta_W` while the static-response, shared-delay, weak-clock, Shapiro, lensing, acceleration, PPN, null/eikonal, geodesic-action, source-provenance, no-hidden-retune, and negative-control diagnostics pass. This makes the $\theta_W$ weak-field route fail closed without raising scores: accepted source-backed lapse, drift, spatial-compliance, signal-delay, cadence, weak-clock, redshift, Shapiro, lensing, acceleration, PPN/preferred-frame, null/eikonal, action-to-acceleration, source-provenance, and no-hidden-retune rows are still missing.
 
+The priority-only [EQ-10 Theta-W Source-Field Map](eq-10-theta-w-source-field-map.md) narrows the `EQ-10` consumer to the local null/eikonal and geodesic-action rows on the same accepted `theta_W` record required by `EQ-07` through `EQ-09`. No score changes.
+
 ## Failure Modes And Falsifiers
 
 | Failure mode | Falsifier |

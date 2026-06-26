@@ -62,17 +62,33 @@ Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column p
 
 [Equation Closure Pass 2026-06-23 AJ](equation-closure-pass-2026-06-23-aj.md) adds the score-neutral `EQ-07` through `EQ-10` weak-field effective-metric residual checker. It leaves the score table unchanged because the attempt fixture blocks first at `missing_accepted_theta_W`, even though its weak-clock, Shapiro, lensing, acceleration, PPN, null/eikonal, geodesic-action, source-provenance, hidden-retune, and negative-control diagnostics pass.
 
+[EQ-10 Theta-W Source-Field Map](eq-10-theta-w-source-field-map.md) narrows the `EQ-10` geodesic/proper-time consumer to the local null/eikonal and geodesic-action rows on one accepted `theta_W` weak-field record. No score changes.
+
 [Equation Closure Pass 2026-06-23 AK](equation-closure-pass-2026-06-23-ak.md) adds the score-neutral `EQ-11` weak-gravity constitutive residual checker. It leaves the score table unchanged because the attempt fixture blocks first at `missing_accepted_theta_11_20`, even though its Poisson, curvature, effective-coupling continuity, PPN-handoff, source-provenance, hidden-retune, and negative-control diagnostics pass.
 
 [Equation Closure Pass 2026-06-23 AL](equation-closure-pass-2026-06-23-al.md) adds the score-neutral `EQ-25` finite-window thermodynamic record checker. It leaves the score table unchanged because the attempt fixture blocks first at `missing_accepted_theta_therm`, even though its state-space, deterministic-pushforward, collision-operator, entropy-balance, thermalization-depth, fluctuation, source-provenance, hidden-retune, and negative-control diagnostics pass.
 
 [EQ-25 Theta-Therm CMB Source-Field Map](eq-25-theta-therm-cmb-source-field-map.md) narrows the `EQ-25` first blocker to one source-backed `theta_therm` CMB thermalization carrier compatible with `Theta_obs` / `Theta_therm/prov`. No score changes.
 
+[EQ-15 And EQ-27 Ordered-Frame Loop Source-Field Map](eq-15-27-ordered-frame-loop-source-field-map.md) narrows the shared ordered-frame loop first blocker to one source-backed non-gauge spin-lift and moment-map magnetic carrier on a retained branch record. No score changes.
+
+[EQ-16 Weak-Visible Branch Ledger Source-Field Map](eq-16-weak-visible-branch-ledger-source-field-map.md) narrows `EQ-16` to one source-backed weak-visible retained-domain ledger with projection, quotient, exposure, `V-A`, CKM/PMNS, provenance, covariance, reaction-event, and Noether sea rows. No score changes.
+
 [Equation Closure Pass 2026-06-23 AM](equation-closure-pass-2026-06-23-am.md) adds the score-neutral `EQ-12` photon packet-transfer residual checker. It leaves the score table unchanged because the attempt fixture blocks first at `missing_accepted_theta_gamma_packet`, even though its energy-frequency, null/eikonal, helicity, event-balance, path-frequency, source-provenance, hidden-retune, and negative-control diagnostics pass.
 
 [EQ-12 Theta-Gamma Packet Source Shell](eq-12-theta-gamma-packet-source-shell.md) narrows the shared `missing_accepted_theta_gamma_packet` blocker for `EQ-12`, `EQ-12A`, `EQ-22A`, `EQ-26A`, and downstream photon consumers. It defines the row-by-row accepted-object contract for one source-backed $\Theta_\gamma$ carrier and leaves all rows blocked/candidate-level. No score changes.
 
+[EQ-12A Retained Action-Period Source-Field Map](eq-12a-retained-action-period-source-field-map.md) narrows the dedicated action-period blocker to one source-backed equal-frequency retained branch with integer winding plateau, four-readout coincidence, and positive Floquet margin. It keeps the retained action-period carrier distinct from `theta_gamma_packet`. No score changes.
+
+[EQ-22A Theta-BB Source-Field Map](eq-22a-theta-bb-source-field-map.md) narrows the blackbody child route under `theta_gamma_packet` to `thermal_mode_counting_row`, `planck_occupancy_row`, and `temperature_clock_conversion_row` on one finite-window thermal photon carrier. No score changes.
+
+[EQ-26 Hydrogen Spectral Carrier Source-Field Map](eq-26-hydrogen-spectral-carrier-source-field-map.md) narrows the atomic spectral route to a two-line, two-resolution `theta_H_spec` contract for `H_alpha_3_to_2` and `H_beta_4_to_2`, distinct from photon packet, Compton Gate A, and alpha carriers. No score changes.
+
+[EQ-26A Theta-Alpha Source-Field Map](eq-26a-theta-alpha-source-field-map.md) narrows the fine-structure/running route to a scheme-pinned `charge_exposure_row` before `alpha_coupling_row`, threshold, running, and no-retune rows are reviewed. No score changes.
+
 [Equation Closure Pass 2026-06-23 AN](equation-closure-pass-2026-06-23-an.md) adds the score-neutral `EQ-29` synchrotron radiation source-ledger checker. It leaves the score table unchanged because the attempt fixture blocks first at `missing_accepted_radiation_source_carrier`, even though its source-ledger power, characteristic-frequency, cooling, polarization, event-balance, source-provenance, hidden-retune, and negative-control diagnostics pass.
+
+[EQ-29 Radiation Source Carrier Source-Field Map](eq-29-radiation-source-carrier-source-field-map.md) narrows the first blocker to one mechanism-declared synchrotron source ledger on a single `radiation_source_carrier`, keeping photon Gate A/B output as a consumer row rather than a substitute source mechanism. No score changes.
 
 [Equation Closure Pass 2026-06-24 A](equation-closure-pass-2026-06-24-a.md) adds conservative suffix rows `EQ-12A`, `EQ-22A`, and `EQ-26A` for Planck action, Planck blackbody/mode occupancy, and fine-structure coupling/running. It also adds the score-neutral [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) checker. The score table gains the new rows at `2` and no existing score changes, because the attempt fixture blocks first at `missing_accepted_theta_gamma_packet` even though its normalized Planck-action, blackbody, $\alpha(\mu)$, provenance, hidden-retune, and negative-control diagnostics pass. The Emmy Noether-style response to this packet supplied the first retained-action refinement; the 2026-06-24 B pass below supersedes the raw history-symplectic and fiber-product framing with retained-orbit reduction and sea-state fibration.
 

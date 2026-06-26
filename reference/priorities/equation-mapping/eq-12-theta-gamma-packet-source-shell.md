@@ -71,6 +71,8 @@ where $W$ is the retained finite window, $E$ is the emission/source endpoint, an
 
 `EQ-12A`, `EQ-22A`, and `EQ-26A` may consume $\Theta_\gamma$ as photon/action support, but it cannot by itself derive $h_\vartheta$, blackbody mode occupancy, or $\alpha(\mu)$. Those rows still require retained-orbit action, finite-window thermal record, and exposure/gauge-running evidence inside the Planck/alpha carrier.
 
+Priority-only child maps now keep those routes separate: [EQ-12A Retained Action-Period Source-Field Map](eq-12a-retained-action-period-source-field-map.md), [EQ-22A Theta-BB Source-Field Map](eq-22a-theta-bb-source-field-map.md), and [EQ-26A Theta-Alpha Source-Field Map](eq-26a-theta-alpha-source-field-map.md). No score changes.
+
 `EQ-28A` may consume $\Theta_\gamma$ as the incoming/outgoing photon packet handoff. It still owns a separate $\Theta_{\nu\text{-}\mathrm{ex}}(W)$ path-frequency exchange carrier with electron-medium, recoil/remnant, and thermal-state rows.
 
 ## Acceptance Tests, Not Ontology

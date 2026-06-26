@@ -290,3 +290,59 @@ No score changes.
 Rows through score `3` now mostly have first-pass or second-pass attack cards, but many still lack source-field maps. Immediate remaining low-score implementation targets are `ordered_frame_loop`, `weak_visible_branch_ledger`, retained action-period for `EQ-12A`, `EQ-22A` thermal photon mode-count/occupancy, `EQ-26A` alpha coupling/running, `radiation_source_carrier`, and the finite-window `W` accepted-object route. No score `4` rows have been reached.
 
 No score changes.
+
+## Checkpoint 4
+
+- Time: 2026-06-26 01:33 EDT.
+- Elapsed: about 66 minutes from required `git status --short --untracked-files=all`.
+- Agents completed since checkpoint 3:
+  - `EQ-07A` carrier/evidence pass: confirmed the compact-region route blocks first at `missing_accepted_compact_region_carrier`; Chandrasekhar, TOV, and compact-carrier fixtures are scaffolds only.
+  - `EQ-16A` carrier/evidence pass: confirmed the neutral-lepton route blocks first at `missing_accepted_neutral_lepton_retained_branch` and inherits `missing_accepted_raw_labeled_rows_preserved_on_retained_history` from `S_eq`.
+  - `EQ-26` hydrogen carrier pass: found no direct `EQ-26` checker; named the smallest likely first blocker as a missing accepted hydrogen spectral carrier, `theta_H_spec`.
+- Active agents at checkpoint:
+  - `Turing`: `EQ-07A` second-pass breakthrough scout.
+  - `Feynman`: `EQ-16A` second-pass breakthrough scout.
+  - `Galileo`: `EQ-26` hydrogen spectral second-pass scout.
+  - `Plato`: `EQ-22A`/`EQ-26A` child-blocker scout under `theta_gamma_packet`.
+  - `Darwin`: `EQ-11A` second-pass gravitational-wave source recovery scout.
+  - `Hooke`: `EQ-29` radiation-source-carrier scout.
+- Files edited since checkpoint 3:
+  - [eq-10-theta-w-source-field-map.md](eq-10-theta-w-source-field-map.md)
+  - [eq-07-10-17-19-effective-metric-cosmology-packet.md](eq-07-10-17-19-effective-metric-cosmology-packet.md)
+  - [equation-mapping.md](equation-mapping.md)
+  - this checkpoint file.
+- Current worktree note: `content/markdown/aaa/philosophy-history/perspectives.md` is modified outside this run's allowed edit scope and is being left untouched.
+- Validation:
+  - `node scripts/equation-mapping/spin-magnetic-moment-certificate.mjs --input scripts/equation-mapping/spin-magnetic-moment-certificate-attempt.v1.json --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_ordered_frame_loop`.
+  - `node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_weak_visible_branch_ledger`.
+  - `node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_retained_orbit_reduction_row`.
+  - `node scripts/equation-mapping/effective-metric-weak-field-residual.mjs --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_theta_W`.
+  - `node scripts/equation-mapping/effective-metric-weak-field-residual.mjs --require-populated --summary --pretty`: exited nonzero as the intended fail-closed result.
+  - `git diff --check`: passed.
+  - `node scripts/validate-content.mjs --check --strict`: passed.
+  - `node scripts/build-scene-graph.mjs --check --strict`: passed.
+
+### Coordinator Targets Completed Since Checkpoint 3
+
+| Cycle | Target | Result | Score decision |
+| --- | --- | --- | --- |
+| 10 | Add `EQ-12A`, `EQ-15`/`EQ-27`, and `EQ-16` source-field map links. | Linked the already-tracked retained action-period, ordered-frame loop, and weak-visible branch ledger maps from parent packets and the central index where needed. | No score changes. |
+| 11 | Add an `EQ-10` `theta_W` source-field map. | Added a priority-only accepted-object contract for the local null/eikonal and geodesic-action rows on the same `theta_W` record required by `EQ-07` through `EQ-09`. | No score changes. |
+
+### Best Breakthrough Candidates At Checkpoint 4
+
+| Rank | Candidate | Why it matters | Current first blocker |
+| --- | --- | --- | --- |
+| 1 | Shared accepted finite-window `W` for `EQ-14`/`EQ-30`/`EQ-31` | Three rows share one finite-window first blocker and remain the strongest low-score shared-carrier opportunity. | `missing_accepted_W` |
+| 2 | `theta_W` weak-field source record | Now has a compact `EQ-10` consumer map; one accepted record would also feed `EQ-07` through `EQ-09`, `EQ-11`, and redshift handoffs. | `missing_accepted_theta_W` |
+| 3 | `theta_sea_rho_NS` retained-window source for `EQ-24` | Best Noether sea coefficient bridge into pressure, low-acceleration, weak-gravity, and compact-region consumers. | `missing_accepted_theta_sea_rho_NS` |
+| 4 | `theta_gamma_packet` plus child carriers | Parent photon support can help `EQ-12`, `EQ-22A`, `EQ-26A`, and photon consumers, but `EQ-12A` action-period and `EQ-28A` path-frequency exchange remain separate carriers. | `missing_accepted_theta_gamma_packet` |
+| 5 | `ordered_frame_loop` for `EQ-15`/`EQ-27` | Tightest spin/magnetic score `2` carrier and a useful negative control for assigned spin labels. | `missing_accepted_ordered_frame_loop` |
+| 6 | `weak_visible_branch_ledger` for `EQ-16` | Narrow gauge-sector object with CKM/PMNS, provenance, covariance, reaction-event, and Noether sea rows on one weak-visible domain. | `missing_accepted_weak_visible_branch_ledger` |
+| 7 | `theta_H_spec` for `EQ-26` | Hydrogen two-line carrier could become the first atomic spectral source-field map without collapsing into photon identity or Compton Gate A. | `missing_accepted_theta_H_spec` candidate |
+
+### Remaining Queue After Checkpoint 4
+
+Active workers are still pursuing second passes for `EQ-07A`, `EQ-16A`, `EQ-26`, `EQ-22A`/`EQ-26A`, `EQ-11A`, and `EQ-29`. Remaining implementation candidates include `EQ-07A` compact-region source-field map, `EQ-16A` neutral-lepton source-field map, `EQ-26` hydrogen spectral source-field map, `EQ-22A`/`EQ-26A` child source maps, `EQ-29` radiation-source-carrier map, and the finite-window `W` accepted-object route.
+
+No score changes.
