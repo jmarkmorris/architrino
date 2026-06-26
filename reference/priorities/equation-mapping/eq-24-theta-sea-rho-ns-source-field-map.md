@@ -134,9 +134,19 @@ The most direct downstream consumer is `EQ-20`, because its pressure and effecti
 
 - `status_flip`: an accepted-looking row with the same pending source path must continue to fail at source concreteness.
 - `self_reference`: this map, the retained-attempt fixture, and the continuum-medium packet are coordination artifacts, not retained evidence for $\rho_{\text{NS}}$.
+- `authored_prose_source`: authored Noether sea prose defines variables and doctrine, but it is not retained-window coefficient evidence for $\rho_{\text{NS}}$.
 - `attempt_source_copy`: copying the fixture fields into a new source note without retained-window derivation must not satisfy the source-backed requirement.
 - `missing_output_substitution`: using `delta_N`, `delta_gamma_ij`, `delta_G_eff`, `delta_P_eff`, or `delta_a_star` as if they were derived must fail until those outputs are projected from the same row.
 - `speed_without_stress`: a speed row without a same-window stress/strain or metric-compliance row must remain below score-moving evidence.
+
+The coordination-source and authored-prose controls are executable:
+
+```sh
+node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-coordination-source-negative-control.v1.json --summary --pretty
+node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-authored-prose-source-negative-control.v1.json --summary --pretty
+```
+
+Both must keep `nextBlocker=missing_accepted_theta_sea_rho_NS` with `nextBlockerDetails.status=accepted_without_evidence_source`.
 
 ## Next Action
 

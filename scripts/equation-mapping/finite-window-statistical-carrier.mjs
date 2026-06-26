@@ -3,6 +3,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
+const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
+const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
 const INPUT_SCHEMA = "aaa-equation-map-finite-window-statistical-carrier-input/v1";
 const OUTPUT_SCHEMA = "aaa-equation-map-finite-window-statistical-carrier-check/v1";
 const DEFAULT_TOLERANCES = {
@@ -1271,6 +1273,19 @@ function rowFamilyStatus(id, rows) {
       reason: "row_family_source_not_found",
     };
   }
+  const firstMissingEvidenceSource = rows.find(
+    (row) =>
+      !sourceEvidenceReferenceExists(row.sourcePath) &&
+      !sourceEvidenceReferenceExists(row.source),
+  );
+  if (firstMissingEvidenceSource) {
+    return {
+      id,
+      status: "accepted",
+      accepted: false,
+      reason: "accepted_without_evidence_source",
+    };
+  }
   return {
     id,
     status: "accepted",
@@ -1339,6 +1354,19 @@ function corridorFamilyRowStatus(id, corridors) {
       reason: "corridor_source_not_found",
     };
   }
+  const firstMissingEvidenceSource = corridors.find(
+    (corridor) =>
+      !sourceEvidenceReferenceExists(corridor.sourcePath) &&
+      !sourceEvidenceReferenceExists(corridor.source),
+  );
+  if (firstMissingEvidenceSource) {
+    return {
+      id,
+      status: "accepted",
+      accepted: false,
+      reason: "accepted_without_evidence_source",
+    };
+  }
   return {
     id,
     status: "accepted",
@@ -1379,6 +1407,17 @@ function rowStatus(id, row) {
       status,
       accepted: false,
       reason: "row_source_not_found",
+    };
+  }
+  if (
+    !sourceEvidenceReferenceExists(row.sourcePath) &&
+    !sourceEvidenceReferenceExists(row.source)
+  ) {
+    return {
+      id,
+      status,
+      accepted: false,
+      reason: "accepted_without_evidence_source",
     };
   }
   return {
@@ -1733,6 +1772,7 @@ function rowBlockerDetails(id, rowStatuses, rowOrRows) {
     rowId: rowOrRows?.id ?? null,
     sourcePath,
     sourceReferenceExists: sourceReferenceExists(sourcePath),
+    sourceEvidenceReferenceExists: sourceEvidenceReferenceExists(sourcePath),
   };
 }
 
@@ -1783,6 +1823,7 @@ function rowFamilyBlockerDetails(id, rowStatus, rows) {
     firstRowLedgerStatus: firstRelevantRow?.ledgerStatus ?? null,
     firstRowSourcePath: sourcePath,
     firstRowSourceReferenceExists: sourceReferenceExists(sourcePath),
+    firstRowSourceEvidenceReferenceExists: sourceEvidenceReferenceExists(sourcePath),
   };
 }
 
@@ -1807,7 +1848,7 @@ function sourceReferenceExists(value) {
   if (!concreteString(value)) {
     return false;
   }
-  const resolvedPath = path.resolve(value.trim());
+  const resolvedPath = resolveSourcePath(value);
   if (isNonDurableSourcePath(resolvedPath)) {
     return false;
   }
@@ -1816,6 +1857,42 @@ function sourceReferenceExists(value) {
   } catch {
     return false;
   }
+}
+
+function sourceEvidenceReferenceExists(value) {
+  if (!sourceReferenceExists(value)) {
+    return false;
+  }
+  return isEvidenceSourcePath(resolveSourcePath(value));
+}
+
+function resolveSourcePath(value) {
+  const source = value.trim();
+  return path.isAbsolute(source) ? path.normalize(source) : path.resolve(REPO_ROOT, source);
+}
+
+function isEvidenceSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  if (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative)
+  ) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  const lowerBasename = path.basename(normalized).toLowerCase();
+  return !(
+    lowerBasename.includes("attempt") ||
+    lowerBasename.includes("mock") ||
+    lowerBasename.includes("negative-control")
+  );
 }
 
 function isNonDurableSourcePath(filePath) {

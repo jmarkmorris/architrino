@@ -20,6 +20,12 @@ const DEFAULT_TOLERANCES = {
   angularMomentum: 1e-9,
   gLead: 1e-12,
 };
+const ASSIGNED_SPIN_MARKERS = [
+  "assignedspin",
+  "observerformula",
+  "gq2ms",
+  "spinlabel",
+];
 
 const args = parseArgs(process.argv.slice(2));
 if (args.help) {
@@ -119,6 +125,10 @@ function evaluateCertificate(input, inputPath) {
     rows.covering_degree_g2,
     tolerances,
   );
+  const momentMapProvenance = evaluateMomentMapProvenance(
+    rows.moment_map_magnetic,
+    rows.covering_degree_g2,
+  );
   const exposureFiber = evaluateExposureFiber(rows.exposure_fiber_residual);
   const status = decideStatus({
     missingRows,
@@ -128,6 +138,7 @@ function evaluateCertificate(input, inputPath) {
     angularMomentum,
     momentMap,
     coveringDegree,
+    momentMapProvenance,
     exposureFiber,
   });
 
@@ -162,6 +173,7 @@ function evaluateCertificate(input, inputPath) {
         angularMomentum,
         momentMap,
         coveringDegree,
+        momentMapProvenance,
         exposureFiber,
       }),
       sameRecordPass: sameRecord.passed,
@@ -174,6 +186,8 @@ function evaluateCertificate(input, inputPath) {
       angularMomentumResidual: angularMomentum.residual,
       angularMomentumPass: angularMomentum.passed,
       momentMapPass: momentMap.passed,
+      momentMapProvenancePass: momentMapProvenance.passed,
+      momentMapProvenanceViolations: momentMapProvenance.violations.length,
       gLead: coveringDegree.gLead,
       gLeadResidual: coveringDegree.residual,
       gLeadPass: coveringDegree.passed,
@@ -199,6 +213,7 @@ function evaluateCertificate(input, inputPath) {
       angularMomentum,
       momentMap,
       coveringDegree,
+      momentMapProvenance,
       exposureFiber,
     },
   };
@@ -324,6 +339,50 @@ function evaluateCoveringDegree(row, tolerances) {
   };
 }
 
+function evaluateMomentMapProvenance(momentRow, coveringRow) {
+  const textFields = [
+    ["moment_map_magnetic.momentMapKind", momentRow?.momentMapKind],
+    ["moment_map_magnetic.formula", momentRow?.formula],
+    ["moment_map_magnetic.derivation", momentRow?.derivation],
+    ["moment_map_magnetic.proofKind", momentRow?.proofKind],
+    ["moment_map_magnetic.constructionKind", momentRow?.constructionKind],
+    ["covering_degree_g2.g2Derivation", coveringRow?.g2Derivation],
+    ["covering_degree_g2.derivation", coveringRow?.derivation],
+    ["covering_degree_g2.formula", coveringRow?.formula],
+    ["covering_degree_g2.coveringDegreeKind", coveringRow?.coveringDegreeKind],
+  ];
+  const violations = [];
+  for (const [field, value] of textFields) {
+    const normalized = normalizeMarkerText(value);
+    if (ASSIGNED_SPIN_MARKERS.some((marker) => normalized.includes(marker))) {
+      violations.push({
+        field,
+        reason: "assigned_spin_label",
+        value: String(value),
+      });
+    }
+  }
+  if (momentRow?.exposureCurrentIntegral === false) {
+    violations.push({
+      field: "moment_map_magnetic.exposureCurrentIntegral",
+      reason: "missing_exposure_current_integral",
+      value: false,
+    });
+  }
+  if (coveringRow?.coveringDegreeWitness === false) {
+    violations.push({
+      field: "covering_degree_g2.coveringDegreeWitness",
+      reason: "missing_covering_degree_witness",
+      value: false,
+    });
+  }
+  return {
+    passed: violations.length === 0,
+    violations,
+    firstViolation: violations[0] ?? null,
+  };
+}
+
 function evaluateExposureFiber(row) {
   const residual = finiteNumberOrNull(
     row?.R_fib ?? row?.exposureFiberResidual ?? row?.residual,
@@ -342,6 +401,7 @@ function decideStatus({
   angularMomentum,
   momentMap,
   coveringDegree,
+  momentMapProvenance,
   exposureFiber,
 }) {
   if (missingRows.length > 0) {
@@ -368,6 +428,9 @@ function decideStatus({
   if (!coveringDegree.passed) {
     return "blocked_leading_g_not_two";
   }
+  if (!momentMapProvenance.passed) {
+    return "blocked_assigned_spin_label";
+  }
   if (!exposureFiber.passed) {
     return "blocked_missing_exposure_fiber_residual";
   }
@@ -383,6 +446,7 @@ function firstBlocker({
   angularMomentum,
   momentMap,
   coveringDegree,
+  momentMapProvenance,
   exposureFiber,
 }) {
   if (status === "populated") {
@@ -411,6 +475,9 @@ function firstBlocker({
   }
   if (!coveringDegree.passed) {
     return "leading_g_not_two";
+  }
+  if (!momentMapProvenance.passed) {
+    return "eq27.assigned_spin_label";
   }
   if (!exposureFiber.passed) {
     return "missing_exposure_fiber_residual";
@@ -453,6 +520,13 @@ function concreteString(value) {
     !lowerText.includes("pending") &&
     !lowerText.includes("placeholder")
   );
+}
+
+function normalizeMarkerText(value) {
+  if (typeof value !== "string") {
+    return "";
+  }
+  return value.toLowerCase().replace(/[^a-z0-9]/g, "");
 }
 
 function sourceReferenceExists(value) {

@@ -7,7 +7,9 @@
   - [EQ-12 Through EQ-16A Photon, Quantum, Gauge, And Neutrino Packet](eq-12-16a-photon-quantum-gauge-neutrino-packet.md)
   - [EQ-26 And EQ-31 Observation-First Precision Packet](eq-26-31-observation-first-precision-packet.md)
 - Source runner: [spin-magnetic-moment-certificate.mjs](../../../scripts/equation-mapping/spin-magnetic-moment-certificate.mjs)
-- Source fixture: [spin-magnetic-moment-certificate-attempt.v1.json](../../../scripts/equation-mapping/spin-magnetic-moment-certificate-attempt.v1.json)
+- Source fixtures:
+  - [spin-magnetic-moment-certificate-attempt.v1.json](../../../scripts/equation-mapping/spin-magnetic-moment-certificate-attempt.v1.json)
+  - [spin-magnetic-moment-assigned-spin-g2-negative-control.v1.json](../../../scripts/equation-mapping/spin-magnetic-moment-assigned-spin-g2-negative-control.v1.json)
 - Rows served: `EQ-15` and `EQ-27`
 - Claim level: candidate source-field map and attack card
 - Promotion status: priority-only
@@ -66,6 +68,8 @@ Use `visible_so3_closure_import_without_non_gauge_lift`: a fixture supplies a cl
 
 The expected result is no score movement: first `missing_accepted_ordered_frame_loop`; after an accepted-looking but empty loop, `spin_lift_not_odd`, `gauge_residual`, `missing_moment_map`, or `eq27.assigned_spin_label`.
 
+The fixture `spin-magnetic-moment-assigned-spin-g2-negative-control.v1.json` isolates the assigned-spin branch: all rows are accepted-looking and numerically pass same-record, gauge, angular-momentum, nonzero moment-map, and $g_{\mathrm{lead}}=2$ checks, but the checker must return `blocked_assigned_spin_label` with `nextBlocker: eq27.assigned_spin_label`.
+
 ## Next Action
 
 Create one durable source-backed `ordered_frame_loop` row on a retained non-coplanar branch record, then run:
@@ -75,4 +79,3 @@ node scripts/equation-mapping/spin-magnetic-moment-certificate.mjs --input scrip
 ```
 
 Until that row exists, the correct result remains `missing_accepted_ordered_frame_loop`.
-

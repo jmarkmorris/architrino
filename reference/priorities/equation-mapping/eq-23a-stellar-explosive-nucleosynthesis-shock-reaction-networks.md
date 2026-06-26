@@ -8,6 +8,7 @@
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Source audit: [Equation Closure Pass 2026-06-25 B](equation-closure-pass-2026-06-25-b.md)
 - Parent packet: [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md)
+- Source fixture: [eq23a-explosive-source-window-identity-attempt.v1.json](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-attempt.v1.json)
 - Assigned ID: `EQ-23A`
 - Related corpus material: [BBN Constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), [Radiation](../../../content/markdown/aaa/reactions/radiation.md), [Black Holes](../../../content/markdown/aaa/spacetime/black-holes.md)
 - Claim level: observer-level explosive source-window benchmark, native carrier dictionary, and fail-closed residual target
@@ -85,6 +86,8 @@ with carrier fields:
 | `no_hidden_retune_witness` | No private state for shock, yield, radioactive, photon, or remnant rows. | Must vanish before residual comparison is evidence. |
 
 The first score-relevant object is an accepted `explosive_source_window_carrier`. No existing checker or fixture supplies it.
+
+The first checker-consumable identity shell is [eq23a-explosive-source-window-identity-attempt.v1.json](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-attempt.v1.json). It does not compute residuals and does not populate retained evidence. Its purpose is to freeze the shared `carrierId`, `thetaSrcId`, `thetaThermProvId`, `sourceWindowId`, `supportId`, `eventLedgerId`, Noether sea update id, readout interval id, and no-retune witness id that a future checker must require before scoring shock, yield, photon, remnant, or medium rows.
 
 ## Explosive Source Residual
 
@@ -168,6 +171,7 @@ The new work is the explosive-window delta: shock jump/blast, neutrino heating, 
 - Candidate breakthrough angle: reuse BBN source-window grammar while adding only explosive-window deltas.
 - Fail-closed negative control: `explosive.source_window_split`.
 - Next action smaller than broad report: build a source-field map for one candidate explosive source window; defer a checker until one blocked source-backed carrier shell exists.
+- Current implementation target: the identity shell now exists; the next smaller action is a checker that rejects `explosive.source_window_split` before residual arithmetic, while preserving `missing_accepted_explosive_source_window_carrier` as the ordinary first blocker.
 
 ## Promotion Classification
 

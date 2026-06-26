@@ -83,18 +83,25 @@ The best shared route is not to import one toy into another row. It is to choose
 
 The highest cross-row payoff comes from a scattering or resonance window whose detector/readout kernel can also support a record-current projection. The row still fails if the `EQ-14` density/current projection, `EQ-30` form-factor projection, or `EQ-31` corridor projection is missing or separately tuned.
 
+The first checker-consumable source-shaped candidate is [finite-window-statistical-carrier-eq31-pion-free-decay-attempt.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-free-decay-attempt.v1.json). It uses the free charged-pion weak-dissociation record as a candidate `EQ-31` branch window with concrete corridor, null-separatrix, refinement, and no-retune fields, while every retained row remains `attempt`. The finite-window checker computes the corridor rows and still reports `nextBlocker: missing_accepted_W`; `--require-accepted` exits nonzero as intended.
+
+The first accepted-looking source-missing control is [finite-window-statistical-carrier-eq30-elastic-source-missing-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-source-missing-negative-control.v1.json). It marks the `EQ-30` scattering and form-factor rows as accepted-looking and numerically passing, but points `W` at a missing source path. The checker must stop at `missing_accepted_W` with `reason: row_source_not_found`.
+
+The coordination-source control is [finite-window-statistical-carrier-eq30-elastic-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-coordination-source-negative-control.v1.json). It marks the same finite-window carrier rows as accepted-looking and numerically passing, but points `W` at this coordination map. The checker must still stop at `missing_accepted_W`, now with `reason: accepted_without_evidence_source`, `sourceReferenceExists=true`, and `sourceEvidenceReferenceExists=false`.
+
 ## Fail-Closed Controls
 
 | Control | Expected failure |
 | --- | --- |
 | `finite_window.toy_status_import` | A toy fixture with passing numeric residuals remains blocked at `missing_accepted_W`. |
-| `finite_window.source_missing` | Accepted-looking `W` with missing or non-durable source path fails at `row_source_not_found`. |
+| `finite_window.source_missing` | Accepted-looking `W` with missing or non-durable source path fails at `row_source_not_found`; the `EQ-30` source-missing fixture exercises this control. |
+| `finite_window.coordination_source` | Accepted-looking `W` with a source path that resolves only to a priority/source-field map fails at `accepted_without_evidence_source`; the `EQ-30` coordination-source fixture exercises this control. |
 | `eq14.measure_flow_split` | Density and current rows use different measure or flow ids; projection rows fail before continuity is interpreted. |
 | `eq30.amplitude_import` | Imported amplitude or form factor passes comparison numbers without one finite-window pushforward; elastic projection fails. |
 | `eq31.fitted_width` | Width, lifetime, or branching fractions are fitted independently of corridor measures; resonance projection fails. |
 
 ## Current Disposition
 
-The next implementation should locate or draft one checker-consumable candidate input with all rows still `attempt`, concrete ids, and durable source paths for a selected finite window. If a real source-backed `W` is found, rerun the finite-window checker with `--require-accepted` and expect the first blocker to advance to `missing_accepted_Phi_T` or the relevant row-specific projection blocker.
+The next implementation should either populate the charged-pion candidate with a genuinely accepted `W` row or create the corresponding accepted-looking source-missing negative control. If a real source-backed `W` is found, rerun the finite-window checker with `--require-accepted` and expect the first blocker to advance to `missing_accepted_Phi_T` or the relevant row-specific projection blocker.
 
 No score changes.

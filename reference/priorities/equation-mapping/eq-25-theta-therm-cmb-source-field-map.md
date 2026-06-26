@@ -5,7 +5,10 @@
 - Kind: `priority`
 - Parent: [EQ-06, EQ-24, And EQ-25 Continuum, Medium, And Thermodynamic Closure Packet](eq-06-24-25-continuum-medium-thermo-packet.md)
 - Source runner: [eq25-thermodynamic-record-residual.mjs](../../../scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs)
-- Source fixture: [eq25-thermodynamic-record-attempt.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-attempt.v1.json)
+- Source fixtures:
+  - [eq25-thermodynamic-record-attempt.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-attempt.v1.json)
+  - [eq25-thermodynamic-record-source-window-split-negative-control.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-source-window-split-negative-control.v1.json)
+  - [eq25-thermodynamic-record-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-coordination-source-negative-control.v1.json)
 - Row served: `EQ-25`
 - Claim level: candidate source-field map and attack card
 - Promotion status: priority-only
@@ -89,6 +92,20 @@ The first source-backed CMB thermalization object should list, without fitting n
 - `entropy_without_boundary_balance`: entropy production without boundary flux and coarse-graining residual fails the balance row.
 - `hidden_thermo_retune`: changing Noether sea keys between CMB, BBN, recombination, and local-radiation rows fails no-retune.
 - `theta_therm_private_W`: a CMB thermal row that does not embed or reference the same accepted finite-window family headed by `W` cannot be treated as the `EQ-25` carrier.
+- `theta_therm_CMB_source_window_split`: accepted-looking rows may pass numeric thermodynamic residuals, but if one row changes `sourceWindowId`, `eventLedgerId`, `thermalProvenanceId`, or transport identity, the checker must return `blocked_source_window_split` before any populated result.
+- `theta_therm_CMB_coordination_source`: accepted-looking rows may share carrier, source identity, shared keys, and numeric residuals, but if their `sourcePath` values point only to priority packets, attempt fixtures, mock fixtures, or negative-control fixtures, the checker must return `blocked_source_evidence` with `accepted_without_evidence_source` before any populated result.
+
+## 2026-06-26 Source-Evidence Guard
+
+The checker now separates resolving source paths from retained evidence paths. A row can still report `sourceReferenceExists=true` when its path exists in the repository, but accepted rows also need `sourceEvidenceReferenceExists=true` before the packet can populate. Priority packets and attempt/control fixtures are coordination material, not retained thermodynamic evidence.
+
+The coordination-source negative control verifies the new gate:
+
+```sh
+node scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs --input scripts/equation-mapping/eq25-thermodynamic-record-coordination-source-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_source_evidence`, `nextBlocker=accepted_without_evidence_source`, `sourceIdentityAccepted=true`, `thermodynamicNumericPass=true`, and `sourceEvidenceFailureCount=14`. Running the same fixture with `--require-populated` must exit nonzero.
 
 ## Next Action
 

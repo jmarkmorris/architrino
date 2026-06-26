@@ -69,6 +69,35 @@ Minimum source fields:
 - `response_record_mismatch_failure`: one line or resolution changes $\ln\chi_{\text{sea}}$ or another $\mathbf g_{N,\mathrm H}$ component while retaining local line fits.
 - `per_line_row_fitting`: each transition receives a private coefficient row.
 
+## 2026-06-26 Two-Line Source Report Contract
+
+The next checker-consumable object is a score-neutral source report, not an accepted row. It should name one carrier id, one weak homogeneous line-set id, and exactly the two initial lines `H_alpha_3_to_2` and `H_beta_4_to_2`.
+
+Minimum fields:
+
+| Field | Required value or role |
+| --- | --- |
+| `carrierId` | `theta_H_spec` or a concrete descendant id for $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$. |
+| `status` | `attempt` until the envelope gaps, response rows, event ledger, and retune witness have durable evidence sources. |
+| `sourcePath` | A durable evidence source for the hydrogen spectral carrier, not this coordination packet and not the toy fixture. |
+| `lineSetId` | One weak homogeneous hydrogen line-set id shared by both lines. |
+| `lines` | `H_alpha_3_to_2` and `H_beta_4_to_2`, each with recovered principal labels and a declared envelope-gap source. |
+| `g_N_H` | One shared $\mathbf g_{N,\mathrm H}^{(\ell)}$ record for both lines, preserving density, delay, scale, shape-ratio, and core-scale components. |
+| `staticResponseId` | One shared static response row for the same Noether sea cell. |
+| `photonSupport` | References to photon/action support rows only; these cannot replace `theta_H_spec`. |
+| `residualBudget` | Reduced mass, recoil, fine/hyperfine, Lamb/wake-dressing, and propagation residual slots kept outside $\Gamma_N$ unless explicitly populated. |
+| `retuneWitnessId` | One no-hidden-retune witness for both lines and both admissible resolutions. |
+
+The `observer_rydberg_import_without_hydrogen_carrier` negative control should use the same line labels and line-factor arithmetic while omitting source-backed envelope gaps, the shared $\mathbf g_{N,\mathrm H}^{(\ell)}$ record, the static response row, and the retune witness. The expected result is a line-factor match with no score movement and no accepted `theta_H_spec` row.
+
+Current targeted run:
+
+```sh
+node scripts/spacetime/hydrogen-gamma-n-spectral-row-toy-scan.mjs --pretty
+```
+
+reports `packet_expectations_pass=true`, `scenario_count=6`, `scenario_pass_count=2`, `scenario_fail_count=4`, and `expectation_fail_count=0`. This confirms the toy scaffold and failure witnesses are internally consistent; it does not supply retained evidence.
+
 ## Next Action
 
 Create a checker-consumable `theta_H_spec` source report for `H_alpha_3_to_2` and `H_beta_4_to_2`, then run:

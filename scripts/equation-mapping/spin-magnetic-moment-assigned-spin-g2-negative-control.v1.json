@@ -1,0 +1,75 @@
+{
+  "schema": "aaa-equation-map-spin-magnetic-certificate-input/v1",
+  "claimLevel": "accepted-looking assigned-spin g=2 negative control; score-neutral and not retained evidence",
+  "certificateId": "assigned-spin-g2-negative-control-0001",
+  "sameRecordId": "assigned-spin-g2-negative-control-record",
+  "tolerances": {
+    "gauge": 1e-12,
+    "angularMomentum": 1e-9,
+    "gLead": 1e-12
+  },
+  "rows": {
+    "ordered_frame_loop": {
+      "status": "accepted",
+      "rowId": "ordered-frame-loop-accepted-looking-negative-0001",
+      "sameRecordId": "assigned-spin-g2-negative-control-record",
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md",
+      "loopKind": "retained_ordered_frame_loop",
+      "holonomyClass": "nontrivial_z2",
+      "nonGaugeHolonomy": true
+    },
+    "spin_lift": {
+      "status": "accepted",
+      "rowId": "spin-lift-accepted-looking-negative-0001",
+      "sameRecordId": "assigned-spin-g2-negative-control-record",
+      "etaSpin": 1,
+      "doubledPathRestores": true,
+      "liftWitnessKind": "spin3_su2_double_cover",
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "gauge_control": {
+      "status": "accepted",
+      "rowId": "gauge-control-negative-0001",
+      "sameRecordId": "assigned-spin-g2-negative-control-record",
+      "deltaGauge": 0,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "angular_momentum_ledger": {
+      "status": "accepted",
+      "rowId": "angular-momentum-negative-0001",
+      "sameRecordId": "assigned-spin-g2-negative-control-record",
+      "deltaJ": 0,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "moment_map_magnetic": {
+      "status": "accepted",
+      "rowId": "assigned-spin-moment-map-negative-0001",
+      "sameRecordId": "assigned-spin-g2-negative-control-record",
+      "mu_E": [
+        0,
+        0,
+        1
+      ],
+      "momentMapKind": "assigned_spin_formula",
+      "formula": "g(q/2m)S",
+      "exposureCurrentIntegral": false,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "covering_degree_g2": {
+      "status": "accepted",
+      "rowId": "assigned-g2-negative-0001",
+      "sameRecordId": "assigned-spin-g2-negative-control-record",
+      "gLead": 2,
+      "g2Derivation": "assigned_spin_formula",
+      "coveringDegreeWitness": false,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "exposure_fiber_residual": {
+      "status": "accepted",
+      "rowId": "fitted-zero-fiber-negative-0001",
+      "sameRecordId": "assigned-spin-g2-negative-control-record",
+      "R_fib": 0,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    }
+  }
+}

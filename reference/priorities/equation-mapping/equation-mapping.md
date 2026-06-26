@@ -70,6 +70,8 @@ Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column p
 
 [EQ-25 Theta-Therm CMB Source-Field Map](eq-25-theta-therm-cmb-source-field-map.md) narrows the `EQ-25` first blocker to one source-backed `theta_therm` CMB thermalization carrier compatible with `Theta_obs` / `Theta_therm/prov`. No score changes.
 
+[EQ-21/EQ-22/EQ-23 Theta-Src Source-Field Map](eq-21-22-23-theta-src-source-field-map.md) narrows the shared-observation source-window route to `Theta_src` for growth, CMB, and BBN rows while keeping `EQ-32` blocked upstream by `theta_sea_rho_NS` and `delta_a_star`. No score changes.
+
 [EQ-15 And EQ-27 Ordered-Frame Loop Source-Field Map](eq-15-27-ordered-frame-loop-source-field-map.md) narrows the shared ordered-frame loop first blocker to one source-backed non-gauge spin-lift and moment-map magnetic carrier on a retained branch record. No score changes.
 
 [EQ-16 Weak-Visible Branch Ledger Source-Field Map](eq-16-weak-visible-branch-ledger-source-field-map.md) narrows `EQ-16` to one source-backed weak-visible retained-domain ledger with projection, quotient, exposure, `V-A`, CKM/PMNS, provenance, covariance, reaction-event, and Noether sea rows. No score changes.
@@ -155,6 +157,8 @@ Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column p
 [EQ-11A GW150914 Source-Field Map](eq-11a-gw150914-source-field-map.md) narrows the first source-window candidate for `missing_accepted_gw_source_carrier`. It maps `GW150914-v3` fields into the existing checker rows while keeping all rows candidate-level and preserving the gravitational-wave tensor channel boundary from photon and explosive-source carriers. No score changes.
 
 [EQ-28A Path-Frequency Exchange](eq-28a-path-frequency-exchange.md) is the third focused suffix packet from that pass. It assigns `EQ-28A` an initial score of `2`, adds the score-neutral inverse-Compton/SZ path-frequency residual checker, names `missing_accepted_path_frequency_exchange_carrier` as the first blocker, and keeps photon packet identity, signed frequency exchange, electron-medium state, recoil/remnant rows, finite-window thermal state, and SZ calibration on one required path carrier before any score movement.
+
+[EQ-28A Theta-Nu-Ex Source-Field Map](eq-28a-theta-nu-ex-source-field-map.md) narrows that first blocker to one source-backed `Theta_nu-ex` carrier and records the split path/medium no-retune control. No score changes.
 
 [EQ-22B Recombination And Acoustic Transfer](eq-22b-recombination-acoustic-transfer.md) is the fourth focused suffix packet from that pass. It assigns `EQ-22B` an initial score of `2`, adds the score-neutral recombination/acoustic residual checker, names `missing_accepted_recombination_acoustic_carrier` as the first blocker, and keeps Saha/Peebles recombination, Thomson visibility, sound horizon, Silk damping, acoustic transfer, BBN handoff, and observation readout on one required thermal/provenance carrier before any score movement. The checker now reports a row-level `sourceAudit` so stale source paths are visible even while the carrier remains attempt-level.
 

@@ -6,6 +6,7 @@
 - Parent: [EQ-12 Through EQ-16A Photon, Quantum, Gauge, And Neutrino Packet](eq-12-16a-photon-quantum-gauge-neutrino-packet.md)
 - Source runner: [weak-gauge-exposure-domain.mjs](../../../scripts/equation-mapping/weak-gauge-exposure-domain.mjs)
 - Source fixture: [weak-gauge-exposure-domain-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json)
+- Negative-control fixture: [weak-gauge-exposure-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-split-negative-control.v1.json)
 - Row served: `EQ-16`
 - Claim level: candidate source-field map and attack card
 - Promotion status: priority-only
@@ -66,7 +67,7 @@ Gauge and residual requirements:
 
 ## Fail-Closed Control
 
-Use `weak.hidden_domain_split`: an accepted-looking fixture with durable sources and zero numeric residuals changes `pmns_overlap_readout.domainId` or another readout domain. Numeric `V-A`, CKM, PMNS, provenance, and no-retune passes cannot override shared-domain identity.
+Use `weak.hidden_domain_split`: an accepted-looking fixture with durable sources and zero numeric residuals changes `pmns_overlap_readout.domainId` or another readout domain. Numeric `V-A`, CKM, PMNS, provenance, and no-retune passes cannot override shared-domain identity. The current fixture is [weak-gauge-exposure-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-split-negative-control.v1.json); it reports `nextBlocker: weak_hidden_domain_split` and exits nonzero under `--require-populated`.
 
 ## Next Action
 
@@ -77,4 +78,3 @@ node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equ
 ```
 
 Until that row exists, the correct result remains `missing_accepted_weak_visible_branch_ledger`.
-

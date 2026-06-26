@@ -5,7 +5,9 @@
 - Kind: `priority`
 - Parent: [EQ-26 Through EQ-31 Observation-First Precision Packet](eq-26-31-observation-first-precision-packet.md)
 - Source runner: [eq29-radiation-source-ledger-residual.mjs](../../../scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs)
-- Source fixture: [eq29-synchrotron-source-ledger-attempt.v1.json](../../../scripts/equation-mapping/eq29-synchrotron-source-ledger-attempt.v1.json)
+- Source fixtures:
+  - [eq29-synchrotron-source-ledger-attempt.v1.json](../../../scripts/equation-mapping/eq29-synchrotron-source-ledger-attempt.v1.json)
+  - [eq29-radiation-source-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-source-attempt.v1.json)
 - Related source prose: [Synchrotron](../../../content/markdown/aaa/reactions/synchrotron.md)
 - Row served: `EQ-29`
 - Claim level: candidate source-field map and attack card
@@ -84,7 +86,15 @@ Keep the existing controls as first-line guards:
 
 ## Next Action
 
-Create one durable, still-candidate `radiation_source_carrier` report for a single synchrotron event window, then run:
+The single-event source-attempt fixture is now:
+
+```sh
+node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-source-attempt.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_radiation_source_carrier`, `sourceLedgerNumericPass=true`, and six of six negative controls pass, including `gate_a_not_radiation_source_carrier`.
+
+Create one durable, accepted `radiation_source_carrier` evidence row for a single synchrotron event window, then run:
 
 ```sh
 node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --summary --pretty

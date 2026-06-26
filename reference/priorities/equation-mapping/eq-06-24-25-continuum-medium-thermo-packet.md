@@ -467,6 +467,10 @@ This bundle is the score-4 evidence object. It does not claim metric, weak-gravi
 
 The first accepted `theta_sea_rho_NS` / `rho_NS` row cannot be produced by changing the retained-attempt fixture's status field or by pointing that row back at the attempt fixture, this packet, or a prior audit note. Those files are durable coordination records, but they are not retained coefficient evidence for the density row. [Equation Closure Pass 2026-06-23 K](equation-closure-pass-2026-06-23-k.md) remains the current repo-side audit result: no existing repo evidence populates accepted retained rows for the Noether sea density-compression surface-slice reducer.
 
+The runner enforces this distinction directly. An accepted-looking retained row whose `sourcePath` resolves only to a priority packet, authored corpus prose, attempt fixture, mock fixture, or negative-control fixture now reports `accepted_without_evidence_source` and remains part of `missingThetaRows`; it does not move the first blocker. The fixture [noether-sea-density-compression-coordination-source-negative-control.v1.json](../../../scripts/spacetime/noether-sea-density-compression-coordination-source-negative-control.v1.json) exercises the coordination-packet version of this guard by pointing an accepted-looking row at this packet. The fixture [noether-sea-density-compression-authored-prose-source-negative-control.v1.json](../../../scripts/spacetime/noether-sea-density-compression-authored-prose-source-negative-control.v1.json) exercises the authored-prose version by pointing an accepted-looking row at [noether-sea.md](../../../content/markdown/aaa/spacetime/noether-sea.md).
+
+The retained evidence source needed later should be a dedicated retained-window evidence file, not a note or textbook chapter. Minimum evidence fields are `schema`, `windowId`, `ell`, `rowId`, `eventLedgerRef`, retained Noether braid inventory or hashed source rows, smoothing kernel/window, computed $\rho_{\text{NS}}$ projection, source event ledger, and `refinementFamilyId`.
+
 The strict retained-attempt run
 
 ```sh

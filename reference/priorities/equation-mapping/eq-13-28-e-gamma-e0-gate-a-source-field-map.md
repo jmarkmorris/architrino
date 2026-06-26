@@ -8,6 +8,7 @@
   - [EQ-26 And EQ-31 Observation-First Precision Packet](eq-26-31-observation-first-precision-packet.md)
 - Source runner: [compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs)
 - Source fixture: [compton-recoil-native-event-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json)
+- Source-attempt fixture: [compton-recoil-gate-a-source-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-source-attempt.v1.json)
 - Rows served: `EQ-13` and `EQ-28`
 - Claim level: candidate source-field map and attack card
 - Promotion status: priority-only
@@ -96,6 +97,19 @@ The `EQ-13` effective EM gate rows are downstream attempt rows:
 | `effective_gauge_chart_witness` | `effective-gauge-chart-witness-attempt` |
 | `photon_gate_C_compton_vertex_handoff` | `photon-gate-C-compton-vertex-handoff-attempt` |
 
+The current fail-closed source-evidence control is
+[compton-recoil-gate-a-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-coordination-source-negative-control.v1.json).
+It marks `photon_gate_A_input_output` as `accepted` while pointing the row to this
+priority map. The replay must still return `missing_accepted_photon_gate_A_input_output`
+with `accepted_without_evidence_source`, because a coordination packet is not retained
+event evidence.
+
+The current source-attempt payload is
+[compton-recoil-gate-a-source-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-source-attempt.v1.json).
+It adds concrete incoming/outgoing photon packet ids, frequency and wavelength rows,
+momentum rows, `h`/`c_gamma` row ids, null-branch status, and Gate A residual fields
+for `eventId=e_gamma_e_0`, but every row remains `attempt`.
+
 ## Gate A Accepted-Object Contract
 
 The first native row object contract remains controlled by [EQ-26 And EQ-31 Observation-First Precision Packet](eq-26-31-observation-first-precision-packet.md). A Gate A source object must be a structured retained row object, not the string `accepted`; it must use an accepted status, concrete `rowId`, durable resolving source reference, and `eventId=e_gamma_e_0`.
@@ -125,4 +139,19 @@ Create one durable source-backed `photon_gate_A_input_output` row for `e_gamma_e
 node scripts/equation-mapping/compton-recoil-event-replay.mjs --input scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json --summary --pretty
 ```
 
-Until a durable source-backed row exists, the correct result remains `missing_accepted_photon_gate_A_input_output`.
+To check the coordination-source negative control, run:
+
+```sh
+node scripts/equation-mapping/compton-recoil-event-replay.mjs --input scripts/equation-mapping/compton-recoil-gate-a-coordination-source-negative-control.v1.json --summary --pretty
+```
+
+To check the source-attempt payload, run:
+
+```sh
+node scripts/equation-mapping/compton-recoil-event-replay.mjs --input scripts/equation-mapping/compton-recoil-gate-a-source-attempt.v1.json --summary --pretty
+```
+
+Expected result: `comparison_replay_closed_native_rows_missing`,
+`scoreDecision=no_score_increase`, and `missing_accepted_photon_gate_A_input_output`.
+The same command with `--require-native-closed` must exit nonzero. Until a durable
+source-backed row exists, the correct result remains `missing_accepted_photon_gate_A_input_output`.

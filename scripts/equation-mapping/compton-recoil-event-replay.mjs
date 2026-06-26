@@ -3,6 +3,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
+const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
+const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
 const INPUT_SCHEMA = "aaa-equation-map-compton-recoil-event-input/v1";
 const OUTPUT_SCHEMA = "aaa-equation-map-compton-recoil-event-replay/v1";
 const EVENT_ID = "e_gamma_e_0";
@@ -708,6 +710,7 @@ function summarizeNativeRow(rowName, row, status, eventId) {
     rowId: row.rowId ?? null,
     sourcePath,
     sourceReferenceExists: sourceReferenceExists(sourcePath),
+    sourceEvidenceReferenceExists: sourceEvidenceReferenceExists(sourcePath),
     eventId: row.eventId ?? null,
     eventIdMatches: row.eventId === eventId,
     retainedReferencePresent:
@@ -819,6 +822,12 @@ function normalizeLedgerSupportStatus(row, eventId) {
   if (!sourceReferenceExists(row.sourcePath) && !sourceReferenceExists(row.source)) {
     return "accepted_without_existing_source";
   }
+  if (
+    !sourceEvidenceReferenceExists(row.sourcePath) &&
+    !sourceEvidenceReferenceExists(row.source)
+  ) {
+    return "accepted_without_evidence_source";
+  }
   if (row.eventId !== eventId) {
     return "accepted_event_id_mismatch";
   }
@@ -855,6 +864,12 @@ function normalizeNativeRowStatus(row, eventId) {
     }
     if (!sourceReferenceExists(row.sourcePath) && !sourceReferenceExists(row.source)) {
       return "accepted_without_existing_source";
+    }
+    if (
+      !sourceEvidenceReferenceExists(row.sourcePath) &&
+      !sourceEvidenceReferenceExists(row.source)
+    ) {
+      return "accepted_without_evidence_source";
     }
     if (row.eventId !== eventId) {
       return "accepted_event_id_mismatch";
@@ -991,7 +1006,7 @@ function sourceReferenceExists(value) {
   if (!concreteString(value)) {
     return false;
   }
-  const resolvedPath = path.resolve(value.trim());
+  const resolvedPath = resolveSourcePath(value);
   if (isNonDurableSourcePath(resolvedPath)) {
     return false;
   }
@@ -1002,6 +1017,20 @@ function sourceReferenceExists(value) {
   }
 }
 
+function sourceEvidenceReferenceExists(value) {
+  if (!sourceReferenceExists(value)) {
+    return false;
+  }
+  return isEvidenceSourcePath(resolveSourcePath(value));
+}
+
+function resolveSourcePath(value) {
+  const source = value.trim();
+  return path.isAbsolute(source)
+    ? path.normalize(source)
+    : path.resolve(REPO_ROOT, source);
+}
+
 function isNonDurableSourcePath(filePath) {
   const normalized = path.normalize(filePath);
   return (
@@ -1009,5 +1038,29 @@ function isNonDurableSourcePath(filePath) {
     normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
     normalized.includes(`${path.sep}content${path.sep}generated${path.sep}`) ||
     path.basename(normalized).includes(".tmp")
+  );
+}
+
+function isEvidenceSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  if (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative)
+  ) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  const lowerBasename = path.basename(normalized).toLowerCase();
+  return !(
+    lowerBasename.includes("attempt") ||
+    lowerBasename.includes("mock") ||
+    lowerBasename.includes("negative-control")
   );
 }

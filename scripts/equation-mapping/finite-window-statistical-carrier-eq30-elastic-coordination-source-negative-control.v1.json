@@ -1,0 +1,155 @@
+{
+  "schema": "aaa-equation-map-finite-window-statistical-carrier-input/v1",
+  "claimLevel": "accepted-looking EQ-30 elastic finite-window coordination-source negative control; score-neutral and not retained evidence",
+  "constants": {
+    "hbar": 1
+  },
+  "tolerances": {
+    "massClosure": 1e-12,
+    "invariance": 0.001,
+    "retune": 1e-12,
+    "detectorRefinement": 0.001,
+    "crossSection": 0.001,
+    "formFactorCovariance": 0.001,
+    "regimePurity": 0.001,
+    "refinement": 0.001
+  },
+  "carrier": {
+    "id": "C_stat_WT_eq30_elastic_coordination_source_negative_control_0001",
+    "row": "EQ-30",
+    "retainedStatus": "accepted",
+    "window": {
+      "id": "W_eq30_elastic_coordination_source_negative_control_0001",
+      "kind": "elastic_scattering_window_coordination_source_negative_control",
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "duration": 10,
+    "transitionMap": {
+      "id": "Phi_T_eq30_elastic_source_missing_negative_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "finiteMeasure": {
+      "id": "mu_star_T_eq30_elastic_source_missing_negative_control_0001",
+      "totalMass": 1,
+      "invarianceResidual": 0.0002,
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "coarseGraining": {
+      "id": "Q_eq30_elastic_source_missing_negative_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "detectorKernel": {
+      "id": "K_det_eq30_elastic_source_missing_negative_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "outcomePartition": {
+      "id": "B_eq30_elastic_source_missing_negative_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md",
+      "classes": [
+        "elastic_ep",
+        "inelastic_ep",
+        "lost"
+      ]
+    },
+    "noHiddenRetuneWitness": {
+      "id": "S_retune_eq30_elastic_source_missing_negative_control_0001",
+      "residual": 0,
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "refinementCompatibility": {
+      "parentWindowId": "W_eq30_elastic_source_missing_negative_control_parent",
+      "childWindowId": "W_eq30_elastic_source_missing_negative_control_0001",
+      "cocycleDefect": 0.0002,
+      "tolerance": 0.001,
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "preparedEnsemble": {
+      "id": "Gamma_a_eq30_elastic_source_missing_negative_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "fluxCalibration": {
+      "id": "Phi_in_eq30_elastic_source_missing_negative_control_0001",
+      "incomingFlux": 1,
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "detectedClassMeasures": [
+      {
+        "id": "elastic_ep_measure_eq30_source_missing_negative_control_0001",
+        "classId": "elastic_ep",
+        "measure": 0.2,
+        "detectorRefinementResidual": 0.0005,
+        "retainedStatus": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+      },
+      {
+        "id": "inelastic_ep_measure_eq30_source_missing_negative_control_0001",
+        "classId": "inelastic_ep",
+        "measure": 0.0005,
+        "detectorRefinementResidual": 0.0005,
+        "retainedStatus": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+      },
+      {
+        "id": "lost_measure_eq30_source_missing_negative_control_0001",
+        "classId": "lost",
+        "measure": 0.0005,
+        "detectorRefinementResidual": 0.0005,
+        "retainedStatus": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+      }
+    ],
+    "crossSectionComparisons": [
+      {
+        "id": "sigma_elastic_ep_eq30_source_missing_negative_control_0001",
+        "classId": "elastic_ep",
+        "targetSigma": 0.02,
+        "tolerance": 0.001,
+        "retainedStatus": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+      }
+    ],
+    "exposureDistribution": {
+      "id": "rho_exp_eq30_source_missing_negative_control_0001",
+      "measurePreservingQuotient": true,
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "formFactorSamples": [
+      {
+        "id": "F_Q_low_eq30_source_missing_negative_control_0001",
+        "qId": "q_low",
+        "F_Q": 0.96,
+        "F_rotated": 0.9604,
+        "tolerance": 0.001,
+        "retainedStatus": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+      },
+      {
+        "id": "F_Q_mid_eq30_source_missing_negative_control_0001",
+        "qId": "q_mid",
+        "F_Q": 0.73,
+        "F_rotated": 0.7303,
+        "tolerance": 0.001,
+        "retainedStatus": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+      }
+    ],
+    "regime": {
+      "id": "elastic_regime_eq30_source_missing_negative_control_0001",
+      "elasticClassId": "elastic_ep",
+      "inelasticLeakage": 0.0005,
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    }
+  }
+}
