@@ -98,6 +98,83 @@ No row has completed two substantive passes yet. All rows through score `3` rema
 
 No score changes.
 
+## Restart Checkpoint 7: Unscored Identity Checkers And Score-1 Route
+
+- Time: 2026-06-26 15:15 EDT.
+- Runtime status: active two-hour continuation; meaningful score `1`, score `2`, and second-sweep work remains.
+- Agents completed since Restart Checkpoint 6:
+  - `Descartes`: `EQ-07B` carrier/evidence pass; confirmed the score-neutral source-attempt shell is aligned with `missing_accepted_agn_accretion_release_carrier`.
+  - `Lovelace`: `EQ-07B` breakthrough-scout pass; recommended a release-selector identity checker and the `agn.radiation_child_promoted_to_parent` negative control.
+  - `Volta`: `EQ-23A` checker-contract pass; recommended a source-window identity checker that stops before residual arithmetic.
+  - `Euler`: `EQ-04A` carrier/evidence pass; confirmed the active first blocker is inherited from `EQ-02` through `EQ-04`: `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
+  - `Tesla`: `EQ-04A` breakthrough-scout pass; recommended a split-generation negative control and later mass-root-section probe over predicted shielding-energy products, not observed-mass fitting.
+- Coordinator targets completed since Restart Checkpoint 6:
+  - Added [eq23a-explosive-source-window-identity-check.mjs](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-check.mjs). The ordinary `EQ-23A` shell blocks at `missing_accepted_explosive_source_window_carrier`; `explosive.source_window_split` and `explosive.neutrino_private_heating` fail before residual arithmetic.
+  - Added [eq07b-agn-accretion-release-carrier-identity-check.mjs](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs). The ordinary `EQ-07B` shell blocks at `missing_accepted_agn_accretion_release_carrier`; `agn.jet_power_only_fit`, `agn.horizon_entropy_private_row`, `agn.noether_sea_feedback_missing`, and `agn.radiation_child_promoted_to_parent` fail before release residual arithmetic.
+  - Updated the `EQ-07B` and `EQ-23A` packets so the executable identity checks are discoverable.
+- Files edited since Restart Checkpoint 6:
+  - [eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md](eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md)
+  - [eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md](eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md)
+  - [eq07b-agn-accretion-release-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-source-attempt.v1.json)
+  - [eq07b-agn-accretion-release-carrier-identity-check.mjs](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs)
+  - [eq23a-explosive-source-window-identity-check.mjs](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-check.mjs)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/eq23a-explosive-source-window-identity-check.mjs --summary --pretty`: passed as score-neutral, with `nextBlocker=missing_accepted_explosive_source_window_carrier` and both negative controls passing.
+  - Same `EQ-23A` checker with `--require-populated`: exited nonzero as intended.
+  - `node scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs --summary --pretty`: passed as score-neutral, with `nextBlocker=missing_accepted_agn_accretion_release_carrier` and all four negative controls passing.
+  - Same `EQ-07B` checker with `--require-populated`: exited nonzero as intended.
+  - Full validation passed after the checker batch: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+### Best Breakthrough Candidates At Restart Checkpoint 7
+
+| Rank | Candidate | Why it matters | Current first blocker |
+| --- | --- | --- | --- |
+| 1 | `theta_sea_rho_NS` retained-window source object | Cross-row carrier for `EQ-24`, `EQ-20`, `EQ-32`, and Noether sea consumers. | `missing_accepted_theta_sea_rho_NS` |
+| 2 | `S_eq` retained-domain row object | Upstream accepted carrier needed before `EQ-04A` Koide/root-section diagnostics can count. | `missing_accepted_raw_labeled_rows_preserved_on_retained_history` |
+| 3 | `EQ-07B` AGN release-selector retained carrier | New unscored row now has executable split controls; next value is a real retained carrier source, not more prose. | `missing_accepted_agn_accretion_release_carrier` |
+| 4 | `EQ-23A` explosive source-window retained carrier | New unscored row now has executable source-window controls; next value is one accepted carrier shell with shock/yield/radiation/remnant rows. | `missing_accepted_explosive_source_window_carrier` |
+| 5 | finite-window charged-pion ladder | Existing probes reached `mu_star_T` and exposed `Q` as the next parent row. | `missing_accepted_Q` |
+
+No score changes.
+
+## Restart Checkpoint 6: Unscored Source Shells
+
+- Time: 2026-06-26 15:07 EDT.
+- Runtime status: active two-hour continuation; meaningful unscored, score `1`, and score `2` work remains.
+- Agents active since Restart Checkpoint 5:
+  - `Descartes`: `EQ-07B` carrier/evidence pass.
+  - `Lovelace`: `EQ-07B` breakthrough-scout pass.
+  - `Volta`: `EQ-23A` checker-contract pass.
+  - `Euler`: `EQ-04A` carrier/evidence pass.
+  - `Tesla`: `EQ-04A` breakthrough-scout pass.
+- Coordinator targets completed since Restart Checkpoint 5:
+  - Repaired the stale `EQ-23A` attack-card note so it points to the existing score-neutral identity shell.
+  - Added the `EQ-07B` AGN accretion-release carrier source-attempt identity shell with all rows still `attempt`.
+  - Linked the `EQ-07B` shell from the priority packet and sharpened the next action to a checker that rejects split release-state controls before residual arithmetic.
+- Files edited since Restart Checkpoint 5:
+  - [eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md](eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md)
+  - [eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md](eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md)
+  - [eq07b-agn-accretion-release-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-source-attempt.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `eq23a-explosive-source-window-identity-attempt.v1.json` parses as JSON and remains score-neutral with `nextBlocker=missing_accepted_explosive_source_window_carrier`.
+  - `eq07b-agn-accretion-release-carrier-source-attempt.v1.json` parses as JSON and remains score-neutral with `nextBlocker=missing_accepted_agn_accretion_release_carrier`.
+  - Full validation pending after this checkpoint batch.
+
+### Queue Notes At Restart Checkpoint 6
+
+The unscored queue now has two focused source shells:
+
+| Row | Status | First blocker | Smallest next action |
+| --- | --- | --- | --- |
+| `EQ-07B` | priority-only packet plus JSON identity shell; still absent from the main score table and ladder | `missing_accepted_agn_accretion_release_carrier` | Add a checker that rejects `agn.jet_power_only_fit`, `agn.horizon_entropy_private_row`, and `agn.noether_sea_feedback_missing` before residual arithmetic. |
+| `EQ-23A` | priority-only packet plus JSON identity shell; still absent from the main score table and ladder | `missing_accepted_explosive_source_window_carrier` | Add a checker that rejects `explosive.source_window_split` and `explosive.neutrino_private_heating` before residual arithmetic. |
+
+`EQ-28B` remains deferred because no concrete high-energy propagation consumer has appeared. `EQ-04A` is now under two-agent review as the score `1` row.
+
+No score changes.
+
 ## Restart Checkpoint 0
 
 - Time: 2026-06-26 14:19 EDT.
@@ -954,5 +1031,106 @@ The run stopped because of token-limit interruption, not because the score-1 thr
 3. Implement the `EQ-12A` retained action-period source-attempt fixture and dedicated source-evidence guard.
 4. Add a bounded `theta_bb` source-evidence guard only after a real durable mode-count source exists.
 5. Continue the `theta_sea_rho_NS` retained-window evidence search as the highest cross-row blocker.
+
+No score changes.
+
+## Restart Checkpoint 4: Two-Hour Continuation
+
+- Time: 2026-06-26 14:54 EDT.
+- Runtime status: active two-hour continuation after the operator correction; no early exhaustion claim.
+- Worktree status note: unrelated dirty files are present outside this equation-mapping batch (`content/generated/markdown/textbook/reading-copies/architrino-textbook.md`, `content/generated/markdown/textbook/reading-copies/philosophy-history.md`, `content/markdown/aaa/philosophy-history/perspectives.md`, and `reference/priorities/source-mining/source-mining-history.md`). This checkpoint does not touch or revert them.
+- Agents completed since Restart Checkpoint 3 and before this continuation:
+  - `EQ-31` finite-window follow-up: confirmed the `mu_star_T` source-evidence probe advances only to `missing_accepted_Q`; recommended a `mu_star_T` coordination-source control.
+  - Gate A `EQ-13`/`EQ-28` follow-up: confirmed a one-row Gate A source-evidence probe can advance only to `missing_accepted_photon_gate_B_transverse_handoff`, but a durable allowed evidence file is still needed before that probe is safe.
+  - `EQ-12A` retained action-period follow-up: provided the retained `S_eq` action-period source-attempt contract.
+  - `EQ-11A` gravitational-wave source follow-up: confirmed a one-row `gw_source_carrier` source-evidence probe advances only to `missing_accepted_theta_sea`.
+  - `EQ-24`/`EQ-20`/`EQ-32` Noether sea follow-up: confirmed `theta_sea_rho_NS` remains the cross-row first blocker and needs a retained-window source-attempt before any accepted-evidence claim.
+  - `EQ-30` score-2 target selection: ranked the elastic `W` source-evidence probe as the safest narrow implementation target.
+- Active agents at checkpoint:
+  - `EQ-22B` recombination/acoustic source-attempt scout.
+  - `EQ-16` weak-visible branch source-attempt scout.
+  - `EQ-15`/`EQ-27` ordered-frame-loop source-attempt scout.
+  - `EQ-24`/`EQ-20`/`EQ-32` `theta_sea_rho_NS` cross-row breakthrough scout.
+  - Live low-score queue refresh and unscored/suffix-row audit.
+- Coordinator targets completed in this continuation:
+  - Added the `EQ-31` `mu_star_T` source-evidence probe, preserving `no_score_increase` and advancing only to `missing_accepted_Q`.
+  - Added the `EQ-31` `mu_star_T` coordination-source negative control, keeping the blocker at `missing_accepted_mu_star_T` when `mu_star_T.sourcePath` points back to a priority map.
+  - Added the `EQ-12A` retained `S_eq` action-period source-attempt fixture, preserving `missing_accepted_retained_orbit_reduction_row`.
+  - Added the `EQ-30` elastic `W` source-evidence probe, preserving `no_score_increase` and advancing only to `missing_accepted_Phi_T`.
+  - Added the `EQ-11A` `gw_source_carrier` source-evidence probe, preserving `no_score_increase` and advancing only to `missing_accepted_theta_sea`.
+- Files edited in this continuation:
+  - [eq-11a-gw150914-source-field-map.md](eq-11a-gw150914-source-field-map.md)
+  - [eq-12a-retained-action-period-source-field-map.md](eq-12a-retained-action-period-source-field-map.md)
+  - [eq-14-30-31-finite-window-w-source-field-map.md](eq-14-30-31-finite-window-w-source-field-map.md)
+  - [eq11a-gravitational-wave-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-evidence-probe.v1.json)
+  - [eq12a-retained-action-period-source-attempt.v1.json](../../../scripts/equation-mapping/eq12a-retained-action-period-source-attempt.v1.json)
+  - [finite-window-statistical-carrier-eq30-elastic-w-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-w-source-evidence-probe.v1.json)
+  - [finite-window-statistical-carrier-eq31-pion-mu-star-t-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-mu-star-t-coordination-source-negative-control.v1.json)
+  - [finite-window-statistical-carrier-eq31-pion-mu-star-t-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-mu-star-t-source-evidence-probe.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-mu-star-t-source-evidence-probe.v1.json --summary --pretty`: passed as score-neutral, with `nextBlocker=missing_accepted_Q`.
+  - Same `EQ-31` `mu_star_T` probe with `--require-accepted`: exited nonzero as intended.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-mu-star-t-coordination-source-negative-control.v1.json --summary --pretty`: passed as fail-closed at `missing_accepted_mu_star_T` with `accepted_without_evidence_source`.
+  - Same `EQ-31` coordination-source control with `--require-accepted`: exited nonzero as intended.
+  - `node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --input scripts/equation-mapping/eq12a-retained-action-period-source-attempt.v1.json --summary --pretty`: passed as score-neutral, with `nextBlocker=missing_accepted_retained_orbit_reduction_row`.
+  - Same `EQ-12A` source-attempt with `--require-populated`: exited nonzero as intended.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-w-source-evidence-probe.v1.json --summary --pretty`: passed as score-neutral, with `nextBlocker=missing_accepted_Phi_T`.
+  - Same `EQ-30` `W` probe with `--require-accepted`: exited nonzero as intended.
+  - `node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-evidence-probe.v1.json --summary --pretty`: passed as score-neutral, with `nextBlocker=missing_accepted_theta_sea`.
+  - Same `EQ-11A` source-evidence probe with `--require-populated`: exited nonzero as intended.
+  - Full validation passed after the `EQ-31`/`EQ-12A`, `EQ-30`, and `EQ-11A` batches: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+### Best Breakthrough Candidates At Restart Checkpoint 4
+
+| Rank | Candidate | Why it matters | Current first blocker |
+| --- | --- | --- | --- |
+| 1 | `theta_sea_rho_NS` retained-window source object | Cross-row carrier for `EQ-24`, `EQ-20`, and later `EQ-32`; current controls now reject coordination/prose paths. | `missing_accepted_theta_sea_rho_NS` |
+| 2 | finite-window charged-pion ladder | `W`, `Phi_T`, and `mu_star_T` probes now isolate the next unaccepted parent row without score movement. | `missing_accepted_Q` after the `mu_star_T` probe |
+| 3 | `EQ-12A` retained `S_eq` action-period source | Smallest non-photon route to $h_\vartheta$; source-attempt contract is now checker-consumable. | `missing_accepted_retained_orbit_reduction_row` |
+| 4 | `EQ-11A` GW source carrier | The carrier and `gw_source_carrier` probe now expose `theta_sea` as the next native dependency. | `missing_accepted_theta_sea` after the source-evidence probe |
+| 5 | `EQ-30` elastic finite-window row | A one-row `W` probe now verifies the score-2 ladder before any form-factor evidence claim. | `missing_accepted_Phi_T` after the `W` probe |
+
+### Remaining Queue After Restart Checkpoint 4
+
+Meaningful work remains. The active agents may identify narrower artifacts for `EQ-22B`, `EQ-16`, `EQ-15`/`EQ-27`, and the unscored/suffix queue. The next implementation target should prefer a safe source-attempt or fail-closed control from those returns; otherwise the coordinator should build the Noether sea `theta_sea_rho_NS` retained-window source-attempt object.
+
+No score changes.
+
+## Restart Checkpoint 5: Source-Attempt Batch
+
+- Time: 2026-06-26 14:59 EDT.
+- Runtime status: active two-hour continuation; meaningful low-score and unscored work remains.
+- Agents completed since Restart Checkpoint 4:
+  - `EQ-22B` scout: recommended a JSON-only `Theta_rec/ac` source-attempt fixture with all rows still `attempt`.
+  - Live queue audit: confirmed no blank `6/23 b` rows; unscored/not-table rows remain `EQ-07B` and `EQ-23A`, while `EQ-28B` stays deferred absent a concrete high-energy propagation consumer.
+  - `EQ-16` scout: recommended a ledger-only weak-visible source-attempt fixture that should advance from `missing_accepted_weak_visible_branch_ledger` to `missing_accepted_weak_projection` if only the ledger is made accepted-looking.
+  - `EQ-15`/`EQ-27` scout: recommended a shared ordered-frame-loop source-attempt fixture, keeping `missing_accepted_ordered_frame_loop`.
+  - `theta_sea_rho_NS` cross-row scout: independently confirmed the new source-attempt fixture is the correct score-neutral field shape; the retained evidence search must still produce a durable non-priority evidence JSON before any accepted status.
+- Coordinator targets completed since Restart Checkpoint 4:
+  - Added the `theta_sea_rho_NS` retained-window source-attempt fixture under `scripts/spacetime/`, preserving `missing_accepted_theta_sea_rho_NS`.
+  - Added the `EQ-22B` recombination/acoustic source-attempt fixture with explicit source-window, thermal/provenance, readout-clock, photon-packet, neutrino-handoff, BBN-handoff, event-ledger, and no-hidden-retune witness ids, preserving `missing_accepted_recombination_acoustic_carrier`.
+- Files edited since Restart Checkpoint 4:
+  - [eq-22b-recombination-acoustic-transfer.md](eq-22b-recombination-acoustic-transfer.md)
+  - [eq-24-theta-sea-rho-ns-source-field-map.md](eq-24-theta-sea-rho-ns-source-field-map.md)
+  - [eq22b-recombination-acoustic-source-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-source-attempt.v1.json)
+  - [noether-sea-density-compression-rho-ns-source-attempt.v1.json](../../../scripts/spacetime/noether-sea-density-compression-rho-ns-source-attempt.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-rho-ns-source-attempt.v1.json --summary --pretty`: passed as score-neutral, with `nextBlocker=missing_accepted_theta_sea_rho_NS`.
+  - Same `theta_sea_rho_NS` source-attempt with `--require-populated`: exited nonzero as intended.
+  - `node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input scripts/equation-mapping/eq22b-recombination-acoustic-source-attempt.v1.json --summary --pretty`: passed as score-neutral, with `nextBlocker=missing_accepted_recombination_acoustic_carrier`.
+  - Same `EQ-22B` source-attempt with `--require-populated`: exited nonzero as intended.
+  - Full validation passed after both batches: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+### Queue Notes At Restart Checkpoint 5
+
+The unscored queue is not exhausted. `EQ-07B` has a focused priority packet and first blocker `missing_accepted_agn_accretion_release_carrier`; `EQ-23A` has a focused priority packet and source-attempt fixture but remains absent from the main score table and ladder. The `EQ-23A` packet has one stale note saying there is no direct script even though [eq23a-explosive-source-window-identity-attempt.v1.json](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-attempt.v1.json) exists.
+
+### Next Safe Targets
+
+1. Build the `EQ-16` weak-visible ledger-only source-attempt fixture and verify the checker advances one blocker without score movement.
+2. Build the `EQ-15`/`EQ-27` ordered-frame-loop source-attempt fixture and verify it remains blocked at `missing_accepted_ordered_frame_loop`.
+3. Repair the stale `EQ-23A` packet note and decide whether to integrate `EQ-23A`/`EQ-07B` into the main score table or keep them as unscored focused packets for this run.
 
 No score changes.

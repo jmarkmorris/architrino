@@ -8,6 +8,7 @@
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Source audit: [Equation Closure Pass 2026-06-25 B](equation-closure-pass-2026-06-25-b.md)
 - Parent packet: [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md)
+- Source fixture: [eq07b-agn-accretion-release-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-source-attempt.v1.json)
 - Assigned ID: `EQ-07B`
 - Related corpus material: [Black Holes](../../../content/markdown/aaa/spacetime/black-holes.md), [Dark Energy](../../../content/markdown/aaa/cosmology/dark-energy.md), [Radiation](../../../content/markdown/aaa/reactions/radiation.md)
 - Claim level: observer-level accretion/release benchmark, native carrier dictionary, and fail-closed residual target
@@ -155,7 +156,15 @@ This blocker should be resolved before adding an `EQ-07B` checker or score row. 
 - one horizon-interface label or horizon-thermodynamic comparison row when entropy or state-counting claims are included;
 - one no-hidden-retune witness across inflow, radiation, jet, feedback, and horizon rows.
 
-No existing script or fixture currently supplies this carrier.
+The first checker-consumable identity shell is [eq07b-agn-accretion-release-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-source-attempt.v1.json). It does not compute residuals and does not populate retained evidence. Its purpose is to freeze the shared `carrierId`, `thetaWId`, `sourceWindowId`, `releaseWindowId`, `supportId`, `eventLedgerId`, `noetherSeaLoadingId`, `releaseSelectorId`, `horizonInterfaceId`, `radiationChannelId`, `feedbackRowId`, and `retuneWitnessId` that a future checker must require before scoring inflow, radiation, jet, feedback, or horizon rows.
+
+The score-neutral identity checker is [eq07b-agn-accretion-release-carrier-identity-check.mjs](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs):
+
+```bash
+node scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs --summary --pretty
+```
+
+The current run returns `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_agn_accretion_release_carrier`, and `residualArithmeticEvaluated: false`. Its embedded negative controls reject `agn.jet_power_only_fit` as `blocked_release_selector_split`, `agn.horizon_entropy_private_row` as `blocked_horizon_interface_split`, `agn.noether_sea_feedback_missing` as `blocked_noether_sea_loading_missing`, and `agn.radiation_child_promoted_to_parent` as `blocked_carrier_split` before release residual arithmetic is evaluated.
 
 ## Candidate Breakthrough Angle
 
@@ -188,6 +197,7 @@ This object can test whether launch speed, collimation, radiation, baryon loadin
 | `agn.horizon_entropy_private_row` | Horizon entropy or area bookkeeping is fit by a row that is not bound to the inflow/release event ledger. |
 | `agn.noether_sea_feedback_missing` | Radiation and jet rows pass while the surrounding Noether sea loading/feedback row is absent. |
 | `agn.perpetual_recycling` | Outward release appears as free energy rather than redistribution from infalling matter, radiation, or pre-existing medium energy. |
+| `agn.radiation_child_promoted_to_parent` | A downstream EQ-29-style radiation carrier is promoted into the parent AGN release carrier while inflow, jet, horizon label, Noether sea loading, and feedback remain private or missing. |
 
 ## Attack Card Summary
 
@@ -195,10 +205,10 @@ This object can test whether launch speed, collimation, radiation, baryon loadin
 - Primary AAA carrier: $\Theta_{\mathrm{AGN}}(W,T)$ plus $\theta_W$, $\mathcal L_{E\mathbf p\mathbf J}$, Noether sea loading, release-channel rows, and $\mathcal B_H$.
 - Smallest score-moving evidence object: accepted `agn_accretion_release_carrier` with source-backed inflow, accretion, jet, radiation, feedback, horizon-label, event-ledger, and no-retune rows.
 - Exact first blocker: `missing_accepted_agn_accretion_release_carrier`.
-- Existing scripts/fixtures/packets found: no direct `EQ-07B` script; related consumers include effective-metric, pressure/effective-$\Lambda$, radiation source-ledger, and finite-window thermodynamic runners.
+- Existing scripts/fixtures/packets found: [eq07b-agn-accretion-release-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-source-attempt.v1.json) is the score-neutral identity shell, and [eq07b-agn-accretion-release-carrier-identity-check.mjs](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs) enforces AGN source/release identity before residual arithmetic; related consumers include effective-metric, pressure/effective-$\Lambda$, radiation source-ledger, and finite-window thermodynamic runners.
 - Candidate breakthrough angle: start with the existing AGN release-channel selector and force launch, collimation, radiation, and feedback onto one state before horizon thermodynamics.
 - Fail-closed negative control: jet/lobe/radiation fits that split inflow, Noether sea loading, angular-momentum drain, and feedback records.
-- Next action smaller than broad report: build one blocked source-backed carrier shell for `agn_accretion_release_carrier`, or defer checker creation until a concrete retained source row exists.
+- Next action smaller than broad report: build a retained-evidence search target for one `agn_accretion_release_carrier`, not a broader horizon-thermodynamics or jet-power report.
 
 ## Promotion Classification
 

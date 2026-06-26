@@ -1,0 +1,219 @@
+{
+  "schema": "aaa-equation-map-eq07b-agn-accretion-release-carrier-source-attempt/v1",
+  "claimLevel": "score-neutral EQ-07B AGN accretion-release carrier identity shell; attempt only, not retained evidence",
+  "row": "EQ-07B",
+  "carrier": {
+    "id": "theta_agn_accretion_release_attempt_0001",
+    "rowId": "agn_accretion_release_carrier_attempt_0001",
+    "status": "attempt",
+    "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md",
+    "sourceKind": "priority_identity_shell",
+    "sourceFamily": "EQ-07B AGN accretion-release",
+    "sourceRole": "carrier"
+  },
+  "sourceIdentity": {
+    "carrierId": "theta_agn_accretion_release_attempt_0001",
+    "thetaWId": "theta_W_agn_attempt_0001",
+    "sourceWindowId": "W_agn_strong_field_attempt_0001",
+    "releaseWindowId": "T_agn_release_attempt_0001",
+    "supportId": "Omega_agn_attempt_0001",
+    "eventLedgerId": "L_EpJ_agn_attempt_0001",
+    "noetherSeaLoadingId": "A_NS_agn_attempt_0001",
+    "releaseSelectorId": "Pi_AGN_attempt_0001",
+    "horizonInterfaceId": "B_H_agn_attempt_0001",
+    "radiationChannelId": "S_rad_agn_attempt_0001",
+    "feedbackRowId": "F_fb_agn_attempt_0001",
+    "retuneWitnessId": "S_retune_agn_attempt_0001"
+  },
+  "sharedKeys": [
+    "carrierId",
+    "thetaWId",
+    "sourceWindowId",
+    "releaseWindowId",
+    "supportId",
+    "eventLedgerId",
+    "noetherSeaLoadingId",
+    "releaseSelectorId",
+    "horizonInterfaceId",
+    "radiationChannelId",
+    "feedbackRowId",
+    "retuneWitnessId"
+  ],
+  "rows": {
+    "strong_field_parent_support": {
+      "status": "attempt",
+      "rowId": "theta_W_agn_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-07-10-17-19-effective-metric-cosmology-packet.md"
+    },
+    "inflow_accretion_row": {
+      "status": "attempt",
+      "rowId": "inflow_accretion_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
+    },
+    "mass_spin_readout_row": {
+      "status": "attempt",
+      "rowId": "mass_spin_readout_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
+    },
+    "radiation_output_row": {
+      "status": "attempt",
+      "rowId": "radiation_output_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "radiationChannelId": "S_rad_agn_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+    },
+    "jet_channel_row": {
+      "status": "attempt",
+      "rowId": "jet_channel_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "releaseSelectorId": "Pi_AGN_attempt_0001",
+      "radiationChannelId": "S_rad_agn_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
+    },
+    "wind_sheath_confinement_row": {
+      "status": "attempt",
+      "rowId": "wind_sheath_confinement_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "releaseSelectorId": "Pi_AGN_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
+    },
+    "noether_sea_loading_row": {
+      "status": "attempt",
+      "rowId": "noether_sea_loading_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "noetherSeaLoadingId": "A_NS_agn_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md"
+    },
+    "feedback_row": {
+      "status": "attempt",
+      "rowId": "feedback_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "feedbackRowId": "F_fb_agn_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
+    },
+    "horizon_interface_label_row": {
+      "status": "attempt",
+      "rowId": "horizon_interface_label_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "horizonInterfaceId": "B_H_agn_attempt_0001",
+      "sourcePath": "content/markdown/aaa/spacetime/black-holes.md"
+    },
+    "event_ledger_row": {
+      "status": "attempt",
+      "rowId": "event_ledger_agn_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "sourcePath": "content/markdown/aaa/validation/reaction-ledger.md"
+    },
+    "source_provenance": {
+      "status": "attempt",
+      "rowId": "source_provenance_agn_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "sourcePath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md"
+    },
+    "no_hidden_retune_witness": {
+      "status": "attempt",
+      "rowId": "no_hidden_retune_agn_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "noetherSeaLoadingId": "A_NS_agn_attempt_0001",
+      "releaseSelectorId": "Pi_AGN_attempt_0001",
+      "horizonInterfaceId": "B_H_agn_attempt_0001",
+      "radiationChannelId": "S_rad_agn_attempt_0001",
+      "feedbackRowId": "F_fb_agn_attempt_0001",
+      "retuneWitnessId": "S_retune_agn_attempt_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
+    }
+  },
+  "negativeControls": [
+    {
+      "id": "agn.jet_power_only_fit",
+      "expectedFailure": "release_selector_split_before_residual_scoring",
+      "mutation": {
+        "rows.jet_channel_row.releaseSelectorId": "Pi_AGN_private_jet_negative_control"
+      }
+    },
+    {
+      "id": "agn.horizon_entropy_private_row",
+      "expectedFailure": "horizon_interface_split_before_residual_scoring",
+      "mutation": {
+        "rows.horizon_interface_label_row.horizonInterfaceId": "B_H_private_horizon_negative_control"
+      }
+    },
+    {
+      "id": "agn.noether_sea_feedback_missing",
+      "expectedFailure": "noether_sea_loading_missing_before_feedback_scoring",
+      "mutation": {
+        "rows.noether_sea_loading_row.status": "missing"
+      }
+    },
+    {
+      "id": "agn.radiation_child_promoted_to_parent",
+      "expectedFailure": "carrier_split_before_residual_scoring",
+      "mutation": {
+        "rows.radiation_output_row.carrierId": "theta_rad_source_child_promoted_to_parent_negative_control",
+        "rows.radiation_output_row.sourceWindowId": "W_rad_private_child_negative_control",
+        "rows.radiation_output_row.eventLedgerId": "L_EpJ_rad_private_child_negative_control"
+      }
+    }
+  ],
+  "scoreDecision": "no_score_increase",
+  "nextBlocker": "missing_accepted_agn_accretion_release_carrier"
+}

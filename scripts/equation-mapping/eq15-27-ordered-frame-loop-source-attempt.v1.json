@@ -1,0 +1,85 @@
+{
+  "schema": "aaa-equation-map-spin-magnetic-certificate-input/v1",
+  "claimLevel": "EQ-15/EQ-27 ordered-frame-loop source attempt; score-neutral and not accepted retained evidence",
+  "certificateId": "spin-to-mu-source-attempt-0001",
+  "sameRecordId": "spin-to-mu-retained-record-source-attempt-0001",
+  "sourceIdentity": {
+    "retainedBranchId": "retained-noncoplanar-branch-source-attempt-0001",
+    "domainId": "D_spin_mu_source_attempt_0001",
+    "orderedFrameLoopId": "Phi-star-loop-source-attempt-0001",
+    "spinLiftId": "spin-lift-source-attempt-0001",
+    "exposureFiberId": "exposure-fiber-source-attempt-0001",
+    "retuneWitnessId": "S_retune_spin_mu_source_attempt_0001"
+  },
+  "tolerances": {
+    "gauge": 1e-12,
+    "angularMomentum": 1e-9,
+    "gLead": 1e-12
+  },
+  "rows": {
+    "ordered_frame_loop": {
+      "status": "attempt",
+      "rowId": "Phi-star-loop-source-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md",
+      "retainedBranchId": "retained-noncoplanar-branch-source-attempt-0001",
+      "domainId": "D_spin_mu_source_attempt_0001",
+      "loopMap": "Phi_star:S^1->SO(3)",
+      "holonomyClass": "nontrivial_z2",
+      "nonGaugeHolonomy": true,
+      "nonCoplanarRetainedBranchEvidence": "attempt"
+    },
+    "spin_lift": {
+      "status": "attempt",
+      "rowId": "spin-lift-source-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-attempt-0001",
+      "etaSpin": 1,
+      "doubledPathRestores": true,
+      "liftWitnessKind": "spin3_su2_double_cover_source_attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "gauge_control": {
+      "status": "attempt",
+      "rowId": "gauge-control-source-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-attempt-0001",
+      "deltaGauge": 0,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "angular_momentum_ledger": {
+      "status": "attempt",
+      "rowId": "angular-momentum-ledger-source-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-attempt-0001",
+      "deltaJ": 0,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "moment_map_magnetic": {
+      "status": "attempt",
+      "rowId": "moment-map-magnetic-source-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-attempt-0001",
+      "mu_E": [
+        0,
+        0,
+        1
+      ],
+      "momentMapKind": "exposure_current_integral_source_attempt",
+      "exposureCurrentIntegral": true,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "covering_degree_g2": {
+      "status": "attempt",
+      "rowId": "covering-degree-g2-source-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-attempt-0001",
+      "gLead": 2,
+      "g2Derivation": "covering_degree_source_attempt",
+      "coveringDegreeWitness": true,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "exposure_fiber_residual": {
+      "status": "attempt",
+      "rowId": "exposure-fiber-residual-source-attempt-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-attempt-0001",
+      "R_fib": 0.003,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    }
+  }
+}

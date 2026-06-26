@@ -208,6 +208,17 @@ The expected attempt run returns `schemaOk: true`, `status: blocked_missing_acce
 
 The runner also reports a compact `sourceAudit` for the required rows. The default attempt keeps every row source path durable and resolving, but this is only provenance hygiene: row status remains `attempt`. Accepted-looking rows with stale or missing source references still fail at the corresponding row before score movement; for example, a stale `theta_bb` source would surface as `missing_accepted_theta_bb`.
 
+## Source-Attempt Fixture
+
+The score-neutral source-attempt fixture is [eq22b-recombination-acoustic-source-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-source-attempt.v1.json):
+
+```bash
+node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input scripts/equation-mapping/eq22b-recombination-acoustic-source-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input scripts/equation-mapping/eq22b-recombination-acoustic-source-attempt.v1.json --summary --pretty --require-populated
+```
+
+This fixture makes the carrier contract executable without claiming retained evidence. It fixes one `commonCarrierId`, source-window id, thermal/provenance id, readout-clock id, photon-packet id, neutrino-handoff id, BBN-handoff id, event-ledger id, and no-hidden-retune witness id across the recombination/acoustic row map. Every row remains `attempt`, so the expected result remains `status: blocked_missing_accepted_recombination_acoustic_carrier`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_recombination_acoustic_carrier`. The `--require-populated` form must exit nonzero until a durable source-backed $\Theta_{\mathrm{rec/ac}}$ carrier exists.
+
 ## Promotion Disposition
 
 Classification: `priority-only`.

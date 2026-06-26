@@ -217,6 +217,16 @@ reduced run only when the reduced model is recorded. The run manifest must name:
 - validation obligations needed before the reduced result can stand in for a
   literal run.
 
+For many-body runs, a reduced model may keep a local active set literal while
+replacing distant dense populations or like-assembly regions with a statistical
+summary of omitted incoming causal-wake contributions. That summary is allowed
+only inside `explicit-reduced-model`: the manifest must record the omitted
+spatial or assembly region, the exact active set retained, the summary variables
+kept, the claim limit created by the reduction, and the validation replay window
+that compares the summary against smaller literal runs. It cannot stand in for
+branch-resolved causal-root, delayed-hit, or Jacobian evidence inside the active
+set.
+
 A simplified run may be useful for preview, playback, or a scoped diagnostic.
 It is not validation evidence for the omitted literal system unless a separate
 validation replay or equivalence argument is attached.

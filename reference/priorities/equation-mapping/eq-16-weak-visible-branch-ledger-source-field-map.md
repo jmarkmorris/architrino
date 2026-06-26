@@ -69,6 +69,19 @@ Gauge and residual requirements:
 
 Use `weak.hidden_domain_split`: an accepted-looking fixture with durable sources and zero numeric residuals changes `pmns_overlap_readout.domainId` or another readout domain. Numeric `V-A`, CKM, PMNS, provenance, and no-retune passes cannot override shared-domain identity. The current fixture is [weak-gauge-exposure-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-split-negative-control.v1.json); it reports `nextBlocker: weak_hidden_domain_split` and exits nonzero under `--require-populated`.
 
+## Ledger-Only Source-Attempt Probe
+
+The ledger-only source-attempt probe is [weak-gauge-exposure-domain-source-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json --summary --pretty --require-populated
+```
+
+The probe marks only `weak_visible_branch_ledger` as accepted-looking on `D_weak_visible_source_attempt_0001` / `A_weak_source_attempt_0001` while leaving projection, quotient, exposure, `V-A`, CKM, PMNS, provenance, covariance, reaction-event, and Noether sea rows at `attempt`. The expected result is `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_weak_projection`; the `--require-populated` form must exit nonzero.
+
+This is a ladder probe, not retained evidence. The current checker accepts rows by status and does not yet enforce durable source-evidence filtering for `sourcePath`, so this probe only confirms the next row in the weak-visible ladder.
+
 ## Next Action
 
 Create one durable source-backed `weak_visible_branch_ledger` row for `D_weak_visible_attempt_0001` / `A_weak_attempt_0001`, then run:

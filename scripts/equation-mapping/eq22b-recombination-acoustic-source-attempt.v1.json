@@ -1,0 +1,310 @@
+{
+  "schema": "aaa-equation-map-eq22b-recombination-acoustic-input/v1",
+  "claimLevel": "EQ-22B recombination-acoustic source attempt; score-neutral and not accepted retained evidence",
+  "residualId": "R_22B_recombination_acoustic_source_attempt_0001",
+  "commonCarrierId": "theta_rec_ac_source_attempt_0001",
+  "sourceIdentity": {
+    "sourceWindowId": "W_rec_ac_source_attempt_0001",
+    "thermalProvenanceId": "theta_therm_prov_source_attempt_0001",
+    "readoutClockId": "theta_read_source_attempt_0001",
+    "photonPacketId": "theta_gamma_packet_source_attempt_0001",
+    "neutrinoHandoffId": "theta_nu_handoff_source_attempt_0001",
+    "BBNHandoffId": "bbn_handoff_source_attempt_0001",
+    "eventLedgerId": "event_ledger_rec_ac_source_attempt_0001",
+    "retuneWitnessId": "no_hidden_retune_rec_ac_source_attempt_0001"
+  },
+  "carrier": {
+    "status": "attempt",
+    "id": "theta_rec_ac_source_attempt_0001",
+    "rowId": "theta-rec-ac-source-attempt-0001",
+    "sourceKind": "source_window_record",
+    "sourceFamily": "EQ-22B carrier shell",
+    "sourceRole": "carrier",
+    "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+  },
+  "tolerances": {
+    "carrier": 1e-12,
+    "saha": 1e-12,
+    "peebles": 1e-12,
+    "thomsonVisibility": 1e-12,
+    "soundHorizon": 1e-12,
+    "silkDamping": 1e-12,
+    "acousticTransfer": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12
+  },
+  "packet": {
+    "id": "theta_rec_ac_source_attempt_0001",
+    "sourceWindowId": "W_rec_ac_source_attempt_0001",
+    "thermalProvenanceId": "theta_therm_prov_source_attempt_0001",
+    "readoutClockId": "theta_read_source_attempt_0001",
+    "photonPacketId": "theta_gamma_packet_source_attempt_0001",
+    "neutrinoHandoffId": "theta_nu_handoff_source_attempt_0001",
+    "BBNHandoffId": "bbn_handoff_source_attempt_0001",
+    "eventLedgerId": "event_ledger_rec_ac_source_attempt_0001",
+    "retuneWitnessId": "no_hidden_retune_rec_ac_source_attempt_0001",
+    "constants": {
+      "hbar": 1,
+      "m_e": 1,
+      "k_B": 1,
+      "chi_H": 1,
+      "sigma_T": 1,
+      "c_gamma": 1
+    },
+    "rows": {
+      "recombination_acoustic_carrier": {
+        "status": "attempt",
+        "rowId": "recombination-acoustic-carrier-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "generic_corpus_anchor",
+        "sourceFamily": "EQ-22B carrier shell",
+        "sourceRole": "carrier",
+        "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+      },
+      "theta_src": {
+        "status": "attempt",
+        "rowId": "theta-src-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "generic_corpus_anchor",
+        "sourceFamily": "shared observation source window",
+        "sourceRole": "support",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      "theta_therm_prov": {
+        "status": "attempt",
+        "rowId": "theta-therm-prov-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "generic_corpus_anchor",
+        "sourceFamily": "thermal/provenance ledger",
+        "sourceRole": "support",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      "theta_read": {
+        "status": "attempt",
+        "rowId": "theta-read-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "generic_corpus_anchor",
+        "sourceFamily": "effective readout clock/projection",
+        "sourceRole": "support",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      "theta_bb": {
+        "status": "attempt",
+        "rowId": "theta-bb-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "generic_corpus_anchor",
+        "sourceFamily": "EQ-22A Planck/blackbody packet",
+        "sourceRole": "support",
+        "sourcePath": "content/markdown/aaa/cosmology/CMB.md"
+      },
+      "photon_channel": {
+        "status": "attempt",
+        "rowId": "photon-channel-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "source_shell",
+        "sourceFamily": "photon Gate A/B/C and action packet",
+        "sourceRole": "support",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "neutrino_channel": {
+        "status": "attempt",
+        "rowId": "neutrino-channel-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "generic_corpus_anchor",
+        "sourceFamily": "BBN/CMB neutrino handoff",
+        "sourceRole": "support",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      "noether_sea_state": {
+        "status": "attempt",
+        "rowId": "noether-sea-state-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "generic_corpus_anchor",
+        "sourceFamily": "CMB Noether sea state/readout",
+        "sourceRole": "support",
+        "sourcePath": "content/markdown/aaa/cosmology/CMB.md"
+      },
+      "recombination_kinetics_row": {
+        "status": "attempt",
+        "rowId": "recombination-kinetics-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "priority_packet",
+        "sourceFamily": "Saha/Peebles recombination kinetics",
+        "sourceRole": "computed_row",
+        "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+      },
+      "thomson_visibility_row": {
+        "status": "attempt",
+        "rowId": "thomson-visibility-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "priority_packet",
+        "sourceFamily": "Thomson visibility row",
+        "sourceRole": "computed_row",
+        "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+      },
+      "sound_horizon_row": {
+        "status": "attempt",
+        "rowId": "sound-horizon-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "generic_corpus_anchor",
+        "sourceFamily": "CMB acoustic sound-horizon row",
+        "sourceRole": "computed_row",
+        "sourcePath": "content/markdown/aaa/cosmology/CMB.md"
+      },
+      "silk_damping_row": {
+        "status": "attempt",
+        "rowId": "silk-damping-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "generic_corpus_anchor",
+        "sourceFamily": "CMB damping row",
+        "sourceRole": "computed_row",
+        "sourcePath": "content/markdown/aaa/cosmology/CMB.md"
+      },
+      "acoustic_transfer_row": {
+        "status": "attempt",
+        "rowId": "acoustic-transfer-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "generic_corpus_anchor",
+        "sourceFamily": "acoustic transfer/phase row",
+        "sourceRole": "computed_row",
+        "sourcePath": "content/markdown/aaa/cosmology/CMB.md"
+      },
+      "event_ledger": {
+        "status": "attempt",
+        "rowId": "event-ledger-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "priority_packet",
+        "sourceFamily": "finite-window event ledger",
+        "sourceRole": "provenance",
+        "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+      },
+      "source_provenance": {
+        "status": "attempt",
+        "rowId": "source-provenance-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "priority_packet",
+        "sourceFamily": "source/provenance residual",
+        "sourceRole": "provenance",
+        "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+      },
+      "no_hidden_retune_witness": {
+        "status": "attempt",
+        "rowId": "no-hidden-retune-source-attempt-0001",
+        "carrierId": "theta_rec_ac_source_attempt_0001",
+        "sourceKind": "priority_packet",
+        "sourceFamily": "shared-record retune witness",
+        "sourceRole": "retune_witness",
+        "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+      }
+    },
+    "recombinationSamples": [
+      {
+        "id": "normalized_recombination_cell_0001",
+        "temperature": 0.5,
+        "hydrogenDensity": 0.06076118509614393,
+        "x_e": 0.2,
+        "C_rec": 0.8,
+        "alpha_B": 0.3,
+        "beta_B": 0.02,
+        "dxedt": 0.012216692623077018
+      }
+    ],
+    "thomsonSamples": [
+      {
+        "id": "normalized_visibility_cell_0001",
+        "x_e": 0.2,
+        "hydrogenDensity": 0.06076118509614393,
+        "deltaTime": 2,
+        "H_eff": 0.012152237019228787,
+        "opticalDepth": 0.024304474038457573,
+        "visibility": 0.011860443596490702
+      }
+    ],
+    "acousticSamples": [
+      {
+        "id": "normalized_acoustic_cell_0001",
+        "baryonLoading": 0.25,
+        "deltaTime": 2,
+        "scaleFactor": 1,
+        "soundHorizon": 1.0327955589886444,
+        "k_D": 0.20201423510232458,
+        "k": 0.2,
+        "theta": 3,
+        "drive": 0.1,
+        "thetaSecondDerivative": 0.068
+      }
+    ],
+    "sourceProvenance": {
+      "maxResidual": 0
+    },
+    "noHiddenRetune": {
+      "sharedRecordId": "theta_rec_ac_source_attempt_0001",
+      "maxResidual": 0,
+      "perObservableCarrierCount": 1,
+      "perThermalReadoutRecordCount": 1,
+      "perFormulaFitHandleCount": 0
+    },
+    "negativeControls": [
+      {
+        "id": "fitted_recombination_fraction",
+        "expectedFailedCheck": "saha",
+        "mutations": [
+          {
+            "path": "recombinationSamples.0.x_e",
+            "value": 0.3
+          }
+        ]
+      },
+      {
+        "id": "decoupling_without_thomson_rate",
+        "expectedFailedCheck": "thomsonVisibility",
+        "mutations": [
+          {
+            "path": "thomsonSamples.0.H_eff",
+            "value": 0.02
+          }
+        ]
+      },
+      {
+        "id": "visibility_without_optical_depth",
+        "expectedFailedCheck": "thomsonVisibility",
+        "mutations": [
+          {
+            "path": "thomsonSamples.0.visibility",
+            "value": 0.012152237019228787
+          }
+        ]
+      },
+      {
+        "id": "private_baryon_loading_sound_horizon",
+        "expectedFailedCheck": "soundHorizon",
+        "mutations": [
+          {
+            "path": "acousticSamples.0.soundHorizon",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "id": "silk_damping_omitted",
+        "expectedFailedCheck": "silkDamping",
+        "mutations": [
+          {
+            "path": "acousticSamples.0.k_D",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "id": "split_thermal_readout_retune",
+        "expectedFailedCheck": "noHiddenRetune",
+        "mutations": [
+          {
+            "path": "noHiddenRetune.perThermalReadoutRecordCount",
+            "value": 2
+          }
+        ]
+      }
+    ]
+  }
+}

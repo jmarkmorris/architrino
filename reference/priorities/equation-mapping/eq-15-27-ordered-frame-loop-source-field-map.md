@@ -70,6 +70,17 @@ The expected result is no score movement: first `missing_accepted_ordered_frame_
 
 The fixture `spin-magnetic-moment-assigned-spin-g2-negative-control.v1.json` isolates the assigned-spin branch: all rows are accepted-looking and numerically pass same-record, gauge, angular-momentum, nonzero moment-map, and $g_{\mathrm{lead}}=2$ checks, but the checker must return `blocked_assigned_spin_label` with `nextBlocker: eq27.assigned_spin_label`.
 
+## Source-Attempt Fixture
+
+The score-neutral ordered-frame-loop source-attempt fixture is [eq15-27-ordered-frame-loop-source-attempt.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/spin-magnetic-moment-certificate.mjs --input scripts/equation-mapping/eq15-27-ordered-frame-loop-source-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/spin-magnetic-moment-certificate.mjs --input scripts/equation-mapping/eq15-27-ordered-frame-loop-source-attempt.v1.json --summary --pretty --require-populated
+```
+
+The fixture names one retained branch id, domain id, `Phi_star:S^1->SO(3)` loop, nontrivial $\mathbb Z/2$ holonomy class, spin-lift witness, exposure-current moment-map route, covering-degree witness, and exposure-fiber row on one `sameRecordId`. Every row remains `attempt`, so the expected result is `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_ordered_frame_loop`; the `--require-populated` form must exit nonzero.
+
 ## Next Action
 
 Create one durable source-backed `ordered_frame_loop` row on a retained non-coplanar branch record, then run:

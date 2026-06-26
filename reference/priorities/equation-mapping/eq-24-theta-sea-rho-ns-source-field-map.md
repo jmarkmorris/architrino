@@ -148,6 +148,17 @@ node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input
 
 Both must keep `nextBlocker=missing_accepted_theta_sea_rho_NS` with `nextBlockerDetails.status=accepted_without_evidence_source`.
 
+## Retained-Window Source-Attempt Fixture
+
+The score-neutral `rho_NS` source-attempt fixture is [noether-sea-density-compression-rho-ns-source-attempt.v1.json](../../../scripts/spacetime/noether-sea-density-compression-rho-ns-source-attempt.v1.json):
+
+```sh
+node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-rho-ns-source-attempt.v1.json --summary --pretty
+node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-rho-ns-source-attempt.v1.json --summary --pretty --require-populated
+```
+
+The fixture names `theta-sea-density-compression-rho-ns-source-attempt-0001`, `ell_rho_ns_source_attempt`, the retained inventory id, smoothing kernel id, projection formula, event ledger id, and refinement-family id for `theta_sea_rho_NS`. It also carries same-window row ids for the speed row, stress/strain row, acoustic/elastic agreement row, and retune witness. Every retained row remains `attempt`, so the expected result is still `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_theta_sea_rho_NS`. The priority-map `sourcePath` is a contract pointer, not accepted retained evidence.
+
 ## Next Action
 
 Create one durable source-backed `rho_NS` retained-window row, then run:

@@ -70,6 +70,17 @@ node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --inp
 
 This control marks the top-level `gw_source_carrier` candidate as accepted-looking while pointing the carrier `sourcePath` back to this priority source-field map. The intended result is `status: blocked_missing_accepted_gw_source_carrier`, `carrierReason: accepted_without_evidence_source`, and `scoreDecision: no_score_increase`. A source-field map can name `GW150914-v3` and the required row identities, but it cannot satisfy accepted retained evidence for $\Theta_{\mathrm{GWsrc}}(W,P)$.
 
+## Source-Evidence Probe
+
+The one-row source-evidence probe is [eq11a-gravitational-wave-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-evidence-probe.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-evidence-probe.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-evidence-probe.v1.json --summary --pretty --require-populated
+```
+
+The probe marks only the top-level carrier and `gw_source_carrier` row as accepted-looking against a guard-passing local GWOSC/LVK report source. It leaves `theta_sea`, the effective-metric tensor channel, event ledger, source rows, strain record, provenance row, and no-hidden-retune witness at `attempt`. The expected result is `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_theta_sea`; the `--require-populated` form must exit nonzero.
+
 ## Current Disposition
 
 The source map is ready for a checker-consumable attempt packet, not a score change. A future candidate input should preserve `status: attempt` until all row bindings are source-backed, durable, and accepted by the existing checker contract.

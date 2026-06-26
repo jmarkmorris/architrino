@@ -1,0 +1,152 @@
+{
+  "schema": "aaa-noether-sea-density-compression-surface-slice-input/v1",
+  "claimLevel": "theta_sea_rho_NS retained-window source attempt; score-neutral and not accepted retained evidence",
+  "window": {
+    "windowId": "theta-sea-density-compression-rho-ns-source-attempt-0001",
+    "ell": "ell_rho_ns_source_attempt",
+    "sourceAttempt": {
+      "sourceAttemptId": "theta-sea-rho-ns-source-attempt-0001",
+      "retainedInventoryId": "noether-sea-retained-inventory-rho-ns-source-attempt-0001",
+      "smoothingKernelId": "W_ell_rho_ns_source_attempt_0001",
+      "projectionFormula": "rho_NS(x,t)=sum_k m_N,k W_ell(x-X_k(t))",
+      "refinementFamilyId": "density-compression-refinement-family-rho-ns-source-attempt-0001",
+      "eventLedgerId": "event-ledger-rho-ns-source-attempt-0001",
+      "status": "attempt"
+    },
+    "thetaSeaRows": {
+      "rho_NS": {
+        "status": "attempt",
+        "rowId": "rho-NS-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+        "eventLedgerRef": "event-ledger-rho-ns-source-attempt-0001",
+        "retainedInventoryId": "noether-sea-retained-inventory-rho-ns-source-attempt-0001",
+        "smoothingKernelId": "W_ell_rho_ns_source_attempt_0001",
+        "projectionFormula": "rho_NS(x,t)=sum_k m_N,k W_ell(x-X_k(t))",
+        "refinementFamilyId": "density-compression-refinement-family-rho-ns-source-attempt-0001"
+      },
+      "n": {
+        "status": "attempt",
+        "rowId": "n-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+        "eventLedgerRef": "event-ledger-rho-ns-source-attempt-0001"
+      },
+      "u_sea": {
+        "status": "attempt",
+        "rowId": "u-sea-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+        "eventLedgerRef": "event-ledger-rho-ns-source-attempt-0001"
+      },
+      "e_sea": {
+        "status": "attempt",
+        "rowId": "e-sea-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+        "eventLedgerRef": "event-ledger-rho-ns-source-attempt-0001"
+      },
+      "theta_sea": {
+        "status": "attempt",
+        "rowId": "theta-sea-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+        "eventLedgerRef": "event-ledger-rho-ns-source-attempt-0001"
+      },
+      "f_N": {
+        "status": "attempt",
+        "rowId": "f-N-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+        "eventLedgerRef": "event-ledger-rho-ns-source-attempt-0001"
+      },
+      "event_ledger_ref": {
+        "status": "attempt",
+        "eventId": "event-ledger-rho-ns-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md"
+      }
+    }
+  },
+  "channel": {
+    "id": "X_density_compression_acoustic_rho_ns_source_attempt_0001",
+    "type": "acoustic"
+  },
+  "delta_ln_n": 0.001,
+  "jacobian": {
+    "delta_c_X_squared": 2.5,
+    "delta_C_ij_kl": {
+      "bulk": 1
+    },
+    "delta_N": null,
+    "delta_gamma_ij": null,
+    "delta_G_eff": null,
+    "delta_P_eff": null,
+    "delta_a_star": null
+  },
+  "coefficientChecks": {
+    "acousticElasticAgreement": {
+      "status": "attempt",
+      "rowId": "acoustic-elastic-agreement-rho-ns-source-attempt-0001",
+      "windowId": "theta-sea-density-compression-rho-ns-source-attempt-0001",
+      "ell": "ell_rho_ns_source_attempt",
+      "channelId": "X_density_compression_acoustic_rho_ns_source_attempt_0001",
+      "responseKernelId": "chi-AB-density-compression-rho-ns-source-attempt-0001",
+      "speedRowId": "speed-row-rho-ns-source-attempt-0001",
+      "stressStrainRowId": "stress-strain-row-rho-ns-source-attempt-0001",
+      "rhoRowId": "rho-NS-source-attempt-0001",
+      "retuneWitnessId": "retune-witness-rho-ns-source-attempt-0001",
+      "c_X_disp_squared": 2.5,
+      "C1111_X": 2.49,
+      "rho_NS": 1,
+      "epsilon_ref": 0.02,
+      "refinementFamilyId": "density-compression-refinement-family-rho-ns-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md"
+    }
+  },
+  "rows": {
+    "channel_declaration_row": {
+      "status": "attempt",
+      "rowId": "channel-row-rho-ns-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+      "channelId": "X_density_compression_acoustic_rho_ns_source_attempt_0001"
+    },
+    "speed_row": {
+      "status": "attempt",
+      "rowId": "speed-row-rho-ns-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+      "output": "delta_c_X_squared"
+    },
+    "stress_strain_row": {
+      "status": "attempt",
+      "rowId": "stress-strain-row-rho-ns-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+      "output": "delta_C_ij_kl"
+    },
+    "causality_row": {
+      "status": "attempt",
+      "rowId": "causality-row-rho-ns-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+      "residual": 0
+    },
+    "metric_embedding_row": {
+      "status": "declared_missing_output",
+      "rowId": "metric-embedding-row-rho-ns-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+      "missingOutput": "delta_gamma_ij"
+    },
+    "correlation_row": {
+      "status": "attempt",
+      "rowId": "correlation-row-rho-ns-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+      "sameWindow": true
+    }
+  },
+  "missing_outputs": [
+    "delta_N",
+    "delta_gamma_ij",
+    "delta_G_eff",
+    "delta_P_eff",
+    "delta_a_star"
+  ],
+  "retune": {
+    "status": "attempt",
+    "witnessId": "retune-witness-rho-ns-source-attempt-0001",
+    "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+    "residual": 0,
+    "changedRows": []
+  }
+}
