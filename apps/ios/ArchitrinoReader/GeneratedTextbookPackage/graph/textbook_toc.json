@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1464
+      "sections": 1465
     }
   },
   "tocRoot": {
@@ -7782,6 +7782,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "High-Energy Collision Records",
+                "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
+                "markdownSection": "High-Energy Collision Records",
+                "sectionKey": "high energy collision records",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Residual-Routing Event-Ledger Contract",
                 "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
                 "markdownSection": "Residual-Routing Event-Ledger Contract",
@@ -13436,32 +13444,32 @@
             ]
           },
           {
-            "id": "philosophy_history__perspectives",
-            "title": "Perspectives",
+            "id": "philosophy_history__treasure_physics_overlooked",
+            "title": "The Treasure Physics Overlooked",
             "kind": "scene-index",
             "sceneType": "Scene-Index",
-            "scenePath": "content/scenes/philosophy_history/perspectives.json",
+            "scenePath": "content/scenes/philosophy_history/treasure_physics_overlooked.json",
             "children": [
               {
-                "id": "philosophy_history__perspectives_overview",
-                "title": "Perspectives: A Chain Of Witnesses",
+                "id": "philosophy_history__treasure_physics_overlooked_overview",
+                "title": "The Treasure Physics Overlooked",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/perspectives/overview.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                "scenePath": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Opening Frame",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
-                    "markdownSection": "Opening Frame",
-                    "sectionKey": "opening frame",
+                    "title": "Why Physics Missed The Architecture Of The Universe",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
+                    "markdownSection": "Why Physics Missed The Architecture Of The Universe",
+                    "sectionKey": "why physics missed the architecture of the universe",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
                     "title": "Paradigms, Research Programs, And Anomalies",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
                     "markdownSection": "Paradigms, Research Programs, And Anomalies",
                     "sectionKey": "paradigms research programs and anomalies",
                     "headingLevel": 2
@@ -13469,7 +13477,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Structure, Dynamics, And Causal Records",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
                     "markdownSection": "Structure, Dynamics, And Causal Records",
                     "sectionKey": "structure dynamics and causal records",
                     "headingLevel": 2
@@ -13477,7 +13485,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Relativity, Measurement, And Invariance",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
                     "markdownSection": "Relativity, Measurement, And Invariance",
                     "sectionKey": "relativity measurement and invariance",
                     "headingLevel": 2
@@ -13485,7 +13493,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Quantum Records, Nuclear Architecture, Gauge Charge, Generations, And Entanglement",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
                     "markdownSection": "Quantum Records, Nuclear Architecture, Gauge Charge, Generations, And Entanglement",
                     "sectionKey": "quantum records nuclear architecture gauge charge generations and entanglement",
                     "headingLevel": 2
@@ -13493,7 +13501,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Cosmology, Expansion, And Recycling",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
                     "markdownSection": "Cosmology, Expansion, And Recycling",
                     "sectionKey": "cosmology expansion and recycling",
                     "headingLevel": 2
@@ -13501,7 +13509,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Closing Synthesis",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
                     "markdownSection": "Closing Synthesis",
                     "sectionKey": "closing synthesis",
                     "headingLevel": 2

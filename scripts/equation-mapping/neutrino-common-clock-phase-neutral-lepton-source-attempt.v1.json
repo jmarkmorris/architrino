@@ -1,0 +1,154 @@
+{
+  "schema": "aaa-equation-map-neutrino-common-clock-phase-input/v1",
+  "claimLevel": "EQ-16A neutral-lepton retained-branch source attempt; score-neutral and not accepted retained evidence",
+  "operatorId": "Theta_nu_16A_neutral_lepton_source_attempt_0001",
+  "commonCarrierId": "B_3B_nu_source_attempt_0001",
+  "sourceAttemptId": "nu_16A_neutral_lepton_retained_branch_source_attempt_0001",
+  "tolerances": {
+    "clock": 1e-12,
+    "trace": 1e-12,
+    "additivity": 1e-12,
+    "ratio": 1e-3,
+    "cancellation": 1e-6,
+    "residualNorm": 1e-12
+  },
+  "sourceAttempt": {
+    "expectedStatus": "blocked_missing_rows",
+    "expectedScoreDecision": "no_score_increase",
+    "expectedFirstBlocker": "missing_accepted_neutral_lepton_retained_branch",
+    "expectedInheritedSEqBlocker": "missing_accepted_raw_labeled_rows_preserved_on_retained_history",
+    "weakDomainId": "D_weak_visible_nu_source_attempt_0001",
+    "eventLedgerId": "L_EpJ_nu_source_attempt_0001",
+    "notes": [
+      "All rows remain attempt-level; this fixture only replaces pending source placeholders with repo-relative packet references.",
+      "The common clock factors out as f:f:f while observed phase gaps come from the residual operator.",
+      "The weak-domain rows share one domain id so the existing split-domain negative control remains the fail-closed guard."
+    ]
+  },
+  "rows": {
+    "neutral_lepton_retained_branch": {
+      "id": "B_3B_nu_source_attempt_0001",
+      "rowId": "neutral_lepton_retained_branch_nu_source_attempt_row",
+      "status": "attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-16a-neutrino-common-clock-phase-packet.md",
+      "carrierId": "B_3B_nu_source_attempt_0001",
+      "weakDomainId": "D_weak_visible_nu_source_attempt_0001",
+      "eventLedgerId": "L_EpJ_nu_source_attempt_0001"
+    },
+    "s_eq": {
+      "id": "S_eq_nu_source_attempt_0001",
+      "rowId": "s_eq_nu_source_attempt_row",
+      "status": "attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-16a-neutrino-common-clock-phase-packet.md",
+      "carrierId": "B_3B_nu_source_attempt_0001",
+      "nextBlocker": "missing_accepted_raw_labeled_rows_preserved_on_retained_history"
+    },
+    "common_clock": {
+      "id": "omega_f_C0_identity_source_attempt_0001",
+      "rowId": "common_clock_nu_source_attempt_row",
+      "status": "attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-16a-neutrino-common-clock-phase-packet.md",
+      "carrierId": "B_3B_nu_source_attempt_0001",
+      "frequencies": {
+        "I": 1,
+        "M": 1,
+        "O": 1
+      },
+      "identityTermFactorsOut": true,
+      "roleMapStatus": "candidate_I:M:O"
+    },
+    "residual_operator": {
+      "id": "H_nu_res_traceless_source_attempt_0001",
+      "rowId": "residual_operator_nu_source_attempt_row",
+      "status": "attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-16a-neutrino-common-clock-phase-packet.md",
+      "carrierId": "B_3B_nu_source_attempt_0001",
+      "tracelessEigenvalues": [
+        -11.5,
+        -10.5,
+        22
+      ],
+      "identityShiftInvariant": true
+    },
+    "phase_gaps": {
+      "id": "Delta_lambda_nu_source_attempt_0001",
+      "rowId": "phase_gaps_nu_source_attempt_row",
+      "status": "attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-16a-neutrino-common-clock-phase-packet.md",
+      "carrierId": "B_3B_nu_source_attempt_0001",
+      "delta21": 1,
+      "delta32": 32.5,
+      "delta31": 33.5,
+      "targetRatio": 32.5,
+      "phaseRateOrigin": "residual_phase_rate",
+      "staticPhaseSubstitutionRejected": true
+    },
+    "spectrum_shape": {
+      "id": "lambda_hat_nu_source_attempt_0001",
+      "rowId": "spectrum_shape_nu_source_attempt_row",
+      "status": "attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-16a-neutrino-common-clock-phase-packet.md",
+      "carrierId": "B_3B_nu_source_attempt_0001",
+      "ordering": "normal",
+      "expectedShape": "doublet_plus_singlet",
+      "equalSpacingRejected": true,
+      "normalizedTracelessTarget": [
+        -11.5,
+        -10.5,
+        22
+      ],
+      "normalizedTracelessActual": [
+        -11.5,
+        -10.5,
+        22
+      ]
+    },
+    "pmns_readout": {
+      "id": "U_read_PMNS_source_attempt_0001",
+      "rowId": "pmns_readout_nu_source_attempt_row",
+      "status": "attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-16a-neutrino-common-clock-phase-packet.md",
+      "carrierId": "B_3B_nu_source_attempt_0001",
+      "domainId": "D_weak_visible_nu_source_attempt_0001"
+    },
+    "weak_domain": {
+      "id": "weak_domain_nu_source_attempt_0001",
+      "rowId": "weak_domain_nu_source_attempt_row",
+      "status": "attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-16a-neutrino-common-clock-phase-packet.md",
+      "carrierId": "B_3B_nu_source_attempt_0001",
+      "domainId": "D_weak_visible_nu_source_attempt_0001",
+      "pmnsReadoutFromWeakDomain": true,
+      "importedMatrixRejected": true,
+      "sameWeakDomainForVA": true
+    },
+    "matter_correction": {
+      "id": "V_sea_nu_source_attempt_0001",
+      "rowId": "matter_correction_nu_source_attempt_row",
+      "status": "attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-16a-neutrino-common-clock-phase-packet.md",
+      "carrierId": "B_3B_nu_source_attempt_0001",
+      "domainId": "D_weak_visible_nu_source_attempt_0001",
+      "sameWeakDomain": true,
+      "sameUnitsAsVacuumResidual": true
+    },
+    "cancellation": {
+      "id": "R_nu_cancel_source_attempt_0001",
+      "rowId": "cancellation_nu_source_attempt_row",
+      "status": "attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-16a-neutrino-common-clock-phase-packet.md",
+      "carrierId": "B_3B_nu_source_attempt_0001",
+      "R_nu_cancel": 0,
+      "residualOperatorErased": false
+    },
+    "event_ledger": {
+      "id": "L_EpJ_nu_source_attempt_0001",
+      "rowId": "event_ledger_nu_source_attempt_row",
+      "status": "attempt",
+      "sourcePath": "reference/priorities/equation-mapping/eq-16a-neutrino-common-clock-phase-packet.md",
+      "carrierId": "B_3B_nu_source_attempt_0001",
+      "domainId": "D_weak_visible_nu_source_attempt_0001",
+      "eventLedgerId": "L_EpJ_nu_source_attempt_0001"
+    }
+  }
+}

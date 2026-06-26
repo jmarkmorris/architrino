@@ -6,6 +6,7 @@
 - Parent: [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md)
 - Source runner: [effective-metric-weak-field-residual.mjs](../../../scripts/equation-mapping/effective-metric-weak-field-residual.mjs)
 - Source fixture: [effective-metric-weak-field-attempt.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-attempt.v1.json)
+- Coordination-source control: [effective-metric-weak-field-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-coordination-source-negative-control.v1.json)
 - Row served: `EQ-10`, with upstream support from `EQ-07` through `EQ-09`
 - Claim level: candidate source-field map and attack card
 - Promotion status: priority-only
@@ -79,6 +80,8 @@ Keep the existing four controls as first-line guards:
 
 For `EQ-10`, the decisive negative control is `scalar_delay_half_lensing`: if spatial compliance is missing, a proper-time or geodesic fit is not an accepted source-field object even when acceleration-like numerics look right.
 
+The coordination-source control flips the weak-field rows to accepted-looking statuses while leaving their source paths on priority packets, authored AAA prose, attempt fixtures, or mocks. The checker must keep `nextBlocker=missing_accepted_theta_W` and report `accepted_without_evidence_source` for those rows. This prevents priority prose or existing attempt files from satisfying the retained-evidence contract.
+
 ## Next Action
 
 Create one durable source-backed `theta_W` report and run:
@@ -86,6 +89,7 @@ Create one durable source-backed `theta_W` report and run:
 ```sh
 node scripts/equation-mapping/effective-metric-weak-field-residual.mjs --summary --pretty
 node scripts/equation-mapping/effective-metric-weak-field-residual.mjs --require-populated --summary --pretty
+node scripts/equation-mapping/effective-metric-weak-field-residual.mjs --input scripts/equation-mapping/effective-metric-weak-field-coordination-source-negative-control.v1.json --summary --pretty
 ```
 
 Until that row exists, the correct result remains `missing_accepted_theta_W`.

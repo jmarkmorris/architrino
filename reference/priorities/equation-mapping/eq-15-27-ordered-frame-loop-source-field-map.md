@@ -9,6 +9,8 @@
 - Source runner: [spin-magnetic-moment-certificate.mjs](../../../scripts/equation-mapping/spin-magnetic-moment-certificate.mjs)
 - Source fixtures:
   - [spin-magnetic-moment-certificate-attempt.v1.json](../../../scripts/equation-mapping/spin-magnetic-moment-certificate-attempt.v1.json)
+  - [eq15-27-ordered-frame-loop-source-attempt.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-attempt.v1.json)
+  - [eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json)
   - [spin-magnetic-moment-assigned-spin-g2-negative-control.v1.json](../../../scripts/equation-mapping/spin-magnetic-moment-assigned-spin-g2-negative-control.v1.json)
 - Rows served: `EQ-15` and `EQ-27`
 - Claim level: candidate source-field map and attack card
@@ -68,7 +70,29 @@ Use `visible_so3_closure_import_without_non_gauge_lift`: a fixture supplies a cl
 
 The expected result is no score movement: first `missing_accepted_ordered_frame_loop`; after an accepted-looking but empty loop, `spin_lift_not_odd`, `gauge_residual`, `missing_moment_map`, or `eq27.assigned_spin_label`.
 
-The fixture `spin-magnetic-moment-assigned-spin-g2-negative-control.v1.json` isolates the assigned-spin branch: all rows are accepted-looking and numerically pass same-record, gauge, angular-momentum, nonzero moment-map, and $g_{\mathrm{lead}}=2$ checks, but the checker must return `blocked_assigned_spin_label` with `nextBlocker: eq27.assigned_spin_label`.
+The fixture `eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json` isolates the source-evidence branch: all rows are accepted-looking and numerically pass same-record, gauge, angular-momentum, nonzero moment-map, and $g_{\mathrm{lead}}=2$ checks, but every row points back to this priority map. The checker must return `blocked_source_evidence`, `nextBlocker: accepted_without_evidence_source`, and `sourceEvidenceFailureCount: 7`.
+
+The fixture `spin-magnetic-moment-assigned-spin-g2-negative-control.v1.json` isolates the assigned-spin branch once source evidence is real: its rows are accepted-looking and numerically pass same-record, gauge, angular-momentum, nonzero moment-map, and $g_{\mathrm{lead}}=2$ checks, but its moment-map and covering-degree fields import assigned spin notation. With the current priority-map source paths, the strengthened checker correctly stops earlier at `accepted_without_evidence_source`; a durable-source version of this control is required before the assigned-spin blocker should become the first failure again.
+
+## Source-Attempt Fixture
+
+The score-neutral ordered-frame-loop source-attempt fixture is [eq15-27-ordered-frame-loop-source-attempt.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/spin-magnetic-moment-certificate.mjs --input scripts/equation-mapping/eq15-27-ordered-frame-loop-source-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/spin-magnetic-moment-certificate.mjs --input scripts/equation-mapping/eq15-27-ordered-frame-loop-source-attempt.v1.json --summary --pretty --require-populated
+```
+
+The fixture names one retained branch id, domain id, `Phi_star:S^1->SO(3)` loop, nontrivial $\mathbb Z/2$ holonomy class, spin-lift witness, exposure-current moment-map route, covering-degree witness, and exposure-fiber row on one `sameRecordId`. Every row remains `attempt`, so the expected result is `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_ordered_frame_loop`; the `--require-populated` form must exit nonzero.
+
+The priority-source control is:
+
+```sh
+node scripts/equation-mapping/spin-magnetic-moment-certificate.mjs --input scripts/equation-mapping/eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json --summary --pretty
+node scripts/equation-mapping/spin-magnetic-moment-certificate.mjs --input scripts/equation-mapping/eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json --summary --pretty --require-populated
+```
+
+The expected result is `status: blocked_source_evidence`, `scoreDecision: no_score_increase`, `nextBlocker: accepted_without_evidence_source`, and nonzero exit under `--require-populated`.
 
 ## Next Action
 

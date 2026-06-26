@@ -861,7 +861,21 @@ function evaluateSourceReference(row) {
   if (/^https?:\/\//.test(source)) {
     return { accepted: true, reason: "source_url" };
   }
-  if (source.includes("/tmp/") || source.includes("content/generated/")) {
+  const normalized = source.split(path.sep).join("/");
+  const basename = path.basename(source).toLowerCase();
+  if (
+    normalized.includes("/tmp/") ||
+    normalized.startsWith("tmp/") ||
+    normalized.startsWith("content/markdown/aaa/") ||
+    normalized.includes("content/generated/") ||
+    normalized.startsWith("reference/priorities/") ||
+    basename.includes("attempt") ||
+    basename.includes("toy") ||
+    basename.includes("source-evidence-probe") ||
+    basename.includes("probe") ||
+    basename.includes("mock") ||
+    basename.includes("negative-control")
+  ) {
     return { accepted: false, reason: "source_not_durable" };
   }
   const resolved = path.resolve(REPO_ROOT, source);

@@ -1,0 +1,385 @@
+{
+  "schema": "aaa-equation-map-constant-delay-retained-orbit-input/v1",
+  "claimLevel": "score-neutral EQ-12A retained_orbit_reduction_row metadata-missing negative control; durable source path without retained-orbit support metadata must fail closed",
+  "certificateId": "R_EQ12A_retained_orbit_reduction_metadata_missing_control_0001",
+  "commonCarrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+  "sourceIdentity": {
+    "retainedRowSetId": "S_eq",
+    "retainedBranchId": "S_eq_equal_frequency_branch_source_attempt_0001",
+    "finiteWindowId": "W_S_eq_action_period_source_attempt_0001",
+    "supportId": "support_S_eq_action_period_source_attempt_0001",
+    "domainId": "domain_S_eq_action_period_source_attempt_0001",
+    "sourceProvenanceId": "source_provenance_S_eq_action_period_source_attempt_0001",
+    "noHiddenRetuneWitnessId": "no_hidden_retune_S_eq_action_period_source_attempt_0001"
+  },
+  "tolerances": {
+    "carrier": 1e-12,
+    "hopfResidual": 1e-10,
+    "transversality": 0.000001,
+    "stableRootMargin": 0.000001,
+    "firstLyapunov": 0.000001,
+    "monodromy": 1e-8,
+    "floquetGap": 0.000001,
+    "section": 1e-8,
+    "actionReadout": 1e-10,
+    "refinement": 1e-8,
+    "sweep": 1e-8,
+    "sweepMovingRange": 0.001,
+    "historyThroughput": 1e-8,
+    "nonResonance": 0.000001,
+    "negativeControl": 1e-12
+  },
+  "packet": {
+    "id": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+    "commonCarrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+    "rows": {
+      "retained_orbit_reduction_row": {
+        "id": "retained_orbit_reduction_source_attempt_0001",
+        "rowId": "retained_orbit_reduction_source_attempt_row",
+        "status": "accepted",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md"
+      },
+      "constant_delay_self_hit_model_row": {
+        "id": "constant_delay_self_hit_model_source_attempt_0001",
+        "rowId": "constant_delay_self_hit_model_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "hopf_retained_orbit_birth_row": {
+        "id": "hopf_retained_orbit_birth_source_attempt_0001",
+        "rowId": "hopf_retained_orbit_birth_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "first_lyapunov_coefficient_row": {
+        "id": "first_lyapunov_coefficient_source_attempt_0001",
+        "rowId": "first_lyapunov_coefficient_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "monodromy_floquet_certificate": {
+        "id": "monodromy_floquet_certificate_source_attempt_0001",
+        "rowId": "monodromy_floquet_certificate_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "poincare_section_reduction_row": {
+        "id": "poincare_section_reduction_source_attempt_0001",
+        "rowId": "poincare_section_reduction_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "poincare_cartan_orbit_integral_row": {
+        "id": "poincare_cartan_orbit_integral_source_attempt_0001",
+        "rowId": "poincare_cartan_orbit_integral_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "energy_clock_readout_row": {
+        "id": "energy_clock_readout_source_attempt_0001",
+        "rowId": "energy_clock_readout_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "phase_loop_area_readout_row": {
+        "id": "phase_loop_area_readout_source_attempt_0001",
+        "rowId": "phase_loop_area_readout_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "readout_refinement_independence_row": {
+        "id": "readout_refinement_independence_source_attempt_0001",
+        "rowId": "readout_refinement_independence_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "parameter_sweep_action_invariance_row": {
+        "id": "parameter_sweep_action_invariance_source_attempt_0001",
+        "rowId": "parameter_sweep_action_invariance_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "history_energy_throughput_row": {
+        "id": "history_energy_throughput_source_attempt_0001",
+        "rowId": "history_energy_throughput_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "non_resonance_certificate": {
+        "id": "non_resonance_certificate_source_attempt_0001",
+        "rowId": "non_resonance_certificate_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "geometry_derived_action_period_row": {
+        "id": "geometry_derived_action_period_source_attempt_0001",
+        "rowId": "geometry_derived_action_period_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_retained_orbit_reduction_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      }
+    },
+    "retainedActionPeriodSource": {
+      "branchIdentity": {
+        "retainedRowSetId": "S_eq",
+        "branchKind": "equal_frequency_tri_binary",
+        "frequencies": [
+          1,
+          1,
+          1
+        ],
+        "finiteWindowId": "W_S_eq_action_period_source_attempt_0001",
+        "supportId": "support_S_eq_action_period_source_attempt_0001",
+        "domainId": "domain_S_eq_action_period_source_attempt_0001"
+      },
+      "windingPlateau": {
+        "sweepParameter": "K",
+        "interval": [
+          0.49,
+          0.51
+        ],
+        "integerWinding": 1,
+        "boundaryReadoutSplits": true
+      },
+      "floquet": {
+        "unitMultiplierResidual": 0,
+        "extraNearUnitMultiplierCount": 0,
+        "maxNontrivialFloquetModulus": 0.72,
+        "floquetGap": 0.28
+      },
+      "fourReadouts": {
+        "h_E": 1,
+        "h_Phi": 1,
+        "h_p": 1,
+        "h_J": 1
+      },
+      "provenance": {
+        "status": "attempt",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      }
+    },
+    "certificate": {
+      "id": "retained_S_eq_action_period_source_attempt_0001",
+      "model": {
+        "equationId": "constant_delay_self_hit_hopf_normal_form_proxy",
+        "delayKind": "constant",
+        "stateDependentDelayDeferred": true,
+        "parameters": {
+          "omega": 1,
+          "gamma": 0.1,
+          "g": 0.21023796041628637,
+          "tau": 6.489790093558712,
+          "mu": 0.12,
+          "hopfFrequency": 0.9
+        }
+      },
+      "hopfBirth": {
+        "simpleImaginaryCrossing": true,
+        "otherRootsStable": true,
+        "stableRootMargin": 0.025
+      },
+      "normalForm": {
+        "firstLyapunovCoefficient": -0.18,
+        "rejectsBautinDegeneracy": true
+      },
+      "monodromyFloquet": {
+        "unitMultiplierResidual": 2e-12,
+        "extraNearUnitMultiplierCount": 0,
+        "maxNontrivialFloquetModulus": 0.72,
+        "maxAllowedNontrivialFloquetModulus": 0.9,
+        "floquetGap": 0.28
+      },
+      "poincareSection": {
+        "sectionTransversality": 0.43,
+        "minSectionTransversality": 0.01,
+        "returnTimeResidual": 3e-12,
+        "sectionRelocationDrift": 4e-12
+      },
+      "poincareCartanOrbitIntegral": {
+        "oneForm": "theta_PC = p dq on retained Poincare-Cartan carrier",
+        "actionIntegral": 1,
+        "cycleCount": 1
+      },
+      "actionReadouts": {
+        "energyClock": {
+          "energy": 1.35,
+          "frequency": 1.35
+        },
+        "phaseLoop": {
+          "actionIntegral": 1,
+          "cycleCount": 1
+        },
+        "momentumWave": {
+          "momentum": 1,
+          "waveNumber": 6.283185307179586
+        },
+        "angularMomentum": {
+          "angularMomentum": 0.15915494309189535,
+          "quantumNumber": 1
+        }
+      },
+      "readoutRefinement": {
+        "maxCollocationDrift": 5e-12,
+        "maxSectionRelocationDrift": 6e-12,
+        "maxRetainedModeDrift": 4e-12
+      },
+      "parameterSweep": {
+        "hiddenRetuneCount": 0,
+        "points": [
+          {
+            "control": "g",
+            "controlValue": 0.19,
+            "energy": 0.82,
+            "frequency": 0.82,
+            "phaseAction": 1
+          },
+          {
+            "control": "g",
+            "controlValue": 0.21023796041628637,
+            "energy": 1,
+            "frequency": 1,
+            "phaseAction": 1
+          },
+          {
+            "control": "g",
+            "controlValue": 0.23,
+            "energy": 1.21,
+            "frequency": 1.21,
+            "phaseAction": 1
+          }
+        ]
+      },
+      "historyEnergyThroughput": {
+        "historyEnergyReturnResidual": 3e-12,
+        "fluxBalanceResidual": 4e-12
+      },
+      "nonResonance": {
+        "minimumSmallDivisor": 0.041,
+        "minimumAllowedSmallDivisor": 0.001,
+        "checkedDivisorCount": 24
+      }
+    },
+    "negativeControls": [
+      {
+        "id": "state_dependent_delay_first_model",
+        "kind": "state_dependent_delay_first_model",
+        "certificateOverride": {
+          "model": {
+            "delayKind": "state_dependent",
+            "stateDependentDelayDeferred": false
+          }
+        }
+      },
+      {
+        "id": "hopf_detuned_crossing",
+        "kind": "hopf_detuned_crossing",
+        "certificateOverride": {
+          "model": {
+            "parameters": {
+              "tau": 6.2
+            }
+          }
+        }
+      },
+      {
+        "id": "hopf_degeneracy_bautin",
+        "kind": "hopf_degeneracy_bautin",
+        "certificateOverride": {
+          "normalForm": {
+            "firstLyapunovCoefficient": 0,
+            "rejectsBautinDegeneracy": false
+          }
+        }
+      },
+      {
+        "id": "floquet_extra_neutral_multiplier",
+        "kind": "floquet_extra_neutral_multiplier",
+        "certificateOverride": {
+          "monodromyFloquet": {
+            "extraNearUnitMultiplierCount": 1,
+            "maxNontrivialFloquetModulus": 1
+          }
+        }
+      },
+      {
+        "id": "action_readout_projection_artifact",
+        "kind": "action_readout_projection_artifact",
+        "certificateOverride": {
+          "actionReadouts": {
+            "phaseLoop": {
+              "actionIntegral": 1.07
+            }
+          }
+        }
+      },
+      {
+        "id": "parameter_sweep_fitted_action",
+        "kind": "parameter_sweep_fitted_action",
+        "certificateOverride": {
+          "parameterSweep": {
+            "hiddenRetuneCount": 3,
+            "points": [
+              {
+                "control": "g",
+                "controlValue": 0.19,
+                "energy": 0.82,
+                "frequency": 0.82,
+                "phaseAction": 0.92
+              },
+              {
+                "control": "g",
+                "controlValue": 0.21023796041628637,
+                "energy": 1,
+                "frequency": 1,
+                "phaseAction": 1
+              },
+              {
+                "control": "g",
+                "controlValue": 0.23,
+                "energy": 1.21,
+                "frequency": 1.21,
+                "phaseAction": 1.08
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "history_throughput_leak",
+        "kind": "history_throughput_leak",
+        "certificateOverride": {
+          "historyEnergyThroughput": {
+            "historyEnergyReturnResidual": 0.03
+          }
+        }
+      },
+      {
+        "id": "small_divisor_resonance",
+        "kind": "small_divisor_resonance",
+        "certificateOverride": {
+          "nonResonance": {
+            "minimumSmallDivisor": 1e-8
+          }
+        }
+      },
+      {
+        "id": "carrier_split",
+        "kind": "carrier_split",
+        "splitRow": "phase_loop_area_readout_row"
+      }
+    ]
+  }
+}

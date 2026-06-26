@@ -316,6 +316,8 @@ Here $r_{\mathrm{atm/sol}}$ is the updateable atmospheric-to-solar gap benchmark
 
 The current attempt fixture [neutrino-common-clock-phase-attempt.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json) has the intended `(f,f,f)` common-clock and residual-gap numeric shape: the equal clock factors out, $\bar H_{\nu}^{\mathrm{res}}$ is traceless and nonzero, $\Delta\lambda_{31}=\Delta\lambda_{32}+\Delta\lambda_{21}$, the atmospheric-to-solar schematic ratio is $32.5$, the spectrum is doublet-plus-singlet, and cancellation does not erase the residual operator.
 
+The source-attempt fixture [neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json) gives the checker a concrete neutral-lepton retained-branch source shape without accepting evidence. It binds the retained branch, $S_{\mathrm{eq}}$, common clock, residual operator, phase gaps, spectrum shape, PMNS readout, weak domain, matter correction, cancellation, and event ledger to `B_3B_nu_source_attempt_0001`, one weak-domain id, and one event-ledger id. Every row remains `attempt`.
+
 Those numeric passes are not score evidence because every source-bearing row is still `attempt`. The run is:
 
 ```text
@@ -326,6 +328,8 @@ inheritedSEqBlocker: missing_accepted_raw_labeled_rows_preserved_on_retained_his
 ```
 
 This is the intended disposition. The checker is a common-clock/residual-phase guardrail, not a PMNS fit and not proof that `(f,f,f)` has been retained.
+
+The existing domain-split negative control remains the fail-closed guard: an accepted-looking readout that splits the weak-domain rows must block at `weak_hidden_domain_split` before any PMNS or matter-correction interpretation is accepted.
 
 ## Common Equation Candidates
 

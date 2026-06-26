@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "philosophy_history__perspectives_overview",
-    "title": "Perspectives: A Chain Of Witnesses",
+    "id": "philosophy_history__treasure_physics_overlooked_overview",
+    "title": "The Treasure Physics Overlooked",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/philosophy-history/perspectives.md"
+      "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md"
     },
     "view": {
       "columns": 1,

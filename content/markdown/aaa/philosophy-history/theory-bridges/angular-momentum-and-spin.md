@@ -1778,8 +1778,10 @@ The ordered-frame spinor target also carries the C/P/T burden inherited from sta
 
 - $C_{\mathrm{eff}}$ must map a fermion record to the corresponding charge-conjugate record by reversing the effective polarity bookkeeping and pro/anti orientation while preserving the appropriate spin-state comparison data.
 - $P_{\mathrm{eff}}$ must reverse the effective spatial orientation used by the observer chart, including helicity sign when a momentum or propagation axis is part of the record.
-- $T_{\mathrm{eff}}$ must reverse the effective motion and phase-flow record without turning the positive-energy comparison branch into an unphysical negative-energy sector.
+- $T_{\mathrm{eff}}$ must reverse the effective motion, cycle orientation, and phase-flow record without turning the positive-energy comparison branch into an unphysical negative-energy sector.
 - $(CPT)_{\mathrm{eff}}$ must return an admissible fermion-sector record in every validated regime, even though $C$, $P$, $T$, and their pairwise combinations may be violated by weak-sector and flavor-sector data.
+
+This is a branch-record operation, not a reversal of substrate absolute time. The comparison reverses the observer-level cadence, rotation, and phase-order data used to identify the effective fermion record; it does not change the master-equation support convention, introduce advanced causal wakes, or replay the actual path history backward.
 
 A useful proof scaffold is to define these maps on an effective fermion record
 $$

@@ -141,10 +141,10 @@ function writeOutput(output, parsedArgs) {
 function evaluateEq07aCompactRegionCarrier(input, inputPath) {
   const tolerances = parseTolerances(input.tolerances ?? {});
   const packet = input.packet ?? input;
-  const carrier = evaluateAcceptedEvidence(input.carrier ?? packet.carrier);
+  const carrier = evaluateAcceptedEvidence(input.carrier ?? packet.carrier, "compact_region_carrier");
   const rows = packet.rows ?? {};
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedEvidence(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedEvidence(rows[rowId], rowId)]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const carrierBinding = evaluateCarrierBinding(rows, input.commonCarrierId ?? packet.id);
@@ -461,7 +461,7 @@ function evaluateCarrierBinding(rows, commonCarrierId) {
   };
 }
 
-function evaluateAcceptedEvidence(row) {
+function evaluateAcceptedEvidence(row, rowId = null) {
   const status = normalizeStatus(row);
   if (!ACCEPTED_STATUSES.has(status)) {
     return { accepted: false, reason: "row_not_accepted" };
@@ -470,6 +470,9 @@ function evaluateAcceptedEvidence(row) {
   const source = evaluateSourcePath(sourcePath);
   if (!source.accepted) {
     return { accepted: false, reason: source.reason };
+  }
+  if (rowId === "compact_region_carrier" && !sourceSupportsCompactRegionCarrier(row)) {
+    return { accepted: false, reason: "compact_region_carrier_source_contract_mismatch" };
   }
   return { accepted: true, reason: "accepted" };
 }
@@ -481,17 +484,14 @@ function evaluateSourcePath(sourcePath) {
   if (sourcePath.includes("placeholder") || sourcePath.includes("pending")) {
     return { accepted: false, reason: "placeholder_source_path" };
   }
-  if (sourcePath.startsWith("/tmp/") || sourcePath.startsWith("/private/tmp/")) {
-    return { accepted: false, reason: "temp_source_path" };
-  }
-  if (sourcePath.includes("content/generated/")) {
-    return { accepted: false, reason: "generated_source_path" };
-  }
   const resolved = path.isAbsolute(sourcePath)
     ? sourcePath
     : path.resolve(REPO_ROOT, sourcePath.replace(/#.*/, ""));
   if (!resolved.startsWith(REPO_ROOT)) {
     return { accepted: false, reason: "source_outside_repo" };
+  }
+  if (isNonDurableSourcePath(resolved)) {
+    return { accepted: false, reason: "non_durable_source_path" };
   }
   if (!fs.existsSync(resolved)) {
     return { accepted: false, reason: "source_missing" };
@@ -499,7 +499,87 @@ function evaluateSourcePath(sourcePath) {
   if (!fs.statSync(resolved).isFile()) {
     return { accepted: false, reason: "source_not_file" };
   }
+  if (!isEvidenceSourcePath(resolved)) {
+    return { accepted: false, reason: "accepted_without_evidence_source" };
+  }
   return { accepted: true, reason: "accepted" };
+}
+
+function sourceSupportsCompactRegionCarrier(row) {
+  const normalized = collectSupportMetadata(row);
+  const eq07aSupported = normalized.some(
+    (value) => value.includes("eq-07a") || value.includes("eq07a"),
+  );
+  const carrierSupported = normalized.some(
+    (value) =>
+      value.includes("compact_region_carrier") ||
+      value.includes("compact-region carrier") ||
+      value.includes("retained compact-region carrier"),
+  );
+  const ledgerSupported = normalized.some(
+    (value) =>
+      value.includes("same-root finite-window ledger") ||
+      value.includes("compact-region conservation ledger") ||
+      value.includes("collapse-to-metric residual"),
+  );
+  return eq07aSupported && carrierSupported && ledgerSupported;
+}
+
+function collectSupportMetadata(row) {
+  return [
+    row?.sourceFamily,
+    row?.sourceKind,
+    row?.sourceRole,
+    row?.sourceSupport,
+    row?.sourceSupports,
+    row?.evidenceFamily,
+    row?.evidenceKind,
+    row?.evidenceRole,
+    row?.evidenceSupport,
+    row?.evidenceSupports,
+    row?.claimLevel,
+  ]
+    .flatMap((value) => (Array.isArray(value) ? value : [value]))
+    .filter((value) => typeof value === "string")
+    .map((value) => value.trim().toLowerCase())
+    .filter(Boolean);
+}
+
+function isNonDurableSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  return (
+    normalized.startsWith(`${path.normalize("/tmp")}${path.sep}`) ||
+    normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
+    normalized.includes(`${path.sep}content${path.sep}generated${path.sep}`) ||
+    path.basename(normalized).includes(".tmp")
+  );
+}
+
+function isEvidenceSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  if (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative)
+  ) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  const lowerBasename = path.basename(normalized).toLowerCase();
+  return !(
+    lowerBasename.includes("attempt") ||
+    lowerBasename.includes("toy") ||
+    lowerBasename.includes("source-evidence-probe") ||
+    lowerBasename.includes("probe") ||
+    lowerBasename.includes("mock") ||
+    lowerBasename.includes("negative-control")
+  );
 }
 
 function decideStatus({ carrier, missingRows, carrierBinding, variableDictionary, residual, negativeControls }) {

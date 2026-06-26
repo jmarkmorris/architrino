@@ -6,6 +6,8 @@
 - Parent: [EQ-12 Theta-Gamma Packet Source Shell](eq-12-theta-gamma-packet-source-shell.md)
 - Source runner: [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs)
 - Source fixture: [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json)
+- Source-attempt fixture: [planck-alpha-braid-theta-bb-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-bb-source-attempt.v1.json)
+- Coordination-source negative control: [planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json)
 - Rows served: `EQ-22A`, with support from `EQ-12`, `EQ-12A`, `EQ-22`, and `EQ-25`
 - Claim level: candidate source-field map and attack card
 - Promotion status: priority-only
@@ -13,6 +15,8 @@
 ## Boundary
 
 This map does not populate accepted retained evidence. It narrows the local `EQ-22A` child route under the shared `theta_gamma_packet` parent. The current parent blocker remains `missing_accepted_theta_gamma_packet`; after that parent is populated, the local child route begins with `thermal_mode_counting_row` inside a finite-window thermal photon carrier, $\Theta_{\mathrm{bb}}$.
+
+Findability note: blackbody ultraviolet catastrophe belongs here. Classical Rayleigh-Jeans high-frequency divergence is a fail-closed control for mode counting plus occupancy, and it is distinct from QFT ultraviolet divergence or renormalization.
 
 No score changes.
 
@@ -62,6 +66,19 @@ Required rows:
 | `thermalization_depth` | Minimum depth or collision/detailed-balance evidence for the declared window. |
 | `source_provenance`, `no_hidden_retune_witness` | Same $h_\vartheta$, $c_\gamma$, $\theta_{\mathrm{sea}}$, mode measure, and temperature-clock conversion across frequency bins. |
 
+The source-attempt fixture names the first child surface without claiming accepted
+evidence:
+
+| Field | Source-attempt value |
+| --- | --- |
+| `commonCarrierId` | `theta_bb_source_attempt_0001` |
+| `finiteWindowId` | `W_bb_source_attempt_0001` |
+| `gateBModeCountId` | `gateB_two_mode_count_source_attempt_0001` |
+| `thermalModeCountingRowId` | `thermal_mode_counting_row_theta_bb_source_attempt_row` |
+| `planckOccupancyRowId` | `planck_occupancy_row_theta_bb_source_attempt_row` |
+| `temperatureClockConversionRowId` | `temperature_clock_conversion_row_theta_bb_source_attempt_row` |
+| `thermalizationDepthId` | `thermalization_depth_theta_bb_source_attempt_0001` |
+
 ## Fail-Closed Controls
 
 - `wrong_mode_count_dimension`: catches wrong transverse-mode density.
@@ -77,4 +94,25 @@ Create one durable `theta_bb` source report with the three first child rows, the
 node scripts/equation-mapping/planck-alpha-braid-residual.mjs --summary --pretty
 ```
 
-Until the parent and child rows are accepted, the correct result remains no score movement.
+To check the current source-attempt fixture, run:
+
+```sh
+node scripts/equation-mapping/planck-alpha-braid-residual.mjs --input scripts/equation-mapping/planck-alpha-braid-theta-bb-source-attempt.v1.json --summary --pretty
+```
+
+Expected result: `blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`,
+`scoreDecision=no_score_increase`, `blackbodyPass=true`, and all 15 negative controls
+passing. The same command with `--require-populated` must exit nonzero. Until the
+parent and child rows are accepted, the correct result remains no score movement.
+
+The shared Planck/alpha runner now rejects priority packets, authored AAA prose,
+generated files, attempt files, toy files, probe files, source-evidence-probe
+files, mock files, negative-control files, and temporary paths as accepted
+retained evidence. The coordination-source control marks `theta_gamma_packet`
+accepted-looking while sourcing it only to the theta-gamma priority packet; it
+must remain blocked at `missing_accepted_theta_gamma_packet` with the row reason
+`source_not_durable`. The probe-source control
+[planck-alpha-braid-theta-gamma-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-gamma-probe-source-negative-control.v1.json)
+points the same accepted-looking parent at a `source-evidence-probe` JSON and
+must fail the same way. Probe files can sharpen blockers, but they cannot be the
+retained source object for $\Theta_\gamma$.

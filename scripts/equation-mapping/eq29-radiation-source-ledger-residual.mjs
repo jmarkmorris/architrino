@@ -127,9 +127,10 @@ function evaluateEq29RadiationSourceLedger(input, inputPath) {
   const packet = input.packet ?? input;
   const rows = packet.rows ?? {};
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId], rowId)]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
+  const sourceEvidence = evaluateSourceEvidence(rowChecks);
   const carrierBinding = evaluateCarrierBinding(rows, packet.commonCarrierId ?? input.commonCarrierId);
   const sourceLedger = evaluateSourceLedger(packet.radiationSource ?? {}, tolerances);
   const negativeControls = evaluateNegativeControls(
@@ -139,6 +140,7 @@ function evaluateEq29RadiationSourceLedger(input, inputPath) {
   );
   const status = decideStatus({
     missingRows,
+    sourceEvidence,
     carrierBinding,
     sourceLedger,
     negativeControls,
@@ -169,10 +171,13 @@ function evaluateEq29RadiationSourceLedger(input, inputPath) {
       nextBlocker: firstBlocker({
         status,
         missingRows,
+        sourceEvidence,
         carrierBinding,
         sourceLedger,
         negativeControls,
       }),
+      sourceEvidencePass: sourceEvidence.passed,
+      sourceEvidenceFailureCount: sourceEvidence.failures.length,
       commonCarrierPass: carrierBinding.passed,
       sourceLedgerNumericPass: sourceLedger.passed,
       powerPass: sourceLedger.power.passed,
@@ -200,6 +205,7 @@ function evaluateEq29RadiationSourceLedger(input, inputPath) {
       ]),
     ),
     carrierBinding,
+    sourceEvidence,
     sourceLedger,
     negativeControls,
   };
@@ -458,7 +464,23 @@ function evaluateCarrierBinding(rows, commonCarrierId) {
   };
 }
 
-function evaluateAcceptedRow(row) {
+function evaluateSourceEvidence(rowChecks) {
+  const failures = Object.entries(rowChecks)
+    .filter(([, check]) =>
+      [
+        "accepted_without_evidence_source",
+        "carrier_channel_family_source_contract_mismatch",
+        "source_mechanism_source_contract_mismatch",
+      ].includes(check.reason),
+    )
+    .map(([rowId, check]) => ({ rowId, sourcePath: check.sourcePath ?? null }));
+  return {
+    passed: failures.length === 0,
+    failures,
+  };
+}
+
+function evaluateAcceptedRow(row, rowId) {
   if (!row) {
     return { accepted: false, reason: "missing_row" };
   }
@@ -470,7 +492,25 @@ function evaluateAcceptedRow(row) {
   }
   const sourceCheck = evaluateSourceReference(row);
   if (!sourceCheck.accepted) {
-    return { accepted: false, reason: sourceCheck.reason };
+    return {
+      accepted: false,
+      reason: sourceCheck.reason,
+      sourcePath: row?.sourcePath ?? row?.source ?? null,
+    };
+  }
+  if (rowId === "carrier_channel_family_row" && !sourceSupportsCarrierChannelFamilyRow(row)) {
+    return {
+      accepted: false,
+      reason: "carrier_channel_family_source_contract_mismatch",
+      sourcePath: row?.sourcePath ?? row?.source ?? null,
+    };
+  }
+  if (rowId === "source_mechanism_row" && !sourceSupportsSourceMechanismRow(row)) {
+    return {
+      accepted: false,
+      reason: "source_mechanism_source_contract_mismatch",
+      sourcePath: row?.sourcePath ?? row?.source ?? null,
+    };
   }
   return { accepted: true, reason: "accepted" };
 }
@@ -490,7 +530,9 @@ function evaluateSourceReference(row) {
     return { accepted: false, reason: "source_missing" };
   }
   if (/^https?:\/\//.test(source)) {
-    return { accepted: true, reason: "source_url" };
+    return sourceSupportsEq29(row)
+      ? { accepted: true, reason: "source_url" }
+      : { accepted: false, reason: "accepted_without_evidence_source" };
   }
   if (source.includes("/tmp/") || source.includes("content/generated/")) {
     return { accepted: false, reason: "source_not_durable" };
@@ -502,11 +544,125 @@ function evaluateSourceReference(row) {
   if (fs.statSync(resolved).isDirectory()) {
     return { accepted: false, reason: "source_is_directory" };
   }
+  if (!isEvidenceSourcePath(resolved)) {
+    return { accepted: false, reason: "accepted_without_evidence_source" };
+  }
+  if (!sourceSupportsEq29(row)) {
+    return { accepted: false, reason: "accepted_without_evidence_source" };
+  }
   return { accepted: true, reason: "source_file" };
 }
 
-function decideStatus({ missingRows, carrierBinding, sourceLedger, negativeControls }) {
+function sourceSupportsEq29(row) {
+  const supportValues = [
+    row?.sourceFamily,
+    row?.sourceKind,
+    row?.sourceRole,
+    row?.sourceSupport,
+    row?.sourceSupports,
+    row?.evidenceFamily,
+    row?.evidenceRole,
+    row?.evidenceSupports,
+    row?.claimLevel,
+  ].flatMap((value) => (Array.isArray(value) ? value : [value]));
+  const normalized = supportValues
+    .filter((value) => typeof value === "string")
+    .map((value) => value.toLowerCase());
+  return normalized.some(
+    (value) =>
+      value.includes("eq-29") ||
+      value.includes("eq29") ||
+      value.includes("radiation_source") ||
+      value.includes("radiation source") ||
+      value.includes("synchrotron source"),
+  );
+}
+
+function sourceSupportsCarrierChannelFamilyRow(row) {
+  const supportValues = [
+    row?.sourceFamily,
+    row?.sourceKind,
+    row?.sourceRole,
+    row?.sourceSupport,
+    row?.sourceSupports,
+    row?.evidenceFamily,
+    row?.evidenceRole,
+    row?.evidenceSupports,
+    row?.claimLevel,
+  ].flatMap((value) => (Array.isArray(value) ? value : [value]));
+  const normalized = supportValues
+    .filter((value) => typeof value === "string")
+    .map((value) => value.toLowerCase());
+  const rowSupported = normalized.some((value) => value.includes("carrier_channel_family_row"));
+  const familySupported = normalized.some(
+    (value) =>
+      value.includes("photon-channel output family") ||
+      value.includes("photon channel output family"),
+  );
+  const kindSupported = normalized.some(
+    (value) =>
+      value.includes("carrier_channel_family") ||
+      value.includes("carrier channel family"),
+  );
+  return rowSupported && familySupported && kindSupported;
+}
+
+function sourceSupportsSourceMechanismRow(row) {
+  const supportValues = [
+    row?.sourceFamily,
+    row?.sourceKind,
+    row?.sourceRole,
+    row?.sourceSupport,
+    row?.sourceSupports,
+    row?.sourceMechanism,
+    row?.evidenceFamily,
+    row?.evidenceRole,
+    row?.evidenceSupports,
+    row?.claimLevel,
+  ].flatMap((value) => (Array.isArray(value) ? value : [value]));
+  const normalized = supportValues
+    .filter((value) => typeof value === "string")
+    .map((value) => value.toLowerCase());
+  const rowSupported = normalized.some((value) => value.includes("source_mechanism_row"));
+  const roleSupported = normalized.some(
+    (value) => value.includes("source_mechanism") || value.includes("source mechanism"),
+  );
+  const mechanismSupported = normalized.some(
+    (value) => value.includes("synchrotron source mechanism") || value === "synchrotron",
+  );
+  return rowSupported && roleSupported && mechanismSupported;
+}
+
+function isEvidenceSourcePath(filePath) {
+  const relative = path.relative(REPO_ROOT, path.normalize(filePath));
+  if (relative === "" || relative.startsWith("..") || path.isAbsolute(relative)) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}generated${path.sep}`)) {
+    return false;
+  }
+  const basename = path.basename(relative).toLowerCase();
+  return (
+    !basename.includes("attempt") &&
+    !basename.includes("toy") &&
+    !basename.includes("source-evidence-probe") &&
+    !basename.includes("probe") &&
+    !basename.includes("mock") &&
+    !basename.includes("negative-control")
+  );
+}
+
+function decideStatus({ missingRows, sourceEvidence, carrierBinding, sourceLedger, negativeControls }) {
   if (missingRows.length > 0) {
+    if (!sourceEvidence.passed && sourceEvidence.failures.length === missingRows.length) {
+      return "blocked_source_evidence";
+    }
     return "blocked_missing_rows";
   }
   if (!carrierBinding.passed) {
@@ -521,8 +677,11 @@ function decideStatus({ missingRows, carrierBinding, sourceLedger, negativeContr
   return "populated";
 }
 
-function firstBlocker({ status, missingRows, carrierBinding, sourceLedger, negativeControls }) {
+function firstBlocker({ status, missingRows, sourceEvidence, carrierBinding, sourceLedger, negativeControls }) {
   if (missingRows.length > 0) {
+    if (!sourceEvidence.passed && sourceEvidence.failures.length === missingRows.length) {
+      return "accepted_without_evidence_source";
+    }
     return `missing_accepted_${missingRows[0]}`;
   }
   if (!carrierBinding.passed) {

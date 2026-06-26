@@ -5,7 +5,9 @@
 - Kind: `priority`
 - Parent: [EQ-21 Through EQ-23 And EQ-32 Shared-Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md)
 - Source runner: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs)
-- Source fixture: [shared-observation-residual-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-residual-attempt.v1.json)
+- Source fixtures:
+  - [shared-observation-residual-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-residual-attempt.v1.json)
+  - [shared-observation-theta-src-source-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-theta-src-source-attempt.v1.json)
 - Rows served: `EQ-21`, `EQ-22`, and `EQ-23`
 - Boundary row: `EQ-32`
 - Claim level: candidate source-field map and attack card
@@ -69,3 +71,7 @@ The accepted `Theta_src` row must be one source-window record with:
 ## Next Action
 
 Add a checker-consumable `Theta_src` source attempt only after choosing one finite `W_src` candidate and the exact BBN-to-CMB handoff keys it preserves. Until then, the correct checker result remains `missing_accepted_theta_obs`; this map only names the smaller source-window object to pursue next.
+
+The source-attempt fixture now gives the existing checker a full-input `Theta_src` carrier shape while keeping every row `attempt`. A normal run still reports `nextBlocker=missing_accepted_theta_obs`; running with `--focus-row theta_src` adds diagnostic-only `focusedBlockers.theta_src.nextBlocker=missing_accepted_theta_src` without changing summary blocker order, `scoreDecision`, required rows, or `--require-populated` behavior.
+
+The checker also now rejects accepted-looking rows, projection families, or shared keys whose source paths point only to priority packets, authored AAA prose, generated files, temporary files, attempt fixtures, mocks, or negative-control fixtures. Such rows must block at `accepted_without_evidence_source` before any shared-observation packet can populate.

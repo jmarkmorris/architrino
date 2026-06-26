@@ -1736,14 +1736,14 @@
       "path": "content/scenes/dynamics/assembly_topological_charge.json"
     },
     {
-      "id": "philosophy_history__perspectives",
-      "name": "Perspectives",
-      "path": "content/scenes/philosophy_history/perspectives.json"
+      "id": "philosophy_history__treasure_physics_overlooked",
+      "name": "The Treasure Physics Overlooked",
+      "path": "content/scenes/philosophy_history/treasure_physics_overlooked.json"
     },
     {
-      "id": "philosophy_history__perspectives_overview",
-      "name": "Perspectives",
-      "path": "content/scenes/philosophy_history/perspectives/overview.json"
+      "id": "philosophy_history__treasure_physics_overlooked_overview",
+      "name": "The Treasure Physics Overlooked",
+      "path": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json"
     }
   ]
 }

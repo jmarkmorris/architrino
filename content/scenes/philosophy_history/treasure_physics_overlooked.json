@@ -1,0 +1,145 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "philosophy_history__treasure_physics_overlooked",
+    "title": "The Treasure Physics Overlooked",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "treasure_physics_overlooked_overview",
+    "layout": {
+      "type": "rings",
+      "centerNode": "treasure_physics_overlooked_overview",
+      "order": "objects",
+      "direction": "clockwise"
+    },
+    "children": [
+      {
+        "nodeId": "treasure_physics_overlooked_overview",
+        "scenePath": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "treasure_physics_overlooked_overview",
+      "title": "The Treasure Physics Overlooked",
+      "radius": 1.32,
+      "color": "#4f5d75",
+      "labelTitle": "The Treasure Physics Overlooked (entire)",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "treasure_physics_overlooked_intro",
+      "title": "Introduction",
+      "radius": 1.32,
+      "color": "#8c5f46",
+      "labelTitle": "Introduction",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md"
+      },
+      "view": {
+        "section": "Why Physics Missed The Architecture Of The Universe",
+        "columns": 1
+      }
+    },
+    {
+      "id": "treasure_physics_overlooked_method_problem",
+      "title": "Paradigms / Anomalies",
+      "radius": 1.32,
+      "color": "#577590",
+      "labelTitle": "Paradigms / Anomalies",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md"
+      },
+      "view": {
+        "section": "Paradigms, Research Programs, And Anomalies",
+        "columns": 1
+      }
+    },
+    {
+      "id": "treasure_physics_overlooked_source_dynamics",
+      "title": "Structure / Causal Records",
+      "radius": 1.32,
+      "color": "#3f7d6a",
+      "labelTitle": "Structure / Causal Records",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md"
+      },
+      "view": {
+        "section": "Structure, Dynamics, And Causal Records",
+        "columns": 1
+      }
+    },
+    {
+      "id": "treasure_physics_overlooked_relativity_measurement",
+      "title": "Relativity / Measurement",
+      "radius": 1.32,
+      "color": "#8b6f47",
+      "labelTitle": "Relativity / Measurement",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md"
+      },
+      "view": {
+        "section": "Relativity, Measurement, And Invariance",
+        "columns": 1
+      }
+    },
+    {
+      "id": "treasure_physics_overlooked_quantum_gauge",
+      "title": "Quantum / Gauge",
+      "radius": 1.32,
+      "color": "#6f5f9c",
+      "labelTitle": "Quantum / Gauge",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md"
+      },
+      "view": {
+        "section": "Quantum Records, Nuclear Architecture, Gauge Charge, Generations, And Entanglement",
+        "columns": 1
+      }
+    },
+    {
+      "id": "treasure_physics_overlooked_cosmology_recycling",
+      "title": "Cosmology / Recycling",
+      "radius": 1.32,
+      "color": "#5f7661",
+      "labelTitle": "Cosmology / Recycling",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md"
+      },
+      "view": {
+        "section": "Cosmology, Expansion, And Recycling",
+        "columns": 1
+      }
+    },
+    {
+      "id": "treasure_physics_overlooked_closing_synthesis",
+      "title": "Closing Synthesis",
+      "radius": 1.32,
+      "color": "#8b4f68",
+      "labelTitle": "Closing Synthesis",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md"
+      },
+      "view": {
+        "section": "Closing Synthesis",
+        "columns": 1
+      }
+    }
+  ]
+}

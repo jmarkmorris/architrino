@@ -94,6 +94,7 @@ The source-attempt fixture keeps the same contract at attempt level:
 
 | Control | Expected failure |
 | --- | --- |
+| `coordination_source_false_positive` | Accepted-looking `path_frequency_exchange_carrier` sourced only to this priority map fails with `accepted_without_evidence_source`; priority maps, authored AAA prose, generated files, attempt files, toy files, probe files, source-evidence-probe files, mock files, and negative-control files cannot count as accepted retained evidence. |
 | `phenomenological_frequency_loss_without_medium_ledger` | Frequency change without target, medium, recoil, and remnant ledger rows fails path-frequency energy balance. |
 | `inverse_compton_ratio_fit_handle` | Fitted photon-frequency boost fails inverse-Compton residual rather than counting as a source row. |
 | `sz_without_electron_column` | Thermal SZ rows without the electron column fail before thermal evidence counts. |
@@ -112,3 +113,24 @@ node scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs --input
 ```
 
 Expected result: `blocked_missing_accepted_path_frequency_exchange_carrier`, `scoreDecision=no_score_increase`, solver residuals passing, and all six negative controls passing. The same command with `--require-populated` must exit nonzero.
+
+The accepted-source guard check is:
+
+```sh
+node scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs --input scripts/equation-mapping/eq28a-path-frequency-exchange-coordination-source-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `blocked_missing_accepted_path_frequency_exchange_carrier`,
+`carrierReason=accepted_without_evidence_source`, and no score movement.
+
+The probe-source guard is:
+
+```sh
+node scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs --input scripts/equation-mapping/eq28a-path-frequency-exchange-probe-source-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `blocked_missing_accepted_path_frequency_exchange_carrier`,
+`carrierReason=accepted_without_evidence_source`, and no score movement. The
+same command with `--require-populated` must exit nonzero. This prevents toy or
+source-evidence-probe files from being reused as retained source evidence for
+`Theta_nu-ex`.

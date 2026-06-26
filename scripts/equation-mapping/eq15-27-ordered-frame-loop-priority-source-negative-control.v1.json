@@ -1,0 +1,85 @@
+{
+  "schema": "aaa-equation-map-spin-magnetic-certificate-input/v1",
+  "claimLevel": "accepted-looking EQ-15/EQ-27 priority-source negative control; score-neutral and not retained evidence",
+  "certificateId": "spin-to-mu-priority-source-negative-control-0001",
+  "sameRecordId": "spin-to-mu-priority-source-negative-control-record",
+  "sourceIdentity": {
+    "retainedBranchId": "retained-noncoplanar-branch-priority-control-0001",
+    "domainId": "D_spin_mu_priority_control_0001",
+    "orderedFrameLoopId": "Phi-star-loop-priority-control-0001",
+    "spinLiftId": "spin-lift-priority-control-0001",
+    "exposureFiberId": "exposure-fiber-priority-control-0001",
+    "retuneWitnessId": "S_retune_spin_mu_priority_control_0001"
+  },
+  "tolerances": {
+    "gauge": 1e-12,
+    "angularMomentum": 1e-9,
+    "gLead": 1e-12
+  },
+  "rows": {
+    "ordered_frame_loop": {
+      "status": "accepted",
+      "rowId": "Phi-star-loop-priority-control-0001",
+      "sameRecordId": "spin-to-mu-priority-source-negative-control-record",
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md",
+      "retainedBranchId": "retained-noncoplanar-branch-priority-control-0001",
+      "domainId": "D_spin_mu_priority_control_0001",
+      "loopMap": "Phi_star:S^1->SO(3)",
+      "holonomyClass": "nontrivial_z2",
+      "nonGaugeHolonomy": true,
+      "nonCoplanarRetainedBranchEvidence": "priority-source-control"
+    },
+    "spin_lift": {
+      "status": "accepted",
+      "rowId": "spin-lift-priority-control-0001",
+      "sameRecordId": "spin-to-mu-priority-source-negative-control-record",
+      "etaSpin": 1,
+      "doubledPathRestores": true,
+      "liftWitnessKind": "spin3_su2_double_cover_priority_control",
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "gauge_control": {
+      "status": "accepted",
+      "rowId": "gauge-control-priority-control-0001",
+      "sameRecordId": "spin-to-mu-priority-source-negative-control-record",
+      "deltaGauge": 0,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "angular_momentum_ledger": {
+      "status": "accepted",
+      "rowId": "angular-momentum-ledger-priority-control-0001",
+      "sameRecordId": "spin-to-mu-priority-source-negative-control-record",
+      "deltaJ": 0,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "moment_map_magnetic": {
+      "status": "accepted",
+      "rowId": "moment-map-magnetic-priority-control-0001",
+      "sameRecordId": "spin-to-mu-priority-source-negative-control-record",
+      "mu_E": [
+        0,
+        0,
+        1
+      ],
+      "momentMapKind": "exposure_current_integral_priority_control",
+      "exposureCurrentIntegral": true,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "covering_degree_g2": {
+      "status": "accepted",
+      "rowId": "covering-degree-g2-priority-control-0001",
+      "sameRecordId": "spin-to-mu-priority-source-negative-control-record",
+      "gLead": 2,
+      "g2Derivation": "covering_degree_priority_control",
+      "coveringDegreeWitness": true,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    },
+    "exposure_fiber_residual": {
+      "status": "accepted",
+      "rowId": "exposure-fiber-residual-priority-control-0001",
+      "sameRecordId": "spin-to-mu-priority-source-negative-control-record",
+      "R_fib": 0.003,
+      "sourcePath": "reference/priorities/equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md"
+    }
+  }
+}

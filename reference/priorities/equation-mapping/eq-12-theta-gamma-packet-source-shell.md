@@ -65,6 +65,8 @@ where $W$ is the retained finite window, $E$ is the emission/source endpoint, an
 | `source_provenance` | Durable source path or source URL for each accepted row; generated markdown, temp paths, placeholders, and directories fail. | blocked |
 | `no_hidden_retune_witness` | One witness that $h$, $c_\gamma$, transfer factor, detector coupling, and path response were not separately retuned per observable. | blocked |
 
+Malus-law analyzer intensity $I(\theta)=I_0\cos^2\theta$ is a Gate B analyzer benchmark for `helicity_ledger_row` and `gate_b_transverse_row`. It should consume analyzer basis, incoming polarization ledger, transmitted-intensity readout, and longitudinal-leakage residual on the same $\Theta_\gamma$ carrier, and it fails if it imports the cosine-squared law without packet identity and event-ledger provenance.
+
 ## Consumer Boundaries
 
 `EQ-12` owns the direct photon packet transfer residual. A future accepted $\Theta_\gamma$ row may move this blocker only if it satisfies every required row above and passes the photon packet checker without replacing source/path/receiver rows with solved-wave comparison objects.
@@ -72,6 +74,8 @@ where $W$ is the retained finite window, $E$ is the emission/source endpoint, an
 `EQ-12A`, `EQ-22A`, and `EQ-26A` may consume $\Theta_\gamma$ as photon/action support, but it cannot by itself derive $h_\vartheta$, blackbody mode occupancy, or $\alpha(\mu)$. Those rows still require retained-orbit action, finite-window thermal record, and exposure/gauge-running evidence inside the Planck/alpha carrier.
 
 Priority-only child maps now keep those routes separate: [EQ-12A Retained Action-Period Source-Field Map](eq-12a-retained-action-period-source-field-map.md), [EQ-22A Theta-BB Source-Field Map](eq-22a-theta-bb-source-field-map.md), and [EQ-26A Theta-Alpha Source-Field Map](eq-26a-theta-alpha-source-field-map.md). No score changes.
+
+The Planck/alpha runner's shared durable-source rule rejects priority packets, authored AAA prose, generated paths, attempts, toys, probes, source-evidence probes, mocks, negative controls, and temporary paths as accepted evidence for $\Theta_\gamma$. The new probe-source control keeps the parent blocker at `missing_accepted_theta_gamma_packet` when an accepted-looking parent row points to a source-evidence-probe JSON.
 
 `EQ-28A` may consume $\Theta_\gamma$ as the incoming/outgoing photon packet handoff. It still owns a separate $\Theta_{\nu\text{-}\mathrm{ex}}(W)$ path-frequency exchange carrier with electron-medium, recoil/remnant, and thermal-state rows.
 

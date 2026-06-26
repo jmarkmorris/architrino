@@ -63,7 +63,7 @@ The comparison should keep the full electrodynamic velocity-field and accelerati
 
 ## Intended Corpus Destinations
 
-- `content/markdown/aaa/philosophy-history/perspectives.md`: historical narrative and missed-opportunity framing.
+- `content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md`: historical narrative and missed-opportunity framing.
 - `content/markdown/aaa/spacetime/lorentz-kinematics.md`: local bridge between delay-map Jacobians and Lorentz recovery; no immediate edit required.
 - `content/markdown/aaa/dynamics/master-equation.md`: native delayed-root law and regularization discipline; no immediate edit required.
 - `content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md`: multiple-root visualization and causal-delay teaching bridge; no immediate edit required.

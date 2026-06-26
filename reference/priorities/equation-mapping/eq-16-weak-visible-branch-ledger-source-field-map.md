@@ -5,8 +5,12 @@
 - Kind: `priority`
 - Parent: [EQ-12 Through EQ-16A Photon, Quantum, Gauge, And Neutrino Packet](eq-12-16a-photon-quantum-gauge-neutrino-packet.md)
 - Source runner: [weak-gauge-exposure-domain.mjs](../../../scripts/equation-mapping/weak-gauge-exposure-domain.mjs)
-- Source fixture: [weak-gauge-exposure-domain-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json)
-- Negative-control fixture: [weak-gauge-exposure-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-split-negative-control.v1.json)
+- Source fixtures:
+  - [weak-gauge-exposure-domain-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json)
+  - [weak-gauge-exposure-domain-source-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json)
+- Negative-control fixtures:
+  - [weak-gauge-exposure-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-split-negative-control.v1.json)
+  - [weak-gauge-exposure-domain-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-priority-source-negative-control.v1.json)
 - Row served: `EQ-16`
 - Claim level: candidate source-field map and attack card
 - Promotion status: priority-only
@@ -68,6 +72,21 @@ Gauge and residual requirements:
 ## Fail-Closed Control
 
 Use `weak.hidden_domain_split`: an accepted-looking fixture with durable sources and zero numeric residuals changes `pmns_overlap_readout.domainId` or another readout domain. Numeric `V-A`, CKM, PMNS, provenance, and no-retune passes cannot override shared-domain identity. The current fixture is [weak-gauge-exposure-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-split-negative-control.v1.json); it reports `nextBlocker: weak_hidden_domain_split` and exits nonzero under `--require-populated`.
+
+Use `accepted_without_evidence_source`: an accepted-looking fixture with every row on one domain but with `sourcePath` pointed back to this priority map must not populate the row. The current fixture is [weak-gauge-exposure-domain-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-priority-source-negative-control.v1.json); it reports `status: blocked_source_evidence`, `nextBlocker: accepted_without_evidence_source`, and exits nonzero under `--require-populated`.
+
+## Ledger-Only Source-Attempt Probe
+
+The ledger-only source-attempt probe is [weak-gauge-exposure-domain-source-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json --summary --pretty --require-populated
+```
+
+The probe marks only `weak_visible_branch_ledger` as accepted-looking on `D_weak_visible_source_attempt_0001` / `A_weak_source_attempt_0001` while leaving projection, quotient, exposure, `V-A`, CKM, PMNS, provenance, covariance, reaction-event, and Noether sea rows at `attempt`. After the source-evidence guard, the expected result is `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: accepted_without_evidence_source`, because the accepted-looking ledger row still points to this priority map. The `--require-populated` form must exit nonzero.
+
+This is a guard probe, not retained evidence. The next ladder step requires a durable, non-priority source-backed `weak_visible_branch_ledger`; only then should the checker advance to `missing_accepted_weak_projection`.
 
 ## Next Action
 

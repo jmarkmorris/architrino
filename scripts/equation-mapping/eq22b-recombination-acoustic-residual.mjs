@@ -165,7 +165,7 @@ function evaluateEq22bRecombinationAcoustic(input, inputPath) {
   const carrierBinding = evaluateCarrierBinding(rows, input.commonCarrierId ?? packet.id);
   const solver = evaluateRecombinationAcousticSolver(packet, tolerances);
   const negativeControls = evaluateNegativeControls(packet, packet.negativeControls ?? [], tolerances);
-  const status = decideStatus({ carrier, missingRows, carrierBinding, solver, negativeControls });
+  const status = decideStatus({ carrier, rowChecks, missingRows, carrierBinding, solver, negativeControls });
   const carrierSource = sourceReferenceDetails(
     input.carrier?.sourcePath ?? packet.carrier?.sourcePath ?? input.carrier?.source ?? null,
     inputPath,
@@ -192,11 +192,12 @@ function evaluateEq22bRecombinationAcoustic(input, inputPath) {
     summary: {
       status,
       scoreDecision: SCORE_DECISION,
-      nextBlocker: firstBlocker({ status, carrier, missingRows, carrierBinding, solver, negativeControls }),
+      nextBlocker: firstBlocker({ status, carrier, rowChecks, missingRows, carrierBinding, solver, negativeControls }),
       solverNextBlocker: firstSolverBlocker(solver, negativeControls),
       carrierAccepted: carrier.accepted,
       carrierReason: carrier.reason,
       missingRows,
+      sourceEvidenceFailureCount: sourceEvidenceFailureCount(carrier, rowChecks),
       sourceAudit: summarizeSourceAudit(rowSourceAudit),
       commonCarrierPass: carrierBinding.passed,
       solverResidualPass: allSolverChecksPass(solver),
@@ -651,7 +652,7 @@ function evaluateSourcePath(sourcePath, inputPath) {
 function evaluateSourceContract(row, rowId) {
   const sourceKind = stringOrNull(row?.sourceKind);
   if (sourceKind && DISALLOWED_SOURCE_KINDS.has(sourceKind)) {
-    return { accepted: false, reason: "generic_source_contract" };
+    return { accepted: false, reason: "accepted_without_evidence_source" };
   }
   const expectedFamily = SOURCE_FAMILIES[rowId] ?? null;
   if (expectedFamily) {
@@ -692,7 +693,7 @@ function sourceReferenceDetails(sourcePath, inputPath = null) {
     return { accepted: false, reason: "self_referential_source", concrete: true, exists: true, resolvedPath: resolved };
   }
   if (GENERIC_SOURCE_PATHS.has(relativeSourcePath)) {
-    return { accepted: false, reason: "generic_source_contract", concrete: true, exists: true, resolvedPath: resolved };
+    return { accepted: false, reason: "accepted_without_evidence_source", concrete: true, exists: true, resolvedPath: resolved };
   }
   if (!fs.existsSync(resolved)) {
     return { accepted: false, reason: "source_missing", concrete: true, exists: false, resolvedPath: resolved };
@@ -700,7 +701,37 @@ function sourceReferenceDetails(sourcePath, inputPath = null) {
   if (!fs.statSync(resolved).isFile()) {
     return { accepted: false, reason: "source_not_file", concrete: true, exists: true, resolvedPath: resolved };
   }
+  if (!isEvidenceSourcePath(resolved)) {
+    return { accepted: false, reason: "accepted_without_evidence_source", concrete: true, exists: true, resolvedPath: resolved };
+  }
   return { accepted: true, reason: "accepted", concrete: true, exists: true, resolvedPath: resolved };
+}
+
+function isEvidenceSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  if (relative === "" || relative.startsWith("..") || path.isAbsolute(relative)) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}generated${path.sep}`)) {
+    return false;
+  }
+  const basename = path.basename(normalized).toLowerCase();
+  return (
+    !basename.includes("attempt") &&
+    !basename.includes("toy") &&
+    !basename.includes("source-evidence-probe") &&
+    !basename.includes("probe") &&
+    !basename.includes("mock") &&
+    !basename.includes("negative-control") &&
+    !basename.includes(".tmp")
+  );
 }
 
 function auditRowSource(rowId, row, evidence, inputPath) {
@@ -734,24 +765,50 @@ function summarizeSourceAudit(rowSourceAudit) {
           "source_family_missing",
           "source_family_mismatch",
           "self_referential_source",
-          "generic_source_contract",
+          "accepted_without_evidence_source",
         ].includes(row.reason),
       )
       .map((row) => row.rowId),
     selfReferentialSourceRows: rows.filter((row) => row.sourceReason === "self_referential_source").map((row) => row.rowId),
-    genericSourceRows: rows.filter((row) => row.sourceReason === "generic_source_contract").map((row) => row.rowId),
+    nonEvidenceSourceRows: rows
+      .filter((row) => row.sourceReason === "accepted_without_evidence_source")
+      .map((row) => row.rowId),
     firstMissingSourceRow: rows.find((row) => row.sourceConcrete && !row.sourceReferenceExists)?.rowId ?? null,
     sourceBackedRowCount: rows.filter((row) => row.sourceReferenceExists).length,
     requiredRowCount: rows.length,
   };
 }
 
-function decideStatus({ carrier, missingRows, carrierBinding, solver, negativeControls }) {
+function sourceEvidenceFailureCount(carrier, rowChecks) {
+  const carrierFailure = isSourceEvidenceFailureReason(carrier.reason) ? 1 : 0;
+  const rowFailures = Object.values(rowChecks).filter(
+    (check) => isSourceEvidenceFailureReason(check.reason),
+  ).length;
+  return carrierFailure + rowFailures;
+}
+
+function isSourceEvidenceFailureReason(reason) {
+  return reason === "accepted_without_evidence_source" || reason === "self_referential_source";
+}
+
+function hasNonSourceEvidenceMissingRows(missingRows, rowChecks) {
+  return missingRows.some(
+    (rowId) => !isSourceEvidenceFailureReason(rowChecks[rowId]?.reason),
+  );
+}
+
+function decideStatus({ carrier, rowChecks, missingRows, carrierBinding, solver, negativeControls }) {
   if (!carrier.accepted) {
+    if (isSourceEvidenceFailureReason(carrier.reason)) {
+      return "blocked_source_evidence";
+    }
     return "blocked_missing_accepted_recombination_acoustic_carrier";
   }
-  if (missingRows.length > 0) {
+  if (missingRows.length > 0 && hasNonSourceEvidenceMissingRows(missingRows, rowChecks)) {
     return "blocked_missing_rows";
+  }
+  if (missingRows.length > 0) {
+    return "blocked_source_evidence";
   }
   if (!carrierBinding.passed) {
     return "blocked_carrier_split";
@@ -765,14 +822,20 @@ function decideStatus({ carrier, missingRows, carrierBinding, solver, negativeCo
   return "populated";
 }
 
-function firstBlocker({ status, carrier, missingRows, carrierBinding, solver, negativeControls }) {
+function firstBlocker({ status, carrier, rowChecks, missingRows, carrierBinding, solver, negativeControls }) {
   if (status === "populated") {
     return null;
+  }
+  if (status === "blocked_source_evidence") {
+    return "accepted_without_evidence_source";
   }
   if (!carrier.accepted) {
     return "missing_accepted_recombination_acoustic_carrier";
   }
   if (missingRows.length > 0) {
+    if (rowChecks[missingRows[0]]?.reason === "accepted_without_evidence_source") {
+      return "accepted_without_evidence_source";
+    }
     return `missing_accepted_${missingRows[0]}`;
   }
   if (!carrierBinding.passed) {

@@ -8,6 +8,8 @@
   - [EQ-26 Through EQ-31 Observation-First Precision Packet](eq-26-31-observation-first-precision-packet.md)
 - Source runner: [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs)
 - Source fixture: [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json)
+- Source-attempt fixture: [planck-alpha-braid-theta-alpha-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-alpha-source-attempt.v1.json)
+- Coordination-source negative control: [planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json)
 - Rows served: `EQ-26A`, with support from `EQ-12A`, `EQ-16`, and `EQ-26`
 - Claim level: candidate source-field map and attack card
 - Promotion status: priority-only
@@ -15,6 +17,8 @@
 ## Boundary
 
 This map does not populate accepted retained evidence. It narrows the local `EQ-26A` child route under the shared `theta_gamma_packet` and retained action-period parent. The checker currently blocks first at `missing_accepted_theta_gamma_packet`; after parent photon/action support exists, the source-field route should begin by pinning `charge_exposure_row`, because an `alpha_coupling_row` is meaningful only after $q_{\mathrm{obs}}$ is scheme-pinned.
+
+Findability note: QFT ultraviolet divergence or renormalization belongs here only as a scale-dependent coupling, exposure, threshold-inventory, or wake-dressing benchmark. It is not the Planck blackbody ultraviolet catastrophe handled by `EQ-22A`.
 
 No score changes.
 
@@ -64,6 +68,21 @@ Required rows:
 | `energy_scale_running_row` | Running $\alpha(\mu)$ readout with declared scale anchors. |
 | `source_provenance`, `no_hidden_retune_witness` | Same $h_\vartheta$, $c_\gamma$, charge exposure, gauge domain, and Noether sea state across low-energy, atomic, and running anchors. |
 
+The source-attempt fixture names the first local alpha surface without claiming
+accepted evidence:
+
+| Field | Source-attempt value |
+| --- | --- |
+| `commonCarrierId` | `theta_alpha_source_attempt_0001` |
+| `chargeExposureRowId` | `charge_exposure_row_theta_alpha_source_attempt_row` |
+| `alphaCouplingRowId` | `alpha_coupling_row_theta_alpha_source_attempt_row` |
+| `localPhotonSpeedRowId` | `local_photon_speed_row_theta_alpha_source_attempt_row` |
+| `wakeDressingRowId` | `vacuum_polarization_wake_dressing_row_theta_alpha_source_attempt_row` |
+| `runningRowId` | `energy_scale_running_row_theta_alpha_source_attempt_row` |
+| `chargedThresholdInventoryId` | `I_mu_theta_alpha_source_attempt_0001` |
+| `expectedFirstBlocker` | `missing_accepted_theta_gamma_packet` |
+| `localFirstChildBlocker` | `missing_accepted_charge_exposure_row` |
+
 ## Fail-Closed Controls
 
 - `eq26a.alpha_hidden_retune`: catches hidden changes to $h_\vartheta$, $c_\gamma$, charge exposure, gauge domain, or Noether sea state between anchors.
@@ -78,4 +97,25 @@ Create one durable `theta_alpha` source report beginning with `charge_exposure_r
 node scripts/equation-mapping/planck-alpha-braid-residual.mjs --summary --pretty
 ```
 
+To check the current source-attempt fixture, run:
+
+```sh
+node scripts/equation-mapping/planck-alpha-braid-residual.mjs --input scripts/equation-mapping/planck-alpha-braid-theta-alpha-source-attempt.v1.json --summary --pretty
+```
+
+Expected result: `blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`,
+`scoreDecision=no_score_increase`, `alphaRunningPass=true`, and all 15 negative controls
+passing. The same command with `--require-populated` must exit nonzero.
+
 Until parent photon/action support and local charge/coupling rows are accepted, the correct result remains no score movement.
+
+The shared Planck/alpha runner now rejects priority packets, authored AAA prose,
+generated files, attempt files, toy files, probe files, source-evidence-probe
+files, mock files, negative-control files, and temporary paths as accepted
+retained evidence. The coordination-source control marks `theta_gamma_packet`
+accepted-looking while sourcing it only to the theta-gamma priority packet; it
+must remain blocked at `missing_accepted_theta_gamma_packet` with the row reason
+`source_not_durable`. The sibling probe-source control points the same
+accepted-looking parent at a `source-evidence-probe` JSON and must fail the same
+way. Probe files can sharpen blockers, but they cannot be the retained source
+object for $\Theta_\gamma$.

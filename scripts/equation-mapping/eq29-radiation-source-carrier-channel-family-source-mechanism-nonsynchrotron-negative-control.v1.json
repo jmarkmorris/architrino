@@ -1,0 +1,259 @@
+{
+  "schema": "aaa-equation-map-eq29-radiation-source-ledger-input/v1",
+  "claimLevel": "score-neutral EQ-29 source_mechanism_row non-synchrotron negative control; wrong mechanism semantics must fail closed",
+  "residualId": "R_EQ29_radiation_source_carrier_source_mechanism_nonsynchrotron_control_0001",
+  "commonCarrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+  "tolerances": {
+    "carrier": 1e-12,
+    "power": 1e-12,
+    "frequency": 1e-12,
+    "cooling": 1e-12,
+    "polarization": 1e-12,
+    "eventBalance": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12,
+    "negativeControl": 1e-12
+  },
+  "packet": {
+    "id": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+    "commonCarrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+    "sourceIdentity": {
+      "sourceWindowId": "W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+      "sourceEventId": "e_rad_syn_0_source_mechanism_nonsynchrotron_control_0001",
+      "sourceBranchId": "Gamma_e_pm_syn_0_source_mechanism_nonsynchrotron_control_0001",
+      "radiationSourceCarrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+      "photonOutputGateABId": "photon_output_gate_A_B_syn_0_source_mechanism_nonsynchrotron_control_0001",
+      "eventLedgerId": "L_EpJ_rad_syn_0_source_mechanism_nonsynchrotron_control_0001"
+    },
+    "rows": {
+      "radiation_source_carrier": {
+        "id": "radiation-source-carrier-source-probe-0001",
+        "rowId": "radiation-source-carrier-source-probe-row",
+        "status": "accepted",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+        "sourceFamily": "EQ-29 radiation source carrier",
+        "sourceKind": "radiation_source_carrier",
+        "sourceRole": "carrier",
+        "evidenceSupports": [
+          "EQ-29",
+          "radiation_source_carrier",
+          "synchrotron source"
+        ],
+        "claimLevel": "accepted-looking source-evidence probe row; not accepted retained evidence"
+      },
+      "carrier_channel_family_row": {
+        "id": "carrier-channel-family-source-probe-0001",
+        "rowId": "carrier-channel-family-source-probe-row",
+        "status": "accepted",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+        "sourceFamily": "EQ-29 photon-channel output family",
+        "sourceKind": "carrier_channel_family_row",
+        "sourceRole": "carrier_channel_family",
+        "evidenceSupports": [
+          "EQ-29",
+          "carrier_channel_family_row",
+          "photon-channel output family"
+        ],
+        "claimLevel": "accepted-looking source-evidence probe row; separates photon-channel output family from exchange/tensor/generic radiation families; not accepted retained evidence"
+      },
+      "source_mechanism_row": {
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "id": "source-mechanism-nonsynchrotron-control-0001",
+        "rowId": "source-mechanism-nonsynchrotron-control-row",
+        "status": "accepted",
+        "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+        "sourceFamily": "EQ-29 Compton exchange source mechanism",
+        "sourceKind": "source_mechanism_row",
+        "sourceRole": "source_mechanism",
+        "sourceMechanism": "compton_exchange",
+        "evidenceSupports": [
+          "EQ-29",
+          "source_mechanism_row",
+          "source_mechanism",
+          "Compton exchange source mechanism"
+        ],
+        "claimLevel": "accepted-looking non-synchrotron source-mechanism control; Compton exchange is not EQ-29 synchrotron source-mechanism evidence"
+      },
+      "source_branch_row": {
+        "id": "source-branch-gamma-e-pm-source-candidate-0001",
+        "rowId": "source-branch-gamma-e-pm-source-candidate-row",
+        "status": "attempt",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+      },
+      "noether_sea_magnetic_state_row": {
+        "id": "noether-sea-magnetic-state-source-candidate-0001",
+        "rowId": "noether-sea-magnetic-state-source-candidate-row",
+        "status": "attempt",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+      },
+      "closure_residual_planar_mode_row": {
+        "id": "closure-residual-planar-mode-source-candidate-0001",
+        "rowId": "closure-residual-planar-mode-source-candidate-row",
+        "status": "attempt",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+      },
+      "photon_output_gate_A_B_row": {
+        "id": "photon-output-gate-A-B-source-candidate-0001",
+        "rowId": "photon-output-gate-A-B-source-candidate-row",
+        "status": "attempt",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+      },
+      "source_depletion_row": {
+        "id": "source-depletion-synchrotron-source-candidate-0001",
+        "rowId": "source-depletion-synchrotron-source-candidate-row",
+        "status": "attempt",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+      },
+      "recoil_medium_wake_remnant_rows": {
+        "id": "recoil-medium-wake-remnant-source-candidate-0001",
+        "rowId": "recoil-medium-wake-remnant-source-candidate-row",
+        "status": "attempt",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+      },
+      "power_spectrum_benchmark_row": {
+        "id": "power-spectrum-benchmark-source-candidate-0001",
+        "rowId": "power-spectrum-benchmark-source-candidate-row",
+        "status": "attempt",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+      },
+      "cooling_row": {
+        "id": "cooling-synchrotron-source-candidate-0001",
+        "rowId": "cooling-synchrotron-source-candidate-row",
+        "status": "attempt",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+      },
+      "polarization_angular_momentum_handoff_row": {
+        "id": "polarization-angular-momentum-source-candidate-0001",
+        "rowId": "polarization-angular-momentum-source-candidate-row",
+        "status": "attempt",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+      },
+      "event_ledger_row": {
+        "id": "event-ledger-synchrotron-source-candidate-0001",
+        "rowId": "event-ledger-synchrotron-source-candidate-row",
+        "status": "attempt",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+      },
+      "source_provenance": {
+        "id": "source-provenance-synchrotron-source-candidate-0001",
+        "rowId": "source-provenance-synchrotron-source-candidate-row",
+        "status": "attempt",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+      },
+      "no_hidden_retune_witness": {
+        "id": "no-hidden-retune-synchrotron-source-candidate-0001",
+        "rowId": "no-hidden-retune-synchrotron-source-candidate-row",
+        "status": "attempt",
+        "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_nonsynchrotron_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+      }
+    },
+    "radiationSource": {
+      "mechanism": "synchrotron",
+      "power": {
+        "sourceDepletionPower": 1,
+        "sigmaT": 0.75,
+        "c": 1,
+        "magneticEnergyDensity": 1,
+        "gamma": 1,
+        "beta": 1,
+        "sinPitch": 1,
+        "epsilonPower": 1e-30
+      },
+      "characteristicFrequency": {
+        "observedFrequency": 1,
+        "gamma": 1,
+        "charge": 4.1887902047863905,
+        "magneticField": 1,
+        "mass": 1,
+        "sinPitch": 1,
+        "epsilonFrequency": 1e-30
+      },
+      "cooling": {
+        "observedCoolingTime": 10,
+        "sourceEnergy": 10,
+        "emittedPower": 1,
+        "epsilonTime": 1e-30
+      },
+      "polarization": {
+        "maxResidual": 0
+      },
+      "eventBalance": {
+        "components": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "sourceProvenance": {
+        "maxResidual": 0
+      },
+      "noHiddenRetune": {
+        "maxResidual": 0
+      }
+    },
+    "negativeControls": [
+      {
+        "id": "source_channel_collapse",
+        "kind": "source_channel_collapse",
+        "expectedMechanism": "synchrotron",
+        "sourceMechanism": "compton_exchange"
+      },
+      {
+        "id": "gate_a_not_radiation_source_carrier",
+        "kind": "source_channel_collapse",
+        "expectedMechanism": "synchrotron",
+        "sourceMechanism": "photon_gate_A_input_output"
+      },
+      {
+        "id": "power_without_source_depletion",
+        "kind": "power_without_source_depletion",
+        "sourceDepletionResidual": 0.01
+      },
+      {
+        "id": "hidden_B_or_gamma_retune",
+        "kind": "hidden_B_or_gamma_retune",
+        "powerKeys": {
+          "B_eff": "B_eff_0",
+          "gamma": "gamma_0",
+          "pitch": "pitch_0",
+          "theta_sea": "theta_sea_0"
+        },
+        "frequencyKeys": {
+          "B_eff": "B_eff_1",
+          "gamma": "gamma_0",
+          "pitch": "pitch_0",
+          "theta_sea": "theta_sea_0"
+        }
+      },
+      {
+        "id": "polarization_without_gate_B",
+        "kind": "polarization_without_gate_B",
+        "polarizationResidual": 0,
+        "gateBAccepted": false
+      },
+      {
+        "id": "thermal_fit_without_event_ledger",
+        "kind": "thermal_fit_without_event_ledger",
+        "sourceMechanism": "thermal_free_free",
+        "eventLedgerPresent": false
+      }
+    ]
+  }
+}

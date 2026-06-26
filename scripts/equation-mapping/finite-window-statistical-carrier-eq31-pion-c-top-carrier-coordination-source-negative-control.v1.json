@@ -1,0 +1,198 @@
+{
+  "schema": "aaa-equation-map-finite-window-statistical-carrier-input/v1",
+  "claimLevel": "accepted-looking EQ-31 top finite-window carrier coordination-source negative control; score-neutral and not retained evidence",
+  "constants": {
+    "hbar": 6.582119569e-22
+  },
+  "tolerances": {
+    "massClosure": 1e-12,
+    "invariance": 0.001,
+    "retune": 1e-12,
+    "nullSeparatrix": 0.001,
+    "refinement": 0.001
+  },
+  "carrier": {
+    "id": "C_stat_WT_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+    "row": "EQ-31",
+    "retainedStatus": "accepted",
+    "window": {
+      "id": "W_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+      "kind": "charged_pion_free_weak_decay_window_source_probe",
+      "retainedStatus": "accepted",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+      "pdgReactionId": "pi_plus_s008_1",
+      "freeVsInMediumBoundary": "free_charged_pion_weak_lifetime_not_in_medium_residual_strong_exchange"
+    },
+    "duration": 2.6033e-8,
+    "transitionMap": {
+      "id": "Phi_T_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+      "sourceReactionId": "pi_plus_s008_1"
+    },
+    "finiteMeasure": {
+      "id": "mu_star_T_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+      "totalMass": 1,
+      "invarianceResidual": 0.0002,
+      "retainedStatus": "accepted",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md"
+    },
+    "coarseGraining": {
+      "id": "Q_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+      "classes": [
+        "stable_remnant",
+        "mu_plus_nu_mu_corridor",
+        "residual_other_weak_corridors"
+      ]
+    },
+    "detectorKernel": {
+      "id": "K_det_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+      "readout": "charged_pion_free_decay_channel_classifier"
+    },
+    "outcomePartition": {
+      "id": "B_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+      "classes": [
+        "stable_remnant",
+        "mu_plus_nu_mu_corridor",
+        "residual_other_weak_corridors"
+      ]
+    },
+    "corridorSemantics": {
+      "mode": "first_exit",
+      "basinId": "B_star_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+      "boundaryId": "partial_B_star_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+      "firstExitMapId": "tau_exit_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+      "detectorKernelStage": "post_escape_pushforward",
+      "weakCorridorFamilyId": "free_charged_pion_weak_corridor_family_C_top_carrier_coordination_source_control_0001",
+      "firstExitPreimageRows": [
+        {
+          "id": "preimage_pi_plus_to_mu_plus_nu_mu_C_top_carrier_coordination_source_control_0001",
+          "kind": "corridor_preimage",
+          "corridorId": "C_pi_plus_to_mu_plus_nu_mu_C_top_carrier_coordination_source_control_0001",
+          "measureStage": "pre_detector_escape",
+          "measure": 0.999877
+        },
+        {
+          "id": "preimage_pi_plus_other_weak_C_top_carrier_coordination_source_control_0001",
+          "kind": "corridor_preimage",
+          "corridorId": "C_pi_plus_other_weak_C_top_carrier_coordination_source_control_0001",
+          "measureStage": "pre_detector_escape",
+          "measure": 0.000123
+        }
+      ]
+    },
+    "exitCorridors": [
+      {
+        "id": "C_pi_plus_to_mu_plus_nu_mu_C_top_carrier_coordination_source_control_0001",
+        "boundaryComponentId": "partial_B_star_pi_plus_mu_plus_nu_mu_C_top_carrier_coordination_source_control_0001",
+        "measureStage": "pre_detector_escape",
+        "measure": 0.999877,
+        "retainedStatus": "accepted",
+        "ledgerStatus": "accepted",
+        "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+        "reactionId": "pi_plus_s008_1",
+        "semantics": "free_charged_pion_weak_dissociation"
+      },
+      {
+        "id": "C_pi_plus_other_weak_C_top_carrier_coordination_source_control_0001",
+        "boundaryComponentId": "partial_B_star_pi_plus_other_weak_C_top_carrier_coordination_source_control_0001",
+        "measureStage": "pre_detector_escape",
+        "measure": 0.000123,
+        "retainedStatus": "accepted",
+        "ledgerStatus": "accepted",
+        "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+        "reactionId": "pi_plus_residual_weak_channels_C_top_carrier_coordination_source_control",
+        "semantics": "residual_free_charged_pion_weak_corridors"
+      }
+    ],
+    "nullSeparatrix": {
+      "epsilon": 0.01,
+      "tolerance": 0.001,
+      "retainedStatus": "attempt",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+      "measureRows": [
+        {
+          "id": "separatrix_strip_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+          "kind": "null_separatrix_neighborhood",
+          "epsilon": 0.01,
+          "measure": 0.0004
+        }
+      ],
+      "epsilonSequence": [
+        {
+          "id": "sep_eps_004_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+          "epsilon": 0.04,
+          "neighborhoodMass": 0.0016
+        },
+        {
+          "id": "sep_eps_002_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+          "epsilon": 0.02,
+          "neighborhoodMass": 0.0008
+        },
+        {
+          "id": "sep_eps_001_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+          "epsilon": 0.01,
+          "neighborhoodMass": 0.0004
+        }
+      ]
+    },
+    "refinementCompatibility": {
+      "parentWindowId": "W_eq31_pi_plus_C_top_carrier_coordination_source_control_h0",
+      "childWindowId": "W_eq31_pi_plus_C_top_carrier_coordination_source_control_h1",
+      "tolerance": 0.001,
+      "retainedStatus": "attempt",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+      "restrictionRows": [
+        {
+          "id": "restrict_pi_plus_mu_plus_nu_mu_C_top_carrier_coordination_source_control_0001",
+          "corridorId": "C_pi_plus_to_mu_plus_nu_mu_C_top_carrier_coordination_source_control_0001",
+          "parentMeasure": 0.999877,
+          "childPushforwardMeasure": 0.99982
+        },
+        {
+          "id": "restrict_pi_plus_other_weak_C_top_carrier_coordination_source_control_0001",
+          "corridorId": "C_pi_plus_other_weak_C_top_carrier_coordination_source_control_0001",
+          "parentMeasure": 0.000123,
+          "childPushforwardMeasure": 0.00018
+        },
+        {
+          "id": "restrict_pi_plus_sep_C_top_carrier_coordination_source_control_0001",
+          "regionId": "N_epsilon_boundary",
+          "parentMeasure": 0.0004,
+          "childPushforwardMeasure": 0.00035
+        }
+      ],
+      "defectSequence": [
+        {
+          "id": "defect_h0_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+          "ell": 0.04,
+          "cocycleDefect": 0.0012
+        },
+        {
+          "id": "defect_h1_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+          "ell": 0.02,
+          "cocycleDefect": 0.0007
+        },
+        {
+          "id": "defect_h2_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+          "ell": 0.01,
+          "cocycleDefect": 0.00035
+        }
+      ]
+    },
+    "noHiddenRetuneWitness": {
+      "id": "S_retune_eq31_pi_plus_C_top_carrier_coordination_source_control_0001",
+      "residual": 0,
+      "retainedStatus": "accepted",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+      "negativeControl": "accepted_looking_C_top_carrier_coordination_source_control_must_advance_only_to_the_corridor_family_blocker"
+    },
+    "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+  }
+}

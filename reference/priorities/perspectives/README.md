@@ -13,7 +13,7 @@ Each perspective file should be named for the primary historical or contemporary
 - Treat the mature-$\mathbb{A}\mathbb{A}\mathbb{A}$ vantage as a counterfactual interpretive device unless the proof state actually warrants a stronger claim.
 - Shape each perspective as a polished public commentary rather than a raw transcript or staged debate.
 - Preserve the figure's known intellectual sensibility without claiming the real person would have endorsed $\mathbb{A}\mathbb{A}\mathbb{A}$.
-- Use the `Questions` section in `content/markdown/aaa/philosophy-history/perspectives.md` as the shared prompt all production perspectives answer.
+- Use the `Questions` section in `content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md` as the shared prompt all production perspectives answer.
 - Use the perspectives to position $\mathbb{A}\mathbb{A}\mathbb{A}$ in relation to prior models of nature, including general relativity, quantum theory, thermodynamics, the Standard Model, and Lambda-CDM where relevant.
 - Include missed-opportunity analysis where relevant: why the architecture did not crystallize from available ingredients, why the miss persisted through later successful theories, and which stage-specific habits of thought made the deeper construction harder to see.
 - Refer to the operator/developer as Marko in published perspective text when origin or authorship is discussed.

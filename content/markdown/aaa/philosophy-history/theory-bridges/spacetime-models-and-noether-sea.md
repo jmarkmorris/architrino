@@ -8,6 +8,8 @@ The purpose is narrower: keep historically important models available as discipl
 
 Use inherited spacetime models as comparison projections, not as identity claims.
 
+A useful comparison is a map from a declared substrate-and-medium record to an observer-level export, not a replacement for that record. Before an equation is reused, the calculation should identify which variables live in absolute-time and Euclidean-void bookkeeping, which variables are Noether sea state or assembly response, and which quantities are observer-level exports such as $g^{\text{eff}}_{\mu\nu}$, $\Phi_{\text{eff}}$, clock rates, ruler scales, or signal speeds. If that level assignment is missing, the model remains comparison language rather than a mechanism.
+
 The native stack is:
 
 | Level | Native term | Role |

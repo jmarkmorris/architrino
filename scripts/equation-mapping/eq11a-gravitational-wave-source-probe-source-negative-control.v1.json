@@ -1,0 +1,264 @@
+{
+  "schema": "aaa-equation-map-eq11a-gravitational-wave-source-input/v1",
+  "claimLevel": "accepted-looking EQ-11A gravitational-wave source probe-source negative control; score-neutral and not retained evidence",
+  "residualId": "R_11A_gw_source_probe_source_negative_control_0001",
+  "commonCarrierId": "theta_gwsrc_probe_source_negative_control_0001",
+  "carrier": {
+    "status": "accepted",
+    "id": "theta_gwsrc_probe_source_negative_control_0001",
+    "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-w-source-evidence-probe.v1.json"
+  },
+  "tolerances": {
+    "carrier": 1e-12,
+    "chirpMass": 1e-12,
+    "chirpRate": 1e-12,
+    "petersDecay": 1e-12,
+    "quadrupoleFlux": 1e-12,
+    "strainFlux": 1e-12,
+    "ringdown": 1e-12,
+    "energyAngularMomentumLedger": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12
+  },
+  "packet": {
+    "id": "theta_gwsrc_probe_source_negative_control_0001",
+    "sourceWindowId": "GW150914-v3",
+    "supportId": "H1L1_GWTC1_PE_v3",
+    "eventId": "GWTC-1-confident/GW150914/v3",
+    "constants": {
+      "G_eff": 1,
+      "c_GW": 10
+    },
+    "rows": {
+      "gw_source_carrier": {
+        "status": "accepted",
+        "carrierId": "theta_gwsrc_probe_source_negative_control_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
+        "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-w-source-evidence-probe.v1.json"
+      },
+      "theta_sea": {
+        "status": "attempt",
+        "carrierId": "theta_gwsrc_probe_source_negative_control_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
+        "sourcePath": "content/markdown/aaa/spacetime/noether-sea.md"
+      },
+      "effective_metric_tensor_channel": {
+        "status": "attempt",
+        "carrierId": "theta_gwsrc_probe_source_negative_control_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
+        "sourcePath": "content/markdown/aaa/spacetime/emergent-metric.md"
+      },
+      "source_event_ledger": {
+        "status": "attempt",
+        "carrierId": "theta_gwsrc_probe_source_negative_control_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11a-gravitational-wave-source-recovery.md"
+      },
+      "quadrupole_source_row": {
+        "status": "attempt",
+        "carrierId": "theta_gwsrc_probe_source_negative_control_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11a-gravitational-wave-source-recovery.md"
+      },
+      "chirp_mass_row": {
+        "status": "attempt",
+        "carrierId": "theta_gwsrc_probe_source_negative_control_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11a-gravitational-wave-source-recovery.md"
+      },
+      "peters_decay_row": {
+        "status": "attempt",
+        "carrierId": "theta_gwsrc_probe_source_negative_control_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11a-gravitational-wave-source-recovery.md"
+      },
+      "strain_flux_row": {
+        "status": "attempt",
+        "carrierId": "theta_gwsrc_probe_source_negative_control_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
+        "sourcePath": "content/markdown/aaa/spacetime/gravitational-waves.md"
+      },
+      "ringdown_label_row": {
+        "status": "attempt",
+        "carrierId": "theta_gwsrc_probe_source_negative_control_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
+        "sourcePath": "content/markdown/aaa/spacetime/gravitational-waves.md"
+      },
+      "detector_strain_record": {
+        "status": "attempt",
+        "carrierId": "theta_gwsrc_probe_source_negative_control_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
+        "sourcePath": "content/markdown/aaa/spacetime/gravitational-waves.md"
+      },
+      "source_provenance": {
+        "status": "attempt",
+        "carrierId": "theta_gwsrc_probe_source_negative_control_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11a-gravitational-wave-source-recovery.md"
+      },
+      "no_hidden_retune_witness": {
+        "status": "attempt",
+        "carrierId": "theta_gwsrc_probe_source_negative_control_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11a-gravitational-wave-source-recovery.md"
+      }
+    },
+    "binarySamples": [
+      {
+        "id": "normalized_circular_binary_0001",
+        "m1": 3,
+        "m2": 2,
+        "separation": 20,
+        "eccentricity": 0,
+        "chirpMass": 2.123717517589869,
+        "f_GW": 0.007957747154594767,
+        "frequencyDerivative": 2.8647889756541156e-10,
+        "semiMajorAxisDerivative": -4.800000000000001e-7,
+        "orbitalPeriod": 251.32741228718345,
+        "orbitalPeriodDerivative": -0.000009047786842338606,
+        "radiatedPower": 3.6e-9,
+        "quadrupoleThirdDerivativeNorm": 0.0018
+      }
+    ],
+    "strainSamples": [
+      {
+        "id": "normalized_detector_strain_0001",
+        "hDotPlus": 0.000003,
+        "hDotCross": 0.000004449719092257397,
+        "flux": 2.864788975654116e-10,
+        "distance": 1,
+        "sourcePower": 3.6e-9
+      }
+    ],
+    "ringdownSamples": [
+      {
+        "id": "normalized_final_compact_object_0001",
+        "finalMass": 4.9,
+        "frequencyCoefficient": 0.6,
+        "dampingCoefficient": 12,
+        "frequency": 122.44897959183673,
+        "dampingTime": 0.058800000000000005
+      }
+    ],
+    "energyAngularMomentumLedger": {
+      "initialEnergy": 500,
+      "finalCompactEnergy": 490,
+      "radiatedEnergy": 10,
+      "initialAngularMomentum": 50,
+      "finalAngularMomentum": 48,
+      "radiatedAngularMomentum": 2
+    },
+    "sourceProvenance": {
+      "maxResidual": 0
+    },
+    "noHiddenRetune": {
+      "sharedRecordId": "theta_gwsrc_probe_source_negative_control_0001",
+      "sourceWindowId": "GW150914-v3",
+      "supportId": "H1L1_GWTC1_PE_v3",
+      "eventId": "GWTC-1-confident/GW150914/v3",
+      "maxResidual": 0,
+      "perSampleCarrierCount": 1,
+      "perSampleMetricRecordCount": 1,
+      "perSampleRingdownLabelCount": 1,
+      "perFormulaFitHandleCount": 0
+    },
+    "negativeControls": [
+      {
+        "id": "chirp_mass_from_total_mass_only",
+        "expectedFailedCheck": "chirpMass",
+        "mutations": [
+          {
+            "path": "binarySamples.0.chirpMass",
+            "value": 5
+          }
+        ]
+      },
+      {
+        "id": "newtonian_decay_without_gw_flux",
+        "expectedFailedCheck": "petersDecay",
+        "mutations": [
+          {
+            "path": "binarySamples.0.semiMajorAxisDerivative",
+            "value": 0
+          },
+          {
+            "path": "binarySamples.0.orbitalPeriodDerivative",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "id": "single_polarization_strain_flux",
+        "expectedFailedCheck": "strainFlux",
+        "mutations": [
+          {
+            "path": "strainSamples.0.hDotCross",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "id": "split_ringdown_label_retune",
+        "expectedFailedCheck": "noHiddenRetune",
+        "mutations": [
+          {
+            "path": "noHiddenRetune.perSampleRingdownLabelCount",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "id": "gw_source_window_support_event_split",
+        "expectedFailedCheck": "noHiddenRetune",
+        "mutations": [
+          {
+            "path": "rows.ringdown_label_row.sourceWindowId",
+            "value": "GW150914-v2-split-negative-control"
+          },
+          {
+            "path": "rows.ringdown_label_row.supportId",
+            "value": "H1L1_GWTC1_PE_v2_split_negative_control"
+          },
+          {
+            "path": "rows.ringdown_label_row.eventId",
+            "value": "GWTC-1-confident/GW150914/v2-split-negative-control"
+          }
+        ]
+      },
+      {
+        "id": "unledgered_source_power",
+        "expectedFailedCheck": "energyAngularMomentumLedger",
+        "mutations": [
+          {
+            "path": "energyAngularMomentumLedger.radiatedEnergy",
+            "value": 9
+          }
+        ]
+      }
+    ]
+  }
+}

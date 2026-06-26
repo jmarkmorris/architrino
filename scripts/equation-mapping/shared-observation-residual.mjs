@@ -64,12 +64,13 @@ if (args.requirePopulated && output.summary.status !== "populated") {
 }
 
 function parseArgs(argv) {
-  const parsed = {
+const parsed = {
     input: null,
     out: null,
     pretty: false,
     summary: false,
     requirePopulated: false,
+    focusRow: null,
     help: false,
   };
   for (let index = 0; index < argv.length; index += 1) {
@@ -84,6 +85,8 @@ function parseArgs(argv) {
       parsed.summary = true;
     } else if (arg === "--require-populated") {
       parsed.requirePopulated = true;
+    } else if (arg === "--focus-row") {
+      parsed.focusRow = argv[++index];
     } else if (arg === "--help" || arg === "-h") {
       parsed.help = true;
     } else {
@@ -102,6 +105,7 @@ Options:
   --summary             Emit compact summary JSON.
   --pretty              Pretty-print JSON output.
   --require-populated   Exit nonzero unless the residual is populated.
+  --focus-row ROW       Add diagnostic-only blocker detail for a required row.
   --help                Show this help.
 
 This checker evaluates the score-neutral EQ-21/EQ-22/EQ-23/EQ-32
@@ -114,6 +118,9 @@ function readJson(filePath) {
 }
 
 function writeOutput(output, parsedArgs) {
+  if (parsedArgs.focusRow) {
+    output.summary.focusedBlockers = buildFocusedBlockers(output.rows, parsedArgs.focusRow);
+  }
   const payload = parsedArgs.summary ? summarizeOutput(output) : output;
   const text = JSON.stringify(payload, null, parsedArgs.pretty ? 2 : 0);
   if (parsedArgs.out) {
@@ -121,6 +128,34 @@ function writeOutput(output, parsedArgs) {
   } else {
     console.log(text);
   }
+}
+
+function buildFocusedBlockers(rows, focusRow) {
+  const rowIds = focusRow === "all" ? REQUIRED_ROWS : [focusRow];
+  return Object.fromEntries(
+    rowIds.map((rowId) => {
+      const row = rows[rowId];
+      if (!row) {
+        return [
+          rowId,
+          {
+            nextBlocker: `unsupported_focus_row_${rowId}`,
+            reason: "unsupported_focus_row",
+          },
+        ];
+      }
+      return [
+        rowId,
+        {
+          nextBlocker: row.accepted ? null : `missing_accepted_${rowId}`,
+          reason: row.accepted ? "accepted" : row.reason,
+          status: row.status,
+          rowId: row.rowId,
+          sourcePath: row.sourcePath,
+        },
+      ];
+    }),
+  );
 }
 
 function evaluateSharedObservationResidual(input, inputPath) {
@@ -133,9 +168,15 @@ function evaluateSharedObservationResidual(input, inputPath) {
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const projections = evaluateProjections(input.projections ?? {});
   const sharedKeys = evaluateSharedKeys(input.sharedKeys ?? [], tolerances);
+  const sourceEvidence = evaluateSourceEvidence({
+    rows,
+    projections,
+    sharedKeys,
+  });
   const residual = evaluateResidual(input.residualComponents ?? {}, tolerances);
   const status = decideStatus({
     missingRows,
+    sourceEvidence,
     projections,
     sharedKeys,
     residual,
@@ -145,6 +186,7 @@ function evaluateSharedObservationResidual(input, inputPath) {
     missingRows,
     rows,
     rowChecks,
+    sourceEvidence,
     projections,
     sharedKeys,
     residual,
@@ -179,6 +221,8 @@ function evaluateSharedObservationResidual(input, inputPath) {
       nextBlocker,
       nextBlockerDetails: firstBlockerDetails(nextBlocker, blockerContext),
       thetaObsAccepted: rowChecks.theta_obs.accepted,
+      sourceEvidenceAccepted: sourceEvidence.passed,
+      sourceEvidenceFailureCount: sourceEvidence.failures.length,
       projectionFamiliesAccepted: projections.accepted,
       allExpectedKeysDeclared: sharedKeys.allExpectedKeysDeclared,
       sharedKeysAccepted: sharedKeys.accepted,
@@ -201,6 +245,7 @@ function evaluateSharedObservationResidual(input, inputPath) {
     ),
     projections,
     sharedKeys,
+    sourceEvidence,
     residualComponents: residual,
   };
 }
@@ -224,12 +269,75 @@ function summarizeOutput(output) {
       hiddenRetuneNumericPass: output.sharedKeys.hiddenRetuneNumericPass,
       mismatches: output.sharedKeys.mismatches,
     },
+    sourceEvidence: {
+      accepted: output.sourceEvidence.passed,
+      failureCount: output.sourceEvidence.failures.length,
+      firstFailure: output.sourceEvidence.firstFailure,
+    },
     residualComponents: {
       computed: output.residualComponents.computed,
       total: output.residualComponents.total,
       passed: output.residualComponents.passed,
       terms: output.residualComponents.terms,
     },
+  };
+}
+
+function evaluateSourceEvidence({ rows, projections, sharedKeys }) {
+  const retainedRows = REQUIRED_ROWS.map((rowId) =>
+    evaluateSourceEvidenceEntry({
+      scope: "row",
+      id: rowId,
+      status: rows[rowId]?.status ?? rows[rowId]?.retainedStatus ?? null,
+      sourcePath: rows[rowId]?.sourcePath ?? rows[rowId]?.source ?? null,
+    }),
+  );
+  const projectionRows = PROJECTION_FAMILIES.map((family) =>
+    evaluateSourceEvidenceEntry({
+      scope: "projection",
+      id: family,
+      status: projections.families[family]?.status,
+      sourcePath: projections.families[family]?.sourcePath,
+    }),
+  );
+  const sharedKeyRows = EXPECTED_SHARED_KEYS.map((key) =>
+    evaluateSourceEvidenceEntry({
+      scope: "shared_key",
+      id: key,
+      status: sharedKeys.keys[key]?.status,
+      sourcePath: sharedKeys.keys[key]?.sourcePath,
+    }),
+  );
+  const entries = [...retainedRows, ...projectionRows, ...sharedKeyRows];
+  const failures = entries.filter((entry) => !entry.passed);
+  return {
+    passed: failures.length === 0,
+    failures,
+    firstFailure: failures[0] ?? null,
+    entries,
+  };
+}
+
+function evaluateSourceEvidenceEntry({ scope, id, status, sourcePath }) {
+  const requiresEvidence = ACCEPTED_STATUSES.has(status);
+  if (!requiresEvidence) {
+    return {
+      scope,
+      id,
+      status: status ?? "missing",
+      sourcePath: sourcePath ?? null,
+      passed: true,
+      reason: "not_accepted",
+    };
+  }
+  const evidenceReason = sourceEvidenceReason(sourcePath);
+  return {
+    scope,
+    id,
+    status,
+    sourcePath: sourcePath ?? null,
+    passed: evidenceReason === "accepted",
+    reason: evidenceReason,
   };
 }
 
@@ -372,9 +480,12 @@ function compareProjectionValues(projectionValues, tolerances) {
   };
 }
 
-function decideStatus({ missingRows, projections, sharedKeys, residual }) {
+function decideStatus({ missingRows, sourceEvidence, projections, sharedKeys, residual }) {
   if (missingRows.length > 0) {
     return "blocked_missing_rows";
+  }
+  if (!sourceEvidence.passed) {
+    return "blocked_source_evidence";
   }
   if (!projections.accepted) {
     return "blocked_missing_projection_family";
@@ -394,12 +505,15 @@ function decideStatus({ missingRows, projections, sharedKeys, residual }) {
   return "populated";
 }
 
-function firstBlocker({ status, missingRows, projections, sharedKeys, residual }) {
+function firstBlocker({ status, missingRows, sourceEvidence, projections, sharedKeys, residual }) {
   if (status === "populated") {
     return null;
   }
   if (missingRows.length > 0) {
     return `missing_accepted_${missingRows[0]}`;
+  }
+  if (!sourceEvidence.passed) {
+    return "accepted_without_evidence_source";
   }
   if (!projections.accepted) {
     return `missing_accepted_projection_${projections.missingProjectionFamilies[0]}`;
@@ -423,12 +537,22 @@ function firstBlockerDetails(nextBlocker, context) {
   if (!nextBlocker) {
     return null;
   }
-  const { missingRows, rows, rowChecks, projections, sharedKeys, residual } = context;
+  const { missingRows, rows, rowChecks, sourceEvidence, projections, sharedKeys, residual } = context;
   const missingRowId = missingRows.find(
     (rowId) => nextBlocker === `missing_accepted_${rowId}`,
   );
   if (missingRowId) {
     return retainedRowDetail(missingRowId, rows[missingRowId], rowChecks[missingRowId]);
+  }
+  if (nextBlocker === "accepted_without_evidence_source") {
+    return {
+      id: sourceEvidence.firstFailure?.id ?? "source_evidence",
+      scope: sourceEvidence.firstFailure?.scope ?? null,
+      status: sourceEvidence.firstFailure?.status ?? "failed",
+      reason: sourceEvidence.firstFailure?.reason ?? "accepted_without_evidence_source",
+      sourcePath: sourceEvidence.firstFailure?.sourcePath ?? null,
+      failureCount: sourceEvidence.failures.length,
+    };
   }
   const projectionPrefix = "missing_accepted_projection_";
   if (nextBlocker.startsWith(projectionPrefix)) {
@@ -608,6 +732,47 @@ function sourceReferenceExists(value) {
   } catch {
     return false;
   }
+}
+
+function sourceEvidenceReason(value) {
+  if (!concreteString(value)) {
+    return "missing_source_path";
+  }
+  const resolvedPath = path.resolve(value.trim());
+  if (isNonDurableSourcePath(resolvedPath)) {
+    return "non_durable_source_path";
+  }
+  try {
+    if (!fs.statSync(resolvedPath).isFile()) {
+      return "source_not_file";
+    }
+  } catch {
+    return "source_not_found";
+  }
+  const normalized = path.normalize(resolvedPath);
+  const relative = path.relative(process.cwd(), normalized);
+  if (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative)
+  ) {
+    return "source_outside_repo";
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return "coordination_source_path";
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return "authored_prose_source_path";
+  }
+  const basename = path.basename(normalized).toLowerCase();
+  if (
+    basename.includes("attempt") ||
+    basename.includes("mock") ||
+    basename.includes("negative-control")
+  ) {
+    return "control_or_attempt_source_path";
+  }
+  return "accepted";
 }
 
 function isNonDurableSourcePath(filePath) {
