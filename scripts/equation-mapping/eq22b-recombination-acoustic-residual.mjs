@@ -30,6 +30,39 @@ const REQUIRED_ROWS = [
   "no_hidden_retune_witness",
 ];
 
+const SOURCE_FAMILIES = {
+  recombination_acoustic_carrier: "EQ-22B carrier shell",
+  theta_src: "shared observation source window",
+  theta_therm_prov: "thermal/provenance ledger",
+  theta_read: "effective readout clock/projection",
+  theta_bb: "EQ-22A Planck/blackbody packet",
+  photon_channel: "photon Gate A/B/C and action packet",
+  neutrino_channel: "BBN/CMB neutrino handoff",
+  noether_sea_state: "CMB Noether sea state/readout",
+  recombination_kinetics_row: "Saha/Peebles recombination kinetics",
+  thomson_visibility_row: "Thomson visibility row",
+  sound_horizon_row: "CMB acoustic sound-horizon row",
+  silk_damping_row: "CMB damping row",
+  acoustic_transfer_row: "acoustic transfer/phase row",
+  event_ledger: "finite-window event ledger",
+  source_provenance: "source/provenance residual",
+  no_hidden_retune_witness: "shared-record retune witness",
+};
+
+const DISALLOWED_SOURCE_KINDS = new Set([
+  "attempt_fixture",
+  "priority_packet",
+  "source_shell",
+  "generic_corpus_anchor",
+]);
+
+const GENERIC_SOURCE_PATHS = new Set([
+  "content/markdown/aaa/cosmology/CMB.md",
+  "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md",
+  "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md",
+  "scripts/equation-mapping/eq22b-recombination-acoustic-attempt.v1.json",
+]);
+
 const DEFAULT_TOLERANCES = {
   carrier: 1e-12,
   saha: 1e-12,
@@ -120,16 +153,23 @@ function writeOutput(output, parsedArgs) {
 function evaluateEq22bRecombinationAcoustic(input, inputPath) {
   const tolerances = parseTolerances(input.tolerances ?? {});
   const packet = input.packet ?? input;
-  const carrier = evaluateAcceptedEvidence(input.carrier ?? packet.carrier);
+  const carrier = evaluateAcceptedEvidence(input.carrier ?? packet.carrier, "recombination_acoustic_carrier", inputPath);
   const rows = packet.rows ?? {};
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedEvidence(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedEvidence(rows[rowId], rowId, inputPath)]),
+  );
+  const rowSourceAudit = Object.fromEntries(
+    REQUIRED_ROWS.map((rowId) => [rowId, auditRowSource(rowId, rows[rowId], rowChecks[rowId], inputPath)]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const carrierBinding = evaluateCarrierBinding(rows, input.commonCarrierId ?? packet.id);
   const solver = evaluateRecombinationAcousticSolver(packet, tolerances);
   const negativeControls = evaluateNegativeControls(packet, packet.negativeControls ?? [], tolerances);
   const status = decideStatus({ carrier, missingRows, carrierBinding, solver, negativeControls });
+  const carrierSource = sourceReferenceDetails(
+    input.carrier?.sourcePath ?? packet.carrier?.sourcePath ?? input.carrier?.source ?? null,
+    inputPath,
+  );
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -157,6 +197,7 @@ function evaluateEq22bRecombinationAcoustic(input, inputPath) {
       carrierAccepted: carrier.accepted,
       carrierReason: carrier.reason,
       missingRows,
+      sourceAudit: summarizeSourceAudit(rowSourceAudit),
       commonCarrierPass: carrierBinding.passed,
       solverResidualPass: allSolverChecksPass(solver),
       sahaPass: solver.saha.passed,
@@ -177,6 +218,11 @@ function evaluateEq22bRecombinationAcoustic(input, inputPath) {
       reason: carrier.reason,
       id: input.carrier?.id ?? packet.carrier?.id ?? null,
       sourcePath: input.carrier?.sourcePath ?? packet.carrier?.sourcePath ?? input.carrier?.source ?? null,
+      sourceKind: input.carrier?.sourceKind ?? packet.carrier?.sourceKind ?? null,
+      sourceFamily: input.carrier?.sourceFamily ?? packet.carrier?.sourceFamily ?? null,
+      sourceConcrete: carrierSource.concrete,
+      sourceReferenceExists: carrierSource.exists,
+      sourceReason: carrierSource.reason,
     },
     rows: Object.fromEntries(
       REQUIRED_ROWS.map((rowId) => [
@@ -185,11 +231,19 @@ function evaluateEq22bRecombinationAcoustic(input, inputPath) {
           status: normalizeStatus(rows[rowId]),
           accepted: rowChecks[rowId].accepted,
           reason: rowChecks[rowId].reason,
+          rowId: rows[rowId]?.rowId ?? rows[rowId]?.id ?? null,
           carrierId: rows[rowId]?.carrierId ?? null,
           sourcePath: rows[rowId]?.sourcePath ?? rows[rowId]?.source ?? null,
+          sourceKind: rowSourceAudit[rowId].sourceKind,
+          sourceFamily: rowSourceAudit[rowId].sourceFamily,
+          sourceConcrete: rowSourceAudit[rowId].sourceConcrete,
+          sourceReferenceExists: rowSourceAudit[rowId].sourceReferenceExists,
+          sourceReason: rowSourceAudit[rowId].sourceReason,
+          intendedSourceFamily: rowSourceAudit[rowId].intendedSourceFamily,
         },
       ]),
     ),
+    rowSourceAudit,
     carrierBinding,
     solver,
     negativeControls,
@@ -205,7 +259,17 @@ function summarizeOutput(output) {
     summary: output.summary,
     carrier: output.carrier,
     rowStatuses: Object.fromEntries(
-      Object.entries(output.rows).map(([rowId, row]) => [rowId, { status: row.status, reason: row.reason }]),
+      Object.entries(output.rows).map(([rowId, row]) => [
+        rowId,
+        {
+          status: row.status,
+          reason: row.reason,
+          sourcePath: row.sourcePath,
+          sourceReferenceExists: row.sourceReferenceExists,
+          sourceReason: row.sourceReason,
+          intendedSourceFamily: row.intendedSourceFamily,
+        },
+      ]),
     ),
   };
 }
@@ -559,45 +623,127 @@ function evaluateCarrierBinding(rows, commonCarrierId) {
   };
 }
 
-function evaluateAcceptedEvidence(row) {
+function evaluateAcceptedEvidence(row, rowId, inputPath) {
   const status = normalizeStatus(row);
   if (!ACCEPTED_STATUSES.has(status)) {
     return { accepted: false, reason: "row_not_accepted" };
   }
+  if (!hasConcreteIdentity(row)) {
+    return { accepted: false, reason: "row_identity_not_concrete" };
+  }
+  const sourceContract = evaluateSourceContract(row, rowId);
+  if (!sourceContract.accepted) {
+    return { accepted: false, reason: sourceContract.reason };
+  }
   const sourcePath = row?.sourcePath ?? row?.source;
-  const source = evaluateSourcePath(sourcePath);
+  const source = evaluateSourcePath(sourcePath, inputPath);
   if (!source.accepted) {
     return { accepted: false, reason: source.reason };
   }
   return { accepted: true, reason: "accepted" };
 }
 
-function evaluateSourcePath(sourcePath) {
+function evaluateSourcePath(sourcePath, inputPath) {
+  const source = sourceReferenceDetails(sourcePath, inputPath);
+  return { accepted: source.accepted, reason: source.reason };
+}
+
+function evaluateSourceContract(row, rowId) {
+  const sourceKind = stringOrNull(row?.sourceKind);
+  if (sourceKind && DISALLOWED_SOURCE_KINDS.has(sourceKind)) {
+    return { accepted: false, reason: "generic_source_contract" };
+  }
+  const expectedFamily = SOURCE_FAMILIES[rowId] ?? null;
+  if (expectedFamily) {
+    const sourceFamily = stringOrNull(row?.sourceFamily);
+    if (!sourceFamily) {
+      return { accepted: false, reason: "source_family_missing" };
+    }
+    if (sourceFamily !== expectedFamily) {
+      return { accepted: false, reason: "source_family_mismatch" };
+    }
+  }
+  return { accepted: true, reason: "accepted" };
+}
+
+function sourceReferenceDetails(sourcePath, inputPath = null) {
   if (typeof sourcePath !== "string" || sourcePath.trim() === "") {
-    return { accepted: false, reason: "missing_source_path" };
+    return { accepted: false, reason: "missing_source_path", concrete: false, exists: false, resolvedPath: null };
   }
   if (sourcePath.includes("placeholder") || sourcePath.includes("pending")) {
-    return { accepted: false, reason: "placeholder_source_path" };
+    return { accepted: false, reason: "placeholder_source_path", concrete: false, exists: false, resolvedPath: null };
   }
   if (sourcePath.startsWith("/tmp/") || sourcePath.startsWith("/private/tmp/")) {
-    return { accepted: false, reason: "temp_source_path" };
+    return { accepted: false, reason: "temp_source_path", concrete: false, exists: false, resolvedPath: null };
   }
   if (sourcePath.includes("content/generated/")) {
-    return { accepted: false, reason: "generated_source_path" };
+    return { accepted: false, reason: "generated_source_path", concrete: false, exists: false, resolvedPath: null };
   }
   const resolved = path.isAbsolute(sourcePath)
     ? sourcePath
     : path.resolve(REPO_ROOT, sourcePath.replace(/#.*/, ""));
-  if (!resolved.startsWith(REPO_ROOT)) {
-    return { accepted: false, reason: "source_outside_repo" };
+  const relative = path.relative(REPO_ROOT, resolved);
+  if (relative.startsWith("..") || path.isAbsolute(relative)) {
+    return { accepted: false, reason: "source_outside_repo", concrete: false, exists: false, resolvedPath: resolved };
+  }
+  const relativeSourcePath = normalizeRepoRelativePath(resolved);
+  const relativeInputPath = inputPath ? normalizeRepoRelativePath(inputPath) : null;
+  if (relativeInputPath && relativeSourcePath === relativeInputPath) {
+    return { accepted: false, reason: "self_referential_source", concrete: true, exists: true, resolvedPath: resolved };
+  }
+  if (GENERIC_SOURCE_PATHS.has(relativeSourcePath)) {
+    return { accepted: false, reason: "generic_source_contract", concrete: true, exists: true, resolvedPath: resolved };
   }
   if (!fs.existsSync(resolved)) {
-    return { accepted: false, reason: "source_missing" };
+    return { accepted: false, reason: "source_missing", concrete: true, exists: false, resolvedPath: resolved };
   }
   if (!fs.statSync(resolved).isFile()) {
-    return { accepted: false, reason: "source_not_file" };
+    return { accepted: false, reason: "source_not_file", concrete: true, exists: true, resolvedPath: resolved };
   }
-  return { accepted: true, reason: "accepted" };
+  return { accepted: true, reason: "accepted", concrete: true, exists: true, resolvedPath: resolved };
+}
+
+function auditRowSource(rowId, row, evidence, inputPath) {
+  const sourcePath = row?.sourcePath ?? row?.source ?? null;
+  const source = sourceReferenceDetails(sourcePath, inputPath);
+  return {
+    rowId,
+    status: normalizeStatus(row),
+    accepted: evidence.accepted,
+    reason: evidence.reason,
+    carrierId: row?.carrierId ?? null,
+    sourcePath,
+    sourceKind: row?.sourceKind ?? null,
+    sourceFamily: row?.sourceFamily ?? null,
+    sourceConcrete: source.concrete,
+    sourceReferenceExists: source.exists,
+    sourceReason: source.reason,
+    intendedSourceFamily: SOURCE_FAMILIES[rowId] ?? null,
+  };
+}
+
+function summarizeSourceAudit(rowSourceAudit) {
+  const rows = Object.values(rowSourceAudit);
+  return {
+    nonConcreteSourceRows: rows.filter((row) => !row.sourceConcrete).map((row) => row.rowId),
+    missingSourceRows: rows.filter((row) => row.sourceConcrete && !row.sourceReferenceExists).map((row) => row.rowId),
+    rejectedSourceContractRows: rows
+      .filter((row) =>
+        [
+          "row_identity_not_concrete",
+          "source_family_missing",
+          "source_family_mismatch",
+          "self_referential_source",
+          "generic_source_contract",
+        ].includes(row.reason),
+      )
+      .map((row) => row.rowId),
+    selfReferentialSourceRows: rows.filter((row) => row.sourceReason === "self_referential_source").map((row) => row.rowId),
+    genericSourceRows: rows.filter((row) => row.sourceReason === "generic_source_contract").map((row) => row.rowId),
+    firstMissingSourceRow: rows.find((row) => row.sourceConcrete && !row.sourceReferenceExists)?.rowId ?? null,
+    sourceBackedRowCount: rows.filter((row) => row.sourceReferenceExists).length,
+    requiredRowCount: rows.length,
+  };
 }
 
 function decideStatus({ carrier, missingRows, carrierBinding, solver, negativeControls }) {
@@ -637,6 +783,27 @@ function firstBlocker({ status, carrier, missingRows, carrierBinding, solver, ne
 
 function normalizeStatus(row) {
   return String(row?.status ?? "missing").trim().toLowerCase();
+}
+
+function hasConcreteIdentity(row) {
+  const id = stringOrNull(row?.rowId) ?? stringOrNull(row?.id);
+  if (!id) {
+    return false;
+  }
+  const lowerId = id.toLowerCase();
+  return (
+    !lowerId.includes("attempt") &&
+    !lowerId.includes("pending") &&
+    !lowerId.includes("placeholder")
+  );
+}
+
+function stringOrNull(value) {
+  return typeof value === "string" && value.trim() !== "" ? value.trim() : null;
+}
+
+function normalizeRepoRelativePath(filePath) {
+  return path.relative(REPO_ROOT, path.resolve(filePath)).split(path.sep).join("/");
 }
 
 function finiteFraction(value, label) {

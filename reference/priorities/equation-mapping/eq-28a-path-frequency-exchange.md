@@ -8,6 +8,7 @@
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Source audit: [Equation Closure Pass 2026-06-25 B](equation-closure-pass-2026-06-25-b.md)
 - Parent packet: [EQ-26 Through EQ-31 Observation-First Precision Packet](eq-26-31-observation-first-precision-packet.md)
+- Source map: [EQ-28A Theta-Nu-Ex Source-Field Map](eq-28a-theta-nu-ex-source-field-map.md)
 - Assigned ID: `EQ-28A`
 - Related corpus material: [Radiation](../../../content/markdown/aaa/reactions/radiation.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [Reaction Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md)
 - Claim level: observer-level path-frequency exchange benchmark, native carrier dictionary, and fail-closed residual target
@@ -198,3 +199,5 @@ Potential later targets:
 ## Next Evidence Object
 
 The next score-moving artifact is not another normalized fixture. It is a source-backed $\Theta_{\nu\text{-}\mathrm{ex}}(W)$ carrier whose row bindings are accepted and whose path ledger keeps photon packet identity, frequency exchange, electron-medium state, recoil/remnant rows, and finite-window thermal state on one record.
+
+The source-field contract for that carrier is staged in [EQ-28A Theta-Nu-Ex Source-Field Map](eq-28a-theta-nu-ex-source-field-map.md). It keeps `Theta_nu-ex` distinct from `theta_gamma_packet`, `theta_therm`, and `Theta_rec/ac`, and preserves `missing_accepted_path_frequency_exchange_carrier` as the ordinary first blocker.

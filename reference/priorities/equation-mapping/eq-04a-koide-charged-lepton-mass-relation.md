@@ -171,7 +171,7 @@ is produced by the same mass response that already passed the `EQ-04` shell and 
 
 ## Koide Residual
 
-The score-moving residual is
+The diagnostic residual is
 
 $$
 \mathcal R_{04A}^{\mathrm{Koide}}(\theta)
@@ -375,6 +375,8 @@ To move toward `5`, the same branch family must derive the mass triplet and the 
 
 ## First Concrete Artifact
 
-Build a small fail-closed `EQ-04A` residual packet that consumes three charged-lepton masses from the same generation-by-shielding record, computes $\mathcal R_{04A}^{\mathrm{Koide}}$ and $\mathcal R_{04A}^{\mathrm{angle}}$, propagates the mass-readout uncertainty to $\cos^2\theta_{\ell}$, and reports `no_score_increase` unless the masses come from a declared non-Koide mass map with an accepted or explicitly inherited `EQ-04` mass-shell carrier.
+Build a small fail-closed `EQ-04A` residual packet that consumes three charged-lepton masses from the same generation-by-shielding record, computes $\mathcal R_{04A}^{\mathrm{Koide}}$ and $\mathcal R_{04A}^{\mathrm{angle}}$, propagates the mass-readout uncertainty to $\cos^2\theta_{\ell}$, and always reports `no_score_increase`. Any later score movement requires a separate score review after the masses come from a declared non-Koide mass map with an accepted `EQ-04` mass-shell carrier.
 
 The first useful result is a disciplined miss or hit. A disciplined miss weakens the idea that generation lifting alone tightly fixes the charged-lepton triplet. A disciplined hit would make Koide a strong clue that the exposure map has hidden geometric rigidity, especially if the $45^\circ$ mass-root angle is produced by branch geometry rather than by tuning the masses.
+
+The score-neutral checker is [eq04a-koide-residual.mjs](../../../scripts/equation-mapping/eq04a-koide-residual.mjs). Its default attempt fixture [eq04a-koide-residual-attempt.v1.json](../../../scripts/equation-mapping/eq04a-koide-residual-attempt.v1.json) computes the Koide, angle, and moment-map diagnostics while inheriting the current upstream blocker `missing_accepted_raw_labeled_rows_preserved_on_retained_history`. The direct-fit negative control [eq04a-koide-residual-direct-fit-negative-control.v1.json](../../../scripts/equation-mapping/eq04a-koide-residual-direct-fit-negative-control.v1.json) must block at `koide.direct_fit` even when all carrier-looking rows are marked accepted. These fixtures change no scores; they exist to prevent a future mass-map comparison from being counted unless it is source-backed, frozen before the Koide check, and bound to the inherited mass-shell carrier.

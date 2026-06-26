@@ -206,6 +206,8 @@ node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --summar
 
 The expected attempt run returns `schemaOk: true`, `status: blocked_missing_accepted_recombination_acoustic_carrier`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_recombination_acoustic_carrier`. The normalized sample's Saha, Peebles, Thomson/visibility, sound-horizon, Silk-damping, acoustic-transfer, source-provenance, hidden-retune, and negative-control diagnostics should pass. They do not count as accepted retained evidence because the recombination/acoustic carrier and every row binding remain `status: attempt`.
 
+The runner also reports a compact `sourceAudit` for the required rows. The default attempt keeps every row source path durable and resolving, but this is only provenance hygiene: row status remains `attempt`. Accepted-looking rows with stale or missing source references still fail at the corresponding row before score movement; for example, a stale `theta_bb` source would surface as `missing_accepted_theta_bb`.
+
 ## Promotion Disposition
 
 Classification: `priority-only`.

@@ -1,0 +1,114 @@
+{
+  "schema": "aaa-equation-map-neutrino-common-clock-phase-input/v1",
+  "claimLevel": "EQ-16A accepted-looking weak-domain split negative control; score-neutral and not retained evidence",
+  "operatorId": "Theta_nu_16A_domain_split_negative_control_0001",
+  "tolerances": {
+    "clock": 1e-12,
+    "trace": 1e-12,
+    "additivity": 1e-12,
+    "ratio": 1e-3,
+    "cancellation": 1e-6,
+    "residualNorm": 1e-12
+  },
+  "rows": {
+    "neutral_lepton_retained_branch": {
+      "id": "B_3B_nu_domain_split_negative_control_0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json"
+    },
+    "s_eq": {
+      "id": "S_eq_nu_domain_split_negative_control_0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json",
+      "nextBlocker": "negative_control_source_shell_only"
+    },
+    "common_clock": {
+      "id": "omega_f_C0_identity_domain_split_negative_control_0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json",
+      "frequencies": {
+        "I": 1,
+        "M": 1,
+        "O": 1
+      },
+      "identityTermFactorsOut": true,
+      "roleMapStatus": "candidate_I:M:O"
+    },
+    "residual_operator": {
+      "id": "H_nu_res_traceless_domain_split_negative_control_0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json",
+      "tracelessEigenvalues": [
+        -11.5,
+        -10.5,
+        22
+      ],
+      "identityShiftInvariant": true
+    },
+    "phase_gaps": {
+      "id": "Delta_lambda_nu_domain_split_negative_control_0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json",
+      "delta21": 1,
+      "delta32": 32.5,
+      "delta31": 33.5,
+      "targetRatio": 32.5,
+      "phaseRateOrigin": "residual_phase_rate",
+      "staticPhaseSubstitutionRejected": true
+    },
+    "spectrum_shape": {
+      "id": "lambda_hat_nu_domain_split_negative_control_0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json",
+      "ordering": "normal",
+      "expectedShape": "doublet_plus_singlet",
+      "equalSpacingRejected": true,
+      "normalizedTracelessTarget": [
+        -11.5,
+        -10.5,
+        22
+      ],
+      "normalizedTracelessActual": [
+        -11.5,
+        -10.5,
+        22
+      ]
+    },
+    "pmns_readout": {
+      "id": "U_read_PMNS_domain_split_negative_control_0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json",
+      "domainId": "D_weak_visible_split_PMNS_negative_control"
+    },
+    "weak_domain": {
+      "id": "weak_domain_nu_domain_split_negative_control_0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json",
+      "domainId": "D_weak_visible_attempt_0001",
+      "pmnsReadoutFromWeakDomain": true,
+      "importedMatrixRejected": true,
+      "sameWeakDomainForVA": true
+    },
+    "matter_correction": {
+      "id": "V_sea_nu_domain_split_negative_control_0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json",
+      "domainId": "D_weak_visible_attempt_0001",
+      "sameWeakDomain": true,
+      "sameUnitsAsVacuumResidual": true
+    },
+    "cancellation": {
+      "id": "R_nu_cancel_domain_split_negative_control_0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json",
+      "R_nu_cancel": 0,
+      "residualOperatorErased": false
+    },
+    "event_ledger": {
+      "id": "L_EpJ_nu_domain_split_negative_control_0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json",
+      "domainId": "D_weak_visible_attempt_0001"
+    }
+  }
+}

@@ -207,6 +207,8 @@ node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --sum
 
 The expected attempt run returns `schemaOk: true`, `status: blocked_missing_accepted_gw_source_carrier`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_gw_source_carrier`. The normalized sample's chirp-mass, chirp-rate, Peters decay, quadrupole-flux, strain-flux, ringdown, energy/angular-momentum ledger, source-provenance, hidden-retune, and negative-control diagnostics should pass. They do not count as accepted retained evidence because the gravitational-wave source carrier and every row binding remain `status: attempt`.
 
+[EQ-11A GW150914 Source-Field Map](eq-11a-gw150914-source-field-map.md) narrows the first concrete source-window candidate for this blocker. It maps `GW150914-v3` source fields to the checker rows, but keeps every row candidate-level until a checker-consumable retained packet with accepted source bindings exists.
+
 ## Promotion Disposition
 
 Classification: `priority-only`.

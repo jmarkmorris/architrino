@@ -26,6 +26,8 @@ const REQUIRED_ROWS = [
   "no_hidden_retune_witness",
 ];
 
+const SOURCE_IDENTITY_FIELDS = ["sourceWindowId", "supportId", "eventId"];
+
 const DEFAULT_TOLERANCES = {
   carrier: 1e-12,
   chirpMass: 1e-12,
@@ -173,6 +175,10 @@ function evaluateEq11aGravitationalWaveSource(input, inputPath) {
       energyAngularMomentumLedgerPass: solver.energyAngularMomentumLedger.passed,
       sourceProvenancePass: solver.sourceProvenance.passed,
       hiddenRetunePass: solver.noHiddenRetune.passed,
+      sourceIdentityPass:
+        solver.noHiddenRetune.missingIdentityFields.length === 0 &&
+        solver.noHiddenRetune.identityViolations.length === 0,
+      sourceIdentityViolationCount: solver.noHiddenRetune.identityViolations.length,
       negativeControlPassCount: negativeControls.filter((control) => control.passed).length,
       negativeControlCount: negativeControls.length,
       failedNegativeControls: negativeControls.filter((control) => !control.passed).map((control) => control.id),
@@ -246,7 +252,7 @@ function evaluateGravitationalWaveSourceSolver(packet, tolerances) {
       packet.sourceProvenance?.maxResidual ?? packet.sourceProvenance?.residual,
       tolerances.sourceProvenance,
     ),
-    noHiddenRetune: evaluateNoHiddenRetune(packet.noHiddenRetune ?? {}, tolerances.retune),
+    noHiddenRetune: evaluateNoHiddenRetune(packet.noHiddenRetune ?? {}, packet.rows ?? {}, tolerances.retune),
   };
 }
 
@@ -522,10 +528,13 @@ function evaluateEnergyAngularMomentumLedger(ledger, tolerance) {
   };
 }
 
-function evaluateNoHiddenRetune(noHiddenRetune, tolerance) {
+function evaluateNoHiddenRetune(noHiddenRetune, rows, tolerance) {
   const maxResidual = finiteNumber(
     noHiddenRetune.maxResidual ?? noHiddenRetune.residual,
     "noHiddenRetune.maxResidual",
+  );
+  const expectedIdentity = Object.fromEntries(
+    SOURCE_IDENTITY_FIELDS.map((field) => [field, stringOrNull(noHiddenRetune[field])]),
   );
   const counts = {
     perSampleCarrierCount: finiteNumber(noHiddenRetune.perSampleCarrierCount ?? 1, "noHiddenRetune.perSampleCarrierCount"),
@@ -545,12 +554,37 @@ function evaluateNoHiddenRetune(noHiddenRetune, tolerance) {
   const countViolations = Object.entries(counts)
     .filter(([key, value]) => (key === "perFormulaFitHandleCount" ? value !== 0 : value !== 1))
     .map(([key, value]) => ({ key, value }));
+  const identityBindings = REQUIRED_ROWS.map((rowId) => {
+    const row = rows[rowId] ?? {};
+    const actual = Object.fromEntries(SOURCE_IDENTITY_FIELDS.map((field) => [field, stringOrNull(row[field])]));
+    const mismatches = SOURCE_IDENTITY_FIELDS.filter((field) => expectedIdentity[field] !== actual[field]);
+    return {
+      rowId,
+      ...actual,
+      matches: mismatches.length === 0,
+      mismatches,
+    };
+  });
+  const missingIdentityFields = SOURCE_IDENTITY_FIELDS.filter((field) => !expectedIdentity[field]);
+  const identityViolations = identityBindings
+    .filter((binding) => !binding.matches)
+    .map((binding) => ({ rowId: binding.rowId, mismatches: binding.mismatches }));
   return {
     sharedRecordId: noHiddenRetune.sharedRecordId ?? null,
+    sourceWindowId: expectedIdentity.sourceWindowId,
+    supportId: expectedIdentity.supportId,
+    eventId: expectedIdentity.eventId,
     maxResidual,
     counts,
     countViolations,
-    passed: Math.abs(maxResidual) <= tolerance && countViolations.length === 0,
+    missingIdentityFields,
+    identityViolations,
+    identityBindings,
+    passed:
+      Math.abs(maxResidual) <= tolerance &&
+      countViolations.length === 0 &&
+      missingIdentityFields.length === 0 &&
+      identityViolations.length === 0,
   };
 }
 
@@ -732,6 +766,10 @@ function firstBlocker({ status, carrier, missingRows, carrierBinding, solver, ne
 
 function normalizeStatus(row) {
   return String(row?.status ?? "missing").trim().toLowerCase();
+}
+
+function stringOrNull(value) {
+  return typeof value === "string" && value.trim() !== "" ? value.trim() : null;
 }
 
 function finiteNumber(value, label) {

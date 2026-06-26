@@ -389,6 +389,8 @@ The `EQ-17` source-path-receiver slice is now executable in [signed-frequency-tr
 
 The `EQ-18`/`EQ-19` effective-FRW handoff slice is also executable in [effective-frw-handoff-residual.mjs](../../../scripts/equation-mapping/effective-frw-handoff-residual.mjs). Its attempt fixture [effective-frw-handoff-attempt.v1.json](../../../scripts/equation-mapping/effective-frw-handoff-attempt.v1.json) blocks at `missing_accepted_theta_cos` while $H_{\mathrm{eff}}$, $R_H$, $R_\rho$, source-provenance, fixed-void, shared-key, and no-hidden-retune diagnostics pass on one coherent attempt carrier. That makes $\Pi_{\mathrm{FRW}}\theta_{\mathrm{cos}}$ executable as a handoff shape, but not predictive; the accepted retained $\theta_{\mathrm{cos}}$ row is still missing.
 
+[EQ-18 And EQ-19 Theta-Cos Source-Field Map](eq-18-19-theta-cos-source-field-map.md) records the smallest accepted-object contract for that first blocker. It is priority-only and leaves `EQ-18` and `EQ-19` at score `3`.
+
 The pressure/$\Lambda_{\mathrm{eff}}$ derivation remains separate. [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs) now checks whether those variables are produced by Noether sea pressure, tension, and relaxation rows; its attempt blocks first at `missing_accepted_theta_sea_rho_NS`.
 
 $$
@@ -433,6 +435,8 @@ This is not a new validation gate. It is the first reusable equation-mapping res
 $\mathcal R_{\mathrm{null}}$ and $\mathcal R_{\mathrm{geo}}$ are terms inside the same metric-observable residual. They do not promote geodesic behavior into substrate ontology; they check whether null/eikonal and proper-time action readouts follow from the same observer-level metric projection that already supplies redshift, Shapiro delay, lensing, acceleration, and PPN rows.
 
 The weak-field metric side is now executable in [effective-metric-weak-field-residual.mjs](../../../scripts/equation-mapping/effective-metric-weak-field-residual.mjs). Its attempt fixture [effective-metric-weak-field-attempt.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-attempt.v1.json) blocks first at `missing_accepted_theta_W` while the static-response, shared-delay, weak-clock, Shapiro, lensing, acceleration, PPN, null/eikonal, geodesic-action, source-provenance, no-hidden-retune, and negative-control diagnostics pass. This makes the $\theta_W$ weak-field route fail closed without raising scores: accepted source-backed lapse, drift, spatial-compliance, signal-delay, cadence, weak-clock, redshift, Shapiro, lensing, acceleration, PPN/preferred-frame, null/eikonal, action-to-acceleration, source-provenance, and no-hidden-retune rows are still missing.
+
+The priority-only [EQ-10 Theta-W Source-Field Map](eq-10-theta-w-source-field-map.md) narrows the `EQ-10` consumer to the local null/eikonal and geodesic-action rows on the same accepted `theta_W` record required by `EQ-07` through `EQ-09`. No score changes.
 
 ## Failure Modes And Falsifiers
 

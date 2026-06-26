@@ -262,6 +262,8 @@ $$
 
 Readout independence is tested by comparing $h_E=E_\gamma/\nu$ against $h_\Phi=\oint_{\gamma_0}p\,dq$ under collocation refinement, Poincare-section relocation, and retained-mode variation. A $g$- or $\mu$-sweep should move $E$ and $\nu$ while leaving $h_\vartheta$ stable; otherwise the action unit is being fitted. Integrality is a retained-orbit selection condition, not the first theorem. The dedicated executable status is [constant-delay-retained-orbit-certificate.mjs](../../../scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs), with attempt fixture [constant-delay-retained-orbit-certificate-attempt.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-certificate-attempt.v1.json). After the action-period review, this scalar checker is a scaffold and falsifier: a soft Hopf amplitude should vary continuously unless the branch has an additional locking or Noether-charge row. The positive path is therefore the locked equal-frequency tri-binary branch, where $h_E$, $h_\Phi$, $h_p$, and $h_J$ must coincide on a winding plateau and split at its boundary. The broader Planck/alpha bundle remains covered by [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs). Both runs are score-neutral.
 
+The priority-only [EQ-12A Retained Action-Period Source-Field Map](eq-12a-retained-action-period-source-field-map.md) keeps this retained action-period carrier distinct from `theta_gamma_packet`. Its smallest accepted object is one source-backed equal-frequency retained branch with integer winding plateau, four-readout coincidence, and positive Floquet margin. No score changes.
+
 The score remains `2` until a retained reduction proves that the same geometry-derived action period supports photon energy, de Broglie momentum, angular momentum, and downstream Planck/atomic/coupling consumers without state-dependent-delay first-model failure, Hopf degeneracy, extra neutral Floquet multipliers, projection artifacts, hidden retuning, small-divisor readout splitting, alpha-fitted action, parameter-sweep fitting, or a scale-dependent $h_\vartheta$.
 
 ## EQ-13 Maxwell And Wave Equations
@@ -369,6 +371,8 @@ node scripts/equation-mapping/compton-recoil-event-replay.mjs \
 ```
 
 Current status is score-neutral: the checker reports `status: comparison_replay_closed_native_rows_missing`, `nextBlocker: missing_accepted_photon_gate_A_input_output`, `effectiveEmGateStatus: blocked_missing_native_event_rows`, `effectiveEmGateNextBlocker: missing_accepted_photon_gate_A_input_output`, and `effectiveEmGateNumericPass: true`. The comparison replay closes the homogeneous Compton/recoil residuals on the attempt event, but every native row and the medium/remnant support rows remain `attempt`, so no `EQ-12`, `EQ-13`, `EQ-26`, `EQ-28`, or `EQ-29` score change is justified. The gate does not make Maxwell's equations native; it prevents Maxwell-level summaries from bypassing the photon Gate A/B/C, recoil, Noether sea, medium/remnant, and event-ledger rows.
+
+[EQ-13 And EQ-28 e_gamma_e_0 Gate A Source-Field Map](eq-13-28-e-gamma-e0-gate-a-source-field-map.md) narrows this first blocker to one event-bound `photon_gate_A_input_output` source row on $\mathsf e_{\gamma e}^{0}$. It is priority-only and does not change scores.
 
 ### Failure Mode
 
@@ -598,6 +602,8 @@ nextBlocker: missing_accepted_ordered_frame_loop
 
 This checker protects the row from two overreads: visible $SO(3)$ closure is not retained spinor support, and a numeric $g_{\mathrm{lead}}=2$ shape is not evidence without an accepted ordered-frame loop and moment-map magnetic row.
 
+The priority-only [EQ-15 And EQ-27 Ordered-Frame Loop Source-Field Map](eq-15-27-ordered-frame-loop-source-field-map.md) narrows the shared first blocker to one source-backed non-gauge `ordered_frame_loop` on a retained branch record. No score changes.
+
 ### First Mathematical Object
 
 The first object is the same-record pullback residual
@@ -738,6 +744,8 @@ $$
 The score-neutral weak/gauge exposure-domain checker [weak-gauge-exposure-domain.mjs](../../../scripts/equation-mapping/weak-gauge-exposure-domain.mjs) now evaluates the `EQ-16` prerequisite that `V-A`, CKM/PMNS overlap, weak reaction provenance, and effective gauge covariance share one weak-visible retained domain. The attempt fixture [weak-gauge-exposure-domain-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, and first blocker `missing_accepted_weak_visible_branch_ledger`.
 
 The attempt run also reports `domainPass: true`, `gaugeBranchRecordStable: true`, and passing covariance, `V-A`, CKM, PMNS, provenance, and retune numeric residuals. Those passes are only shape checks: they do not derive Yang-Mills, QED, QCD, weak chirality, CKM, or PMNS, and they cannot move `EQ-16` while every required row remains attempt-level.
+
+The priority-only [EQ-16 Weak-Visible Branch Ledger Source-Field Map](eq-16-weak-visible-branch-ledger-source-field-map.md) narrows the first blocker to one source-backed `weak_visible_branch_ledger` on a fixed weak-visible retained domain. No score changes.
 
 ### Failure Mode
 

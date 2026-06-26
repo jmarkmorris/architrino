@@ -1,0 +1,138 @@
+{
+  "schema": "aaa-noether-sea-density-compression-surface-slice-input/v1",
+  "claimLevel": "accepted-looking rho_NS authored-prose source negative control; score-neutral and not accepted retained evidence",
+  "window": {
+    "windowId": "theta-sea-density-compression-retained-0001",
+    "ell": "ell_retained_attempt",
+    "thetaSeaRows": {
+      "rho_NS": {
+        "status": "accepted",
+        "rowId": "rho-NS-retained-0001",
+        "sourcePath": "content/markdown/aaa/spacetime/noether-sea.md",
+        "eventLedgerRef": "event-ledger-retained-0001"
+      },
+      "n": {
+        "status": "attempt",
+        "rowId": "n-retained-0001",
+        "sourcePath": "pending-retained-source",
+        "eventLedgerRef": "event-ledger-retained-0001"
+      },
+      "u_sea": {
+        "status": "attempt",
+        "rowId": "u-sea-retained-0001",
+        "sourcePath": "pending-retained-source",
+        "eventLedgerRef": "event-ledger-retained-0001"
+      },
+      "e_sea": {
+        "status": "attempt",
+        "rowId": "e-sea-retained-0001",
+        "sourcePath": "pending-retained-source",
+        "eventLedgerRef": "event-ledger-retained-0001"
+      },
+      "theta_sea": {
+        "status": "attempt",
+        "rowId": "theta-sea-retained-0001",
+        "sourcePath": "pending-retained-source",
+        "eventLedgerRef": "event-ledger-retained-0001"
+      },
+      "f_N": {
+        "status": "attempt",
+        "rowId": "f-N-retained-0001",
+        "sourcePath": "pending-retained-source",
+        "eventLedgerRef": "event-ledger-retained-0001"
+      },
+      "event_ledger_ref": {
+        "status": "attempt",
+        "eventId": "event-ledger-retained-0001",
+        "sourcePath": "pending-retained-source"
+      }
+    }
+  },
+  "channel": {
+    "id": "X_density_compression_acoustic_retained_0001",
+    "type": "acoustic"
+  },
+  "delta_ln_n": 0.001,
+  "jacobian": {
+    "delta_c_X_squared": 2.5,
+    "delta_C_ij_kl": {
+      "bulk": 1
+    },
+    "delta_N": null,
+    "delta_gamma_ij": null,
+    "delta_G_eff": null,
+    "delta_P_eff": null,
+    "delta_a_star": null
+  },
+  "coefficientChecks": {
+    "acousticElasticAgreement": {
+      "status": "attempt",
+      "rowId": "acoustic-elastic-agreement-retained-0001",
+      "windowId": "theta-sea-density-compression-retained-0001",
+      "ell": "ell_retained_attempt",
+      "channelId": "X_density_compression_acoustic_retained_0001",
+      "responseKernelId": "chi-AB-density-compression-retained-0001",
+      "speedRowId": "speed-row-retained-0001",
+      "stressStrainRowId": "stress-strain-row-retained-0001",
+      "rhoRowId": "rho-NS-retained-0001",
+      "retuneWitnessId": "retune-witness-retained-0001",
+      "c_X_disp_squared": 2.5,
+      "C1111_X": 2.49,
+      "rho_NS": 1,
+      "epsilon_ref": 0.02,
+      "refinementFamilyId": "density-compression-refinement-family-retained-0001",
+      "sourcePath": "pending-retained-source"
+    }
+  },
+  "rows": {
+    "channel_declaration_row": {
+      "status": "attempt",
+      "rowId": "channel-row-retained-0001",
+      "sourcePath": "pending-retained-source",
+      "channelId": "X_density_compression_acoustic_retained_0001"
+    },
+    "speed_row": {
+      "status": "attempt",
+      "rowId": "speed-row-retained-0001",
+      "sourcePath": "pending-retained-source",
+      "output": "delta_c_X_squared"
+    },
+    "stress_strain_row": {
+      "status": "attempt",
+      "rowId": "stress-strain-row-retained-0001",
+      "sourcePath": "pending-retained-source",
+      "output": "delta_C_ij_kl"
+    },
+    "causality_row": {
+      "status": "attempt",
+      "rowId": "causality-row-retained-0001",
+      "sourcePath": "pending-retained-source",
+      "residual": 0
+    },
+    "metric_embedding_row": {
+      "status": "declared_missing_output",
+      "rowId": "metric-embedding-row-retained-0001",
+      "sourcePath": "pending-retained-source",
+      "missingOutput": "delta_gamma_ij"
+    },
+    "correlation_row": {
+      "status": "attempt",
+      "rowId": "correlation-row-retained-0001",
+      "sourcePath": "pending-retained-source",
+      "sameWindow": true
+    }
+  },
+  "missing_outputs": [
+    "delta_N",
+    "delta_gamma_ij",
+    "delta_G_eff",
+    "delta_P_eff",
+    "delta_a_star"
+  ],
+  "retune": {
+    "status": "attempt",
+    "witnessId": "retune-witness-retained-0001",
+    "residual": 0,
+    "changedRows": []
+  }
+}

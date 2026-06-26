@@ -411,6 +411,8 @@ This row is a shared coefficient-extraction target, not a new score gate. It can
 
 The score-neutral runner is [noether-sea-density-compression-surface-slice.mjs](../../../scripts/spacetime/noether-sea-density-compression-surface-slice.mjs), with a deliberately incomplete mock input in [noether-sea-density-compression-surface-slice-mock.json](../../../scripts/spacetime/noether-sea-density-compression-surface-slice-mock.json) and a retained-attempt skeleton in [noether-sea-density-compression-surface-slice-retained-attempt.v1.json](../../../scripts/spacetime/noether-sea-density-compression-surface-slice-retained-attempt.v1.json).
 
+[EQ-24 Theta-Sea Rho-NS Source-Field Map](eq-24-theta-sea-rho-ns-source-field-map.md) narrows the current first blocker to the smallest source-backed retained-window row and preserves the candidate-level status of the retained attempt. It is priority-only and does not change scores.
+
 Command:
 
 ```sh
@@ -464,6 +466,10 @@ This bundle is the score-4 evidence object. It does not claim metric, weak-gravi
 #### 2026-06-26 Bucket B Constraint
 
 The first accepted `theta_sea_rho_NS` / `rho_NS` row cannot be produced by changing the retained-attempt fixture's status field or by pointing that row back at the attempt fixture, this packet, or a prior audit note. Those files are durable coordination records, but they are not retained coefficient evidence for the density row. [Equation Closure Pass 2026-06-23 K](equation-closure-pass-2026-06-23-k.md) remains the current repo-side audit result: no existing repo evidence populates accepted retained rows for the Noether sea density-compression surface-slice reducer.
+
+The runner enforces this distinction directly. An accepted-looking retained row whose `sourcePath` resolves only to a priority packet, authored corpus prose, attempt fixture, mock fixture, or negative-control fixture now reports `accepted_without_evidence_source` and remains part of `missingThetaRows`; it does not move the first blocker. The fixture [noether-sea-density-compression-coordination-source-negative-control.v1.json](../../../scripts/spacetime/noether-sea-density-compression-coordination-source-negative-control.v1.json) exercises the coordination-packet version of this guard by pointing an accepted-looking row at this packet. The fixture [noether-sea-density-compression-authored-prose-source-negative-control.v1.json](../../../scripts/spacetime/noether-sea-density-compression-authored-prose-source-negative-control.v1.json) exercises the authored-prose version by pointing an accepted-looking row at [noether-sea.md](../../../content/markdown/aaa/spacetime/noether-sea.md).
+
+The retained evidence source needed later should be a dedicated retained-window evidence file, not a note or textbook chapter. Minimum evidence fields are `schema`, `windowId`, `ell`, `rowId`, `eventLedgerRef`, retained Noether braid inventory or hashed source rows, smoothing kernel/window, computed $\rho_{\text{NS}}$ projection, source event ledger, and `refinementFamilyId`.
 
 The strict retained-attempt run
 
@@ -642,6 +648,8 @@ $$
 The first calculation is to pick a source-to-decoupling path, decompose $\tau_{\mathrm{th}}^{-1}$ into recorded event channels, and test whether $\mathcal D_{\mathrm{th}}\gg1$ and zero effective photon chemical potential can be stated without changing $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, $\Gamma_N$, or radiation event rows between local radiation and CMB use.
 
 The finite-window thermodynamic route is now executable in [eq25-thermodynamic-record-residual.mjs](../../../scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs). Its attempt fixture [eq25-thermodynamic-record-attempt.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-attempt.v1.json) blocks first at `missing_accepted_theta_therm` while the state-space, deterministic-pushforward, collision-operator, entropy-balance, thermalization-depth, fluctuation, source-provenance, no-hidden-retune, and negative-control diagnostics pass. This makes the `EQ-25` route fail closed without raising scores: accepted source-backed state-space, coarse-graining, measure, pushforward, collision/projection, entropy-balance, thermalization-depth, fluctuation, event-ledger, shared Noether sea, source-provenance, and no-hidden-retune rows are still missing.
+
+[EQ-25 Theta-Therm CMB Source-Field Map](eq-25-theta-therm-cmb-source-field-map.md) records the CMB thermalization source-inventory route for the live `theta_therm_CMB_attempt_0001` carrier. It is priority-only and leaves the first blocker at `missing_accepted_theta_therm`.
 
 ### Failure Mode
 

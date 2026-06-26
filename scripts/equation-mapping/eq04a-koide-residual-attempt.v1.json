@@ -1,0 +1,98 @@
+{
+  "schema": "aaa-equation-map-eq04a-koide-residual-input/v1",
+  "claimLevel": "score-neutral EQ-04A Koide residual attempt; inherited EQ-04 mass-shell carrier is not accepted",
+  "residualId": "R_04A_koide_attempt_0001",
+  "inheritedBlocker": "missing_accepted_raw_labeled_rows_preserved_on_retained_history",
+  "carrier": {
+    "status": "blocked",
+    "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001",
+    "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+    "supportId": "S_eq_retained_domain_blocked_source_shell_0001",
+    "retainedRowSetId": "S_eq",
+    "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+    "rows": {
+      "same_branch_chart_identity": {
+        "status": "blocked",
+        "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md"
+      },
+      "mass_shell_row": {
+        "status": "blocked",
+        "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md"
+      },
+      "rest_mass_row": {
+        "status": "blocked",
+        "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md"
+      },
+      "medium_response_row": {
+        "status": "blocked",
+        "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md"
+      }
+    }
+  },
+  "massMap": {
+    "status": "attempt",
+    "massMapId": "M_lepton_generation_shielding_attempt_0001",
+    "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001",
+    "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+    "supportId": "S_eq_retained_domain_blocked_source_shell_0001",
+    "massConvention": "charged_lepton_pole_mass",
+    "fixedParameterHash": "mass-map-attempt-not-evidence",
+    "exposureRowId": "E_lepton_attempt_0001",
+    "shieldingRowId": "Zeta_lepton_attempt_0001",
+    "NoetherSeaResponseRowId": "C_sea_mass_attempt_0001",
+    "koideObjectiveUsed": false,
+    "koideObjectiveWeight": 0,
+    "sourcePath": "reference/priorities/equation-mapping/eq-04a-koide-charged-lepton-mass-relation.md"
+  },
+  "generations": [
+    {
+      "status": "attempt",
+      "id": "A_lepton_0_attempt",
+      "branchId": "electron_branch_attempt",
+      "generationIndex": 0,
+      "massMapId": "M_lepton_generation_shielding_attempt_0001",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "supportId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "exposureRowId": "E_lepton_attempt_0001",
+      "shieldingRowId": "Zeta_lepton_attempt_0001",
+      "NoetherSeaResponseRowId": "C_sea_mass_attempt_0001",
+      "massReadout": { "value": 0.51099895, "uncertainty": 0.00000015 },
+      "sourcePath": "reference/priorities/equation-mapping/eq-04a-koide-charged-lepton-mass-relation.md"
+    },
+    {
+      "status": "attempt",
+      "id": "A_lepton_1_attempt",
+      "branchId": "muon_branch_attempt",
+      "generationIndex": 1,
+      "massMapId": "M_lepton_generation_shielding_attempt_0001",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "supportId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "exposureRowId": "E_lepton_attempt_0001",
+      "shieldingRowId": "Zeta_lepton_attempt_0001",
+      "NoetherSeaResponseRowId": "C_sea_mass_attempt_0001",
+      "massReadout": { "value": 105.6583755, "uncertainty": 0.0000023 },
+      "sourcePath": "reference/priorities/equation-mapping/eq-04a-koide-charged-lepton-mass-relation.md"
+    },
+    {
+      "status": "attempt",
+      "id": "A_lepton_2_attempt",
+      "branchId": "tau_branch_attempt",
+      "generationIndex": 2,
+      "massMapId": "M_lepton_generation_shielding_attempt_0001",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "supportId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "exposureRowId": "E_lepton_attempt_0001",
+      "shieldingRowId": "Zeta_lepton_attempt_0001",
+      "NoetherSeaResponseRowId": "C_sea_mass_attempt_0001",
+      "massReadout": { "value": 1776.86, "uncertainty": 0.12 },
+      "sourcePath": "reference/priorities/equation-mapping/eq-04a-koide-charged-lepton-mass-relation.md"
+    }
+  ],
+  "tolerances": {
+    "maxRelativeUncertainty": 0.05,
+    "maxCos2BandWidth": 0.02
+  }
+}

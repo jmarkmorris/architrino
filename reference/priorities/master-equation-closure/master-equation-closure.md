@@ -105,6 +105,7 @@
 3. `a1_outward_constants_handoff` — Turn the A1 sampled finite-collar remainder-constants ladder into stable or outward constants on the same retained A1 boxes before any master-equation closure claim is promoted. Status: `queued-cross-workstream-follow-up`. Notes: `spiral_a1_finite_memory_transport.py --diagnostic-mode finite_collar_remainder_constants_ladder` now reports $C_{1,\mathrm{samp}}\approx5.46\times10^{-12}$, $C_{2,\mathrm{samp}}\approx6.61\times10^{-4}$, material-floor ratios below $0.141$ through $b=0.03$, and `sampled_remainder_constants_unstable` because the adjacent sampled $C_2$ change is about $0.731$. Depends on: `spiral_branch_chart_test`.
 4. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `certified_eigen_braid`.
 5. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
+6. `emission_flux_jacobian_conservation` — Prove that source-provenanced constant causal-wake emission over an expanding wake surface preserves emitted polarity weight and collapses to the current $r^{-2}|J|^{-1}$ branch law on a simple-root chart, without importing legacy potential-sphere language or treating the wake as an autonomous field substance. Status: `priority-only`. Depends on: dual-mollified law; branch promotion depends on the retained branch-chart packet.
 
 ## Scope
 
@@ -225,6 +226,48 @@ identify the admissible finite-amplitude channel that prevents such a bound.
 - Transfer-operator and invariant-measure control for Born-rule emergence.
 - Exact 6-body core stability and shielding extraction for the first-principles mass program.
 - Binary perturbation-response classification: on a retained binary chart, decide whether a finite perturbation is absorbed as same-branch phase response, same-regime radius/cadence retuning, or a branch transition.
+- Emission-flux/Jacobian conservation: show that constant source-provenanced causal-wake emission over a wake surface collapses to the same $r^{-2}|J|^{-1}$ branch row used by the Master EOM while preserving emitted polarity weight on simple-root charts.
+
+## Emission-Flux / Jacobian Conservation Target
+
+Source-mining intake 2026-06-26. Legacy "potential sphere" language is not current terminology, but it preserves one useful proof pressure: constant source emission per unit absolute time must become the branch density actually used by the Master EOM after the receiver samples an expanding causal wake surface.
+
+Let source $j$ emit a polarity-weighted causal-wake measure over absolute emission time $s$ with source weight $q_j\,ds$. On a receiver event $(i,t)$, use the same causal constraint
+$$
+g_{ij}(t,s)
+=
+\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|
+-c_f(t-s)
+$$
+and a dual-mollified wake-surface measure
+$$
+d\mu_{ij}^{(\eta,\epsilon_c)}
+=
+q_j\,
+\frac{\delta_\eta(g_{ij}(t,s))}
+{r_{ij}^2(t,s)+\epsilon_c^2}
+\,ds.
+$$
+The local proof target is to show that, on a simple-root chart with
+$$
+\left|\partial_s g_{ij}(t,s_\ell)\right|\ge c_f\nu_J>0,
+$$
+the limit $\eta\to0$, $\epsilon_c\to0$ gives the retained branch density
+$$
+\sum_{s_\ell\in\mathcal C_{ij}(t)}
+q_j\,
+\frac{1}
+{r_{ij}^2(t,s_\ell)\left|\partial_s g_{ij}(t,s_\ell)\right|}
+$$
+up to the same normalization convention that absorbs the factor of $c_f$ into $\kappa$. This is the source-side conservation meaning of the branch law: constant emission cadence is not a separate force assumption, while source motion changes the received density through the causal-root Jacobian.
+
+Promotion conditions:
+
+- Use only `causal wake`, `source history`, `simple-root chart`, and `Jacobian` terminology.
+- Keep wake substance-level status fixed: the wake is source-provenanced causal structure, not an autonomous field inventory.
+- Report the emitted-weight preservation statement before any branch acceleration row consumes the density.
+- Route fold or caustic cases to the existing finite-crossing and dual-mollified chart machinery rather than applying the simple-root collapse at $J=0$.
+- Do not promote this target into reader-facing prose until the proof has a declared regulator limit, active-root floor, and finite-memory window.
 
 ## Binary Perturbation Response Target
 

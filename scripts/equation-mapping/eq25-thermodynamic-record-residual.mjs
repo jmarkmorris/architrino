@@ -10,6 +10,19 @@ const INPUT_SCHEMA = "aaa-equation-map-eq25-thermodynamic-record-input/v1";
 const OUTPUT_SCHEMA = "aaa-equation-map-eq25-thermodynamic-record-check/v1";
 const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
 const SCORE_DECISION = "no_score_increase";
+const SOURCE_IDENTITY_FIELDS = [
+  "thetaSrcId",
+  "sourceFamilyId",
+  "sourceWindowId",
+  "thermalProvenanceId",
+  "eventLedgerId",
+  "transportPathId",
+];
+const SOURCE_IDENTITY_RECORD_FIELDS = [
+  "thetaThermId",
+  "coarseGrainingId",
+  ...SOURCE_IDENTITY_FIELDS,
+];
 
 const REQUIRED_ROWS = [
   "theta_therm",
@@ -125,6 +138,12 @@ function evaluateEq25ThermodynamicRecord(input, inputPath) {
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const carrierBinding = evaluateCarrierBinding(rows, packet.commonCarrierId ?? input.commonCarrierId);
+  const sourceIdentity = evaluateSourceIdentity({
+    packet,
+    rows,
+    commonCarrierId: packet.commonCarrierId ?? input.commonCarrierId,
+  });
+  const sourceEvidence = evaluateSourceEvidence(rows);
   const sharedKeys = evaluateSharedKeys(packet.sharedKeys ?? [], tolerances);
   const thermodynamicRecord = evaluateThermodynamicRecord(packet.thermodynamicRecord ?? {}, tolerances);
   const negativeControls = evaluateNegativeControls(
@@ -135,6 +154,8 @@ function evaluateEq25ThermodynamicRecord(input, inputPath) {
   const status = decideStatus({
     missingRows,
     carrierBinding,
+    sourceIdentity,
+    sourceEvidence,
     sharedKeys,
     thermodynamicRecord,
     negativeControls,
@@ -143,6 +164,8 @@ function evaluateEq25ThermodynamicRecord(input, inputPath) {
     status,
     missingRows,
     carrierBinding,
+    sourceIdentity,
+    sourceEvidence,
     sharedKeys,
     thermodynamicRecord,
     negativeControls,
@@ -152,6 +175,8 @@ function evaluateEq25ThermodynamicRecord(input, inputPath) {
     missingRows,
     rowChecks,
     carrierBinding,
+    sourceIdentity,
+    sourceEvidence,
     sharedKeys,
     thermodynamicRecord,
     negativeControls,
@@ -183,6 +208,11 @@ function evaluateEq25ThermodynamicRecord(input, inputPath) {
       nextBlocker,
       nextBlockerDetails,
       commonCarrierPass: carrierBinding.passed,
+      sourceIdentityAccepted: sourceIdentity.passed,
+      sourceIdentityMissingFieldCount: sourceIdentity.missingFields.length,
+      sourceIdentityMismatchCount: sourceIdentity.mismatches.length,
+      sourceEvidenceAccepted: sourceEvidence.passed,
+      sourceEvidenceFailureCount: sourceEvidence.failures.length,
       sharedKeysAccepted: sharedKeys.accepted,
       thermodynamicNumericPass: thermodynamicRecord.passed,
       stateSpacePass: thermodynamicRecord.stateSpace.passed,
@@ -207,10 +237,16 @@ function evaluateEq25ThermodynamicRecord(input, inputPath) {
           rowId: rows[rowId]?.rowId ?? rows[rowId]?.id ?? null,
           carrierId: rows[rowId]?.carrierId ?? null,
           sourcePath: rows[rowId]?.sourcePath ?? rows[rowId]?.source ?? null,
+          sourceEvidenceReferenceExists: sourceEvidence.rows[rowId]?.sourceEvidenceReferenceExists ?? null,
+          sourceWindowId: rows[rowId]?.sourceWindowId ?? null,
+          eventLedgerId: rows[rowId]?.eventLedgerId ?? null,
+          thermalProvenanceId: rows[rowId]?.thermalProvenanceId ?? null,
         },
       ]),
     ),
     carrierBinding,
+    sourceIdentity,
+    sourceEvidence,
     sharedKeys,
     thermodynamicRecord,
     negativeControls,
@@ -457,6 +493,118 @@ function evaluateCarrierBinding(rows, commonCarrierId) {
   };
 }
 
+function evaluateSourceIdentity({ packet, rows, commonCarrierId }) {
+  const sourceIdentity = packet.sourceIdentity ?? {};
+  const missingFields = SOURCE_IDENTITY_RECORD_FIELDS.filter(
+    (field) => !concreteIdentityValue(sourceIdentity[field]),
+  );
+  const mismatches = [];
+  const stateSpace = packet.thermodynamicRecord?.stateSpace ?? {};
+  if (
+    concreteIdentityValue(sourceIdentity.thetaThermId) &&
+    concreteIdentityValue(commonCarrierId) &&
+    sourceIdentity.thetaThermId !== commonCarrierId
+  ) {
+    mismatches.push({
+      rowId: "sourceIdentity",
+      field: "thetaThermId",
+      expected: commonCarrierId,
+      actual: sourceIdentity.thetaThermId,
+      reason: "theta_therm_carrier_split",
+    });
+  }
+  if (
+    concreteIdentityValue(sourceIdentity.sourceWindowId) &&
+    concreteIdentityValue(stateSpace.regionId) &&
+    sourceIdentity.sourceWindowId !== stateSpace.regionId
+  ) {
+    mismatches.push({
+      rowId: "thermodynamicRecord.stateSpace",
+      field: "sourceWindowId",
+      expected: sourceIdentity.sourceWindowId,
+      actual: stateSpace.regionId,
+      reason: "source_window_split",
+    });
+  }
+  if (
+    concreteIdentityValue(sourceIdentity.coarseGrainingId) &&
+    concreteIdentityValue(stateSpace.coarseGrainingId) &&
+    sourceIdentity.coarseGrainingId !== stateSpace.coarseGrainingId
+  ) {
+    mismatches.push({
+      rowId: "thermodynamicRecord.stateSpace",
+      field: "coarseGrainingId",
+      expected: sourceIdentity.coarseGrainingId,
+      actual: stateSpace.coarseGrainingId,
+      reason: "coarse_graining_split",
+    });
+  }
+  for (const rowId of REQUIRED_ROWS) {
+    const row = rows[rowId] ?? {};
+    for (const field of SOURCE_IDENTITY_FIELDS) {
+      if (!concreteIdentityValue(row[field])) {
+        mismatches.push({
+          rowId,
+          field,
+          expected: sourceIdentity[field] ?? null,
+          actual: row[field] ?? null,
+          reason: `${field}_missing`,
+        });
+      } else if (
+        concreteIdentityValue(sourceIdentity[field]) &&
+        row[field] !== sourceIdentity[field]
+      ) {
+        mismatches.push({
+          rowId,
+          field,
+          expected: sourceIdentity[field],
+          actual: row[field],
+          reason: `${field}_split`,
+        });
+      }
+    }
+  }
+  return {
+    passed: missingFields.length === 0 && mismatches.length === 0,
+    sourceIdentity,
+    missingFields,
+    mismatches,
+    firstMismatch: mismatches[0] ?? null,
+  };
+}
+
+function evaluateSourceEvidence(rows) {
+  const rowEntries = Object.fromEntries(
+    REQUIRED_ROWS.map((rowId) => {
+      const row = rows[rowId];
+      const status = normalizeStatus(row);
+      const sourcePath = isPlainObject(row) ? row.sourcePath ?? row.source ?? null : null;
+      const source = evaluateSourcePath(sourcePath);
+      const requiresEvidence = ACCEPTED_STATUSES.has(status);
+      const passed = !requiresEvidence || source.evidenceAccepted;
+      return [
+        rowId,
+        {
+          rowId,
+          status,
+          sourcePath,
+          sourceReferenceExists: source.accepted,
+          sourceEvidenceReferenceExists: source.evidenceAccepted,
+          reason: passed ? "passed" : source.evidenceReason,
+          passed,
+        },
+      ];
+    }),
+  );
+  const failures = Object.values(rowEntries).filter((entry) => !entry.passed);
+  return {
+    passed: failures.length === 0,
+    failures,
+    firstFailure: failures[0] ?? null,
+    rows: rowEntries,
+  };
+}
+
 function evaluateAcceptedRow(row) {
   const status = normalizeStatus(row);
   const sourcePath = isPlainObject(row) ? row.sourcePath ?? row.source ?? null : null;
@@ -481,38 +629,110 @@ function evaluateAcceptedRow(row) {
 
 function evaluateSourcePath(sourcePath) {
   if (typeof sourcePath !== "string" || sourcePath.trim() === "") {
-    return { accepted: false, reason: "missing_source_path" };
+    return {
+      accepted: false,
+      evidenceAccepted: false,
+      reason: "missing_source_path",
+      evidenceReason: "missing_source_path",
+    };
   }
   if (sourcePath.includes("placeholder") || sourcePath.includes("pending")) {
-    return { accepted: false, reason: "placeholder_source_path" };
+    return {
+      accepted: false,
+      evidenceAccepted: false,
+      reason: "placeholder_source_path",
+      evidenceReason: "placeholder_source_path",
+    };
   }
   if (sourcePath.startsWith("/tmp/") || sourcePath.startsWith("/private/tmp/")) {
-    return { accepted: false, reason: "temp_source_path" };
+    return {
+      accepted: false,
+      evidenceAccepted: false,
+      reason: "temp_source_path",
+      evidenceReason: "temp_source_path",
+    };
   }
   if (sourcePath.includes("content/generated/")) {
-    return { accepted: false, reason: "generated_source_path" };
+    return {
+      accepted: false,
+      evidenceAccepted: false,
+      reason: "generated_source_path",
+      evidenceReason: "generated_source_path",
+    };
   }
   const resolved = path.isAbsolute(sourcePath)
     ? sourcePath
     : path.resolve(REPO_ROOT, sourcePath.replace(/#.*/, ""));
   if (!resolved.startsWith(REPO_ROOT)) {
-    return { accepted: false, reason: "source_outside_repo" };
+    return {
+      accepted: false,
+      evidenceAccepted: false,
+      reason: "source_outside_repo",
+      evidenceReason: "source_outside_repo",
+    };
   }
   if (!fs.existsSync(resolved)) {
-    return { accepted: false, reason: "source_missing" };
+    return {
+      accepted: false,
+      evidenceAccepted: false,
+      reason: "source_missing",
+      evidenceReason: "source_missing",
+    };
   }
   if (!fs.statSync(resolved).isFile()) {
-    return { accepted: false, reason: "source_not_file" };
+    return {
+      accepted: false,
+      evidenceAccepted: false,
+      reason: "source_not_file",
+      evidenceReason: "source_not_file",
+    };
   }
-  return { accepted: true, reason: "accepted" };
+  const evidenceReason = sourceEvidenceReason(resolved);
+  return {
+    accepted: true,
+    evidenceAccepted: evidenceReason === "accepted",
+    reason: "accepted",
+    evidenceReason,
+  };
 }
 
-function decideStatus({ missingRows, carrierBinding, sharedKeys, thermodynamicRecord, negativeControls }) {
+function sourceEvidenceReason(resolvedPath) {
+  const relative = path.relative(REPO_ROOT, path.normalize(resolvedPath));
+  if (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative)
+  ) {
+    return "source_outside_repo";
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return "coordination_source_path";
+  }
+  const basename = path.basename(resolvedPath).toLowerCase();
+  if (
+    basename.includes("attempt") ||
+    basename.includes("mock") ||
+    basename.includes("negative-control")
+  ) {
+    return "control_or_attempt_source_path";
+  }
+  return "accepted";
+}
+
+function decideStatus({ missingRows, carrierBinding, sourceIdentity, sourceEvidence, sharedKeys, thermodynamicRecord, negativeControls }) {
   if (missingRows.length > 0) {
     return "blocked_missing_rows";
   }
   if (!carrierBinding.passed) {
     return "blocked_carrier_split";
+  }
+  if (!sourceIdentity.passed) {
+    return sourceIdentity.missingFields.length > 0
+      ? "blocked_source_identity_missing"
+      : "blocked_source_window_split";
+  }
+  if (!sourceEvidence.passed) {
+    return "blocked_source_evidence";
   }
   if (!sharedKeys.accepted) {
     return "blocked_shared_key_retune";
@@ -526,7 +746,7 @@ function decideStatus({ missingRows, carrierBinding, sharedKeys, thermodynamicRe
   return "populated";
 }
 
-function firstBlocker({ status, missingRows, carrierBinding, sharedKeys, thermodynamicRecord, negativeControls }) {
+function firstBlocker({ status, missingRows, carrierBinding, sourceIdentity, sourceEvidence, sharedKeys, thermodynamicRecord, negativeControls }) {
   if (status === "populated") {
     return null;
   }
@@ -535,6 +755,18 @@ function firstBlocker({ status, missingRows, carrierBinding, sharedKeys, thermod
   }
   if (!carrierBinding.passed) {
     return carrierBinding.commonCarrierId ? "carrier_split" : "missing_common_carrier";
+  }
+  if (!sourceIdentity.passed) {
+    if (sourceIdentity.missingFields.length > 0) {
+      return `missing_source_identity_${sourceIdentity.missingFields[0]}`;
+    }
+    const mismatch = sourceIdentity.firstMismatch;
+    return mismatch?.field === "sourceWindowId"
+      ? "source_window_split"
+      : "source_identity_split";
+  }
+  if (!sourceEvidence.passed) {
+    return "accepted_without_evidence_source";
   }
   if (!sharedKeys.accepted) {
     return sharedKeys.missingSharedKeys[0]
@@ -577,6 +809,8 @@ function firstBlockerDetails({
   missingRows,
   rowChecks,
   carrierBinding,
+  sourceIdentity,
+  sourceEvidence,
   sharedKeys,
   thermodynamicRecord,
   negativeControls,
@@ -598,6 +832,31 @@ function firstBlockerDetails({
       reason: carrierBinding.commonCarrierId ? "carrier_split" : "missing_common_carrier",
       commonCarrierId: carrierBinding.commonCarrierId,
       mismatches: carrierBinding.mismatches,
+    };
+  }
+  if (!sourceIdentity.passed) {
+    return {
+      id: "source_identity",
+      status: "failed",
+      reason: sourceIdentity.missingFields.length > 0
+        ? "source_identity_missing"
+        : sourceIdentity.firstMismatch?.reason ?? "source_identity_split",
+      missingFields: sourceIdentity.missingFields,
+      firstMismatch: sourceIdentity.firstMismatch,
+      mismatchCount: sourceIdentity.mismatches.length,
+    };
+  }
+  if (!sourceEvidence.passed) {
+    return {
+      id: sourceEvidence.firstFailure?.rowId ?? "source_evidence",
+      status: sourceEvidence.firstFailure?.status ?? "failed",
+      reason: sourceEvidence.firstFailure?.reason ?? "accepted_without_evidence_source",
+      sourcePath: sourceEvidence.firstFailure?.sourcePath ?? null,
+      sourceReferenceExists:
+        sourceEvidence.firstFailure?.sourceReferenceExists ?? null,
+      sourceEvidenceReferenceExists:
+        sourceEvidence.firstFailure?.sourceEvidenceReferenceExists ?? null,
+      failureCount: sourceEvidence.failures.length,
     };
   }
   if (!sharedKeys.accepted) {
@@ -682,6 +941,10 @@ function comparableResidual(value, expected) {
     return value - expected;
   }
   return JSON.stringify(value) === JSON.stringify(expected) ? 0 : Infinity;
+}
+
+function concreteIdentityValue(value) {
+  return typeof value === "string" && value.trim() !== "";
 }
 
 function deepMerge(base, override) {

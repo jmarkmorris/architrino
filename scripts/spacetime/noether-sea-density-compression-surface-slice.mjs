@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
+const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
 const DEFAULT_INPUT_PATH = path.join(
   SCRIPT_DIR,
   "noether-sea-density-compression-surface-slice-mock.json"
@@ -428,6 +429,7 @@ function retainedRowDetail(id, row) {
     sourcePath,
     sourceConcrete: concreteString(sourcePath),
     sourceReferenceExists: sourceReferenceExists(sourcePath),
+    sourceEvidenceReferenceExists: sourceEvidenceReferenceExists(sourcePath),
     retainedReferencePresent:
       concreteString(row.rowId) ||
       concreteString(row.eventId) ||
@@ -723,13 +725,14 @@ function isAcceptedRetainedRow(value) {
     return false;
   }
   const sourceOk = concreteString(value.sourcePath) || concreteString(value.source);
-  const sourceFound =
-    sourceReferenceExists(value.sourcePath) || sourceReferenceExists(value.source);
+  const evidenceSourceFound =
+    sourceEvidenceReferenceExists(value.sourcePath) ||
+    sourceEvidenceReferenceExists(value.source);
   const idOk =
     concreteString(value.rowId) ||
     concreteString(value.eventId) ||
     concreteString(value.eventLedgerRef);
-  return sourceOk && sourceFound && idOk;
+  return sourceOk && evidenceSourceFound && idOk;
 }
 
 function normalizeStatus(value) {
@@ -747,6 +750,9 @@ function normalizeStatus(value) {
     const sourceOk = concreteString(value.sourcePath) || concreteString(value.source);
     const sourceFound =
       sourceReferenceExists(value.sourcePath) || sourceReferenceExists(value.source);
+    const evidenceSourceFound =
+      sourceEvidenceReferenceExists(value.sourcePath) ||
+      sourceEvidenceReferenceExists(value.source);
     const idOk =
       concreteString(value.rowId) ||
       concreteString(value.eventId) ||
@@ -756,6 +762,9 @@ function normalizeStatus(value) {
     }
     if (!sourceFound) {
       return "accepted_without_existing_source";
+    }
+    if (!evidenceSourceFound) {
+      return "accepted_without_evidence_source";
     }
     if (!idOk) {
       return "accepted_without_row_reference";
@@ -780,6 +789,9 @@ function normalizeRetuneStatus(value) {
     const sourceOk = concreteString(value.sourcePath) || concreteString(value.source);
     const sourceFound =
       sourceReferenceExists(value.sourcePath) || sourceReferenceExists(value.source);
+    const evidenceSourceFound =
+      sourceEvidenceReferenceExists(value.sourcePath) ||
+      sourceEvidenceReferenceExists(value.source);
     const idOk =
       concreteString(value.rowId) ||
       concreteString(value.witnessId) ||
@@ -790,6 +802,9 @@ function normalizeRetuneStatus(value) {
     }
     if (!sourceFound) {
       return "accepted_without_existing_retune_source";
+    }
+    if (!evidenceSourceFound) {
+      return "accepted_without_evidence_retune_source";
     }
     if (!idOk) {
       return "accepted_without_retune_witness_reference";
@@ -892,6 +907,37 @@ function sourceReferenceExists(value) {
   } catch {
     return false;
   }
+}
+
+function sourceEvidenceReferenceExists(value) {
+  if (!sourceReferenceExists(value)) {
+    return false;
+  }
+  return isEvidenceSourcePath(path.resolve(value.trim()));
+}
+
+function isEvidenceSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  if (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative)
+  ) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  const lowerBasename = path.basename(normalized).toLowerCase();
+  return !(
+    lowerBasename.includes("attempt") ||
+    lowerBasename.includes("mock") ||
+    lowerBasename.includes("negative-control")
+  );
 }
 
 function isNonDurableSourcePath(filePath) {

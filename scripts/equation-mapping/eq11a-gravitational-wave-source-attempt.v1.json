@@ -22,6 +22,9 @@
   },
   "packet": {
     "id": "theta_gwsrc_attempt_0001",
+    "sourceWindowId": "GW150914-v3",
+    "supportId": "H1L1_GWTC1_PE_v3",
+    "eventId": "GWTC-1-confident/GW150914/v3",
     "constants": {
       "G_eff": 1,
       "c_GW": 10
@@ -30,61 +33,97 @@
       "gw_source_carrier": {
         "status": "attempt",
         "carrierId": "theta_gwsrc_attempt_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
         "sourcePath": "reference/priorities/equation-mapping/eq-11a-gravitational-wave-source-recovery.md"
       },
       "theta_sea": {
         "status": "attempt",
         "carrierId": "theta_gwsrc_attempt_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
         "sourcePath": "content/markdown/aaa/spacetime/noether-sea.md"
       },
       "effective_metric_tensor_channel": {
         "status": "attempt",
         "carrierId": "theta_gwsrc_attempt_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
         "sourcePath": "content/markdown/aaa/spacetime/emergent-metric.md"
       },
       "source_event_ledger": {
         "status": "attempt",
         "carrierId": "theta_gwsrc_attempt_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
         "sourcePath": "reference/priorities/equation-mapping/eq-11a-gravitational-wave-source-recovery.md"
       },
       "quadrupole_source_row": {
         "status": "attempt",
         "carrierId": "theta_gwsrc_attempt_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
         "sourcePath": "reference/priorities/equation-mapping/eq-11a-gravitational-wave-source-recovery.md"
       },
       "chirp_mass_row": {
         "status": "attempt",
         "carrierId": "theta_gwsrc_attempt_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
         "sourcePath": "reference/priorities/equation-mapping/eq-11a-gravitational-wave-source-recovery.md"
       },
       "peters_decay_row": {
         "status": "attempt",
         "carrierId": "theta_gwsrc_attempt_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
         "sourcePath": "reference/priorities/equation-mapping/eq-11a-gravitational-wave-source-recovery.md"
       },
       "strain_flux_row": {
         "status": "attempt",
         "carrierId": "theta_gwsrc_attempt_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
         "sourcePath": "content/markdown/aaa/spacetime/gravitational-waves.md"
       },
       "ringdown_label_row": {
         "status": "attempt",
         "carrierId": "theta_gwsrc_attempt_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
         "sourcePath": "content/markdown/aaa/spacetime/gravitational-waves.md"
       },
       "detector_strain_record": {
         "status": "attempt",
         "carrierId": "theta_gwsrc_attempt_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
         "sourcePath": "content/markdown/aaa/spacetime/gravitational-waves.md"
       },
       "source_provenance": {
         "status": "attempt",
         "carrierId": "theta_gwsrc_attempt_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
         "sourcePath": "reference/priorities/equation-mapping/eq-11a-gravitational-wave-source-recovery.md"
       },
       "no_hidden_retune_witness": {
         "status": "attempt",
         "carrierId": "theta_gwsrc_attempt_0001",
+        "sourceWindowId": "GW150914-v3",
+        "supportId": "H1L1_GWTC1_PE_v3",
+        "eventId": "GWTC-1-confident/GW150914/v3",
         "sourcePath": "reference/priorities/equation-mapping/eq-11a-gravitational-wave-source-recovery.md"
       }
     },
@@ -138,6 +177,9 @@
     },
     "noHiddenRetune": {
       "sharedRecordId": "theta_gwsrc_attempt_0001",
+      "sourceWindowId": "GW150914-v3",
+      "supportId": "H1L1_GWTC1_PE_v3",
+      "eventId": "GWTC-1-confident/GW150914/v3",
       "maxResidual": 0,
       "perSampleCarrierCount": 1,
       "perSampleMetricRecordCount": 1,
@@ -186,6 +228,24 @@
           {
             "path": "noHiddenRetune.perSampleRingdownLabelCount",
             "value": 2
+          }
+        ]
+      },
+      {
+        "id": "gw_source_window_support_event_split",
+        "expectedFailedCheck": "noHiddenRetune",
+        "mutations": [
+          {
+            "path": "rows.ringdown_label_row.sourceWindowId",
+            "value": "GW150914-v2-split-negative-control"
+          },
+          {
+            "path": "rows.ringdown_label_row.supportId",
+            "value": "H1L1_GWTC1_PE_v2_split_negative_control"
+          },
+          {
+            "path": "rows.ringdown_label_row.eventId",
+            "value": "GWTC-1-confident/GW150914/v2-split-negative-control"
           }
         ]
       },
