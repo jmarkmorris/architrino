@@ -80,6 +80,23 @@ node scripts/equation-mapping/produce-eq02-04-coframe-extraction-certificate.mjs
 
 The accepted-looking row-binding negative control still reports `status: blocked`, `scoreDecision: no_score_increase`, and `nextBlocker: row_binding_raw_labeled_rows_preserved_on_retained_history`. Its `nextBlockerDetails` gives `reason: row_binding_not_source_bound_object`, so the first accepted row cannot be a bare `accepted` label. It must be a structured source-bound row object with accepted status, concrete non-placeholder `rowId`, matching `retainedRowSetId`, `commonCarrierId`, `domainId`, `supportId`, and a durable source reference.
 
+### First Row Object Contract
+
+The first score-moving row object is eligible only if both the source producer and same-branch checker accept the same row identity. For `raw_labeled_rows_preserved_on_retained_history`, that means the row object must satisfy the current executable checks below; satisfying only the prose meaning of the row is not enough.
+
+| Check | Required value |
+| --- | --- |
+| Object form | A structured object, not the string `accepted`, `passed`, or `populated`. |
+| Accepted status | `status` is one of `accepted`, `passed`, or `populated`. |
+| Row identity | `rowId` is concrete and does not include `attempt`, `pending`, `placeholder`, `mock`, `toy`, `/tmp/`, `/private/tmp/`, or `content/generated/`. |
+| Retained row set | `retainedRowSetId` equals `S_eq`. |
+| Carrier binding | `commonCarrierId` equals the retained-domain packet `commonCarrierId`. |
+| Domain binding | `domainId` equals the retained-domain packet `domainId`. |
+| Support binding | `supportId` equals the certified invariant support id. |
+| Source reference | `sourcePath` or `source` resolves to an existing durable source or evidence file in the repository. |
+
+The same-branch checker then reads that row as accepted only if its accepted status, source reference, retained-row-set identity, support identity, and common-carrier identity all match the retained-domain packet. Therefore the first accepted row must be emitted from the same positive-width invariant-cell source report that emits the support; it cannot be copied from a review packet, a generated reading copy, a temp file, or a row-only fixture.
+
 The first concrete artifact for this lane is the blocked source-backed shell:
 
 ```sh
@@ -98,11 +115,39 @@ The compact summary also reports the first retained-domain blocker details:
   "status": "blocked",
   "reason": "row_not_accepted",
   "rowId": "raw_labeled_rows_preserved_on_retained_history_blocked_source_shell",
-  "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md"
+  "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+  "sourceReferenceExists": true
 }
 ```
 
 The older direct attempt reports the same blocker with `status: attempt`, `reason: row_not_accepted`, `rowId: raw_labeled_rows_attempt`, and source path [eq-02-04-translating-binary-shared-record-instantiation.md](eq-02-04-translating-binary-shared-record-instantiation.md). This confirms that neither the blocked source shell nor the direct attempt has crossed the first accepted-retained-row boundary.
+
+The retained-record evaluator now exposes that same first blocker at top-level `summary.nextBlockerDetails`, so the retained-record target and the same-branch checker identify the same missing accepted row:
+
+```sh
+node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs \
+  --input scripts/equation-mapping/eq02-04-translating-binary-retained-record-blocked-source-shell.v1.json \
+  --summary --pretty
+```
+
+```json
+{
+  "id": "same_branch_identity",
+  "status": "blocked_missing_retained_event_or_domain",
+  "reason": "missing_accepted_raw_labeled_rows_preserved_on_retained_history",
+  "blocker": "missing_accepted_raw_labeled_rows_preserved_on_retained_history",
+  "blockerDetails": {
+    "id": "raw_labeled_rows_preserved_on_retained_history",
+    "status": "blocked",
+    "reason": "row_not_accepted",
+    "rowId": "raw_labeled_rows_preserved_on_retained_history_blocked_source_shell",
+    "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+    "sourceReferenceExists": true
+  }
+}
+```
+
+The fixture [eq02-04-translating-binary-retained-record-blocked-source-shell.v1.json](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record-blocked-source-shell.v1.json) deliberately leaves retained-record rows, witnesses, diagnostics, and negative controls unpopulated. Its only job is to make the retained-record evaluator consume the existing blocked same-branch shell and fail closed at the first accepted-row boundary. The same command with `--require-populated` exits nonzero because the status remains `blocked_same_branch_identity`.
 
 The repo-local source search found review material that defines the needed object, but no dormant accepted source report that can be wired directly. The invariant-cell source review packet [andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md](../../entourage/review-packets/andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md) and retained-evidence response [andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md](../../entourage/review-packets/andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md) both identify the next accepted object as a positive-width return-map certificate $B_N\subset\Sigma_N$ with $\mathcal K_{P_N}(B_N)\subset B_N$, refinement persistence, calibrated negative controls, and the retained rows evaluated only on that enclosed support. The coframe review packet [henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-06-24.md](../../entourage/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-06-24.md) likewise treats the current reciprocal coframe arithmetic as insufficient until it is replaced by accepted wake-return extraction evidence on the same invariant support. Those files are source-contract and review material, not retained-domain evidence objects.
 
@@ -218,7 +263,7 @@ This packet changes no scores and promotes no reader-facing corpus prose. It def
 ## Ranked Next Actions
 
 1. Populate a source-backed positive-width invariant-cell certificate for `S_eq` with $B_N$, $\Sigma_N$, $P_N$, $\mathcal K_{P_N}$, refinement persistence, calibrated evidence scale, and durable per-step sources.
-2. Attach `raw_labeled_rows_preserved_on_retained_history` to that cell as the first accepted row binding, with matching `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId: "S_eq"`.
+2. Attach `raw_labeled_rows_preserved_on_retained_history` to that cell as the first accepted row binding, satisfying the first-row object contract above with matching `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId: "S_eq"`.
 3. Populate the remaining `S_eq` row bindings on the same support, ending with `Noether_sea_record_bound_to_S_eq` and `binary_to_binary_phase_row_set_identity`.
 4. Run the same-branch checker with `--require-accepted`; do not edit scores unless the accepted-support and row-binding coordinates pass.
 5. Only after same-branch identity passes, populate the matching retained-record file for `EQ-02` through `EQ-04` and run the retained-record evaluator with `--require-populated`.

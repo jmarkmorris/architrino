@@ -1,0 +1,23 @@
+{
+  "schema": "aaa-equation-map-eq02-04-translating-binary-retained-record-input/v1",
+  "claimLevel": "blocked source-backed S_eq retained-record shell for EQ-02 through EQ-04; score-neutral and not accepted evidence",
+  "sourceBasis": {
+    "path": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+    "role": "priority-only retained-record blocker reproduction, not accepted retained evidence"
+  },
+  "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001",
+  "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+  "sameBranchIdentity": {
+    "inputPath": "scripts/equation-mapping/same-branch-retained-domain-blocked-source-shell.v1.json"
+  },
+  "drift": {
+    "u": 0.6,
+    "c_f": 1,
+    "uVector": [0.6, 0, 0],
+    "hat_e": [1, 0, 0]
+  },
+  "rows": {},
+  "witnesses": {},
+  "negativeControls": {},
+  "tolerances": {}
+}

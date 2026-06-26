@@ -59,6 +59,19 @@ Current summary:
 | Hidden retune pass | `true` |
 | Negative controls | `4/4` pass |
 
+The compact summary also reports the first blocker detail:
+
+```text
+nextBlockerDetails.id: theta_therm
+nextBlockerDetails.status: attempt
+nextBlockerDetails.reason: row_not_accepted
+nextBlockerDetails.carrierId: theta_therm_CMB_attempt_0001
+nextBlockerDetails.sourcePath: reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md
+nextBlockerDetails.sourceReferenceExists: true
+```
+
+This means the first row has a durable source reference, but the row is still not accepted retained evidence.
+
 The populated mode fails as intended:
 
 ```sh

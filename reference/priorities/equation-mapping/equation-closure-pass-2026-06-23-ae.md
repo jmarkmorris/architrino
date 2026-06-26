@@ -3,16 +3,18 @@
 ## Scope
 
 - `EQ-14` Born-current continuity as a record-current projection from the shared finite-window statistical carrier.
+- `EQ-25` finite-window thermodynamic record as the thermodynamic wrapper around the shared carrier.
 - `EQ-31` first-exit corridor additivity, null-separatrix epsilon sweep, and refinement-cocycle sequence hardening.
 - Conservative score disposition for the statistical carrier family after the external geometry/topology review.
 
 ## Result
 
-This pass extends [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs) without changing equation scores. The runner now has score-neutral diagnostics for three finite-window statistical projections:
+This pass extends [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs) and records the adjacent `EQ-25` thermodynamic wrapper without changing equation scores. The finite-window runners now have score-neutral diagnostics for four projections:
 
 | Row | Executable projection | Toy or attempt result | Score effect |
 | --- | --- | --- | --- |
 | `EQ-14` | Same-measure record-current projection, finite-difference continuity residual, density-reference residual, and current-reference residual. | [finite-window-statistical-carrier-eq14-born-current-toy.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq14-born-current-toy.v1.json) reports `toy_structure_only`, `scoreDecision: no_score_increase`, and first blocker `missing_accepted_W`. | No score change; `EQ-14` remains `3`. |
+| `EQ-25` | Deterministic pushforward, collision/projection, entropy balance, thermalization depth, fluctuation, source provenance, and no-hidden-retune residual. | [eq25-thermodynamic-record-attempt.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, and first blocker `missing_accepted_theta_therm`. | No score change; `EQ-25` remains blocked on accepted thermodynamic carrier rows. |
 | `EQ-30` | Prepared flux, detector refinement, cross-section normalization, form-factor covariance, and elastic-regime purity. | Existing elastic toy remains `toy_structure_only`, first blocker `missing_accepted_W`. | No score change; `EQ-30` remains `2`. |
 | `EQ-31` | First-exit corridor semantics, pre-detector first-exit additivity, null-separatrix mass, epsilon-sequence monotonicity, restriction-row cocycle defect, and refinement-defect sequence. | [finite-window-statistical-carrier-eq31-null-separatrix-refinement-toy.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-null-separatrix-refinement-toy.v1.json) reports `toy_structure_only`, `scoreDecision: no_score_increase`, and first blocker `missing_accepted_W`. | No score change; `EQ-31` remains `2`. |
 
@@ -72,6 +74,31 @@ nextBlockerDetails.sourcePath: null
 nextBlockerDetails.sourceReferenceExists: false
 ```
 
+## `EQ-25` Thermodynamic Wrapper
+
+The `EQ-25` runner [eq25-thermodynamic-record-residual.mjs](../../../scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs) wraps the finite-window carrier in a thermodynamic record. Its immediate row-level blocker is not `W` directly, but the parent carrier row `theta_therm` that must bind the state space, coarse graining, measure, deterministic pushforward, coarse projection, collision operator, entropy balance, thermalization depth, fluctuation, event ledger, shared Noether sea row, source provenance, and no-hidden-retune witness on one carrier.
+
+The current attempt reports:
+
+```text
+status: blocked_missing_rows
+scoreDecision: no_score_increase
+nextBlocker: missing_accepted_theta_therm
+nextBlockerDetails.id: theta_therm
+nextBlockerDetails.status: attempt
+nextBlockerDetails.reason: row_not_accepted
+nextBlockerDetails.carrierId: theta_therm_CMB_attempt_0001
+nextBlockerDetails.sourcePath: reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md
+nextBlockerDetails.sourceReferenceExists: true
+```
+
+The source file resolves, but the row status remains `attempt`; therefore the numeric thermodynamic passes and `4/4` negative-control passes are not score evidence. The populated command remains fail-closed:
+
+```sh
+node scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs \
+  --summary --pretty --require-populated
+```
+
 ## `EQ-31` Null-Separatrix And Refinement Sweep
 
 The runner now rejects detector-side class measures as first-exit evidence unless the input supplies pre-detector first-exit preimage rows. The additivity row is evaluated against corridor measures before detector readout:
@@ -122,13 +149,15 @@ nextBlockerDetails.sourceReferenceExists: false
 
 The smallest accepted evidence object for this bucket is not another toy fixture. It is one retained finite-window row $W$ with a durable source reference, accepted status, concrete identity, and a source-backed relation to the same $\Phi_T$, $\mu_{*,T}$, $\mathcal Q$, $K_{\mathrm{det}}$, $\mathcal B$, and $\mathcal S_{\mathrm{retune}}$ consumed by the runner.
 
-The exact first blocker is `missing_accepted_W`. The current compact summaries for `EQ-14`, `EQ-30`, and `EQ-31` all fail on the same row:
+The exact shared statistical-carrier first blocker is `missing_accepted_W`. The current compact summaries for `EQ-14`, `EQ-30`, and `EQ-31` all fail on the same row:
 
 ```text
 EQ-14: W_eq14_record_current_toy, status toy, sourcePath null
 EQ-30: W_eq30_elastic_toy, status toy, sourcePath null
 EQ-31: W_eq31_null_refinement_toy, status toy, sourcePath null
 ```
+
+`EQ-25` wraps that lane through `missing_accepted_theta_therm`; it still needs the same finite-window row family inside the thermodynamic carrier before score review.
 
 The required source-backed fields for a score-eligible carrier are:
 
@@ -147,6 +176,7 @@ What would count as score-moving evidence: the same runner returns `accepted_ret
 No score changes.
 
 - `EQ-14` remains `3`: the record-current residual is executable on a toy packet, but no accepted finite-window measurement or branch-flow carrier is populated.
+- `EQ-25` remains blocked: the thermodynamic residual and negative controls are executable, but `theta_therm` and every required thermodynamic row are still attempt-level.
 - `EQ-30` remains `2`: the elastic scattering projection remains toy evidence.
 - `EQ-31` remains `2`: the null-separatrix and refinement sweep are executable on a toy packet, but no accepted metastable branch window supplies the carrier.
 

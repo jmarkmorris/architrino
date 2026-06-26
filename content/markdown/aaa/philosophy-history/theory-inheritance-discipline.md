@@ -239,6 +239,8 @@ for potential and action scaffolds.
 
 The corpus should read inherited accuracy by regime, not by reputation.
 
+A historical audit of prize-recognized discoveries reinforces the same rule: middle-scale instruments and effective records may remain almost entirely valid, while the smallest and largest regimes carry the strongest pressure to separate benchmark success from substrate ontology.
+
 | Regime or scale | Inherited framework with high accuracy | What $\mathbb{A}\mathbb{A}\mathbb{A}$ should inherit | What it must not inherit |
 | --- | --- | --- | --- |
 | Microscopic substrate scale | No inherited framework has direct confirmed access | Formal tools for causal roots, distributions, branch charts, and simulation | Continuum fields, metric spacetime, quantum randomness, or information as primitive |

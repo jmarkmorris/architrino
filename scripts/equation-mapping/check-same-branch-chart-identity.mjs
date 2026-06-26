@@ -438,6 +438,7 @@ function retainedDomainNextBlockerDetails({
       reason: requirement.reason,
       rowId: requirement.rowId,
       sourcePath: requirement.sourcePath,
+      sourceReferenceExists: sourceReferenceExists(requirement.sourcePath),
     };
   }
   const witnesses = {
@@ -452,6 +453,8 @@ function retainedDomainNextBlockerDetails({
       status: witness.status,
       reason: witness.reason,
       residual: witness.residual ?? null,
+      sourcePath: witness.sourcePath ?? null,
+      sourceReferenceExists: sourceReferenceExists(witness.sourcePath),
     };
   }
   if (blockerId === "blocked_fiber_product_carrier") {
@@ -590,37 +593,53 @@ function evaluateZeroWitness(witness, { commonCarrierId, domainId } = {}) {
     return { accepted: false, status: "missing", reason: "missing_witness" };
   }
   const status = witness.status ?? "declared";
+  const base = {
+    rowId: witness.rowId ?? null,
+    sourcePath: witness.sourcePath ?? witness.source ?? null,
+  };
   if (!ACCEPTED_STATUSES.has(status)) {
-    return { accepted: false, status, reason: "witness_not_accepted" };
+    return { ...base, accepted: false, status, reason: "witness_not_accepted" };
   }
   if (
     !concreteString(witness.rowId) ||
     !concreteString(witness.sourcePath ?? witness.source)
   ) {
-    return { accepted: false, status, reason: "witness_reference_not_concrete" };
+    return {
+      ...base,
+      accepted: false,
+      status,
+      reason: "witness_reference_not_concrete",
+    };
   }
   if (
     !sourceReferenceExists(witness.sourcePath) &&
     !sourceReferenceExists(witness.source)
   ) {
-    return { accepted: false, status, reason: "witness_source_not_found" };
+    return { ...base, accepted: false, status, reason: "witness_source_not_found" };
   }
   const residual = Number(witness.residual ?? witness.value ?? 0);
   if (!Number.isFinite(residual) || Math.abs(residual) > ZERO_TOLERANCE) {
-    return { accepted: false, status, reason: "witness_not_zero", residual };
+    return {
+      ...base,
+      accepted: false,
+      status,
+      reason: "witness_not_zero",
+      residual,
+    };
   }
   if (!witnessSupportMatches(witness, domainId)) {
-    return { accepted: false, status, reason: "support_mismatch", residual };
+    return { ...base, accepted: false, status, reason: "support_mismatch", residual };
   }
   if (!carrierMatches(witness, commonCarrierId)) {
     return {
+      ...base,
       accepted: false,
       status,
       reason: "common_carrier_mismatch",
       residual,
     };
   }
-  return { accepted: true, status, reason: "accepted", residual };
+  return { ...base, accepted: true, status, reason: "accepted", residual };
 }
 
 function evaluateOverlapPreimage(witness, { commonCarrierId, domainId } = {}) {
@@ -628,31 +647,45 @@ function evaluateOverlapPreimage(witness, { commonCarrierId, domainId } = {}) {
     return { accepted: false, status: "missing", reason: "missing_witness" };
   }
   const status = witness.status ?? "declared";
+  const base = {
+    rowId: witness.rowId ?? null,
+    sourcePath: witness.sourcePath ?? witness.source ?? null,
+  };
   if (!ACCEPTED_STATUSES.has(status)) {
-    return { accepted: false, status, reason: "witness_not_accepted" };
+    return { ...base, accepted: false, status, reason: "witness_not_accepted" };
   }
   if (
     !concreteString(witness.rowId) ||
     !concreteString(witness.sourcePath ?? witness.source)
   ) {
-    return { accepted: false, status, reason: "witness_reference_not_concrete" };
+    return {
+      ...base,
+      accepted: false,
+      status,
+      reason: "witness_reference_not_concrete",
+    };
   }
   if (
     !sourceReferenceExists(witness.sourcePath) &&
     !sourceReferenceExists(witness.source)
   ) {
-    return { accepted: false, status, reason: "witness_source_not_found" };
+    return { ...base, accepted: false, status, reason: "witness_source_not_found" };
   }
   if (witness.consistent !== true) {
-    return { accepted: false, status, reason: "overlap_preimage_not_consistent" };
+    return {
+      ...base,
+      accepted: false,
+      status,
+      reason: "overlap_preimage_not_consistent",
+    };
   }
   if (!witnessSupportMatches(witness, domainId)) {
-    return { accepted: false, status, reason: "support_mismatch" };
+    return { ...base, accepted: false, status, reason: "support_mismatch" };
   }
   if (!carrierMatches(witness, commonCarrierId)) {
-    return { accepted: false, status, reason: "common_carrier_mismatch" };
+    return { ...base, accepted: false, status, reason: "common_carrier_mismatch" };
   }
-  return { accepted: true, status, reason: "accepted" };
+  return { ...base, accepted: true, status, reason: "accepted" };
 }
 
 function retainedDomainCommonCarrierId(packet) {

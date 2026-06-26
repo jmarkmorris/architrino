@@ -139,6 +139,23 @@ function evaluateEq25ThermodynamicRecord(input, inputPath) {
     thermodynamicRecord,
     negativeControls,
   });
+  const nextBlocker = firstBlocker({
+    status,
+    missingRows,
+    carrierBinding,
+    sharedKeys,
+    thermodynamicRecord,
+    negativeControls,
+  });
+  const nextBlockerDetails = firstBlockerDetails({
+    nextBlocker,
+    missingRows,
+    rowChecks,
+    carrierBinding,
+    sharedKeys,
+    thermodynamicRecord,
+    negativeControls,
+  });
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -163,14 +180,8 @@ function evaluateEq25ThermodynamicRecord(input, inputPath) {
       missingRows,
       missingSharedKeys: sharedKeys.missingSharedKeys,
       sharedKeyMismatchCount: sharedKeys.mismatches.length,
-      nextBlocker: firstBlocker({
-        status,
-        missingRows,
-        carrierBinding,
-        sharedKeys,
-        thermodynamicRecord,
-        negativeControls,
-      }),
+      nextBlocker,
+      nextBlockerDetails,
       commonCarrierPass: carrierBinding.passed,
       sharedKeysAccepted: sharedKeys.accepted,
       thermodynamicNumericPass: thermodynamicRecord.passed,
@@ -448,15 +459,24 @@ function evaluateCarrierBinding(rows, commonCarrierId) {
 
 function evaluateAcceptedRow(row) {
   const status = normalizeStatus(row);
-  if (!ACCEPTED_STATUSES.has(status)) {
-    return { accepted: false, reason: "row_not_accepted" };
-  }
-  const sourcePath = row?.sourcePath ?? row?.source;
+  const sourcePath = isPlainObject(row) ? row.sourcePath ?? row.source ?? null : null;
   const source = evaluateSourcePath(sourcePath);
-  if (!source.accepted) {
-    return { accepted: false, reason: source.reason };
+  const base = {
+    accepted: false,
+    status,
+    reason: null,
+    rowId: isPlainObject(row) ? row.rowId ?? row.id ?? null : null,
+    carrierId: isPlainObject(row) ? row.carrierId ?? null : null,
+    sourcePath,
+    sourceReferenceExists: source.accepted,
+  };
+  if (!ACCEPTED_STATUSES.has(status)) {
+    return { ...base, reason: "row_not_accepted" };
   }
-  return { accepted: true, reason: "accepted" };
+  if (!source.accepted) {
+    return { ...base, reason: source.reason };
+  }
+  return { ...base, accepted: true, reason: "accepted" };
 }
 
 function evaluateSourcePath(sourcePath) {
@@ -550,6 +570,77 @@ function firstBlocker({ status, missingRows, carrierBinding, sharedKeys, thermod
     return `negative_control_failed_${failedControl.id}`;
   }
   return "unknown_blocker";
+}
+
+function firstBlockerDetails({
+  nextBlocker,
+  missingRows,
+  rowChecks,
+  carrierBinding,
+  sharedKeys,
+  thermodynamicRecord,
+  negativeControls,
+}) {
+  if (!nextBlocker) {
+    return null;
+  }
+  if (missingRows.length > 0) {
+    const rowId = missingRows[0];
+    return {
+      id: rowId,
+      ...rowChecks[rowId],
+    };
+  }
+  if (!carrierBinding.passed) {
+    return {
+      id: "common_carrier",
+      status: "failed",
+      reason: carrierBinding.commonCarrierId ? "carrier_split" : "missing_common_carrier",
+      commonCarrierId: carrierBinding.commonCarrierId,
+      mismatches: carrierBinding.mismatches,
+    };
+  }
+  if (!sharedKeys.accepted) {
+    return {
+      id: sharedKeys.missingSharedKeys[0] ?? sharedKeys.mismatches[0]?.key ?? "shared_keys",
+      status: "failed",
+      reason: sharedKeys.missingSharedKeys[0] ? "missing_shared_key" : "shared_key_mismatch",
+      missingSharedKeys: sharedKeys.missingSharedKeys,
+      firstMismatch: sharedKeys.mismatches[0] ?? null,
+    };
+  }
+  const failedResidual = [
+    ["state_space", thermodynamicRecord.stateSpace],
+    ["deterministic_pushforward", thermodynamicRecord.deterministicPushforward],
+    ["collision_operator", thermodynamicRecord.collisionOperator],
+    ["entropy_balance", thermodynamicRecord.entropyBalance],
+    ["thermalization_depth", thermodynamicRecord.thermalizationDepth],
+    ["fluctuation", thermodynamicRecord.fluctuation],
+    ["source_provenance", thermodynamicRecord.sourceProvenance],
+    ["no_hidden_retune", thermodynamicRecord.noHiddenRetune],
+  ].find(([, row]) => !row.passed);
+  if (failedResidual) {
+    return {
+      id: failedResidual[0],
+      status: "failed",
+      reason: `${failedResidual[0]}_residual`,
+      details: failedResidual[1],
+    };
+  }
+  const failedControl = negativeControls.find((control) => !control.passed);
+  if (failedControl) {
+    return {
+      id: failedControl.id,
+      status: "failed",
+      reason: "negative_control_failed",
+      details: failedControl,
+    };
+  }
+  return {
+    id: nextBlocker,
+    status: "unknown",
+    reason: nextBlocker,
+  };
 }
 
 function evaluateScalarResidual(value, tolerance) {
