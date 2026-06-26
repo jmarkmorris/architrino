@@ -22,6 +22,13 @@ const REQUIRED_ROWS = [
   "event_ledger",
 ];
 
+const WEAK_DOMAIN_ID_ROWS = [
+  "pmns_readout",
+  "weak_domain",
+  "matter_correction",
+  "event_ledger",
+];
+
 const DEFAULT_TOLERANCES = {
   clock: 1e-12,
   trace: 1e-12,
@@ -126,6 +133,7 @@ function evaluateNeutrinoPhaseOperator(input, inputPath) {
     tolerances,
   );
   const weakDomain = evaluateWeakDomain(rows.weak_domain);
+  const weakDomainIdentity = evaluateWeakDomainIdentity(rows);
   const matterCorrection = evaluateMatterCorrection(rows.matter_correction);
   const status = decideStatus({
     missingRows,
@@ -135,6 +143,7 @@ function evaluateNeutrinoPhaseOperator(input, inputPath) {
     spectrumShape,
     cancellation,
     weakDomain,
+    weakDomainIdentity,
     matterCorrection,
   });
 
@@ -169,6 +178,7 @@ function evaluateNeutrinoPhaseOperator(input, inputPath) {
         spectrumShape,
         cancellation,
         weakDomain,
+        weakDomainIdentity,
         matterCorrection,
       }),
       inheritedSEqBlocker: rows.s_eq?.nextBlocker ?? null,
@@ -183,6 +193,9 @@ function evaluateNeutrinoPhaseOperator(input, inputPath) {
       spectrumShapePass: spectrumShape.passed,
       cancellationPass: cancellation.passed,
       residualSurvivalPass: cancellation.residualSurvivalPass,
+      weakDomainIdentityPass: weakDomainIdentity.passed,
+      sharedWeakDomainId: weakDomainIdentity.sharedDomainId,
+      weakDomainSplitCount: weakDomainIdentity.uniqueDomainIds.length,
       pmnsReadoutDomainPass: weakDomain.pmnsReadoutDomainPass,
       matterCorrectionDomainPass: matterCorrection.domainPass,
     },
@@ -205,6 +218,7 @@ function evaluateNeutrinoPhaseOperator(input, inputPath) {
       spectrumShape,
       cancellation,
       weakDomain,
+      weakDomainIdentity,
       matterCorrection,
     },
   };
@@ -342,6 +356,36 @@ function evaluateWeakDomain(row) {
   };
 }
 
+function evaluateWeakDomainIdentity(rows) {
+  const rowDomainIds = Object.fromEntries(
+    WEAK_DOMAIN_ID_ROWS.map((rowId) => [rowId, domainIdForRow(rows[rowId])]),
+  );
+  const missingDomainRows = WEAK_DOMAIN_ID_ROWS.filter((rowId) => !rowDomainIds[rowId]);
+  const uniqueDomainIds = uniqueStrings(Object.values(rowDomainIds).filter(Boolean));
+  const passed = missingDomainRows.length === 0 && uniqueDomainIds.length === 1;
+  return {
+    requiredRows: WEAK_DOMAIN_ID_ROWS,
+    rowDomainIds,
+    uniqueDomainIds,
+    missingDomainRows,
+    sharedDomainId: passed ? uniqueDomainIds[0] : null,
+    passed,
+  };
+}
+
+function domainIdForRow(row) {
+  if (!row || typeof row !== "object" || Array.isArray(row)) {
+    return null;
+  }
+  return (
+    stringOrNull(row.domainId) ??
+    stringOrNull(row.retainedDomainId) ??
+    stringOrNull(row.eventId) ??
+    stringOrNull(row.carrierId) ??
+    null
+  );
+}
+
 function evaluateMatterCorrection(row) {
   return {
     domainPass: row?.sameWeakDomain === true && row?.sameUnitsAsVacuumResidual === true,
@@ -358,6 +402,7 @@ function decideStatus({
   spectrumShape,
   cancellation,
   weakDomain,
+  weakDomainIdentity,
   matterCorrection,
 }) {
   if (missingRows.length > 0) {
@@ -378,6 +423,9 @@ function decideStatus({
   if (!cancellation.passed || !cancellation.residualSurvivalPass) {
     return "blocked_cancellation_without_residual_survival";
   }
+  if (!weakDomainIdentity.passed) {
+    return "blocked_hidden_domain_split";
+  }
   if (!weakDomain.pmnsReadoutDomainPass) {
     return "blocked_pmns_readout_domain";
   }
@@ -396,6 +444,7 @@ function firstBlocker({
   spectrumShape,
   cancellation,
   weakDomain,
+  weakDomainIdentity,
   matterCorrection,
 }) {
   if (status === "populated") {
@@ -430,6 +479,12 @@ function firstBlocker({
   }
   if (!cancellation.residualSurvivalPass) {
     return "residual_operator_erased_by_cancellation";
+  }
+  if (!weakDomainIdentity.passed) {
+    if (weakDomainIdentity.missingDomainRows.length > 0) {
+      return `missing_domain_id_${weakDomainIdentity.missingDomainRows[0]}`;
+    }
+    return "weak_hidden_domain_split";
   }
   if (!weakDomain.pmnsReadoutDomainPass) {
     return "pmns_readout_domain";
@@ -511,6 +566,15 @@ function concreteString(value) {
     !lowerText.includes("pending") &&
     !lowerText.includes("placeholder")
   );
+}
+
+function stringOrNull(value) {
+  const text = typeof value === "string" ? value.trim() : "";
+  return text === "" ? null : text;
+}
+
+function uniqueStrings(values) {
+  return [...new Set(values.map((value) => String(value)))];
 }
 
 function sourceReferenceExists(value) {
