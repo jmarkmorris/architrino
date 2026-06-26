@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1462
+      "sections": 1463
     }
   },
   "tocRoot": {
@@ -9481,6 +9481,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
                 "markdownSection": "Inference, Underdetermination, and Theory Choice",
                 "sectionKey": "inference underdetermination and theory choice",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Temporal Typicality and Observer Selection",
+                "markdownPath": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+                "markdownSection": "Temporal Typicality and Observer Selection",
+                "sectionKey": "temporal typicality and observer selection",
                 "headingLevel": 2
               }
             ]

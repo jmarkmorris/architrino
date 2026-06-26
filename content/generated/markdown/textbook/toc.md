@@ -1156,6 +1156,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - **Ch 11.2.12** [Measurement / Observation](../../../markdown/aaa/philosophy-history/philosophy-of-science.md?section=Measurement%2C+Observation%2C+and+Theory-Ladenness)
     - **Ch 11.2.13** [Symmetry / Representation](../../../markdown/aaa/philosophy-history/philosophy-of-science.md?section=Symmetry%2C+Mathematics%2C+and+Representation)
     - **Ch 11.2.14** [Inference / Theory Choice](../../../markdown/aaa/philosophy-history/philosophy-of-science.md?section=Inference%2C+Underdetermination%2C+and+Theory+Choice)
+    - **Ch 11.2.15** [Temporal Typicality and Observer Selection](../../../markdown/aaa/philosophy-history/philosophy-of-science.md?section=Temporal+Typicality+and+Observer+Selection)
   - **Ch 11.3** [Crisis in Physics](../../../scenes/philosophy_history/crisis_in_physics.json)
     - **Ch 11.3.1** [Overview](../../../markdown/aaa/philosophy-history/crisis-in-physics.md?section=Overview)
     - **Ch 11.3.2** [Progress vs. Time](../../../markdown/aaa/philosophy-history/crisis-in-physics.md?section=Progress+vs.+Time)
