@@ -1074,6 +1074,12 @@ The same $K_{\mathrm{det}}^\ell$ must be reused when computing $\Delta_{\sigma}$
 
 The shared carrier evaluator [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs) now computes the `EQ-30` scattering and form-factor projection rows from $\mathcal C_{\mathrm{stat}}^{W,T}$. The toy input [finite-window-statistical-carrier-eq30-elastic-toy.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-toy.v1.json) reports `toy_structure_only`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_W`, and passing numeric diagnostics for prepared flux, detector refinement, cross-section normalization, form-factor covariance, and elastic-regime purity.
 
+```bash
+node scripts/equation-mapping/finite-window-statistical-carrier.mjs \
+  --input scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-toy.v1.json \
+  --summary --pretty
+```
+
 This is an executable shape check only. Score movement still requires accepted, source-backed parent carrier rows `W`, `Phi_T`, `mu_star_T`, `Q`, `K_det`, `B`, and `S_retune`, followed by accepted `EQ-30` rows for `Gamma_a`, `Phi_in`, detected class measures, cross-section comparisons, $\rho_{\mathrm{exp}}$, form-factor samples, and elastic-regime purity.
 
 ### Failure Mode
@@ -1223,6 +1229,12 @@ The line-shape residual $\Delta_{\mathrm{shape}}$ must use the same detector and
 
 The score-neutral carrier evaluator [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs) now computes the `EQ-31` projection rows from a supplied $\mathcal C_{\mathrm{stat}}^{W,T}$. The included toy input [finite-window-statistical-carrier-eq31-toy.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-toy.v1.json) reports `toy_structure_only`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_W`; it is an executable shape check, not retained evidence.
 
+```bash
+node scripts/equation-mapping/finite-window-statistical-carrier.mjs \
+  --input scripts/equation-mapping/finite-window-statistical-carrier-eq31-toy.v1.json \
+  --summary --pretty
+```
+
 The refined toy input [finite-window-statistical-carrier-eq31-null-separatrix-refinement-toy.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-null-separatrix-refinement-toy.v1.json) adds three Bill-response diagnostics without changing the score:
 
 - pre-detector first-exit preimage rows whose additivity residual is zero;
@@ -1230,6 +1242,12 @@ The refined toy input [finite-window-statistical-carrier-eq31-null-separatrix-re
 - restriction rows and a refinement-defect sequence with computed cocycle defect `0.00035`.
 
 That fixture reports `firstExitAdditivityPassed: true`, `nullSeparatrixPassed: true`, and `refinementCompatibilityPassed: true`, while still returning `toy_structure_only` and `nextBlocker: missing_accepted_W`. The result demonstrates the row grammar for a retained metastable calculation; it does not make the toy corridor family accepted evidence.
+
+```bash
+node scripts/equation-mapping/finite-window-statistical-carrier.mjs \
+  --input scripts/equation-mapping/finite-window-statistical-carrier-eq31-null-separatrix-refinement-toy.v1.json \
+  --summary --pretty
+```
 
 Accepted finite-window carrier rows must be structured row objects with `accepted`, `populated`, or `passed` status and a `sourcePath` or `source` reference that resolves to a durable source/evidence file. The label `retained` is not an accepted status. Toy, attempt, placeholder, missing-source, temp-file, generated-reading-copy, and nonzero-retune rows remain blockers.
 

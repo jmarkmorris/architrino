@@ -504,4 +504,4 @@ Reader-facing canon already contains several bounded statements from earlier wor
 
 ## Score Decision
 
-No score changes are justified. The suffix rows are not yet inserted into [equation.md](equation.md), and no existing row score changes. The next score-bearing action is to create one focused suffix packet with an initial row, initial score, first blocker, and promotion target.
+The audit itself justified no score changes. The first score-bearing follow-up is now [EQ-07A Compact-Star Support And Collapse Scale Residual](eq-07a-compact-star-support-collapse-scale-residual.md), which inserts `EQ-07A` into [equation.md](equation.md) at initial score `2`, adds a score-neutral attempt carrier checker and fixture, and names `missing_accepted_compact_region_carrier` as the first blocker. No existing row scores change. The remaining suffix proposals stay outside [equation.md](equation.md) until their focused packets define an initial score, first blocker, and promotion target.

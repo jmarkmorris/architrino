@@ -31,6 +31,7 @@ Use each dated score as a maturity indicator, not as a value judgment. A low-sco
 | `EQ-05` | Noether conservation laws | $dE_{\mathrm{tot}}/dt=0$; $\mathbf{P}_{\mathrm{tot}}=\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}$ | Delay action, wake channels, event ledgers | `3` | `4` | Construct finite-window conserved totals with boundary flux and residuals. |  |
 | `EQ-06` | Noether sea continuity and moment closure | $\partial_t\rho_{\mathrm{NS}}+\nabla\cdot(\rho_{\mathrm{NS}}\mathbf u_{\mathrm{sea}})=S_{\rho}+r_{\rho}$ | Noether sea density, flow, energy, cadence, orientation | `4` | `4` | Derive continuum rows as low-moment projections of braid population dynamics. |  |
 | `EQ-07` | Effective metric ADM/Cartan map | $ds_{\rm eff}^2=-N^2c_0^2dt^2+\gamma_{ij}(dx^i-u^i_{\mathrm{sea}}dt)(dx^j-u^j_{\mathrm{sea}}dt)$ | Noether sea lapse, drift, spatial compliance | `4` | `4` | Derive one constitutive map into clock, ruler, and signal channels. |  |
+| `EQ-07A` | Compact-star support and collapse scale residual | $P_{e,\mathrm{nr}}\propto\rho^{5/3}$; $P_{e,\mathrm{rel}}\propto\rho^{4/3}$; $M_{\mathrm{Ch}}\propto Y_e^2M_\odot$ | Compact-region Noether braid packing, reaction ledger, Noether sea response, and metric compliance | `2` | `2` | Build one compact-region carrier that recovers support scaling, reaction inventory, material scale compression, and effective spatial compliance without hidden retuning. |  |
 | `EQ-08` | Weak-field clock and gravitational redshift | $d\tau/dt\approx1+\Phi_N/c_0^2-\lVert\mathbf w\rVert^2/(2c_0^2)$ | Noether sea cadence $\Gamma_N$, moving clock channel | `4` | `4` | Extract $\Gamma_N$ from braid cadence, density, delay, and potential response. |  |
 | `EQ-09` | Shapiro delay, lensing, and PPN rows | $\Delta\theta=2(1+\gamma_{\mathrm{PPN}})GM/(bc_0^2)$ | Shared effective metric projection | `3` | `4` | Force redshift, Shapiro, lensing, precession, acceleration, and preferred-frame rows through one record. |  |
 | `EQ-10` | Geodesic and proper-time action | $S_{\mathrm{clk}}=-mc_0^2\int d\tau$ | Observer-level clock/ruler record from Noether sea | `3` | `3` | Recover geodesic motion as a projection, not as substrate geometry. |  |
@@ -112,7 +113,7 @@ Every downstream row must either consume the active-root law directly or consume
 | `EQ-02` through `EQ-04`, plus `EQ-04A` | Moving clocks, oblate spheroidal envelope rows, energy-momentum, exposed mass, and charged-lepton mass-root benchmarks must share one retained branch chart with active roots, causal-root Jacobians, wake tails, line-of-action geometry, and no hidden retune between clock, envelope, energy, and mass readouts. |
 | `EQ-05` | Conservation rows must include wake energy, wake momentum, angular momentum, event work, and boundary flux on the same finite window; ordinary local mechanical totals alone are not enough in a delay system. |
 | `EQ-06`, `EQ-24`, and `EQ-25` | Noether sea continuity, medium response, acoustic/elastic rows, and thermal/statistical rows must be low-moment or finite-window projections of retained Noether braid population dynamics, not independent continuum postulates. |
-| `EQ-07` through `EQ-11`, `EQ-17` through `EQ-20`, and `EQ-32` | Effective metric, weak-gravity, redshift, cosmology, dark-energy, and low-acceleration rows must project from Noether sea density, cadence, delay, stress, flow, and response variables whose source record is ultimately a coarse-grained causal-root and wake ledger. |
+| `EQ-07` through `EQ-11`, `EQ-17` through `EQ-20`, and `EQ-32`, plus `EQ-07A` | Effective metric, compact-star support, weak-gravity, redshift, cosmology, dark-energy, and low-acceleration rows must project from Noether sea density, cadence, delay, stress, flow, and response variables whose source record is ultimately a coarse-grained causal-root and wake ledger. |
 | `EQ-12`, `EQ-12A`, `EQ-22A`, `EQ-26`, `EQ-26A`, `EQ-28`, and `EQ-29` | Photon, action-quantum, blackbody, atomic, coupling, recoil, and radiation rows must preserve source-event provenance, photon-channel event balance, recoil/remnant rows, and wake/Noether sea exchange rather than assigning $h$, $\alpha$, $c_\gamma$, or emitted power independently. |
 | `EQ-13`, `EQ-15`, `EQ-16`, `EQ-16A`, and `EQ-27` | Field, spinor, gauge, neutrino, and magnetic-moment rows must retain branch identity, ordered-frame or phase-history data, angular-momentum ledgers, and exposed-sector records back to a causal-root branch instead of importing field labels as substrate ontology. |
 | `EQ-14`, `EQ-30`, and `EQ-31` | Probability-current, cross-section, form-factor, width, lifetime, and branching-fraction rows must arise from finite-window branch pushforwards, event outcome partitions, detector kernels, and admissible escape corridors seeded by retained causal-root histories. |
@@ -708,6 +709,80 @@ with redshift, Shapiro delay, lensing, acceleration, 1PN, and preferred-frame ro
 ### Agent Target
 
 Build a single effective-metric closure table that lists each observable, the needed projection from $\theta_W$, the current corpus location, and the coefficient or residual still missing.
+
+## EQ-07A: Compact-Star Support And Collapse Scale Residual
+
+Detailed packet: [EQ-07A Compact-Star Support And Collapse Scale Residual](eq-07a-compact-star-support-collapse-scale-residual.md).
+
+### Standard Form
+
+The compact-star support comparison starts with Fermi-state counting,
+
+$$
+p_F\sim\hbar n_e^{1/3},
+\qquad
+x_F\equiv\frac{p_F}{m_ec_0},
+$$
+
+and the pressure-regime split
+
+$$
+P_{e,\mathrm{nr}}\propto \rho^{5/3},
+\qquad
+P_{e,\mathrm{rel}}\propto \rho^{4/3}.
+$$
+
+The support boundary carries composition through
+
+$$
+M_{\mathrm{Ch}}\propto Y_e^2M_\odot,
+$$
+
+while the compact-star GR comparison uses the TOV pressure-gravity row.
+
+### AAA Mapping
+
+`EQ-07A` asks whether one compact-region retained record can join:
+
+- the standard electron Fermi reservoir variables $(n_e,p_F,x_F,Y_e,\mu_e,M,R)$;
+- native material scale compression $\lambda_A$ and $\mathcal{S}_{\mathrm{mat}}$;
+- pressure/packing projection $P_{\mathrm{pack}}^\theta$;
+- neutron-star radial support record $\Theta_{\mathrm{NS}}(r)$;
+- reaction inventory rows for electron capture, photodisintegration, neutrino transport, heat, and remnants;
+- compact-region ledger $\mathcal{L}_{E\mathbf p\mathbf J}^{(\Omega)}$;
+- and effective metric compliance $\mathcal{S}_{\mathrm{metric}}$.
+
+The row must keep atomic orbital scale, Fermi spacing, and material Noether braid scale separate. A successful map may connect them, but it cannot substitute one for another without a declared bridge calculation.
+
+### Closure Status
+
+Current `6/23 b` score: `2`.
+
+The standard formula families and native carriers are now named in the focused packet, but no accepted compact-region retained carrier or dense-matter equation-of-state bridge exists. No score increase for `EQ-07` through `EQ-10` follows from adding this suffix row.
+
+Executable status: [eq07a-compact-region-carrier-residual.mjs](../../../scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs) evaluates the score-neutral compact-region carrier. The attempt fixture [eq07a-compact-region-carrier-attempt.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-attempt.v1.json) reports `blocked_missing_accepted_compact_region_carrier`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_compact_region_carrier`; its variable dictionary, Fermi state-counting, pressure-regime, composition, support, reaction-ledger, compact-region ledger, scale-metric, neutron-star radial-support, source-provenance, hidden-retune, level-separation, and negative-control diagnostics pass, but those passes are not score evidence because the compact-region carrier and every row binding remain `attempt`.
+
+### Closure Burden
+
+The first residual is
+
+$$
+\mathcal{R}_{07A}^{\mathrm{cs}}(\theta;\Omega,W)
+=
+\mathcal R_{\mathrm{Fermi}}
++\lambda_P\mathcal R_{\mathrm{support}}
++\lambda_Y\mathcal R_{\mathrm{rxn}}
++\lambda_E\mathcal R_{E\mathbf p\mathbf J}^{(\Omega)}
++\lambda_{\mathrm{scale}}\mathcal R_{\mathrm{collapse}\to\mathrm{metric}}
++\lambda_{\mathrm{NS}}\mathcal R_{\mathrm{NS}}
++\lambda_{\mathrm{retune}}\mathcal S_{\mathrm{retune}}.
+$$
+
+The first blocker is `missing_accepted_compact_region_carrier`: one source-backed $\Theta_{\mathrm{cs}}^{07A}(\Omega,W)$ must declare the standard variables, native scale/compliance rows, reaction inventory, and compact-region ledger before any stronger score or reader-facing promotion is justified.
+
+### Agent Target
+
+Populate the `EQ-07A` compact-region carrier on one attempt record. The first useful artifact is not a full neutron-star EOS; it is a fail-closed variable dictionary and residual report that makes imported pressure formulae, hidden retuning, and level collapse visible.
 
 ## EQ-11: Einstein And Poisson Limits
 

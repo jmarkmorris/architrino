@@ -12,9 +12,11 @@ This is not a story about foolish predecessors. Classical mechanics, field theor
 
 The witnesses below are grouped by area rather than by a single timeline. Within each area the order is roughly historical, but the story is not strictly linear. Geometry, dynamics, measurement, quantum records, redshift, black holes, and cosmology repeatedly cross one another.
 
+The chronology nevertheless has a ratchet structure. Michelson and Morley narrowed the admissible medium picture; Lienard and Wiechert left causal delay inside field calculation; the quantum settlement made operational success feel sufficient; particle physics turned hidden structure into representation data; cosmology converted redshift and background radiation into an origin chart; inflation repaired that chart rather than reopening its ontology. None of those moves was foolish in isolation. Together they pushed the assembly question into no recognized discipline.
+
 The recurring clues fall into a few families. The methodological family includes overhasty abstraction, anomaly management, research-program protection, abduction, crisis self-detection, root-cause analysis, Planck scale access limits, primitive ontology, the reality of time, and observation-to-theory contact. The structure-and-dynamics family includes geometry, recurrence, finite propagation, source-time point-charge causality, and the possibility that stable matter is a retained causal-return object. The relativity-and-invariance family includes interferometer null results, preferred-frame compensation, operational measurement, equivalence principle insight, invariance, background independence, quantum geometry, and extended-object consistency.
 
-The quantum-and-particle family includes hidden multiplicity, particle-wave duality, complementarity, pilot-wave realism, threshold discreteness, observable-only quantum mechanics, spinor structure, antimatter, record-channel paradoxes, nuclear identity, beta reaction bookkeeping, path histories, collider event reconstruction, fractional charge, confinement, asymptotic freedom, mass-from-internal-energy, generation hierarchy, and nonlocal correlations. The cosmology-and-recycling family includes redshift mapping, metric expansion, redshift testing, low-acceleration galaxy regularities, cosmological-principle stress tests, dark-sector skepticism, dark-sector lensing maps, supermassive-black-hole seeding, black-hole signal astronomy, finite cosmic topology, background-radiation interpretation, temporal typicality, observer-selection framing, cosmological origin stories, inflationary repair, inflationary schism, bounce cosmology, compact-object collapse, black-hole thermodynamics, horizon complementarity, horizon encoding, black-hole entropy, and cyclic cosmology.
+The quantum-and-particle family includes hidden multiplicity, particle-wave duality, complementarity, pilot-wave realism, threshold discreteness, observable-only quantum mechanics, spinor structure, antimatter, record-channel paradoxes, nuclear identity, beta reaction bookkeeping, path histories, bootstrap consistency, collider event reconstruction, fractional charge, confinement, asymptotic freedom, mass-from-internal-energy, generation hierarchy, and nonlocal correlations. The cosmology-and-recycling family includes redshift mapping, metric expansion, redshift testing, low-acceleration galaxy regularities, cosmological-principle stress tests, dark-sector skepticism, dark-sector lensing maps, supermassive-black-hole seeding, black-hole signal astronomy, finite cosmic topology, background-radiation interpretation, temporal typicality, observer-selection framing, cosmological origin stories, inflationary repair, inflationary schism, bounce cosmology, compact-object collapse, black-hole thermodynamics, horizon complementarity, horizon encoding, black-hole entropy, and cyclic cosmology.
 
 ## Paradigms, Research Programs, And Anomalies
 
@@ -144,6 +146,8 @@ The miss was that the point charge remained a source of a field, not a member of
 
 Jefimenko later extended the same opening in a more explicit source-history form. His equations made the causal source-time content of electromagnetic behavior pedagogically visible: present effective fields can be reconstructed from earlier charge and current distributions. From the Architrino Assembly Architecture vantage, that preserved the right historical clue while leaving it in the wrong layer. Causal delay remained a method for calculating effective fields from sources, not a self-consistent assembly law in which point transceivers, wakes, and their own prior records could generate stable particles and observer-level fields together.
 
+The sharper version of the miss is a three-speed distinction. Classical source-history electrodynamics let one symbol, $c$, carry too many roles: propagation constant in delayed source formulas, relativistic limiting speed, and measured photon-channel speed. Architrino Assembly Architecture separates those roles. Primitive wakes propagate at $c_f$; photon speed is an assembly and Noether sea-dressed channel to be recovered; and point-transceiver speed is a branch variable that may enter super-field-speed regimes without making the wake itself faster than $c_f$. Once those levels are separated, the moving-charge formulas stop looking like final electrodynamics and become a source-history chart to be refactored: keep causal roots and Jacobian weighting, but rebuild the many-body assembly law before importing observer-level light or field language.
+
 The later failure of classical electron theory made that miss harder to correct. The historical error was not the rejection of one failed electron model. It was overgeneralized falsification: one narrow point-source ontology came to stand for the whole neoclassical design space. Three assumptions did most of the damage. The primitive source was identified with the observed electron charge rather than a smaller polarity unit. The primitive propagation speed was identified with measured photon speed rather than the underlying wake speed $c_f$. And the photon-channel speed was promoted into a universal constituent speed limit. From the Architrino Assembly Architecture vantage, each assumption is reversed: charge is an assembly-level polarity inventory, photon speed is a recovered channel behavior, and point transceivers may enter regimes whose stability is governed by causal-root structure rather than by the observer-level light limit.
 
 The rational reason is clear. Around 1900 the electron itself was new, atomic structure was not yet settled, nonlinear dynamics was not yet a standard many-body toolkit, and the computational means to explore branch-sensitive causal systems did not exist. The successful problem was to derive the fields of a moving charge, not to discover whether organized matter could be built from delayed point-source feedback.
@@ -158,9 +162,11 @@ Chapter Ten.
 
 Michelson and Morley supplied the decisive experimental pressure. Their interferometer asked whether Earth's motion through a stationary light-carrying medium would create an orientation-dependent light-travel-time difference. The expected fringe shift did not appear. That null result became one of the great doors into relativity.
 
-From the Architrino Assembly Architecture vantage, the experiment was close to the right question but not the final question. It did not merely test whether light had a medium. It tested whether a particular material apparatus, using a particular light channel, could detect motion relative to the underlying rest frame. The deeper target was not an ether wind. It was the shared response of rods, clocks, mirrors, photon assemblies, and the Noether sea.
+From the Architrino Assembly Architecture vantage, the experiment was close to the right question but not the final question. It did not directly measure a primitive speed in isolation. It tested whether a material interferometer, built from rods, mirrors, resonant matter, clock comparisons, and a photon synchronization channel, could detect orientation-dependent motion relative to an underlying rest frame. The deeper target was not an ether wind. It was the shared response of rods, clocks, mirrors, photon assemblies, and the Noether sea.
 
 The missed interpretation is subtle. A null interferometer result can mean no preferred frame. It can also mean that the preferred frame is hidden because every part of the measurement channel retunes together: the apparatus arms, the resonant material structure, the emitted light channel, and the clock comparison. In that second reading, Michelson and Morley did not disprove a substrate. They set the acceptance condition for any serious substrate: it must self-null the two-way anisotropy of embedded instruments.
+
+The current-canon translation of the old medium intuition is therefore not to revive the classical carrier. The fixed container is the Euclidean void; the constitutive contents are the Noether sea; and the photon readout is a dressed channel moving through those contents. A Michelson-Morley null result constrains the residual mismatch among those rows. It says that any substrate account must make material-arm response, clock response, and photon-channel speed common-mode to the tested precision.
 
 The rational historical path went the other way because the old medium picture was too crude. If the expected wind was absent and if Lorentz-FitzGerald contraction looked like an auxiliary repair, then Einstein's operational postulate looked cleaner. It removed the undetected machinery and made the invariant light-speed result a principle of spacetime kinematics. That was a powerful simplification at the level of measurement law.
 
@@ -382,6 +388,20 @@ Feynman's retrospective lesson is that physics came very close to the right narr
 
 Chapter Twenty-Five.
 
+### Geoffrey Chew: Nuclear Democracy Without Assemblies
+
+Chew's doorway was the hadron zoo. By the middle of the twentieth century, strongly interacting particles no longer looked like a small set of elementary blocks with a few composites attached. They looked like a crowd of resonances, decays, scattering channels, and mutual transformations. Chew's bootstrap program and nuclear democracy took that crowd seriously: perhaps no hadron was more fundamental than the others; perhaps the particle spectrum should be constrained by consistency among the observed interactions themselves.
+
+That instinct was close to the Architrino Assembly Architecture track because it weakened the old hierarchy of little ultimate objects plus larger things made from them. A particle could be read as a stable role in a network of transformations rather than as an isolated primitive. Scattering was not just impact. It was identity tested through allowed reconfiguration.
+
+The miss was that democracy remained at the level of observed particles and scattering consistency. Without architrinos, causal wakes, retained assembly records, and internal shielding structure, the program could not say what physical mechanism made one channel stable, another transient, and another forbidden. It knew that particle identity might be relational, but it did not have the substrate ledger that could make relational identity constructive.
+
+The rational miss is that the bootstrap program was overtaken for good reasons. Quarks, color, asymptotic freedom, and quantum chromodynamics gave the strong interaction a more calculable and experimentally fertile account. That victory should be honored. But it also made an older clue easier to forget: before color gauge theory won, physics had already felt that elementary-versus-composite might be the wrong question.
+
+Chew's retrospective lesson is that nuclear democracy asked a near-Architrino question in the wrong language. Architrino Assembly Architecture says the useful question is not whether all observed particles are equally elementary. It is what retained assembly process lets some configurations appear as stable identities, others as resonances, and others only as transition channels inside a deeper reaction ledger.
+
+Chapter Twenty-Six.
+
 ### Don Lincoln: Collider Events Without Assembly Provenance
 
 Lincoln's doorway is the modern detector record. As an experimental particle physicist and public interpreter of high-energy physics, he stands near the place where the Standard Model became not only a theory on a blackboard but a disciplined evidence machine: accelerators produce collisions, detectors record tracks and energy deposits, triggers decide which events survive, reconstruction software assigns particle candidates, and statistical analysis converts many imperfect records into discoveries such as the top quark and Higgs boson.
@@ -396,7 +416,7 @@ The rational miss is that experimental success made the existing reconstruction 
 
 Lincoln's retrospective lesson is that public evidence discipline and substrate reconstruction should not be enemies. Architrino Assembly Architecture says the missed modern question was not whether collider events are real. It was whether the magnificent detector ledger had been read one layer too high: as confirmation of final particle-field ontology rather than as the most detailed public evidence surface for assembly interaction and reformation.
 
-Chapter Twenty-Six.
+Chapter Twenty-Seven.
 
 ### Murray Gell-Mann And George Zweig: Fractional Charge Without Polarity Units
 
@@ -412,7 +432,7 @@ This was not because no one ever tried reduction. Preon, rishon, and compositene
 
 Their retrospective lesson is that fractional charge should have remained a live ontological irritant. The Architrino Assembly Architecture reconstruction says the missed question was not merely "what are quarks made of?" It was sharper: what integer polarity inventory, assembly geometry, and stability rule make the observed charge set possible while preventing the smaller units from appearing as isolated particles?
 
-Chapter Twenty-Seven.
+Chapter Twenty-Eight.
 
 ### David Gross, Frank Wilczek, And David Politzer: Confinement Without Assembly Interiors
 
@@ -426,7 +446,7 @@ Wilczek's axion work adds a related pressure point. The strong CP problem sugges
 
 Their retrospective lesson is that QCD found the right kind of mystery and domesticated it mathematically. Architrino Assembly Architecture says the historical opportunity was to ask whether confinement, running strength, hadron mass, and strong-sector phase alignment were all exports of a deeper assembly ledger, rather than treating color gauge structure as the last word on the interior of matter.
 
-Chapter Twenty-Eight.
+Chapter Twenty-Nine.
 
 ### Glashow, Salam, Weinberg, Cabibbo, Kobayashi, And Maskawa: Generations Without A Generation Mechanism
 
@@ -442,7 +462,7 @@ The rational miss was that the Standard Model made the generation problem operat
 
 Their retrospective lesson is that generations should have remained a structural demand, not only a parameter family. Architrino Assembly Architecture says the missing question was: what common assembly can preserve the same gauge-facing axial record while exposing deeper shielded energy, increasing mass response, and shortening the lifetime window in exactly three stable tiers?
 
-Chapter Twenty-Nine.
+Chapter Thirty.
 
 ### John Bell: Nonlocality Without A Whole-State Ledger
 
@@ -460,7 +480,7 @@ Bell's retrospective lesson is severe: any deeper account must face the theorem 
 
 ## Cosmology, Expansion, And Recycling
 
-Chapter Thirty.
+Chapter Thirty-One.
 
 ### Vesto Slipher And Edwin Hubble: Redshift Became Expansion Too Quickly
 
@@ -474,7 +494,7 @@ Once the distance-redshift relation was joined to relativistic cosmology, the la
 
 Slipher and Hubble's retrospective lesson is that redshift was the doorway, not the conclusion. The Architrino Assembly Architecture reading preserves the empirical map while relocating its cause: the observed relation is a stable effective record of source history, medium evolution, and clock comparison, not direct evidence that the Euclidean void is stretching.
 
-Chapter Thirty-One.
+Chapter Thirty-Two.
 
 ### Alexander Friedmann: Dynamical Cosmology Became Metric Dynamics
 
@@ -488,7 +508,7 @@ Occam's razor cut in the effective direction. One scale factor inside general re
 
 Friedmann's retrospective lesson is that dynamical cosmology was the right opening, but metric dynamics became too final. Architrino Assembly Architecture says the missed step was to keep the scale factor as a reconstruction variable while looking underneath it for the source and medium process being reconstructed.
 
-Chapter Thirty-Two.
+Chapter Thirty-Three.
 
 ### Willem de Sitter: Geometry Alone Looked Like Recession
 
@@ -502,7 +522,7 @@ The rational miss is that de Sitter geometry was clean. It did not ask physics t
 
 De Sitter's retrospective lesson is that observer reconstruction was glimpsed but immediately geometrized. Architrino Assembly Architecture keeps the insight and reverses the ontology: if clock, ruler, and light-channel behavior can generate the observed cosmological chart, then the chart should be read as evidence of the underlying constitutive system, not as proof that the Euclidean void itself expands.
 
-Chapter Thirty-Three.
+Chapter Thirty-Four.
 
 ### Richard Tolman: Bad Redshift Alternatives Narrowed The Field
 
@@ -516,7 +536,7 @@ Tolman therefore represents both the strength and the trap of empirical discrimi
 
 Tolman's retrospective lesson is that cosmology needed sharper tests, and still does. In the Architrino Assembly Architecture reconstruction, redshift, time dilation, background radiation, abundance, structure, and lensing remain in one evidential frame rather than being separated into local excuses. The historical missed opportunity was to confuse the defeat of weak non-expansion mechanisms with the defeat of every possible non-expanding Euclidean-void ontology.
 
-Chapter Thirty-Four.
+Chapter Thirty-Five.
 
 ### Stacy McGaugh: Galaxy Dynamics As A Dark-Matter Warning
 
@@ -530,7 +550,7 @@ The rational caution is severe. MOND-like success at galaxy scales does not by i
 
 McGaugh's retrospective lesson is that dark matter should have remained a diagnosis, not a completed ontology. Architrino Assembly Architecture says the missed modern question was whether galaxy dynamics were exposing a low-acceleration constitutive response of the same medium-and-assembly system that cosmology reads as dark-sector mass, rather than forcing the choice between invisible particles and a standalone modified-gravity law.
 
-Chapter Thirty-Five.
+Chapter Thirty-Six.
 
 ### Subir Sarkar: Dark Energy As A Chart-Level Warning
 
@@ -542,7 +562,7 @@ The rational caution is just as important. A dipole, bulk flow, or local-structu
 
 Sarkar's retrospective lesson is therefore methodological. The cosmological principle should not be treated as a harmless convenience once it begins deciding ontology. Architrino Assembly Architecture says the missed modern question was whether dark energy, isotropic acceleration, and global metric expansion were being inferred through a reconstruction pipeline that had already assumed too much about the observer's relation to the cosmic medium.
 
-Chapter Thirty-Six.
+Chapter Thirty-Seven.
 
 ### Alpher, Herman, Penzias, Wilson, Dicke, And Peebles: The Background Became A Birth Certificate
 
@@ -556,7 +576,7 @@ That is why the standard interpretation held its ground. A background-radiation 
 
 Their retrospective lesson is that the cosmic microwave background was the right battlefield but the wrong foundation. The background should have forced a deeper question: what physical medium and source ledger can make the sky look like a single calibrated thermal surface to embedded observers? The standard answer was early metric expansion. Architrino Assembly Architecture says the more fundamental answer is recovered from Noether sea transport, source/release history, and clock-rate reconstruction.
 
-Chapter Thirty-Seven.
+Chapter Thirty-Eight.
 
 ### Brandon Carter, John Barrow, Frank Tipler, Fred Adams, And Gregory Laughlin: Temporal Typicality Without A Sampling Ledger
 
@@ -576,7 +596,7 @@ The rational caution matters. Temporal unease does not falsify the measured age 
 
 Their retrospective lesson is that standard cosmology had a strong clock but a weak temporal self-location account. Architrino Assembly Architecture says the deeper question is not whether a fourteen-billion-year effective chart can contain trillion-year objects. It can. The deeper question is what source/release history, Noether sea state, stellar processing epoch, and Physical Observer window make our early-looking location a record-bearing phase rather than a bare statistical accident.
 
-Chapter Thirty-Eight.
+Chapter Thirty-Nine.
 
 ### Lemaitre, Hoyle, Narlikar, And Burbidge: Cosmology Became An Origin Story
 
@@ -592,7 +612,7 @@ From the Architrino Assembly Architecture vantage, the missed move was to reinte
 
 Their retrospective lesson is that Big Bang cosmology won as an effective historical chart, but the victory over steady-state alternatives became too ontological. The field learned to model an early hot dense state with great success. It did not keep enough pressure on the deeper question of whether the observed universe records a unique beginning, or a recurrent causal economy whose most extreme source regions were sitting in the sky all along.
 
-Chapter Thirty-Nine.
+Chapter Forty.
 
 ### Alan Guth: Inflation Patched The Initial Conditions
 
@@ -606,7 +626,7 @@ The deeper issue is layer selection. Inflation patched effective cosmological in
 
 Guth's retrospective lesson is that a successful repair can prevent a more radical diagnosis. Architrino Assembly Architecture says the same pressures that motivated inflation should have reopened the question of whether the cosmological chart itself was being read at the wrong ontological level.
 
-Chapter Forty.
+Chapter Forty-One.
 
 ### Andrei Linde: Multiplicity Moved Into The Multiverse
 
@@ -620,7 +640,7 @@ The rational reason is that eternal inflation extended an already accepted infla
 
 Linde's retrospective lesson is that cosmology found recurrence but placed it in the wrong ontology. Architrino Assembly Architecture says the multiplicity was not necessarily beyond the universe. It may have been distributed through the universe's own source/release architecture.
 
-Chapter Forty-One.
+Chapter Forty-Two.
 
 ### Paul Steinhardt And Neil Turok: The Inflation Schism Still Stayed Cosmological
 
@@ -634,7 +654,7 @@ The miss was that the alternative still remained at the cosmological field-and-m
 
 Steinhardt and Turok's retrospective lesson is that dissent from inflation was not a retreat from precision. It was a demand that cosmology keep predictive narrowness, singularity avoidance, and recurrence on the table. Architrino Assembly Architecture says their near-miss was to see that the Big Bang should become a transition, while not yet having the causal substrate that turns transition, recycling, redshift, background radiation, and observer reconstruction into one process.
 
-Chapter Forty-Two.
+Chapter Forty-Three.
 
 ### Chandrasekhar And Oppenheimer: Collapse Split Matter From Metric
 
@@ -650,7 +670,7 @@ The reason this was hard to see is that ordinary matter did not look like geomet
 
 Their retrospective lesson is that compact-object collapse should have been treated as a root-cause probe, not merely as an endpoint problem. Architrino Assembly Architecture says the star's material scale change and the surrounding effective metric response are not independent miracles. They are two readings of Architrino Assembly Architecture through different instruments: one sees Noether braids compressed and retuned; the other sees clocks, rulers, and light channels reconstruct a strong-field geometry.
 
-Chapter Forty-Three.
+Chapter Forty-Four.
 
 ### Priyamvada Natarajan: Supermassive Black Holes Stayed In The Same Class
 
@@ -666,7 +686,7 @@ The rational obstacle is that this question was almost too large to ask responsi
 
 Natarajan's retrospective lesson is that the modern dark sector and the modern supermassive-black-hole problem should not be kept in separate explanatory boxes. Architrino Assembly Architecture says the missed contemporary question is whether the most massive black holes are only scaled compact remnants in cosmology, or whether they are constitutive source/release nodes whose Noether sea coupling, horizon channels, and feedback histories help produce the very dark-sector and large-scale observables used to describe the universe around them.
 
-Chapter Forty-Four.
+Chapter Forty-Five.
 
 ### Janna Levin: Black-Hole Signals Without The Source Ledger
 
@@ -684,7 +704,7 @@ The rational miss was the success of the relativistic signal interpretation. Whe
 
 Levin's retrospective lesson is that black holes became audible before they became ontologically reclassified. Architrino Assembly Architecture says the missed modern question was whether gravitational-wave records, black-hole-pair chaos, and finite-topology searches were already teaching the same lesson: the universe is reconstructed from source histories, medium response, and detector-access channels, not read directly from a final spacetime fabric.
 
-Chapter Forty-Five.
+Chapter Forty-Six.
 
 ### Jakob Bekenstein And Stephen Hawking: Thermodynamic Black Holes Without Recycling
 
@@ -698,7 +718,7 @@ What was missing was the substrate mechanism. Without architrinos, causal wakes,
 
 Bekenstein and Hawking's retrospective lesson is that black holes already had the thermodynamic signature of engines. Architrino Assembly Architecture says the missed step was to treat that signature not as analogy alone, but as evidence that black holes participate physically in the universe's recurrent causal economy.
 
-Chapter Forty-Six.
+Chapter Forty-Seven.
 
 ### Gerard 't Hooft, Leonard Susskind, Juan Maldacena, Shinsei Ryu, And Tadashi Takayanagi: Horizon Encoding Without A Horizon Mechanism
 
@@ -724,7 +744,7 @@ The comparison to Architrino Assembly Architecture is therefore precise. Hologra
 
 Their retrospective lesson is that black holes were not merely thermodynamic engines or information paradoxes. They were pointing to an interface law. Architrino Assembly Architecture says the historical opportunity was to read holography not as final boundary ontology, but as the visible mathematics of a horizon-interface regime in the transition history of causal assemblies.
 
-Chapter Forty-Seven.
+Chapter Forty-Eight.
 
 ### Roger Penrose: Cycles Without Parallel Recycling
 
@@ -738,7 +758,7 @@ What was missing was the assembly mechanism. Without architrinos, causal wakes, 
 
 Penrose's retrospective lesson is that the pieces were already unusually close together: entropy, horizons, singular limits, cyclic history, and the suspicion that ordinary spacetime geometry is not the final language. The Architrino Assembly Architecture reconstruction says the missed step was to put the cycle inside the universe rather than beyond it. The black hole is not only an endpoint, not only an information paradox, and not only a bridge to a next aeon. It is a candidate engine of the recurring causal economy already operating in parallel across cosmic history.
 
-Chapter Forty-Eight.
+Chapter Forty-Nine.
 
 ### John Wheeler: Geometrodynamics Without The Source Ledger
 
@@ -760,7 +780,7 @@ In the structure-and-dynamics line, Thurston had the language of charts and glui
 
 In the relativity-and-invariance line, Michelson and Morley had the interferometer null result, Lorentz had the preferred frame and compensating clocks and rulers, Einstein had operational clarity and the equivalence principle clue, Noether had invariance, Ashtekar, Rovelli, and Smolin had background-independent quantum geometry, and string theory had extended-object consistency. Their successes made the observer-level reconstruction so powerful that the material construction of clocks, rods, signals, conserved records, and metric appearance became easy to treat as secondary.
 
-In the quantum-particle-and-nuclear line, Boltzmann had hidden multiplicity, Bohr, de Broglie, and Schrodinger had the particle-wave fracture, Bohm restored deterministic pilot-wave realism, Shannon and Wiener had analog feedback producing discrete records, Heisenberg had the discipline of observable records, Dirac had spinor structure and antimatter, Schrodinger's cat exposed the record-channel problem, Rutherford, Chadwick, and Fermi had nuclear identity and reaction bookkeeping, Feynman had histories and interaction diagrams, Lincoln had collider event reconstruction, Gell-Mann and Zweig had fractional charge, Gross, Wilczek, and Politzer had asymptotic freedom and confinement, the Standard Model builders had the unresolved three-generation ladder, and Bell exposed the failure of naive local factorization. These were all near the Architrino Assembly Architecture track, but each settled at a different layer: probability, complementarity, wave mechanics, pilot-wave guidance, information, observable calculus, relativistic algebra, nuclear inventory, amplitude, detector evidence, gauge representation, strong-sector field dynamics, fitted family structure, or theorem-governed correlation.
+In the quantum-particle-and-nuclear line, Boltzmann had hidden multiplicity, Bohr, de Broglie, and Schrodinger had the particle-wave fracture, Bohm restored deterministic pilot-wave realism, Shannon and Wiener had analog feedback producing discrete records, Heisenberg had the discipline of observable records, Dirac had spinor structure and antimatter, Schrodinger's cat exposed the record-channel problem, Rutherford, Chadwick, and Fermi had nuclear identity and reaction bookkeeping, Feynman had histories and interaction diagrams, Chew had particle identity as mutual consistency, Lincoln had collider event reconstruction, Gell-Mann and Zweig had fractional charge, Gross, Wilczek, and Politzer had asymptotic freedom and confinement, the Standard Model builders had the unresolved three-generation ladder, and Bell exposed the failure of naive local factorization. These were all near the Architrino Assembly Architecture track, but each settled at a different layer: probability, complementarity, wave mechanics, pilot-wave guidance, information, observable calculus, relativistic algebra, nuclear inventory, amplitude, bootstrap consistency, detector evidence, gauge representation, strong-sector field dynamics, fitted family structure, or theorem-governed correlation.
 
 In the cosmology-and-recycling line, Slipher and Hubble had redshift mapping, Friedmann had dynamical cosmology, de Sitter had geometry-generated recession, Tolman had disciplined redshift tests, McGaugh pressed the baryon-acceleration regularity behind dark-matter inference, Sarkar pressed the cosmological-principle and dark-energy inference, Alpher, Herman, Penzias, Wilson, Dicke, and Peebles had the background-radiation lock, Carter, Barrow, Tipler, Adams, and Laughlin exposed the temporal-typicality pressure between cosmic age, observer selection, and far-future object lifetimes, Lemaitre and the steady-state critics exposed the origin question, Guth and Linde repaired the chart through inflation and multiplicity, Steinhardt and Turok reopened cyclic and bouncing cosmology, Chandrasekhar and Oppenheimer had compact-object collapse, Natarajan joined dark-sector mapping to supermassive-black-hole seeding and growth, Levin made black-hole pairs, chaos, gravitational-wave records, and finite cosmic topology into signal doorways, Bekenstein and Hawking made black holes thermodynamic, black-hole complementarity and holography made horizons into encoding interfaces, Penrose tied black holes to cyclic history, and Wheeler searched for ontology in geometry and information. The clues fit together, but the accepted history kept relocating them into separate explanatory boxes.
 
