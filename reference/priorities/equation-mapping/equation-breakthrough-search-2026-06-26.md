@@ -2068,3 +2068,31 @@ No score changes.
   - Full validation passed: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
 
 No score changes.
+
+## Restart Checkpoint 40: EQ-07A Compact-Region Carrier Source Contract
+
+- Time: 2026-06-26 18:17 EDT.
+- Runtime status: paused at the operator-requested breakpoint after closing the `EQ-07A` implementation cycle; score `2`, score `3`, and unscored work remain meaningful.
+- Agents completed since Restart Checkpoint 39:
+  - `Halley the 2nd` and `Mencius the 2nd`: completed two `EQ-16` passes, both identifying `missing_accepted_weak_visible_branch_ledger` as the first blocker. Smallest proposed object: one durable source-backed `weak_visible_branch_ledger` for `D_weak_visible_attempt_0001` / `A_weak_attempt_0001`, expected to expose `missing_accepted_weak_projection`.
+  - `Ramanujan the 2nd` and `Wegener the 2nd`: completed two `EQ-22A` passes, both identifying the parent first blocker `missing_accepted_theta_gamma_packet` and the local child blocker `missing_accepted_thermal_mode_counting_row` after parent support. Smallest proposed local object: one durable `thermal_mode_counting_row` source report under `Theta_bb`; broader parent route remains a durable `Theta_gamma` packet or a narrower Gate B/Malus source-evidence probe.
+- Coordinator target completed since Restart Checkpoint 39:
+  - Hardened [eq07a-compact-region-carrier-residual.mjs](../../../scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs) so an accepted-looking compact-region carrier must carry row-specific support metadata naming `EQ-07A`, `compact_region_carrier`, and a same-root finite-window ledger, compact-region conservation ledger, or collapse-to-metric residual route.
+  - Added [eq07a-compact-region-carrier-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-metadata-missing-negative-control.v1.json), proving a durable source path without compact-region support metadata fails closed at `missing_accepted_compact_region_carrier`.
+  - Added [eq07a-compact-region-carrier-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-source-evidence-probe.v1.json), advancing the parent compact-region carrier only and exposing `missing_accepted_standard_benchmark_row`.
+  - Updated [eq-07a-compact-star-support-collapse-scale-residual.md](eq-07a-compact-star-support-collapse-scale-residual.md) and [equation.md](equation.md) with the new exact blockers.
+- Files edited since Restart Checkpoint 39:
+  - [eq-07a-compact-star-support-collapse-scale-residual.md](eq-07a-compact-star-support-collapse-scale-residual.md)
+  - [equation.md](equation.md)
+  - [eq07a-compact-region-carrier-residual.mjs](../../../scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs)
+  - [eq07a-compact-region-carrier-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-metadata-missing-negative-control.v1.json)
+  - [eq07a-compact-region-carrier-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-source-evidence-probe.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node --check scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs`: passed.
+  - `node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input scripts/equation-mapping/eq07a-compact-region-carrier-attempt.v1.json --summary`: still passes as score-neutral with `nextBlocker=missing_accepted_compact_region_carrier` and `carrierReason=row_not_accepted`.
+  - `node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input scripts/equation-mapping/eq07a-compact-region-carrier-metadata-missing-negative-control.v1.json --summary --require-populated`: exited nonzero as intended with `carrierReason=compact_region_carrier_source_contract_mismatch`.
+  - `node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input scripts/equation-mapping/eq07a-compact-region-carrier-source-evidence-probe.v1.json --summary --require-populated`: exited nonzero as intended with `nextBlocker=missing_accepted_standard_benchmark_row`.
+  - Full validation passed: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+No score changes.
