@@ -319,6 +319,19 @@ function createRetainedDomainOutput({ packet, inputPath }) {
               : hasAttemptRows
                 ? "blocked_retained_domain_rows_missing"
                 : "blocked_missing_retained_domain_rows";
+  const nextBlocker = nextBlockerForRetainedIdentity({
+    status,
+    missingRetainedInputs,
+    missingDomainWitnesses,
+  });
+  const nextBlockerDetails = retainedDomainNextBlockerDetails({
+    nextBlocker,
+    requirementChecks,
+    splitWitness,
+    retuneWitness,
+    overlapPreimage,
+    fiberProductCarrier,
+  });
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -374,11 +387,8 @@ function createRetainedDomainOutput({ packet, inputPath }) {
         retune_witness_zero: retuneWitness.reason,
         overlap_preimage_identity: overlapPreimage.reason,
       },
-      nextBlocker: nextBlockerForRetainedIdentity({
-        status,
-        missingRetainedInputs,
-        missingDomainWitnesses,
-      }),
+      nextBlocker,
+      nextBlockerDetails,
       supportKind: packet.domain?.kind ?? null,
       supportId: domainId,
       splitWitnessPass: splitWitness.accepted,
@@ -402,6 +412,58 @@ function summarizeOutput(output) {
     input: output.input,
     target: output.target,
     summary: output.summary,
+  };
+}
+
+function retainedDomainNextBlockerDetails({
+  nextBlocker,
+  requirementChecks,
+  splitWitness,
+  retuneWitness,
+  overlapPreimage,
+  fiberProductCarrier,
+}) {
+  if (!nextBlocker) {
+    return null;
+  }
+  const prefix = "missing_accepted_";
+  const blockerId = nextBlocker.startsWith(prefix)
+    ? nextBlocker.slice(prefix.length)
+    : nextBlocker;
+  const requirement = requirementChecks.find((check) => check.id === blockerId);
+  if (requirement) {
+    return {
+      id: requirement.id,
+      status: requirement.status,
+      reason: requirement.reason,
+      rowId: requirement.rowId,
+      sourcePath: requirement.sourcePath,
+    };
+  }
+  const witnesses = {
+    split_witness_zero: splitWitness,
+    retune_witness_zero: retuneWitness,
+    overlap_preimage_identity: overlapPreimage,
+  };
+  const witness = witnesses[blockerId];
+  if (witness) {
+    return {
+      id: blockerId,
+      status: witness.status,
+      reason: witness.reason,
+      residual: witness.residual ?? null,
+    };
+  }
+  if (blockerId === "blocked_fiber_product_carrier") {
+    return {
+      id: blockerId,
+      reason: fiberProductCarrier.reason,
+      legStatuses: fiberProductCarrier.legStatuses,
+    };
+  }
+  return {
+    id: blockerId,
+    reason: nextBlocker,
   };
 }
 

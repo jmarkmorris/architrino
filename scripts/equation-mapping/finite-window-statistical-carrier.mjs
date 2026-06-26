@@ -217,6 +217,17 @@ function evaluateCarrier(input) {
   const eq30Acceptance = evaluateEq30Acceptance(carrier);
   const eq31 = computeEq31Rows(corridors, constants);
   const corridorDiagnostics = evaluateCorridorDiagnostics(carrier, tolerances);
+  const blockerContext = {
+    retainedAcceptance,
+    massRows,
+    carrier,
+    eq14,
+    eq14Acceptance,
+    eq30,
+    eq30Acceptance,
+    eq31,
+    corridorDiagnostics,
+  };
   const status = decideStatus(
     retainedAcceptance,
     massRows,
@@ -227,6 +238,7 @@ function evaluateCarrier(input) {
     eq30,
     eq30Acceptance,
   );
+  const nextBlocker = firstBlocker(blockerContext);
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -271,17 +283,8 @@ function evaluateCarrier(input) {
       nullSeparatrixPassed: corridorDiagnostics.nullSeparatrixPassed,
       refinementCompatibilityPassed:
         corridorDiagnostics.refinementCompatibilityPassed,
-      nextBlocker: firstBlocker({
-        retainedAcceptance,
-        massRows,
-        carrier,
-        eq14,
-        eq14Acceptance,
-        eq30,
-        eq30Acceptance,
-        eq31,
-        corridorDiagnostics,
-      }),
+      nextBlocker,
+      nextBlockerDetails: firstBlockerDetails(nextBlocker, blockerContext),
     },
     finiteWindowCarrier: {
       window: summarizeRow(carrier.window),
@@ -1564,6 +1567,223 @@ function firstBlocker({
     }
   }
   return null;
+}
+
+function firstBlockerDetails(nextBlocker, context) {
+  if (!nextBlocker) {
+    return null;
+  }
+  const {
+    retainedAcceptance,
+    massRows,
+    carrier,
+    eq14Acceptance,
+    eq30Acceptance,
+    eq31,
+    corridorDiagnostics,
+  } = context;
+  if (nextBlocker === "corridor_measure_exceeds_window_measure") {
+    return {
+      reason: "corridor_measure_exceeds_window_measure",
+      corridorMass: massRows.corridorMass,
+      totalMass: massRows.totalMass,
+      residual: massRows.massResidual,
+      tolerance: massRows.tolerance,
+    };
+  }
+  if (nextBlocker === "missing_positive_escape_measure") {
+    return {
+      reason: "eq31_escape_measure_not_computed",
+      row: carrier.row ?? null,
+      corridorCount: Array.isArray(carrier.exitCorridors)
+        ? carrier.exitCorridors.length
+        : 0,
+      eq31Computed: eq31.computed,
+    };
+  }
+  const retainedId = missingIdFor(nextBlocker, retainedAcceptance.missingAcceptedRows);
+  if (retainedId) {
+    return rowBlockerDetails(
+      retainedId,
+      retainedAcceptance.rowStatuses,
+      retainedCarrierRow(retainedId, carrier),
+    );
+  }
+  if (nextBlocker === "finite_measure_invariance_residual") {
+    return {
+      ...rowBlockerDetails(
+        "mu_star_T",
+        retainedAcceptance.rowStatuses,
+        carrier.finiteMeasure,
+      ),
+      invarianceResidual: retainedAcceptance.invarianceResidual,
+    };
+  }
+  if (nextBlocker === "no_hidden_retune_witness") {
+    return {
+      ...rowBlockerDetails(
+        "S_retune",
+        retainedAcceptance.rowStatuses,
+        carrier.noHiddenRetuneWitness,
+      ),
+      hiddenRetuneResidual: retainedAcceptance.hiddenRetuneResidual,
+    };
+  }
+  const eq14Id = missingIdFor(nextBlocker, eq14Acceptance.missingAcceptedRows);
+  if (eq14Id) {
+    return rowBlockerDetails(
+      eq14Id,
+      eq14Acceptance.rowStatuses,
+      eq14CarrierRow(eq14Id, carrier),
+    );
+  }
+  const eq30Id = missingIdFor(nextBlocker, eq30Acceptance.missingAcceptedRows);
+  if (eq30Id) {
+    return rowBlockerDetails(
+      eq30Id,
+      eq30Acceptance.rowStatuses,
+      eq30CarrierRow(eq30Id, carrier),
+    );
+  }
+  if (nextBlocker === "missing_first_exit_corridor_semantics") {
+    return {
+      reason: corridorDiagnostics.firstExit.reason,
+      corridorSemantics: summarizeRow(carrier.corridorSemantics, [
+        "mode",
+        "basinId",
+        "boundaryId",
+        "detectorKernelStage",
+      ]),
+    };
+  }
+  if (nextBlocker === "null_separatrix_positive_mass") {
+    return {
+      reason: corridorDiagnostics.nullSeparatrix.reason,
+      nullSeparatrix: summarizeRow(carrier.nullSeparatrix, [
+        "epsilon",
+        "neighborhoodMass",
+        "tolerance",
+      ]),
+    };
+  }
+  if (nextBlocker === "refinement_cocycle_defect") {
+    return {
+      reason: corridorDiagnostics.refinementCompatibility.reason,
+      refinementCompatibility: summarizeRow(
+        carrier.refinementCompatibility,
+        ["cocycleDefect", "tolerance"],
+      ),
+    };
+  }
+  return {
+    blocker: nextBlocker,
+    reason: "first_blocker_without_row_detail",
+  };
+}
+
+function missingIdFor(nextBlocker, missingAcceptedRows) {
+  return missingAcceptedRows.find(
+    (id) => nextBlocker === `missing_accepted_${id}`,
+  );
+}
+
+function retainedCarrierRow(id, carrier) {
+  if (id === "W") return carrier.window;
+  if (id === "Phi_T") return carrier.transitionMap;
+  if (id === "mu_star_T") return carrier.finiteMeasure;
+  if (id === "Q") return carrier.coarseGraining;
+  if (id === "K_det") return carrier.detectorKernel;
+  if (id === "B") return carrier.outcomePartition;
+  if (id === "S_retune") return carrier.noHiddenRetuneWitness;
+  if (id === "C") return carrier.exitCorridors ?? [];
+  return null;
+}
+
+function eq14CarrierRow(id, carrier) {
+  if (id === "Theta_rhoJ") return carrier.recordCurrentProjection;
+  if (id === "record_current_samples") return carrier.recordCurrentSamples ?? [];
+  return null;
+}
+
+function eq30CarrierRow(id, carrier) {
+  if (id === "Gamma_a") return carrier.preparedEnsemble;
+  if (id === "Phi_in") return carrier.fluxCalibration;
+  if (id === "detected_class_measures") return carrier.detectedClassMeasures ?? [];
+  if (id === "cross_section_comparisons") {
+    return carrier.crossSectionComparisons ?? [];
+  }
+  if (id === "rho_exp") return carrier.exposureDistribution;
+  if (id === "form_factor_samples") return carrier.formFactorSamples ?? [];
+  if (id === "elastic_regime") return carrier.regime;
+  return null;
+}
+
+function rowBlockerDetails(id, rowStatuses, rowOrRows) {
+  const rowStatus = rowStatuses.find((row) => row.id === id) ?? {};
+  if (Array.isArray(rowOrRows)) {
+    return rowFamilyBlockerDetails(id, rowStatus, rowOrRows);
+  }
+  const sourcePath = rowOrRows?.sourcePath ?? rowOrRows?.source ?? null;
+  return {
+    id,
+    status: rowStatus.status ?? rowOrRows?.retainedStatus ?? rowOrRows?.status ?? null,
+    retainedStatus: rowOrRows?.retainedStatus ?? null,
+    accepted: rowStatus.accepted ?? false,
+    reason: rowStatus.reason ?? "missing_row",
+    rowId: rowOrRows?.id ?? null,
+    sourcePath,
+    sourceReferenceExists: sourceReferenceExists(sourcePath),
+  };
+}
+
+function rowFamilyBlockerDetails(id, rowStatus, rows) {
+  const firstRelevantRow =
+    rows.find(
+      (row) =>
+        row &&
+        typeof row === "object" &&
+        !isAcceptedStatus(row.retainedStatus ?? row.status),
+    ) ??
+    rows.find(
+      (row) =>
+        row &&
+        typeof row === "object" &&
+        "ledgerStatus" in row &&
+        !isAcceptedStatus(row.ledgerStatus),
+    ) ??
+    rows.find(
+      (row) =>
+        row &&
+        typeof row === "object" &&
+        !concreteString(row.id ?? row.classId ?? row.qId),
+    ) ??
+    rows.find(
+      (row) =>
+        row &&
+        typeof row === "object" &&
+        !sourceReferenceExists(row.sourcePath) &&
+        !sourceReferenceExists(row.source),
+    ) ??
+    rows[0] ??
+    null;
+  const sourcePath = firstRelevantRow?.sourcePath ?? firstRelevantRow?.source ?? null;
+  return {
+    id,
+    status: rowStatus.status ?? firstRelevantRow?.retainedStatus ?? null,
+    accepted: rowStatus.accepted ?? false,
+    reason: rowStatus.reason ?? "missing_row_family",
+    rowFamilyCount: rows.length,
+    firstRowId:
+      firstRelevantRow?.id ??
+      firstRelevantRow?.classId ??
+      firstRelevantRow?.qId ??
+      null,
+    firstRowStatus:
+      firstRelevantRow?.retainedStatus ?? firstRelevantRow?.status ?? null,
+    firstRowLedgerStatus: firstRelevantRow?.ledgerStatus ?? null,
+    firstRowSourcePath: sourcePath,
+    firstRowSourceReferenceExists: sourceReferenceExists(sourcePath),
+  };
 }
 
 function isAcceptedStatus(status) {

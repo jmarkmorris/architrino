@@ -762,6 +762,10 @@ The standard formula families and native carriers are now named in the focused p
 
 Executable status: [eq07a-compact-region-carrier-residual.mjs](../../../scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs) evaluates the score-neutral compact-region carrier. The attempt fixture [eq07a-compact-region-carrier-attempt.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-attempt.v1.json) reports `blocked_missing_accepted_compact_region_carrier`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_compact_region_carrier`; its variable dictionary, Fermi state-counting, pressure-regime, composition, support, reaction-ledger, compact-region ledger, scale-metric, neutron-star radial-support, source-provenance, hidden-retune, level-separation, and negative-control diagnostics pass, but those passes are not score evidence because the compact-region carrier and every row binding remain `attempt`.
 
+Executable Chandrasekhar status: [eq07a-chandrasekhar-scaling-residual.mjs](../../../scripts/equation-mapping/eq07a-chandrasekhar-scaling-residual.mjs) evaluates a solver-style scaling residual for the same compact-region carrier. The attempt fixture [eq07a-chandrasekhar-scaling-attempt.v1.json](../../../scripts/equation-mapping/eq07a-chandrasekhar-scaling-attempt.v1.json) reports `blocked_missing_accepted_compact_region_carrier`, `scoreDecision=no_score_increase`, `solverResidualPass=true`, and `solverNextBlocker=null`; its Fermi state-counting, fixed-coefficient nonrelativistic and relativistic pressure scaling, nonrelativistic mass-radius scaling, composition scaling, source-provenance, hidden-retune, level-separation, and four negative-control diagnostics pass. Those passes are solver diagnostics on an attempt fixture, not accepted retained evidence.
+
+Executable TOV status: [eq07a-tov-compact-support-residual.mjs](../../../scripts/equation-mapping/eq07a-tov-compact-support-residual.mjs) evaluates a solver-style compact-support residual for the same compact-region carrier. The attempt fixture [eq07a-tov-compact-support-attempt.v1.json](../../../scripts/equation-mapping/eq07a-tov-compact-support-attempt.v1.json) reports `blocked_missing_accepted_compact_region_carrier`, `scoreDecision=no_score_increase`, `solverResidualPass=true`, and `solverNextBlocker=null`; its TOV pressure-gradient, mass-continuity, EOS-projection, radial-support, metric-compactness, compact-ledger, source-provenance, hidden-retune, and four negative-control diagnostics pass. Those passes are solver diagnostics on an attempt fixture, not accepted retained evidence.
+
 ### Closure Burden
 
 The first residual is
@@ -782,7 +786,7 @@ The first blocker is `missing_accepted_compact_region_carrier`: one source-backe
 
 ### Agent Target
 
-Populate the `EQ-07A` compact-region carrier on one attempt record. The first useful artifact is not a full neutron-star EOS; it is a fail-closed variable dictionary and residual report that makes imported pressure formulae, hidden retuning, and level collapse visible.
+Populate the `EQ-07A` compact-region carrier behind the Chandrasekhar and TOV solver residuals. The next useful artifact is a source-backed carrier row that keeps dense-matter pressure, radial support, reaction inventory, and metric compliance on one retained record.
 
 ## EQ-11: Einstein And Poisson Limits
 

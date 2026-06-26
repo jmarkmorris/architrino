@@ -61,6 +61,17 @@ nextBlocker: missing_accepted_W
 
 This is not score evidence. The score-moving row must replace toy carrier rows with accepted source-backed rows for $W$, $\Phi_T$, $\mu_{*,T}$, $\mathcal Q$, $K_{\mathrm{det}}$, $\mathcal B$, $\mathcal S_{\mathrm{retune}}$, $\Theta_{\rho J}$, and the record-current samples.
 
+The compact summary now reports the retained-window blocker as a concrete row detail:
+
+```text
+nextBlockerDetails.id: W
+nextBlockerDetails.status: toy
+nextBlockerDetails.reason: row_not_accepted
+nextBlockerDetails.rowId: W_eq14_record_current_toy
+nextBlockerDetails.sourcePath: null
+nextBlockerDetails.sourceReferenceExists: false
+```
+
 ## `EQ-31` Null-Separatrix And Refinement Sweep
 
 The runner now rejects detector-side class measures as first-exit evidence unless the input supplies pre-detector first-exit preimage rows. The additivity row is evaluated against corridor measures before detector readout:
@@ -95,6 +106,41 @@ nextBlocker: missing_accepted_W
 ```
 
 This is the desired conservative posture. The toy demonstrates the diagnostic shape; it does not prove the retained path-history measure exists, is tight, has null separatrix, or glues under refinement.
+
+The refined toy reports the same first blocker with source-bearing detail:
+
+```text
+nextBlockerDetails.id: W
+nextBlockerDetails.status: toy
+nextBlockerDetails.reason: row_not_accepted
+nextBlockerDetails.rowId: W_eq31_null_refinement_toy
+nextBlockerDetails.sourcePath: null
+nextBlockerDetails.sourceReferenceExists: false
+```
+
+## First Accepted Evidence Object
+
+The smallest accepted evidence object for this bucket is not another toy fixture. It is one retained finite-window row $W$ with a durable source reference, accepted status, concrete identity, and a source-backed relation to the same $\Phi_T$, $\mu_{*,T}$, $\mathcal Q$, $K_{\mathrm{det}}$, $\mathcal B$, and $\mathcal S_{\mathrm{retune}}$ consumed by the runner.
+
+The exact first blocker is `missing_accepted_W`. The current compact summaries for `EQ-14`, `EQ-30`, and `EQ-31` all fail on the same row:
+
+```text
+EQ-14: W_eq14_record_current_toy, status toy, sourcePath null
+EQ-30: W_eq30_elastic_toy, status toy, sourcePath null
+EQ-31: W_eq31_null_refinement_toy, status toy, sourcePath null
+```
+
+The required source-backed fields for a score-eligible carrier are:
+
+- accepted retained-window row $W$ with a concrete id and durable `sourcePath` or `source`;
+- accepted transition map $\Phi_T$ and finite measure $\mu_{*,T}$ for the same window;
+- accepted coarse-graining $\mathcal Q$, detector kernel $K_{\mathrm{det}}$, and outcome partition $\mathcal B$;
+- accepted no-hidden-retune witness $\mathcal S_{\mathrm{retune}}$ with residual below tolerance;
+- row-specific accepted projection rows: $\Theta_{\rho J}$ and record-current samples for `EQ-14`, scattering/form-factor rows for `EQ-30`, and accepted first-exit corridor family $C$ for `EQ-31`.
+
+Fail-closed negative controls remain: toy or attempt status, missing or non-durable source references, placeholder identities, split density/current measure or flow for `EQ-14`, positive retained-measure separatrix mass for `EQ-31`, refinement-cocycle failure, corridor measure exceeding window measure, and hidden retune residual above tolerance.
+
+What would count as score-moving evidence: the same runner returns `accepted_retained_statistical_carrier` on a retained carrier whose source-backed rows satisfy the relevant numeric residuals, with no row populated from toy, placeholder, generated-only, or pending-source material.
 
 ## Score Disposition
 

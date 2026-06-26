@@ -190,6 +190,16 @@ function evaluateSlice(input) {
     speedStressMetricGatePass,
     acousticElasticAgreement,
   });
+  const firstBlockerDetails = nextBlockerDetailsForSlice({
+    nextBlocker: firstBlocker,
+    thetaSeaRows,
+    rowStatuses,
+    input,
+    retuneStatus,
+    retuneResidual,
+    acousticElasticAgreement,
+    surfaceVector,
+  });
   const consumerReadiness = evaluateConsumerReadiness({
     status,
     firstBlocker,
@@ -228,6 +238,7 @@ function evaluateSlice(input) {
       missingOutputs,
       undeclaredMissingOutputs,
       nextBlocker: firstBlocker,
+      nextBlockerDetails: firstBlockerDetails,
       thetaSeaRowStatuses: Object.fromEntries(
         THETA_SEA_ROWS.map((row) => [row, normalizeStatus(thetaSeaRows[row])])
       ),
@@ -284,6 +295,147 @@ function evaluateSlice(input) {
       acousticElasticAgreement,
       consumerReadiness,
     },
+  };
+}
+
+function nextBlockerDetailsForSlice({
+  nextBlocker,
+  thetaSeaRows,
+  rowStatuses,
+  input,
+  retuneStatus,
+  retuneResidual,
+  acousticElasticAgreement,
+  surfaceVector,
+}) {
+  if (!nextBlocker) {
+    return null;
+  }
+  const thetaPrefix = "missing_accepted_theta_sea_";
+  if (nextBlocker.startsWith(thetaPrefix)) {
+    const row = nextBlocker.slice(thetaPrefix.length);
+    return retainedRowDetail(`theta_sea_${row}`, thetaSeaRows[row]);
+  }
+  const rowPrefix = "missing_accepted_";
+  if (nextBlocker.startsWith(rowPrefix)) {
+    const row = nextBlocker.slice(rowPrefix.length);
+    if (row === "stress_strain_row_or_metric_embedding_row") {
+      return {
+        id: row,
+        stressStrainRow: retainedRowDetail(
+          "stress_strain_row",
+          rowStatuses.stress_strain_row,
+        ),
+        metricEmbeddingRow: retainedRowDetail(
+          "metric_embedding_row",
+          rowStatuses.metric_embedding_row,
+        ),
+      };
+    }
+    if (row === "retune_witness_zero") {
+      return {
+        id: row,
+        status: retuneStatus,
+        residual: retuneResidual,
+        sourcePath: input.retune?.sourcePath ?? input.retune?.source ?? null,
+        witnessId: input.retune?.witnessId ?? input.retune?.rowId ?? null,
+        changedRows: input.retune?.changedRows ?? null,
+      };
+    }
+    if (row === "acoustic_elastic_agreement") {
+      return {
+        id: row,
+        status: acousticElasticAgreement.status,
+        numericStatus: acousticElasticAgreement.numericStatus,
+        missingAcceptedInputs: acousticElasticAgreement.missingAcceptedInputs,
+      };
+    }
+    return retainedRowDetail(row, rowStatuses[row]);
+  }
+  const outputPrefix = "undeclared_missing_output_";
+  if (nextBlocker.startsWith(outputPrefix)) {
+    const output = nextBlocker.slice(outputPrefix.length);
+    return {
+      id: output,
+      status: "undeclared_missing_output",
+      projectedValue: surfaceVector[output] ?? null,
+      declaredMissingOutputs: declaredMissingOutputs(input),
+    };
+  }
+  if (nextBlocker === "retune_failed") {
+    return {
+      id: "retune",
+      status: retuneStatus,
+      residual: retuneResidual,
+      changedRows: input.retune?.changedRows ?? null,
+    };
+  }
+  if (nextBlocker === "missing_speed_plus_stress_or_metric_coefficient") {
+    return {
+      id: nextBlocker,
+      delta_c_X_squared: surfaceVector.delta_c_X_squared,
+      delta_C_ij_kl: surfaceVector.delta_C_ij_kl,
+      delta_N: surfaceVector.delta_N,
+      delta_gamma_ij: surfaceVector.delta_gamma_ij,
+      speedRow: retainedRowDetail("speed_row", rowStatuses.speed_row),
+      stressStrainRow: retainedRowDetail(
+        "stress_strain_row",
+        rowStatuses.stress_strain_row,
+      ),
+      metricEmbeddingRow: retainedRowDetail(
+        "metric_embedding_row",
+        rowStatuses.metric_embedding_row,
+      ),
+    };
+  }
+  if (
+    nextBlocker === "missing_acoustic_elastic_agreement" ||
+    nextBlocker === "acoustic_elastic_agreement_residual" ||
+    nextBlocker === "missing_accepted_acoustic_elastic_agreement"
+  ) {
+    return {
+      id: "acousticElasticAgreement",
+      status: acousticElasticAgreement.status,
+      numericStatus: acousticElasticAgreement.numericStatus,
+      missingAcceptedInputs: acousticElasticAgreement.missingAcceptedInputs,
+      absoluteResidual: acousticElasticAgreement.absoluteResidual,
+      refinementError: acousticElasticAgreement.refinementError,
+    };
+  }
+  return {
+    id: nextBlocker,
+    reason: nextBlocker,
+  };
+}
+
+function retainedRowDetail(id, row) {
+  const status = normalizeStatus(row);
+  if (!row || typeof row !== "object" || Array.isArray(row)) {
+    return {
+      id,
+      status,
+      rowType: row === undefined || row === null ? "missing" : typeof row,
+      reason: status,
+    };
+  }
+  const sourcePath = row.sourcePath ?? row.source ?? null;
+  return {
+    id,
+    status,
+    rowId: row.rowId ?? null,
+    eventId: row.eventId ?? null,
+    eventLedgerRef: row.eventLedgerRef ?? null,
+    sourcePath,
+    sourceConcrete: concreteString(sourcePath),
+    sourceReferenceExists: sourceReferenceExists(sourcePath),
+    retainedReferencePresent:
+      concreteString(row.rowId) ||
+      concreteString(row.eventId) ||
+      concreteString(row.eventLedgerRef),
+    reason:
+      status === "accepted" || status === "populated" || status === "passed"
+        ? "accepted"
+        : status,
   };
 }
 

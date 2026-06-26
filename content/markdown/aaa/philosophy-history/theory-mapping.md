@@ -16,6 +16,17 @@ The document is organized as a matrix rather than a linear history. The first se
 
 **Regime-Capture Warning:** Modern physics has achieved extraordinary precision inside narrow regions of empirical regime space, but it has too often treated that precision as permission to speak for ontology as a whole. Equations such as the Schrödinger equation, perturbative quantum field models, weak-field GR, and cosmological parameter fits are powerful closures over limited conditions, not final access to substrate reality. The institutional failure is that these regime-bound successes became gatekeeping standards for what could count as fundamental explanation. From the $\mathbb{A}\mathbb{A}\mathbb{A}$ standpoint, this has delayed recognition of the deeper substrate solution: inherited theories must be recovered as effective limits, not enthroned as the architecture of reality.
 
+### Four Relocations At A Glance
+
+One compact way to read this chapter is as a set of ontological relocations. The inherited theories are not discarded where they work; their successful equations, data products, and inference practices become effective summaries whose underlying variables are moved into the architrino, assembly, causal-wake, and Noether sea ledger.
+
+| Inherited package | What remains valid | Relocation in $\mathbb{A}\mathbb{A}\mathbb{A}$ |
+| --- | --- | --- |
+| General Relativity | Metric, geodesic, lensing, gravitational-wave, and weak/strong-field benchmark calculations remain recovery targets. | The effective metric is reconstructed from Noether sea response, clock/ruler retuning, and signal-structure; the Euclidean void itself does not curve. |
+| Quantum Mechanics | Born weights, interference records, measurement statistics, and Hilbert-space calculation remain benchmark outputs. | The complete state evolves deterministically, while record-limited observers see basin weights, multistability, and unresolved path history as effective probability. |
+| $\Lambda\mathrm{CDM}$, Big Bang, and inflationary chronology | Redshift, CMB, BBN, growth, lensing, and parameter-fit data products remain hard comparison constraints. | Expansion variables are observer-level summaries of source/release history, Noether sea evolution, transport, and clock-rate comparison in a fixed Euclidean void. |
+| Quantum Field Theory | Effective actions, perturbation theory, detector-event reconstruction, renormalized summaries, and field symmetries remain indispensable. | Fields and particle-number changes are effective descriptions of assembly association, dissociation, normal-mode changes, causal wakes, and source-history transport. |
+
 **Document Type:** Matrix-split chapter with two axes:
 - Layer axis (`##`): ontological/phenomenological domains.
 - Theory axis (`###`): individual theories mapped within each domain.

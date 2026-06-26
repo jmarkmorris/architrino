@@ -140,6 +140,16 @@ function evaluateSharedObservationResidual(input, inputPath) {
     sharedKeys,
     residual,
   });
+  const blockerContext = {
+    status,
+    missingRows,
+    rows,
+    rowChecks,
+    projections,
+    sharedKeys,
+    residual,
+  };
+  const nextBlocker = firstBlocker(blockerContext);
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -166,13 +176,8 @@ function evaluateSharedObservationResidual(input, inputPath) {
       missingProjectionFamilies: projections.missingProjectionFamilies,
       missingSharedKeys: sharedKeys.missingSharedKeys,
       sharedKeyMismatchCount: sharedKeys.mismatches.length,
-      nextBlocker: firstBlocker({
-        status,
-        missingRows,
-        projections,
-        sharedKeys,
-        residual,
-      }),
+      nextBlocker,
+      nextBlockerDetails: firstBlockerDetails(nextBlocker, blockerContext),
       thetaObsAccepted: rowChecks.theta_obs.accepted,
       projectionFamiliesAccepted: projections.accepted,
       allExpectedKeysDeclared: sharedKeys.allExpectedKeysDeclared,
@@ -412,6 +417,104 @@ function firstBlocker({ status, missingRows, projections, sharedKeys, residual }
     return "residual_above_tolerance";
   }
   return status;
+}
+
+function firstBlockerDetails(nextBlocker, context) {
+  if (!nextBlocker) {
+    return null;
+  }
+  const { missingRows, rows, rowChecks, projections, sharedKeys, residual } = context;
+  const missingRowId = missingRows.find(
+    (rowId) => nextBlocker === `missing_accepted_${rowId}`,
+  );
+  if (missingRowId) {
+    return retainedRowDetail(missingRowId, rows[missingRowId], rowChecks[missingRowId]);
+  }
+  const projectionPrefix = "missing_accepted_projection_";
+  if (nextBlocker.startsWith(projectionPrefix)) {
+    const family = nextBlocker.slice(projectionPrefix.length);
+    return projectionDetail(family, projections.families[family]);
+  }
+  const sharedKeyPrefix = "missing_accepted_shared_key_";
+  if (nextBlocker.startsWith(sharedKeyPrefix)) {
+    const key = nextBlocker.slice(sharedKeyPrefix.length);
+    return sharedKeyDetail(key, sharedKeys.keys[key]);
+  }
+  if (nextBlocker.startsWith("hidden_retune_")) {
+    const mismatch = sharedKeys.mismatches[0] ?? null;
+    return {
+      id: nextBlocker,
+      reason: "shared_key_hidden_retune_mismatch",
+      mismatch,
+      key: mismatch?.key ?? null,
+      keyDetail: mismatch ? sharedKeyDetail(mismatch.key, sharedKeys.keys[mismatch.key]) : null,
+    };
+  }
+  if (nextBlocker === "missing_residual_vector") {
+    return {
+      id: nextBlocker,
+      reason: "residual_vector_missing_or_not_numeric",
+      computed: residual.computed,
+      termCount: residual.terms.length,
+    };
+  }
+  if (nextBlocker === "residual_above_tolerance") {
+    return {
+      id: nextBlocker,
+      reason: "residual_above_tolerance",
+      total: residual.total,
+      tolerance: residual.tolerance,
+    };
+  }
+  return {
+    id: nextBlocker,
+    reason: "first_blocker_without_detail",
+  };
+}
+
+function retainedRowDetail(id, row, check) {
+  const sourcePath = row?.sourcePath ?? row?.source ?? null;
+  return {
+    id,
+    status: normalizeStatus(row),
+    accepted: check?.accepted ?? false,
+    reason: check?.reason ?? "missing_row",
+    rowId: row?.rowId ?? row?.id ?? row?.key ?? null,
+    sourcePath,
+    sourceReferenceExists: sourceReferenceExists(sourcePath),
+  };
+}
+
+function projectionDetail(family, row) {
+  const sourcePath = row?.sourcePath ?? null;
+  return {
+    id: `projection_${family}`,
+    family,
+    status: row?.status ?? "missing",
+    accepted: row?.accepted ?? false,
+    reason: row?.reason ?? "missing_projection_family",
+    rowId: row?.id ?? null,
+    sourcePath,
+    sourceReferenceExists: sourceReferenceExists(sourcePath),
+    residual: row?.residual ?? null,
+    consumedKeys: row?.consumedKeys ?? [],
+  };
+}
+
+function sharedKeyDetail(key, row) {
+  const sourcePath = row?.sourcePath ?? null;
+  return {
+    id: `shared_key_${key}`,
+    key,
+    status: row?.status ?? "missing",
+    accepted: row?.accepted ?? false,
+    reason: row?.reason ?? "missing_shared_key",
+    sourcePath,
+    sourceReferenceExists: sourceReferenceExists(sourcePath),
+    declaredTransformationStatus: row?.declaredTransformationStatus ?? null,
+    maxDelta: row?.maxDelta ?? null,
+    pass: row?.pass ?? null,
+  };
 }
 
 function parseTolerances(raw) {

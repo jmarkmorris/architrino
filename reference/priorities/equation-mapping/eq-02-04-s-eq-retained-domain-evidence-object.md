@@ -62,6 +62,24 @@ The current score-neutral executable state is:
 | [eq02-04-translating-binary-retained-record.mjs](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs) | `blocked_same_branch_identity` | The retained-record rows and witnesses remain attempt-level, and `coframeExtraction` is not evaluated. |
 | [produce-eq02-04-coframe-extraction-certificate.mjs](../../../scripts/equation-mapping/produce-eq02-04-coframe-extraction-certificate.mjs) | fail-closed producer | The current source report is attempt-level and lacks accepted invariant-cell, refinement, source, and connection evidence. |
 
+The producer summary now reports `nextBlockerDetails` and the first eight `leadingFailedCheckDetails`. This does not change the acceptance contract. It makes the current first source-backed gaps explicit:
+
+```sh
+node scripts/equation-mapping/produce-eq02-04-coframe-extraction-certificate.mjs \
+  --input scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-attempt.v1.json \
+  --summary --pretty --no-retained-record
+```
+
+The all-attempt source still reports `status: blocked`, `scoreDecision: no_score_increase`, and `nextBlocker: source_status`. Its leading failed details show `sourceStatus: attempt`, missing calibrated evidence-scale fields, placeholder-like carrier/domain/support ids, and the first row binding with `statusAccepted: false` and `rowIdConcrete: false`.
+
+```sh
+node scripts/equation-mapping/produce-eq02-04-coframe-extraction-certificate.mjs \
+  --input scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-row-binding-negative-control.v1.json \
+  --summary --pretty --no-retained-record
+```
+
+The accepted-looking row-binding negative control still reports `status: blocked`, `scoreDecision: no_score_increase`, and `nextBlocker: row_binding_raw_labeled_rows_preserved_on_retained_history`. Its `nextBlockerDetails` gives `reason: row_binding_not_source_bound_object`, so the first accepted row cannot be a bare `accepted` label. It must be a structured source-bound row object with accepted status, concrete non-placeholder `rowId`, matching `retainedRowSetId`, `commonCarrierId`, `domainId`, `supportId`, and a durable source reference.
+
 The first concrete artifact for this lane is the blocked source-backed shell:
 
 ```sh
@@ -71,6 +89,22 @@ node scripts/equation-mapping/check-same-branch-chart-identity.mjs \
 ```
 
 It returns `schemaOk: true`, `status: blocked_missing_retained_event_or_domain`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_raw_labeled_rows_preserved_on_retained_history`. All retained identity row bindings in that shell are explicitly `blocked`, not accepted. The fixture path is [same-branch-retained-domain-blocked-source-shell.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-blocked-source-shell.v1.json).
+
+The compact summary also reports the first retained-domain blocker details:
+
+```json
+{
+  "id": "raw_labeled_rows_preserved_on_retained_history",
+  "status": "blocked",
+  "reason": "row_not_accepted",
+  "rowId": "raw_labeled_rows_preserved_on_retained_history_blocked_source_shell",
+  "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md"
+}
+```
+
+The older direct attempt reports the same blocker with `status: attempt`, `reason: row_not_accepted`, `rowId: raw_labeled_rows_attempt`, and source path [eq-02-04-translating-binary-shared-record-instantiation.md](eq-02-04-translating-binary-shared-record-instantiation.md). This confirms that neither the blocked source shell nor the direct attempt has crossed the first accepted-retained-row boundary.
+
+The repo-local source search found review material that defines the needed object, but no dormant accepted source report that can be wired directly. The invariant-cell source review packet [andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md](../../entourage/review-packets/andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md) and retained-evidence response [andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md](../../entourage/review-packets/andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md) both identify the next accepted object as a positive-width return-map certificate $B_N\subset\Sigma_N$ with $\mathcal K_{P_N}(B_N)\subset B_N$, refinement persistence, calibrated negative controls, and the retained rows evaluated only on that enclosed support. The coframe review packet [henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-06-24.md](../../entourage/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-06-24.md) likewise treats the current reciprocal coframe arithmetic as insufficient until it is replaced by accepted wake-return extraction evidence on the same invariant support. Those files are source-contract and review material, not retained-domain evidence objects.
 
 ## Required Source-Backed Fields
 
@@ -127,6 +161,30 @@ The retained-domain fixture must fail closed against these controls:
 | `clock_only_retune` and `envelope_only_retune` | A private clock or envelope fit must not satisfy same-carrier closure. |
 | `velocity_dependent_rest_mass` | Velocity-dependent rest mass cannot close `EQ-04`. |
 | `medium_response_compensator` | Noether sea response may not be used as a compensating fit for a failed coframe. |
+
+The current source-producer sweep keeps every accepted-looking source fixture fail-closed. The replay command runs [produce-eq02-04-coframe-extraction-certificate.mjs](../../../scripts/equation-mapping/produce-eq02-04-coframe-extraction-certificate.mjs) with `--summary --no-retained-record` over each `eq02-04-invariant-cell-coframe-source-*.v1.json` fixture:
+
+```text
+node scripts/equation-mapping/produce-eq02-04-coframe-extraction-certificate.mjs \
+  --input scripts/equation-mapping/<source-fixture>.v1.json \
+  --summary --no-retained-record
+```
+
+| Fixture | Status | First blocker |
+| --- | --- | --- |
+| `eq02-04-invariant-cell-coframe-source-attempt.v1.json` | `blocked` | `source_status` |
+| `eq02-04-invariant-cell-coframe-source-connection-holonomy-transport-negative-control.v1.json` | `blocked` | `connection_holonomy_transport_residual_bound` |
+| `eq02-04-invariant-cell-coframe-source-connection-phase-holonomy-negative-control.v1.json` | `blocked` | `connection_phase_holonomy_bound` |
+| `eq02-04-invariant-cell-coframe-source-connection-torsion-negative-control.v1.json` | `blocked` | `connection_torsion_bound` |
+| `eq02-04-invariant-cell-coframe-source-extraction-basis-gamma-negative-control.v1.json` | `blocked` | `extraction_basis_gamma_free` |
+| `eq02-04-invariant-cell-coframe-source-margin-negative-control.v1.json` | `blocked` | `negative_control_window_length_margin_calibrated` |
+| `eq02-04-invariant-cell-coframe-source-refinement-negative-control.v1.json` | `blocked` | `refinement_persistence` |
+| `eq02-04-invariant-cell-coframe-source-refinement-step-negative-control.v1.json` | `blocked` | `refinement_persistence_step_sources` |
+| `eq02-04-invariant-cell-coframe-source-refinement-support-id-negative-control.v1.json` | `blocked` | `refinement_persistence_support_id_stability` |
+| `eq02-04-invariant-cell-coframe-source-row-binding-negative-control.v1.json` | `blocked` | `row_binding_raw_labeled_rows_preserved_on_retained_history` |
+| `eq02-04-invariant-cell-coframe-source-shell-negative-control.v1.json` | `blocked` | `support_B_N_certified` |
+
+This sweep confirms that the accepted-looking row objects inside the negative controls are not retained evidence. They remain useful only as fail-closed controls for the future positive-width `S_eq` invariant-cell fixture.
 
 ## Score-Moving Evidence
 

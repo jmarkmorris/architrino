@@ -574,9 +574,16 @@ The current attempt fixture [shared-observation-residual-attempt.v1.json](../../
 status: blocked_missing_rows
 scoreDecision: no_score_increase
 nextBlocker: missing_accepted_theta_obs
+nextBlockerDetails.id: theta_obs
+nextBlockerDetails.status: attempt
+nextBlockerDetails.rowId: Theta_obs_attempt_0001
+nextBlockerDetails.sourcePath: pending-retained-source
+nextBlockerDetails.sourceReferenceExists: false
 ```
 
 This is the intended disposition. The checker is a residual-ledger guardrail, not a cosmology fit and not score evidence until one retained branch populates an accepted, durable-source $\Theta_{\mathrm{obs}}$ row.
+
+The shared-observation lane is also downstream of the Noether sea coefficient lane. `EQ-32` cannot honestly populate $a_\star^\theta(E)$ while the local Noether sea density-compression carrier still blocks at `missing_accepted_theta_sea_rho_NS`; the low-acceleration projection needs accepted $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, $\mathbf u_{\mathrm{sea}}$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, baryonic density, and assembly-density keys from the same source-backed record. Therefore the first accepted object for this packet remains $\Theta_{\mathrm{obs}}$, but `EQ-32` remains blocked on the Bucket B retained coefficient row even after the parent observation row exists.
 
 ## Failure Modes And Falsifiers
 

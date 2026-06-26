@@ -25,7 +25,7 @@
 - material Noether braid scale compression;
 - and effective spatial-compliance response.
 
-The row is not a new ontology and not a claim that compact-star pressure has already been derived. It is a bounded equation-mapping packet for the first reusable variable dictionary and no-hidden-retune residual.
+The row is not a new ontology and not a claim that compact-star pressure has already been derived. It is a bounded equation-mapping packet for the first reusable variable dictionary, no-hidden-retune residual, and solver-style Chandrasekhar scaling check.
 
 ## Standard Benchmark
 
@@ -169,6 +169,44 @@ $$
 
 but the active regime must be declared. A successful white-dwarf comparison does not automatically close neutron-star support, and a TOV benchmark does not automatically supply the native dense-matter branch.
 
+The first solver-style sub-residual isolates the Chandrasekhar side:
+
+$$
+\mathcal{R}_{07A}^{\mathrm{Ch}}
+=
+\left|\widehat{\alpha}_{\mathrm{nr}}-\frac{5}{3}\right|
++\left|\widehat{\alpha}_{\mathrm{rel}}-\frac{4}{3}\right|
++\left|\widehat{\eta}_{MR}+\frac{1}{3}\right|
++\left|\widehat{\eta}_{Y}-2\right|
++\mathcal R_{\mathrm{Fermi}}
++\mathcal S_{\mathrm{retune}}
++\mathcal S_{\mathrm{level}}.
+$$
+
+Here $\widehat{\alpha}_{\mathrm{nr}}$ and $\widehat{\alpha}_{\mathrm{rel}}$ are measured pressure exponents from one fixed-coefficient power-law solve, $\widehat{\eta}_{MR}$ is the nonrelativistic mass-radius exponent, and $\widehat{\eta}_{Y}$ is the composition exponent in $M_{\mathrm{Ch}}\propto Y_e^2$. This is a solver residual, not a fit license: the same coefficient must serve all samples in each scaling family, and per-sample retuning fails the residual.
+
+The second solver-style sub-residual isolates the TOV compact-support comparison:
+
+$$
+\mathcal{R}_{07A}^{\mathrm{TOV}}
+=
+\left\|
+\frac{dP}{dr}
++
+\frac{
+G(\epsilon+P/c_0^2)(m+4\pi r^3P/c_0^2)
+}{
+r^2(1-2Gm/(rc_0^2))
+}
+\right\|
++\left\|\frac{dm}{dr}-4\pi r^2\epsilon\right\|
++\mathcal R_{\mathrm{EOS}}
++\mathcal R_{\mathrm{compact}}
++\mathcal S_{\mathrm{retune}}.
+$$
+
+This residual keeps the GR comparison at the observer level. It checks the pressure-gradient row, mass-continuity row, fixed equation-of-state projection, radial-support monotonicity, compactness denominator, compact-region ledger, source provenance, and no-hidden-retune witnesses on one carrier. It does not supply the native dense-matter branch by itself.
+
 ## Score Decision
 
 Current `6/23 b` score: `2`.
@@ -177,7 +215,7 @@ The score is conservative:
 
 - the standard compact-star formula families and corpus anchors are clear;
 - the native carriers are plausible and named;
-- the packet now supplies a variable dictionary and residual decomposition;
+- the packet now supplies a variable dictionary, residual decomposition, score-neutral Chandrasekhar scaling solver residual, and score-neutral TOV compact-support solver residual;
 - but no accepted compact-region retained carrier, dense-matter equation-of-state bridge, or source-backed reaction inventory has been populated.
 
 No existing row score changes follow from this packet.
@@ -204,12 +242,48 @@ node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --summar
 
 The current run returns `schemaOk: true`, `status: blocked_missing_accepted_compact_region_carrier`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_compact_region_carrier`. The variable dictionary, Fermi-state counting check, pressure-regime check, composition relation, support residual, reaction ledger, compact-region ledger, scale/metric residual, neutron-star radial-support residual, source-provenance residual, hidden-retune residual, level-separation witness, and all three negative controls pass on the attempt carrier. They do not count as accepted retained evidence because the compact-region carrier and every row binding remain `status: attempt`.
 
+## Chandrasekhar Scaling Solver Residual
+
+The first solver-style residual is [eq07a-chandrasekhar-scaling-residual.mjs](../../../scripts/equation-mapping/eq07a-chandrasekhar-scaling-residual.mjs), driven by [eq07a-chandrasekhar-scaling-attempt.v1.json](../../../scripts/equation-mapping/eq07a-chandrasekhar-scaling-attempt.v1.json):
+
+```bash
+node scripts/equation-mapping/eq07a-chandrasekhar-scaling-residual.mjs --summary --pretty
+```
+
+The checker computes, rather than merely labels, the following attempt-level quantities:
+
+- Fermi state-counting rows $p_F\sim\hbar n_e^{1/3}$ and $x_F=p_F/(m_ec_0)$;
+- fixed-coefficient pressure power laws with exponents $5/3$ and $4/3$;
+- nonrelativistic white-dwarf mass-radius scaling $R\propto M^{-1/3}$;
+- the composition boundary $M_{\mathrm{Ch}}\propto Y_e^2$;
+- source-provenance, no-hidden-retune, and level-separation witnesses.
+
+The current run returns `schemaOk: true`, `status: blocked_missing_accepted_compact_region_carrier`, `scoreDecision: no_score_increase`, `solverResidualPass: true`, and `solverNextBlocker: null`. The state-counting, nonrelativistic pressure-scaling, relativistic pressure-scaling, mass-radius, composition-scaling, source-provenance, hidden-retune, level-separation, and all four negative-control diagnostics pass. They remain attempt-level diagnostics because the compact-region carrier and row bindings are still `status: attempt`.
+
+## TOV Compact-Support Solver Residual
+
+The TOV-side solver residual is [eq07a-tov-compact-support-residual.mjs](../../../scripts/equation-mapping/eq07a-tov-compact-support-residual.mjs), driven by [eq07a-tov-compact-support-attempt.v1.json](../../../scripts/equation-mapping/eq07a-tov-compact-support-attempt.v1.json):
+
+```bash
+node scripts/equation-mapping/eq07a-tov-compact-support-residual.mjs --summary --pretty
+```
+
+The checker computes, rather than merely labels, the following attempt-level quantities:
+
+- TOV pressure-gradient residual using one fixed $G$, $c_0$, $\epsilon(r)$, $P(r)$, $m(r)$, and compactness denominator;
+- mass-continuity residual $dm/dr=4\pi r^2\epsilon$;
+- fixed equation-of-state projection for the active compact-support samples;
+- radial-support monotonicity, compactness denominator, and compact-region ledger checks;
+- source-provenance and no-hidden-retune witnesses.
+
+The current run returns `schemaOk: true`, `status: blocked_missing_accepted_compact_region_carrier`, `scoreDecision: no_score_increase`, `solverResidualPass: true`, and `solverNextBlocker: null`. The TOV pressure-gradient, mass-continuity, EOS-projection, radial-support, metric-compactness, compact-ledger, source-provenance, hidden-retune, and all four negative-control diagnostics pass. They remain attempt-level diagnostics because the compact-region carrier and row bindings are still `status: attempt`.
+
 ## Score-Lift Path
 
 | Target score | Required evidence |
 | --- | --- |
-| `3` | Populate the variable dictionary on one attempt carrier and report each residual term with active regimes declared. |
-| `4` | Demonstrate one shared compact-region record that passes the support, reaction-ledger, scale-compression, and metric-compliance residuals without hidden retuning, while still treating TOV and Chandrasekhar rows as observer-level benchmarks. |
+| `3` | Populate the Chandrasekhar and TOV solver residuals on a source-backed compact-region attempt carrier and report each residual term with active regimes declared. The present fixtures supply the arithmetic harnesses but not accepted evidence. |
+| `4` | Demonstrate one shared compact-region record that passes the support, reaction-ledger, scale-compression, and metric-compliance residuals without hidden retuning, while still treating Chandrasekhar and TOV rows as observer-level benchmarks. |
 | `5` | Derive the compact-star support and collapse transition from accepted retained Noether braid/Noether sea rows, including a dense-matter branch or EOS bridge strong enough for reader-facing promotion. |
 
 ## Promotion Plan
