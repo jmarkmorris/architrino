@@ -60,6 +60,16 @@ This map may reuse source-ledger structure from `EQ-29`: `carrierId`, `sourceWin
 
 `EQ-23A` contributes a useful source-window vocabulary: `carrierId`, `sourceWindowId`, `supportId`, event ledger, provenance, and split-source negative control. It does not supply shock, yield, or radioactive rows to `EQ-11A`.
 
+## Coordination-Source Negative Control
+
+The fail-closed source check for the gravitational-wave source carrier is [eq11a-gravitational-wave-source-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-coordination-source-negative-control.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-coordination-source-negative-control.v1.json --summary --pretty
+```
+
+This control marks the top-level `gw_source_carrier` candidate as accepted-looking while pointing the carrier `sourcePath` back to this priority source-field map. The intended result is `status: blocked_missing_accepted_gw_source_carrier`, `carrierReason: accepted_without_evidence_source`, and `scoreDecision: no_score_increase`. A source-field map can name `GW150914-v3` and the required row identities, but it cannot satisfy accepted retained evidence for $\Theta_{\mathrm{GWsrc}}(W,P)$.
+
 ## Current Disposition
 
 The source map is ready for a checker-consumable attempt packet, not a score change. A future candidate input should preserve `status: attempt` until all row bindings are source-backed, durable, and accepted by the existing checker contract.

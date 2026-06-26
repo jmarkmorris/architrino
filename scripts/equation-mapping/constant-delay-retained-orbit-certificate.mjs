@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
+const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
 const DEFAULT_INPUT_PATH = path.join(
   SCRIPT_DIR,
   "constant-delay-retained-orbit-certificate-attempt.v1.json",
@@ -229,6 +230,9 @@ function summarizeOutput(output) {
     input: output.input,
     certificate: output.certificate,
     summary: output.summary,
+    rowStatuses: Object.fromEntries(
+      Object.entries(output.rows).map(([rowId, row]) => [rowId, { status: row.status, reason: row.reason }]),
+    ),
   };
 }
 
@@ -249,7 +253,74 @@ function evaluateAcceptedRow(row) {
   if (!ACCEPTED_STATUSES.has(status)) {
     return { accepted: false, reason: `status_${status || "missing"}` };
   }
+  const sourcePath = row.sourcePath ?? row.source;
+  const source = evaluateSourcePath(sourcePath);
+  if (!source.accepted) {
+    return { accepted: false, reason: source.reason };
+  }
   return { accepted: true, reason: "accepted" };
+}
+
+function evaluateSourcePath(sourcePath) {
+  if (typeof sourcePath !== "string" || sourcePath.trim() === "") {
+    return { accepted: false, reason: "missing_source_path" };
+  }
+  if (sourcePath.includes("placeholder") || sourcePath.includes("pending")) {
+    return { accepted: false, reason: "placeholder_source_path" };
+  }
+  const resolved = path.isAbsolute(sourcePath)
+    ? sourcePath
+    : path.resolve(REPO_ROOT, sourcePath.replace(/#.*/, ""));
+  if (!resolved.startsWith(REPO_ROOT)) {
+    return { accepted: false, reason: "source_outside_repo" };
+  }
+  if (isNonDurableSourcePath(resolved)) {
+    return { accepted: false, reason: "non_durable_source_path" };
+  }
+  if (!fs.existsSync(resolved)) {
+    return { accepted: false, reason: "source_missing" };
+  }
+  if (!fs.statSync(resolved).isFile()) {
+    return { accepted: false, reason: "source_not_file" };
+  }
+  if (!isEvidenceSourcePath(resolved)) {
+    return { accepted: false, reason: "accepted_without_evidence_source" };
+  }
+  return { accepted: true, reason: "accepted" };
+}
+
+function isNonDurableSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  return (
+    normalized.startsWith(`${path.normalize("/tmp")}${path.sep}`) ||
+    normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
+    normalized.includes(`${path.sep}content${path.sep}generated${path.sep}`) ||
+    path.basename(normalized).includes(".tmp")
+  );
+}
+
+function isEvidenceSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  if (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative)
+  ) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  const lowerBasename = path.basename(normalized).toLowerCase();
+  return !(
+    lowerBasename.includes("attempt") ||
+    lowerBasename.includes("mock") ||
+    lowerBasename.includes("negative-control")
+  );
 }
 
 function normalizeStatus(row) {

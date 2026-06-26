@@ -48,6 +48,16 @@ Use one accepted retained action-period carrier with a `commonCarrierId` distinc
 
 Use `mu_dependent_action_period`: extracted action periods such as `[1, 1.01, 1]` must fail `period_uniqueness_residual_failed` or the equivalent Planck/alpha no-hidden-retune path. This protects the rule that $h_\vartheta$ is geometry-derived and locally constant on the accepted branch, not fitted from alpha, thermal, or photon observations.
 
+## Coordination-Source Negative Control
+
+The retained action-period source-evidence guard is [constant-delay-retained-orbit-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-coordination-source-negative-control.v1.json):
+
+```sh
+node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --input scripts/equation-mapping/constant-delay-retained-orbit-coordination-source-negative-control.v1.json --summary --pretty
+```
+
+This control marks every required retained action-period row as accepted-looking while pointing each `sourcePath` back to this priority packet. The intended result is `status: blocked_missing_rows`, `nextBlocker: missing_accepted_retained_orbit_reduction_row`, and row reason `accepted_without_evidence_source`. A source-field map can name the retained action-period contract and carry attempt arithmetic, but it cannot satisfy accepted retained evidence.
+
 ## Next Action
 
 Create one durable source-backed retained action-period object, then run:

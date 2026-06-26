@@ -708,17 +708,14 @@ function evaluateSourcePath(sourcePath) {
   if (sourcePath.includes("placeholder") || sourcePath.includes("pending")) {
     return { accepted: false, reason: "placeholder_source_path" };
   }
-  if (sourcePath.startsWith("/tmp/") || sourcePath.startsWith("/private/tmp/")) {
-    return { accepted: false, reason: "temp_source_path" };
-  }
-  if (sourcePath.includes("content/generated/")) {
-    return { accepted: false, reason: "generated_source_path" };
-  }
   const resolved = path.isAbsolute(sourcePath)
     ? sourcePath
     : path.resolve(REPO_ROOT, sourcePath.replace(/#.*/, ""));
   if (!resolved.startsWith(REPO_ROOT)) {
     return { accepted: false, reason: "source_outside_repo" };
+  }
+  if (isNonDurableSourcePath(resolved)) {
+    return { accepted: false, reason: "non_durable_source_path" };
   }
   if (!fs.existsSync(resolved)) {
     return { accepted: false, reason: "source_missing" };
@@ -726,7 +723,44 @@ function evaluateSourcePath(sourcePath) {
   if (!fs.statSync(resolved).isFile()) {
     return { accepted: false, reason: "source_not_file" };
   }
+  if (!isEvidenceSourcePath(resolved)) {
+    return { accepted: false, reason: "accepted_without_evidence_source" };
+  }
   return { accepted: true, reason: "accepted" };
+}
+
+function isNonDurableSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  return (
+    normalized.startsWith(`${path.normalize("/tmp")}${path.sep}`) ||
+    normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
+    normalized.includes(`${path.sep}content${path.sep}generated${path.sep}`) ||
+    path.basename(normalized).includes(".tmp")
+  );
+}
+
+function isEvidenceSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  if (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative)
+  ) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  const lowerBasename = path.basename(normalized).toLowerCase();
+  return !(
+    lowerBasename.includes("attempt") ||
+    lowerBasename.includes("mock") ||
+    lowerBasename.includes("negative-control")
+  );
 }
 
 function decideStatus({ carrier, missingRows, carrierBinding, solver, negativeControls }) {

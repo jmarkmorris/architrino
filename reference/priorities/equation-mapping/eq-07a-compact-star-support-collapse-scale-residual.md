@@ -242,6 +242,16 @@ node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --summar
 
 The current run returns `schemaOk: true`, `status: blocked_missing_accepted_compact_region_carrier`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_compact_region_carrier`. The variable dictionary, Fermi-state counting check, pressure-regime check, composition relation, support residual, reaction ledger, compact-region ledger, scale/metric residual, neutron-star radial-support residual, source-provenance residual, hidden-retune residual, level-separation witness, and all three negative controls pass on the attempt carrier. They do not count as accepted retained evidence because the compact-region carrier and every row binding remain `status: attempt`.
 
+### Coordination-Source Negative Control
+
+The fail-closed source check for the compact-region carrier is [eq07a-compact-region-carrier-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-coordination-source-negative-control.v1.json):
+
+```bash
+node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input scripts/equation-mapping/eq07a-compact-region-carrier-coordination-source-negative-control.v1.json --summary --pretty
+```
+
+This control sets the top-level compact-region carrier to `status: accepted` while pointing its `sourcePath` back to this priority packet. The intended result is `status: blocked_missing_accepted_compact_region_carrier`, `carrierReason: accepted_without_evidence_source`, and `scoreDecision: no_score_increase`. A coordination packet can name the first blocker and carry attempt arithmetic, but it cannot satisfy the accepted retained-evidence source requirement.
+
 ## Chandrasekhar Scaling Solver Residual
 
 The first solver-style residual is [eq07a-chandrasekhar-scaling-residual.mjs](../../../scripts/equation-mapping/eq07a-chandrasekhar-scaling-residual.mjs), driven by [eq07a-chandrasekhar-scaling-attempt.v1.json](../../../scripts/equation-mapping/eq07a-chandrasekhar-scaling-attempt.v1.json):
