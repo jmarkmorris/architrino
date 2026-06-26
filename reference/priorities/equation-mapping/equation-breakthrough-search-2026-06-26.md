@@ -745,3 +745,56 @@ No score changes.
 Rows through score `3` still have meaningful work because several second-pass workers are active and the current implementation targets are source-attempt or negative-control artifacts, not accepted retained evidence. Score `4` remains unreached. The next implementation target should come from the active fixture-design wave unless a checker failure appears first.
 
 No score changes.
+
+## Checkpoint 11
+
+- Time: 2026-06-26 11:20 EDT.
+- Elapsed: about 10 hours 53 minutes from the initial required status pass.
+- Runtime target: reached and exceeded.
+- Agents completed since checkpoint 9:
+  - `Rawls the 2nd` and `Kant the 2nd`: second-pass `EQ-07A`/`EQ-12A` cards; first blockers remain `missing_accepted_compact_region_carrier` and `missing_accepted_retained_orbit_reduction_row`.
+  - `Hooke the 2nd` and `Erdos the 2nd`: second-pass `EQ-22A`/`EQ-26A`/`EQ-28A` cards; kept `theta_bb`, `theta_alpha`, and `Theta_nu-ex(W)` distinct.
+  - `McClintock the 2nd`: implementation scout; ranked Gate A first, `Theta_src` second, and `theta_11_20` third.
+  - `Tesla the 2nd`: finite-window `W` audit; found `stats/pdgfeed.supported.pdg_reactions.md` as the best existing guard-passing EQ-31 source path, but not sufficient retained `W` evidence.
+  - `Confucius the 2nd`: Planck/alpha scout; ranked `theta_bb` ahead of `theta_alpha` for the next score-2 source-attempt artifact.
+  - `Einstein the 2nd`: `EQ-15`/`EQ-16`/`EQ-27`/`EQ-31` second pass; no hidden accepted-evidence path surfaced.
+  - `Averroes the 2nd`: `EQ-07A` implementation plan for compact-region source-attempt fixture and source-evidence guard.
+  - `Pasteur the 2nd`: `EQ-12A` implementation plan for retained action-period source-attempt fixture and source-evidence guard.
+  - `Newton the 2nd` and `Hume the 2nd`: errored on temporary agent usage limit before returning findings.
+- Coordinator targets completed since checkpoint 9:
+  - Added a `Theta_nu-ex` source-attempt fixture for `EQ-28A`, preserving `missing_accepted_path_frequency_exchange_carrier`.
+  - Added a Gate A `photon_gate_A_input_output` source-attempt payload for `EQ-13`/`EQ-28`, preserving `missing_accepted_photon_gate_A_input_output`.
+  - Added a `theta_bb` source-attempt fixture for `EQ-22A`, preserving `missing_accepted_theta_gamma_packet`.
+- Files edited in the final live worktree state:
+  - [equation-breakthrough-search-2026-06-26.md](equation-breakthrough-search-2026-06-26.md)
+  - [eq-22a-theta-bb-source-field-map.md](eq-22a-theta-bb-source-field-map.md)
+  - [planck-alpha-braid-theta-bb-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-bb-source-attempt.v1.json)
+- Validation:
+  - `node scripts/equation-mapping/planck-alpha-braid-residual.mjs --input scripts/equation-mapping/planck-alpha-braid-theta-bb-source-attempt.v1.json --summary --pretty`: passed as score-neutral; `nextBlocker=missing_accepted_theta_gamma_packet`; 15/15 negative controls passed.
+  - `node scripts/equation-mapping/compton-recoil-event-replay.mjs --input scripts/equation-mapping/compton-recoil-gate-a-source-attempt.v1.json --summary --pretty`: passed as score-neutral; `nextBlocker=missing_accepted_photon_gate_A_input_output`.
+  - `node scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs --input scripts/equation-mapping/eq28a-path-frequency-exchange-source-attempt.v1.json --summary --pretty`: passed as score-neutral; `nextBlocker=missing_accepted_path_frequency_exchange_carrier`; 6/6 negative controls passed.
+  - Final full validation passed: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+### Final Breakthrough Ranking
+
+| Rank | Candidate | Why it matters | Current blocker |
+| --- | --- | --- | --- |
+| 1 | `theta_sea_rho_NS` retained evidence JSON | Highest cross-row leverage for `EQ-20`, `EQ-24`, and `EQ-32`; already guarded against prose/coordination false positives. | `missing_accepted_theta_sea_rho_NS` |
+| 2 | finite-window `W` for charged-pion `EQ-31` | Best guard-passing source path surfaced via `stats/pdgfeed.supported.pdg_reactions.md`, but lifetime/branching payload remains unsourced. | `missing_accepted_W` |
+| 3 | `theta_gamma_packet` | Parent support for `EQ-12`, `EQ-22A`, `EQ-26A`, Gate A consumers, and radiation rows. | `missing_accepted_theta_gamma_packet` |
+| 4 | `photon_gate_A_input_output` on `e_gamma_e_0` | Smallest shared native event row for `EQ-13`/`EQ-28`; now has source-attempt and coordination-source controls. | `missing_accepted_photon_gate_A_input_output` |
+| 5 | `Theta_nu-ex(W)` | Clean `EQ-28A` carrier for inverse-Compton/SZ path-frequency exchange, distinct from photon and thermal parents. | `missing_accepted_path_frequency_exchange_carrier` |
+| 6 | compact-region `Theta_cs_07A` | Smaller than full `theta_W` closure for compact-star support, but still needs source-evidence guard and source-attempt fixture. | `missing_accepted_compact_region_carrier` |
+| 7 | retained action-period `S_eq` branch | Dedicated `EQ-12A` path independent of photon support; needs source-attempt fixture and checker source guard. | `missing_accepted_retained_orbit_reduction_row` |
+
+### Remaining Queue At Close
+
+The run stops because the nine-hour wall-clock target was exceeded, not because the score-1 through score-3 queue is mathematically exhausted. Remaining highest-value source/evidence actions are:
+
+1. Build the `EQ-31` charged-pion `W` positive source-evidence fixture using guard-passing PDG paths while keeping lifetime/branching unsourced rows blocked.
+2. Implement the `EQ-07A` compact-region source-attempt fixture and source-evidence guard.
+3. Implement the `EQ-12A` retained action-period source-attempt fixture and dedicated source-evidence guard.
+4. Add a bounded `theta_bb` source-evidence guard only after a real durable mode-count source exists.
+5. Continue the `theta_sea_rho_NS` retained-window evidence search as the highest cross-row blocker.
+
+No score changes.

@@ -6,6 +6,7 @@
 - Parent: [EQ-12 Theta-Gamma Packet Source Shell](eq-12-theta-gamma-packet-source-shell.md)
 - Source runner: [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs)
 - Source fixture: [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json)
+- Source-attempt fixture: [planck-alpha-braid-theta-bb-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-bb-source-attempt.v1.json)
 - Rows served: `EQ-22A`, with support from `EQ-12`, `EQ-12A`, `EQ-22`, and `EQ-25`
 - Claim level: candidate source-field map and attack card
 - Promotion status: priority-only
@@ -62,6 +63,19 @@ Required rows:
 | `thermalization_depth` | Minimum depth or collision/detailed-balance evidence for the declared window. |
 | `source_provenance`, `no_hidden_retune_witness` | Same $h_\vartheta$, $c_\gamma$, $\theta_{\mathrm{sea}}$, mode measure, and temperature-clock conversion across frequency bins. |
 
+The source-attempt fixture names the first child surface without claiming accepted
+evidence:
+
+| Field | Source-attempt value |
+| --- | --- |
+| `commonCarrierId` | `theta_bb_source_attempt_0001` |
+| `finiteWindowId` | `W_bb_source_attempt_0001` |
+| `gateBModeCountId` | `gateB_two_mode_count_source_attempt_0001` |
+| `thermalModeCountingRowId` | `thermal_mode_counting_row_theta_bb_source_attempt_row` |
+| `planckOccupancyRowId` | `planck_occupancy_row_theta_bb_source_attempt_row` |
+| `temperatureClockConversionRowId` | `temperature_clock_conversion_row_theta_bb_source_attempt_row` |
+| `thermalizationDepthId` | `thermalization_depth_theta_bb_source_attempt_0001` |
+
 ## Fail-Closed Controls
 
 - `wrong_mode_count_dimension`: catches wrong transverse-mode density.
@@ -77,4 +91,13 @@ Create one durable `theta_bb` source report with the three first child rows, the
 node scripts/equation-mapping/planck-alpha-braid-residual.mjs --summary --pretty
 ```
 
-Until the parent and child rows are accepted, the correct result remains no score movement.
+To check the current source-attempt fixture, run:
+
+```sh
+node scripts/equation-mapping/planck-alpha-braid-residual.mjs --input scripts/equation-mapping/planck-alpha-braid-theta-bb-source-attempt.v1.json --summary --pretty
+```
+
+Expected result: `blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`,
+`scoreDecision=no_score_increase`, `blackbodyPass=true`, and all 15 negative controls
+passing. The same command with `--require-populated` must exit nonzero. Until the
+parent and child rows are accepted, the correct result remains no score movement.

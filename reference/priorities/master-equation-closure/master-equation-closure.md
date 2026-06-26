@@ -230,7 +230,7 @@ identify the admissible finite-amplitude channel that prevents such a bound.
 
 ## Emission-Flux / Jacobian Conservation Target
 
-Source-mining intake 2026-06-26. Legacy "potential sphere" language is not current terminology, but it preserves one useful proof pressure: constant source emission per unit absolute time must become the branch density actually used by the Master EOM after the receiver samples an expanding causal wake surface.
+Source-mining intake 2026-06-26. Legacy "potential sphere" language is not current terminology, but it preserves one useful proof pressure: constant source emission per unit absolute time must become the branch density actually used by the Master EOM after the receiver samples an expanding causal wake surface. The 2019 legacy post [The Point Potential Model](https://architrino.wordpress.com/2019/06/24/idealized-neoclassical-model/) is the source provenance for this target: its constant-rate emitter and receiver-intersection picture translates to a source-provenanced causal-wake measure, not to an autonomous field inventory.
 
 Let source $j$ emit a polarity-weighted causal-wake measure over absolute emission time $s$ with source weight $q_j\,ds$. On a receiver event $(i,t)$, use the same causal constraint
 $$
