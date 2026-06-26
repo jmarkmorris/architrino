@@ -411,6 +411,8 @@ This row is a shared coefficient-extraction target, not a new score gate. It can
 
 The score-neutral runner is [noether-sea-density-compression-surface-slice.mjs](../../../scripts/spacetime/noether-sea-density-compression-surface-slice.mjs), with a deliberately incomplete mock input in [noether-sea-density-compression-surface-slice-mock.json](../../../scripts/spacetime/noether-sea-density-compression-surface-slice-mock.json) and a retained-attempt skeleton in [noether-sea-density-compression-surface-slice-retained-attempt.v1.json](../../../scripts/spacetime/noether-sea-density-compression-surface-slice-retained-attempt.v1.json).
 
+[EQ-24 Theta-Sea Rho-NS Source-Field Map](eq-24-theta-sea-rho-ns-source-field-map.md) narrows the current first blocker to the smallest source-backed retained-window row and preserves the candidate-level status of the retained attempt. It is priority-only and does not change scores.
+
 Command:
 
 ```sh
