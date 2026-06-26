@@ -8,6 +8,8 @@
 - Source fixtures:
   - [eq29-synchrotron-source-ledger-attempt.v1.json](../../../scripts/equation-mapping/eq29-synchrotron-source-ledger-attempt.v1.json)
   - [eq29-radiation-source-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-source-attempt.v1.json)
+  - [eq29-radiation-source-carrier-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-source-evidence-probe.v1.json)
+  - [eq29-radiation-source-carrier-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-metadata-missing-negative-control.v1.json)
   - [eq29-radiation-source-ledger-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-ledger-coordination-source-negative-control.v1.json)
   - [eq29-radiation-source-ledger-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-ledger-probe-source-negative-control.v1.json)
   - [eq29-radiation-source-ledger-unrelated-durable-source-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-ledger-unrelated-durable-source-negative-control.v1.json)
@@ -90,6 +92,7 @@ Keep the existing controls as first-line guards:
 - `thermal_fit_without_event_ledger`: catches thermal/free-free fitting without an event ledger.
 - `accepted_without_evidence_source`: catches accepted-looking rows sourced only to priority packets, authored prose, generated files, temporary files, attempt fixtures, mocks, or negative-control fixtures.
 - `unrelated_durable_source`: catches accepted-looking rows sourced to a durable but unrelated file that does not declare EQ-29/radiation-source support.
+- `metadata_missing_source`: catches an accepted-looking `radiation_source_carrier` row whose durable source path exists but whose row metadata does not declare EQ-29/radiation-source support.
 
 ## Next Action
 
@@ -100,6 +103,22 @@ node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input 
 ```
 
 Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_radiation_source_carrier`, `sourceLedgerNumericPass=true`, and six of six negative controls pass, including `gate_a_not_radiation_source_carrier`.
+
+The one-row carrier source-evidence probe is:
+
+```sh
+node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-source-evidence-probe.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_carrier_channel_family_row`, `sourceEvidencePass=true`, and `sourceEvidenceFailureCount=0`. This is still score-neutral: only `radiation_source_carrier` is accepted-looking, while the carrier/channel family, source mechanism, source branch, Noether sea magnetic state, Gate A/B output, depletion, recoil/wake/remnant, benchmark, cooling, polarization, event ledger, provenance, and no-retune rows remain `attempt`.
+
+The metadata-missing carrier control is:
+
+```sh
+node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-metadata-missing-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_radiation_source_carrier`, `sourceEvidenceFailureCount=1`, and `rowStatuses.radiation_source_carrier.reason=accepted_without_evidence_source`. The same command with `--require-populated` must exit nonzero. This protects the checker from treating an existing durable file as source evidence unless the row declares EQ-29/radiation-source support.
 
 The coordination-source fail-closed control is:
 
@@ -125,10 +144,6 @@ node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input 
 
 Expected result: `status=blocked_source_evidence`, `nextBlocker=accepted_without_evidence_source`, and `sourceEvidenceFailureCount=15`. This protects `EQ-29` from treating a durable but unrelated source, such as a reaction-statistics file, as retained radiation-source evidence merely because the path exists and is not forbidden.
 
-Create one durable, accepted `radiation_source_carrier` evidence row for a single synchrotron event window, then run:
+The next smallest source-evidence probe is `carrier_channel_family_row`: it must keep the photon-channel output family separate from Compton exchange, path-frequency exchange, tensor disturbance, and generic radiation. Create that row only if it can carry explicit EQ-29/radiation-source support metadata and a fail-closed metadata-missing companion control.
 
-```sh
-node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --summary --pretty
-```
-
-Until accepted source-backed rows exist, the correct result remains `missing_accepted_radiation_source_carrier`.
+Until accepted source-backed rows exist beyond the one-row probe, the correct retained-evidence state remains score-neutral.

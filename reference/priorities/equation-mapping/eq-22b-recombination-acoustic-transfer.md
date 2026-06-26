@@ -219,6 +219,15 @@ node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input 
 
 This fixture makes the carrier contract executable without claiming retained evidence. It fixes one `commonCarrierId`, source-window id, thermal/provenance id, readout-clock id, photon-packet id, neutrino-handoff id, BBN-handoff id, event-ledger id, and no-hidden-retune witness id across the recombination/acoustic row map. Every row remains `attempt`, so the expected result remains `status: blocked_missing_accepted_recombination_acoustic_carrier`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_recombination_acoustic_carrier`. The `--require-populated` form must exit nonzero until a durable source-backed $\Theta_{\mathrm{rec/ac}}$ carrier exists.
 
+The carrier-shell source-evidence probe is [eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json):
+
+```bash
+node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input scripts/equation-mapping/eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json --summary --pretty
+node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input scripts/equation-mapping/eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json --summary --pretty --require-populated
+```
+
+This fixture marks only the top $\Theta_{\mathrm{rec/ac}}$ carrier and the `recombination_acoustic_carrier` row as accepted-looking against a durable source path while leaving `theta_src`, thermal/provenance, readout, photon, neutrino, Noether sea, recombination, visibility, acoustic-transfer, provenance, and no-retune rows at `attempt`. The expected result is `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_theta_src`; the `--require-populated` form must exit nonzero. This proves the first carrier-shell step is mechanically smaller than full recombination/acoustic closure and exposes the shared observation-source window as the next accepted-evidence object.
+
 The fail-closed generic/source control is [eq22b-recombination-acoustic-generic-source-negative-control.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-generic-source-negative-control.v1.json):
 
 ```bash
