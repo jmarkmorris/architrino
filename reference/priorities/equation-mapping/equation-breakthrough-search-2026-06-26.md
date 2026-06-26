@@ -156,3 +156,68 @@ No score changes.
 The unintegrated required suffix candidates `EQ-07B` and `EQ-23A` now have priority-only packets. `EQ-28B` remains deferred because no concrete high-energy propagation consumer was found. The score `1`, score `2`, and score `3` queues remain active because most rows have only one pass, and no row has accepted retained evidence.
 
 No score changes.
+
+## Checkpoint 2
+
+- Time: 2026-06-26 00:59 EDT.
+- Elapsed: about 32 minutes from required `git status --short --untracked-files=all`.
+- Agents completed since checkpoint 1:
+  - `EQ-24` density-compression source-field map: confirmed no durable source file currently supplies `theta_sea_rho_NS`; retained slice remains attempt-level.
+  - `EQ-22B` second pass: confirmed first blocker `missing_accepted_recombination_acoustic_carrier` and identified the stale `theta_bb` source-path guard.
+  - `EQ-31` second pass: confirmed refined toy passes first-exit, null-separatrix, and refinement diagnostics but remains blocked at `missing_accepted_W`.
+  - `EQ-11A` second and third passes: converged on a `GW150914-v3` source-window map, with source-ledger grammar reusable only at the event/provenance level.
+  - `EQ-12A`/`EQ-22A`/`EQ-26A` pass: confirmed the new `theta_gamma_packet` shell is the right shared photon-support artifact and that the next useful move is a source-field map under it.
+  - `EQ-16` pass: narrowed the first accepted object to `weak_visible_branch_ledger`; `EQ-16A` can be a consumer clue but not a substitute.
+  - `EQ-07A` pass: narrowed the compact-star route to a source-backed `Theta_cs^07A` compact-region carrier.
+  - `EQ-30` pass: confirmed the same finite-window `W` blocker as `EQ-31`; an accepted elastic-scattering `W` could also help `EQ-14`.
+  - `EQ-15`/`EQ-27` pass: narrowed the shared spin/magnetic route to `ordered_frame_loop`.
+  - `EQ-28A` pass: separated `theta_gamma_packet` photon identity support from the distinct `Theta_nu-ex(W)` path-frequency exchange carrier.
+- Active agents at checkpoint:
+  - score `3` metric/cosmology shard: `EQ-10`, `EQ-11`, `EQ-18`, `EQ-19`, `EQ-20`;
+  - score `3` photon/event shard: `EQ-13`, `EQ-28`, `EQ-29`;
+  - score `3` finite-window/thermo shard: `EQ-14`, `EQ-25`.
+- Files edited since checkpoint 1:
+  - [eq-12-theta-gamma-packet-source-shell.md](eq-12-theta-gamma-packet-source-shell.md)
+  - [eq-22b-recombination-acoustic-transfer.md](eq-22b-recombination-acoustic-transfer.md)
+  - [eq-11a-gw150914-source-field-map.md](eq-11a-gw150914-source-field-map.md)
+  - [eq-11a-gravitational-wave-source-recovery.md](eq-11a-gravitational-wave-source-recovery.md)
+  - [equation-mapping.md](equation-mapping.md)
+  - [eq22b-recombination-acoustic-residual.mjs](../../../scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs)
+  - [eq22b-recombination-acoustic-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-attempt.v1.json)
+  - this checkpoint file.
+- Current worktree note: `content/markdown/aaa/philosophy-history/perspectives.md` is modified outside this run's allowed edit scope and is being left untouched.
+- Validation:
+  - `git diff --check`: passed after the EQ22B and EQ11A batches.
+  - `node scripts/equation-mapping/photon-packet-transfer-residual.mjs --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_theta_gamma_packet`.
+  - `node scripts/equation-mapping/planck-alpha-braid-residual.mjs --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_theta_gamma_packet`.
+  - `node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_recombination_acoustic_carrier`; source audit now reports all default attempt sources resolving.
+  - accepted-looking EQ22B stale-source smoke test: failed closed at `missing_accepted_theta_bb` when `theta_bb` used a missing source path.
+  - `node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_gw_source_carrier`.
+  - `node scripts/validate-content.mjs --check --strict`: passed.
+  - `node scripts/build-scene-graph.mjs --check --strict`: passed.
+
+### Coordinator Targets Completed Since Checkpoint 1
+
+| Cycle | Target | Result | Score decision |
+| --- | --- | --- | --- |
+| 3 | Add a `theta_gamma_packet` accepted-object contract. | Added a focused source shell defining required photon packet rows, solved-wave acceptance-test boundaries, fail-closed controls, and consumer boundaries for `EQ-12`, `EQ-12A`, `EQ-22A`, `EQ-26A`, and `EQ-28A`. | No score changes. |
+| 4 | Harden `EQ-22B` required-row source diagnostics. | Added row-level `sourceAudit` output to the checker, hardened source path containment with `path.relative`, remapped the default `theta_bb` attempt source to the existing shared-observation packet, and verified a stale accepted-looking `theta_bb` source fails closed. | No score changes. |
+| 5 | Add a `GW150914-v3` source-field map for `EQ-11A`. | Added a priority-only source map from the GWOSC event/source papers into the existing checker rows, preserving candidate status and the tensor-channel boundary from photon/explosive carriers. | No score changes. |
+
+### Best Breakthrough Candidates At Checkpoint 2
+
+| Rank | Candidate | Why it matters | Current first blocker |
+| --- | --- | --- | --- |
+| 1 | Shared accepted finite-window `W` for `EQ-14`/`EQ-30`/`EQ-31` | Three rows now point at the same lowest blocker; toy diagnostics are strong but source-less. | `missing_accepted_W` |
+| 2 | `theta_gamma_packet` row map under the new source shell | Highest photon-support leverage, but must remain separate from path-frequency exchange and Planck/alpha action closure. | `missing_accepted_theta_gamma_packet` |
+| 3 | `GW150914-v3` source carrier for `EQ-11A` | A concrete event source can test the source-window/event-ledger grammar without collapsing into `EQ-29` photon radiation. | `missing_accepted_gw_source_carrier` |
+| 4 | `theta_sea_rho_NS` retained-window source for `EQ-24` | Best score `3` bridge into metric, pressure, low-acceleration, and compact-region sidecars. | `missing_accepted_theta_sea_rho_NS` |
+| 5 | `ordered_frame_loop` for `EQ-15`/`EQ-27` | Smallest spin/magnetic source object, with EQ16 as a consumer but not a substitute. | `missing_accepted_ordered_frame_loop` |
+| 6 | `weak_visible_branch_ledger` for `EQ-16` | Narrower than broad Standard Model closure and can expose downstream gauge-sector blockers. | `missing_accepted_weak_visible_branch_ledger` |
+| 7 | `Theta_nu-ex(W)` for `EQ-28A` | Keeps SZ/inverse-Compton path-frequency exchange independent from photon identity support. | `missing_accepted_path_frequency_exchange_carrier` |
+
+### Remaining Queue After Checkpoint 2
+
+Most score `2` rows now have at least one substantive pass and a concrete first accepted-object target. Score `3` work is underway, and no score `4` rows have been reached. No row has accepted retained evidence, so the no-score-change rule remains active.
+
+No score changes.

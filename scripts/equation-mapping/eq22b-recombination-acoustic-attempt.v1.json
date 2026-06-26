@@ -53,7 +53,7 @@
       "theta_bb": {
         "status": "attempt",
         "carrierId": "theta_rec_ac_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-22a-planck-blackbody-mode-occupancy.md"
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "photon_channel": {
         "status": "attempt",
