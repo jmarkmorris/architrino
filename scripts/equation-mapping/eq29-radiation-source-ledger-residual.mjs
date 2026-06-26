@@ -127,7 +127,7 @@ function evaluateEq29RadiationSourceLedger(input, inputPath) {
   const packet = input.packet ?? input;
   const rows = packet.rows ?? {};
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId], rowId)]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const sourceEvidence = evaluateSourceEvidence(rowChecks);
@@ -466,7 +466,13 @@ function evaluateCarrierBinding(rows, commonCarrierId) {
 
 function evaluateSourceEvidence(rowChecks) {
   const failures = Object.entries(rowChecks)
-    .filter(([, check]) => check.reason === "accepted_without_evidence_source")
+    .filter(([, check]) =>
+      [
+        "accepted_without_evidence_source",
+        "carrier_channel_family_source_contract_mismatch",
+        "source_mechanism_source_contract_mismatch",
+      ].includes(check.reason),
+    )
     .map(([rowId, check]) => ({ rowId, sourcePath: check.sourcePath ?? null }));
   return {
     passed: failures.length === 0,
@@ -474,7 +480,7 @@ function evaluateSourceEvidence(rowChecks) {
   };
 }
 
-function evaluateAcceptedRow(row) {
+function evaluateAcceptedRow(row, rowId) {
   if (!row) {
     return { accepted: false, reason: "missing_row" };
   }
@@ -489,6 +495,20 @@ function evaluateAcceptedRow(row) {
     return {
       accepted: false,
       reason: sourceCheck.reason,
+      sourcePath: row?.sourcePath ?? row?.source ?? null,
+    };
+  }
+  if (rowId === "carrier_channel_family_row" && !sourceSupportsCarrierChannelFamilyRow(row)) {
+    return {
+      accepted: false,
+      reason: "carrier_channel_family_source_contract_mismatch",
+      sourcePath: row?.sourcePath ?? row?.source ?? null,
+    };
+  }
+  if (rowId === "source_mechanism_row" && !sourceSupportsSourceMechanismRow(row)) {
+    return {
+      accepted: false,
+      reason: "source_mechanism_source_contract_mismatch",
       sourcePath: row?.sourcePath ?? row?.source ?? null,
     };
   }
@@ -556,6 +576,61 @@ function sourceSupportsEq29(row) {
       value.includes("radiation source") ||
       value.includes("synchrotron source"),
   );
+}
+
+function sourceSupportsCarrierChannelFamilyRow(row) {
+  const supportValues = [
+    row?.sourceFamily,
+    row?.sourceKind,
+    row?.sourceRole,
+    row?.sourceSupport,
+    row?.sourceSupports,
+    row?.evidenceFamily,
+    row?.evidenceRole,
+    row?.evidenceSupports,
+    row?.claimLevel,
+  ].flatMap((value) => (Array.isArray(value) ? value : [value]));
+  const normalized = supportValues
+    .filter((value) => typeof value === "string")
+    .map((value) => value.toLowerCase());
+  const rowSupported = normalized.some((value) => value.includes("carrier_channel_family_row"));
+  const familySupported = normalized.some(
+    (value) =>
+      value.includes("photon-channel output family") ||
+      value.includes("photon channel output family"),
+  );
+  const kindSupported = normalized.some(
+    (value) =>
+      value.includes("carrier_channel_family") ||
+      value.includes("carrier channel family"),
+  );
+  return rowSupported && familySupported && kindSupported;
+}
+
+function sourceSupportsSourceMechanismRow(row) {
+  const supportValues = [
+    row?.sourceFamily,
+    row?.sourceKind,
+    row?.sourceRole,
+    row?.sourceSupport,
+    row?.sourceSupports,
+    row?.sourceMechanism,
+    row?.evidenceFamily,
+    row?.evidenceRole,
+    row?.evidenceSupports,
+    row?.claimLevel,
+  ].flatMap((value) => (Array.isArray(value) ? value : [value]));
+  const normalized = supportValues
+    .filter((value) => typeof value === "string")
+    .map((value) => value.toLowerCase());
+  const rowSupported = normalized.some((value) => value.includes("source_mechanism_row"));
+  const roleSupported = normalized.some(
+    (value) => value.includes("source_mechanism") || value.includes("source mechanism"),
+  );
+  const mechanismSupported = normalized.some(
+    (value) => value.includes("synchrotron source mechanism") || value === "synchrotron",
+  );
+  return rowSupported && roleSupported && mechanismSupported;
 }
 
 function isEvidenceSourcePath(filePath) {

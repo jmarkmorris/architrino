@@ -1826,3 +1826,245 @@ No score changes.
   - Same metadata-missing control with `--require-populated`: exited nonzero as intended.
 
 No score changes.
+
+## Restart Checkpoint 32: EQ-31 Top-Carrier Source-Support Guard
+
+- Time: 2026-06-26 17:31 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored work remain meaningful.
+- Coordinator target completed since Restart Checkpoint 31:
+  - Hardened [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs) so accepted top finite-window carriers must carry carrier-level source-support metadata, not only a durable source path.
+  - Added [finite-window-statistical-carrier-eq31-pion-c-top-carrier-generic-durable-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-top-carrier-generic-durable-source-negative-control.v1.json), proving an accepted-looking EQ-31 top carrier sourced to a generic durable reaction file fails at `carrier_source_contract_mismatch`.
+  - Updated the finite-window map and [equation.md](equation.md) with the new carrier-source-support contract.
+- Files edited since Restart Checkpoint 31:
+  - [eq-14-30-31-finite-window-w-source-field-map.md](eq-14-30-31-finite-window-w-source-field-map.md)
+  - [equation.md](equation.md)
+  - [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs)
+  - [finite-window-statistical-carrier-eq31-pion-c-top-carrier-generic-durable-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-top-carrier-generic-durable-source-negative-control.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-source-evidence-probe.v1.json --summary --pretty`: passed as score-neutral with `status=blocked_carrier_not_retained` and `acceptedCarrierRows=true`.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-top-carrier-coordination-source-negative-control.v1.json --summary --pretty`: passed as fail-closed with `nextBlocker=accepted_without_evidence_source`.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-top-carrier-generic-durable-source-negative-control.v1.json --summary --pretty`: passed as fail-closed with `nextBlocker=carrier_source_contract_mismatch`.
+  - Same generic durable-source control with `--require-accepted`: exited nonzero as intended.
+  - `node --check scripts/equation-mapping/finite-window-statistical-carrier.mjs`: passed.
+
+No score changes.
+
+## Restart Checkpoint 33: EQ-30 Cross-Section Comparisons, EQ-31 Top-Carrier Contract, And EQ-22B Theta_src Contract
+
+- Time: 2026-06-26 17:40 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored work remain meaningful.
+- Agents completed since Restart Checkpoint 32:
+  - `Kant`: designed the `EQ-30` cross-section-comparisons probe and coordination-source control, expected to advance only to `missing_accepted_rho_exp`.
+  - `Wegener`: designed the next `EQ-29` `carrier_channel_family_row` probe and warned that family-collapse semantics still need a narrower guard before stronger positive fixtures.
+  - `Russell`: confirmed the `EQ-31` top-carrier contract must require a durable evidence path plus retained/top finite-window carrier metadata, and recommended a row-name-only durable-source control.
+  - `Epicurus`: confirmed `EQ-22B` should record a score-neutral `Theta_src` handoff contract before any accepted-looking `theta_src` row.
+- Coordinator targets completed since Restart Checkpoint 32:
+  - Added [finite-window-statistical-carrier-eq30-elastic-cross-section-comparisons-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-cross-section-comparisons-source-evidence-probe.v1.json), advancing the `EQ-30` projection ladder through cross-section comparisons and stopping at `missing_accepted_rho_exp`.
+  - Added [finite-window-statistical-carrier-eq30-elastic-cross-section-comparisons-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-cross-section-comparisons-coordination-source-negative-control.v1.json), keeping an accepted-looking cross-section comparison sourced only to the priority map blocked at `missing_accepted_cross_section_comparisons`.
+  - Tightened [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs) so accepted top finite-window carriers must declare both row identity and retained/top carrier support metadata.
+  - Added [finite-window-statistical-carrier-eq31-pion-c-top-carrier-row-name-only-durable-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-top-carrier-row-name-only-durable-source-negative-control.v1.json), proving a durable source that names only `EQ-31` still fails at `carrier_source_contract_mismatch`.
+  - Added the score-neutral `Theta_src` handoff contract to [EQ-22B Recombination And Acoustic Transfer](eq-22b-recombination-acoustic-transfer.md).
+  - Updated the finite-window map and [equation.md](equation.md) with the new exact blockers.
+- Files edited since Restart Checkpoint 32:
+  - [eq-14-30-31-finite-window-w-source-field-map.md](eq-14-30-31-finite-window-w-source-field-map.md)
+  - [eq-22b-recombination-acoustic-transfer.md](eq-22b-recombination-acoustic-transfer.md)
+  - [equation.md](equation.md)
+  - [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs)
+  - [finite-window-statistical-carrier-eq30-elastic-cross-section-comparisons-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-cross-section-comparisons-source-evidence-probe.v1.json)
+  - [finite-window-statistical-carrier-eq30-elastic-cross-section-comparisons-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-cross-section-comparisons-coordination-source-negative-control.v1.json)
+  - [finite-window-statistical-carrier-eq31-pion-c-top-carrier-row-name-only-durable-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-top-carrier-row-name-only-durable-source-negative-control.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-cross-section-comparisons-source-evidence-probe.v1.json --summary --pretty`: passed as score-neutral with `nextBlocker=missing_accepted_rho_exp`.
+  - Same `EQ-30` cross-section-comparisons probe with `--require-accepted`: exited nonzero as intended.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-cross-section-comparisons-coordination-source-negative-control.v1.json --summary --pretty`: passed as fail-closed with `nextBlocker=missing_accepted_cross_section_comparisons` and `accepted_without_evidence_source`.
+  - Same `EQ-30` cross-section-comparisons coordination-source control with `--require-accepted`: exited nonzero as intended.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-top-carrier-row-name-only-durable-source-negative-control.v1.json --summary --pretty`: passed as fail-closed with `nextBlocker=carrier_source_contract_mismatch`.
+  - Same `EQ-31` row-name-only durable-source control with `--require-accepted`: exited nonzero as intended.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-top-carrier-generic-durable-source-negative-control.v1.json --summary --pretty`: still passes as fail-closed with `nextBlocker=carrier_source_contract_mismatch`.
+  - `node --check scripts/equation-mapping/finite-window-statistical-carrier.mjs`: passed.
+  - Full validation passed: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+No score changes.
+
+## Restart Checkpoint 34: EQ-29 Channel-Family Source Contract
+
+- Time: 2026-06-26 17:48 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored work remain meaningful.
+- Agents completed since Restart Checkpoint 33:
+  - `Nash`: confirmed `EQ-29` needs a row-specific `carrier_channel_family_row` source-contract guard before a channel-family probe or family-collapse control is safe.
+  - `Erdos`: selected `EQ-12A` as the next non-finite-window score-2 target and identified `missing_accepted_retained_orbit_reduction_row` as the dedicated first blocker.
+  - `Jason`: designed the `EQ-30` `rho_exp` source-evidence probe and coordination-source control, expected to advance only to `missing_accepted_form_factor_samples`.
+  - `Linnaeus`: confirmed no checker hardening is needed before the `EQ-22B` `theta_src` coordination-source negative control.
+- Coordinator targets completed since Restart Checkpoint 33:
+  - Hardened [eq29-radiation-source-ledger-residual.mjs](../../../scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs) with a row-specific `carrier_channel_family_row` source-support contract.
+  - Added [eq29-radiation-source-carrier-channel-family-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-evidence-probe.v1.json), advancing the `EQ-29` ladder through the photon-channel output family row and stopping at `missing_accepted_source_mechanism_row`.
+  - Added [eq29-radiation-source-carrier-channel-family-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-metadata-missing-negative-control.v1.json), keeping an accepted-looking channel-family row without support metadata blocked at `missing_accepted_carrier_channel_family_row`.
+  - Added [eq29-radiation-source-carrier-channel-family-collapse-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-collapse-negative-control.v1.json), proving generic EQ-29/radiation-source metadata does not satisfy photon-channel output family evidence.
+  - Updated the `EQ-29` source-field map and [equation.md](equation.md) with the new exact blockers.
+- Files edited since Restart Checkpoint 33:
+  - [eq-29-radiation-source-carrier-source-field-map.md](eq-29-radiation-source-carrier-source-field-map.md)
+  - [equation.md](equation.md)
+  - [eq29-radiation-source-ledger-residual.mjs](../../../scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs)
+  - [eq29-radiation-source-carrier-channel-family-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-evidence-probe.v1.json)
+  - [eq29-radiation-source-carrier-channel-family-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-metadata-missing-negative-control.v1.json)
+  - [eq29-radiation-source-carrier-channel-family-collapse-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-collapse-negative-control.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-evidence-probe.v1.json --summary --pretty`: passed as score-neutral with `nextBlocker=missing_accepted_source_mechanism_row`.
+  - Same `EQ-29` channel-family probe with `--require-populated`: exited nonzero as intended.
+  - `node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-metadata-missing-negative-control.v1.json --summary --pretty`: passed as fail-closed with `nextBlocker=missing_accepted_carrier_channel_family_row`, `sourceEvidenceFailureCount=1`, and `rowStatuses.carrier_channel_family_row.reason=accepted_without_evidence_source`.
+  - Same metadata-missing control with `--require-populated`: exited nonzero as intended.
+  - `node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-collapse-negative-control.v1.json --summary --pretty`: passed as fail-closed with `nextBlocker=missing_accepted_carrier_channel_family_row`, `sourceEvidenceFailureCount=1`, and `rowStatuses.carrier_channel_family_row.reason=carrier_channel_family_source_contract_mismatch`.
+  - Same family-collapse control with `--require-populated`: exited nonzero as intended.
+  - Existing one-row carrier probe still passes as score-neutral with `nextBlocker=missing_accepted_carrier_channel_family_row`.
+  - `node --check scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs`: passed.
+
+No score changes.
+
+## Restart Checkpoint 35: EQ-22B Theta_src Control And EQ-30 Rho_exp Probe
+
+- Time: 2026-06-26 17:51 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored work remain meaningful.
+- Coordinator targets completed since Restart Checkpoint 34:
+  - Added [eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json), proving accepted-looking `theta_src` sourced only to the shared source-field map fails at `accepted_without_evidence_source`.
+  - Added [finite-window-statistical-carrier-eq30-elastic-rho-exp-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-rho-exp-source-evidence-probe.v1.json), advancing the `EQ-30` ladder through $\rho_{\mathrm{exp}}$ and stopping at `missing_accepted_form_factor_samples`.
+  - Added [finite-window-statistical-carrier-eq30-elastic-rho-exp-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-rho-exp-coordination-source-negative-control.v1.json), keeping accepted-looking $\rho_{\mathrm{exp}}$ sourced only to the priority map blocked at `missing_accepted_rho_exp`.
+  - Updated the `EQ-22B` packet, the finite-window map, and [equation.md](equation.md) with the new exact blockers.
+- Files edited since Restart Checkpoint 34:
+  - [eq-14-30-31-finite-window-w-source-field-map.md](eq-14-30-31-finite-window-w-source-field-map.md)
+  - [eq-22b-recombination-acoustic-transfer.md](eq-22b-recombination-acoustic-transfer.md)
+  - [equation.md](equation.md)
+  - [eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json)
+  - [finite-window-statistical-carrier-eq30-elastic-rho-exp-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-rho-exp-source-evidence-probe.v1.json)
+  - [finite-window-statistical-carrier-eq30-elastic-rho-exp-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-rho-exp-coordination-source-negative-control.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input scripts/equation-mapping/eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json --summary --pretty`: passed as fail-closed with `status=blocked_missing_rows`, `nextBlocker=accepted_without_evidence_source`, and `sourceEvidenceFailureCount=1`.
+  - Same `EQ-22B` `theta_src` control with `--require-populated`: exited nonzero as intended.
+  - `node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input scripts/equation-mapping/eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json --summary --pretty`: baseline still passes as score-neutral with `nextBlocker=missing_accepted_theta_src`.
+  - `node --check scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs`: passed.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-rho-exp-source-evidence-probe.v1.json --summary --pretty`: passed as score-neutral with `nextBlocker=missing_accepted_form_factor_samples`.
+  - Same `EQ-30` $\rho_{\mathrm{exp}}$ probe with `--require-accepted`: exited nonzero as intended.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-rho-exp-coordination-source-negative-control.v1.json --summary --pretty`: passed as fail-closed with `nextBlocker=missing_accepted_rho_exp` and `accepted_without_evidence_source`.
+  - Same `EQ-30` $\rho_{\mathrm{exp}}$ coordination-source control with `--require-accepted`: exited nonzero as intended.
+  - Full validation passed: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+No score changes.
+
+## Restart Checkpoint 36: EQ-30 Form-Factor Samples Probe
+
+- Time: 2026-06-26 17:56 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored work remain meaningful.
+- Agents completed since Restart Checkpoint 35:
+  - `Lorentz`: designed the `EQ-30` form-factor-samples source-evidence probe and coordination-source control, expected to advance only to `missing_accepted_elastic_regime`.
+  - `Carson`: confirmed `EQ-11A` should add a `theta_sea` authored-prose/source negative control before any positive `theta_sea` fixture.
+  - `Dalton`: confirmed `EQ-29` `source_mechanism_row` needs a row-specific semantic source guard before a positive probe.
+  - `Boyle`: confirmed `EQ-12A` needs retained-orbit source-contract hardening before a one-row retained-orbit reduction probe is safe.
+- Coordinator targets completed since Restart Checkpoint 35:
+  - Added [finite-window-statistical-carrier-eq30-elastic-form-factor-samples-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-form-factor-samples-source-evidence-probe.v1.json), advancing the `EQ-30` ladder through form-factor samples and stopping at `missing_accepted_elastic_regime`.
+  - Added [finite-window-statistical-carrier-eq30-elastic-form-factor-samples-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-form-factor-samples-coordination-source-negative-control.v1.json), keeping accepted-looking form-factor samples sourced only to the priority map blocked at `missing_accepted_form_factor_samples`.
+  - Updated the finite-window map and [equation.md](equation.md) with the new exact blocker.
+- Files edited since Restart Checkpoint 35:
+  - [eq-14-30-31-finite-window-w-source-field-map.md](eq-14-30-31-finite-window-w-source-field-map.md)
+  - [equation.md](equation.md)
+  - [finite-window-statistical-carrier-eq30-elastic-form-factor-samples-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-form-factor-samples-source-evidence-probe.v1.json)
+  - [finite-window-statistical-carrier-eq30-elastic-form-factor-samples-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-form-factor-samples-coordination-source-negative-control.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-form-factor-samples-source-evidence-probe.v1.json --summary --pretty`: passed as score-neutral with `nextBlocker=missing_accepted_elastic_regime`.
+  - Same `EQ-30` form-factor-samples probe with `--require-accepted`: exited nonzero as intended.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-form-factor-samples-coordination-source-negative-control.v1.json --summary --pretty`: passed as fail-closed with `nextBlocker=missing_accepted_form_factor_samples` and `accepted_without_evidence_source`.
+  - Same `EQ-30` form-factor-samples coordination-source control with `--require-accepted`: exited nonzero as intended.
+  - `node --check scripts/equation-mapping/finite-window-statistical-carrier.mjs`: passed.
+
+No score changes.
+
+## Restart Checkpoint 37: EQ-29 Source-Mechanism Source Contract
+
+- Time: 2026-06-26 18:02 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored work remain meaningful.
+- Agents completed since Restart Checkpoint 36:
+  - `Curie` and `Ptolemy`: confirmed `EQ-11A` has a safe next fail-closed target at `theta_sea` and a broader future opportunity to add row-specific GW source-support metadata.
+  - `Dirac` and `Bacon`: confirmed `EQ-12A` should first harden `retained_orbit_reduction_row` source-support metadata before any positive retained-orbit reduction probe.
+- Coordinator target completed since Restart Checkpoint 36:
+  - Hardened [eq29-radiation-source-ledger-residual.mjs](../../../scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs) with a row-specific `source_mechanism_row` source-support contract. Accepted-looking source-mechanism rows now need explicit `source_mechanism_row`, `source_mechanism`, and synchrotron source-mechanism support metadata, not only a durable path or generic EQ-29/radiation-source metadata.
+  - Added [eq29-radiation-source-carrier-channel-family-source-mechanism-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-source-evidence-probe.v1.json), advancing the `EQ-29` ladder through the synchrotron source-mechanism row and stopping at `missing_accepted_source_branch_row`.
+  - Added [eq29-radiation-source-carrier-channel-family-source-mechanism-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-metadata-missing-negative-control.v1.json), keeping an accepted-looking source-mechanism row without support metadata blocked at `missing_accepted_source_mechanism_row`.
+  - Added [eq29-radiation-source-carrier-channel-family-source-mechanism-collapse-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-collapse-negative-control.v1.json), proving generic EQ-29/radiation-source metadata does not satisfy synchrotron source-mechanism evidence.
+  - Added [eq29-radiation-source-carrier-channel-family-source-mechanism-nonsynchrotron-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-nonsynchrotron-negative-control.v1.json), proving non-synchrotron source-mechanism metadata does not satisfy the synchrotron row.
+  - Updated the `EQ-29` source-field map and [equation.md](equation.md) with the new exact blockers.
+- Files edited since Restart Checkpoint 36:
+  - [eq-29-radiation-source-carrier-source-field-map.md](eq-29-radiation-source-carrier-source-field-map.md)
+  - [equation.md](equation.md)
+  - [eq29-radiation-source-ledger-residual.mjs](../../../scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs)
+  - [eq29-radiation-source-carrier-channel-family-source-mechanism-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-source-evidence-probe.v1.json)
+  - [eq29-radiation-source-carrier-channel-family-source-mechanism-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-metadata-missing-negative-control.v1.json)
+  - [eq29-radiation-source-carrier-channel-family-source-mechanism-collapse-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-collapse-negative-control.v1.json)
+  - [eq29-radiation-source-carrier-channel-family-source-mechanism-nonsynchrotron-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-nonsynchrotron-negative-control.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-evidence-probe.v1.json --summary --pretty`: still passes as score-neutral with `nextBlocker=missing_accepted_source_mechanism_row`.
+  - `node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-source-evidence-probe.v1.json --summary --pretty`: passed as score-neutral with `nextBlocker=missing_accepted_source_branch_row`.
+  - Same source-mechanism probe with `--require-populated`: exited nonzero as intended.
+  - `node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-metadata-missing-negative-control.v1.json --summary --pretty`: passed as fail-closed with `nextBlocker=missing_accepted_source_mechanism_row`, `sourceEvidenceFailureCount=1`, and `rowStatuses.source_mechanism_row.reason=accepted_without_evidence_source`.
+  - `node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-collapse-negative-control.v1.json --summary --pretty`: passed as fail-closed with `nextBlocker=missing_accepted_source_mechanism_row`, `sourceEvidenceFailureCount=1`, and `rowStatuses.source_mechanism_row.reason=source_mechanism_source_contract_mismatch`.
+  - `node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-nonsynchrotron-negative-control.v1.json --summary --pretty`: passed as fail-closed with `nextBlocker=missing_accepted_source_mechanism_row`, `sourceEvidenceFailureCount=1`, and `rowStatuses.source_mechanism_row.reason=source_mechanism_source_contract_mismatch`.
+  - The three source-mechanism controls with `--require-populated`: exited nonzero as intended.
+  - `node --check scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs`: passed.
+
+No score changes.
+
+## Restart Checkpoint 38: EQ-11A Theta-Sea Content-Source Control
+
+- Time: 2026-06-26 18:08 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored work remain meaningful.
+- Coordinator target completed since Restart Checkpoint 37:
+  - Added [eq11a-gravitational-wave-source-theta-sea-content-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-theta-sea-content-source-negative-control.v1.json), marking only `theta_sea` accepted-looking while sourcing it to authored Noether sea prose.
+  - Updated [eq-11a-gw150914-source-field-map.md](eq-11a-gw150914-source-field-map.md) and [equation.md](equation.md) with the new fail-closed result.
+- Files edited since Restart Checkpoint 37:
+  - [eq-11a-gw150914-source-field-map.md](eq-11a-gw150914-source-field-map.md)
+  - [equation.md](equation.md)
+  - [eq11a-gravitational-wave-source-theta-sea-content-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-theta-sea-content-source-negative-control.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-theta-sea-content-source-negative-control.v1.json --summary --pretty`: passed as fail-closed with `status=blocked_missing_rows`, `nextBlocker=missing_accepted_theta_sea`, and `rowStatuses.theta_sea.reason=accepted_without_evidence_source`.
+  - Same `theta_sea` content-source control with `--require-populated`: exited nonzero as intended.
+  - Existing [eq11a-gravitational-wave-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-evidence-probe.v1.json) still passes as score-neutral with `nextBlocker=missing_accepted_theta_sea`.
+  - Existing [eq11a-gravitational-wave-source-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-probe-source-negative-control.v1.json) still fails closed at `missing_accepted_gw_source_carrier` with `carrierReason=accepted_without_evidence_source`.
+  - `node --check scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs`: passed.
+  - Full validation passed: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+No score changes.
+
+## Restart Checkpoint 39: EQ-12A Retained-Orbit Source Contract
+
+- Time: 2026-06-26 18:13 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored work remain meaningful.
+- Agents completed since Restart Checkpoint 38:
+  - `Goodall the 2nd` and `Locke the 2nd`: completed two `EQ-15` passes, both identifying `missing_accepted_ordered_frame_loop` as the exact first blocker and a durable noncoplanar spinor-return-table artifact as the smallest likely breakthrough source.
+  - `Mill` and `Dirac the 2nd`: completed two `EQ-07A` passes, both identifying `missing_accepted_compact_region_carrier` as the exact first blocker and a durable compact-region carrier binding the variable dictionary, collapse-to-metric residual, and same-root finite-window ledger grammar as the smallest route.
+- Coordinator target completed since Restart Checkpoint 38:
+  - Hardened [constant-delay-retained-orbit-certificate.mjs](../../../scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs) so accepted-looking `retained_orbit_reduction_row` rows must declare explicit `EQ-12A`, `retained_orbit_reduction_row`, retained action-period carrier, and `S_eq` equal-frequency support metadata.
+  - Added [constant-delay-retained-orbit-retained-reduction-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-retained-reduction-metadata-missing-negative-control.v1.json), proving a durable source path without the retained-orbit support contract fails closed.
+  - Added [constant-delay-retained-orbit-retained-reduction-source-evidence-probe.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-retained-reduction-source-evidence-probe.v1.json), advancing `EQ-12A` through `retained_orbit_reduction_row` and stopping at `missing_accepted_constant_delay_self_hit_model_row`.
+  - Updated [eq-12a-retained-action-period-source-field-map.md](eq-12a-retained-action-period-source-field-map.md) and [equation.md](equation.md) with the new exact blockers.
+- Files edited since Restart Checkpoint 38:
+  - [eq-12a-retained-action-period-source-field-map.md](eq-12a-retained-action-period-source-field-map.md)
+  - [equation.md](equation.md)
+  - [constant-delay-retained-orbit-certificate.mjs](../../../scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs)
+  - [constant-delay-retained-orbit-retained-reduction-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-retained-reduction-metadata-missing-negative-control.v1.json)
+  - [constant-delay-retained-orbit-retained-reduction-source-evidence-probe.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-retained-reduction-source-evidence-probe.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --input scripts/equation-mapping/eq12a-retained-action-period-source-attempt.v1.json --summary --pretty`: still passes as score-neutral with `nextBlocker=missing_accepted_retained_orbit_reduction_row`.
+  - `node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --input scripts/equation-mapping/constant-delay-retained-orbit-retained-reduction-metadata-missing-negative-control.v1.json --summary --pretty`: passed as fail-closed with `nextBlocker=missing_accepted_retained_orbit_reduction_row` and `rowStatuses.retained_orbit_reduction_row.reason=retained_orbit_reduction_source_contract_mismatch`.
+  - Same metadata-missing control with `--require-populated`: exited nonzero as intended.
+  - `node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --input scripts/equation-mapping/constant-delay-retained-orbit-retained-reduction-source-evidence-probe.v1.json --summary --pretty`: passed as score-neutral with `nextBlocker=missing_accepted_constant_delay_self_hit_model_row`.
+  - Same source-evidence probe with `--require-populated`: exited nonzero as intended.
+  - Existing [constant-delay-retained-orbit-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-coordination-source-negative-control.v1.json) still fails closed at `accepted_without_evidence_source` for priority-packet sources.
+  - `node --check scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs`: passed.
+  - Full validation passed: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+No score changes.

@@ -89,6 +89,16 @@ node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --inp
 
 It marks the same carrier and `gw_source_carrier` row accepted-looking while pointing their source paths at a source-evidence-probe JSON. The intended result is `status: blocked_missing_accepted_gw_source_carrier`, `carrierReason: accepted_without_evidence_source`, `sourceIdentityPass: true`, and `scoreDecision: no_score_increase`. The same command with `--require-populated` must exit nonzero. Probe files can expose blocker order, but they cannot satisfy retained source evidence for $\Theta_{\mathrm{GWsrc}}(W,P)$.
 
+## Theta-Sea Content-Source Negative Control
+
+The `theta_sea` content-source negative control is [eq11a-gravitational-wave-source-theta-sea-content-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-theta-sea-content-source-negative-control.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-theta-sea-content-source-negative-control.v1.json --summary --pretty
+```
+
+It preserves the accepted-looking top carrier and `gw_source_carrier` row from the source-evidence probe, then marks only `theta_sea` accepted-looking while pointing that row to [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md). The expected result is `status: blocked_missing_rows`, `nextBlocker: missing_accepted_theta_sea`, `scoreDecision: no_score_increase`, and `rowStatuses.theta_sea.reason=accepted_without_evidence_source`. The same command with `--require-populated` must exit nonzero. Authored Noether sea prose can define the parent concept, but it cannot replace a retained Noether sea/effective-metric source row for `EQ-11A`.
+
 ## Current Disposition
 
 The source map is ready for a checker-consumable attempt packet, not a score change. A future candidate input should preserve `status: attempt` until all row bindings are source-backed, durable, and accepted by the existing checker contract.

@@ -44,6 +44,8 @@ Use one accepted retained action-period carrier with a `commonCarrierId` distinc
 | Source discipline | Source-backed row map into `retained_orbit_reduction_row`, `monodromy_floquet_certificate`, `poincare_cartan_orbit_integral_row`, `energy_clock_readout_row`, `phase_loop_area_readout_row`, `geometry_derived_action_period_row`, `source_provenance`, and `no_hidden_retune_witness`. |
 | Photon support | Optional consumer link to accepted `theta_gamma_packet`; never a substitute for the action carrier. |
 
+Accepted-looking `retained_orbit_reduction_row` rows must also declare explicit support metadata for `EQ-12A`, `retained_orbit_reduction_row`, the retained action-period carrier, and the `S_eq` equal-frequency tri-binary route. A durable file path is not enough by itself.
+
 ## Fail-Closed Control
 
 Use `mu_dependent_action_period`: extracted action periods such as `[1, 1.01, 1]` must fail `period_uniqueness_residual_failed` or the equivalent Planck/alpha no-hidden-retune path. This protects the rule that $h_\vartheta$ is geometry-derived and locally constant on the accepted branch, not fitted from alpha, thermal, or photon observations.
@@ -58,6 +60,14 @@ node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --in
 
 This control marks every required retained action-period row as accepted-looking while pointing each `sourcePath` back to this priority packet. The intended result is `status: blocked_missing_rows`, `nextBlocker: missing_accepted_retained_orbit_reduction_row`, and row reason `accepted_without_evidence_source`. A source-field map can name the retained action-period contract and carry attempt arithmetic, but it cannot satisfy accepted retained evidence.
 
+The retained-reduction metadata-missing control is [constant-delay-retained-orbit-retained-reduction-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-retained-reduction-metadata-missing-negative-control.v1.json):
+
+```sh
+node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --input scripts/equation-mapping/constant-delay-retained-orbit-retained-reduction-metadata-missing-negative-control.v1.json --summary --pretty
+```
+
+This control marks only `retained_orbit_reduction_row` accepted-looking, points it at a durable file, and omits the required retained-orbit support metadata. The expected result is `status: blocked_missing_rows`, `nextBlocker: missing_accepted_retained_orbit_reduction_row`, and `rowStatuses.retained_orbit_reduction_row.reason=retained_orbit_reduction_source_contract_mismatch`. The same command with `--require-populated` must exit nonzero.
+
 ## Retained `S_eq` Source-Attempt Fixture
 
 The score-neutral source-attempt fixture is [eq12a-retained-action-period-source-attempt.v1.json](../../../scripts/equation-mapping/eq12a-retained-action-period-source-attempt.v1.json):
@@ -69,6 +79,14 @@ node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --in
 
 The fixture names the retained `S_eq` branch identity, finite window, equal-frequency tri-binary support, winding plateau, positive Floquet margin, four action readouts, and no-hidden-retune witness target. Every required checker row remains `attempt`, so the expected result is `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_retained_orbit_reduction_row`. The `--require-populated` form must exit nonzero until accepted retained rows with durable evidence sources exist.
 
+The one-row retained-reduction source-evidence probe is [constant-delay-retained-orbit-retained-reduction-source-evidence-probe.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-retained-reduction-source-evidence-probe.v1.json):
+
+```sh
+node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --input scripts/equation-mapping/constant-delay-retained-orbit-retained-reduction-source-evidence-probe.v1.json --summary --pretty
+```
+
+The probe marks only `retained_orbit_reduction_row` accepted-looking with explicit `EQ-12A`, `retained_orbit_reduction_row`, retained action-period carrier, and `S_eq` equal-frequency support metadata. It remains score-neutral and advances only to `nextBlocker: missing_accepted_constant_delay_self_hit_model_row`; the `--require-populated` form must exit nonzero.
+
 ## Next Action
 
 Create one durable source-backed retained action-period object, then run:
@@ -78,4 +96,4 @@ node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --su
 node scripts/equation-mapping/planck-alpha-braid-residual.mjs --summary --pretty
 ```
 
-Until accepted retained rows exist, the correct dedicated blocker remains `missing_accepted_retained_orbit_reduction_row`.
+Until accepted retained rows exist beyond the retained-reduction probe, the correct dedicated blocker is `missing_accepted_constant_delay_self_hit_model_row`, with no score change.

@@ -237,6 +237,28 @@ node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input 
 
 This fixture marks the carrier and rows accepted-looking while sourcing them to priority packets, authored corpus prose, and the fixture itself. The expected result is `status: blocked_source_evidence`, `scoreDecision: no_score_increase`, `nextBlocker: accepted_without_evidence_source`, and `sourceEvidenceFailureCount: 17`; the `--require-populated` form must exit nonzero.
 
+## $\Theta_{\mathrm{src}}$ Handoff Contract
+
+The carrier-shell source-evidence probe advances `EQ-22B` only to `missing_accepted_theta_src`. This section records the smallest source-window handoff contract needed before any accepted-looking `theta_src` row is safe. It is score-neutral and does not populate retained evidence.
+
+Candidate finite source window: `W_src_BBN_CMB_rec_ac_0001`, a single BBN-to-CMB/recombination handoff window with start and end boundary references still pending durable evidence.
+
+| Contract field | Required value | Fail-closed condition |
+| --- | --- | --- |
+| `theta_src.id` | `Theta_src_attempt_0001` until a durable source-backed row replaces it | Accepted-looking placeholder identity is rejected. |
+| `sourceFamily` | `shared observation source window` | A private recombination/acoustic source family cannot satisfy the shared observation parent. |
+| `W_src` | `W_src_BBN_CMB_rec_ac_0001`, one finite source window | BBN, CMB, and recombination rows use different windows. |
+| Noether sea keys | `rho_NS`, `n`, `chi_sea`, `Gamma_N`, `u_sea`, `M_sea_ab` | Noether sea loading is split or retuned between source, photon, and readout rows. |
+| Loading keys | `rho_bar`, `rho_A`, `photon_loading` | Baryon, architrino, or photon loading is introduced independently in a child row. |
+| BBN/CMB keys | `T_theta`, `rho_theta`, `eta`, `N_eff`, `Y_p` / `Y_BBN_theta`, `thermal_depth` | CMB imports different $\eta$, $N_{\mathrm{eff}}$, helium yield, or thermal depth. |
+| Photon handoff | `theta_gamma_packet_ref`, `theta_rec_ac_ref`, unchanged `photon_loading` | Blackbody, recombination, or acoustic rows use private photon loading. |
+| Neutrino handoff | `neutrino_energy`, `N_eff`, future `neutrino_channel` row reference | Neutrino energy or $N_{\mathrm{eff}}$ differs between BBN and CMB. |
+| Readout keys | `H_eff`, `a_eff`, `theta_read_ref` only from accepted readout handoff | Observation readout is imported from a separate clock or ruler. |
+| Event ledger | one `event_ledger_ref` | Source, photon, weak, baryon, neutrino, or medium exchange rows split ledgers. |
+| No-hidden-retune witness | one `S_retune` witness | Source window, event ledger, thermal provenance, readout, photon loading, or neutrino handoff is privately retuned. |
+
+The matching fail-closed control is [eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json). It clones the carrier-shell probe, mutates only `packet.rows.theta_src` to `status: accepted`, gives it `sourceKind: source_window_record`, and points `theta_src.sourcePath` back to [EQ-21/EQ-22/EQ-23 $\Theta_{\mathrm{src}}$ Source-Field Map](eq-21-22-23-theta-src-source-field-map.md). The checker reports `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: accepted_without_evidence_source`, and `sourceEvidenceFailureCount: 1`; the `--require-populated` form exits nonzero. This prevents a coordination packet from satisfying the shared observation source window.
+
 ## Promotion Disposition
 
 Classification: `priority-only`.

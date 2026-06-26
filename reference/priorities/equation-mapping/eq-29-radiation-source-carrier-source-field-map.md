@@ -10,6 +10,13 @@
   - [eq29-radiation-source-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-source-attempt.v1.json)
   - [eq29-radiation-source-carrier-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-source-evidence-probe.v1.json)
   - [eq29-radiation-source-carrier-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-metadata-missing-negative-control.v1.json)
+  - [eq29-radiation-source-carrier-channel-family-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-evidence-probe.v1.json)
+  - [eq29-radiation-source-carrier-channel-family-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-metadata-missing-negative-control.v1.json)
+  - [eq29-radiation-source-carrier-channel-family-collapse-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-collapse-negative-control.v1.json)
+  - [eq29-radiation-source-carrier-channel-family-source-mechanism-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-source-evidence-probe.v1.json)
+  - [eq29-radiation-source-carrier-channel-family-source-mechanism-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-metadata-missing-negative-control.v1.json)
+  - [eq29-radiation-source-carrier-channel-family-source-mechanism-collapse-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-collapse-negative-control.v1.json)
+  - [eq29-radiation-source-carrier-channel-family-source-mechanism-nonsynchrotron-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-nonsynchrotron-negative-control.v1.json)
   - [eq29-radiation-source-ledger-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-ledger-coordination-source-negative-control.v1.json)
   - [eq29-radiation-source-ledger-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-ledger-probe-source-negative-control.v1.json)
   - [eq29-radiation-source-ledger-unrelated-durable-source-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-ledger-unrelated-durable-source-negative-control.v1.json)
@@ -65,8 +72,8 @@ Required rows on one `commonCarrierId`:
 | Checker row | Minimum source-field content |
 | --- | --- |
 | `radiation_source_carrier` | Accepted carrier id, retained event window, declared mechanism family, durable source path, and support for `EQ-29`. |
-| `carrier_channel_family_row` | Photon-channel output family row; frequency exchange, photon output, reaction-product carrier, and tensor disturbance remain distinct families. |
-| `source_mechanism_row` | Mechanism declared as `synchrotron`, not Compton exchange, thermal/free-free, bremsstrahlung, or generic radiation. |
+| `carrier_channel_family_row` | Photon-channel output family row; frequency exchange, photon output, reaction-product carrier, and tensor disturbance remain distinct families. Accepted-looking rows must explicitly declare `carrier_channel_family_row`, `carrier_channel_family`, and `photon-channel output family` support. |
+| `source_mechanism_row` | Mechanism declared as `synchrotron`, not Compton exchange, thermal/free-free, bremsstrahlung, or generic radiation. Accepted-looking rows must explicitly declare `source_mechanism_row`, `source_mechanism`, and `synchrotron source mechanism` support. |
 | `source_branch_row` | One curved charged-assembly branch with $\Gamma_{e^\pm}(t)$, causal-root data, transport path, and source branch identity. |
 | `noether_sea_magnetic_state_row` | One anisotropic Noether sea magnetic-state row carrying $\mathcal V_{\mathrm{NS}}$, $G_{\text{grad}}$, and the effective magnetic comparison inputs. |
 | `closure_residual_planar_mode_row` | Closure residual and planar-mode threshold row for the photon-producing event. |
@@ -93,6 +100,11 @@ Keep the existing controls as first-line guards:
 - `accepted_without_evidence_source`: catches accepted-looking rows sourced only to priority packets, authored prose, generated files, temporary files, attempt fixtures, mocks, or negative-control fixtures.
 - `unrelated_durable_source`: catches accepted-looking rows sourced to a durable but unrelated file that does not declare EQ-29/radiation-source support.
 - `metadata_missing_source`: catches an accepted-looking `radiation_source_carrier` row whose durable source path exists but whose row metadata does not declare EQ-29/radiation-source support.
+- `carrier_channel_family_metadata_missing`: catches an accepted-looking `carrier_channel_family_row` whose durable source path exists but whose row metadata does not declare channel-family support.
+- `carrier_channel_family_source_contract_mismatch`: catches a row whose metadata declares only generic EQ-29/radiation-source carrier support, rather than photon-channel output family support.
+- `source_mechanism_metadata_missing`: catches an accepted-looking `source_mechanism_row` whose durable source path exists but whose row metadata does not declare source-mechanism support.
+- `source_mechanism_source_contract_mismatch`: catches a row whose metadata declares only generic EQ-29/radiation-source support, rather than synchrotron source-mechanism support.
+- `source_mechanism_nonsynchrotron`: catches a row whose metadata declares source-mechanism support for a non-synchrotron mechanism.
 
 ## Next Action
 
@@ -144,6 +156,60 @@ node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input 
 
 Expected result: `status=blocked_source_evidence`, `nextBlocker=accepted_without_evidence_source`, and `sourceEvidenceFailureCount=15`. This protects `EQ-29` from treating a durable but unrelated source, such as a reaction-statistics file, as retained radiation-source evidence merely because the path exists and is not forbidden.
 
-The next smallest source-evidence probe is `carrier_channel_family_row`: it must keep the photon-channel output family separate from Compton exchange, path-frequency exchange, tensor disturbance, and generic radiation. Create that row only if it can carry explicit EQ-29/radiation-source support metadata and a fail-closed metadata-missing companion control.
+The two-row channel-family source-evidence probe is:
 
-Until accepted source-backed rows exist beyond the one-row probe, the correct retained-evidence state remains score-neutral.
+```sh
+node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-evidence-probe.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_source_mechanism_row`, `sourceEvidencePass=true`, and `sourceEvidenceFailureCount=0`. This remains score-neutral because all source-mechanism, source-branch, Noether sea, Gate A/B, depletion, recoil/wake/remnant, benchmark, cooling, polarization, event-ledger, provenance, and no-retune rows remain `attempt`.
+
+The channel-family metadata-missing control is:
+
+```sh
+node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-metadata-missing-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_carrier_channel_family_row`, `sourceEvidenceFailureCount=1`, and `rowStatuses.carrier_channel_family_row.reason=accepted_without_evidence_source`. The same command with `--require-populated` must exit nonzero.
+
+The channel-family collapse control is:
+
+```sh
+node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-collapse-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_carrier_channel_family_row`, `sourceEvidenceFailureCount=1`, and `rowStatuses.carrier_channel_family_row.reason=carrier_channel_family_source_contract_mismatch`. The same command with `--require-populated` must exit nonzero. This proves generic EQ-29/radiation-source support metadata cannot collapse carrier identity into photon-channel output family evidence.
+
+The three-row source-mechanism source-evidence probe is:
+
+```sh
+node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-source-evidence-probe.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_source_branch_row`, `sourceEvidencePass=true`, and `sourceEvidenceFailureCount=0`. This remains score-neutral because all source-branch, Noether sea, Gate A/B, depletion, recoil/wake/remnant, benchmark, cooling, polarization, event-ledger, provenance, and no-retune rows remain `attempt`.
+
+The source-mechanism metadata-missing control is:
+
+```sh
+node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-metadata-missing-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_source_mechanism_row`, `sourceEvidenceFailureCount=1`, and `rowStatuses.source_mechanism_row.reason=accepted_without_evidence_source`. The same command with `--require-populated` must exit nonzero.
+
+The source-mechanism collapse control is:
+
+```sh
+node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-collapse-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_source_mechanism_row`, `sourceEvidenceFailureCount=1`, and `rowStatuses.source_mechanism_row.reason=source_mechanism_source_contract_mismatch`. The same command with `--require-populated` must exit nonzero. This proves generic EQ-29/radiation-source support metadata cannot collapse carrier identity or photon-channel family support into synchrotron source-mechanism evidence.
+
+The non-synchrotron source-mechanism control is:
+
+```sh
+node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-carrier-channel-family-source-mechanism-nonsynchrotron-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_source_mechanism_row`, `sourceEvidenceFailureCount=1`, and `rowStatuses.source_mechanism_row.reason=source_mechanism_source_contract_mismatch`. The same command with `--require-populated` must exit nonzero. This proves non-synchrotron mechanism metadata cannot satisfy the synchrotron source-mechanism row.
+
+Until accepted source-backed rows exist beyond the source-mechanism probe, the correct retained-evidence state remains score-neutral.

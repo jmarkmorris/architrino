@@ -270,6 +270,26 @@ This control sets the top-level compact-region carrier to `status: accepted` whi
 
 The source filter also rejects `attempt`, `toy`, `source-evidence-probe`, `probe`, `mock`, and `negative-control` source filenames, along with priority packets, authored AAA prose, generated paths, and temporary paths. A transient mutation that points the accepted-looking compact-region carrier at another probe file still returns `carrierReason: accepted_without_evidence_source`, so no self-sourced or probe-sourced artifact can satisfy the compact-region carrier requirement.
 
+### Compact-Region Carrier Source Contract
+
+The compact-region carrier now has a row-specific source-support contract, not only a durable-path check. An accepted-looking $\Theta_{\mathrm{cs}}^{07A}$ row must carry metadata that explicitly names `EQ-07A`, the `compact_region_carrier`, and one of the supported compact-region routes: same-root finite-window ledger, compact-region conservation ledger, or collapse-to-metric residual. A durable source path without that metadata still fails closed.
+
+The metadata-missing negative control is [eq07a-compact-region-carrier-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-metadata-missing-negative-control.v1.json):
+
+```bash
+node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input scripts/equation-mapping/eq07a-compact-region-carrier-metadata-missing-negative-control.v1.json --summary --require-populated
+```
+
+The intended result is a nonzero `--require-populated` exit with `status: blocked_missing_accepted_compact_region_carrier`, `carrierReason: compact_region_carrier_source_contract_mismatch`, and `nextBlocker: missing_accepted_compact_region_carrier`.
+
+The score-neutral source-evidence probe is [eq07a-compact-region-carrier-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-source-evidence-probe.v1.json):
+
+```bash
+node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input scripts/equation-mapping/eq07a-compact-region-carrier-source-evidence-probe.v1.json --summary --require-populated
+```
+
+This probe marks only the parent compact-region carrier accepted-looking with the required support metadata. It advances the checker past `missing_accepted_compact_region_carrier` and exposes `missing_accepted_standard_benchmark_row` as the next blocker, while still exiting nonzero under `--require-populated`. The probe is not accepted retained evidence and does not change the score.
+
 ## Chandrasekhar Scaling Solver Residual
 
 The first solver-style residual is [eq07a-chandrasekhar-scaling-residual.mjs](../../../scripts/equation-mapping/eq07a-chandrasekhar-scaling-residual.mjs), driven by [eq07a-chandrasekhar-scaling-attempt.v1.json](../../../scripts/equation-mapping/eq07a-chandrasekhar-scaling-attempt.v1.json):

@@ -24,20 +24,17 @@
     {
       "id": "treasure_physics_overlooked_overview",
       "title": "The Treasure Physics Overlooked",
-      "radius": 1.9,
+      "radius": 1.32,
       "color": "#4f5d75",
-      "position": [0, 0, 0],
-      "fixedPosition": true,
-      "labelTitle": "The Treasure Physics Overlooked",
+      "labelTitle": "The Treasure Physics Overlooked (entire)",
       "labelBadge": "doc"
     },
     {
       "id": "treasure_physics_overlooked_intro",
-      "title": "Intro",
+      "title": "Introduction",
       "radius": 1.32,
       "color": "#8c5f46",
-      "position": [0, 7.2, 0],
-      "labelTitle": "Intro",
+      "labelTitle": "Introduction",
       "labelBadge": "doc",
       "source": {
         "type": "markdown",
@@ -49,29 +46,11 @@
       }
     },
     {
-      "id": "treasure_physics_overlooked_opening_frame",
-      "title": "Opening Frame",
-      "radius": 1.32,
-      "color": "#6f7f93",
-      "position": [5.09, 5.09, 0],
-      "labelTitle": "Opening Frame",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md"
-      },
-      "view": {
-        "section": "Opening Frame",
-        "columns": 1
-      }
-    },
-    {
       "id": "treasure_physics_overlooked_method_problem",
-      "title": "Method Problem",
+      "title": "Paradigms / Anomalies",
       "radius": 1.32,
       "color": "#577590",
-      "position": [7.2, 0, 0],
-      "labelTitle": "Method Problem",
+      "labelTitle": "Paradigms / Anomalies",
       "labelBadge": "doc",
       "source": {
         "type": "markdown",
@@ -84,11 +63,10 @@
     },
     {
       "id": "treasure_physics_overlooked_source_dynamics",
-      "title": "Source / Dynamics",
+      "title": "Structure / Causal Records",
       "radius": 1.32,
       "color": "#3f7d6a",
-      "position": [5.09, -5.09, 0],
-      "labelTitle": "Source / Dynamics",
+      "labelTitle": "Structure / Causal Records",
       "labelBadge": "doc",
       "source": {
         "type": "markdown",
@@ -104,7 +82,6 @@
       "title": "Relativity / Measurement",
       "radius": 1.32,
       "color": "#8b6f47",
-      "position": [0, -7.2, 0],
       "labelTitle": "Relativity / Measurement",
       "labelBadge": "doc",
       "source": {
@@ -121,7 +98,6 @@
       "title": "Quantum / Gauge",
       "radius": 1.32,
       "color": "#6f5f9c",
-      "position": [-5.09, -5.09, 0],
       "labelTitle": "Quantum / Gauge",
       "labelBadge": "doc",
       "source": {
@@ -138,7 +114,6 @@
       "title": "Cosmology / Recycling",
       "radius": 1.32,
       "color": "#5f7661",
-      "position": [-7.2, 0, 0],
       "labelTitle": "Cosmology / Recycling",
       "labelBadge": "doc",
       "source": {
@@ -155,7 +130,6 @@
       "title": "Closing Synthesis",
       "radius": 1.32,
       "color": "#8b4f68",
-      "position": [-5.09, 5.09, 0],
       "labelTitle": "Closing Synthesis",
       "labelBadge": "doc",
       "source": {

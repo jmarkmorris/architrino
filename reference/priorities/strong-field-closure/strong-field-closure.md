@@ -62,6 +62,28 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
 ## Quantitative Targets
 
 - Formulate the embedded horizon-interface condition $F_H[\rho_{\text{NS}},\Sigma_{\text{medium}},\mathbf{u}_{\text{medium}},\{\Lambda_{\text{NS}}\};\partial\Omega]=0$ and identify which boundary data are required before observer-level strong-field predictions can be trusted.
+- Derive a finite maximum-curvature packed-state barrier for inward assembly, photon-channel, or fragment traversal. Blueshift divergence, negative-energy-looking comparison rows, and time-reversal-like coordinate behavior should be treated as effective-chart failure signals, not as literal negative substrate energy or reversal of absolute time. For a compact interior region $\Omega$, the target is a barrier residual
+  $$
+  \mathcal{R}_{\mathrm{pack,max}}(\theta_\Omega)
+  \le
+  \epsilon_{\mathrm{pack,max}},
+  \qquad
+  \theta_\Omega
+  =
+  \left(
+  \left.\mathcal{N}_{\mathrm{sea}}\right|_\Omega,
+  \mathcal{B}_{\mathrm{pack}}^{(\Omega)},
+  \mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega)},
+  \partial\Omega
+  \right),
+  $$
+  where the native variables remain finite, inward compression routes into branch reconfiguration, shielding/exposure change, medium/release routing, or a finite packed ensemble, and no singular zero-volume endpoint is admitted without an explicit failure code. If the packed branch is close to a single retained interior state, state that only relative to a declared coarse-graining $\mathcal{Q}$:
+  $$
+  S_{\mathcal{Q}}(\Omega)
+  =
+  k_B\log\left|\mathcal{M}_{\mathcal{Q}}(\Omega)\right|.
+  $$
+  A small $S_{\mathcal{Q}}(\Omega)$ for the interior packing record must not be confused with horizon-interface entropy, exterior observer entropy, release-channel information, or global information loss.
 - Use the neutron-star branch as the predecessor radial test for the embedded boundary formulation: for retained radii $0\le r\le R_*$, state when $\Theta_{\mathrm{NS}}(r)=(\rho_{\text{NS}},n,\chi_{\text{sea}},\Gamma_N,S_{ij},\mathcal{M}_{\text{sea}}^{ab},\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)})$ remains a compact non-horizon branch through $0<1-v_O(r)/c_f$, finite $\mathcal{R}_H(\Omega_r)$, closed event ledgers, and candidate packing headroom $0\le s_n(r)\le1$ when a pressure-packing model is used.
 - Derive a stronger observer-level strong-field prediction set.
 - Add the Event Horizon Telescope horizon-scale imaging packet as a direct observer benchmark. The native branch record $\theta$ must project to image-domain and visibility-domain observables

@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 530,
-      "edges": 1283,
+      "edges": 1284,
       "scenes": 349,
       "markdownIndexes": 0,
       "markdownDocs": 168,
@@ -13049,6 +13049,13 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/theory_mapping.json",
       "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/treasure_physics_overlooked.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/treasure_physics_overlooked.json",
+      "field": "treasure_physics_overlooked_intro.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",

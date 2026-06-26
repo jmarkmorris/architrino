@@ -3,7 +3,7 @@
 
 **Literary note:** This is an AI-imagined, counterfactual chain of perspectives. It is not a historical quotation, real interview, endorsement, attribution, or evidence about any actual person's views. The essay writes from the completed-architecture standpoint that the current corpus is developing toward: it treats Architrino Assembly Architecture, hereafter the Architrino architecture, as having reached closure as architected, then asks how the history of physics would read from that retrospective vantage. That standpoint is a literary device for historical interpretation.
 
-## Opening Frame
+### Opening Frame
 
 The premise of this scene is retrospective. From the completed-architecture standpoint named above, the historical question is where the path toward the Architrino architecture passed near the accepted history of science, and why the field continued along another road.
 

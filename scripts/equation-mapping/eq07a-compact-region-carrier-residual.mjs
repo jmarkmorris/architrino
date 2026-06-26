@@ -141,10 +141,10 @@ function writeOutput(output, parsedArgs) {
 function evaluateEq07aCompactRegionCarrier(input, inputPath) {
   const tolerances = parseTolerances(input.tolerances ?? {});
   const packet = input.packet ?? input;
-  const carrier = evaluateAcceptedEvidence(input.carrier ?? packet.carrier);
+  const carrier = evaluateAcceptedEvidence(input.carrier ?? packet.carrier, "compact_region_carrier");
   const rows = packet.rows ?? {};
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedEvidence(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedEvidence(rows[rowId], rowId)]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const carrierBinding = evaluateCarrierBinding(rows, input.commonCarrierId ?? packet.id);
@@ -461,7 +461,7 @@ function evaluateCarrierBinding(rows, commonCarrierId) {
   };
 }
 
-function evaluateAcceptedEvidence(row) {
+function evaluateAcceptedEvidence(row, rowId = null) {
   const status = normalizeStatus(row);
   if (!ACCEPTED_STATUSES.has(status)) {
     return { accepted: false, reason: "row_not_accepted" };
@@ -470,6 +470,9 @@ function evaluateAcceptedEvidence(row) {
   const source = evaluateSourcePath(sourcePath);
   if (!source.accepted) {
     return { accepted: false, reason: source.reason };
+  }
+  if (rowId === "compact_region_carrier" && !sourceSupportsCompactRegionCarrier(row)) {
+    return { accepted: false, reason: "compact_region_carrier_source_contract_mismatch" };
   }
   return { accepted: true, reason: "accepted" };
 }
@@ -500,6 +503,46 @@ function evaluateSourcePath(sourcePath) {
     return { accepted: false, reason: "accepted_without_evidence_source" };
   }
   return { accepted: true, reason: "accepted" };
+}
+
+function sourceSupportsCompactRegionCarrier(row) {
+  const normalized = collectSupportMetadata(row);
+  const eq07aSupported = normalized.some(
+    (value) => value.includes("eq-07a") || value.includes("eq07a"),
+  );
+  const carrierSupported = normalized.some(
+    (value) =>
+      value.includes("compact_region_carrier") ||
+      value.includes("compact-region carrier") ||
+      value.includes("retained compact-region carrier"),
+  );
+  const ledgerSupported = normalized.some(
+    (value) =>
+      value.includes("same-root finite-window ledger") ||
+      value.includes("compact-region conservation ledger") ||
+      value.includes("collapse-to-metric residual"),
+  );
+  return eq07aSupported && carrierSupported && ledgerSupported;
+}
+
+function collectSupportMetadata(row) {
+  return [
+    row?.sourceFamily,
+    row?.sourceKind,
+    row?.sourceRole,
+    row?.sourceSupport,
+    row?.sourceSupports,
+    row?.evidenceFamily,
+    row?.evidenceKind,
+    row?.evidenceRole,
+    row?.evidenceSupport,
+    row?.evidenceSupports,
+    row?.claimLevel,
+  ]
+    .flatMap((value) => (Array.isArray(value) ? value : [value]))
+    .filter((value) => typeof value === "string")
+    .map((value) => value.trim().toLowerCase())
+    .filter(Boolean);
 }
 
 function isNonDurableSourcePath(filePath) {

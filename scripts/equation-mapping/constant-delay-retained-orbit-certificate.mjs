@@ -135,7 +135,7 @@ function evaluateConstantDelayRetainedOrbit(input, inputPath) {
   const packet = input.packet ?? input;
   const rows = packet.rows ?? {};
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId], rowId)]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const carrierBinding = evaluateCarrierBinding(rows, packet.commonCarrierId ?? input.commonCarrierId);
@@ -245,7 +245,7 @@ function parseTolerances(raw) {
   );
 }
 
-function evaluateAcceptedRow(row) {
+function evaluateAcceptedRow(row, rowId) {
   if (!row) {
     return { accepted: false, reason: "missing_row" };
   }
@@ -257,6 +257,9 @@ function evaluateAcceptedRow(row) {
   const source = evaluateSourcePath(sourcePath);
   if (!source.accepted) {
     return { accepted: false, reason: source.reason };
+  }
+  if (rowId === "retained_orbit_reduction_row" && !sourceSupportsRetainedOrbitReductionRow(row)) {
+    return { accepted: false, reason: "retained_orbit_reduction_source_contract_mismatch" };
   }
   return { accepted: true, reason: "accepted" };
 }
@@ -287,6 +290,43 @@ function evaluateSourcePath(sourcePath) {
     return { accepted: false, reason: "accepted_without_evidence_source" };
   }
   return { accepted: true, reason: "accepted" };
+}
+
+function sourceSupportsRetainedOrbitReductionRow(row) {
+  const normalized = collectSupportMetadata(row);
+  const eq12aSupported = normalized.some(
+    (value) => value.includes("eq-12a") || value.includes("eq12a"),
+  );
+  const rowSupported = normalized.some((value) => value.includes("retained_orbit_reduction_row"));
+  const carrierSupported = normalized.some(
+    (value) =>
+      value.includes("retained_action_period_carrier") ||
+      value.includes("retained action-period carrier"),
+  );
+  const seqSupported = normalized.some(
+    (value) => value.includes("s_eq") || value.includes("equal_frequency_tri_binary"),
+  );
+  return eq12aSupported && rowSupported && carrierSupported && seqSupported;
+}
+
+function collectSupportMetadata(row) {
+  return [
+    row?.sourceFamily,
+    row?.sourceKind,
+    row?.sourceRole,
+    row?.sourceSupport,
+    row?.sourceSupports,
+    row?.evidenceFamily,
+    row?.evidenceKind,
+    row?.evidenceRole,
+    row?.evidenceSupport,
+    row?.evidenceSupports,
+    row?.claimLevel,
+  ]
+    .flatMap((value) => (Array.isArray(value) ? value : [value]))
+    .filter((value) => typeof value === "string")
+    .map((value) => value.trim().toLowerCase())
+    .filter(Boolean);
 }
 
 function isNonDurableSourcePath(filePath) {

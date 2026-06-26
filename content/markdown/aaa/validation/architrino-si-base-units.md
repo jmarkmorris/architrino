@@ -386,8 +386,23 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 
 7. **Explain fine-structure constant $\alpha$**
    - $\alpha = \frac{e^2}{4\pi \epsilon_0 \hbar c} \approx 1/137$
-   - In architrino terms: $\alpha = f(\epsilon, c_f, r_{\text{outer}}, \text{Noether sea})$
-   - Derive numerically; explain why $\alpha \ll 1$
+   - The low-energy benchmark is a declared observer-level anchor, not a primitive substrate constant:
+     $$
+     \alpha_{\mathrm{ref}}
+     =
+     \alpha(\mu_0;\theta_{\mathrm{sea}})
+     $$
+     where $\mu_0$ is the reference probe scale and $\theta_{\mathrm{sea}}$ denotes the fixed Noether sea record for the comparison window.
+   - Running with probe scale must be recovered as an effective electromagnetic response:
+     $$
+     \alpha(\mu;\theta_{\mathrm{sea}})
+     =
+     \alpha_{\mathrm{ref}}\,
+     \mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}},I_\mu)
+     $$
+     where $\mathcal K_{\mathrm{EM}}$ carries wake dressing, shielding exposure, and vacuum-polarization-like response, while $I_\mu$ records the charged thresholds visible at scale $\mu$.
+   - In architrino terms, the fixed part of the low-energy anchor must be derived from $\epsilon$, the geometry-derived action period $h_\vartheta$, the photon-channel speed $c_\gamma$, and the declared Noether sea record; the scale-dependent part belongs in $\mathcal K_{\mathrm{EM}}$ and $I_\mu$, not in hidden retuning of $c_f$, $h_\vartheta$, the observer charge convention, or the Noether sea state.
+   - Derive numerically; explain why $\alpha_{\mathrm{ref}}\ll 1$ and why $\alpha(\mu)$ runs with energy without changing the primitive wake speed or the action-period carrier.
 
 ---
 

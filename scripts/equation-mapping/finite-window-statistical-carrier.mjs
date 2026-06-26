@@ -1232,6 +1232,17 @@ function evaluateCarrierAcceptance(carrier) {
       reason: "accepted_without_evidence_source",
     };
   }
+  if (!carrierSourceSupportsRow(carrier)) {
+    return {
+      accepted: false,
+      required: true,
+      status,
+      sourcePath,
+      sourceReferenceExists: true,
+      sourceEvidenceReferenceExists: true,
+      reason: "carrier_source_contract_mismatch",
+    };
+  }
   return {
     accepted: true,
     required: true,
@@ -1241,6 +1252,37 @@ function evaluateCarrierAcceptance(carrier) {
     sourceEvidenceReferenceExists: true,
     reason: "accepted",
   };
+}
+
+function carrierSourceSupportsRow(carrier) {
+  const row = String(carrier?.row ?? "").toLowerCase();
+  const rowWithoutDash = row.replace("-", "");
+  const supportValues = [
+    carrier?.sourceFamily,
+    carrier?.sourceKind,
+    carrier?.sourceRole,
+    carrier?.sourceSupport,
+    carrier?.sourceSupports,
+    carrier?.evidenceFamily,
+    carrier?.evidenceRole,
+    carrier?.evidenceSupports,
+    carrier?.claimLevel,
+  ].flatMap((value) => (Array.isArray(value) ? value : [value]));
+  const normalized = supportValues
+    .filter((value) => typeof value === "string")
+    .map((value) => value.toLowerCase());
+  const rowSupported =
+    row.length > 0 &&
+    normalized.some(
+      (value) => value.includes(row) || value.includes(rowWithoutDash),
+    );
+  const carrierRoleSupported = normalized.some(
+    (value) =>
+      value.includes("retained finite-window carrier") ||
+      value.includes("retained statistical carrier") ||
+      value.includes("top finite-window carrier"),
+  );
+  return rowSupported && carrierRoleSupported;
 }
 
 function evaluateEq14Acceptance(carrier) {
@@ -1723,7 +1765,8 @@ function firstBlockerDetails(nextBlocker, context) {
   if (
     nextBlocker === "accepted_without_evidence_source" ||
     nextBlocker === "carrier_source_not_found" ||
-    nextBlocker === "carrier_identity_not_concrete"
+    nextBlocker === "carrier_identity_not_concrete" ||
+    nextBlocker === "carrier_source_contract_mismatch"
   ) {
     return {
       reason: nextBlocker,

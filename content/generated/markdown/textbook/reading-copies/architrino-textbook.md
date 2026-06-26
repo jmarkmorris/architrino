@@ -67630,8 +67630,23 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 
 7. **Explain fine-structure constant $\alpha$**
    - $\alpha = \frac{e^2}{4\pi \epsilon_0 \hbar c} \approx 1/137$
-   - In architrino terms: $\alpha = f(\epsilon, c_f, r_{\text{outer}}, \text{Noether sea})$
-   - Derive numerically; explain why $\alpha \ll 1$
+   - The low-energy benchmark is a declared observer-level anchor, not a primitive substrate constant:
+     $$
+     \alpha_{\mathrm{ref}}
+     =
+     \alpha(\mu_0;\theta_{\mathrm{sea}})
+     $$
+     where $\mu_0$ is the reference probe scale and $\theta_{\mathrm{sea}}$ denotes the fixed Noether sea record for the comparison window.
+   - Running with probe scale must be recovered as an effective electromagnetic response:
+     $$
+     \alpha(\mu;\theta_{\mathrm{sea}})
+     =
+     \alpha_{\mathrm{ref}}\,
+     \mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}},I_\mu)
+     $$
+     where $\mathcal K_{\mathrm{EM}}$ carries wake dressing, shielding exposure, and vacuum-polarization-like response, while $I_\mu$ records the charged thresholds visible at scale $\mu$.
+   - In architrino terms, the fixed part of the low-energy anchor must be derived from $\epsilon$, the geometry-derived action period $h_\vartheta$, the photon-channel speed $c_\gamma$, and the declared Noether sea record; the scale-dependent part belongs in $\mathcal K_{\mathrm{EM}}$ and $I_\mu$, not in hidden retuning of $c_f$, $h_\vartheta$, the observer charge convention, or the Noether sea state.
+   - Derive numerically; explain why $\alpha_{\mathrm{ref}}\ll 1$ and why $\alpha(\mu)$ runs with energy without changing the primitive wake speed or the action-period carrier.
 
 ---
 
@@ -85146,8 +85161,10 @@ The ordered-frame spinor target also carries the C/P/T burden inherited from sta
 
 - $C_{\mathrm{eff}}$ must map a fermion record to the corresponding charge-conjugate record by reversing the effective polarity bookkeeping and pro/anti orientation while preserving the appropriate spin-state comparison data.
 - $P_{\mathrm{eff}}$ must reverse the effective spatial orientation used by the observer chart, including helicity sign when a momentum or propagation axis is part of the record.
-- $T_{\mathrm{eff}}$ must reverse the effective motion and phase-flow record without turning the positive-energy comparison branch into an unphysical negative-energy sector.
+- $T_{\mathrm{eff}}$ must reverse the effective motion, cycle orientation, and phase-flow record without turning the positive-energy comparison branch into an unphysical negative-energy sector.
 - $(CPT)_{\mathrm{eff}}$ must return an admissible fermion-sector record in every validated regime, even though $C$, $P$, $T$, and their pairwise combinations may be violated by weak-sector and flavor-sector data.
+
+This is a branch-record operation, not a reversal of substrate absolute time. The comparison reverses the observer-level cadence, rotation, and phase-order data used to identify the effective fermion record; it does not change the master-equation support convention, introduce advanced causal wakes, or replay the actual path history backward.
 
 A useful proof scaffold is to define these maps on an effective fermion record
 $$
@@ -89602,6 +89619,8 @@ The purpose is narrower: keep historically important models available as discipl
 ###### Bridge Rule
 
 Use inherited spacetime models as comparison projections, not as identity claims.
+
+A useful comparison is a map from a declared substrate-and-medium record to an observer-level export, not a replacement for that record. Before an equation is reused, the calculation should identify which variables live in absolute-time and Euclidean-void bookkeeping, which variables are Noether sea state or assembly response, and which quantities are observer-level exports such as $g^{\text{eff}}_{\mu\nu}$, $\Phi_{\text{eff}}$, clock rates, ruler scales, or signal speeds. If that level assignment is missing, the model remains comparison language rather than a mechanism.
 
 The native stack is:
 
@@ -94460,7 +94479,7 @@ The strongest current claim is that agency can be made physically intelligible a
 
 **Literary note:** This is an AI-imagined, counterfactual chain of perspectives. It is not a historical quotation, real interview, endorsement, attribution, or evidence about any actual person's views. The essay writes from the completed-architecture standpoint that the current corpus is developing toward: it treats Architrino Assembly Architecture, hereafter the Architrino architecture, as having reached closure as architected, then asks how the history of physics would read from that retrospective vantage. That standpoint is a literary device for historical interpretation.
 
-##### Opening Frame
+###### Opening Frame
 
 The premise of this scene is retrospective. From the completed-architecture standpoint named above, the historical question is where the path toward the Architrino architecture passed near the accepted history of science, and why the field continued along another road.
 
