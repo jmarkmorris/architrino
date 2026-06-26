@@ -370,6 +370,8 @@ node scripts/equation-mapping/compton-recoil-event-replay.mjs \
 
 Current status is score-neutral: the checker reports `status: comparison_replay_closed_native_rows_missing`, `nextBlocker: missing_accepted_photon_gate_A_input_output`, `effectiveEmGateStatus: blocked_missing_native_event_rows`, `effectiveEmGateNextBlocker: missing_accepted_photon_gate_A_input_output`, and `effectiveEmGateNumericPass: true`. The comparison replay closes the homogeneous Compton/recoil residuals on the attempt event, but every native row and the medium/remnant support rows remain `attempt`, so no `EQ-12`, `EQ-13`, `EQ-26`, `EQ-28`, or `EQ-29` score change is justified. The gate does not make Maxwell's equations native; it prevents Maxwell-level summaries from bypassing the photon Gate A/B/C, recoil, Noether sea, medium/remnant, and event-ledger rows.
 
+[EQ-13 And EQ-28 e_gamma_e_0 Gate A Source-Field Map](eq-13-28-e-gamma-e0-gate-a-source-field-map.md) narrows this first blocker to one event-bound `photon_gate_A_input_output` source row on $\mathsf e_{\gamma e}^{0}$. It is priority-only and does not change scores.
+
 ### Failure Mode
 
 `equation_map.imported_formula` if $\Box A_\mu=J_\mu$ is copied in without a coarse-graining map. `equation_map.level_collapse` if $A_\mu$ is treated as a separate substrate field. `equation_map.no_sea_constitutive_record` if absorption, dispersion, and photon speed use unrelated Noether sea rows.

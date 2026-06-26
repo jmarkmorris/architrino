@@ -645,6 +645,8 @@ The first calculation is to pick a source-to-decoupling path, decompose $\tau_{\
 
 The finite-window thermodynamic route is now executable in [eq25-thermodynamic-record-residual.mjs](../../../scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs). Its attempt fixture [eq25-thermodynamic-record-attempt.v1.json](../../../scripts/equation-mapping/eq25-thermodynamic-record-attempt.v1.json) blocks first at `missing_accepted_theta_therm` while the state-space, deterministic-pushforward, collision-operator, entropy-balance, thermalization-depth, fluctuation, source-provenance, no-hidden-retune, and negative-control diagnostics pass. This makes the `EQ-25` route fail closed without raising scores: accepted source-backed state-space, coarse-graining, measure, pushforward, collision/projection, entropy-balance, thermalization-depth, fluctuation, event-ledger, shared Noether sea, source-provenance, and no-hidden-retune rows are still missing.
 
+[EQ-25 Theta-Therm CMB Source-Field Map](eq-25-theta-therm-cmb-source-field-map.md) records the CMB thermalization source-inventory route for the live `theta_therm_CMB_attempt_0001` carrier. It is priority-only and leaves the first blocker at `missing_accepted_theta_therm`.
+
 ### Failure Mode
 
 EQ-25 fails if entropy is used without a region, coarse-graining, measure, and boundary flux; if Boltzmann or Planck laws are imported as postulates; if unresolved variables are treated as ontic randomness; if measurement entropy is treated as collapse; if thermalization depth is not decomposed into event-recorded channels; or if CMB blackbody recovery uses different Noether sea variables from local radiation and BBN ledgers.

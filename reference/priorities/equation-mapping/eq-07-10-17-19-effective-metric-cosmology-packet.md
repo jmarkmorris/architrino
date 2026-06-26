@@ -389,6 +389,8 @@ The `EQ-17` source-path-receiver slice is now executable in [signed-frequency-tr
 
 The `EQ-18`/`EQ-19` effective-FRW handoff slice is also executable in [effective-frw-handoff-residual.mjs](../../../scripts/equation-mapping/effective-frw-handoff-residual.mjs). Its attempt fixture [effective-frw-handoff-attempt.v1.json](../../../scripts/equation-mapping/effective-frw-handoff-attempt.v1.json) blocks at `missing_accepted_theta_cos` while $H_{\mathrm{eff}}$, $R_H$, $R_\rho$, source-provenance, fixed-void, shared-key, and no-hidden-retune diagnostics pass on one coherent attempt carrier. That makes $\Pi_{\mathrm{FRW}}\theta_{\mathrm{cos}}$ executable as a handoff shape, but not predictive; the accepted retained $\theta_{\mathrm{cos}}$ row is still missing.
 
+[EQ-18 And EQ-19 Theta-Cos Source-Field Map](eq-18-19-theta-cos-source-field-map.md) records the smallest accepted-object contract for that first blocker. It is priority-only and leaves `EQ-18` and `EQ-19` at score `3`.
+
 The pressure/$\Lambda_{\mathrm{eff}}$ derivation remains separate. [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs) now checks whether those variables are produced by Noether sea pressure, tension, and relaxation rows; its attempt blocks first at `missing_accepted_theta_sea_rho_NS`.
 
 $$

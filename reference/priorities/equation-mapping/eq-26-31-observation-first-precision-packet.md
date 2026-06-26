@@ -750,6 +750,8 @@ It returns `comparison_replay_closed_native_rows_missing`, `scoreDecision=no_sco
 
 The compact replay summary now also reports `nextBlockerDetails`. For the native attempt, the first blocker detail is `id=photon_gate_A_input_output`, `status=attempt`, `rowId=photon-gate-A-input-output-attempt`, `sourcePath=reference/priorities/equation-mapping/eq-26-31-observation-first-precision-packet.md`, `sourceReferenceExists=true`, `eventId=e_gamma_e_0`, and `eventIdMatches=true`. This confirms that the carrier wiring is present but still not score evidence: the first row must be promoted from `attempt` to an accepted retained row by source-backed Gate A evidence, not by the comparison replay.
 
+[EQ-13 And EQ-28 e_gamma_e_0 Gate A Source-Field Map](eq-13-28-e-gamma-e0-gate-a-source-field-map.md) records the cross-row attack card for this first blocker and keeps the Compton/recoil event carrier distinct from the photon packet carrier and the `EQ-29` radiation source carrier.
+
 #### First Native Row Object Contract
 
 The first score-moving native row is `photon_gate_A_input_output`. The replay runner accepts that row only when the row object satisfies the current native-row boundary below. These checks are necessary for the runner to close; they do not by themselves prove the Gate A physics unless the referenced source file also contains the photon input/output evidence.

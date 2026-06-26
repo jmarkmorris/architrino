@@ -221,3 +221,72 @@ No score changes.
 Most score `2` rows now have at least one substantive pass and a concrete first accepted-object target. Score `3` work is underway, and no score `4` rows have been reached. No row has accepted retained evidence, so the no-score-change rule remains active.
 
 No score changes.
+
+## Checkpoint 3
+
+- Time: 2026-06-26 01:21 EDT.
+- Elapsed: about 54 minutes from required `git status --short --untracked-files=all`.
+- Agents completed since checkpoint 2:
+  - score `3` shared-observation shard: confirmed `EQ-21`, `EQ-22`, `EQ-23`, and `EQ-32` all first block at `missing_accepted_theta_obs`, with `EQ-32` also downstream of `missing_accepted_theta_sea_rho_NS` and `delta_a_star`.
+  - score `3` neutrino/atomic shard: confirmed `EQ-16A` first blocks at `missing_accepted_neutral_lepton_retained_branch`, while `EQ-26` needs a hydrogen spectral carrier and cannot be replaced by `theta_gamma_packet`.
+  - photon/event/radiation shard: split `theta_gamma_packet`, `e_gamma_e_0`, and `radiation_source_carrier` into separate first objects; `EQ-13`/`EQ-28` share `missing_accepted_photon_gate_A_input_output`, and `EQ-29` blocks at `missing_accepted_radiation_source_carrier`.
+  - finite-window/thermodynamic shard: confirmed `EQ-14` blocks at `missing_accepted_W`, while `EQ-25` blocks at `missing_accepted_theta_therm`.
+  - metric/cosmology shard: confirmed `EQ-10` blocks at `missing_accepted_theta_W`; `EQ-18`/`EQ-19` block at `missing_accepted_theta_cos`; `EQ-20` still blocks first at `missing_accepted_theta_sea_rho_NS` and inherits `missing_accepted_theta_cos`.
+  - score `2` action/gauge/spin shard: confirmed `theta_gamma_packet`, `ordered_frame_loop`, and `weak_visible_branch_ledger` remain distinct first-object candidates.
+  - source-window workers: produced source-inventory recommendations for `theta_cos`, `theta_W`, `theta_therm_CMB`, `ordered_frame_loop`, and `radiation_source_carrier`.
+- Active agents at checkpoint:
+  - `ordered_frame_loop` source-map recommendation completed and closed.
+  - active score `2` source scouts remain for `weak_visible_branch_ledger`, retained action-period, and `EQ-22A`/`EQ-26A` photon-support consumers.
+- Files edited since checkpoint 2:
+  - [eq-24-theta-sea-rho-ns-source-field-map.md](eq-24-theta-sea-rho-ns-source-field-map.md)
+  - [eq-13-28-e-gamma-e0-gate-a-source-field-map.md](eq-13-28-e-gamma-e0-gate-a-source-field-map.md)
+  - [eq-18-19-theta-cos-source-field-map.md](eq-18-19-theta-cos-source-field-map.md)
+  - [eq-25-theta-therm-cmb-source-field-map.md](eq-25-theta-therm-cmb-source-field-map.md)
+  - [eq-06-24-25-continuum-medium-thermo-packet.md](eq-06-24-25-continuum-medium-thermo-packet.md)
+  - [eq-07-10-17-19-effective-metric-cosmology-packet.md](eq-07-10-17-19-effective-metric-cosmology-packet.md)
+  - [eq-12-16a-photon-quantum-gauge-neutrino-packet.md](eq-12-16a-photon-quantum-gauge-neutrino-packet.md)
+  - [eq-26-31-observation-first-precision-packet.md](eq-26-31-observation-first-precision-packet.md)
+  - [equation-mapping.md](equation-mapping.md)
+  - this checkpoint file.
+- Current worktree note: `content/markdown/aaa/philosophy-history/perspectives.md`, [master-equation-closure.md](../master-equation-closure/master-equation-closure.md), [classical-source-history-electrodynamics.md](../source-mining/classical-source-history-electrodynamics.md), and [source-mining-history.md](../source-mining/source-mining-history.md) are modified outside this run's allowed edit scope and are being left untouched.
+- Validation:
+  - `node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-surface-slice-retained-attempt.v1.json --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_theta_sea_rho_NS`.
+  - same `EQ-24` command with `--require-populated`: exited nonzero as the intended fail-closed result.
+  - `node scripts/equation-mapping/compton-recoil-event-replay.mjs --input scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_photon_gate_A_input_output`.
+  - same Compton/recoil command with `--require-native-closed`: exited nonzero as the intended fail-closed result.
+  - `node scripts/equation-mapping/effective-frw-handoff-residual.mjs --input scripts/equation-mapping/effective-frw-handoff-attempt.v1.json --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_theta_cos`.
+  - same effective-FRW command with `--require-populated`: exited nonzero as the intended fail-closed result.
+  - `node scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_theta_therm`.
+  - same `EQ-25` command with `--require-populated`: exited nonzero as the intended fail-closed result.
+  - `git diff --check`: passed after the latest edit batch.
+  - `node scripts/validate-content.mjs --check --strict`: passed after the latest edit batch.
+  - `node scripts/build-scene-graph.mjs --check --strict`: passed after the latest edit batch.
+
+### Coordinator Targets Completed Since Checkpoint 2
+
+| Cycle | Target | Result | Score decision |
+| --- | --- | --- | --- |
+| 6 | Add an `EQ-24` `theta_sea_rho_NS` source-field map. | Added a priority-only source map for the retained density-compression window, fixture inventory, first blocker, fail-closed controls, and downstream consumer boundary for `EQ-20`/`EQ-32`/`EQ-11`. | No score changes. |
+| 7 | Add an `EQ-13`/`EQ-28` Gate A source-field map. | Added a priority-only map for `photon_gate_A_input_output` on `e_gamma_e_0`, keeping the Compton/recoil event carrier separate from `theta_gamma_packet` and `radiation_source_carrier`. | No score changes. |
+| 8 | Add an `EQ-18`/`EQ-19` `theta_cos` source-field map. | Added a priority-only map for one homogeneous `theta_cos` source window with fixed-void, source-provenance, shared-key, and no-retune obligations. | No score changes. |
+| 9 | Add an `EQ-25` `theta_therm_CMB` source-field map. | Added a priority-only CMB thermalization source inventory for `theta_therm_CMB_attempt_0001`, preserving the distinction from measurement-record entropy. | No score changes. |
+
+### Best Breakthrough Candidates At Checkpoint 3
+
+| Rank | Candidate | Why it matters | Current first blocker |
+| --- | --- | --- | --- |
+| 1 | Shared accepted finite-window `W` for `EQ-14`/`EQ-30`/`EQ-31` | Three rows share a concrete finite-window first blocker with strong toy diagnostics; it can also support later thermodynamic and measurement windows. | `missing_accepted_W` |
+| 2 | `theta_sea_rho_NS` retained-window source for `EQ-24` | Best Noether sea coefficient bridge into pressure, low-acceleration, and later weak-gravity projections; now mapped to the first source-backed `rho_NS` row. | `missing_accepted_theta_sea_rho_NS` |
+| 3 | `theta_gamma_packet` row map | Highest photon-support leverage for `EQ-12`, `EQ-12A`, `EQ-22A`, `EQ-26A`, and photon consumers, but distinct from action-period proof and Compton event Gate A. | `missing_accepted_theta_gamma_packet` |
+| 4 | `theta_therm_CMB` | Strong score `3` thermodynamic route aligned with the live CMB fixture and shared observation thermal/provenance clues. | `missing_accepted_theta_therm` |
+| 5 | `theta_cos` homogeneous window | Shared `EQ-18`/`EQ-19` carrier with clean fixed-void and source-provenance diagnostics, now ready for source-window population. | `missing_accepted_theta_cos` |
+| 6 | `photon_gate_A_input_output` on `e_gamma_e_0` | First native event row for `EQ-13`/`EQ-28`, and a useful anti-retune boundary for `EQ-26`; still not a photon-packet or radiation-source substitute. | `missing_accepted_photon_gate_A_input_output` |
+| 7 | `ordered_frame_loop` for `EQ-15`/`EQ-27` | Tightest spin/magnetic score `2` carrier; magnetic moment numerics cannot replace the non-gauge spin-lift object. | `missing_accepted_ordered_frame_loop` |
+| 8 | `radiation_source_carrier` for `EQ-29` | Strong source/channel split for synchrotron-style rows; consumes photon output but must not collapse into Compton exchange or `theta_gamma_packet`. | `missing_accepted_radiation_source_carrier` |
+| 9 | `weak_visible_branch_ledger` for `EQ-16` | Narrower than broad Standard Model closure and can expose downstream gauge-sector blockers. | `missing_accepted_weak_visible_branch_ledger` |
+
+### Remaining Queue After Checkpoint 3
+
+Rows through score `3` now mostly have first-pass or second-pass attack cards, but many still lack source-field maps. Immediate remaining low-score implementation targets are `ordered_frame_loop`, `weak_visible_branch_ledger`, retained action-period for `EQ-12A`, `EQ-22A` thermal photon mode-count/occupancy, `EQ-26A` alpha coupling/running, `radiation_source_carrier`, and the finite-window `W` accepted-object route. No score `4` rows have been reached.
+
+No score changes.

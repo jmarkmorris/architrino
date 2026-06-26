@@ -44,9 +44,13 @@ Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column p
 
 [Equation Closure Pass 2026-06-23 AE](equation-closure-pass-2026-06-23-ae.md) adds the score-neutral `EQ-14` Born-current projection, records the adjacent `EQ-25` thermodynamic wrapper, and hardens the `EQ-31` null-separatrix/refinement sweep. It leaves the score table unchanged because the statistical toy fixtures block first at `missing_accepted_W`, while the `EQ-25` wrapper blocks first at `missing_accepted_theta_therm`.
 
+[EQ-13 And EQ-28 e_gamma_e_0 Gate A Source-Field Map](eq-13-28-e-gamma-e0-gate-a-source-field-map.md) narrows the shared event blocker to one source-backed `photon_gate_A_input_output` row on $\mathsf e_{\gamma e}^{0}$ while keeping `theta_gamma_packet` and `radiation_source_carrier` separate. No score changes.
+
 [EQ-14/EQ-30/EQ-31 Finite-Window W Source-Field Map](eq-14-30-31-finite-window-w-source-field-map.md) narrows the shared finite-window first blocker for Born-current, elastic-scattering, and resonance rows. It defines the accepted `W` source fields, the parent carrier rows, row-specific projection obligations, and fail-closed controls while leaving every row candidate-level. No score changes.
 
 [Equation Closure Pass 2026-06-23 AF](equation-closure-pass-2026-06-23-af.md) adds the score-neutral `EQ-18`/`EQ-19` effective-FRW handoff checker. It leaves the score table unchanged because the attempt fixture blocks first at `missing_accepted_theta_cos`.
+
+[EQ-18 And EQ-19 Theta-Cos Source-Field Map](eq-18-19-theta-cos-source-field-map.md) narrows that first blocker to one source-backed homogeneous `theta_cos` window with fixed-void, source-provenance, shared-key, and no-retune rows. No score changes.
 
 [Equation Closure Pass 2026-06-23 AG](equation-closure-pass-2026-06-23-ag.md) adds the score-neutral `EQ-20` pressure/effective-$\Lambda$ checker. It leaves the score table unchanged because the attempt fixture blocks first at `missing_accepted_theta_sea_rho_NS` and inherits the FRW blocker `missing_accepted_theta_cos`.
 
@@ -61,6 +65,8 @@ Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column p
 [Equation Closure Pass 2026-06-23 AK](equation-closure-pass-2026-06-23-ak.md) adds the score-neutral `EQ-11` weak-gravity constitutive residual checker. It leaves the score table unchanged because the attempt fixture blocks first at `missing_accepted_theta_11_20`, even though its Poisson, curvature, effective-coupling continuity, PPN-handoff, source-provenance, hidden-retune, and negative-control diagnostics pass.
 
 [Equation Closure Pass 2026-06-23 AL](equation-closure-pass-2026-06-23-al.md) adds the score-neutral `EQ-25` finite-window thermodynamic record checker. It leaves the score table unchanged because the attempt fixture blocks first at `missing_accepted_theta_therm`, even though its state-space, deterministic-pushforward, collision-operator, entropy-balance, thermalization-depth, fluctuation, source-provenance, hidden-retune, and negative-control diagnostics pass.
+
+[EQ-25 Theta-Therm CMB Source-Field Map](eq-25-theta-therm-cmb-source-field-map.md) narrows the `EQ-25` first blocker to one source-backed `theta_therm` CMB thermalization carrier compatible with `Theta_obs` / `Theta_therm/prov`. No score changes.
 
 [Equation Closure Pass 2026-06-23 AM](equation-closure-pass-2026-06-23-am.md) adds the score-neutral `EQ-12` photon packet-transfer residual checker. It leaves the score table unchanged because the attempt fixture blocks first at `missing_accepted_theta_gamma_packet`, even though its energy-frequency, null/eikonal, helicity, event-balance, path-frequency, source-provenance, hidden-retune, and negative-control diagnostics pass.
 
