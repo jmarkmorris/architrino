@@ -166,6 +166,14 @@ node scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check
 
 The current run returns `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_agn_accretion_release_carrier`, and `residualArithmeticEvaluated: false`. Its embedded negative controls reject `agn.jet_power_only_fit` as `blocked_release_selector_split`, `agn.horizon_entropy_private_row` as `blocked_horizon_interface_split`, `agn.noether_sea_feedback_missing` as `blocked_noether_sea_loading_missing`, and `agn.radiation_child_promoted_to_parent` as `blocked_carrier_split` before release residual arithmetic is evaluated.
 
+The probe-source source-evidence guard is [eq07b-agn-accretion-release-carrier-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-probe-source-negative-control.v1.json):
+
+```bash
+node scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs --input scripts/equation-mapping/eq07b-agn-accretion-release-carrier-probe-source-negative-control.v1.json --summary --pretty
+```
+
+This control marks the carrier and required rows accepted-looking while pointing their `sourcePath` values at a source-evidence-probe JSON. The checker now returns `status: blocked_accepted_without_evidence_source`, `nextBlocker: accepted_without_evidence_source`, and `residualArithmeticEvaluated: false`; the `--require-populated` form exits nonzero. Authored AAA prose, toy files, probe files, source-evidence-probe files, generated files, temporary files, priority packets, attempts, mocks, and negative controls cannot satisfy accepted AGN source evidence.
+
 ## Candidate Breakthrough Angle
 
 The narrow bypass is the AGN jet selector already staged in the black-hole chapter. Instead of starting from all black-hole thermodynamics, begin with one release-channel packet:
@@ -207,7 +215,7 @@ This object can test whether launch speed, collimation, radiation, baryon loadin
 - Exact first blocker: `missing_accepted_agn_accretion_release_carrier`.
 - Existing scripts/fixtures/packets found: [eq07b-agn-accretion-release-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-source-attempt.v1.json) is the score-neutral identity shell, and [eq07b-agn-accretion-release-carrier-identity-check.mjs](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs) enforces AGN source/release identity before residual arithmetic; related consumers include effective-metric, pressure/effective-$\Lambda$, radiation source-ledger, and finite-window thermodynamic runners.
 - Candidate breakthrough angle: start with the existing AGN release-channel selector and force launch, collimation, radiation, and feedback onto one state before horizon thermodynamics.
-- Fail-closed negative control: jet/lobe/radiation fits that split inflow, Noether sea loading, angular-momentum drain, and feedback records.
+- Fail-closed negative control: jet/lobe/radiation fits that split inflow, Noether sea loading, angular-momentum drain, and feedback records; accepted-looking rows sourced only to a probe/source-evidence-probe file fail at `accepted_without_evidence_source`.
 - Next action smaller than broad report: build a retained-evidence search target for one `agn_accretion_release_carrier`, not a broader horizon-thermodynamics or jet-power report.
 
 ## Promotion Classification

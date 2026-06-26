@@ -2231,15 +2231,15 @@
       "nodeType": "scene"
     },
     {
-      "id": "philosophy_history__perspectives",
-      "name": "Perspectives",
-      "path": "content/scenes/philosophy_history/perspectives.json",
+      "id": "philosophy_history__treasure_physics_overlooked",
+      "name": "The Treasure Physics Overlooked",
+      "path": "content/scenes/philosophy_history/treasure_physics_overlooked.json",
       "nodeType": "scene"
     },
     {
-      "id": "philosophy_history__perspectives_overview",
-      "name": "Perspectives",
-      "path": "content/scenes/philosophy_history/perspectives/overview.json",
+      "id": "philosophy_history__treasure_physics_overlooked_overview",
+      "name": "The Treasure Physics Overlooked",
+      "path": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
       "nodeType": "scene"
     },
     {
@@ -2687,12 +2687,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/perspectives.md",
-      "name": "Perspectives: A Chain Of Witnesses",
-      "path": "content/markdown/aaa/philosophy-history/perspectives.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/philosophy-history/philosophy-history.md",
       "name": "Philosophy and History",
       "path": "content/markdown/aaa/philosophy-history/philosophy-history.md",
@@ -2816,6 +2810,12 @@
       "id": "content/markdown/aaa/philosophy-history/theory-mapping.md",
       "name": "Theory Mapping: Major Physics Theories (Core Idea, Intuition, Math)",
       "path": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
+      "name": "The Treasure Physics Overlooked",
+      "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5287,24 +5287,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/perspectives.json",
-      "nodeType": "scene",
-      "id": "philosophy_history__perspectives",
-      "name": "Perspectives",
-      "path": "content/scenes/philosophy_history/perspectives.json",
-      "searchTarget": "content/scenes/philosophy_history/perspectives.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/perspectives/overview.json",
-      "nodeType": "scene",
-      "id": "philosophy_history__perspectives_overview",
-      "name": "Perspectives",
-      "path": "content/scenes/philosophy_history/perspectives/overview.json",
-      "searchTarget": "content/scenes/philosophy_history/perspectives/overview.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "nodeType": "scene",
       "id": "philosophy_history",
@@ -5500,6 +5482,24 @@
       "name": "Theory Mapping",
       "path": "content/scenes/philosophy_history/theory_mapping.json",
       "searchTarget": "content/scenes/philosophy_history/theory_mapping.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/treasure_physics_overlooked.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__treasure_physics_overlooked",
+      "name": "The Treasure Physics Overlooked",
+      "path": "content/scenes/philosophy_history/treasure_physics_overlooked.json",
+      "searchTarget": "content/scenes/philosophy_history/treasure_physics_overlooked.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__treasure_physics_overlooked_overview",
+      "name": "The Treasure Physics Overlooked",
+      "path": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
+      "searchTarget": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
       "implicit": false
     },
     {
@@ -7060,15 +7060,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/perspectives.md",
-      "name": "Perspectives: A Chain Of Witnesses",
-      "path": "content/markdown/aaa/philosophy-history/perspectives.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/perspectives.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-history.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/philosophy-history.md",
@@ -7255,6 +7246,15 @@
       "name": "Theory Mapping: Major Physics Theories (Core Idea, Intuition, Math)",
       "path": "content/markdown/aaa/philosophy-history/theory-mapping.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
+      "name": "The Treasure Physics Overlooked",
+      "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
       "implicit": false
     },
     {
@@ -11413,13 +11413,6 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/perspectives.json",
-      "to": "scene:content/scenes/philosophy_history/perspectives/overview.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/perspectives.json",
-      "field": "scene.children[0]"
-    },
-    {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
@@ -11477,13 +11470,6 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/perspectives.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[12]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
@@ -11502,6 +11488,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/treasure_physics_overlooked.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11607,6 +11600,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "field": "scene.children[12]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/treasure_physics_overlooked.json",
+      "to": "scene:content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/treasure_physics_overlooked.json",
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/proof-programs/proof_programs.json",
@@ -12911,13 +12911,6 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/perspectives/overview.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/perspectives.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/perspectives/overview.json",
-      "field": "scene.source.path"
-    },
-    {
       "from": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "edgeType": "markdown_doc",
@@ -13055,6 +13048,13 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/theory_mapping.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
       "field": "scene.source.path"
     },
     {

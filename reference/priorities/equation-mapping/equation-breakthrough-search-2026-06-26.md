@@ -98,6 +98,27 @@ No row has completed two substantive passes yet. All rows through score `3` rema
 
 No score changes.
 
+## Restart Checkpoint 27: EQ-11A Gravitational-Wave Probe-Source Guard
+
+- Time: 2026-06-26 16:48 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored work remain meaningful.
+- Coordinator target completed since Restart Checkpoint 26:
+  - Hardened the `EQ-11A` gravitational-wave source filter so toy, probe, and source-evidence-probe filenames cannot satisfy accepted retained evidence for $\Theta_{\mathrm{GWsrc}}(W,P)$.
+  - Added [eq11a-gravitational-wave-source-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-probe-source-negative-control.v1.json), an accepted-looking parent-carrier control pointing at a source-evidence-probe JSON.
+- Files edited since Restart Checkpoint 26:
+  - [eq-11a-gw150914-source-field-map.md](eq-11a-gw150914-source-field-map.md)
+  - [equation.md](equation.md)
+  - [eq11a-gravitational-wave-source-residual.mjs](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs)
+  - [eq11a-gravitational-wave-source-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-probe-source-negative-control.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-evidence-probe.v1.json --summary`: passed as score-neutral, advancing only to `missing_accepted_theta_sea`.
+  - `node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-coordination-source-negative-control.v1.json --summary`: passed as fail-closed, with `carrierReason=accepted_without_evidence_source`.
+  - `node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-probe-source-negative-control.v1.json --summary`: passed as fail-closed, with `carrierReason=accepted_without_evidence_source` and `sourceIdentityPass=true`.
+  - Same probe-source control with `--require-populated`: exited nonzero as intended.
+
+No score changes.
+
 ## Restart Checkpoint 18: EQ-30, EQ-16, And Finite-Window Source Guards
 
 - Time: 2026-06-26 16:03 EDT.
@@ -128,6 +149,87 @@ No score changes.
   - `EQ-30` elastic finite-window ladder: next object `mu_star_T`.
   - `EQ-16` weak-visible route: first durable non-priority `weak_visible_branch_ledger`, after which the checker can expose `missing_accepted_weak_projection`.
 - Remaining queue: meaningful work remains. Safe next targets are stale-note repair for unscored `EQ-07B`/`EQ-23A`, `EQ-31` `K_det`, `EQ-30` `mu_star_T`, or another source-evidence guard found by the next worker wave.
+
+No score changes.
+
+## Restart Checkpoint 22: EQ-22B Recombination/Acoustic Source-Evidence Guard
+
+- Time: 2026-06-26 16:29 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored priority-only work remain meaningful.
+- Agents completed since Restart Checkpoint 21:
+  - No new agents; this cycle implemented `Arendt`'s completed `EQ-22B` guard recommendation.
+- Coordinator targets completed since Restart Checkpoint 21:
+  - Hardened [eq22b-recombination-acoustic-residual.mjs](../../../scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs) so priority packets, authored AAA prose, generated files, attempts, toys, probes, mocks, negative controls, and self-referential sources cannot satisfy accepted recombination/acoustic evidence rows.
+  - Reused [eq22b-recombination-acoustic-generic-source-negative-control.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-generic-source-negative-control.v1.json) as the accepted-looking fail-closed control for generic, priority, authored-prose, and self-referential source paths.
+  - Updated [EQ-22B Recombination And Acoustic Transfer](eq-22b-recombination-acoustic-transfer.md) and [equation.md](equation.md) with the new source-evidence blocker.
+- Validation:
+  - `eq22b-recombination-acoustic-source-attempt.v1.json`: passed as score-neutral with `status=blocked_missing_accepted_recombination_acoustic_carrier` and `nextBlocker=missing_accepted_recombination_acoustic_carrier`; `--require-populated` exited nonzero as intended.
+  - `eq22b-recombination-acoustic-generic-source-negative-control.v1.json`: passed as fail-closed with `status=blocked_source_evidence`, `nextBlocker=accepted_without_evidence_source`, and `sourceEvidenceFailureCount=17`; `--require-populated` exited nonzero as intended.
+  - Full validation passed after this checkpoint edit: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+- Best breakthrough candidates retained:
+  - `theta_sea_rho_NS` retained-window source object remains the highest cross-row mathematical target, but still needs real source content rather than a path-only shell.
+  - `EQ-31` finite-window ladder: next object `S_retune`, then corridor acceptance.
+  - `EQ-07A` compact-region carrier: source-path hardening is now more attractive than a self-sourced positive probe.
+  - `EQ-22B` durable recombination/acoustic source object: now has a sharper guard contract before any future accepted-looking source row.
+- Remaining queue: meaningful work remains. Safe next targets are `EQ-07A` source-filter hardening/contract capture, `EQ-31` `S_retune` if a source/control decision is made, or another low-score positive probe with durable evidence source.
+
+No score changes.
+
+## Restart Checkpoint 21: EQ-31 Outcome-Partition Probe And Next Guard Selection
+
+- Time: 2026-06-26 16:25 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored priority-only work remain meaningful.
+- Agents completed since Restart Checkpoint 20:
+  - `Goodall`: ranked `EQ-31` `B` before `EQ-30` `Q` because the charged-pion route already has concrete outcome classes and a guard-passing source.
+  - `Arendt`: ranked `EQ-22B` as the next remaining score-2 source-guard target outside active lanes.
+  - `McClintock`: narrowed `theta_sea_rho_NS` to a durable retained-window source-object contract and warned against accepting a bare JSON shell as evidence.
+  - `Rawls`: confirmed an `EQ-07A` compact-region source-evidence probe can mechanically expose the next blocker, but no semantically safe non-priority source currently exists.
+- Coordinator target completed since Restart Checkpoint 20:
+  - Added [finite-window-statistical-carrier-eq31-pion-b-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-b-source-evidence-probe.v1.json). The `EQ-31` ladder now advances through `B` and stops at `missing_accepted_S_retune`.
+  - Updated [EQ-14/EQ-30/EQ-31 Finite-Window W Source-Field Map](eq-14-30-31-finite-window-w-source-field-map.md) and [equation.md](equation.md) with the new exact blocker.
+- Validation:
+  - `EQ-31` `B` source-evidence probe: passed as score-neutral with `status=blocked_carrier_not_retained`, `nextBlocker=missing_accepted_S_retune`, and `missingAcceptedRows=["S_retune","C"]`.
+  - Same `EQ-31` `B` probe with `--require-accepted`: exited nonzero as intended.
+  - Full validation passed after this checkpoint edit: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+- Best breakthrough candidates retained:
+  - `theta_sea_rho_NS` retained-window source object remains the highest cross-row mathematical target, but should stay source-search until retained inventory, smoothing kernel, event ledger, refinement family, and zero-retune evidence are real.
+  - `EQ-31` finite-window ladder: next object `S_retune`, then corridor acceptance.
+  - `EQ-22B` recombination/acoustic checker: next implementation target is a durable-source guard and fail-closed priority/source negative control.
+  - `EQ-07A` compact-region carrier: do not let self-sourced source-evidence probes become evidence; prefer a durable compact-region source object or source-filter hardening.
+- Remaining queue: meaningful work remains. Safe next targets are `EQ-22B` source-guard hardening, `EQ-07A` source-filter hardening/contract capture, or `EQ-31` `S_retune` after a negative-control decision.
+
+No score changes.
+
+## Restart Checkpoint 20: EQ-15/EQ-27 Spin-Magnetic Source-Evidence Guard
+
+- Time: 2026-06-26 16:20 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored priority-only work remain meaningful.
+- Agents completed since Restart Checkpoint 19:
+  - `Hooke`: confirmed `EQ-07A` lacks a compact-region carrier source-evidence probe and ranked that one-carrier probe as the next smallest checker-consumable object for `EQ-07A`.
+  - `Raman`: confirmed `EQ-22A` should not add a child blackbody source-evidence probe until a durable non-priority `thermal_mode_counting_row` source exists.
+  - `James`: confirmed `theta_sea_rho_NS` is still the best cross-row `EQ-24`/`EQ-32` breakthrough candidate, but already has source guards and needs a durable retained-window evidence object.
+  - `Kuhn`: independently confirmed the `EQ-15`/`EQ-27` spin-magnetic checker accepted priority/source-map paths as evidence before this patch.
+- Agents active after this checkpoint:
+  - `Rawls`: `EQ-07A` compact-region carrier source-evidence implementation contract.
+  - `Goodall`: finite-window next object comparison, `EQ-31` `B` versus `EQ-30` `Q`.
+  - `McClintock`: durable `theta_sea_rho_NS` retained-window evidence-source contract.
+  - `Arendt`: remaining score-2 checker/source-guard target outside the active lanes.
+- Coordinator targets completed since Restart Checkpoint 19:
+  - Hardened [spin-magnetic-moment-certificate.mjs](../../../scripts/equation-mapping/spin-magnetic-moment-certificate.mjs) so accepted-looking `EQ-15`/`EQ-27` rows sourced only to priority packets, authored AAA prose, generated files, temporary files, attempts, toys, probes, mocks, or negative controls fail as `accepted_without_evidence_source`.
+  - Added [eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json), proving all seven accepted-looking spin-to-magnetic rows sourced only to the source-field map stay blocked with `sourceEvidenceFailureCount=7`.
+  - Updated [EQ-15 And EQ-27 Ordered-Frame Loop Source-Field Map](eq-15-27-ordered-frame-loop-source-field-map.md) and [equation.md](equation.md) with the new exact guard behavior.
+- Validation:
+  - `spin-magnetic-moment-certificate-attempt.v1.json`: passed as score-neutral with `status=blocked_missing_rows` and `nextBlocker=missing_accepted_ordered_frame_loop`.
+  - `eq15-27-ordered-frame-loop-source-attempt.v1.json`: passed as score-neutral with `status=blocked_missing_rows` and `nextBlocker=missing_accepted_ordered_frame_loop`.
+  - `eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json`: passed as fail-closed with `status=blocked_source_evidence`, `nextBlocker=accepted_without_evidence_source`, and `sourceEvidenceFailureCount=7`; `--require-populated` exited nonzero as intended.
+  - `spin-magnetic-moment-assigned-spin-g2-negative-control.v1.json`: now correctly stops earlier at `accepted_without_evidence_source` because its accepted-looking rows point only to the priority source-field map. A durable-source version is needed before `eq27.assigned_spin_label` should become the first failure again.
+  - Full validation passed after this checkpoint edit: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+- Best breakthrough candidates retained:
+  - `theta_sea_rho_NS` retained-window evidence object: highest cross-row payoff for `EQ-24` and `EQ-32`, but not safe to fake with another priority fixture.
+  - `EQ-31` finite-window ladder: next object `B`.
+  - `EQ-30` finite-window ladder: next object `Q`.
+  - `EQ-07A` compact-region carrier: one-carrier source-evidence probe can expose the next child-row blocker.
+- Remaining queue: meaningful work remains. Safe next targets are determined by the active worker wave: `EQ-07A` source-evidence probe, finite-window next row, `theta_sea_rho_NS` source contract, or another score-2 guard/probe.
 
 No score changes.
 
@@ -858,7 +960,7 @@ No score changes.
   - [eq22b-recombination-acoustic-residual.mjs](../../../scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs)
   - [eq22b-recombination-acoustic-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-attempt.v1.json)
   - this checkpoint file.
-- Current worktree note: `content/markdown/aaa/philosophy-history/perspectives.md` is modified outside this run's allowed edit scope and is being left untouched.
+- Current worktree note: `content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md` is modified outside this run's allowed edit scope and is being left untouched.
 - Validation:
   - `git diff --check`: passed after the EQ22B and EQ11A batches.
   - `node scripts/equation-mapping/photon-packet-transfer-residual.mjs --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_theta_gamma_packet`.
@@ -921,7 +1023,7 @@ No score changes.
   - [eq-26-31-observation-first-precision-packet.md](eq-26-31-observation-first-precision-packet.md)
   - [equation-mapping.md](equation-mapping.md)
   - this checkpoint file.
-- Current worktree note: `content/markdown/aaa/philosophy-history/perspectives.md`, [master-equation-closure.md](../master-equation-closure/master-equation-closure.md), [classical-source-history-electrodynamics.md](../source-mining/classical-source-history-electrodynamics.md), and [source-mining-history.md](../source-mining/source-mining-history.md) are modified outside this run's allowed edit scope and are being left untouched.
+- Current worktree note: `content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md`, [master-equation-closure.md](../master-equation-closure/master-equation-closure.md), [classical-source-history-electrodynamics.md](../source-mining/classical-source-history-electrodynamics.md), and [source-mining-history.md](../source-mining/source-mining-history.md) are modified outside this run's allowed edit scope and are being left untouched.
 - Validation:
   - `node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-surface-slice-retained-attempt.v1.json --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_theta_sea_rho_NS`.
   - same `EQ-24` command with `--require-populated`: exited nonzero as the intended fail-closed result.
@@ -984,7 +1086,7 @@ No score changes.
   - [eq-07-10-17-19-effective-metric-cosmology-packet.md](eq-07-10-17-19-effective-metric-cosmology-packet.md)
   - [equation-mapping.md](equation-mapping.md)
   - this checkpoint file.
-- Current worktree note: `content/markdown/aaa/philosophy-history/perspectives.md` is modified outside this run's allowed edit scope and is being left untouched.
+- Current worktree note: `content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md` is modified outside this run's allowed edit scope and is being left untouched.
 - Validation:
   - `node scripts/equation-mapping/spin-magnetic-moment-certificate.mjs --input scripts/equation-mapping/spin-magnetic-moment-certificate-attempt.v1.json --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_ordered_frame_loop`.
   - `node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_weak_visible_branch_ledger`.
@@ -1415,7 +1517,7 @@ No score changes.
 
 - Time: 2026-06-26 14:54 EDT.
 - Runtime status: active two-hour continuation after the operator correction; no early exhaustion claim.
-- Worktree status note: unrelated dirty files are present outside this equation-mapping batch (`content/generated/markdown/textbook/reading-copies/architrino-textbook.md`, `content/generated/markdown/textbook/reading-copies/philosophy-history.md`, `content/markdown/aaa/philosophy-history/perspectives.md`, and `reference/priorities/source-mining/source-mining-history.md`). This checkpoint does not touch or revert them.
+- Worktree status note: unrelated dirty files are present outside this equation-mapping batch (`content/generated/markdown/textbook/reading-copies/architrino-textbook.md`, `content/generated/markdown/textbook/reading-copies/philosophy-history.md`, `content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md`, and `reference/priorities/source-mining/source-mining-history.md`). This checkpoint does not touch or revert them.
 - Agents completed since Restart Checkpoint 3 and before this continuation:
   - `EQ-31` finite-window follow-up: confirmed the `mu_star_T` source-evidence probe advances only to `missing_accepted_Q`; recommended a `mu_star_T` coordination-source control.
   - Gate A `EQ-13`/`EQ-28` follow-up: confirmed a one-row Gate A source-evidence probe can advance only to `missing_accepted_photon_gate_B_transverse_handoff`, but a durable allowed evidence file is still needed before that probe is safe.
@@ -1509,5 +1611,159 @@ The unscored queue is not exhausted. `EQ-07B` has a focused priority packet, ide
 1. Build the `EQ-16` weak-visible ledger-only source-attempt fixture and verify the checker advances one blocker without score movement.
 2. Build the `EQ-15`/`EQ-27` ordered-frame-loop source-attempt fixture and verify it remains blocked at `missing_accepted_ordered_frame_loop`.
 3. Keep `EQ-07B` and `EQ-23A` as unscored focused packets for this run; do not integrate either into the main score table until accepted carrier evidence lands.
+
+No score changes.
+
+## Restart Checkpoint 23: EQ-07A Source Filter Guard
+
+- Time: 2026-06-26 16:36 EDT.
+- Runtime status: active two-hour continuation; meaningful low-score and unscored work remains.
+- Coordinator target completed since Restart Checkpoint 22:
+  - Hardened the `EQ-07A` compact-region carrier source filter so probe, source-evidence-probe, and toy filenames cannot satisfy the accepted retained-evidence source requirement.
+- Files edited since Restart Checkpoint 22:
+  - [eq-07a-compact-star-support-collapse-scale-residual.md](eq-07a-compact-star-support-collapse-scale-residual.md)
+  - [equation.md](equation.md)
+  - [eq07a-compact-region-carrier-residual.mjs](../../../scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input scripts/equation-mapping/eq07a-compact-region-carrier-attempt.v1.json --summary`: passed as score-neutral, with `nextBlocker=missing_accepted_compact_region_carrier` and `carrierReason=row_not_accepted`.
+  - `node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input scripts/equation-mapping/eq07a-compact-region-carrier-coordination-source-negative-control.v1.json --summary`: passed as fail-closed, with `carrierReason=accepted_without_evidence_source`.
+  - A transient accepted-looking mutation pointing the compact-region carrier source to a `source-evidence-probe` JSON also remained fail-closed with `carrierReason=accepted_without_evidence_source`.
+  - Full validation passed after the guard and documentation batch: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+
+No score changes.
+
+## Restart Checkpoint 24: Planck/Blackbody/Alpha Probe-Source Guard
+
+- Time: 2026-06-26 16:37 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored work remain meaningful.
+- Coordinator target completed since Restart Checkpoint 23:
+  - Hardened the shared Planck/alpha source filter so authored AAA prose, toy files, probe files, and source-evidence-probe files cannot satisfy accepted retained evidence for `theta_gamma_packet`.
+  - Added a probe-source negative control that points an accepted-looking `theta_gamma_packet` at a finite-window source-evidence-probe JSON and verifies it remains `source_not_durable`.
+- Files edited since Restart Checkpoint 23:
+  - [eq-12-theta-gamma-packet-source-shell.md](eq-12-theta-gamma-packet-source-shell.md)
+  - [eq-22a-theta-bb-source-field-map.md](eq-22a-theta-bb-source-field-map.md)
+  - [eq-26a-theta-alpha-source-field-map.md](eq-26a-theta-alpha-source-field-map.md)
+  - [equation.md](equation.md)
+  - [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs)
+  - [planck-alpha-braid-theta-gamma-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-gamma-probe-source-negative-control.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/planck-alpha-braid-residual.mjs --input scripts/equation-mapping/planck-alpha-braid-theta-bb-source-attempt.v1.json --summary`: passed as score-neutral, with `nextBlocker=missing_accepted_theta_gamma_packet`.
+  - `node scripts/equation-mapping/planck-alpha-braid-residual.mjs --input scripts/equation-mapping/planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json --summary`: passed as fail-closed, with `theta_gamma_packet.reason=source_not_durable`.
+  - `node scripts/equation-mapping/planck-alpha-braid-residual.mjs --input scripts/equation-mapping/planck-alpha-braid-theta-gamma-probe-source-negative-control.v1.json --summary`: passed as fail-closed, with `theta_gamma_packet.reason=source_not_durable`.
+  - Same probe-source control with `--require-populated`: exited nonzero as intended.
+
+No score changes.
+
+## Restart Checkpoint 25: Finite-Window EQ-31 And EQ-30 Parent-Row Probes
+
+- Time: 2026-06-26 16:40 EDT.
+- Runtime status: active two-hour continuation; meaningful low-score and unscored work remains.
+- Agents completed since Restart Checkpoint 24:
+  - `Turing`: confirmed `EQ-31` should add an `S_retune` source-evidence probe after the `B` probe, expected to advance only to `missing_accepted_C`.
+  - `Meitner`: confirmed `EQ-30` should add a `Q` source-evidence probe after the `mu_star_T` probe, expected to advance only to `missing_accepted_K_det`.
+  - `Godel`: confirmed unscored `EQ-07B` remains priority-only with first blocker `missing_accepted_agn_accretion_release_carrier`.
+  - `Maxwell`: confirmed unscored `EQ-23A` remains priority-only with first blocker `missing_accepted_explosive_source_window_carrier`.
+- Coordinator targets completed since Restart Checkpoint 24:
+  - Added [finite-window-statistical-carrier-eq31-pion-s-retune-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-s-retune-source-evidence-probe.v1.json), advancing the `EQ-31` parent-carrier ladder through `S_retune` and stopping at `missing_accepted_C`.
+  - Added [finite-window-statistical-carrier-eq30-elastic-q-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-q-source-evidence-probe.v1.json), advancing the `EQ-30` parent-carrier ladder through `Q` and stopping at `missing_accepted_K_det`.
+- Files edited since Restart Checkpoint 24:
+  - [eq-14-30-31-finite-window-w-source-field-map.md](eq-14-30-31-finite-window-w-source-field-map.md)
+  - [equation.md](equation.md)
+  - [finite-window-statistical-carrier-eq31-pion-s-retune-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-s-retune-source-evidence-probe.v1.json)
+  - [finite-window-statistical-carrier-eq30-elastic-q-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-q-source-evidence-probe.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-s-retune-source-evidence-probe.v1.json --summary`: passed as score-neutral, with `nextBlocker=missing_accepted_C`.
+  - Same `EQ-31` `S_retune` probe with `--require-accepted`: exited nonzero as intended.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-q-source-evidence-probe.v1.json --summary`: passed as score-neutral, with `nextBlocker=missing_accepted_K_det`.
+  - Same `EQ-30` `Q` probe with `--require-accepted`: exited nonzero as intended.
+
+No score changes.
+
+## Restart Checkpoint 26: EQ-28A Path-Frequency Probe-Source Guard
+
+- Time: 2026-06-26 16:45 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored work remain meaningful.
+- Coordinator target completed since Restart Checkpoint 25:
+  - Hardened the `EQ-28A` path-frequency exchange source filter so toy, probe, and source-evidence-probe filenames cannot satisfy accepted retained evidence for `Theta_nu-ex`.
+  - Added [eq28a-path-frequency-exchange-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-probe-source-negative-control.v1.json), an accepted-looking parent-carrier control pointing at a source-evidence-probe JSON.
+- Files edited since Restart Checkpoint 25:
+  - [eq-28a-theta-nu-ex-source-field-map.md](eq-28a-theta-nu-ex-source-field-map.md)
+  - [equation.md](equation.md)
+  - [eq28a-path-frequency-exchange-residual.mjs](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs)
+  - [eq28a-path-frequency-exchange-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-probe-source-negative-control.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs --input scripts/equation-mapping/eq28a-path-frequency-exchange-source-attempt.v1.json --summary`: passed as score-neutral, with `nextBlocker=missing_accepted_path_frequency_exchange_carrier`.
+  - `node scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs --input scripts/equation-mapping/eq28a-path-frequency-exchange-coordination-source-negative-control.v1.json --summary`: passed as fail-closed, with `carrierReason=accepted_without_evidence_source`.
+  - `node scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs --input scripts/equation-mapping/eq28a-path-frequency-exchange-probe-source-negative-control.v1.json --summary`: passed as fail-closed, with `carrierReason=accepted_without_evidence_source`.
+  - Same probe-source control with `--require-populated`: exited nonzero as intended.
+
+No score changes.
+
+## Restart Checkpoint 28: Finite-Window EQ-31 C And EQ-30 K_det Probes
+
+- Time: 2026-06-26 16:56 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored work remain meaningful.
+- Agents completed since Restart Checkpoint 27:
+  - `Gauss`: confirmed `EQ-31` should add a corridor-family `C` source-evidence probe after `S_retune`, expected to leave the top carrier blocked as `attempt`.
+  - `Hegel`: confirmed `EQ-30` should add a `K_det` source-evidence probe after `Q`, expected to advance only to `missing_accepted_B`.
+  - `Sartre`: confirmed unscored `EQ-07B` still has no durable non-priority source path for an accepted-looking `agn_accretion_release_carrier`.
+  - `Bohr`: confirmed unscored `EQ-23A` still has no durable non-priority source path for an accepted-looking `explosive_source_window_carrier`.
+- Coordinator targets completed since Restart Checkpoint 27:
+  - Added [finite-window-statistical-carrier-eq31-pion-c-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-source-evidence-probe.v1.json), advancing the `EQ-31` parent-carrier ladder through `C` while preserving `status: blocked_carrier_not_retained`.
+  - Added [finite-window-statistical-carrier-eq30-elastic-k-det-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-k-det-source-evidence-probe.v1.json), advancing the `EQ-30` parent-carrier ladder through `K_det` and stopping at `missing_accepted_B`.
+- Files edited since Restart Checkpoint 27:
+  - [eq-14-30-31-finite-window-w-source-field-map.md](eq-14-30-31-finite-window-w-source-field-map.md)
+  - [equation.md](equation.md)
+  - [finite-window-statistical-carrier-eq31-pion-c-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-source-evidence-probe.v1.json)
+  - [finite-window-statistical-carrier-eq30-elastic-k-det-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-k-det-source-evidence-probe.v1.json)
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-source-evidence-probe.v1.json --summary`: passed as score-neutral, with `status=blocked_carrier_not_retained`, `acceptedCarrierRows=true`, and no remaining parent-row `nextBlocker`.
+  - Same `EQ-31` `C` probe with `--require-accepted`: exited nonzero as intended.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-k-det-source-evidence-probe.v1.json --summary`: passed as score-neutral, with `nextBlocker=missing_accepted_B`.
+  - Same `EQ-30` `K_det` probe with `--require-accepted`: exited nonzero as intended.
+  - `git diff --check`: passed.
+  - Repo-wide content validation is currently blocked by unrelated philosophy-history rename/index drift outside this equation-mapping run: `content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md` and its scene JSON are moving while generated/index references refresh.
+  - `node scripts/build-scene-graph.mjs --check --strict`: currently blocked by the same unrelated philosophy-history scene drift.
+
+No score changes.
+
+## Restart Checkpoint 29: EQ-30 B Probe And Unscored Source Guards
+
+- Time: 2026-06-26 17:04 EDT.
+- Runtime status: active two-hour continuation; score `2`, score `3`, and unscored work remain meaningful.
+- Agents completed since Restart Checkpoint 28:
+  - `Zeno`: confirmed the next `EQ-30` finite-window artifact is a `B` source-evidence probe expected to advance only to `missing_accepted_S_retune`.
+  - `Ohm`: confirmed `EQ-31` needs a top-carrier source guard before parent rows can imply retained-carrier evidence.
+  - `Locke`: confirmed `EQ-07B` still admitted authored/probe/toy/source-evidence-probe paths as accepted evidence in temporary controls.
+  - `Huygens`: confirmed `EQ-23A` had the same accepted-source guard gap.
+- Coordinator targets completed since Restart Checkpoint 28:
+  - Added [finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json), advancing the `EQ-30` parent-carrier ladder through `B` and stopping at `missing_accepted_S_retune`.
+  - Added [finite-window-statistical-carrier-eq30-elastic-b-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-coordination-source-negative-control.v1.json), keeping accepted-looking `B` sourced only to this priority map blocked at `missing_accepted_B`.
+  - Hardened the finite-window checker so an accepted top carrier must carry its own durable evidence source; added [finite-window-statistical-carrier-eq31-pion-c-top-carrier-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-top-carrier-coordination-source-negative-control.v1.json), which fails at `accepted_without_evidence_source`.
+  - Hardened the `EQ-07B` and `EQ-23A` identity checkers so authored AAA prose, toy files, probe files, source-evidence-probe files, generated files, temporary files, priority packets, attempts, mocks, and negative controls cannot satisfy accepted source evidence.
+  - Added [eq07b-agn-accretion-release-carrier-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-probe-source-negative-control.v1.json) and [eq23a-explosive-source-window-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq23a-explosive-source-window-probe-source-negative-control.v1.json).
+- Files edited since Restart Checkpoint 28:
+  - [eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md](eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md)
+  - [eq-14-30-31-finite-window-w-source-field-map.md](eq-14-30-31-finite-window-w-source-field-map.md)
+  - [eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md](eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md)
+  - [equation.md](equation.md)
+  - [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs)
+  - [eq07b-agn-accretion-release-carrier-identity-check.mjs](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs)
+  - [eq23a-explosive-source-window-identity-check.mjs](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-check.mjs)
+  - the five new JSON fixtures listed above.
+  - this checkpoint file.
+- Validation:
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json --summary`: passed as score-neutral, with `nextBlocker=missing_accepted_S_retune`.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-coordination-source-negative-control.v1.json --summary`: passed as fail-closed, with `nextBlocker=missing_accepted_B`.
+  - `node scripts/equation-mapping/finite-window-statistical-carrier.mjs --input scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-c-top-carrier-coordination-source-negative-control.v1.json --summary`: passed as fail-closed, with `status=blocked_carrier_source_evidence` and `nextBlocker=accepted_without_evidence_source`.
+  - `node scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs --input scripts/equation-mapping/eq07b-agn-accretion-release-carrier-probe-source-negative-control.v1.json --summary`: passed as fail-closed, with `status=blocked_accepted_without_evidence_source`.
+  - `node scripts/equation-mapping/eq23a-explosive-source-window-identity-check.mjs --input scripts/equation-mapping/eq23a-explosive-source-window-probe-source-negative-control.v1.json --summary`: passed as fail-closed, with `status=blocked_accepted_without_evidence_source`.
+  - `node --check` passed for all three touched checkers.
+  - Full validation passed: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
 
 No score changes.

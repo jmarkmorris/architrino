@@ -10,6 +10,7 @@
   - [eq29-radiation-source-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-source-attempt.v1.json)
   - [eq29-radiation-source-ledger-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-ledger-coordination-source-negative-control.v1.json)
   - [eq29-radiation-source-ledger-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-ledger-probe-source-negative-control.v1.json)
+  - [eq29-radiation-source-ledger-unrelated-durable-source-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-ledger-unrelated-durable-source-negative-control.v1.json)
 - Related source prose: [Synchrotron](../../../content/markdown/aaa/reactions/synchrotron.md)
 - Row served: `EQ-29`
 - Claim level: candidate source-field map and attack card
@@ -76,6 +77,8 @@ Required rows on one `commonCarrierId`:
 | `event_ledger_row` | Event balance across source, photon, recoil, medium, wake, and remnant rows. |
 | `source_provenance`, `no_hidden_retune_witness` | Durable source provenance plus proof that $B_{\mathrm{eff}}$, $\gamma$, pitch, source branch, and Noether sea state are not retuned between power, frequency, cooling, and polarization rows. |
 
+Accepted rows must also declare EQ-29/radiation-source support in row metadata such as `sourceFamily`, `sourceKind`, `sourceRole`, `sourceSupport`, or `evidenceFamily`. A durable file path is not enough by itself: unrelated durable sources can be real files while still not being retained radiation-source evidence.
+
 ## Fail-Closed Controls
 
 Keep the existing controls as first-line guards:
@@ -86,6 +89,7 @@ Keep the existing controls as first-line guards:
 - `polarization_without_gate_B`: catches polarization accepted without Gate B handoff.
 - `thermal_fit_without_event_ledger`: catches thermal/free-free fitting without an event ledger.
 - `accepted_without_evidence_source`: catches accepted-looking rows sourced only to priority packets, authored prose, generated files, temporary files, attempt fixtures, mocks, or negative-control fixtures.
+- `unrelated_durable_source`: catches accepted-looking rows sourced to a durable but unrelated file that does not declare EQ-29/radiation-source support.
 
 ## Next Action
 
@@ -112,6 +116,14 @@ node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input 
 ```
 
 Expected result: `status=blocked_source_evidence`, `nextBlocker=accepted_without_evidence_source`, and `sourceEvidenceFailureCount=15`. This protects `EQ-29` from treating toy or `source-evidence-probe` fixtures as retained radiation source evidence.
+
+The unrelated-durable-source fail-closed control is:
+
+```sh
+node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-ledger-unrelated-durable-source-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_source_evidence`, `nextBlocker=accepted_without_evidence_source`, and `sourceEvidenceFailureCount=15`. This protects `EQ-29` from treating a durable but unrelated source, such as a reaction-statistics file, as retained radiation-source evidence merely because the path exists and is not forbidden.
 
 Create one durable, accepted `radiation_source_carrier` evidence row for a single synchrotron event window, then run:
 

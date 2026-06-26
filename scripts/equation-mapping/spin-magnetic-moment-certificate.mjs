@@ -110,6 +110,7 @@ function evaluateCertificate(input, inputPath) {
     ROW_ORDER.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId])]),
   );
   const missingRows = ROW_ORDER.filter((rowId) => !rowChecks[rowId].accepted);
+  const sourceEvidence = evaluateSourceEvidence(rowChecks);
   const sameRecord = evaluateSameRecord({
     rows,
     sameRecordId: input.sameRecordId ?? null,
@@ -132,6 +133,8 @@ function evaluateCertificate(input, inputPath) {
   const exposureFiber = evaluateExposureFiber(rows.exposure_fiber_residual);
   const status = decideStatus({
     missingRows,
+    rowChecks,
+    sourceEvidence,
     sameRecord,
     spinLift,
     gaugeControl,
@@ -164,9 +167,12 @@ function evaluateCertificate(input, inputPath) {
       scoreDecision:
         status === "populated" ? "score_review_required" : "no_score_increase",
       missingRows,
+      sourceEvidenceFailureCount: sourceEvidence.failures.length,
       nextBlocker: firstBlocker({
         status,
         missingRows,
+        rowChecks,
+        sourceEvidence,
         sameRecord,
         spinLift,
         gaugeControl,
@@ -206,6 +212,7 @@ function evaluateCertificate(input, inputPath) {
         },
       ]),
     ),
+    sourceEvidenceFailures: sourceEvidence.failures,
     sameRecord,
     diagnostics: {
       spinLift,
@@ -245,22 +252,22 @@ function evaluateAcceptedRow(row) {
   if (!row || typeof row !== "object" || Array.isArray(row)) {
     return { accepted: false, reason: "missing_row" };
   }
+  const sourcePath = row.sourcePath ?? row.source ?? null;
   const status = row.status ?? row.retainedStatus ?? null;
   if (!ACCEPTED_STATUSES.has(status)) {
-    return { accepted: false, reason: "row_not_accepted" };
+    return { accepted: false, reason: "row_not_accepted", sourcePath };
   }
   if (!concreteString(row.rowId ?? row.id)) {
-    return { accepted: false, reason: "row_identity_not_concrete" };
+    return { accepted: false, reason: "row_identity_not_concrete", sourcePath };
   }
-  const source = row.sourcePath ?? row.source;
-  const sourceCheck = evaluateSourceReference(source);
+  const sourceCheck = evaluateSourceReference(sourcePath);
   if (!sourceCheck.exists) {
-    return { accepted: false, reason: "row_source_not_found" };
+    return { accepted: false, reason: "row_source_not_found", sourcePath };
   }
   if (!sourceCheck.evidence) {
-    return { accepted: false, reason: "accepted_without_evidence_source" };
+    return { accepted: false, reason: "accepted_without_evidence_source", sourcePath };
   }
-  return { accepted: true, reason: "accepted" };
+  return { accepted: true, reason: "accepted", sourcePath };
 }
 
 function normalizeStatus(row) {
@@ -268,6 +275,22 @@ function normalizeStatus(row) {
     return "missing";
   }
   return row.status ?? row.retainedStatus ?? "declared";
+}
+
+function evaluateSourceEvidence(rowChecks) {
+  const failures = Object.entries(rowChecks)
+    .filter(([, check]) => check.reason === "accepted_without_evidence_source")
+    .map(([rowId, check]) => ({ rowId, sourcePath: check.sourcePath ?? null }));
+  return {
+    passed: failures.length === 0,
+    failures,
+  };
+}
+
+function hasNonSourceEvidenceMissingRows(missingRows, rowChecks) {
+  return missingRows.some(
+    (rowId) => rowChecks[rowId]?.reason !== "accepted_without_evidence_source",
+  );
 }
 
 function evaluateSameRecord({ rows, sameRecordId }) {
@@ -400,6 +423,8 @@ function evaluateExposureFiber(row) {
 
 function decideStatus({
   missingRows,
+  rowChecks,
+  sourceEvidence,
   sameRecord,
   spinLift,
   gaugeControl,
@@ -409,8 +434,11 @@ function decideStatus({
   momentMapProvenance,
   exposureFiber,
 }) {
-  if (missingRows.length > 0) {
+  if (missingRows.length > 0 && hasNonSourceEvidenceMissingRows(missingRows, rowChecks)) {
     return "blocked_missing_rows";
+  }
+  if (!sourceEvidence.passed) {
+    return "blocked_source_evidence";
   }
   if (!sameRecord.passed) {
     return "blocked_record_split";
@@ -445,6 +473,8 @@ function decideStatus({
 function firstBlocker({
   status,
   missingRows,
+  rowChecks,
+  sourceEvidence,
   sameRecord,
   spinLift,
   gaugeControl,
@@ -458,7 +488,13 @@ function firstBlocker({
     return null;
   }
   if (missingRows.length > 0) {
+    if (rowChecks[missingRows[0]]?.reason === "accepted_without_evidence_source") {
+      return "accepted_without_evidence_source";
+    }
     return `missing_accepted_${missingRows[0]}`;
+  }
+  if (!sourceEvidence.passed) {
+    return "accepted_without_evidence_source";
   }
   if (!sameRecord.passed) {
     return "record_split";

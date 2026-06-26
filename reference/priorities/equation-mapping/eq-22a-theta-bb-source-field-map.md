@@ -105,9 +105,14 @@ Expected result: `blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gam
 passing. The same command with `--require-populated` must exit nonzero. Until the
 parent and child rows are accepted, the correct result remains no score movement.
 
-The shared Planck/alpha runner now rejects priority packets, generated files,
-attempt files, mock files, negative-control files, and temporary paths as
-accepted retained evidence. The coordination-source control marks
-`theta_gamma_packet` accepted-looking while sourcing it only to the theta-gamma
-priority packet; it must remain blocked at `missing_accepted_theta_gamma_packet`
-with the row reason `source_not_durable`.
+The shared Planck/alpha runner now rejects priority packets, authored AAA prose,
+generated files, attempt files, toy files, probe files, source-evidence-probe
+files, mock files, negative-control files, and temporary paths as accepted
+retained evidence. The coordination-source control marks `theta_gamma_packet`
+accepted-looking while sourcing it only to the theta-gamma priority packet; it
+must remain blocked at `missing_accepted_theta_gamma_packet` with the row reason
+`source_not_durable`. The probe-source control
+[planck-alpha-braid-theta-gamma-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-gamma-probe-source-negative-control.v1.json)
+points the same accepted-looking parent at a `source-evidence-probe` JSON and
+must fail the same way. Probe files can sharpen blockers, but they cannot be the
+retained source object for $\Theta_\gamma$.

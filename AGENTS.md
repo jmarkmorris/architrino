@@ -51,12 +51,12 @@ This document distinguishes three audience scopes:
 
 - If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
 
-#### Generated Markdown
+#### Generated Artifacts
 
-- Do not manually edit generated markdown under `content/generated/markdown/` unless the generator is missing, stale, or broken and the manual edit is explicitly called out.
-- Prefer editing canonical source files under `content/markdown/aaa/`, then regenerate derived markdown with `node scripts/build-textbook-md-pdf.mjs --write`.
-- If scene graph, markdown index, or textbook TOC artifacts drift, regenerate them with `node scripts/build-scene-graph.mjs --write --strict`.
-- After regeneration, run the corresponding `--check` commands before reporting the work complete.
+- Do not manually edit generated artifacts unless the generator is missing, stale, or broken and the manual edit is explicitly called out.
+- During ordinary edit batches, edit canonical source files first and run generator `--check` commands when validation is needed. Do not run generator `--write` commands after every small code, prose, or priority edit.
+- Run generator `--write` commands only when the operator/developer explicitly requests regeneration, a required `--check` reports generated drift, the issue requires refreshed generated output, or the work is in the final branch/PR process described in [reference/op/codex-pr-branch.md](reference/op/codex-pr-branch.md).
+- If regeneration is performed, rerun the corresponding `--check` commands before reporting the work complete.
 
 ### Current Core Theory Focus
 

@@ -1,0 +1,219 @@
+{
+  "schema": "aaa-equation-map-eq07b-agn-accretion-release-carrier-source-attempt/v1",
+  "claimLevel": "accepted-looking EQ-07B AGN accretion-release probe-source negative control; score-neutral and not retained evidence",
+  "row": "EQ-07B",
+  "carrier": {
+    "id": "theta_agn_accretion_release_attempt_0001",
+    "rowId": "agn_accretion_release_carrier_attempt_0001",
+    "status": "accepted",
+    "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json",
+    "sourceKind": "probe_source_negative_control",
+    "sourceFamily": "EQ-07B AGN accretion-release",
+    "sourceRole": "carrier"
+  },
+  "sourceIdentity": {
+    "carrierId": "theta_agn_accretion_release_attempt_0001",
+    "thetaWId": "theta_W_agn_attempt_0001",
+    "sourceWindowId": "W_agn_strong_field_attempt_0001",
+    "releaseWindowId": "T_agn_release_attempt_0001",
+    "supportId": "Omega_agn_attempt_0001",
+    "eventLedgerId": "L_EpJ_agn_attempt_0001",
+    "noetherSeaLoadingId": "A_NS_agn_attempt_0001",
+    "releaseSelectorId": "Pi_AGN_attempt_0001",
+    "horizonInterfaceId": "B_H_agn_attempt_0001",
+    "radiationChannelId": "S_rad_agn_attempt_0001",
+    "feedbackRowId": "F_fb_agn_attempt_0001",
+    "retuneWitnessId": "S_retune_agn_attempt_0001"
+  },
+  "sharedKeys": [
+    "carrierId",
+    "thetaWId",
+    "sourceWindowId",
+    "releaseWindowId",
+    "supportId",
+    "eventLedgerId",
+    "noetherSeaLoadingId",
+    "releaseSelectorId",
+    "horizonInterfaceId",
+    "radiationChannelId",
+    "feedbackRowId",
+    "retuneWitnessId"
+  ],
+  "rows": {
+    "strong_field_parent_support": {
+      "status": "accepted",
+      "rowId": "theta_W_agn_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "inflow_accretion_row": {
+      "status": "accepted",
+      "rowId": "inflow_accretion_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "mass_spin_readout_row": {
+      "status": "accepted",
+      "rowId": "mass_spin_readout_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "radiation_output_row": {
+      "status": "accepted",
+      "rowId": "radiation_output_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "radiationChannelId": "S_rad_agn_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "jet_channel_row": {
+      "status": "accepted",
+      "rowId": "jet_channel_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "releaseSelectorId": "Pi_AGN_attempt_0001",
+      "radiationChannelId": "S_rad_agn_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "wind_sheath_confinement_row": {
+      "status": "accepted",
+      "rowId": "wind_sheath_confinement_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "releaseSelectorId": "Pi_AGN_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "noether_sea_loading_row": {
+      "status": "accepted",
+      "rowId": "noether_sea_loading_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "noetherSeaLoadingId": "A_NS_agn_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "feedback_row": {
+      "status": "accepted",
+      "rowId": "feedback_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "feedbackRowId": "F_fb_agn_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "horizon_interface_label_row": {
+      "status": "accepted",
+      "rowId": "horizon_interface_label_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "horizonInterfaceId": "B_H_agn_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "event_ledger_row": {
+      "status": "accepted",
+      "rowId": "event_ledger_agn_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "source_provenance": {
+      "status": "accepted",
+      "rowId": "source_provenance_agn_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "no_hidden_retune_witness": {
+      "status": "accepted",
+      "rowId": "no_hidden_retune_agn_attempt_0001",
+      "carrierId": "theta_agn_accretion_release_attempt_0001",
+      "thetaWId": "theta_W_agn_attempt_0001",
+      "sourceWindowId": "W_agn_strong_field_attempt_0001",
+      "releaseWindowId": "T_agn_release_attempt_0001",
+      "supportId": "Omega_agn_attempt_0001",
+      "eventLedgerId": "L_EpJ_agn_attempt_0001",
+      "noetherSeaLoadingId": "A_NS_agn_attempt_0001",
+      "releaseSelectorId": "Pi_AGN_attempt_0001",
+      "horizonInterfaceId": "B_H_agn_attempt_0001",
+      "radiationChannelId": "S_rad_agn_attempt_0001",
+      "feedbackRowId": "F_fb_agn_attempt_0001",
+      "retuneWitnessId": "S_retune_agn_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    }
+  },
+  "negativeControls": [
+    {
+      "id": "agn.jet_power_only_fit",
+      "expectedFailure": "release_selector_split_before_residual_scoring",
+      "mutation": {
+        "rows.jet_channel_row.releaseSelectorId": "Pi_AGN_private_jet_negative_control"
+      }
+    },
+    {
+      "id": "agn.horizon_entropy_private_row",
+      "expectedFailure": "horizon_interface_split_before_residual_scoring",
+      "mutation": {
+        "rows.horizon_interface_label_row.horizonInterfaceId": "B_H_private_horizon_negative_control"
+      }
+    },
+    {
+      "id": "agn.noether_sea_feedback_missing",
+      "expectedFailure": "noether_sea_loading_missing_before_feedback_scoring",
+      "mutation": {
+        "rows.noether_sea_loading_row.status": "missing"
+      }
+    },
+    {
+      "id": "agn.radiation_child_promoted_to_parent",
+      "expectedFailure": "carrier_split_before_residual_scoring",
+      "mutation": {
+        "rows.radiation_output_row.carrierId": "theta_rad_source_child_promoted_to_parent_negative_control",
+        "rows.radiation_output_row.sourceWindowId": "W_rad_private_child_negative_control",
+        "rows.radiation_output_row.eventLedgerId": "L_EpJ_rad_private_child_negative_control"
+      }
+    }
+  ],
+  "scoreDecision": "no_score_increase",
+  "nextBlocker": "missing_accepted_agn_accretion_release_carrier"
+}

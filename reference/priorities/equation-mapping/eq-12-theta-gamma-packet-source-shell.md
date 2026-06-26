@@ -75,6 +75,8 @@ Malus-law analyzer intensity $I(\theta)=I_0\cos^2\theta$ is a Gate B analyzer be
 
 Priority-only child maps now keep those routes separate: [EQ-12A Retained Action-Period Source-Field Map](eq-12a-retained-action-period-source-field-map.md), [EQ-22A Theta-BB Source-Field Map](eq-22a-theta-bb-source-field-map.md), and [EQ-26A Theta-Alpha Source-Field Map](eq-26a-theta-alpha-source-field-map.md). No score changes.
 
+The Planck/alpha runner's shared durable-source rule rejects priority packets, authored AAA prose, generated paths, attempts, toys, probes, source-evidence probes, mocks, negative controls, and temporary paths as accepted evidence for $\Theta_\gamma$. The new probe-source control keeps the parent blocker at `missing_accepted_theta_gamma_packet` when an accepted-looking parent row points to a source-evidence-probe JSON.
+
 `EQ-28A` may consume $\Theta_\gamma$ as the incoming/outgoing photon packet handoff. It still owns a separate $\Theta_{\nu\text{-}\mathrm{ex}}(W)$ path-frequency exchange carrier with electron-medium, recoil/remnant, and thermal-state rows.
 
 ## Acceptance Tests, Not Ontology

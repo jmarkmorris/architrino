@@ -87,6 +87,22 @@ The compact-star map must keep three scale notions separate:
 
 The historical level placement also remains active. The Chandrasekhar scaling is a special-relativistic electron calculation joined to Newtonian support balance. TOV is the later observer-level compact-star benchmark. Neither row is substrate geometry.
 
+## Compact Stars As A Scalable Lab
+
+Compact stars are valuable because they force one material population through several density and support regimes in a single observed sequence: ordinary atomic or condensed matter, delocalized electron Fermi support, relativistic electron behavior, neutron-rich packing, and finally the horizon-interface comparison if volumetric support fails. That makes the equations bidirectional. They are not only formulae for $\mathbb{A}\mathbb{A}\mathbb{A}$ to recover; they are inverse clues about which native assembly variables must exist and how those variables have to change under compression.
+
+| Standard compact-star signal | Inverse clue for the native record | Native variables or rows | Recovery obligation |
+| --- | --- | --- | --- |
+| $\ell_e\sim n_e^{-1/3}$ | Degenerate support is controlled by delocalized electron spacing, not by atomic-orbital radius. | Electron inventory row, $\ell_e$, active compact-region ledger. | Keep atomic orbital scale, Fermi spacing, and material Noether braid scale separate until a bridge calculation connects them. |
+| $p_F\sim\hbar n_e^{1/3}$ and $x_F=p_F/(m_ec_0)$ | Compression raises the occupied momentum scale and identifies the nonrelativistic-to-relativistic boundary. | $p_F$, $x_F$, $P_{\mathrm{pack}}^\theta$, $\mathcal C_{\mathrm{pack}}^\theta$, branch cadence rows. | Recover the regime switch from state counting and the retained ledger, not from a fitted exponent. |
+| $P_{e,\mathrm{nr}}\propto n_e^{5/3}$ and $P_{e,\mathrm{rel}}\propto n_e^{4/3}$ | The support channel softens when extra compression routes more response into cadence, momentum, and exposed channels rather than proportionally stronger pressure. | $S_{\mathrm{excl}}$, $P_{\mathrm{pack}}^\theta$, $\lambda_A$, $R_{\parallel,A}$, $R_{\perp,A}$, $\xi_A=R_{\parallel,A}/R_{\perp,A}$. | Derive the pressure readout from exclusion stress, branch deformation, and scale compression while preserving the observed $5/3\to4/3$ split. |
+| $R\propto M^{-1/3}$ in the nonrelativistic branch and $M_{\mathrm{Ch}}\propto Y_e^2$ at the support boundary | One coefficient family must carry mass-radius behavior and composition; per-sample retuning is not allowed. | $Y_e$, $\mu_e$, $M$, $R$, $\mathcal S_{\mathrm{retune}}$. | Show that one compact-region record carries composition, support, and scale response together. |
+| $p+e^-\rightarrow n+\nu_e$ | Collapse removes the same electron assemblies that carried the pressure reservoir and opens a high-speed neutral-lepton channel. | Reaction inventory, near-photon neutrino row, $\mathcal L_{E\mathbf p\mathbf J}^{(\Omega)}$. | Account for energy, momentum, angular momentum, weak provenance, heat, medium update, and remnant rows in one ledger. |
+| TOV pressure balance | Strong compact support is a radial observer-level benchmark, not proof of substrate geometry by itself. | $\Theta_{\mathrm{NS}}(r)$, $P_{\mathrm{EOS}}$, $\epsilon(r)$, $m(r)$, $\mathcal S_{\mathrm{metric}}$. | Feed pressure, dense-matter support, exterior metric readout, and source provenance from the same compact-region carrier. |
+| Horizon-interface limit | If neutron-rich packed matter support fails, the same record must approach the strong-field regularity and terminal-alignment rows. | $v_O/c_f$, $s_n$, $F_H$, $\mathcal R_H$, $\mathcal S_{\mathrm{mat}}\to\mathcal S_{\mathrm{metric}}$. | Distinguish a surviving neutron-star branch from a horizon-interface branch without changing carriers. |
+
+The first geometry-facing follow-up is therefore not another astrophysical summary. It is a compact-region bridge from the standard variables $\{n_e,\ell_e,p_F,x_F,Y_e,M,R,\epsilon(r),P(r),m(r)\}$ to the native set $\{P_{\mathrm{pack}}^\theta,S_{\mathrm{excl}},R_{\parallel,A},R_{\perp,A},\xi_A,\lambda_A,\mathcal S_{\mathrm{mat}},\mathcal S_{\mathrm{metric}},\Theta_{\mathrm{NS}},\mathcal L_{E\mathbf p\mathbf J}^{(\Omega)}\}$. The bridge succeeds only if the standard equations and the native pressure-packing geometry are two projections of one retained compact-region carrier.
+
 ## Compact-Region Variable Dictionary
 
 The first score-moving object is a variable dictionary, not another checker:
@@ -251,6 +267,8 @@ node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input 
 ```
 
 This control sets the top-level compact-region carrier to `status: accepted` while pointing its `sourcePath` back to this priority packet. The intended result is `status: blocked_missing_accepted_compact_region_carrier`, `carrierReason: accepted_without_evidence_source`, and `scoreDecision: no_score_increase`. A coordination packet can name the first blocker and carry attempt arithmetic, but it cannot satisfy the accepted retained-evidence source requirement.
+
+The source filter also rejects `attempt`, `toy`, `source-evidence-probe`, `probe`, `mock`, and `negative-control` source filenames, along with priority packets, authored AAA prose, generated paths, and temporary paths. A transient mutation that points the accepted-looking compact-region carrier at another probe file still returns `carrierReason: accepted_without_evidence_source`, so no self-sourced or probe-sourced artifact can satisfy the compact-region carrier requirement.
 
 ## Chandrasekhar Scaling Solver Residual
 

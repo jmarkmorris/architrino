@@ -68149,6 +68149,23 @@ Each reaction record should state:
 | Hybrid Standard Model matching, when applicable | Source lane, scheme, operator or observable, matching normalization, CKM/PMNS factor when applicable, matrix-element or factorization source, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record |
 | Closure status | What is established, what is assumed, and what remains to derive |
 
+#### High-Energy Collision Records
+
+Collider-scale reactions are the stress case for this ledger because incoming beam work, exposed energy, shielded internal energy, Noether sea updates, and detector-facing products can all change during one event. The record must not treat collision energy as a single undifferentiated input. For every incoming assembly whose internal branch is opened or whose shielding state changes, refine the routed output record as
+
+$$
+Y_{\mathsf e}^{\mathrm{coll}}
+=
+\left(
+Y_{\mathsf e},
+E_{\mathrm{work}}^{\mathrm{in}},
+\{(\mathcal{S}_A^{-},\zeta_A^{-}E_{\text{internal},A}^{-})\}_{A},
+\{(\mathcal{S}_B^{+},\zeta_B^{+}E_{\text{internal},B}^{+})\}_{B}
+\right),
+$$
+
+where the first set ranges over the resolved incoming assemblies and the second set ranges over resolved outgoing or remnant assemblies. This is not a new conservation law. It is a collision-specific refinement of the same event record: shielding loss, shielding gain, dissociation, association, recoil, photon output, medium excitation, Noether sea update, detector-facing products, and any re-shielded remnant must all be named inside the same $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)$ balance. If the calculation exposes internal energy from an incoming assembly without routing it to one of those named terms, the reaction remains a provisional map rather than a closed provenance record.
+
 #### Residual-Routing Event-Ledger Contract
 
 Residual-routing material enters this ledger only as a theorem-target contract. It does not by itself prove that any weak, radiative, pair-production, nuclear, or cosmology-facing reaction channel has closed. The common target is:
@@ -74201,7 +74218,7 @@ Do not use this lane as the primary home for:
 
 #### Reading Order
 
-Start with [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) for a compact comparison of inherited frameworks. Use [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md) when a reader needs to know which inherited concepts are carried forward as mathematics, benchmarks, effective limits, or directional comparison pressure rather than as ontology. Use [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md) when a concept needs explicit stack placement and relation-type classification. Use [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) when a reader needs the philosophical distinction between primitive substance, causal wake structure, Euclidean void, Noether sea, and effective description. Use [Geometry and Ontology](../../../../markdown/aaa/philosophy-history/geometry-and-ontology.md) when a reader needs the distinction between fundamental Euclidean geometry, generated causal and assembly geometry, and recovered effective metric geometry. Use [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), and [Historical Context and Missed Opportunities](../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) to understand why closure targets matter. Use [Perspectives](../../../../markdown/aaa/philosophy-history/perspectives.md) for reader-facing historical commentaries that compare $\mathbb{A}\mathbb{A}\mathbb{A}$ with prior models of nature, answer the shared questions, ask why the deeper architecture was missed, and preserve source provenance. Use [Philosophy of Science](../../../../markdown/aaa/philosophy-history/philosophy-of-science.md), [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md), and [Agency and Internal Causation](../../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md) for methodological and interpretive discipline.
+Start with [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) for a compact comparison of inherited frameworks. Use [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md) when a reader needs to know which inherited concepts are carried forward as mathematics, benchmarks, effective limits, or directional comparison pressure rather than as ontology. Use [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md) when a concept needs explicit stack placement and relation-type classification. Use [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) when a reader needs the philosophical distinction between primitive substance, causal wake structure, Euclidean void, Noether sea, and effective description. Use [Geometry and Ontology](../../../../markdown/aaa/philosophy-history/geometry-and-ontology.md) when a reader needs the distinction between fundamental Euclidean geometry, generated causal and assembly geometry, and recovered effective metric geometry. Use [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), and [Historical Context and Missed Opportunities](../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) to understand why closure targets matter. Use [The Treasure Physics Overlooked](../../../../markdown/aaa/philosophy-history/treasure-physics-overlooked.md) for a retrospective root-cause account of why the deeper architecture was missed. Use [Philosophy of Science](../../../../markdown/aaa/philosophy-history/philosophy-of-science.md), [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md), and [Agency and Internal Causation](../../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md) for methodological and interpretive discipline.
 
 #### Local Discipline
 
@@ -94417,9 +94434,11 @@ The He-Rb-He example supplies a minimal worked foothold for threshold tuning. It
 
 The strongest current claim is that agency can be made physically intelligible as organized threshold control inside deterministic multistable dynamics. That claim remains compatible with absolute time, causal wake history, and lawful assembly evolution. What remains open is the closure path from minimal Switch examples to a fully specified Decider architecture with computed thresholds, feedback channels, and falsifiable predictions.
 
-### Perspectives
+### The Treasure Physics Overlooked
 
-#### Perspectives: A Chain Of Witnesses
+#### The Treasure Physics Overlooked
+
+##### Why Physics Missed The Architecture Of The Universe
 
 **Literary note:** This is an AI-imagined, counterfactual chain of perspectives. It is not a historical quotation, real interview, endorsement, attribution, or evidence about any actual person's views. The essay writes from the completed-architecture standpoint that the current corpus is developing toward: it treats Architrino Assembly Architecture, hereafter the Architrino architecture, as having reached closure as architected, then asks how the history of physics would read from that retrospective vantage. That standpoint is a literary device for historical interpretation.
 

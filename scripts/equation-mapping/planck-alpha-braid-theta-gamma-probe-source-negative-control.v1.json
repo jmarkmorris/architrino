@@ -1,0 +1,466 @@
+{
+  "schema": "aaa-equation-map-planck-alpha-braid-input/v1",
+  "claimLevel": "accepted-looking theta_gamma_packet probe-source negative control; score-neutral and not retained evidence",
+  "residualId": "R_EQ12A_22A_26A_theta_gamma_probe_source_negative_control_0001",
+  "commonCarrierId": "theta_bb_source_attempt_0001",
+  "tolerances": {
+    "carrier": 1e-12,
+    "planckQuantum": 1e-12,
+    "blackbody": 1e-12,
+    "alpha": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12,
+    "negativeControl": 1e-12
+  },
+  "packet": {
+    "id": "theta_bb_source_attempt_0001",
+    "commonCarrierId": "theta_bb_source_attempt_0001",
+    "rows": {
+      "theta_gamma_packet": {
+        "id": "theta_gamma_packet_probe_source_negative_0001",
+        "rowId": "theta_gamma_packet_probe_source_negative_row",
+        "status": "accepted",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq31-pion-w-source-evidence-probe.v1.json"
+      },
+      "retained_orbit_reduction_row": {
+        "id": "retained_orbit_reduction_row_theta_bb_source_attempt_0001",
+        "rowId": "retained_orbit_reduction_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "constant_delay_self_hit_model_row": {
+        "id": "constant_delay_self_hit_model_row_theta_bb_source_attempt_0001",
+        "rowId": "constant_delay_self_hit_model_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "hopf_retained_orbit_birth_row": {
+        "id": "hopf_retained_orbit_birth_row_theta_bb_source_attempt_0001",
+        "rowId": "hopf_retained_orbit_birth_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "first_lyapunov_coefficient_row": {
+        "id": "first_lyapunov_coefficient_row_theta_bb_source_attempt_0001",
+        "rowId": "first_lyapunov_coefficient_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "monodromy_floquet_certificate": {
+        "id": "monodromy_floquet_certificate_theta_bb_source_attempt_0001",
+        "rowId": "monodromy_floquet_certificate_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "poincare_section_reduction_row": {
+        "id": "poincare_section_reduction_row_theta_bb_source_attempt_0001",
+        "rowId": "poincare_section_reduction_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "poincare_cartan_orbit_integral_row": {
+        "id": "poincare_cartan_orbit_integral_row_theta_bb_source_attempt_0001",
+        "rowId": "poincare_cartan_orbit_integral_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "energy_clock_readout_row": {
+        "id": "energy_clock_readout_row_theta_bb_source_attempt_0001",
+        "rowId": "energy_clock_readout_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "phase_loop_area_readout_row": {
+        "id": "phase_loop_area_readout_row_theta_bb_source_attempt_0001",
+        "rowId": "phase_loop_area_readout_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "readout_refinement_independence_row": {
+        "id": "readout_refinement_independence_row_theta_bb_source_attempt_0001",
+        "rowId": "readout_refinement_independence_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "parameter_sweep_action_invariance_row": {
+        "id": "parameter_sweep_action_invariance_row_theta_bb_source_attempt_0001",
+        "rowId": "parameter_sweep_action_invariance_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "history_energy_throughput_row": {
+        "id": "history_energy_throughput_row_theta_bb_source_attempt_0001",
+        "rowId": "history_energy_throughput_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "non_resonance_certificate": {
+        "id": "non_resonance_certificate_theta_bb_source_attempt_0001",
+        "rowId": "non_resonance_certificate_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "sea_state_fibration_row": {
+        "id": "sea_state_fibration_row_theta_bb_source_attempt_0001",
+        "rowId": "sea_state_fibration_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "geometry_derived_action_period_row": {
+        "id": "geometry_derived_action_period_row_theta_bb_source_attempt_0001",
+        "rowId": "geometry_derived_action_period_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "planck_braid_carrier": {
+        "id": "planck_braid_carrier_theta_bb_source_attempt_0001",
+        "rowId": "planck_braid_carrier_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "photon_action_quantum_row": {
+        "id": "photon_action_quantum_row_theta_bb_source_attempt_0001",
+        "rowId": "photon_action_quantum_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "phase_cycle_angular_momentum_row": {
+        "id": "phase_cycle_angular_momentum_row_theta_bb_source_attempt_0001",
+        "rowId": "phase_cycle_angular_momentum_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "photon_packet_row": {
+        "id": "photon_packet_row_theta_bb_source_attempt_0001",
+        "rowId": "photon_packet_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "thermal_mode_counting_row": {
+        "id": "thermal_mode_counting_row_theta_bb_source_attempt_0001",
+        "rowId": "thermal_mode_counting_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-22a-theta-bb-source-field-map.md",
+        "thetaBbCarrierId": "theta_bb_source_attempt_0001",
+        "finiteWindowId": "W_bb_source_attempt_0001",
+        "gateBModeCountId": "gateB_two_mode_count_source_attempt_0001",
+        "modeMeasureId": "N_mode_theta_bb_source_attempt_0001",
+        "transverseModeCount": 2,
+        "noLongitudinalLeakage": true
+      },
+      "planck_occupancy_row": {
+        "id": "planck_occupancy_row_theta_bb_source_attempt_0001",
+        "rowId": "planck_occupancy_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-22a-theta-bb-source-field-map.md",
+        "thetaBbCarrierId": "theta_bb_source_attempt_0001",
+        "finiteWindowId": "W_bb_source_attempt_0001",
+        "modeMeasureId": "N_mode_theta_bb_source_attempt_0001",
+        "occupancyRowId": "nbar_nu_theta_bb_source_attempt_0001",
+        "temperatureClockConversionRowId": "temperature_clock_conversion_row_theta_bb_source_attempt_row"
+      },
+      "temperature_clock_conversion_row": {
+        "id": "temperature_clock_conversion_row_theta_bb_source_attempt_0001",
+        "rowId": "temperature_clock_conversion_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-22a-theta-bb-source-field-map.md",
+        "thetaBbCarrierId": "theta_bb_source_attempt_0001",
+        "finiteWindowId": "W_bb_source_attempt_0001",
+        "temperatureClockId": "T_theta_bb_source_attempt_0001",
+        "thermalizationDepthId": "thermalization_depth_theta_bb_source_attempt_0001",
+        "noetherSeaStateId": "theta_sea_bb_source_attempt_0001"
+      },
+      "alpha_coupling_row": {
+        "id": "alpha_coupling_row_theta_bb_source_attempt_0001",
+        "rowId": "alpha_coupling_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-26a-theta-alpha-source-field-map.md"
+      },
+      "charge_exposure_row": {
+        "id": "charge_exposure_row_theta_bb_source_attempt_0001",
+        "rowId": "charge_exposure_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-26a-theta-alpha-source-field-map.md"
+      },
+      "local_photon_speed_row": {
+        "id": "local_photon_speed_row_theta_bb_source_attempt_0001",
+        "rowId": "local_photon_speed_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-26a-theta-alpha-source-field-map.md"
+      },
+      "vacuum_polarization_wake_dressing_row": {
+        "id": "vacuum_polarization_wake_dressing_row_theta_bb_source_attempt_0001",
+        "rowId": "vacuum_polarization_wake_dressing_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-26a-theta-alpha-source-field-map.md"
+      },
+      "energy_scale_running_row": {
+        "id": "energy_scale_running_row_theta_bb_source_attempt_0001",
+        "rowId": "energy_scale_running_row_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-26a-theta-alpha-source-field-map.md"
+      },
+      "source_provenance": {
+        "id": "source_provenance_theta_bb_source_attempt_0001",
+        "rowId": "source_provenance_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-22a-theta-bb-source-field-map.md"
+      },
+      "no_hidden_retune_witness": {
+        "id": "no_hidden_retune_witness_theta_bb_source_attempt_0001",
+        "rowId": "no_hidden_retune_witness_theta_bb_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_bb_source_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-22a-theta-bb-source-field-map.md"
+      }
+    },
+    "planckAlpha": {
+      "planckQuantum": {
+        "retainedOrbitReduction": {
+          "finiteDimensionalReductionResidual": 0,
+          "constantDelayModel": true,
+          "stateDependentDelayDeferred": true,
+          "hopfBirthResidual": 0,
+          "transversalityResidual": 0,
+          "allOtherRootsStable": true,
+          "firstLyapunovCoefficient": -0.2,
+          "minLyapunovCoefficientMagnitude": 0.1,
+          "maxNontrivialFloquetModulus": 0.8,
+          "maxAllowedNontrivialFloquetModulus": 0.9,
+          "extraNearUnitMultiplierCount": 0,
+          "poincareSectionResidual": 0,
+          "poincareCartanOrbitIntegralResidual": 0,
+          "energyPhaseReadoutResidual": 0,
+          "refinementDriftResidual": 0,
+          "sectionRelocationDriftResidual": 0,
+          "retainedModeDriftResidual": 0,
+          "actionSweepDerivativeResidual": 0,
+          "historyEnergyThroughputDriftResidual": 0,
+          "seaStateFibrationResidual": 0,
+          "floquetGap": 0.2,
+          "minFloquetGap": 0.1,
+          "minSmallDivisor": 0.2,
+          "minAllowedSmallDivisor": 0.1,
+          "geometryDerivedActionPeriod": true
+        },
+        "energyFrequency": {
+          "energy": 2,
+          "planckConstant": 1,
+          "frequency": 2,
+          "epsilonEnergy": 1e-30
+        },
+        "angularEnergy": {
+          "energy": 2,
+          "reducedPlanckConstant": 0.15915494309189535,
+          "angularFrequency": 12.566370614359172,
+          "epsilonEnergy": 1e-30
+        },
+        "actionCycle": {
+          "action": 1,
+          "planckConstant": 1,
+          "reducedPlanckConstant": 0.15915494309189535,
+          "cycleAngle": 6.283185307179586,
+          "epsilonAction": 1e-30
+        },
+        "periodUniqueness": {
+          "extractedActionPeriods": [
+            1,
+            1,
+            1
+          ]
+        },
+        "angularMomentumUnit": {
+          "maxResidual": 0
+        }
+      },
+      "blackbody": {
+        "planckConstant": 1,
+        "frequency": 2,
+        "boltzmannConstant": 1,
+        "temperature": 2,
+        "photonSpeed": 1,
+        "photonChemicalPotential": 0,
+        "thermalizationDepth": 10,
+        "minThermalizationDepth": 1,
+        "meanOccupancy": 0.5819767068693265,
+        "modeDensity": 100.53096491487338,
+        "energyDensity": 117.01335979910762,
+        "sourceIdentity": {
+          "thetaBbCarrierId": "theta_bb_source_attempt_0001",
+          "finiteWindowId": "W_bb_source_attempt_0001",
+          "thermalModeCountingRowId": "thermal_mode_counting_row_theta_bb_source_attempt_row",
+          "planckOccupancyRowId": "planck_occupancy_row_theta_bb_source_attempt_row",
+          "temperatureClockConversionRowId": "temperature_clock_conversion_row_theta_bb_source_attempt_row",
+          "thermalizationDepthId": "thermalization_depth_theta_bb_source_attempt_0001"
+        }
+      },
+      "alphaRunning": {
+        "alphaReference": 0.0072973525692838015,
+        "alphaAtScale": 0.007323465554914065,
+        "chargeExposureSquared": 0.014594705138567603,
+        "epsilon0": 1,
+        "reducedPlanckConstant": 0.15915494309189535,
+        "photonSpeed": 1,
+        "referenceScale": 1,
+        "scale": 10,
+        "betaLogCoefficient": 0.2122065907891938
+      },
+      "sourceProvenance": {
+        "maxResidual": 0
+      },
+      "noHiddenRetune": {
+        "maxResidual": 0
+      }
+    },
+    "negativeControls": [
+      {
+        "id": "state_dependent_delay_first_model",
+        "kind": "state_dependent_delay_first_model",
+        "retainedOrbitReduction": {
+          "constantDelayModel": false,
+          "stateDependentDelayDeferred": false
+        }
+      },
+      {
+        "id": "hopf_degeneracy_bautin",
+        "kind": "hopf_degeneracy_bautin",
+        "retainedOrbitReduction": {
+          "firstLyapunovCoefficient": 0,
+          "minLyapunovCoefficientMagnitude": 0.1
+        }
+      },
+      {
+        "id": "floquet_extra_neutral_multiplier",
+        "kind": "floquet_extra_neutral_multiplier",
+        "retainedOrbitReduction": {
+          "extraNearUnitMultiplierCount": 1
+        }
+      },
+      {
+        "id": "action_readout_projection_artifact",
+        "kind": "action_readout_projection_artifact",
+        "retainedOrbitReduction": {
+          "energyPhaseReadoutResidual": 0.01,
+          "sectionRelocationDriftResidual": 0.01
+        }
+      },
+      {
+        "id": "parameter_sweep_fitted_action",
+        "kind": "parameter_sweep_fitted_action",
+        "retainedOrbitReduction": {
+          "actionSweepDerivativeResidual": 0.01
+        }
+      },
+      {
+        "id": "planck_quantum_detuned",
+        "kind": "planck_quantum_detuned",
+        "energyFrequency": {
+          "energy": 2.1
+        }
+      },
+      {
+        "id": "wrong_mode_count_dimension",
+        "kind": "wrong_mode_count",
+        "blackbody": {
+          "modeDensity": 50.26548245743669
+        }
+      },
+      {
+        "id": "mu_dependent_action_period",
+        "kind": "mu_dependent_action_period",
+        "periodUniqueness": {
+          "extractedActionPeriods": [
+            1,
+            1.01,
+            1
+          ]
+        }
+      },
+      {
+        "id": "small_divisor_resonance",
+        "kind": "small_divisor_resonance",
+        "retainedOrbitReduction": {
+          "minSmallDivisor": 0.01,
+          "minAllowedSmallDivisor": 0.1
+        }
+      },
+      {
+        "id": "alpha_fitted_action_period",
+        "kind": "alpha_fitted_action_period",
+        "retainedOrbitReduction": {
+          "geometryDerivedActionPeriod": false
+        }
+      },
+      {
+        "id": "per_bin_temperature_fit",
+        "kind": "per_bin_temperature_fit",
+        "temperatureSpread": 0.02
+      },
+      {
+        "id": "blackbody_without_thermalization",
+        "kind": "blackbody_without_thermalization",
+        "blackbody": {
+          "photonChemicalPotential": 0.1,
+          "thermalizationDepth": 0.2
+        }
+      },
+      {
+        "id": "longitudinal_mode_leakage",
+        "kind": "longitudinal_mode_leakage",
+        "longitudinalLeakage": 0.01
+      },
+      {
+        "id": "alpha_constant_across_scales",
+        "kind": "alpha_constant_across_scales",
+        "alphaRunning": {
+          "alphaAtScale": 0.0072973525692838015
+        }
+      },
+      {
+        "id": "hidden_retune",
+        "kind": "hidden_retune",
+        "retuneResidual": 0.01
+      }
+    ],
+    "sourceIdentity": {
+      "thetaBbCarrierId": "theta_bb_source_attempt_0001",
+      "finiteWindowId": "W_bb_source_attempt_0001",
+      "gateBModeCountId": "gateB_two_mode_count_source_attempt_0001",
+      "thermalModeCountingRowId": "thermal_mode_counting_row_theta_bb_source_attempt_row",
+      "planckOccupancyRowId": "planck_occupancy_row_theta_bb_source_attempt_row",
+      "temperatureClockConversionRowId": "temperature_clock_conversion_row_theta_bb_source_attempt_row",
+      "thermalizationDepthId": "thermalization_depth_theta_bb_source_attempt_0001",
+      "sourceProvenanceId": "source_provenance_theta_bb_source_attempt_0001",
+      "retuneWitnessId": "retune_witness_theta_bb_source_attempt_0001"
+    }
+  }
+}

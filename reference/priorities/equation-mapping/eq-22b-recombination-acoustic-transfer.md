@@ -206,7 +206,7 @@ node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --summar
 
 The expected attempt run returns `schemaOk: true`, `status: blocked_missing_accepted_recombination_acoustic_carrier`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_recombination_acoustic_carrier`. The normalized sample's Saha, Peebles, Thomson/visibility, sound-horizon, Silk-damping, acoustic-transfer, source-provenance, hidden-retune, and negative-control diagnostics should pass. They do not count as accepted retained evidence because the recombination/acoustic carrier and every row binding remain `status: attempt`.
 
-The runner also reports a compact `sourceAudit` for the required rows. The default attempt keeps every row source path durable and resolving, but this is only provenance hygiene: row status remains `attempt`. Accepted-looking rows with stale or missing source references still fail at the corresponding row before score movement; for example, a stale `theta_bb` source would surface as `missing_accepted_theta_bb`.
+The runner also reports a compact `sourceAudit` for the required rows. The default attempt keeps every row source path resolving, but this is only provenance hygiene: row status remains `attempt`. Priority packets, authored AAA prose, generated files, attempt fixtures, mocks, probes, and negative controls are not accepted retained evidence sources. Accepted-looking rows with those source paths fail before score movement with `accepted_without_evidence_source`.
 
 ## Source-Attempt Fixture
 
@@ -218,6 +218,15 @@ node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input 
 ```
 
 This fixture makes the carrier contract executable without claiming retained evidence. It fixes one `commonCarrierId`, source-window id, thermal/provenance id, readout-clock id, photon-packet id, neutrino-handoff id, BBN-handoff id, event-ledger id, and no-hidden-retune witness id across the recombination/acoustic row map. Every row remains `attempt`, so the expected result remains `status: blocked_missing_accepted_recombination_acoustic_carrier`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_recombination_acoustic_carrier`. The `--require-populated` form must exit nonzero until a durable source-backed $\Theta_{\mathrm{rec/ac}}$ carrier exists.
+
+The fail-closed generic/source control is [eq22b-recombination-acoustic-generic-source-negative-control.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-generic-source-negative-control.v1.json):
+
+```bash
+node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input scripts/equation-mapping/eq22b-recombination-acoustic-generic-source-negative-control.v1.json --summary --pretty
+node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input scripts/equation-mapping/eq22b-recombination-acoustic-generic-source-negative-control.v1.json --summary --pretty --require-populated
+```
+
+This fixture marks the carrier and rows accepted-looking while sourcing them to priority packets, authored corpus prose, and the fixture itself. The expected result is `status: blocked_source_evidence`, `scoreDecision: no_score_increase`, `nextBlocker: accepted_without_evidence_source`, and `sourceEvidenceFailureCount: 17`; the `--require-populated` form must exit nonzero.
 
 ## Promotion Disposition
 

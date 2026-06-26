@@ -547,22 +547,30 @@ function evaluateSourcePath(sourcePath) {
       evidenceReason: "missing_source_path",
     };
   }
-  if (path.isAbsolute(sourcePath) && !path.resolve(sourcePath).startsWith(REPO_ROOT)) {
+  const sourceWithoutAnchor = String(sourcePath).replace(/#.*/, "");
+  const resolved = path.isAbsolute(sourceWithoutAnchor)
+    ? path.resolve(sourceWithoutAnchor)
+    : path.resolve(REPO_ROOT, sourceWithoutAnchor);
+  const relative = path.relative(REPO_ROOT, resolved);
+  if (relative === "" || relative.startsWith("..") || path.isAbsolute(relative)) {
     return {
       referenceExists: false,
       evidenceAccepted: false,
       evidenceReason: "outside_repo_source_path",
     };
   }
-  const normalized = sourcePath.split(path.sep).join("/");
-  if (normalized.startsWith("/tmp/") || normalized.startsWith("tmp/")) {
+  const normalized = relative.split(path.sep).join("/");
+  if (
+    resolved.startsWith(`${path.normalize("/tmp")}${path.sep}`) ||
+    resolved.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
+    normalized.startsWith("tmp/")
+  ) {
     return {
       referenceExists: false,
       evidenceAccepted: false,
       evidenceReason: "temporary_source_path",
     };
   }
-  const resolved = path.resolve(REPO_ROOT, sourcePath);
   const referenceExists = fs.existsSync(resolved);
   if (!referenceExists) {
     return {
@@ -571,11 +579,15 @@ function evaluateSourcePath(sourcePath) {
       evidenceReason: "source_path_missing",
     };
   }
-  const basename = path.basename(sourcePath).toLowerCase();
+  const basename = path.basename(resolved).toLowerCase();
   const forbiddenPath =
     normalized.startsWith("reference/priorities/") ||
     normalized.startsWith("content/generated/") ||
+    normalized.startsWith("content/markdown/aaa/") ||
     basename.includes("attempt") ||
+    basename.includes("toy") ||
+    basename.includes("source-evidence-probe") ||
+    basename.includes("probe") ||
     basename.includes("mock") ||
     basename.includes("negative-control");
   if (forbiddenPath) {

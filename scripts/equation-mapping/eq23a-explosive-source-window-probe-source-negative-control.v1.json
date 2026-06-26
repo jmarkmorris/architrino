@@ -1,0 +1,157 @@
+{
+  "schema": "aaa-equation-map-eq23a-explosive-source-window-identity-input/v1",
+  "claimLevel": "accepted-looking EQ-23A explosive source-window probe-source negative control; score-neutral and not retained evidence",
+  "row": "EQ-23A",
+  "carrier": {
+    "id": "theta_expl_source_window_attempt_0001",
+    "rowId": "explosive_source_window_carrier_attempt_0001",
+    "status": "accepted",
+    "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json",
+    "sourceKind": "probe_source_negative_control",
+    "sourceFamily": "EQ-23A explosive source window",
+    "sourceRole": "carrier"
+  },
+  "sourceIdentity": {
+    "carrierId": "theta_expl_source_window_attempt_0001",
+    "thetaSrcId": "Theta_src_attempt_0001",
+    "thetaThermProvId": "Theta_therm_prov_expl_attempt_0001",
+    "sourceWindowId": "W_expl_attempt_0001",
+    "supportId": "Omega_expl_attempt_0001",
+    "eventLedgerId": "L_EpJ_expl_attempt_0001",
+    "noetherSeaUpdateId": "N_sea_expl_attempt_0001",
+    "readoutIntervalId": "T_expl_attempt_0001",
+    "retuneWitnessId": "S_retune_expl_attempt_0001"
+  },
+  "sharedKeys": [
+    "carrierId",
+    "thetaSrcId",
+    "thetaThermProvId",
+    "sourceWindowId",
+    "supportId",
+    "eventLedgerId",
+    "noetherSeaUpdateId",
+    "readoutIntervalId",
+    "retuneWitnessId"
+  ],
+  "rows": {
+    "shock_jump_blast_row": {
+      "status": "accepted",
+      "rowId": "shock_jump_blast_attempt_0001",
+      "carrierId": "theta_expl_source_window_attempt_0001",
+      "thetaSrcId": "Theta_src_attempt_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_attempt_0001",
+      "sourceWindowId": "W_expl_attempt_0001",
+      "supportId": "Omega_expl_attempt_0001",
+      "eventLedgerId": "L_EpJ_expl_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "neutrino_heating_row": {
+      "status": "accepted",
+      "rowId": "neutrino_heating_attempt_0001",
+      "carrierId": "theta_expl_source_window_attempt_0001",
+      "thetaSrcId": "Theta_src_attempt_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_attempt_0001",
+      "sourceWindowId": "W_expl_attempt_0001",
+      "supportId": "Omega_expl_attempt_0001",
+      "eventLedgerId": "L_EpJ_expl_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "reaction_yield_row": {
+      "status": "accepted",
+      "rowId": "reaction_yield_attempt_0001",
+      "carrierId": "theta_expl_source_window_attempt_0001",
+      "thetaSrcId": "Theta_src_attempt_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_attempt_0001",
+      "sourceWindowId": "W_expl_attempt_0001",
+      "supportId": "Omega_expl_attempt_0001",
+      "eventLedgerId": "L_EpJ_expl_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "radioactive_heating_row": {
+      "status": "accepted",
+      "rowId": "radioactive_heating_attempt_0001",
+      "carrierId": "theta_expl_source_window_attempt_0001",
+      "thetaSrcId": "Theta_src_attempt_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_attempt_0001",
+      "sourceWindowId": "W_expl_attempt_0001",
+      "supportId": "Omega_expl_attempt_0001",
+      "eventLedgerId": "L_EpJ_expl_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "photon_output_row": {
+      "status": "accepted",
+      "rowId": "photon_output_attempt_0001",
+      "carrierId": "theta_expl_source_window_attempt_0001",
+      "thetaSrcId": "Theta_src_attempt_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_attempt_0001",
+      "sourceWindowId": "W_expl_attempt_0001",
+      "supportId": "Omega_expl_attempt_0001",
+      "eventLedgerId": "L_EpJ_expl_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "remnant_medium_heating_row": {
+      "status": "accepted",
+      "rowId": "remnant_medium_heating_attempt_0001",
+      "carrierId": "theta_expl_source_window_attempt_0001",
+      "thetaSrcId": "Theta_src_attempt_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_attempt_0001",
+      "sourceWindowId": "W_expl_attempt_0001",
+      "supportId": "Omega_expl_attempt_0001",
+      "eventLedgerId": "L_EpJ_expl_attempt_0001",
+      "noetherSeaUpdateId": "N_sea_expl_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "event_ledger_row": {
+      "status": "accepted",
+      "rowId": "event_ledger_expl_attempt_0001",
+      "carrierId": "theta_expl_source_window_attempt_0001",
+      "thetaSrcId": "Theta_src_attempt_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_attempt_0001",
+      "sourceWindowId": "W_expl_attempt_0001",
+      "supportId": "Omega_expl_attempt_0001",
+      "eventLedgerId": "L_EpJ_expl_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "source_provenance": {
+      "status": "accepted",
+      "rowId": "source_provenance_expl_attempt_0001",
+      "carrierId": "theta_expl_source_window_attempt_0001",
+      "thetaSrcId": "Theta_src_attempt_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_attempt_0001",
+      "sourceWindowId": "W_expl_attempt_0001",
+      "supportId": "Omega_expl_attempt_0001",
+      "eventLedgerId": "L_EpJ_expl_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    },
+    "no_hidden_retune_witness": {
+      "status": "accepted",
+      "rowId": "no_hidden_retune_expl_attempt_0001",
+      "carrierId": "theta_expl_source_window_attempt_0001",
+      "thetaSrcId": "Theta_src_attempt_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_attempt_0001",
+      "sourceWindowId": "W_expl_attempt_0001",
+      "supportId": "Omega_expl_attempt_0001",
+      "eventLedgerId": "L_EpJ_expl_attempt_0001",
+      "retuneWitnessId": "S_retune_expl_attempt_0001",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-b-source-evidence-probe.v1.json"
+    }
+  },
+  "negativeControls": [
+    {
+      "id": "explosive.source_window_split",
+      "expectedFailure": "source_window_split_before_residual_scoring",
+      "mutation": {
+        "rows.reaction_yield_row.sourceWindowId": "W_expl_split_reaction_yield_negative_control"
+      }
+    },
+    {
+      "id": "explosive.neutrino_private_heating",
+      "expectedFailure": "thermal_provenance_split_before_residual_scoring",
+      "mutation": {
+        "rows.neutrino_heating_row.thetaThermProvId": "Theta_therm_prov_private_neutrino_negative_control"
+      }
+    }
+  ],
+  "scoreDecision": "no_score_increase",
+  "nextBlocker": "missing_accepted_explosive_source_window_carrier"
+}

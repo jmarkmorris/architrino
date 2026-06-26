@@ -510,7 +510,9 @@ function evaluateSourceReference(row) {
     return { accepted: false, reason: "source_missing" };
   }
   if (/^https?:\/\//.test(source)) {
-    return { accepted: true, reason: "source_url" };
+    return sourceSupportsEq29(row)
+      ? { accepted: true, reason: "source_url" }
+      : { accepted: false, reason: "accepted_without_evidence_source" };
   }
   if (source.includes("/tmp/") || source.includes("content/generated/")) {
     return { accepted: false, reason: "source_not_durable" };
@@ -525,7 +527,35 @@ function evaluateSourceReference(row) {
   if (!isEvidenceSourcePath(resolved)) {
     return { accepted: false, reason: "accepted_without_evidence_source" };
   }
+  if (!sourceSupportsEq29(row)) {
+    return { accepted: false, reason: "accepted_without_evidence_source" };
+  }
   return { accepted: true, reason: "source_file" };
+}
+
+function sourceSupportsEq29(row) {
+  const supportValues = [
+    row?.sourceFamily,
+    row?.sourceKind,
+    row?.sourceRole,
+    row?.sourceSupport,
+    row?.sourceSupports,
+    row?.evidenceFamily,
+    row?.evidenceRole,
+    row?.evidenceSupports,
+    row?.claimLevel,
+  ].flatMap((value) => (Array.isArray(value) ? value : [value]));
+  const normalized = supportValues
+    .filter((value) => typeof value === "string")
+    .map((value) => value.toLowerCase());
+  return normalized.some(
+    (value) =>
+      value.includes("eq-29") ||
+      value.includes("eq29") ||
+      value.includes("radiation_source") ||
+      value.includes("radiation source") ||
+      value.includes("synchrotron source"),
+  );
 }
 
 function isEvidenceSourcePath(filePath) {

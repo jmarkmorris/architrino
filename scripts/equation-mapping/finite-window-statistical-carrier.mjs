@@ -211,6 +211,7 @@ function evaluateCarrier(input) {
   const measure = carrier.finiteMeasure ?? {};
   const totalMass = positiveNumber(measure.totalMass, "carrier.finiteMeasure.totalMass");
   const corridors = parseCorridors(carrier.exitCorridors ?? [], duration, constants);
+  const carrierAcceptance = evaluateCarrierAcceptance(carrier);
   const retainedAcceptance = evaluateRetainedAcceptance(carrier, tolerances);
   const massRows = computeMassRows(corridors, totalMass, tolerances);
   const eq14 = computeEq14Rows(carrier, tolerances);
@@ -220,6 +221,7 @@ function evaluateCarrier(input) {
   const eq31 = computeEq31Rows(corridors, constants);
   const corridorDiagnostics = evaluateCorridorDiagnostics(carrier, tolerances);
   const blockerContext = {
+    carrierAcceptance,
     retainedAcceptance,
     massRows,
     carrier,
@@ -231,6 +233,7 @@ function evaluateCarrier(input) {
     corridorDiagnostics,
   };
   const status = decideStatus(
+    carrierAcceptance,
     retainedAcceptance,
     massRows,
     carrier,
@@ -262,6 +265,8 @@ function evaluateCarrier(input) {
     summary: {
       status,
       scoreDecision: SCORE_DECISION,
+      carrierSourceAccepted: carrierAcceptance.accepted,
+      carrierSourceReason: carrierAcceptance.reason,
       acceptedCarrierRows: retainedAcceptance.accepted,
       massClosurePassed: massRows.massClosurePassed,
       hiddenRetunePassed: retainedAcceptance.hiddenRetunePassed,
@@ -289,6 +294,14 @@ function evaluateCarrier(input) {
       nextBlockerDetails: firstBlockerDetails(nextBlocker, blockerContext),
     },
     finiteWindowCarrier: {
+      carrier: {
+        id: carrier.id ?? null,
+        retainedStatus: carrier.retainedStatus ?? null,
+        sourcePath: carrier.sourcePath ?? carrier.source ?? null,
+        sourceReferenceExists: carrierAcceptance.sourceReferenceExists,
+        sourceEvidenceReferenceExists: carrierAcceptance.sourceEvidenceReferenceExists,
+        reason: carrierAcceptance.reason,
+      },
       window: summarizeRow(carrier.window),
       duration,
       transitionMap: summarizeRow(carrier.transitionMap),
@@ -1172,6 +1185,64 @@ function evaluateRetainedAcceptance(carrier, tolerances) {
   };
 }
 
+function evaluateCarrierAcceptance(carrier) {
+  const status = carrier?.retainedStatus ?? carrier?.status ?? null;
+  const sourcePath = carrier?.sourcePath ?? carrier?.source ?? null;
+  if (!isAcceptedStatus(status)) {
+    return {
+      accepted: true,
+      required: false,
+      status,
+      sourcePath,
+      sourceReferenceExists: sourceReferenceExists(sourcePath),
+      sourceEvidenceReferenceExists: sourceEvidenceReferenceExists(sourcePath),
+      reason: "carrier_not_accepted",
+    };
+  }
+  if (!concreteString(carrier?.id)) {
+    return {
+      accepted: false,
+      required: true,
+      status,
+      sourcePath,
+      sourceReferenceExists: sourceReferenceExists(sourcePath),
+      sourceEvidenceReferenceExists: sourceEvidenceReferenceExists(sourcePath),
+      reason: "carrier_identity_not_concrete",
+    };
+  }
+  if (!sourceReferenceExists(sourcePath)) {
+    return {
+      accepted: false,
+      required: true,
+      status,
+      sourcePath,
+      sourceReferenceExists: false,
+      sourceEvidenceReferenceExists: false,
+      reason: "carrier_source_not_found",
+    };
+  }
+  if (!sourceEvidenceReferenceExists(sourcePath)) {
+    return {
+      accepted: false,
+      required: true,
+      status,
+      sourcePath,
+      sourceReferenceExists: true,
+      sourceEvidenceReferenceExists: false,
+      reason: "accepted_without_evidence_source",
+    };
+  }
+  return {
+    accepted: true,
+    required: true,
+    status,
+    sourcePath,
+    sourceReferenceExists: true,
+    sourceEvidenceReferenceExists: true,
+    reason: "accepted",
+  };
+}
+
 function evaluateEq14Acceptance(carrier) {
   if (carrier.row !== "EQ-14") {
     return {
@@ -1444,6 +1515,7 @@ function summarizeRow(row, extraKeys = []) {
 }
 
 function decideStatus(
+  carrierAcceptance,
   retainedAcceptance,
   massRows,
   carrier,
@@ -1460,6 +1532,9 @@ function decideStatus(
     return carrier.retainedStatus === "toy"
       ? "toy_structure_only"
       : "blocked_carrier_not_retained";
+  }
+  if (!carrierAcceptance.accepted) {
+    return "blocked_carrier_source_evidence";
   }
   if (!retainedAcceptance.accepted) {
     return "blocked_missing_accepted_retained_rows";
@@ -1524,6 +1599,7 @@ function decideStatus(
 }
 
 function firstBlocker({
+  carrierAcceptance,
   retainedAcceptance,
   massRows,
   carrier,
@@ -1539,6 +1615,9 @@ function firstBlocker({
   }
   if (requiresCorridorFamily(carrier) && !eq31.computed) {
     return "missing_positive_escape_measure";
+  }
+  if (!carrierAcceptance.accepted) {
+    return carrierAcceptance.reason;
   }
   if (retainedAcceptance.missingAcceptedRows.length > 0) {
     return `missing_accepted_${retainedAcceptance.missingAcceptedRows[0]}`;
@@ -1614,6 +1693,7 @@ function firstBlockerDetails(nextBlocker, context) {
   }
   const {
     retainedAcceptance,
+    carrierAcceptance,
     massRows,
     carrier,
     eq14Acceptance,
@@ -1638,6 +1718,21 @@ function firstBlockerDetails(nextBlocker, context) {
         ? carrier.exitCorridors.length
         : 0,
       eq31Computed: eq31.computed,
+    };
+  }
+  if (
+    nextBlocker === "accepted_without_evidence_source" ||
+    nextBlocker === "carrier_source_not_found" ||
+    nextBlocker === "carrier_identity_not_concrete"
+  ) {
+    return {
+      reason: nextBlocker,
+      row: carrier.row ?? null,
+      carrierId: carrier.id ?? null,
+      retainedStatus: carrier.retainedStatus ?? null,
+      sourcePath: carrierAcceptance.sourcePath,
+      sourceReferenceExists: carrierAcceptance.sourceReferenceExists,
+      sourceEvidenceReferenceExists: carrierAcceptance.sourceEvidenceReferenceExists,
     };
   }
   const retainedId = missingIdFor(nextBlocker, retainedAcceptance.missingAcceptedRows);
@@ -1892,6 +1987,7 @@ function isEvidenceSourcePath(filePath) {
     lowerBasename.includes("attempt") ||
     lowerBasename.includes("toy") ||
     lowerBasename.includes("source-evidence-probe") ||
+    lowerBasename.includes("probe") ||
     lowerBasename.includes("mock") ||
     lowerBasename.includes("negative-control")
   );

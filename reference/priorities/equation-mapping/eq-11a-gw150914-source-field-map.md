@@ -81,6 +81,14 @@ node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --inp
 
 The probe marks only the top-level carrier and `gw_source_carrier` row as accepted-looking against a guard-passing local GWOSC/LVK report source. It leaves `theta_sea`, the effective-metric tensor channel, event ledger, source rows, strain record, provenance row, and no-hidden-retune witness at `attempt`. The expected result is `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_theta_sea`; the `--require-populated` form must exit nonzero.
 
+The probe-source negative control is [eq11a-gravitational-wave-source-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-probe-source-negative-control.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-probe-source-negative-control.v1.json --summary --pretty
+```
+
+It marks the same carrier and `gw_source_carrier` row accepted-looking while pointing their source paths at a source-evidence-probe JSON. The intended result is `status: blocked_missing_accepted_gw_source_carrier`, `carrierReason: accepted_without_evidence_source`, `sourceIdentityPass: true`, and `scoreDecision: no_score_increase`. The same command with `--require-populated` must exit nonzero. Probe files can expose blocker order, but they cannot satisfy retained source evidence for $\Theta_{\mathrm{GWsrc}}(W,P)$.
+
 ## Current Disposition
 
 The source map is ready for a checker-consumable attempt packet, not a score change. A future candidate input should preserve `status: attempt` until all row bindings are source-backed, durable, and accepted by the existing checker contract.

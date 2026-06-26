@@ -62,8 +62,8 @@
         "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json"
       },
       {
-        "nodeId": "perspectives",
-        "scenePath": "content/scenes/philosophy_history/perspectives.json"
+        "nodeId": "treasure_physics_overlooked",
+        "scenePath": "content/scenes/philosophy_history/treasure_physics_overlooked.json"
       }
     ]
   },
@@ -157,11 +157,11 @@
       "labelBadge": "doc"
     },
     {
-      "id": "perspectives",
-      "title": "Perspectives",
+      "id": "treasure_physics_overlooked",
+      "title": "The Treasure Physics Overlooked",
       "radius": 2.688,
       "color": "#6f4a8f",
-      "labelTitle": "Perspectives",
+      "labelTitle": "Treasure Physics Overlooked",
       "labelBadge": "scene"
     }
   ]

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "philosophy_history__treasure_physics_overlooked",
+    "title": "The Treasure Physics Overlooked",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
+    },
+    "children": [
+      {
+        "nodeId": "treasure_physics_overlooked_overview",
+        "scenePath": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "treasure_physics_overlooked_overview",
+      "title": "The Treasure Physics Overlooked",
+      "radius": 2.688,
+      "color": "#4f5d75",
+      "labelTitle": "Treasure Physics Overlooked",
+      "labelBadge": "doc"
+    }
+  ]
+}
