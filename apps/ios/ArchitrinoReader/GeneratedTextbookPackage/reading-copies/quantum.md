@@ -521,6 +521,20 @@ When standard non-relativistic, fixed-particle-number quantum mechanics uses a u
 
 That statement is licensed only after the action-to-envelope handoff supplies a controlled residual. The effective wavefunction chart must name the coarse fields, the phase-amplitude map, and the retained record window; it must pass the action-to-envelope residual $\mathcal{R}_{\mathrm{env}}\le\epsilon_{\mathrm{env}}$ in [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#closure-interface-action-to-envelope-reduction), and any later update must pass the record-autonomy tests in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#what-makes-an-interaction-a-record). Otherwise $\psi$ remains a useful fitting envelope, not a promoted quantum closure.
 
+#### Particle-Wave Duality As Assembly And Wake
+
+The standard phrase particle-wave duality is a comparison label, not native ontology. It records two true experimental facts: detections are localized and countable, while propagation histories show interference, diffraction, and phase sensitivity. In $\mathbb{A}\mathbb{A}\mathbb{A}$ those facts are not assigned to one object switching identity. They are assigned to two coupled pieces of one causal process: the assembly and its causal wake.
+
+For a declared preparation and apparatus channel, the retained effective state should be read as a lossy projection of a substrate packet
+$$
+\Gamma_\theta(t)=\left(X_{\mathrm{asm}}(t),\mathcal{W}_\theta(t),Z_\theta(t)\right)
+$$
+where $X_{\mathrm{asm}}$ denotes the localized assembly coordinates retained by the chart, $\mathcal{W}_\theta$ denotes the causal-wake/path-history data still relevant to the record channel, and $Z_\theta$ denotes retained Noether sea and apparatus-environment context. Localization and countable detector records belong primarily to the assembly and apparatus basin. Interference and phase transport belong primarily to unresolved wake history in $\mathcal{W}_\theta$.
+
+The double-slit lesson is therefore not that an ontic particle becomes a wave before becoming a particle again. The lesson is that a localized assembly can leave and receive distributed wake structure whose path history remains live until an apparatus creates a restartable record. If no which-path record has formed at the slit plane, the effective wavefunction must continue to carry the unresolved branch envelope. If a which-path apparatus forms a durable record, the record channel changes and interference is removed by apparatus coupling, not by an observer's act of looking.
+
+This is the conceptual bridge to the restartability test below. Particle-like detection is the record-facing side of the assembly. Wave-like behavior is the unresolved wake-history side of the same preparation. The wavefunction is the effective chart that carries both until the declared apparatus channel has either preserved interference or produced a completed record.
+
 #### Effective State-Vector Contract
 
 The standard state-vector formalism supplies a precise observer-level contract that the $\mathbb{A}\mathbb{A}\mathbb{A}$ reduction must recover, not an ontological replacement for architrino trajectories. For a declared effective chart $\theta=(M_\theta,\mathcal{Q},W,T)$, the comparison Hilbert space is
@@ -1167,6 +1181,29 @@ $$
 \le 1
 $$
 If the first two terms are large, a Kraus or Lindblad description may remain a useful short-time fit, but it has not earned a restartable measurement state. This matches the $\mathbb{A}\mathbb{A}\mathbb{A}$ distinction between a completed record and a reduced description that has discarded live path-history memory.
+
+### Schrodinger's Cat As A Record-Channel Problem
+
+Schrodinger's cat is best read as a warning against treating the formal wavefunction as the ontology of a whole macroscopic situation. The point is not that a cat is literally alive and dead until a human opens a box. The point is that the standard language can slide from a microscopic unresolved trigger to an absurd macroscopic description if it does not specify where physical record formation has occurred.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ the boxed experiment is one coupled apparatus-environment packet. A compact record description can be written as
+$$
+\theta_{\mathrm{cat}}
+=
+\left(
+\mathcal{K}_{\mathrm{trigger}},
+\mathcal{K}_{\mathrm{box}},
+\mathcal{Q}_{\mathrm{cat}},
+W_{\mathrm{box}},
+T_{\mathrm{box}},
+\{R_{\mathrm{alive}},R_{\mathrm{dead}}\}
+\right)
+$$
+where the trigger, box, internal apparatus, enclosed environment, animal body, and later observer access all belong to one declared physical channel. The outside observer's ignorance is not the same thing as substrate indeterminacy. It is an access limitation: the external observer does not yet possess a record of which internal basin has been reached.
+
+The mature record-channel translation is therefore simple. If the internal trigger and apparatus have crossed a separatrix, closed the event ledger, generated a durable internal record, and locked that record into the box environment, then the macroscopic state has already resolved inside the physical channel. Opening the box imports that completed record into the observer's own access region. If the internal apparatus has not yet produced a record, then the effective wavefunction may still carry an unresolved branch envelope for that declared channel; but that is a statement about incomplete record formation, not about a metaphysical blend of living and dead macroscopic states.
+
+This distinction preserves the force of Schrodinger's critique. The cat thought experiment exposes a category error in the inherited language: a formal superposition over possible records was being promoted into a literal ontology for macroscopic reality. The $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement is record-channel explicitness. Measurement has occurred when the physical channel satisfies the record-autonomy, persistence, ledger, and energy-residual tests below; observation by a later human is one more physical record import, not the event that makes reality choose.
 
 ### Physical-Record Import Consistency
 
@@ -2108,6 +2145,10 @@ The relevant object is the nested shell braid described in [Noether Braid](../..
 In the low-apparent-energy matter regime, the three nested binaries maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
 This is already a flattened object, but it remains genuinely three-dimensional. The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the candidate substrate basis for fermionic exclusion.
+
+The good news for the pressure story is that this is not an alien mechanism. Electron degeneracy already teaches the observer-level lesson: when a population carries an exclusion rule, compression does not merely make the objects closer together; it changes the available state volume and produces a pressure response. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the same logic is pushed down one level. Noether braids have oblate spheroidal exclusion envelopes, so dense packing should produce an effective packing pressure before the language of a smooth continuum equation of state is introduced.
+
+That statement has a controlled burden. The exclusion envelope can supply the geometric source of pressure-like resistance, but the full Fermi-Dirac pressure law also needs the exchange-sign and state-counting recovery described below. The pressure analogy is therefore a bridge, not a shortcut: Noether braid packing explains why overlap is dynamically costly, while spin-statistics closure must still explain why the observer-level electron gas obeys the familiar fermionic counting law.
 
 ### Fermi-Dirac Regime: 3D Exclusion
 
