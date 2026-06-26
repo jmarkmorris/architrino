@@ -51,6 +51,7 @@ Use each dated score as a maturity indicator, not as a value judgment. A low-sco
 | `EQ-21` | Structure growth and matter power | $\ddot\delta+2H\dot\delta-4\pi G_{\mathrm{eff}}\bar\rho_m\delta=0$; $P(k,z)=P_{\mathrm{seed}}T^2D^2$ | Medium-and-assembly growth history | `3` | `3` | One sea record must feed growth, CMB lensing, shear, BAO, and halo tests. |  |
 | `EQ-22` | CMB transfer, blackbody, and acoustic equations | $C_\ell^{XY}=\frac{2}{\pi}\int k^2dk\,P(k)\Delta_{X\ell}\Delta_{Y\ell}$ | Noether sea thermalization and photon decoupling | `2` | `3` | Derive source, thermalization, acoustic, frame, and blackbody records together. |  |
 | `EQ-22A` | Planck blackbody law, mode counting, and photon occupancy | $\bar n_\nu=(e^{h\nu/k_BT}-1)^{-1}$; $u_\nu=8\pi h\nu^3/[c_\gamma^3(e^{h\nu/k_BT}-1)]$ | Finite-window thermal record, photon Gate B modes, Noether sea thermalization | `2` | `2` | Recover the Planck spectrum from shared mode counting, zero photon chemical potential, and thermalization depth without per-bin temperature fitting. |  |
+| `EQ-22B` | Recombination, visibility, sound horizon, and acoustic transfer | $\Gamma_T=n_e\sigma_Tc_\gamma$; $y_{\mathrm{vis}}=\Gamma_Te^{-\tau_T}$; $r_s=\int c_s\,dt/a_{\mathrm{eff}}$ | Shared thermal/provenance/readout record, photon and neutrino channels, Noether sea state, event ledger | `2` | `2` | Recover recombination kinetics, visibility, sound horizon, damping, and acoustic transfer from one shared observation carrier without importing an origin story or private readout clock. |  |
 | `EQ-23` | BBN rate and freezeout equations | reaction-network yields $\mathbf Y[\{T,\rho,n_b,n_\gamma,n_n\}]$ | Source-window thermal record and Noether sea state | `2` | `3` | Preserve light-element yields, $\eta$, $N_{\text{eff}}$, photon loading, and neutrino rows in one record. |  |
 | `EQ-24` | Fluid, elastic, and acoustic-medium equations | acoustic metric and stress-strain laws as comparison forms | Noether sea continuum response | `3` | `3` | Use only as low-moment projections of Noether braid population dynamics. |  |
 | `EQ-25` | Thermodynamic, Boltzmann, entropy, and fluctuation equations | $df/dt=C[f]$; $dS/dt\ge0$ | Coarse-grained sea and record dynamics | `2` | `3` | Derive thermalization, irreversibility, and noise from deterministic unresolved degrees of freedom. |  |
@@ -116,7 +117,7 @@ Every downstream row must either consume the active-root law directly or consume
 | `EQ-05` | Conservation rows must include wake energy, wake momentum, angular momentum, event work, and boundary flux on the same finite window; ordinary local mechanical totals alone are not enough in a delay system. |
 | `EQ-06`, `EQ-24`, and `EQ-25` | Noether sea continuity, medium response, acoustic/elastic rows, and thermal/statistical rows must be low-moment or finite-window projections of retained Noether braid population dynamics, not independent continuum postulates. |
 | `EQ-07` through `EQ-11`, `EQ-17` through `EQ-20`, and `EQ-32`, plus `EQ-07A` and `EQ-11A` | Effective metric, compact-star support, weak-gravity, gravitational-wave source, redshift, cosmology, dark-energy, and low-acceleration rows must project from Noether sea density, cadence, delay, stress, flow, and response variables whose source record is ultimately a coarse-grained causal-root and wake ledger. |
-| `EQ-12`, `EQ-12A`, `EQ-22A`, `EQ-26`, `EQ-26A`, `EQ-28`, `EQ-28A`, and `EQ-29` | Photon, action-quantum, blackbody, atomic, coupling, recoil, path-frequency exchange, and radiation rows must preserve source-event provenance, photon-channel event balance, recoil/remnant rows, and wake/Noether sea exchange rather than assigning $h$, $\alpha$, $c_\gamma$, frequency shifts, or emitted power independently. |
+| `EQ-12`, `EQ-12A`, `EQ-22A`, `EQ-22B`, `EQ-26`, `EQ-26A`, `EQ-28`, `EQ-28A`, and `EQ-29` | Photon, action-quantum, blackbody, recombination/acoustic, atomic, coupling, recoil, path-frequency exchange, and radiation rows must preserve source-event provenance, photon-channel event balance, recoil/remnant rows, and wake/Noether sea exchange rather than assigning $h$, $\alpha$, $c_\gamma$, recombination clocks, frequency shifts, or emitted power independently. |
 | `EQ-13`, `EQ-15`, `EQ-16`, `EQ-16A`, and `EQ-27` | Field, spinor, gauge, neutrino, and magnetic-moment rows must retain branch identity, ordered-frame or phase-history data, angular-momentum ledgers, and exposed-sector records back to a causal-root branch instead of importing field labels as substrate ontology. |
 | `EQ-14`, `EQ-30`, and `EQ-31` | Probability-current, cross-section, form-factor, width, lifetime, and branching-fraction rows must arise from finite-window branch pushforwards, event outcome partitions, detector kernels, and admissible escape corridors seeded by retained causal-root histories. |
 
@@ -2042,6 +2043,116 @@ The row must recover:
 ### Agent Target
 
 Populate one finite-window thermal photon packet whose mode density, occupancy, energy density, zero photon chemical potential, and thermalization depth all come from the same $\Theta_{\mathrm{bb}}$ record.
+
+## EQ-22B: Recombination And Acoustic Transfer
+
+Detailed packet: [EQ-22B Recombination And Acoustic Transfer](eq-22b-recombination-acoustic-transfer.md).
+
+### Standard Form
+
+The equilibrium recombination benchmark is
+
+$$
+\frac{x_e^2}{1-x_e}
+=
+\frac{1}{n_H}
+\left(
+\frac{m_ek_BT}{2\pi\hbar^2}
+\right)^{3/2}
+\exp\left(-\frac{\chi_H}{k_BT}\right).
+$$
+
+A Peebles-style rate row is represented as
+
+$$
+\dot x_e
+=
+-C_{\mathrm{rec}}\alpha_Bn_Hx_e^2
++C_{\mathrm{rec}}\beta_B(1-x_e).
+$$
+
+The Thomson rate, visibility, sound horizon, and compact acoustic transfer rows are
+
+$$
+\Gamma_T=n_e\sigma_Tc_\gamma,
+\qquad
+\tau_T=\int n_e\sigma_Tc_\gamma\,dt,
+\qquad
+g=\Gamma_Te^{-\tau_T},
+$$
+
+$$
+c_s
+=
+\frac{c_\gamma}{\sqrt{3(1+R_b)}},
+\qquad
+r_s=\int\frac{c_s}{a_{\mathrm{eff}}}\,dt,
+$$
+
+and
+
+$$
+\ddot\Theta_{\gamma b}
++c_s^2k^2\Theta_{\gamma b}
+=
+S_{\gamma b}.
+$$
+
+### AAA Mapping
+
+`EQ-22B` treats these equations as observer-level recovery targets for one shared recombination/acoustic carrier:
+
+$$
+\Theta_{\mathrm{rec/ac}}
+=
+\left(
+x_e^\theta,
+n_e^\theta,
+\Gamma_T^\theta,
+\tau_T^\theta,
+g^\theta,
+r_s^\theta,
+k_D^\theta,
+R_b^\theta,
+\theta_{\gamma b}^\theta,
+\Theta_{\mathrm{therm/prov}},
+\Theta_{\mathrm{read}},
+\mathcal L_{E\mathbf p\mathbf J}
+\right).
+$$
+
+The recombination fraction, Thomson rate, visibility, sound horizon, Silk damping, acoustic transfer, BBN handoff, and readout clock must share one thermal/provenance/readout record. A match fails if it imports a recombination clock, origin story, private baryon loading row, or acoustic phase fit as a separate record.
+
+### Closure Status
+
+Current `6/23 b` score: `2`.
+
+The standard formula families and native carriers are now named in the focused packet, but no accepted recombination/acoustic carrier, shared thermal/provenance record, photon channel, neutrino channel, Noether sea state, or event ledger exists. No score increase for `EQ-21`, `EQ-22`, `EQ-22A`, `EQ-23`, `EQ-24`, or `EQ-25` follows from adding this suffix row.
+
+Executable status: [eq22b-recombination-acoustic-residual.mjs](../../../scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs) evaluates the score-neutral recombination/acoustic residual. The attempt fixture [eq22b-recombination-acoustic-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-attempt.v1.json) reports `blocked_missing_accepted_recombination_acoustic_carrier`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_recombination_acoustic_carrier`; its Saha, Peebles, Thomson/visibility, sound-horizon, Silk-damping, acoustic-transfer, source-provenance, hidden-retune, and negative-control diagnostics pass, but those passes are not score evidence because the recombination/acoustic carrier and every row binding remain `attempt`.
+
+### Closure Burden
+
+The first residual is
+
+$$
+\mathcal R_{\mathrm{rec/ac}}^\theta
+=
+\mathcal R_{x_e}^\theta
++\lambda_P\mathcal R_{\mathrm{Peebles}}^\theta
++\lambda_\tau\mathcal R_{\tau_T}^\theta
++\lambda_g\mathcal R_{\mathrm{vis}}^\theta
++\lambda_s\mathcal R_{r_s}^\theta
++\lambda_D\mathcal R_{\mathrm{Silk}}^\theta
++\lambda_{\mathrm{ac}}\mathcal R_{\mathrm{acoustic}}^\theta
++\lambda_{\mathrm{shared}}\mathcal S_{\mathrm{retune}}.
+$$
+
+The first blocker is `missing_accepted_recombination_acoustic_carrier`: one source-backed $\Theta_{\mathrm{rec/ac}}$ must declare recombination, visibility, sound horizon, damping, acoustic transfer, BBN handoff, thermal/provenance, and readout rows before any stronger score or reader-facing promotion is justified.
+
+### Agent Target
+
+Populate the `EQ-22B` recombination/acoustic carrier behind the solver residual. The next useful artifact is a source-backed carrier row that keeps recombination kinetics, visibility, sound horizon, damping, acoustic phase, BBN handoff, and observation readout on one retained record.
 
 ## EQ-23: BBN Rate And Freezeout Equations
 
