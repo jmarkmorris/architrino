@@ -15,6 +15,8 @@
 
 This run is a team-agent breakthrough search over least-advanced equation rows. It does not promote material into `content/markdown/aaa` and does not change equation scores. Candidate breakthroughs remain candidate-level until accepted retained evidence, source-backed carrier rows, or supported checker results land.
 
+Operator correction, 2026-06-26: the later `Checkpoint 11` wall-clock claim is not a reliable active-runtime measurement. The thread hit a token-limit interruption and did not automatically restart when the interruption cleared. Treat the prior run as interrupted before satisfying the hard runtime requirement. Keep the artifacts and checker outputs below as score-neutral work already landed, but do not cite the prior run as a completed nine-hour or ten-hour search.
+
 The queue order is:
 
 1. rows with blank or missing `6/23 b`, rows present in packets/scripts but missing from `equation.md`, and suffix candidates not fully integrated;
@@ -746,11 +748,11 @@ Rows through score `3` still have meaningful work because several second-pass wo
 
 No score changes.
 
-## Checkpoint 11
+## Checkpoint 11: Interrupted-Run Correction
 
 - Time: 2026-06-26 11:20 EDT.
-- Elapsed: about 10 hours 53 minutes from the initial required status pass.
-- Runtime target: reached and exceeded.
+- Corrected runtime status: not reached. The apparent elapsed timestamp includes a token-limit interruption and does not represent continuous active agent/coordinator work.
+- Restart status: repeat the long-running prompt from the live queue, preserving the score-neutral artifacts already landed and continuing with remaining accepted-evidence searches instead of claiming exhaustion.
 - Agents completed since checkpoint 9:
   - `Rawls the 2nd` and `Kant the 2nd`: second-pass `EQ-07A`/`EQ-12A` cards; first blockers remain `missing_accepted_compact_region_carrier` and `missing_accepted_retained_orbit_reduction_row`.
   - `Hooke the 2nd` and `Erdos the 2nd`: second-pass `EQ-22A`/`EQ-26A`/`EQ-28A` cards; kept `theta_bb`, `theta_alpha`, and `Theta_nu-ex(W)` distinct.
@@ -787,9 +789,9 @@ No score changes.
 | 6 | compact-region `Theta_cs_07A` | Smaller than full `theta_W` closure for compact-star support, but still needs source-evidence guard and source-attempt fixture. | `missing_accepted_compact_region_carrier` |
 | 7 | retained action-period `S_eq` branch | Dedicated `EQ-12A` path independent of photon support; needs source-attempt fixture and checker source guard. | `missing_accepted_retained_orbit_reduction_row` |
 
-### Remaining Queue At Close
+### Remaining Queue At Interruption
 
-The run stops because the nine-hour wall-clock target was exceeded, not because the score-1 through score-3 queue is mathematically exhausted. Remaining highest-value source/evidence actions are:
+The run stopped because of token-limit interruption, not because the score-1 through score-3 queue is mathematically exhausted and not because the nine-hour wall-clock target was truly reached. Remaining highest-value source/evidence actions are:
 
 1. Build the `EQ-31` charged-pion `W` positive source-evidence fixture using guard-passing PDG paths while keeping lifetime/branching unsourced rows blocked.
 2. Implement the `EQ-07A` compact-region source-attempt fixture and source-evidence guard.
