@@ -152,6 +152,8 @@ Contact sheet proofs may use representative mock solver-replay paths before the 
 
 [NPQG Fundamentals - Paths.pptx](NPQG Fundamentals - Paths.pptx) is a conceptual and geometry reference for path-history, expanding emissions, circular wake intersections, and action-at-intersection scenes. It is not the art-direction target. The contact sheet proofs should improve on the old slide aesthetic while preserving the useful causal-delay ideas.
 
+The legacy WordPress post [Determinism](https://architrino.wordpress.com/2022/08/21/determinism/) is a priority-only source lead for the simplest two-stage feedback explanation: one architrino's emitted causal wake reaches a later point on the partner path, changes that partner's later response, and the partner's later emitted wake reaches a later point on the first path. Use it only for replay or preset framing; do not import its NPQG free-will framing, Dirac-sphere terminology, point-charge ontology, or global indeterminism claim.
+
 Mock proof datasets must be labeled as `representative mock solver replay` in the proof artifact or local proof notes. They should imitate the solver output shape closely enough to test layout:
 
 - frame samples for one positrino/electrino pair;

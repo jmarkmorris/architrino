@@ -483,6 +483,13 @@ function produceCertificate({ source, inputPath, retainedRecord }) {
 }
 
 function summarizeCertificate(certificate) {
+  const failedCheckDetails = certificate.producer.checks
+    .filter((check) => !check.passed)
+    .slice(0, 8)
+    .map((check) => ({
+      id: check.id,
+      details: check.details,
+    }));
   return {
     schema: certificate.schema,
     status: certificate.status,
@@ -496,6 +503,8 @@ function summarizeCertificate(certificate) {
       scoreDecision: certificate.producer.scoreDecision,
       failedChecks: certificate.producer.failedChecks,
       nextBlocker: certificate.producer.nextBlocker,
+      nextBlockerDetails: failedCheckDetails[0] ?? null,
+      leadingFailedCheckDetails: failedCheckDetails,
     },
   };
 }

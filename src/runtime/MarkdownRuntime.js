@@ -121,6 +121,47 @@ export function createMarkdownRuntime(deps) {
     return null;
   }
 
+  function resolveMarkdownImageSource(rawSrc) {
+    if (typeof rawSrc !== "string" || !rawSrc.trim()) {
+      return null;
+    }
+    const src = rawSrc.trim();
+    if (/^(?:[a-z][a-z0-9+.-]*:|#)/iu.test(src)) {
+      return null;
+    }
+
+    const resolved = resolveLocalMarkdownHref(src);
+    if (!resolved) {
+      return null;
+    }
+    return resolved.path;
+  }
+
+  function decorateMarkdownImages() {
+    if (!markdownBody || typeof markdownBody.querySelectorAll !== "function") {
+      return;
+    }
+    markdownBody.querySelectorAll("img[src]").forEach((image) => {
+      const resolvedSrc = resolveMarkdownImageSource(image.getAttribute?.("src"));
+      if (!resolvedSrc) {
+        return;
+      }
+      image.setAttribute(
+        "src",
+        typeof appendCacheBust === "function" ? appendCacheBust(resolvedSrc) : resolvedSrc
+      );
+      image.setAttribute("loading", "lazy");
+      image.setAttribute("decoding", "async");
+      image.classList?.add?.("markdown-image");
+
+      const parent = image.parentElement;
+      const blockParent = parent?.tagName === "A" ? parent.parentElement : parent;
+      if (blockParent?.tagName === "P") {
+        blockParent.classList?.add?.("markdown-image-block");
+      }
+    });
+  }
+
   function protectMathSegments(markdown) {
     const protectedSegments = [];
     let protectedIndex = 0;
@@ -543,6 +584,14 @@ export function createMarkdownRuntime(deps) {
     );
   }
 
+  function resetMarkdownScroll() {
+    if (!markdownContent) {
+      return;
+    }
+    markdownContent.scrollTop = 0;
+    markdownContent.scrollLeft = 0;
+  }
+
   function resolveAuthoredMarkdownColumns(level) {
     const columns = level?.markdownColumns;
     return columns === 1 || columns === 2 || columns === 3 ? columns : null;
@@ -688,10 +737,12 @@ export function createMarkdownRuntime(deps) {
     activeMarkdownPath = cacheKey;
     activeMarkdownSourcePath = markdownPath;
     setMarkdownKind(markdownPath);
+    decorateMarkdownImages();
     applyMarkdownLayout();
     typesetMarkdownWithRetry(startTypesetRetryCycle());
     decorateTextbookToc();
     decorateSupportResearch();
+    resetMarkdownScroll();
     if (markdownContent && typeof markdownContent.focus === "function") {
       try {
         markdownContent.focus({ preventScroll: true });

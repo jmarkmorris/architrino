@@ -299,6 +299,8 @@ J_{\mathrm{eff},\mu}^{\theta}
 \right].
 $$
 
+Solved Maxwell or scalar-wave families should be treated as inverse clues. Retarded Green functions constrain causal support and source provenance; plane waves and eikonal solutions constrain dispersion and phase/group velocity; cavity and boundary modes constrain mode counting and boundary readout; scattering solutions constrain phase shifts and flux ledgers. These are acceptance tests for the coarse-grained wake/photon-channel map, not substrate fields.
+
 The row should score only through a residual such as
 
 $$
@@ -358,9 +360,15 @@ on one radiative or scattering event record. The useful first channel is Compton
 
 ### Executable Status
 
-The score-neutral Compton replay checker [compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs) now reports an `effectiveEmGate` block for the `EQ-13` projection $\Pi_{13}\mathsf e_{\gamma e}^{0}$. The native attempt fixture [compton-recoil-native-event-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json) includes attempt-level rows for effective charge/current continuity, EM stress/Poynting control volume, effective gauge chart witness, and photon Gate C Compton-vertex handoff.
+The score-neutral Compton replay checker [compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs) now reports an `effectiveEmGate` block for the `EQ-13` projection $\Pi_{13}\mathsf e_{\gamma e}^{0}$. The native attempt fixture [compton-recoil-native-event-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json) includes attempt-level rows for effective charge/current continuity, EM stress/Poynting control volume, effective gauge chart witness, photon Gate C Compton-vertex handoff, photon Gate A/B, target, recoil, angular momentum, Noether sea, medium/remnant, and event-ledger rows.
 
-Current status is score-neutral: the checker reports `effectiveEmGateStatus: blocked_missing_native_event_rows`, `effectiveEmGateNextBlocker: missing_accepted_photon_gate_A_input_output`, and `effectiveEmGateNumericPass: true`. The gate does not make Maxwell's equations native; it prevents Maxwell-level summaries from bypassing the photon Gate A/B/C, recoil, Noether sea, medium/remnant, and event-ledger rows.
+```bash
+node scripts/equation-mapping/compton-recoil-event-replay.mjs \
+  --input scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json \
+  --summary --pretty
+```
+
+Current status is score-neutral: the checker reports `status: comparison_replay_closed_native_rows_missing`, `nextBlocker: missing_accepted_photon_gate_A_input_output`, `effectiveEmGateStatus: blocked_missing_native_event_rows`, `effectiveEmGateNextBlocker: missing_accepted_photon_gate_A_input_output`, and `effectiveEmGateNumericPass: true`. The comparison replay closes the homogeneous Compton/recoil residuals on the attempt event, but every native row and the medium/remnant support rows remain `attempt`, so no `EQ-12`, `EQ-13`, `EQ-26`, `EQ-28`, or `EQ-29` score change is justified. The gate does not make Maxwell's equations native; it prevents Maxwell-level summaries from bypassing the photon Gate A/B/C, recoil, Noether sea, medium/remnant, and event-ledger rows.
 
 ### Failure Mode
 
@@ -384,6 +392,8 @@ $$
 $$
 
 The comparison with ordinary wave mechanics uses $\rho_\psi=|\psi|^2$ and $\mathbf J_\psi$, but the native row is record-facing basin flow.
+
+Known solved Schrödinger packets and bound states are useful here as inverse tests. A free Gaussian packet, stationary bound-state spectrum, tunneling solution, or scattering phase shift can constrain the finite-window measure, detector kernel, branch-flow map, and record-current continuity row. The solved $\psi$ itself remains an effective comparison chart unless it is recovered from the same retained carrier that supplies $\rho_{\mathrm{rec}}$ and $\mathbf J_{\mathrm{rec}}$.
 
 ### Mapped Form
 
@@ -455,6 +465,12 @@ $$
 for one controlled branch or toy measurement channel. The packet passes only if $\rho_{\mathrm{rec}}$ and $\mathbf J_{\mathrm{rec}}$ are pushed from the same measure and flow.
 
 The score-neutral carrier evaluator [finite-window-statistical-carrier.mjs](../../../scripts/equation-mapping/finite-window-statistical-carrier.mjs) now implements this as an `EQ-14` projection. The toy input [finite-window-statistical-carrier-eq14-born-current-toy.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq14-born-current-toy.v1.json) reports `toy_structure_only`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_W`; it passes same-measure/same-flow, finite-difference continuity, density-reference, and current-reference diagnostics. This is executable shape evidence only. A score-moving row still needs accepted source-backed $W$, $\Phi_T$, $\mu_{*,T}$, $\mathcal Q$, $K_{\mathrm{det}}$, $\mathcal B$, no-hidden-retune, and $\Theta_{\rho J}$ rows.
+
+```bash
+node scripts/equation-mapping/finite-window-statistical-carrier.mjs \
+  --input scripts/equation-mapping/finite-window-statistical-carrier-eq14-born-current-toy.v1.json \
+  --summary --pretty
+```
 
 The basin partition also inherits the finite-window well-definedness burden from the statistical carrier: the separatrix must be null under the retained measure, and the record projection must remain compatible under refinement. Without that, a record density/current row can be detector-tuned even when the finite-difference continuity residual is small.
 

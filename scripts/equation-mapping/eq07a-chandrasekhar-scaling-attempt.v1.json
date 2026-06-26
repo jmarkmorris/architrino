@@ -1,0 +1,290 @@
+{
+  "schema": "aaa-equation-map-eq07a-chandrasekhar-scaling-input/v1",
+  "claimLevel": "score-neutral EQ-07A Chandrasekhar scaling solver attempt; accepted compact-region retained evidence is required before score movement",
+  "residualId": "R_07A_chandrasekhar_scaling_attempt_0001",
+  "commonCarrierId": "Theta_cs_07A_compact_region_attempt_0001",
+  "tolerances": {
+    "stateCounting": 1e-12,
+    "pressureScaling": 1e-12,
+    "massRadius": 1e-12,
+    "composition": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12,
+    "levelSeparation": 1e-12
+  },
+  "carrier": {
+    "id": "Theta_cs_07A_compact_region_attempt_0001",
+    "status": "attempt",
+    "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+  },
+  "packet": {
+    "id": "Theta_cs_07A_compact_region_attempt_0001",
+    "omegaId": "Omega_cs_07A_chandrasekhar_attempt_0001",
+    "windowId": "W_cs_07A_chandrasekhar_attempt_0001",
+    "activeBenchmark": "chandrasekhar_scaling",
+    "rows": {
+      "compact_region_carrier": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "electron_state_counting_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "nonrelativistic_pressure_scaling_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "relativistic_pressure_scaling_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "mass_radius_support_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "composition_boundary_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "source_provenance": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "no_hidden_retune_witness": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "level_separation_witness": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      }
+    },
+    "constants": {
+      "hbarNorm": 1,
+      "mec0Norm": 8,
+      "transitionXF": 1,
+      "nonrelPressureCoefficient": 2,
+      "relPressureCoefficient": 3,
+      "nonrelMassRadiusCoefficient": 2,
+      "chandrasekharMassCoefficient": 4
+    },
+    "stateCountingSamples": [
+      {
+        "id": "state_nr_low",
+        "regime": "nonrelativistic_white_dwarf",
+        "n_e": 8,
+        "p_F": 2,
+        "x_F": 0.25
+      },
+      {
+        "id": "state_nr_high",
+        "regime": "nonrelativistic_white_dwarf",
+        "n_e": 64,
+        "p_F": 4,
+        "x_F": 0.5
+      },
+      {
+        "id": "state_rel_low",
+        "regime": "relativistic_white_dwarf",
+        "n_e": 1000,
+        "p_F": 10,
+        "x_F": 1.25
+      },
+      {
+        "id": "state_rel_high",
+        "regime": "relativistic_white_dwarf",
+        "n_e": 4096,
+        "p_F": 16,
+        "x_F": 2
+      }
+    ],
+    "pressureSamples": [
+      {
+        "id": "pressure_nr_low",
+        "regime": "nonrelativistic_white_dwarf",
+        "n_e": 8,
+        "P_pack_theta": 64
+      },
+      {
+        "id": "pressure_nr_mid",
+        "regime": "nonrelativistic_white_dwarf",
+        "n_e": 27,
+        "P_pack_theta": 486
+      },
+      {
+        "id": "pressure_nr_high",
+        "regime": "nonrelativistic_white_dwarf",
+        "n_e": 64,
+        "P_pack_theta": 2048
+      },
+      {
+        "id": "pressure_rel_low",
+        "regime": "relativistic_white_dwarf",
+        "n_e": 1000,
+        "P_pack_theta": 30000
+      },
+      {
+        "id": "pressure_rel_mid",
+        "regime": "relativistic_white_dwarf",
+        "n_e": 4096,
+        "P_pack_theta": 196608
+      },
+      {
+        "id": "pressure_rel_high",
+        "regime": "relativistic_white_dwarf",
+        "n_e": 8000,
+        "P_pack_theta": 480000
+      }
+    ],
+    "massRadiusSamples": [
+      {
+        "id": "mr_low",
+        "M": 1,
+        "R": 2
+      },
+      {
+        "id": "mr_mid",
+        "M": 8,
+        "R": 1
+      },
+      {
+        "id": "mr_high",
+        "M": 64,
+        "R": 0.5
+      }
+    ],
+    "compositionBoundarySamples": [
+      {
+        "id": "ch_ye_half",
+        "Y_e": 0.5,
+        "M_Ch": 1
+      },
+      {
+        "id": "ch_ye_quarter",
+        "Y_e": 0.25,
+        "M_Ch": 0.25
+      },
+      {
+        "id": "ch_ye_eighth",
+        "Y_e": 0.125,
+        "M_Ch": 0.0625
+      }
+    ],
+    "levelSeparation": {
+      "fermiSpacingReference": 0.25,
+      "atomicOrbitalScale": 100,
+      "materialNoetherBraidScale": 0.85,
+      "lambda_A": 0.85
+    },
+    "sourceProvenance": {
+      "maxResidual": 0
+    },
+    "noHiddenRetune": {
+      "maxResidual": 0,
+      "perSamplePressureCoefficientCount": 0,
+      "perSampleMassBoundaryCoefficientCount": 0
+    },
+    "negativeControls": [
+      {
+        "id": "wrong_nonrelativistic_pressure_exponent",
+        "expectedFailedCheck": "pressureScaling.nonrelativistic_white_dwarf",
+        "overrides": {
+          "pressureSamples": [
+            {
+              "id": "pressure_nr_low",
+              "regime": "nonrelativistic_white_dwarf",
+              "n_e": 8,
+              "P_pack_theta": 64
+            },
+            {
+              "id": "pressure_nr_mid",
+              "regime": "nonrelativistic_white_dwarf",
+              "n_e": 27,
+              "P_pack_theta": 162
+            },
+            {
+              "id": "pressure_nr_high",
+              "regime": "nonrelativistic_white_dwarf",
+              "n_e": 64,
+              "P_pack_theta": 512
+            },
+            {
+              "id": "pressure_rel_low",
+              "regime": "relativistic_white_dwarf",
+              "n_e": 1000,
+              "P_pack_theta": 30000
+            },
+            {
+              "id": "pressure_rel_mid",
+              "regime": "relativistic_white_dwarf",
+              "n_e": 4096,
+              "P_pack_theta": 196608
+            },
+            {
+              "id": "pressure_rel_high",
+              "regime": "relativistic_white_dwarf",
+              "n_e": 8000,
+              "P_pack_theta": 480000
+            }
+          ]
+        }
+      },
+      {
+        "id": "composition_boundary_linear_fit",
+        "expectedFailedCheck": "compositionScaling",
+        "overrides": {
+          "compositionBoundarySamples": [
+            {
+              "id": "ch_ye_half",
+              "Y_e": 0.5,
+              "M_Ch": 1
+            },
+            {
+              "id": "ch_ye_quarter",
+              "Y_e": 0.25,
+              "M_Ch": 0.5
+            },
+            {
+              "id": "ch_ye_eighth",
+              "Y_e": 0.125,
+              "M_Ch": 0.25
+            }
+          ]
+        }
+      },
+      {
+        "id": "hidden_per_sample_pressure_retune",
+        "expectedFailedCheck": "noHiddenRetune",
+        "overrides": {
+          "noHiddenRetune": {
+            "maxResidual": 0,
+            "perSamplePressureCoefficientCount": 2,
+            "perSampleMassBoundaryCoefficientCount": 0
+          }
+        }
+      },
+      {
+        "id": "fermi_spacing_material_scale_level_collapse",
+        "expectedFailedCheck": "levelSeparation",
+        "overrides": {
+          "levelSeparation": {
+            "fermiSpacingReference": 0.25,
+            "atomicOrbitalScale": 100,
+            "materialNoetherBraidScale": 0.25,
+            "lambda_A": 0.25
+          }
+        }
+      }
+    ]
+  }
+}

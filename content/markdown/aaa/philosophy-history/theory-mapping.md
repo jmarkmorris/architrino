@@ -16,6 +16,17 @@ The document is organized as a matrix rather than a linear history. The first se
 
 **Regime-Capture Warning:** Modern physics has achieved extraordinary precision inside narrow regions of empirical regime space, but it has too often treated that precision as permission to speak for ontology as a whole. Equations such as the Schrödinger equation, perturbative quantum field models, weak-field GR, and cosmological parameter fits are powerful closures over limited conditions, not final access to substrate reality. The institutional failure is that these regime-bound successes became gatekeeping standards for what could count as fundamental explanation. From the $\mathbb{A}\mathbb{A}\mathbb{A}$ standpoint, this has delayed recognition of the deeper substrate solution: inherited theories must be recovered as effective limits, not enthroned as the architecture of reality.
 
+### Four Relocations At A Glance
+
+One compact way to read this chapter is as a set of ontological relocations. The inherited theories are not discarded where they work; their successful equations, data products, and inference practices become effective summaries whose underlying variables are moved into the architrino, assembly, causal-wake, and Noether sea ledger.
+
+| Inherited package | What remains valid | Relocation in $\mathbb{A}\mathbb{A}\mathbb{A}$ |
+| --- | --- | --- |
+| General Relativity | Metric, geodesic, lensing, gravitational-wave, and weak/strong-field benchmark calculations remain recovery targets. | The effective metric is reconstructed from Noether sea response, clock/ruler retuning, and signal-structure; the Euclidean void itself does not curve. |
+| Quantum Mechanics | Born weights, interference records, measurement statistics, and Hilbert-space calculation remain benchmark outputs. | The complete state evolves deterministically, while record-limited observers see basin weights, multistability, and unresolved path history as effective probability. |
+| $\Lambda\mathrm{CDM}$, Big Bang, and inflationary chronology | Redshift, CMB, BBN, growth, lensing, and parameter-fit data products remain hard comparison constraints. | Expansion variables are observer-level summaries of source/release history, Noether sea evolution, transport, and clock-rate comparison in a fixed Euclidean void. |
+| Quantum Field Theory | Effective actions, perturbation theory, detector-event reconstruction, renormalized summaries, and field symmetries remain indispensable. | Fields and particle-number changes are effective descriptions of assembly association, dissociation, normal-mode changes, causal wakes, and source-history transport. |
+
 **Document Type:** Matrix-split chapter with two axes:
 - Layer axis (`##`): ontological/phenomenological domains.
 - Theory axis (`###`): individual theories mapped within each domain.
@@ -104,6 +115,8 @@ S=\int d^4x\; \left(\frac{1}{2}\partial_\mu\phi\,\partial^\mu\phi
 -\frac{1}{2}m^2\phi^2 - V(\phi)\right)
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi(x)$ is a coarse-grained effective field describing collective wake and assembly behavior in the architrino/Noether sea system. Creation/annihilation operators encode observer-level association, dissociation, repartitioning, and normal-mode changes of assemblies, not ontic birth or death of architrinos and not fundamental quanta of a continuous field. For the underlying substance-structure distinction, see [Substance Structure and Potential](./substance-structure-and-potential.md).
+
+The standard electron-positron annihilation example is therefore a channel reconfiguration, not literal disappearance into energy. A closed event account would name the incoming electron and positron assemblies, the outgoing photon-channel packets, any recoil or remnant terms, and the energy, momentum, polarity, and medium-update terms that make the transformation ledger close.
 
 **What Still Works:** Quantum Field Theory (QFT) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model. Its precision comparisons with experiment, renormalized perturbation methods, lattice calculations where applicable, effective actions, and operator language are benchmark successes that any replacement must recover in the regimes where practitioners currently use them. That success does not by itself settle the ontology of continuum fields, vacuum structure, or creation and annihilation operators; it fixes a recovery burden.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, field operators, vacuum summaries, particle-number changes, symmetries, and couplings are treated as effective descriptors of assembly association, dissociation, normal-mode changes, axial-layer states, and medium-level interaction rules rather than primitive ontology.

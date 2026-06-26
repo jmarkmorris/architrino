@@ -307,7 +307,17 @@ It should be zero only when the weak-gravity and dark-energy projections use the
 
 The `EQ-20` pressure/$\Lambda_{\mathrm{eff}}$ slice is now executable in [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). Its attempt fixture [eq20-pressure-effective-lambda-attempt.v1.json](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-attempt.v1.json) blocks first at `missing_accepted_theta_sea_rho_NS` while the pressure-law, equation-of-state, $\Lambda_{\mathrm{eff}}$, source-provenance, shared-key, FRW-handoff, and no-hidden-retune numeric diagnostics pass. The inherited FRW handoff blocker remains `missing_accepted_theta_cos`, so this is an executable residual shape, not a dark-energy derivation.
 
+```bash
+node scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs \
+  --input scripts/equation-mapping/eq20-pressure-effective-lambda-attempt.v1.json \
+  --summary --pretty
+```
+
 The `EQ-11` weak-gravity side is now executable in [eq11-weak-gravity-constitutive-residual.mjs](../../../scripts/equation-mapping/eq11-weak-gravity-constitutive-residual.mjs). Its attempt fixture [eq11-weak-gravity-constitutive-attempt.v1.json](../../../scripts/equation-mapping/eq11-weak-gravity-constitutive-attempt.v1.json) blocks first at `missing_accepted_theta_11_20` while the Poisson handoff, curvature readout, effective-coupling continuity, PPN handoff, source-provenance, no-hidden-retune, and negative-control diagnostics pass. This makes the weak-gravity route fail closed without raising scores: accepted source-backed Noether sea, source loading, constitutive response, $G_{\mathrm{eff}}$, Poisson, curvature, stress-energy, PPN-handoff, coupling-continuity, provenance, and no-hidden-retune rows are still missing.
+
+```bash
+node scripts/equation-mapping/eq11-weak-gravity-constitutive-residual.mjs --summary --pretty
+```
 
 Add the shared residual
 

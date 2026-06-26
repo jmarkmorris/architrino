@@ -19,6 +19,8 @@ All subsequent dynamical laws, assembly mappings, and emergent phenomena depend 
 
 The teaching order is controlled by four levels. Substrate ontology names absolute time, the Euclidean void, and architrino identities. Assembly and medium behavior names organized architrino configurations and the Noether sea. Effective description names the metric, field, particle, and clock language reconstructed from those dynamics. Observer inference names the records available to embedded Physical Observers, not the complete state itself.
 
+This ontology also has a boundary. It states the internal bedrock of $\mathbb{A}\mathbb{A}\mathbb{A}$; it does not claim to explain why absolute time, the Euclidean void, the architrino identity set, $c_f$, or $\kappa$ exist rather than not exist. Those are primitive postulates inside the present theory unless a separate meta-ontological account is supplied. The corpus should therefore distinguish substrate explanation from ultimate-origin speculation: deriving particles, fields, clock behavior, and effective spacetime from architrino dynamics is a different claim from explaining why the substrate itself exists.
+
 The same level discipline can be read through the canonical symbol map:
 
 | Level | Canonical variables or records | Owning chapters |

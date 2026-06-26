@@ -278,6 +278,56 @@
       "selectionNotes": [
         "Chosen as a small public-domain vector schematic for radiation emitted by charge deflection."
       ]
+    },
+    {
+      "id": "architrino-logo-qr-landscape",
+      "title": "Architrino Logo and QR Code, Landscape",
+      "description": "Repo-native landscape brand image combining the Noether Braid logo with the Architrino QR code pointing to architrino.com.",
+      "path": "content/assets/images/brand/architrino-logo-qr-landscape.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 600
+      },
+      "fileSizeBytes": 271804,
+      "sha256": "eabd1ef937fdf8a49295971e64eaddd320c5d0c250eb2822188459a6c134d6d7",
+      "dateCreated": "2026-06-25",
+      "dateImported": "2026-06-25",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/qr-codes/build-architrino-qr-assets.py",
+        "accessedDate": "2026-06-25"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned logo artwork and the project QR-code generator.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/archie/support-architrino-research.md",
+          "content/markdown/aaa/archie/about-the-webapp.md"
+        ]
+      },
+      "selectionNotes": [
+        "Selected as the app-facing landscape composite because it keeps the logo and QR code in one row with two columns and uses the selected 75% purple QR background."
+      ]
     }
   ]
 }

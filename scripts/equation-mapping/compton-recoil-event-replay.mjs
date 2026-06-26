@@ -241,6 +241,7 @@ function replayComptonEvent(input, parsedArgs) {
   const nativeRowsAccepted = nativeRows.missing.length === 0;
   const eventLedgerSupportAccepted = eventLedgerSupport.missing.length === 0;
   const nativeEventAccepted = nativeRowsAccepted && eventLedgerSupportAccepted;
+  const nextBlocker = firstNativeBlocker(nativeRows, eventLedgerSupport);
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -278,7 +279,11 @@ function replayComptonEvent(input, parsedArgs) {
           ? "event_ledger_support_missing"
           : "native_rows_missing",
       sharedEq26Status: sharedRows.status,
-      nextBlocker: firstNativeBlocker(nativeRows, eventLedgerSupport),
+      nextBlocker,
+      nextBlockerDetails: firstNativeBlockerDetails(
+        nativeRows,
+        eventLedgerSupport,
+      ),
       residualTolerance: parsedArgs.tolerance,
       requiredNativeRows: REQUIRED_NATIVE_ROWS,
       missingNativeRows: nativeRows.missing,
@@ -288,6 +293,7 @@ function replayComptonEvent(input, parsedArgs) {
       eventLedgerSupportStatuses: eventLedgerSupport.statuses,
       effectiveEmGateStatus: effectiveEmGate.status,
       effectiveEmGateNextBlocker: effectiveEmGate.nextBlocker,
+      effectiveEmGateNextBlockerDetails: effectiveEmGate.nextBlockerDetails,
       effectiveEmGateNumericPass: effectiveEmGate.numericPass,
       missingEffectiveEmGateRows: effectiveEmGate.rows.missing,
     },
@@ -538,10 +544,12 @@ function evaluateNativeRows(nativeRows, eventId) {
   const missing = [];
   const accepted = [];
   const statuses = {};
+  const details = {};
   for (const rowName of REQUIRED_NATIVE_ROWS) {
     const row = nativeRows[rowName];
     const status = normalizeNativeRowStatus(row, eventId);
     statuses[rowName] = status;
+    details[rowName] = summarizeNativeRow(rowName, row, status, eventId);
     if (status === "accepted") {
       accepted.push(rowName);
     } else {
@@ -553,6 +561,7 @@ function evaluateNativeRows(nativeRows, eventId) {
     accepted,
     missing,
     statuses,
+    details,
   };
 }
 
@@ -560,10 +569,17 @@ function evaluateEventLedgerSupport(event) {
   const missing = [];
   const accepted = [];
   const statuses = {};
+  const details = {};
   for (const ledgerName of REQUIRED_EVENT_LEDGER_SUPPORT) {
     const row = event[ledgerName];
     const status = normalizeLedgerSupportStatus(row, event.id);
     statuses[ledgerName] = status;
+    details[ledgerName] = summarizeLedgerSupportRow(
+      ledgerName,
+      row,
+      status,
+      event.id,
+    );
     if (status === "accepted") {
       accepted.push(ledgerName);
     } else {
@@ -575,6 +591,7 @@ function evaluateEventLedgerSupport(event) {
     accepted,
     missing,
     statuses,
+    details,
   };
 }
 
@@ -634,6 +651,12 @@ function evaluateEffectiveEmGate({
       rows,
       numericPass,
     }),
+    nextBlockerDetails: firstEffectiveEmGateBlockerDetails({
+      nativeRows,
+      eventLedgerSupport,
+      rows,
+      numericPass,
+    }),
     requiredRows: REQUIRED_EM_GATE_ROWS,
     rows,
     numericPass,
@@ -648,10 +671,12 @@ function evaluateEmGateRows(emGateRows, eventId) {
   const missing = [];
   const accepted = [];
   const statuses = {};
+  const details = {};
   for (const rowName of REQUIRED_EM_GATE_ROWS) {
     const row = emGateRows[rowName];
     const status = normalizeNativeRowStatus(row, eventId);
     statuses[rowName] = status;
+    details[rowName] = summarizeNativeRow(rowName, row, status, eventId);
     if (status === "accepted") {
       accepted.push(rowName);
     } else {
@@ -663,6 +688,51 @@ function evaluateEmGateRows(emGateRows, eventId) {
     accepted,
     missing,
     statuses,
+    details,
+  };
+}
+
+function summarizeNativeRow(rowName, row, status, eventId) {
+  if (!row || typeof row !== "object" || Array.isArray(row)) {
+    return {
+      id: rowName,
+      status,
+      rowType: row === undefined || row === null ? "missing" : typeof row,
+      reason: status,
+    };
+  }
+  const sourcePath = row.sourcePath ?? row.source ?? null;
+  return {
+    id: rowName,
+    status,
+    rowId: row.rowId ?? null,
+    sourcePath,
+    sourceReferenceExists: sourceReferenceExists(sourcePath),
+    eventId: row.eventId ?? null,
+    eventIdMatches: row.eventId === eventId,
+    retainedReferencePresent:
+      concreteString(row.rowId) &&
+      concreteString(sourcePath) &&
+      concreteString(row.eventId),
+    reason: status === "accepted" ? "accepted" : status,
+  };
+}
+
+function summarizeLedgerSupportRow(rowName, row, status, eventId) {
+  const base = summarizeNativeRow(rowName, row, status, eventId);
+  if (!row || typeof row !== "object" || Array.isArray(row)) {
+    return base;
+  }
+  return {
+    ...base,
+    deltaE: row.deltaE ?? null,
+    deltaP: row.deltaP ?? null,
+    deltaEExplicit: row.deltaEExplicit === true,
+    deltaPExplicit: row.deltaPExplicit === true,
+    zeroDeltaPass:
+      Math.abs(row.deltaE ?? Number.NaN) <= LEDGER_ZERO_TOLERANCE &&
+      Array.isArray(row.deltaP) &&
+      norm(row.deltaP) <= LEDGER_ZERO_TOLERANCE,
   };
 }
 
@@ -704,6 +774,29 @@ function firstEffectiveEmGateBlocker({
   }
   if (!numericPass) {
     return "em_gate_residual_above_tolerance";
+  }
+  return null;
+}
+
+function firstEffectiveEmGateBlockerDetails({
+  nativeRows,
+  eventLedgerSupport,
+  rows,
+  numericPass,
+}) {
+  const nativeDetails = firstNativeBlockerDetails(nativeRows, eventLedgerSupport);
+  if (nativeDetails) {
+    return nativeDetails;
+  }
+  const firstRow = rows.missing[0];
+  if (firstRow) {
+    return rows.details[firstRow] ?? null;
+  }
+  if (!numericPass) {
+    return {
+      id: "em_gate_residual_above_tolerance",
+      reason: "numeric_residual_above_tolerance",
+    };
   }
   return null;
 }
@@ -777,6 +870,18 @@ function firstNativeBlocker(nativeRows, eventLedgerSupport) {
   }
   if (eventLedgerSupport.missing.length > 0) {
     return `missing_accepted_${eventLedgerSupport.missing[0]}_support`;
+  }
+  return null;
+}
+
+function firstNativeBlockerDetails(nativeRows, eventLedgerSupport) {
+  const firstNativeRow = nativeRows.missing[0];
+  if (firstNativeRow) {
+    return nativeRows.details[firstNativeRow] ?? null;
+  }
+  const firstSupportRow = eventLedgerSupport.missing[0];
+  if (firstSupportRow) {
+    return eventLedgerSupport.details[firstSupportRow] ?? null;
   }
   return null;
 }

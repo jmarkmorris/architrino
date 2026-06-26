@@ -41,6 +41,10 @@ The completed target list lives in [source-mining-history](source-mining-history
 
 - [Entropy video mining](entropy-video-mining.md) tracks the current operator-supplied entropy video batch for the later rollup report.
 
+## Comparison Packets
+
+- [Classical source-history electrodynamics](classical-source-history-electrodynamics.md) captures the Lienard-Wiechert, Jefimenko, Heaviside-Feynman, and Panofsky-Phillips comparison space for delayed source-history electrodynamics.
+
 ## Legacy Operational Parking Lot
 
 - Clean up the old `neoclassical.ai` repo.

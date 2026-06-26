@@ -26,6 +26,12 @@ This guide should be read alongside:
 
 The webapp is not merely a document repository with visual decoration. Its central design claim is that conceptual structure should be navigable spatially as well as readable textually.
 
+## Open Architrino
+
+![Architrino logo and QR code for architrino.com](../../../assets/images/brand/architrino-logo-qr-landscape.png)
+
+Scan the QR code to open [architrino.com](https://www.architrino.com).
+
 ## Primary Content Layers
 
 The current webapp brings together several content layers.

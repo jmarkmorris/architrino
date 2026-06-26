@@ -4,6 +4,12 @@ Promotion status: `priority-only`. This packet sharpens [support-complete-dynami
 
 The packet is local to one support-complete memory ledger, one root-label convention, one arclength-inverse coefficient chart, one equal-period gauge convention, one action-scale row, one residual weighting, and one finite-mode truncation.
 
+Regeneration cadence: this priority-only packet follows the checkpoint policy in [codex-pr-branch.md](../../../op/codex-pr-branch.md). Editing this file alone does not require generated textbook writes. Request a full regeneration checkpoint with `regenerate`, `full regeneration`, `full regen`, `regeneration checkpoint`, or:
+
+```text
+Closure goal: Regenerate.
+```
+
 ---
 
 ## 1. Weighted Residual Pairing
@@ -409,4 +415,3 @@ $$
 \qquad
 \texttt{continue-exact-antipodal}.
 $$
-

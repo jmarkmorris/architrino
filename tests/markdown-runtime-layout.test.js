@@ -71,6 +71,8 @@ function createFakeElement() {
     disabled: false,
     inert: false,
     innerHTML: "",
+    scrollLeft: 0,
+    scrollTop: 0,
     textContent: "",
     style: {
       props: styleProps,
@@ -87,6 +89,9 @@ function createFakeElement() {
     },
     removeAttribute(key) {
       attributes.delete(key);
+    },
+    getAttribute(key) {
+      return attributes.get(key) ?? null;
     },
     setAttribute(key, value) {
       attributes.set(key, String(value));
@@ -148,6 +153,57 @@ function createFakeDocument() {
   };
 }
 
+test("plain markdown document navigation resets the panel scroll position", async (t) => {
+  const originalFetch = globalThis.fetch;
+  const originalWindow = globalThis.window;
+
+  globalThis.fetch = async (path) => ({
+    ok: true,
+    async text() {
+      return String(path).includes("second.md")
+        ? "# Second\n\nTop of second document."
+        : "# First\n\nTop of first document.";
+    },
+  });
+  globalThis.window = {};
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+    globalThis.window = originalWindow;
+  });
+
+  const markdownContent = createFakeElement();
+  const runtime = createMarkdownRuntime({
+    markdownPanel: createFakeElement(),
+    markdownContent,
+    markdownBody: createFakeElement(),
+    markdownLayoutToggle: createFakeElement(),
+    markdownRenderer: null,
+    markdownCache: new Map(),
+    markdownSectionCache: new Map(),
+    extractMarkdownSection: () => null,
+    appendCacheBust: (path) => path,
+  });
+
+  await runtime.showMarkdownPanel({
+    name: "First",
+    markdownPath: "content/markdown/first.md",
+    markdownColumns: 1,
+  });
+
+  markdownContent.scrollTop = 640;
+  markdownContent.scrollLeft = 24;
+
+  await runtime.showMarkdownPanel({
+    name: "Second",
+    markdownPath: "content/markdown/second.md",
+    markdownColumns: 1,
+  });
+
+  assert.equal(markdownContent.scrollTop, 0);
+  assert.equal(markdownContent.scrollLeft, 0);
+});
+
 test("markdown panels expose a focused article surface for browser read aloud", async (t) => {
   const originalFetch = globalThis.fetch;
   const originalWindow = globalThis.window;
@@ -206,6 +262,67 @@ test("markdown panels expose a focused article surface for browser read aloud", 
   assert.equal(markdownContent.attributes.has("aria-label"), false);
   assert.equal(markdownBody.innerHTML, "");
   assert.equal(documentLike.title, "architrino");
+});
+
+test("markdown image sources resolve relative to the markdown document", async (t) => {
+  const originalFetch = globalThis.fetch;
+  const originalWindow = globalThis.window;
+
+  globalThis.fetch = async () => ({
+    ok: true,
+    async text() {
+      return [
+        "# Support",
+        "",
+        "![Architrino logo and QR code](../../../assets/images/brand/architrino-logo-qr-landscape.png)",
+      ].join("\n");
+    },
+  });
+  globalThis.window = {};
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+    globalThis.window = originalWindow;
+  });
+
+  const imageParent = createFakeElement();
+  imageParent.tagName = "P";
+  const image = createFakeElement();
+  image.tagName = "IMG";
+  image.parentElement = imageParent;
+  image.setAttribute("src", "../../../assets/images/brand/architrino-logo-qr-landscape.png");
+
+  const markdownBody = createFakeElement();
+  markdownBody.querySelectorAll = (selector) => (selector === "img[src]" ? [image] : []);
+  const runtime = createMarkdownRuntime({
+    markdownPanel: createFakeElement(),
+    markdownBody,
+    markdownLayoutToggle: createFakeElement(),
+    markdownRenderer: {
+      render() {
+        return '<p><img src="../../../assets/images/brand/architrino-logo-qr-landscape.png" alt="Architrino logo and QR code"></p>';
+      },
+    },
+    markdownCache: new Map(),
+    markdownSectionCache: new Map(),
+    extractMarkdownSection: () => null,
+    appendCacheBust: (path) => `${path}?v=test`,
+  });
+
+  await runtime.showMarkdownPanel({
+    name: "Support",
+    markdownPath: "content/markdown/aaa/archie/support-architrino-research.md",
+    markdownColumns: 1,
+  });
+
+  assert.equal(
+    image.getAttribute("src"),
+    "content/assets/images/brand/architrino-logo-qr-landscape.png?v=test"
+  );
+  assert.equal(image.getAttribute("loading"), "lazy");
+  assert.equal(image.getAttribute("decoding"), "async");
+  assert.equal(image.classList.contains("markdown-image"), true);
+  assert.equal(imageParent.classList.contains("markdown-image-block"), true);
 });
 
 test("markdown document HTML entrypoints load local KaTeX assets", () => {

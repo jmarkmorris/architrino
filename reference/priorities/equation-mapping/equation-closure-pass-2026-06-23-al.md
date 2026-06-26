@@ -59,6 +59,19 @@ Current summary:
 | Hidden retune pass | `true` |
 | Negative controls | `4/4` pass |
 
+The compact summary also reports the first blocker detail:
+
+```text
+nextBlockerDetails.id: theta_therm
+nextBlockerDetails.status: attempt
+nextBlockerDetails.reason: row_not_accepted
+nextBlockerDetails.carrierId: theta_therm_CMB_attempt_0001
+nextBlockerDetails.sourcePath: reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md
+nextBlockerDetails.sourceReferenceExists: true
+```
+
+This means the first row has a durable source reference, but the row is still not accepted retained evidence.
+
 The populated mode fails as intended:
 
 ```sh
@@ -133,3 +146,13 @@ Priority-only. The new runner does not supply a reader-facing thermodynamic deri
 ## Next Closure Target
 
 Populate one accepted $\theta_{\mathrm{therm}}$ finite-window record, preferably for CMB/radiation thermalization or measurement-record entropy, with source-backed state-space, coarse-graining, measure, pushforward, collision/projection, entropy-balance, thermalization-depth, fluctuation, event-ledger, source-provenance, and no-hidden-retune rows.
+
+## Bucket D Worker Audit 2026-06-26 UTC
+
+Re-running the `EQ-25` thermodynamic record fixture in ordinary mode still returns `blocked_missing_rows`, `scoreDecision: no_score_increase`, `missing_accepted_theta_therm`, numeric thermodynamic pass, and `4/4` negative-control pass. Re-running it with `--require-populated` exits nonzero, as intended.
+
+No existing durable source can be safely wired as accepted `theta_therm` in this pass. The attempt fixture's source references resolve, but every required row remains `attempt`; changing status fields or pointing the wrapper back at this packet would overclaim a proof-target record as retained thermodynamic evidence.
+
+The exact accepted `theta_therm` object must contain one carrier id binding these accepted, source-backed rows: `theta_therm`, `state_space_row`, `coarse_graining_row`, `measure_row`, `deterministic_pushforward_row`, `coarse_projection_row`, `collision_operator_row`, `entropy_balance_row`, `thermalization_depth_row`, `fluctuation_row`, `event_ledger_row`, `shared_noether_sea_row`, `source_provenance`, and `no_hidden_retune_witness`. It must also embed or reference the same accepted finite-window statistical carrier family headed by `W`; otherwise `EQ-25` would pass a thermodynamic wrapper while still splitting the underlying retained window.
+
+First implementation target: build one CMB/radiation or measurement-record entropy fixture whose source file is not this coordination packet and whose accepted rows carry concrete ids, durable source references, same-carrier binding, passing pushforward/collision/entropy/thermalization/fluctuation/source-provenance/no-hidden-retune residuals, and passing negative controls.

@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 186,
-      "sections": 1456
+      "entries": 180,
+      "sections": 1464
     }
   },
   "tocRoot": {
@@ -2542,6 +2542,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Medium-Selection Burden",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
+                "markdownSection": "Medium-Selection Burden",
+                "sectionKey": "medium selection burden",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Shell Braid",
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
                 "markdownSection": "Shell Braid",
@@ -2684,6 +2692,30 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
                 "markdownSection": "Multi-Scale Layer Locking",
                 "sectionKey": "multi scale layer locking",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Braid Symmetry-Breaking Point",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+                "markdownSection": "Braid Symmetry-Breaking Point",
+                "sectionKey": "braid symmetry breaking point",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Planar Tri-Binary Reduced Chart",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+                "markdownSection": "Planar Tri-Binary Reduced Chart",
+                "sectionKey": "planar tri binary reduced chart",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Local Black-Hole Duality Target",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+                "markdownSection": "Local Black-Hole Duality Target",
+                "sectionKey": "local black hole duality target",
                 "headingLevel": 2
               },
               {
@@ -4176,6 +4208,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "AdS/CFT Regime Map",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                    "markdownSection": "AdS/CFT Regime Map",
+                    "sectionKey": "ads cft regime map",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Status",
                     "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
                     "markdownSection": "Status",
@@ -5226,6 +5266,14 @@
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
                 "markdownSection": "Purpose",
                 "sectionKey": "purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Binding-Energy Intuition",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Binding-Energy Intuition",
+                "sectionKey": "binding energy intuition",
                 "headingLevel": 2
               },
               {
@@ -6282,6 +6330,14 @@
                 "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
                 "markdownSection": "No Heisenberg Cut",
                 "sectionKey": "no heisenberg cut",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Schrodinger's Cat As A Record-Channel Problem",
+                "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                "markdownSection": "Schrodinger's Cat As A Record-Channel Problem",
+                "sectionKey": "schrodinger s cat as a record channel problem",
                 "headingLevel": 2
               },
               {
@@ -9433,6 +9489,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
                 "markdownSection": "Inference, Underdetermination, and Theory Choice",
                 "sectionKey": "inference underdetermination and theory choice",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Temporal Typicality and Observer Selection",
+                "markdownPath": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
+                "markdownSection": "Temporal Typicality and Observer Selection",
+                "sectionKey": "temporal typicality and observer selection",
                 "headingLevel": 2
               }
             ]
@@ -13380,7 +13444,7 @@
             "children": [
               {
                 "id": "philosophy_history__perspectives_overview",
-                "title": "Perspectives",
+                "title": "Perspectives: A Chain Of Witnesses",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/philosophy_history/perspectives/overview.json",
@@ -13388,118 +13452,58 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Questions",
+                    "title": "Opening Frame",
                     "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
-                    "markdownSection": "Questions",
-                    "sectionKey": "questions",
+                    "markdownSection": "Opening Frame",
+                    "sectionKey": "opening frame",
                     "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "philosophy_history__perspective_william_thurston",
-                "title": "William Thurston",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/perspectives/william_thurston.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
-                "sections": [
+                  },
                   {
                     "kind": "markdown-section",
-                    "title": "Perspective",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/william-thurston.md",
-                    "markdownSection": "Perspective",
-                    "sectionKey": "perspective",
+                    "title": "Paradigms, Research Programs, And Anomalies",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Paradigms, Research Programs, And Anomalies",
+                    "sectionKey": "paradigms research programs and anomalies",
                     "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "philosophy_history__perspective_henri_poincare",
-                "title": "Henri Poincare",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/perspectives/henri_poincare.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
-                "sections": [
+                  },
                   {
                     "kind": "markdown-section",
-                    "title": "Perspective",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/henri-poincare.md",
-                    "markdownSection": "Perspective",
-                    "sectionKey": "perspective",
+                    "title": "Structure, Dynamics, And Causal Records",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Structure, Dynamics, And Causal Records",
+                    "sectionKey": "structure dynamics and causal records",
                     "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "philosophy_history__perspective_james_clerk_maxwell",
-                "title": "James Clerk Maxwell",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
-                "sections": [
+                  },
                   {
                     "kind": "markdown-section",
-                    "title": "Perspective",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/james-clerk-maxwell.md",
-                    "markdownSection": "Perspective",
-                    "sectionKey": "perspective",
+                    "title": "Relativity, Measurement, And Invariance",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Relativity, Measurement, And Invariance",
+                    "sectionKey": "relativity measurement and invariance",
                     "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "philosophy_history__perspective_ludwig_boltzmann",
-                "title": "Ludwig Boltzmann",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
-                "sections": [
+                  },
                   {
                     "kind": "markdown-section",
-                    "title": "Perspective",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/ludwig-boltzmann.md",
-                    "markdownSection": "Perspective",
-                    "sectionKey": "perspective",
+                    "title": "Quantum Records, Nuclear Architecture, Gauge Charge, Generations, And Entanglement",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Quantum Records, Nuclear Architecture, Gauge Charge, Generations, And Entanglement",
+                    "sectionKey": "quantum records nuclear architecture gauge charge generations and entanglement",
                     "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "philosophy_history__perspective_emmy_noether",
-                "title": "Emmy Noether",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/perspectives/emmy_noether.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
-                "sections": [
+                  },
                   {
                     "kind": "markdown-section",
-                    "title": "Perspective",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/emmy-noether.md",
-                    "markdownSection": "Perspective",
-                    "sectionKey": "perspective",
+                    "title": "Cosmology, Expansion, And Recycling",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Cosmology, Expansion, And Recycling",
+                    "sectionKey": "cosmology expansion and recycling",
                     "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "philosophy_history__perspective_albert_einstein",
-                "title": "Albert Einstein",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/perspectives/albert_einstein.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
-                "sections": [
+                  },
                   {
                     "kind": "markdown-section",
-                    "title": "Perspective",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives/albert-einstein.md",
-                    "markdownSection": "Perspective",
-                    "sectionKey": "perspective",
+                    "title": "Closing Synthesis",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/perspectives.md",
+                    "markdownSection": "Closing Synthesis",
+                    "sectionKey": "closing synthesis",
                     "headingLevel": 2
                   }
                 ]

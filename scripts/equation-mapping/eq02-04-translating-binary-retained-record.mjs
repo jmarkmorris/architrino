@@ -294,6 +294,22 @@ function evaluateRetainedRecord(input, inputPath) {
     failedNegativeControls,
     undeclaredNegativeControls,
   });
+  const nextBlockerDetails = nextBlockerDetailsForRecord({
+    status,
+    schema: input.schema ?? null,
+    sameBranchIdentity,
+    drift,
+    rowChecks,
+    witnessChecks,
+    diagnostics,
+    negativeControls,
+    missingRows,
+    missingWitnesses,
+    failedDiagnostics,
+    undeclaredDiagnostics,
+    failedNegativeControls,
+    undeclaredNegativeControls,
+  });
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -317,6 +333,7 @@ function evaluateRetainedRecord(input, inputPath) {
       status,
       scoreDecision: populated ? "eligible_for_score_review" : "no_score_increase",
       nextBlocker,
+      nextBlockerDetails,
       commonCarrierId,
       domainId,
       sameBranchIdentityStatus: sameBranchIdentity.status,
@@ -1563,6 +1580,136 @@ function nextBlockerForRecord({
     return `missing_${undeclaredNegativeControls[0]}_negative_control`;
   }
   return status;
+}
+
+function nextBlockerDetailsForRecord({
+  status,
+  schema,
+  sameBranchIdentity,
+  drift,
+  rowChecks,
+  witnessChecks,
+  diagnostics,
+  negativeControls,
+  missingRows,
+  missingWitnesses,
+  failedDiagnostics,
+  undeclaredDiagnostics,
+  failedNegativeControls,
+  undeclaredNegativeControls,
+}) {
+  if (status === "populated") {
+    return null;
+  }
+  if (status === "blocked_invalid_schema") {
+    return {
+      id: "schema",
+      status: "invalid",
+      expectedSchema: INPUT_SCHEMA,
+      actualSchema: schema,
+    };
+  }
+  if (!sameBranchIdentity.accepted) {
+    return {
+      id: "same_branch_identity",
+      status: sameBranchIdentity.status,
+      reason: sameBranchIdentity.nextBlocker,
+      inputPath: sameBranchIdentity.inputPath,
+      checkerStatus: sameBranchIdentity.checkerStatus,
+      blocker: sameBranchIdentity.summary?.nextBlocker ?? sameBranchIdentity.nextBlocker,
+      blockerDetails: sameBranchIdentity.summary?.nextBlockerDetails ?? null,
+    };
+  }
+  if (drift.status !== "passed") {
+    return {
+      id: "drift",
+      status: drift.status,
+      reason: drift.reason,
+      u: drift.u,
+      c_f: drift.c_f,
+      beta_f: drift.beta,
+    };
+  }
+  if (missingRows.length > 0) {
+    return rowLikeDetail(rowChecks.find((check) => check.key === missingRows[0]));
+  }
+  if (missingWitnesses.length > 0) {
+    return rowLikeDetail(witnessChecks.find((check) => check.key === missingWitnesses[0]));
+  }
+  if (failedDiagnostics.length > 0) {
+    return diagnosticDetail(failedDiagnostics[0], diagnostics[failedDiagnostics[0]]);
+  }
+  if (undeclaredDiagnostics.length > 0) {
+    return diagnosticDetail(
+      undeclaredDiagnostics[0],
+      diagnostics[undeclaredDiagnostics[0]],
+    );
+  }
+  if (failedNegativeControls.length > 0) {
+    return negativeControlDetail(
+      failedNegativeControls[0],
+      negativeControls[failedNegativeControls[0]],
+    );
+  }
+  if (undeclaredNegativeControls.length > 0) {
+    return negativeControlDetail(
+      undeclaredNegativeControls[0],
+      negativeControls[undeclaredNegativeControls[0]],
+    );
+  }
+  return {
+    id: "record",
+    status,
+  };
+}
+
+function rowLikeDetail(check) {
+  if (!check) {
+    return null;
+  }
+  return {
+    id: check.key,
+    row: check.row,
+    status: check.status,
+    reason: check.reason,
+    rowId: check.rowId,
+    sourcePath: check.sourcePath,
+    sourceReferenceExists: sourceReferenceExists(check.sourcePath),
+    commonCarrierId: check.commonCarrierId,
+    domainId: check.domainId,
+    consumes: check.consumes,
+  };
+}
+
+function diagnosticDetail(id, diagnostic) {
+  if (!diagnostic) {
+    return null;
+  }
+  return {
+    id,
+    status: diagnostic.status,
+    reason: diagnostic.reason ?? null,
+    residual: diagnostic.residual ?? null,
+    absoluteResidual: diagnostic.absoluteResidual ?? null,
+    tolerance: diagnostic.tolerance ?? null,
+    details: diagnostic.details ?? {},
+  };
+}
+
+function negativeControlDetail(id, control) {
+  if (!control) {
+    return null;
+  }
+  return {
+    id,
+    status: control.status,
+    reason: control.reason ?? null,
+    fitPass: control.fitPass ?? null,
+    caughtFailure: control.caughtFailure ?? null,
+    tolerance: control.tolerance ?? null,
+    fitResiduals: control.fitResiduals ?? null,
+    failureResiduals: control.failureResiduals ?? null,
+  };
 }
 
 function tolerance(tolerances, key) {

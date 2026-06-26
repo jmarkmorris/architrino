@@ -2,6 +2,10 @@
 
 The live mathematical backbone of this topic now lives in [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md). This priorities note is retained only as archive scratch material and intuition capture that has not yet been promoted into the dynamics document.
 
+## Status / Provenance Boundary
+
+This is a legacy heuristic packet, not reader-facing canon. It preserves early intuition about dyadic locks, Planck-scale mapping, and black-hole analogy only as priority provenance. Current corpus usage treats field-speed crossing as a regime indicator, not as a speed-only self-hit proof. A branch that uses self-hit must show same-source causal-root existence with nonzero delay, $H(0)=0$ coincidence exclusion, positive transversality/Jacobian floor, controlled distance or regularization data, inactive-root gaps, finite memory, and the relevant stability/action/ledger closure rows.
+
 ## Preserved Intuitions from Reviewer Audit
 
 The strongest phenomenology from the earlier draft has now been promoted into the live dynamics, particle, spacetime, and cosmology notes. What remains here is the material that still does not have a fully stable home or still needs sharper constitutive closure before promotion.
@@ -51,11 +55,11 @@ Take the horizon state as the reference: the Middle rides $c_f$ (our hinge), the
 $$
 r_I = \frac{v_I}{2\pi f_I} = \frac{\beta(f_I) c_f}{8\pi f_O} = \frac{\beta(f_I)}{4\beta(f_O)}\, r_O,
 $$
-so the Inner sits at the geometric $r_O/4$ only if $\beta(f_I)=\beta(f_O)$; in general the self-hit condition ($\beta>1$) inflates it relative to $r_O/4$. The MCB is a single, universal limit state: binaries may sit below it, but no binary can surpass it. The offset $\beta-1$ remains the candidate for core binding energy.
+so the Inner sits at the geometric $r_O/4$ only if $\beta(f_I)=\beta(f_O)$; in the legacy intuition the super-field-speed candidate regime ($\beta>1$) inflates it relative to $r_O/4$. The MCB is a single, universal limit state: binaries may sit below it, but no binary can surpass it. The offset $\beta-1$ remains the candidate for core binding energy.
 
 ### The Planck Scale Definition
 
-We posit that the Outer binary at field speed defines the Planck scale. Let us map this to the standard variables. The system does **not** reach the Planck scale until $f_O = f_P$; below that, the 1:2:4 lock still holds but the radii are larger.
+Legacy ansatz: the Outer binary at field speed was used as a Planck-scale marker. Current routing treats this only as a provenance heuristic; corpus promotion requires the event-horizon alignment condition and retained branch ledger closure. Let us map the old ansatz to the standard variables. The system does **not** reach the Planck scale until $f_O = f_P$; below that, the 1:2:4 lock still holds but the radii are larger.
 
 If we adopt the Outer circumference as the Planck length $\ell_P$ (interpretive ansatz, not a tunable choice):
 $$
@@ -140,10 +144,10 @@ In the architrino architecture, they are proposed to be topologically homologous
 **The Isomorphism:**
 Let $\mathcal{M}$ be the manifold of a Tri-Binary.
 *   **The Particle (Fermion):** A tri-binary where the Inner Binary dominates energy dynamics (highest action-share branch in the self-hit regime), stabilized by self-hit.
-*   **The Black Hole:** A macroscopic aggregate of tri-binaries where the collective density drives the *entire assembly* into the Inner Binary regime ($v > c_f$).
+*   **The Black Hole:** A macroscopic aggregate of tri-binaries where the collective density was hypothesized to drive the aggregate toward an inner-binary-like, self-hit-capable regime. In current terms this is only a provenance analogy until same-source roots and ledger closure are certified.
 
 **The Map:**
-1.  **Inner Binary ($v > c_f$):** Corresponds to the **Singularity/Interior**. (The region of trapped surfaces and self-interaction).
+1.  **Inner Binary (self-hit-capable interior branch):** Corresponds to the **Singularity/Interior**. Super-field-speed history is a candidate marker, not an admission rule.
 2.  **Middle Binary ($v = c_f$):** Corresponds to the **Event Horizon**. (The surface of causal isolation).
 3.  **Outer Binary ($v < c_f$):** Corresponds to the **Gravitational Field**. (The region of standard causal connection).
 
@@ -157,7 +161,7 @@ One proposed reason is that it spans the model's **Logic of Causality**.
 Given a propagation speed $c_f$, this framework emphasizes three geometric relationships an object can have with a signal:
 1.  **Slower ($v < c_f$):** You receive information. (Communication / Force / Structure).
 2.  **Equal ($v = c_f$):** You ride the information. (Resonance / Horizon / Limit).
-3.  **Faster ($v > c_f$):** You overrun information. (Self-Interaction / Memory / Mass).
+3.  **Faster ($v > c_f$):** You can outrun earlier wake surfaces. Candidate self-interaction, memory, and mass response are admitted only through the same-source root ledger.
 
 The Tri-Binary is modeled here as an assembly that can **occupy all three causal domains simultaneously**.
 *   It generates Mass (Inner).

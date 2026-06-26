@@ -57,6 +57,12 @@ The linkage question is whether the observed CMB spectrum, including near-Planck
 
 The first pass should keep the claim level narrow. A viable linkage requires one event and medium record to connect Noether braid ensemble dynamics, photon assembly source/capture/release rows, thermalization depth, redshift handoff, and the CMB frequency-map residuals. If the spectrum can be fit only by changing the Noether sea state separately from BBN, redshift, or TT/TE/EE transfer, the linkage fails as a shared-cosmology closure route.
 
+## Galaxy-Local Recycling And Horizon Uniformity
+
+The legacy-source signal to preserve is not the claim that the horizon problem is already solved. It is the alternative layer assignment: horizon uniformity may be evidence that the observer-level cosmological chart is summarizing recurrent source/release and thermalization history rather than a single global birth event. In that reading, galaxy-local or source-network recycling could contribute to the apparent uniform background while the Euclidean void remains fixed.
+
+This remains priority-only until it is expressed through the existing `component_interfaces`, `predictive_pipeline`, and `cmb_noether_braid_spectrum_linkage` tasks. A viable branch must use one declared Noether sea and source/release record to face CMB monopole isotropy, TT/TE/EE acoustic structure, allowed spectral distortions, BBN yields, BAO distance calibration, redshift-distance data, structure growth, and oldest-object/material-clock convergence. If galaxy-local recycling can explain only qualitative uniformity while breaking any of those shared comparison rows, it remains an analogy rather than a cosmology closure route.
+
 ## Age-Clock Convergence Interface
 
 Oldest-object and material-age observations are not optional background color for an unbounded-age cosmology. They are a compact convergence pressure on the effective observer chronology: multiple independent clocks cluster near $13$-$14\ \mathrm{Gyr}$ even if the Euclidean void has no mandatory one-time origin event.

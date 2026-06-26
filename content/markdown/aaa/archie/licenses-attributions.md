@@ -1,6 +1,6 @@
 # Licenses & Attributions
 
-- Project license: [MIT License](../../../../LICENSE), Copyright (c) 2026 J Mark Morris.
+- The [Architrino Assembly Architecture repo on GitHub](https://github.com/jmarkmorris/architrino) is open source with this license: [MIT License](../../../../LICENSE), Copyright (c) 2026 J Mark Morris.
 
 - PDG REST API data used by the project: licensed under the same terms as the corresponding edition of the *Review of Particle Physics*; starting with the 2024 edition, the *Review of Particle Physics* is published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
@@ -15,6 +15,8 @@
 - Standard Model of Elementary Particles diagram: current version by Cush; original version by MissMJ, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/); [local asset](../../../assets/images/physics/standard-model-elementary-particles.svg); [Wikimedia Commons source](https://commons.wikimedia.org/wiki/File:Standard_Model_of_Elementary_Particles.svg). Full catalog entry: [image manifest](../../../assets/images/images.json).
 
 - Electromagnetic Spectrum, Extended To The Planck Scale diagram: created by the Architrino project, 2026; project-owned; [local asset](../../../assets/images/physics/electromagnetic-spectrum-planck-scale.svg). Full catalog entry: [image manifest](../../../assets/images/images.json).
+
+- Architrino logo and QR code landscape image: created by the Architrino project, 2026; project-owned; [local asset](../../../assets/images/brand/architrino-logo-qr-landscape.png). Full catalog entry: [image manifest](../../../assets/images/images.json).
 
 - Bremsstrahlung schematic: Journey234 assumed by Wikimedia Commons; Public Domain; [local asset](../../../assets/images/effects/bremsstrahlung.svg); [Wikimedia Commons source](https://commons.wikimedia.org/wiki/File:Bremsstrahlung.svg). Full catalog entry: [image manifest](../../../assets/images/images.json).
 

@@ -146,6 +146,14 @@ $$
 
 so that narrow branch chart is rejected. The diagnostic family also rejects several overreads: the ordinary same-source positive-delay rescue is absent under the rigid exact-$c_f$ circular convention, inventory attraction bias does not imply force closure, resolved positive-delay root rows do not imply force closure, and sampled phase or polarity-phase improvements do not imply retention. These are negative results for rigid fixed-speed octahedral hypotheses, not rejections of the broader neutral braid, shell braid, nested shell braid, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
 
+### Medium-Selection Burden
+
+Branch retention is not the same question as Noether sea primacy. A retained Noether braid branch would show that one neutral assembly class can persist. It would not yet show that this class is the dominant ambient structure in the universe, because many other architrino assemblies might also be imagined.
+
+The stronger claim is a selection theorem over candidate assembly classes. A class can serve as the ambient Noether sea population only if it can be retained as a branch and also form a dense, locally neutral, convergent, transparent, pressure-bearing, and constitutively useful medium. In the notation of [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md#composition), the nested shell braid route must pass the ambient selection residual while competing assembly classes either fail, remain local matter or reaction branches, or appear only as higher-energy, short-lived, or environment-specific excitations.
+
+This distinction protects the proof order. The neutral braid, shell braid, and nested shell braid rows ask whether the six-site architecture can close. The Noether sea selection row asks why that architecture should dominate the weak homogeneous medium rather than a different assembly population. A particle-like success, a metric-like export, or an appealing exclusion volume is therefore not enough by itself; the same branch class must also supply the statistical abundance, far-field cancellation, packing, and shared-response properties needed by the Noether sea.
+
 ### Shell Braid
 
 A **shell braid** is a neutral braid whose six trajectories remain in a controlled radial band around a branch center $C(t)$. For a representative shell scale $R_*$ and band limits $R_-<R_+$, the shell condition is
@@ -593,6 +601,10 @@ The **inner binary** (maximal curvature, self-hit regime) is a stabilization out
 
 As a nested shell braid approaches an event horizon, the **outer binary frequency increases** and its **speed approaches $c_f$**, while the **middle binary** remains on the declared hinge branch as its shell scale and cadence retune. At the horizon-alignment target, the **middle and outer binaries reach $c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
 
+The canonical term for this whole-assembly transition is the **braid symmetry-breaking point**. It is not a claim that the inner, middle, and outer binaries become identical. It means the middle binary remains on the field-speed hinge, the outer binary is driven into the same terminal threshold, and the inner binary remains the self-hit interior row while the assembly loses ordinary volumetric slack. Because $s_\ell=\omega_\ell\rho_\ell$, equal threshold speed does not by itself imply equal frequency, equal effective lever arm, equal radius, or equal energy.
+
+This makes the Noether braid more than a particle scaffold. In the nested shell braid reading, it contains a local black-hole dual: the middle binary is the horizon-interface threshold, the inner self-hit binary is the beyond-threshold interior row, and the outer binary is the exterior-coupling row that can be driven into terminal alignment under strong-field stress. This is a primitive black-hole pattern inside the assembly ontology, not an assertion that an ordinary particle is an observer-level compact object. The dynamics-facing proof burden is stated in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#local-black-hole-duality-target).
+
 **Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (nested shell braid coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md) and [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
 
 ### The Foundation for Fermions
@@ -748,6 +760,111 @@ The perturbation status should therefore be sorted before simplification:
 | Nonresonant fast terms | Average over the closed nested shell braid cycle and mostly affect convergence or small far-field corrections. |
 | Resonant and near-separator terms | Change phase closure, causal-root counts, Jacobians, or Floquet multipliers, so they remain part of the branch definition. |
 | Leakage terms | May be small internally while surviving as far-field multipoles or anisotropy, so they control the shielding extraction. |
+
+### Braid Symmetry-Breaking Point
+
+The **braid symmetry-breaking point** is the braid-level version of the single-binary field-speed threshold. A single binary crosses the symmetry-breaking point when its branch reaches the $c_f$ hinge and same-source roots can turn on. A whole nested shell braid reaches its braid symmetry-breaking point only when the outer coupling layer is also driven into terminal alignment with the middle hinge while the inner binary remains in the self-hit interior row.
+
+The working condition is
+
+$$
+s_I>c_f,
+\qquad
+s_M=c_f,
+\qquad
+s_O\to c_f,
+\qquad
+d_{\mathrm{align}}(q)\to0,
+$$
+
+with $d_{\mathrm{align}}$ measuring coplanarity, co-linearity, and precession cessation in the declared branch coordinates. This is not the statement that all three binaries become identical. Since
+
+$$
+s_\ell=\omega_\ell\rho_\ell,
+$$
+
+the middle and outer binaries can share the same threshold speed while retaining different frequencies, effective lever arms, energies, or action shares. Equality of speed is a causal-regime statement. Equality of radius, frequency, energy, or action would be additional branch structure that must be derived from the retained energy/action ledger.
+
+At the braid symmetry-breaking point, the outer binary stops functioning as an ordinary sub-field-speed shielding envelope and becomes part of the interface row. The middle binary remains the hinge. The inner binary does not need to "reach" the hinge because it is already beyond it: it supplies the self-hit, maximal-curvature, history-supported row. This is why the threshold is the natural local precursor to horizon-interface language rather than a mere three-frequency coincidence.
+
+### Planar Tri-Binary Reduced Chart
+
+The **planar tri-binary Noether braid reduced chart** is the simplest controlled chart for studying the braid symmetry-breaking point. It projects the three binary ledgers into a common plane or near-plane and records, for each binary $a\in\{1,2,3\}$ before role assignment,
+
+$$
+\Pi_{\mathrm{pl}}(B_{3B})
+=
+\left(
+f_a,\phi_a,\rho_a,s_a,\sigma_a^{\mathrm{plane}},\mathcal{B}_a
+\right)_{a=1}^{3}
+$$
+
+together with the causal-root, wake, angular-momentum, energy-routing, and stability ledgers that made the projection admissible. Here $f_a$ is a frequency or integer phase-lock row, $\phi_a$ is the phase offset, $\rho_a$ is the retained effective lever arm, $s_a=\omega_a\rho_a$ is the local speed row, $\sigma_a^{\mathrm{plane}}$ is the planar circulation sign, and $\mathcal{B}_a$ is the oriented plane bivector used for sector classification.
+
+This chart is a reduced proof bridge, not a replacement for the full three-dimensional branch. It connects three active searches:
+
+- the $x:y:z$ frequency-pattern search, including equal-frequency and offset families;
+- the braid symmetry-breaking point, where the planar chart becomes the terminal-alignment slice of the nested shell braid;
+- the photon channel, where two planarized pro/anti braid records form the coaxial contra-rotating pro/anti planar pair.
+
+The first planar discriminator is the reduced residual
+
+$$
+\mathcal{R}_{\mathrm{pl}}
+=
+\max\left(
+d_{\mathrm{plane}},
+d_{\mathrm{root}},
+d_{\Theta},
+d_{\mathbf{J}},
+d_E,
+d_{\mathrm{wake}},
+d_{\mathrm{stab}}
+\right),
+$$
+
+where $d_{\mathrm{plane}}$ measures coplanar sector support from the bivector Gram matrix, $d_{\mathrm{root}}$ measures same-row causal-root identity, $d_{\Theta}$ measures retained phase-bundle or return-period closure, $d_{\mathbf{J}}$ measures angular-momentum ledger closure, $d_E$ measures energy/action routing, $d_{\mathrm{wake}}$ measures causal-wake pullback and provenance closure, and $d_{\mathrm{stab}}$ measures branch stability over the declared event or positive-width retained domain. A planar frequency pattern is only a candidate until this residual closes on one retained row set.
+
+### Local Black-Hole Duality Target
+
+The nested shell braid should also be read as carrying the local black-hole dual inside its branch structure. This is not the claim that every Noether braid is an astrophysical black hole, and it does not import conventional primordial-black-hole population models. The claim is narrower: the nested shell braid already contains the same regime split that a macroscopic black hole exposes at large scale.
+
+| Nested shell braid row | Local branch condition | Black-hole dual row |
+| :--- | :--- | :--- |
+| Inner binary | $s_I>c_f$ with accepted same-source roots | interior self-hit and maximal-curvature row |
+| Middle binary | $s_M=c_f$ in the accepted threshold limit | horizon-interface and symmetry-breaking row |
+| Outer binary | $s_O<c_f$ in ordinary operation, with $s_O\to c_f$ under terminal strong-field alignment | exterior coupling row driven toward the interface during collapse |
+
+In this precise sense, a Noether braid contains a primordial black-hole analogue: a finite local version of the horizon/interior split before that split is amplified into an observer-level compact object. The middle binary supplies the threshold interface, while the inner self-hit binary supplies the beyond-threshold interior row. The phrase "primordial black-hole analogue" is therefore a statement about nested shell braid ontology, not a claim that the standard primordial-black-hole model supplies the source mechanism.
+
+The exact-duality theorem target is to construct a map from one retained branch record to one strong-field horizon record,
+
+$$
+\mathcal{D}_{\mathrm{BH}}:
+B_q
+\longmapsto
+\left(
+\mathcal{B}_{H}^{(q)},
+\mathcal{L}_{\mathrm{int}}^{(q)},
+\mathcal{L}_{\mathrm{rel}}^{(q)}
+\right),
+$$
+
+where $\mathcal{B}_{H}^{(q)}$ is the horizon-interface label set inherited from the branch, $\mathcal{L}_{\mathrm{int}}^{(q)}$ is the retained self-hit interior ledger, and $\mathcal{L}_{\mathrm{rel}}^{(q)}$ is the release or exterior-coupling ledger. A useful residual has to vanish on the same root ledger:
+
+$$
+\mathcal{R}_{q\leftrightarrow H}
+=
+\max\left(
+\left|1-\frac{s_M}{c_f}\right|,
+\max\left(0,1-\frac{s_I}{c_f}\right),
+d_{\mathrm{align}}(q),
+d_{\mathrm{led}}\left(\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)},0\right),
+d_{\mathrm{rel}}\left(\mathcal{L}_{\mathrm{rel}}^{(q)},\mathcal{B}_{H}^{(q)}\right)
+\right).
+$$
+
+Here $d_{\mathrm{align}}$ measures coplanarity, co-linearity, and precession cessation in the declared branch coordinates; $d_{\mathrm{led}}$ measures energy, momentum, and angular-momentum ledger closure; and $d_{\mathrm{rel}}$ measures whether the release or exterior-coupling rows are inherited from the same horizon-interface label set rather than added as a second story. The duality claim is retained only if this residual closes with the branch dynamics. Otherwise the black-hole comparison remains a suggestive regime analogy, not an exact result.
 
 ### Mass Thesis as a Dynamics Target
 
@@ -2700,6 +2817,24 @@ The six architrinos within a nested shell braid are in rapid orbital motion. The
 This region acts as a dynamic **exclusion envelope**. It is not a solid object with a hard material surface. It is a coherent region of intense wake activity defined by the collective path history of the constituent architrinos.
 
 Another Noether braid approaching this region does not encounter a classical wall. It encounters a rapidly varying causal-wake environment whose accelerations and phase constraints can prevent stable transit through the braid volume.
+
+#### Exclusion Envelope As Pressure Source
+
+The dynamic exclusion envelope also supplies the native route from assembly geometry to pressure. Pressure is not introduced as a separate primitive substance. It is an effective stress readout that appears when many stable assemblies cannot be moved closer without increasing wake disruption, branch deformation, or loss of stable closure.
+
+For a compact region $\Omega$, the first packing-pressure readout is the trace of the exclusion-stress tensor already carried by the packing channel:
+
+$$
+P_{\mathrm{pack}}(\Omega,t)
+=
+\frac{1}{3|\Omega|}
+\int_{\Omega}
+\operatorname{tr} S_{\mathrm{excl}}(\mathbf{x},t)\,d^3x
+$$
+
+Here $S_{\mathrm{excl}}$ is the coarse-grained tensor assembled from the local entries $\mathcal{S}_{j,\mathrm{excl}}^{ab}$ in the packing projector below. The factor $1/3$ extracts the isotropic pressure component in three spatial dimensions; anisotropic residuals remain in the stress tensor and must not be hidden when the local packing is directionally biased.
+
+This is the Noether braid analogue of the familiar lesson from electron degeneracy: excluded state volume can become macroscopic pressure. The analogy is limited but useful. In ordinary electron matter, the observer-level pressure law also depends on the recovered fermionic exchange sign and momentum-state filling. In the Noether braid substrate, the corresponding pressure channel must be derived from the oblate spheroidal exclusion envelope, causal-wake disruption, and the same retained branch ledger that later recovers the fermionic exchange rule. Exclusion geometry can explain why closer packing becomes dynamically costly; spin-statistics closure is still required before the full electron pressure law has been recovered.
 
 ### Assembly-Noether Sea Interface Diagnostic
 

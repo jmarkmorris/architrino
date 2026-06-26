@@ -26,6 +26,10 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, a black hole is not a hole in the Euclidean
 
 This should be read as one constitutive continuum rather than three disconnected objects. The black-hole vocabulary remains useful at the effective level, but the ontic content is a regime map of the Noether sea.
 
+The same regime map already appears locally inside the nested shell braid. The middle binary is the symmetry-breaking threshold, the inner self-hit binary is the beyond-threshold interior row, and the outer binary is the exterior-coupling row that strong-field collapse drives toward terminal alignment. In this sense a Noether braid contains the primitive black-hole dual: a local horizon/interior pattern that can later be population-amplified into an observer-level compact object. This is not an imported primordial-black-hole model. It is the native claim that black-hole structure is the large-scale continuation of a branch pattern already present in the assembly ontology.
+
+When the local branch is described from the assembly side, this transition is the braid symmetry-breaking point: the middle hinge remains at $c_f$, the outer row is driven to the same terminal threshold, and the inner self-hit row supplies the interior continuation.
+
 ## Collapse-Response Ladder
 
 The route from ordinary matter to a black-hole interior is not a single increase in temperature or a simple rise in material density. It is a sequence of assembly-regime changes in which more of the matter ledger becomes exposed to the surrounding Noether sea. In stable low-energy matter, the Noether sea normally receives only the externally exposed residual of shielded assemblies, not the full internal causal-history energy stored inside those assemblies. In compact collapse, that weak-response approximation progressively fails.
@@ -43,6 +47,105 @@ The useful ladder is:
 
 This ladder does not add a new validation gate. It identifies which existing variables must stop being interpreted in their weak-response limit as collapse progresses.
 
+### Chandrasekhar Scaling and Assembly Compression
+
+The first mathematical warning that ordinary compact matter could lose its support branch is the Chandrasekhar scaling argument. In a white-dwarf-like object, electrons form a degenerate Fermi reservoir. If the electron number density is $n_e$, the Fermi momentum scales as
+$$
+p_F\sim \hbar n_e^{1/3}
+$$
+and the pressure law depends on whether those electrons are nonrelativistic or relativistic. In the nonrelativistic regime,
+$$
+P_e\propto n_e^{5/3}\propto \rho^{5/3}
+$$
+while in the relativistic regime,
+$$
+P_e\propto n_e^{4/3}\propto \rho^{4/3}
+$$
+
+The electrons in this standard calculation are not ordinary atomic-orbital electrons. The white-dwarf branch begins after ordinary atoms have lost their everyday chemical identity: nuclei remain as identifiable ionic matter over much of the star, while the electrons form a delocalized pressure reservoir through the whole compact region. The relevant length scale is therefore not the Bohr radius of an atom but the inter-electron spacing,
+$$
+\ell_e\sim n_e^{-1/3}
+$$
+Compression lowers $\ell_e$, and Fermi-state counting forces the highest occupied electron momentum upward. The nonrelativistic-to-relativistic border is controlled by
+$$
+x_F\equiv\frac{p_F}{m_ec}
+$$
+with $x_F\ll1$ giving the $5/3$ pressure law and $x_F\gtrsim1$ moving the reservoir into the relativistic $4/3$ law. Equivalently,
+$$
+n_{e,\mathrm{rel}}
+\sim
+\frac{1}{3\pi^2}
+\left(\frac{m_ec}{\hbar}\right)^3,
+\qquad
+\rho_{\mathrm{rel}}
+\sim
+\mu_e m_u n_{e,\mathrm{rel}}
+$$
+which is approximately $10^6\mu_e\,\mathrm{g}/\mathrm{cm}^3$, or about $2\times10^6\,\mathrm{g}/\mathrm{cm}^3$ for carbon/oxygen material with $\mu_e\approx2$.
+
+This is not a curve fit over diverse stellar observations. The exponents come from quantum state counting plus the energy-momentum relation: the number of filled momentum states gives $p_F\propto n_e^{1/3}$; nonrelativistic energy $E\sim p^2/(2m_e)$ gives $P\propto n_e^{5/3}$; relativistic energy $E\sim pc$ gives $P\propto n_e^{4/3}$. Observations test the resulting mass-radius and stability picture, but the scaling itself is a mathematical consequence of the Fermi reservoir model.
+
+The historical calculation also has a specific level placement. Chandrasekhar's limiting argument used special relativity for the electron momentum-energy relation and ordinary Newtonian hydrostatic balance for the star, with a radial coordinate and gravitational pressure estimate. It was not originally a full curved-spacetime derivation. The later Tolman-Oppenheimer-Volkoff comparison is the general-relativistic compact-star benchmark. From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, this makes the Chandrasekhar law a particularly valuable bidirectional clue: a support calculation using an ordinary Euclidean radial coordinate already shows a matter scale channel crossing into a relativistic cadence and momentum regime before full horizon-interface language is required.
+
+For a star of mass $M$ and radius $R$, the rough hydrostatic comparison is
+$$
+\rho\sim\frac{M}{R^3},
+\qquad
+P_{\mathrm{grav}}\sim\frac{GM^2}{R^4}
+$$
+Nonrelativistic electron pressure scales like $M^{5/3}/R^5$, so it rises faster than the gravitational pressure estimate as $R$ decreases. A smaller equilibrium radius can still be found. Relativistic electron pressure scales like $M^{4/3}/R^4$, the same radius dependence as the gravity estimate. Once the coefficient balance is lost, no smaller white-dwarf radius restores support. That is the standard origin of the Chandrasekhar mass scale,
+$$
+M_{\mathrm{Ch}}\approx \frac{5.83}{\mu_e^2}M_\odot
+$$
+with $\mu_e$ the nucleons-per-electron composition factor. In a collapsing iron core, electron capture lowers the electron fraction $Y_e=1/\mu_e$, so the effective support limit falls as the active core is already compressed.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading is that the Chandrasekhar calculation is not merely a historical astrophysics result. It is an observer-level signature of an assembly support channel losing authority. In the white-dwarf branch, electron assemblies still act as a pressure reservoir: their volumetric nested shell braid envelopes supply effective exclusion and packing response while nuclei remain identifiable. As compression drives the electron population into the relativistic regime, additional inward work no longer returns as a proportionally stronger outward support law. The same work is increasingly routed into cadence, exposed response, heat, neutrino channels, nuclear breakup, Noether sea stress, and remnant bookkeeping.
+
+The branch distinction should not be collapsed into a single "shrinking electron" picture. Ordinary orbital compression belongs to the atomic and condensed-matter precursors. Degenerate electron pressure belongs to a delocalized fermion reservoir after ordinary orbitals have ceased to be the right description. Material Noether braid scale compression is a deeper assembly-level ledger that must be derived separately from the same retained compact-region record. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ collapse map has to connect these stages without pretending that an atomic orbital radius, a Fermi spacing, and a Noether braid scale ratio are the same variable.
+
+The local scale-compression variable for an assembly $A$ is
+$$
+\lambda_A(t)=\frac{R_{\perp,A}(t)}{R_{\perp,A,0}},
+\qquad
+\mathcal{S}_{\mathrm{mat}}(\Omega,t)
+=
+\left\langle
+\ln\lambda_A(t)
+\right\rangle_{\Omega}
+$$
+The energy is not created by the shrinkage. It is binding work and reaction work entering the local ledger:
+$$
+\Delta E_{\mathrm{bind}}
++
+\Delta E_{\mathrm{rxn}}
+\rightarrow
+\Delta E_{\mathrm{cad}}
++
+\Delta E_{\mathrm{heat}}
++
+\Delta E_{\nu}
++
+\Delta E_{\mathrm{break}}
++
+\Delta E_{\mathrm{sea}}
++
+\Delta E_{\mathrm{rem}}
+$$
+This is a ledger identity target, not yet a derived equation of state. It says which channels must be accounted for before one may claim that material Noether braids have scaled down rather than merely that a standard pressure formula was imported.
+
+The strong claim is that this material scale ledger should also project into the effective spatial-compliance ledger used by the metric description. If $\gamma_{ij}$ is the observer-level spatial compliance metric and $h_{ij}$ is the fixed Euclidean spatial metric, the corresponding isotropic scale readout is
+$$
+\mathcal{S}_{\mathrm{metric}}(\Omega,t)
+=
+\left\langle
+\frac{1}{6}
+\ln
+\frac{\det\gamma_{ij}(\mathbf{x},t)}
+{\det h_{ij}}
+\right\rangle_{\Omega}
+$$
+The factor $1/6$ appears because an isotropic spatial metric factor $\gamma_{ij}=a^2h_{ij}$ gives a determinant ratio $a^6$. The closure target is not that $\mathcal{S}_{\mathrm{mat}}$ and $\mathcal{S}_{\mathrm{metric}}$ merely correlate after fitting. The same retained compact-region record must generate the electron-support failure, the assembly scale compression, the Noether sea response, and the effective metric readout without hidden retuning.
+
 ### Iron-Core Collapse Handoff
 
 For an iron-group stellar core, the central Standard Model transition is electron capture,
@@ -50,6 +153,8 @@ For an iron-group stellar core, the central Standard Model transition is electro
 $$
 p+e^-\rightarrow n+\nu_e
 $$
+
+The outgoing neutrino is not just an abstract missing-energy label in this bookkeeping. In the lepton-sector canon, a [neutrino](../assemblies/fermions/neutrinos.md) is a near-photon neutral assembly: a near-planar pro/anti Noether braid pairing close to the photon channel but not fully locked into the photon mode. That explains why the neutrino channel is high-speed and weakly exposed while still carrying an internal-binary phase ledger capable of oscillation. In a collapse ledger, the neutrino row must therefore carry energy, momentum, angular momentum, weak provenance, and near-photon phase information, not merely remove scalar energy from the core.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading keeps this reaction as a required observer-level channel while reclassifying the surrounding story as a change in exposed assembly response.
 
@@ -296,6 +401,43 @@ At this interface:
 - information flow is compressed into an interface-like channel rather than ordinary volumetric propagation.
 
 This is why the project treats holographic language as suggestive but not primitive. The horizon behaves like an information-compression interface because the constitutive degrees of freedom have been forced into a constrained alignment state. That motivates the analogy to holography and AdS/CFT without requiring a literal boundary-field ontology.
+
+### Horizon-Adjacent Photon Channel
+
+The horizon interface is not modeled as a smooth geometric shell surrounding an otherwise empty interior. It is an active Noether sea regime in which ordinary volumetric assemblies, photon-channel packets, dark-sector photon-channel-adjacent modes, and terminally aligned Noether braid states can all be near the same symmetry-breaking threshold. The interface is therefore closer to a high-energy transport and selection layer than to a passive surface.
+
+The photon connection is especially sharp because the photon carrier is a coaxial contra-rotating pro/anti planar pair. A photon is not a horizon, but it is a moving planar-pair record built from the same pro/anti flattening logic that the horizon exposes under strong-field alignment. Near a black-hole interface the question is therefore not only whether light is redshifted on escape. The stronger native question is which photon-channel or photon-channel-adjacent records enter, are blueshifted, are trapped, are converted, or are released by the same horizon-interface ledger.
+
+For a horizon-adjacent photon path $\Gamma_H$, retain the signed strong-field frequency row
+$$
+Y_{\gamma,H}
+=
+\sum_{j\in\Gamma_H}\Delta Y_{\gamma,H,j},
+\qquad
+\Delta Y_{\gamma,H,j}
+=
+-\ln
+\frac{\nu_{\gamma,j}^{+}}{\nu_{\gamma,j}^{-}}
+$$
+
+so $\Delta Y_{\gamma,H,j}<0$ records a blueshift segment and $\Delta Y_{\gamma,H,j}>0$ records a redshift segment relative to the local comparison clock. Interior-facing segments can therefore drive photon-channel packets to energies not directly sampled by exterior observers, while exterior-facing segments may redshift those packets before they become visible or before they are thermalized into a background. The corresponding energy ledger is
+$$
+\mathcal{R}_{H\gamma\text{-}\mathrm{ex}}
+=
+\sum_{j\in\Gamma_H}
+\frac{
+\left|
+h(\nu_{\gamma,j}^{+}-\nu_{\gamma,j}^{-})
++\Delta E_{H,j}
++\Delta E_{\mathrm{med},j}
++\Delta E_{\mathrm{recoil},j}
++\Delta E_{\mathrm{rem},j}
+\right|
+}{\epsilon_{E,j}}
+$$
+where $\Delta E_{H,j}$ is the horizon-interface or interior strong-field row and the other terms record medium, recoil, and remnant exchange. A high-energy photon output claim is admissible only when this residual closes and the outgoing packet still carries the required photon Gate A and Gate B handoffs. If those handoffs fail, the channel has become absorption, re-emission, pair production, or another release reaction.
+
+This is the disciplined version of the "roiling horizon" intuition. The horizon interface may contain intense photon-channel and photon-adjacent activity, and some of it may be routed into jets, diffuse radiative outflow, dark-sector escape, or later visible conversion. But each proposed route must state the release selector, the energy-frequency ledger, the polarization and angular-momentum handoff, and the coupling to the surrounding Noether sea. Otherwise the claim has only renamed black-hole radiation rather than deriving a strong-field transport channel.
 
 Modern holographic entropy work, including Ryu-Takayanagi, island, and replica-wormhole calculations, should be treated in this chapter as a comparison framework rather than as imported ontology. Its value is that it sharpens a high-value consistency target: a mature horizon-interface model should explain how compressed interface bookkeeping can remain compatible with Page-curve recovery and smooth effective horizons. It does not, by itself, supply the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. The native task is still to derive entropy and information accounting from terminal nested shell braid alignment, path-history bookkeeping, Noether sea storage, and release-channel selection.
 

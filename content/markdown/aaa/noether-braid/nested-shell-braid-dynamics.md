@@ -146,6 +146,111 @@ The perturbation status should therefore be sorted before simplification:
 | Resonant and near-separator terms | Change phase closure, causal-root counts, Jacobians, or Floquet multipliers, so they remain part of the branch definition. |
 | Leakage terms | May be small internally while surviving as far-field multipoles or anisotropy, so they control the shielding extraction. |
 
+## Braid Symmetry-Breaking Point
+
+The **braid symmetry-breaking point** is the braid-level version of the single-binary field-speed threshold. A single binary crosses the symmetry-breaking point when its branch reaches the $c_f$ hinge and same-source roots can turn on. A whole nested shell braid reaches its braid symmetry-breaking point only when the outer coupling layer is also driven into terminal alignment with the middle hinge while the inner binary remains in the self-hit interior row.
+
+The working condition is
+
+$$
+s_I>c_f,
+\qquad
+s_M=c_f,
+\qquad
+s_O\to c_f,
+\qquad
+d_{\mathrm{align}}(q)\to0,
+$$
+
+with $d_{\mathrm{align}}$ measuring coplanarity, co-linearity, and precession cessation in the declared branch coordinates. This is not the statement that all three binaries become identical. Since
+
+$$
+s_\ell=\omega_\ell\rho_\ell,
+$$
+
+the middle and outer binaries can share the same threshold speed while retaining different frequencies, effective lever arms, energies, or action shares. Equality of speed is a causal-regime statement. Equality of radius, frequency, energy, or action would be additional branch structure that must be derived from the retained energy/action ledger.
+
+At the braid symmetry-breaking point, the outer binary stops functioning as an ordinary sub-field-speed shielding envelope and becomes part of the interface row. The middle binary remains the hinge. The inner binary does not need to "reach" the hinge because it is already beyond it: it supplies the self-hit, maximal-curvature, history-supported row. This is why the threshold is the natural local precursor to horizon-interface language rather than a mere three-frequency coincidence.
+
+## Planar Tri-Binary Reduced Chart
+
+The **planar tri-binary Noether braid reduced chart** is the simplest controlled chart for studying the braid symmetry-breaking point. It projects the three binary ledgers into a common plane or near-plane and records, for each binary $a\in\{1,2,3\}$ before role assignment,
+
+$$
+\Pi_{\mathrm{pl}}(B_{3B})
+=
+\left(
+f_a,\phi_a,\rho_a,s_a,\sigma_a^{\mathrm{plane}},\mathcal{B}_a
+\right)_{a=1}^{3}
+$$
+
+together with the causal-root, wake, angular-momentum, energy-routing, and stability ledgers that made the projection admissible. Here $f_a$ is a frequency or integer phase-lock row, $\phi_a$ is the phase offset, $\rho_a$ is the retained effective lever arm, $s_a=\omega_a\rho_a$ is the local speed row, $\sigma_a^{\mathrm{plane}}$ is the planar circulation sign, and $\mathcal{B}_a$ is the oriented plane bivector used for sector classification.
+
+This chart is a reduced proof bridge, not a replacement for the full three-dimensional branch. It connects three active searches:
+
+- the $x:y:z$ frequency-pattern search, including equal-frequency and offset families;
+- the braid symmetry-breaking point, where the planar chart becomes the terminal-alignment slice of the nested shell braid;
+- the photon channel, where two planarized pro/anti braid records form the coaxial contra-rotating pro/anti planar pair.
+
+The first planar discriminator is the reduced residual
+
+$$
+\mathcal{R}_{\mathrm{pl}}
+=
+\max\left(
+d_{\mathrm{plane}},
+d_{\mathrm{root}},
+d_{\Theta},
+d_{\mathbf{J}},
+d_E,
+d_{\mathrm{wake}},
+d_{\mathrm{stab}}
+\right),
+$$
+
+where $d_{\mathrm{plane}}$ measures coplanar sector support from the bivector Gram matrix, $d_{\mathrm{root}}$ measures same-row causal-root identity, $d_{\Theta}$ measures retained phase-bundle or return-period closure, $d_{\mathbf{J}}$ measures angular-momentum ledger closure, $d_E$ measures energy/action routing, $d_{\mathrm{wake}}$ measures causal-wake pullback and provenance closure, and $d_{\mathrm{stab}}$ measures branch stability over the declared event or positive-width retained domain. A planar frequency pattern is only a candidate until this residual closes on one retained row set.
+
+## Local Black-Hole Duality Target
+
+The nested shell braid should also be read as carrying the local black-hole dual inside its branch structure. This is not the claim that every Noether braid is an astrophysical black hole, and it does not import conventional primordial-black-hole population models. The claim is narrower: the nested shell braid already contains the same regime split that a macroscopic black hole exposes at large scale.
+
+| Nested shell braid row | Local branch condition | Black-hole dual row |
+| :--- | :--- | :--- |
+| Inner binary | $s_I>c_f$ with accepted same-source roots | interior self-hit and maximal-curvature row |
+| Middle binary | $s_M=c_f$ in the accepted threshold limit | horizon-interface and symmetry-breaking row |
+| Outer binary | $s_O<c_f$ in ordinary operation, with $s_O\to c_f$ under terminal strong-field alignment | exterior coupling row driven toward the interface during collapse |
+
+In this precise sense, a Noether braid contains a primordial black-hole analogue: a finite local version of the horizon/interior split before that split is amplified into an observer-level compact object. The middle binary supplies the threshold interface, while the inner self-hit binary supplies the beyond-threshold interior row. The phrase "primordial black-hole analogue" is therefore a statement about nested shell braid ontology, not a claim that the standard primordial-black-hole model supplies the source mechanism.
+
+The exact-duality theorem target is to construct a map from one retained branch record to one strong-field horizon record,
+
+$$
+\mathcal{D}_{\mathrm{BH}}:
+B_q
+\longmapsto
+\left(
+\mathcal{B}_{H}^{(q)},
+\mathcal{L}_{\mathrm{int}}^{(q)},
+\mathcal{L}_{\mathrm{rel}}^{(q)}
+\right),
+$$
+
+where $\mathcal{B}_{H}^{(q)}$ is the horizon-interface label set inherited from the branch, $\mathcal{L}_{\mathrm{int}}^{(q)}$ is the retained self-hit interior ledger, and $\mathcal{L}_{\mathrm{rel}}^{(q)}$ is the release or exterior-coupling ledger. A useful residual has to vanish on the same root ledger:
+
+$$
+\mathcal{R}_{q\leftrightarrow H}
+=
+\max\left(
+\left|1-\frac{s_M}{c_f}\right|,
+\max\left(0,1-\frac{s_I}{c_f}\right),
+d_{\mathrm{align}}(q),
+d_{\mathrm{led}}\left(\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)},0\right),
+d_{\mathrm{rel}}\left(\mathcal{L}_{\mathrm{rel}}^{(q)},\mathcal{B}_{H}^{(q)}\right)
+\right).
+$$
+
+Here $d_{\mathrm{align}}$ measures coplanarity, co-linearity, and precession cessation in the declared branch coordinates; $d_{\mathrm{led}}$ measures energy, momentum, and angular-momentum ledger closure; and $d_{\mathrm{rel}}$ measures whether the release or exterior-coupling rows are inherited from the same horizon-interface label set rather than added as a second story. The duality claim is retained only if this residual closes with the branch dynamics. Otherwise the black-hole comparison remains a suggestive regime analogy, not an exact result.
+
 ## Mass Thesis as a Dynamics Target
 
 The conservative mass thesis is that rest mass is not primitive architrino substance. It is the externally measurable response of shielded, phase-locked internal causal history.

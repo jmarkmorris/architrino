@@ -18,6 +18,8 @@ From the outside, this can look like choice. In the theory-native description, i
 
 Functional agency names a capacity of sufficiently complex assemblies to modulate their own response profile. It does not mean violation of physical law. The relevant capacities are adaptation, discrimination, self-regulation, and navigation among available attractors.
 
+This boundary also disciplines origin-of-life analogies. A primitive architrino, continuous causal-wake emission, or a bare binary can be dynamically responsive without being treated as life or agency. The durable claim is narrower: life-like or agency-like language becomes technical only when an assembly uses stored internal preparation to change later basin weights under an otherwise fixed boundary context.
+
 The local vocabulary distinguishes two levels:
 
 - A **Switch** is a bias-to-state mechanism: an upstream bias places a metastable unit nearer to or farther from a threshold, and a later perturbation executes the transition or leaves it inactive.
@@ -41,6 +43,8 @@ This does not make every Noether braid an agent. A bare Noether braid has a thre
 | Mature agent | Compatibilist agency exists when many such controlled thresholds are integrated with memory, feedback, and record-making action. |
 
 The most primitive assembly that can make a decision is therefore not the first metastable assembly. It is the first assembly whose internal preparation changes the later basin distribution under the same external boundary context. A metastable middle binary supplies the possibility of alternatives; controlled threshold placement supplies the decision.
+
+Reaction-channel multiplicity belongs one rung lower. A reactant configuration may have many possible exits because binary energies and phases, causal-wake phase history, Noether braid state, photon paths, thermal state, and Noether sea conditions vary across events. That is reaction provenance, not a decision, unless an assembly prepares and holds an internal bias that changes the basin distribution under the same $c_\Omega(t)$.
 
 ## Determinism and Predictability
 
@@ -83,7 +87,7 @@ When a Decider amplifies a signal, the proposed sequence is:
 
 1. A subset of sub-assemblies shifts into a higher-sensitivity state.
 2. The shift is caused by prior internal updates, feedback, and path history.
-3. An incoming potential packet pushes metastable units across their boundaries.
+3. An incoming causal-wake pattern pushes metastable units across their boundaries.
 4. The transition cascade creates a macroscopic record or action.
 
 At this scale, threshold boundaries may be modeled as saddle-node or related bifurcation boundaries in a high-dimensional network. The important claim is that the outcome is routed through the assembly's stored configuration and internal update rules rather than imposed as a bare external command.
@@ -105,6 +109,7 @@ The He-Rb-He example supplies a minimal worked foothold for threshold tuning. It
 | **Libertarian Free Will** | Excluded as uncaused or law-violating initiation |
 | **Compatibilist Agency** | Allowed when complex assemblies navigate deterministic dynamics through internal state and feedback |
 | **Mechanism of "Decision"** | Threshold tuning + feedback + memory in networked assemblies |
+| **Origin-of-Life Language** | Primitive responsiveness and reaction-channel multiplicity are not agency; the technical boundary is internally maintained basin control under fixed external context |
 | **Metastability Substrate** | Field-speed middle binary in the Noether braid supplies a primitive threshold resource, but not agency by itself |
 | **Validation Target** | Fixed boundary context plus different internal preparations must produce a measurable basin-weight shift with work, dissipation, and hold time recorded |
 | **Switch** | Bias-to-state mechanism; computed example currently uses He-Rb-He |

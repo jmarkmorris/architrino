@@ -33,6 +33,12 @@ Use Stripe for a one-time contribution if you want to support research and devel
 
 [Make a one-time contribution via Stripe](https://buy.stripe.com/5kQ4gr1VL66r9Uj1Mo9EI00)
 
+## Share Architrino
+
+![Architrino logo and QR code for architrino.com](../../../assets/images/brand/architrino-logo-qr-landscape.png)
+
+Scan the QR code to open [architrino.com](https://www.architrino.com).
+
 
 ## Related Pages
 

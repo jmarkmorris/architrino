@@ -27,6 +27,8 @@ The same restraint applies to Ryu-Takayanagi, island, and replica-wormhole entro
 
 The more precise architrino picture is a radial alignment state in which all three nested shell braid components share one axis while occupying different speed and deformation regimes. In that sense, "inside," "horizon," and "outside" should be read as a constitutive continuum parameterized by nested shell braid deformation rather than as three disconnected ontological zones.
 
+That continuum has both a local and a macroscopic reading. Locally, the Noether braid already carries the primitive black-hole dual: inner self-hit behavior, a middle symmetry-breaking interface, and an outer exterior-coupling row. Macroscopically, the same regime split appears as black-hole interior, horizon interface, and exterior observer region. The holographic comparison is therefore not a separate metaphysics added on top of the theory; it is a dual-language description of a transition pattern already present in nested shell braid dynamics.
+
 For this reason the preferred local term is **Horizon interface**: surface degrees of freedom with Planck-aligned nested shell braids, without asserting that the interface is literally a conventional CFT. Horizon interface means:
 
 - Assemblies fixed at $v=c_f$ tangentially (middle and outer loops locked),
@@ -35,6 +37,16 @@ For this reason the preferred local term is **Horizon interface**: surface degre
 - Ready to bifurcate into volumetric Noether braids as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or Noether sea content).
 
 That yields a disciplined shorthand: Horizon interface for the Planck-aligned interface layer, bulk for $v<c_f$ volumetric cores, and AdS-like for the $v>c_f$ self-hit interior, all treated as regimes on one constitutive continuum.
+
+## AdS/CFT Regime Map
+
+Maldacena's AdS/CFT correspondence is useful here as a precise comparison chart, not as imported ontology. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading, the CFT-like side corresponds to the exterior, observer-facing regime where assemblies, clocks, rulers, and light channels export volumetric expansion or contraction. The horizon interface corresponds to the symmetry-breaking threshold at $v=c_f$, where ordinary volumetric export is compressed into boundary-like records. The AdS-like side corresponds to the self-hit interior regime, where the same record no longer exports as ordinary exterior volume.
+
+The "mirror" in holographic language is therefore not a separate ontological screen. It is the regime break itself: the point at which a single causal record crosses from partner-only volumetric behavior into interface bookkeeping and then into self-hit interior behavior. The comparison is strongest when the boundary description is read as an effective compression law for accessible records, not as a claim that the boundary field theory is the substrate.
+
+The inward and outward readings should be treated as direction-sensitive effective exports of one horizon-interface record. On inward approach, the oblate spheroidal envelope is driven toward terminal alignment, so the AdS-like comparison reads as compression or deflation relative to the exterior observer chart. On outward release, the same branch can export an inflation-like expansion record as it returns through the horizon interface toward volumetric Noether braid or Noether sea behavior. This is a mapping target: it must be derived from the same envelope variables, layer-speed regimes, causal-root ledger, and clock-export rows, not assigned separately for the exterior and interior descriptions.
+
+Time follows the same rule. Absolute time remains the substrate parameter. Exterior CFT-like time is the clock reconstruction available to observer-facing assemblies outside the horizon interface. At $v=c_f$, clock export is compressed with the boundary-like record. In the AdS-like self-hit interior, the relevant cadence is the retained self-hit cadence of the branch rather than ordinary exterior clock behavior. A successful map must show how these exported time descriptions are projections of one retained horizon-interface record.
 
 ## Status
 
@@ -50,4 +62,5 @@ That yields a disciplined shorthand: Horizon interface for the Planck-aligned in
 
 - Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit nested shell braid states.
 - Show which elements of boundary encoding survive as effective compression laws without requiring fundamental boundary ontology.
+- Derive the AdS/CFT regime map from one horizon-interface record: exterior CFT-like clock and volume export, $v=c_f$ boundary compression, AdS-like self-hit cadence, inward deflationary compression, and outward inflation-like release.
 - Treat black-hole entropy and Page-curve recovery as downstream consistency targets after the native horizon-interface mechanism is specified, not as source derivations for the ontology.

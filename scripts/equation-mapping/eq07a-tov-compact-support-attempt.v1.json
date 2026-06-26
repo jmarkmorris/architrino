@@ -1,0 +1,251 @@
+{
+  "schema": "aaa-equation-map-eq07a-tov-compact-support-input/v1",
+  "claimLevel": "score-neutral EQ-07A TOV compact-support solver attempt; accepted compact-region retained evidence is required before score movement",
+  "residualId": "R_07A_tov_compact_support_attempt_0001",
+  "commonCarrierId": "Theta_cs_07A_compact_region_attempt_0001",
+  "tolerances": {
+    "tovPressureGradient": 1e-12,
+    "massContinuity": 1e-12,
+    "eosProjection": 1e-12,
+    "radialSupport": 1e-12,
+    "metricCompactness": 1e-12,
+    "ledger": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12
+  },
+  "carrier": {
+    "id": "Theta_cs_07A_compact_region_attempt_0001",
+    "status": "attempt",
+    "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+  },
+  "packet": {
+    "id": "Theta_cs_07A_compact_region_attempt_0001",
+    "omegaId": "Omega_cs_07A_tov_attempt_0001",
+    "windowId": "W_cs_07A_tov_attempt_0001",
+    "activeBenchmark": "tov_compact_support",
+    "rows": {
+      "compact_region_carrier": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "radial_support_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "tov_pressure_gradient_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "mass_continuity_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "eos_projection_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "metric_compliance_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "compact_region_ledger": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "source_provenance": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "no_hidden_retune_witness": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "horizon_interface_witness": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      }
+    },
+    "constants": {
+      "G": 1,
+      "c0": 10,
+      "eosCoefficient": 0.5,
+      "eosExponent": 2,
+      "minMetricDenominator": 0.001
+    },
+    "tovSamples": [
+      {
+        "id": "tov_inner",
+        "r": 2,
+        "epsilon": 0.1,
+        "P": 0.005000000000000001,
+        "m": 0.1,
+        "dPdr": -0.0026296061441408044,
+        "dm_dr": 5.026548245743669
+      },
+      {
+        "id": "tov_mid",
+        "r": 3,
+        "epsilon": 0.08,
+        "P": 0.0032,
+        "m": 0.2,
+        "dPdr": -0.0018775406065731262,
+        "dm_dr": 9.047786842338605
+      },
+      {
+        "id": "tov_outer",
+        "r": 4,
+        "epsilon": 0.06,
+        "P": 0.0018,
+        "m": 0.3,
+        "dPdr": -0.0011814126260093615,
+        "dm_dr": 12.063715789784805
+      }
+    ],
+    "compactRegionLedger": {
+      "energyResidual": 0,
+      "momentumResidual": 0,
+      "angularMomentumResidual": 0,
+      "radialFluxResidual": 0,
+      "metricInterfaceResidual": 0,
+      "reactionInventoryResidual": 0
+    },
+    "sourceProvenance": {
+      "maxResidual": 0
+    },
+    "noHiddenRetune": {
+      "maxResidual": 0,
+      "perSampleTovCoefficientCount": 0,
+      "perSampleMetricCoefficientCount": 0,
+      "perShellEosCoefficientCount": 0
+    },
+    "negativeControls": [
+      {
+        "id": "newtonian_gradient_without_relativistic_terms",
+        "expectedFailedCheck": "tovPressureGradient",
+        "overrides": {
+          "tovSamples": [
+            {
+              "id": "tov_inner",
+              "r": 2,
+              "epsilon": 0.1,
+              "P": 0.005000000000000001,
+              "m": 0.1,
+              "dPdr": -0.0025000000000000005,
+              "dm_dr": 5.026548245743669
+            },
+            {
+              "id": "tov_mid",
+              "r": 3,
+              "epsilon": 0.08,
+              "P": 0.0032,
+              "m": 0.2,
+              "dPdr": -0.0017777777777777779,
+              "dm_dr": 9.047786842338605
+            },
+            {
+              "id": "tov_outer",
+              "r": 4,
+              "epsilon": 0.06,
+              "P": 0.0018,
+              "m": 0.3,
+              "dPdr": -0.001125,
+              "dm_dr": 12.063715789784805
+            }
+          ]
+        }
+      },
+      {
+        "id": "horizon_denominator_collapse",
+        "expectedFailedCheck": "metricCompactness",
+        "overrides": {
+          "tovSamples": [
+            {
+              "id": "tov_inner",
+              "r": 2,
+              "epsilon": 0.1,
+              "P": 0.005000000000000001,
+              "m": 100,
+              "dPdr": -0.0026296061441408044,
+              "dm_dr": 5.026548245743669
+            },
+            {
+              "id": "tov_mid",
+              "r": 3,
+              "epsilon": 0.08,
+              "P": 0.0032,
+              "m": 0.2,
+              "dPdr": -0.0018775406065731262,
+              "dm_dr": 9.047786842338605
+            },
+            {
+              "id": "tov_outer",
+              "r": 4,
+              "epsilon": 0.06,
+              "P": 0.0018,
+              "m": 0.3,
+              "dPdr": -0.0011814126260093615,
+              "dm_dr": 12.063715789784805
+            }
+          ]
+        }
+      },
+      {
+        "id": "missing_mass_continuity_row",
+        "expectedFailedCheck": "massContinuity",
+        "overrides": {
+          "tovSamples": [
+            {
+              "id": "tov_inner",
+              "r": 2,
+              "epsilon": 0.1,
+              "P": 0.005000000000000001,
+              "m": 0.1,
+              "dPdr": -0.0026296061441408044,
+              "dm_dr": 0
+            },
+            {
+              "id": "tov_mid",
+              "r": 3,
+              "epsilon": 0.08,
+              "P": 0.0032,
+              "m": 0.2,
+              "dPdr": -0.0018775406065731262,
+              "dm_dr": 9.047786842338605
+            },
+            {
+              "id": "tov_outer",
+              "r": 4,
+              "epsilon": 0.06,
+              "P": 0.0018,
+              "m": 0.3,
+              "dPdr": -0.0011814126260093615,
+              "dm_dr": 12.063715789784805
+            }
+          ]
+        }
+      },
+      {
+        "id": "hidden_per_shell_tov_retune",
+        "expectedFailedCheck": "noHiddenRetune",
+        "overrides": {
+          "noHiddenRetune": {
+            "maxResidual": 0,
+            "perSampleTovCoefficientCount": 2,
+            "perSampleMetricCoefficientCount": 0,
+            "perShellEosCoefficientCount": 0
+          }
+        }
+      }
+    ]
+  }
+}

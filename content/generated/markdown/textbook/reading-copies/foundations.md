@@ -21,6 +21,8 @@ All subsequent dynamical laws, assembly mappings, and emergent phenomena depend 
 
 The teaching order is controlled by four levels. Substrate ontology names absolute time, the Euclidean void, and architrino identities. Assembly and medium behavior names organized architrino configurations and the Noether sea. Effective description names the metric, field, particle, and clock language reconstructed from those dynamics. Observer inference names the records available to embedded Physical Observers, not the complete state itself.
 
+This ontology also has a boundary. It states the internal bedrock of $\mathbb{A}\mathbb{A}\mathbb{A}$; it does not claim to explain why absolute time, the Euclidean void, the architrino identity set, $c_f$, or $\kappa$ exist rather than not exist. Those are primitive postulates inside the present theory unless a separate meta-ontological account is supplied. The corpus should therefore distinguish substrate explanation from ultimate-origin speculation: deriving particles, fields, clock behavior, and effective spacetime from architrino dynamics is a different claim from explaining why the substrate itself exists.
+
 The same level discipline can be read through the canonical symbol map:
 
 | Level | Canonical variables or records | Owning chapters |
@@ -2778,6 +2780,8 @@ The closer pedagogical analogy is a population of coupled delayed-feedback oscil
 -   **Emergent assemblies:** Through these continuous delayed interactions, architrinos can self-organize into complex, stable or metastable configurations called **assemblies**. An assembly is not a new primitive; it is an attractor-basin structure of the delay-differential dynamics, comparable in pedagogy to synchronized oscillator clusters, vortices, or soliton-like coherent structures.
 
 The stability of an assembly is therefore dynamic rather than static. It depends on an ongoing balance of forces from the superposition of all dynamically active wakes. An assembly can persist when its trajectory remains inside a stable or metastable attractor basin; it can dissolve, branch, or reconfigure when perturbations or self-hit thresholds push it across a basin boundary.
+
+This makes persistence a finite-window dynamical statement. For a declared observation window $W$ and surrounding context $c$, an assembly branch persists only while its path-history remains in an admitted stable or metastable basin and the retained causal-root, shielding, and provenance rows continue to close. If those rows fail, the branch has reconfigured or dissolved even when a coarse observer label could still be reused.
 
 #### Context as Constraint on Basin Selection
 

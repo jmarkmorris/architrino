@@ -80,6 +80,7 @@ These gates are not separate ontologies. They are bookkeeping filters that preve
 | Breit-Wheeler pair channel | [Synchrotron](../reactions/synchrotron.md) | Record incoming photon assemblies, recruited Noether braid content, and final $e^+e^-$ assemblies | Derivation target |
 | BBN photon bath | [BBN Constraints](../cosmology/BBN-constraints.md) | Show that pair, bremsstrahlung, synchrotron, and related channels maintain effective $\eta\approx6\times10^{-10}$ during the bottleneck window | Closure target |
 | CMB thermal spectrum | [CMB](../cosmology/CMB.md) | Show that source emission, transport, and thermalization produce a near-blackbody photon bath with allowed anisotropy and damping structure | Closure target |
+| Horizon-interface photon release | [Black Holes](../spacetime/black-holes.md#horizon-adjacent-photon-channel) and [CMB](../cosmology/CMB.md#horizon-interface-photon-release-candidate) | Record photon-channel or photon-channel-adjacent packets processed near the symmetry-breaking threshold, including interior blueshift, exterior redshift, thermalization, and release-channel selection | Candidate strong-field source row |
 | Redshift and clock handoff | [Expansion Mechanism](../cosmology/expansion-mechanism.md) | Map photon transport through $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, and clock-rate comparison | Effective summary with open derivation |
 | Sunyaev-Zeldovich / Compton-like frequency exchange | [CMB](../cosmology/CMB.md#sunyaev-zeldovich-path-history-calibration) and [Radiation](../reactions/radiation.md#path-frequency-exchange) | Record incoming photon packet, intervening electron or medium state, outgoing frequency, recoil, medium energy change, and thermalization side effects | Calibration row and closure target |
 
@@ -178,6 +179,37 @@ $$
 $$
 
 with $\tau_{\mathrm{th}}^{-1}$ decomposed into the specific event-recorded channels being used: planar-mode capture/release, Compton-like redistribution, pair channels, and non-radiative medium exchange. A CMB blackbody claim requires $\mathcal{D}_{\mathrm{th}}\gg1$ before decoupling, effective photon chemical potential driven to zero, and a post-decoupling transport map that preserves the already-generated spectrum while carrying anisotropy, polarization, damping, and redshift information.
+
+### Horizon-Interface Photon Release
+
+The strong-field photon-release row is the black-hole version of source-to-transport provenance. It applies when a photon-channel packet, or a photon-channel-adjacent dark-sector mode, is processed near the horizon-interface symmetry-breaking threshold before contributing to an exterior radiative, jet, diffuse, or CMB-facing channel.
+
+The minimum record must include:
+
+- the selected horizon-interface label ensemble $\mathcal{B}_H$ or finite strong-field branch record;
+- incoming and outgoing photon-channel frequencies $\nu_{\gamma}^{-}$ and $\nu_{\gamma}^{+}$ for every retained strong-field segment;
+- whether each segment is blueshift, redshift, trapping, conversion, thermalization, or release;
+- the horizon-interface energy row $\Delta E_H$ together with medium, recoil, remnant, and returned Noether sea rows;
+- the Gate A and Gate B handoffs for any packet still treated as a photon after the segment;
+- the release selector that routes the output into jet, diffuse radiative, dark-sector, CMB thermalization, or later visible-conversion channels.
+
+The strong-field exchange residual is inherited from the black-hole chapter:
+$$
+\mathcal{R}_{H\gamma\text{-}\mathrm{ex}}
+=
+\sum_{j\in\Gamma_H}
+\frac{
+\left|
+h(\nu_{\gamma,j}^{+}-\nu_{\gamma,j}^{-})
++\Delta E_{H,j}
++\Delta E_{\mathrm{med},j}
++\Delta E_{\mathrm{recoil},j}
++\Delta E_{\mathrm{rem},j}
+\right|
+}{\epsilon_{E,j}}
+$$
+
+This row is a candidate source mechanism, not a completed CMB derivation. It becomes cosmology-facing only after the emitted or converted packet is propagated through the CMB thermalization, distortion, anisotropy, polarization, and redshift handoff checks. A high-energy interior photon population that cannot be routed through those checks may remain a black-hole release-channel hypothesis, but it cannot be used as a CMB source.
 
 ### Path Frequency Exchange
 

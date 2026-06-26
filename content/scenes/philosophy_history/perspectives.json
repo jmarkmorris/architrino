@@ -16,95 +16,17 @@
       {
         "nodeId": "perspectives_overview",
         "scenePath": "content/scenes/philosophy_history/perspectives/overview.json"
-      },
-      {
-        "nodeId": "perspective_william_thurston",
-        "scenePath": "content/scenes/philosophy_history/perspectives/william_thurston.json"
-      },
-      {
-        "nodeId": "perspective_henri_poincare",
-        "scenePath": "content/scenes/philosophy_history/perspectives/henri_poincare.json"
-      },
-      {
-        "nodeId": "perspective_james_clerk_maxwell",
-        "scenePath": "content/scenes/philosophy_history/perspectives/james_clerk_maxwell.json"
-      },
-      {
-        "nodeId": "perspective_ludwig_boltzmann",
-        "scenePath": "content/scenes/philosophy_history/perspectives/ludwig_boltzmann.json"
-      },
-      {
-        "nodeId": "perspective_emmy_noether",
-        "scenePath": "content/scenes/philosophy_history/perspectives/emmy_noether.json"
-      },
-      {
-        "nodeId": "perspective_albert_einstein",
-        "scenePath": "content/scenes/philosophy_history/perspectives/albert_einstein.json"
       }
     ]
   },
   "objects": [
     {
       "id": "perspectives_overview",
-      "title": "Perspectives",
+      "title": "Perspectives: A Chain Of Witnesses",
       "radius": 2.688,
       "color": "#4f5d75",
-      "labelTitle": "Overview",
+      "labelTitle": "Chain Of Witnesses",
       "labelBadge": "doc"
-    },
-    {
-      "id": "perspective_william_thurston",
-      "title": "William Thurston",
-      "radius": 2.688,
-      "color": "#6f4a8f",
-      "labelTitle": "William Thurston",
-      "labelSubtitle": "June 24, 2026",
-      "labelBadge": "perspective"
-    },
-    {
-      "id": "perspective_henri_poincare",
-      "title": "Henri Poincare",
-      "radius": 2.688,
-      "color": "#2a9d8f",
-      "labelTitle": "Henri Poincare",
-      "labelSubtitle": "June 24, 2026",
-      "labelBadge": "perspective"
-    },
-    {
-      "id": "perspective_james_clerk_maxwell",
-      "title": "James Clerk Maxwell",
-      "radius": 2.688,
-      "color": "#e76f51",
-      "labelTitle": "James Clerk Maxwell",
-      "labelSubtitle": "June 24, 2026",
-      "labelBadge": "perspective"
-    },
-    {
-      "id": "perspective_ludwig_boltzmann",
-      "title": "Ludwig Boltzmann",
-      "radius": 2.688,
-      "color": "#f4a261",
-      "labelTitle": "Ludwig Boltzmann",
-      "labelSubtitle": "June 24, 2026",
-      "labelBadge": "perspective"
-    },
-    {
-      "id": "perspective_emmy_noether",
-      "title": "Emmy Noether",
-      "radius": 2.688,
-      "color": "#457b9d",
-      "labelTitle": "Emmy Noether",
-      "labelSubtitle": "June 24, 2026",
-      "labelBadge": "perspective"
-    },
-    {
-      "id": "perspective_albert_einstein",
-      "title": "Albert Einstein",
-      "radius": 2.688,
-      "color": "#8d99ae",
-      "labelTitle": "Albert Einstein",
-      "labelSubtitle": "June 24, 2026",
-      "labelBadge": "perspective"
     }
   ]
 }
