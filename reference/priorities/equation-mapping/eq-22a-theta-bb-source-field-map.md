@@ -15,6 +15,8 @@
 
 This map does not populate accepted retained evidence. It narrows the local `EQ-22A` child route under the shared `theta_gamma_packet` parent. The current parent blocker remains `missing_accepted_theta_gamma_packet`; after that parent is populated, the local child route begins with `thermal_mode_counting_row` inside a finite-window thermal photon carrier, $\Theta_{\mathrm{bb}}$.
 
+Findability note: blackbody ultraviolet catastrophe belongs here. Classical Rayleigh-Jeans high-frequency divergence is a fail-closed control for mode counting plus occupancy, and it is distinct from QFT ultraviolet divergence or renormalization.
+
 No score changes.
 
 ## Equation Attack Card

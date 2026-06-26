@@ -65,6 +65,8 @@ where $W$ is the retained finite window, $E$ is the emission/source endpoint, an
 | `source_provenance` | Durable source path or source URL for each accepted row; generated markdown, temp paths, placeholders, and directories fail. | blocked |
 | `no_hidden_retune_witness` | One witness that $h$, $c_\gamma$, transfer factor, detector coupling, and path response were not separately retuned per observable. | blocked |
 
+Malus-law analyzer intensity $I(\theta)=I_0\cos^2\theta$ is a Gate B analyzer benchmark for `helicity_ledger_row` and `gate_b_transverse_row`. It should consume analyzer basis, incoming polarization ledger, transmitted-intensity readout, and longitudinal-leakage residual on the same $\Theta_\gamma$ carrier, and it fails if it imports the cosine-squared law without packet identity and event-ledger provenance.
+
 ## Consumer Boundaries
 
 `EQ-12` owns the direct photon packet transfer residual. A future accepted $\Theta_\gamma$ row may move this blocker only if it satisfies every required row above and passes the photon packet checker without replacing source/path/receiver rows with solved-wave comparison objects.

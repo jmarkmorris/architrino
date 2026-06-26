@@ -14832,6 +14832,8 @@ This is also the precise meaning of quantizing the Lorentz response. The smooth 
 
 The same component split also states the material speed-limit side of the bridge. As $\|\mathbf{w}\|\to c_{\text{eff}}$, the transverse budget $c_{\perp}$ tends to zero. A limiting branch may still carry axial wake transfer in the bookkeeping sense, but it can no longer function as a volumetric clock or ruler because the internal binary and inter-layer loops have no transverse causal capacity left. The speed bound is therefore not merely a rule about fast coordinate motion; it is the branch-failure point at which a bound assembly can no longer preserve the clock/ruler ledger required for ordinary matter.
 
+The primitive wake geometry has to be read in three regimes before it becomes a Lorentz story. In a sub-field-speed retained interval, the source-to-receiver delay map is monotone, so same-source self-hit is absent unless older super-field-speed history remains in the memory window. At the field-speed separator, the same-source branch is tangent and the Jacobian floor fails; this is a branch-chart boundary or finite-regulator transition, not an ordinary stable force row. Super-field-speed curved history can expose an architrino to its own retained causal history, but only after the Master Equation supplies same-source roots, finite memory, transversality, and action-ledger closure. The Lorentz bridge therefore begins from branch-regime diagnostics, not from a speed slogan: stable matter must reorganize those causal-root ledgers into a clock/ruler/signal branch whose observer export hides the preferred frame.
+
 ##### Branch-Quantized Lorentz Response
 
 The Lorentz factor is usually written as a smooth function,
@@ -16639,6 +16641,8 @@ These identifications are **conjectured mappings**, not definitions. They must e
 
 In plain terms, the Planck scale is a **dynamic alignment horizon**, not a minimal length by fiat: under extreme stress the assembly’s internal geometry snaps into a universal, planar lock, forward-sector updates are starved, and no smaller stable mode remains.
 
+This also fixes how Planck-unit language should be read. The Planck relations are benchmark natural measures, not evidence that the Euclidean void is pixelated or that substrate motion is discontinuous. They become physically meaningful only when a stable assembly supplies the clock, ruler, and closed-cycle action channel that can instantiate the corresponding cadence, radius, and action. The Planck-alignment program therefore has to derive those quantities from one retained nested shell braid branch, rather than treating $\ell_P$, $t_P$, or $h$ as primitive measuring devices.
+
 ##### Operational Probing Limit
 
 The same scale also appears from the standard quantum-gravity probing argument. A probe of energy $E$ cannot localize structure more sharply than its quantum wavelength, but concentrating too much energy into the same region also produces a gravitational horizon. In $\mathbb{A}\mathbb{A}\mathbb{A}$ notation this gives the effective lower bound
@@ -17314,7 +17318,7 @@ What physics already had at each moment was never trivial. Newtonian mechanics s
 
 The opening in each case was similar in form even when different in content. A deeper constitutive account could have been pursued before effective variables hardened into final ontology. A medium could have remained physically serious after finite-speed field propagation. Lorentz symmetry could have been interpreted as emergent. Metric structure could have remained a constitutive summary. Quantum outcomes could have been treated as deterministic multistability under hidden path-history dynamics. Dark-sector closure could have remained explicitly provisional.
 
-Another recurring pattern is failure to revisit earlier assumption sets after later discoveries widened the design space. When new constituent possibilities, new charge or state structures, or new assembly principles become available, old no-go conclusions do not automatically remain final. Sometimes they do. Sometimes they only show that an earlier implementation failed. A historical near-miss analysis should keep that distinction explicit.
+Another recurring pattern is failure to revisit earlier assumption sets after later discoveries widened the design space. When new constituent possibilities, new charge or state structures, or new assembly principles become available, old no-go conclusions do not automatically remain final. Sometimes they do. Sometimes they only show that an earlier implementation failed. Classical point-source theory makes the distinction concrete: failure of a primitive source model does not by itself rule out delayed multi-source assembly dynamics or other substrate-first implementations. A historical near-miss analysis should keep that distinction explicit.
 
 | Period | What physics had in hand | $\mathbb{A}\mathbb{A}\mathbb{A}$-adjacent opening | Narrative lock-in that occluded it |
 |:---|:---|:---|:---|

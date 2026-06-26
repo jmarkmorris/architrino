@@ -16,6 +16,8 @@
 
 This map does not populate accepted retained evidence. It narrows the local `EQ-26A` child route under the shared `theta_gamma_packet` and retained action-period parent. The checker currently blocks first at `missing_accepted_theta_gamma_packet`; after parent photon/action support exists, the source-field route should begin by pinning `charge_exposure_row`, because an `alpha_coupling_row` is meaningful only after $q_{\mathrm{obs}}$ is scheme-pinned.
 
+Findability note: QFT ultraviolet divergence or renormalization belongs here only as a scale-dependent coupling, exposure, threshold-inventory, or wake-dressing benchmark. It is not the Planck blackbody ultraviolet catastrophe handled by `EQ-22A`.
+
 No score changes.
 
 ## Equation Attack Card

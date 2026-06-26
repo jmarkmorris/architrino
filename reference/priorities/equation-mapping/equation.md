@@ -1000,6 +1000,8 @@ The null condition belongs to the observer-level effective metric. The wave equa
 
 Solved wave-equation families are admissible here as inverse clues and acceptance tests. A Green function, plane-wave dispersion row, eikonal family, cavity or boundary mode, or scattering solution can constrain the required Noether sea response kernel, photon-channel packet ledger, source-event provenance, and gauge residual. It cannot replace those rows; the solved field is an effective comparison object unless the coarse-graining map from causal wakes and photon packets is declared.
 
+Malus-law analyzer intensity $I(\theta)=I_0\cos^2\theta$ belongs here as a Gate B polarization/analyzer benchmark, not as a standalone score row. A future source-backed photon packet must bind analyzer basis, incoming polarization ledger, transmitted-intensity readout, and longitudinal-leakage residual to the same $\Theta_\gamma$ carrier; otherwise it remains an imported polarization formula.
+
 ### Closure Status
 
 Current `6/23 b` scores: `3` for photon energy/null transport and `3` for Maxwell and wave equations.
@@ -1961,6 +1963,8 @@ $$
 
 For an equilibrated photon gas, the target is $\mu_\gamma^\theta=0$ with sufficient thermalization depth.
 
+Findability note: "Planck's equation" is ambiguous. `EQ-12` and `EQ-12A` own the photon/action readout $E=h\nu$, while `EQ-22A` owns Planck blackbody law and the blackbody ultraviolet-catastrophe benchmark. The ultraviolet catastrophe is the classical Rayleigh-Jeans high-frequency divergence when mode counting is paired with classical equipartition; it belongs here as a fail-closed mode-count/occupancy comparison, not as a general QFT ultraviolet divergence or renormalization row.
+
 ### AAA Mapping
 
 `EQ-22` owns the full CMB transfer and acoustic observation record. `EQ-22A` owns the Planck-law core: mode counting, photon occupancy, zero photon chemical potential, and thermalization depth. The mapped object should be a finite-window thermal photon carrier
@@ -2458,6 +2462,8 @@ b_\theta(\mu_j)
 }
 {|b_\theta(\mu_j)|+\varepsilon_b}.
 $$
+
+Findability note: QFT-style ultraviolet divergence and renormalization questions route to `EQ-26A` only when the issue is scale-dependent electromagnetic response, vacuum polarization/wake dressing, charged-threshold inventory, and running couplings. That is distinct from the blackbody ultraviolet catastrophe handled by `EQ-22A`, which is a thermal mode-count/occupancy failure control.
 
 The scale split is part of the row. The action period $h_\vartheta$, charge quantum, $q_{\mathrm{obs}}$, $c_\gamma$ at fixed Noether sea state, and $\theta_{\mathrm{sea}}$ are fixed across anchors. The running is allowed only in the response kernel and threshold inventory:
 
@@ -2999,6 +3005,8 @@ n,
 $$
 
 This comparison belongs inside the same shared observation record as growth, CMB, and BBN. The low-acceleration scale $a_\star^\theta(E)$ and any apparent $a_0$ row should be outputs of the shared Noether sea response, not a separate galaxy-only constant.
+
+Findability note: MOND and MOND-like interpolation laws belong here only as observer-level RAR/BTFR comparison forms. The row must not promote a MOND law into substrate ontology; the accepted object remains a shared Noether sea constitutive response compatible with lensing, CMB, BBN, growth, and local gravity.
 
 ### Closure Status
 

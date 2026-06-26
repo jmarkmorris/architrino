@@ -3388,6 +3388,8 @@ caps the near-collision inverse-square amplitude. Branch-resolved formulas with 
 
 The two regulators quarantine different singular loci. The width $\eta$ regularizes the causal-surface collapse, branch folds, and caustic-transit impulse; the core scale $\epsilon_c$ regularizes the coincidence or diagonal collision locus. A theorem packet may refine them together for computation, but a sharp-limit claim must state which of $\eta\to0^+$ and $\epsilon_c\to0^+$ is being taken, and why the other singular locus remains controlled during that limit.
 
+Coordinate coincidence is also a provenance question, not an annihilation rule. Two architrinos may share $\mathbf{x}_i(t)=\mathbf{x}_j(t)$ on one absolute-time slice only as a boundary case of the retained history record; the next admissible update is determined by their identities, polarities, velocities, past causal-wake ledgers, and the same $\eta,\epsilon_c$ convention. If two like-polarity records agree through the retained memory window up to label permutation, the deterministic law is quotient-degenerate: relabeling the records changes no force row until a provenance-visible history distinguishes them. If the polarities, velocities, or retained path histories differ, later incoming causal wakes can separate the records even though their current coordinates coincided. Thus the $r=0$ stratum is not a contact-force or annihilation channel. It is a regularized or quarantined branch condition whose continuation must preserve provenance.
+
 ###### Finite-$\eta$ Pathology Quarantine Theorem Target
 
 The classical point-source pathologies are not closed by the sharp branch formula alone. The theorem target is finite-$\eta$, branch-chart local, and conditional on one regularized action and energy convention. Fix a finite architrino set, a finite window $W=[t_a,t_b]$, a memory depth $h < \infty$, a causal-surface width $\eta > 0$, a core scale $\epsilon_c > 0$, and a branch chart
@@ -14395,6 +14397,8 @@ $$
 $$
 
 where $\mu$ indexes the absolute-time component and the three spatial components of the effective chart; this is not a substrate Lorentz four-vector. The point is structural: the scalar/vector split $(\Phi_{\mathrm{wake}},\mathbf{A}_{\mathrm{wake}})$ introduced in the continuum reduction is forced by the scale/recoil split of the first variation. The scale term is the scalar-potential channel, while the retained recoil current is the vector-transport channel. In the Hodge-type language above, the electric-like channel is the exact scalar part and the magnetic-like channel is the co-exact transport part of the same delayed kernel current.
+
+Before this continuum reduction, the primitive vector object is the received branch row itself. A single causal hit carries source identity, receiver identity, emission time $t_0$, receiver time $t$, $r_{ij}(t;t_0)$, $\hat{\mathbf r}_{ij}(t;t_0)$, polarity sign $\sigma_{ij}$, and Jacobian $J_{ij}(t;t_0)$. It is vectorial because the per-hit acceleration is directed along $\hat{\mathbf r}_{ij}$, but it is not the electromagnetic vector potential. Scalar wake potentials and vector transport potentials are reconstructed or coarse-grained variables obtained only after many such line-of-action rows are integrated over a declared chart.
 
 Thus a chart that keeps $\mathbf{C}_{ij}^{(\eta)}$ should not treat it as noise to be hidden in a residual. It should compute the effective field-strength candidate
 
@@ -68514,6 +68518,23 @@ The conservative ledger is:
 
 This map supports a strong but bounded claim: beta reaction charge bookkeeping can be interpreted as local separation and rerouting of neutral Noether sea material plus active quark axial reconfiguration. It does not yet establish a full weak-interaction derivation, because chirality selection, antineutrino routing, and quantitative rate closure still belong to the weak-sector closure program.
 
+##### Method-Resolved Lifetime Benchmark
+
+The lifetime benchmark should not be reduced to a single scalar until the experimental comparison channel is declared. The current PDG neutron listing averages ultracold-neutron storage measurements at $\tau_n^{\mathrm{UCN}}=878.4\pm0.5\,\mathrm{s}$, while the in-beam trapped-proton result `YUE 13` reports $\tau_n^{\mathrm{beam}}=887.7\pm1.2_{\mathrm{stat}}\pm1.9_{\mathrm{syst}}\,\mathrm{s}$. The review does not use the beam row in the main average and treats the beam/storage split as a long-standing disagreement. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is a method-resolved weak-reaction benchmark, not evidence by itself for a hidden reaction channel.
+
+A native closure attempt should therefore publish two readouts from the same free-neutron beta-reaction record:
+
+$$
+\mathcal{R}_{\tau_n}^{\mathrm{method}}
+=
+\left(
+\frac{\tau_n^{\mathrm{UCN}}-\tau_n^{\mathbb{A}\mathbb{A}\mathbb{A}}}{\sigma_{\mathrm{UCN}}},
+\frac{\tau_n^{\mathrm{beam}}-\tau_{n,p}^{\mathbb{A}\mathbb{A}\mathbb{A}}}{\sigma_{\mathrm{beam}}}
+\right)
+$$
+
+Here $\tau_n^{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the storage-style survival lifetime predicted by the branch record, while $\tau_{n,p}^{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the proton-counting readout in a beam geometry. The two entries must share the same weak-coupling-triad exposure, $V_{ud}$ overlap, lepton-provenance, recoil, and Noether sea rows. If the method residual remains nonzero after known detector, trap, wall-loss, and normalization systematics are represented at observer level, the residual stays an unresolved comparison pressure; it should not be promoted to hidden-channel ontology without explicit reaction provenance and null-result closure.
+
 #### Closure Targets
 
 The reaction ledger needs at least four tables for each serious channel:
@@ -88958,6 +88979,8 @@ This is also the precise meaning of quantizing the Lorentz response. The smooth 
 
 The same component split also states the material speed-limit side of the bridge. As $\|\mathbf{w}\|\to c_{\text{eff}}$, the transverse budget $c_{\perp}$ tends to zero. A limiting branch may still carry axial wake transfer in the bookkeeping sense, but it can no longer function as a volumetric clock or ruler because the internal binary and inter-layer loops have no transverse causal capacity left. The speed bound is therefore not merely a rule about fast coordinate motion; it is the branch-failure point at which a bound assembly can no longer preserve the clock/ruler ledger required for ordinary matter.
 
+The primitive wake geometry has to be read in three regimes before it becomes a Lorentz story. In a sub-field-speed retained interval, the source-to-receiver delay map is monotone, so same-source self-hit is absent unless older super-field-speed history remains in the memory window. At the field-speed separator, the same-source branch is tangent and the Jacobian floor fails; this is a branch-chart boundary or finite-regulator transition, not an ordinary stable force row. Super-field-speed curved history can expose an architrino to its own retained causal history, but only after the Master Equation supplies same-source roots, finite memory, transversality, and action-ledger closure. The Lorentz bridge therefore begins from branch-regime diagnostics, not from a speed slogan: stable matter must reorganize those causal-root ledgers into a clock/ruler/signal branch whose observer export hides the preferred frame.
+
 ###### Branch-Quantized Lorentz Response
 
 The Lorentz factor is usually written as a smooth function,
@@ -90765,6 +90788,8 @@ These identifications are **conjectured mappings**, not definitions. They must e
 
 In plain terms, the Planck scale is a **dynamic alignment horizon**, not a minimal length by fiat: under extreme stress the assembly’s internal geometry snaps into a universal, planar lock, forward-sector updates are starved, and no smaller stable mode remains.
 
+This also fixes how Planck-unit language should be read. The Planck relations are benchmark natural measures, not evidence that the Euclidean void is pixelated or that substrate motion is discontinuous. They become physically meaningful only when a stable assembly supplies the clock, ruler, and closed-cycle action channel that can instantiate the corresponding cadence, radius, and action. The Planck-alignment program therefore has to derive those quantities from one retained nested shell braid branch, rather than treating $\ell_P$, $t_P$, or $h$ as primitive measuring devices.
+
 ###### Operational Probing Limit
 
 The same scale also appears from the standard quantum-gravity probing argument. A probe of energy $E$ cannot localize structure more sharply than its quantum wavelength, but concentrating too much energy into the same region also produces a gravitational horizon. In $\mathbb{A}\mathbb{A}\mathbb{A}$ notation this gives the effective lower bound
@@ -91440,7 +91465,7 @@ What physics already had at each moment was never trivial. Newtonian mechanics s
 
 The opening in each case was similar in form even when different in content. A deeper constitutive account could have been pursued before effective variables hardened into final ontology. A medium could have remained physically serious after finite-speed field propagation. Lorentz symmetry could have been interpreted as emergent. Metric structure could have remained a constitutive summary. Quantum outcomes could have been treated as deterministic multistability under hidden path-history dynamics. Dark-sector closure could have remained explicitly provisional.
 
-Another recurring pattern is failure to revisit earlier assumption sets after later discoveries widened the design space. When new constituent possibilities, new charge or state structures, or new assembly principles become available, old no-go conclusions do not automatically remain final. Sometimes they do. Sometimes they only show that an earlier implementation failed. A historical near-miss analysis should keep that distinction explicit.
+Another recurring pattern is failure to revisit earlier assumption sets after later discoveries widened the design space. When new constituent possibilities, new charge or state structures, or new assembly principles become available, old no-go conclusions do not automatically remain final. Sometimes they do. Sometimes they only show that an earlier implementation failed. Classical point-source theory makes the distinction concrete: failure of a primitive source model does not by itself rule out delayed multi-source assembly dynamics or other substrate-first implementations. A historical near-miss analysis should keep that distinction explicit.
 
 | Period | What physics had in hand | $\mathbb{A}\mathbb{A}\mathbb{A}$-adjacent opening | Narrative lock-in that occluded it |
 |:---|:---|:---|:---|
