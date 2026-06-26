@@ -1,0 +1,158 @@
+{
+  "schema": "aaa-equation-map-same-branch-retained-domain-packet.v1",
+  "claimLevel": "blocked source-backed S_eq retained-domain shell for EQ-02 through EQ-04; score-neutral and not accepted evidence",
+  "status": "blocked",
+  "targetRow": "same_branch_chart_identity",
+  "retainedRowSetId": "S_eq",
+  "firstBlocker": "missing_accepted_raw_labeled_rows_preserved_on_retained_history",
+  "blockerReproduction": {
+    "command": "node scripts/equation-mapping/check-same-branch-chart-identity.mjs --input scripts/equation-mapping/same-branch-retained-domain-blocked-source-shell.v1.json --summary --pretty",
+    "expectedStatus": "blocked_missing_retained_event_or_domain",
+    "expectedNextBlocker": "missing_accepted_raw_labeled_rows_preserved_on_retained_history"
+  },
+  "sourceBasis": {
+    "path": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+    "role": "priority-only evidence-object contract, not accepted retained evidence"
+  },
+  "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001",
+  "domain": {
+    "id": "S_eq_retained_domain_blocked_source_shell_0001",
+    "kind": "positive_width_domain",
+    "status": "blocked",
+    "rowId": "domain_support_blocked_source_shell",
+    "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+    "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+  },
+  "rowBindings": {
+    "raw_labeled_rows_preserved_on_retained_history": {
+      "status": "blocked",
+      "rowId": "raw_labeled_rows_preserved_on_retained_history_blocked_source_shell",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "six_body_polarity_neutral_inventory_preserved": {
+      "status": "blocked",
+      "rowId": "six_body_polarity_neutral_inventory_preserved_blocked_source_shell",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "role_map_selected_or_quotient_policy_declared": {
+      "status": "blocked",
+      "rowId": "role_map_selected_or_quotient_policy_declared_blocked_source_shell",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "path_history_rows_bound_to_S_eq": {
+      "status": "blocked",
+      "rowId": "path_history_rows_bound_to_S_eq_blocked_source_shell",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "causal_root_ledger_rows_bound_to_S_eq": {
+      "status": "blocked",
+      "rowId": "causal_root_ledger_rows_bound_to_S_eq_blocked_source_shell",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "wake_tail_rows_bound_to_S_eq": {
+      "status": "blocked",
+      "rowId": "wake_tail_rows_bound_to_S_eq_blocked_source_shell",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "energy_action_rows_bound_to_S_eq": {
+      "status": "blocked",
+      "rowId": "energy_action_rows_bound_to_S_eq_blocked_source_shell",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "momentum_and_angular_momentum_rows_bound_to_S_eq": {
+      "status": "blocked",
+      "rowId": "momentum_and_angular_momentum_rows_bound_to_S_eq_blocked_source_shell",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "phase_rows_bound_to_S_eq": {
+      "status": "blocked",
+      "rowId": "phase_rows_bound_to_S_eq_blocked_source_shell",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "retained_plane_orientation_rows_bound_to_S_eq": {
+      "status": "blocked",
+      "rowId": "retained_plane_orientation_rows_bound_to_S_eq_blocked_source_shell",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "response_center_and_group_velocity_rows_bound_to_S_eq": {
+      "status": "blocked",
+      "rowId": "response_center_and_group_velocity_rows_bound_to_S_eq_blocked_source_shell",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "Noether_sea_record_bound_to_S_eq": {
+      "status": "blocked",
+      "rowId": "Noether_sea_record_bound_to_S_eq_blocked_source_shell",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "binary_to_binary_phase_row_set_identity": {
+      "status": "blocked",
+      "rowId": "binary_to_binary_phase_row_set_identity_blocked_source_shell",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    }
+  },
+  "witnesses": {
+    "split_witness_zero": {
+      "status": "blocked",
+      "rowId": "split_witness_zero_blocked_source_shell",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "residual": 0,
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "retune_witness_zero": {
+      "status": "blocked",
+      "rowId": "retune_witness_zero_blocked_source_shell",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "residual": 0,
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    },
+    "overlap_preimage_identity": {
+      "status": "blocked",
+      "rowId": "overlap_preimage_identity_blocked_source_shell",
+      "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
+      "consistent": false,
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
+    }
+  }
+}

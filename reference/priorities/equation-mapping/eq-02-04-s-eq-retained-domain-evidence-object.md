@@ -62,6 +62,16 @@ The current score-neutral executable state is:
 | [eq02-04-translating-binary-retained-record.mjs](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs) | `blocked_same_branch_identity` | The retained-record rows and witnesses remain attempt-level, and `coframeExtraction` is not evaluated. |
 | [produce-eq02-04-coframe-extraction-certificate.mjs](../../../scripts/equation-mapping/produce-eq02-04-coframe-extraction-certificate.mjs) | fail-closed producer | The current source report is attempt-level and lacks accepted invariant-cell, refinement, source, and connection evidence. |
 
+The first concrete artifact for this lane is the blocked source-backed shell:
+
+```sh
+node scripts/equation-mapping/check-same-branch-chart-identity.mjs \
+  --input scripts/equation-mapping/same-branch-retained-domain-blocked-source-shell.v1.json \
+  --summary --pretty
+```
+
+It returns `schemaOk: true`, `status: blocked_missing_retained_event_or_domain`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_raw_labeled_rows_preserved_on_retained_history`. All retained identity row bindings in that shell are explicitly `blocked`, not accepted. The fixture path is [same-branch-retained-domain-blocked-source-shell.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-blocked-source-shell.v1.json).
+
 ## Required Source-Backed Fields
 
 The accepted retained-domain fixture must include these top-level fields:
