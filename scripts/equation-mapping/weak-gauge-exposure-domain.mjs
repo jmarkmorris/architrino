@@ -129,11 +129,14 @@ function evaluateWeakGaugeExposureDomain(input, inputPath) {
     REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId])]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
+  const sourceEvidence = evaluateSourceEvidence(rowChecks);
   const domain = evaluateDomain(rows);
   const branchRecord = evaluateGaugeBranchRecord(input.gauge ?? {});
   const residuals = evaluateResiduals(input.residuals ?? {}, tolerances);
   const status = decideStatus({
     missingRows,
+    rowChecks,
+    sourceEvidence,
     domain,
     branchRecord,
     residuals,
@@ -163,10 +166,14 @@ function evaluateWeakGaugeExposureDomain(input, inputPath) {
       nextBlocker: firstBlocker({
         status,
         missingRows,
+        rowChecks,
+        sourceEvidence,
         domain,
         branchRecord,
         residuals,
       }),
+      sourceEvidencePass: sourceEvidence.passed,
+      sourceEvidenceFailureCount: sourceEvidence.failures.length,
       domainPass: domain.passed,
       sharedDomainId: domain.sharedDomainId,
       domainSplitCount: domain.uniqueDomainIds.length,
@@ -193,6 +200,7 @@ function evaluateWeakGaugeExposureDomain(input, inputPath) {
       ]),
     ),
     domain,
+    sourceEvidence,
     branchRecord,
     residuals,
   };
@@ -292,12 +300,29 @@ function evaluateResiduals(raw, tolerances) {
   };
 }
 
-function decideStatus({ missingRows, domain, branchRecord, residuals }) {
-  if (missingRows.length > 0) {
+function evaluateSourceEvidence(rowChecks) {
+  const failures = Object.entries(rowChecks)
+    .filter(([, check]) => check.reason === "accepted_without_evidence_source")
+    .map(([rowId, check]) => ({ rowId, sourcePath: check.sourcePath ?? null }));
+  return {
+    passed: failures.length === 0,
+    failures,
+  };
+}
+
+function hasNonSourceEvidenceMissingRows(missingRows, rowChecks) {
+  return missingRows.some((rowId) => rowChecks[rowId]?.reason !== "accepted_without_evidence_source");
+}
+
+function decideStatus({ missingRows, rowChecks, sourceEvidence, domain, branchRecord, residuals }) {
+  if (missingRows.length > 0 && hasNonSourceEvidenceMissingRows(missingRows, rowChecks)) {
     return "blocked_missing_rows";
   }
   if (!domain.passed) {
     return "blocked_hidden_domain_split";
+  }
+  if (!sourceEvidence.passed) {
+    return "blocked_source_evidence";
   }
   if (!branchRecord.stable) {
     return "blocked_gauge_branch_record_changed";
@@ -317,15 +342,21 @@ function decideStatus({ missingRows, domain, branchRecord, residuals }) {
   return "populated";
 }
 
-function firstBlocker({ status, missingRows, domain, branchRecord, residuals }) {
-  if (missingRows.length > 0) {
-    return `missing_accepted_${missingRows[0]}`;
-  }
+function firstBlocker({ status, missingRows, rowChecks, sourceEvidence, domain, branchRecord, residuals }) {
   if (status === "blocked_hidden_domain_split") {
     if (domain.missingDomainRows.length > 0) {
       return `missing_domain_id_${domain.missingDomainRows[0]}`;
     }
     return "weak_hidden_domain_split";
+  }
+  if (missingRows.length > 0) {
+    if (rowChecks[missingRows[0]]?.reason === "accepted_without_evidence_source") {
+      return "accepted_without_evidence_source";
+    }
+    return `missing_accepted_${missingRows[0]}`;
+  }
+  if (!sourceEvidence.passed) {
+    return "accepted_without_evidence_source";
   }
   if (!branchRecord.stable) {
     return "gauge_branch_record_changed";
@@ -370,7 +401,11 @@ function evaluateAcceptedRow(row) {
   }
   const sourceCheck = evaluateDurableSource(row.sourcePath ?? row.source);
   if (!sourceCheck.accepted) {
-    return { accepted: false, reason: sourceCheck.reason };
+    return {
+      accepted: false,
+      reason: sourceCheck.reason,
+      sourcePath: row.sourcePath ?? row.source ?? null,
+    };
   }
   return { accepted: true, reason: "accepted" };
 }
@@ -397,7 +432,32 @@ function evaluateDurableSource(sourcePath) {
   if (fs.statSync(resolvedPath).isDirectory()) {
     return { accepted: false, reason: "source_is_directory" };
   }
+  if (!isEvidenceSourcePath(resolvedPath)) {
+    return { accepted: false, reason: "accepted_without_evidence_source" };
+  }
   return { accepted: true, reason: "source_file" };
+}
+
+function isEvidenceSourcePath(filePath) {
+  const relative = path.relative(process.cwd(), path.normalize(filePath));
+  if (relative === "" || relative.startsWith("..") || path.isAbsolute(relative)) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}generated${path.sep}`)) {
+    return false;
+  }
+  const basename = path.basename(relative).toLowerCase();
+  return (
+    !basename.includes("attempt") &&
+    !basename.includes("mock") &&
+    !basename.includes("negative-control")
+  );
 }
 
 function normalizeStatus(row) {

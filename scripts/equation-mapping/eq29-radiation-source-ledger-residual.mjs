@@ -130,6 +130,7 @@ function evaluateEq29RadiationSourceLedger(input, inputPath) {
     REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId])]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
+  const sourceEvidence = evaluateSourceEvidence(rowChecks);
   const carrierBinding = evaluateCarrierBinding(rows, packet.commonCarrierId ?? input.commonCarrierId);
   const sourceLedger = evaluateSourceLedger(packet.radiationSource ?? {}, tolerances);
   const negativeControls = evaluateNegativeControls(
@@ -139,6 +140,7 @@ function evaluateEq29RadiationSourceLedger(input, inputPath) {
   );
   const status = decideStatus({
     missingRows,
+    sourceEvidence,
     carrierBinding,
     sourceLedger,
     negativeControls,
@@ -169,10 +171,13 @@ function evaluateEq29RadiationSourceLedger(input, inputPath) {
       nextBlocker: firstBlocker({
         status,
         missingRows,
+        sourceEvidence,
         carrierBinding,
         sourceLedger,
         negativeControls,
       }),
+      sourceEvidencePass: sourceEvidence.passed,
+      sourceEvidenceFailureCount: sourceEvidence.failures.length,
       commonCarrierPass: carrierBinding.passed,
       sourceLedgerNumericPass: sourceLedger.passed,
       powerPass: sourceLedger.power.passed,
@@ -200,6 +205,7 @@ function evaluateEq29RadiationSourceLedger(input, inputPath) {
       ]),
     ),
     carrierBinding,
+    sourceEvidence,
     sourceLedger,
     negativeControls,
   };
@@ -458,6 +464,16 @@ function evaluateCarrierBinding(rows, commonCarrierId) {
   };
 }
 
+function evaluateSourceEvidence(rowChecks) {
+  const failures = Object.entries(rowChecks)
+    .filter(([, check]) => check.reason === "accepted_without_evidence_source")
+    .map(([rowId, check]) => ({ rowId, sourcePath: check.sourcePath ?? null }));
+  return {
+    passed: failures.length === 0,
+    failures,
+  };
+}
+
 function evaluateAcceptedRow(row) {
   if (!row) {
     return { accepted: false, reason: "missing_row" };
@@ -470,7 +486,11 @@ function evaluateAcceptedRow(row) {
   }
   const sourceCheck = evaluateSourceReference(row);
   if (!sourceCheck.accepted) {
-    return { accepted: false, reason: sourceCheck.reason };
+    return {
+      accepted: false,
+      reason: sourceCheck.reason,
+      sourcePath: row?.sourcePath ?? row?.source ?? null,
+    };
   }
   return { accepted: true, reason: "accepted" };
 }
@@ -502,11 +522,42 @@ function evaluateSourceReference(row) {
   if (fs.statSync(resolved).isDirectory()) {
     return { accepted: false, reason: "source_is_directory" };
   }
+  if (!isEvidenceSourcePath(resolved)) {
+    return { accepted: false, reason: "accepted_without_evidence_source" };
+  }
   return { accepted: true, reason: "source_file" };
 }
 
-function decideStatus({ missingRows, carrierBinding, sourceLedger, negativeControls }) {
+function isEvidenceSourcePath(filePath) {
+  const relative = path.relative(REPO_ROOT, path.normalize(filePath));
+  if (relative === "" || relative.startsWith("..") || path.isAbsolute(relative)) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}generated${path.sep}`)) {
+    return false;
+  }
+  const basename = path.basename(relative).toLowerCase();
+  return (
+    !basename.includes("attempt") &&
+    !basename.includes("toy") &&
+    !basename.includes("source-evidence-probe") &&
+    !basename.includes("probe") &&
+    !basename.includes("mock") &&
+    !basename.includes("negative-control")
+  );
+}
+
+function decideStatus({ missingRows, sourceEvidence, carrierBinding, sourceLedger, negativeControls }) {
   if (missingRows.length > 0) {
+    if (!sourceEvidence.passed && sourceEvidence.failures.length === missingRows.length) {
+      return "blocked_source_evidence";
+    }
     return "blocked_missing_rows";
   }
   if (!carrierBinding.passed) {
@@ -521,8 +572,11 @@ function decideStatus({ missingRows, carrierBinding, sourceLedger, negativeContr
   return "populated";
 }
 
-function firstBlocker({ status, missingRows, carrierBinding, sourceLedger, negativeControls }) {
+function firstBlocker({ status, missingRows, sourceEvidence, carrierBinding, sourceLedger, negativeControls }) {
   if (missingRows.length > 0) {
+    if (!sourceEvidence.passed && sourceEvidence.failures.length === missingRows.length) {
+      return "accepted_without_evidence_source";
+    }
     return `missing_accepted_${missingRows[0]}`;
   }
   if (!carrierBinding.passed) {

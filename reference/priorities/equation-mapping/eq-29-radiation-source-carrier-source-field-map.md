@@ -8,6 +8,8 @@
 - Source fixtures:
   - [eq29-synchrotron-source-ledger-attempt.v1.json](../../../scripts/equation-mapping/eq29-synchrotron-source-ledger-attempt.v1.json)
   - [eq29-radiation-source-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-carrier-source-attempt.v1.json)
+  - [eq29-radiation-source-ledger-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-ledger-coordination-source-negative-control.v1.json)
+  - [eq29-radiation-source-ledger-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq29-radiation-source-ledger-probe-source-negative-control.v1.json)
 - Related source prose: [Synchrotron](../../../content/markdown/aaa/reactions/synchrotron.md)
 - Row served: `EQ-29`
 - Claim level: candidate source-field map and attack card
@@ -83,6 +85,7 @@ Keep the existing controls as first-line guards:
 - `hidden_B_or_gamma_retune`: catches different $B_{\mathrm{eff}}$, $\gamma$, pitch, or Noether sea rows between power and frequency.
 - `polarization_without_gate_B`: catches polarization accepted without Gate B handoff.
 - `thermal_fit_without_event_ledger`: catches thermal/free-free fitting without an event ledger.
+- `accepted_without_evidence_source`: catches accepted-looking rows sourced only to priority packets, authored prose, generated files, temporary files, attempt fixtures, mocks, or negative-control fixtures.
 
 ## Next Action
 
@@ -93,6 +96,22 @@ node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input 
 ```
 
 Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_radiation_source_carrier`, `sourceLedgerNumericPass=true`, and six of six negative controls pass, including `gate_a_not_radiation_source_carrier`.
+
+The coordination-source fail-closed control is:
+
+```sh
+node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-ledger-coordination-source-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_source_evidence`, `nextBlocker=accepted_without_evidence_source`, and `sourceEvidenceFailureCount=15`. The same command with `--require-populated` must exit nonzero.
+
+The probe-source fail-closed control is:
+
+```sh
+node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-ledger-probe-source-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_source_evidence`, `nextBlocker=accepted_without_evidence_source`, and `sourceEvidenceFailureCount=15`. This protects `EQ-29` from treating toy or `source-evidence-probe` fixtures as retained radiation source evidence.
 
 Create one durable, accepted `radiation_source_carrier` evidence row for a single synchrotron event window, then run:
 

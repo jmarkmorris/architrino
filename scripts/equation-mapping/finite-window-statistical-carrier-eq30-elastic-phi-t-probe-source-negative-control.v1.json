@@ -1,0 +1,67 @@
+{
+  "schema": "aaa-equation-map-finite-window-statistical-carrier-input/v1",
+  "claimLevel": "accepted-looking EQ-30 Phi_T probe-source negative control; score-neutral and not retained evidence",
+  "constants": {
+    "hbar": 1
+  },
+  "tolerances": {
+    "massClosure": 1e-12,
+    "invariance": 0.001,
+    "retune": 1e-12,
+    "detectorRefinement": 0.001,
+    "crossSection": 0.001,
+    "formFactorCovariance": 0.001,
+    "regimePurity": 0.001,
+    "refinement": 0.001
+  },
+  "carrier": {
+    "id": "C_stat_WT_eq30_elastic_Phi_T_probe_source_negative_control_0001",
+    "row": "EQ-30",
+    "retainedStatus": "attempt",
+    "window": {
+      "id": "W_eq30_elastic_Phi_T_probe_source_negative_control_0001",
+      "kind": "elastic_scattering_window_source_probe",
+      "retainedStatus": "accepted",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md"
+    },
+    "duration": 10,
+    "transitionMap": {
+      "id": "Phi_T_eq30_elastic_Phi_T_probe_source_negative_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-w-source-evidence-probe.v1.json"
+    },
+    "finiteMeasure": {
+      "id": "mu_star_T_eq30_elastic_Phi_T_probe_source_negative_control_0001",
+      "totalMass": 1,
+      "invarianceResidual": 0.02,
+      "retainedStatus": "attempt",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md"
+    },
+    "coarseGraining": {
+      "id": "Q_eq30_elastic_Phi_T_probe_source_negative_control_0001",
+      "retainedStatus": "attempt",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md"
+    },
+    "detectorKernel": {
+      "id": "K_det_eq30_elastic_Phi_T_probe_source_negative_control_0001",
+      "retainedStatus": "attempt",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md"
+    },
+    "outcomePartition": {
+      "id": "B_eq30_elastic_Phi_T_probe_source_negative_control_0001",
+      "retainedStatus": "attempt",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+      "classes": [
+        "elastic_ep",
+        "inelastic_ep",
+        "lost"
+      ]
+    },
+    "noHiddenRetuneWitness": {
+      "id": "S_retune_eq30_elastic_Phi_T_probe_source_negative_control_0001",
+      "residual": 0,
+      "retainedStatus": "attempt",
+      "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md"
+    }
+  }
+}
