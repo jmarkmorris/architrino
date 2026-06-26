@@ -95,3 +95,64 @@ The coordinator will wait for the missing-suffix worker before creating any pack
 No row has completed two substantive passes yet. All rows through score `3` remain in the active queue.
 
 No score changes.
+
+## Checkpoint 1
+
+- Time: 2026-06-26 00:42 EDT.
+- Elapsed: about 15 minutes from required `git status --short --untracked-files=all`.
+- Agents completed since checkpoint 0:
+  - `EQ-04A` first pass: confirmed score `1`, inherited Bucket A blocker, and moment-map residual route.
+  - finite-window shard: ranked `EQ-31` as the strongest finite-window score `2` route, first blocker `missing_accepted_W`.
+  - missing-suffix shard: ranked `EQ-07B` first, `EQ-23A` second, and `EQ-28B` deferred.
+  - high-energy suffix shard: ranked `EQ-28A` highest among integrated score `2` suffix rows.
+  - action/gauge shard: ranked the ordered-frame loop for `EQ-15`/`EQ-27` as the smallest tight carrier.
+  - metric/cosmology shard: ranked `EQ-24` density-compression as the strongest score `3` bridge into low-score rows.
+  - photon/wave shard: ranked `theta_gamma_packet` first and event-specific Gate A second.
+  - `EQ-04A` second pass: recommended a minimal score-neutral Koide residual checker.
+  - `EQ-28A` second pass: recommended a source-field map before another fixture or coordinator.
+  - ordered-frame second pass: recommended deferring fixture work until retained evidence exists.
+  - `EQ-23A` second pass: recommended a focused priority-only packet.
+- Active agents at checkpoint:
+  - `EQ-31` accepted-window route;
+  - `theta_gamma_packet` accepted-object contract;
+  - `EQ-24` density-compression carrier;
+  - `EQ-04A` checker review.
+- Files edited since checkpoint 0:
+  - [eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md](eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md)
+  - [eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md](eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md)
+  - [equation-mapping.md](equation-mapping.md)
+  - [eq04a-koide-residual.mjs](../../../scripts/equation-mapping/eq04a-koide-residual.mjs)
+  - [eq04a-koide-residual-attempt.v1.json](../../../scripts/equation-mapping/eq04a-koide-residual-attempt.v1.json)
+  - [eq04a-koide-residual-direct-fit-negative-control.v1.json](../../../scripts/equation-mapping/eq04a-koide-residual-direct-fit-negative-control.v1.json)
+  - [eq-04a-koide-charged-lepton-mass-relation.md](eq-04a-koide-charged-lepton-mass-relation.md)
+  - this checkpoint file.
+- Validation:
+  - `git diff --check`: passed.
+  - `node scripts/equation-mapping/eq04a-koide-residual.mjs --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
+  - `node scripts/equation-mapping/eq04a-koide-residual.mjs --input scripts/equation-mapping/eq04a-koide-residual-direct-fit-negative-control.v1.json --summary --pretty`: passed as score-neutral, blocked at `koide.direct_fit`.
+  - `node scripts/validate-content.mjs --check --strict`: passed.
+  - `node scripts/build-scene-graph.mjs --check --strict`: passed.
+
+### Coordinator Targets Completed
+
+| Cycle | Target | Result | Score decision |
+| --- | --- | --- | --- |
+| 0 | Create a focused `EQ-07B` packet for black-hole accretion, jet release, and horizon thermodynamics. | Added a priority-only packet with carrier dictionary, first blocker `missing_accepted_agn_accretion_release_carrier`, residual decomposition, and fail-closed negative controls. | No score changes. |
+| 1 | Add a minimal `EQ-04A` score-neutral Koide residual checker. | Added a runner plus default attempt and direct-fit negative-control fixtures. The default attempt inherits the upstream `S_eq` carrier blocker; the negative control blocks at `koide.direct_fit`. | No score changes. |
+| 2 | Create a focused `EQ-23A` packet for explosive source-window residuals. | Added a priority-only packet with carrier dictionary, first blocker `missing_accepted_explosive_source_window_carrier`, residual decomposition, and split-source negative control. | No score changes. |
+
+### Best Breakthrough Candidates At Checkpoint 1
+
+| Rank | Candidate | Why it matters | Current first blocker |
+| --- | --- | --- | --- |
+| 1 | `EQ-31` retained metastable first-exit carrier | The refined toy already passes first-exit additivity, null-separatrix, and refinement compatibility; replacing toy `W` with accepted retained support could move the finite-window family. | `missing_accepted_W` |
+| 2 | `theta_gamma_packet` | Highest cross-row leverage for `EQ-12`, `EQ-12A`, `EQ-22A`, `EQ-26A`, and `EQ-28A`. | `missing_accepted_theta_gamma_packet` |
+| 3 | `EQ-24` Noether sea density-compression bundle | Strongest score `3` bridge into low-score metric, pressure, acoustic, and low-acceleration rows. | `missing_accepted_theta_sea_rho_NS` |
+| 4 | event-specific Gate A on $\mathsf e_{\gamma e}^{0}$ | Narrowest practical photon/event bypass for `EQ-13`/`EQ-28`. | `missing_accepted_photon_gate_A_input_output` |
+| 5 | ordered-frame loop for `EQ-15`/`EQ-27` | Tightest spin/magnetic carrier, but should wait for retained source evidence rather than another blocked fixture. | `missing_accepted_ordered_frame_loop` |
+
+### Remaining Queue After Checkpoint 1
+
+The unintegrated required suffix candidates `EQ-07B` and `EQ-23A` now have priority-only packets. `EQ-28B` remains deferred because no concrete high-energy propagation consumer was found. The score `1`, score `2`, and score `3` queues remain active because most rows have only one pass, and no row has accepted retained evidence.
+
+No score changes.

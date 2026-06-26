@@ -151,7 +151,9 @@ function evaluateEq04aKoideResidual(input, inputPath) {
       noRetunePass: massMap.noRetunePass && generations.noRetunePass,
       massConventionPass: massMap.massConventionPass,
       generationRowsAccepted: generations.accepted,
-      uncertaintyBandPass: uncertainty.bandWidth <= tolerances.maxCos2BandWidth,
+      uncertaintyBandPass:
+        uncertainty.maxRelativeUncertainty <= tolerances.maxRelativeUncertainty &&
+        uncertainty.bandWidth <= tolerances.maxCos2BandWidth,
       maxRelativeUncertainty: uncertainty.maxRelativeUncertainty,
       cos2ThetaInterval: uncertainty.cos2ThetaInterval,
       residualInterval: uncertainty.residualInterval,
@@ -204,11 +206,23 @@ function evaluateCarrier(raw) {
   );
   const missingRows = REQUIRED_CARRIER_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const carrierEvidence = evaluateAcceptedEvidence(raw);
+  const idsConcrete =
+    concreteString(ids.commonCarrierId) &&
+    concreteString(ids.domainId) &&
+    concreteString(ids.supportId) &&
+    ids.retainedRowSetId === "S_eq";
   return {
     ids,
     status: normalizeStatus(raw),
-    accepted: carrierEvidence.accepted && missingRows.length === 0 && ids.retainedRowSetId === "S_eq",
-    reason: carrierEvidence.accepted ? (missingRows.length === 0 ? "accepted" : "missing_required_rows") : carrierEvidence.reason,
+    accepted: carrierEvidence.accepted && missingRows.length === 0 && idsConcrete,
+    reason: carrierEvidence.accepted
+      ? missingRows.length === 0
+        ? idsConcrete
+          ? "accepted"
+          : "carrier_ids_not_concrete"
+        : "missing_required_rows"
+      : carrierEvidence.reason,
+    idsConcrete,
     massShellAccepted: rowChecks.mass_shell_row?.accepted ?? false,
     missingRows,
     rowChecks,
@@ -230,9 +244,17 @@ function evaluateMassMap(raw, carrierIds) {
     scale: raw.scale ?? null,
   };
   const commonCarrierMatch =
-    !raw.commonCarrierId || !carrierIds.commonCarrierId || raw.commonCarrierId === carrierIds.commonCarrierId;
-  const domainMatch = !raw.domainId || !carrierIds.domainId || raw.domainId === carrierIds.domainId;
-  const supportMatch = !raw.supportId || !carrierIds.supportId || raw.supportId === carrierIds.supportId;
+    concreteString(raw.commonCarrierId) &&
+    concreteString(carrierIds.commonCarrierId) &&
+    raw.commonCarrierId === carrierIds.commonCarrierId;
+  const domainMatch =
+    concreteString(raw.domainId) &&
+    concreteString(carrierIds.domainId) &&
+    raw.domainId === carrierIds.domainId;
+  const supportMatch =
+    concreteString(raw.supportId) &&
+    concreteString(carrierIds.supportId) &&
+    raw.supportId === carrierIds.supportId;
   const sharedMassMapPass =
     concreteString(sharedIds.massMapId) &&
     concreteString(sharedIds.exposureRowId) &&
@@ -275,13 +297,21 @@ function evaluateGenerations(rawRows, massMap, carrierIds) {
       uncertaintyValid: Number.isFinite(mass.uncertainty) && mass.uncertainty >= 0 && mass.uncertainty < mass.value,
       massMapMatch: row.massMapId === massMap.sharedIds.massMapId,
       commonCarrierMatch:
-        !row.commonCarrierId || !carrierIds.commonCarrierId || row.commonCarrierId === carrierIds.commonCarrierId,
-      domainMatch: !row.domainId || !carrierIds.domainId || row.domainId === carrierIds.domainId,
-      supportMatch: !row.supportId || !carrierIds.supportId || row.supportId === carrierIds.supportId,
-      exposureMatch: !row.exposureRowId || row.exposureRowId === massMap.sharedIds.exposureRowId,
-      shieldingMatch: !row.shieldingRowId || row.shieldingRowId === massMap.sharedIds.shieldingRowId,
+        concreteString(row.commonCarrierId) &&
+        concreteString(carrierIds.commonCarrierId) &&
+        row.commonCarrierId === carrierIds.commonCarrierId,
+      domainMatch:
+        concreteString(row.domainId) &&
+        concreteString(carrierIds.domainId) &&
+        row.domainId === carrierIds.domainId,
+      supportMatch:
+        concreteString(row.supportId) &&
+        concreteString(carrierIds.supportId) &&
+        row.supportId === carrierIds.supportId,
+      exposureMatch: concreteString(row.exposureRowId) && row.exposureRowId === massMap.sharedIds.exposureRowId,
+      shieldingMatch: concreteString(row.shieldingRowId) && row.shieldingRowId === massMap.sharedIds.shieldingRowId,
       seaResponseMatch:
-        !(row.NoetherSeaResponseRowId ?? row.noetherSeaResponseRowId) ||
+        concreteString(row.NoetherSeaResponseRowId ?? row.noetherSeaResponseRowId) &&
         (row.NoetherSeaResponseRowId ?? row.noetherSeaResponseRowId) === massMap.sharedIds.noetherSeaResponseRowId,
     };
     return {
@@ -422,10 +452,10 @@ function computeUncertaintyBand(rows) {
 }
 
 function evaluateDirectFit(massMap, controls) {
-  const fitObjective = String(massMap.fitObjective ?? controls.fitObjective ?? "").toLowerCase();
+  const fitObjective = String(massMap.fitObjective ?? controls.fitObjective ?? "").trim().toLowerCase();
   const weight = finiteOr(massMap.koideObjectiveWeight ?? controls.koideObjectiveWeight, 0);
   const used = massMap.koideObjectiveUsed === true || controls.koideObjectiveUsed === true;
-  const blocked = used || weight > 0 || fitObjective === "koide" || fitObjective === "koide_residual";
+  const blocked = used || weight > 0 || fitObjective.includes("koide");
   return {
     blocked,
     reason: blocked ? "koide.direct_fit" : "passed",
@@ -512,15 +542,19 @@ function durableSourcePath(sourcePath) {
     sourcePath.includes("content/generated/") ||
     sourcePath.includes("pending") ||
     sourcePath.includes("mock") ||
-    sourcePath.includes("toy")
+    sourcePath.includes("toy") ||
+    sourcePath.includes("placeholder") ||
+    sourcePath.endsWith(".tmp")
   ) {
     return false;
   }
   const absolute = path.isAbsolute(sourcePath)
     ? sourcePath
     : path.join(REPO_ROOT, sourcePath);
-  if (!absolute.startsWith(REPO_ROOT)) return false;
-  return fs.existsSync(absolute);
+  const relative = path.relative(REPO_ROOT, absolute);
+  if (relative.startsWith("..") || path.isAbsolute(relative)) return false;
+  if (!fs.existsSync(absolute)) return false;
+  return fs.statSync(absolute).isFile();
 }
 
 function concreteString(value) {

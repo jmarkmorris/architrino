@@ -171,7 +171,7 @@ is produced by the same mass response that already passed the `EQ-04` shell and 
 
 ## Koide Residual
 
-The score-moving residual is
+The diagnostic residual is
 
 $$
 \mathcal R_{04A}^{\mathrm{Koide}}(\theta)
@@ -375,7 +375,7 @@ To move toward `5`, the same branch family must derive the mass triplet and the 
 
 ## First Concrete Artifact
 
-Build a small fail-closed `EQ-04A` residual packet that consumes three charged-lepton masses from the same generation-by-shielding record, computes $\mathcal R_{04A}^{\mathrm{Koide}}$ and $\mathcal R_{04A}^{\mathrm{angle}}$, propagates the mass-readout uncertainty to $\cos^2\theta_{\ell}$, and reports `no_score_increase` unless the masses come from a declared non-Koide mass map with an accepted or explicitly inherited `EQ-04` mass-shell carrier.
+Build a small fail-closed `EQ-04A` residual packet that consumes three charged-lepton masses from the same generation-by-shielding record, computes $\mathcal R_{04A}^{\mathrm{Koide}}$ and $\mathcal R_{04A}^{\mathrm{angle}}$, propagates the mass-readout uncertainty to $\cos^2\theta_{\ell}$, and always reports `no_score_increase`. Any later score movement requires a separate score review after the masses come from a declared non-Koide mass map with an accepted `EQ-04` mass-shell carrier.
 
 The first useful result is a disciplined miss or hit. A disciplined miss weakens the idea that generation lifting alone tightly fixes the charged-lepton triplet. A disciplined hit would make Koide a strong clue that the exposure map has hidden geometric rigidity, especially if the $45^\circ$ mass-root angle is produced by branch geometry rather than by tuning the masses.
 
