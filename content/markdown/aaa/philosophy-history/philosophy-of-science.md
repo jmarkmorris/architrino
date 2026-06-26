@@ -330,6 +330,8 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is the Baconian form of the classical
 
 The methodological point is therefore not only that science needs better judgment under stress. It is that scientific method should be treated as an improvable protocol, not merely as a fixed ideal. Local hypothesis testing can remain disciplined while the discipline-level protocol lacks a trigger for architectural review. A crisis-capable method should say when accumulated non-closure changes the operating mode: preserve ordinary evidential standards, but add cross-anomaly audit, primitive-abstraction review, and protected reconstruction paths.
 
+Science can be read as observer-layer feedback from emergent nature, performed by instruments and communities many orders above the substrate regime they are trying to infer. A scientific community is a network of [Physical Observers](../spacetime/observer-framework.md) using apparatus, calibration records, finite communication channels, and mathematical compression to update its effective models. That feedback can be reliable and cumulative, but it does not by itself promote the measured data product, the successful calculation, or the instrument-facing variable into substrate ontology.
+
 ### Core Commitments
 
 The central commitment is that science should contain a recognizable crisis-detection layer rather than waiting for informal prestige shifts or late-career dissent. A research domain should be reviewed not only for local empirical adequacy but also for signs that it is accumulating unresolved debt faster than it is achieving foundational closure. That requires explicit metrics rather than mere mood.

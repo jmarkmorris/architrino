@@ -1,0 +1,215 @@
+{
+  "schema": "aaa-equation-map-eq28a-path-frequency-exchange-input/v1",
+  "claimLevel": "score-neutral inverse-Compton/SZ path-frequency exchange attempt; accepted photon/path/medium retained evidence is required before score movement",
+  "residualId": "R_28A_path_frequency_exchange_attempt_0001",
+  "commonCarrierId": "theta_nu_ex_attempt_0001",
+  "carrier": {
+    "status": "attempt",
+    "id": "theta_nu_ex_attempt_0001",
+    "sourcePath": "reference/priorities/equation-mapping/eq-28a-path-frequency-exchange.md"
+  },
+  "tolerances": {
+    "carrier": 1e-12,
+    "inverseCompton": 1e-12,
+    "pathFrequency": 1e-12,
+    "thermalSz": 1e-12,
+    "kineticSz": 1e-12,
+    "photonGate": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12
+  },
+  "packet": {
+    "id": "theta_nu_ex_attempt_0001",
+    "constants": {
+      "h": 1,
+      "c_gamma": 1,
+      "sigma_T": 1,
+      "m_e": 1,
+      "k_B": 1,
+      "thomsonParameterMax": 0.1
+    },
+    "rows": {
+      "path_frequency_exchange_carrier": {
+        "status": "attempt",
+        "carrierId": "theta_nu_ex_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-28a-path-frequency-exchange.md"
+      },
+      "theta_gamma_packet": {
+        "status": "attempt",
+        "carrierId": "theta_nu_ex_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md"
+      },
+      "photon_gate_a_b_handoff": {
+        "status": "attempt",
+        "carrierId": "theta_nu_ex_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-26-31-observation-first-precision-packet.md"
+      },
+      "electron_medium_population": {
+        "status": "attempt",
+        "carrierId": "theta_nu_ex_attempt_0001",
+        "sourcePath": "content/markdown/aaa/reactions/radiation.md"
+      },
+      "noether_sea_path_history": {
+        "status": "attempt",
+        "carrierId": "theta_nu_ex_attempt_0001",
+        "sourcePath": "content/markdown/aaa/cosmology/CMB.md"
+      },
+      "exchange_event_ledger": {
+        "status": "attempt",
+        "carrierId": "theta_nu_ex_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-28a-path-frequency-exchange.md"
+      },
+      "inverse_compton_row": {
+        "status": "attempt",
+        "carrierId": "theta_nu_ex_attempt_0001",
+        "sourcePath": "content/markdown/aaa/reactions/radiation.md"
+      },
+      "thermal_sz_row": {
+        "status": "attempt",
+        "carrierId": "theta_nu_ex_attempt_0001",
+        "sourcePath": "content/markdown/aaa/cosmology/CMB.md"
+      },
+      "kinematic_sz_row": {
+        "status": "attempt",
+        "carrierId": "theta_nu_ex_attempt_0001",
+        "sourcePath": "content/markdown/aaa/cosmology/CMB.md"
+      },
+      "recoil_remnant_row": {
+        "status": "attempt",
+        "carrierId": "theta_nu_ex_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-26-31-observation-first-precision-packet.md"
+      },
+      "finite_window_thermal_record": {
+        "status": "attempt",
+        "carrierId": "theta_nu_ex_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+      },
+      "source_provenance": {
+        "status": "attempt",
+        "carrierId": "theta_nu_ex_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-28a-path-frequency-exchange.md"
+      },
+      "no_hidden_retune_witness": {
+        "status": "attempt",
+        "carrierId": "theta_nu_ex_attempt_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-28a-path-frequency-exchange.md"
+      }
+    },
+    "exchangeSegments": [
+      {
+        "id": "normalized_inverse_compton_segment_0001",
+        "nuIn": 0.01,
+        "nuOut": 0.0192,
+        "electronGamma": 1.2,
+        "signedPathIncrement": -0.65232518603969,
+        "deltaE_target": -0.007,
+        "deltaE_medium": -0.002,
+        "deltaE_recoil": -0.00019999999999999826,
+        "deltaE_remnant": 0
+      }
+    ],
+    "columnSamples": [
+      {
+        "id": "normalized_cluster_column_0001",
+        "electronDensity": 0.01,
+        "electronTemperature": 2,
+        "pathLength": 3,
+        "opticalDepth": 0.03,
+        "y": 0.06,
+        "thermalDeltaTOverT_RJ": -0.12,
+        "bulkVelocityParallel": 0.1,
+        "kineticDeltaTOverT": -0.003
+      }
+    ],
+    "photonGate": {
+      "gateAResidual": 0,
+      "gateBResidual": 0,
+      "polarizationHandoffResidual": 0,
+      "packetIdentityCount": 1
+    },
+    "sourceProvenance": {
+      "maxResidual": 0
+    },
+    "noHiddenRetune": {
+      "sharedRecordId": "theta_nu_ex_attempt_0001",
+      "maxResidual": 0,
+      "perObservableCarrierCount": 1,
+      "perPathMediumRecordCount": 1,
+      "perFormulaFitHandleCount": 0
+    },
+    "negativeControls": [
+      {
+        "id": "phenomenological_frequency_loss_without_medium_ledger",
+        "expectedFailedCheck": "pathFrequency",
+        "mutations": [
+          {
+            "path": "exchangeSegments.0.deltaE_target",
+            "value": 0
+          },
+          {
+            "path": "exchangeSegments.0.deltaE_medium",
+            "value": 0
+          },
+          {
+            "path": "exchangeSegments.0.deltaE_recoil",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "id": "inverse_compton_ratio_fit_handle",
+        "expectedFailedCheck": "inverseCompton",
+        "mutations": [
+          {
+            "path": "exchangeSegments.0.nuOut",
+            "value": 0.018
+          }
+        ]
+      },
+      {
+        "id": "sz_without_electron_column",
+        "expectedFailedCheck": "thermalSz",
+        "mutations": [
+          {
+            "path": "columnSamples.0.y",
+            "value": 0
+          },
+          {
+            "path": "columnSamples.0.thermalDeltaTOverT_RJ",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "id": "kinetic_sz_sign_flip",
+        "expectedFailedCheck": "kineticSz",
+        "mutations": [
+          {
+            "path": "columnSamples.0.kineticDeltaTOverT",
+            "value": 0.003
+          }
+        ]
+      },
+      {
+        "id": "split_path_medium_record_retune",
+        "expectedFailedCheck": "noHiddenRetune",
+        "mutations": [
+          {
+            "path": "noHiddenRetune.perPathMediumRecordCount",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "id": "gate_handoff_collapse",
+        "expectedFailedCheck": "photonGate",
+        "mutations": [
+          {
+            "path": "photonGate.gateBResidual",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  }
+}

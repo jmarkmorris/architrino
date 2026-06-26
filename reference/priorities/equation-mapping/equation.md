@@ -36,6 +36,7 @@ Use each dated score as a maturity indicator, not as a value judgment. A low-sco
 | `EQ-09` | Shapiro delay, lensing, and PPN rows | $\Delta\theta=2(1+\gamma_{\mathrm{PPN}})GM/(bc_0^2)$ | Shared effective metric projection | `3` | `4` | Force redshift, Shapiro, lensing, precession, acceleration, and preferred-frame rows through one record. |  |
 | `EQ-10` | Geodesic and proper-time action | $S_{\mathrm{clk}}=-mc_0^2\int d\tau$ | Observer-level clock/ruler record from Noether sea | `3` | `3` | Recover geodesic motion as a projection, not as substrate geometry. |  |
 | `EQ-11` | Einstein and Poisson weak-gravity limits | $\nabla^2\Phi_N=4\pi G\rho$; $G_{\mu\nu}=8\pi GT_{\mu\nu}/c^4$ | Noether sea stress, density, effective response | `2` | `3` | Derive $G_{\mathrm{eff}}$, stress-energy readout, and curvature response from the same constitutive law. |  |
+| `EQ-11A` | Gravitational-wave source, chirp, orbital-decay, and ringdown recovery | $\dot f_{\mathrm{GW}}\propto\mathcal M_c^{5/3}f_{\mathrm{GW}}^{11/3}$; $P_{\mathrm{GW}}\propto\langle\dddot Q_{ij}\dddot Q^{ij}\rangle$ | Effective metric tensor channel, Noether sea constitutive record, and source event ledger | `2` | `2` | Recover source quadrupole, chirp mass, orbital decay, strain flux, radiated energy/angular momentum, and ringdown from one source carrier without hidden retuning. |  |
 | `EQ-12` | Photon energy, null condition, and eikonal propagation | $E=h\nu$; $g^{\mathrm{eff}}_{\mu\nu}dx^\mu dx^\nu=0$ | Photon-channel packets through Noether sea | `3` | `3` | Connect packet energy, helicity, null transport, and medium frequency exchange. |  |
 | `EQ-12A` | Planck action quantum, de Broglie relations, and braid action scale | $E=h\nu=\hbar\omega$; $\mathbf p=\hbar\mathbf k$; $\oint p\,dq=nh$ | Closed-cycle Noether braid action ledger and photon packet row | `2` | `2` | Derive $h$ and $\hbar$ as shared action-cycle readouts instead of primitive constants or per-row fit handles. |  |
 | `EQ-13` | Maxwell and wave equations | $\Box A_{\mu}=J_{\mu}$ as comparison form | Effective field summary of causal wakes and photon channels | `2` | `3` | Recover field equations as continuum summaries of wake superposition and packet transport. |  |
@@ -57,6 +58,7 @@ Use each dated score as a maturity indicator, not as a value judgment. A low-sco
 | `EQ-26A` | Fine-structure constant, electromagnetic coupling, and energy running | $\alpha=e^2/(4\pi\epsilon_0\hbar c_\gamma)$; $d\alpha^{-1}/d\ln\mu=-b(\mu)$ | Exposed charge row, `EQ-12A` action row, photon speed, gauge/coupling response | `2` | `2` | Derive $\alpha(\mu)$ as a scale-dependent coupling projection from one electromagnetic exposure domain rather than a fixed fitted constant. |  |
 | `EQ-27` | Magnetic moment, Larmor/cyclotron precession, and g-2 | $\boldsymbol\mu=g(q/2m)\mathbf S$; $a_\ell=(g-2)/2$ | Internal current geometry, ordered-frame spinor ledger, measurement-response row | `2` | `2` | Derive magnetic moment and anomaly as exposed internal-current response, not as an assigned spin label. |  |
 | `EQ-28` | Compton, photoelectric, pair-threshold, and recoil equations | $\Delta\lambda=h(1-\cos\theta)/(m_ec)$; $E_\gamma\ge2m_ec^2$ | Photon-channel event ledger, recoil branch, pair-production provenance | `3` | `3` | Close energy, momentum, angular momentum, photon packet, recoil, and material/Noether sea update in one event record. |  |
+| `EQ-28A` | Inverse-Compton and SZ path-frequency exchange | $Y_{\gamma}^{\mathrm{ex}}=-\ln(\nu^+/\nu^-)$; $y=\int(k_BT_e/m_ec_\gamma^2)n_e\sigma_Td\ell$ | Photon path-history exchange carrier, electron-medium row, Noether sea path state, and finite-window thermal record | `2` | `2` | Keep frequency shifts tied to one photon packet, medium/recoil/remnant ledger, SZ electron column, and thermal record without hidden retuning. |  |
 | `EQ-29` | Larmor/Lienard radiation, synchrotron, bremsstrahlung, and thermal channels | $P_L=q^2a^2/(6\pi\epsilon_0c^3)$; $\nu_c\propto\gamma^2B$ | Radiation residual, photon-channel packet selection, source-event ledger | `3` | `3` | Keep source mechanism separate from carrier/channel family while deriving emitted power and spectrum from one ledger. |  |
 | `EQ-30` | Scattering cross sections and form factors | $d\sigma/d\Omega\propto\lvert\mathcal M\rvert^2$; $F(Q^2)$ | Detector record statistics, exposure distribution, branch-outcome measure | `2` | `2` | Recover event rates and finite-size/exposure form factors from branch statistics rather than postulated amplitudes. |  |
 | `EQ-31` | Resonance widths, lifetimes, and branching fractions | $\sigma(E)\propto[(E-E_0)^2+\Gamma^2/4]^{-1}$; $\tau=\hbar/\Gamma$ | Metastable Noether braid branch, leakage corridor, decay provenance ledger | `2` | `2` | Derive width, lifetime, and branching fractions from branch stability and admissible decay corridors. |  |
@@ -113,8 +115,8 @@ Every downstream row must either consume the active-root law directly or consume
 | `EQ-02` through `EQ-04`, plus `EQ-04A` | Moving clocks, oblate spheroidal envelope rows, energy-momentum, exposed mass, and charged-lepton mass-root benchmarks must share one retained branch chart with active roots, causal-root Jacobians, wake tails, line-of-action geometry, and no hidden retune between clock, envelope, energy, and mass readouts. |
 | `EQ-05` | Conservation rows must include wake energy, wake momentum, angular momentum, event work, and boundary flux on the same finite window; ordinary local mechanical totals alone are not enough in a delay system. |
 | `EQ-06`, `EQ-24`, and `EQ-25` | Noether sea continuity, medium response, acoustic/elastic rows, and thermal/statistical rows must be low-moment or finite-window projections of retained Noether braid population dynamics, not independent continuum postulates. |
-| `EQ-07` through `EQ-11`, `EQ-17` through `EQ-20`, and `EQ-32`, plus `EQ-07A` | Effective metric, compact-star support, weak-gravity, redshift, cosmology, dark-energy, and low-acceleration rows must project from Noether sea density, cadence, delay, stress, flow, and response variables whose source record is ultimately a coarse-grained causal-root and wake ledger. |
-| `EQ-12`, `EQ-12A`, `EQ-22A`, `EQ-26`, `EQ-26A`, `EQ-28`, and `EQ-29` | Photon, action-quantum, blackbody, atomic, coupling, recoil, and radiation rows must preserve source-event provenance, photon-channel event balance, recoil/remnant rows, and wake/Noether sea exchange rather than assigning $h$, $\alpha$, $c_\gamma$, or emitted power independently. |
+| `EQ-07` through `EQ-11`, `EQ-17` through `EQ-20`, and `EQ-32`, plus `EQ-07A` and `EQ-11A` | Effective metric, compact-star support, weak-gravity, gravitational-wave source, redshift, cosmology, dark-energy, and low-acceleration rows must project from Noether sea density, cadence, delay, stress, flow, and response variables whose source record is ultimately a coarse-grained causal-root and wake ledger. |
+| `EQ-12`, `EQ-12A`, `EQ-22A`, `EQ-26`, `EQ-26A`, `EQ-28`, `EQ-28A`, and `EQ-29` | Photon, action-quantum, blackbody, atomic, coupling, recoil, path-frequency exchange, and radiation rows must preserve source-event provenance, photon-channel event balance, recoil/remnant rows, and wake/Noether sea exchange rather than assigning $h$, $\alpha$, $c_\gamma$, frequency shifts, or emitted power independently. |
 | `EQ-13`, `EQ-15`, `EQ-16`, `EQ-16A`, and `EQ-27` | Field, spinor, gauge, neutrino, and magnetic-moment rows must retain branch identity, ordered-frame or phase-history data, angular-momentum ledgers, and exposed-sector records back to a causal-root branch instead of importing field labels as substrate ontology. |
 | `EQ-14`, `EQ-30`, and `EQ-31` | Probability-current, cross-section, form-factor, width, lifetime, and branching-fraction rows must arise from finite-window branch pushforwards, event outcome partitions, detector kernels, and admissible escape corridors seeded by retained causal-root histories. |
 
@@ -849,6 +851,119 @@ with no separate tuning between Newtonian acceleration, lensing, clock, and cosm
 ### Agent Target
 
 Do not attempt full GR closure first. Derive the Poisson-limit handoff from Noether sea density/stress to $\Phi_{\mathrm{eff}}$ and identify which existing PPN rows would falsify a scalar-only map.
+
+## EQ-11A: Gravitational-Wave Source Recovery
+
+Detailed packet: [EQ-11A Gravitational-Wave Source Recovery](eq-11a-gravitational-wave-source-recovery.md).
+
+### Standard Form
+
+The gravitational-wave source benchmark begins with the chirp mass
+
+$$
+\mathcal M_c
+=
+\frac{(m_1m_2)^{3/5}}{(m_1+m_2)^{1/5}},
+$$
+
+the leading chirp-rate relation
+
+$$
+\dot f_{\mathrm{GW}}
+=
+\frac{96}{5}\pi^{8/3}
+\left(\frac{G_{\mathrm{eff}}\mathcal M_c}{c_{\mathrm{GW}}^3}\right)^{5/3}
+f_{\mathrm{GW}}^{11/3},
+$$
+
+and circular Peters-Mathews orbital decay
+
+$$
+\dot a
+=
+-\frac{64}{5}
+\frac{G_{\mathrm{eff}}^3m_1m_2(m_1+m_2)}
+{c_{\mathrm{GW}}^5a^3}.
+$$
+
+The source power and detector strain-flux comparisons are
+
+$$
+P_{\mathrm{GW}}
+=
+\frac{G_{\mathrm{eff}}}{5c_{\mathrm{GW}}^5}
+\left\langle
+\dddot Q_{ij}\dddot Q^{ij}
+\right\rangle,
+$$
+
+and
+
+$$
+\mathcal F_{\mathrm{GW}}
+=
+\frac{c_{\mathrm{GW}}^3}{32\pi G_{\mathrm{eff}}}
+\left\langle
+\dot h_+^2+\dot h_\times^2
+\right\rangle.
+$$
+
+Ringdown remains a final compact-object label comparison tied to the remnant mass, frequency, and damping-time rows.
+
+### AAA Mapping
+
+`EQ-11A` treats these equations as observer-level recovery targets for one source carrier:
+
+$$
+\Theta_{\mathrm{GWsrc}}
+=
+\left(
+\theta_{\mathrm{sea}},
+g_{\mu\nu}^{\mathrm{eff}},
+Q_{ij}^{\mathrm{eff}},
+h_+,
+h_\times,
+E_{\mathrm{rad}},
+\mathbf J_{\mathrm{rad}},
+\mathcal M_c,
+\dot P_b,
+\theta_{\mathrm{ring}},
+\mathcal R_{\mathrm{GWsrc}}
+\right).
+$$
+
+The source quadrupole, inspiral chirp, orbital decay, strain flux, radiated energy/angular momentum, and final ringdown label must share one effective metric tensor channel, Noether sea constitutive record, and source event ledger. A match fails if those rows are fit by separate records.
+
+### Closure Status
+
+Current `6/23 b` score: `2`.
+
+The standard formula families and native carriers are now named in the focused packet, but no accepted gravitational-wave source carrier, source-backed effective metric tensor row, or final remnant/ringdown retained label exists. No score increase for `EQ-11` or adjacent metric rows follows from adding this suffix row.
+
+Executable status: [eq11a-gravitational-wave-source-residual.mjs](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs) evaluates the score-neutral gravitational-wave source residual. The attempt fixture [eq11a-gravitational-wave-source-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-attempt.v1.json) reports `blocked_missing_accepted_gw_source_carrier`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_gw_source_carrier`; its chirp-mass, chirp-rate, Peters-decay, quadrupole-flux, strain-flux, ringdown, energy/angular-momentum ledger, source-provenance, hidden-retune, and negative-control diagnostics pass, but those passes are not score evidence because the source carrier and every row binding remain `attempt`.
+
+### Closure Burden
+
+The first residual is
+
+$$
+\mathcal R_{11A}^{\mathrm{GWsrc}}
+=
+\mathcal R_{\mathcal M_c}
++\lambda_f\mathcal R_{\dot f}
++\lambda_P\mathcal R_{\mathrm{Peters}}
++\lambda_Q\mathcal R_Q
++\lambda_h\mathcal R_h
++\lambda_E\mathcal R_{E\mathbf J}
++\lambda_{\mathrm{ring}}\mathcal R_{\mathrm{ring}}
++\lambda_{\mathrm{retune}}\mathcal S_{\mathrm{retune}}.
+$$
+
+The first blocker is `missing_accepted_gw_source_carrier`: one source-backed $\Theta_{\mathrm{GWsrc}}(W,P)$ must declare source quadrupole, chirp, orbital decay, detector strain, radiated energy/angular momentum, final remnant labels, and the shared effective-metric/Noether-sea record before any stronger score or reader-facing promotion is justified.
+
+### Agent Target
+
+Populate the `EQ-11A` gravitational-wave source carrier behind the solver residual. The next useful artifact is a source-backed carrier row that keeps quadrupole power, inspiral chirp, orbital decay, detector strain, radiated energy/angular momentum, and ringdown labels on one retained record.
 
 ## EQ-12 And EQ-13: Photon Energy, Null Transport, Maxwell, And Wave Equations
 
@@ -2409,6 +2524,117 @@ Build a Compton/recoil event packet: declare the incoming photon-channel record,
 The direct native-event attempt [compton-recoil-native-event-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json) fixes the row-reference shape for $\mathsf e_{\gamma e}^{0}$ and reports every required native row as `attempt`, so it also returns `comparison_replay_closed_native_rows_missing` and `scoreDecision=no_score_increase`. Native rows and the `medium`/`remnant` support rows must carry concrete retained references and the same `eventId`; accepted support rows must also carry explicit `delta_E` and `delta_p` fields. Bare `accepted` strings, event-id mismatches, omitted support deltas, and nonzero weak-homogeneous support deltas do not close the ledger.
 
 No score change follows from that result. The run is still missing native photon Gate A/B rows, target and recoil retained branches, angular-momentum ledger update, Noether sea state row, the energy-momentum event ledger, and accepted medium/remnant support rows on the same $\mathsf e_{\gamma e}^{0}$ record. The checker's `--require-native-closed` mode exits nonzero until those rows are accepted.
+
+## EQ-28A: Path-Frequency Exchange
+
+Detailed packet: [EQ-28A Path-Frequency Exchange](eq-28a-path-frequency-exchange.md).
+
+### Standard Form
+
+For a photon packet crossing an exchange segment, the signed path-frequency increment is
+
+$$
+Y_{\gamma,j}^{\mathrm{ex}}
+=
+-\ln
+\frac{\nu_{\gamma,j}^{+}}{\nu_{\gamma,j}^{-}}.
+$$
+
+The exchange ledger must close
+
+$$
+\mathcal R_{\nu\text{-}\mathrm{ex}}
+=
+\frac{
+\left|
+h(\nu_{\gamma,j}^{+}-\nu_{\gamma,j}^{-})
++\Delta E_{\mathrm{target},j}
++\Delta E_{\mathrm{med},j}
++\Delta E_{\mathrm{recoil},j}
++\Delta E_{\mathrm{rem},j}
+\right|
+}{\epsilon_{E,j}}.
+$$
+
+The inverse-Compton Thomson-limit benchmark is
+
+$$
+\frac{\nu^+}{\nu^-}
+\simeq
+\frac{4}{3}\gamma_e^2,
+$$
+
+with the regime condition $4\gamma_e h\nu^-\ll m_ec_\gamma^2$. The thermal and kinematic Sunyaev-Zeldovich comparison rows are
+
+$$
+y
+=
+\int
+\frac{k_BT_e}{m_ec_\gamma^2}
+n_e\sigma_T\,d\ell,
+\qquad
+\frac{\Delta T}{T}\simeq-2y,
+$$
+
+and
+
+$$
+\frac{\Delta T}{T}
+\simeq
+-\tau_e\frac{v_{\parallel}}{c_\gamma}.
+$$
+
+### AAA Mapping
+
+`EQ-28A` treats these equations as observer-level recovery targets for one path-frequency exchange carrier:
+
+$$
+\Theta_{\nu\text{-}\mathrm{ex}}(W)
+=
+\left(
+\gamma_{\mathrm{in}},
+\theta_{\mathrm{sea}},
+e^-/\mathrm{medium},
+\gamma_{\mathrm{out}},
+\Delta E,
+\Delta\mathbf p,
+\Delta\mathbf J,
+\mathcal T_W,
+\mathcal R_{\mathrm{ex}}
+\right).
+$$
+
+The local inverse-Compton row, signed path-frequency increment, thermal SZ row, kinematic SZ row, photon Gate A/B handoff, and finite-window thermal record must share one photon path-history carrier. A match fails if frequency exchange is treated as phenomenological photon energy loss, pure expansion bookkeeping, source emission, or separately tuned SZ calibration.
+
+### Closure Status
+
+Current `6/23 b` score: `2`.
+
+The standard formula families and native carriers are now named in the focused packet, but no accepted path-frequency exchange carrier, photon Gate A/B handoff, electron-medium population row, Noether sea path-history row, or finite-window thermal record exists. No score increase for `EQ-12`, `EQ-17`, `EQ-22`, `EQ-22A`, `EQ-28`, or `EQ-29` follows from adding this suffix row.
+
+Executable status: [eq28a-path-frequency-exchange-residual.mjs](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs) evaluates the score-neutral path-frequency exchange residual. The attempt fixture [eq28a-path-frequency-exchange-attempt.v1.json](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-attempt.v1.json) reports `blocked_missing_accepted_path_frequency_exchange_carrier`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_path_frequency_exchange_carrier`; its inverse-Compton, path-frequency, thermal SZ, kinematic SZ, photon Gate A/B, source-provenance, hidden-retune, and negative-control diagnostics pass, but those passes are not score evidence because the exchange carrier and every row binding remain `attempt`.
+
+### Closure Burden
+
+The first residual is
+
+$$
+\mathcal R_{28A}^{\nu\text{-}\mathrm{ex}}
+=
+\mathcal R_{\mathrm{IC}}
++\lambda_Y\mathcal R_Y
++\lambda_{\mathrm{tSZ}}\mathcal R_{\mathrm{tSZ}}
++\lambda_{\mathrm{kSZ}}\mathcal R_{\mathrm{kSZ}}
++\lambda_G\mathcal R_{\mathrm{GateAB}}
++\lambda_{\mathrm{prov}}\mathcal R_{\mathrm{prov}}
++\lambda_{\mathrm{retune}}\mathcal S_{\mathrm{retune}}.
+$$
+
+The first blocker is `missing_accepted_path_frequency_exchange_carrier`: one source-backed $\Theta_{\nu\text{-}\mathrm{ex}}(W)$ must declare photon packet identity, frequency exchange, electron-medium state, recoil/remnant rows, finite-window thermal state, and the shared path-history Noether sea record before any stronger score or reader-facing promotion is justified.
+
+### Agent Target
+
+Populate the `EQ-28A` path-frequency exchange carrier behind the solver residual. The next useful artifact is a source-backed carrier row that keeps local Compton exchange, SZ calibration, photon Gate A/B handoff, recoil/remnant updates, and finite-window thermal state on one retained path record.
 
 ## EQ-29: Larmor/Lienard Radiation, Synchrotron, Bremsstrahlung, And Thermal Channels
 

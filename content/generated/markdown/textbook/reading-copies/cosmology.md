@@ -4941,6 +4941,27 @@ The existence of very large coherent structures (giant arcs, walls, and voids at
 
 This is an active test with model-discriminating power, not merely a fitting exercise. A structure-formation run should report the scale-neutral homogeneity residual $\mathcal{R}_{\mathrm{hom}}(\theta_{\mathrm{sea}};L,t)$ defined in [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md#inference-dependency-ledger) alongside $P(k,z)$, $D(z)$, lensing summaries, and high-redshift halo statistics. If the matter power spectrum fits but dimensionless pair-separation distributions differ by direction, environment, or source family beyond tolerance, the run has not supplied a single large-scale medium history.
 
+#### Source-History Inversion
+
+Galaxy and AGN environments are also records of source history, not only forward outputs of a growth model. Jet knots, lobes, host-galaxy structure, metallicity gradients, lensing maps, redshift residuals, and the surrounding Noether sea state should constrain the same formation, feeding, and release histories that enter the SMBH source term in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md#population-history-matters).
+
+For a candidate shared medium-and-source record $\theta$, define a source-history inversion residual
+$$
+\mathcal{R}_{\mathrm{hist}}(\theta)
+=
+d_{\mathrm{obs}}\!\left(
+Y_{\mathrm{gal/AGN}}^{\mathrm{obs}},
+\Pi_{\mathrm{gal/AGN}}\,
+\mathcal{F}\!\left[
+\mathcal{H}_{\mathrm{form}},
+\mathcal{H}_{\mathrm{feed}},
+\mathcal{H}_{\mathrm{release}},
+\theta_{\mathrm{sea}}
+\right]
+\right)
+$$
+where $Y_{\mathrm{gal/AGN}}^{\mathrm{obs}}$ denotes the chosen galaxy or AGN observable packet and $\Pi_{\mathrm{gal/AGN}}$ projects the shared history model onto the observables being compared. The same $\theta_{\mathrm{sea}}$ must also supply the growth, redshift, CMB, lensing, and dark-sector rows. If jet morphology or host evolution can be fit only by changing the Noether sea state independently of the cosmology packet, the branch is a local fit rather than a shared history.
+
 ---
 
 ### Scale Dependence of $G_{\text{eff}}$: Mechanism and Regime Map

@@ -750,6 +750,41 @@ It returns `comparison_replay_closed_native_rows_missing`, `scoreDecision=no_sco
 
 The compact replay summary now also reports `nextBlockerDetails`. For the native attempt, the first blocker detail is `id=photon_gate_A_input_output`, `status=attempt`, `rowId=photon-gate-A-input-output-attempt`, `sourcePath=reference/priorities/equation-mapping/eq-26-31-observation-first-precision-packet.md`, `sourceReferenceExists=true`, `eventId=e_gamma_e_0`, and `eventIdMatches=true`. This confirms that the carrier wiring is present but still not score evidence: the first row must be promoted from `attempt` to an accepted retained row by source-backed Gate A evidence, not by the comparison replay.
 
+#### First Native Row Object Contract
+
+The first score-moving native row is `photon_gate_A_input_output`. The replay runner accepts that row only when the row object satisfies the current native-row boundary below. These checks are necessary for the runner to close; they do not by themselves prove the Gate A physics unless the referenced source file also contains the photon input/output evidence.
+
+| Check | Required value |
+| --- | --- |
+| Object form | A structured object, not the string `accepted`. |
+| Accepted status | `status` is one of `accepted`, `passed`, or `populated`. |
+| Row identity | `rowId` is concrete and does not use `...`, angle-bracket placeholders, `todo`, `pending`, or `placeholder` text. |
+| Source reference | `sourcePath` or `source` resolves to an existing durable source or evidence file. It must not be under `/tmp`, `/private/tmp`, `content/generated`, or a filename containing `.tmp`. |
+| Event binding | `eventId` equals `e_gamma_e_0`. |
+| Gate A content | The durable source must supply incoming and outgoing photon-channel records, $E_\gamma$, $\mathbf p_\gamma$, direction, frequency or wavelength, Gate A null-branch status, and the shared $h$ and $c_\gamma$ rows consumed by the event. |
+
+After that first row closes, the same event carrier still needs accepted source-backed rows for Gate B, target branch, recoil branch, angular-momentum delta, Noether sea state, and energy-momentum ledger before the runner can report `native_event_accepted`. The `medium` and `remnant` support rows are checked separately: they must be accepted retained objects on the same event id and must declare `deltaEExplicit: true`, `deltaPExplicit: true`, `deltaE=0`, and $\lVert\delta\mathbf p\rVert=0$ in the weak homogeneous replay.
+
+Bucket C disposition: no existing durable source in the current packet set can safely be wired as the accepted `photon_gate_A_input_output` row. The closest source, [photon-packet-transfer-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-attempt.v1.json), is explicitly attempt-level and its checker still blocks at `missing_accepted_theta_gamma_packet` even though its numeric packet residuals pass. The reader-facing Gate A scaffold in the photon corpus is a theorem target, not an event-specific accepted input/output record for `eventId: e_gamma_e_0`. The current exact blocker therefore remains `missing_accepted_photon_gate_A_input_output`, with `status=attempt`, `sourceReferenceExists=true`, and `eventIdMatches=true`.
+
+The smallest future accepted object must cite a durable non-generated source that contains, on the same `e_gamma_e_0` carrier:
+
+- incoming photon record: $E_\gamma$, $\mathbf p_\gamma$, direction, phase frequency or wavelength, local $c_\gamma$, and the shared $h$ row;
+- outgoing photon record: $E_{\gamma'}$, $\mathbf p_{\gamma'}$, direction, phase frequency or wavelength, local $c_\gamma$, and the same shared $h$ row;
+- Gate A null-branch evidence: null mass shell, no rest branch, no free-space dispersion, and common-limit compatibility with the declared Noether sea speed convention;
+- same-record witness: the Gate A source, `EQ-26` shared rows, and `EQ-28` event rows use the same $h$, $c_\gamma$, event id, and recoil convention;
+- source-backed row identities: accepted `theta_gamma_packet`, photon branch, Gate A kinematics, energy-frequency, null/eikonal, source provenance, and no-hidden-retune rows, or a narrower dedicated source file that supplies equivalent retained evidence for this event.
+
+Negative controls for the first accepted row are:
+
+- accepted-looking Gate A row with a nonexistent or non-durable `sourcePath` must remain `accepted_without_existing_source`;
+- accepted-looking Gate A row bound to any event id other than `e_gamma_e_0` must remain `accepted_event_id_mismatch`;
+- Gate A source that is only the current attempt-level photon packet must not be treated as accepted evidence while `theta_gamma_packet`, photon branch, Gate A kinematics, energy-frequency, null/eikonal, source provenance, or no-hidden-retune rows remain `attempt`;
+- source row that changes $h$, $c_\gamma$, or the recoil convention relative to `EQ-26` must fail the shared-row anti-retune check before the Compton residual is interpreted;
+- source row that permits a rest branch, frequency-dependent weak-homogeneous free-space dispersion, or a longitudinal free photon channel must fail Gate A/B handoff rather than advancing the event ledger.
+
+Score-moving condition: only after the row is backed by such a durable accepted source should the attempt fixture replace `status: "attempt"` with an accepted status for `photon_gate_A_input_output`. The expected first advancement is not full native-event closure; it is a runner summary whose `nativeRowStatuses.photon_gate_A_input_output` is `accepted` and whose `nextBlocker` advances to `missing_accepted_photon_gate_B_transverse_handoff`, with `scoreDecision` still `no_score_increase` until all required native rows and weak-homogeneous medium/remnant support rows close.
+
 ### Failure Mode
 
 `eq28.frequency_loss_without_recoil`: Compton-like exchange is treated as phenomenological photon frequency loss, pair production is described as creation from nothing, photoelectric capture drops material/recoil rows, or the event uses a different $h$ or exposed mass response than atomic spectra.

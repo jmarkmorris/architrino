@@ -115,6 +115,12 @@ The minimality question should be handled as a ladder rather than as a single ye
 
 This ladder keeps the free-will question disciplined. A field-speed middle binary supplies the primitive physical reason that threshold alternatives exist. It does not by itself select among them in the agency sense. The transition from metastability to decision requires controllable internal preparation, and the transition from decision to functional agency requires feedback-stabilized reuse of that preparation.
 
+### Legacy Consciousness-at-Scale Routing
+
+The legacy source [Consciousness at Scale](https://architrino.wordpress.com/2019/12/13/consciousness-at-scale/) asked what conditions and reactions cause assemblies, assemblies of assemblies, or biological systems to count as life or consciousness. This packet keeps that source signal as a routing cue, not as consciousness ontology. The current priority target is narrower: identify when biological, neural, computational, or other high-level assemblies can be modeled as networks of Switch/Decider-like threshold systems with sensor roles, bias preparation, memory-bearing feedback, work and dissipation accounting, hold time, and measurable basin-weight shifts under fixed boundary context.
+
+The source therefore does not authorize a claim that consciousness exists at every scale, that every Noether braid is agentic, or that a scale analogy supplies a proof. Its durable use is to keep the biological and neural question attached to the same topology-minimality and basin-control tests already used here: which role graph first supports sensing, threshold control, memory-sensitive feedback, and record-forming action without hiding a required role in the environment?
+
 ## Switch/Decider Theorem Scaffold
 
 The proof target should be stated as a controlled basin theorem rather than as an analogy. Fix a candidate subsystem $\Omega\subset\Sigma_t$ and a record window $T$. Let the retained boundary context be

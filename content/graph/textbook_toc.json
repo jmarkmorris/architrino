@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1463
+      "sections": 1464
     }
   },
   "tocRoot": {
@@ -5266,6 +5266,14 @@
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
                 "markdownSection": "Purpose",
                 "sectionKey": "purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Binding-Energy Intuition",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Binding-Energy Intuition",
+                "sectionKey": "binding energy intuition",
                 "headingLevel": 2
               },
               {

@@ -461,6 +461,20 @@ Every accepted row must use status `accepted`, `passed`, or `populated`, include
 
 This bundle is the score-4 evidence object. It does not claim metric, weak-gravity, pressure, or low-acceleration recovery; those remain explicit missing outputs until projected from the same retained coefficient row.
 
+#### 2026-06-26 Bucket B Constraint
+
+The first accepted `theta_sea_rho_NS` / `rho_NS` row cannot be produced by changing the retained-attempt fixture's status field or by pointing that row back at the attempt fixture, this packet, or a prior audit note. Those files are durable coordination records, but they are not retained coefficient evidence for the density row. [Equation Closure Pass 2026-06-23 K](equation-closure-pass-2026-06-23-k.md) remains the current repo-side audit result: no existing repo evidence populates accepted retained rows for the Noether sea density-compression surface-slice reducer.
+
+The strict retained-attempt run
+
+```sh
+node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-surface-slice-retained-attempt.v1.json --summary --pretty --require-populated
+```
+
+must continue to exit nonzero until the row is backed by a concrete retained-window evidence file. The current first blocker is `missing_accepted_theta_sea_rho_NS`, with `nextBlockerDetails.id=theta_sea_rho_NS`, `status=attempt`, `rowId=rho-NS-retained-0001`, `eventLedgerRef=event-ledger-retained-0001`, `sourcePath=pending-retained-source`, `sourceConcrete=false`, and `sourceReferenceExists=false`.
+
+The smallest implementation target remains one same-window source-backed bundle, not a private `rho_NS` status flip: accepted `rho_NS`, `n`, $\mathbf u_{\mathrm{sea}}$, $e_{\mathrm{sea}}$, $\boldsymbol\theta_{\mathrm{sea}}$, $f_N$, event-ledger, channel-declaration, speed, stress/strain or metric-compliance, delayed-support or $\mathcal R_{\mathrm{KK}}$, correlation, acoustic/elastic-agreement, and zero-retune rows, all with resolving durable `sourcePath` references. Until that bundle exists, `EQ-24` may report `delta_c_X_squared` and `delta_C_ij_kl` as projected in the attempt, but its readiness remains blocked by the retained-slice blocker; `EQ-11`, `EQ-20`, and `EQ-32` remain blocked by declared missing outputs for `delta_N`, `delta_gamma_ij`, `delta_G_eff`, `delta_P_eff`, and `delta_a_star`.
+
 The artifact-vs-physics discriminator is same-window agreement between acoustic speed and elastic response. For one channel $X$, compute
 
 $$

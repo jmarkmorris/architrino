@@ -151,6 +151,44 @@ The fixture [eq02-04-translating-binary-retained-record-blocked-source-shell.v1.
 
 The repo-local source search found review material that defines the needed object, but no dormant accepted source report that can be wired directly. The invariant-cell source review packet [andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md](../../entourage/review-packets/andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md) and retained-evidence response [andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md](../../entourage/review-packets/andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md) both identify the next accepted object as a positive-width return-map certificate $B_N\subset\Sigma_N$ with $\mathcal K_{P_N}(B_N)\subset B_N$, refinement persistence, calibrated negative controls, and the retained rows evaluated only on that enclosed support. The coframe review packet [henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-06-24.md](../../entourage/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-06-24.md) likewise treats the current reciprocal coframe arithmetic as insufficient until it is replaced by accepted wake-return extraction evidence on the same invariant support. Those files are source-contract and review material, not retained-domain evidence objects.
 
+### 2026-06-26 Bucket A Worker Constraint
+
+A Bucket A worker rerun on 2026-06-26 found no existing durable source or evidence file that can safely populate the first accepted `raw_labeled_rows_preserved_on_retained_history` object under the current executable contract. The same-branch attempt and blocked-source shell both remain `blocked_missing_retained_event_or_domain`; their `--require-accepted` forms exit nonzero with `nextBlocker: missing_accepted_raw_labeled_rows_preserved_on_retained_history`. The retained-record attempt and blocked-source shell both remain `blocked_same_branch_identity`; their `--require-populated` forms exit nonzero with the same inherited blocker.
+
+The coframe-source attempt still fails first at `source_status`, and its leading raw-row detail reports `statusAccepted: false` and `rowIdConcrete: false`. The accepted-looking row-binding negative control still fails first at `row_binding_raw_labeled_rows_preserved_on_retained_history` with `reason: row_binding_not_source_bound_object`; a bare string `accepted` is therefore not a retained row object. A sweep of all `eq02-04-invariant-cell-coframe-source-*.v1.json` fixtures found only blocked producer outputs:
+
+| Fixture family | First producer blocker |
+| --- | --- |
+| `attempt` | `source_status` |
+| `connection-holonomy-transport-negative-control` | `connection_holonomy_transport_residual_bound` |
+| `connection-phase-holonomy-negative-control` | `connection_phase_holonomy_bound` |
+| `connection-torsion-negative-control` | `connection_torsion_bound` |
+| `extraction-basis-gamma-negative-control` | `extraction_basis_gamma_free` |
+| `margin-negative-control` | `negative_control_window_length_margin_calibrated` |
+| `refinement-negative-control` | `refinement_persistence` |
+| `refinement-step-negative-control` | `refinement_persistence_step_sources` |
+| `refinement-support-id-negative-control` | `refinement_persistence_support_id_stability` |
+| `row-binding-negative-control` | `row_binding_raw_labeled_rows_preserved_on_retained_history` |
+| `shell-negative-control` | `support_B_N_certified` |
+
+The inventory found `status: accepted` raw-row-looking objects only inside fixtures whose `claimLevel` explicitly says negative control, score-neutral, and not evidence. Those objects cannot be transplanted into the retained-domain shell because they do not supply an accepted positive-width invariant support with the same `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId: "S_eq"`, and each fixture is already caught by a deliberate fail-closed producer check.
+
+The next concrete implementation target is unchanged and narrower than a generic gate: produce one source-backed positive-width invariant-cell source report whose first row binding is a structured accepted object for `raw_labeled_rows_preserved_on_retained_history`, with concrete non-placeholder `rowId`, matching `domainId`, `commonCarrierId`, `supportId`, `retainedRowSetId: "S_eq"`, and a durable source path. That object is eligible only after the same source report also supplies calibrated support, refinement, evidence-scale, connection, residual, and negative-control fields strong enough for the producer to pass.
+
+### 2026-06-26 Overnight Coordinator Merge
+
+The 2026-06-26 overnight team-agent run found no accepted retained evidence object in any bucket. The coordinator keeps Bucket A as the single evidence implementation target for this cycle because it is first in priority order and because the retained-domain row is the earliest accepted-support boundary shared by `EQ-02` through `EQ-04`.
+
+| Bucket | Smallest accepted evidence object proposed | Current first blocker | Coordinator result |
+| --- | --- | --- | --- |
+| A | Source-backed positive-width `S_eq` invariant-cell source report with accepted `raw_labeled_rows_preserved_on_retained_history`. | `missing_accepted_raw_labeled_rows_preserved_on_retained_history` | Chosen evidence target. The current packet records the closure contract; the source report still has to be built from durable retained-domain evidence. |
+| C | Native Compton/recoil event ledger on `eventId: "e_gamma_e_0"` with accepted Gate A photon input/output rows. | `missing_accepted_photon_gate_A_input_output` | Defer as second target. The comparison replay closes numerically, but Gate A remains attempt-level and source-backed photon packet rows are not accepted. |
+| B | Retained Noether sea density-compression bundle with accepted `rho_NS`, `n`, `u_sea`, `e_sea`, `theta_sea`, `f_N`, support, agreement, and zero-retune rows. | `missing_accepted_theta_sea_rho_NS` | Defer as third target. No durable retained-window coefficient source exists yet; `EQ-32` remains blocked on this lane for `delta_a_star`. |
+| D | Source-backed finite-window statistical carrier family headed by accepted `W`. | `missing_accepted_W`; `EQ-25` also reports `missing_accepted_theta_therm` | Defer. The existing finite-window fixtures are toy or attempt carriers, even where numeric diagnostics pass. |
+| E | Shared observation record $\Theta_{\mathrm{obs}}$ with accepted projection families and shared keys. | `missing_accepted_theta_obs` plus upstream `missing_accepted_theta_sea_rho_NS` for `EQ-32` | Blocked on Bucket B. Do not create a private observation ledger before the retained Noether sea coefficient and `delta_a_star` projection exist. |
+
+The implemented artifact in this pass is this precise closure packet, not a score row. The first score-moving implementation remains the Bucket A source report described below: one durable source-backed positive-width invariant-cell evidence object whose accepted row bindings satisfy the executable producer, same-branch checker, and retained-record evaluator on the same carrier.
+
 ## Required Source-Backed Fields
 
 The accepted retained-domain fixture must include these top-level fields:

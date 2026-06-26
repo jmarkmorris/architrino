@@ -18,6 +18,8 @@ This distinction matters because many unresolved problems in physics are not fai
 
 From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, these issues function as diagnostic sites. Some are direct targets of substrate reinterpretation. Some are likely to remain as effective-level questions even after deeper ontology improves. Others may eventually turn out to be artifacts of over-inference from observational pipelines. The chapter is designed to keep those possibilities distinct.
 
+Paradoxes require the same layer discipline. A paradox is useful when it marks a mismatch among an empirical record, an effective formalism, and an ontological reading; it is not itself a replacement for a mechanism. In this chapter, a paradox becomes progress only after the secure record, the inherited formal move, and the unresolved substrate question are separated. Otherwise a counterintuitive exercise can train familiarity with a puzzle while leaving the closure burden untouched.
+
 ### Unknown/Paradox Entry Template (Unified)
 
 Use this template for each issue section.

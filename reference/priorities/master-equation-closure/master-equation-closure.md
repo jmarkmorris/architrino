@@ -224,6 +224,27 @@ identify the admissible finite-amplitude channel that prevents such a bound.
 - Full 3D translating tri-binary NFDE / DDE control for emergent $\gamma$-scaling.
 - Transfer-operator and invariant-measure control for Born-rule emergence.
 - Exact 6-body core stability and shielding extraction for the first-principles mass program.
+- Binary perturbation-response classification: on a retained binary chart, decide whether a finite perturbation is absorbed as same-branch phase response, same-regime radius/cadence retuning, or a branch transition.
+
+## Binary Perturbation Response Target
+
+Source-mining intake 2026-06-26. Legacy binary-adaptation language is useful only as a theorem and simulation target: a binary should not merely be described as adapting when energy is added or removed. The retained chart must say which response class actually occurred.
+
+Let $\Gamma_{\mathrm{bin}}$ be an accepted two-architrino binary history on returned section $\mathcal S$ with active root set $\mathcal A_{\mathrm{bin}}$, positive Jacobian floor $\nu_J$, inactive-root gaps, finite memory depth, radius/cadence rows $(R,\omega)$, and returned-section residual $\mathcal R_{\mathrm{ret}}$. For an admissible finite perturbation $p$ with declared amplitude, injection phase, injection time, and support width, define the perturbed returned-section residual by
+$$
+\mathcal R_{\mathrm{bin}}(p)
+=
+P_{\mathcal S}(\Gamma_{\mathrm{bin}}^p)-\Gamma_{\mathrm{bin}}.
+$$
+The response classification target is:
+
+| Response class | Required condition |
+| --- | --- |
+| Same-branch phase response | $\mathcal A_{\mathrm{bin}}$, $\nu_J$, inactive gaps, finite memory depth, and $(R,\omega)$ remain inside the declared chart tolerance, while $\mathcal R_{\mathrm{bin}}(p)$ is absorbed by a phase offset $\Delta\phi$ on the same branch. |
+| Same-regime radius/cadence retuning | The root ledger and speed-regime identity remain unchanged, but closure requires new rows $(R',\omega')$ with a declared work/action increment and no loss of the Jacobian or inactive-gap floors. |
+| Branch transition | The perturbation changes the active root ledger, self-hit/partner-hit split, speed-regime identity, finite-memory window, returned-section stability, or inactive-gap/Jacobian-floor status beyond tolerance. |
+
+The first simulation packet should scan perturbation amplitude, injection phase, injection time, and support width on one retained binary chart, then report which of the three response classes survives refinement. This is not a new gate; it is a concrete way to turn finite-energy binary response into branch-chart mathematics before any life, agency, or assembly-evolution analogy is promoted.
 
 ## Fixed Footholds
 

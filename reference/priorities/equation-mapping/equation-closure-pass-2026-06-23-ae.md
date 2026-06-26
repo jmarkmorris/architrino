@@ -167,6 +167,27 @@ The required source-backed fields for a score-eligible carrier are:
 - accepted no-hidden-retune witness $\mathcal S_{\mathrm{retune}}$ with residual below tolerance;
 - row-specific accepted projection rows: $\Theta_{\rho J}$ and record-current samples for `EQ-14`, scattering/form-factor rows for `EQ-30`, and accepted first-exit corridor family $C$ for `EQ-31`.
 
+## Bucket D Worker Audit 2026-06-26 UTC
+
+Re-running the current Bucket D fixture set did not produce an accepted retained carrier row. The `EQ-14`, `EQ-30`, refined `EQ-31`, and legacy `EQ-31` finite-window inputs still return `toy_structure_only`, `scoreDecision: no_score_increase`, and first blocker `missing_accepted_W`; their `--require-accepted` runs exit nonzero as intended.
+
+No existing durable source can be safely wired as `W` in this pass. The current finite-window statistical fixtures are toy fixtures, and the durable packets that describe the route are coordination or proof-target records rather than retained finite-window evidence. Accepted rows found in other equation-mapping fixtures belong to other lanes and do not supply the shared statistical carrier consumed here.
+
+The first accepted evidence object is therefore constrained to one source-backed retained statistical carrier row family:
+
+| Field | Required accepted content |
+| --- | --- |
+| `W` | Concrete retained finite window id, accepted status, durable source reference, and declared window kind. |
+| `Phi_T` | Same-window deterministic transition map accepted from the same source-backed carrier family. |
+| `mu_star_T` | Finite measure on the retained window, accepted status, durable source reference, total mass, and invariance residual below tolerance. |
+| `Q` | Accepted coarse-graining tied to the same window and measure. |
+| `K_det` | Accepted detector or record kernel reused by every projection in the fixture. |
+| `B` | Accepted outcome partition with concrete classes for the same retained window. |
+| `S_retune` | Accepted no-hidden-retune witness with durable source reference and residual below tolerance. |
+| Row-specific projection rows | Accepted `EQ-14` record-current projection and samples, accepted `EQ-30` scattering/form-factor rows, or accepted `EQ-31` corridor family, depending on which equation consumes the carrier first. |
+
+`EQ-25` remains coupled but not identical to this blocker. The thermodynamic runner first reports `missing_accepted_theta_therm` because it validates the wrapper carrier that must contain the same finite-window family plus state-space, coarse-graining, measure, pushforward, collision/projection, entropy-balance, thermalization-depth, fluctuation, event-ledger, shared Noether sea, source-provenance, and no-hidden-retune rows on one carrier.
+
 Fail-closed negative controls remain: toy or attempt status, missing or non-durable source references, placeholder identities, split density/current measure or flow for `EQ-14`, positive retained-measure separatrix mass for `EQ-31`, refinement-cocycle failure, corridor measure exceeding window measure, and hidden retune residual above tolerance.
 
 What would count as score-moving evidence: the same runner returns `accepted_retained_statistical_carrier` on a retained carrier whose source-backed rows satisfy the relevant numeric residuals, with no row populated from toy, placeholder, generated-only, or pending-source material.

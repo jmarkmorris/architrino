@@ -8,6 +8,7 @@ This priority-only packet captures what the Lienard-Wiechert/Jefimenko source-mi
 
 - J Mark Morris, [Jefimenko Lienard Wiechert](https://architrino.wordpress.com/2022/04/08/jefimenko-lienard-wiechert/), WordPress legacy source, April 8, 2022; local extraction `/tmp/architrino-jefimenko-lienard-wiechert-2022-04-08.txt`.
 - J Mark Morris, [Nature Fooled Physicists](https://architrino.wordpress.com/2022/09/15/nature-fooled-physicists/), WordPress legacy source, September 15, 2022; local extraction `/tmp/architrino-nature-fooled-physicists-2022-09-15.txt`.
+- J Mark Morris, [Ontological Errors Occluded Nature's Solution](https://architrino.wordpress.com/2022/11/30/ontological-errors-may-have-occluded-a-neoclassical-solution-to-nature/), WordPress legacy source, November 30, 2022; local extraction `/tmp/architrino-ontological-errors-2022-11-30.txt`.
 
 ## Claim Level
 
@@ -36,6 +37,8 @@ Delay-map weighting survives. Moving sources compress or dilate the received wak
 Multi-root intuition survives. A receiver can have more than one relevant prior source event under curved, accelerated, or super-field-speed branch histories. The native object is the ledger of active roots and weights, not a single field value treated as primitive ontology.
 
 The three-speed distinction survives. Primitive wakes propagate at $c_f$; photon speed is an assembly and Noether sea-dressed channel behavior to be recovered; and point-transceiver speed is a branch variable whose allowed regimes are controlled by causal-root structure and stability, not by importing photon-channel speed as a primitive constituent limit.
+
+Speed-threshold provenance survives only after demotion. The legacy claim that self-action begins when a carrier speed crosses the primitive wake speed is useful as source-history evidence for the field-speed hinge, but it is not a direct Planck-scale proof. Current promotion requires same-source causal-root existence, transversality or Jacobian-floor control, inactive-gap control, finite-memory control, retained ledger closure, and the event-horizon alignment mapping before Planck-scale language is justified.
 
 ## What Does Not Transfer
 
