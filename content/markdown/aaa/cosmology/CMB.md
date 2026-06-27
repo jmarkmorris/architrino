@@ -304,6 +304,16 @@ B_{\mathrm{loss}}^\theta
 $$
 This residual is the CMB-facing form of source provenance. A branch that recovers a blackbody curve by adding an untracked photon bath, or by hiding excess source energy in an undeclared non-photon reservoir, has not supplied the shared record required by the CMB gate.
 
+Post-free-streaming redshift adds the same constraint on the transport side. Once source, recoil, remnant, and boundary rows are separated, a redshifted photon bundle must close its energy deficit into the Noether sea path update,
+
+$$
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+without re-thermalizing the spectrum, blurring images, or erasing anisotropy and polarization. A CMB branch that preserves the Planck curve only by hiding the redshift energy in an untracked bath has failed the fixed-void energy ledger.
+
 ### Historical Equality and Temperature Benchmark
 
 The 1948 Alpher-Herman correction to Gamow is useful here as historical pressure, not as a present-parameter source. Their calculation corrected an early matter-density estimate, found that the naive matter-radiation-density intersection moved to an implausibly late time if the curvature term were neglected, and then restored that curvature term in the effective expanding-universe equation. In the corrected record, the matter/radiation intersection, a Jeans-style condensation mass and radius, a gas temperature at condensation, and a present radiation temperature of order $5\,\mathrm{K}$ were tied into one computation.
@@ -411,6 +421,8 @@ $$
 $$
 
 where $\mathcal{B}_{T}$ denotes the observer-level Planck spectrum at temperature $T$ and $\lambda=1+z$ for the declared path after endpoint and launch terms are separated. This condition is stronger than fitting a final temperature. It says the transport has preserved the occupation-number shape rather than re-thermalizing an arbitrary distorted spectrum by coincidence.
+
+The same transparent-transport branch must also carry no undeclared transverse photon-momentum transfer. After declared lensing, beam, aperture, and detector terms are removed, the image-preserving condition is $\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})$, with any remaining transverse phase residual kept inside the polarization and anisotropy tolerances.
 
 The spectrum gate should be stated as a calibrated comparison, not as an assumption that the theoretical Planck curve has been directly observed without apparatus structure. For frequency channels $\nu_i$, measured intensities $I_i$, foreground model $F_i(\psi)$, and calibration covariance $C_{ij}$, define
 $$

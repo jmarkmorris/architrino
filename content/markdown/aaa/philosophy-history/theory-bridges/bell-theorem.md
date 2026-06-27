@@ -353,6 +353,8 @@ The target is therefore not simply "$|S|>2$." The target is simultaneous recover
 
 No-signaling is also a Lorentz-export condition. The substrate has absolute time, the Euclidean void, and finite $c_f$, so operational Lorentz invariance is an observer-level recovery rather than a substrate symmetry. A candidate Bell packet may use a nonseparable pair-provenance record only if every substrate channel that could reveal the absolute frame cancels at the observer-level cut, is conserved into inaccessible records, or remains below the preferred-frame leakage bound.
 
+The no-signaling row cannot be checked only after the CHSH fit. It must be a measure-invariance statement: the joint basin measure remains invariant under local-setting relabelings at each wing, so summing over one wing leaves the other marginal independent of the far setting while the joint invariant can still carry the $2\sqrt{2}$ correlation.
+
 Using the preferred-motion null-test residual $\mathcal{R}_{\mathrm{PF\text{-}bundle}}$ from [PPN Parameters](../../spacetime/ppn-parameters.md#preferred-motion-null-test-bundle), a Bell candidate $\theta$ over a validity window $W$ must therefore satisfy
 
 $$
@@ -383,7 +385,7 @@ P(a,b\mid\hat{m}_A,\hat{m}_B)
 \pi_{AB}^{-1}(a,b;\hat{m}_A,\hat{m}_B)
 \right)
 $$
-The guardrail is that this measure must simultaneously produce the singlet correlation, preserve the one-wing marginals, and avoid measurement-independence leakage:
+The guardrail is that this measure must simultaneously produce the singlet correlation, preserve the one-wing marginals, and avoid measurement-independence leakage. In the strongest form, marginal preservation is supplied by local-setting relabeling invariance of $\mu_*^{AB}$ rather than by a cancellation added after the joint law is fitted:
 $$
 \Delta_{\mathrm{Bell}}\le\epsilon_{\mathrm{Bell}},
 \qquad

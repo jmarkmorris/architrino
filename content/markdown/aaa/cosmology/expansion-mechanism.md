@@ -211,6 +211,42 @@ $$
 
 The signs follow the same retained path-history record: $\Delta E_{\gamma,\Omega}$ is the photon-channel change across the comparison window, $\Delta E_{\mathrm{sea},\Omega}$ is the Noether sea update, $\Delta E_{\mathrm{src/rem},\Omega}$ covers declared source or remnant rows, $\Delta E_{\mathrm{recoil},\Omega}$ covers material recoil or target exchange, and the boundary flux term records energy entering or leaving the finite window. A deep-space redshift branch earns standing only when the same Noether sea transport that preserves image sharpness and occupation shape also makes this residual small under the declared tolerance.
 
+### Redshift Energy Ledger
+
+The finite-window residual above is the operational form of a stronger absolute-time target. Because the Euclidean void does not expand, the architecture cannot let cosmological redshift energy disappear into expansion bookkeeping. The substrate time-translation symmetry nominates a scalar universe-state ledger
+
+$$
+E_{\mathrm{tot}}(t)
+=
+E_{\mathrm{arch}}(t)
++E_{\mathrm{wake}}(t)
++E_{\mathrm{sea}}(t),
+\qquad
+\frac{dE_{\mathrm{tot}}}{dt}=0
+$$
+
+where $E_{\mathrm{arch}}$ collects architrino kinetic and configuration energy, $E_{\mathrm{wake}}$ collects causal-wake energy in flight, and $E_{\mathrm{sea}}$ collects Noether sea constitutive energy. This is a conservation target rather than a proved theorem until the delayed action or a quasi-Noether replacement supplies the required invariant.
+
+For a transparent photon-channel bundle with $E_{\mathrm{obs}}=E_{\mathrm{emit}}/(1+z)$, the missing photon energy is
+
+$$
+\Delta E_{\gamma}
+=
+E_{\mathrm{emit}}-E_{\mathrm{obs}}
+=
+E_{\mathrm{emit}}\frac{z}{1+z}
+$$
+
+After source-branch, recoil, remnant, and boundary rows have been separated, a pure transparent-path redshift must close
+
+$$
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+The same term $\Delta E_{\mathrm{sea,path}}$ is then not adjustable per observable. It must be the energy face of the transport operator that preserves occupation shape and image sharpness; its path integral must recover redshift-distance and observed $(1+z)$ time dilation; and its spatial gradient must remain compatible with the lensing and growth budgets. If those rows require separate Noether sea responses, the branch has reproduced the standard tension split rather than closing it.
+
 ### Observable Frequency Form
 
 The same factorization can be written in the more familiar language of an emitted line frequency and a received line frequency. If $\nu_{X,0}$ is the reference frequency for transition family $X$, then
@@ -432,7 +468,16 @@ $$
 |\Delta\phi_{\perp}|\le \epsilon_{\mathrm{coh}}
 $$
 
-after declared lensing, aperture, and detector terms have been removed. In words: the path term may shift every mode by the same fractional factor for the declared distance and Noether sea state, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, or transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name.
+after declared lensing, aperture, and detector terms have been removed. Equivalently, let $\mathcal{D}_{\lambda}$ denote global frequency dilation on the admitted photon-channel band and let $\mathcal{G}_{\mathrm{tr}}$ denote the transparent-transport generator. The coherent branch must satisfy
+
+$$
+[\mathcal{G}_{\mathrm{tr}},\mathcal{D}_{\lambda}]_{\mathrm{band}}
+=O(\epsilon_{\mathrm{spec}}),
+\qquad
+\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})
+$$
+
+for the declared path-depth and Noether sea state. In words: the path term may shift every mode by the same fractional factor, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, or undeclared transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name.
 
 ### Equilibrium-Transport Candidate for Path History
 

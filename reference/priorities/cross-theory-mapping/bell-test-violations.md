@@ -13,7 +13,7 @@ Bell is a hard replacement constraint, not an ontology shortcut. The corpus alre
 1. `pair_provenance` — Define the complete source-pair ledger and shared conservation record. Status: `draft`.
 2. `local_response_kernels` — Construct local apparatus kernels $K_A,K_B$ from target and apparatus state. Status: `draft`.
 3. `correlation_recovery` — Recover spin or photon polarization correlations within Tsirelson-compatible bounds. Status: `draft`.
-4. `no_signaling_gate` — Prove that local marginals do not transmit controllable signals. Status: `draft`.
+4. `no_signaling_gate` — Prove that local marginals do not transmit controllable signals by deriving local-setting relabeling invariance of the joint basin measure, rather than adding no-signaling as a post-fit cancellation. Status: `draft`.
 5. `preferred_frame_handoff` — Show that the same observer export used for Bell records keeps clock, signal-timing, analyzer-calibration, and coincidence-window preferred-frame leakage below Lorentz-test bounds. Status: `draft`.
 
 ## Closure Objects
@@ -21,6 +21,7 @@ Bell is a hard replacement constraint, not an ontology shortcut. The corpus alre
 - Pair provenance ledger $\mathcal{P}_{AB}$.
 - Local detector kernels $K_A(a|\alpha,\Gamma_A,\mathcal{H}_A)$ and $K_B(b|\beta,\Gamma_B,\mathcal{H}_B)$.
 - Joint basin measure $\mu_{AB}$.
+- Local-setting relabeling invariance of $\mu_{AB}$ at each wing.
 - Correlation target $E(\alpha,\beta)$ and CHSH statistic $S$.
 - No-signaling marginal tests.
 - Preferred-frame leakage residual inherited from the Lorentz / PPN observer-export channel.

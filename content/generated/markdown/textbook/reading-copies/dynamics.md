@@ -4130,6 +4130,34 @@ and is constant in time for exact isolated solutions of the causal action. In mo
 - $U_{\text{int}}$ is an optional effective decomposition of near-field interaction energy.
 - $E_{\text{wake}}$ accounts for the exact nonlocal interaction content carried by wake structures and any radiation-like transport through the Noether sea.
 
+The same distinction governs cosmological redshift. Because the Euclidean void does not expand and absolute time supplies the comparison parameter, a transparent redshift branch cannot treat the photon's missing energy as a bookkeeping disappearance. At the universe-state level, the conservation target is a scalar ledger of architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy:
+
+$$
+E_{\mathrm{tot}}(t)
+=
+E_{\mathrm{arch}}(t)
++E_{\mathrm{wake}}(t)
++E_{\mathrm{sea}}(t),
+\qquad
+\frac{dE_{\mathrm{tot}}}{dt}=0
+$$
+
+For an unbounded or observationally truncated cosmology, this target must be tested through finite windows and boundary fluxes. In the pure transparent-path limit, after source, recoil, remnant, and boundary terms have been separated, a bundle redshifted by $1+z$ carries the deficit
+
+$$
+\Delta E_{\gamma}
+=
+E_{\mathrm{emit}}-E_{\mathrm{obs}}
+=
+E_{\mathrm{emit}}\frac{z}{1+z},
+\qquad
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+If the Noether sea update needed to close this row is nonlocal, re-radiating, path-history inconsistent, or incompatible with image sharpness and CMB blackbody preservation, the fixed-void redshift branch has failed the energy ledger rather than solved cosmological redshift.
+
 Consistency rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ pairwise term is retained as an effective decomposition inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
 
 For a hybrid decomposition, the omission must be checkable on the same finite window. Let the near/far split be made with the same coarse-graining window $W_\ell$ used in the matter-to-sea source $S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)}$. Define the partition-overlap residual

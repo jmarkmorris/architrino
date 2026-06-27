@@ -7148,6 +7148,34 @@ and is constant in time for exact isolated solutions of the causal action. In mo
 - $U_{\text{int}}$ is an optional effective decomposition of near-field interaction energy.
 - $E_{\text{wake}}$ accounts for the exact nonlocal interaction content carried by wake structures and any radiation-like transport through the Noether sea.
 
+The same distinction governs cosmological redshift. Because the Euclidean void does not expand and absolute time supplies the comparison parameter, a transparent redshift branch cannot treat the photon's missing energy as a bookkeeping disappearance. At the universe-state level, the conservation target is a scalar ledger of architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy:
+
+$$
+E_{\mathrm{tot}}(t)
+=
+E_{\mathrm{arch}}(t)
++E_{\mathrm{wake}}(t)
++E_{\mathrm{sea}}(t),
+\qquad
+\frac{dE_{\mathrm{tot}}}{dt}=0
+$$
+
+For an unbounded or observationally truncated cosmology, this target must be tested through finite windows and boundary fluxes. In the pure transparent-path limit, after source, recoil, remnant, and boundary terms have been separated, a bundle redshifted by $1+z$ carries the deficit
+
+$$
+\Delta E_{\gamma}
+=
+E_{\mathrm{emit}}-E_{\mathrm{obs}}
+=
+E_{\mathrm{emit}}\frac{z}{1+z},
+\qquad
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+If the Noether sea update needed to close this row is nonlocal, re-radiating, path-history inconsistent, or incompatible with image sharpness and CMB blackbody preservation, the fixed-void redshift branch has failed the energy ledger rather than solved cosmological redshift.
+
 Consistency rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ pairwise term is retained as an effective decomposition inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
 
 For a hybrid decomposition, the omission must be checkable on the same finite window. Let the near/far split be made with the same coarse-graining window $W_\ell$ used in the matter-to-sea source $S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)}$. Define the partition-overlap residual
@@ -62506,6 +62534,42 @@ $$
 
 The signs follow the same retained path-history record: $\Delta E_{\gamma,\Omega}$ is the photon-channel change across the comparison window, $\Delta E_{\mathrm{sea},\Omega}$ is the Noether sea update, $\Delta E_{\mathrm{src/rem},\Omega}$ covers declared source or remnant rows, $\Delta E_{\mathrm{recoil},\Omega}$ covers material recoil or target exchange, and the boundary flux term records energy entering or leaving the finite window. A deep-space redshift branch earns standing only when the same Noether sea transport that preserves image sharpness and occupation shape also makes this residual small under the declared tolerance.
 
+##### Redshift Energy Ledger
+
+The finite-window residual above is the operational form of a stronger absolute-time target. Because the Euclidean void does not expand, the architecture cannot let cosmological redshift energy disappear into expansion bookkeeping. The substrate time-translation symmetry nominates a scalar universe-state ledger
+
+$$
+E_{\mathrm{tot}}(t)
+=
+E_{\mathrm{arch}}(t)
++E_{\mathrm{wake}}(t)
++E_{\mathrm{sea}}(t),
+\qquad
+\frac{dE_{\mathrm{tot}}}{dt}=0
+$$
+
+where $E_{\mathrm{arch}}$ collects architrino kinetic and configuration energy, $E_{\mathrm{wake}}$ collects causal-wake energy in flight, and $E_{\mathrm{sea}}$ collects Noether sea constitutive energy. This is a conservation target rather than a proved theorem until the delayed action or a quasi-Noether replacement supplies the required invariant.
+
+For a transparent photon-channel bundle with $E_{\mathrm{obs}}=E_{\mathrm{emit}}/(1+z)$, the missing photon energy is
+
+$$
+\Delta E_{\gamma}
+=
+E_{\mathrm{emit}}-E_{\mathrm{obs}}
+=
+E_{\mathrm{emit}}\frac{z}{1+z}
+$$
+
+After source-branch, recoil, remnant, and boundary rows have been separated, a pure transparent-path redshift must close
+
+$$
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+The same term $\Delta E_{\mathrm{sea,path}}$ is then not adjustable per observable. It must be the energy face of the transport operator that preserves occupation shape and image sharpness; its path integral must recover redshift-distance and observed $(1+z)$ time dilation; and its spatial gradient must remain compatible with the lensing and growth budgets. If those rows require separate Noether sea responses, the branch has reproduced the standard tension split rather than closing it.
+
 ##### Observable Frequency Form
 
 The same factorization can be written in the more familiar language of an emitted line frequency and a received line frequency. If $\nu_{X,0}$ is the reference frequency for transition family $X$, then
@@ -62727,7 +62791,16 @@ $$
 |\Delta\phi_{\perp}|\le \epsilon_{\mathrm{coh}}
 $$
 
-after declared lensing, aperture, and detector terms have been removed. In words: the path term may shift every mode by the same fractional factor for the declared distance and Noether sea state, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, or transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name.
+after declared lensing, aperture, and detector terms have been removed. Equivalently, let $\mathcal{D}_{\lambda}$ denote global frequency dilation on the admitted photon-channel band and let $\mathcal{G}_{\mathrm{tr}}$ denote the transparent-transport generator. The coherent branch must satisfy
+
+$$
+[\mathcal{G}_{\mathrm{tr}},\mathcal{D}_{\lambda}]_{\mathrm{band}}
+=O(\epsilon_{\mathrm{spec}}),
+\qquad
+\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})
+$$
+
+for the declared path-depth and Noether sea state. In words: the path term may shift every mode by the same fractional factor, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, or undeclared transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name.
 
 ##### Equilibrium-Transport Candidate for Path History
 
@@ -64630,6 +64703,16 @@ B_{\mathrm{loss}}^\theta
 $$
 This residual is the CMB-facing form of source provenance. A branch that recovers a blackbody curve by adding an untracked photon bath, or by hiding excess source energy in an undeclared non-photon reservoir, has not supplied the shared record required by the CMB gate.
 
+Post-free-streaming redshift adds the same constraint on the transport side. Once source, recoil, remnant, and boundary rows are separated, a redshifted photon bundle must close its energy deficit into the Noether sea path update,
+
+$$
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+without re-thermalizing the spectrum, blurring images, or erasing anisotropy and polarization. A CMB branch that preserves the Planck curve only by hiding the redshift energy in an untracked bath has failed the fixed-void energy ledger.
+
 ##### Historical Equality and Temperature Benchmark
 
 The 1948 Alpher-Herman correction to Gamow is useful here as historical pressure, not as a present-parameter source. Their calculation corrected an early matter-density estimate, found that the naive matter-radiation-density intersection moved to an implausibly late time if the curvature term were neglected, and then restored that curvature term in the effective expanding-universe equation. In the corrected record, the matter/radiation intersection, a Jeans-style condensation mass and radius, a gas temperature at condensation, and a present radiation temperature of order $5\,\mathrm{K}$ were tied into one computation.
@@ -64737,6 +64820,8 @@ $$
 $$
 
 where $\mathcal{B}_{T}$ denotes the observer-level Planck spectrum at temperature $T$ and $\lambda=1+z$ for the declared path after endpoint and launch terms are separated. This condition is stronger than fitting a final temperature. It says the transport has preserved the occupation-number shape rather than re-thermalizing an arbitrary distorted spectrum by coincidence.
+
+The same transparent-transport branch must also carry no undeclared transverse photon-momentum transfer. After declared lensing, beam, aperture, and detector terms are removed, the image-preserving condition is $\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})$, with any remaining transverse phase residual kept inside the polarization and anisotropy tolerances.
 
 The spectrum gate should be stated as a calibrated comparison, not as an assumption that the theoretical Planck curve has been directly observed without apparatus structure. For frequency channels $\nu_i$, measured intensities $I_i$, foreground model $F_i(\psi)$, and calibration covariance $C_{ij}$, define
 $$
@@ -88579,6 +88664,8 @@ The target is therefore not simply "$|S|>2$." The target is simultaneous recover
 
 No-signaling is also a Lorentz-export condition. The substrate has absolute time, the Euclidean void, and finite $c_f$, so operational Lorentz invariance is an observer-level recovery rather than a substrate symmetry. A candidate Bell packet may use a nonseparable pair-provenance record only if every substrate channel that could reveal the absolute frame cancels at the observer-level cut, is conserved into inaccessible records, or remains below the preferred-frame leakage bound.
 
+The no-signaling row cannot be checked only after the CHSH fit. It must be a measure-invariance statement: the joint basin measure remains invariant under local-setting relabelings at each wing, so summing over one wing leaves the other marginal independent of the far setting while the joint invariant can still carry the $2\sqrt{2}$ correlation.
+
 Using the preferred-motion null-test residual $\mathcal{R}_{\mathrm{PF\text{-}bundle}}$ from [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md#preferred-motion-null-test-bundle), a Bell candidate $\theta$ over a validity window $W$ must therefore satisfy
 
 $$
@@ -88609,7 +88696,7 @@ P(a,b\mid\hat{m}_A,\hat{m}_B)
 \pi_{AB}^{-1}(a,b;\hat{m}_A,\hat{m}_B)
 \right)
 $$
-The guardrail is that this measure must simultaneously produce the singlet correlation, preserve the one-wing marginals, and avoid measurement-independence leakage:
+The guardrail is that this measure must simultaneously produce the singlet correlation, preserve the one-wing marginals, and avoid measurement-independence leakage. In the strongest form, marginal preservation is supplied by local-setting relabeling invariance of $\mu_*^{AB}$ rather than by a cancellation added after the joint law is fitted:
 $$
 \Delta_{\mathrm{Bell}}\le\epsilon_{\mathrm{Bell}},
 \qquad
@@ -94663,10 +94750,12 @@ The retrospective convention is not a shield against burden. For the reading bel
 - The self-hit well-posedness wall is that same-source causal-root selection must preserve deterministic multistability while maintaining transversality, a Jacobian floor, regularization, and an a priori energy bound. If every branch rule either destroys multistability or permits runaway energy growth near Jacobian zeros, the generative mechanism is ill-posed.
 - The action-spacing wall is that stable delayed braid branches must export one uniform closed-cycle action increment across the accessible band. This wall is downstream of the self-hit wall: a candidate cycle whose energy-like branch functional becomes unbounded across same-source crossings cannot supply a well-defined closed-cycle action integral. If the stable-cycle action spectrum is generically non-uniform rather than clustered by a derived branch-class rule, the claimed recovery of $h$ fails.
 - The Born-measure wall is that an apparatus-partition quotient of an invariant basin measure must recover quadratic Born weights for a nontrivial preparation family. If it merely renames hidden preparation ignorance, it has not recovered quantum probability.
-- The no-signaling/CHSH wall is that the same whole-state record and basin-measure machinery must recover the CHSH value $2\sqrt{2}$ and exact operational no-signaling while keeping preferred-frame leakage below Lorentz-test bounds. If one mechanism gives the correlation, another blocks signaling, and a third hides absolute-frame access, Bell has been reframed rather than recovered.
-- The photon-transport wall is that a fixed-void redshift map must rescale photon-channel energy coherently while preserving transported-bundle occupation shape, transverse phase coherence, and a declared energy ledger. Absolute time leaves no expansion sink in which redshift energy can simply disappear. If redshift requires stochastic scattering, absorption/re-emission, unbookkept energy loss, or thermalizing kicks along the transparent path, it will generically blur images, spoil $(1+z)$ time dilation, violate Tolman surface-brightness behavior, or distort the cosmic microwave background beyond observed blackbody and acoustic-structure tolerances.
+- The no-signaling/CHSH wall is that the same whole-state record and basin-measure machinery must recover the CHSH value $2\sqrt{2}$ and exact operational no-signaling while keeping preferred-frame leakage below Lorentz-test bounds. The no-signaling part must be a basin-measure invariance condition under local-setting relabelings at each wing, so marginalizing one wing is independent of the far setting while the joint invariant carries the correlation. If one mechanism gives the correlation, another blocks signaling, and a third hides absolute-frame access, Bell has been reframed rather than recovered.
+- The photon-transport wall is that a fixed-void redshift map must be generated by a transport operator that commutes with global frequency rescaling and carries no undeclared transverse momentum transfer, while preserving transported-bundle occupation shape, transverse phase coherence, and a declared energy ledger. Absolute time leaves no expansion sink in which redshift energy can simply disappear. If redshift requires stochastic scattering, absorption/re-emission, unbookkept energy loss, or thermalizing kicks along the transparent path, it will generically blur images, spoil $(1+z)$ time dilation, violate Tolman surface-brightness behavior, or distort the cosmic microwave background beyond observed blackbody and acoustic-structure tolerances.
 - The one-constitutive-response wall is that distance-ladder, lensing, growth, and cosmic microwave background inferences must be read through one Noether sea constitutive and transport response. If matching the ladder and the cosmic microwave background requires two unrelated responses, the architecture has inherited the Hubble and $S_8$ tensions rather than dissolved them.
 - The bridge-map wall is to write controlled source-to-effective maps: causal roots to effective fields, basin measures to quantum records, Noether sea response to effective metric behavior, exact substrate asymmetries to bounded observer-level symmetries, and source/release histories to cosmological observables. Each bridge must declare its source variables, target variables, validity regime, error tolerance, and failure condition rather than rely on a verbal matching between layers.
+
+In the cosmology branch, the photon-transport wall, the one-constitutive-response wall, and the lensing/growth constraint should be read as three projections of one energy-ledger obligation. Absolute time nominates a global scalar-energy conservation target; fixed-void redshift must therefore close the photon's missing energy into Noether sea, source/release, recoil, remnant, or boundary-flux bookkeeping rather than let it disappear into metric expansion.
 
 ###### Retrospective Falsification Criteria
 
@@ -95212,7 +95301,7 @@ The missed opportunity was not to evade Bell. It was to ask whether the experime
 
 That move is only a starting point. A whole-state record does not by itself recover the experiment. The quantitative burden is to reproduce the quantum CHSH value $2\sqrt{2}$ from the record and its basin measure while preserving operational no-signaling at the observer layer. Until that recovery is shown, Bell has been reframed rather than answered.
 
-There is also a preferred-frame leakage budget hidden inside that burden. The architecture keeps absolute time, finite $c_f$, and the Euclidean void at the substrate, so operational Lorentz invariance is an observer-level recovery rather than a primitive substrate symmetry. A Bell recovery may not buy the $2\sqrt{2}$ correlation by opening an observer-accessible channel to the absolute frame. The same record and measure machinery that recovers the joint law must keep one-wing marginals local and keep preferred-frame leakage in clocks, signal timing, analyzer calibration, and coincidence windows below Lorentz-test bounds. Otherwise the theory has only traded Bell factorization failure for detectable preferred-frame access.
+There is also a preferred-frame leakage budget hidden inside that burden. The architecture keeps absolute time, finite $c_f$, and the Euclidean void at the substrate, so operational Lorentz invariance is an observer-level recovery rather than a primitive substrate symmetry. A Bell recovery may not buy the $2\sqrt{2}$ correlation by opening an observer-accessible channel to the absolute frame. The same record and measure machinery that recovers the joint law must keep one-wing marginals local and keep preferred-frame leakage in clocks, signal timing, analyzer calibration, and coincidence windows below Lorentz-test bounds. The no-signaling row is therefore not an after-the-fact check; it must appear as basin-measure invariance under local-setting relabelings at each wing, so marginalizing one wing stays independent of the far setting while the joint invariant can still carry the $2\sqrt{2}$ correlation. Otherwise the theory has only traded Bell factorization failure for detectable preferred-frame access.
 
 The rational miss came from the danger of bad hidden-variable explanations. Many such explanations either smuggled in faster-than-light influence, denied experimental practice too cheaply, or failed to reproduce the data. Quantum mechanics, by contrast, gave a compact formal rule that worked. The responsible community therefore treated entanglement as a theorem-governed quantum phenomenon rather than a demand for a deeper causal record.
 
@@ -95290,11 +95379,49 @@ Tolman's doorway was disciplined testing. He did not merely speculate about reds
 
 This was necessary. Many simple tired-light pictures were not good enough. They struggled with image sharpness, observed time dilation, spectral coherence, and the full web of cosmological constraints. Rejecting those weak models was not a failure of imagination. It was scientific discipline.
 
-The miss was that the failure of crude tired-light explanations came to stand for a much larger conclusion: that non-expansion interpretations as a class were suspect. That narrowed the interpretive space too much. The Architrino architecture alternative is not a photon simply losing energy by ad hoc scattering. It is a combined account of path history, Noether sea evolution, source/release processes, coherent transport, energy-ledger closure, and clock rate comparison, with thermalization confined to the source, release, or pre-free-streaming ensemble rows where it can actually supply a bath. The transparent-path transport law is acceptable only if it rescales photon-channel energy while preserving image sharpness, observed $(1+z)$ time dilation, surface-brightness scaling, spectral coherence, transverse phase coherence, and the background-radiation constraints that defeated weaker alternatives.
+The miss was that the failure of crude tired-light explanations came to stand for a much larger conclusion: that non-expansion interpretations as a class were suspect. That narrowed the interpretive space too much. The Architrino architecture alternative is not a photon simply losing energy by ad hoc scattering. It is a combined account of path history, Noether sea evolution, source/release processes, coherent transport, energy-ledger closure, and clock rate comparison, with thermalization confined to the source, release, or pre-free-streaming ensemble rows where it can actually supply a bath. The transparent-path transport law is acceptable only if its generator commutes with global frequency rescaling, carries no undeclared transverse momentum transfer, and thereby preserves image sharpness, observed $(1+z)$ time dilation, surface-brightness scaling, spectral coherence, transverse phase coherence, and the background-radiation constraints that defeated weaker alternatives.
 
 Tolman therefore represents both the strength and the trap of empirical discrimination. A bad alternative should be removed. But its failure should not be allowed to erase a deeper category that was never actually tested in the same form.
 
 Tolman's role in the chain is disciplined testing: cosmology needed sharper tests, and still does. In the Architrino architecture, redshift, time dilation, background radiation, abundance, structure, and lensing remain in one evidential frame rather than being separated into local excuses. The redshift-energy row is especially sharp because absolute time keeps a global conservation target alive: the photon's missing energy must close into Noether sea, source/release, recoil, remnant, or boundary-flux bookkeeping rather than vanish into metric expansion. The historical missed opportunity was to confuse the defeat of weak non-expansion mechanisms with the defeat of every possible non-expanding Euclidean-void ontology.
+
+###### The Redshift Energy Ledger
+
+The fixed-void ontology makes one demand that expanding-spacetime cosmology does not make. In a generic expanding FRW chart, local covariant conservation does not supply a single globally conserved scalar energy, so cosmological redshift energy is not assigned to a global sink. In the Architrino architecture, absolute time and the Euclidean void impose the opposite burden. The substrate time-translation symmetry nominates a total scalar-energy ledger,
+
+$$
+E_{\mathrm{tot}}(t)
+=
+E_{\mathrm{arch}}(t)
++E_{\mathrm{wake}}(t)
++E_{\mathrm{sea}}(t),
+\qquad
+\frac{dE_{\mathrm{tot}}}{dt}=0
+$$
+
+where the three terms collect architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy. This equation is a conservation target until the delayed action or a quasi-Noether replacement proves it; it is nevertheless the right falsifier to carry through the redshift arc.
+
+For a transparent photon-channel bundle redshifted by $1+z$, the photon energy deficit is
+
+$$
+\Delta E_{\gamma}
+=
+E_{\mathrm{emit}}-E_{\mathrm{obs}}
+=
+E_{\mathrm{emit}}\frac{z}{1+z}
+$$
+
+After source, recoil, remnant, and boundary rows have been separated, a pure transparent-path redshift must close
+
+$$
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+This is not a rescue term. The sink is constrained by the same observations that made crude tired-light fail. It may not re-radiate into the transparent channel, blur images, distort the background spectrum, or break observed $(1+z)$ time dilation. It must accumulate along path history with the same constitutive response that recovers distance ladders, Tolman behavior, CMB blackbody and acoustic structure, lensing, and growth. Its spatial gradient may become part of the dark-sector budget, or it may over-predict lensing and structure; either way it is computable.
+
+The failure condition is therefore plain. If no single bookkept Noether sea sink can close $\Delta E_{\gamma}+\Delta E_{\mathrm{sea,path}}=0$ while preserving redshift-distance behavior, observed time dilation, Tolman surface brightness, blackbody quality, acoustic structure, image sharpness, lensing, and growth, then fixed-void redshift fails on the conservation target created by its own absolute-time postulate.
 
 ###### Chapter Forty-Four. Vera Rubin: Rotation Curves Split Mass From Light
 
@@ -95306,7 +95433,7 @@ In the Architrino architecture, Rubin's evidence remains real but its ontology i
 
 The rational miss was that dark matter organized more than rotation curves. It helped with clusters, large-scale structure, lensing, and the cosmic microwave background. A particle-like dark component therefore became the conservative way to preserve gravity, dynamics, and cosmology together. That was not careless. It was a productive effective ontology.
 
-Rubin's place in the chain is the first modern galaxy-scale warning: dynamical mass had split from luminous matter. McGaugh later sharpens the baryonic coupling problem, but Rubin supplies the decisive historical doorway. The missed question was whether the split identified a new particle sector, a medium response, or a deeper assembly-and-Noether-sea account that makes both readings effective.
+Rubin's place in the chain is the first modern galaxy-scale warning: dynamical mass had split from luminous matter. McGaugh later sharpens the baryonic coupling problem, but Rubin supplies the decisive historical doorway. The missed question was whether the split identified a new particle sector, a medium response, or a deeper assembly and Noether sea account that makes both readings effective.
 
 ###### Chapter Forty-Five. Stacy McGaugh: Galaxy Dynamics As A Dark-Matter Warning
 
@@ -95340,7 +95467,7 @@ In the current academic canon, that data product is relic radiation from a hot e
 
 The rational miss is that the hot Big Bang interpretation made the background astonishingly productive. Once the cosmic microwave background could be treated as relic radiation from an early hot dense state, the framework generated calculable abundance, recombination, acoustic-peak, polarization, and structure-growth targets. That was a genuine scientific victory. It also made the background feel like a birth certificate for the universe rather than a transfer product whose source, thermalization, Noether sea transport, and clock reconstruction history still needed accounting together.
 
-That is why the standard interpretation held its ground. A background-radiation alternative could not be a loose story about thermalized light. It had to account for blackbody quality, spectral-distortion limits, anisotropy statistics, TT/TE/EE acoustic structure, lensing handoff, dipole-frame consistency, light-element compatibility, and growth correlations without fragmenting the explanation into unrelated devices. The hard wall is that the thermalizing and transparent-transport parts cannot be collapsed. Thermalization may prepare or relax a bath before the free-streaming record is fixed; after that, redshift must act as a coherent rescaling of transported photon bundles, preserving occupation-number shape and transverse phase coherence rather than re-Planckianizing by coincidence. The historical clue was precisely that all of those observables had to be source, transport, thermalization, and clock reconstruction records of one system.
+That is why the standard interpretation held its ground. A background-radiation alternative could not be a loose story about thermalized light. It had to account for blackbody quality, spectral-distortion limits, anisotropy statistics, TT/TE/EE acoustic structure, lensing handoff, dipole-frame consistency, light-element compatibility, and growth correlations without fragmenting the explanation into unrelated devices. The hard wall is that the thermalizing and transparent-transport parts cannot be collapsed. Thermalization may prepare or relax a bath before the free-streaming record is fixed; after that, redshift must act through a transport generator that commutes with global frequency rescaling and conserves transverse photon momentum up to the declared lensing, aperture, and detector tolerances. Only then can transported photon bundles preserve occupation-number shape and transverse phase coherence rather than re-Planckianize by coincidence. The historical clue was precisely that all of those observables had to be source, transport, thermalization, and clock reconstruction records of one system.
 
 The CMB line leaves the central burden exposed: the cosmic microwave background was the right battlefield but the wrong foundation. The background should have forced a deeper question: what physical medium and source history can make the sky look like a single calibrated thermal surface to embedded observers? The standard answer was early metric expansion. The Architrino architecture's recovery target is to derive that appearance from Noether sea transport, source/release history, and clock map reconstruction.
 

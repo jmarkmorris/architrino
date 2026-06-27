@@ -73,7 +73,44 @@ $$
 
 where $\mathcal{T}_{\lambda}$ is the transparent photon-channel transport map, $\mathcal{B}_{T}$ is the effective Planck spectrum at temperature $T$, and the transverse bounds apply after declared lensing, aperture, and detector terms are removed. A branch that redshifts by stochastic scattering, absorption/re-emission, or thermalizing kicks has not supplied the required coherent transport invariant unless the same packet also preserves blackbody quality, image sharpness, time dilation, anisotropy, and polarization.
 
-Absolute time also makes the redshift-energy row non-optional. A fixed-void branch cannot let the photon's missing energy disappear into expansion bookkeeping; it must close the finite-window ledger through Noether sea update, source/release or remnant rows, recoil/exchange rows, and declared boundary flux. The same Noether sea state that preserves blackbody shape and image coherence must carry that energy balance, or the transport branch has split the very constitutive response this priority is testing.
+Equivalently, if $\mathcal{D}_{\lambda}$ denotes global frequency dilation on the admitted band and $\mathcal{G}_{\mathrm{tr}}$ denotes the transparent-transport generator, the same branch must satisfy
+
+$$
+[\mathcal{G}_{\mathrm{tr}},\mathcal{D}_{\lambda}]_{\mathrm{band}}
+=O(\epsilon_{\mathrm{spec}}),
+\qquad
+\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})
+$$
+
+for the declared path depth and Noether sea state. Breaking the commutator spoils blackbody-shape preservation; undeclared transverse momentum transfer spoils image sharpness.
+
+Absolute time also makes the redshift-energy row non-optional. A fixed-void branch cannot let the photon's missing energy disappear into expansion bookkeeping; it must close the finite-window ledger through Noether sea update, source/release or remnant rows, recoil/exchange rows, and declared boundary flux. The global target behind that finite-window row is
+
+$$
+E_{\mathrm{tot}}(t)
+=
+E_{\mathrm{arch}}(t)
++E_{\mathrm{wake}}(t)
++E_{\mathrm{sea}}(t),
+\qquad
+\frac{dE_{\mathrm{tot}}}{dt}=0
+$$
+
+For a transparent photon-channel bundle redshifted by $1+z$ after source, recoil, remnant, and boundary rows have been separated, the lemma target is
+
+$$
+\Delta E_{\gamma}
+=
+E_{\mathrm{emit}}-E_{\mathrm{obs}}
+=
+E_{\mathrm{emit}}\frac{z}{1+z},
+\qquad
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+The same Noether sea state that preserves blackbody shape and image coherence must carry that energy balance, or the transport branch has split the very constitutive response this priority is testing. Failure is explicit: if no single bookkept Noether sea sink can close the redshift energy row while preserving redshift-distance behavior, observed $(1+z)$ time dilation, Tolman surface brightness, blackbody quality, acoustic structure, image sharpness, lensing, and growth, the fixed-void redshift branch fails on its own absolute-time conservation target.
 
 ## Galaxy-Local Recycling And Horizon Uniformity
 

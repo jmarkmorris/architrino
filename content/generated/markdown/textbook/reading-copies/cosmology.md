@@ -643,6 +643,42 @@ $$
 
 The signs follow the same retained path-history record: $\Delta E_{\gamma,\Omega}$ is the photon-channel change across the comparison window, $\Delta E_{\mathrm{sea},\Omega}$ is the Noether sea update, $\Delta E_{\mathrm{src/rem},\Omega}$ covers declared source or remnant rows, $\Delta E_{\mathrm{recoil},\Omega}$ covers material recoil or target exchange, and the boundary flux term records energy entering or leaving the finite window. A deep-space redshift branch earns standing only when the same Noether sea transport that preserves image sharpness and occupation shape also makes this residual small under the declared tolerance.
 
+#### Redshift Energy Ledger
+
+The finite-window residual above is the operational form of a stronger absolute-time target. Because the Euclidean void does not expand, the architecture cannot let cosmological redshift energy disappear into expansion bookkeeping. The substrate time-translation symmetry nominates a scalar universe-state ledger
+
+$$
+E_{\mathrm{tot}}(t)
+=
+E_{\mathrm{arch}}(t)
++E_{\mathrm{wake}}(t)
++E_{\mathrm{sea}}(t),
+\qquad
+\frac{dE_{\mathrm{tot}}}{dt}=0
+$$
+
+where $E_{\mathrm{arch}}$ collects architrino kinetic and configuration energy, $E_{\mathrm{wake}}$ collects causal-wake energy in flight, and $E_{\mathrm{sea}}$ collects Noether sea constitutive energy. This is a conservation target rather than a proved theorem until the delayed action or a quasi-Noether replacement supplies the required invariant.
+
+For a transparent photon-channel bundle with $E_{\mathrm{obs}}=E_{\mathrm{emit}}/(1+z)$, the missing photon energy is
+
+$$
+\Delta E_{\gamma}
+=
+E_{\mathrm{emit}}-E_{\mathrm{obs}}
+=
+E_{\mathrm{emit}}\frac{z}{1+z}
+$$
+
+After source-branch, recoil, remnant, and boundary rows have been separated, a pure transparent-path redshift must close
+
+$$
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+The same term $\Delta E_{\mathrm{sea,path}}$ is then not adjustable per observable. It must be the energy face of the transport operator that preserves occupation shape and image sharpness; its path integral must recover redshift-distance and observed $(1+z)$ time dilation; and its spatial gradient must remain compatible with the lensing and growth budgets. If those rows require separate Noether sea responses, the branch has reproduced the standard tension split rather than closing it.
+
 #### Observable Frequency Form
 
 The same factorization can be written in the more familiar language of an emitted line frequency and a received line frequency. If $\nu_{X,0}$ is the reference frequency for transition family $X$, then
@@ -864,7 +900,16 @@ $$
 |\Delta\phi_{\perp}|\le \epsilon_{\mathrm{coh}}
 $$
 
-after declared lensing, aperture, and detector terms have been removed. In words: the path term may shift every mode by the same fractional factor for the declared distance and Noether sea state, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, or transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name.
+after declared lensing, aperture, and detector terms have been removed. Equivalently, let $\mathcal{D}_{\lambda}$ denote global frequency dilation on the admitted photon-channel band and let $\mathcal{G}_{\mathrm{tr}}$ denote the transparent-transport generator. The coherent branch must satisfy
+
+$$
+[\mathcal{G}_{\mathrm{tr}},\mathcal{D}_{\lambda}]_{\mathrm{band}}
+=O(\epsilon_{\mathrm{spec}}),
+\qquad
+\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})
+$$
+
+for the declared path-depth and Noether sea state. In words: the path term may shift every mode by the same fractional factor, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, or undeclared transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name.
 
 #### Equilibrium-Transport Candidate for Path History
 
@@ -2767,6 +2812,16 @@ B_{\mathrm{loss}}^\theta
 $$
 This residual is the CMB-facing form of source provenance. A branch that recovers a blackbody curve by adding an untracked photon bath, or by hiding excess source energy in an undeclared non-photon reservoir, has not supplied the shared record required by the CMB gate.
 
+Post-free-streaming redshift adds the same constraint on the transport side. Once source, recoil, remnant, and boundary rows are separated, a redshifted photon bundle must close its energy deficit into the Noether sea path update,
+
+$$
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+without re-thermalizing the spectrum, blurring images, or erasing anisotropy and polarization. A CMB branch that preserves the Planck curve only by hiding the redshift energy in an untracked bath has failed the fixed-void energy ledger.
+
 #### Historical Equality and Temperature Benchmark
 
 The 1948 Alpher-Herman correction to Gamow is useful here as historical pressure, not as a present-parameter source. Their calculation corrected an early matter-density estimate, found that the naive matter-radiation-density intersection moved to an implausibly late time if the curvature term were neglected, and then restored that curvature term in the effective expanding-universe equation. In the corrected record, the matter/radiation intersection, a Jeans-style condensation mass and radius, a gas temperature at condensation, and a present radiation temperature of order $5\,\mathrm{K}$ were tied into one computation.
@@ -2874,6 +2929,8 @@ $$
 $$
 
 where $\mathcal{B}_{T}$ denotes the observer-level Planck spectrum at temperature $T$ and $\lambda=1+z$ for the declared path after endpoint and launch terms are separated. This condition is stronger than fitting a final temperature. It says the transport has preserved the occupation-number shape rather than re-thermalizing an arbitrary distorted spectrum by coincidence.
+
+The same transparent-transport branch must also carry no undeclared transverse photon-momentum transfer. After declared lensing, beam, aperture, and detector terms are removed, the image-preserving condition is $\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})$, with any remaining transverse phase residual kept inside the polarization and anisotropy tolerances.
 
 The spectrum gate should be stated as a calibrated comparison, not as an assumption that the theoretical Planck curve has been directly observed without apparatus structure. For frequency channels $\nu_i$, measured intensities $I_i$, foreground model $F_i(\psi)$, and calibration covariance $C_{ij}$, define
 $$
