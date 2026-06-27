@@ -76,7 +76,7 @@ Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column p
 
 [EQ-21/EQ-22/EQ-23 Theta-Src Source-Field Map](eq-21-22-23-theta-src-source-field-map.md) narrows the shared-observation source-window route to `Theta_src` for growth, CMB, and BBN rows while keeping `EQ-32` blocked upstream by `theta_sea_rho_NS` and `delta_a_star`. No score changes.
 
-[EQ-15 And EQ-27 Ordered-Frame Loop Source-Field Map](eq-15-27-ordered-frame-loop-source-field-map.md) narrows the shared ordered-frame loop first blocker to one source-backed non-gauge spin-lift and moment-map magnetic carrier on a retained branch record. No score changes.
+[EQ-15 And EQ-27 Ordered-Frame Loop Source-Field Map](eq-15-27-ordered-frame-loop-source-field-map.md) narrows the shared ordered-frame loop first blocker to one source-backed non-gauge spin-lift and moment-map magnetic carrier on a retained branch record, with Direct Geometry Layers for both spinor/exchange and magnetic-moment readouts. No score changes.
 
 [EQ-16 Weak-Visible Branch Ledger Source-Field Map](eq-16-weak-visible-branch-ledger-source-field-map.md) narrows `EQ-16` to one source-backed weak-visible retained-domain ledger with projection, quotient, exposure, `V-A`, CKM/PMNS, provenance, covariance, reaction-event, and Noether sea rows. No score changes.
 

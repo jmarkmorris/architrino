@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1466
+      "sections": 1467
     }
   },
   "tocRoot": {
@@ -8768,6 +8768,14 @@
                         "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
                         "markdownSection": "Cluster and Stability Residuals",
                         "sectionKey": "cluster and stability residuals",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Field-Speed Approach Scan",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownSection": "Field-Speed Approach Scan",
+                        "sectionKey": "field speed approach scan",
                         "headingLevel": 2
                       },
                       {

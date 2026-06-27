@@ -59652,7 +59652,7 @@ From the viewpoint of an embedded assembly:
 
 1. **Near-field-speed assemblies ("Stealth" vs. "Reactive" Modes)**
    - **Near-$c_f$ Linear Fragility (Self-Hit Resonance):** Approaching $c_f$ from below does **not** produce self-hit on a strictly sub-field-speed interval; the triangle inequality forbids the same-source root. At exactly $v = c_f$, straight-line motion gives a degenerate tangent family rather than a clean simple branch. Self-hit resonance is admitted only when the same-source root set is nonempty and passes the transversality/Jacobian floor. A super-field-speed curved interval is therefore a candidate source of self-hit, not a speed-only acceptance test. In that regime small perturbations are strongly amplified or damped depending on phase. The wake amplitude does **not** diverge; "pileup" here means coherent reinforcement of a finite wake, not a singularity. Linear near-$c_f$ states are therefore **fragile** and short-lived unless the system actively de-phases the feedback.
-   - **The Curvature Solution (Stable Stealth):** Stable assemblies at $v \approx c_f$ (like the middle binary) use **curvature or internal modulation** to continuously rotate/de-phase their self-hit geometry. This allows the assembly to keep a "hard" potential front externally while avoiding runaway self-reinforcement.
+   - **The Curvature Target (Stable Stealth):** Candidate stable assemblies near $v \approx c_f$ (such as the middle-binary regime) may use curvature, phase rotation, or internal modulation to de-phase their self-hit geometry. The closure target is to show that this mechanism can keep a hard potential front externally while preserving a Jacobian floor, bounded energy, and deterministic multistability rather than permitting runaway self-reinforcement.
    - **Operational Effect:** A receiver sees little change until the corkscrewing assembly is very close, then feels a rapid, modulated potential surge—a "digital" shockwave delivered without warning.
 
 2. **$v>c_f$ inner-binary motion**
@@ -71921,6 +71921,14 @@ for each endpoint branch and each transition continuation.
 
 The action-increment claim is numerically meaningful only when $\delta_I$ is small, $\Delta_{\mathbf{k}}>0$, and the phase, energy, and root residuals remain below their predeclared tolerances across refinement.
 
+###### Field-Speed Approach Scan
+
+The campaign must include an approach-to-$c_f$ diagnostic on the same branch rows used for the action-increment calculation. This is not a new gate. It is the root-and-action stress test that prevents a stable-looking increment from being promoted when the branch survives only by numerical accident near the field-speed boundary.
+
+For each declared scan family, report rows approaching the field speed from below, at the boundary when the continuation reaches it, and from above when the branch chart admits a super-field-speed interval. Each row must record the layer speed ratios, active partner-root count, active self-root count, active inter-layer-root count, minimum accepted Jacobian floor, separator status, root-ledger identity, accepted/rejected status, and stable-cycle $\Delta I_{\mathrm{ME}}$ cluster assignment.
+
+The scan has a simple discipline. A packet may not promote `candidate_h_recovery` if the accepted near-boundary rows lose their Jacobian floor, change active-root identity under refinement, or split into non-uniform stable action increments without a derived branch-class reason. In that case the packet may still report a useful diagnostic, but it has not recovered the Planck benchmark from a well-posed nested shell braid action scale.
+
 ###### Required Packet Files
 
 The minimum campaign packet contains:
@@ -71933,6 +71941,7 @@ The minimum campaign packet contains:
 | `root_ledger_before_after.json` | partner, self, and inter-layer roots before and after transition, with delays, action-level $g$, $u$, Jacobians, separator flags, and $\Delta N_{\mathrm{self}}$ |
 | `torque_integrals.csv` | diagnostic $\int\mathbf T_I\,dt$, $\int\mathbf T_M\,dt$, $\int\mathbf T_O\,dt$, $\Delta\mathbf L_{\mathrm{wake},\partial}$, and projection onto $\hat{\mathbf a}$ |
 | `action_increment_rows.csv` | $\Delta I_{\mathrm{ME}}$, absolute value, cluster id, accepted/rejected status, and failure code |
+| `field_speed_approach_scan.csv` | scan-family id, speed-window label, layer speed ratios, active partner/self/inter-layer root counts, minimum accepted $|J|$, separator status, root-ledger stability, $\Delta I_{\mathrm{ME}}$, cluster id, accepted/rejected status, and failure code |
 | `energy_ledger.csv` | $\sum_\ell\int\omega_\ell\,dI_\ell$, $\Delta E_{\mathrm{wake}}$, $\Delta E_{\mathrm{coupl}}$, exact $E_{\mathrm{wake,eff}}^{(\eta)}$, diagnostic $U$ if used, and $\mathcal{R}_E$ |
 | `conservation_pullback.csv` | branch-chart id, cut/window id, $\eta$, $\epsilon_c$, $h$, endpoint convention, $\nu_J$, inactive-gap minimum, $h_{\mathrm{mem}}$, $K_{\mu}$, $E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}$, $\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{J}_{\mathrm{mech}}$, $\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathcal{R}_E$, $\mathcal{R}_P$, $\mathcal{R}_J$, and verdict |
 | `phase_closure_residuals.csv` | layer and inter-layer phase closure residuals, winding labels, and tolerance status |
@@ -71967,6 +71976,9 @@ Only a packet that also has small $\delta_h$ may promote `candidate_h_recovery`.
 | `nonpositive-floquet-gap` | an endpoint branch or transition continuation has $\Delta_{\mathbf{k}}\le0$ |
 | `phase-closure-open` | layer or inter-layer closure residuals exceed tolerance |
 | `root-ledger-instability` | active roots change under refinement or the self-hit parity condition fails |
+| `jacobian-floor-loss` | accepted near-boundary rows lose the declared minimum Jacobian floor |
+| `field-speed-root-instability` | the approach-to-$c_f$ scan changes active-root identity, separator status, or branch status under refinement |
+| `nonuniform-action-spacing` | stable-cycle action increments split across the field-speed approach scan with no derived branch-class reason |
 | `energy-ledger-open` | $\mathcal{R}_E$ exceeds tolerance or the wake/root energy channel is unaccounted |
 | `conservation-pullback-open` | $\mathcal{R}_P$ or $\mathcal{R}_J$ exceeds tolerance, or the exact Noether pullback uses different rows than the root ledger or force residual |
 | `convergence-fail` | required convergence or cross-integrator gates fail |
