@@ -318,6 +318,8 @@ The long-term relevance of this subject is as a **permanent methodological princ
 
 This distinction matters because advanced science increasingly depends on numerical integration, inverse modeling, parameter fitting, stochastic sampling, and complexity bounds. It is therefore easy to confuse three different things: the world, our best executable representation of the world, and the formal limits on what we can compute about that representation. A clear account must keep all three distinct.
 
+A simulation also has an envelope: which scales are represented, how accurately, at what precision, at what replay rate, through which feedback paths, and with which interventions allowed. Expanding that envelope can increase scientific control, but control over a model is not control over ontology. The stronger methodological lesson is that every executable result inherits the scope, sampling, perturbation, and observability conditions under which it was produced.
+
 ### Historical Motivation
 
 The historical motivation came from the explosive growth of computational science. Many systems of interest became too nonlinear, multiscale, or data-rich for closed-form treatment. At the same time, computability theory, complexity analysis, and numerical analysis made it obvious that not every well-defined problem is tractable, stable, or decidable in the same way. The core question thus became whether computational constraint is merely an epistemic fact about us or a clue to the architecture of reality. The central claim of stronger positions is that the boundary of computability tracks the boundary of the physically real.
@@ -337,6 +339,8 @@ then no general algorithm can decide that reachability question for every encode
 The primary ontological commitment of the moderate form of this subject is minimal: formal models are tools for representing constrained aspects of real systems, and their limitations partly reflect the structure of those tools. More ambitious versions make stronger claims, suggesting that what cannot be computed cannot be physically realized, or that complexity classes place direct bounds on ontology. What this subject gets right is that scientific access is always shaped by modeling architecture, approximation scheme, and computational feasibility. Those are not superficial concerns. They determine what can even be explored.
 
 It also gets right that simulation can reveal emergent structure inaccessible to purely analytic reasoning. Assembly behavior, nonequilibrium regimes, multiscale feedback, and delayed causal propagation are often intelligible only when a model is executed. In that sense, simulation is not a secondary luxury. It is one of the main ways by which hidden dynamical consequences become visible.
+
+The same point applies to scale control. Scientific progress often appears as increased reach across scale, from local state evolution to large-domain response and from passive replay to controlled perturbation. That reach is operationally important, but it remains a capability of a model, instrument, or intervention protocol. It does not convert the simulated domain into the physical domain itself.
 
 ### Internal Tensions
 

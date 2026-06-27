@@ -33,11 +33,17 @@ R_{\mathrm{MM}}=\bar\delta-\bar\beta.
 $$
 This is the useful lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$: Michelson-Morley alone can be hidden by a ruler deformation, but Kennedy-Thorndike and Ives-Stilwell force the same closure record to retune clocks and rulers together.
 
+The test suite also separates one-way and two-way isotropy. Michelson-Morley constrains round-trip light propagation; it does not directly measure a one-way photon-channel speed without an independent synchronization convention. A preferred-frame branch may therefore carry a substrate one-way anisotropy only if the assembly-clock synchronization map makes that anisotropy operationally inaccessible while the measurable two-way, boost-dependence, clock-comparison, and resonator/cavity rows remain bounded.
+
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
 Lorentz symmetry is already a theorem target, not substrate ontology. More precisely, the test-suite problem is exact substrate asymmetry to bounded emergent symmetry: absolute time, the Euclidean void, and finite $c_f$ may remain in the ontology only if moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and photon-channel transport suppress every observer-accessible preferred-frame current below the declared leakage bound. The Noether sea response object and nested shell braid causal closure should make absolute-frame dynamics operationally hidden in the tested regime.
 
+This packet owns the leakage-vector expansion behind the essay phrase "bounded preferred-frame leakage". A candidate branch must report separate residual rows for Michelson-Morley two-way anisotropy, Kennedy-Thorndike boost drift, Ives-Stilwell clock-dilation behavior, Hughes-Drever and clock-comparison matter-sector anisotropy, sidereal modulation, photon-sector dispersion/birefringence/time-of-flight leakage, weak-field preferred-frame terms, and gravitational-wave-versus-photon speed matching. Each row must declare expansion order, validity regime, and tolerance. Collapsing those rows into one $\epsilon_{\mathrm{LV}}$ label is allowed only as a summary after the individual residuals are declared.
+
 In priority terms this is an invariant-provenance packet, not only a null-test checklist. The same branch must identify the substrate-exact rows, the observer-level Lorentz invariants they export, and the residual leakage coefficients that remain after physical clock, ruler, and photon-channel records are compressed into an operational frame.
+
+The same single-response discipline makes a sharper coefficient prediction. RMS offsets and SME-style coefficients should not be tuned as independent rows if the branch is real; a toy Noether sea constitutive response should project them onto a constrained coefficient submanifold. The useful calculation is therefore not only whether each row is individually small, but whether any nonzero residuals carry the correlated pattern forced by one common-mode branch rather than the full free SME coefficient space.
 
 ## Task Queue
 
@@ -45,14 +51,21 @@ In priority terms this is an invariant-provenance packet, not only a null-test c
 2. `moving_assembly_deformation` — Derive $\xi\to1/\gamma$ for the longitudinal envelope ratio in the homogeneous weak-response limit. Status: `draft`.
 3. `clock_ruler_retuning` — Show that clock frequency, ruler length, and signal synchronization use one closure record. Status: `draft`.
 4. `leakage_bound` — Define $\epsilon_{\mathrm{LV}}$ against modern test-suite bounds without making the bound itself an input coefficient. Status: `draft`.
+5. `gw_photon_common_speed` — Show that the effective gravitational channel and photon channel share a limiting speed to the GW170817-class tolerance in the tested weak-field transport regime. Status: `draft`.
+6. `clock_map_velocity_potential` — Derive one clock map $d\tau/dt=f_{\tau}(\beta,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{assembly state})$ whose velocity sector recovers special-relativistic time dilation and whose potential sector recovers weak-field gravitational redshift and PPN clock/curvature constraints. Status: `draft`.
+7. `coefficient_submanifold` — Project one toy Noether sea constitutive response into RMS and low-order SME-style residual rows and test whether the induced coefficients occupy a correlated submanifold rather than independent fit dimensions. Status: `draft`.
 
 ## Closure Objects
 
 - Preferred-frame leakage: $\epsilon_{\mathrm{LV}}$.
 - Two-way anisotropy diagnostic: $\Delta_{\mathrm{tw}}(\beta)$.
+- Clock map: $d\tau/dt=f_{\tau}(\beta,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{assembly state})$.
+- Clock-map residuals: $R_{\tau v}$ and $R_{\tau\Phi}$.
 - Shape ratio: $\xi=R_{\parallel}/R_{\perp}$.
 - Clock observable: $\omega_{\text{clk}}/\omega_0$.
 - Constitutive coefficients: $(k_2,\ell_2,k_4,\ell_4)$ for stiffness-channel closure.
+- GW/photon speed residual: $R_{\mathrm{GW}\gamma}\equiv(c_{\mathrm{GW}}^{\mathrm{eff}}-c_\gamma)/c_\gamma$.
+- Coefficient-submanifold projection for $\mathbf{R}_{\mathrm{RMS}}$ and $\mathbf{R}_{\mathrm{SME}}^{\mathrm{eff}}$ from one common-mode response.
 
 ## Source-Mined Residual Suite
 
@@ -74,6 +87,52 @@ $$
 \epsilon_{\mathrm{MM}},
 $$
 with the modern direct photon-sector target at the $10^{-18}$ fractional-frequency level when the projection is a two-cavity or two-oscillator comparison.
+
+A separate one-way residual may be tracked only relative to a declared synchronization map:
+$$
+\Delta_{\rightarrow}(\beta,\hat{\mathbf n};\mathcal{S})
+\equiv
+\frac{
+c_{\gamma,\rightarrow}(\beta,\hat{\mathbf n};\mathcal{S})-c_0
+}{c_0},
+$$
+where $\mathcal{S}$ is the clock-synchronization convention physically realized by the same assembly branch. This residual is not a Michelson-Morley observable by itself. The operational requirement is that $\mathcal{S}$ pushes any substrate one-way anisotropy into unobservable convention dependence while the measurable residual vector remains bounded.
+
+For Earth-laboratory preferred-frame rows, use the explicit drift parameter
+$$
+\beta_\oplus\equiv\frac{v_\oplus}{c_{\text{eff}}},
+$$
+and report the leading order at which each residual first appears. A budget that says only "$O(\epsilon_{\mathrm{LV}})$" without the channel and leading power of $\beta_\oplus$ is not yet a budget.
+
+The clock branch must be represented by a substrate-to-observer map,
+$$
+\frac{d\tau}{dt}
+=
+f_{\tau}\!\left(
+\beta,\,
+n(\mathbf{x},t),\,
+\chi_{\text{sea}}(\mathbf{x},t),\,
+\Phi_{\text{eff}}(\mathbf{x},t),\,
+\text{assembly state}
+\right),
+\qquad
+\beta\equiv\frac{v}{c_{\text{eff}}}.
+$$
+The velocity sector is constrained by
+$$
+R_{\tau v}(\beta)
+\equiv
+\left.\frac{d\tau}{dt}\right|_{\nabla n=0,\ \nabla\Phi_{\text{eff}}=0}
+-\sqrt{1-\beta^2},
+$$
+and must match time-dilation tests, including Ives-Stilwell and storage-ring comparisons, at the experiment-specific precision. The potential sector is constrained by
+$$
+R_{\tau\Phi}
+\equiv
+\left.\frac{d\tau}{dt}\right|_{\beta=0}
+-\left(1+\frac{\Phi_{\text{eff}}}{c_{\text{eff}}^2}+O\!\left(\frac{\Phi_{\text{eff}}^2}{c_{\text{eff}}^4}\right)\right),
+$$
+with the $\Phi_{\text{eff}}$ sign convention declared. This row consumes gravitational-redshift tests and the weak-field PPN target $\gamma_{\mathrm{PPN}}\to1$ at the Cassini-class scale. Passing one sector by fitting a separate clock law does not count; both sectors must be restrictions of the same $f_{\tau}$.
 
 Kennedy-Thorndike closure requires no boost-dependent drift in the same branch:
 $$
@@ -122,12 +181,38 @@ $$
 $$
 where the photon-sector rows compare against two-way cavity, clock-comparison, and birefringence tests; $\bar{s}^{\mu\nu}_{\mathrm{eff}}$ compares against gravitational Lorentz tests; and $\mathbf{c}_{\mathrm{matter}}^{\mathrm{eff}}$ compares against matter-clock and spin-precession tests. These are not new fit knobs. They are a named projection of one candidate branch into the same Sun-centered comparison frame used by the SME data tables.
 
+The gravitational-wave and photon channels add a direct speed-matching residual:
+$$
+R_{\mathrm{GW}\gamma}
+\equiv
+\frac{c_{\mathrm{GW}}^{\mathrm{eff}}-c_\gamma}{c_\gamma}.
+$$
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a common-mode Noether sea response condition, not a statement that primitive $c_f$, photon-channel $c_\gamma$, and observer-level $c_{\text{eff}}$ were the same quantity all along. The effective gravitational channel and photon channel may be distinct dressings only if their weak-field limiting speeds match to the declared GW170817-class tolerance.
+
+## Preferred-Frame Leakage Budget
+
+| Leakage channel | Residual row | Physical observable | Order target |
+| --- | --- | --- | --- |
+| Two-way speed anisotropy | $\Delta_{\mathrm{tw}}(\beta,\hat{\mathbf n})$ | Round-trip signal speed versus orientation | $\lesssim10^{-18}$ fractional-frequency class in modern cavity tests |
+| Boost-dependence of two-way speed | $\Delta_{\mathrm{KT}}(\beta_1,\beta_2)$ | Round-trip speed versus lab velocity | source-specific, roughly $10^{-8}$ to $10^{-12}$ class |
+| Clock and energy-level anisotropy | $\mathbf{c}_{\mathrm{matter}}^{\mathrm{eff}}$ rows | Energy-level splitting versus orientation | order-$10^{-29}$ class in tight SME matter-sector rows, with units and coefficient basis declared |
+| Clock-map velocity sector | $R_{\tau v}$ | Time dilation of moving assembly clocks | experiment-specific; storage-ring/Ives-Stilwell class tests reach ppb scale and better |
+| Clock-map potential sector | $R_{\tau\Phi}$ | Gravitational redshift and weak-field clock/curvature response | clock-redshift bounds plus Cassini-class $\gamma_{\mathrm{PPN}}-1$ at order $10^{-5}$ |
+| Sidereal modulation | sidereal and annual Fourier rows of the same residuals | Daily or annual modulation of clock, cavity, or signal records | band-specific; report frequency, phase convention, and coefficient row |
+| Photon dispersion/birefringence/time-of-flight | $\tilde\kappa^{\mathrm{eff}}$ rows and time-of-flight residuals | Energy-dependent $c_\gamma$, polarization rotation, arrival-time leakage | source-specific; can reach $10^{-20}$-class and tighter in astrophysical photon comparisons |
+| Weak-field preferred-frame terms | $\bar{s}^{\mu\nu}_{\mathrm{eff}}$ and PPN preferred-frame rows | Effective gravity and clock/ruler response in weak fields | compare coefficient by coefficient against PPN/SME bounds |
+| GW/photon speed split | $R_{\mathrm{GW}\gamma}$ | $c_{\mathrm{GW}}^{\mathrm{eff}}$ versus $c_\gamma$ | $\sim10^{-15}$ class from GW170817/GRB 170817A |
+
+The common-mode criterion applies across the full table. A branch that passes the two-way optical row by retuning the photon channel but leaves an uncancelled matter-sector clock anisotropy, sidereal line, birefringence row, weak-field preferred-frame row, or GW/photon speed split has not recovered Lorentz behavior.
+
 ## Bound Rows To Consume
 
 | Source family | Residual row | AAA closure use |
 | --- | --- | --- |
 | Will PPN table | $|\gamma_{\mathrm{PPN}}-1|\le2.3\times10^{-5}$, $|\beta_{\mathrm{PPN}}-1|\le8\times10^{-5}$, $|\alpha_1|\le4\times10^{-5}$, $|\alpha_2|\le2\times10^{-9}$, $|\alpha_3|\le4\times10^{-20}$ | Weak-field effective metric cannot match Shapiro delay while leaving preferred-frame rows free. |
 | Direct terrestrial photon tests | $\Delta\nu/\nu$ and two-way orientation residuals at $\sim10^{-18}$ | $\Delta_{\mathrm{tw}}$ is a real null-test residual, not a narrative claim that observers cannot see the Euclidean-void rest frame. |
+| Hughes-Drever-type and modern clock-comparison tests | Orientation dependence of internal energy levels and clock transitions | The same moving-assembly record that hides two-way signal anisotropy must also suppress matter-sector orientation leakage. |
+| GW170817/GRB 170817A | $R_{\mathrm{GW}\gamma}$ at $\sim10^{-15}$ | The effective gravitational channel and photon channel must share a common weak-field limiting speed. |
 | SME data tables | photon, matter, neutrino, and gravity coefficients in the standard Sun-centered frame, with no confirmed violation | Export $\mathbf{R}_{\mathrm{SME}}^{\mathrm{eff}}$ from the candidate branch and compare coefficient by coefficient rather than collapsing all bounds into one scalar. |
 | RMS test theory | $(R_{\mathrm{MM}},R_{\mathrm{KT}},R_{\mathrm{IS}})$ | Separates ruler anisotropy, boost dependence, and clock retuning so coefficient splits are visible. |
 

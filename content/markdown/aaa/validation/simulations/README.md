@@ -45,3 +45,17 @@ This enforces a clean separation between:
 
 - Fundamental dynamics in the absolute frame (what the simulation integrates),
 - Emergent observational physics (what real experiments would see).
+
+## Simulation Scope Envelope
+
+A simulation is a bounded experiment on the model, not a complete copy of $\mathbb{U}_{\text{now}}$. Every run should declare its scope before outputs are interpreted:
+
+- spatial domain and boundary conditions;
+- absolute-time span, $\Delta t$, and retained history depth;
+- entity count, assembly inventory, and Noether sea initialization;
+- spatial, temporal, and path-history resolution ladders;
+- logged $\mathbb{U}_{\text{now}}$ channels and detector-synthetic channels;
+- runtime-rate or cost budget when feasible replay matters;
+- feedback or intervention mode, including whether the run is passive replay, diagnostic probing, controlled perturbation, or detector post-processing.
+
+Near-threshold events need a margin report. If an unresolved perturbation, sampling choice, or detector context can flip a reaction, branch, or record classification, the simulation should report the threshold margin and alternate-outcome band. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not substrate randomness; it is unresolved state sensitivity inside a deterministic causal-history model.

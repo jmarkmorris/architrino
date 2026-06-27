@@ -1027,6 +1027,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - **Ch 10.11.3.19** [Falsifiable edges and tests (observability-focused)](../../../markdown/aaa/validation/simulations/perspective.md?section=Falsifiable+edges+and+tests+%28observability-focused%29)
     - **Ch 10.11.4** [README](../../../scenes/validation/sim_readme.json)
       - **Ch 10.11.4.1** [Simulation Frame: Virtual $\mathbb{U}_{\text{now}}$ Perspective](../../../markdown/aaa/validation/simulations/README.md?section=Simulation+Frame%3A+Virtual+%24%5Cmathbb%7BU%7D_%7B%5Ctext%7Bnow%7D%7D%24+Perspective)
+      - **Ch 10.11.4.2** [Simulation Scope Envelope](../../../markdown/aaa/validation/simulations/README.md?section=Simulation+Scope+Envelope)
     - **Ch 10.11.5** [Run Protocols](../../../scenes/validation/sim_run_protocols.json)
       - **Ch 10.11.5.1** [Master Simulation Protocol (Absolute Frame)](../../../markdown/aaa/validation/simulations/run-protocols.md?section=Master+Simulation+Protocol+%28Absolute+Frame%29)
       - **Ch 10.11.5.2** [Simulation Campaign Object](../../../markdown/aaa/validation/simulations/run-protocols.md?section=Simulation+Campaign+Object)

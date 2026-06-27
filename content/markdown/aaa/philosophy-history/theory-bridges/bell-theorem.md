@@ -336,6 +336,20 @@ $$
 
 Thus the non-product burden is sharply located: a successful pair-provenance account must derive a correlation channel $C(x,y)$ that is not reducible to $C_{\mathrm{prod}}(x,y)$, while keeping $m_A$ and $m_B$ local and preserving positivity.
 
+Ordering leakage is a separate preferred-frame guardrail. For observer-level spacelike-separated detector records, the substrate still has an absolute-time order. Let $O_{AB}\in\{A\prec_t B,B\prec_t A\}$ denote that order for the two wings. A Bell packet must make the observable joint law insensitive to that order:
+$$
+\Delta_{\mathrm{ord}}
+=
+\sup_{a,b,x,y}
+\left|
+P(a,b|x,y,A\prec_t B)
+-
+P(a,b|x,y,B\prec_t A)
+\right|
+\le\epsilon_{\mathrm{ord}}.
+$$
+This condition is not implied by setting-independent marginals. The marginals can be local while a correlation-timing residual still leaks the absolute simultaneity structure. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell closure must therefore preserve both marginal invariance and ordering invariance.
+
 Correlation recovery is the third guardrail:
 
 $$
@@ -355,12 +369,16 @@ No-signaling is also a Lorentz-export condition. The substrate has absolute time
 
 The no-signaling row cannot be checked only after the CHSH fit. It must be a measure-invariance statement: the joint basin measure remains invariant under local-setting relabelings at each wing, so summing over one wing leaves the other marginal independent of the far setting while the joint invariant can still carry the $2\sqrt{2}$ correlation.
 
+The ordering row must be a measure-invariance statement too. For spacelike-separated observer records, exchanging the substrate order sector $A\prec_tB$ with $B\prec_tA$ inside the same prepared Bell regime may not change the observer-accessible joint table beyond $\epsilon_{\mathrm{ord}}$.
+
 Using the preferred-motion null-test residual $\mathcal{R}_{\mathrm{PF\text{-}bundle}}$ from [PPN Parameters](../../spacetime/ppn-parameters.md#preferred-motion-null-test-bundle), a Bell candidate $\theta$ over a validity window $W$ must therefore satisfy
 
 $$
 \Delta_{\mathrm{Bell}}\le\epsilon_{\mathrm{Bell}},
 \qquad
 \Delta_{\mathrm{NS}}^{A},\Delta_{\mathrm{NS}}^{B}\le\epsilon_{\mathrm{NS}},
+\qquad
+\Delta_{\mathrm{ord}}\le\epsilon_{\mathrm{ord}},
 \qquad
 \Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}},
 \qquad
@@ -390,6 +408,8 @@ $$
 \Delta_{\mathrm{Bell}}\le\epsilon_{\mathrm{Bell}},
 \qquad
 \Delta_{\mathrm{NS}}^{A},\Delta_{\mathrm{NS}}^{B}\le\epsilon_{\mathrm{NS}},
+\qquad
+\Delta_{\mathrm{ord}}\le\epsilon_{\mathrm{ord}},
 \qquad
 \Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}},
 \qquad
@@ -724,7 +744,7 @@ The existence of a global time parameter $t$ is essential for the internal consi
 
 No step may involve faster-than-$c_f$ signal transfer. The correlations are visible only upon comparison. The objective temporal ordering removes one frame-dependence puzzle, but it does not by itself solve Bell's theorem. The missing work is the lower-level derivation of the spin ledger and measurement-response kernel.
 
-**Emergent Lorentz invariance.** Physical Observers, who lack access to absolute time and use assembly-based clocks and rulers, reconstruct an effective Minkowski geometry in which the temporal ordering of spacelike-separated events is frame-dependent. This does not contradict the underlying absolute ordering; it reflects the epistemic limitations of assembly-based measurement; see [Observer Framework](../../spacetime/observer-framework.md).
+**Emergent Lorentz invariance.** Physical Observers, who lack access to absolute time and use assembly-based clocks and rulers, reconstruct an effective Minkowski geometry in which the temporal ordering of spacelike-separated events is frame-dependent. This does not contradict the underlying absolute ordering; it creates the ordering-invariance burden above. The observer-accessible Bell table must not reveal whether $A\prec_tB$ or $B\prec_tA$ in the substrate; see [Observer Framework](../../spacetime/observer-framework.md).
 
 ---
 
@@ -745,6 +765,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - GHZ product-sign contexts are recovered without assigning one context-independent local value table across all $X/Y$ settings.
 - Hardy's zero-probability constraints and positive event margin are recovered for the calibrated nonmaximally entangled regime.
 - No-signaling is exact: no measurement protocol on $A$ can alter the marginal statistics at $B$.
+- Ordering invariance is exact within the declared Bell regime: observer-level spacelike-separated joint tables do not expose whether $A\prec_tB$ or $B\prec_tA$ in absolute time.
 - Preferred-frame leakage remains below the Lorentz-test residual bound on the same observer export that supplies detector timing, analyzer calibration, and coincidence-window records.
 - Measurement-independence leakage is explicitly bounded by $\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}}$ rather than absorbed into the pair-provenance explanation.
 - Correlation recovery is checked through $\Delta_{\mathrm{Bell}}$ against the full $-\cos\theta$ curve, not only by a single CHSH setting choice.
@@ -756,6 +777,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - If the retained pair-provenance ledger and apparatus kernels reduce to the product-screened form $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$, then the model has explicit common-past data but still remains Bell-local. This is a failure even when no-signaling and measurement independence pass.
 - If $\Delta_{\mathrm{MI}}$ is nonzero in a way that is necessary for the correlation fit, the model has abandoned the stated $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route and must be reclassified before any corpus claim is promoted.
 - If any experiment demonstrates genuine **signaling** via entanglement (information transfer at $B$ contingent on the setting choice at $A$, without a classical channel), the entire framework fails.
+- If the joint table changes with substrate absolute-time ordering for observer-level spacelike-separated records, the Bell packet leaks preferred simultaneity even if the one-wing marginals remain local.
 - If the CHSH fit requires an observer-accessible preferred-frame drift in clocks, analyzer calibration, coincidence windows, or signal timing, the Bell packet fails the Lorentz handoff even if $\Delta_{\mathrm{Bell}}$ is small.
 - If measurement independence is empirically falsified (e.g., via cosmic Bell tests showing setting–source correlations at a level incompatible with statistical noise), the assumption structure changes for all interpretations, not only $\mathbb{A}\mathbb{A}\mathbb{A}$.
 

@@ -3239,6 +3239,55 @@ $$
 $$
 Thus a simple causal root moves continuously with receiver time as long as the denominator stays away from zero. Simulations should track this root-transport residual alongside the root residual and the $J$ floor; failure of the transport equation is a branch-chart failure, not an ordinary force fluctuation.
 
+###### Source-Flux Weighting, Receiver Root Transport, and Action Residual
+
+For a retained branch row $(i,j,t,t_0)$, keep the source flux weight, receiver root transport, and action residual as separate equations.
+
+**Source flux weighting.** The source, i.e. the emitting architrino, enters the received branch strength through the delay-map Jacobian
+$$
+J_{ij}(t;t_0)
+=
+1-\frac{\hat{\mathbf r}_{ij}(t;t_0)\cdot\mathbf v_j(t_0)}{c_f},
+\qquad
+w_{\mathrm{flux},ij}(t;t_0)
+=
+\frac{1}{|J_{ij}(t;t_0)|}.
+$$
+Only the source velocity projection along $\hat{\mathbf r}_{ij}$ appears in this local flux multiplier. Tangential source motion still matters through the source worldline, active root set, separation vector, and inactive-root gaps, but it is not a second instantaneous multiplier on the received branch strength.
+
+**Receiver root transport.** The receiver velocity controls how the same causal root moves as receiver time advances:
+$$
+\frac{ds}{dt}
+=
+\frac{1-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_i(t)/c_f}
+{1-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_j(s)/c_f}.
+$$
+Thus receiver motion belongs to the root-transport row, not to the source-flux denominator by itself. A chart that changes receiver velocity can change which branch is sampled over time even when the instantaneous source flux factor has the same form.
+
+**Action residual.** The variational-action question adds an independent proof burden. On a regularized action chart,
+$$
+\mu_{\text{arch}}\mathbf a_i(t)
+=
+\sum_j\kappa\,\sigma_{ij}|q_iq_j|
+\left(
+\mathbf F_{ij,\mathrm{scale}}^{(\eta)}(t)
++
+\mathbf C_{ij}^{(\eta)}(t)
+\right),
+$$
+and the scale-only action scaffold derives the canonical branch law only when
+$$
+\lim_{\eta\to0^+}
+\int_W
+\left\|
+\sum_j\kappa\,\sigma_{ij}|q_iq_j|
+\mathbf C_{ij}^{(\eta)}(t)
+\right\|dt
+=
+0
+$$
+with the same branch floors and boundary convention used by the branch chart. If this residual is retained rather than cancelled, it must close as a recoil-inclusive wake-history term in the same energy, momentum, and angular-momentum ledger. This residual condition is not an extra source- or receiver-velocity factor in the Master EOM; it is the test for promoting the action scaffold in [Exact Nonlocal Lagrangian](#exact-nonlocal-lagrangian).
+
 ###### Branch-Chart Closure Object
 
 A local master-equation closure claim should be attached to an explicit branch-chart object, not just to a plotted orbit or a small force residual. For a branch chart on a section $\mathcal{S}$, define
@@ -7093,6 +7142,8 @@ Thus the potential to do work is broadly available wherever causal wakes pass, b
 For a receiver architrino $o'$ with polarity $q_{o'}$ at position $\mathbf{s}_{o'}(t)$, the potential energy $U_{o'}(t)$ is the fixed-history bookkeeping value assigned to the current configuration against the causal path-history wake record:
 
 $$U_{o'}(t) = q_{o'}\,\Phi_{\text{net}}[\text{history}]\big(\mathbf{s}_{o'}(t),t\big).$$
+
+The sign of $\Phi_{\text{net}}$ is not a sign on total energy. A negative causal-wake potential contribution from an electrino source is a polarity-signed interaction record; it becomes energy bookkeeping only after the receiver polarity, active causal root, line-of-action geometry, branch Jacobian, and receiver radial motion are specified. Work can therefore occur relative to a negative potential without introducing a negative-energy substance or a negative total-energy reservoir.
 
 Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal-wake record of $\mathbf{s}_{o'}(t)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed. In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth continuum field.
 
@@ -43853,6 +43904,10 @@ with bounded preferred-frame leakage in measurable observables.
 
 This is an exact-substrate-asymmetry to bounded-emergent-symmetry theorem target. Absolute time, the Euclidean void, and finite $c_f$ are not observer-level Lorentz symmetry. They are admissible only if the source-to-effective map suppresses every observer-accessible preferred-frame current below the declared $\epsilon_{\mathrm{LV}}$ bounds while preserving the clock, ruler, and photon-channel successes of special relativity.
 
+Here $\epsilon_{\mathrm{LV}}$ is a residual budget, not one binary tolerance. It contains distinct rows for two-way signal anisotropy, boost-dependent clock and ruler drift, clock-dilation mismatch, matter-sector clock and energy-level anisotropy, sidereal modulation, photon-channel dispersion, birefringence, time-of-flight leakage, weak-field preferred-frame terms, and gravitational-wave-versus-photon speed matching. Each row must declare its expansion order in the appropriate drift parameter, such as $\beta_\oplus\equiv v_\oplus/c_{\text{eff}}$ for terrestrial null tests, its validity regime, and its experimental tolerance before Lorentz recovery can be counted as bounded.
+
+The common-mode requirement is therefore multi-sector. Matter-sector clocks, photon-channel propagation, and the effective gravitational channel cannot be tuned independently. A branch that nulls Michelson-Morley-type two-way optical anisotropy but leaves orientation-dependent clock energy levels, sidereal leakage, photon birefringence, or a separated effective gravitational-wave speed is not a Lorentz recovery branch.
+
 This makes Lorentz recovery the prototype invariant-provenance problem. The invariant interval is not accepted as primitive substrate geometry; it is the observer-level invariant to be exported by one retained branch record. The derivation must say which substrate quantities are exact, which observer quantities are emergent, and which residual currents remain as preferred-frame leakage diagnostics.
 
 Speed convention: primitive delayed-root equations are solved with $c_f$. The declared speed $c_\star$ enters only after the channel has been named: set $c_\star=c_f$ for a primitive wake branch chart, $c_\star=c_{\text{eff}}(\mathbf{x})$ for Noether sea dressed clocks and rulers, and $c_\star=c_\gamma(\mathbf{x})$ for photon synchronization. The low-gradient Lorentz limit may identify the measured channel speed with $c_0=c_{\text{eff}}(\infty)$ only after the dressing map is declared.
@@ -43872,6 +43927,38 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substrate ontology is:
 To match modern precision constraints, operational observers made from bound assemblies must infer effective Lorentz kinematics even though the substrate itself is not Minkowskian at the fundamental level. We call this required dynamical compensation the Lorentzian conspiracy.
 
 Michelson-Morley-type null experiments make this a quantitative acceptance condition, not a philosophical preference. The framework may keep a Euclidean-void rest frame only if the two-way signal residual later written as $\Delta_{\text{tw}}(\beta_\star,\theta)$ is generated by the same branch record that retunes material arms and clocks, and remains $O(\epsilon_{\text{LV}})$ across the tested orientations. A cancellation achieved by separately fitting photon speed, clock rate, and ruler length would be a fit, not Lorentz closure.
+
+The closure target is two-way operational isotropy, not one-way substrate isotropy. A primitive photon-channel speed may remain anisotropic relative to the absolute frame, because one-way speed is inseparable from clock synchronization for embedded observers. The required theorem is that the assembly-clock synchronization map absorbs the residual one-way anisotropy while the measurable round-trip diagnostic $\Delta_{\text{tw}}$ and the boost-dependent and clock-isotropy rows remain below their declared leakage bounds.
+
+The clock channel has to be written as its own substrate-to-observer map:
+$$
+\frac{d\tau}{dt}
+=
+f_{\tau}\!\left(
+\beta,\,
+n(\mathbf{x},t),\,
+\chi_{\text{sea}}(\mathbf{x},t),\,
+\Phi_{\text{eff}}(\mathbf{x},t),\,
+\text{assembly state}
+\right),
+\qquad
+\beta\equiv\frac{v}{c_{\text{eff}}}.
+$$
+The velocity-sector residual is
+$$
+R_{\tau v}(\beta)
+\equiv
+\left.\frac{d\tau}{dt}\right|_{\nabla n=0,\ \nabla\Phi_{\text{eff}}=0}
+-\sqrt{1-\beta^2},
+$$
+and must be bounded by time-dilation tests such as Ives-Stilwell and storage-ring clock comparisons. The weak-field potential-sector residual is
+$$
+R_{\tau\Phi}
+\equiv
+\left.\frac{d\tau}{dt}\right|_{\beta=0}
+-\left(1+\frac{\Phi_{\text{eff}}}{c_{\text{eff}}^2}+O\!\left(\frac{\Phi_{\text{eff}}^2}{c_{\text{eff}}^4}\right)\right),
+$$
+with the $\Phi_{\text{eff}}$ sign convention declared, and must recover gravitational-redshift and PPN clock/curvature constraints. Equivalence-principle recovery requires $R_{\tau v}$ and $R_{\tau\Phi}$ to come from the same Noether sea response and assembly-clock map.
 
 ###### Mathematical objective
 
@@ -50175,6 +50262,25 @@ In the reversible below-threshold regime, $\mathsf{I}_{A}^{ab}$ is built from th
 
 This ratio form is a sharper anti-fitting invariant than the absolute scalar formula. Changing $\alpha_{\mathrm{m}}$ cannot improve one particle without changing all particles in the same regime. Changing $\zeta(A)$ is admissible only when it is produced by the branch ledger and exposure quotient for $A$, not when it is selected from the observed mass table. Failure of the tensor replacement in anisotropic or pressure-dependent cells is evidence that the scalar mass map is being used outside its regime.
 
+###### Composite Branch Mass Is Not Constituent Mass Addition
+
+The mass-ratio formulas apply to accepted branches after their own closure, exposure quotient, and Noether sea response record have been evaluated. If a composite branch $C$ is built from retained sub-branches $A_i$, its scalar mass trace is therefore not generally the sum of the scalar mass traces those sub-branches would have as isolated free branches:
+
+$$
+m_{\mathrm{tr}}(C)
+=
+\frac{1}{3}h_{ab}\mathsf{I}_{C}^{ab},
+\qquad
+m_{\mathrm{tr}}(C)
+\ne
+\sum_i m_{\mathrm{tr}}(A_i)
+\quad\text{in general.}
+$$
+
+The composite branch has its own coupling ledger: color-corridor closure for hadrons, residual-strong and nuclear-binding terms for nuclei, shared shielding, multipole cancellation, recoil channels, and local Noether sea polarization. Those entries change $\mathsf{I}_{C}^{ab}$ before the scalar trace is taken. Apparent mass is additive only in the limiting case where the interaction ledger, binding energy, shared shielding, and medium-response cross terms are negligible on the declared comparison window.
+
+This is the mass-map reading of the familiar nuclear and hadronic warning that a proton, neutron, or deuteron is not weighed by adding the observer-facing masses of the quark or nucleon records visible at a different resolution. Conservation is still enforced at the full event ledger: any decrease in the composite scalar mass appears as binding energy, radiation, recoil, neutrino rows when weak channels participate, or a changed Noether sea response record. The nuclear-side bookkeeping is stated in [Nuclear Binding](../../../../markdown/aaa/nuclear-atomic/nuclear-binding.md), while the nucleon-side source envelope is stated in [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md).
+
 ###### Charge-Conjugate Mass Equality
 
 The equality of a particle's rest mass with the rest mass of its antiparticle is a mass-map constraint, not a separate fitted fact. Let $\bar A$ denote the charge-conjugate branch obtained from an accepted assembly $A$ by reversing all intrinsic polarity signs and pro/anti orientation while preserving the shielding-coherence class, causal-root ledger, branch geometry, and Noether sea response record:
@@ -55197,6 +55303,36 @@ d_N\ll\ell\ll R_p
 $$
 
 Here $C_{\ell,X}^{p}$ is the declared proton-window projection and $\mathcal W_{\mathrm{strong},X}^{uud}$ is the channel exposure of $\mathcal L_{\mathrm{strong}}^{uud}(t)$. The strong-sector term includes the closed color-corridor contribution needed to make the three quark branches one proton source; it is not ambient Noether sea and is not a fourth quark-like constituent.
+
+##### Proton Mass Is Not Current-Quark Mass Addition
+
+The same source-envelope rule explains why the proton mass is not obtained by adding the Standard Model current-quark mass entries for two up quarks and one down quark. Those current-quark entries are comparison-layer parameters for quark fields inside the strong sector; they are not the observer-facing scalar masses of three isolated free quark branches. Free quarks are not accepted asymptotic branches.
+
+For the accepted proton branch, the mass-facing response must be computed after color-singlet closure and the proton-window projection. Schematically,
+
+$$
+\mathsf{I}_{p}^{ab}
+=
+\mathsf{I}_{u_1}^{ab}
++
+\mathsf{I}_{u_2}^{ab}
++
+\mathsf{I}_{d}^{ab}
++
+\mathsf{I}_{\mathrm{strong},uud}^{ab}
++
+\mathsf{I}_{\mathrm{cross},uud}^{ab}
++
+\mathsf{I}_{\mathrm{sea},uud}^{ab},
+\qquad
+m_{\mathrm{tr}}(p)
+=
+\frac{1}{3}h_{ab}\mathsf{I}_{p}^{ab}.
+$$
+
+Here $\mathsf{I}_{\mathrm{strong},uud}^{ab}$ denotes the closed color-corridor and flux contribution, $\mathsf{I}_{\mathrm{cross},uud}^{ab}$ denotes branch-cross terms created by locking the three quark records into one baryon, and $\mathsf{I}_{\mathrm{sea},uud}^{ab}$ denotes the retained local Noether sea response for the proton branch. This is hadronic composite closure, not a conversion of Generation-I quarks into higher-generation exposed cores. Strong-sector exchange may change color exceptionality and flux routing, but on the strong-interaction timescale it must preserve the generation tier unless a separate weak or high-energy branch-transition ledger is supplied.
+
+The proton-current-quark mass mismatch is therefore a required benchmark for the hadronic mass map: most of the proton's observed rest response should come from the accepted composite strong-sector ledger and its Noether sea response, not from isolated current-quark mass addition and not from ordinary nuclear binding. Nuclear binding starts one level higher, after proton and neutron source envelopes have already been accepted as nucleon branches.
 
 The first closure condition is absence of open color leakage at the proton boundary:
 
@@ -88671,6 +88807,20 @@ $$
 
 Thus the non-product burden is sharply located: a successful pair-provenance account must derive a correlation channel $C(x,y)$ that is not reducible to $C_{\mathrm{prod}}(x,y)$, while keeping $m_A$ and $m_B$ local and preserving positivity.
 
+Ordering leakage is a separate preferred-frame guardrail. For observer-level spacelike-separated detector records, the substrate still has an absolute-time order. Let $O_{AB}\in\{A\prec_t B,B\prec_t A\}$ denote that order for the two wings. A Bell packet must make the observable joint law insensitive to that order:
+$$
+\Delta_{\mathrm{ord}}
+=
+\sup_{a,b,x,y}
+\left|
+P(a,b|x,y,A\prec_t B)
+-
+P(a,b|x,y,B\prec_t A)
+\right|
+\le\epsilon_{\mathrm{ord}}.
+$$
+This condition is not implied by setting-independent marginals. The marginals can be local while a correlation-timing residual still leaks the absolute simultaneity structure. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell closure must therefore preserve both marginal invariance and ordering invariance.
+
 Correlation recovery is the third guardrail:
 
 $$
@@ -88690,12 +88840,16 @@ No-signaling is also a Lorentz-export condition. The substrate has absolute time
 
 The no-signaling row cannot be checked only after the CHSH fit. It must be a measure-invariance statement: the joint basin measure remains invariant under local-setting relabelings at each wing, so summing over one wing leaves the other marginal independent of the far setting while the joint invariant can still carry the $2\sqrt{2}$ correlation.
 
+The ordering row must be a measure-invariance statement too. For spacelike-separated observer records, exchanging the substrate order sector $A\prec_tB$ with $B\prec_tA$ inside the same prepared Bell regime may not change the observer-accessible joint table beyond $\epsilon_{\mathrm{ord}}$.
+
 Using the preferred-motion null-test residual $\mathcal{R}_{\mathrm{PF\text{-}bundle}}$ from [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md#preferred-motion-null-test-bundle), a Bell candidate $\theta$ over a validity window $W$ must therefore satisfy
 
 $$
 \Delta_{\mathrm{Bell}}\le\epsilon_{\mathrm{Bell}},
 \qquad
 \Delta_{\mathrm{NS}}^{A},\Delta_{\mathrm{NS}}^{B}\le\epsilon_{\mathrm{NS}},
+\qquad
+\Delta_{\mathrm{ord}}\le\epsilon_{\mathrm{ord}},
 \qquad
 \Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}},
 \qquad
@@ -88725,6 +88879,8 @@ $$
 \Delta_{\mathrm{Bell}}\le\epsilon_{\mathrm{Bell}},
 \qquad
 \Delta_{\mathrm{NS}}^{A},\Delta_{\mathrm{NS}}^{B}\le\epsilon_{\mathrm{NS}},
+\qquad
+\Delta_{\mathrm{ord}}\le\epsilon_{\mathrm{ord}},
 \qquad
 \Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}},
 \qquad
@@ -89059,7 +89215,7 @@ The existence of a global time parameter $t$ is essential for the internal consi
 
 No step may involve faster-than-$c_f$ signal transfer. The correlations are visible only upon comparison. The objective temporal ordering removes one frame-dependence puzzle, but it does not by itself solve Bell's theorem. The missing work is the lower-level derivation of the spin ledger and measurement-response kernel.
 
-**Emergent Lorentz invariance.** Physical Observers, who lack access to absolute time and use assembly-based clocks and rulers, reconstruct an effective Minkowski geometry in which the temporal ordering of spacelike-separated events is frame-dependent. This does not contradict the underlying absolute ordering; it reflects the epistemic limitations of assembly-based measurement; see [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md).
+**Emergent Lorentz invariance.** Physical Observers, who lack access to absolute time and use assembly-based clocks and rulers, reconstruct an effective Minkowski geometry in which the temporal ordering of spacelike-separated events is frame-dependent. This does not contradict the underlying absolute ordering; it creates the ordering-invariance burden above. The observer-accessible Bell table must not reveal whether $A\prec_tB$ or $B\prec_tA$ in the substrate; see [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md).
 
 ---
 
@@ -89080,6 +89236,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - GHZ product-sign contexts are recovered without assigning one context-independent local value table across all $X/Y$ settings.
 - Hardy's zero-probability constraints and positive event margin are recovered for the calibrated nonmaximally entangled regime.
 - No-signaling is exact: no measurement protocol on $A$ can alter the marginal statistics at $B$.
+- Ordering invariance is exact within the declared Bell regime: observer-level spacelike-separated joint tables do not expose whether $A\prec_tB$ or $B\prec_tA$ in absolute time.
 - Preferred-frame leakage remains below the Lorentz-test residual bound on the same observer export that supplies detector timing, analyzer calibration, and coincidence-window records.
 - Measurement-independence leakage is explicitly bounded by $\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}}$ rather than absorbed into the pair-provenance explanation.
 - Correlation recovery is checked through $\Delta_{\mathrm{Bell}}$ against the full $-\cos\theta$ curve, not only by a single CHSH setting choice.
@@ -89091,6 +89248,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - If the retained pair-provenance ledger and apparatus kernels reduce to the product-screened form $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$, then the model has explicit common-past data but still remains Bell-local. This is a failure even when no-signaling and measurement independence pass.
 - If $\Delta_{\mathrm{MI}}$ is nonzero in a way that is necessary for the correlation fit, the model has abandoned the stated $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route and must be reclassified before any corpus claim is promoted.
 - If any experiment demonstrates genuine **signaling** via entanglement (information transfer at $B$ contingent on the setting choice at $A$, without a classical channel), the entire framework fails.
+- If the joint table changes with substrate absolute-time ordering for observer-level spacelike-separated records, the Bell packet leaks preferred simultaneity even if the one-wing marginals remain local.
 - If the CHSH fit requires an observer-accessible preferred-frame drift in clocks, analyzer calibration, coincidence windows, or signal timing, the Bell packet fails the Lorentz handoff even if $\Delta_{\mathrm{Bell}}$ is small.
 - If measurement independence is empirically falsified (e.g., via cosmic Bell tests showing setting–source correlations at a level incompatible with statistical noise), the assumption structure changes for all interpretations, not only $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
@@ -94776,10 +94934,11 @@ The retrospective convention is not a shield against burden. For the reading bel
 - The self-hit well-posedness wall is that same-source causal-root selection must preserve deterministic multistability while maintaining transversality, a Jacobian floor, regularization, and an a priori energy bound. If every branch rule either destroys multistability or permits runaway energy growth near Jacobian zeros, the generative mechanism is ill-posed.
 - The action-spacing wall is that stable delayed braid branches must export one uniform closed-cycle action increment across the accessible band. This wall is downstream of the self-hit wall: a candidate cycle whose energy-like branch functional becomes unbounded across same-source crossings cannot supply a well-defined closed-cycle action integral. If the stable-cycle action spectrum is generically non-uniform rather than clustered by a derived branch-class rule, the claimed recovery of $h$ fails.
 - The Born-measure wall is that an apparatus-partition quotient of an invariant basin measure must recover quadratic Born weights for a nontrivial preparation family. If it merely renames hidden preparation ignorance, it has not recovered quantum probability.
-- The no-signaling/CHSH wall is that the same whole-state record and basin-measure machinery must recover the CHSH value $2\sqrt{2}$ and exact operational no-signaling while keeping preferred-frame leakage below Lorentz-test bounds. The no-signaling part must be a basin-measure invariance condition under local-setting relabelings at each wing, so marginalizing one wing is independent of the far setting while the joint invariant carries the correlation. If one mechanism gives the correlation, another blocks signaling, and a third hides absolute-frame access, Bell has been reframed rather than recovered.
+- The no-signaling/CHSH wall is that the same whole-state record and basin-measure machinery must recover the CHSH value $2\sqrt{2}$ and exact operational no-signaling while keeping preferred-frame leakage below Lorentz-test bounds. The no-signaling part must be a basin-measure invariance condition under local-setting relabelings at each wing, so marginalizing one wing is independent of the far setting while the joint invariant carries the correlation. It must also be ordering-invariant: for observer-level spacelike-separated measurement records, the joint law cannot depend on which wing is first in absolute time. If one mechanism gives the correlation, another blocks signaling, and a third hides absolute-frame access, Bell has been reframed rather than recovered.
+- The preferred-frame leakage wall is that absolute time, the Euclidean void, and finite $c_f$ must remain hidden across every measured Lorentz channel at once. The leakage budget must be decomposed by channel and order: two-way optical isotropy at modern cavity precision, Kennedy-Thorndike boost dependence, Hughes-Drever and clock-comparison matter-sector isotropy, sidereal modulation, photon dispersion/birefringence/time-of-flight rows, weak-field preferred-frame rows, and gravitational-wave-versus-photon speed matching at the GW170817 scale. The architecture passes only if one Noether sea constitutive response makes matter-sector clocks, the photon channel, and the effective gravitational channel common-mode across the budget. A response that hides two-way optical anisotropy but leaves matter-sector clock anisotropy, or that gives the effective gravitational channel and photon channel different limiting speeds, fails Lorentz recovery.
 - The photon-transport wall is that a fixed-void redshift map must be generated by a transport operator that commutes with global frequency rescaling and carries no undeclared transverse momentum transfer, while preserving transported-bundle occupation shape, transverse phase coherence, and a declared energy ledger. Absolute time leaves no expansion sink in which redshift energy can simply disappear. If redshift requires stochastic scattering, absorption/re-emission, unbookkept energy loss, or thermalizing kicks along the transparent path, it will generically blur images, spoil $(1+z)$ time dilation, violate Tolman surface-brightness behavior, or distort the cosmic microwave background beyond observed blackbody and acoustic-structure tolerances.
 - The one-constitutive-response wall is that distance-ladder, lensing, growth, and cosmic microwave background inferences must be read through one Noether sea constitutive and transport response. If matching the ladder and the cosmic microwave background requires two unrelated responses, the architecture has inherited the Hubble and $S_8$ tensions rather than dissolved them.
-- The bridge-map wall is to write controlled source-to-effective maps: causal roots to effective fields, basin measures to quantum records, Noether sea response to effective metric behavior, exact substrate asymmetries to bounded observer-level symmetries, and source/release histories to cosmological observables. Each bridge must declare its source variables, target variables, validity regime, error tolerance, and failure condition rather than rely on a verbal matching between layers.
+- The bridge-map wall is to write controlled source-to-effective maps: causal roots to effective fields, basin measures to quantum records, Noether sea response to effective metric behavior, exact substrate asymmetries to bounded observer-level symmetries, and source/release histories to cosmological observables. Each bridge must declare its source variables, target variables, validity regime, error tolerance, and failure condition rather than rely on a verbal matching between layers. For Lorentz recovery, bounded observer-level symmetry is not one scalar pass/fail label: Michelson-Morley two-way anisotropy, Kennedy-Thorndike boost drift, Ives-Stilwell clock-dilation mismatch, photon-sector dispersion/birefringence/time-of-flight leakage, and weak-field preferred-frame rows must each carry their own order, regime, and tolerance.
 
 In the cosmology branch, the photon-transport wall, the one-constitutive-response wall, and the lensing/growth constraint should be read as three projections of one energy-ledger obligation. Absolute time nominates a global scalar-energy conservation target; fixed-void redshift must therefore close the photon's missing energy into Noether sea, source/release, recoil, remnant, or boundary-flux bookkeeping rather than let it disappear into metric expansion.
 
@@ -94973,11 +95132,13 @@ The missed interpretation is subtle. A null interferometer result can mean no pr
 
 In the current academic canon, the null result supports the move from an undetected ether to invariant light-speed kinematics and Lorentz symmetry. In the Architrino architecture, the same result becomes a three-layer constraint: the fixed container is the Euclidean void; the constitutive contents are the Noether sea; and the photon readout is a dressed channel moving through those contents. A Michelson-Morley null result constrains the residual mismatch among those rows. It says that any Noether sea account must make material-arm response, clock response, and photon-channel speed common-mode to the tested precision.
 
+The distinction is that Michelson-Morley is a two-way test. It constrains round-trip isotropy, not a primitive one-way photon-channel speed in the absolute frame. The Architrino architecture does not have to make that one-way speed isotropic at the substrate. It has to make the round-trip speed isotropic to experimental precision, and it has to show that any residual one-way anisotropy is absorbed into the synchronization convention actually realized by embedded assembly clocks. The absolute frame survives, if it survives, in the gap between one-way structure and two-way operational records.
+
 The rational historical path went the other way because the old medium picture was too crude. If the expected wind was absent and if Lorentz-FitzGerald contraction looked like an auxiliary repair, then Einstein's operational postulate looked cleaner. It removed the undetected machinery and made the invariant light-speed result a principle of spacetime kinematics. That was a powerful simplification at the level of measurement law.
 
 Michelson and Morley therefore mark a precision acceptance condition: the null result should have remained a bundle test, not an ontological veto. A preferred frame plus compensating transformations can be observationally hidden only if material rods, clocks, and the signal channel share a common-mode constitutive response. That is the force of the self-nulling reading: the experiment does not prove the deeper frame absent; it states the condition any Euclidean-void and absolute-time account must satisfy before it may be taken seriously.
 
-The strength of that claim is exactly its restraint. It is not a completed Lorentz-recovery theorem. It is a null-residual test: the two-way anisotropy of embedded apparatus must be self-nulled by the shared constitutive response before a preferred-frame ontology earns standing.
+The strength of that claim is exactly its restraint. It is not a completed Lorentz-recovery theorem. It is a null-residual test: the two-way anisotropy of embedded apparatus must be self-nulled by the shared constitutive response before a preferred-frame ontology earns standing. The harder wall is wider than Michelson-Morley: Kennedy-Thorndike boost-dependence tests, clock-comparison isotropy tests, and modern resonator/cavity experiments require the same common-mode response to hide velocity, orientation, and internal-energy leakage together.
 
 ###### Chapter Thirteen. Hendrik Lorentz: The Preferred Frame Without The Assembly Mechanism
 
@@ -94987,11 +95148,15 @@ The difficulty was that Lorentz's construction still looked compensatory. It cou
 
 In this form Lorentz is not only a failed alternative. He is an under-specified bridge. The closure target is to derive moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage from one Noether sea and assembly response rather than fitting them as separate compensations.
 
+Bounded is doing precise work here. A common-mode response that hides Michelson-Morley at one order is not yet Lorentz recovery. The same retained branch record has to survive the full leakage budget: two-way signal anisotropy, boost-dependent clock and ruler drift, clock-dilation mismatch, photon-channel dispersion or birefringence, photon time-of-flight leakage, and weak-field preferred-frame residues. Each row must declare its order in $\beta$ or the relevant weak-field variables, its validity domain, and the experimental tolerance it must beat.
+
 The speed-of-light issue was especially decisive. Physics already knew that light changes speed in glass, water, and other media. It also came to know that relativistic geometry changes clock and ruler scales. The missed synthesis was to treat those facts as expressions of one deeper constitutive response: ordinary materials alter light propagation locally, while the Noether sea and assembly structure set the limiting vacuum behavior shared by embedded measurement systems.
 
 The Occam question is the central one. In retrospect, the split looks uneconomical: light propagation and clock and ruler response were assigned two explanatory regimes. Variable speed in ordinary matter belonged to optics in material media. Invariant vacuum `c` belonged to spacetime structure. The same broad behavior, propagation conditioned by environment and observer construction, was not treated as one constitutive problem.
 
 The reason is that twentieth-century physics was optimizing formal and operational economy, not physical-implementation economy. Einstein and Minkowski removed an undetected preferred medium from the equations, made vacuum measurements covariant, and left material slowing to local interactions with matter. That looked like fewer assumptions because it eliminated a hidden frame from the tested vacuum laws. At the Noether sea and assembly-response level, however, the deeper economy runs the other way: one Noether sea and assembly-response mechanism should explain the vacuum limit and the material departures together.
+
+That deeper economy carries a recurring experimental tax. A no-frame theory does not have to explain why a preferred frame remains invisible; an absolute-time and Euclidean-void theory does. Every tighter clock-comparison, cavity, Kennedy-Thorndike, Hughes-Drever, photon-sector, or gravitational-wave/photon bound reopens the same bill. The implementation-economy argument is therefore not that the hidden frame is cheaper at every level. It is that one deeper constitutive response may be worth the burden if it recovers vacuum propagation, material slowing, clock maps, ruler response, photon transport, and the effective gravitational channel together.
 
 Lorentz's case shows why the stranger interpretation did not survive. Science did not reject it because it was careless. It chose the interpretation whose hidden machinery had been mathematically eliminated. The missing path required preserving Lorentz's instinct for a real base frame while supplying the missing assembly mechanism that would make the frame operationally hidden rather than merely postulated.
 
@@ -95003,9 +95168,27 @@ That discipline lay close to the Architrino architecture because the Architrino 
 
 Einstein's Brownian-motion work supplied another near miss. There he treated visible irregular motion as evidence for hidden microscopic structure, using observable agitation to infer the reality and scale of atoms. The same abductive pattern could have been aimed at measurement standards, synchronization channels, fractional charge bookkeeping, and matter assemblies themselves. The question would not have been only what observers measure, but what hidden architrino population, Noether sea response, and assembly process make stable observers and effective spacetime measurements possible.
 
+The key distinction is between operational absence and ontological absence. Relativity was right to remove an undetected preferred frame from the observer's equations; no embedded instrument had earned the right to use it. But operational inaccessibility is not the same claim as nonexistence. A structure that is hidden by the common response of clocks, rulers, and signal channels is still a possible substrate object, provided the hiding mechanism is derived and kept below the full preferred-frame leakage budget.
+
 The equivalence principle sharpened that opening into gravity. In its standard form, a sufficiently small freely falling laboratory cannot use local mechanical experiments to distinguish uniform gravitational influence from inertial motion. The equality of inertial and gravitational response became the route by which gravity could be reclassified as geometry rather than as an ordinary force.
 
 That was one of the most important clues in the whole history. The principle says, in effect, that matter and its measurement channels retune together so coherently that local observers recover one common free fall frame. The Architrino architecture does not treat that coherence as primitive geometry. It asks what assembly-level inertia, Noether sea response, extracted clock observables, ruler response, and light-channel transport have in common such that gravitational and inertial response become one observer-level fact.
+
+The central object is therefore the clock map
+$$
+\frac{d\tau}{dt}
+=
+f_{\tau}\!\left(
+\beta,\,
+n(\mathbf{x},t),\,
+\chi_{\text{sea}}(\mathbf{x},t),\,
+\Phi_{\text{eff}}(\mathbf{x},t),\,
+\text{assembly state}
+\right),
+\qquad
+\beta\equiv\frac{v}{c_{\text{eff}}}.
+$$
+Its velocity sector must recover special-relativistic time dilation; its potential sector must recover weak-field gravitational redshift and the PPN limits. Equivalence-principle recovery is precisely the demand that both sectors derive from one Noether sea response and one assembly-clock map, not from two fitted clock laws.
 
 Robert Dicke later exposed the same pressure from the gravity side. His 1957 criteria for a replacement theory treated Lorentz-compatible strong-interaction physics, economy of primitives, and the constrained use of Mach's principle, the cosmological principle, general covariance, and the equivalence principle as tests any gravitational formalism had to survive. That checklist was close to the current recovery burden: a deeper Noether sea and assembly account should not reject those observer-level successes, but should derive them from one assembly and Noether sea record. The missed turn was to treat those principles as constraints on clock maps, ruler response, signal transport, inertial response, and medium-response reconstruction rather than as final evidence that metric geometry had become underlying ontology.
 
@@ -95331,6 +95514,8 @@ That move is only a starting point. A whole-state record does not by itself reco
 
 There is also a preferred-frame leakage budget hidden inside that burden. The architecture keeps absolute time, finite $c_f$, and the Euclidean void at the substrate, so operational Lorentz invariance is an observer-level recovery rather than a primitive substrate symmetry. A Bell recovery may not buy the $2\sqrt{2}$ correlation by opening an observer-accessible channel to the absolute frame. The same record and measure machinery that recovers the joint law must keep one-wing marginals local and keep preferred-frame leakage in clocks, signal timing, analyzer calibration, and coincidence windows below Lorentz-test bounds. The no-signaling row is therefore not an after-the-fact check; it must appear as basin-measure invariance under local-setting relabelings at each wing, so marginalizing one wing stays independent of the far setting while the joint invariant can still carry the $2\sqrt{2}$ correlation. Otherwise the theory has only traded Bell factorization failure for detectable preferred-frame access.
 
+That is only the marginal half of the Lorentz handoff. Because the architecture keeps absolute time, two observer-level spacelike-separated measurement events still have a substrate order. The Bell recovery must therefore be ordering-invariant as well: the observable joint law may not change when the absolute-time order of the two wings is exchanged inside the spacelike regime. If the first substrate event conditions the second in a way visible through timing statistics or correlation residuals, absolute simultaneity has leaked even if the one-wing marginals remain no-signaling.
+
 The rational miss came from the danger of bad hidden-variable explanations. Many such explanations either smuggled in faster-than-light influence, denied experimental practice too cheaply, or failed to reproduce the data. Quantum mechanics, by contrast, gave a compact formal rule that worked. The responsible community therefore treated entanglement as a theorem-governed quantum phenomenon rather than a demand for a deeper causal record.
 
 The interpretive cost was that action-at-a-distance language remained close at hand. Even when carefully qualified, entanglement invited the feeling that nature had accepted a nonlocal mystery as a principle. The Architrino architecture says the better historical question was whether the mystery belonged to nature or to the observer's partition of one causal record into separate boxes.
@@ -95370,6 +95555,8 @@ Leavitt's place in the chain is therefore foundational. She did not create the e
 Slipher and Hubble opened the observational doorway. Slipher measured large nebular redshifts before the extragalactic scale of the universe was settled. Hubble then made the distance-redshift relation into the central empirical fact of modern cosmology. The data did not begin as ontology. They began as an observed pattern: farther systems, on average, showed larger redshift.
 
 In the current academic canon, that pattern became the empirical backbone of an expanding-universe chart. In the Architrino architecture, redshift belongs to path history, Noether sea evolution, coherent photon-channel transport, source/release thermalization, and clock rate comparison in a fixed Euclidean void. It is an observer-level summary rather than automatic evidence that the spatial container itself expands.
+
+The frame-mapping issue is that cosmological redshift is a source-clock, transport-channel, and receiver-clock comparison before it is a geometry claim. The metric chart answers the comparison by stretching the interval between clocks; the fixed-void reading must answer it by deriving a photon-channel frequency rescaling, receiver calibration, and energy ledger that remain mutually consistent.
 
 The historical miss was not that expansion was an irrational inference. General relativity already had dynamical cosmological solutions, and simple non-expansion alternatives often failed on image sharpness, time dilation, spectral structure, or background-radiation constraints. The field had good reason to distrust crude tired-light explanations. The error was allowing those weak alternatives to stand in for the entire class of deeper transport-and-timing interpretations.
 

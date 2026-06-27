@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1467
+      "sections": 1468
     }
   },
   "tocRoot": {
@@ -8413,6 +8413,14 @@
                     "markdownPath": "content/markdown/aaa/validation/simulations/README.md",
                     "markdownSection": "Simulation Frame: Virtual $\\mathbb{U}_{\\text{now}}$ Perspective",
                     "sectionKey": "simulation frame virtual mathbb u text now perspective",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Simulation Scope Envelope",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/README.md",
+                    "markdownSection": "Simulation Scope Envelope",
+                    "sectionKey": "simulation scope envelope",
                     "headingLevel": 2
                   }
                 ]

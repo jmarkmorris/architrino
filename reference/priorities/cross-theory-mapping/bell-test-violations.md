@@ -14,7 +14,8 @@ Bell is a hard replacement constraint, not an ontology shortcut. The corpus alre
 2. `local_response_kernels` — Construct local apparatus kernels $K_A,K_B$ from target and apparatus state. Status: `draft`.
 3. `correlation_recovery` — Recover spin or photon polarization correlations within Tsirelson-compatible bounds. Status: `draft`.
 4. `no_signaling_gate` — Prove that local marginals do not transmit controllable signals by deriving local-setting relabeling invariance of the joint basin measure, rather than adding no-signaling as a post-fit cancellation. Status: `draft`.
-5. `preferred_frame_handoff` — Show that the same observer export used for Bell records keeps clock, signal-timing, analyzer-calibration, and coincidence-window preferred-frame leakage below Lorentz-test bounds. Status: `draft`.
+5. `ordering_invariance_gate` — Prove that observer-level spacelike-separated joint tables do not depend on whether the substrate order is $A\prec_tB$ or $B\prec_tA$ in absolute time. Status: `draft`.
+6. `preferred_frame_handoff` — Show that the same observer export used for Bell records keeps clock, signal-timing, analyzer-calibration, coincidence-window, and ordering preferred-frame leakage below Lorentz-test bounds. Status: `draft`.
 
 ## Closure Objects
 
@@ -22,6 +23,7 @@ Bell is a hard replacement constraint, not an ontology shortcut. The corpus alre
 - Local detector kernels $K_A(a|\alpha,\Gamma_A,\mathcal{H}_A)$ and $K_B(b|\beta,\Gamma_B,\mathcal{H}_B)$.
 - Joint basin measure $\mu_{AB}$.
 - Local-setting relabeling invariance of $\mu_{AB}$ at each wing.
+- Ordering-invariance residual $\Delta_{\mathrm{ord}}$ for the two absolute-time order sectors of observer-level spacelike-separated records.
 - Correlation target $E(\alpha,\beta)$ and CHSH statistic $S$.
 - No-signaling marginal tests.
 - Preferred-frame leakage residual inherited from the Lorentz / PPN observer-export channel.
@@ -40,4 +42,5 @@ Bell is a hard replacement constraint, not an ontology shortcut. The corpus alre
 - `bell.signal_transfer`: correlations require controllable superluminal signal transfer.
 - `bell.measurement_independence_blur`: source, settings, and detector records are conflated without a precise assumption map.
 - `bell.no_pair_ledger`: singlet or polarization correlations are asserted without source-pair provenance.
-- `bell.preferred_frame_leakage`: the correlation fit requires observer-accessible absolute-frame drift in clocks, signal timing, analyzer calibration, or coincidence-window selection.
+- `bell.ordering_leakage`: joint tables depend on which wing is first in absolute time for observer-level spacelike-separated records.
+- `bell.preferred_frame_leakage`: the correlation fit requires observer-accessible absolute-frame drift in clocks, signal timing, analyzer calibration, coincidence-window selection, or ordering statistics.

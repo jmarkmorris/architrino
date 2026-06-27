@@ -194,6 +194,25 @@ In the reversible below-threshold regime, $\mathsf{I}_{A}^{ab}$ is built from th
 
 This ratio form is a sharper anti-fitting invariant than the absolute scalar formula. Changing $\alpha_{\mathrm{m}}$ cannot improve one particle without changing all particles in the same regime. Changing $\zeta(A)$ is admissible only when it is produced by the branch ledger and exposure quotient for $A$, not when it is selected from the observed mass table. Failure of the tensor replacement in anisotropic or pressure-dependent cells is evidence that the scalar mass map is being used outside its regime.
 
+#### Composite Branch Mass Is Not Constituent Mass Addition
+
+The mass-ratio formulas apply to accepted branches after their own closure, exposure quotient, and Noether sea response record have been evaluated. If a composite branch $C$ is built from retained sub-branches $A_i$, its scalar mass trace is therefore not generally the sum of the scalar mass traces those sub-branches would have as isolated free branches:
+
+$$
+m_{\mathrm{tr}}(C)
+=
+\frac{1}{3}h_{ab}\mathsf{I}_{C}^{ab},
+\qquad
+m_{\mathrm{tr}}(C)
+\ne
+\sum_i m_{\mathrm{tr}}(A_i)
+\quad\text{in general.}
+$$
+
+The composite branch has its own coupling ledger: color-corridor closure for hadrons, residual-strong and nuclear-binding terms for nuclei, shared shielding, multipole cancellation, recoil channels, and local Noether sea polarization. Those entries change $\mathsf{I}_{C}^{ab}$ before the scalar trace is taken. Apparent mass is additive only in the limiting case where the interaction ledger, binding energy, shared shielding, and medium-response cross terms are negligible on the declared comparison window.
+
+This is the mass-map reading of the familiar nuclear and hadronic warning that a proton, neutron, or deuteron is not weighed by adding the observer-facing masses of the quark or nucleon records visible at a different resolution. Conservation is still enforced at the full event ledger: any decrease in the composite scalar mass appears as binding energy, radiation, recoil, neutrino rows when weak channels participate, or a changed Noether sea response record. The nuclear-side bookkeeping is stated in [Nuclear Binding](../nuclear-atomic/nuclear-binding.md), while the nucleon-side source envelope is stated in [Nucleon Structure](../nuclear-atomic/nucleon-structure.md).
+
 #### Charge-Conjugate Mass Equality
 
 The equality of a particle's rest mass with the rest mass of its antiparticle is a mass-map constraint, not a separate fitted fact. Let $\bar A$ denote the charge-conjugate branch obtained from an accepted assembly $A$ by reversing all intrinsic polarity signs and pro/anti orientation while preserving the shielding-coherence class, causal-root ledger, branch geometry, and Noether sea response record:

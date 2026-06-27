@@ -28,6 +28,28 @@ This section collects the main open simulation-side questions that remain after 
 - Identify observables that distinguish **alignment-driven strong-field effects** from inner-binary maximal-curvature dynamics.
 - Specify which parameters control alignment onset (Noether sea density, compression, external field gradients).
 
+### Simulation Scope Envelope
+
+Each simulation campaign should declare a bounded scope envelope before any result is interpreted. The envelope includes the Euclidean-void domain, absolute-time span, entity inventory, assembly inventory, Noether sea initialization, path-history depth, spatial and temporal resolution ladder, $\mathbb{U}_{\text{now}}$ logging channels, detector-synthetic channels, feedback/intervention mode, and runtime-rate or cost budget. This is not another promotion gate; it is the pre-run declaration that makes the existing campaign packet auditable.
+
+The durable target is to separate four questions that are often conflated:
+
+- What portion of $S(t)$ is being integrated?
+- What portion of $S(t)$ is being logged?
+- What observer-level quantity is being reconstructed from those logs?
+- Which perturbations or interventions are allowed during the run?
+
+Threshold-sensitive events should be reported as deterministic basin-boundary questions, not as substrate randomness. For an event region $\Omega_E$ in the declared state coordinates and unresolved perturbation scale $\|\delta S_t\|_{\mathrm{unres}}$, a useful diagnostic margin is
+
+$$
+m_E(t)
+=
+\frac{d(S_t,\partial\Omega_E)}
+{\|\delta S_t\|_{\mathrm{unres}}+\varepsilon_0}
+$$
+
+Rows with $m_E(t)\le 1$ are threshold-sensitive. They can guide reruns, perturbation sweeps, and detector-synthetic caution flags, but they do not promote one branch, reaction, or record outcome without the ordinary root-ledger, residual, convergence, and provenance rows.
+
 ### Wake-Pattern Return Diagnostic
 
 A visualization pass may render a candidate binary, shell-braid, or nested-shell branch as an effective standing wake pattern only after the raw causal-root ledger is preserved. For a declared branch window $W$, period $T$, and quotient map $Q$ that removes center drift, global rotation, and the declared cycle phase, reconstruct a finite-window wake or potential map $\Phi_Q(\mathbf{y}, t)$ from the same $\Pi_{\mathbb{U}_{\text{now}}}$ provenance rows used by the branch residuals. A diagnostic return residual is
