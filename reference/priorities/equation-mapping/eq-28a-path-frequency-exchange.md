@@ -199,6 +199,8 @@ node scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs --summa
 
 The expected attempt run returns `schemaOk: true`, `status: blocked_missing_accepted_path_frequency_exchange_carrier`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_path_frequency_exchange_carrier`. The normalized sample's inverse-Compton, path-frequency, thermal SZ, kinematic SZ, photon Gate A/B, source-provenance, hidden-retune, and negative-control diagnostics should pass. They do not count as accepted retained evidence because the path-frequency exchange carrier and every row binding remain `status: attempt`.
 
+The carrier-shell source-contract boundary is staged at [eq28a-path-frequency-exchange-carrier-shell-source-contract.v1.json](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-carrier-shell-source-contract.v1.json) and exercised by [eq28a-path-frequency-exchange-carrier-shell-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-carrier-shell-source-contract-attempt.v1.json). That boundary fixture marks only the top `carrier` and `path_frequency_exchange_carrier` row as accepted-looking against the contract source. It is intentionally still score-neutral: the expected checker result advances only to `status: blocked_missing_rows` with `nextBlocker: missing_accepted_theta_gamma_packet`, while `scoreDecision: no_score_increase` and `--require-populated` remains nonzero.
+
 ## Promotion Disposition
 
 Classification: `priority-only`.
