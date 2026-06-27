@@ -56,6 +56,32 @@ Action ladder:
 - `moderate`: convene cross-disciplinary panels with authority to request bridge papers, reproducible packets, and assumption disclosures from funded programs.
 - `aggressive`: initiate a formal intervention review, pause renewals in structurally conflicted areas, and require affected institutions to submit transition or closure plans.
 
+## Governance Architecture And Strategic Maintenance
+
+A foundation-level transition should treat institutional design as part of the scientific risk. Mature research fields can become forward-only machines: they accumulate theories, grants, departments, journals, tenure lines, public narratives, and graduate pipelines around earlier branch decisions, but lack a routine way to revisit those decisions when progress stalls. That creates a conflict of interest. The people most authorized to judge a foundational rollback are often the people whose careers, students, grants, and reputations depend on the prior decision.
+
+The governance correction is to separate management power from technical decision power. Management should handle personnel, compliance, budgets, conflict resolution, and operational delivery. Technical decisions should be made through rotating, conflict-disclosed, cross-disciplinary review cells that can reopen branch points, request bridge packets, and publish written dispositions. A chair, institute director, journal editor, or grant-panel leader should not be able to convert administrative status into technical finality.
+
+The field also needs strategic maintenance. Physics and cosmology should be managed as portfolios with declared goals, decision records, assumption-risk registers, low-return reviews, and sunset paths. A field that has not made foundational progress for decades should be required to ask whether its most expensive programs are testing nature or protecting inherited narratives.
+
+Required maintenance products:
+
+- `branch-point audits`: identify historical decisions that became taboo to revisit, state what observations required, and state what was added as interpretation.
+- `portfolio maps`: classify programs by benchmark value, transition value, narrative dependency, workforce value, and opportunity cost.
+- `technical-decision records`: record why a framework, prior, or exclusion remains justified, who decided, what evidence would reverse it, and when it must be revisited.
+- `strategic allocation plans`: decide how effort is divided among universities, national labs, corporate labs, independent contributors, validation teams, and historical-baseline work.
+- `low-return sunset reviews`: identify programs that continue mainly because careers, prestige, or grant machinery already exist.
+
+Incentives need equal scrutiny. Tenure, grant renewal, journal reputation, publication volume, paywalls, and graduate-labor economics can all punish foundational dissent even when the dissent is technically disciplined. If a transition program is serious, it should make rollback and correction fundable outputs. Researchers should not have to choose between intellectual honesty and the survival of their students, staff, or lab.
+
+The same governance design should protect two-way communication. Outside and adjacent-field contributors should not control review standards, but neither should they be locked outside the field by paywalls, credential filters, or informal ridicule. A strict intake process is not a courtesy. It is a false-negative control for a field that may have already missed a simple branch correction.
+
+Action ladder:
+
+- `conservative`: require assumption-risk registers, branch-point audit workshops, open technical-decision records, and conflict disclosures for vulnerable portfolios.
+- `moderate`: separate administrative management from technical decision authority, create rotating cross-disciplinary review cells, fund rollback papers, and require strategic portfolio maps with sunset categories.
+- `aggressive`: remove conflicted legacy authorities from decisive review roles, redirect funds from low-return narrative-defense programs, close paywalled or status-filtered review channels for transition work, and restructure departments that cannot separate personnel hierarchy from technical judgment.
+
 ## Career Impact
 
 A foundation-level physics transition would directly affect careers. Many researchers would not be "wrong" in the ordinary sense; they would hold expertise in an inherited model that may remain predictive inside a narrower domain. The risk is that their professional identity, grants, publication record, graduate training, and review authority are tied to assumptions that may need reinterpretation.
@@ -538,6 +564,7 @@ If the program became credible enough for serious institutional response, an NSF
 - `Archive`: preserve and classify inherited results by validity domain.
 - `Translate`: fund experts who can restate candidate claims in conventional notation and benchmark terms.
 - `Test`: fund adversarial validation, simulations, and failure-mode discovery.
+- `Govern`: separate management hierarchy from technical decision authority, maintain branch-point audits, and enforce strategic portfolio maintenance.
 - `Classify`: build table-grade organization of particle families, reaction channels, detector signatures, stability rules, and missing or failed entries.
 - `Refactor`: decompose GR, QM, QFT, QED, QCD, and Lambda-CDM-era cosmology into benchmarks, effective formalisms, computational tools, ontology-risk claims, and recovery obligations.
 - `Audit`: classify funded portfolios by observation value, effective-model value, narrative dependency, transition eligibility, and fraud-risk exposure.
@@ -571,6 +598,7 @@ This document is not a public announcement and not a corpus claim. It is a plann
 - What concession pathway lets legacy authorities acknowledge narrative failure, preserve useful assets, and exit control roles when requalification fails?
 - How should the transition manage legitimate anger from fields that bore downstream complexity while particle physics retained foundational prestige?
 - Which senior physicists can become transition assets, and which should lose authority because they cannot separate benchmark stewardship from narrative defense?
+- How should management hierarchy, technical decision authority, and strategic portfolio allocation be separated so foundational rollback remains possible?
 - What translation key would let a skeptical expert review the candidate without first accepting its ontology?
 - Which first computations would convert the program from provocative story to ordinary technical object?
 - How should academic departments retain baseline authority while corporate and government labs absorb application-driven talent?
