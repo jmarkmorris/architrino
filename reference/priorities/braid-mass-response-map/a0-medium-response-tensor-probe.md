@@ -252,6 +252,80 @@ $$
 
 Report whether the same shielded-energy lock controls the response to acceleration and to a weak gradient.
 
+### Plane-Bivector Retuning Readout
+
+Both probe families must report how the retained internal frame retunes, not
+only the final response tensor. For each layer $\ell\in\{I,M,O\}$, let
+$\mathcal{B}_{\ell}^{(0)}$ denote the accepted rest-branch oriented plane
+bivector and let $\mathcal{B}_{\ell}^{(p)}$ denote the perturbed bivector for
+probe $p\in\{\mathrm{accel},\mathrm{grad}\}$. The reported row is
+
+$$
+\Delta_p\mathcal{B}_{\ell}
+=
+\mathcal{B}_{\ell}^{(p)}
+-
+\mathcal{B}_{\ell}^{(0)},
+\qquad
+\widehat{\Delta}_p\mathcal{B}_{\ell}
+=
+\frac{\Delta_p\mathcal{B}_{\ell}}{\epsilon_p},
+$$
+
+where $\epsilon_p$ is the declared small perturbation amplitude for that probe.
+The same row must report the induced inter-plane changes
+
+$$
+\Delta_p d_{\ell m}
+=
+\left(
+\hat{\mathbf n}_{\ell}^{(p)}\cdot\hat{\mathbf n}_{m}^{(p)}
+\right)
+-
+\left(
+\hat{\mathbf n}_{\ell}^{(0)}\cdot\hat{\mathbf n}_{m}^{(0)}
+\right),
+\qquad
+\ell<m,
+$$
+
+using the plane normals derived from the same retained bivectors. The
+retuning ledger must also report the layer action and energy increments
+$\Delta I_{\ell}^{(p)}$, $\Delta E_{\ell}^{(p)}$, and any assigned
+$\Delta E_{\mathrm{wake}}^{(p)}$ on the same causal-root ledger as the force
+and energy rows.
+
+For matched acceleration and gradient probes with the same retained direction
+label, the plane-response consistency residual is
+
+$$
+\mathcal{R}_{\mathcal{B},\mathrm{AG}}
+=
+\max_{\ell\in\{I,M,O\}}
+\frac{
+\left\|
+\widehat{\Delta}_{\mathrm{accel}}\mathcal{B}_{\ell}
+-
+\widehat{\Delta}_{\mathrm{grad}}\mathcal{B}_{\ell}
+\right\|
+}{
+\left\|
+\widehat{\Delta}_{\mathrm{accel}}\mathcal{B}_{\ell}
+\right\|
++
+\left\|
+\widehat{\Delta}_{\mathrm{grad}}\mathcal{B}_{\ell}
+\right\|
++
+\varepsilon_{\mathcal{B}}
+}.
+$$
+
+A tensor coefficient without this plane-bivector retuning row is only a
+projection-level diagnostic. It is not yet medium-response closure, because it
+has not shown which branch frame actually absorbed the acceleration or gradient
+probe.
+
 ### Anisotropy Probe
 
 Repeat both probes along at least three independent axes in the center-of-closure frame. Emit the symmetric tensor part, antisymmetric residue if present, and anisotropy residual relative to $h^{ab}/c_{\text{eff}}^2$.
@@ -266,7 +340,7 @@ Tier 3 passes only if:
 4. acceleration and gradient probes agree on the shielded-energy coefficient to first order;
 5. the scalar-positivity window above holds before $m_{\mathrm{tr}}(A_0)$ is promoted as a positive scalar mass;
 6. anisotropy and leakage residuals are reported, not absorbed into $\alpha$;
-7. trace and trace-free tensor projections are reported with the same direction labels used by the pressure-response replay.
+7. trace and trace-free tensor projections, plane-bivector retuning rows, and direction labels are reported with the same direction labels used by the pressure-response replay.
 
 ## Failure Codes
 
@@ -277,7 +351,7 @@ Tier 3 passes only if:
 | `tensor-anisotropy` | homogeneous limit does not approach $h^{ab}/c_{\text{eff}}^2$ |
 | `scalar-positivity-window-fail` | trace-free exposure and trace-free medium response overwhelm the scalar shielding term |
 | `accel-gradient-mismatch` | acceleration and gradient probes do not share the shielded-energy coefficient |
-| `projection-incomplete` | trace or trace-free projections are missing or use inconsistent direction labels |
+| `projection-incomplete` | trace projections, trace-free projections, or plane-bivector retuning rows are missing or use inconsistent direction labels |
 | `null-sector-leakage` | a directional tensor residual exceeds signal, birefringence, dispersion, or preferred-frame bounds |
 | `response-fit-contaminated` | $\alpha$ or tensor entries absorb unresolved leakage or particle benchmark data |
 

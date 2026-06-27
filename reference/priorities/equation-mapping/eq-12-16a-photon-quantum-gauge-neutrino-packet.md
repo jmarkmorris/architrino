@@ -9,6 +9,17 @@
 
 This packet keeps photon, quantum, spinor, gauge, and neutrino equations in the same equation-mapping grammar without treating any observer-level field equation as substrate ontology. The common discipline is same-record recovery: a row may score only when the Noether braid branch, Noether sea state, event ledger, sector projection, and residual budget are declared together.
 
+## Packet Attack Card
+
+| Field | Current result |
+| --- | --- |
+| Rows served | `EQ-12`, `EQ-12A`, `EQ-13`, `EQ-14`, `EQ-15`, `EQ-16`, and `EQ-16A` |
+| Closure driver | Convert photon, action, Maxwell, Born-current, spinor, gauge, and neutrino comparison equations into retained finite-window records with declared branch ledgers, Noether sea rows, event ledgers, sector projections, and fail-closed residuals. |
+| Shared first blocker family | No row in this packet should score from a numeric residual alone; each needs an accepted branch/event/domain carrier before the comparison equation counts. |
+| Deepest current executable blockers | `EQ-12` stops at `missing_accepted_theta_gamma_packet`; `EQ-12A` stops at retained-orbit/action-period rows; `EQ-14` stops at `missing_accepted_W`; `EQ-15`/`EQ-27` stops at `missing_accepted_ordered_frame_loop`; `EQ-16` stops at `missing_accepted_weak_visible_branch_ledger`; `EQ-16A` stops at the missing retained neutral-lepton branch. |
+| Smallest shared score-moving object | One row-local retained carrier whose parent branch, Noether sea state, event ledger, sector projection, source provenance, and no-hidden-retune witness are accepted from durable evidence and bound to one record. |
+| Fail-closed method | Reject observer equations, imported field summaries, toy/probe fixtures, priority prose, authored prose, and split carriers before residual arithmetic can change scores. |
+
 ## Score Recommendation
 
 | ID | `6/23 a` | `6/23 b` recommendation | Rationale |
@@ -41,6 +52,20 @@ Q_S,
 $$
 
 where $\mathcal{L}_{\mathrm{branch}}$ is the retained Noether braid or photon-channel branch ledger, $\theta_{\mathrm{sea}}$ is the declared Noether sea state, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the energy, momentum, and angular-momentum event ledger, $\Pi_S$ and $Q_S$ are the sector projection and quotient when the row is sector-visible, and $\mathcal{R}_X$ is the row-specific recovery residual. The packet fails if any row is scored from an observer equation while its branch ledger or Noether sea record is absent.
+
+## Shared Direct Geometry Layer
+
+This table is a packet-level method map. It does not replace the row-specific source-field maps; it states the Direct Geometry Layer that every row in the packet must satisfy before a comparison equation becomes evidence.
+
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| --- | --- | --- | --- | --- | --- |
+| Photon $E=h\nu$, null/eikonal transport, and helicity | Photon-channel event transfer ledger with source, packet, path, receiver, recoil, wake, and remnant rows. | `theta_gamma_packet`, Gate A/B/C rows, path-history transfer, event ledger | One photon branch id, event id, path-history id, source/remnant ledger, and receiver coupling record. | `equation_map.hidden_retune`, `photon.longitudinal_leakage`, and source/probe guards block imported photon equations or extra modes. | Accepted `theta_gamma_packet` whose energy, helicity, null/eikonal, event-balance, source-provenance, and retune rows are all source-backed. |
+| Planck action and de Broglie readouts | Retained-orbit action-period carrier with one geometry-derived $h_\vartheta$ and $\hbar_\vartheta$. | `retained_orbit_reduction_row`, `constant_delay_self_hit_model_row`, `geometry_derived_action_period_row` | The energy, phase, momentum, angular-momentum, orbit, and photon consumers use the same retained branch and action-period id. | Hopf degeneracy, state-dependent-delay first-model failure, readout splitting, and alpha-fitted action controls block fitted $h$. | Accepted retained branch with equal-frequency action-period readout, four-readout coincidence, positive Floquet margin, and durable source support. |
+| Maxwell and wave equations | Effective EM chart read from causal wakes, charged assemblies, photon packets, and Noether sea response. | `effective_gauge_chart_witness`, charge/current continuity, photon Gate A/B/C, event ledger | Effective $A_\mu$, $J_\mu$, stress/Poynting, photon handoff, target, recoil, and Noether sea rows share one event/window record. | `equation_map.level_collapse` and imported-formula controls block treating Maxwell fields as substrate ontology or bypassing photon Gate rows. | Accepted event-bound effective EM chart whose gauge, current, stress, photon, target, recoil, medium, and ledger rows are source-backed and same-record bound. |
+| Born density/current and continuity | Finite-window record-current pushforward from one measure and branch flow. | Retained `W`, $\Phi_T$, $\mu_{*,T}$, `Theta_rhoJ`, record-current samples | Density and current rows share the same finite measure, transition map, detector kernel, outcome partition, and no-hidden-retune witness. | `eq14.measure_flow_split`, continuity residual, density-reference residual, and current-reference residual blockers reject split or fitted current rows. | Accepted finite-window carrier with source-backed `Theta_rhoJ` and record-current samples on one measure/flow. |
+| Spinor parity and magnetic-moment bridge | Ordered-frame loop and spin lift on one retained non-gauge branch. | `ordered_frame_loop`, spin lift, gauge-control row, angular-momentum ledger, moment-map magnetic row | Spin, gauge-control, quotient, angular momentum, magnetic response, and leading $g=2$ rows share one same-record support. | Gauge-only/null-control rows, quotient failure, and angular-momentum residuals block ordinary visible rotation from counting as spinor support. | Accepted non-gauge ordered-frame loop with odd $2\pi$ parity, $4\pi$ restoration, quotient witness, and same-record moment-map response. |
+| Gauge, weak, and Standard Model-facing equations | Weak/gauge exposure-domain carrier with chirality, CKM/PMNS overlap, reaction provenance, and covariance rows. | `weak_visible_branch_ledger`, weak projection, exposure domain, gauge covariance, provenance, retune witness | `V-A`, CKM, PMNS, weak reaction provenance, effective gauge covariance, and sector projection stay on one weak-visible retained domain. | `weak.hidden_domain_split`, `gauge.branch_record_changed`, and source-contract controls block split exposure domains or pure gauge relabeling. | Accepted weak-visible branch ledger plus weak projection and gauge/provenance rows on one source-backed exposure domain. |
+| Neutrino oscillation phase gaps | Retained neutral-lepton phase-operator packet with common clock factored out and residual gap operator retained. | Neutral-lepton retained branch, weak source/detector rows, phase operator, PMNS readout | Source flavor, propagation eigenstate, detector readout, weak exposure, common clock, and energy/momentum ledgers share one branch-domain record. | `neutrino.equal_frequency_erases_gap`, `neutrino.equal_spacing_false_target`, and weak-domain split controls block false tri-binary cancellation or fitted flavor rows. | Accepted neutral-lepton branch with source/detector weak rows, PMNS readout, residual phase operator, and same-record ledger closure. |
 
 ## EQ-12 Photon Energy, Null Condition, And Eikonal Propagation
 
@@ -319,6 +344,24 @@ $$
 +\Delta_{\mathrm{gauge}}.
 $$
 
+### Term-To-Geometry Map
+
+This table is a priority-only recovery map. It names the geometric readout each Maxwell-style term should consume before the residual above can count as equation evidence. It is not a score change and does not make $A_\mu$, $J_\mu$, $\mathbf E$, or $\mathbf B$ native substrate fields.
+
+| Comparison term | AAA geometric readout | Required carrier or row | Fail-closed condition |
+| --- | --- | --- | --- |
+| $\theta$ | Declared coarse-graining from causal wakes, photon-channel packets, charged assembly records, and Noether sea state into one observer-level field chart. | One retained event or finite window with source/receiver branch ids, photon Gate A/B/C rows, Noether sea row, and a declared projection $\Pi_{13}$. | `equation_map.imported_formula` if the chart is asserted without a coarse-graining map. |
+| $A_{\mathrm{eff},\mu}^{\theta}$ | Effective EM connection/potential readout extracted from wake superposition, photon-channel transport, and Noether sea response. | `effective_gauge_chart_witness`, causal-wake ledger, photon packet ledger, and shared $c_\gamma$ / $\chi_\gamma$ rows on the same event or window. | `equation_map.level_collapse` if $A_\mu$ is treated as a substrate field instead of an effective connection readout. |
+| $J_{\mathrm{eff},\mu}^{\theta}$ | Exposed charge/current readout from charged assembly polarity, axial-layer ledgers, source-event provenance, and event balance. | `effective_charge_current_continuity`, charged assembly branch ids, and the same event-ledger rows used by Gate A/B/C and recoil. | `missing_accepted_photon_gate_A_input_output` remains first if the source event itself is not accepted. |
+| $\Box_{\mathrm{eff}}$ | Observer-level wave operator supplied by the effective metric, local photon-channel speed, and Noether sea delay/response rows. | $g_{\mu\nu}^{\mathrm{eff}}$, $c_\gamma$, $\chi_{\text{sea}}$, Noether sea state row, and the same chart used by $A_{\mathrm{eff},\mu}^{\theta}$. | Fail if the operator uses a private metric, private photon speed, or unrelated Noether sea row. |
+| $\Box_{\mathrm{eff}}A_{\mathrm{eff},\mu}^{\theta}-J_{\mathrm{eff},\mu}^{\theta}$ | Source-response mismatch after the effective connection and exposed current are read from the same event/window. | Same-record binding between the effective connection, current, event ledger, Gate A/B/C rows, and Noether sea row. | Fail if $A_{\mathrm{eff}}$ and $J_{\mathrm{eff}}$ come from split branch/event/window records. |
+| $\Delta_{\mathrm{cont}}$ | Charge/current continuity residual for the exposed event current. | `effective_charge_current_continuity` with source and receiver provenance. | Fail if continuity is imported from Maxwell prose rather than checked against event ledgers. |
+| $\Delta_E^{\mathrm{EM}}$, $\Delta_{\mathbf p}^{\mathrm{EM}}$, $\Delta_{\mathbf J}^{\mathrm{EM}}$ | Energy, momentum, and angular-momentum balance across the effective EM control volume. | `em_stress_poynting_control_volume`, `energy_momentum_event_ledger`, `angular_momentum_ledger_delta_J`, plus explicit medium/remnant support rows. | Fail if medium/remnant rows are omitted or if Poynting/stress balance is evaluated on a different control volume. |
+| $\Delta_{\mathrm{gauge}}$ | Gauge/chart invariance witness showing chart changes preserve the physical branch/event ledger. | `effective_gauge_chart_witness` with chart probes tied to the same $\Pi_{13}\mathsf e_{\gamma e}^{0}$ projection. | Fail if gauge freedom hides branch retuning, source changes, or event-id changes. |
+| $\mathbf E_{\mathrm{eff}}^\theta$, $\mathbf B_{\mathrm{eff}}^\theta$ | Observer-level electric and magnetic readouts from the effective connection; $\mathbf B_{\mathrm{eff}}^\theta$ is the curl-like component consumable by `EQ-27` only after `EQ-27` supplies the ordered-frame/internal-current moment map. | Same $A_{\mathrm{eff},\mu}^{\theta}$, current, gauge, and Noether sea rows; downstream `EQ-27` also needs `ordered_frame_loop` and `moment_map_magnetic`. | Fail if an electric or magnetic field label is used as a first-class substrate object or as a bypass around either row's first blocker. |
+
+The smallest cross-row solve target is therefore not the continuum equation alone. It is one event-bound term map on $\Pi_{13}\mathsf e_{\gamma e}^{0}$ where Gate A/B/C, effective current, stress/Poynting, gauge, energy/momentum/angular-momentum, Noether sea, medium/remnant, and no-hidden-retune rows all share the same event id and durable source evidence.
+
 ### Noether Braid Variables
 
 - charged assembly polarity and axial-layer ledgers;
@@ -373,6 +416,8 @@ node scripts/equation-mapping/compton-recoil-event-replay.mjs \
 Current status is score-neutral: the checker reports `status: comparison_replay_closed_native_rows_missing`, `nextBlocker: missing_accepted_photon_gate_A_input_output`, `effectiveEmGateStatus: blocked_missing_native_event_rows`, `effectiveEmGateNextBlocker: missing_accepted_photon_gate_A_input_output`, and `effectiveEmGateNumericPass: true`. The comparison replay closes the homogeneous Compton/recoil residuals on the attempt event, but every native row and the medium/remnant support rows remain `attempt`, so no `EQ-12`, `EQ-13`, `EQ-26`, `EQ-28`, or `EQ-29` score change is justified. The gate does not make Maxwell's equations native; it prevents Maxwell-level summaries from bypassing the photon Gate A/B/C, recoil, Noether sea, medium/remnant, and event-ledger rows.
 
 [EQ-13 And EQ-28 e_gamma_e_0 Gate A Source-Field Map](eq-13-28-e-gamma-e0-gate-a-source-field-map.md) narrows this first blocker to one event-bound `photon_gate_A_input_output` source row on $\mathsf e_{\gamma e}^{0}$. It is priority-only and does not change scores.
+
+Priority-only bridge to `EQ-27`: [EQ-15 And EQ-27 Ordered-Frame Loop Source-Field Map](eq-15-27-ordered-frame-loop-source-field-map.md#priority-only-magnetism-bridge-to-eq-13) records how the effective EM connection/curl readout $\mathbf B_{\mathrm{eff}}^\theta$ can be consumed by a magnetic-moment response only after `EQ-13` supplies event-bound effective EM rows and `EQ-27` supplies an ordered-frame/internal-current moment map. This bridge is not a substrate magnetic field and does not bypass `missing_accepted_photon_gate_A_input_output`.
 
 ### Failure Mode
 

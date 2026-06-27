@@ -29,7 +29,7 @@ The candidate source is suitable for a source-field map because it is versioned 
 | --- | --- |
 | Current score | `2` |
 | Closure driver | Recover quadrupole, chirp, orbital decay, detector strain, radiated energy/angular momentum, and ringdown from one source carrier. |
-| Primary AAA carrier | $\Theta_{\mathrm{GWsrc}}(W,P)$ with source window $W$ and detector path-history window $P$. |
+| Primary $\mathbb{A}\mathbb{A}\mathbb{A}$ carrier | $\Theta_{\mathrm{GWsrc}}(W,P)$ with source window $W$ and detector path-history window $P$. |
 | Smallest score-moving evidence object | Accepted source-backed `gw_source_carrier` plus accepted bindings for all `EQ-11A` required rows in one source-window record. |
 | Exact first blocker | `missing_accepted_gw_source_carrier` |
 | Existing scripts/fixtures/packets | [eq11a-gravitational-wave-source-residual.mjs](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs), [eq11a-gravitational-wave-source-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-attempt.v1.json), [EQ-11A Gravitational-Wave Source Recovery](eq-11a-gravitational-wave-source-recovery.md) |
@@ -53,6 +53,22 @@ The candidate source is suitable for a source-field map because it is versioned 
 | `detector_strain_record` | H1/L1 strain file identifiers, sample rate/window choice, calibration state, and detector mask. | Needs artifact hashes, calibration/nuisance row, and source-window binding. |
 | `source_provenance` | GWOSC event page, PE/data URLs, source-paper URLs, and event-version record. | Candidate provenance exists; not accepted until the evidence packet records exact source fields and hashes. |
 | `no_hidden_retune_witness` | One witness that chirp, quadrupole, decay, strain, radiated energy/angular momentum, and ringdown rows use the same event version and carrier ids. | Missing; current attempt only has normalized no-retune arithmetic. |
+
+## Direct Geometry Layer
+
+This source-window layer applies the Direct Geometry Layer requirement to the concrete `GW150914-v3` candidate. The row remains candidate-level: it names the retained-record geometry that would have to exist, not accepted evidence that it already exists.
+
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| --- | --- | --- | --- | --- | --- |
+| $\mathcal M_c$ from component masses | Component-mass and chirp-mass readout from one binary source event ledger. | `gw_source_carrier`, `source_event_ledger`, `chirp_mass_row` | One `carrierId`, `sourceWindowId`, `supportId`, and `eventId` bind $m_1$, $m_2$, and $\mathcal M_c$ to `GW150914-v3`. | `gw.source_window_split` rejects a chirp row whose source event or support id differs from the carrier. | Accepted `gw_source_carrier` row plus component-mass and chirp-mass row sourced to a durable GWOSC/LVK event record with artifact hashes. |
+| $\dot f_{\mathrm{GW}}$ | Inspiral phase-rate readout from the same chirp mass and tensor-channel constants. | `chirp_mass_row`, `theta_sea`, `effective_metric_tensor_channel` | The chirp row, Noether sea row, and effective metric tensor channel share the carrier identity before the chirp-rate residual is scored. | Probe-source and theta-sea content-source controls reject probe JSON or authored Noether sea prose as retained evidence. | Accepted `theta_sea` and effective-metric tensor rows bound to the accepted GW source carrier. |
+| Peters-Mathews $\dot a$ or $\dot P_b$ | Orbital-decay readout from the same source masses, orbital state, and tensor-radiation channel. | `peters_decay_row`, `source_event_ledger`, `effective_metric_tensor_channel` | The decay row consumes the same source-event ledger as the chirp, radiated-output, and remnant rows. | Split-source control rejects orbital decay imported from a separate binary source window. | Accepted orbital-decay row whose source ledger and tensor channel match the GW150914 carrier. |
+| $P_{\mathrm{GW}}$ and quadrupole power | Effective quadrupole and radiated-power readout from the binary source ledger. | `quadrupole_source_row`, `source_event_ledger`, `effective_metric_tensor_channel` | $Q_{ij}^{\mathrm{eff}}$, $E_{\mathrm{rad}}$, and $\mathbf J_{\mathrm{rad}}$ bind to the same source/remnant ledger. | Unledgered-power control rejects standalone quadrupole arithmetic without source-ledger identity. | Accepted quadrupole row plus radiated energy/angular-momentum ledger sourced to one event record. |
+| $\mathcal F_{\mathrm{GW}}$ | Detector path-history strain-flux readout for $h_+$ and $h_\times$. | `strain_flux_row`, `detector_strain_record`, `effective_metric_tensor_channel` | H1/L1 strain, detector calibration/nuisance state, path-history window, and source event share one `supportId`. | Strain-only controls reject one-polarization or detector-only fits not bound to the source carrier. | Accepted detector strain record and strain-flux row with source-window binding and artifact hashes. |
+| Ringdown $f_{\mathrm{ring}}$, $\tau_{\mathrm{ring}}$ | Final compact-object label after radiated energy and angular momentum update the remnant. | `ringdown_label_row`, `source_event_ledger` | Ringdown label, final mass/spin, radiated ledger, and remnant id remain on the same source event ledger. | Split-ringdown control rejects final-state labels imported from another event or retuned after the chirp fit. | Accepted ringdown label row bound to the same remnant ledger as the source carrier. |
+| Source identity and $\mathcal S_{\mathrm{retune}}$ | No-hidden-retune witness for the whole GW150914 retained record. | `source_provenance`, `no_hidden_retune_witness`, all required rows | Every required row cites durable non-priority evidence and the same `carrierId`, `sourceWindowId`, `supportId`, and `eventId`. | Coordination-source, probe-source, and content-source controls reject priority packets, probes, authored prose, generated paths, and temporary paths. | A checker-consumable $\Theta_{\mathrm{GWsrc}}(W,P)$ packet whose required rows are accepted, source-backed, same-record bound, and fail closed under the existing checker. |
+
+The smallest accepted evidence object is therefore not a better normalized numerical sample. It is a retained $\Theta_{\mathrm{GWsrc}}(W,P)$ source packet for `GW150914-v3` whose carrier, Noether sea/effective-metric rows, source-event ledger, detector strain record, radiated-output ledger, ringdown label, source provenance, and no-hidden-retune witness all survive the existing accepted-source and same-record checks.
 
 ## Channel Boundary
 
@@ -80,6 +96,8 @@ node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --inp
 ```
 
 The probe marks only the top-level carrier and `gw_source_carrier` row as accepted-looking against a guard-passing local GWOSC/LVK report source. It leaves `theta_sea`, the effective-metric tensor channel, event ledger, source rows, strain record, provenance row, and no-hidden-retune witness at `attempt`. The expected result is `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_theta_sea`; the `--require-populated` form must exit nonzero.
+
+Current checker finding: the source-evidence probe exposes the next blocker without closing it. The default attempt remains blocked at `missing_accepted_gw_source_carrier`; the probe advances only to `missing_accepted_theta_sea`, with `6/6` negative controls passing and `scoreDecision: no_score_increase`. This confirms that the smallest score-moving object is not a single accepted-looking `gw_source_carrier`; it must include accepted `theta_sea`, effective-metric tensor, source-event ledger, detector-strain, ringdown, provenance, and no-hidden-retune rows bound to the same retained record.
 
 The probe-source negative control is [eq11a-gravitational-wave-source-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-probe-source-negative-control.v1.json):
 

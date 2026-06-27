@@ -1,0 +1,50 @@
+{
+  "schema": "aaa-equation-map-weak-gauge-exposure-domain-ledger-source-contract/v1",
+  "claimLevel": "score-neutral EQ-16 weak-visible branch-ledger source-contract boundary; contract metadata only, not retained evidence",
+  "row": "EQ-16",
+  "purpose": "Name the durable source-backed weak_visible_branch_ledger boundary before weak projection, quotient, exposure, overlap, provenance, covariance, reaction-event, or Noether sea rows can count.",
+  "evidenceBoundary": {
+    "ordinaryFirstBlocker": "missing_accepted_weak_visible_branch_ledger",
+    "boundaryExercisedBy": "scripts/equation-mapping/weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json",
+    "expectedStatusAfterLedgerAcceptance": "blocked_missing_rows",
+    "expectedNextBlockerAfterLedgerAcceptance": "missing_accepted_weak_projection",
+    "scoreDecision": "no_score_increase",
+    "acceptedEvidenceObjectLanded": false
+  },
+  "sourceIdentity": {
+    "domainId": "D_weak_visible_attempt_0001",
+    "branchRecordId": "A_weak_attempt_0001",
+    "weakVisibleBranchLedgerId": "L_A_weak_visible_contract_0001",
+    "gaugeChartId": "effective_weak_chart_attempt_0001"
+  },
+  "directGeometryLayer": [
+    {
+      "standardComparisonTerm": "weak-visible sector identity",
+      "aaaGeometricReadout": "weak_visible_branch_ledger on one retained weak-visible domain",
+      "requiredCarrierOrRow": "weak_visible_branch_ledger",
+      "sameRecordBinding": "same domainId, branchRecordId, and gaugeChartId across every weak/gauge row",
+      "failClosedNegativeControl": "accepted_without_evidence_source or weak.hidden_domain_split",
+      "smallestAcceptedEvidenceObject": "durable non-priority weak_visible_branch_ledger source with fixed domainId, branchRecordId, and event/source provenance"
+    },
+    {
+      "standardComparisonTerm": "gauge projection and quotient",
+      "aaaGeometricReadout": "weak_projection and weak_quotient as same-domain retained-domain projections",
+      "requiredCarrierOrRow": "weak_projection, weak_quotient, effective_gauge_covariance_witness",
+      "sameRecordBinding": "same gauge chart, branch record, weak domain, and covariance witness as the ledger row",
+      "failClosedNegativeControl": "weak.hidden_domain_split",
+      "smallestAcceptedEvidenceObject": "accepted projection/quotient rows whose covariance residual is computed on the ledger domain"
+    },
+    {
+      "standardComparisonTerm": "V-A, CKM, PMNS, and reaction provenance",
+      "aaaGeometricReadout": "sector-visible overlap and chirality readouts bound to one weak exposure domain",
+      "requiredCarrierOrRow": "weak_exposure_record, va_chirality_gate, ckm_overlap_readout, pmns_overlap_readout, weak_corridor_provenance, reaction_event_ledger, noether_sea_response",
+      "sameRecordBinding": "same domainId, branchRecordId, gauge chart, reaction event ledger, and Noether sea response across readouts",
+      "failClosedNegativeControl": "weak.hidden_domain_split and accepted_without_evidence_source",
+      "smallestAcceptedEvidenceObject": "same-domain weak exposure packet with every required row accepted from durable evidence"
+    }
+  ],
+  "failClosedNegativeControls": [
+    "scripts/equation-mapping/weak-gauge-exposure-domain-split-negative-control.v1.json",
+    "scripts/equation-mapping/weak-gauge-exposure-domain-priority-source-negative-control.v1.json"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schema": "aaa-equation-map-eq23a-explosive-source-window-source-contract/v1",
+  "claimLevel": "score-neutral carrier-shell source-support contract; not accepted retained evidence and not a score-moving object",
+  "row": "EQ-23A",
+  "contractId": "theta_expl_source_window_carrier_shell_source_contract_0001",
+  "carrierId": "theta_expl_source_window_carrier_shell_source_contract_0001",
+  "sourceRole": "explosive_source_window_carrier_source_contract",
+  "evidenceBoundary": {
+    "acceptedEvidenceLands": false,
+    "scoreMovementAllowed": false,
+    "checkerUse": "parent carrier source-path boundary only",
+    "expectedStatusAfterParentAcceptance": "blocked_missing_rows",
+    "expectedNextBlockerAfterParentAcceptance": "missing_accepted_shock_jump_blast_row"
+  },
+  "requiredSourceSupport": [
+    "EQ-23A",
+    "explosive_source_window_carrier",
+    "Theta_expl",
+    "one explosive source-window identity",
+    "shock, heating, yield, photon, remnant, medium, and event-ledger boundary"
+  ],
+  "sameRecordBinding": {
+    "carrierId": "theta_expl_source_window_carrier_shell_source_contract_0001",
+    "thetaSrcId": "Theta_src_expl_carrier_shell_source_contract_0001",
+    "thetaThermProvId": "Theta_therm_prov_expl_carrier_shell_source_contract_0001",
+    "sourceWindowId": "W_expl_carrier_shell_source_contract_0001",
+    "supportId": "Omega_expl_carrier_shell_source_contract_0001",
+    "eventLedgerId": "L_EpJ_expl_carrier_shell_source_contract_0001",
+    "noetherSeaUpdateId": "N_sea_expl_carrier_shell_source_contract_0001",
+    "readoutIntervalId": "T_expl_carrier_shell_source_contract_0001",
+    "retuneWitnessId": "S_retune_expl_carrier_shell_source_contract_0001"
+  },
+  "directGeometryLayer": [
+    {
+      "standardComparisonTerm": "Rankine-Hugoniot shock jump rows",
+      "aaaGeometricReadout": "finite-window density, velocity, pressure, and energy-flux discontinuity on one explosive source window",
+      "requiredCarrierOrRow": "shock_jump_blast_row",
+      "sameRecordBinding": "carrierId, sourceWindowId, supportId, and eventLedgerId stay shared",
+      "failClosedNegativeControl": "explosive.source_window_split",
+      "smallestAcceptedEvidenceObject": "accepted explosive source-window carrier plus shock/blast row"
+    },
+    {
+      "standardComparisonTerm": "neutrino heating",
+      "aaaGeometricReadout": "thermal/provenance heating row bound to the same source and event ledger",
+      "requiredCarrierOrRow": "neutrino_heating_row",
+      "sameRecordBinding": "thetaThermProvId, carrierId, sourceWindowId, and eventLedgerId stay shared",
+      "failClosedNegativeControl": "explosive.neutrino_private_heating",
+      "smallestAcceptedEvidenceObject": "accepted neutrino heating row on the shared thermal/provenance carrier"
+    },
+    {
+      "standardComparisonTerm": "radioactive inventory and photon output",
+      "aaaGeometricReadout": "radioactive yield inventory and photon diffusion/output read through the same event ledger",
+      "requiredCarrierOrRow": "radioactive_heating_row and photon_output_row",
+      "sameRecordBinding": "carrierId, sourceWindowId, eventLedgerId, and reaction-yield identity stay shared",
+      "failClosedNegativeControl": "explosive.radioactive_inventory_split and explosive.photon_output_private_carrier",
+      "smallestAcceptedEvidenceObject": "accepted radioactive inventory and photon-output rows on one explosive carrier"
+    },
+    {
+      "standardComparisonTerm": "remnant, ejecta, and medium update",
+      "aaaGeometricReadout": "remnant state, ejecta, surrounding medium, and Noether sea response on one finite event ledger",
+      "requiredCarrierOrRow": "remnant_medium_heating_row",
+      "sameRecordBinding": "supportId, eventLedgerId, and noetherSeaUpdateId stay shared",
+      "failClosedNegativeControl": "explosive.remnant_medium_update_split",
+      "smallestAcceptedEvidenceObject": "accepted remnant/medium row with a shared Noether sea update id"
+    },
+    {
+      "standardComparisonTerm": "source provenance and no-hidden-retune",
+      "aaaGeometricReadout": "one source-window provenance row and one retune witness across shock, heating, yield, photon, remnant, and medium rows",
+      "requiredCarrierOrRow": "source_provenance and no_hidden_retune_witness",
+      "sameRecordBinding": "all rows share carrierId, sourceWindowId, supportId, eventLedgerId, and retuneWitnessId",
+      "failClosedNegativeControl": "explosive.retune_witness_private and probe-source controls",
+      "smallestAcceptedEvidenceObject": "checker-consumable Theta_expl packet with accepted durable-source-backed rows"
+    }
+  ],
+  "failClosedNegativeControls": [
+    "explosive.source_window_split",
+    "explosive.neutrino_private_heating",
+    "explosive.radioactive_inventory_split",
+    "explosive.photon_output_private_carrier",
+    "explosive.remnant_medium_update_split",
+    "explosive.retune_witness_private",
+    "explosive.probe_source_accepted_carrier"
+  ]
+}

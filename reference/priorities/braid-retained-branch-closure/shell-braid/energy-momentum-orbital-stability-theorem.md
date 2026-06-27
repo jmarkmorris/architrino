@@ -4,6 +4,8 @@ Promotion status: `priority-only`. This packet refines [noether-neutral-mode-red
 
 The theorem is local to one support-complete conservative branch, one root ledger, one total action, one Noether current map, one neutral-mode quotient, and one boundary two-form.
 
+The energy entry in the current map is the history-aware branch charge supplied by the same action and root ledger. It is not the instantaneous sum of kinetic energy plus a naive potential after wake-history content has been discarded. Neutral far-field cancellation may make the received potential gradient small, but it does not define a zero-energy leaf unless the kinetic, interaction, wake/history, Noether sea, and boundary rows vanish on the same retained record.
+
 ---
 
 ## 1. Conserved Current Leaf

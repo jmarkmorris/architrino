@@ -2907,6 +2907,8 @@ Assemblies enter the chapter as recursive dynamical organizations rather than as
 
 This recursive structure implies that many stable forms can be deconstructed into simpler binary and nested-binary components, provided the branch supplies the required closure, shielding, and provenance records.
 
+Assembly-index language from origin-of-life work is useful here as an effective reconstruction comparison, not as a new ontological layer. The comparison asks for a short construction path once reusable sub-assemblies are allowed. The native $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue is stricter: a proposed construction path counts only when the retained reaction history preserves branch identity, energy closure, shielding behavior, and provenance on the declared window. Two reaction histories may end with the same coarse assembly label, but they are not equivalent until the retained ledger shows that the same closure data survives. In this sense, abiotic selection means that an assembly branch is formed and persists under the relevant constraints; it does not import biological reproduction or agency into the substrate ontology.
+
 The phrase "progressively stronger shielding" is a theorem target, not an automatic consequence of adding layers. A captured layer can in principle reduce external reactivity, leave it unchanged, or expose a new resonance. A useful branch target is therefore a shielding monotone on a declared window,
 $$
 \Sigma_{\mathrm{shield}}(A;W)
@@ -3931,6 +3933,8 @@ $$
 
 Because $r = c_f(t - t_0)$, $r = 0$ implies $\tau = t - t_0 = 0$. This case is excluded by $H(0) = 0$. There are no "collision singularities" in the causal set (architrinos can pass through each other; forces are mediated by expanding wake surfaces, not by contact).
 
+This also fixes the status of later short-distance regularizations. A finite core cutoff or core mollifier is not a hard exclusion sphere, an elastic contact collision, or a primitive rule saying that causal wakes are blocked by or transmitted through an opaque core. It is a declared mathematical control on the near-origin amplitude inside a regularized branch chart. In the canonical branch law, a source contribution is admitted by the causal-root constraint, polarity sign $\sigma_{ij}$, separation or regularization data, transversality/Jacobian control, active-root count, and the required stability/action/event ledgers. A polarity-dependent short-distance kernel would therefore be an additional model term that must be derived and validated; it cannot be inserted as an unproved like-versus-opposite collision or opacity rule.
+
 ###### Superposition Principle
 
 The Master EOM is **linear in source contributions** on a declared branch chart:
@@ -4139,7 +4143,7 @@ while preserving total emission $q$.
 
 **In the super-field-speed regime** ($\|\mathbf{v}_a\| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization gives a finite contribution only while the active-root count, separation floor, and Jacobian floor remain controlled.
 
-**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit.
+**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. If a theorem or simulation also introduces a short-distance core mollifier $\epsilon_c$, it must declare whether the amplitude remains polarity-blind apart from $\sigma_{ij}|q_i q_j|$ or whether a derived polarity-dependent kernel has been added. The default law uses the former convention; the latter is a new closure claim and must preserve the same causal-root, symmetry, and event-ledger checks before it can be used in an assembly or blackbody argument.
 
 ###### Conditional Well-Posedness for the Regularized Exact Model
 
@@ -7121,6 +7125,8 @@ $$
 
 Both bounds must use the same horizon, screening, and summation prescription that makes the many-source wake sum converge. The variance bound is the load-bearing part: incoherent fluctuation must remain small compared with the coherent bound-state gradient that phase-locked assemblies preserve. This cancellation is one reason the Noether sea can be densely active while remaining macroscopically quiet. What standard prose may call a vacuum state is not empty Euclidean void; it is the effective limit in which the local Noether sea assemblies and their causal wakes balance so well that only small residual gradients remain available to ordinary probes.
 
+Mean-zero wake potential is therefore not zero total energy. A statistically neutral $50/50$ electrino/positrino inventory can make the large-scale potential gradient and received power nearly vanish while still carrying kinetic energy, local correlated interaction energy, retained wake-history content, and Noether sea organization. The conserved quantity for an isolated exact trajectory is the history-aware total ledger, not "initial kinetic energy plus a naive instantaneous potential" evaluated after the wake record has been discarded.
+
 Phase-locked bound states are the important exception. In a localized assembly, nearby constituents do not sample random phases; their active causal roots are correlated, and the $1/r^2$ distance factor lets the nearest coherent branches dominate over the far incoherent background. A [collinear breather](../../../../markdown/aaa/proof-programs/collinear-breather.md), for example, is precisely a reduced setting in which two opposite-polarity architrinos can form a localized, non-canceling causal resonance. The breather ansatz isolates this effect: instead of averaging away, the partner-hit and self-hit branches stay phase organized enough to exchange kinetic and potential energy across a bounded cycle.
 
 ---
@@ -7141,6 +7147,40 @@ and is constant in time for exact isolated solutions of the causal action. In mo
 
 - $U_{\text{int}}$ is an optional effective decomposition of near-field interaction energy.
 - $E_{\text{wake}}$ accounts for the exact nonlocal interaction content carried by wake structures and any radiation-like transport through the Noether sea.
+
+The same distinction governs cosmological redshift. Because the Euclidean void does not expand and absolute time supplies the comparison parameter, a transparent redshift branch cannot treat the photon's missing energy as a bookkeeping disappearance. At the universe-state level, the conservation target is a scalar ledger of architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy:
+
+$$
+E_{\mathrm{tot}}(t)
+=
+E_{\mathrm{arch}}(t)
++E_{\mathrm{wake}}(t)
++E_{\mathrm{sea}}(t),
+\qquad
+\frac{dE_{\mathrm{tot}}}{dt}=0
+$$
+
+This global target requires the total energy on the constant-$t$ leaf to be finite or convergently summable. For an unbounded or observationally truncated cosmology, the safe conservation statement is local continuity,
+
+$$
+\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+$$
+
+tested through finite windows and boundary fluxes. In the pure transparent-path limit, after source, recoil, remnant, and boundary terms have been separated, a bundle redshifted by $1+z$ carries the deficit
+
+$$
+\Delta E_{\gamma}
+=
+E_{\mathrm{emit}}-E_{\mathrm{obs}}
+=
+E_{\mathrm{emit}}\frac{z}{1+z},
+\qquad
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+If the Noether sea update needed to close this row is nonlocal, re-radiating, path-history inconsistent, or incompatible with image sharpness and CMB blackbody preservation, the fixed-void redshift branch has failed the energy ledger rather than solved cosmological redshift.
 
 Consistency rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ pairwise term is retained as an effective decomposition inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
 
@@ -10908,7 +10948,7 @@ The corresponding tangential signs are $\sigma\cos(\alpha_s/2)$ for self roots a
 $$
 2\pi-\alpha=2s\sin(\alpha/2)
 $$
-and appears at $s=\pi/2$ with $\alpha=\pi$. For $s>\pi/2$ it contributes negative tangential drive. This does not prove circular closure, but it makes the $\sigma=-1$ sheet the first internal generator capable of carrying opposite period in the tangential cohomology class. A useful floor conjecture is:
+and appears at $s=\pi/2$ with $\alpha=\pi$. Equivalently, at the threshold a wake crosses the diameter $2R$ in time $2R/c_f$, while the source advances half a circumference $\pi R$ at speed $s c_f$; the equality $\pi R=s c_f(2R/c_f)$ gives $s=\pi/2$. For $s>\pi/2$ it contributes negative tangential drive. This does not prove circular closure, but it makes the $\sigma=-1$ sheet the first internal generator capable of carrying opposite period in the tangential cohomology class. A useful floor conjecture is:
 
 > No isolated, bare, constant-speed circular MCB branch can close for $s<\pi/2$, because the first negative same-source sheet is absent and the same-sheet tangential cohomology class has no internal cancellation generator. In cochain language, the space available to the retained two-body ledger has no opposite-period self-row before the $\sigma=-1$ wall at $s=\pi/2$.
 
@@ -13455,6 +13495,8 @@ The level separation is essential:
 2. **Dynamics:** the master equation sums delayed, Jacobian-weighted line-of-action hits.
 3. **Statistic:** the functional in this chapter removes direction and counts weighted causal intersections.
 4. **Effective/inferential use:** mass response, effective geometry, and branch spectra are later reconstructions that must be checked against the actual delayed dynamics.
+
+The conservation status has three allowed levels. At theorem level, a symmetry-preserving delayed action produces history charges by the branch-chart Noether pullback in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian), with Euler residuals and boundary leakage vanishing on the same retained rows. At quasi-Noether level, the same calculation is accepted only after explicit residual, boundary, wake, and history-channel terms close the finite-window balance under refinement. If neither action-derived nor quasi-Noether structure survives self-hit and state-dependent delay, then energy, momentum, and angular-momentum rows are diagnostic quantities only; they may reject a branch by showing unbounded or refinement-unstable drift, but they may not be advertised as derived conservation laws.
 
 #### Core Functional Definitions
 **Scalar causal-hit counting functional:**
@@ -38521,7 +38563,7 @@ with strict inequality for nonzero translation unless a compensating shape retun
 
 ##### Mechanical Oblation From the Jacobian
 
-The causal Jacobian is the dynamics-side mechanism behind the moving-source flux change that standard field language would otherwise hide inside a changing electric field. For a retained root row $a=(i,j,t_0)$,
+The causal Jacobian is the dynamics-side mechanism behind the moving-source flux change that standard field language would otherwise distribute across the effective electromagnetic connection, current/displacement terms, vector-potential curl, and the Noether sea response. For a retained root row $a=(i,j,t_0)$,
 $$
 J_a
 =
@@ -43809,6 +43851,10 @@ T(v)=\gamma_\star(v)\,T_0\qquad
 $$
 with bounded preferred-frame leakage in measurable observables.
 
+This is an exact-substrate-asymmetry to bounded-emergent-symmetry theorem target. Absolute time, the Euclidean void, and finite $c_f$ are not observer-level Lorentz symmetry. They are admissible only if the source-to-effective map suppresses every observer-accessible preferred-frame current below the declared $\epsilon_{\mathrm{LV}}$ bounds while preserving the clock, ruler, and photon-channel successes of special relativity.
+
+This makes Lorentz recovery the prototype invariant-provenance problem. The invariant interval is not accepted as primitive substrate geometry; it is the observer-level invariant to be exported by one retained branch record. The derivation must say which substrate quantities are exact, which observer quantities are emergent, and which residual currents remain as preferred-frame leakage diagnostics.
+
 Speed convention: primitive delayed-root equations are solved with $c_f$. The declared speed $c_\star$ enters only after the channel has been named: set $c_\star=c_f$ for a primitive wake branch chart, $c_\star=c_{\text{eff}}(\mathbf{x})$ for Noether sea dressed clocks and rulers, and $c_\star=c_\gamma(\mathbf{x})$ for photon synchronization. The low-gradient Lorentz limit may identify the measured channel speed with $c_0=c_{\text{eff}}(\infty)$ only after the dressing map is declared.
 
 A stronger prediction is also available. The Lorentz formulas should not be imported as an independent observer-level rule and then copied onto assemblies. They should be recovered from the same causal-root progression that gives stable assemblies their discrete branch ledgers. In that sense the Lorentz factor is a closure target for the quantum-facing branch structure of the dynamics: the root ledger must generate the contraction, clock-retuning, and residual-leakage coefficients rather than merely coexist with them.
@@ -44005,7 +44051,7 @@ The exact substrate symmetry group is
 $$
 G_{\text{fund}}=E(3)\times \mathbb{R}
 $$
-so Noether currents in delay form give conserved totals including wake channels:
+and the associated delayed-Noether proof target is that conserved totals close only after wake and medium channels are included:
 $$
 \mathbf{P}_{\text{tot}}
 =
@@ -44015,7 +44061,7 @@ E_{\text{tot}}
 =
 \sum_i \frac{1}{2}m_i\dot{\mathbf{x}}_i^2+E_{\text{wake}}
 $$
-Therefore an isolated translating assembly admits a co-moving reduction to a bounded periodic or quasi-periodic branch $\boldsymbol{\rho}^\star(s;\beta)$ with fixed mean drift $\mathbf{v}=\mathbf{P}_{\text{tot}}/M_{\text{tot}}$.
+Only after this particle-plus-wake-plus-medium ledger closes does an isolated translating assembly admit a co-moving reduction to a bounded periodic or quasi-periodic branch $\boldsymbol{\rho}^\star(s;\beta)$ with fixed mean drift $\mathbf{v}=\mathbf{P}_{\text{tot}}/M_{\text{tot}}$.
 
 ##### Emergent Kinematics from Delay Anisotropy
 
@@ -59652,7 +59698,7 @@ From the viewpoint of an embedded assembly:
 
 1. **Near-field-speed assemblies ("Stealth" vs. "Reactive" Modes)**
    - **Near-$c_f$ Linear Fragility (Self-Hit Resonance):** Approaching $c_f$ from below does **not** produce self-hit on a strictly sub-field-speed interval; the triangle inequality forbids the same-source root. At exactly $v = c_f$, straight-line motion gives a degenerate tangent family rather than a clean simple branch. Self-hit resonance is admitted only when the same-source root set is nonempty and passes the transversality/Jacobian floor. A super-field-speed curved interval is therefore a candidate source of self-hit, not a speed-only acceptance test. In that regime small perturbations are strongly amplified or damped depending on phase. The wake amplitude does **not** diverge; "pileup" here means coherent reinforcement of a finite wake, not a singularity. Linear near-$c_f$ states are therefore **fragile** and short-lived unless the system actively de-phases the feedback.
-   - **The Curvature Solution (Stable Stealth):** Stable assemblies at $v \approx c_f$ (like the middle binary) use **curvature or internal modulation** to continuously rotate/de-phase their self-hit geometry. This allows the assembly to keep a "hard" potential front externally while avoiding runaway self-reinforcement.
+   - **The Curvature Target (Stable Stealth):** Candidate stable assemblies near $v \approx c_f$ (such as the middle-binary regime) may use curvature, phase rotation, or internal modulation to de-phase their self-hit geometry. The closure target is to show that this mechanism can keep a hard potential front externally while preserving a Jacobian floor, bounded energy, and deterministic multistability rather than permitting runaway self-reinforcement.
    - **Operational Effect:** A receiver sees little change until the corkscrewing assembly is very close, then feels a rapid, modulated potential surge—a "digital" shockwave delivered without warning.
 
 2. **$v>c_f$ inner-binary motion**
@@ -62478,6 +62524,76 @@ $$
 
 where $\Delta E_{\mathrm{med}}$, $\Delta E_{\mathrm{recoil}}$, and $\Delta E_{\mathrm{rem}}$ are positive or negative according to the retained medium, target, and remnant energy changes. A cosmological path term is admissible only when the signed frequency transfer, image sharpness, packet cadence, spectral coherence, and energy ledger are supplied by one Noether sea record.
 
+Because this fixed-void account keeps absolute time, a long path also needs a finite-window energy residual rather than an expansion sink:
+
+$$
+\mathcal{R}_{E,\mathrm{path}}^\Omega
+=
+\frac{
+\left|
+\Delta E_{\gamma,\Omega}
++\Delta E_{\mathrm{sea},\Omega}
++\Delta E_{\mathrm{src/rem},\Omega}
++\Delta E_{\mathrm{recoil},\Omega}
++\int_{\partial\Omega}\mathcal{F}_E\,dA\,dt
+\right|
+}{\epsilon_E}
+$$
+
+The signs follow the same retained path-history record: $\Delta E_{\gamma,\Omega}$ is the photon-channel change across the comparison window, $\Delta E_{\mathrm{sea},\Omega}$ is the Noether sea update, $\Delta E_{\mathrm{src/rem},\Omega}$ covers declared source or remnant rows, $\Delta E_{\mathrm{recoil},\Omega}$ covers material recoil or target exchange, and the boundary flux term records energy entering or leaving the finite window. A deep-space redshift branch earns standing only when the same Noether sea transport that preserves image sharpness and occupation shape also makes this residual small under the declared tolerance.
+
+##### Redshift Energy Ledger
+
+The finite-window residual above is the operational form of a stronger absolute-time target. Because the Euclidean void does not expand, the architecture cannot let cosmological redshift energy disappear into expansion bookkeeping. The substrate time-translation symmetry nominates a scalar universe-state ledger
+
+$$
+E_{\mathrm{tot}}(t)
+=
+E_{\mathrm{arch}}(t)
++E_{\mathrm{wake}}(t)
++E_{\mathrm{sea}}(t),
+\qquad
+\frac{dE_{\mathrm{tot}}}{dt}=0
+$$
+
+where $E_{\mathrm{arch}}$ collects architrino kinetic and configuration energy, $E_{\mathrm{wake}}$ collects causal-wake energy in flight, and $E_{\mathrm{sea}}$ collects Noether sea constitutive energy. This is a conservation target rather than a proved theorem until the delayed action or a quasi-Noether replacement supplies the required invariant.
+
+The global form also assumes that the total energy on the constant-$t$ leaf is finite or convergently summable. If an unbounded populated Noether sea does not admit that sum, the operational conservation statement is local continuity on bounded regions:
+
+$$
+\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+$$
+
+and, for a finite comparison window $\Omega$,
+
+$$
+\frac{dE_{\Omega}}{dt}
++\int_{\partial\Omega}\mathbf{S}_E\cdot\hat{\mathbf n}\,dA
+=0
+$$
+
+This is the same content as the finite-window residual above. The global ledger is the stronger theorem target; the bounded-region flux balance is the safe falsification form for cosmological transport.
+
+For a transparent photon-channel bundle with $E_{\mathrm{obs}}=E_{\mathrm{emit}}/(1+z)$, the missing photon energy is
+
+$$
+\Delta E_{\gamma}
+=
+E_{\mathrm{emit}}-E_{\mathrm{obs}}
+=
+E_{\mathrm{emit}}\frac{z}{1+z}
+$$
+
+After source-branch, recoil, remnant, and boundary rows have been separated, a pure transparent-path redshift must close
+
+$$
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+The same term $\Delta E_{\mathrm{sea,path}}$ is then not adjustable per observable. It must be the energy face of the transport operator that preserves occupation shape and image sharpness; its path integral must recover redshift-distance and observed $(1+z)$ time dilation; and its spatial gradient must remain compatible with the lensing and growth budgets. If those rows require separate Noether sea responses, the branch has reproduced the standard tension split rather than closing it.
+
 ##### Observable Frequency Form
 
 The same factorization can be written in the more familiar language of an emitted line frequency and a received line frequency. If $\nu_{X,0}$ is the reference frequency for transition family $X$, then
@@ -62673,6 +62789,42 @@ $$
 $$
 
 If the endpoint, launch, and propagation terms can be made to fit only by changing $\Pi_N S$, $\Pi_E S$, $\Pi_\gamma S$, or the coefficient row independently for each observational family, then the factorization is a useful diagnostic but not yet an $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
+
+##### Coherent Photon-Channel Bundle Transport
+
+The transparent-path part of the redshift map cannot be an ordinary thermalizing loss process. Thermalization can prepare a radiation bath before the free-streaming record is fixed, and source/release regions can exchange energy with photon-channel packets. But once a photon bundle is being used as a transparent cosmological record, the admissible transport is a coherent rescaling map.
+
+Let $\lambda_{E\to R,X}\equiv \mathcal{P}_{E\to R,X}=e^{Y_{X,E\to R}}$ be the path-history scaling factor after endpoint cadence, source-branch shift, and launch geometry have been separated. For a transported photon-channel bundle $\mathcal{B}$, write $\mathfrak{n}_\gamma(\nu,\hat{\mathbf{k}};\mathcal{B})$ for its dimensionless occupation-shape function; this is not the normalized Noether braid density $n(\mathbf{x},t)$. The transparent transport target is
+
+$$
+\nu_R=\frac{\nu_E}{\lambda_{E\to R,X}},
+\qquad
+T_R=\frac{T_E}{\lambda_{E\to R,X}},
+\qquad
+\mathfrak{n}_{\gamma,R}(\nu_R,\hat{\mathbf{k}}_R;\mathcal{B}_R)
+=
+\mathfrak{n}_{\gamma,E}(\lambda_{E\to R,X}\nu_R,\hat{\mathbf{k}}_E;\mathcal{B}_E)
++O(\epsilon_{\mathrm{spec}})
+$$
+
+with the bundle map also satisfying
+
+$$
+\|\Delta\mathbf{k}_{\perp}\|\le \epsilon_{\mathrm{img}},
+\qquad
+|\Delta\phi_{\perp}|\le \epsilon_{\mathrm{coh}}
+$$
+
+after declared lensing, aperture, and detector terms have been removed. Equivalently, let $\mathcal{D}_{\lambda}$ denote global frequency dilation on the admitted photon-channel band and let $\mathcal{G}_{\mathrm{tr}}$ denote the transparent-transport generator. The coherent branch must satisfy
+
+$$
+[\mathcal{G}_{\mathrm{tr}},\mathcal{D}_{\lambda}]_{\mathrm{band}}
+=O(\epsilon_{\mathrm{spec}}),
+\qquad
+\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})
+$$
+
+for the declared path-depth and Noether sea state. In words: the path term may shift every mode by the same fractional factor, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, or undeclared transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name.
 
 ##### Equilibrium-Transport Candidate for Path History
 
@@ -64469,6 +64621,8 @@ This statistic is a validation target, not a permission to import an external co
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Dark Ages: Coaxial Contra-Rotating Photon Assemblies Free-Stream):** The decoupled photon assemblies, modeled as coaxial contra-rotating pro/anti planar pairs, propagate through the evolving Noether sea. The radiation field retains its thermal shape while redshifting due to medium evolution and path-integrated clock-rate comparison between emission and observation environments. Small anisotropies reflect assembly-density fluctuations rather than a single primordial event.
 
+This retention claim is a transparent-transport invariant, not a claim of continued ordinary thermalization. After decoupling, the path map must rescale photon-channel frequency and inferred temperature together while preserving the transported bundle's occupation-shape function and transverse phase coherence. A post-decoupling mechanism that repeatedly absorbs, re-emits, scatters, or randomly kicks the photon packets may relax a spectrum in special circumstances, but it will generically erase image sharpness, anisotropy, polarization, or the near-Planck spectral shape unless those side effects are explicitly bounded.
+
 #### SMBH Release Channels
 - Scope: interpretive bridge between $\mathbb{A}\mathbb{A}\mathbb{A}$ steady-state recycling and the effective Big Bang chronology map.
 - Claim: the Big Bang corresponds to the collective surfaces of SMBHs, not a singular origin.
@@ -64573,6 +64727,16 @@ B_{\mathrm{loss}}^\theta
 $$
 This residual is the CMB-facing form of source provenance. A branch that recovers a blackbody curve by adding an untracked photon bath, or by hiding excess source energy in an undeclared non-photon reservoir, has not supplied the shared record required by the CMB gate.
 
+Post-free-streaming redshift adds the same constraint on the transport side. Once source, recoil, remnant, and boundary rows are separated, a redshifted photon bundle must close its energy deficit into the Noether sea path update,
+
+$$
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+This is the CMB-facing projection of the bounded-region continuity law, with boundary flux, source rows, recoil, and remnant exchange separated before the transparent-path term is evaluated. It need not assume a convergent universe-wide scalar energy in order to falsify a transport branch locally. Without that local closure, a CMB branch that preserves the Planck curve only by hiding the redshift energy in an untracked bath has failed the fixed-void energy ledger.
+
 ##### Historical Equality and Temperature Benchmark
 
 The 1948 Alpher-Herman correction to Gamow is useful here as historical pressure, not as a present-parameter source. Their calculation corrected an early matter-density estimate, found that the naive matter-radiation-density intersection moved to an implausibly late time if the curvature term were neglected, and then restored that curvature term in the effective expanding-universe equation. In the corrected record, the matter/radiation intersection, a Jeans-style condensation mass and radius, a gas temperature at condensation, and a present radiation temperature of order $5\,\mathrm{K}$ were tied into one computation.
@@ -64669,6 +64833,19 @@ u_\nu^{\mathrm{eff}}(T_{\text{ens}})
 $$
 
 This formula is an effective comparison object. It becomes available only after Gate A supplies the photon energy-frequency and mode-counting interface, Gate B supplies the two transverse photon modes and polarization handoff, and Gate C drives the photon chemical potential to zero through detailed balance. The redshift handoff must then preserve spectral shape by mapping photon frequencies and inferred temperature through the same Noether sea state and clock-rate comparison variables used elsewhere in this document.
+
+Equivalently, the transparent transport operator must commute with global frequency scaling on the blackbody family:
+
+$$
+\mathcal{T}_{\lambda}\mathcal{B}_{T}
+=
+\mathcal{B}_{T/\lambda}
++O(\epsilon_{\mathrm{spec}})
+$$
+
+where $\mathcal{B}_{T}$ denotes the observer-level Planck spectrum at temperature $T$ and $\lambda=1+z$ for the declared path after endpoint and launch terms are separated. This condition is stronger than fitting a final temperature. It says the transport has preserved the occupation-number shape rather than re-thermalizing an arbitrary distorted spectrum by coincidence.
+
+The same transparent-transport branch must also carry no undeclared transverse photon-momentum transfer. After declared lensing, beam, aperture, and detector terms are removed, the image-preserving condition is $\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})$, with any remaining transverse phase residual kept inside the polarization and anisotropy tolerances.
 
 The spectrum gate should be stated as a calibrated comparison, not as an assumption that the theoretical Planck curve has been directly observed without apparatus structure. For frequency channels $\nu_i$, measured intensities $I_i$, foreground model $F_i(\psi)$, and calibration covariance $C_{ij}$, define
 $$
@@ -68153,6 +68330,8 @@ The conservative status is:
 - Any weak-channel ledger that depends on chirality, axial-frame orientation, CKM/PMNS mixing, or antineutrino routing remains provisional until the corresponding geometry is derived.
 - Any reaction-level spin, helicity, polarization, or vector-channel angular-momentum entry is a downstream consumer of the angular-momentum and spin workstream. It should record what must close, not function as a local proof of that closure.
 
+Charge-changing reaction notation is assembly-level shorthand. A weak or high-energy event may change an outgoing assembly's observer-level net charge, but the primitive polarity inventory does not mutate. The ledger must derive the before/after charge from conserved $E/P$ counts, $\epsilon=|e|/6$ axial-layer bookkeeping where applicable, shielding-state changes, Noether sea participation, and outgoing assembly routing. A reaction map that changes a particle label without this constituent and exposure accounting remains an observer-level placeholder.
+
 #### Provenance Protocol
 
 Each reaction record should state:
@@ -68161,7 +68340,7 @@ Each reaction record should state:
 2. **Active assemblies:** which incoming assemblies actually reconfigure, and which are spectators.
 3. **Noether sea participation:** whether local Noether braids, neutral binaries, axial layers, or medium excitations are consumed, split, reconfigured, or returned.
 4. **Constituent inventory:** total $E$ and $P$ counts before and after, separated into braid and axial-layer contributions where the distinction matters.
-5. **Polarity and charge accounting:** how observer-level charge bookkeeping emerges from the $E/P$ routing.
+5. **Polarity and charge accounting:** how observer-level charge bookkeeping emerges from the conserved $E/P$ routing, axial-layer exposure, shielding state, Noether sea participation, and outgoing assembly routing.
 6. **Energy-momentum and angular-momentum accounting:** where kinetic energy, internal binding energy, photon assemblies, recoil, medium excitation, spin/vector ledger terms, and wake-carried angular momentum enter and exit.
 7. **Path-history provenance:** which emitted causal wakes, source identities, and delayed interactions are needed to make the reaction deterministic in absolute time.
 8. **Radiation event record, when applicable:** for emitted, absorbed, shifted, captured, or failed photon channels, attach the shared event fields from [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), including $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, and causal-wake ledger.
@@ -69251,6 +69430,7 @@ The original promotion condition is recovered by requiring $\mathcal{R}_{\mathrm
 | Superpartners or large symmetry partners | missing-energy rate, partner mass threshold, coupling strength | collider missing-energy and resonance searches | partner absence must follow from the accepted branch family, not from an independent mass threshold |
 | Proton-instability or baryon-violating corridors | $\Gamma_p(\theta)$ or forbidden nuclear transition rate | proton-lifetime and rare-event limits | the same color/topology and reaction-provenance ledger used for hadrons must suppress the channel |
 | Extra gauge bosons or gauge modes | resonance rate, precision-contact term, long-range force strength | collider, fifth-force, and precision-scattering bounds | the effective gauge residual must recover $U(1)_Y\times SU(2)_L\times SU(3)_c$ without an unsuppressed added mode |
+| Magnetic-charge or monopole sectors | monopole event rate, effective magnetic-charge flux, stable relic abundance, long-range magnetic-charge force | monopole-search, collider, cosmic-ray, and cosmological abundance bounds | the same effective gauge record that recovers electric charge, loop phase, and electromagnetic force must prove the magnetic-charge sector absent, redundant, or below bounds |
 | Hidden transport or extra propagation modes | dispersion, birefringence, scalar/vector gravitational-wave response | photon, gravitational-wave, and timing residuals | the same Noether sea response map must set clock, signal, and metric channels |
 | Sterile or neutral partner branches | mixing angle, $\Delta N_{\mathrm{eff}}$, relic abundance, free-streaming scale | oscillation, BBN, CMB, and structure-formation bounds | the neutral-sector Hamiltonian and cosmology record must be shared |
 | Preferred-frame leakage channels | two-way anisotropy, clock drift, PPN preferred-frame coefficients | resonator, atomic-clock, solar-system, and gravitational-wave timing bounds | the Lorentz-closure map must suppress leakage without retuning clock, ruler, or signal coefficients |
@@ -69280,6 +69460,7 @@ The following matrix assigns each recurring null-result family to the corpus hom
 | Superpartners / symmetry partners | $(\sigma_{\mathrm{miss}},m_{\mathrm{partner}},B_{\mathrm{cascade}})$ | $O_{\mathrm{partner}}^{\max}$ | [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md) | [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md) |
 | Proton-instability corridors | $(\Gamma_p,B_{p\to e^+\pi^0},B_{p\to\bar\nu K^+})$ | $\Gamma_p^{\max}$ | [Color Charge SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md) | [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md) |
 | Extra gauge bosons / gauge modes | $(\sigma_{Z'},\sigma_{W'},g_{\mathrm{new}},\Delta_{\mathrm{contact}})$ | $O_{\mathrm{gauge+}}^{\max}$ | [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md) | [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md), [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) |
+| Magnetic-charge / monopole sectors | $(R_m,Q_{m,\mathrm{eff}},\mathcal{F}_{m,\mathrm{eff}},\Omega_{\mathrm{mon}})$ | $O_m^{\max}$ | [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md) | [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md), [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) |
 | Hidden transport / extra propagation modes | $(\Delta v/c,\omega_{\mathrm{disp}},h_{\mathrm{scalar}},h_{\mathrm{vector}})$ | $O_{\mathrm{transport}}^{\max}$ | [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) | [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
 | Sterile / neutral partner branches | $(\theta_{\mathrm{mix}},\Delta N_{\mathrm{eff}},\Omega_{\nu_R},\lambda_{\mathrm{fs}})$ | $O_{\mathrm{sterile}}^{\max}$ | [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) | [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md), [CMB](../../../../markdown/aaa/cosmology/CMB.md) |
 | Preferred-frame leakage | $(\Delta_{\mathrm{tw}},\delta\nu/\nu,\alpha_1,\alpha_2,\alpha_3)$ | $O_{\mathrm{LV}}^{\max}$ | [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) | [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) |
@@ -70890,14 +71071,14 @@ An auditable $A_0$ branch certificate should preserve one top-level packet shape
 | `branch_chart_revision` | conditional pre-rerun record for any revised reduced branch coordinate, including source fields, equality map, equation and coefficient counts, held-out residual rule, phase-origin rule when a phase split is used, symmetry or quotient behavior, locked-key exclusion, benchmark exclusion, and `accepted_history_boundary: false` | prevents residual-selected coordinates or post-fit added columns from masquerading as branch geometry |
 | `state_vector` | six architrino labels, polarities, reduced geometry, frequencies, phase offsets, carrier chart, history segment, and center gauge | gives the reduced Noether braid state vector |
 | `closure_system` | active variables, causal-root equations, layer phase closure, inter-layer closure, center-gauge closure, speed-ordering inequalities, and tolerances | ties closure labels to equations rather than only to names |
-| `root_ledger` | active and raw partner, self, and inter-layer root classes with delays, branch Jacobians, separator flags, parity events, and excluded near-zero self roots separated | verifies finite causal-root bookkeeping |
+| `root_ledger` | active and raw partner, self, and inter-layer root classes with delays, branch Jacobians, separator flags, root-count changes across separators, parity events, and excluded near-zero self roots separated | verifies finite causal-root bookkeeping |
 | `term_classification` | terms assigned to averaging, locking, and leakage channels, with measured or derived residual size | prevents internal corrections from being hidden before promotion |
 | `residuals` | complete branch-row residual surface $\mathcal{R}_{A_0}$, with $\mathcal{R}_{\text{state}}$, $\mathcal{R}_{\text{root}}$, $\mathcal{R}_{\text{phase}}$, $\mathcal{R}_{E}$, $\mathcal{R}_{\text{drift}}$, $\mathcal{R}_{\text{speed}}$, $\mathcal{R}_{\text{avg}}$, $\mathcal{R}_{\text{lock}}$, $\mathcal{R}_{\text{leak}}$, and $\mathcal{R}_{\text{Floquet}}$, each with value, tolerance, status, role, and note fields | gives a machine-checkable promotion surface with later-tier omissions explicit |
 | `residual_values` | numeric mirror of $\mathcal{R}_{A_0}$ values, with Tier 0 omissions recorded as null rather than hidden | gives scripts a stable audit surface without erasing row semantics |
 | `Delta_k` | $\Delta_{\mathbf{k}}$ value, status, role, nonpositive-gap failure code, and note; Tier 0 emits null with `not_computed_in_tier0` | keeps the Floquet handoff visible before Tier 1 computes the return map |
 | `stability` | monodromy or finite-difference return map, excluded symmetry modes, non-symmetry Floquet multipliers, and the computed $\Delta_{\mathbf{k}}$ once Tier 1 exists | separates integer closure from attractor stability |
 | `group_velocity_anisotropy` | $\mathbf{V}_{\text{cm}}$, declared $c_\star$, $\beta_\star$, envelope ratio, forward/backward delay ratio, tensor $\mathcal{A}_{\mathrm{gv}}^{ij}$, refinement status, and whether the entry is rest residue, small-velocity response, or probe-induced drift | keeps motion-induced deformation separate from shielding leakage |
-| `energy_ledger` | sign-resolved kinetic content, interaction terms, wake/history terms, layer totals $E_I,E_M,E_O$, $E_{\text{internal}}(A_0)$, and action per closed cycle | supplies the unshielded energy reservoir after Tier 1 passes |
+| `energy_ledger` | sign-resolved kinetic content, interaction terms, wake/history terms, layer totals $E_I,E_M,E_O$, $E_{\text{internal}}(A_0)$, delayed-Noether status (`action-derived`, `quasi-Noether`, or `diagnostic-only`), the running retained-history energy-like functional across active self-hit crossings, and action per closed cycle after bounded-energy status | supplies the unshielded energy reservoir after Tier 1 passes |
 | `far_field_shielding` | extraction radii, angular grid, selected wake channel, $\mathcal{L}(\hat{\mathbf{R}})$, naive constituent sum, leading isotropic projection, $\zeta(A_0)$, $\mathcal{L}_{\text{aniso}}$, and convergence status | turns shielding into an extracted far-field quantity after Tier 1 passes |
 | `medium_response` | acceleration probes, gradient probes, extracted $\mathcal{M}_{\text{sea}}^{ab}$ baseline, symmetric tensor part, antisymmetric residue, and response anisotropy | compatibility field for testing Noether sea inertial and gravitational response after shielding passes |
 | `mass_summary` | $\zeta(A_0)E_{\text{internal}}(A_0)/E_0$, unresolved constants, response-map assumptions, and explicitly excluded particle benchmarks | records only calibration-free mass-facing output |
@@ -70922,6 +71103,25 @@ $$
 \right)
 $$
 Tier 0 may compute only part of this surface. The row must still emit every component. Missing later-tier components use explicit `not_computed_in_tier0` status, null value, null tolerance when no tolerance exists yet, a promotion role, and a note that names the tier responsible for computing the entry.
+
+###### Self-Hit Energy And Action-Spacing Order
+
+For any row that claims an active self-hit branch, the certificate must report the branch invariants in the required order. First, it reports the active causal-root count by class and the root-count change across separators; any creation or annihilation event must state whether the count changes by an even number rather than hiding the transition inside interpolation. Second, it reports the transversality floor
+
+$$
+J_{\min}
+=
+\min_{\text{active }(t,t_0)}
+\left|
+1-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{o'j}(t;t_0)}{c_f}
+\right|
+$$
+
+Third, it reports a running retained-history energy-like functional and its variation across self-hit or separator crossings under $\Delta t$, $\eta$, and history-window refinement. A bounded-energy claim fails if the apparent bound disappears under refinement.
+
+The same row must state whether the energy object is action-derived, quasi-Noether, or diagnostic-only. A diagnostic-only energy row may reject a branch by showing runaway, regulator dependence, or nonconvergent drift, but it cannot promote closed-cycle action spacing or no-runaway conservation as theorem-level output.
+
+Only after those well-posedness rows pass may the packet promote closed-cycle action spacing. The closed-cycle action entry records $\mathcal{A}_{\text{cycle}}(A_0)$, its branch label $\Lambda$, period $T_{\mathbf{k}}$, and spacing relative to neighboring accepted branches. This ordering prevents a numerically periodic carrier with an unbounded self-hit energy ledger from being read as evidence for a derived $h$.
 
 The group-velocity anisotropy entry uses the reduced centered covariance of the six-worldline state. With
 $$
@@ -70970,7 +71170,7 @@ Required outputs:
 | `z_lambda` | reduced quotient-coordinate row $z_\Lambda$, including radius ratios, period ratios, $\delta_M$, layer ellipticities, plane Gram data $G_{\ell m}$, $\chi_N$, handedness labels, phase-offset quotient status, removed gauges, branch class $[\Lambda]$, and `quotient_degenerate` |
 | `state_vector` | reduced geometry, frequencies, phase offsets, carrier chart, and center gauge |
 | `closure_system` | active causal-root, phase-closure, inter-layer-closure, center-gauge, and speed-ordering equations used by the row |
-| `root_ledger` | active and raw partner, self, and inter-layer root counts with delays, branch Jacobians, separator flags, and excluded near-zero self roots separated |
+| `root_ledger` | active and raw partner, self, and inter-layer root counts with delays, branch Jacobians, separator flags, root-count changes across separators, parity events, and excluded near-zero self roots separated |
 | `term_classification` | terms assigned to averaging, locking, and leakage channels |
 | `residuals` | every component of $\mathcal{R}_{A_0}$, each with value, tolerance, status, role, and note fields; $\mathcal{R}_{E}$ and $\mathcal{R}_{\text{Floquet}}$ are explicit Tier 0 omissions unless supplied by a later diagnostic |
 | `residual_values` | numeric value mirror for the same $\mathcal{R}_{A_0}$ components, with omitted components recorded as null |
@@ -71919,6 +72119,16 @@ for each endpoint branch and each transition continuation.
 
 The action-increment claim is numerically meaningful only when $\delta_I$ is small, $\Delta_{\mathbf{k}}>0$, and the phase, energy, and root residuals remain below their predeclared tolerances across refinement.
 
+###### Field-Speed Approach Scan
+
+The campaign must include an approach-to-$c_f$ diagnostic on the same branch rows used for the action-increment calculation. This is not a new gate. It is the root-and-action stress test that prevents a stable-looking increment from being promoted when the branch survives only by numerical accident near the field-speed boundary.
+
+This scan is the minimal numerical artifact for the paired action-spacing and self-hit well-posedness walls: it measures whether causal-root multiplicity, Jacobian floors, and stable-cycle action increments remain controlled as branch speed approaches $c_f$.
+
+For each declared scan family, report rows approaching the field speed from below, at the boundary when the continuation reaches it, and from above when the branch chart admits a super-field-speed interval. Each row must record the layer speed ratios, active partner-root count, active self-root count, active inter-layer-root count, minimum accepted Jacobian floor, separator status, root-ledger identity, accepted/rejected status, and stable-cycle $\Delta I_{\mathrm{ME}}$ cluster assignment.
+
+The scan has a simple discipline. A packet may not promote `candidate_h_recovery` if the accepted near-boundary rows lose their Jacobian floor, change active-root identity under refinement, or split into non-uniform stable action increments without a derived branch-class reason. In that case the packet may still report a useful diagnostic, but it has not recovered the Planck benchmark from a well-posed nested shell braid action scale.
+
 ###### Required Packet Files
 
 The minimum campaign packet contains:
@@ -71931,6 +72141,7 @@ The minimum campaign packet contains:
 | `root_ledger_before_after.json` | partner, self, and inter-layer roots before and after transition, with delays, action-level $g$, $u$, Jacobians, separator flags, and $\Delta N_{\mathrm{self}}$ |
 | `torque_integrals.csv` | diagnostic $\int\mathbf T_I\,dt$, $\int\mathbf T_M\,dt$, $\int\mathbf T_O\,dt$, $\Delta\mathbf L_{\mathrm{wake},\partial}$, and projection onto $\hat{\mathbf a}$ |
 | `action_increment_rows.csv` | $\Delta I_{\mathrm{ME}}$, absolute value, cluster id, accepted/rejected status, and failure code |
+| `field_speed_approach_scan.csv` | scan-family id, speed-window label, layer speed ratios, active partner/self/inter-layer root counts, minimum accepted $|J|$, separator status, root-ledger stability, $\Delta I_{\mathrm{ME}}$, cluster id, accepted/rejected status, and failure code |
 | `energy_ledger.csv` | $\sum_\ell\int\omega_\ell\,dI_\ell$, $\Delta E_{\mathrm{wake}}$, $\Delta E_{\mathrm{coupl}}$, exact $E_{\mathrm{wake,eff}}^{(\eta)}$, diagnostic $U$ if used, and $\mathcal{R}_E$ |
 | `conservation_pullback.csv` | branch-chart id, cut/window id, $\eta$, $\epsilon_c$, $h$, endpoint convention, $\nu_J$, inactive-gap minimum, $h_{\mathrm{mem}}$, $K_{\mu}$, $E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}$, $\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{J}_{\mathrm{mech}}$, $\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathcal{R}_E$, $\mathcal{R}_P$, $\mathcal{R}_J$, and verdict |
 | `phase_closure_residuals.csv` | layer and inter-layer phase closure residuals, winding labels, and tolerance status |
@@ -71965,6 +72176,9 @@ Only a packet that also has small $\delta_h$ may promote `candidate_h_recovery`.
 | `nonpositive-floquet-gap` | an endpoint branch or transition continuation has $\Delta_{\mathbf{k}}\le0$ |
 | `phase-closure-open` | layer or inter-layer closure residuals exceed tolerance |
 | `root-ledger-instability` | active roots change under refinement or the self-hit parity condition fails |
+| `jacobian-floor-loss` | accepted near-boundary rows lose the declared minimum Jacobian floor |
+| `field-speed-root-instability` | the approach-to-$c_f$ scan changes active-root identity, separator status, or branch status under refinement |
+| `nonuniform-action-spacing` | stable-cycle action increments split across the field-speed approach scan with no derived branch-class reason |
 | `energy-ledger-open` | $\mathcal{R}_E$ exceeds tolerance or the wake/root energy channel is unaccounted |
 | `conservation-pullback-open` | $\mathcal{R}_P$ or $\mathcal{R}_J$ exceeds tolerance, or the exact Noether pullback uses different rows than the root ledger or force residual |
 | `convergence-fail` | required convergence or cross-integrator gates fail |
@@ -74129,22 +74343,34 @@ Modern physics columns use the same categories for the effective-theory stack (`
 
 The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb{A}$ score minus $\max(\text{Modern Physics Operational},\text{Modern Physics Mechanism})$; negative values mark current $\mathbb{A}\mathbb{A}\mathbb{A}$ deficits against the stronger modern-physics comparator.
 
-| Category | Weight | Description | Modern Physics Operational | Modern Physics Mechanism | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-16 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-06-20 | $\Delta$ |
+| Category | Weight | Description | Modern Physics Operational | Modern Physics Mechanism | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-16 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-06-26 | $\Delta$ |
 | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
-| Empirical Precision+Benchmark Validation | 14 | Agreement with direct observation, precision tests, benchmark experiments, simulations, and quantitative pass/fail thresholds. | 98 | 78 | 20 | 39 | -59 |
-| Formula+Coefficient Recovery | 13 | Explicit recovery of target formulas and coefficients: Lorentz behavior, clock/redshift laws, PPN terms, mass formulas, quantum probabilities, and Standard Model mappings. | 96 | 78 | 28 | 48 | -48 |
-| Parameter+Scale Closure | 10 | Determination status of constants, couplings, scales, constitutive coefficients, and renormalization or calibration freedom. | 70 | 42 | 25 | 42 | -28 |
-| Potential+Action Closure | 9 | Action, potential, variational, and force/acceleration closure, including whether the central dynamics derive from a stable mathematical principle. | 98 | 86 | 45 | 71 | -27 |
-| Conservation+Invariant Closure | 7 | Energy, momentum, angular momentum, charge, quantum-number, and symmetry-invariant closure, including no-go consistency. | 98 | 92 | 50 | 71 | -27 |
-| UV/IR+Regularization Completion | 6 | Ultraviolet and infrared completion quality, including cutoff dependence, singular behavior, regularization limits, horizon/singularity issues, and asymptotics. | 70 | 35 | 30 | 49 | -21 |
-| Master EOM+Local Dynamics | 10 | Certified closure of the core equations of motion: local field/effective equations in modern physics and delayed path-history dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 96 | 75 | 60 | 80 | -16 |
-| Cross-Regime Bridge | 8 | Mathematical consistency across regimes: micro to macro, quantum to classical, particle to cosmology, weak to strong gravity, and thermodynamics. | 82 | 48 | 42 | 69 | -13 |
-| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and nested shell braid/Noether braid dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 50 | 55 | 78 | -4 |
-| Falsification Gates | 4 | Explicitness and enforceability of falsification thresholds, stop conditions, validation gates, and failure criteria. | 98 | 88 | 80 | 95 | -3 |
-| Coverage+Interface Readiness | 2 | Coverage completeness across mathematics/geometry-relevant domains, including interface consistency and minimally developed sections. | 99 | 82 | 72 | 96 | -3 |
+| Empirical Precision+Benchmark Validation | 14 | Agreement with direct observation, precision tests, benchmark experiments, simulations, and quantitative pass/fail thresholds. | 98 | 78 | 20 | 42 | -56 |
+| Formula+Coefficient Recovery | 13 | Explicit recovery of target formulas and coefficients: Lorentz behavior, clock/redshift laws, PPN terms, mass formulas, quantum probabilities, and Standard Model mappings. | 96 | 78 | 28 | 51 | -45 |
+| Parameter+Scale Closure | 10 | Determination status of constants, couplings, scales, constitutive coefficients, and renormalization or calibration freedom. | 70 | 42 | 25 | 44 | -26 |
+| Potential+Action Closure | 9 | Action, potential, variational, and force/acceleration closure, including whether the central dynamics derive from a stable mathematical principle. | 98 | 86 | 45 | 75 | -23 |
+| Conservation+Invariant Closure | 7 | Energy, momentum, angular momentum, charge, quantum-number, and symmetry-invariant closure, including no-go consistency. | 98 | 92 | 50 | 74 | -24 |
+| UV/IR+Regularization Completion | 6 | Ultraviolet and infrared completion quality, including cutoff dependence, singular behavior, regularization limits, horizon/singularity issues, and asymptotics. | 70 | 35 | 30 | 54 | -16 |
+| Master EOM+Local Dynamics | 10 | Certified closure of the core equations of motion: local field/effective equations in modern physics and delayed path-history dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 96 | 75 | 60 | 83 | -13 |
+| Cross-Regime Bridge | 8 | Mathematical consistency across regimes: micro to macro, quantum to classical, particle to cosmology, weak to strong gravity, and thermodynamics. | 82 | 48 | 42 | 73 | -9 |
+| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and nested shell braid/Noether braid dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 50 | 55 | 81 | -1 |
+| Falsification Gates | 4 | Explicitness and enforceability of falsification thresholds, stop conditions, validation gates, and failure criteria. | 98 | 88 | 80 | 97 | -1 |
+| Coverage+Interface Readiness | 2 | Coverage completeness across mathematics/geometry-relevant domains, including interface consistency and minimally developed sections. | 99 | 82 | 72 | 97 | -2 |
 | Axiom+Notation | 4 | Canonical symbols, definitions, and cross-chapter mathematical language consistency. | 96 | 82 | 92 | 99 | 3 |
 | Theory Architecture+Ontic Logic | 8 | Unified theoretical architecture, explanatory parsimony, substrate logic, and avoidance of ad-hoc patching, scored separately from validated formula recovery. | 58 | 35 | 96 | 99 | 41 |
-| **TOTAL** | **100** | **Weighted mean across all categories.** | **88** | **67** | **46** | **65** | **-23** |
+| **TOTAL** | **100** | **Weighted mean across all categories.** | **88** | **67** | **46** | **68** | **-20** |
+
+#### 2026-06-26 Assessment Notes
+
+The 2026-06-26 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `68` after assessing the current `167` markdown files under `content/markdown/aaa` through the validated-closure lens. The gain over the prior retained assessment is real but intentionally bounded. The corpus now has a sharper proof and validation spine: shared closure is expressed as an intersection of sector acceptance sets, null-result residuals now include same-record split penalties, simulation campaigns require artifact-bearing proof handoffs, and equation-mapping checkers more aggressively reject priority prose, generated shells, probes, mocks, and source-evidence fixtures as accepted retained evidence.
+
+The strongest score movement is in action, conservation, regularization, and interface discipline. The Master Equation chapter now distinguishes the accepted delayed branch law from the pure scalar $1/r$ action scaffold, records a local no-go for finite same-support scalar and delta-jet counterterms, and gives a delayed-interior characteristic-tail repair target with normalized wake-history energy, momentum, and angular-momentum increments. This raises Potential+Action Closure and Conservation+Invariant Closure, but not to theorem closure: a retained branch chart still has to show vanishing Euler residual, positive Jacobian floors, finite memory depth, and closed particle-plus-wake history charges on the same row set.
+
+Formula and cross-regime scores rise because the equation-mapping work now covers a wider physics inventory with explicit first blockers: compact-star support, gravitational-wave source recovery, recombination/acoustic transfer, inverse-Compton/SZ path-frequency exchange, finite-window scattering/resonance carriers, weak-visible ledgers, ordered-frame magnetic rows, radiation source ledgers, and shared observation records. Those packets improve the formula interface and make hidden-retune failures easier to locate. They do not yet supply retained branch-derived coefficients, accepted Noether sea response tensors, or benchmark passes, so Formula+Coefficient Recovery remains only low-`50s`, and Empirical Precision+Benchmark Validation remains in the low `40s`.
+
+Parameter+Scale Closure rises modestly because the Parameter Ledger now separates primitive substrate parameters, regulators, geometric closure targets, constitutive closure targets, state variables, and CODATA benchmark rows more rigorously, including exact-SI versus adjusted-measurement residual discipline and the Layer-I two-body scale reduction. The decisive quantities remain open: $A_0$, $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, $G_{\mathrm{eff}}$, $\alpha$, mass ratios, weak-mixing values, photon-channel coefficients, and cosmology fit parameters are still closure outputs rather than accepted recovered values.
+
+The score is still held below modern operational closure by the same central blockers. No single accepted native record yet supplies the first retained eigen-braid, the mass map, Lorentz/PPN coefficients, Born/Bell measures, Standard Model mixing and mass rows, radiation spectra, public gravitational-wave residuals, BBN/CMB/growth fits, or a shared cosmology observation record inside declared tolerances. The recent work makes the failure boundary more explicit and the proof route more mathematical; it does not erase the need for one branch-derived, same-record coefficient and benchmark recovery stack.
 
 #### 2026-06-20 Assessment Notes
 
@@ -82514,6 +82740,19 @@ chapters still own their local details.
 | Information and computation | State distinction, encoding, measurement records, reset cost, algorithmic scaling, and simulation discipline | Directional comparison and methodological language | Useful for records and models, but not a substrate ontology |
 | Holography, AdS/CFT, islands, MOND-like fits, string/LQG/SUSY/inflationary programs | Comparison pressure, candidate analogies, and boundary checks | Directional comparison | They may sharpen constraints, but they are not closure targets unless a tested observable or hard consistency condition requires them |
 
+The early quantum-origin examples should be read through this transfer
+discipline as a connected benchmark bundle. Blackbody radiation tests whether
+photon-channel emission, absorption, scattering, and medium exchange recover
+detailed balance and the Planck occupation law without importing primitive mode
+quantization. The photoelectric effect tests whether material capture
+thresholds, recoil, heating, and bound-excitation rows close without treating
+photon energy as a free-standing ontology. Hydrogen line spectra test whether
+atomic envelope basins, shared spectral rows, and photon event ledgers recover
+stable lines without adding a per-line clock factor. Double-slit and
+wave-particle cases test whether unresolved path history remains live until a
+localized record forms. Together these cases are inherited benchmark records:
+they state what must be recovered, not what the substrate is.
+
 ##### Foundational Formula Audit
 
 The foundational layer uses a short list of formulas directly, but they do not
@@ -87601,8 +87840,15 @@ The correspondence between the quantum mechanical measurement formalism and arch
 *   **The Apparatus**: A massive complex of Noether braid assemblies that injects a structured potential perturbation (action) sufficient to overwhelm the target's metastability.
 *   **The Measurement Interaction**: The deterministic exchange of causal wake surfaces between the apparatus and the target assembly.
 *   **Wavefunction Collapse**: The continuous, finite-time physical transit of the target assembly across a phase-space separatrix, settling into a new stable attractor.
-*   **Irreversibility / Record Creation**: The excess energy and phase information from the transition are dissipated into the surrounding Noether sea and the macroscopic apparatus. This thermalization makes the transition operationally irreversible, cementing the macroscopic record.
+*   **Irreversibility / Record Creation**: The transition's energy, momentum and angular momentum, apparatus work or recoil, medium excitation, and phase/path-history content must be routed into named apparatus, environment, and Noether sea records. Thermalization and dissipation are redistribution into those records, not destruction of energy or record content.
 *   **The Born Rule ($P_k = |c_k|^2$)**: The emergent statistical distribution reflecting the relative fractional volumes of the competing attractor basins in the target's phase space, mapped over unresolved Noether sea boundary data and path-history structure.
+
+A target assembly can still be perturbed by an energy exchange without a
+completed measurement. If the interaction changes the effective state but
+does not supply a durable record, a restartable basin, event-ledger closure,
+and a bounded unrecorded-energy residual, the observer-side wavefunction may
+need a better reduced description, but it has not earned the completed wave
+function transition assumed by collapse language.
 
 ###### Overcoming the Heisenberg Cut
 
@@ -88438,6 +88684,26 @@ $$
 
 The target is therefore not simply "$|S|>2$." The target is simultaneous recovery of the tested Bell correlations, preservation of no-signaling, and preservation of measurement independence while the observer-level compression still fails Bell's factorized local-response form.
 
+###### Preferred-Frame Leakage Handoff
+
+No-signaling is also a Lorentz-export condition. The substrate has absolute time, the Euclidean void, and finite $c_f$, so operational Lorentz invariance is an observer-level recovery rather than a substrate symmetry. A candidate Bell packet may use a nonseparable pair-provenance record only if every substrate channel that could reveal the absolute frame cancels at the observer-level cut, is conserved into inaccessible records, or remains below the preferred-frame leakage bound.
+
+The no-signaling row cannot be checked only after the CHSH fit. It must be a measure-invariance statement: the joint basin measure remains invariant under local-setting relabelings at each wing, so summing over one wing leaves the other marginal independent of the far setting while the joint invariant can still carry the $2\sqrt{2}$ correlation.
+
+Using the preferred-motion null-test residual $\mathcal{R}_{\mathrm{PF\text{-}bundle}}$ from [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md#preferred-motion-null-test-bundle), a Bell candidate $\theta$ over a validity window $W$ must therefore satisfy
+
+$$
+\Delta_{\mathrm{Bell}}\le\epsilon_{\mathrm{Bell}},
+\qquad
+\Delta_{\mathrm{NS}}^{A},\Delta_{\mathrm{NS}}^{B}\le\epsilon_{\mathrm{NS}},
+\qquad
+\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}},
+\qquad
+\mathcal{R}_{\mathrm{PF\text{-}bundle}}(\theta;W)\le\epsilon_{\mathrm{LV}}
+$$
+
+This is the intersection of the Bell and Lorentz recovery surfaces, not a separate escape route. A global record that reproduces the CHSH value by inserting frame-dependent analyzer calibration, coincidence-window bias, clock drift, or signal-timing leakage has failed the preferred-frame leakage handoff even if its probability table looks quantum.
+
 ###### Record-Reconstruction Guardrail
 
 Bell experiments end in ordinary records: detector clicks, settings logs, coincidence windows, and later statistical summaries. That observation is important because it keeps the evidence at the observer-accessible level. It is not, by itself, an explanation of the correlations. A completed $\mathbb{A}\mathbb{A}\mathbb{A}$ account must explain why the joint record distribution has the tested quantum form, not merely why final records exist.
@@ -88454,7 +88720,7 @@ P(a,b\mid\hat{m}_A,\hat{m}_B)
 \pi_{AB}^{-1}(a,b;\hat{m}_A,\hat{m}_B)
 \right)
 $$
-The guardrail is that this measure must simultaneously produce the singlet correlation, preserve the one-wing marginals, and avoid measurement-independence leakage:
+The guardrail is that this measure must simultaneously produce the singlet correlation, preserve the one-wing marginals, and avoid measurement-independence leakage. In the strongest form, marginal preservation is supplied by local-setting relabeling invariance of $\mu_*^{AB}$ rather than by a cancellation added after the joint law is fitted:
 $$
 \Delta_{\mathrm{Bell}}\le\epsilon_{\mathrm{Bell}},
 \qquad
@@ -88814,6 +89080,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - GHZ product-sign contexts are recovered without assigning one context-independent local value table across all $X/Y$ settings.
 - Hardy's zero-probability constraints and positive event margin are recovered for the calibrated nonmaximally entangled regime.
 - No-signaling is exact: no measurement protocol on $A$ can alter the marginal statistics at $B$.
+- Preferred-frame leakage remains below the Lorentz-test residual bound on the same observer export that supplies detector timing, analyzer calibration, and coincidence-window records.
 - Measurement-independence leakage is explicitly bounded by $\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}}$ rather than absorbed into the pair-provenance explanation.
 - Correlation recovery is checked through $\Delta_{\mathrm{Bell}}$ against the full $-\cos\theta$ curve, not only by a single CHSH setting choice.
 - Decoherence rates for entangled pairs depend on local Noether sea density, providing an environmental sensitivity absent in bare QM (shared prediction with [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)).
@@ -88824,6 +89091,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - If the retained pair-provenance ledger and apparatus kernels reduce to the product-screened form $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$, then the model has explicit common-past data but still remains Bell-local. This is a failure even when no-signaling and measurement independence pass.
 - If $\Delta_{\mathrm{MI}}$ is nonzero in a way that is necessary for the correlation fit, the model has abandoned the stated $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route and must be reclassified before any corpus claim is promoted.
 - If any experiment demonstrates genuine **signaling** via entanglement (information transfer at $B$ contingent on the setting choice at $A$, without a classical channel), the entire framework fails.
+- If the CHSH fit requires an observer-accessible preferred-frame drift in clocks, analyzer calibration, coincidence windows, or signal timing, the Bell packet fails the Lorentz handoff even if $\Delta_{\mathrm{Bell}}$ is small.
 - If measurement independence is empirically falsified (e.g., via cosmic Bell tests showing setting–source correlations at a level incompatible with statistical noise), the assumption structure changes for all interpretations, not only $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 The Bell claim therefore stops at the closure target and failure conditions. A completed account requires lower-level angular-momentum, Stern-Gerlach response, source-measure, and pair-provenance derivations before this chapter can report success or failure.
@@ -91102,6 +91370,8 @@ Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to 
 
 Let $I$ denote the radian-normalized total rotational action of a nested shell braid assembly: the action-angle variable that has the same units and role as angular momentum. Let $\mathcal{A}_{\text{cycle}}=2\pi I$ denote the corresponding closed-cycle action.
 
+Because a nested shell braid can carry several internal frequency rows, $\mathcal{A}_{\text{cycle}}$ is defined on a closed return of the retained branch ledger, not on one chosen component frequency by itself. Component frequencies may coincide, lock in rational ratios, or remain distinct inside the branch. The $h$ mapping asks whether the recordable closed return exports one universal action increment after the full phase, causal-root, energy, and wake rows close.
+
 - For generic modes $n$, $I(n)$ and $\mathcal{A}_{\text{cycle}}(n)$ depend on axial structure and environment.
 - For the Planck alignment state $n_{\text{max}}$, we expect a **universal attractor** dominated by:
   - the fundamental charge unit $\epsilon = e/6$ (A2),
@@ -91121,7 +91391,7 @@ Let $I$ denote the radian-normalized total rotational action of a nested shell b
 > $$
 > This must ultimately be derived from the architrino master equation and checked numerically.
 
-If the dynamics admit multiple distinct aligned states with significantly different $\mathcal{A}_{\text{align}}^{\text{cycle}}$ or $I_{\text{align}}$, this identification fails.
+If the dynamics admit multiple distinct aligned states with significantly different $\mathcal{A}_{\text{align}}^{\text{cycle}}$ or $I_{\text{align}}$, or if different retained frequency rows require incompatible action quanta after the same record partition is declared, this identification fails.
 
 ###### Topological Bound Comparison
 
@@ -94477,13 +94747,15 @@ The strongest current claim is that agency can be made physically intelligible a
 
 ##### Why Physics Missed The Architecture Of The Universe
 
-**Literary note:** This is an AI-imagined, counterfactual chain of perspectives. It is not a historical quotation, real interview, endorsement, attribution, or evidence about any actual person's views. The essay writes from the completed-architecture standpoint that the current corpus is developing toward: it treats Architrino Assembly Architecture, hereafter the Architrino architecture, as having reached closure as architected, then asks how the history of physics would read from that retrospective vantage. That standpoint is a literary device for historical interpretation.
+**Literary note:** This is an AI-imagined, counterfactual chain of perspectives. It is not a historical quotation, real interview, endorsement, attribution, or evidence about any actual person's views. The essay treats Architrino Assembly Architecture, hereafter the Architrino architecture, as a challenger theory with a serious claim to resolve deep problems in fundamental physics and cosmology. It then adopts a retrospective convention: read the history of physics as it would look if the architecture eventually earned broad acceptance. That convention is a device for historical interpretation and case-building, not a claim that every load-bearing recovery has already been derived in the present corpus.
 
 ###### Opening Frame
 
-The premise of this scene is retrospective. From the completed-architecture standpoint named above, the historical question is where the path toward the Architrino architecture passed near the accepted history of science, and why the field continued along another road.
+The premise of this scene is retrospective. The Architrino architecture is treated as a serious challenger whose case is still being built, but the essay provisionally grants the future vantage from which it has become widely accepted. From that vantage, the historical question is where the path toward the Architrino architecture passed near the accepted history of science, and why the field continued along another road.
 
-The literary convention adds a second layer. When useful, a witness may be imagined as re-encountering his or her own work after the missing Noether sea and assembly layer has been supplied. Some sections use that device directly; others keep the witness at the level of historical interpretation. The point is not to require apology or confession. It is to ask what each body of work shows once the Architrino architecture's reconstruction makes the deeper causal object visible.
+The literary convention adds a second layer. When useful, a witness may be imagined as re-encountering his or her own work after the missing Noether sea and assembly layer has been supplied and accepted. Some sections use that device directly; others keep the witness at the level of historical interpretation. The point is not to require apology or confession. It is to ask what each body of work shows if the Architrino architecture's reconstruction makes the deeper causal object visible.
+
+The device is argumentative, not merely decorative. If the same architecture can explain why earlier science repeatedly passed near the needed clues without recognizing their common object, that historical reconstruction becomes part of the case for taking the challenger seriously. The essay therefore speaks from the acceptance vantage while still marking the places where the architecture owes major derivations, recovery theorems, and observational closure.
 
 This is not a story about foolish predecessors. Classical mechanics, field theory, statistical mechanics, relativity, quantum mechanics, quantum field theory, the Standard Model, and Lambda-CDM each solved real problems. Their success is precisely why the historical question is interesting. The missed track was not missed because physicists lacked intelligence or seriousness. It was missed because each successful framework made a particular layer of description feel final.
 
@@ -94493,7 +94765,31 @@ The chronology nevertheless has a ratchet structure. Michelson and Morley narrow
 
 The recurring clues fall into four arcs. Methodological witnesses show how successful abstractions can protect the wrong primitives, normalize open fractures, and reward beautiful form before source provenance has been supplied. Source-and-dynamics witnesses keep returning to finite propagation, recurrence, retained causal history, and the possibility that stable matter is an assembly rather than a given particle. Observer-record witnesses show how measurement, invariance, spectral classification, stellar nucleosynthesis, distance ladders, quantum discreteness, parity violation, nuclear shells, strong-sector phase alignment, gauge representation, and detector evidence can be real while remaining observer-level exports. Cosmology-and-recycling witnesses carry the same displacement to scale: redshift, background radiation, dark-sector inference, compact-object clocks, horizons, and black-hole thermodynamics become signs of source/release history rather than final proof that the effective chart is the ontology.
 
+The deeper issue is invariant provenance. Modern physics repeatedly found the invariant or constraint that made a layer calculable: macrostate measures, conserved currents, invariant intervals, charge and flavor bookkeeping, Bell-family bounds, covariant local conservation, and cosmological transfer variables. The Architrino architecture is not trying to replace that catalogue with another catalogue. It asks where each invariant comes from, which invariants are exact at the substrate, which are observer-level exports, and what leakage residual remains when an asymmetric substrate is compressed into an apparently symmetric observer layer.
+
 That is why the compact-object and black-hole cluster near the end is not a separate appendix to cosmology. It is the point where dense-matter clocks, horizons, entropy, gravitational-wave records, and recycling make the missing source/release history hardest to avoid.
+
+###### Where This Reading Must Earn Its Force
+
+The retrospective convention is not a shield against burden. For the reading below to be more than historical compression, several architecture-level walls have to remain exposed as falsification criteria, not background cautions. Each wall names a prior prediction with a failure condition; if it fails, the retrospective reading itself loses force.
+
+- The self-hit well-posedness wall is that same-source causal-root selection must preserve deterministic multistability while maintaining transversality, a Jacobian floor, regularization, and an a priori energy bound. If every branch rule either destroys multistability or permits runaway energy growth near Jacobian zeros, the generative mechanism is ill-posed.
+- The action-spacing wall is that stable delayed braid branches must export one uniform closed-cycle action increment across the accessible band. This wall is downstream of the self-hit wall: a candidate cycle whose energy-like branch functional becomes unbounded across same-source crossings cannot supply a well-defined closed-cycle action integral. If the stable-cycle action spectrum is generically non-uniform rather than clustered by a derived branch-class rule, the claimed recovery of $h$ fails.
+- The Born-measure wall is that an apparatus-partition quotient of an invariant basin measure must recover quadratic Born weights for a nontrivial preparation family. If it merely renames hidden preparation ignorance, it has not recovered quantum probability.
+- The no-signaling/CHSH wall is that the same whole-state record and basin-measure machinery must recover the CHSH value $2\sqrt{2}$ and exact operational no-signaling while keeping preferred-frame leakage below Lorentz-test bounds. The no-signaling part must be a basin-measure invariance condition under local-setting relabelings at each wing, so marginalizing one wing is independent of the far setting while the joint invariant carries the correlation. If one mechanism gives the correlation, another blocks signaling, and a third hides absolute-frame access, Bell has been reframed rather than recovered.
+- The photon-transport wall is that a fixed-void redshift map must be generated by a transport operator that commutes with global frequency rescaling and carries no undeclared transverse momentum transfer, while preserving transported-bundle occupation shape, transverse phase coherence, and a declared energy ledger. Absolute time leaves no expansion sink in which redshift energy can simply disappear. If redshift requires stochastic scattering, absorption/re-emission, unbookkept energy loss, or thermalizing kicks along the transparent path, it will generically blur images, spoil $(1+z)$ time dilation, violate Tolman surface-brightness behavior, or distort the cosmic microwave background beyond observed blackbody and acoustic-structure tolerances.
+- The one-constitutive-response wall is that distance-ladder, lensing, growth, and cosmic microwave background inferences must be read through one Noether sea constitutive and transport response. If matching the ladder and the cosmic microwave background requires two unrelated responses, the architecture has inherited the Hubble and $S_8$ tensions rather than dissolved them.
+- The bridge-map wall is to write controlled source-to-effective maps: causal roots to effective fields, basin measures to quantum records, Noether sea response to effective metric behavior, exact substrate asymmetries to bounded observer-level symmetries, and source/release histories to cosmological observables. Each bridge must declare its source variables, target variables, validity regime, error tolerance, and failure condition rather than rely on a verbal matching between layers.
+
+In the cosmology branch, the photon-transport wall, the one-constitutive-response wall, and the lensing/growth constraint should be read as three projections of one energy-ledger obligation. Absolute time nominates a global scalar-energy conservation target; fixed-void redshift must therefore close the photon's missing energy into Noether sea, source/release, recoil, remnant, or boundary-flux bookkeeping rather than let it disappear into metric expansion.
+
+###### Retrospective Falsification Criteria
+
+The retrospective method earns its use from architectural economy, not from narrative license. The claim is that a small primitive vocabulary, architrinos, Noether braids, causal wakes, Noether sea response, six-site axial organization with polarity bookkeeping, and Physical Observer reconstruction, can carry many domains without changing ontology from chapter to chapter. That kind of compression is real abductive evidence. It is not final proof, and it does not replace recovery theorems, simulations, or empirical contact. It earns the right to ask how the clues would look from a future acceptance vantage only while the same primitives keep doing disciplined work.
+
+The historical episodes below therefore do not count as confirmation merely because they can be redescribed as near-misses. They carry weight only when they tighten a shared recovery condition: a measure, a causal-root rule, a constitutive response, a detector record, a transport operator, or an observational residual that the same architecture must satisfy without adding an episode-specific rescue mechanism.
+
+The falsification criteria are therefore simple. The retrospective reading loses its warrant if the architecture must protect itself by adding disconnected mechanisms for every historical episode. It also loses its warrant if the major recovery targets require mutually incompatible Noether sea responses; if Noether braids cannot recover stable matter and charge bookkeeping without ad hoc labels; if self-hit branches require unbounded energy growth or lose deterministic multistability near Jacobian singularities; if Lorentz behavior cannot be derived with bounded preferred-frame leakage; if basin measures cannot recover Born statistics, Bell correlations, operational no-signaling, and preferred-frame hiding from the same record and measure machinery; if fixed-void cosmology cannot preserve image sharpness, time dilation, Tolman behavior, blackbody quality, acoustic structure, lensing, and growth together; or if black-hole recycling cannot be reconciled with horizon thermodynamics, gravitational-wave records, and observed cosmic history. In those cases the essay's method would no longer be disciplined retrospection. It would be a protective story.
 
 ##### Paradigms, Research Programs, And Anomalies
 
@@ -94519,6 +94815,8 @@ The Architrino architecture reclassifies the pattern. The issue was not one trou
 
 The rational reason is important. A working scientist inside a productive framework is not rewarded for declaring a civilizational theory failure every time an open problem appears. The responsible move is usually to compute, constrain, and extend the framework that already works. That discipline is why modern physics became so precise. It is also why a wrong explanatory layer can remain protected for a very long time.
 
+Precision was therefore part of the trap. QFT, GR, and Lambda-CDM became high-precision effective equilibria inside their domains. Their precision made them harder to question as effective layers, but that success did not turn their variables into primitive ontology. The Architrino method does not discard those frameworks; it preserves their observer-level successes and uses them as boundary data, inverse clues, and acceptance tests. Scattering amplitudes, metric behavior, color labels, detector records, redshift pipelines, and cosmological residuals become surfaces that a parsimonious source architecture must export. The question is not whether the observer-level categories work. They plainly do. The question is what geometry and causal record could produce those categories without treating them as final.
+
 Kuhn and Lakatos make the historical warning precise: unresolved problems are not automatically revolutionary. They become revolutionary only when someone can show that they are symptoms of one deeper misclassification. The missed question was: are these really separate anomalies, or are they the visible edges of one architecture problem?
 
 ###### Chapter Three. Charles Sanders Peirce: Abduction Needed A Crisis Discipline
@@ -94531,6 +94829,8 @@ The corrective actions are conceptually straightforward, even if institutionally
 
 The same audit could have grouped open problems by their shared assumptions: primitive spacetime, primitive fields, primitive quantum state, unexplained constants, unexplained gauge representation, unexplained cosmological background, and unexplained observer reconstruction. It could have protected serious alternative architectures long enough to compare explanatory compression, not merely immediate fit. It could have demanded source provenance for constants, effective variables, and particle labels rather than accepting successful bookkeeping as final explanation.
 
+The discipline needed here is falsification-driven architectural narrowing. A severe ansatz can be valuable before it is proven because it compresses the search space: start from the smallest equal-and-opposite polarity structure, then let forced branch problems chisel the architecture rather than adding free mechanisms. In this reading, two polarities pose the binary problem; stable binary behavior poses the tri-binary Noether braid problem; tri-binary closure poses the three-axis assembly problem in the Euclidean void; and frequency, phase, and retained action rows pose the clock and quantum-record problem. The branch is not kept because it is attractive. It is kept only while each added layer is logically forced by the preceding one and can bear weight across charge bookkeeping, inertia, radiation, quantum discreteness, Lorentz recovery, Standard Model phenomenology, and cosmological reconstruction. Failed sub-branches should be carved away or reworked at the level of assumptions; they should not be protected by local rescues. That is the practical difference between disciplined abduction and unconstrained speculation.
+
 The rational obstacle is that abduction is dangerous when undisciplined. It can license beautiful nonsense, premature metaphysics, or programs that admire their own coherence before they earn contact with data. Modern physics protected itself by favoring calculation, covariance, renormalization, precision measurement, and internal consistency. Those protections were necessary. The problem is that they became better at rejecting weak alternatives than at recognizing when the accepted architecture itself needed reconstruction.
 
 Peirce sharpens the abductive demand: science needs more than local self-correction. It needs crisis self-detection and root-cause analysis: a way to notice when many successful local repairs have stopped improving the deepest explanation, then to trace those repairs back to their shared assumptions. The missed abductive inference was that quantum foundations, Standard Model structure, gravity, cosmology, black holes, and observer reconstruction were not separate puzzles. They were the same architectural absence seen through different instruments.
@@ -94541,9 +94841,13 @@ Planck's scene can be read from the blackbody furnace outward. The spectrum forc
 
 The thermal clue was concrete. Energy exchange could not be treated as a smooth continuum if the spectrum was to come out right. Physics kept the formula, kept the constant, and then built quantum mechanics on top of it. What it did not keep asking, with enough pressure, was what physical record could make action arrive in stable units at all.
 
-That distinction should be stated carefully. A deeper mechanism need not choose between continuous source-level evolution and discrete observer-level quantum records. The stronger question is how a continuous causal history admits only certain stable action-cycle updates as recordable exchanges. In the language of the Architrino architecture, Planck's clue is not that motion itself must be discontinuous; it is that any accepted quantum of action must be derived from retained action bookkeeping, a stable branch condition, and a physical record channel.
+That distinction should be stated carefully. A deeper mechanism need not choose between continuous source-level evolution and discrete observer-level quantum records. The stronger theorem target is sharper than discreteness: define an action-cycle update on retained path history, show which stable cycles become recordable exchanges, and recover a uniform action scale in the relevant regime. In the language of the Architrino architecture, Planck's clue is not that motion itself must be discontinuous; it is that any accepted quantum of action must be derived from retained action bookkeeping, a stable branch condition, and a physical record channel.
 
-That distance is the clue. A stellar core at roughly $10^7$ K is about $10^{-25}$ of the Planck temperature. Collider events remain many orders below the Planck energy, and even the highest observed cosmic-ray events sit far beneath it. Ordinary empirical physics therefore samples a highly constrained low-energy projection of configuration space, not the full deep regime in which architrino dynamics, causal wakes, and Noether sea response set their deepest scales.
+In the nested shell braid setting, that is not a single-frequency oscillator problem. A retained braid can carry several internal frequency rows; those rows may coincide, lock in rational ratios, or remain distinct while still closing one physical record cycle. The recovery target is the full closed-return ledger: over the recordable branch cycle, the integrated action must descend to $h$ or to integer multiples whose adjacent record increments are $h$. The existence of multiple internal cadences is therefore not a defect in the architecture. It is the mechanism by which the architecture has to earn Planck's constant from branch closure rather than assume it as an external quantum postulate.
+
+That closed-return ledger is well-posed only after the self-hit energy-bound burden has been met. If a candidate cycle has no retained-history energy-like functional that stays bounded through its same-source crossings under $\Delta t$, $\eta$, and history-window refinement, then it is not a stable cycle in the needed sense and its closed-cycle action is not a valid source of $h$. The proof order is fixed: bound the energy first, then test action spacing across the surviving stable branch family.
+
+That distance is the clue. A stellar core at roughly $10^7$ K is about $10^{-25}$ of the Planck temperature. Collider events remain many orders below the Planck energy, and even the highest observed cosmic-ray events sit far beneath it. Ordinary empirical physics therefore samples a highly constrained low-energy projection of configuration space, not the full deep regime in which architrino dynamics, causal wakes, and Noether sea response set their deepest scales. High precision inside that projection is real boundary data, but it can still sit many orders removed from the source regimes that would decide primitive ontology.
 
 The warning is not only observational. A theory may describe many scales while direct influence and control remain concentrated in a much narrower accessible band.
 
@@ -94557,7 +94861,7 @@ Maudlin supplies a contemporary foundations doorway rather than a historical nea
 
 In the current academic canon, Maudlin's program can look like commentary on physics. In the Architrino architecture, it becomes a diagnostic checklist: the theory must name its primitive ontology, state the law by which the world evolves, avoid hiding the measurement problem behind a word like observation, explain why Bell correlations do not fit the old separated-subsystem picture, treat time as physically ordered enough for laws to generate successor states, and show how laboratory records arise from the ontology rather than floating above it.
 
-The simplification is that these demands no longer sit in separate philosophical drawers. Absolute time gives the ordering of successive universe states. The Euclidean void and Noether sea separate the fixed container from the physical contents. Architrinos, causal wakes, and assemblies supply primitive ontology and dynamics. Physical Observers are assemblies with limited access, not outside witnesses. Measurement becomes record formation in an apparatus channel. Probability becomes basin measure over unresolved deterministic histories. Bell nonlocality becomes a warning that the whole-state record cannot be factorized into independently complete boxes at the observer's preferred cut.
+The simplification is that these demands no longer sit in separate philosophical drawers. Absolute time gives the ordering of successive universe states. The Euclidean void and Noether sea separate the fixed container from the physical contents. Architrinos, causal wakes, and assemblies supply primitive ontology and dynamics. Physical Observers are assemblies with limited access, not outside witnesses. Measurement becomes record formation in an apparatus channel. Probability becomes a recovery obligation: basin measure over unresolved deterministic histories must reproduce Born weights for prepared record families rather than merely rename ignorance. Bell nonlocality becomes a warning that the whole-state record cannot be factorized into independently complete boxes at the observer's preferred cut.
 
 That is the grand compression Maudlin would force the scene to earn. The measurement problem, the reality of time, the status of the wavefunction, quantum probability, nonlocality, and the observation-data interface are not six unrelated interpretive puzzles. They are six symptoms of one missing map from Noether sea and assembly state to observer record.
 
@@ -94645,6 +94949,12 @@ The sharper version of the miss is a three-speed distinction. Classical source-h
 
 Primitive wakes propagate at $c_f$; photon-channel speed is recovered as assembly and Noether sea-dressed behavior; and point-transceiver speed is a branch variable that may enter super-field-speed regimes without making the wake itself faster than $c_f$. With those levels separated, the moving-charge formulas become a source-history chart to refactor: keep causal roots and Jacobian weighting, but rebuild the many-body assembly law before importing observer-level light or field language.
 
+That same novelty is also the well-posedness threat. A self-hit branch is not accepted merely because an architrino or internal assembly component enters a super-field-speed regime. Same-source root existence, transversality, a non-vanishing Jacobian floor, and regularization must keep the update finite. The architecture therefore owes a branch-selection rule that preserves deterministic multistability while excluding runaway self-acceleration and unbounded energy growth.
+
+The invariant at stake is an energy-like branch functional, not a merely numerical tolerance: accepted self-hit dynamics must keep the particle, causal-wake, and retained-history terms finite or monotone under same-source causal-root updates.
+
+That makes the Lienard-Wiechert inheritance strongest as an acceptance condition rather than as a finished result. A deeper assembly law must preserve causal-root selection, Jacobian-weighted reception, and finite same-source updates while changing the ontology from point charge and field to point transceiver, causal wake, and assembly.
+
 The later failure of classical electron theory then overgeneralized the verdict. One failed point-source model made the whole neoclassical design space look exhausted, even though the damaging assumptions were narrower: primitive source = observed electron charge, primitive wake speed = measured photon speed, and photon-channel speed = universal constituent speed limit. The Architrino architecture reverses those assumptions: charge is an assembly-level polarity inventory, photon speed is recovered channel behavior, and point transceivers may enter regimes governed by causal-root structure rather than by the observer-level light limit.
 
 The rational reason is clear. Around 1900 the electron itself was new, atomic structure was not yet settled, nonlinear dynamics was not yet a standard many-body toolkit, and the computational means to explore branch-sensitive causal systems did not exist. Lienard and Wiechert leave the source-time conclusion intact: pre-relativistic physics already had a sharp causal-delay chart, but not the ontological reversal that point transceivers interacting through finite-speed history might generate assemblies, particles, and observer-level fields together.
@@ -94665,13 +94975,17 @@ In the current academic canon, the null result supports the move from an undetec
 
 The rational historical path went the other way because the old medium picture was too crude. If the expected wind was absent and if Lorentz-FitzGerald contraction looked like an auxiliary repair, then Einstein's operational postulate looked cleaner. It removed the undetected machinery and made the invariant light-speed result a principle of spacetime kinematics. That was a powerful simplification at the level of measurement law.
 
-Michelson and Morley therefore mark a precision acceptance condition: the null result should have remained a bundle test, not an ontological veto. Any Euclidean base frame and absolute time must be hidden from Michelson-Morley-type apparatus by one common constitutive response of matter and light. The experiment was not an embarrassment to that path. It was the first precision statement of that acceptance condition.
+Michelson and Morley therefore mark a precision acceptance condition: the null result should have remained a bundle test, not an ontological veto. A preferred frame plus compensating transformations can be observationally hidden only if material rods, clocks, and the signal channel share a common-mode constitutive response. That is the force of the self-nulling reading: the experiment does not prove the deeper frame absent; it states the condition any Euclidean-void and absolute-time account must satisfy before it may be taken seriously.
+
+The strength of that claim is exactly its restraint. It is not a completed Lorentz-recovery theorem. It is a null-residual test: the two-way anisotropy of embedded apparatus must be self-nulled by the shared constitutive response before a preferred-frame ontology earns standing.
 
 ###### Chapter Thirteen. Hendrik Lorentz: The Preferred Frame Without The Assembly Mechanism
 
 Lorentz's doorway was the preferred frame that almost survived. He had electron theory, a stationary medium background, local time, length contraction, and transformations that made the measured speed of light come out the same for moving observers. This was close to the needed split: a real Euclidean void and absolute time beneath an observer-level kinematics that hides that base frame from physical instruments.
 
 The difficulty was that Lorentz's construction still looked compensatory. It could say that moving matter contracts and moving clocks desynchronize, but it did not have a Noether sea and assembly mechanism explaining why material lengths, charge behavior, clock maps, and light channels all compensate together. Without architrino assemblies, causal wakes, Noether sea response, and a common operational-reconstruction record, the preferred frame remained a hidden stage plus a set of fitted transformations.
+
+In this form Lorentz is not only a failed alternative. He is an under-specified bridge. The closure target is to derive moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage from one Noether sea and assembly response rather than fitting them as separate compensations.
 
 The speed-of-light issue was especially decisive. Physics already knew that light changes speed in glass, water, and other media. It also came to know that relativistic geometry changes clock and ruler scales. The missed synthesis was to treat those facts as expressions of one deeper constitutive response: ordinary materials alter light propagation locally, while the Noether sea and assembly structure set the limiting vacuum behavior shared by embedded measurement systems.
 
@@ -94701,17 +95015,25 @@ General relativity then made the ontological door even harder to reopen. Geometr
 
 Einstein supplies the sharpest version of the closure problem. The move that purified physics also concealed the next question. Relativity taught the field to trust what physical observers can operationally reconstruct. The final historical step was to ask how those physical observers are built, why their operational standards agree, why gravitational and inertial response appear locally identical, and why their reconstructed spacetime is so stable that it could be mistaken for fundamental geometry.
 
-###### Chapter Fifteen. Emmy Noether: Symmetry Was Mistaken For The Source
+###### Chapter Fifteen. Emmy Noether: Symmetry Without The Source Record
 
 Noether's doorway was invariance. Her theorem changed the meaning of physical law by showing how symmetries and conservation laws belong together. After Noether, a serious theory could not merely list forces and motions. It had to explain what remains unchanged through transformation.
 
-This was close to the Architrino architecture path because the Architrino architecture treats conservation as history bookkeeping. Energy, momentum, angular momentum, charge, and identity are not merely particle labels or field expressions. They are retained balances across architrino motion, causal wakes, Noether sea response, and event records. Noether's world supplied the right question: what does the law preserve?
+The theorem is structural rather than ontological. It does not claim that spacetime, fields, or gauge redundancy are primitive. It says that when an action has a continuous symmetry, the corresponding conserved quantity follows. This was close to the Architrino architecture path because the architecture also treats conservation as a constraint on admissible dynamics, not as decoration added after the motion is known.
 
-The miss was that symmetry attached itself to the victorious formal arenas of the twentieth century: spacetime geometry, field actions, Hilbert spaces, and gauge theory. Those arenas were extraordinarily productive. They made conservation precise, classified particles, disciplined interactions, and generated successful mathematics. In that context, symmetry began to feel like the source of physical being rather than a constraint on how deeper records may appear.
+The Euclidean void with absolute time postulates the substrate symmetry group $E(3)\times\mathbb{R}_t$. Translation, rotation, and time-shift invariance therefore nominate total linear momentum, total angular momentum, and a global energy-like quantity as conservation targets. They are targets rather than automatic gifts: a state-dependent delay system with self-hit does not inherit the ordinary local variational theorem without proof.
 
-Gauge theory deepened the lock-in. Redundancy, invariance, and field structure became the language in which particle physics spoke most successfully. The more precise the symmetry grammar became, the less pressure there was to ask whether it was an exported grammar from a lower causal history.
+That is the real burden behind the conservation language. Energy, momentum, angular momentum, polarity, identity, and event records must close across architrino motion, causal wakes, Noether sea response, and retained history. But the particle-only ledger may fail while the particle-plus-wake-plus-medium ledger closes. The architecture therefore owes either a genuine delayed Noether theorem for the causal-action functional or the weakest quasi-Noether replacement with explicit hypotheses, boundary terms, and history-channel exchange rows. If even that weaker variational structure is unavailable, the conservation rows drop to refinement-stable diagnostics rather than theorem-level charges.
 
-Noether's place in the chain is that invariance was the correct compass but not the whole map. The historical track toward the Architrino architecture required asking what Noether sea and assembly history makes the invariant true, not only which formal transformation leaves the action unchanged.
+The miss was not that symmetry itself claimed to be the source of physical being. The miss was that a complete catalogue of constraints began to feel like a complete account of mechanism. Lorentz invariance, gauge invariance, diffeomorphism invariance, CPT, and conserved currents are powerful filters on admissible dynamics. They do not specify the physical process that implements those filters. Their success could make the formal symmetry grammar feel final even when the source record beneath it remained unasked.
+
+That makes Chapter Fifteen a positive program rather than a demotion of symmetry. The target is invariant provenance: derive the source record that makes an invariant available, then classify the invariant as substrate-exact, observer-level with a leakage budget, or only a comparison constraint. Lorentz recovery is the prototype. Absolute time, the Euclidean void, and finite $c_f$ are exact substrate asymmetries; observer-level Lorentz symmetry is acceptable only if the same Noether sea and moving-assembly record suppresses every preferred-frame leakage current below tested bounds. The cosmology ledger is the same discipline in reverse: fixed-void absolute time keeps a global energy target, so redshift energy must be bookkept rather than surrendered to expansion semantics.
+
+Gauge theory deepened the lock-in. Redundancy, invariance, and field structure became the language in which particle physics spoke most successfully. The more precise the symmetry grammar became, the less pressure there was to ask which lower causal history supplies the hypotheses under which those symmetries hold.
+
+For the Architrino architecture, the sharp theorem target is not symmetry demotion but symmetry implementation. Absolute time, the Euclidean void, and finite $c_f$ are exact substrate asymmetries relative to observer-level Lorentz symmetry. They may remain in the ontology only if assembly deformation, clock/ruler retuning, photon synchronization, and Noether sea response export Lorentz behavior with a computed preferred-frame leakage budget below the tested bounds.
+
+Noether's place in the chain is that invariance was the correct compass but not the whole map. The historical track toward the Architrino architecture required asking what Noether sea and assembly history makes the invariant true, what boundary and wake terms complete the balance, and which conservation laws remain conjectures until the delayed variational structure is proved.
 
 ###### Chapter Sixteen. Abhay Ashtekar, Carlo Rovelli, And Lee Smolin: Quantum Geometry Without The Source Record
 
@@ -94749,11 +95071,15 @@ This middle arc follows record formation through quantum theory, nuclear physics
 
 Boltzmann's doorway was hidden multiplicity. Statistical mechanics showed that macroscopic order can emerge from unresolved microstructure. Pressure, temperature, entropy, and irreversibility became intelligible without being primitive substances. This should have made physics permanently cautious about treating any statistical surface as final ontology.
 
+The durable mathematical template is quotient structure. A macrostate is not a second ontology added above the microstate; it is a many-to-one projection of admissible microstates under a measure and a declared coarse-graining. That is why Boltzmann matters here beyond historical analogy.
+
 That lesson passed very near the needed interpretation. In the Architrino architecture, quantum probability is not read as the world throwing dice at the primitive level. It is read as stable record statistics over unresolved deterministic histories, apparatus states, Noether sea conditions, and basin structure. Boltzmann had already supplied the cultural permission for visible law to arise from hidden state space.
 
 The miss was partly sociological and partly mathematical. Boltzmann first had to fight for atoms themselves. The conceptual energy of the period was spent defending microstructure against continuum skepticism, not extending microstructure into delayed causal records and observer-level measurement partitions. Then quantum mechanics arrived with probabilities at the center of its operational success.
 
 Once the Born rule worked, probability acquired a new dignity. Attempts to put deterministic structure beneath it looked like nostalgia for classical mechanics rather than a deeper statistical program. Hidden-variable language also became burdened by no-go results, interpretive battles, and the fear of smuggling in forbidden signals or naive realism.
+
+Boltzmann's strongest gift to the historical chain is the same acceptance-condition pattern. A hidden-state account is not vindicated by naming hidden variables; it must supply the measure, coarse-graining map, and record partition that recover the observed macroscopic or quantum statistics.
 
 Boltzmann's case shows that physics learned the statistical moral, but only halfway. It accepted hidden microstates for thermodynamics while allowing quantum probability to harden into a more final layer. The missing path required seeing quantum records as Boltzmannian in a broader and more difficult sense: not gas particles in a box, but deterministic causal histories filtered through finite observers and apparatus channels.
 
@@ -94891,6 +95217,8 @@ That line stands closer to the Architrino architecture than it may first appear.
 
 Chadwick's neutron is especially revealing in retrospect. A neutral nuclear constituent can be stable in one assembly context and unstable as a free particle. That difference should have been a loud warning that particle identity is not only a label attached to an isolated object. It depends on the assembly record, shielding environment, available reaction corridors, and record channels. Fermi's beta theory then made the bookkeeping sharper: missing energy and momentum were not allowed to disappear; a neutral export had to carry the balance.
 
+At the observer-level reaction surface this is relativistic energy-momentum balance. At the assembly level, the native requirement is an event ledger in absolute time: scalar energy, three-momentum, angular momentum, polarity, neutral-export channels, and Noether sea exchange must close on the same retained record. Four-momentum is the effective export to recover, not the primitive conservation object.
+
 The rational miss was that nuclear physics was already overloaded with urgent successes. The nucleus had to be measured, classified, split, modeled, and controlled. Effective proton-neutron inventories, binding-energy formulas, shell models, weak-interaction terms, and later quark-level descriptions produced real traction. Once those layers worked, the field could treat nuclear events as reactions among named particles and fields rather than as visible exports of assembly dissociation, shielding change, neutral release, and event closure.
 
 The nuclear line shows that the nucleus was a public laboratory for assembly provenance before the Architrino architecture existed to name it. The missed question was not simply what force binds nucleons. It was what retained internal organization lets a nuclear assembly hold identity, change channel, release energy, preserve charge and momentum, and sometimes destabilize into a new branch of matter.
@@ -94942,6 +95270,8 @@ Gell-Mann's later complexity writing adds a second witness. The durable lesson i
 The point is historical, not a license to import old medium language wholesale. Complexity theory respected emergence, and high-energy physics had compressed particle regularities, but neither supplied a source-resolved causal-wake record grounded in architrinos and assemblies.
 
 The reduction is not to free little charges of $|e|/3$ floating beneath quarks. It is to a six-site axial polarity inventory with site magnitude $\epsilon=|e|/6$. Visible charge is then an integer-count outcome of how many positrino and electrino sites the assembly exposes. The quark charge fractions look less like primitive fractions and more like surviving assembly inventories.
+
+The invariant is additive polarity count: in units of $\epsilon$, observed charge is a signed integer sum over the axial inventory, and the same inventory must reproduce the observed charge set without predicting stable free assemblies carrying the hidden subunit as an isolated particle.
 
 The sharper historical question is why the unit problem did not stay central. Once fractional charge became ordinary inside the Standard Model, the electron charge could have been reclassified as a stable assembly total rather than the primitive unit of electric bookkeeping. That would have kept open the right reductionist question: what smaller signed inventory makes the observed charge table possible while hiding the inventory units as free particles?
 
@@ -94997,6 +95327,10 @@ In the Architrino architecture's retrospective reading, Bell would not need to w
 
 The missed opportunity was not to evade Bell. It was to ask whether the experiment had been factorized at the wrong level. A prepared pair, two apparatuses, their settings, their environments, and the eventual records are not isolated metaphysical boxes. They are parts of one evolving universe-state record in absolute time. If that record is the primitive object, then the ordinary observer split into "source," "left measurement," "right measurement," and "free setting" is an effective partition, not the final ontology.
 
+That move is only a starting point. A whole-state record does not by itself recover the experiment. The quantitative burden is to reproduce the quantum CHSH value $2\sqrt{2}$ from the record and its basin measure while preserving operational no-signaling at the observer layer. Until that recovery is shown, Bell has been reframed rather than answered.
+
+There is also a preferred-frame leakage budget hidden inside that burden. The architecture keeps absolute time, finite $c_f$, and the Euclidean void at the substrate, so operational Lorentz invariance is an observer-level recovery rather than a primitive substrate symmetry. A Bell recovery may not buy the $2\sqrt{2}$ correlation by opening an observer-accessible channel to the absolute frame. The same record and measure machinery that recovers the joint law must keep one-wing marginals local and keep preferred-frame leakage in clocks, signal timing, analyzer calibration, and coincidence windows below Lorentz-test bounds. The no-signaling row is therefore not an after-the-fact check; it must appear as basin-measure invariance under local-setting relabelings at each wing, so marginalizing one wing stays independent of the far setting while the joint invariant can still carry the $2\sqrt{2}$ correlation. Otherwise the theory has only traded Bell factorization failure for detectable preferred-frame access.
+
 The rational miss came from the danger of bad hidden-variable explanations. Many such explanations either smuggled in faster-than-light influence, denied experimental practice too cheaply, or failed to reproduce the data. Quantum mechanics, by contrast, gave a compact formal rule that worked. The responsible community therefore treated entanglement as a theorem-governed quantum phenomenon rather than a demand for a deeper causal record.
 
 The interpretive cost was that action-at-a-distance language remained close at hand. Even when carefully qualified, entanglement invited the feeling that nature had accepted a nonlocal mystery as a principle. The Architrino architecture says the better historical question was whether the mystery belonged to nature or to the observer's partition of one causal record into separate boxes.
@@ -95035,7 +95369,7 @@ Leavitt's place in the chain is therefore foundational. She did not create the e
 
 Slipher and Hubble opened the observational doorway. Slipher measured large nebular redshifts before the extragalactic scale of the universe was settled. Hubble then made the distance-redshift relation into the central empirical fact of modern cosmology. The data did not begin as ontology. They began as an observed pattern: farther systems, on average, showed larger redshift.
 
-In the current academic canon, that pattern became the empirical backbone of an expanding-universe chart. In the Architrino architecture, redshift belongs to path history, Noether sea evolution, transport, thermalization, and clock rate comparison in a fixed Euclidean void. It is an observer-level summary rather than automatic evidence that the spatial container itself expands.
+In the current academic canon, that pattern became the empirical backbone of an expanding-universe chart. In the Architrino architecture, redshift belongs to path history, Noether sea evolution, coherent photon-channel transport, source/release thermalization, and clock rate comparison in a fixed Euclidean void. It is an observer-level summary rather than automatic evidence that the spatial container itself expands.
 
 The historical miss was not that expansion was an irrational inference. General relativity already had dynamical cosmological solutions, and simple non-expansion alternatives often failed on image sharpness, time dilation, spectral structure, or background-radiation constraints. The field had good reason to distrust crude tired-light explanations. The error was allowing those weak alternatives to stand in for the entire class of deeper transport-and-timing interpretations.
 
@@ -95073,11 +95407,63 @@ Tolman's doorway was disciplined testing. He did not merely speculate about reds
 
 This was necessary. Many simple tired-light pictures were not good enough. They struggled with image sharpness, observed time dilation, spectral coherence, and the full web of cosmological constraints. Rejecting those weak models was not a failure of imagination. It was scientific discipline.
 
-The miss was that the failure of crude tired-light explanations came to stand for a much larger conclusion: that non-expansion interpretations as a class were suspect. That narrowed the interpretive space too much. The Architrino architecture alternative is not a photon simply losing energy by ad hoc scattering. It is a combined account of path history, Noether sea evolution, source/release processes, thermalization, and clock rate comparison.
+The miss was that the failure of crude tired-light explanations came to stand for a much larger conclusion: that non-expansion interpretations as a class were suspect. That narrowed the interpretive space too much. The Architrino architecture alternative is not a photon simply losing energy by ad hoc scattering. It is a combined account of path history, Noether sea evolution, source/release processes, coherent transport, energy-ledger closure, and clock rate comparison, with thermalization confined to the source, release, or pre-free-streaming ensemble rows where it can actually supply a bath. The transparent-path transport law is acceptable only if its generator commutes with global frequency rescaling, carries no undeclared transverse momentum transfer, and thereby preserves image sharpness, observed $(1+z)$ time dilation, surface-brightness scaling, spectral coherence, transverse phase coherence, and the background-radiation constraints that defeated weaker alternatives.
 
 Tolman therefore represents both the strength and the trap of empirical discrimination. A bad alternative should be removed. But its failure should not be allowed to erase a deeper category that was never actually tested in the same form.
 
-Tolman's role in the chain is disciplined testing: cosmology needed sharper tests, and still does. In the Architrino architecture, redshift, time dilation, background radiation, abundance, structure, and lensing remain in one evidential frame rather than being separated into local excuses. The historical missed opportunity was to confuse the defeat of weak non-expansion mechanisms with the defeat of every possible non-expanding Euclidean-void ontology.
+Tolman's role in the chain is disciplined testing: cosmology needed sharper tests, and still does. In the Architrino architecture, redshift, time dilation, background radiation, abundance, structure, and lensing remain in one evidential frame rather than being separated into local excuses. The redshift-energy row is especially sharp because absolute time keeps a global conservation target alive: the photon's missing energy must close into Noether sea, source/release, recoil, remnant, or boundary-flux bookkeeping rather than vanish into metric expansion. The historical missed opportunity was to confuse the defeat of weak non-expansion mechanisms with the defeat of every possible non-expanding Euclidean-void ontology.
+
+###### The Redshift Energy Ledger
+
+The fixed-void ontology makes one demand that expanding-spacetime cosmology does not make. In a generic expanding FRW chart, local covariant conservation does not supply a single globally conserved scalar energy, so cosmological redshift energy is not assigned to a global sink. In the Architrino architecture, absolute time and the Euclidean void impose the opposite burden. The substrate time-translation symmetry nominates a total scalar-energy ledger,
+
+$$
+E_{\mathrm{tot}}(t)
+=
+E_{\mathrm{arch}}(t)
++E_{\mathrm{wake}}(t)
++E_{\mathrm{sea}}(t),
+\qquad
+\frac{dE_{\mathrm{tot}}}{dt}=0
+$$
+
+where the three terms collect architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy. This global form is available only if the universe-state energy is finite or convergently summable on the constant-$t$ leaf. If an unbounded populated Noether sea does not admit that global sum, the safe statement is the bounded-region continuity law
+
+$$
+\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+$$
+
+or, for a finite region $\Omega$ after boundary flux is included,
+
+$$
+\frac{dE_{\Omega}}{dt}
++\int_{\partial\Omega}\mathbf{S}_E\cdot\hat{\mathbf n}\,dA
+=0
+$$
+
+Here $\rho_E$ is the local energy density and $\mathbf{S}_E$ is the energy-flux density for the particle, causal-wake, and Noether sea rows retained in the comparison window. The global equation remains the stronger conservation target; the local continuity equation is the fallback that the redshift arc actually needs.
+
+For a transparent photon-channel bundle redshifted by $1+z$, the photon energy deficit is
+
+$$
+\Delta E_{\gamma}
+=
+E_{\mathrm{emit}}-E_{\mathrm{obs}}
+=
+E_{\mathrm{emit}}\frac{z}{1+z}
+$$
+
+After source, recoil, remnant, and boundary rows have been separated, a pure transparent-path redshift must close
+
+$$
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+This is not a rescue term. The sink is constrained by the same observations that made crude tired-light fail. It may not re-radiate into the transparent channel, blur images, distort the background spectrum, or break observed $(1+z)$ time dilation. It must accumulate along path history with the same constitutive response that recovers distance ladders, Tolman behavior, CMB blackbody and acoustic structure, lensing, and growth. Its spatial gradient may become part of the dark-sector budget, or it may over-predict lensing and structure; either way it is computable.
+
+The failure condition is therefore plain. If no single bookkept Noether sea sink can close $\Delta E_{\gamma}+\Delta E_{\mathrm{sea,path}}=0$ inside the finite-window continuity law while preserving redshift-distance behavior, observed time dilation, Tolman surface brightness, blackbody quality, acoustic structure, image sharpness, lensing, and growth, then fixed-void redshift fails on the conservation target created by its own absolute-time postulate.
 
 ###### Chapter Forty-Four. Vera Rubin: Rotation Curves Split Mass From Light
 
@@ -95089,7 +95475,7 @@ In the Architrino architecture, Rubin's evidence remains real but its ontology i
 
 The rational miss was that dark matter organized more than rotation curves. It helped with clusters, large-scale structure, lensing, and the cosmic microwave background. A particle-like dark component therefore became the conservative way to preserve gravity, dynamics, and cosmology together. That was not careless. It was a productive effective ontology.
 
-Rubin's place in the chain is the first modern galaxy-scale warning: dynamical mass had split from luminous matter. McGaugh later sharpens the baryonic coupling problem, but Rubin supplies the decisive historical doorway. The missed question was whether the split identified a new particle sector, a medium response, or a deeper assembly-and-Noether-sea account that makes both readings effective.
+Rubin's place in the chain is the first modern galaxy-scale warning: dynamical mass had split from luminous matter. McGaugh later sharpens the baryonic coupling problem, but Rubin supplies the decisive historical doorway. The missed question was whether the split identified a new particle sector, a medium response, or a deeper assembly and Noether sea account that makes both readings effective.
 
 ###### Chapter Forty-Five. Stacy McGaugh: Galaxy Dynamics As A Dark-Matter Warning
 
@@ -95111,6 +95497,8 @@ That makes him valuable in this scene because he is not merely rejecting the sta
 
 That is why the stress test did not immediately displace precision cosmology. A dipole, bulk flow, or local-structure correction was insufficient by itself because dark energy became standard through the mutual consistency of many data streams: Type Ia supernovae, baryon acoustic oscillations, CMB acoustic structure, lensing, structure growth, and distance ladders. The missed lesson was not that one anomaly could declare victory, but that the reconstruction pipeline itself deserved scrutiny.
 
+The Hubble and $S_8$ tensions sharpen that lesson because they are internal pressure inside the precision pipeline rather than loose external complaints. The distance ladder, the CMB inverse problem, lensing reconstruction, and growth measurements are different observer-level projections of one constitutive transport problem. A Noether sea account earns force only if one response law carries the ladder slope, CMB blackbody and acoustic transfer, lensing map, and growth amplitude together. If it needs one tuning for local distances and another for CMB or growth, it has reproduced Lambda-CDM's split rather than solved it.
+
 Sarkar's contribution is methodological. The cosmological principle should not be treated as a harmless convenience once it begins deciding ontology. The missed modern question was whether dark energy, isotropic acceleration, and global metric expansion were being inferred through a reconstruction pipeline that had already assumed too much about the observer's relation to the cosmic medium.
 
 ###### Chapter Forty-Seven. Alpher, Herman, Penzias, Wilson, Dicke, And Peebles: The Background Became A Birth Certificate
@@ -95121,9 +95509,9 @@ In the current academic canon, that data product is relic radiation from a hot e
 
 The rational miss is that the hot Big Bang interpretation made the background astonishingly productive. Once the cosmic microwave background could be treated as relic radiation from an early hot dense state, the framework generated calculable abundance, recombination, acoustic-peak, polarization, and structure-growth targets. That was a genuine scientific victory. It also made the background feel like a birth certificate for the universe rather than a transfer product whose source, thermalization, Noether sea transport, and clock reconstruction history still needed accounting together.
 
-That is why the standard interpretation held its ground. A background-radiation alternative could not be a loose story about thermalized light. It had to account for blackbody quality, spectral-distortion limits, anisotropy statistics, TT/TE/EE structure, lensing handoff, dipole-frame consistency, light-element compatibility, and growth correlations without fragmenting the explanation into unrelated devices. The historical clue was precisely that all of those observables had to be source, transport, thermalization, and clock reconstruction records of one system.
+That is why the standard interpretation held its ground. A background-radiation alternative could not be a loose story about thermalized light. It had to account for blackbody quality, spectral-distortion limits, anisotropy statistics, TT/TE/EE acoustic structure, lensing handoff, dipole-frame consistency, light-element compatibility, and growth correlations without fragmenting the explanation into unrelated devices. The hard wall is that the thermalizing and transparent-transport parts cannot be collapsed. Thermalization may prepare or relax a bath before the free-streaming record is fixed; after that, redshift must act through a transport generator that commutes with global frequency rescaling and conserves transverse photon momentum up to the declared lensing, aperture, and detector tolerances. Only then can transported photon bundles preserve occupation-number shape and transverse phase coherence rather than re-Planckianize by coincidence. The historical clue was precisely that all of those observables had to be source, transport, thermalization, and clock reconstruction records of one system.
 
-The CMB line leaves the central burden exposed: the cosmic microwave background was the right battlefield but the wrong foundation. The background should have forced a deeper question: what physical medium and source history can make the sky look like a single calibrated thermal surface to embedded observers? The standard answer was early metric expansion. The more fundamental answer is recovered from Noether sea transport, source/release history, and clock map reconstruction.
+The CMB line leaves the central burden exposed: the cosmic microwave background was the right battlefield but the wrong foundation. The background should have forced a deeper question: what physical medium and source history can make the sky look like a single calibrated thermal surface to embedded observers? The standard answer was early metric expansion. The Architrino architecture's recovery target is to derive that appearance from Noether sea transport, source/release history, and clock map reconstruction.
 
 ###### Chapter Forty-Eight. Brandon Carter, John Barrow, Frank Tipler, Fred Adams, And Gregory Laughlin: Temporal Typicality Without A Sampling Measure
 
@@ -95239,7 +95627,7 @@ The gravitational-wave strain record is Levin's opening scene: a black hole beco
 
 The near-miss is clearest in gravitational-wave astronomy. The detection of black-hole mergers made black holes into signal sources in a direct new way. The event was not only inferred from light, accretion, or stellar motion. It was reconstructed from correlated strain records in material detectors, matched against waveform templates, and interpreted as a dynamical spacetime disturbance from compact-object coalescence.
 
-That observation is preserved but the ontology changes. A gravitational-wave record is not denied; it becomes a recovered observer-level strain signature of source/release dynamics, Noether sea response, retuning of clock maps, ruler response, and signal transport, together with detector-channel coupling. The detector arms, laser light, mirrors, timing system, and analysis template are all assemblies inside the same medium. The historical question is therefore not only "what ripple passed through spacetime?" It is: what source history and medium response made distant black-hole reconfiguration appear as this precise correlated strain record to embedded instruments?
+That observation is preserved but the ontology changes. A gravitational-wave record is not denied; it becomes a recovery target: an observer-level strain signature of source/release dynamics, Noether sea response, retuning of clock maps, ruler response, and signal transport, together with detector-channel coupling. The detector arms, laser light, mirrors, timing system, and analysis template are all assemblies inside the same medium. The historical question is therefore not only "what ripple passed through spacetime?" It is: what source history and medium response made distant black-hole reconfiguration appear as this precise correlated strain record to embedded instruments?
 
 Her chaos and black-hole-pair work sharpens the same issue. Close compact-object dynamics can be exquisitely sensitive to initial conditions, orbital phase, spin, dissipation, and instability. Standard relativity turns that into waveform modeling and template control. The Architrino architecture reads it as a warning that source history is not a decorative detail. The path history, basin structure, and release channel determine which observer-level waveform becomes visible.
 
@@ -95267,7 +95655,7 @@ The holography line adds a different black-hole doorway. Bekenstein and Hawking 
 
 That was a near approach to the Architrino architecture horizon picture. The event horizon stopped being merely a point of no return in geometric spacetime. It became an information-bearing interface, a place where exterior access, entropy, causal closure, and boundary description all meet. Susskind's black-hole complementarity reinforced the same clue by treating interior and exterior descriptions as mutually constrained observer accounts rather than simple duplicates.
 
-The Architrino architecture comparison is direct. Holography found compression; the Architrino architecture supplies the compressor. AdS/CFT and Ryu-Takayanagi remain comparison frameworks: they show that boundary data, horizon area, and entanglement geometry can carry unexpectedly deep information about what an exterior observer calls the interior. The retrospective point is that their boundary mathematics registered a real horizon-interface process: Noether braid records, causal wakes, entropy bookkeeping, and Noether sea response are compressed into boundary-like access as ordinary volumetric export fails.
+The Architrino architecture comparison is direct. Holography found compression; the Architrino architecture asks what physical compressor could make such compression possible. AdS/CFT and Ryu-Takayanagi remain comparison frameworks: they show that boundary data, horizon area, and entanglement geometry can carry unexpectedly deep information about what an exterior observer calls the interior. The retrospective point is that their boundary mathematics registered the right kind of horizon-interface pressure: Noether braid records, causal wakes, entropy bookkeeping, and Noether sea response must explain why ordinary volumetric export fails and boundary-like access becomes dominant.
 
 In that map, the exterior side remains observer-facing volumetric behavior; the horizon interface is the symmetry-breaking threshold; and the interior is self-hit branch behavior with altered clock export. The inward/outward inflation and deflation analogy, along with CFT-like and AdS-like language, is bridge language for the transition rather than the ontology itself.
 
@@ -95304,6 +95692,10 @@ The missed track was not hidden in one place. It was distributed.
 Across the methodological, structural, and relativity witnesses, the recurring pattern is disciplined success stopping one layer too high. Paradigms normalized open fractures as research territories; aesthetic and naturalness criteria sometimes substituted formal appeal for source provenance; geometry and source-time dynamics supplied charts without a retained causal record; relativity, invariance, and quantum geometry made observer-level reconstruction so powerful that the material construction of measurement standards, conserved records, and metric appearance became easy to treat as secondary.
 
 The quantum, particle, nuclear, stellar, and cosmological witnesses repeat the same displacement at larger scale. Probability, complementarity, detector records, nuclear shells, parity violation, gauge representations, confinement, strong-sector phase alignment, generation hierarchy, spectral classification, stellar nucleosynthesis, distance-ladder calibration, redshift, rotation curves, pulsar clocks, background radiation, dark-sector inference, and black-hole thermodynamics each preserved real evidence while settling into a local formal layer. The synthesis is that the clues fit because they ask for one source history: assemblies, causal wakes, Noether sea response, and Physical Observers reconstruct the effective theories that history treated as separate foundations.
+
+The deeper methodological deficit was not only that physics mistook effective layers for final ontology. It was also that the bridges between layers were often not made well posed: the source variables, target variables, validity regime, and failure conditions were not all declared together. Boltzmannian coarse-graining, renormalization, decoherence, hydrodynamic limits, and relativistic measurement reconstruction each supplied powerful local bridges, but no general discipline forced every successful effective law back through a controlled source-history derivation. The Architrino architecture therefore carries a double burden: name the deeper ontology and write the bridge maps that recover the observer-level laws without letting them become substitutes for the source record.
+
+That is why the strongest witnesses here are not merely historical names but conditions. Boltzmann demands a measure on unresolved histories; Lienard and Wiechert demand causal roots and Jacobian-controlled reception; Michelson-Morley and Lorentz demand common-mode material, clock, and signal response with bounded preferred-frame leakage. These are not proofs that the Architrino architecture has already recovered the effective theories. They are the acceptance conditions that make the recovery program precise.
 
 In the current academic canon, these traditions remain successful local frameworks with unresolved boundaries. In the Architrino architecture's retrospective reading, they become a sequence of near approaches that did not recognize one another. Each tradition held one part of the key and had a good reason not to force it into the lock. The Architrino architecture was missed not because it was invisible, but because its clues were separated across disciplines, and each local success made the next integration harder to imagine.
 

@@ -27,10 +27,13 @@ The energy packet must report sign-resolved layer and interaction content:
 | Layer kinetic content | $E_{k,I}$, $E_{k,M}$, $E_{k,O}$ by constituent and by cycle average |
 | Pair interaction content | partner, self, and inter-layer interaction terms, with active root labels |
 | Wake/history content | regularized history term and convergence behavior under $\eta$ and history refinement |
+| Self-hit bound diagnostic | retained-history energy-like functional across active self-hit or separator crossings, with variation under $\Delta t$, $\eta$, and history-window refinement |
 | Total internal ledger | $E_I$, $E_M$, $E_O$, and $E_{\text{internal}}(A_0)$ |
 | Cycle action | action per closed cycle, with branch label $\Lambda$ and period $T_{\mathbf{k}}$ |
 
 The packet must state whether the interaction content is represented through $E_{\text{wake}}$ alone or through a pairwise decomposition plus an explicitly non-overlapping wake term. Mixing both without a non-overlap rule is a double-counting failure.
+
+Cycle action is downstream of the self-hit bound diagnostic. A packet may compare action spacing across the branch family only after the same retained branch keeps its energy-like functional bounded under the declared refinement schedule. If the bound disappears under refinement, the branch remains a well-posedness failure rather than an action-spacing candidate.
 
 ## Shielding Extraction
 
@@ -46,6 +49,180 @@ q_a W_a(t,\hat{\mathbf{R}})
 $$
 
 with angular grid, far-field radii, selected wake channel, and refinement status.
+
+Before reducing this ledger to a scalar coefficient, the packet should also
+report the layer-resolved cancellation pattern. For
+$\ell\in\{I,M,O\}$, define the instantaneous layer contribution
+
+$$
+\mathcal{L}_{\ell}(t,\hat{\mathbf{R}})
+=
+\sum_{\sigma\in\{+,-\}}
+q_{\ell,\sigma}W_{\ell,\sigma}(t,\hat{\mathbf{R}}),
+\qquad
+\mathcal{L}_{\ell}(\hat{\mathbf{R}})
+=
+\left\langle
+\mathcal{L}_{\ell}(t,\hat{\mathbf{R}})
+\right\rangle_{T_{\mathbf{k}}}.
+$$
+
+The accepted branch must then satisfy
+
+$$
+\mathcal{L}(\hat{\mathbf{R}})
+=
+\mathcal{L}_{I}(\hat{\mathbf{R}})
++
+\mathcal{L}_{M}(\hat{\mathbf{R}})
++
+\mathcal{L}_{O}(\hat{\mathbf{R}})
+$$
+
+on the same extraction radius, angular grid, wake channel, and cycle window.
+The useful synchronization readout is the dimensionless cancellation ratio
+
+$$
+\mathcal{R}_{\mathrm{cancel}}
+=
+\frac{
+\left\|
+\Pi_0
+\left(
+\mathcal{L}_{I}
++
+\mathcal{L}_{M}
++
+\mathcal{L}_{O}
+\right)
+\right\|
+}{
+\left\|\Pi_0\mathcal{L}_{I}\right\|
++
+\left\|\Pi_0\mathcal{L}_{M}\right\|
++
+\left\|\Pi_0\mathcal{L}_{O}\right\|
++
+\varepsilon_{\mathcal{L}}
+},
+\qquad
+\varepsilon_{\mathcal{L}}>0.
+$$
+
+This ratio is a reporting diagnostic for shielding by destructive
+superposition. A small value means the layer components are individually
+visible in the extraction channel but cancel strongly in the accepted branch.
+It may explain why a stable branch has a small exposed scalar response, but it
+must not choose the branch representative, tune phase offsets, choose the
+far-field radius, change the angular grid, or select a normalization. It is
+also upstream of any charged-lepton Koide residual: Koide remains a downstream
+benchmark only after the branch-derived mass triplet has already been fixed by
+the shared mass-response map.
+
+The related survival question is whether the accepted branch is also a local
+minimum of exposed leakage among nearby admissible branches. This is a
+priority-only comparison target, not a branch-selection rule. After Tier 1 has
+already accepted a predeclared same-basin candidate family
+$\mathcal{N}_{\Lambda}$ with shared root-ledger conventions, extraction
+radius, angular grid, wake channel, cycle window, and normalization, report the
+leakage score
+
+$$
+S_{\mathrm{leak}}(\Lambda)
+=
+w_0
+\frac{\left\|\Pi_0\mathcal{L}_{\Lambda}\right\|}
+{\left\|\mathcal{L}_{\mathrm{naive},\Lambda}\right\|+\varepsilon_{\mathcal{L}}}
++
+w_{\mathrm{tf}}
+\frac{\left\|\mathcal{L}_{\mathrm{aniso},\Lambda}\right\|}
+{\left\|\mathcal{L}_{\mathrm{naive},\Lambda}\right\|+\varepsilon_{\mathcal{L}}},
+\qquad
+w_0,w_{\mathrm{tf}}\ge0.
+$$
+
+The local leakage-minimum readout for the accepted branch $\Lambda_\ast$ is
+
+$$
+\Delta_{\mathrm{leak}}(\Lambda_\ast)
+=
+\min_{\Lambda\in\mathcal{N}_{\Lambda_\ast}}
+\left[
+S_{\mathrm{leak}}(\Lambda)-S_{\mathrm{leak}}(\Lambda_\ast)
+\right].
+$$
+
+If $\Delta_{\mathrm{leak}}(\Lambda_\ast)\ge0$, the accepted branch is locally
+least-exposed within the declared comparison family. If it is negative, the
+packet should report the lower-leakage competitor as a stability or selection
+pressure, not repair the accepted branch by retuning phases, changing the
+extraction prescription, or fitting $\zeta$ to a particle benchmark. This
+captures the "lowest external emission" intuition only after closure,
+stability, and same-family provenance are already fixed.
+
+The same extraction should report a branch-preserving
+geometry-to-shielding sensitivity readout. Let
+
+$$
+Y_{\zeta}^{\mathrm{geom}}
+=
+\left(
+G_{IM},G_{IO},G_{MO},
+\lambda_I,\lambda_M,\lambda_O,
+\Phi_{\mathrm{rel}}
+\right),
+\qquad
+G_{\ell m}
+\equiv
+\mathcal{B}_{\ell}\cdot\mathcal{B}_{m}.
+$$
+
+Here $\mathcal{B}_{\ell}$ are the layer plane bivectors already used by
+the branch geometry ledger, $\lambda_\ell$ records the accepted layer
+ellipticity parameter, and $\Phi_{\mathrm{rel}}$ records branch-internal
+relative phase offsets. For any accepted same-basin perturbation $u$ that
+preserves the branch label, root ledger, extraction radius, angular grid,
+wake channel, and normalization, report
+
+$$
+S_{\zeta,k}^{(u)}
+=
+\frac{
+\Delta_u\zeta(A_0)
+}{
+\Delta_u Y_{\zeta,k}^{\mathrm{geom}}
++
+\varepsilon_{Y,k}
+},
+\qquad
+\varepsilon_{Y,k}>0,
+$$
+
+and the aggregate finite-difference response
+
+$$
+\mathcal{R}_{\zeta,\mathrm{geom}}^{(u)}
+=
+\frac{
+\left|\Delta_u\zeta(A_0)\right|
+}{
+\left\|\Delta_u Y_{\zeta}^{\mathrm{geom}}\right\|
++
+\varepsilon_Y
+},
+\qquad
+\varepsilon_Y>0.
+$$
+
+This readout asks which accepted geometry variables actually move the scalar
+shielding coefficient. It may explain how plane-angle, ellipticity, or
+relative-phase changes alter $\zeta(A_0)$ inside one branch basin, but it
+must not tune Gram entries, ellipticity parameters, phase offsets, branch
+representative, extraction radius, angular grid, wake channel, or
+normalization to improve any mass or Koide agreement. If the perturbation
+changes the branch label, active root ledger, or extraction convention, the
+packet records that case as branch-transition evidence rather than shielding
+sensitivity.
 
 The scalar coefficient is accepted only as the leading isotropic projection:
 

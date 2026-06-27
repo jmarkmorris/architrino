@@ -95,7 +95,22 @@ The score-neutral identity checker is [eq23a-explosive-source-window-identity-ch
 node scripts/equation-mapping/eq23a-explosive-source-window-identity-check.mjs --summary --pretty
 ```
 
-The current run returns `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_explosive_source_window_carrier`, and `residualArithmeticEvaluated: false`. Its embedded negative controls reject `explosive.source_window_split` as `blocked_source_window_split` and `explosive.neutrino_private_heating` as `blocked_thermal_provenance_split` before any shock, yield, radiation, remnant, or ledger arithmetic is evaluated.
+The current run returns `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_explosive_source_window_carrier`, and `residualArithmeticEvaluated: false`. Its embedded negative controls reject source-window splits, private neutrino thermal/provenance rows, radioactive-inventory ledger splits, private photon-output carriers, remnant/medium Noether sea update splits, and private retune witnesses before any shock, yield, radiation, remnant, or ledger arithmetic is evaluated.
+
+## Direct Geometry Layer
+
+This layer is priority-only and score-neutral. It maps the comparison equations to the native geometric readouts that must be present on one explosive source-window carrier before any shock, yield, photon, remnant, or medium residual can count as evidence.
+
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| --- | --- | --- | --- | --- | --- |
+| Rankine-Hugoniot shock jump rows | Finite-window discontinuity in density, velocity, pressure, and energy flux across the declared explosive source window. | `shock_jump_blast_row` on `explosive_source_window_carrier`. | Same `carrierId`, `sourceWindowId`, `supportId`, and `eventLedgerId` as yield, photon, remnant, and ledger rows. | `explosive.source_window_split`: shock/blast and yield rows use different `sourceWindowId` values and fail before residual scoring. | Source-backed accepted carrier plus accepted `shock_jump_blast_row` on the same source window. |
+| Sedov-Taylor blast radius/speed scaling $R_s\propto(Et^2/\rho_0)^{1/5}$ | Readout of deposited event energy, ambient medium density, support radius, and readout interval on one finite source support. | `shock_jump_blast_row`, `event_ledger_row`, and `remnant_medium_heating_row`. | Same `supportId`, `readoutIntervalId`, `eventLedgerId`, and Noether sea update id. | Split blast support or omitted remnant/medium row blocks before the blast residual is compared. | Accepted carrier with source-backed blast-support, event-ledger, and medium-update rows. |
+| Neutrino heating term | Thermal/provenance energy-transfer row that heats the shock or yield channel without private retuning. | `neutrino_heating_row` on `Theta_therm/prov`. | Same `thetaThermProvId`, `carrierId`, `sourceWindowId`, and `eventLedgerId` as reaction-yield and remnant rows. | `explosive.neutrino_private_heating`: neutrino row uses a private thermal/provenance carrier and fails at `thermal_provenance_split_before_residual_scoring`. | Source-backed accepted carrier plus accepted neutrino heating row bound to the shared thermal/provenance carrier. |
+| NSE or reaction-network yield rows | Reaction provenance ledger for $Y_e$, temperature, density, species inventory, and arrested yields. | `reaction_yield_row` and `source_provenance`. | Same `thetaSrcId`, `thetaThermProvId`, `sourceWindowId`, `supportId`, and `eventLedgerId` as shock and photon rows. | `explosive.arnett_fit_without_yields`: photon or peak-balance rows fit while yield/inventory rows are absent. | Accepted carrier with source-backed yield and provenance rows on one reaction ledger. |
+| Radioactive decay heating and Arnett-style peak balance | Inventory-to-heating readout that connects radioactive products to photon diffusion without turning the light curve into the carrier. | `radioactive_heating_row` and `photon_output_row`. | Same `carrierId`, `reaction_yield_row`, `remnant_medium_heating_row`, and `eventLedgerId`. | Arnett-style photon fit without radioactive inventory fails before residual scoring. | Accepted carrier with source-backed radioactive inventory and photon-output rows tied to the same yield/remnant record. |
+| Photon output and diffusion/heating balance | Photon-channel output of the explosive event ledger, not a standalone luminosity fit. | `photon_output_row` plus downstream `EQ-29` radiation-source grammar. | Same `sourceWindowId`, `supportId`, `eventLedgerId`, and readout interval as shock, yield, and radioactive rows. | Photon output sourced to a separate carrier or source window fails as carrier/source-window split. | Accepted carrier with source-backed photon-output row and source provenance on the same explosive window. |
+| Remnant, ejecta, and medium/Noether sea update | Finite event-ledger update for remnant state, ejecta, surrounding medium, and Noether sea response. | `remnant_medium_heating_row` with `noetherSeaUpdateId`. | Same `carrierId`, `supportId`, `eventLedgerId`, and Noether sea update id as the source identity. | `explosive.remnant_medium_missing`: yields and photon rows fit while remnant/medium update is absent. | Accepted carrier with source-backed remnant/medium row and Noether sea update id. |
+| Energy, momentum, angular momentum, and hidden-retune checks | One finite-window $\mathcal L_{E\mathbf p\mathbf J}$ balance plus a no-hidden-retune witness across shock, heating, yield, photon, remnant, and medium rows. | `event_ledger_row` and `no_hidden_retune_witness`. | Same `eventLedgerId`, `retuneWitnessId`, `carrierId`, `sourceWindowId`, and `supportId` across every required row. | Probe/source-evidence-probe, priority, authored prose, generated, attempt, mock, toy, temporary, or negative-control sources fail at `accepted_without_evidence_source`; record splits fail before residual arithmetic. | Source-backed accepted `explosive_source_window_carrier` with all required rows accepted and bound to the same source identity. |
 
 ## Explosive Source Residual
 
@@ -150,7 +165,15 @@ The score-neutral identity shell is [eq23a-explosive-source-window-identity-atte
 node scripts/equation-mapping/eq23a-explosive-source-window-identity-check.mjs --summary --pretty
 ```
 
-The current run returns `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_explosive_source_window_carrier`, and `residualArithmeticEvaluated: false`.
+The current run returns `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_explosive_source_window_carrier`, `residualArithmeticEvaluated: false`, and `6/6` negative controls passing.
+
+The carrier-shell source-contract boundary is [eq23a-explosive-source-window-carrier-shell-source-contract.v1.json](../../../scripts/equation-mapping/eq23a-explosive-source-window-carrier-shell-source-contract.v1.json), with checker input [eq23a-explosive-source-window-carrier-shell-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq23a-explosive-source-window-carrier-shell-source-contract-attempt.v1.json):
+
+```bash
+node scripts/equation-mapping/eq23a-explosive-source-window-identity-check.mjs --input scripts/equation-mapping/eq23a-explosive-source-window-carrier-shell-source-contract-attempt.v1.json --summary --pretty
+```
+
+This boundary marks only the parent `explosive_source_window_carrier` accepted-looking against a durable source-contract file while every child row remains `attempt`. The expected checker result is `status: blocked_missing_rows`, `nextBlocker: missing_accepted_shock_jump_blast_row`, `carrierAccepted: true`, `scoreDecision: no_score_increase`, `residualArithmeticEvaluated: false`, and `6/6` negative controls passing. The same command with `--require-populated` must exit nonzero. This is a boundary test, not accepted retained evidence.
 
 The probe-source source-evidence guard is [eq23a-explosive-source-window-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq23a-explosive-source-window-probe-source-negative-control.v1.json):
 
@@ -186,17 +209,20 @@ The new work is the explosive-window delta: shock jump/blast, neutrino heating, 
 | `explosive.remnant_medium_missing` | Photon output and yields fit while remnant and medium/Noether sea update rows are absent. |
 | `explosive.probe_source_accepted_carrier` | Accepted-looking carrier and rows point only to a probe/source-evidence-probe fixture; the checker fails at `accepted_without_evidence_source`. |
 
+The current identity shell implements the pre-residual subset of those controls as executable identity failures: `explosive.source_window_split`, `explosive.neutrino_private_heating`, `explosive.radioactive_inventory_split`, `explosive.photon_output_private_carrier`, `explosive.remnant_medium_update_split`, and `explosive.retune_witness_private`. They are score-neutral guardrails; they do not populate accepted retained evidence.
+
 ## Attack Card Summary
 
 - Current score and closure driver: unscored; prove or fail one explosive source-window residual before adding `EQ-23A` to the main score table.
-- Primary AAA carrier: $\Theta_{\mathrm{expl}}(\Omega,W_{\mathrm{expl}},T)$ consuming $\Theta_{\mathrm{src}}$, $\Theta_{\mathrm{therm/prov}}$, $\mathcal L_{E\mathbf p\mathbf J}$, and Noether sea update rows.
+- Primary $\mathbb{A}\mathbb{A}\mathbb{A}$ carrier: $\Theta_{\mathrm{expl}}(\Omega,W_{\mathrm{expl}},T)$ consuming $\Theta_{\mathrm{src}}$, $\Theta_{\mathrm{therm/prov}}$, $\mathcal L_{E\mathbf p\mathbf J}$, and Noether sea update rows.
 - Smallest score-moving evidence object: accepted `explosive_source_window_carrier` with shock, neutrino, reaction-yield, radioactive, photon, remnant/medium, event-ledger, provenance, and no-retune rows.
 - Exact first blocker: `missing_accepted_explosive_source_window_carrier`.
 - Existing scripts/fixtures/packets found: [eq23a-explosive-source-window-identity-attempt.v1.json](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-attempt.v1.json) is the score-neutral identity shell, and [eq23a-explosive-source-window-identity-check.mjs](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-check.mjs) enforces source-window and thermal/provenance identity before residual arithmetic; related consumers include shared-observation, thermodynamic-record, and radiation source-ledger runners.
+- Direct Geometry Layer: present in this packet; it binds shock, blast, neutrino heating, reaction yields, radioactive heating, photon output, remnant/medium update, event ledger, and no-hidden-retune witness to one explosive source-window carrier.
 - Candidate breakthrough angle: reuse BBN source-window grammar while adding only explosive-window deltas.
-- Fail-closed negative control: `explosive.source_window_split`; accepted-looking rows sourced only to a probe/source-evidence-probe file fail at `accepted_without_evidence_source`.
-- Next action smaller than broad report: build a source-field map for one candidate explosive source window; defer a checker until one blocked source-backed carrier shell exists.
-- Current implementation target: the identity shell and identity checker now exist; the next smaller action is a retained-evidence source object for one `explosive_source_window_carrier`, not a broader shock/yield report.
+- Fail-closed negative control: the identity shell now embeds six pre-residual controls covering source-window split, private neutrino thermal/provenance, radioactive-inventory ledger split, private photon-output carrier, remnant/medium Noether sea update split, and private retune witness; accepted-looking rows sourced only to a probe/source-evidence-probe file fail at `accepted_without_evidence_source`.
+- Next action smaller than broad report: replace the carrier-shell source contract with a real source-backed parent carrier, then populate the first child `shock_jump_blast_row` on the same `carrierId`, `sourceWindowId`, `supportId`, and `eventLedgerId`.
+- Current implementation target: the identity shell, six fail-closed identity controls, probe-source guard, and carrier-shell source-contract boundary now exist. The next smaller action is a retained `shock_jump_blast_row` evidence object, not a broader shock/yield report.
 
 ## Promotion Classification
 

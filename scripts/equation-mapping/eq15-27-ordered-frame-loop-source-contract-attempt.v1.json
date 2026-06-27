@@ -1,0 +1,87 @@
+{
+  "schema": "aaa-equation-map-spin-magnetic-certificate-input/v1",
+  "claimLevel": "EQ-15/EQ-27 ordered-frame-loop source-contract boundary attempt; only ordered_frame_loop is accepted-looking, score-neutral and not retained evidence",
+  "certificateId": "spin-to-mu-source-contract-0001",
+  "sameRecordId": "spin-to-mu-retained-record-source-contract-0001",
+  "sourceIdentity": {
+    "retainedBranchId": "retained-noncoplanar-branch-source-contract-0001",
+    "domainId": "D_spin_mu_source_contract_0001",
+    "orderedFrameLoopId": "Phi-star-loop-source-contract-0001",
+    "spinLiftId": "spin-lift-source-contract-0001",
+    "exposureFiberId": "exposure-fiber-source-contract-0001",
+    "retuneWitnessId": "S_retune_spin_mu_source_contract_0001"
+  },
+  "expectedBoundary": {
+    "status": "blocked_missing_rows",
+    "nextBlocker": "missing_accepted_spin_lift",
+    "scoreDecision": "no_score_increase",
+    "acceptedEvidenceObjectLanded": false
+  },
+  "tolerances": {
+    "gauge": 1e-12,
+    "angularMomentum": 1e-9,
+    "gLead": 1e-12
+  },
+  "rows": {
+    "ordered_frame_loop": {
+      "status": "accepted",
+      "rowId": "Phi-star-loop-source-contract-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-contract-0001",
+      "sourcePath": "scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract.v1.json",
+      "retainedBranchId": "retained-noncoplanar-branch-source-contract-0001",
+      "domainId": "D_spin_mu_source_contract_0001",
+      "loopMap": "Phi_star:S^1->SO(3)",
+      "holonomyClass": "nontrivial_z2",
+      "nonGaugeHolonomy": true,
+      "nonCoplanarRetainedBranchEvidence": "source-contract-boundary"
+    },
+    "spin_lift": {
+      "status": "attempt",
+      "rowId": "spin-lift-source-contract-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-contract-0001",
+      "etaSpin": 1,
+      "doubledPathRestores": true,
+      "liftWitnessKind": "spin3_su2_double_cover_source_contract",
+      "sourcePath": "scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract.v1.json"
+    },
+    "gauge_control": {
+      "status": "attempt",
+      "rowId": "gauge-control-source-contract-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-contract-0001",
+      "deltaGauge": 0,
+      "sourcePath": "scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract.v1.json"
+    },
+    "angular_momentum_ledger": {
+      "status": "attempt",
+      "rowId": "angular-momentum-ledger-source-contract-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-contract-0001",
+      "deltaJ": 0,
+      "sourcePath": "scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract.v1.json"
+    },
+    "moment_map_magnetic": {
+      "status": "attempt",
+      "rowId": "moment-map-magnetic-source-contract-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-contract-0001",
+      "mu_E": [0, 0, 1],
+      "momentMapKind": "exposure_current_integral_source_contract",
+      "exposureCurrentIntegral": true,
+      "sourcePath": "scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract.v1.json"
+    },
+    "covering_degree_g2": {
+      "status": "attempt",
+      "rowId": "covering-degree-g2-source-contract-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-contract-0001",
+      "gLead": 2,
+      "g2Derivation": "covering_degree_source_contract",
+      "coveringDegreeWitness": true,
+      "sourcePath": "scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract.v1.json"
+    },
+    "exposure_fiber_residual": {
+      "status": "attempt",
+      "rowId": "exposure-fiber-residual-source-contract-0001",
+      "sameRecordId": "spin-to-mu-retained-record-source-contract-0001",
+      "R_fib": 0.003,
+      "sourcePath": "scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract.v1.json"
+    }
+  }
+}

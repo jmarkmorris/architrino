@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `deferred-priority`
-- Rank: `18`
-- Value: `5.48`
+- Rank: `27`
+- Value: `2.62`
 - Cost: `7.0`
-- ROI: `0.78`
+- ROI: `0.37`
 - Status: `deferred`
 
 ## Task Queue
@@ -14,7 +14,7 @@
 1. `component_interfaces` — Build per-component observable interfaces against LambdaCDM. Status: `deferred`. Depends on: none.
 2. `predictive_pipeline` — Turn the CMB and tri-binary cosmology story into a predictive transfer-function pipeline. Status: `deferred`. Depends on: `component_interfaces`.
 3. `age_clock_convergence` — Add an oldest-object and material-clock interface for Hubble-time/time-redshift mapping, globular-cluster turnoff ages, white-dwarf cooling ages, Th/U/Eu radiochronometers, and presolar/interstellar-grain provenance. Status: `deferred`. Depends on: `component_interfaces`.
-4. `cmb_noether_braid_spectrum_linkage` — Examine whether the observed CMB spectrum has a derivable linkage to Noether braid ensemble modes, photon-channel provenance, and Noether sea thermalization, without treating the linkage as established before a spectrum-level residual exists. Status: `deferred`. Depends on: `predictive_pipeline`.
+4. `cmb_noether_braid_spectrum_linkage` — Examine whether the observed CMB spectrum has a derivable linkage to Noether braid ensemble modes, photon-channel provenance, Noether sea thermalization, and coherent photon-channel bundle transport, without treating the linkage as established before a spectrum-level residual exists. Status: `deferred`. Depends on: `predictive_pipeline`.
 
 ## Scope
 
@@ -29,7 +29,7 @@ This file remains the control surface for deferred cosmology closure. No sibling
 | `component_interfaces` | This file | [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [BBN-constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | Each observable component states exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from LambdaCDM. |
 | `predictive_pipeline` | This file | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | The transfer-function pipeline produces direct CMB, $H_0$, and $S_8$ comparison handles rather than narrative analogy. |
 | `age_clock_convergence` | This file | [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [expansion-mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), [BBN-constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), and [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md) | The same Noether sea and assembly history explains why independent age clocks converge near $13$-$14\ \mathrm{Gyr}$ as an effective observer-era record, without promoting that convergence to the absolute age of the Euclidean void and without leaving older visible or material populations unaccounted for. |
-| `cmb_noether_braid_spectrum_linkage` | This file | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), and [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | The branch states whether CMB Planck-occupation recovery, blackbody preservation, spectral-distortion bounds, and frequency-map rows can be derived from Noether braid ensemble dynamics and photon-channel provenance using the same Noether sea state as BBN, redshift, and TT/TE/EE transfer. |
+| `cmb_noether_braid_spectrum_linkage` | This file | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), and [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | The branch states whether CMB Planck-occupation recovery, blackbody preservation, coherent photon-channel bundle transport, spectral-distortion bounds, and frequency-map rows can be derived from Noether braid ensemble dynamics and photon-channel provenance using the same Noether sea state as BBN, redshift, and TT/TE/EE transfer. |
 
 ## Closure Goal
 
@@ -38,6 +38,7 @@ This file remains the control surface for deferred cosmology closure. No sibling
 - Expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from each observable component.
 - Use the result for direct CMB, $H_0$, and $S_8$ comparison rather than narrative analogy.
 - Test whether the CMB spectrum supplies a Noether braid ensemble constraint or remains only an observer-level blackbody transfer product.
+- Separate pre-free-streaming thermalization depth from transparent-path coherent transport so redshift is not modeled as stochastic tired-light loss.
 
 ## Main Interfaces
 
@@ -55,7 +56,69 @@ The goal is to expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, re
 
 The linkage question is whether the observed CMB spectrum, including near-Planck blackbody quality and allowed spectral-distortion bounds, is only a thermalized observer-level transfer output or also constrains the Noether braid ensemble modes that feed photon-channel provenance.
 
-The first pass should keep the claim level narrow. A viable linkage requires one event and medium record to connect Noether braid ensemble dynamics, photon assembly source/capture/release rows, thermalization depth, redshift handoff, and the CMB frequency-map residuals. If the spectrum can be fit only by changing the Noether sea state separately from BBN, redshift, or TT/TE/EE transfer, the linkage fails as a shared-cosmology closure route.
+The first pass should keep the claim level narrow. A viable linkage requires one event and medium record to connect Noether braid ensemble dynamics, photon assembly source/capture/release rows, thermalization depth, coherent photon-channel bundle transport, redshift handoff, and the CMB frequency-map residuals. If the spectrum can be fit only by changing the Noether sea state separately from BBN, redshift, or TT/TE/EE transfer, the linkage fails as a shared-cosmology closure route.
+
+The thermalization and transparent-transport rows must remain distinct. Pre-free-streaming thermalization can drive the photon bath toward a Planck occupation law, but long-path redshift must preserve that shape by coherent scaling. For a declared path factor $\lambda$, the comparison target is
+
+$$
+\mathcal{T}_{\lambda}\mathcal{B}_{T}
+=
+\mathcal{B}_{T/\lambda}
++O(\epsilon_{\mathrm{spec}}),
+\qquad
+\|\Delta\mathbf{k}_{\perp}\|\le\epsilon_{\mathrm{img}},
+\qquad
+|\Delta\phi_{\perp}|\le\epsilon_{\mathrm{coh}}
+$$
+
+where $\mathcal{T}_{\lambda}$ is the transparent photon-channel transport map, $\mathcal{B}_{T}$ is the effective Planck spectrum at temperature $T$, and the transverse bounds apply after declared lensing, aperture, and detector terms are removed. A branch that redshifts by stochastic scattering, absorption/re-emission, or thermalizing kicks has not supplied the required coherent transport invariant unless the same packet also preserves blackbody quality, image sharpness, time dilation, anisotropy, and polarization.
+
+Equivalently, if $\mathcal{D}_{\lambda}$ denotes global frequency dilation on the admitted band and $\mathcal{G}_{\mathrm{tr}}$ denotes the transparent-transport generator, the same branch must satisfy
+
+$$
+[\mathcal{G}_{\mathrm{tr}},\mathcal{D}_{\lambda}]_{\mathrm{band}}
+=O(\epsilon_{\mathrm{spec}}),
+\qquad
+\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})
+$$
+
+for the declared path depth and Noether sea state. Breaking the commutator spoils blackbody-shape preservation; undeclared transverse momentum transfer spoils image sharpness.
+
+Absolute time also makes the redshift-energy row non-optional. A fixed-void branch cannot let the photon's missing energy disappear into expansion bookkeeping; it must close the finite-window ledger through Noether sea update, source/release or remnant rows, recoil/exchange rows, and declared boundary flux. The global target behind that finite-window row is
+
+$$
+E_{\mathrm{tot}}(t)
+=
+E_{\mathrm{arch}}(t)
++E_{\mathrm{wake}}(t)
++E_{\mathrm{sea}}(t),
+\qquad
+\frac{dE_{\mathrm{tot}}}{dt}=0
+$$
+
+For a transparent photon-channel bundle redshifted by $1+z$ after source, recoil, remnant, and boundary rows have been separated, the lemma target is
+
+$$
+\Delta E_{\gamma}
+=
+E_{\mathrm{emit}}-E_{\mathrm{obs}}
+=
+E_{\mathrm{emit}}\frac{z}{1+z},
+\qquad
+\Delta E_{\gamma}
++\Delta E_{\mathrm{sea,path}}
+=0
+$$
+
+The same Noether sea state that preserves blackbody shape and image coherence must carry that energy balance, or the transport branch has split the very constitutive response this priority is testing. Failure is explicit: if no single bookkept Noether sea sink can close the redshift energy row while preserving redshift-distance behavior, observed $(1+z)$ time dilation, Tolman surface brightness, blackbody quality, acoustic structure, image sharpness, lensing, and growth, the fixed-void redshift branch fails on its own absolute-time conservation target.
+
+If the total scalar energy of the unbounded populated Euclidean void is not finite or not convergently summable on a constant-$t$ leaf, this target demotes to a bounded-region flux balance rather than disappearing:
+
+$$
+\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+$$
+
+with boundary flux included on every finite comparison window. The redshift-energy sink remains falsifiable locally; what is withheld is only the stronger universe-wide constant until summability and the delayed Noether theorem are both established.
 
 ## Galaxy-Local Recycling And Horizon Uniformity
 
@@ -320,14 +383,15 @@ $$
 \left(
 \theta_{\mathrm{clock}},
 \theta_{\mathrm{prop}},
-\theta_{\mathrm{therm}},
+\theta_{\mathrm{thermal}},
+\theta_{\mathrm{bundle}},
 \theta_{\mathrm{ac}},
 \theta_{\mathrm{growth}},
 \theta_{\mathrm{frame}}
 \right),
 $$
 
-where the entries denote, respectively, endpoint clock cadence, path-history propagation, thermalization/blackbody preservation, acoustic-standard-ruler calibration, growth/lensing response, and frame/direction structure. These are comparison coordinates for closure work, not new ontology. A cosmology branch is admissible only when the same $\theta_{\mathrm{sea}}$ supplies every row below within the declared covariance model.
+where the entries denote, respectively, endpoint clock cadence, path-history propagation, pre-free-streaming thermalization, transparent-path coherent photon-channel bundle transport, acoustic-standard-ruler calibration, growth/lensing response, and frame/direction structure. These are comparison coordinates for closure work, not new ontology. A cosmology branch is admissible only when the same $\theta_{\mathrm{sea}}$ supplies every row below within the declared covariance model.
 
 | Source family | Data-product handles | Contract for $\mathbb{A}\mathbb{A}\mathbb{A}$ closure |
 | --- | --- | --- |

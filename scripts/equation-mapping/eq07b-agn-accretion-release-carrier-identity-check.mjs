@@ -499,6 +499,9 @@ function firstBlocker({
   }
   if (!sourceEvidence.passed) return sourceEvidence.firstFailure?.reason ?? "accepted_without_evidence_source";
   if (status === "populated_score_neutral") return null;
+  if (rowAcceptance?.carrierAccepted && rowAcceptance.missingRows?.length > 0) {
+    return `missing_accepted_${rowAcceptance.missingRows[0]}`;
+  }
   return FIRST_BLOCKER;
 }
 

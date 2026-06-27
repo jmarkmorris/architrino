@@ -474,6 +474,9 @@ function evaluateAcceptedEvidence(row, rowId = null) {
   if (rowId === "compact_region_carrier" && !sourceSupportsCompactRegionCarrier(row)) {
     return { accepted: false, reason: "compact_region_carrier_source_contract_mismatch" };
   }
+  if (rowId === "standard_benchmark_row" && !sourceSupportsStandardBenchmarkRow(row)) {
+    return { accepted: false, reason: "standard_benchmark_row_source_contract_mismatch" };
+  }
   return { accepted: true, reason: "accepted" };
 }
 
@@ -523,6 +526,28 @@ function sourceSupportsCompactRegionCarrier(row) {
       value.includes("collapse-to-metric residual"),
   );
   return eq07aSupported && carrierSupported && ledgerSupported;
+}
+
+function sourceSupportsStandardBenchmarkRow(row) {
+  const normalized = collectSupportMetadata(row);
+  const eq07aSupported = normalized.some(
+    (value) => value.includes("eq-07a") || value.includes("eq07a"),
+  );
+  const rowSupported = normalized.some((value) => value.includes("standard_benchmark_row"));
+  const carrierSupported = normalized.some(
+    (value) =>
+      value.includes("compact_region_carrier") ||
+      value.includes("compact-region carrier") ||
+      value.includes("retained compact-region carrier"),
+  );
+  const benchmarkSupported = normalized.some(
+    (value) =>
+      value.includes("chandrasekhar_support") ||
+      value.includes("tov_compact_support") ||
+      value.includes("compact-star benchmark") ||
+      value.includes("standard compact-star benchmark"),
+  );
+  return eq07aSupported && rowSupported && carrierSupported && benchmarkSupported;
 }
 
 function collectSupportMetadata(row) {

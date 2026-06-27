@@ -65,6 +65,30 @@ $$
 
 The immediate reader-facing promotion should say that any native scalar or mass-map proposal must recover the observed neutral boson mass, channel pattern, and rate compatibility before it can claim Higgs closure.
 
+## Priority-Only Scalar Candidate Residuals
+
+A legacy WordPress source suggested that a shielded pro/anti multi-core configuration could look scalar if the exposed polar contributions mutually compensate. That intuition is useful only as an admissibility test for native scalar candidates. It does not identify the Higgs with a four-core cluster, and it does not weaken the ATLAS residual above.
+
+A candidate scalar topology may enter the scalar-boson acceptance search only if the same branch record used for mass and channel predictions also suppresses exposed pole-vector and angular-momentum leakage:
+
+$$
+\Delta_{\mathrm{scalar\,pole}}(\theta)
+=
+\frac{\left\|\sum_{a\in\mathrm{exposed}}\mathbf a_a^{\mathrm{pole}}(\theta)\right\|}
+{\sum_a\|\mathbf a_a^{\mathrm{pole}}(\theta)\|+\varepsilon}
+$$
+
+and
+
+$$
+\Delta_{\mathrm{vec}}(\theta)
+=
+\frac{\|\mathbf J_{\mathrm{exposed}}(\theta)\|}
+{\sum_i\|\mathbf J_i(\theta)\|+\varepsilon}.
+$$
+
+Here $\mathbf a_a^{\mathrm{pole}}(\theta)$ is the signed exposed polar-action contribution for constituent $a$, $\mathbf J_{\mathrm{exposed}}(\theta)$ is the residual exposed vector angular-momentum ledger, and $\varepsilon$ prevents a degenerate denominator from passing by convention. Low values of these residuals are not Higgs closure. They only keep a native scalar topology from failing the preliminary spin-$0$ admissibility check before the full $\mathcal{R}_{\mathrm{ATLAS}\text{-}H}(\theta)$ benchmark tests mass, signal strength, production, branching, detector provenance, and excluded scalar windows.
+
 ## Promotion Targets
 
 | Target | Proposed promotion | Gate |

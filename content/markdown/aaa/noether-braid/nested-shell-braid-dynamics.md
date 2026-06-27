@@ -392,7 +392,7 @@ with strict inequality for nonzero translation unless a compensating shape retun
 
 ### Mechanical Oblation From the Jacobian
 
-The causal Jacobian is the dynamics-side mechanism behind the moving-source flux change that standard field language would otherwise hide inside a changing electric field. For a retained root row $a=(i,j,t_0)$,
+The causal Jacobian is the dynamics-side mechanism behind the moving-source flux change that standard field language would otherwise distribute across the effective electromagnetic connection, current/displacement terms, vector-potential curl, and the Noether sea response. For a retained root row $a=(i,j,t_0)$,
 $$
 J_a
 =

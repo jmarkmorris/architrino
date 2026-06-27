@@ -1,0 +1,74 @@
+{
+  "schema": "aaa-equation-map-eq04a-koide-retained-carrier-source-contract/v1",
+  "claimLevel": "score-neutral EQ-04A retained carrier source-contract boundary; contract metadata only, not retained evidence",
+  "row": "EQ-04A",
+  "purpose": "Name the source-backed inherited mass-shell carrier boundary before any Koide or charged-lepton mass-map residual can count.",
+  "evidenceBoundary": {
+    "ordinaryFirstBlocker": "missing_accepted_raw_labeled_rows_preserved_on_retained_history",
+    "boundaryExercisedBy": "scripts/equation-mapping/eq04a-koide-retained-carrier-shell-source-contract-attempt.v1.json",
+    "expectedStatusAfterCarrierAcceptance": "blocked_missing_accepted_charged_lepton_mass_map",
+    "expectedNextBlockerAfterCarrierAcceptance": "koide.accepted_mass_map_missing",
+    "scoreDecision": "no_score_increase",
+    "acceptedEvidenceObjectLanded": false
+  },
+  "carrierShell": {
+    "retainedRowSetId": "S_eq",
+    "requiredRows": [
+      "same_branch_chart_identity",
+      "mass_shell_row",
+      "rest_mass_row",
+      "medium_response_row"
+    ],
+    "requiredSharedIds": [
+      "commonCarrierId",
+      "domainId",
+      "supportId",
+      "retainedRowSetId"
+    ]
+  },
+  "sameRecordBinding": {
+    "commonCarrierId": "C_02_04_bin_u_eq04a_carrier_shell_contract_0001",
+    "domainId": "D_02_04_bin_u_eq04a_carrier_shell_contract_0001",
+    "supportId": "S_eq04a_carrier_shell_contract_0001",
+    "retainedRowSetId": "S_eq",
+    "requiredMassMapBindings": [
+      "massMapId",
+      "exposureRowId",
+      "shieldingRowId",
+      "NoetherSeaResponseRowId",
+      "fixedParameterHash",
+      "massConvention"
+    ]
+  },
+  "directGeometryLayer": [
+    {
+      "standardComparisonTerm": "m_e, m_mu, m_tau",
+      "aaaGeometricReadout": "exposed charged-lepton mass readouts from one generation-by-shielding family",
+      "requiredCarrierOrRow": "Theta_l_04A over the inherited S_eq carrier plus mass_shell_row, rest_mass_row, medium_response_row, massMapId, and generation rows",
+      "sameRecordBinding": "all three mass readouts share commonCarrierId, domainId, supportId, massMapId, exposureRowId, shieldingRowId, NoetherSeaResponseRowId, and fixedParameterHash",
+      "failClosedNegativeControl": "koide.split_generation_map or priority-source accepted_without_evidence_source",
+      "smallestAcceptedEvidenceObject": "source-backed S_eq retained-domain carrier plus accepted charged-lepton mass-map and generation rows"
+    },
+    {
+      "standardComparisonTerm": "sqrt(m_e), sqrt(m_mu), sqrt(m_tau)",
+      "aaaGeometricReadout": "frozen mass-root section whose squared norms are exposed masses",
+      "requiredCarrierOrRow": "root section derived after EQ-04 mass-shell acceptance",
+      "sameRecordBinding": "root coordinates are computed from already-fixed mass readouts and cannot be a separate fit",
+      "failClosedNegativeControl": "koide.direct_fit",
+      "smallestAcceptedEvidenceObject": "source-backed frozen mass-root section with pre-Koide fixedParameterHash"
+    },
+    {
+      "standardComparisonTerm": "Q_l, cos2Theta_l, and J_K",
+      "aaaGeometricReadout": "score-neutral residual, angle, and moment-map diagnostics on the frozen mass-root section",
+      "requiredCarrierOrRow": "eq04a-koide-residual.mjs residual rows",
+      "sameRecordBinding": "diagnostics consume the same mass triplet and mass convention as the generation rows",
+      "failClosedNegativeControl": "koide.invariant_overclaim or koide.error_band_too_wide",
+      "smallestAcceptedEvidenceObject": "accepted mass convention and narrow uncertainty rows followed by score-neutral residual evaluation"
+    }
+  ],
+  "failClosedNegativeControls": [
+    "scripts/equation-mapping/eq04a-koide-residual-direct-fit-negative-control.v1.json",
+    "scripts/equation-mapping/eq04a-koide-residual-split-generation-map-negative-control.v1.json",
+    "scripts/equation-mapping/eq04a-koide-residual-priority-source-negative-control.v1.json"
+  ]
+}

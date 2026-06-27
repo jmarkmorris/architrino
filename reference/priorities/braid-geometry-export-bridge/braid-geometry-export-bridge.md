@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `proposed`
-- Value: `unscored`
-- Cost: `unscored`
-- ROI: `unscored`
+- Rank: `9`
+- Value: `24.27`
+- Cost: `6.6`
+- ROI: `3.68`
 - Status: `active`
 
 H39/H38 source-covariance pause note:

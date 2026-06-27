@@ -4,9 +4,9 @@
 
 - Kind: `priority`
 - Rank: `5`
-- Value: `28.17`
+- Value: `26.96`
 - Cost: `5.4`
-- ROI: `5.22`
+- ROI: `4.99`
 - Status: `active-proof-and-validation-work`
 
 ## Current Terminology

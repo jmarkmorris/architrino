@@ -1,0 +1,221 @@
+{
+  "schema": "aaa-equation-map-eq07a-compact-region-carrier-input/v1",
+  "claimLevel": "score-neutral EQ-07A standard_benchmark_row metadata-missing negative control; durable source path without row support metadata must fail closed",
+  "residualId": "R_07A_standard_benchmark_metadata_missing_control_0001",
+  "commonCarrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+  "tolerances": {
+    "carrier": 1e-12,
+    "fermi": 1e-12,
+    "composition": 1e-12,
+    "support": 1e-12,
+    "ledger": 1e-12,
+    "scaleMetric": 1e-12,
+    "neutronStar": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12,
+    "levelSeparation": 1e-12
+  },
+  "carrier": {
+    "id": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+    "status": "accepted",
+    "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+    "sourceFamily": "EQ-07A retained compact-region carrier",
+    "sourceKind": "compact_region_carrier",
+    "sourceRole": "retained compact-region carrier",
+    "evidenceSupports": [
+      "EQ-07A",
+      "compact_region_carrier",
+      "retained compact-region carrier",
+      "same-root finite-window ledger",
+      "collapse-to-metric residual"
+    ],
+    "claimLevel": "accepted-looking source-evidence probe carrier; not accepted retained evidence"
+  },
+  "packet": {
+    "id": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+    "omegaId": "Omega_cs_07A_attempt_0001",
+    "windowId": "W_cs_07A_attempt_0001",
+    "activeBenchmark": "chandrasekhar_support",
+    "activePressureRegime": "nonrelativistic_white_dwarf",
+    "rows": {
+      "standard_benchmark_row": {
+        "status": "accepted",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md"
+      },
+      "electron_inventory_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "fermi_state_counting_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "pressure_regime_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "composition_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "compact_region_record": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "material_scale_compression_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "native_pressure_packing_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "neutron_star_radial_support_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "reaction_inventory_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "compact_region_conservation_ledger": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "metric_compliance_row": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "eos_projection": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "metric_projection": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "source_provenance": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "no_hidden_retune_witness": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      },
+      "level_separation_witness": {
+        "status": "attempt",
+        "carrierId": "Theta_cs_07A_standard_benchmark_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md"
+      }
+    },
+    "variables": {
+      "n_e": 27,
+      "ell_e": 0.3333333333333333,
+      "p_F": 3,
+      "x_F": 0.25,
+      "Y_e": 0.5,
+      "mu_e": 2,
+      "M": 1.2,
+      "R": 8,
+      "r": 4,
+      "lambda_A": 0.85,
+      "S_mat": 0.15,
+      "Theta_NS_branchSurvival": 1,
+      "S_metric": 0.15,
+      "atomicOrbitalScale": 100,
+      "materialNoetherBraidScale": 0.85
+    },
+    "standardBenchmark": {
+      "hbarNorm": 1,
+      "mec0Norm": 12,
+      "pressureExponent": 1.6666666666666667,
+      "P_pack_theta": 12,
+      "P_std": 12,
+      "chandrasekharCompositionObserved": 0.25,
+      "chandrasekharCompositionExpected": 0.25
+    },
+    "reactionLedger": {
+      "electronFractionResidual": 0,
+      "electronCaptureResidual": 0,
+      "photodisintegrationResidual": 0,
+      "neutrinoTransportResidual": 0,
+      "heatResidual": 0,
+      "mediumUpdateResidual": 0,
+      "remnantInventoryResidual": 0
+    },
+    "compactRegionLedger": {
+      "energyResidual": 0,
+      "momentumResidual": 0,
+      "angularMomentumResidual": 0,
+      "reactionResidual": 0,
+      "neutrinoResidual": 0,
+      "heatResidual": 0,
+      "mediumUpdateResidual": 0,
+      "remnantResidual": 0
+    },
+    "scaleMetric": {
+      "materialScaleResidual": 0,
+      "metricComplianceResidual": 0,
+      "scaleToMetricResidual": 0
+    },
+    "neutronStarRadialSupport": {
+      "branchSurvivalResidual": 0,
+      "supportRangeResidual": 0,
+      "horizonInterfaceResidual": 0,
+      "ledgerClosureResidual": 0
+    },
+    "sourceProvenance": {
+      "maxResidual": 0
+    },
+    "noHiddenRetune": {
+      "maxResidual": 0
+    },
+    "negativeControls": [
+      {
+        "id": "imported_pressure_formula_without_source_provenance",
+        "expectedFailedCheck": "sourceProvenance",
+        "overrides": {
+          "sourceProvenance": {
+            "maxResidual": 1
+          }
+        }
+      },
+      {
+        "id": "pressure_metric_hidden_retune",
+        "expectedFailedCheck": "noHiddenRetune",
+        "overrides": {
+          "noHiddenRetune": {
+            "maxResidual": 1
+          }
+        }
+      },
+      {
+        "id": "fermi_spacing_material_scale_level_collapse",
+        "expectedFailedCheck": "levelSeparation",
+        "overrides": {
+          "variables": {
+            "atomicOrbitalScale": 0.3333333333333333,
+            "materialNoetherBraidScale": 0.3333333333333333,
+            "lambda_A": 0.3333333333333333
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema": "aaa-equation-map-spin-magnetic-source-shell/v1",
+  "claimLevel": "durable source shell for fail-closed EQ-15/EQ-27 controls; not accepted retained evidence",
+  "sourceId": "spin-magnetic-moment-durable-source-shell-0001",
+  "supportedRows": [
+    "EQ-15",
+    "EQ-27"
+  ],
+  "supportedCarrier": "Theta_spin_to_mu_control_shell",
+  "purpose": "Allow accepted-looking negative controls to pass the file-presence and source-evidence path guard so later same-record and assigned-spin blockers are exercised.",
+  "retainedEvidenceStatus": "control_source_only",
+  "notes": [
+    "This file is not a positive retained evidence object.",
+    "A score-moving source must supply a retained non-coplanar ordered-frame loop, exposure-current moment map, covering-degree witness, and exposure-fiber residual on one record."
+  ]
+}

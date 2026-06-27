@@ -26,10 +26,10 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `proposed`
-- Value: `high`
-- Cost: `unscored`
-- ROI: `unscored`
+- Rank: `20`
+- Value: `6.33`
+- Cost: `5.0`
+- ROI: `1.27`
 - Status: `open-lower-priority-follow-up`
 
 ## Repo Inventory

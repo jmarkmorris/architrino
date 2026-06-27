@@ -1,0 +1,104 @@
+{
+  "schema": "aaa-equation-map-eq04a-koide-residual-input/v1",
+  "claimLevel": "score-neutral EQ-04A retained carrier-shell source-contract boundary attempt; inherited carrier rows are accepted-looking but charged-lepton mass-map rows remain attempts",
+  "residualId": "R_04A_koide_carrier_shell_source_contract_0001",
+  "inheritedBlocker": "missing_accepted_raw_labeled_rows_preserved_on_retained_history",
+  "expectedBoundary": {
+    "status": "blocked_missing_accepted_charged_lepton_mass_map",
+    "nextBlocker": "koide.accepted_mass_map_missing",
+    "scoreDecision": "no_score_increase",
+    "acceptedEvidenceObjectLanded": false
+  },
+  "carrier": {
+    "status": "accepted",
+    "commonCarrierId": "C_02_04_bin_u_eq04a_carrier_shell_contract_0001",
+    "domainId": "D_02_04_bin_u_eq04a_carrier_shell_contract_0001",
+    "supportId": "S_eq04a_carrier_shell_contract_0001",
+    "retainedRowSetId": "S_eq",
+    "sourcePath": "scripts/equation-mapping/eq04a-koide-retained-carrier-shell-source-contract.v1.json",
+    "rows": {
+      "same_branch_chart_identity": {
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq04a-koide-retained-carrier-shell-source-contract.v1.json"
+      },
+      "mass_shell_row": {
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq04a-koide-retained-carrier-shell-source-contract.v1.json"
+      },
+      "rest_mass_row": {
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq04a-koide-retained-carrier-shell-source-contract.v1.json"
+      },
+      "medium_response_row": {
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq04a-koide-retained-carrier-shell-source-contract.v1.json"
+      }
+    }
+  },
+  "massMap": {
+    "status": "attempt",
+    "massMapId": "M_lepton_generation_shielding_contract_0001",
+    "commonCarrierId": "C_02_04_bin_u_eq04a_carrier_shell_contract_0001",
+    "domainId": "D_02_04_bin_u_eq04a_carrier_shell_contract_0001",
+    "supportId": "S_eq04a_carrier_shell_contract_0001",
+    "massConvention": "charged_lepton_pole_mass",
+    "fixedParameterHash": "mass-map-contract-boundary-not-evidence",
+    "exposureRowId": "E_lepton_contract_0001",
+    "shieldingRowId": "Zeta_lepton_contract_0001",
+    "NoetherSeaResponseRowId": "C_sea_mass_contract_0001",
+    "koideObjectiveUsed": false,
+    "koideObjectiveWeight": 0,
+    "sourcePath": "scripts/equation-mapping/eq04a-koide-retained-carrier-shell-source-contract.v1.json"
+  },
+  "generations": [
+    {
+      "status": "attempt",
+      "id": "A_lepton_0_contract_boundary",
+      "branchId": "electron_branch_contract_boundary",
+      "generationIndex": 0,
+      "massMapId": "M_lepton_generation_shielding_contract_0001",
+      "commonCarrierId": "C_02_04_bin_u_eq04a_carrier_shell_contract_0001",
+      "domainId": "D_02_04_bin_u_eq04a_carrier_shell_contract_0001",
+      "supportId": "S_eq04a_carrier_shell_contract_0001",
+      "exposureRowId": "E_lepton_contract_0001",
+      "shieldingRowId": "Zeta_lepton_contract_0001",
+      "NoetherSeaResponseRowId": "C_sea_mass_contract_0001",
+      "massReadout": { "value": 0.51099895, "uncertainty": 0.00000015 },
+      "sourcePath": "scripts/equation-mapping/eq04a-koide-retained-carrier-shell-source-contract.v1.json"
+    },
+    {
+      "status": "attempt",
+      "id": "A_lepton_1_contract_boundary",
+      "branchId": "muon_branch_contract_boundary",
+      "generationIndex": 1,
+      "massMapId": "M_lepton_generation_shielding_contract_0001",
+      "commonCarrierId": "C_02_04_bin_u_eq04a_carrier_shell_contract_0001",
+      "domainId": "D_02_04_bin_u_eq04a_carrier_shell_contract_0001",
+      "supportId": "S_eq04a_carrier_shell_contract_0001",
+      "exposureRowId": "E_lepton_contract_0001",
+      "shieldingRowId": "Zeta_lepton_contract_0001",
+      "NoetherSeaResponseRowId": "C_sea_mass_contract_0001",
+      "massReadout": { "value": 105.6583755, "uncertainty": 0.0000023 },
+      "sourcePath": "scripts/equation-mapping/eq04a-koide-retained-carrier-shell-source-contract.v1.json"
+    },
+    {
+      "status": "attempt",
+      "id": "A_lepton_2_contract_boundary",
+      "branchId": "tau_branch_contract_boundary",
+      "generationIndex": 2,
+      "massMapId": "M_lepton_generation_shielding_contract_0001",
+      "commonCarrierId": "C_02_04_bin_u_eq04a_carrier_shell_contract_0001",
+      "domainId": "D_02_04_bin_u_eq04a_carrier_shell_contract_0001",
+      "supportId": "S_eq04a_carrier_shell_contract_0001",
+      "exposureRowId": "E_lepton_contract_0001",
+      "shieldingRowId": "Zeta_lepton_contract_0001",
+      "NoetherSeaResponseRowId": "C_sea_mass_contract_0001",
+      "massReadout": { "value": 1776.86, "uncertainty": 0.12 },
+      "sourcePath": "scripts/equation-mapping/eq04a-koide-retained-carrier-shell-source-contract.v1.json"
+    }
+  ],
+  "tolerances": {
+    "maxRelativeUncertainty": 0.05,
+    "maxCos2BandWidth": 0.02
+  }
+}

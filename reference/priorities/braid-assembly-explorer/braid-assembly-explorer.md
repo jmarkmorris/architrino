@@ -1,8 +1,13 @@
 # Braid Assembly Explorer
 
-Status: `active`
+## Workstream Metadata
 
-Kind: `app-priority`
+- Kind: `app-priority`
+- Rank: `11`
+- Value: `10.41`
+- Cost: `3.6`
+- ROI: `2.89`
+- Status: `active`
 
 ## Purpose
 

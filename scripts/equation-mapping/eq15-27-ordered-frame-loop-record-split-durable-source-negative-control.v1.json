@@ -1,0 +1,85 @@
+{
+  "schema": "aaa-equation-map-spin-magnetic-certificate-input/v1",
+  "claimLevel": "accepted-looking EQ-15/EQ-27 durable-source record-split negative control; score-neutral and not retained evidence",
+  "certificateId": "spin-to-mu-record-split-durable-source-negative-control-0001",
+  "sameRecordId": "spin-to-mu-record-split-control-record",
+  "sourceIdentity": {
+    "retainedBranchId": "retained-noncoplanar-branch-record-split-control-0001",
+    "domainId": "D_spin_mu_record_split_control_0001",
+    "orderedFrameLoopId": "Phi-star-loop-record-split-control-0001",
+    "spinLiftId": "spin-lift-record-split-control-0001",
+    "exposureFiberId": "exposure-fiber-record-split-control-0001",
+    "retuneWitnessId": "S_retune_spin_mu_record_split_control_0001"
+  },
+  "tolerances": {
+    "gauge": 1e-12,
+    "angularMomentum": 1e-9,
+    "gLead": 1e-12
+  },
+  "rows": {
+    "ordered_frame_loop": {
+      "status": "accepted",
+      "rowId": "Phi-star-loop-record-split-control-0001",
+      "sameRecordId": "spin-to-mu-record-split-control-record",
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json",
+      "retainedBranchId": "retained-noncoplanar-branch-record-split-control-0001",
+      "domainId": "D_spin_mu_record_split_control_0001",
+      "loopMap": "Phi_star:S^1->SO(3)",
+      "holonomyClass": "nontrivial_z2",
+      "nonGaugeHolonomy": true,
+      "nonCoplanarRetainedBranchEvidence": "durable-source-record-split-control"
+    },
+    "spin_lift": {
+      "status": "accepted",
+      "rowId": "spin-lift-record-split-control-0001",
+      "sameRecordId": "spin-to-mu-record-split-control-record",
+      "etaSpin": 1,
+      "doubledPathRestores": true,
+      "liftWitnessKind": "spin3_su2_double_cover_record_split_control",
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json"
+    },
+    "gauge_control": {
+      "status": "accepted",
+      "rowId": "gauge-control-record-split-control-0001",
+      "sameRecordId": "spin-to-mu-record-split-control-record",
+      "deltaGauge": 0,
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json"
+    },
+    "angular_momentum_ledger": {
+      "status": "accepted",
+      "rowId": "angular-momentum-ledger-record-split-control-0001",
+      "sameRecordId": "spin-to-mu-record-split-control-record",
+      "deltaJ": 0,
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json"
+    },
+    "moment_map_magnetic": {
+      "status": "accepted",
+      "rowId": "moment-map-magnetic-record-split-control-0001",
+      "sameRecordId": "spin-to-mu-record-split-control-other-record",
+      "mu_E": [
+        0,
+        0,
+        1
+      ],
+      "momentMapKind": "exposure_current_integral_record_split_control",
+      "exposureCurrentIntegral": true,
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json"
+    },
+    "covering_degree_g2": {
+      "status": "accepted",
+      "rowId": "covering-degree-g2-record-split-control-0001",
+      "sameRecordId": "spin-to-mu-record-split-control-record",
+      "gLead": 2,
+      "g2Derivation": "covering_degree_record_split_control",
+      "coveringDegreeWitness": true,
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json"
+    },
+    "exposure_fiber_residual": {
+      "status": "accepted",
+      "rowId": "exposure-fiber-residual-record-split-control-0001",
+      "sameRecordId": "spin-to-mu-record-split-control-record",
+      "R_fib": 0.003,
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json"
+    }
+  }
+}

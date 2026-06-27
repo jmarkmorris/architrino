@@ -4,9 +4,9 @@
 
 - Kind: `priority`
 - Rank: `3`
-- Value: `26.16`
+- Value: `24.02`
 - Cost: `4.7`
-- ROI: `5.57`
+- ROI: `5.11`
 - Status: `active`
 
 ## Current Stopping Point

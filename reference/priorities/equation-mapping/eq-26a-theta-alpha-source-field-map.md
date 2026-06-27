@@ -28,7 +28,7 @@ No score changes.
 | --- | --- |
 | Row | `EQ-26A` |
 | Current score and closure driver | Score `2`; derive $\alpha(\mu)$ as a scale-dependent coupling projection from one electromagnetic exposure domain rather than a fixed fitted constant. |
-| Primary AAA carrier | $\Theta_\alpha=(q_{\mathrm{obs}},h_\vartheta,c_\gamma,\mathcal E_S,\mathcal K_{\mathrm{EM}},I_\mu)$ with fixed action period, charge exposure, photon speed, gauge domain, and Noether sea state across low-energy, atomic, and running anchors. |
+| Primary $\mathbb{A}\mathbb{A}\mathbb{A}$ carrier | $\Theta_\alpha=(q_{\mathrm{obs}},h_\vartheta,c_\gamma,\mathcal E_S,\mathcal K_{\mathrm{EM}},I_\mu)$ with fixed action period, charge exposure, photon speed, gauge domain, and Noether sea state across low-energy, atomic, and running anchors. |
 | Smallest score-moving evidence object | One accepted source-backed `theta_alpha` packet rooted in a scheme-pinned `charge_exposure_row`, then `alpha_coupling_row`, photon speed, gauge covariance, threshold inventory, running row, source provenance, and no-hidden-retune rows. |
 | Exact first blocker | Parent: `missing_accepted_theta_gamma_packet`; current checker-order alpha child: `missing_accepted_alpha_coupling_row`; source-field first row: `missing_accepted_charge_exposure_row`. |
 | Existing scripts/fixtures/packets found | The Planck/alpha runner and fixture listed above; [EQ-16 Weak-Visible Branch Ledger Source-Field Map](eq-16-weak-visible-branch-ledger-source-field-map.md); `EQ-26` hydrogen source-field route. |
@@ -82,6 +82,21 @@ accepted evidence:
 | `chargedThresholdInventoryId` | `I_mu_theta_alpha_source_attempt_0001` |
 | `expectedFirstBlocker` | `missing_accepted_theta_gamma_packet` |
 | `localFirstChildBlocker` | `missing_accepted_charge_exposure_row` |
+
+Checker-contract finding: [planck-alpha-braid-theta-alpha-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-alpha-source-attempt.v1.json) already exercises this contract. The current run is score-neutral: it reports `status=blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`, `scoreDecision=no_score_increase`, `alphaRunningPass=true`, and `15/15` negative controls passing. The local charge exposure, alpha coupling, wake/dressing, running, source-provenance, and no-hidden-retune rows remain `attempt`, so no score movement follows from the alpha arithmetic or the source-attempt shape.
+
+## Direct Geometry Layer
+
+This layer keeps $\alpha(\mu)$ as a same-domain electromagnetic exposure readout. It does not allow fixed alpha fitting, action-period inversion, or scale running detached from charge exposure and the photon/action parent chain.
+
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| --- | --- | --- | --- | --- | --- |
+| Parent $\Theta_\gamma$ and retained action period | Photon/action support supplying fixed $h_\vartheta$ and $c_\gamma$ to the coupling row. | `theta_gamma_packet`, `retained_orbit_reduction_row`, `geometry_derived_action_period_row`, `local_photon_speed_row` | Photon packet, retained action period, local photon speed, and alpha carrier use one parent support chain. | Theta-gamma source controls reject priority packets, attempt fixtures, and probe files as parent evidence. | Accepted `theta_gamma_packet` plus retained action-period and photon-speed rows. |
+| $q_{\mathrm{obs}}$ and electromagnetic exposure domain | Scheme-pinned charge-exposure readout before alpha is interpreted. | `charge_exposure_row`, `planck_braid_carrier`, `source_provenance` | Charge exposure, scheme, gauge domain, source provenance, and carrier id stay fixed across all anchors. | `eq26a.alpha_hidden_retune` rejects changing charge exposure or domain between anchors. | Accepted `theta_alpha` packet rooted in accepted `charge_exposure_row`. |
+| $\alpha=e^2/(4\pi\epsilon_0\hbar c_\gamma)$ | Low-energy coupling readout from charge exposure, action period, and photon speed. | `alpha_coupling_row`, `charge_exposure_row`, `local_photon_speed_row`, `geometry_derived_action_period_row` | Alpha row consumes the same $q_{\mathrm{obs}}$, $h_\vartheta$, $c_\gamma$, gauge domain, and Noether sea state. | `eq26a.alpha_fitted_action_period` rejects deriving $h_\vartheta$ by inverting observed alpha. | Accepted alpha-coupling row bound to accepted charge, action, and photon-speed rows. |
+| Threshold inventory $I_\mu$ | Charged-particle threshold readout for the declared running interval. | `energy_scale_running_row`, `vacuum_polarization_wake_dressing_row`, `source_provenance` | Scale anchors, charged thresholds, wake/dressing response, and source provenance share one exposure domain. | `scale_independent_alpha` rejects frozen coupling when threshold/wake response is declared. | Accepted running row plus accepted threshold/wake-dressing row. |
+| $\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}})$ | Noether sea wake/dressing contribution to electromagnetic coupling response. | `vacuum_polarization_wake_dressing_row`, `sea_state_fibration_row`, `no_hidden_retune_witness` | Wake/dressing, sea-state fibration, gauge covariance, and retune witness stay on one carrier. | Hidden-retune controls reject moving scale dependence into $h_\vartheta$, $c_\gamma$, or private sea-state rows. | Accepted wake/dressing row with accepted sea-state fibration and retune witness. |
+| $\mathcal S_{\mathrm{retune}}$ across anchors | Same-record witness across low-energy, atomic, and running alpha anchors. | `no_hidden_retune_witness`, all `theta_alpha` child rows | Every child row cites the same carrier id, source path, scheme, domain, action-period support, and photon-speed support. | Source controls reject priority/source-map prose as accepted charge, alpha, or running evidence. | A source-backed $\Theta_\alpha^{(\mu,W)}$ packet whose child rows are accepted, same-domain bound, and checker consumable. |
 
 ## Fail-Closed Controls
 

@@ -1,0 +1,87 @@
+{
+  "schema": "aaa-equation-map-eq28a-path-frequency-exchange-source-contract/v1",
+  "claimLevel": "score-neutral carrier-shell source-support contract; not accepted retained evidence and not a score-moving object",
+  "row": "EQ-28A",
+  "contractId": "theta_nu_ex_carrier_shell_source_contract_0001",
+  "carrierId": "theta_nu_ex_carrier_shell_source_contract_0001",
+  "sourceRole": "path_frequency_exchange_carrier_source_contract",
+  "evidenceBoundary": {
+    "acceptedEvidenceLands": false,
+    "scoreMovementAllowed": false,
+    "checkerUse": "parent carrier source-path boundary only",
+    "expectedStatusAfterParentAcceptance": "blocked_missing_rows",
+    "expectedNextBlockerAfterParentAcceptance": "missing_accepted_theta_gamma_packet"
+  },
+  "requiredSourceSupport": [
+    "EQ-28A",
+    "path_frequency_exchange_carrier",
+    "Theta_nu-ex",
+    "one photon path-history exchange record",
+    "inverse-Compton plus thermal and kinematic SZ carrier boundary"
+  ],
+  "sameRecordBinding": {
+    "commonCarrierId": "theta_nu_ex_carrier_shell_source_contract_0001",
+    "pathWindowId": "W_path_nu_ex_carrier_shell_source_contract_0001",
+    "photonInId": "gamma_in_theta_nu_ex_carrier_shell_source_contract_0001",
+    "photonOutId": "gamma_out_theta_nu_ex_carrier_shell_source_contract_0001",
+    "gateABHandoffId": "gate_ab_theta_nu_ex_carrier_shell_source_contract_0001",
+    "electronMediumId": "electron_column_theta_nu_ex_carrier_shell_source_contract_0001",
+    "noetherSeaPathHistoryId": "theta_sea_path_history_carrier_shell_source_contract_0001",
+    "exchangeEventLedgerId": "exchange_ledger_theta_nu_ex_carrier_shell_source_contract_0001",
+    "finiteThermalRecordId": "finite_thermal_record_theta_nu_ex_carrier_shell_source_contract_0001",
+    "sourceProvenanceId": "source_provenance_theta_nu_ex_carrier_shell_source_contract_0001",
+    "retuneWitnessId": "retune_witness_theta_nu_ex_carrier_shell_source_contract_0001"
+  },
+  "directGeometryLayer": [
+    {
+      "standardComparisonTerm": "signed path-frequency increment",
+      "aaaGeometricReadout": "one incoming/outgoing photon packet over one path window",
+      "requiredCarrierOrRow": "path_frequency_exchange_carrier",
+      "sameRecordBinding": "commonCarrierId, pathWindowId, photonInId, photonOutId, gateABHandoffId",
+      "failClosedNegativeControl": "gate_handoff_collapse",
+      "smallestAcceptedEvidenceObject": "accepted Theta_nu-ex carrier plus photon packet and Gate A/B rows"
+    },
+    {
+      "standardComparisonTerm": "exchange energy ledger",
+      "aaaGeometricReadout": "target, medium, recoil, remnant, momentum, and angular-momentum updates on one exchange event",
+      "requiredCarrierOrRow": "exchange_event_ledger, recoil_remnant_row, electron_medium_population",
+      "sameRecordBinding": "exchangeEventLedgerId and electronMediumId stay on the common carrier",
+      "failClosedNegativeControl": "phenomenological_frequency_loss_without_medium_ledger",
+      "smallestAcceptedEvidenceObject": "accepted exchange-event ledger and recoil/remnant rows after the parent carrier"
+    },
+    {
+      "standardComparisonTerm": "inverse-Compton boost",
+      "aaaGeometricReadout": "electron-medium boost readout in the declared Thomson regime",
+      "requiredCarrierOrRow": "inverse_compton_row and electron_medium_population",
+      "sameRecordBinding": "electronMediumId, photonInId, photonOutId, and exchangeSegmentId remain shared",
+      "failClosedNegativeControl": "inverse_compton_ratio_fit_handle",
+      "smallestAcceptedEvidenceObject": "accepted inverse-Compton row on the carrier's electron column"
+    },
+    {
+      "standardComparisonTerm": "thermal and kinematic SZ readouts",
+      "aaaGeometricReadout": "optical-depth, temperature, and signed line-of-sight velocity rows for one electron column",
+      "requiredCarrierOrRow": "electron_medium_population, thermal_sz_row, kinematic_sz_row, finite_window_thermal_record",
+      "sameRecordBinding": "electronMediumId, pathWindowId, finiteThermalRecordId, optical-depth id, and velocity id remain shared",
+      "failClosedNegativeControl": "sz_without_electron_column and kinetic_sz_sign_flip",
+      "smallestAcceptedEvidenceObject": "accepted SZ rows and finite-window thermal record bound to the accepted carrier"
+    },
+    {
+      "standardComparisonTerm": "source provenance and no-hidden-retune",
+      "aaaGeometricReadout": "one source/path/medium/photon/thermal record without private per-observable handles",
+      "requiredCarrierOrRow": "source_provenance and no_hidden_retune_witness",
+      "sameRecordBinding": "every required row shares commonCarrierId and the source-object ids above",
+      "failClosedNegativeControl": "coordination_source_false_positive, probe-source controls, and split_path_medium_record_retune",
+      "smallestAcceptedEvidenceObject": "checker-consumable Theta_nu-ex packet with accepted durable-source-backed rows"
+    }
+  ],
+  "failClosedNegativeControls": [
+    "coordination_source_false_positive",
+    "probe_source_false_positive",
+    "phenomenological_frequency_loss_without_medium_ledger",
+    "inverse_compton_ratio_fit_handle",
+    "sz_without_electron_column",
+    "kinetic_sz_sign_flip",
+    "split_path_medium_record_retune",
+    "gate_handoff_collapse"
+  ]
+}

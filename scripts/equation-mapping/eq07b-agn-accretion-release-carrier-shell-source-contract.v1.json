@@ -1,0 +1,85 @@
+{
+  "schema": "aaa-equation-map-eq07b-agn-accretion-release-source-contract/v1",
+  "claimLevel": "score-neutral carrier-shell source-support contract; not accepted retained evidence and not a score-moving object",
+  "row": "EQ-07B",
+  "contractId": "theta_agn_accretion_release_carrier_shell_source_contract_0001",
+  "carrierId": "theta_agn_accretion_release_carrier_shell_source_contract_0001",
+  "sourceRole": "agn_accretion_release_carrier_source_contract",
+  "evidenceBoundary": {
+    "acceptedEvidenceLands": false,
+    "scoreMovementAllowed": false,
+    "checkerUse": "parent carrier source-path boundary only",
+    "expectedStatusAfterParentAcceptance": "blocked_missing_rows",
+    "expectedNextBlockerAfterParentAcceptance": "missing_accepted_strong_field_parent_support"
+  },
+  "requiredSourceSupport": [
+    "EQ-07B",
+    "agn_accretion_release_carrier",
+    "Theta_AGN",
+    "one strong-field source window and one release-history interval",
+    "inflow, accretion, radiation, jet, wind/sheath, Noether sea loading, feedback, horizon, and event-ledger boundary"
+  ],
+  "sameRecordBinding": {
+    "carrierId": "theta_agn_accretion_release_carrier_shell_source_contract_0001",
+    "thetaWId": "theta_W_agn_carrier_shell_source_contract_0001",
+    "sourceWindowId": "W_agn_strong_field_carrier_shell_source_contract_0001",
+    "releaseWindowId": "T_agn_release_carrier_shell_source_contract_0001",
+    "supportId": "Omega_agn_carrier_shell_source_contract_0001",
+    "eventLedgerId": "L_EpJ_agn_carrier_shell_source_contract_0001",
+    "noetherSeaLoadingId": "A_NS_agn_carrier_shell_source_contract_0001",
+    "releaseSelectorId": "Pi_AGN_carrier_shell_source_contract_0001",
+    "horizonInterfaceId": "B_H_agn_carrier_shell_source_contract_0001",
+    "radiationChannelId": "S_rad_agn_carrier_shell_source_contract_0001",
+    "feedbackRowId": "F_fb_agn_carrier_shell_source_contract_0001",
+    "retuneWitnessId": "S_retune_agn_carrier_shell_source_contract_0001"
+  },
+  "directGeometryLayer": [
+    {
+      "standardComparisonTerm": "Schwarzschild/Kerr support, mass/spin, and horizon interface labels",
+      "aaaGeometricReadout": "strong-field support and compact-object labels projected from one source window",
+      "requiredCarrierOrRow": "strong_field_parent_support, mass_spin_readout_row, horizon_interface_label_row",
+      "sameRecordBinding": "thetaWId, carrierId, sourceWindowId, supportId, and eventLedgerId stay shared",
+      "failClosedNegativeControl": "agn.horizon_entropy_private_row",
+      "smallestAcceptedEvidenceObject": "accepted AGN carrier plus strong-field support and horizon-interface rows"
+    },
+    {
+      "standardComparisonTerm": "inflow, accretion, disk transport, and jet release",
+      "aaaGeometricReadout": "one source-history and release-selector readout for inflow, accretion, outflow, jet, and wind/sheath channels",
+      "requiredCarrierOrRow": "inflow_accretion_row, jet_channel_row, wind_sheath_confinement_row",
+      "sameRecordBinding": "releaseWindowId, releaseSelectorId, sourceWindowId, supportId, and eventLedgerId stay shared",
+      "failClosedNegativeControl": "agn.jet_power_only_fit",
+      "smallestAcceptedEvidenceObject": "accepted inflow/accretion, jet-channel, and wind/sheath rows on the parent carrier"
+    },
+    {
+      "standardComparisonTerm": "radiation output and AGN feedback",
+      "aaaGeometricReadout": "radiation and environmental feedback as outputs of the release carrier",
+      "requiredCarrierOrRow": "radiation_output_row and feedback_row",
+      "sameRecordBinding": "radiationChannelId, feedbackRowId, releaseWindowId, supportId, and eventLedgerId stay shared",
+      "failClosedNegativeControl": "agn.radiation_child_promoted_to_parent",
+      "smallestAcceptedEvidenceObject": "accepted radiation-output and feedback rows under the same AGN carrier"
+    },
+    {
+      "standardComparisonTerm": "Noether sea loading and collimation/feedback response",
+      "aaaGeometricReadout": "Noether sea anisotropy/loading row bound to release, radiation, and feedback rows",
+      "requiredCarrierOrRow": "noether_sea_loading_row",
+      "sameRecordBinding": "noetherSeaLoadingId, carrierId, sourceWindowId, supportId, and eventLedgerId stay shared",
+      "failClosedNegativeControl": "agn.noether_sea_feedback_missing",
+      "smallestAcceptedEvidenceObject": "accepted Noether sea loading row on the AGN release carrier"
+    },
+    {
+      "standardComparisonTerm": "source provenance and no-hidden-retune",
+      "aaaGeometricReadout": "one source/release provenance row and one retune witness across inflow, radiation, jet, feedback, Noether sea loading, and horizon rows",
+      "requiredCarrierOrRow": "source_provenance and no_hidden_retune_witness",
+      "sameRecordBinding": "all rows share the carrier and source-object ids above",
+      "failClosedNegativeControl": "probe-source controls and identity-split controls",
+      "smallestAcceptedEvidenceObject": "checker-consumable Theta_AGN packet with accepted durable-source-backed rows"
+    }
+  ],
+  "failClosedNegativeControls": [
+    "agn.jet_power_only_fit",
+    "agn.horizon_entropy_private_row",
+    "agn.noether_sea_feedback_missing",
+    "agn.radiation_child_promoted_to_parent",
+    "agn.probe_source_accepted_carrier"
+  ]
+}
