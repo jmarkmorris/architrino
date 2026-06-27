@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Rank: `24`
-- Value: `3.03`
+- Rank: `25`
+- Value: `1.01`
 - Cost: `2.4`
-- ROI: `1.26`
+- ROI: `0.42`
 - Status: `queued`
 
 ## Current

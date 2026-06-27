@@ -4,9 +4,9 @@
 
 - Kind: `priority-candidate`
 - Rank: `29`
-- Value: `1.98`
+- Value: `0.66`
 - Cost: `6.1`
-- ROI: `0.32`
+- ROI: `0.11`
 - Status: `watchlist`
 
 ## Task Queue
