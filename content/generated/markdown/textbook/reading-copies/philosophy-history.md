@@ -20295,7 +20295,7 @@ The retrospective convention is not a shield against burden. For the reading bel
 - The Bell burden is to recover the CHSH value $2\sqrt{2}$ and operational no-signalling from the same whole-state record and basin-measure machinery; until then, the whole-state record is a reframing rather than a derivation.
 - The fixed-void transport burden is to redshift light without blurring images, spoiling $(1+z)$ time dilation, violating Tolman surface-brightness behavior, or distorting the cosmic microwave background beyond observed blackbody and acoustic-structure tolerances.
 - The cosmological reconstruction burden is to show that distance-ladder, lensing, growth, and cosmic microwave background inferences can be read through one Noether sea constitutive and transport response rather than requiring unrelated responses.
-- The bridge burden is to write controlled source-to-effective maps: causal roots to effective fields, basin measures to quantum records, Noether sea response to effective metric behavior, and source/release histories to cosmological observables.
+- The bridge burden is to write controlled source-to-effective maps: causal roots to effective fields, basin measures to quantum records, Noether sea response to effective metric behavior, and source/release histories to cosmological observables. Each bridge must declare its source variables, target variables, validity regime, error tolerance, and failure condition rather than rely on a verbal matching between layers.
 
 ##### Retrospective Falsification Criteria
 
@@ -20329,6 +20329,8 @@ The Architrino architecture reclassifies the pattern. The issue was not one trou
 
 The rational reason is important. A working scientist inside a productive framework is not rewarded for declaring a civilizational theory failure every time an open problem appears. The responsible move is usually to compute, constrain, and extend the framework that already works. That discipline is why modern physics became so precise. It is also why a wrong explanatory layer can remain protected for a very long time.
 
+Precision was therefore part of the trap. QFT, GR, and Lambda-CDM became extraordinarily successful effective equilibria inside their domains, but that success did not turn their variables into primitive ontology. The Architrino method does not discard those frameworks; it uses them as boundary data, inverse constraints, and acceptance tests. Scattering amplitudes, metric behavior, color labels, detector records, redshift pipelines, and cosmological residuals become surfaces that a smaller source architecture must export. The question is not whether the observer-level categories work. They plainly do. The question is what parsimonious geometry and causal record could produce those categories without treating them as final.
+
 Kuhn and Lakatos make the historical warning precise: unresolved problems are not automatically revolutionary. They become revolutionary only when someone can show that they are symptoms of one deeper misclassification. The missed question was: are these really separate anomalies, or are they the visible edges of one architecture problem?
 
 ##### Chapter Three. Charles Sanders Peirce: Abduction Needed A Crisis Discipline
@@ -20357,7 +20359,7 @@ That distinction should be stated carefully. A deeper mechanism need not choose 
 
 In the nested shell braid setting, that is not a single-frequency oscillator problem. A retained braid can carry several internal frequency rows; those rows may coincide, lock in rational ratios, or remain distinct while still closing one physical record cycle. The recovery target is the full closed-return ledger: over the recordable branch cycle, the integrated action must descend to $h$ or to integer multiples whose adjacent record increments are $h$. The existence of multiple internal cadences is therefore not a defect in the architecture. It is the mechanism by which the architecture has to earn Planck's constant from branch closure rather than assume it as an external quantum postulate.
 
-That distance is the clue. A stellar core at roughly $10^7$ K is about $10^{-25}$ of the Planck temperature. Collider events remain many orders below the Planck energy, and even the highest observed cosmic-ray events sit far beneath it. Ordinary empirical physics therefore samples a highly constrained low-energy projection of configuration space, not the full deep regime in which architrino dynamics, causal wakes, and Noether sea response set their deepest scales.
+That distance is the clue. A stellar core at roughly $10^7$ K is about $10^{-25}$ of the Planck temperature. Collider events remain many orders below the Planck energy, and even the highest observed cosmic-ray events sit far beneath it. Ordinary empirical physics therefore samples a highly constrained low-energy projection of configuration space, not the full deep regime in which architrino dynamics, causal wakes, and Noether sea response set their deepest scales. High precision inside that projection is real boundary data, but it can still sit many orders away from the source regimes that would decide primitive ontology.
 
 The warning is not only observational. A theory may describe many scales while direct influence and control remain concentrated in a much narrower accessible band.
 
