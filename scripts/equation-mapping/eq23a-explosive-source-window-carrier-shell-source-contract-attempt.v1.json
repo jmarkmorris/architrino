@@ -1,0 +1,187 @@
+{
+  "schema": "aaa-equation-map-eq23a-explosive-source-window-identity-input/v1",
+  "claimLevel": "score-neutral EQ-23A carrier-shell source-contract boundary attempt; only the parent carrier is accepted-looking",
+  "row": "EQ-23A",
+  "carrier": {
+    "id": "theta_expl_source_window_carrier_shell_source_contract_0001",
+    "rowId": "explosive_source_window_carrier_source_contract_0001",
+    "status": "accepted",
+    "sourcePath": "scripts/equation-mapping/eq23a-explosive-source-window-carrier-shell-source-contract.v1.json",
+    "sourceKind": "carrier_shell_source_contract",
+    "sourceFamily": "EQ-23A explosive source window",
+    "sourceRole": "carrier"
+  },
+  "sourceIdentity": {
+    "carrierId": "theta_expl_source_window_carrier_shell_source_contract_0001",
+    "thetaSrcId": "Theta_src_expl_carrier_shell_source_contract_0001",
+    "thetaThermProvId": "Theta_therm_prov_expl_carrier_shell_source_contract_0001",
+    "sourceWindowId": "W_expl_carrier_shell_source_contract_0001",
+    "supportId": "Omega_expl_carrier_shell_source_contract_0001",
+    "eventLedgerId": "L_EpJ_expl_carrier_shell_source_contract_0001",
+    "noetherSeaUpdateId": "N_sea_expl_carrier_shell_source_contract_0001",
+    "readoutIntervalId": "T_expl_carrier_shell_source_contract_0001",
+    "retuneWitnessId": "S_retune_expl_carrier_shell_source_contract_0001"
+  },
+  "sharedKeys": [
+    "carrierId",
+    "thetaSrcId",
+    "thetaThermProvId",
+    "sourceWindowId",
+    "supportId",
+    "eventLedgerId",
+    "noetherSeaUpdateId",
+    "readoutIntervalId",
+    "retuneWitnessId"
+  ],
+  "rows": {
+    "shock_jump_blast_row": {
+      "status": "attempt",
+      "rowId": "shock_jump_blast_carrier_shell_source_contract_0001",
+      "carrierId": "theta_expl_source_window_carrier_shell_source_contract_0001",
+      "thetaSrcId": "Theta_src_expl_carrier_shell_source_contract_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_carrier_shell_source_contract_0001",
+      "sourceWindowId": "W_expl_carrier_shell_source_contract_0001",
+      "supportId": "Omega_expl_carrier_shell_source_contract_0001",
+      "eventLedgerId": "L_EpJ_expl_carrier_shell_source_contract_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+    },
+    "neutrino_heating_row": {
+      "status": "attempt",
+      "rowId": "neutrino_heating_carrier_shell_source_contract_0001",
+      "carrierId": "theta_expl_source_window_carrier_shell_source_contract_0001",
+      "thetaSrcId": "Theta_src_expl_carrier_shell_source_contract_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_carrier_shell_source_contract_0001",
+      "sourceWindowId": "W_expl_carrier_shell_source_contract_0001",
+      "supportId": "Omega_expl_carrier_shell_source_contract_0001",
+      "eventLedgerId": "L_EpJ_expl_carrier_shell_source_contract_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+    },
+    "reaction_yield_row": {
+      "status": "attempt",
+      "rowId": "reaction_yield_carrier_shell_source_contract_0001",
+      "carrierId": "theta_expl_source_window_carrier_shell_source_contract_0001",
+      "thetaSrcId": "Theta_src_expl_carrier_shell_source_contract_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_carrier_shell_source_contract_0001",
+      "sourceWindowId": "W_expl_carrier_shell_source_contract_0001",
+      "supportId": "Omega_expl_carrier_shell_source_contract_0001",
+      "eventLedgerId": "L_EpJ_expl_carrier_shell_source_contract_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+    },
+    "radioactive_heating_row": {
+      "status": "attempt",
+      "rowId": "radioactive_heating_carrier_shell_source_contract_0001",
+      "carrierId": "theta_expl_source_window_carrier_shell_source_contract_0001",
+      "thetaSrcId": "Theta_src_expl_carrier_shell_source_contract_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_carrier_shell_source_contract_0001",
+      "sourceWindowId": "W_expl_carrier_shell_source_contract_0001",
+      "supportId": "Omega_expl_carrier_shell_source_contract_0001",
+      "eventLedgerId": "L_EpJ_expl_carrier_shell_source_contract_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+    },
+    "photon_output_row": {
+      "status": "attempt",
+      "rowId": "photon_output_carrier_shell_source_contract_0001",
+      "carrierId": "theta_expl_source_window_carrier_shell_source_contract_0001",
+      "thetaSrcId": "Theta_src_expl_carrier_shell_source_contract_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_carrier_shell_source_contract_0001",
+      "sourceWindowId": "W_expl_carrier_shell_source_contract_0001",
+      "supportId": "Omega_expl_carrier_shell_source_contract_0001",
+      "eventLedgerId": "L_EpJ_expl_carrier_shell_source_contract_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+    },
+    "remnant_medium_heating_row": {
+      "status": "attempt",
+      "rowId": "remnant_medium_heating_carrier_shell_source_contract_0001",
+      "carrierId": "theta_expl_source_window_carrier_shell_source_contract_0001",
+      "thetaSrcId": "Theta_src_expl_carrier_shell_source_contract_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_carrier_shell_source_contract_0001",
+      "sourceWindowId": "W_expl_carrier_shell_source_contract_0001",
+      "supportId": "Omega_expl_carrier_shell_source_contract_0001",
+      "eventLedgerId": "L_EpJ_expl_carrier_shell_source_contract_0001",
+      "noetherSeaUpdateId": "N_sea_expl_carrier_shell_source_contract_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+    },
+    "event_ledger_row": {
+      "status": "attempt",
+      "rowId": "event_ledger_expl_carrier_shell_source_contract_0001",
+      "carrierId": "theta_expl_source_window_carrier_shell_source_contract_0001",
+      "thetaSrcId": "Theta_src_expl_carrier_shell_source_contract_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_carrier_shell_source_contract_0001",
+      "sourceWindowId": "W_expl_carrier_shell_source_contract_0001",
+      "supportId": "Omega_expl_carrier_shell_source_contract_0001",
+      "eventLedgerId": "L_EpJ_expl_carrier_shell_source_contract_0001",
+      "sourcePath": "content/markdown/aaa/validation/reaction-ledger.md"
+    },
+    "source_provenance": {
+      "status": "attempt",
+      "rowId": "source_provenance_expl_carrier_shell_source_contract_0001",
+      "carrierId": "theta_expl_source_window_carrier_shell_source_contract_0001",
+      "thetaSrcId": "Theta_src_expl_carrier_shell_source_contract_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_carrier_shell_source_contract_0001",
+      "sourceWindowId": "W_expl_carrier_shell_source_contract_0001",
+      "supportId": "Omega_expl_carrier_shell_source_contract_0001",
+      "eventLedgerId": "L_EpJ_expl_carrier_shell_source_contract_0001",
+      "sourcePath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md"
+    },
+    "no_hidden_retune_witness": {
+      "status": "attempt",
+      "rowId": "no_hidden_retune_expl_carrier_shell_source_contract_0001",
+      "carrierId": "theta_expl_source_window_carrier_shell_source_contract_0001",
+      "thetaSrcId": "Theta_src_expl_carrier_shell_source_contract_0001",
+      "thetaThermProvId": "Theta_therm_prov_expl_carrier_shell_source_contract_0001",
+      "sourceWindowId": "W_expl_carrier_shell_source_contract_0001",
+      "supportId": "Omega_expl_carrier_shell_source_contract_0001",
+      "eventLedgerId": "L_EpJ_expl_carrier_shell_source_contract_0001",
+      "retuneWitnessId": "S_retune_expl_carrier_shell_source_contract_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+    }
+  },
+  "negativeControls": [
+    {
+      "id": "explosive.source_window_split",
+      "expectedFailure": "source_window_split_before_residual_scoring",
+      "mutation": {
+        "rows.reaction_yield_row.sourceWindowId": "W_expl_split_reaction_yield_negative_control"
+      }
+    },
+    {
+      "id": "explosive.neutrino_private_heating",
+      "expectedFailure": "thermal_provenance_split_before_residual_scoring",
+      "mutation": {
+        "rows.neutrino_heating_row.thetaThermProvId": "Theta_therm_prov_private_neutrino_negative_control"
+      }
+    },
+    {
+      "id": "explosive.radioactive_inventory_split",
+      "expectedFailure": "event_ledger_split_before_residual_scoring",
+      "mutation": {
+        "rows.radioactive_heating_row.eventLedgerId": "L_EpJ_radioactive_inventory_private_negative_control"
+      }
+    },
+    {
+      "id": "explosive.photon_output_private_carrier",
+      "expectedFailure": "carrier_split_before_residual_scoring",
+      "mutation": {
+        "rows.photon_output_row.carrierId": "theta_photon_output_private_negative_control",
+        "rows.photon_output_row.sourceWindowId": "W_photon_output_private_negative_control",
+        "rows.photon_output_row.eventLedgerId": "L_EpJ_photon_output_private_negative_control"
+      }
+    },
+    {
+      "id": "explosive.remnant_medium_update_split",
+      "expectedFailure": "noether_sea_update_split_before_residual_scoring",
+      "mutation": {
+        "rows.remnant_medium_heating_row.noetherSeaUpdateId": "N_sea_expl_private_remnant_medium_negative_control"
+      }
+    },
+    {
+      "id": "explosive.retune_witness_private",
+      "expectedFailure": "retune_witness_split_before_residual_scoring",
+      "mutation": {
+        "rows.no_hidden_retune_witness.retuneWitnessId": "S_retune_expl_private_negative_control"
+      }
+    }
+  ],
+  "scoreDecision": "no_score_increase",
+  "nextBlocker": "missing_accepted_shock_jump_blast_row"
+}

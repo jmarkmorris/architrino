@@ -378,6 +378,67 @@ The payload $\mathcal P_{\mathrm{num}}$ must be large enough to evaluate the res
 | `stability_payload` | $\mathcal R_{\mathrm{return}}(B^+)$, $\rho(M_{\mathcal S}\vert_{E_\perp})$, $\lambda_{\mathrm{sec}}^{B^+}$, or a declared positive trapping replacement. | $r_{\mathrm{stab}}$. |
 | `tie_payload` | $\tau_{\mathfrak m}$ or an explicit reason it is absent. | Final tie-breaking entry in $\mathcal J_{\mathrm{sel}}$. |
 
+### Layer-Normal Cone Bound
+
+The retune payload should also expose a scale-aware layer-normal readout. The
+legacy tri-binary source signal behind this addition is that the inner binary
+may carry a much larger rotational-action magnitude than the middle or outer
+layers, so a small orientation retune of the inner layer can dominate the vector
+angular-momentum balance even when its scalar action increment is modest.
+
+For each layer write the reduced rotational-action vector as
+
+$$
+\mathbf I_\ell=I_\ell\hat{\mathbf n}_\ell,
+\qquad
+\ell\in\{I,M,O\}.
+$$
+
+To first order, a retune candidate should report
+
+$$
+\Delta\mathbf I_\ell
+\simeq
+\Delta I_\ell\hat{\mathbf n}_\ell
++
+I_\ell\Delta\hat{\mathbf n}_\ell,
+\qquad
+\hat{\mathbf n}_\ell\cdot\Delta\hat{\mathbf n}_\ell=0.
+$$
+
+The corresponding partition readout is
+
+$$
+\mathcal R_{\mathbf J,\mathrm{norm}}^{B^+}
+=
+\frac{
+\left\|
+\sum_{\ell\in\{I,M,O\}}
+\left(
+\Delta I_\ell\hat{\mathbf n}_\ell
++
+I_\ell\Delta\hat{\mathbf n}_\ell
+\right)
++
+\Delta\mathbf L_{\mathrm{tr}}^{B^+}
++
+\Delta\mathbf L_{\mathrm{wake},\partial}^{B^+}
+-
+\Delta\mathbf J_{\text{coupl}}
+\right\|
+}{\varepsilon_{\mathbf J}}.
+$$
+
+This is not a new gate. It is a payload-level discriminator for the existing
+$r_{\mathrm{part}}$ and quotient/tie rows. A retained candidate whose inner
+action scale satisfies $I_I\gg I_M,I_O$ should not be allowed to hide a large
+$\Delta\hat{\mathbf n}_I$ inside a scalar partition. It must either keep
+$I_I\Delta\hat{\mathbf n}_I$ inside the declared interval cone, or supply
+compensating middle, outer, transport, or wake-boundary terms in the same
+retained row set. If those compensating terms are absent, the candidate remains
+blocked under the existing missing-payload rules rather than being accepted by
+scalar action closure alone.
+
 Each numerical scalar used in ranking should be an interval
 
 $$

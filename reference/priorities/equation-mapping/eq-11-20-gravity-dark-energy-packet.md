@@ -42,12 +42,29 @@ The same record must support:
 
 If weak gravity requires one Noether sea state while dark energy requires another, the packet fails by `equation_map.hidden_retune`.
 
+## Packet Attack Card
+
+- Current score snapshot: `EQ-11` current score `2`, recommended `3`; `EQ-20` current score `2`, recommended `3`. This pass does not update [equation.md](equation.md).
+- Closure driver: one retained $\Theta_{11\text{-}20}^{(\ell,W)}$ record must produce the weak-gravity Poisson/curvature readout and the dark-energy pressure/$\Lambda_{\mathrm{eff}}$ readout through the same Noether sea constitutive-response component.
+- Exact first blockers: `EQ-11` blocks at `missing_accepted_theta_11_20`; `EQ-20` blocks at `missing_accepted_theta_sea_rho_NS` and inherits the upstream FRW blocker `missing_accepted_theta_cos`.
+- First implementation target for this packet: priority packet refinement only, making the Direct Geometry Layer explicit for the shared constitutive-response route. No accepted retained evidence object is created here.
+- Smallest later score-moving target: a source-backed retained Noether sea constitutive-response bundle with accepted density, stress, pressure, tension, relaxation, effective-coupling, source-loading, provenance, and no-hidden-retune rows on one same-window record.
+
 ## Standard Equations And Regimes
 
 | ID | Standard equation / regime | Comparison status |
 | --- | --- | --- |
 | `EQ-11` | Poisson benchmark: $\nabla^2\Phi_N=4\pi G\rho$. Einstein benchmark: $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi GT_{\mu\nu}/c_0^4$. | Observer-level weak-gravity and curvature recovery from Noether sea constitutive response; not substrate curvature. |
 | `EQ-20` | Dark-energy benchmark: $p=w\rho c_0^2$, with acceleration when $w < -1/3$ in the effective cosmology comparison. | Observer-level pressure and $\Lambda_{\mathrm{eff}}$ recovery from Noether sea tension, pressure, and relaxation; not fitted vacuum energy by itself. |
+
+## Direct Geometry Layer
+
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| --- | --- | --- | --- | --- | --- |
+| Poisson weak-gravity benchmark | $\Phi_{\mathrm{eff}}$, $\rho_{\mathrm{src}}^{\mathrm{eff}}$, $G_{\mathrm{eff}}$, $\mathcal S_{\mathrm{sea}}^\Phi$, and $R_\Phi^{11}$ projected from one Noether sea and source-loading record. | Accepted `theta_11_20` with source-backed Noether sea, source loading, constitutive-response, effective-coupling, and Poisson rows. | $\Theta_{\mathrm{sea}}^{(\ell,W)}$, $\Theta_{\mathrm{src}}^{(W)}$, $\mathcal C_{\mathrm{NS}}$, and $\mathcal L_{E\mathbf p\mathbf J}^{(W)}$ must share one window and carrier identity. | `equation_map.no_sea_constitutive_record`, `accepted_without_evidence_source`, and unledgered matter loading. | Retained weak-window Noether sea constitutive packet proving `theta_11_20` and Poisson handoff rows from durable source evidence. |
+| Effective Einstein/curvature readout | $g_{\mu\nu}^{\mathrm{eff}}$, $T_{\mu\nu}^{\mathrm{eff}}$, $\Lambda_{\mathrm{eff}}$, $G_{\mathrm{eff}}$, and $R_{\mu\nu}^{11}$ as observer-level metric residuals. | Accepted `theta_11_20` plus accepted effective-metric/PPN handoff rows. | Curvature, PPN, spatial-compliance, Shapiro/lensing, source-loading, and weak-gravity acceleration rows must consume the same constitutive coefficients. | `gravity.scalar_only_half_test`, local-gravity spoilage, and scalar-only acceleration closure. | Source-backed retained weak-field carrier whose curvature, metric, PPN, source, and coupling rows all bind to the same Noether sea record. |
+| Dark-energy pressure and equation-of-state row | $p_{\mathrm{sea}}$, $\mathcal T_{\mathrm{sea}}^{ab}$, $\tau_{\mathrm{rel}}$, $p_{\mathrm{DE,eff}}$, $\rho_{\mathrm{DE,eff}}$, $w_{\mathrm{eff}}$, $R_p^{20}$, and $R_w^{20}$. | Accepted `theta_sea_rho_NS` and accepted pressure/tension/relaxation rows feeding the `EQ-20` residual. | Density compression, pressure, tension, relaxation, effective density, effective pressure, coupling, source provenance, and FRW handoff ids must remain on one retained window. | `dark_energy.fitted_lambda_only`, `pressure.source_without_provenance`, and inherited `missing_accepted_theta_cos`. | Retained Noether sea density/pressure source packet accepted by the pressure/$\Lambda_{\mathrm{eff}}$ checker before any score movement. |
+| Effective-coupling continuity across local/cosmology/structure/low-acceleration rows | $G_{\mathrm{eff}}^{\mathrm{local}}$, $G_{\mathrm{eff}}^{\mathrm{cos}}$, $G_{\mathrm{eff}}(a,k,\omega)$, and $\mathcal M_{\mathrm{sea}}^{ab}$ projected from one constitutive-response component. | Accepted effective-coupling continuity row under `theta_11_20` or the shared Noether sea coefficient bundle. | Local gravity, Friedmann bookkeeping, growth, CMB lensing, RAR/BTFR, and BBN consumers must cite the same $G_{\mathrm{eff}}$ provenance or a declared transformation row. | `effective_coupling.split`, `equation_map.hidden_retune`, and private coefficient handles per observable. | Same-window accepted coupling-continuity witness tying weak gravity, pressure/$\Lambda_{\mathrm{eff}}$, growth, CMB, and low-acceleration consumers to one source-backed response tensor. |
 
 ## Shared Retained Record
 

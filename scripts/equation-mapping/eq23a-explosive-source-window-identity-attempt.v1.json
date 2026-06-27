@@ -150,6 +150,36 @@
       "mutation": {
         "rows.neutrino_heating_row.thetaThermProvId": "Theta_therm_prov_private_neutrino_negative_control"
       }
+    },
+    {
+      "id": "explosive.radioactive_inventory_split",
+      "expectedFailure": "event_ledger_split_before_residual_scoring",
+      "mutation": {
+        "rows.radioactive_heating_row.eventLedgerId": "L_EpJ_radioactive_inventory_private_negative_control"
+      }
+    },
+    {
+      "id": "explosive.photon_output_private_carrier",
+      "expectedFailure": "carrier_split_before_residual_scoring",
+      "mutation": {
+        "rows.photon_output_row.carrierId": "theta_photon_output_private_negative_control",
+        "rows.photon_output_row.sourceWindowId": "W_photon_output_private_negative_control",
+        "rows.photon_output_row.eventLedgerId": "L_EpJ_photon_output_private_negative_control"
+      }
+    },
+    {
+      "id": "explosive.remnant_medium_update_split",
+      "expectedFailure": "noether_sea_update_split_before_residual_scoring",
+      "mutation": {
+        "rows.remnant_medium_heating_row.noetherSeaUpdateId": "N_sea_expl_private_remnant_medium_negative_control"
+      }
+    },
+    {
+      "id": "explosive.retune_witness_private",
+      "expectedFailure": "retune_witness_split_before_residual_scoring",
+      "mutation": {
+        "rows.no_hidden_retune_witness.retuneWitnessId": "S_retune_expl_private_negative_control"
+      }
     }
   ],
   "scoreDecision": "no_score_increase",

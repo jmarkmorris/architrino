@@ -74,6 +74,8 @@ The smallest accepted evidence object is therefore an accepted `path_frequency_e
 
 The carrier-shell source-contract boundary is now executable but remains score-neutral. [eq28a-path-frequency-exchange-carrier-shell-source-contract.v1.json](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-carrier-shell-source-contract.v1.json) records the Direct Geometry Layer contract for the parent carrier, and [eq28a-path-frequency-exchange-carrier-shell-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-carrier-shell-source-contract-attempt.v1.json) marks only the top `carrier` and `path_frequency_exchange_carrier` row as accepted-looking. The expected checker result is `status=blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`, `carrierAccepted=true`, and `scoreDecision=no_score_increase`; this is a boundary test, not accepted retained evidence.
 
+[eq28a-path-frequency-exchange-theta-gamma-source-negative-control.v1.json](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-theta-gamma-source-negative-control.v1.json) is the child-row source guard. It keeps the parent carrier accepted-looking and marks `theta_gamma_packet` accepted-looking, but points that row only to [photon-packet-transfer-source-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-source-attempt.v1.json). The expected checker result remains `status=blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`, `rowStatuses.theta_gamma_packet.reason=accepted_without_evidence_source`, and `scoreDecision=no_score_increase`.
+
 The source-attempt fixture keeps the same contract at attempt level:
 
 | Field | Source-attempt value |
@@ -114,6 +116,7 @@ The source-attempt fixture keeps the same contract at attempt level:
 | Control | Expected failure |
 | --- | --- |
 | `coordination_source_false_positive` | Accepted-looking `path_frequency_exchange_carrier` sourced only to this priority map fails with `accepted_without_evidence_source`; priority maps, authored AAA prose, generated files, attempt files, toy files, probe files, source-evidence-probe files, mock files, and negative-control files cannot count as accepted retained evidence. |
+| `theta_gamma_attempt_source_false_positive` | Accepted-looking `theta_gamma_packet` sourced only to a photon packet source-attempt file fails with `accepted_without_evidence_source`; the child packet cannot be smuggled in through another score-neutral attempt fixture. |
 | `phenomenological_frequency_loss_without_medium_ledger` | Frequency change without target, medium, recoil, and remnant ledger rows fails path-frequency energy balance. |
 | `inverse_compton_ratio_fit_handle` | Fitted photon-frequency boost fails inverse-Compton residual rather than counting as a source row. |
 | `sz_without_electron_column` | Thermal SZ rows without the electron column fail before thermal evidence counts. |
@@ -123,7 +126,7 @@ The source-attempt fixture keeps the same contract at attempt level:
 
 ## Next Action
 
-Use the carrier-shell source-contract fixture to keep the parent/child blocker boundary executable while the real retained evidence route is still absent. The next safe implementation target is a source-backed `theta_gamma_packet` or a replacement parent-carrier source row that is actual retained evidence rather than a contract shell. Until that source-backed carrier is accepted, the ordinary source-attempt result remains `missing_accepted_path_frequency_exchange_carrier`.
+Use the carrier-shell source-contract fixture and child-row source guard to keep the parent/child blocker boundary executable while the real retained evidence route is still absent. The next safe implementation target is a source-backed `theta_gamma_packet` or a replacement parent-carrier source row that is actual retained evidence rather than a contract shell. Until that source-backed carrier is accepted, the ordinary source-attempt result remains `missing_accepted_path_frequency_exchange_carrier`.
 
 The carrier-shell boundary check is:
 
@@ -132,6 +135,14 @@ node scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs --input
 ```
 
 Expected result: `blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`, `carrierAccepted=true`, `scoreDecision=no_score_increase`, solver residuals passing, and all six negative controls passing. The same command with `--require-populated` must exit nonzero.
+
+The child-row source guard is:
+
+```sh
+node scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs --input scripts/equation-mapping/eq28a-path-frequency-exchange-theta-gamma-source-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`, `rowStatuses.theta_gamma_packet.reason=accepted_without_evidence_source`, `scoreDecision=no_score_increase`, solver residuals passing, and all six negative controls passing. The same command with `--require-populated` must exit nonzero.
 
 The current source-attempt check is:
 

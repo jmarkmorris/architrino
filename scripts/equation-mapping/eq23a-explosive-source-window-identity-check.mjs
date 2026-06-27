@@ -473,6 +473,7 @@ function firstBlocker({
   rowContract,
   identityConsistency,
   sourceEvidence,
+  rowAcceptance,
 }) {
   if (!schemaOk) return "invalid_schema";
   if (!topLevel.passed) return topLevel.mismatches[0]?.reason ?? `missing_${topLevel.missing[0]}`;
@@ -485,6 +486,9 @@ function firstBlocker({
   if (!identityConsistency.passed) return blockerForMismatch(identityConsistency.firstMismatch);
   if (!sourceEvidence.passed) return sourceEvidence.firstFailure?.reason ?? "accepted_without_evidence_source";
   if (status === "populated_score_neutral") return null;
+  if (rowAcceptance?.carrierAccepted && rowAcceptance.missingRows?.length > 0) {
+    return `missing_accepted_${rowAcceptance.missingRows[0]}`;
+  }
   return FIRST_BLOCKER;
 }
 

@@ -21,6 +21,18 @@
 
 The row is not a claim that all cosmological redshift is Sunyaev-Zeldovich scattering. It is a bounded equation-mapping packet for signed path-frequency exchange: when an intervening medium changes photon frequency, the target, medium, recoil, remnant, and thermal rows must close the same ledger that preserves the photon Gate A/B handoff.
 
+## Equation Attack Card
+
+| Field | Current result |
+| --- | --- |
+| Current score | `2` |
+| Closure driver | Recover inverse-Compton, signed path-frequency exchange, thermal SZ, and kinematic SZ as one photon path-history exchange ledger rather than frequency-loss bookkeeping, void expansion, source emission, or private thermal calibration. |
+| Exact first blocker | `missing_accepted_path_frequency_exchange_carrier` in the ordinary attempt. |
+| Deepest current boundary | The carrier-shell source-contract attempt accepts only the top `carrier` and `path_frequency_exchange_carrier` row, then advances to `missing_accepted_theta_gamma_packet` with `scoreDecision: no_score_increase`. |
+| Child-row source guard | [eq28a-path-frequency-exchange-theta-gamma-source-negative-control.v1.json](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-theta-gamma-source-negative-control.v1.json) marks `theta_gamma_packet` accepted-looking while sourcing it only to a source-attempt fixture; the checker remains blocked with `rowStatuses.theta_gamma_packet.reason=accepted_without_evidence_source`. |
+| Smallest score-moving evidence object | A source-backed $\Theta_{\nu\text{-}\mathrm{ex}}(W)$ carrier whose photon packet, Gate A/B handoff, electron-medium population, Noether sea path history, exchange event ledger, inverse-Compton row, SZ rows, recoil/remnant row, finite-window thermal record, source provenance, and no-hidden-retune witness are accepted and same-record bound. |
+| Next safe implementation target | Replace the carrier-shell contract or `theta_gamma_packet` attempt source with an actual retained source object; until that exists, keep all checker passes score-neutral. |
+
 ## Standard Benchmark
 
 The local path-frequency row keeps the photon packet identity while recording a frequency change:

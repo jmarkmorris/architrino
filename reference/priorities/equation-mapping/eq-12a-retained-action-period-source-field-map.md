@@ -46,6 +46,8 @@ Use one accepted retained action-period carrier with a `commonCarrierId` distinc
 
 Accepted-looking `retained_orbit_reduction_row` rows must also declare explicit support metadata for `EQ-12A`, `retained_orbit_reduction_row`, the retained action-period carrier, and the `S_eq` equal-frequency tri-binary route. A durable file path is not enough by itself.
 
+Accepted-looking `constant_delay_self_hit_model_row` rows must likewise declare explicit support metadata for `EQ-12A`, `constant_delay_self_hit_model_row`, the retained action-period carrier, the constant-delay self-hit model, the finite-memory return map, and the `S_eq` equal-frequency tri-binary route. This keeps the source object from smuggling in a generic delay equation or a durable-but-unbound source path.
+
 ## Direct Geometry Layer
 
 This layer keeps $h_\vartheta$ as a retained action-period readout from one same-branch orbit certificate. It does not let photon energy, alpha fitting, thermal rows, or a `theta_gamma_packet` substitute for the retained action-period carrier.
@@ -101,6 +103,22 @@ node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --in
 
 The probe marks only `retained_orbit_reduction_row` accepted-looking with explicit `EQ-12A`, `retained_orbit_reduction_row`, retained action-period carrier, and `S_eq` equal-frequency support metadata. It remains score-neutral and advances only to `nextBlocker: missing_accepted_constant_delay_self_hit_model_row`; the `--require-populated` form must exit nonzero.
 
+The two-row constant-delay self-hit source-evidence probe is [constant-delay-retained-orbit-self-hit-model-source-evidence-probe.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-self-hit-model-source-evidence-probe.v1.json):
+
+```sh
+node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --input scripts/equation-mapping/constant-delay-retained-orbit-self-hit-model-source-evidence-probe.v1.json --summary --pretty
+```
+
+This probe marks both `retained_orbit_reduction_row` and `constant_delay_self_hit_model_row` accepted-looking with explicit retained action-period support metadata. It remains score-neutral and advances only to `nextBlocker: missing_accepted_hopf_retained_orbit_birth_row`; the `--require-populated` form must exit nonzero.
+
+The constant-delay self-hit metadata-missing control is [constant-delay-retained-orbit-self-hit-model-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-self-hit-model-metadata-missing-negative-control.v1.json):
+
+```sh
+node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --input scripts/equation-mapping/constant-delay-retained-orbit-self-hit-model-metadata-missing-negative-control.v1.json --summary --pretty
+```
+
+This control marks `constant_delay_self_hit_model_row` accepted-looking and points it at a durable file, but omits the required row support metadata. The expected result is `status: blocked_missing_rows`, `nextBlocker: missing_accepted_constant_delay_self_hit_model_row`, and `rowStatuses.constant_delay_self_hit_model_row.reason=constant_delay_self_hit_model_source_contract_mismatch`.
+
 ## Next Action
 
 Create one durable source-backed retained action-period object, then run:
@@ -110,4 +128,4 @@ node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --su
 node scripts/equation-mapping/planck-alpha-braid-residual.mjs --summary --pretty
 ```
 
-Until accepted retained rows exist beyond the retained-reduction probe, the correct dedicated blocker is `missing_accepted_constant_delay_self_hit_model_row`, with no score change.
+Until accepted retained rows exist beyond the two-row constant-delay self-hit probe, the correct dedicated blocker is `missing_accepted_hopf_retained_orbit_birth_row`, with no score change.

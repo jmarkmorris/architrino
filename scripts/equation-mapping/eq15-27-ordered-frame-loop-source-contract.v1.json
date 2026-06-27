@@ -1,0 +1,43 @@
+{
+  "schema": "aaa-equation-map-eq15-27-ordered-frame-loop-source-contract/v1",
+  "claimLevel": "score-neutral EQ-15/EQ-27 ordered-frame-loop source-contract boundary; contract metadata only, not retained evidence",
+  "rowsServed": ["EQ-15", "EQ-27"],
+  "purpose": "Name the durable source-backed ordered_frame_loop boundary before spin-lift, gauge-control, angular-momentum, magnetic moment-map, covering-degree, or exposure-fiber rows can count.",
+  "evidenceBoundary": {
+    "ordinaryFirstBlocker": "missing_accepted_ordered_frame_loop",
+    "boundaryExercisedBy": "scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract-attempt.v1.json",
+    "expectedStatusAfterOrderedFrameLoopAcceptance": "blocked_missing_rows",
+    "expectedNextBlockerAfterOrderedFrameLoopAcceptance": "missing_accepted_spin_lift",
+    "scoreDecision": "no_score_increase",
+    "acceptedEvidenceObjectLanded": false
+  },
+  "sourceIdentity": {
+    "sameRecordId": "spin-to-mu-retained-record-source-contract-0001",
+    "retainedBranchId": "retained-noncoplanar-branch-source-contract-0001",
+    "domainId": "D_spin_mu_source_contract_0001",
+    "orderedFrameLoopId": "Phi-star-loop-source-contract-0001"
+  },
+  "directGeometryLayer": [
+    {
+      "standardComparisonTerm": "spinor state psi or spinor-label components",
+      "aaaGeometricReadout": "retained ordered-frame spinor-label pullback from one non-coplanar branch record",
+      "requiredCarrierOrRow": "ordered_frame_loop plus spin_lift",
+      "sameRecordBinding": "same sameRecordId, retained branch/domain id, loop id, and spin-lift witness later used by angular-momentum, exchange, and moment-map rows",
+      "failClosedNegativeControl": "visible_so3_closure_import_without_non_gauge_lift",
+      "smallestAcceptedEvidenceObject": "durable accepted ordered_frame_loop row with source-backed nontrivial Z/2 holonomy and spin-lift witness"
+    },
+    {
+      "standardComparisonTerm": "magnetic moment mu_l and leading g=2",
+      "aaaGeometricReadout": "exposure-current moment map and covering-degree witness on the same ordered-frame loop",
+      "requiredCarrierOrRow": "moment_map_magnetic and covering_degree_g2 after ordered_frame_loop, spin_lift, gauge_control, and angular_momentum_ledger",
+      "sameRecordBinding": "same retained branch/domain, same exposure fiber, same angular-momentum ledger, and same ordered-frame loop",
+      "failClosedNegativeControl": "eq15_27.record_split_durable_source or eq27.assigned_spin_label",
+      "smallestAcceptedEvidenceObject": "source-backed moment-map magnetic row computed as an exposure-current integral on the same retained branch"
+    }
+  ],
+  "failClosedNegativeControls": [
+    "scripts/equation-mapping/eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json",
+    "scripts/equation-mapping/eq15-27-ordered-frame-loop-record-split-durable-source-negative-control.v1.json",
+    "scripts/equation-mapping/spin-magnetic-moment-assigned-spin-g2-durable-source-negative-control.v1.json"
+  ]
+}

@@ -10,6 +10,7 @@
 - Source fixtures:
   - [spin-magnetic-moment-certificate-attempt.v1.json](../../../scripts/equation-mapping/spin-magnetic-moment-certificate-attempt.v1.json)
   - [eq15-27-ordered-frame-loop-source-attempt.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-attempt.v1.json)
+  - [eq15-27-ordered-frame-loop-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract-attempt.v1.json)
   - [eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json)
   - [eq15-27-ordered-frame-loop-record-split-durable-source-negative-control.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-record-split-durable-source-negative-control.v1.json)
   - [spin-magnetic-moment-assigned-spin-g2-negative-control.v1.json](../../../scripts/equation-mapping/spin-magnetic-moment-assigned-spin-g2-negative-control.v1.json)
@@ -140,6 +141,14 @@ node scripts/equation-mapping/spin-magnetic-moment-certificate.mjs --input scrip
 ```
 
 The fixture names one retained branch id, domain id, `Phi_star:S^1->SO(3)` loop, nontrivial $\mathbb Z/2$ holonomy class, spin-lift witness, exposure-current moment-map route, covering-degree witness, and exposure-fiber row on one `sameRecordId`. Every row remains `attempt`, so the expected result is `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_ordered_frame_loop`; the `--require-populated` form must exit nonzero.
+
+The carrier-shell source-contract boundary is staged at [eq15-27-ordered-frame-loop-source-contract.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract.v1.json) and exercised by [eq15-27-ordered-frame-loop-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/spin-magnetic-moment-certificate.mjs --input scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract-attempt.v1.json --summary --pretty
+```
+
+The expected boundary run reports `status: blocked_missing_rows`, `nextBlocker: missing_accepted_spin_lift`, `sourceEvidenceFailureCount: 0`, and `scoreDecision: no_score_increase`. This does not land retained evidence. It only proves that once the parent ordered-frame loop is source-backed, the checker advances to the spin-lift row instead of letting visible $SO(3)$ closure, magnetic moment numerics, or assigned spin notation count as score evidence.
 
 The priority-source control is:
 

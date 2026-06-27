@@ -166,6 +166,14 @@ node scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check
 
 The current run returns `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_agn_accretion_release_carrier`, and `residualArithmeticEvaluated: false`. Its embedded negative controls reject `agn.jet_power_only_fit` as `blocked_release_selector_split`, `agn.horizon_entropy_private_row` as `blocked_horizon_interface_split`, `agn.noether_sea_feedback_missing` as `blocked_noether_sea_loading_missing`, and `agn.radiation_child_promoted_to_parent` as `blocked_carrier_split` before release residual arithmetic is evaluated.
 
+The carrier-shell source-contract boundary is [eq07b-agn-accretion-release-carrier-shell-source-contract.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-shell-source-contract.v1.json), with checker input [eq07b-agn-accretion-release-carrier-shell-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-shell-source-contract-attempt.v1.json):
+
+```bash
+node scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs --input scripts/equation-mapping/eq07b-agn-accretion-release-carrier-shell-source-contract-attempt.v1.json --summary --pretty
+```
+
+This boundary marks only the parent `agn_accretion_release_carrier` accepted-looking against a durable source-contract file while every child row remains `attempt`. The expected checker result is `status: blocked_missing_rows`, `nextBlocker: missing_accepted_strong_field_parent_support`, `carrierAccepted: true`, `scoreDecision: no_score_increase`, `residualArithmeticEvaluated: false`, and `4/4` negative controls passing. The same command with `--require-populated` must exit nonzero. This is a boundary test, not accepted retained evidence.
+
 The probe-source source-evidence guard is [eq07b-agn-accretion-release-carrier-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-probe-source-negative-control.v1.json):
 
 ```bash
@@ -231,7 +239,8 @@ This object can test whether launch speed, collimation, radiation, baryon loadin
 - Direct Geometry Layer: present in this packet; it binds strong-field support, inflow/accretion, radiation, jet, wind/sheath, Noether sea loading, feedback, horizon interface, event ledger, provenance, and no-hidden-retune witness to one AGN source/release identity.
 - Candidate breakthrough angle: start with the existing AGN release-channel selector and force launch, collimation, radiation, and feedback onto one state before horizon thermodynamics.
 - Fail-closed negative control: jet/lobe/radiation fits that split inflow, Noether sea loading, angular-momentum drain, and feedback records; accepted-looking rows sourced only to a probe/source-evidence-probe file fail at `accepted_without_evidence_source`.
-- Next action smaller than broad report: build a retained-evidence search target for one `agn_accretion_release_carrier`, not a broader horizon-thermodynamics or jet-power report.
+- Next action smaller than broad report: replace the carrier-shell source contract with a real source-backed parent carrier, then populate `strong_field_parent_support` on the same `carrierId`, `thetaWId`, `sourceWindowId`, `supportId`, and `eventLedgerId`.
+- Current implementation target: the identity shell, four fail-closed identity controls, probe-source guard, and carrier-shell source-contract boundary now exist. The next smaller action is a retained `strong_field_parent_support` evidence object, not a broader horizon-thermodynamics or jet-power report.
 
 ## Promotion Classification
 

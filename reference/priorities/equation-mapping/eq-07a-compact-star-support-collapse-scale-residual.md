@@ -154,7 +154,7 @@ Here $\mathcal B_{\mathrm{std}}^{\mathrm{cs}}$ carries the observer-level compac
 | Exact first blocker | `missing_accepted_compact_region_carrier` |
 | Existing scripts/fixtures/packets | [eq07a-compact-region-carrier-residual.mjs](../../../scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs), [eq07a-compact-region-carrier-attempt.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-attempt.v1.json), [eq07a-chandrasekhar-scaling-residual.mjs](../../../scripts/equation-mapping/eq07a-chandrasekhar-scaling-residual.mjs), [eq07a-tov-compact-support-residual.mjs](../../../scripts/equation-mapping/eq07a-tov-compact-support-residual.mjs) |
 | Fail-closed controls | Coordination-source, metadata-missing, probe-source mutation, hidden-retune, pressure-regime, level-separation, Chandrasekhar, and TOV controls must reject priority packets, probe artifacts, split carriers, and collapsed scale levels. |
-| Safe implementation target | Priority-packet refinement only: make the accepted-evidence contract explicit before creating any new source-backed carrier row. |
+| Safe implementation target | Existing script/fixture improvement: harden the `standard_benchmark_row` source contract after the parent carrier probe, without score movement. |
 
 ## Direct Geometry Layer
 
@@ -316,6 +316,24 @@ node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input 
 ```
 
 This probe marks only the parent compact-region carrier accepted-looking with the required support metadata. It advances the checker past `missing_accepted_compact_region_carrier` and exposes `missing_accepted_standard_benchmark_row` as the next blocker, while still exiting nonzero under `--require-populated`. The probe is not accepted retained evidence and does not change the score.
+
+The `standard_benchmark_row` has the same fail-closed source-support rule. An accepted-looking row must explicitly name `EQ-07A`, `standard_benchmark_row`, the compact-region carrier, and a standard compact-star benchmark route such as `chandrasekhar_support` or `tov_compact_support`. A durable source path without that metadata is not enough.
+
+The score-neutral standard-benchmark source-evidence probe is [eq07a-standard-benchmark-row-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq07a-standard-benchmark-row-source-evidence-probe.v1.json):
+
+```bash
+node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input scripts/equation-mapping/eq07a-standard-benchmark-row-source-evidence-probe.v1.json --summary --pretty
+```
+
+This probe marks the parent compact-region carrier and `standard_benchmark_row` accepted-looking with explicit source-support metadata. It advances the checker to `missing_accepted_electron_inventory_row`, while remaining score-neutral and non-populated.
+
+The standard-benchmark metadata-missing negative control is [eq07a-standard-benchmark-row-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq07a-standard-benchmark-row-metadata-missing-negative-control.v1.json):
+
+```bash
+node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input scripts/equation-mapping/eq07a-standard-benchmark-row-metadata-missing-negative-control.v1.json --summary --pretty
+```
+
+This control marks `standard_benchmark_row` accepted-looking and points it at a durable file, but omits the required row support metadata. The expected result is `status: blocked_missing_rows`, `nextBlocker: missing_accepted_standard_benchmark_row`, and `rowStatuses.standard_benchmark_row.reason=standard_benchmark_row_source_contract_mismatch`.
 
 ## Chandrasekhar Scaling Solver Residual
 

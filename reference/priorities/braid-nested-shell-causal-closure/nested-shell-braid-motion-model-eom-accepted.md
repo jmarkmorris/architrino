@@ -142,6 +142,46 @@ $$
 
 Here $\mathcal{C}_q$ collects phase closure, causal-root, separator, inter-layer wake-exchange, support, and stability rows. If $\Delta\mathcal{C}_{\mathcal{G}}\ne0$, the event is a branch transition or separator crossing rather than smooth breathing on the same branch.
 
+## Layer-Decoupling Stability Test
+
+The legacy three-ring coupling intuition should be translated as a branch-retention test, not as literal mechanical topology. A retained nested shell braid must resist perturbations that try to release one shell band from the other two while preserving the same primitive architrino inventory and declared root chart.
+
+Let $E_{\mathrm{dec}}^{(q)}$ be the decoupling subspace of perturbations to $\mathbf{y}_q$ and the inter-layer exchange entries $\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO}$ that reduce at least one inter-layer coupling or support gap without changing $\pi_q$ or the active root-source identities. The constrained return map for the same branch chart is
+
+$$
+\mathcal{T}_{q,\mathrm{dec}}
+:
+\left(
+\delta\mathbf{y},
+\delta\mathcal{G}_{IM},
+\delta\mathcal{G}_{IO},
+\delta\mathcal{G}_{MO}
+\right)
+\mapsto
+\left(
+\delta\mathbf{y}',
+\delta\mathcal{G}_{IM}',
+\delta\mathcal{G}_{IO}',
+\delta\mathcal{G}_{MO}'
+\right),
+$$
+
+with the same phase, causal-root, separator, support, and event-ledger rows used above. The branch is stable against layer release only if the quotient non-neutral multiplier on this decoupling subspace has a positive gap,
+
+$$
+\Delta_{\mathrm{dec}}^{(q)}
+=
+1-\rho\left(
+D\mathcal{T}_{q,\mathrm{dec}}
+\big\vert_{E_{\mathrm{dec}}^{(q)}/G}
+\right)
+>0,
+$$
+
+while the ordered support inequalities remain positive on the retained window. If the perturbation escapes the support bands, changes root-source identities, or crosses a separator, the outcome is not same-branch breathing. It is a declared branch transition or decay channel.
+
+This test sharpens the three-layer minimality question. A two-band subsystem may have an open release direction in $E_{\mathrm{dec}}^{(q)}$; a three-band retained branch must show that the combined $IM$, $IO$, and $MO$ exchange rows return every admissible release direction to the same branch or else classify the failure explicitly. The first simulation version should kick each single inter-layer exchange row and each pair of exchange rows, then check whether root ledger, phase closure, support bands, $\Delta_{\mathrm{dec}}^{(q)}$, and the event ledger close on one branch identity.
+
 ## What Is Rigid, What Breathes, What Rotates
 
 | Behavior | Candidate mathematical carrier | Interpretation |
@@ -182,6 +222,7 @@ Candidate diagnostics:
 | Phase closure | $\max_{\ell}|\mathcal{P}_{\ell}^{(q)}(T)|$ stays below tolerance on the same ledger. |
 | Inter-layer exchange | $\mathbf{a}_{\ell\leftarrow\ell'}^{\mathrm{agg}}$ explains shell retuning without hidden source reassignment. |
 | Breathing residual | The retuning variables satisfy $D\mathcal{C}_q[\Delta\mathbf{y}]+\Delta\mathcal{C}_{\mathcal{G}}=0$ or else trigger a declared branch event. |
+| Layer release | Decoupling-subspace perturbations of $\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO}$ return to the same branch with $\Delta_{\mathrm{dec}}^{(q)}>0$ or are classified as separator crossings, branch transitions, or decay channels. |
 | Stability | The return-map non-neutral multiplier gap satisfies $\Delta_q=1-\max_{\mu\notin G}|\mu(P_q)|>0$. |
 | Event ledger | $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}=\mathbf{0}$ after all outputs, recoil, medium updates, and provenance rows are included. |
 
@@ -195,6 +236,7 @@ The failure modes are equally informative:
 
 - one-band shell persistence with no ordered sub-bands: shell braid but not nested shell braid;
 - ordered bands without positive stability gap: transient nesting only;
+- positive whole-branch stability but $\Delta_{\mathrm{dec}}^{(q)}\le0$: nested support exists but is release-unstable under layer-decoupling perturbations;
 - phase closure on one ledger but event or exchange closure on another: branch split;
 - approximate $1:2:4$ cadence without branch-derived amplitudes or stability: numerology, not selection;
 - successful support and phase closure but failed event ledger: dynamics branch exists, causal-closure export fails.

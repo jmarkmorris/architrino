@@ -8,6 +8,7 @@
 - Source fixtures:
   - [weak-gauge-exposure-domain-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json)
   - [weak-gauge-exposure-domain-source-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json)
+  - [weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json)
 - Negative-control fixtures:
   - [weak-gauge-exposure-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-split-negative-control.v1.json)
   - [weak-gauge-exposure-domain-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-priority-source-negative-control.v1.json)
@@ -98,6 +99,14 @@ node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equ
 The probe marks only `weak_visible_branch_ledger` as accepted-looking on `D_weak_visible_source_attempt_0001` / `A_weak_source_attempt_0001` while leaving projection, quotient, exposure, `V-A`, CKM, PMNS, provenance, covariance, reaction-event, and Noether sea rows at `attempt`. After the source-evidence guard, the expected result is `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: accepted_without_evidence_source`, because the accepted-looking ledger row still points to this priority map. The `--require-populated` form must exit nonzero.
 
 This is a guard probe, not retained evidence. The next ladder step requires a durable, non-priority source-backed `weak_visible_branch_ledger`; only then should the checker advance to `missing_accepted_weak_projection`.
+
+The carrier-shell source-contract boundary is staged at [weak-gauge-exposure-domain-ledger-source-contract.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-ledger-source-contract.v1.json) and exercised by [weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equation-mapping/weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json --summary --pretty
+```
+
+The expected boundary run reports `status: blocked_missing_rows`, `nextBlocker: missing_accepted_weak_projection`, `sourceEvidencePass: true`, and `scoreDecision: no_score_increase`. This does not land retained evidence. It only proves that once the parent weak-visible ledger is source-backed, the checker advances to the first child row instead of using numeric `V-A`, CKM, PMNS, provenance, or covariance residuals as score evidence.
 
 ## Next Action
 

@@ -27,6 +27,19 @@
 
 The row is not a claim that gravitational-wave sources have already been derived in $\mathbb{A}\mathbb{A}\mathbb{A}$. It is a bounded equation-mapping packet that turns source equations into one retained-record target with explicit failure modes.
 
+## Equation Attack Card
+
+| Field | Current result |
+| --- | --- |
+| Current score | `2` |
+| Closure driver | Recover quadrupole power, chirp mass and drift, Peters-Mathews orbital decay, detector strain flux, radiated energy/angular momentum, and ringdown labels from one gravitational-wave source carrier. |
+| Exact first blocker | `missing_accepted_gw_source_carrier` in the default attempt. |
+| Deepest current probe | [eq11a-gravitational-wave-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-evidence-probe.v1.json) accepts only the top carrier and `gw_source_carrier` against a guard-passing local GWOSC/LVK report source, then stops at `missing_accepted_theta_sea`. |
+| Selected source-window shard | [EQ-11A GW150914 Source-Field Map](eq-11a-gw150914-source-field-map.md), which maps `GW150914-v3` to the Direct Geometry Layer and fail-closed controls without accepting retained evidence. |
+| Smallest score-moving evidence object | A retained $\Theta_{\mathrm{GWsrc}}(W,P)$ packet whose source carrier, Noether sea/effective-metric rows, source-event ledger, detector strain record, radiated-output ledger, ringdown label, source provenance, and no-hidden-retune witness are accepted, durable-source-backed, and same-record bound. |
+| Fail-closed controls already exercised | Coordination-source and probe-source controls keep accepted-looking `gw_source_carrier` rows blocked when sourced only to priority/probe artifacts; the `theta_sea` content-source control keeps authored Noether sea prose from satisfying retained `theta_sea` evidence. |
+| Next safe implementation target | A score-neutral source-backed `theta_sea` / effective-metric tensor row template for the GW150914 carrier, if an actual retained evidence source can be identified; otherwise leave the next blocker as `missing_accepted_theta_sea`. |
+
 ## Standard Benchmark
 
 The leading circular-binary chirp-mass comparison is

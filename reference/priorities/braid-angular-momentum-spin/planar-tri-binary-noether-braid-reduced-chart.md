@@ -74,6 +74,57 @@ The residual should be evaluated for at least three families:
 - equal-frequency families such as raw $(f_1,f_2,f_3)=(f,f,f)$;
 - dyadic or integer-lock controls such as role-assigned $4:2:1$ and $n:m:1$.
 
+## Triadic Phase-Residual Follow-Up
+
+The legacy `Noether Cores and Quantum Spin` source raises a useful
+priority-only question: whether the three binary phase offsets favor a
+$2\pi/3$ cyclic pattern. This is not an $SU(3)$ claim and not retained-branch
+evidence by itself. It is a separate phase-residual diagnostic for the
+coplanar cyclic sector and equal-frequency candidate.
+
+For a planar row with phase entries $(\phi_1,\phi_2,\phi_3)$, define the
+triadic phase residual
+
+$$
+d_{2\pi/3}
+=
+\min_{\psi\in S^1,\ \pi\in S_3,\ \epsilon\in\{-1,+1\}}
+\left(
+\sum_{a=1}^{3}
+w_a
+\left|
+\operatorname{Arg}
+e^{
+i\left(
+\phi_{\pi(a)}
+-
+\psi
+-
+\epsilon\frac{2\pi}{3}(a-1)
+\right)
+}
+\right|^2
+\right)^{1/2}.
+$$
+
+Here $\psi$ removes the common phase origin, $\pi$ removes raw row-order
+bias, $\epsilon$ distinguishes the two cyclic orientations, and $w_a$ are
+declared comparison weights. If no retained action or wake weights exist, use
+$w_a=1/3$ and mark the row as unweighted diagnostic evidence only. If branch
+weights are available, rerun the residual with those weights and report
+whether the same cyclic sector remains preferred.
+
+The follow-up replay should report $d_{2\pi/3}$ beside $d_{\Theta}$ and
+$d_{\mathrm{plane}}$ for the equal-frequency, offset, dyadic, and finite
+$m:n$ candidate families. A small $d_{2\pi/3}$ may nominate a cyclic phase
+sector, but it must not replace retained row-set identity, planar-sector
+support, branch weights, wake/action routing, return-period closure, or
+stability. The diagnostic fails as promotion evidence if the low residual
+appears only after changing row sets, choosing a role map before the raw
+branch proves one, suppressing nontriadic controls, or collapsing an
+unweighted phase identity into near-orthogonal tri-binary evidence without
+plane-sector data.
+
 ## Photon Bridge
 
 The photon channel consumes the planar chart only after the branch supplies two compatible planarized records:
@@ -133,7 +184,7 @@ The replay should emit a planar-chart summary with:
 
 1. raw $B_1:B_2:B_3$ frequency rows and any role-assigned $I:M:O$ projections;
 2. $\Pi_{\mathrm{pl}}(B_{3B})$ for each sampled family;
-3. $d_{\mathrm{plane}}$, $d_{\Theta}$, $d_{\mathbf J}$, $d_E$, $d_{\mathrm{wake}}$, and $d_{\mathrm{stab}}$ rows;
+3. $d_{\mathrm{plane}}$, $d_{\Theta}$, $d_{2\pi/3}$, $d_{\mathbf J}$, $d_E$, $d_{\mathrm{wake}}$, and $d_{\mathrm{stab}}$ rows;
 4. photon-bridge readiness rows for pro/anti pairing;
 5. an explicit retained-acceptance flag that remains false unless $S_{\mathrm{pl}}$ and $D_{\mathrm{pl}}$ are populated.
 
