@@ -29,6 +29,12 @@ The He-Rb-He example is currently best treated as a computed Switch candidate, n
 
 This vocabulary should not be read as branch-choice metaphysics. In quantum comparisons, a Decider does not select an ontic world from a set of already existing worlds. It changes the physical basin partition, threshold placement, and response timing of an assembly before later perturbations are resolved. Any claim that agency changes outcome statistics must therefore report the bias state, work or dissipation ledger, hold time, and measurable basin-weight shift.
 
+## Biological and Artificial Embodiments
+
+The agency criteria are substrate-universal, but they are not substrate-sufficient. A biological organism, artificial system, hybrid body, detector network, or robotic apparatus can be evaluated with the same assembly-level questions: does it hold internal state, route feedback, form records, control thresholds, pay the required work and dissipation costs, and change later basin weights under fixed boundary context? Shared architrino substrate membership alone does not answer those questions. A rock, a clock, a cell, a human body, and an artificial system all belong to the same physical ontology, but their organization and record-making capacities differ.
+
+This also separates physics from legal or moral personhood. $\mathbb{A}\mathbb{A}\mathbb{A}$ can describe whether a system functions as a Physical Observer, Switch, Decider, or mature agent under declared dynamical tests. It does not derive rights, duties, or legal individuality from primitive constituents alone. Biological embodiment is therefore not a privileged ontological substance, and artificial embodiment is not excluded by ontology; both must be assessed through organization, persistence, feedback, record formation, and agency-relevant control.
+
 ## Primitive Metastability
 
 The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether braid](../noether-braid/noether-braid.md) architecture, every Noether braid contains a middle binary at the field-speed hinge $v=c_f$, while [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.

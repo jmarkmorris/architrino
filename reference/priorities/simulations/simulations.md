@@ -50,6 +50,33 @@ $$
 
 Rows with $m_E(t)\le 1$ are threshold-sensitive. They can guide reruns, perturbation sweeps, and detector-synthetic caution flags, but they do not promote one branch, reaction, or record outcome without the ordinary root-ledger, residual, convergence, and provenance rows.
 
+### Provenance-Scale Simulation Utility
+
+A provenance-rich simulation is valuable only when retained path histories answer a question that a coarse field, aggregate ledger, or detector-synthetic export cannot. The working question is: for which domains does all-entity provenance reduce replay ambiguity enough to justify path-history storage and query cost?
+
+Candidate utility classes:
+
+- reaction balancing: trace incoming and outgoing architrino, Noether-braid, wake, and Noether sea inventory through one event;
+- branch replay: recover which source history and causal-root branch generated a retained hit;
+- process demographics: count source classes, routing classes, and retained products through outflows, thermalization, jets, or radiation cascades over a declared domain;
+- visualization and debugging: show path trails and expanding causal wakes as display-only projections while preserving authoritative segment records separately.
+
+The smallest quantitative object is a provenance-value heuristic:
+
+$$
+R_{\mathrm{prov,value}}(Q;E)
+=
+\frac{
+N_{\mathrm{amb}}^{\mathrm{coarse}}(Q;E)
+-
+N_{\mathrm{amb}}^{\mathrm{prov}}(Q;E)
+}{
+C_{\mathrm{store}}(E)+C_{\mathrm{query}}(E)+\varepsilon_0
+}.
+$$
+
+Here $Q$ is the scientific question, $E$ is the declared simulation envelope, $N_{\mathrm{amb}}^{\mathrm{coarse}}$ is the admissible replay or explanation count after coarse summaries, $N_{\mathrm{amb}}^{\mathrm{prov}}$ is the count after retained provenance, and $C_{\mathrm{store}}+C_{\mathrm{query}}$ is the storage/query cost. This is a priority heuristic for simulation design, not a promotion gate.
+
 ### Wake-Pattern Return Diagnostic
 
 A visualization pass may render a candidate binary, shell-braid, or nested-shell branch as an effective standing wake pattern only after the raw causal-root ledger is preserved. For a declared branch window $W$, period $T$, and quotient map $Q$ that removes center drift, global rotation, and the declared cycle phase, reconstruct a finite-window wake or potential map $\Phi_Q(\mathbf{y}, t)$ from the same $\Pi_{\mathbb{U}_{\text{now}}}$ provenance rows used by the branch residuals. A diagnostic return residual is
