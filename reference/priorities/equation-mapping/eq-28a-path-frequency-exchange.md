@@ -216,3 +216,4 @@ Potential later targets:
 The next score-moving artifact is not another normalized fixture. It is a source-backed $\Theta_{\nu\text{-}\mathrm{ex}}(W)$ carrier whose row bindings are accepted and whose path ledger keeps photon packet identity, frequency exchange, electron-medium state, recoil/remnant rows, and finite-window thermal state on one record.
 
 The source-field contract for that carrier is staged in [EQ-28A Theta-Nu-Ex Source-Field Map](eq-28a-theta-nu-ex-source-field-map.md). It keeps `Theta_nu-ex` distinct from `theta_gamma_packet`, `theta_therm`, and `Theta_rec/ac`, and preserves `missing_accepted_path_frequency_exchange_carrier` as the ordinary first blocker.
+That source-field map now carries the Direct Geometry Layer for the concrete `Theta_nu-ex` source object, including source-object ids, same-record bindings, fail-closed controls, and the smallest accepted evidence object.
