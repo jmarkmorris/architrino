@@ -913,6 +913,8 @@ $$
 
 Because $r = c_f(t - t_0)$, $r = 0$ implies $\tau = t - t_0 = 0$. This case is excluded by $H(0) = 0$. There are no "collision singularities" in the causal set (architrinos can pass through each other; forces are mediated by expanding wake surfaces, not by contact).
 
+This also fixes the status of later short-distance regularizations. A finite core cutoff or core mollifier is not a hard exclusion sphere, an elastic contact collision, or a primitive rule saying that causal wakes are blocked by or transmitted through an opaque core. It is a declared mathematical control on the near-origin amplitude inside a regularized branch chart. In the canonical branch law, a source contribution is admitted by the causal-root constraint, polarity sign $\sigma_{ij}$, separation or regularization data, transversality/Jacobian control, active-root count, and the required stability/action/event ledgers. A polarity-dependent short-distance kernel would therefore be an additional model term that must be derived and validated; it cannot be inserted as an unproved like-versus-opposite collision or opacity rule.
+
 #### Superposition Principle
 
 The Master EOM is **linear in source contributions** on a declared branch chart:
@@ -1121,7 +1123,7 @@ while preserving total emission $q$.
 
 **In the super-field-speed regime** ($\|\mathbf{v}_a\| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization gives a finite contribution only while the active-root count, separation floor, and Jacobian floor remain controlled.
 
-**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. 
+**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. If a theorem or simulation also introduces a short-distance core mollifier $\epsilon_c$, it must declare whether the amplitude remains polarity-blind apart from $\sigma_{ij}|q_i q_j|$ or whether a derived polarity-dependent kernel has been added. The default law uses the former convention; the latter is a new closure claim and must preserve the same causal-root, symmetry, and event-ledger checks before it can be used in an assembly or blackbody argument.
 
 #### Conditional Well-Posedness for the Regularized Exact Model
 

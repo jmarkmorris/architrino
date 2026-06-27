@@ -3933,6 +3933,8 @@ $$
 
 Because $r = c_f(t - t_0)$, $r = 0$ implies $\tau = t - t_0 = 0$. This case is excluded by $H(0) = 0$. There are no "collision singularities" in the causal set (architrinos can pass through each other; forces are mediated by expanding wake surfaces, not by contact).
 
+This also fixes the status of later short-distance regularizations. A finite core cutoff or core mollifier is not a hard exclusion sphere, an elastic contact collision, or a primitive rule saying that causal wakes are blocked by or transmitted through an opaque core. It is a declared mathematical control on the near-origin amplitude inside a regularized branch chart. In the canonical branch law, a source contribution is admitted by the causal-root constraint, polarity sign $\sigma_{ij}$, separation or regularization data, transversality/Jacobian control, active-root count, and the required stability/action/event ledgers. A polarity-dependent short-distance kernel would therefore be an additional model term that must be derived and validated; it cannot be inserted as an unproved like-versus-opposite collision or opacity rule.
+
 ###### Superposition Principle
 
 The Master EOM is **linear in source contributions** on a declared branch chart:
@@ -4141,7 +4143,7 @@ while preserving total emission $q$.
 
 **In the super-field-speed regime** ($\|\mathbf{v}_a\| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization gives a finite contribution only while the active-root count, separation floor, and Jacobian floor remain controlled.
 
-**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit.
+**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. If a theorem or simulation also introduces a short-distance core mollifier $\epsilon_c$, it must declare whether the amplitude remains polarity-blind apart from $\sigma_{ij}|q_i q_j|$ or whether a derived polarity-dependent kernel has been added. The default law uses the former convention; the latter is a new closure claim and must preserve the same causal-root, symmetry, and event-ledger checks before it can be used in an assembly or blackbody argument.
 
 ###### Conditional Well-Posedness for the Regularized Exact Model
 
@@ -7122,6 +7124,8 @@ $$
 $$
 
 Both bounds must use the same horizon, screening, and summation prescription that makes the many-source wake sum converge. The variance bound is the load-bearing part: incoherent fluctuation must remain small compared with the coherent bound-state gradient that phase-locked assemblies preserve. This cancellation is one reason the Noether sea can be densely active while remaining macroscopically quiet. What standard prose may call a vacuum state is not empty Euclidean void; it is the effective limit in which the local Noether sea assemblies and their causal wakes balance so well that only small residual gradients remain available to ordinary probes.
+
+Mean-zero wake potential is therefore not zero total energy. A statistically neutral $50/50$ electrino/positrino inventory can make the large-scale potential gradient and received power nearly vanish while still carrying kinetic energy, local correlated interaction energy, retained wake-history content, and Noether sea organization. The conserved quantity for an isolated exact trajectory is the history-aware total ledger, not "initial kinetic energy plus a naive instantaneous potential" evaluated after the wake record has been discarded.
 
 Phase-locked bound states are the important exception. In a localized assembly, nearby constituents do not sample random phases; their active causal roots are correlated, and the $1/r^2$ distance factor lets the nearest coherent branches dominate over the far incoherent background. A [collinear breather](../../../../markdown/aaa/proof-programs/collinear-breather.md), for example, is precisely a reduced setting in which two opposite-polarity architrinos can form a localized, non-canceling causal resonance. The breather ansatz isolates this effect: instead of averaging away, the partner-hit and self-hit branches stay phase organized enough to exchange kinetic and potential energy across a bounded cycle.
 
@@ -10910,7 +10914,7 @@ The corresponding tangential signs are $\sigma\cos(\alpha_s/2)$ for self roots a
 $$
 2\pi-\alpha=2s\sin(\alpha/2)
 $$
-and appears at $s=\pi/2$ with $\alpha=\pi$. For $s>\pi/2$ it contributes negative tangential drive. This does not prove circular closure, but it makes the $\sigma=-1$ sheet the first internal generator capable of carrying opposite period in the tangential cohomology class. A useful floor conjecture is:
+and appears at $s=\pi/2$ with $\alpha=\pi$. Equivalently, at the threshold a wake crosses the diameter $2R$ in time $2R/c_f$, while the source advances half a circumference $\pi R$ at speed $s c_f$; the equality $\pi R=s c_f(2R/c_f)$ gives $s=\pi/2$. For $s>\pi/2$ it contributes negative tangential drive. This does not prove circular closure, but it makes the $\sigma=-1$ sheet the first internal generator capable of carrying opposite period in the tangential cohomology class. A useful floor conjecture is:
 
 > No isolated, bare, constant-speed circular MCB branch can close for $s<\pi/2$, because the first negative same-source sheet is absent and the same-sheet tangential cohomology class has no internal cancellation generator. In cochain language, the space available to the retained two-body ledger has no opposite-period self-row before the $\sigma=-1$ wall at $s=\pi/2$.
 
@@ -68217,6 +68221,8 @@ The conservative status is:
 - Any weak-channel ledger that depends on chirality, axial-frame orientation, CKM/PMNS mixing, or antineutrino routing remains provisional until the corresponding geometry is derived.
 - Any reaction-level spin, helicity, polarization, or vector-channel angular-momentum entry is a downstream consumer of the angular-momentum and spin workstream. It should record what must close, not function as a local proof of that closure.
 
+Charge-changing reaction notation is assembly-level shorthand. A weak or high-energy event may change an outgoing assembly's observer-level net charge, but the primitive polarity inventory does not mutate. The ledger must derive the before/after charge from conserved $E/P$ counts, $\epsilon=|e|/6$ axial-layer bookkeeping where applicable, shielding-state changes, Noether sea participation, and outgoing assembly routing. A reaction map that changes a particle label without this constituent and exposure accounting remains an observer-level placeholder.
+
 #### Provenance Protocol
 
 Each reaction record should state:
@@ -68225,7 +68231,7 @@ Each reaction record should state:
 2. **Active assemblies:** which incoming assemblies actually reconfigure, and which are spectators.
 3. **Noether sea participation:** whether local Noether braids, neutral binaries, axial layers, or medium excitations are consumed, split, reconfigured, or returned.
 4. **Constituent inventory:** total $E$ and $P$ counts before and after, separated into braid and axial-layer contributions where the distinction matters.
-5. **Polarity and charge accounting:** how observer-level charge bookkeeping emerges from the $E/P$ routing.
+5. **Polarity and charge accounting:** how observer-level charge bookkeeping emerges from the conserved $E/P$ routing, axial-layer exposure, shielding state, Noether sea participation, and outgoing assembly routing.
 6. **Energy-momentum and angular-momentum accounting:** where kinetic energy, internal binding energy, photon assemblies, recoil, medium excitation, spin/vector ledger terms, and wake-carried angular momentum enter and exit.
 7. **Path-history provenance:** which emitted causal wakes, source identities, and delayed interactions are needed to make the reaction deterministic in absolute time.
 8. **Radiation event record, when applicable:** for emitted, absorbed, shifted, captured, or failed photon channels, attach the shared event fields from [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), including $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, and causal-wake ledger.
@@ -87725,8 +87731,15 @@ The correspondence between the quantum mechanical measurement formalism and arch
 *   **The Apparatus**: A massive complex of Noether braid assemblies that injects a structured potential perturbation (action) sufficient to overwhelm the target's metastability.
 *   **The Measurement Interaction**: The deterministic exchange of causal wake surfaces between the apparatus and the target assembly.
 *   **Wavefunction Collapse**: The continuous, finite-time physical transit of the target assembly across a phase-space separatrix, settling into a new stable attractor.
-*   **Irreversibility / Record Creation**: The excess energy and phase information from the transition are dissipated into the surrounding Noether sea and the macroscopic apparatus. This thermalization makes the transition operationally irreversible, cementing the macroscopic record.
+*   **Irreversibility / Record Creation**: The transition's energy, momentum and angular momentum, apparatus work or recoil, medium excitation, and phase/path-history content must be routed into named apparatus, environment, and Noether sea records. Thermalization and dissipation are redistribution into those records, not destruction of energy or record content.
 *   **The Born Rule ($P_k = |c_k|^2$)**: The emergent statistical distribution reflecting the relative fractional volumes of the competing attractor basins in the target's phase space, mapped over unresolved Noether sea boundary data and path-history structure.
+
+A target assembly can still be perturbed by an energy exchange without a
+completed measurement. If the interaction changes the effective state but
+does not supply a durable record, a restartable basin, event-ledger closure,
+and a bounded unrecorded-energy residual, the observer-side wavefunction may
+need a better reduced description, but it has not earned the completed wave
+function transition assumed by collapse language.
 
 ###### Overcoming the Heisenberg Cut
 

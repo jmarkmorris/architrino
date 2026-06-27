@@ -13387,8 +13387,15 @@ The correspondence between the quantum mechanical measurement formalism and arch
 *   **The Apparatus**: A massive complex of Noether braid assemblies that injects a structured potential perturbation (action) sufficient to overwhelm the target's metastability.
 *   **The Measurement Interaction**: The deterministic exchange of causal wake surfaces between the apparatus and the target assembly.
 *   **Wavefunction Collapse**: The continuous, finite-time physical transit of the target assembly across a phase-space separatrix, settling into a new stable attractor.
-*   **Irreversibility / Record Creation**: The excess energy and phase information from the transition are dissipated into the surrounding Noether sea and the macroscopic apparatus. This thermalization makes the transition operationally irreversible, cementing the macroscopic record.
+*   **Irreversibility / Record Creation**: The transition's energy, momentum and angular momentum, apparatus work or recoil, medium excitation, and phase/path-history content must be routed into named apparatus, environment, and Noether sea records. Thermalization and dissipation are redistribution into those records, not destruction of energy or record content.
 *   **The Born Rule ($P_k = |c_k|^2$)**: The emergent statistical distribution reflecting the relative fractional volumes of the competing attractor basins in the target's phase space, mapped over unresolved Noether sea boundary data and path-history structure.
+
+A target assembly can still be perturbed by an energy exchange without a
+completed measurement. If the interaction changes the effective state but
+does not supply a durable record, a restartable basin, event-ledger closure,
+and a bounded unrecorded-energy residual, the observer-side wavefunction may
+need a better reduced description, but it has not earned the completed wave
+function transition assumed by collapse language.
 
 ###### Overcoming the Heisenberg Cut
 

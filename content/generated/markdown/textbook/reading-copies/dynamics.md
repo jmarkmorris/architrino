@@ -915,6 +915,8 @@ $$
 
 Because $r = c_f(t - t_0)$, $r = 0$ implies $\tau = t - t_0 = 0$. This case is excluded by $H(0) = 0$. There are no "collision singularities" in the causal set (architrinos can pass through each other; forces are mediated by expanding wake surfaces, not by contact).
 
+This also fixes the status of later short-distance regularizations. A finite core cutoff or core mollifier is not a hard exclusion sphere, an elastic contact collision, or a primitive rule saying that causal wakes are blocked by or transmitted through an opaque core. It is a declared mathematical control on the near-origin amplitude inside a regularized branch chart. In the canonical branch law, a source contribution is admitted by the causal-root constraint, polarity sign $\sigma_{ij}$, separation or regularization data, transversality/Jacobian control, active-root count, and the required stability/action/event ledgers. A polarity-dependent short-distance kernel would therefore be an additional model term that must be derived and validated; it cannot be inserted as an unproved like-versus-opposite collision or opacity rule.
+
 ##### Superposition Principle
 
 The Master EOM is **linear in source contributions** on a declared branch chart:
@@ -1123,7 +1125,7 @@ while preserving total emission $q$.
 
 **In the super-field-speed regime** ($\|\mathbf{v}_a\| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization gives a finite contribution only while the active-root count, separation floor, and Jacobian floor remain controlled.
 
-**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit.
+**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. If a theorem or simulation also introduces a short-distance core mollifier $\epsilon_c$, it must declare whether the amplitude remains polarity-blind apart from $\sigma_{ij}|q_i q_j|$ or whether a derived polarity-dependent kernel has been added. The default law uses the former convention; the latter is a new closure claim and must preserve the same causal-root, symmetry, and event-ledger checks before it can be used in an assembly or blackbody argument.
 
 ##### Conditional Well-Posedness for the Regularized Exact Model
 
@@ -4104,6 +4106,8 @@ $$
 $$
 
 Both bounds must use the same horizon, screening, and summation prescription that makes the many-source wake sum converge. The variance bound is the load-bearing part: incoherent fluctuation must remain small compared with the coherent bound-state gradient that phase-locked assemblies preserve. This cancellation is one reason the Noether sea can be densely active while remaining macroscopically quiet. What standard prose may call a vacuum state is not empty Euclidean void; it is the effective limit in which the local Noether sea assemblies and their causal wakes balance so well that only small residual gradients remain available to ordinary probes.
+
+Mean-zero wake potential is therefore not zero total energy. A statistically neutral $50/50$ electrino/positrino inventory can make the large-scale potential gradient and received power nearly vanish while still carrying kinetic energy, local correlated interaction energy, retained wake-history content, and Noether sea organization. The conserved quantity for an isolated exact trajectory is the history-aware total ledger, not "initial kinetic energy plus a naive instantaneous potential" evaluated after the wake record has been discarded.
 
 Phase-locked bound states are the important exception. In a localized assembly, nearby constituents do not sample random phases; their active causal roots are correlated, and the $1/r^2$ distance factor lets the nearest coherent branches dominate over the far incoherent background. A [collinear breather](../../../../markdown/aaa/proof-programs/collinear-breather.md), for example, is precisely a reduced setting in which two opposite-polarity architrinos can form a localized, non-canceling causal resonance. The breather ansatz isolates this effect: instead of averaging away, the partner-hit and self-hit branches stay phase organized enough to exchange kinetic and potential energy across a bounded cycle.
 
@@ -7892,7 +7896,7 @@ The corresponding tangential signs are $\sigma\cos(\alpha_s/2)$ for self roots a
 $$
 2\pi-\alpha=2s\sin(\alpha/2)
 $$
-and appears at $s=\pi/2$ with $\alpha=\pi$. For $s>\pi/2$ it contributes negative tangential drive. This does not prove circular closure, but it makes the $\sigma=-1$ sheet the first internal generator capable of carrying opposite period in the tangential cohomology class. A useful floor conjecture is:
+and appears at $s=\pi/2$ with $\alpha=\pi$. Equivalently, at the threshold a wake crosses the diameter $2R$ in time $2R/c_f$, while the source advances half a circumference $\pi R$ at speed $s c_f$; the equality $\pi R=s c_f(2R/c_f)$ gives $s=\pi/2$. For $s>\pi/2$ it contributes negative tangential drive. This does not prove circular closure, but it makes the $\sigma=-1$ sheet the first internal generator capable of carrying opposite period in the tangential cohomology class. A useful floor conjecture is:
 
 > No isolated, bare, constant-speed circular MCB branch can close for $s<\pi/2$, because the first negative same-source sheet is absent and the same-sheet tangential cohomology class has no internal cancellation generator. In cochain language, the space available to the retained two-body ledger has no opposite-period self-row before the $\sigma=-1$ wall at $s=\pi/2$.
 

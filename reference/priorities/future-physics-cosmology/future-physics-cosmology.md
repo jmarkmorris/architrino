@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `research_revolution_seed` - Populate the research-revolution working note with funding, academic and institutional research, publishing, impact, and corporate R&D implications. Status: `idea`. Depends on: none.
+1. `research_revolution_seed` - Populate the research-revolution working note with funding, academic and institutional research, publishing, impact, and corporate R&D implications. Status: `active`. Depends on: none.
 2. `promotion_readiness` - Decide whether any section has matured into reader-facing corpus prose, public strategy material, or a separate operational plan. Status: `pending`. Depends on: `research_revolution_seed`.
 
 ## Scope
