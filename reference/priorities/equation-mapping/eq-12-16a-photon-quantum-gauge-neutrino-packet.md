@@ -319,6 +319,24 @@ $$
 +\Delta_{\mathrm{gauge}}.
 $$
 
+### Term-To-Geometry Map
+
+This table is a priority-only recovery map. It names the geometric readout each Maxwell-style term should consume before the residual above can count as equation evidence. It is not a score change and does not make $A_\mu$, $J_\mu$, $\mathbf E$, or $\mathbf B$ native substrate fields.
+
+| Comparison term | AAA geometric readout | Required carrier or row | Fail-closed condition |
+| --- | --- | --- | --- |
+| $\theta$ | Declared coarse-graining from causal wakes, photon-channel packets, charged assembly records, and Noether sea state into one observer-level field chart. | One retained event or finite window with source/receiver branch ids, photon Gate A/B/C rows, Noether sea row, and a declared projection $\Pi_{13}$. | `equation_map.imported_formula` if the chart is asserted without a coarse-graining map. |
+| $A_{\mathrm{eff},\mu}^{\theta}$ | Effective EM connection/potential readout extracted from wake superposition, photon-channel transport, and Noether sea response. | `effective_gauge_chart_witness`, causal-wake ledger, photon packet ledger, and shared $c_\gamma$ / $\chi_\gamma$ rows on the same event or window. | `equation_map.level_collapse` if $A_\mu$ is treated as a substrate field instead of an effective connection readout. |
+| $J_{\mathrm{eff},\mu}^{\theta}$ | Exposed charge/current readout from charged assembly polarity, axial-layer ledgers, source-event provenance, and event balance. | `effective_charge_current_continuity`, charged assembly branch ids, and the same event-ledger rows used by Gate A/B/C and recoil. | `missing_accepted_photon_gate_A_input_output` remains first if the source event itself is not accepted. |
+| $\Box_{\mathrm{eff}}$ | Observer-level wave operator supplied by the effective metric, local photon-channel speed, and Noether sea delay/response rows. | $g_{\mu\nu}^{\mathrm{eff}}$, $c_\gamma$, $\chi_{\text{sea}}$, Noether sea state row, and the same chart used by $A_{\mathrm{eff},\mu}^{\theta}$. | Fail if the operator uses a private metric, private photon speed, or unrelated Noether sea row. |
+| $\Box_{\mathrm{eff}}A_{\mathrm{eff},\mu}^{\theta}-J_{\mathrm{eff},\mu}^{\theta}$ | Source-response mismatch after the effective connection and exposed current are read from the same event/window. | Same-record binding between the effective connection, current, event ledger, Gate A/B/C rows, and Noether sea row. | Fail if $A_{\mathrm{eff}}$ and $J_{\mathrm{eff}}$ come from split branch/event/window records. |
+| $\Delta_{\mathrm{cont}}$ | Charge/current continuity residual for the exposed event current. | `effective_charge_current_continuity` with source and receiver provenance. | Fail if continuity is imported from Maxwell prose rather than checked against event ledgers. |
+| $\Delta_E^{\mathrm{EM}}$, $\Delta_{\mathbf p}^{\mathrm{EM}}$, $\Delta_{\mathbf J}^{\mathrm{EM}}$ | Energy, momentum, and angular-momentum balance across the effective EM control volume. | `em_stress_poynting_control_volume`, `energy_momentum_event_ledger`, `angular_momentum_ledger_delta_J`, plus explicit medium/remnant support rows. | Fail if medium/remnant rows are omitted or if Poynting/stress balance is evaluated on a different control volume. |
+| $\Delta_{\mathrm{gauge}}$ | Gauge/chart invariance witness showing chart changes preserve the physical branch/event ledger. | `effective_gauge_chart_witness` with chart probes tied to the same $\Pi_{13}\mathsf e_{\gamma e}^{0}$ projection. | Fail if gauge freedom hides branch retuning, source changes, or event-id changes. |
+| $\mathbf E_{\mathrm{eff}}^\theta$, $\mathbf B_{\mathrm{eff}}^\theta$ | Observer-level electric and magnetic readouts from the effective connection; $\mathbf B_{\mathrm{eff}}^\theta$ is the curl-like component consumable by `EQ-27` only after `EQ-27` supplies the ordered-frame/internal-current moment map. | Same $A_{\mathrm{eff},\mu}^{\theta}$, current, gauge, and Noether sea rows; downstream `EQ-27` also needs `ordered_frame_loop` and `moment_map_magnetic`. | Fail if an electric or magnetic field label is used as a first-class substrate object or as a bypass around either row's first blocker. |
+
+The smallest cross-row solve target is therefore not the continuum equation alone. It is one event-bound term map on $\Pi_{13}\mathsf e_{\gamma e}^{0}$ where Gate A/B/C, effective current, stress/Poynting, gauge, energy/momentum/angular-momentum, Noether sea, medium/remnant, and no-hidden-retune rows all share the same event id and durable source evidence.
+
 ### Noether Braid Variables
 
 - charged assembly polarity and axial-layer ledgers;
@@ -373,6 +391,8 @@ node scripts/equation-mapping/compton-recoil-event-replay.mjs \
 Current status is score-neutral: the checker reports `status: comparison_replay_closed_native_rows_missing`, `nextBlocker: missing_accepted_photon_gate_A_input_output`, `effectiveEmGateStatus: blocked_missing_native_event_rows`, `effectiveEmGateNextBlocker: missing_accepted_photon_gate_A_input_output`, and `effectiveEmGateNumericPass: true`. The comparison replay closes the homogeneous Compton/recoil residuals on the attempt event, but every native row and the medium/remnant support rows remain `attempt`, so no `EQ-12`, `EQ-13`, `EQ-26`, `EQ-28`, or `EQ-29` score change is justified. The gate does not make Maxwell's equations native; it prevents Maxwell-level summaries from bypassing the photon Gate A/B/C, recoil, Noether sea, medium/remnant, and event-ledger rows.
 
 [EQ-13 And EQ-28 e_gamma_e_0 Gate A Source-Field Map](eq-13-28-e-gamma-e0-gate-a-source-field-map.md) narrows this first blocker to one event-bound `photon_gate_A_input_output` source row on $\mathsf e_{\gamma e}^{0}$. It is priority-only and does not change scores.
+
+Priority-only bridge to `EQ-27`: [EQ-15 And EQ-27 Ordered-Frame Loop Source-Field Map](eq-15-27-ordered-frame-loop-source-field-map.md#priority-only-magnetism-bridge-to-eq-13) records how the effective EM connection/curl readout $\mathbf B_{\mathrm{eff}}^\theta$ can be consumed by a magnetic-moment response only after `EQ-13` supplies event-bound effective EM rows and `EQ-27` supplies an ordered-frame/internal-current moment map. This bridge is not a substrate magnetic field and does not bypass `missing_accepted_photon_gate_A_input_output`.
 
 ### Failure Mode
 

@@ -8287,6 +8287,19 @@ chapters still own their local details.
 | Information and computation | State distinction, encoding, measurement records, reset cost, algorithmic scaling, and simulation discipline | Directional comparison and methodological language | Useful for records and models, but not a substrate ontology |
 | Holography, AdS/CFT, islands, MOND-like fits, string/LQG/SUSY/inflationary programs | Comparison pressure, candidate analogies, and boundary checks | Directional comparison | They may sharpen constraints, but they are not closure targets unless a tested observable or hard consistency condition requires them |
 
+The early quantum-origin examples should be read through this transfer
+discipline as a connected benchmark bundle. Blackbody radiation tests whether
+photon-channel emission, absorption, scattering, and medium exchange recover
+detailed balance and the Planck occupation law without importing primitive mode
+quantization. The photoelectric effect tests whether material capture
+thresholds, recoil, heating, and bound-excitation rows close without treating
+photon energy as a free-standing ontology. Hydrogen line spectra test whether
+atomic envelope basins, shared spectral rows, and photon event ledgers recover
+stable lines without adding a per-line clock factor. Double-slit and
+wave-particle cases test whether unresolved path history remains live until a
+localized record forms. Together these cases are inherited benchmark records:
+they state what must be recovered, not what the substrate is.
+
 #### Foundational Formula Audit
 
 The foundational layer uses a short list of formulas directly, but they do not

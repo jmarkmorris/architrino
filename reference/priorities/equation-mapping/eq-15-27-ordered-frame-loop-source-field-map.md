@@ -22,6 +22,30 @@ This map does not populate accepted retained evidence. It narrows the shared `EQ
 
 No score changes.
 
+## Priority-Only Magnetism Bridge To EQ-13
+
+This bridge records the magnetism discussion as priority-only routing. It does not create a new equation row, populate accepted evidence, change scores, or promote a substrate magnetic field. `EQ-13` owns the effective EM recovery side: event-bound charge/current continuity, stress/Poynting balance, gauge witness, photon Gate A/B/C rows, and Noether sea response on a retained event carrier. `EQ-27` owns the magnetic-moment response side: an ordered-frame/internal-current moment map, angular-momentum ledger, exposure fiber, leading-$g$ row, apparatus/readout row, and no-hidden-retune witness on one retained branch.
+
+The shared observer-level object is an effective magnetic readout, not a native substrate object:
+
+$$
+\mathbf B_{\mathrm{eff}}^\theta
+=
+\operatorname{curl}_{\mathrm{eff}}\mathbf A_{\mathrm{eff}}^\theta
+$$
+
+as shorthand for the connection/curvature/curl-like component extracted from retained wake, current, event, and Noether sea response rows. The bridge may compare magnet/iron-filing behavior through
+
+$$
+\mathbf F_{\mathrm{mag}}^{\mathrm{eff}}
+\sim
+\nabla\left(\boldsymbol\mu_{\mathrm{eff}}\cdot\mathbf B_{\mathrm{eff}}^\theta\right),
+$$
+
+but only with $\boldsymbol\mu_{\mathrm{eff}}$ supplied by the `EQ-27` ordered-frame/internal-current ledger and $\mathbf B_{\mathrm{eff}}^\theta$ supplied by `EQ-13` effective EM rows. The comparison reads: an iron branch or domain aligns its exposed ordered-frame/internal-current response with the magnet's effective EM and Noether sea response gradient. It is not evidence for a first-class magnetic substance.
+
+First blockers remain unchanged: `EQ-27` still blocks at `missing_accepted_ordered_frame_loop`, and the `EQ-13` event-bound EM gate still blocks at `missing_accepted_photon_gate_A_input_output`. A magnetic analogy, Maxwell prose row, or naked $B$ field label is a fail-closed imported-formula/substrate-field bypass unless the row binds to those retained carriers.
+
 ## Equation Attack Cards
 
 | Row | Current score | Primary carrier | Exact first blocker | Smallest blocker-moving object |

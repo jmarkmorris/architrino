@@ -2557,6 +2557,8 @@ The angular-momentum proof program names the right consumers, but the current ma
 
 Current executable guardrail: [spin-magnetic-moment-certificate.mjs](../../../scripts/equation-mapping/spin-magnetic-moment-certificate.mjs) consumes the shared `EQ-15`/`EQ-27` certificate $\mathfrak C_{\mathrm{spin}\to\mu}$. The retained-attempt fixture reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_ordered_frame_loop`; numeric $\eta_{\mathrm{spin}}=1$ and $g_{\mathrm{lead}}=2$ are not score evidence without accepted ordered-frame, moment-map, and exposure-fiber rows. The priority-source control [eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json) now fails closed at `accepted_without_evidence_source`, preventing the magnetic-moment projection from treating priority/source-map prose as retained evidence.
 
+Priority-only magnetism bridge: [EQ-15 And EQ-27 Ordered-Frame Loop Source-Field Map](eq-15-27-ordered-frame-loop-source-field-map.md#priority-only-magnetism-bridge-to-eq-13) records how `EQ-27` may consume `EQ-13` effective EM outputs. The bridge treats $\mathbf B_{\mathrm{eff}}^\theta$ as an observer-level connection/curl readout from event-bound effective EM rows, not as a substrate magnetic field. Magnet/iron-filing comparisons are allowed only as $\nabla(\boldsymbol\mu_{\mathrm{eff}}\cdot\mathbf B_{\mathrm{eff}}^\theta)$ benchmarks where $\boldsymbol\mu_{\mathrm{eff}}$ comes from the ordered-frame/internal-current ledger and $\mathbf B_{\mathrm{eff}}^\theta$ comes from `EQ-13` retained event rows.
+
 ### Closure Burden
 
 The same branch must supply:
