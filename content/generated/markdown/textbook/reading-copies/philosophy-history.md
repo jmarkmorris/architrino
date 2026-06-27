@@ -20463,6 +20463,8 @@ Primitive wakes propagate at $c_f$; photon-channel speed is recovered as assembl
 
 That same novelty is also the well-posedness threat. A self-hit branch is not accepted merely because an architrino or internal assembly component enters a super-field-speed regime. Same-source root existence, transversality, a non-vanishing Jacobian floor, and regularization must keep the update finite. The architecture therefore owes a branch-selection rule that preserves deterministic multistability while excluding runaway self-acceleration and unbounded energy growth.
 
+The invariant at stake is an energy-like branch functional, not a merely numerical tolerance: accepted self-hit dynamics must keep the particle, causal-wake, and retained-history terms finite or monotone under same-source causal-root updates.
+
 That makes the Lienard-Wiechert inheritance strongest as an acceptance condition rather than as a finished result. A deeper assembly law must preserve causal-root selection, Jacobian-weighted reception, and finite same-source updates while changing the ontology from point charge and field to point transceiver, causal wake, and assembly.
 
 The later failure of classical electron theory then overgeneralized the verdict. One failed point-source model made the whole neoclassical design space look exhausted, even though the damaging assumptions were narrower: primitive source = observed electron charge, primitive wake speed = measured photon speed, and photon-channel speed = universal constituent speed limit. The Architrino architecture reverses those assumptions: charge is an assembly-level polarity inventory, photon speed is recovered channel behavior, and point transceivers may enter regimes governed by causal-root structure rather than by the observer-level light limit.
@@ -20719,6 +20721,8 @@ That line stands closer to the Architrino architecture than it may first appear.
 
 Chadwick's neutron is especially revealing in retrospect. A neutral nuclear constituent can be stable in one assembly context and unstable as a free particle. That difference should have been a loud warning that particle identity is not only a label attached to an isolated object. It depends on the assembly record, shielding environment, available reaction corridors, and record channels. Fermi's beta theory then made the bookkeeping sharper: missing energy and momentum were not allowed to disappear; a neutral export had to carry the balance.
 
+At the observer-level reaction surface this is relativistic energy-momentum balance. At the assembly level, the native requirement is an event ledger in absolute time: scalar energy, three-momentum, angular momentum, polarity, neutral-export channels, and Noether sea exchange must close on the same retained record. Four-momentum is the effective export to recover, not the primitive conservation object.
+
 The rational miss was that nuclear physics was already overloaded with urgent successes. The nucleus had to be measured, classified, split, modeled, and controlled. Effective proton-neutron inventories, binding-energy formulas, shell models, weak-interaction terms, and later quark-level descriptions produced real traction. Once those layers worked, the field could treat nuclear events as reactions among named particles and fields rather than as visible exports of assembly dissociation, shielding change, neutral release, and event closure.
 
 The nuclear line shows that the nucleus was a public laboratory for assembly provenance before the Architrino architecture existed to name it. The missed question was not simply what force binds nucleons. It was what retained internal organization lets a nuclear assembly hold identity, change channel, release energy, preserve charge and momentum, and sometimes destabilize into a new branch of matter.
@@ -20770,6 +20774,8 @@ Gell-Mann's later complexity writing adds a second witness. The durable lesson i
 The point is historical, not a license to import old medium language wholesale. Complexity theory respected emergence, and high-energy physics had compressed particle regularities, but neither supplied a source-resolved causal-wake record grounded in architrinos and assemblies.
 
 The reduction is not to free little charges of $|e|/3$ floating beneath quarks. It is to a six-site axial polarity inventory with site magnitude $\epsilon=|e|/6$. Visible charge is then an integer-count outcome of how many positrino and electrino sites the assembly exposes. The quark charge fractions look less like primitive fractions and more like surviving assembly inventories.
+
+The invariant is additive polarity count: in units of $\epsilon$, observed charge is a signed integer sum over the axial inventory, and the same inventory must reproduce the observed charge set without predicting stable free assemblies carrying the hidden subunit as an isolated particle.
 
 The sharper historical question is why the unit problem did not stay central. Once fractional charge became ordinary inside the Standard Model, the electron charge could have been reclassified as a stable assembly total rather than the primitive unit of electric bookkeeping. That would have kept open the right reductionist question: what smaller signed inventory makes the observed charge table possible while hiding the inventory units as free particles?
 
