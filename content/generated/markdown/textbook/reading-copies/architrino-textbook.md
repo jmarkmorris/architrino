@@ -7160,7 +7160,13 @@ E_{\mathrm{arch}}(t)
 \frac{dE_{\mathrm{tot}}}{dt}=0
 $$
 
-For an unbounded or observationally truncated cosmology, this target must be tested through finite windows and boundary fluxes. In the pure transparent-path limit, after source, recoil, remnant, and boundary terms have been separated, a bundle redshifted by $1+z$ carries the deficit
+This global target requires the total energy on the constant-$t$ leaf to be finite or convergently summable. For an unbounded or observationally truncated cosmology, the safe conservation statement is local continuity,
+
+$$
+\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+$$
+
+tested through finite windows and boundary fluxes. In the pure transparent-path limit, after source, recoil, remnant, and boundary terms have been separated, a bundle redshifted by $1+z$ carries the deficit
 
 $$
 \Delta E_{\gamma}
@@ -62552,6 +62558,22 @@ $$
 
 where $E_{\mathrm{arch}}$ collects architrino kinetic and configuration energy, $E_{\mathrm{wake}}$ collects causal-wake energy in flight, and $E_{\mathrm{sea}}$ collects Noether sea constitutive energy. This is a conservation target rather than a proved theorem until the delayed action or a quasi-Noether replacement supplies the required invariant.
 
+The global form also assumes that the total energy on the constant-$t$ leaf is finite or convergently summable. If an unbounded populated Noether sea does not admit that sum, the operational conservation statement is local continuity on bounded regions:
+
+$$
+\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+$$
+
+and, for a finite comparison window $\Omega$,
+
+$$
+\frac{dE_{\Omega}}{dt}
++\int_{\partial\Omega}\mathbf{S}_E\cdot\hat{\mathbf n}\,dA
+=0
+$$
+
+This is the same content as the finite-window residual above. The global ledger is the stronger theorem target; the bounded-region flux balance is the safe falsification form for cosmological transport.
+
 For a transparent photon-channel bundle with $E_{\mathrm{obs}}=E_{\mathrm{emit}}/(1+z)$, the missing photon energy is
 
 $$
@@ -64713,7 +64735,7 @@ $$
 =0
 $$
 
-without re-thermalizing the spectrum, blurring images, or erasing anisotropy and polarization. A CMB branch that preserves the Planck curve only by hiding the redshift energy in an untracked bath has failed the fixed-void energy ledger.
+This is the CMB-facing projection of the bounded-region continuity law, with boundary flux, source rows, recoil, and remnant exchange separated before the transparent-path term is evaluated. It need not assume a convergent universe-wide scalar energy in order to falsify a transport branch locally. Without that local closure, a CMB branch that preserves the Planck curve only by hiding the redshift energy in an untracked bath has failed the fixed-void energy ledger.
 
 ##### Historical Equality and Temperature Benchmark
 
@@ -95405,7 +95427,21 @@ E_{\mathrm{arch}}(t)
 \frac{dE_{\mathrm{tot}}}{dt}=0
 $$
 
-where the three terms collect architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy. This equation is a conservation target until the delayed action or a quasi-Noether replacement proves it; it is nevertheless the right falsifier to carry through the redshift arc.
+where the three terms collect architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy. This global form is available only if the universe-state energy is finite or convergently summable on the constant-$t$ leaf. If an unbounded populated Noether sea does not admit that global sum, the safe statement is the bounded-region continuity law
+
+$$
+\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+$$
+
+or, for a finite region $\Omega$ after boundary flux is included,
+
+$$
+\frac{dE_{\Omega}}{dt}
++\int_{\partial\Omega}\mathbf{S}_E\cdot\hat{\mathbf n}\,dA
+=0
+$$
+
+Here $\rho_E$ is the local energy density and $\mathbf{S}_E$ is the energy-flux density for the particle, causal-wake, and Noether sea rows retained in the comparison window. The global equation remains the stronger conservation target; the local continuity equation is the fallback that the redshift arc actually needs.
 
 For a transparent photon-channel bundle redshifted by $1+z$, the photon energy deficit is
 
@@ -95427,7 +95463,7 @@ $$
 
 This is not a rescue term. The sink is constrained by the same observations that made crude tired-light fail. It may not re-radiate into the transparent channel, blur images, distort the background spectrum, or break observed $(1+z)$ time dilation. It must accumulate along path history with the same constitutive response that recovers distance ladders, Tolman behavior, CMB blackbody and acoustic structure, lensing, and growth. Its spatial gradient may become part of the dark-sector budget, or it may over-predict lensing and structure; either way it is computable.
 
-The failure condition is therefore plain. If no single bookkept Noether sea sink can close $\Delta E_{\gamma}+\Delta E_{\mathrm{sea,path}}=0$ while preserving redshift-distance behavior, observed time dilation, Tolman surface brightness, blackbody quality, acoustic structure, image sharpness, lensing, and growth, then fixed-void redshift fails on the conservation target created by its own absolute-time postulate.
+The failure condition is therefore plain. If no single bookkept Noether sea sink can close $\Delta E_{\gamma}+\Delta E_{\mathrm{sea,path}}=0$ inside the finite-window continuity law while preserving redshift-distance behavior, observed time dilation, Tolman surface brightness, blackbody quality, acoustic structure, image sharpness, lensing, and growth, then fixed-void redshift fails on the conservation target created by its own absolute-time postulate.
 
 ###### Chapter Forty-Four. Vera Rubin: Rotation Curves Split Mass From Light
 

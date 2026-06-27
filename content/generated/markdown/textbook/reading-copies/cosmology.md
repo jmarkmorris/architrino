@@ -659,6 +659,22 @@ $$
 
 where $E_{\mathrm{arch}}$ collects architrino kinetic and configuration energy, $E_{\mathrm{wake}}$ collects causal-wake energy in flight, and $E_{\mathrm{sea}}$ collects Noether sea constitutive energy. This is a conservation target rather than a proved theorem until the delayed action or a quasi-Noether replacement supplies the required invariant.
 
+The global form also assumes that the total energy on the constant-$t$ leaf is finite or convergently summable. If an unbounded populated Noether sea does not admit that sum, the operational conservation statement is local continuity on bounded regions:
+
+$$
+\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+$$
+
+and, for a finite comparison window $\Omega$,
+
+$$
+\frac{dE_{\Omega}}{dt}
++\int_{\partial\Omega}\mathbf{S}_E\cdot\hat{\mathbf n}\,dA
+=0
+$$
+
+This is the same content as the finite-window residual above. The global ledger is the stronger theorem target; the bounded-region flux balance is the safe falsification form for cosmological transport.
+
 For a transparent photon-channel bundle with $E_{\mathrm{obs}}=E_{\mathrm{emit}}/(1+z)$, the missing photon energy is
 
 $$
@@ -2820,7 +2836,7 @@ $$
 =0
 $$
 
-without re-thermalizing the spectrum, blurring images, or erasing anisotropy and polarization. A CMB branch that preserves the Planck curve only by hiding the redshift energy in an untracked bath has failed the fixed-void energy ledger.
+This is the CMB-facing projection of the bounded-region continuity law, with boundary flux, source rows, recoil, and remnant exchange separated before the transparent-path term is evaluated. It need not assume a convergent universe-wide scalar energy in order to falsify a transport branch locally. Without that local closure, a CMB branch that preserves the Planck curve only by hiding the redshift energy in an untracked bath has failed the fixed-void energy ledger.
 
 #### Historical Equality and Temperature Benchmark
 

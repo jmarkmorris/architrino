@@ -312,7 +312,7 @@ $$
 =0
 $$
 
-without re-thermalizing the spectrum, blurring images, or erasing anisotropy and polarization. A CMB branch that preserves the Planck curve only by hiding the redshift energy in an untracked bath has failed the fixed-void energy ledger.
+This is the CMB-facing projection of the bounded-region continuity law, with boundary flux, source rows, recoil, and remnant exchange separated before the transparent-path term is evaluated. It need not assume a convergent universe-wide scalar energy in order to falsify a transport branch locally. Without that local closure, a CMB branch that preserves the Planck curve only by hiding the redshift energy in an untracked bath has failed the fixed-void energy ledger.
 
 ### Historical Equality and Temperature Benchmark
 

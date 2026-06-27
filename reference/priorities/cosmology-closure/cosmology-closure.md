@@ -112,6 +112,14 @@ $$
 
 The same Noether sea state that preserves blackbody shape and image coherence must carry that energy balance, or the transport branch has split the very constitutive response this priority is testing. Failure is explicit: if no single bookkept Noether sea sink can close the redshift energy row while preserving redshift-distance behavior, observed $(1+z)$ time dilation, Tolman surface brightness, blackbody quality, acoustic structure, image sharpness, lensing, and growth, the fixed-void redshift branch fails on its own absolute-time conservation target.
 
+If the total scalar energy of the unbounded populated Euclidean void is not finite or not convergently summable on a constant-$t$ leaf, this target demotes to a bounded-region flux balance rather than disappearing:
+
+$$
+\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+$$
+
+with boundary flux included on every finite comparison window. The redshift-energy sink remains falsifiable locally; what is withheld is only the stronger universe-wide constant until summability and the delayed Noether theorem are both established.
+
 ## Galaxy-Local Recycling And Horizon Uniformity
 
 The legacy-source signal to preserve is not the claim that the horizon problem is already solved. It is the alternative layer assignment: horizon uniformity may be evidence that the observer-level cosmological chart is summarizing recurrent source/release and thermalization history rather than a single global birth event. In that reading, galaxy-local or source-network recycling could contribute to the apparent uniform background while the Euclidean void remains fixed.

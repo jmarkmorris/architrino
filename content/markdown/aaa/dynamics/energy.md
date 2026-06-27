@@ -227,7 +227,13 @@ E_{\mathrm{arch}}(t)
 \frac{dE_{\mathrm{tot}}}{dt}=0
 $$
 
-For an unbounded or observationally truncated cosmology, this target must be tested through finite windows and boundary fluxes. In the pure transparent-path limit, after source, recoil, remnant, and boundary terms have been separated, a bundle redshifted by $1+z$ carries the deficit
+This global target requires the total energy on the constant-$t$ leaf to be finite or convergently summable. For an unbounded or observationally truncated cosmology, the safe conservation statement is local continuity,
+
+$$
+\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+$$
+
+tested through finite windows and boundary fluxes. In the pure transparent-path limit, after source, recoil, remnant, and boundary terms have been separated, a bundle redshifted by $1+z$ carries the deficit
 
 $$
 \Delta E_{\gamma}

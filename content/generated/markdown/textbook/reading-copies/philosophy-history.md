@@ -20974,7 +20974,21 @@ E_{\mathrm{arch}}(t)
 \frac{dE_{\mathrm{tot}}}{dt}=0
 $$
 
-where the three terms collect architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy. This equation is a conservation target until the delayed action or a quasi-Noether replacement proves it; it is nevertheless the right falsifier to carry through the redshift arc.
+where the three terms collect architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy. This global form is available only if the universe-state energy is finite or convergently summable on the constant-$t$ leaf. If an unbounded populated Noether sea does not admit that global sum, the safe statement is the bounded-region continuity law
+
+$$
+\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+$$
+
+or, for a finite region $\Omega$ after boundary flux is included,
+
+$$
+\frac{dE_{\Omega}}{dt}
++\int_{\partial\Omega}\mathbf{S}_E\cdot\hat{\mathbf n}\,dA
+=0
+$$
+
+Here $\rho_E$ is the local energy density and $\mathbf{S}_E$ is the energy-flux density for the particle, causal-wake, and Noether sea rows retained in the comparison window. The global equation remains the stronger conservation target; the local continuity equation is the fallback that the redshift arc actually needs.
 
 For a transparent photon-channel bundle redshifted by $1+z$, the photon energy deficit is
 
@@ -20996,7 +21010,7 @@ $$
 
 This is not a rescue term. The sink is constrained by the same observations that made crude tired-light fail. It may not re-radiate into the transparent channel, blur images, distort the background spectrum, or break observed $(1+z)$ time dilation. It must accumulate along path history with the same constitutive response that recovers distance ladders, Tolman behavior, CMB blackbody and acoustic structure, lensing, and growth. Its spatial gradient may become part of the dark-sector budget, or it may over-predict lensing and structure; either way it is computable.
 
-The failure condition is therefore plain. If no single bookkept Noether sea sink can close $\Delta E_{\gamma}+\Delta E_{\mathrm{sea,path}}=0$ while preserving redshift-distance behavior, observed time dilation, Tolman surface brightness, blackbody quality, acoustic structure, image sharpness, lensing, and growth, then fixed-void redshift fails on the conservation target created by its own absolute-time postulate.
+The failure condition is therefore plain. If no single bookkept Noether sea sink can close $\Delta E_{\gamma}+\Delta E_{\mathrm{sea,path}}=0$ inside the finite-window continuity law while preserving redshift-distance behavior, observed time dilation, Tolman surface brightness, blackbody quality, acoustic structure, image sharpness, lensing, and growth, then fixed-void redshift fails on the conservation target created by its own absolute-time postulate.
 
 ##### Chapter Forty-Four. Vera Rubin: Rotation Curves Split Mass From Light
 
