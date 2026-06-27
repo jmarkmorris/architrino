@@ -270,6 +270,8 @@ Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to 
 
 Let $I$ denote the radian-normalized total rotational action of a nested shell braid assembly: the action-angle variable that has the same units and role as angular momentum. Let $\mathcal{A}_{\text{cycle}}=2\pi I$ denote the corresponding closed-cycle action.
 
+Because a nested shell braid can carry several internal frequency rows, $\mathcal{A}_{\text{cycle}}$ is defined on a closed return of the retained branch ledger, not on one chosen component frequency by itself. Component frequencies may coincide, lock in rational ratios, or remain distinct inside the branch. The $h$ mapping asks whether the recordable closed return exports one universal action increment after the full phase, causal-root, energy, and wake rows close.
+
 - For generic modes $n$, $I(n)$ and $\mathcal{A}_{\text{cycle}}(n)$ depend on axial structure and environment.
 - For the Planck alignment state $n_{\text{max}}$, we expect a **universal attractor** dominated by:
   - the fundamental charge unit $\epsilon = e/6$ (A2),
@@ -289,7 +291,7 @@ Let $I$ denote the radian-normalized total rotational action of a nested shell b
 > $$
 > This must ultimately be derived from the architrino master equation and checked numerically.
 
-If the dynamics admit multiple distinct aligned states with significantly different $\mathcal{A}_{\text{align}}^{\text{cycle}}$ or $I_{\text{align}}$, this identification fails.
+If the dynamics admit multiple distinct aligned states with significantly different $\mathcal{A}_{\text{align}}^{\text{cycle}}$ or $I_{\text{align}}$, or if different retained frequency rows require incompatible action quanta after the same record partition is declared, this identification fails.
 
 ### Topological Bound Comparison
 

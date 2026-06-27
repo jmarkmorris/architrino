@@ -31,6 +31,7 @@ This file should not duplicate those formats. It supplies the source-family step
 ## Core Operating Rules
 
 - Mine for concrete value: definitions, equations, mechanisms, examples, analogy limits, benchmark values, source leads, closure targets, proof routes, simulation targets, and corpus-destination mappings.
+- Treat review and audit input as source material with required outcomes. A pass is not complete until every durable signal is either landed in `content/markdown/aaa`, converted into a theorem or validation target, staged in priority material with a blocker and intended corpus destination, or rejected/deferred with a reason.
 - Separate observable or data product from interpretation. Preserve validated constraints and challenge interpretations only when the corpus already has a clear basis.
 - Use established project terminology. Translate external vocabulary into canonical terms instead of adding new names.
 - Keep speculative claims marked as speculation. Do not turn source-language metaphysics, worldview, or model-specific terminology into $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.

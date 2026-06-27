@@ -142,6 +142,34 @@ The carrier requires:
 | $\Theta_{\mathrm{therm/prov}}$ and $\Theta_{\mathrm{read}}$ | Thermal/provenance and observer readout records. | Same records used by `EQ-21`, `EQ-22`, `EQ-23`, and `EQ-32`. |
 | $\mathcal L_{E\mathbf p\mathbf J}$ | Event ledger. | Energy, momentum, angular momentum, photon, neutrino, and medium updates across the finite window. |
 
+## Equation Attack Card
+
+| Field | Current result |
+| --- | --- |
+| Current score | `2` |
+| Closure driver | Recover recombination kinetics, Thomson visibility, sound horizon, Silk damping, acoustic transfer, shared thermal/provenance, and observation readout from one recombination/acoustic carrier. |
+| Primary carrier | $\Theta_{\mathrm{rec/ac}}$ with shared observation source window, thermal/provenance record, and readout record. |
+| Smallest score-moving evidence object | Accepted source-backed `recombination_acoustic_carrier` plus accepted bindings for all `EQ-22B` required rows in one shared observation record. |
+| Exact first blocker | `missing_accepted_recombination_acoustic_carrier` |
+| Probe-exposed next blocker | `missing_accepted_theta_src` after the carrier-shell probe marks only the top carrier accepted-looking. |
+| Existing scripts/fixtures/packets | [eq22b-recombination-acoustic-residual.mjs](../../../scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs), [eq22b-recombination-acoustic-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-attempt.v1.json), [eq22b-recombination-acoustic-source-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-source-attempt.v1.json), [eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json) |
+| Fail-closed controls | Generic/source and `theta_src` coordination-source controls reject priority packets, authored prose, fixture files, private source windows, split readout clocks, and child-row source substitutions. |
+| Safe implementation target | Priority-packet refinement only: make the Direct Geometry Layer explicit before attempting a source-backed shared observation row. |
+
+## Direct Geometry Layer
+
+This layer binds the recombination and acoustic equations to one shared observation record. It does not let recombination, visibility, damping, acoustic phase, BBN handoff, and readout clock become separate fitted successes.
+
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| --- | --- | --- | --- | --- | --- |
+| Saha row for $x_e$ | Ionization-fraction readout from one thermal/provenance and baryon/electron population record. | `recombination_acoustic_carrier`, `theta_therm_prov`, `recombination_kinetics_row` | $x_e^\theta$, $n_e^\theta$, $T^\theta$, and hydrogen abundance stay on the same source window and thermal/provenance id. | Generic/source controls reject fitted ionization rows sourced to priority packets or authored prose. | Accepted carrier plus same-record thermal/provenance and recombination-kinetics rows. |
+| Peebles-style $\dot x_e$ | Rate-competition readout for recombination and ionization over the same finite window. | `recombination_kinetics_row`, `event_ledger`, `source_provenance` | Recombination coefficients, ionization terms, finite-window event ledger, and source provenance share one carrier id. | Private recombination-rate controls reject a kinetics row not bound to the shared observation record. | Accepted recombination-kinetics row with finite-window event ledger and durable source support. |
+| $\Gamma_T=n_e\sigma_Tc_\gamma$, $\tau_T$, and $g=\Gamma_Te^{-\tau_T}$ | Thomson scattering, optical-depth, and visibility readout from the same photon/electron path record. | `photon_channel`, `thomson_visibility_row`, `theta_read` | Electron density, photon channel, optical depth, visibility, and readout clock use the same source window and readout id. | Visibility-without-optical-depth and decoupling-without-Thomson controls reject partial rows. | Accepted photon-channel, visibility, and readout rows on one carrier. |
+| $r_s=\int c_s/a_{\mathrm{eff}}\,dt$ and $R_b$ | Sound-horizon and baryon-loading readout from the shared BBN-to-CMB handoff. | `theta_src`, `theta_read`, `theta_bb`, `sound_horizon_row` | Baryon loading, photon loading, readout clock, and blackbody packet reference remain bound to one shared source window. | `theta_src` coordination-source control rejects a priority source-field map as the accepted source window. | Accepted `theta_src` source-window row plus sound-horizon row and readout handoff. |
+| Silk damping $k_D$ | Diffusion-damping readout from the same scattering, baryon-loading, and thermal rows. | `silk_damping_row`, `thomson_visibility_row`, `theta_therm_prov` | Damping consumes the same $\Gamma_T^\theta$, $R_b^\theta$, finite-window thermal record, and readout clock as visibility and sound horizon. | Omitted-damping and private-baryon-loading controls reject damping rows calculated from separate loading. | Accepted Silk-damping row bound to accepted visibility and thermal/provenance rows. |
+| $\ddot\Theta_{\gamma b}+c_s^2k^2\Theta_{\gamma b}=S_{\gamma b}$ | Tight-coupled photon-baryon acoustic-transfer readout from the same source/readout carrier. | `acoustic_transfer_row`, `theta_src`, `theta_read`, `noether_sea_state` | Acoustic phase, source term, Noether sea state, readout clock, and event ledger share one carrier and source window. | Split acoustic/readout controls reject oscillator rows whose phase or source term uses a private clock. | Accepted acoustic-transfer row with accepted Noether sea and readout rows. |
+| Neutrino, BBN handoff, and event ledger | Shared observation-source handoff across photon, baryon, neutrino, thermal, and medium rows. | `neutrino_channel`, `event_ledger`, `source_provenance`, `no_hidden_retune_witness` | $N_{\mathrm{eff}}$, neutrino energy, BBN handoff, photon loading, source provenance, and retune witness use one record. | Generic/source controls reject child-row source substitutions and split finite-window ledgers. | Accepted event ledger, neutrino channel, source-provenance row, and no-hidden-retune witness. |
+
 ## Recombination/Acoustic Residual
 
 The first residual decomposes the comparison:

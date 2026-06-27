@@ -91129,6 +91129,8 @@ Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to 
 
 Let $I$ denote the radian-normalized total rotational action of a nested shell braid assembly: the action-angle variable that has the same units and role as angular momentum. Let $\mathcal{A}_{\text{cycle}}=2\pi I$ denote the corresponding closed-cycle action.
 
+Because a nested shell braid can carry several internal frequency rows, $\mathcal{A}_{\text{cycle}}$ is defined on a closed return of the retained branch ledger, not on one chosen component frequency by itself. Component frequencies may coincide, lock in rational ratios, or remain distinct inside the branch. The $h$ mapping asks whether the recordable closed return exports one universal action increment after the full phase, causal-root, energy, and wake rows close.
+
 - For generic modes $n$, $I(n)$ and $\mathcal{A}_{\text{cycle}}(n)$ depend on axial structure and environment.
 - For the Planck alignment state $n_{\text{max}}$, we expect a **universal attractor** dominated by:
   - the fundamental charge unit $\epsilon = e/6$ (A2),
@@ -91148,7 +91150,7 @@ Let $I$ denote the radian-normalized total rotational action of a nested shell b
 > $$
 > This must ultimately be derived from the architrino master equation and checked numerically.
 
-If the dynamics admit multiple distinct aligned states with significantly different $\mathcal{A}_{\text{align}}^{\text{cycle}}$ or $I_{\text{align}}$, this identification fails.
+If the dynamics admit multiple distinct aligned states with significantly different $\mathcal{A}_{\text{align}}^{\text{cycle}}$ or $I_{\text{align}}$, or if different retained frequency rows require incompatible action quanta after the same record partition is declared, this identification fails.
 
 ###### Topological Bound Comparison
 
@@ -94528,12 +94530,20 @@ That is why the compact-object and black-hole cluster near the end is not a sepa
 
 The retrospective convention is not a shield against burden. For the reading below to be more than historical compression, several architecture-level obligations have to remain exposed.
 
-- The quantum-of-action burden is to show stable closed-orbit action increments in the delayed dynamics approaching a uniform action scale in the claimed regime.
+- The quantum-of-action burden is to recover $h$ as a uniform closed-cycle action quantum: stable delayed braid branches may contain several internal frequencies, but their recordable return cycles must export one invariant action increment in the claimed regime rather than unrelated frequency-specific constants.
 - The self-hit burden is to select same-source causal roots with transversality, a Jacobian floor, regularization, and an a priori energy bound while preserving deterministic multistability.
 - The probability burden is to recover Born weights for a nontrivial preparation family from a basin measure over prepared path-history states.
 - The Bell burden is to recover the CHSH value $2\sqrt{2}$ from the whole-state record while preserving operational no-signalling.
 - The fixed-void redshift burden is to redshift light without blurring images, spoiling $(1+z)$ time dilation, violating surface-brightness scaling, or distorting the cosmic microwave background beyond observed blackbody and acoustic-structure tolerances.
 - The cosmological reconstruction burden is to show that distance-ladder and cosmic microwave background inferences can be read through one Noether sea constitutive response rather than requiring unrelated responses.
+
+###### Retrospective Falsification Criteria
+
+The retrospective method earns its use from architectural economy, not from narrative license. The claim is that a small primitive vocabulary, architrinos, Noether braids, causal wakes, Noether sea response, six-site axial organization with polarity bookkeeping, and Physical Observer reconstruction, can carry many domains without changing ontology from chapter to chapter. That kind of compression is real abductive evidence. It is not final proof, and it does not replace recovery theorems, simulations, or empirical contact. It earns the right to ask how the clues would look from a future acceptance vantage only while the same primitives keep doing disciplined work.
+
+The historical episodes below therefore do not count as confirmation merely because they can be redescribed as near-misses. They carry weight only when they tighten a shared recovery condition: a measure, a causal-root rule, a constitutive response, a detector record, a transport operator, or an observational residual that the same architecture must satisfy without adding an episode-specific rescue mechanism.
+
+The falsification criteria are therefore simple. The retrospective reading loses its warrant if the architecture must protect itself by adding disconnected mechanisms for every historical episode. It also loses its warrant if the major recovery targets require mutually incompatible Noether sea responses, if Noether braids cannot recover stable matter and charge bookkeeping without ad hoc labels, if Lorentz behavior cannot be derived with bounded preferred-frame leakage, if basin measures cannot recover quantum statistics and Bell constraints while preserving operational no-signalling, if fixed-void cosmology cannot preserve image sharpness, time dilation, surface brightness, blackbody quality, acoustic structure, lensing, and growth together, or if black-hole recycling cannot be reconciled with horizon thermodynamics, gravitational-wave records, and observed cosmic history. In those cases the essay's method would no longer be disciplined retrospection. It would be a protective story.
 
 ##### Paradigms, Research Programs, And Anomalies
 
@@ -94582,6 +94592,8 @@ Planck's scene can be read from the blackbody furnace outward. The spectrum forc
 The thermal clue was concrete. Energy exchange could not be treated as a smooth continuum if the spectrum was to come out right. Physics kept the formula, kept the constant, and then built quantum mechanics on top of it. What it did not keep asking, with enough pressure, was what physical record could make action arrive in stable units at all.
 
 That distinction should be stated carefully. A deeper mechanism need not choose between continuous source-level evolution and discrete observer-level quantum records. The stronger theorem target is sharper than discreteness: define an action-cycle update on retained path history, show which stable cycles become recordable exchanges, and recover a uniform action scale in the relevant regime. In the language of the Architrino architecture, Planck's clue is not that motion itself must be discontinuous; it is that any accepted quantum of action must be derived from retained action bookkeeping, a stable branch condition, and a physical record channel.
+
+In the nested shell braid setting, that is not a single-frequency oscillator problem. A retained braid can carry several internal frequency rows; those rows may coincide, lock in rational ratios, or remain distinct while still closing one physical record cycle. The recovery target is the full closed-return ledger: over the recordable branch cycle, the integrated action must descend to $h$ or to integer multiples whose adjacent record increments are $h$. The existence of multiple internal cadences is therefore not a defect in the architecture. It is the mechanism by which the architecture has to earn Planck's constant from branch closure rather than assume it as an external quantum postulate.
 
 That distance is the clue. A stellar core at roughly $10^7$ K is about $10^{-25}$ of the Planck temperature. Collider events remain many orders below the Planck energy, and even the highest observed cosmic-ray events sit far beneath it. Ordinary empirical physics therefore samples a highly constrained low-energy projection of configuration space, not the full deep regime in which architrino dynamics, causal wakes, and Noether sea response set their deepest scales.
 
@@ -94796,6 +94808,8 @@ This middle arc follows record formation through quantum theory, nuclear physics
 ###### Chapter Eighteen. Ludwig Boltzmann: Probability Became Fundamental Too Quickly
 
 Boltzmann's doorway was hidden multiplicity. Statistical mechanics showed that macroscopic order can emerge from unresolved microstructure. Pressure, temperature, entropy, and irreversibility became intelligible without being primitive substances. This should have made physics permanently cautious about treating any statistical surface as final ontology.
+
+The durable mathematical template is quotient structure. A macrostate is not a second ontology added above the microstate; it is a many-to-one projection of admissible microstates under a measure and a declared coarse-graining. That is why Boltzmann matters here beyond historical analogy.
 
 That lesson passed very near the needed interpretation. In the Architrino architecture, quantum probability is not read as the world throwing dice at the primitive level. It is read as stable record statistics over unresolved deterministic histories, apparatus states, Noether sea conditions, and basin structure. Boltzmann had already supplied the cultural permission for visible law to arise from hidden state space.
 

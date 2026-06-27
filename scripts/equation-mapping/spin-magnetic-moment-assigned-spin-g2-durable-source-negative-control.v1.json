@@ -1,0 +1,75 @@
+{
+  "schema": "aaa-equation-map-spin-magnetic-certificate-input/v1",
+  "claimLevel": "accepted-looking assigned-spin g=2 durable-source negative control; score-neutral and not retained evidence",
+  "certificateId": "assigned-spin-g2-durable-source-negative-control-0001",
+  "sameRecordId": "assigned-spin-g2-durable-source-negative-control-record",
+  "tolerances": {
+    "gauge": 1e-12,
+    "angularMomentum": 1e-9,
+    "gLead": 1e-12
+  },
+  "rows": {
+    "ordered_frame_loop": {
+      "status": "accepted",
+      "rowId": "ordered-frame-loop-assigned-spin-durable-negative-0001",
+      "sameRecordId": "assigned-spin-g2-durable-source-negative-control-record",
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json",
+      "loopKind": "retained_ordered_frame_loop",
+      "holonomyClass": "nontrivial_z2",
+      "nonGaugeHolonomy": true
+    },
+    "spin_lift": {
+      "status": "accepted",
+      "rowId": "spin-lift-assigned-spin-durable-negative-0001",
+      "sameRecordId": "assigned-spin-g2-durable-source-negative-control-record",
+      "etaSpin": 1,
+      "doubledPathRestores": true,
+      "liftWitnessKind": "spin3_su2_double_cover",
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json"
+    },
+    "gauge_control": {
+      "status": "accepted",
+      "rowId": "gauge-control-assigned-spin-durable-negative-0001",
+      "sameRecordId": "assigned-spin-g2-durable-source-negative-control-record",
+      "deltaGauge": 0,
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json"
+    },
+    "angular_momentum_ledger": {
+      "status": "accepted",
+      "rowId": "angular-momentum-assigned-spin-durable-negative-0001",
+      "sameRecordId": "assigned-spin-g2-durable-source-negative-control-record",
+      "deltaJ": 0,
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json"
+    },
+    "moment_map_magnetic": {
+      "status": "accepted",
+      "rowId": "assigned-spin-moment-map-durable-negative-0001",
+      "sameRecordId": "assigned-spin-g2-durable-source-negative-control-record",
+      "mu_E": [
+        0,
+        0,
+        1
+      ],
+      "momentMapKind": "assigned_spin_formula",
+      "formula": "g(q/2m)S",
+      "exposureCurrentIntegral": false,
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json"
+    },
+    "covering_degree_g2": {
+      "status": "accepted",
+      "rowId": "assigned-g2-durable-negative-0001",
+      "sameRecordId": "assigned-spin-g2-durable-source-negative-control-record",
+      "gLead": 2,
+      "g2Derivation": "assigned_spin_formula",
+      "coveringDegreeWitness": false,
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json"
+    },
+    "exposure_fiber_residual": {
+      "status": "accepted",
+      "rowId": "fitted-zero-fiber-assigned-spin-durable-negative-0001",
+      "sameRecordId": "assigned-spin-g2-durable-source-negative-control-record",
+      "R_fib": 0,
+      "sourcePath": "scripts/equation-mapping/spin-magnetic-moment-durable-source-shell.v1.json"
+    }
+  }
+}

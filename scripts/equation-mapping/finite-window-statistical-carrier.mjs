@@ -199,6 +199,8 @@ function summarizeOutput(output) {
     rowReasons: output.retainedAcceptance.rowReasons,
     eq14Acceptance: output.eq14Acceptance,
     eq30Acceptance: output.eq30Acceptance,
+    eq30SameRecordBinding: output.eq30SameRecordBinding,
+    eq31SameRecordBinding: output.eq31SameRecordBinding,
     corridorDiagnostics: output.corridorDiagnostics,
   };
 }
@@ -212,13 +214,18 @@ function evaluateCarrier(input) {
   const totalMass = positiveNumber(measure.totalMass, "carrier.finiteMeasure.totalMass");
   const corridors = parseCorridors(carrier.exitCorridors ?? [], duration, constants);
   const carrierAcceptance = evaluateCarrierAcceptance(carrier);
+  const carrierSourceContract = evaluateCarrierSourceContract(carrier);
   const retainedAcceptance = evaluateRetainedAcceptance(carrier, tolerances);
   const massRows = computeMassRows(corridors, totalMass, tolerances);
   const eq14 = computeEq14Rows(carrier, tolerances);
   const eq14Acceptance = evaluateEq14Acceptance(carrier);
   const eq30 = computeEq30Rows(carrier, duration, tolerances);
   const eq30Acceptance = evaluateEq30Acceptance(carrier);
+  const eq30SameRecordBinding = evaluateEq30SameRecordBinding(carrier);
   const eq31 = computeEq31Rows(corridors, constants);
+  const eq31SameRecordBinding = evaluateEq31SameRecordBinding(carrier);
+  const carrierSameRecordBinding =
+    carrier.row === "EQ-31" ? eq31SameRecordBinding : eq30SameRecordBinding;
   const corridorDiagnostics = evaluateCorridorDiagnostics(carrier, tolerances);
   const blockerContext = {
     carrierAcceptance,
@@ -229,6 +236,8 @@ function evaluateCarrier(input) {
     eq14Acceptance,
     eq30,
     eq30Acceptance,
+    eq30SameRecordBinding,
+    eq31SameRecordBinding,
     eq31,
     corridorDiagnostics,
   };
@@ -242,6 +251,8 @@ function evaluateCarrier(input) {
     corridorDiagnostics,
     eq30,
     eq30Acceptance,
+    eq30SameRecordBinding,
+    eq31SameRecordBinding,
   );
   const nextBlocker = firstBlocker(blockerContext);
 
@@ -267,6 +278,9 @@ function evaluateCarrier(input) {
       scoreDecision: SCORE_DECISION,
       carrierSourceAccepted: carrierAcceptance.accepted,
       carrierSourceReason: carrierAcceptance.reason,
+      carrierSourceContractReady: carrierSourceContract.ready,
+      carrierSourceContractReason: carrierSourceContract.reason,
+      carrierSourceContractRequired: carrierAcceptance.required,
       acceptedCarrierRows: retainedAcceptance.accepted,
       massClosurePassed: massRows.massClosurePassed,
       hiddenRetunePassed: retainedAcceptance.hiddenRetunePassed,
@@ -283,6 +297,9 @@ function evaluateCarrier(input) {
       eq30CrossSectionPassed: eq30.crossSectionPass,
       eq30FormFactorCovariancePassed: eq30.formFactorCovariancePass,
       eq30RegimePurityPassed: eq30.regimePurityPass,
+      carrierSameRecordBindingReady: carrierSameRecordBinding.passed,
+      carrierSameRecordBindingReason: carrierSameRecordBinding.reason,
+      carrierSameRecordBindingRequired: carrierSameRecordBinding.required,
       eq31RowsComputed: eq31.computed,
       corridorCount: corridors.length,
       firstExitCorridorsDeclared:
@@ -293,6 +310,8 @@ function evaluateCarrier(input) {
       nextBlocker,
       nextBlockerDetails: firstBlockerDetails(nextBlocker, blockerContext),
     },
+    eq30SameRecordBinding,
+    eq31SameRecordBinding,
     finiteWindowCarrier: {
       carrier: {
         id: carrier.id ?? null,
@@ -301,6 +320,9 @@ function evaluateCarrier(input) {
         sourceReferenceExists: carrierAcceptance.sourceReferenceExists,
         sourceEvidenceReferenceExists: carrierAcceptance.sourceEvidenceReferenceExists,
         reason: carrierAcceptance.reason,
+        sourceContractReady: carrierSourceContract.ready,
+        sourceContractReason: carrierSourceContract.reason,
+        sourceContractRequired: carrierAcceptance.required,
       },
       window: summarizeRow(carrier.window),
       duration,
@@ -1254,6 +1276,53 @@ function evaluateCarrierAcceptance(carrier) {
   };
 }
 
+function evaluateCarrierSourceContract(carrier) {
+  const sourcePath = carrier?.sourcePath ?? carrier?.source ?? null;
+  if (!concreteString(carrier?.id)) {
+    return {
+      ready: false,
+      sourcePath,
+      sourceReferenceExists: sourceReferenceExists(sourcePath),
+      sourceEvidenceReferenceExists: sourceEvidenceReferenceExists(sourcePath),
+      reason: "carrier_identity_not_concrete",
+    };
+  }
+  if (!sourceReferenceExists(sourcePath)) {
+    return {
+      ready: false,
+      sourcePath,
+      sourceReferenceExists: false,
+      sourceEvidenceReferenceExists: false,
+      reason: "carrier_source_not_found",
+    };
+  }
+  if (!sourceEvidenceReferenceExists(sourcePath)) {
+    return {
+      ready: false,
+      sourcePath,
+      sourceReferenceExists: true,
+      sourceEvidenceReferenceExists: false,
+      reason: "accepted_without_evidence_source",
+    };
+  }
+  if (!carrierSourceSupportsRow(carrier)) {
+    return {
+      ready: false,
+      sourcePath,
+      sourceReferenceExists: true,
+      sourceEvidenceReferenceExists: true,
+      reason: "carrier_source_contract_mismatch",
+    };
+  }
+  return {
+    ready: true,
+    sourcePath,
+    sourceReferenceExists: true,
+    sourceEvidenceReferenceExists: true,
+    reason: "accepted",
+  };
+}
+
 function carrierSourceSupportsRow(carrier) {
   const row = String(carrier?.row ?? "").toLowerCase();
   const rowWithoutDash = row.replace("-", "");
@@ -1340,6 +1409,396 @@ function evaluateEq30Acceptance(carrier) {
     rowStatuses,
     rowReasons: Object.fromEntries(rowStatuses.map((row) => [row.id, row.reason])),
   };
+}
+
+function evaluateEq30SameRecordBinding(carrier) {
+  if (carrier.row !== "EQ-30") {
+    return {
+      applicable: false,
+      required: false,
+      passed: true,
+      reason: "not_applicable",
+      carrierId: carrier?.id ?? null,
+      bindings: [],
+      mismatches: [],
+    };
+  }
+  const required = isAcceptedStatus(carrier?.retainedStatus ?? carrier?.status);
+  const carrierId = carrier?.id ?? null;
+  const bindings = [];
+  const mismatches = [];
+  if (!concreteString(carrierId)) {
+    return {
+      applicable: true,
+      required,
+      passed: false,
+      reason: "carrier_identity_not_concrete",
+      carrierId,
+      bindings,
+      mismatches: [
+        {
+          scope: "carrier",
+          id: null,
+          expectedCarrierId: "concrete_carrier_id",
+          actualCarrierId: carrierId,
+          reason: "carrier_identity_not_concrete",
+        },
+      ],
+    };
+  }
+  const addBinding = (scope, row) => {
+    if (!row || typeof row !== "object" || Array.isArray(row)) {
+      mismatches.push({
+        scope,
+        id: null,
+        expectedCarrierId: carrierId,
+        actualCarrierId: null,
+        reason: "same_record_row_missing",
+      });
+      return;
+    }
+    const rowId = row.id ?? row.classId ?? row.qId ?? null;
+    const actualCarrierId = row.carrierId ?? null;
+    const binding = {
+      scope,
+      id: rowId,
+      expectedCarrierId: carrierId,
+      actualCarrierId,
+    };
+    bindings.push(binding);
+    if (!concreteString(actualCarrierId)) {
+      mismatches.push({
+        ...binding,
+        reason: "same_record_carrier_id_missing",
+      });
+      return;
+    }
+    if (actualCarrierId !== carrierId) {
+      mismatches.push({
+        ...binding,
+        reason: "same_record_carrier_id_mismatch",
+      });
+    }
+  };
+  const addFamilyBindings = (scope, rows) => {
+    if (!Array.isArray(rows) || rows.length === 0) {
+      mismatches.push({
+        scope,
+        id: null,
+        expectedCarrierId: carrierId,
+        actualCarrierId: null,
+        reason: "same_record_row_family_missing",
+      });
+      return;
+    }
+    rows.forEach((row, index) => addBinding(`${scope}[${index}]`, row));
+  };
+
+  addBinding("W", carrier.window);
+  addBinding("Phi_T", carrier.transitionMap);
+  addBinding("mu_star_T", carrier.finiteMeasure);
+  addBinding("Q", carrier.coarseGraining);
+  addBinding("K_det", carrier.detectorKernel);
+  addBinding("B", carrier.outcomePartition);
+  addBinding("S_retune", carrier.noHiddenRetuneWitness);
+  addBinding("Gamma_a", carrier.preparedEnsemble);
+  addBinding("Phi_in", carrier.fluxCalibration);
+  addFamilyBindings("detected_class_measures", carrier.detectedClassMeasures);
+  addFamilyBindings("cross_section_comparisons", carrier.crossSectionComparisons);
+  addBinding("rho_exp", carrier.exposureDistribution);
+  addFamilyBindings("form_factor_samples", carrier.formFactorSamples);
+  addBinding("elastic_regime", carrier.regime);
+
+  const outcomeClasses = new Set(
+    Array.isArray(carrier.outcomePartition?.classes)
+      ? carrier.outcomePartition.classes.filter(concreteString)
+      : [],
+  );
+  const detectedClassIds = new Set(
+    Array.isArray(carrier.detectedClassMeasures)
+      ? carrier.detectedClassMeasures
+          .map((row) => row?.classId)
+          .filter(concreteString)
+      : [],
+  );
+  for (const classId of detectedClassIds) {
+    if (outcomeClasses.size > 0 && !outcomeClasses.has(classId)) {
+      mismatches.push({
+        scope: "detected_class_measures",
+        id: classId,
+        expectedCarrierId: carrierId,
+        actualCarrierId: carrierId,
+        reason: "detected_class_not_in_outcome_partition",
+      });
+    }
+  }
+  if (Array.isArray(carrier.crossSectionComparisons)) {
+    for (const row of carrier.crossSectionComparisons) {
+      const classId = row?.classId ?? null;
+      if (!concreteString(classId) || !detectedClassIds.has(classId)) {
+        mismatches.push({
+          scope: "cross_section_comparisons",
+          id: row?.id ?? null,
+          expectedCarrierId: carrierId,
+          actualCarrierId: row?.carrierId ?? null,
+          classId,
+          reason: "cross_section_class_not_detected",
+        });
+      }
+    }
+  }
+  const exposureDistributionId = carrier.exposureDistribution?.id ?? null;
+  if (Array.isArray(carrier.formFactorSamples)) {
+    for (const row of carrier.formFactorSamples) {
+      const sampleExposureId =
+        row?.exposureDistributionId ?? row?.exposureId ?? null;
+      if (!concreteString(sampleExposureId)) {
+        mismatches.push({
+          scope: "form_factor_samples",
+          id: row?.id ?? row?.qId ?? null,
+          expectedCarrierId: carrierId,
+          actualCarrierId: row?.carrierId ?? null,
+          expectedExposureDistributionId: exposureDistributionId,
+          actualExposureDistributionId: sampleExposureId,
+          reason: "form_factor_exposure_binding_missing",
+        });
+      } else if (sampleExposureId !== exposureDistributionId) {
+        mismatches.push({
+          scope: "form_factor_samples",
+          id: row?.id ?? row?.qId ?? null,
+          expectedCarrierId: carrierId,
+          actualCarrierId: row?.carrierId ?? null,
+          expectedExposureDistributionId: exposureDistributionId,
+          actualExposureDistributionId: sampleExposureId,
+          reason: "form_factor_exposure_binding_mismatch",
+        });
+      }
+    }
+  }
+  const elasticClassId = carrier.regime?.elasticClassId ?? null;
+  if (!concreteString(elasticClassId) || !detectedClassIds.has(elasticClassId)) {
+    mismatches.push({
+      scope: "elastic_regime",
+      id: carrier.regime?.id ?? null,
+      expectedCarrierId: carrierId,
+      actualCarrierId: carrier.regime?.carrierId ?? null,
+      classId: elasticClassId,
+      reason: "elastic_regime_class_not_detected",
+    });
+  }
+
+  return {
+    applicable: true,
+    required,
+    passed: mismatches.length === 0,
+    reason: eq30SameRecordBindingReason(mismatches),
+    carrierId,
+    bindings,
+    mismatches,
+  };
+}
+
+function eq30SameRecordBindingReason(mismatches) {
+  if (mismatches.length === 0) {
+    return "accepted";
+  }
+  const firstReason = mismatches[0]?.reason ?? "eq30_same_record_binding_mismatch";
+  if (
+    firstReason === "same_record_row_missing" ||
+    firstReason === "same_record_row_family_missing" ||
+    firstReason === "same_record_carrier_id_missing" ||
+    firstReason === "form_factor_exposure_binding_missing"
+  ) {
+    return "same_record_binding_missing";
+  }
+  return "eq30_same_record_binding_mismatch";
+}
+
+function evaluateEq31SameRecordBinding(carrier) {
+  if (carrier.row !== "EQ-31") {
+    return {
+      applicable: false,
+      required: false,
+      passed: true,
+      reason: "not_applicable",
+      carrierId: carrier?.id ?? null,
+      bindings: [],
+      mismatches: [],
+    };
+  }
+  const required = isAcceptedStatus(carrier?.retainedStatus ?? carrier?.status);
+  const carrierId = carrier?.id ?? null;
+  const bindings = [];
+  const mismatches = [];
+  if (!required) {
+    return {
+      applicable: true,
+      required: false,
+      passed: true,
+      reason: "not_required_until_carrier_accepted",
+      carrierId,
+      bindings,
+      mismatches,
+    };
+  }
+  if (!concreteString(carrierId)) {
+    return {
+      applicable: true,
+      required,
+      passed: false,
+      reason: "carrier_identity_not_concrete",
+      carrierId,
+      bindings,
+      mismatches: [
+        {
+          scope: "carrier",
+          id: null,
+          expectedCarrierId: "concrete_carrier_id",
+          actualCarrierId: carrierId,
+          reason: "carrier_identity_not_concrete",
+        },
+      ],
+    };
+  }
+  const addBinding = (scope, row) => {
+    if (!row || typeof row !== "object" || Array.isArray(row)) {
+      mismatches.push({
+        scope,
+        id: null,
+        expectedCarrierId: carrierId,
+        actualCarrierId: null,
+        reason: "same_record_row_missing",
+      });
+      return;
+    }
+    const rowId = row.id ?? row.corridorId ?? row.regionId ?? null;
+    const actualCarrierId = row.carrierId ?? null;
+    const binding = {
+      scope,
+      id: rowId,
+      expectedCarrierId: carrierId,
+      actualCarrierId,
+    };
+    bindings.push(binding);
+    if (!concreteString(actualCarrierId)) {
+      mismatches.push({
+        ...binding,
+        reason: "same_record_carrier_id_missing",
+      });
+      return;
+    }
+    if (actualCarrierId !== carrierId) {
+      mismatches.push({
+        ...binding,
+        reason: "same_record_carrier_id_mismatch",
+      });
+    }
+  };
+  const addFamilyBindings = (scope, rows) => {
+    if (!Array.isArray(rows) || rows.length === 0) {
+      mismatches.push({
+        scope,
+        id: null,
+        expectedCarrierId: carrierId,
+        actualCarrierId: null,
+        reason: "same_record_row_family_missing",
+      });
+      return;
+    }
+    rows.forEach((row, index) => addBinding(`${scope}[${index}]`, row));
+  };
+
+  addBinding("W", carrier.window);
+  addBinding("Phi_T", carrier.transitionMap);
+  addBinding("mu_star_T", carrier.finiteMeasure);
+  addBinding("Q", carrier.coarseGraining);
+  addBinding("K_det", carrier.detectorKernel);
+  addBinding("B", carrier.outcomePartition);
+  addBinding("S_retune", carrier.noHiddenRetuneWitness);
+  addBinding("C_semantics", carrier.corridorSemantics);
+  addFamilyBindings("C", carrier.exitCorridors);
+  addFamilyBindings(
+    "first_exit_preimages",
+    carrier.corridorSemantics?.firstExitPreimageRows,
+  );
+  addBinding("null_separatrix", carrier.nullSeparatrix);
+  addFamilyBindings("null_separatrix.measure_rows", carrier.nullSeparatrix?.measureRows);
+  addBinding("refinement_compatibility", carrier.refinementCompatibility);
+  addFamilyBindings(
+    "refinement_compatibility.restriction_rows",
+    carrier.refinementCompatibility?.restrictionRows,
+  );
+
+  const corridorIds = new Set(
+    Array.isArray(carrier.exitCorridors)
+      ? carrier.exitCorridors.map((row) => row?.id).filter(concreteString)
+      : [],
+  );
+  for (const row of carrier.corridorSemantics?.firstExitPreimageRows ?? []) {
+    const corridorId = row?.corridorId ?? null;
+    if (!concreteString(corridorId) || !corridorIds.has(corridorId)) {
+      mismatches.push({
+        scope: "first_exit_preimages",
+        id: row?.id ?? null,
+        expectedCarrierId: carrierId,
+        actualCarrierId: row?.carrierId ?? null,
+        corridorId,
+        reason: "first_exit_preimage_corridor_not_bound",
+      });
+    }
+  }
+  for (const row of carrier.refinementCompatibility?.restrictionRows ?? []) {
+    const corridorId = row?.corridorId ?? null;
+    const regionId = row?.regionId ?? null;
+    if (
+      concreteString(corridorId) &&
+      corridorIds.size > 0 &&
+      !corridorIds.has(corridorId)
+    ) {
+      mismatches.push({
+        scope: "refinement_compatibility.restriction_rows",
+        id: row?.id ?? null,
+        expectedCarrierId: carrierId,
+        actualCarrierId: row?.carrierId ?? null,
+        corridorId,
+        reason: "refinement_corridor_not_bound",
+      });
+    }
+    if (!concreteString(corridorId) && !concreteString(regionId)) {
+      mismatches.push({
+        scope: "refinement_compatibility.restriction_rows",
+        id: row?.id ?? null,
+        expectedCarrierId: carrierId,
+        actualCarrierId: row?.carrierId ?? null,
+        reason: "refinement_restriction_target_missing",
+      });
+    }
+  }
+
+  return {
+    applicable: true,
+    required,
+    passed: mismatches.length === 0,
+    reason: eq31SameRecordBindingReason(mismatches),
+    carrierId,
+    bindings,
+    mismatches,
+  };
+}
+
+function eq31SameRecordBindingReason(mismatches) {
+  if (mismatches.length === 0) {
+    return "accepted";
+  }
+  const firstReason = mismatches[0]?.reason ?? "eq31_same_record_binding_mismatch";
+  if (
+    firstReason === "same_record_row_missing" ||
+    firstReason === "same_record_row_family_missing" ||
+    firstReason === "same_record_carrier_id_missing"
+  ) {
+    return "same_record_binding_missing";
+  }
+  return "eq31_same_record_binding_mismatch";
 }
 
 function rowFamilyStatus(id, rows) {
@@ -1566,6 +2025,8 @@ function decideStatus(
   corridorDiagnostics,
   eq30,
   eq30Acceptance,
+  eq30SameRecordBinding,
+  eq31SameRecordBinding,
 ) {
   if (!massRows.massClosurePassed) {
     return "blocked_corridor_measure_exceeds_window_measure";
@@ -1606,6 +2067,9 @@ function decideStatus(
     if (!eq30Acceptance.accepted) {
       return "blocked_missing_accepted_eq30_rows";
     }
+    if (!eq30SameRecordBinding.passed) {
+      return "blocked_eq30_same_record_binding";
+    }
     if (!eq30.computed) {
       return "blocked_missing_eq30_projection_rows";
     }
@@ -1625,6 +2089,9 @@ function decideStatus(
       return "blocked_regime_purity";
     }
     return "accepted_retained_statistical_carrier";
+  }
+  if (carrier.row === "EQ-31" && !eq31SameRecordBinding.passed) {
+    return "blocked_eq31_same_record_binding";
   }
   if (requiresCorridorFamily(carrier)) {
     if (!corridorDiagnostics.firstExitCorridorsDeclared) {
@@ -1649,6 +2116,8 @@ function firstBlocker({
   eq14Acceptance,
   eq30,
   eq30Acceptance,
+  eq30SameRecordBinding,
+  eq31SameRecordBinding,
   eq31,
   corridorDiagnostics,
 }) {
@@ -1695,6 +2164,9 @@ function firstBlocker({
     if (eq30Acceptance.missingAcceptedRows.length > 0) {
       return `missing_accepted_${eq30Acceptance.missingAcceptedRows[0]}`;
     }
+    if (!eq30SameRecordBinding.passed) {
+      return eq30SameRecordBinding.reason;
+    }
     if (!eq30.computed) {
       return "missing_eq30_projection_rows";
     }
@@ -1714,6 +2186,9 @@ function firstBlocker({
       return "regime_purity";
     }
     return null;
+  }
+  if (carrier.row === "EQ-31" && !eq31SameRecordBinding.passed) {
+    return eq31SameRecordBinding.reason;
   }
   if (requiresCorridorFamily(carrier)) {
     if (!corridorDiagnostics.firstExitCorridorsDeclared) {
@@ -1740,6 +2215,8 @@ function firstBlockerDetails(nextBlocker, context) {
     carrier,
     eq14Acceptance,
     eq30Acceptance,
+    eq30SameRecordBinding,
+    eq31SameRecordBinding,
     eq31,
     corridorDiagnostics,
   } = context;
@@ -1821,6 +2298,30 @@ function firstBlockerDetails(nextBlocker, context) {
       eq30Acceptance.rowStatuses,
       eq30CarrierRow(eq30Id, carrier),
     );
+  }
+  if (
+    carrier.row === "EQ-30" &&
+    eq30SameRecordBinding?.passed === false &&
+    nextBlocker === eq30SameRecordBinding.reason
+  ) {
+    return {
+      reason: nextBlocker,
+      carrierId: eq30SameRecordBinding.carrierId ?? null,
+      mismatchCount: eq30SameRecordBinding.mismatches?.length ?? 0,
+      firstMismatch: eq30SameRecordBinding.mismatches?.[0] ?? null,
+    };
+  }
+  if (
+    carrier.row === "EQ-31" &&
+    eq31SameRecordBinding?.passed === false &&
+    nextBlocker === eq31SameRecordBinding.reason
+  ) {
+    return {
+      reason: nextBlocker,
+      carrierId: eq31SameRecordBinding.carrierId ?? null,
+      mismatchCount: eq31SameRecordBinding.mismatches?.length ?? 0,
+      firstMismatch: eq31SameRecordBinding.mismatches?.[0] ?? null,
+    };
   }
   if (nextBlocker === "missing_first_exit_corridor_semantics") {
     return {
