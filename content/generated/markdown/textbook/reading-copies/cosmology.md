@@ -625,6 +625,24 @@ $$
 
 where $\Delta E_{\mathrm{med}}$, $\Delta E_{\mathrm{recoil}}$, and $\Delta E_{\mathrm{rem}}$ are positive or negative according to the retained medium, target, and remnant energy changes. A cosmological path term is admissible only when the signed frequency transfer, image sharpness, packet cadence, spectral coherence, and energy ledger are supplied by one Noether sea record.
 
+Because this fixed-void account keeps absolute time, a long path also needs a finite-window energy residual rather than an expansion sink:
+
+$$
+\mathcal{R}_{E,\mathrm{path}}^\Omega
+=
+\frac{
+\left|
+\Delta E_{\gamma,\Omega}
++\Delta E_{\mathrm{sea},\Omega}
++\Delta E_{\mathrm{src/rem},\Omega}
++\Delta E_{\mathrm{recoil},\Omega}
++\int_{\partial\Omega}\mathcal{F}_E\,dA\,dt
+\right|
+}{\epsilon_E}
+$$
+
+The signs follow the same retained path-history record: $\Delta E_{\gamma,\Omega}$ is the photon-channel change across the comparison window, $\Delta E_{\mathrm{sea},\Omega}$ is the Noether sea update, $\Delta E_{\mathrm{src/rem},\Omega}$ covers declared source or remnant rows, $\Delta E_{\mathrm{recoil},\Omega}$ covers material recoil or target exchange, and the boundary flux term records energy entering or leaving the finite window. A deep-space redshift branch earns standing only when the same Noether sea transport that preserves image sharpness and occupation shape also makes this residual small under the declared tolerance.
+
 #### Observable Frequency Form
 
 The same factorization can be written in the more familiar language of an emitted line frequency and a received line frequency. If $\nu_{X,0}$ is the reference frequency for transition family $X$, then
@@ -820,6 +838,33 @@ $$
 $$
 
 If the endpoint, launch, and propagation terms can be made to fit only by changing $\Pi_N S$, $\Pi_E S$, $\Pi_\gamma S$, or the coefficient row independently for each observational family, then the factorization is a useful diagnostic but not yet an $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
+
+#### Coherent Photon-Channel Bundle Transport
+
+The transparent-path part of the redshift map cannot be an ordinary thermalizing loss process. Thermalization can prepare a radiation bath before the free-streaming record is fixed, and source/release regions can exchange energy with photon-channel packets. But once a photon bundle is being used as a transparent cosmological record, the admissible transport is a coherent rescaling map.
+
+Let $\lambda_{E\to R,X}\equiv \mathcal{P}_{E\to R,X}=e^{Y_{X,E\to R}}$ be the path-history scaling factor after endpoint cadence, source-branch shift, and launch geometry have been separated. For a transported photon-channel bundle $\mathcal{B}$, write $\mathfrak{n}_\gamma(\nu,\hat{\mathbf{k}};\mathcal{B})$ for its dimensionless occupation-shape function; this is not the normalized Noether braid density $n(\mathbf{x},t)$. The transparent transport target is
+
+$$
+\nu_R=\frac{\nu_E}{\lambda_{E\to R,X}},
+\qquad
+T_R=\frac{T_E}{\lambda_{E\to R,X}},
+\qquad
+\mathfrak{n}_{\gamma,R}(\nu_R,\hat{\mathbf{k}}_R;\mathcal{B}_R)
+=
+\mathfrak{n}_{\gamma,E}(\lambda_{E\to R,X}\nu_R,\hat{\mathbf{k}}_E;\mathcal{B}_E)
++O(\epsilon_{\mathrm{spec}})
+$$
+
+with the bundle map also satisfying
+
+$$
+\|\Delta\mathbf{k}_{\perp}\|\le \epsilon_{\mathrm{img}},
+\qquad
+|\Delta\phi_{\perp}|\le \epsilon_{\mathrm{coh}}
+$$
+
+after declared lensing, aperture, and detector terms have been removed. In words: the path term may shift every mode by the same fractional factor for the declared distance and Noether sea state, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, or transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name.
 
 #### Equilibrium-Transport Candidate for Path History
 
@@ -2616,6 +2661,8 @@ This statistic is a validation target, not a permission to import an external co
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Dark Ages: Coaxial Contra-Rotating Photon Assemblies Free-Stream):** The decoupled photon assemblies, modeled as coaxial contra-rotating pro/anti planar pairs, propagate through the evolving Noether sea. The radiation field retains its thermal shape while redshifting due to medium evolution and path-integrated clock-rate comparison between emission and observation environments. Small anisotropies reflect assembly-density fluctuations rather than a single primordial event.
 
+This retention claim is a transparent-transport invariant, not a claim of continued ordinary thermalization. After decoupling, the path map must rescale photon-channel frequency and inferred temperature together while preserving the transported bundle's occupation-shape function and transverse phase coherence. A post-decoupling mechanism that repeatedly absorbs, re-emits, scatters, or randomly kicks the photon packets may relax a spectrum in special circumstances, but it will generically erase image sharpness, anisotropy, polarization, or the near-Planck spectral shape unless those side effects are explicitly bounded.
+
 ### SMBH Release Channels
 - Scope: interpretive bridge between $\mathbb{A}\mathbb{A}\mathbb{A}$ steady-state recycling and the effective Big Bang chronology map.
 - Claim: the Big Bang corresponds to the collective surfaces of SMBHs, not a singular origin.
@@ -2816,6 +2863,17 @@ u_\nu^{\mathrm{eff}}(T_{\text{ens}})
 $$
 
 This formula is an effective comparison object. It becomes available only after Gate A supplies the photon energy-frequency and mode-counting interface, Gate B supplies the two transverse photon modes and polarization handoff, and Gate C drives the photon chemical potential to zero through detailed balance. The redshift handoff must then preserve spectral shape by mapping photon frequencies and inferred temperature through the same Noether sea state and clock-rate comparison variables used elsewhere in this document.
+
+Equivalently, the transparent transport operator must commute with global frequency scaling on the blackbody family:
+
+$$
+\mathcal{T}_{\lambda}\mathcal{B}_{T}
+=
+\mathcal{B}_{T/\lambda}
++O(\epsilon_{\mathrm{spec}})
+$$
+
+where $\mathcal{B}_{T}$ denotes the observer-level Planck spectrum at temperature $T$ and $\lambda=1+z$ for the declared path after endpoint and launch terms are separated. This condition is stronger than fitting a final temperature. It says the transport has preserved the occupation-number shape rather than re-thermalizing an arbitrary distorted spectrum by coincidence.
 
 The spectrum gate should be stated as a calibrated comparison, not as an assumption that the theoretical Planck curve has been directly observed without apparatus structure. For frequency channels $\nu_i$, measured intensities $I_i$, foreground model $F_i(\psi)$, and calibration covariance $C_{ij}$, define
 $$

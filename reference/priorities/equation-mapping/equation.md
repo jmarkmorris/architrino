@@ -469,6 +469,8 @@ Current `6/23 b` score: `1`.
 
 The relation is already recorded in the particle-mass material as a speculative charged-lepton benchmark, but no branch-derived mass map currently predicts the electron, muon, and tau masses before checking the Koide residual. The score is therefore deliberately low.
 
+Executable status: [eq04a-koide-residual.mjs](../../../scripts/equation-mapping/eq04a-koide-residual.mjs) evaluates the score-neutral Koide, angle, and moment-map diagnostics. The attempt fixture [eq04a-koide-residual-attempt.v1.json](../../../scripts/equation-mapping/eq04a-koide-residual-attempt.v1.json) reports `blocked_inherited_carrier`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_raw_labeled_rows_preserved_on_retained_history`; its numeric Koide, angle, uncertainty-band, and moment-map diagnostics are not score evidence because the inherited `EQ-04` mass-shell carrier, charged-lepton mass map, and generation rows remain unaccepted. The accepted-source guard rejects priority packets, authored AAA prose, generated paths, attempts, toys, probes, mocks, negative controls, and temporary paths as evidence for `EQ-04A`; [eq04a-koide-residual-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/eq04a-koide-residual-priority-source-negative-control.v1.json) keeps accepted-looking priority/source-map rows blocked with `carrierReason=accepted_without_evidence_source`. The direct-fit and split-generation controls continue to block at `koide.direct_fit` and `koide.split_generation_map`.
+
 ### Closure Burden
 
 A score-moving packet must show:

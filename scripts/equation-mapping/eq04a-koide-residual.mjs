@@ -146,11 +146,17 @@ function evaluateEq04aKoideResidual(input, inputPath) {
       inheritedBlocker,
       directFitBlocked: directFit.blocked,
       carrierAccepted: carrier.accepted,
+      carrierReason: carrier.reason,
       massShellAccepted: carrier.massShellAccepted,
       sharedMassMapPass: massMap.sharedMassMapPass && generations.sharedMassMapPass,
+      massMapReason: massMap.reason,
       noRetunePass: massMap.noRetunePass && generations.noRetunePass,
       massConventionPass: massMap.massConventionPass,
       generationRowsAccepted: generations.accepted,
+      generationRowReasons: generations.rows.map((row) => ({
+        id: row.id,
+        reason: row.reason,
+      })),
       uncertaintyBandPass:
         uncertainty.maxRelativeUncertainty <= tolerances.maxRelativeUncertainty &&
         uncertainty.bandWidth <= tolerances.maxCos2BandWidth,
@@ -522,8 +528,9 @@ function evaluateAcceptedEvidence(raw) {
     return { accepted: false, reason: "row_not_accepted" };
   }
   const sourcePath = raw?.sourcePath ?? raw?.source ?? null;
-  if (!durableSourcePath(sourcePath)) {
-    return { accepted: false, reason: "source_not_durable" };
+  const source = evaluateSourcePath(sourcePath);
+  if (!source.accepted) {
+    return { accepted: false, reason: source.reason };
   }
   return { accepted: true, reason: "accepted" };
 }
@@ -534,27 +541,69 @@ function normalizeStatus(raw) {
   return raw.status ?? raw.retainedStatus ?? raw.claimStatus ?? "missing";
 }
 
-function durableSourcePath(sourcePath) {
-  if (!sourcePath || typeof sourcePath !== "string") return false;
+function evaluateSourcePath(sourcePath) {
+  if (!sourcePath || typeof sourcePath !== "string") {
+    return { accepted: false, reason: "missing_source_path" };
+  }
   if (
-    sourcePath.includes("/tmp/") ||
-    sourcePath.includes("/private/tmp/") ||
-    sourcePath.includes("content/generated/") ||
     sourcePath.includes("pending") ||
-    sourcePath.includes("mock") ||
-    sourcePath.includes("toy") ||
-    sourcePath.includes("placeholder") ||
-    sourcePath.endsWith(".tmp")
+    sourcePath.includes("placeholder")
   ) {
-    return false;
+    return { accepted: false, reason: "placeholder_source_path" };
   }
   const absolute = path.isAbsolute(sourcePath)
     ? sourcePath
-    : path.join(REPO_ROOT, sourcePath);
+    : path.join(REPO_ROOT, sourcePath.replace(/#.*/, ""));
   const relative = path.relative(REPO_ROOT, absolute);
-  if (relative.startsWith("..") || path.isAbsolute(relative)) return false;
-  if (!fs.existsSync(absolute)) return false;
-  return fs.statSync(absolute).isFile();
+  if (relative.startsWith("..") || path.isAbsolute(relative)) {
+    return { accepted: false, reason: "source_outside_repo" };
+  }
+  if (isNonDurableSourcePath(absolute)) {
+    return { accepted: false, reason: "non_durable_source_path" };
+  }
+  if (!fs.existsSync(absolute)) {
+    return { accepted: false, reason: "source_missing" };
+  }
+  if (!fs.statSync(absolute).isFile()) {
+    return { accepted: false, reason: "source_not_file" };
+  }
+  if (!isEvidenceSourcePath(absolute)) {
+    return { accepted: false, reason: "accepted_without_evidence_source" };
+  }
+  return { accepted: true, reason: "accepted" };
+}
+
+function isNonDurableSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  return (
+    normalized.startsWith(`${path.normalize("/tmp")}${path.sep}`) ||
+    normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
+    normalized.includes(`${path.sep}content${path.sep}generated${path.sep}`) ||
+    path.basename(normalized).includes(".tmp")
+  );
+}
+
+function isEvidenceSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  if (relative === "" || relative.startsWith("..") || path.isAbsolute(relative)) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  const lowerBasename = path.basename(normalized).toLowerCase();
+  return !(
+    lowerBasename.includes("attempt") ||
+    lowerBasename.includes("toy") ||
+    lowerBasename.includes("source-evidence-probe") ||
+    lowerBasename.includes("probe") ||
+    lowerBasename.includes("mock") ||
+    lowerBasename.includes("negative-control")
+  );
 }
 
 function concreteString(value) {

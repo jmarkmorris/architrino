@@ -26,13 +26,13 @@ No score changes.
 | --- | --- |
 | Row | `EQ-22A` |
 | Current score and closure driver | Score `2`; recover Planck blackbody law from shared mode counting, photon occupancy, zero photon chemical potential, and thermalization depth without per-bin temperature fitting. |
-| Primary AAA carrier | $\Theta_{\mathrm{bb}}$: finite-window thermal photon carrier with thermal mode count, Planck occupancy, temperature-clock conversion, Gate B two-mode transversality, thermalization depth, shared $h_\vartheta$, $T_\theta$, $c_\gamma$, and $\theta_{\mathrm{sea}}$. |
+| Primary $\mathbb{A}\mathbb{A}\mathbb{A}$ carrier | $\Theta_{\mathrm{bb}}$: finite-window thermal photon carrier with thermal mode count, Planck occupancy, temperature-clock conversion, Gate B two-mode transversality, thermalization depth, shared $h_\vartheta$, $T_\theta$, $c_\gamma$, and $\theta_{\mathrm{sea}}$. |
 | Smallest score-moving evidence object | One accepted source-backed `theta_bb` packet under accepted `theta_gamma_packet`, beginning with `thermal_mode_counting_row`, `planck_occupancy_row`, and `temperature_clock_conversion_row`. |
 | Exact first blocker | Parent: `missing_accepted_theta_gamma_packet`; local child after parent: `missing_accepted_thermal_mode_counting_row`. |
 | Existing scripts/fixtures/packets found | The Planck/alpha runner and fixture listed above; [EQ-25 Theta-Therm CMB Source-Field Map](eq-25-theta-therm-cmb-source-field-map.md); [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md). |
 | Candidate breakthrough angle | Follow the local proof order: no conserved photon-number current, Gate B two-mode transversality, maximum entropy on the mode measure, then finite-window thermal closure. |
 | Fail-closed negative control | `wrong_mode_count_dimension`: halving or otherwise changing the mode density must fail the blackbody residual before occupancy is accepted. |
-| Smaller next action | Create a checker contract that names `theta_bb` and binds the three first child rows without marking them accepted. |
+| Smaller next action | The checker contract fixture already names `theta_bb` and binds the three first child rows without marking them accepted; the next smaller action is a durable mode-count source report after the parent `theta_gamma_packet` blocker is resolved. |
 
 ## Accepted-Object Contract
 
@@ -78,6 +78,8 @@ evidence:
 | `planckOccupancyRowId` | `planck_occupancy_row_theta_bb_source_attempt_row` |
 | `temperatureClockConversionRowId` | `temperature_clock_conversion_row_theta_bb_source_attempt_row` |
 | `thermalizationDepthId` | `thermalization_depth_theta_bb_source_attempt_0001` |
+
+Checker-contract finding: [planck-alpha-braid-theta-bb-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-bb-source-attempt.v1.json) already exercises this contract. The current run is score-neutral: it reports `status=blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`, `scoreDecision=no_score_increase`, `blackbodyPass=true`, and `15/15` negative controls passing. The local child rows remain `attempt`, so no score movement follows from the blackbody arithmetic or the source-attempt shape.
 
 ## Direct Geometry Layer
 

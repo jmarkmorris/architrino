@@ -35,7 +35,7 @@ This is the useful lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$: Michelson-Morley
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-Lorentz symmetry is already a theorem target, not substrate ontology. The corpus signals name moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage. The Noether sea response object and nested shell braid causal closure should make absolute-frame dynamics operationally hidden in the tested regime.
+Lorentz symmetry is already a theorem target, not substrate ontology. More precisely, the test-suite problem is exact substrate asymmetry to bounded emergent symmetry: absolute time, the Euclidean void, and finite $c_f$ may remain in the ontology only if moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and photon-channel transport suppress every observer-accessible preferred-frame current below the declared leakage bound. The Noether sea response object and nested shell braid causal closure should make absolute-frame dynamics operationally hidden in the tested regime.
 
 ## Task Queue
 

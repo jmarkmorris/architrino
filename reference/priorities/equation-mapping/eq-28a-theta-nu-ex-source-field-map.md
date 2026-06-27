@@ -23,7 +23,7 @@ No score changes.
 | --- | --- |
 | Row | `EQ-28A` |
 | Current score and closure driver | Score `2`; recover inverse-Compton, signed path-frequency exchange, thermal SZ, and kinematic SZ as one photon path-history exchange ledger, not frequency-loss bookkeeping or borrowed CMB thermodynamics. |
-| Primary AAA carrier | `Theta_nu-ex(W)`: incoming/outgoing photon packets, electron/medium row, Noether sea path-history row, exchange event ledger, recoil/remnant row, and finite-window thermal record on one carrier. |
+| Primary $\mathbb{A}\mathbb{A}\mathbb{A}$ carrier | `Theta_nu-ex(W)`: incoming/outgoing photon packets, electron/medium row, Noether sea path-history row, exchange event ledger, recoil/remnant row, and finite-window thermal record on one carrier. |
 | Smallest score-moving evidence object | One accepted source-backed `path_frequency_exchange_carrier` with the full row bundle on one `commonCarrierId`: `theta_gamma_packet`, Gate A/B handoff, electron-medium population, Noether sea path history, exchange event ledger, inverse-Compton row, SZ rows, recoil/remnant row, finite-window thermal record, source provenance, and no-hidden-retune witness. |
 | Exact first blocker | `missing_accepted_path_frequency_exchange_carrier`. |
 | Existing scripts, fixtures, and packets found | The source runner and fixture listed above, the `EQ-28A` packet, the `EQ-13`/`EQ-28` Gate A source-field map, Compton/recoil runner, `EQ-22B` recombination/acoustic packet, and `EQ-25` thermal source-field map. |

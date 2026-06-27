@@ -27,10 +27,13 @@ The energy packet must report sign-resolved layer and interaction content:
 | Layer kinetic content | $E_{k,I}$, $E_{k,M}$, $E_{k,O}$ by constituent and by cycle average |
 | Pair interaction content | partner, self, and inter-layer interaction terms, with active root labels |
 | Wake/history content | regularized history term and convergence behavior under $\eta$ and history refinement |
+| Self-hit bound diagnostic | retained-history energy-like functional across active self-hit or separator crossings, with variation under $\Delta t$, $\eta$, and history-window refinement |
 | Total internal ledger | $E_I$, $E_M$, $E_O$, and $E_{\text{internal}}(A_0)$ |
 | Cycle action | action per closed cycle, with branch label $\Lambda$ and period $T_{\mathbf{k}}$ |
 
 The packet must state whether the interaction content is represented through $E_{\text{wake}}$ alone or through a pairwise decomposition plus an explicitly non-overlapping wake term. Mixing both without a non-overlap rule is a double-counting failure.
+
+Cycle action is downstream of the self-hit bound diagnostic. A packet may compare action spacing across the branch family only after the same retained branch keeps its energy-like functional bounded under the declared refinement schedule. If the bound disappears under refinement, the branch remains a well-posedness failure rather than an action-spacing candidate.
 
 ## Shielding Extraction
 

@@ -6,7 +6,7 @@ Bell tests compare measured correlations against inequalities satisfied by local
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-Bell is a hard replacement constraint, not an ontology shortcut. The corpus already routes Bell through angular-momentum closure, pair provenance, detector kernels, basin measures, and no-signaling. The relevant task is to show which Bell abstraction assumption fails when full causal history and detector response are retained, while still recovering the validated correlations.
+Bell is a hard replacement constraint, not an ontology shortcut. The corpus already routes Bell through angular-momentum closure, pair provenance, detector kernels, basin measures, no-signaling, and preferred-frame leakage discipline. The relevant task is to show which Bell abstraction assumption fails when full causal history and detector response are retained, while still recovering the validated correlations and keeping absolute-frame access below Lorentz-test bounds.
 
 ## Task Queue
 
@@ -14,6 +14,7 @@ Bell is a hard replacement constraint, not an ontology shortcut. The corpus alre
 2. `local_response_kernels` — Construct local apparatus kernels $K_A,K_B$ from target and apparatus state. Status: `draft`.
 3. `correlation_recovery` — Recover spin or photon polarization correlations within Tsirelson-compatible bounds. Status: `draft`.
 4. `no_signaling_gate` — Prove that local marginals do not transmit controllable signals. Status: `draft`.
+5. `preferred_frame_handoff` — Show that the same observer export used for Bell records keeps clock, signal-timing, analyzer-calibration, and coincidence-window preferred-frame leakage below Lorentz-test bounds. Status: `draft`.
 
 ## Closure Objects
 
@@ -22,6 +23,7 @@ Bell is a hard replacement constraint, not an ontology shortcut. The corpus alre
 - Joint basin measure $\mu_{AB}$.
 - Correlation target $E(\alpha,\beta)$ and CHSH statistic $S$.
 - No-signaling marginal tests.
+- Preferred-frame leakage residual inherited from the Lorentz / PPN observer-export channel.
 
 ## Promotion Map
 
@@ -37,3 +39,4 @@ Bell is a hard replacement constraint, not an ontology shortcut. The corpus alre
 - `bell.signal_transfer`: correlations require controllable superluminal signal transfer.
 - `bell.measurement_independence_blur`: source, settings, and detector records are conflated without a precise assumption map.
 - `bell.no_pair_ledger`: singlet or polarization correlations are asserted without source-pair provenance.
+- `bell.preferred_frame_leakage`: the correlation fit requires observer-accessible absolute-frame drift in clocks, signal timing, analyzer calibration, or coincidence-window selection.
