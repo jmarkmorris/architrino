@@ -94528,14 +94528,15 @@ That is why the compact-object and black-hole cluster near the end is not a sepa
 
 ###### Where This Reading Must Earn Its Force
 
-The retrospective convention is not a shield against burden. For the reading below to be more than historical compression, several architecture-level obligations have to remain exposed.
+The retrospective convention is not a shield against burden. For the reading below to be more than historical compression, several architecture-level obligations have to remain exposed as acceptance criteria, not background cautions.
 
 - The quantum-of-action burden is to recover $h$ as a uniform closed-cycle action quantum: stable delayed braid branches may contain several internal frequencies, but their recordable return cycles must export one invariant action increment in the claimed regime rather than unrelated frequency-specific constants.
-- The self-hit burden is to select same-source causal roots with transversality, a Jacobian floor, regularization, and an a priori energy bound while preserving deterministic multistability.
-- The probability burden is to recover Born weights for a nontrivial preparation family from a basin measure over prepared path-history states.
-- The Bell burden is to recover the CHSH value $2\sqrt{2}$ from the whole-state record while preserving operational no-signalling.
-- The fixed-void redshift burden is to redshift light without blurring images, spoiling $(1+z)$ time dilation, violating surface-brightness scaling, or distorting the cosmic microwave background beyond observed blackbody and acoustic-structure tolerances.
-- The cosmological reconstruction burden is to show that distance-ladder and cosmic microwave background inferences can be read through one Noether sea constitutive response rather than requiring unrelated responses.
+- The self-hit burden is to select same-source causal roots with transversality, a Jacobian floor, regularization, and an a priori energy bound while preserving deterministic multistability and preventing runaway energy growth near Jacobian zeros.
+- The probability burden is to recover quadratic Born weights for a nontrivial preparation family from a basin measure over prepared path-history states, not merely rename hidden ignorance as probability.
+- The Bell burden is to recover the CHSH value $2\sqrt{2}$ and operational no-signalling from the same whole-state record and basin-measure machinery; until then, the whole-state record is a reframing rather than a derivation.
+- The fixed-void transport burden is to redshift light without blurring images, spoiling $(1+z)$ time dilation, violating Tolman surface-brightness behavior, or distorting the cosmic microwave background beyond observed blackbody and acoustic-structure tolerances.
+- The cosmological reconstruction burden is to show that distance-ladder, lensing, growth, and cosmic microwave background inferences can be read through one Noether sea constitutive and transport response rather than requiring unrelated responses.
+- The bridge burden is to write controlled source-to-effective maps: causal roots to effective fields, basin measures to quantum records, Noether sea response to effective metric behavior, and source/release histories to cosmological observables.
 
 ###### Retrospective Falsification Criteria
 
@@ -94543,7 +94544,7 @@ The retrospective method earns its use from architectural economy, not from narr
 
 The historical episodes below therefore do not count as confirmation merely because they can be redescribed as near-misses. They carry weight only when they tighten a shared recovery condition: a measure, a causal-root rule, a constitutive response, a detector record, a transport operator, or an observational residual that the same architecture must satisfy without adding an episode-specific rescue mechanism.
 
-The falsification criteria are therefore simple. The retrospective reading loses its warrant if the architecture must protect itself by adding disconnected mechanisms for every historical episode. It also loses its warrant if the major recovery targets require mutually incompatible Noether sea responses, if Noether braids cannot recover stable matter and charge bookkeeping without ad hoc labels, if Lorentz behavior cannot be derived with bounded preferred-frame leakage, if basin measures cannot recover quantum statistics and Bell constraints while preserving operational no-signalling, if fixed-void cosmology cannot preserve image sharpness, time dilation, surface brightness, blackbody quality, acoustic structure, lensing, and growth together, or if black-hole recycling cannot be reconciled with horizon thermodynamics, gravitational-wave records, and observed cosmic history. In those cases the essay's method would no longer be disciplined retrospection. It would be a protective story.
+The falsification criteria are therefore simple. The retrospective reading loses its warrant if the architecture must protect itself by adding disconnected mechanisms for every historical episode. It also loses its warrant if the major recovery targets require mutually incompatible Noether sea responses; if Noether braids cannot recover stable matter and charge bookkeeping without ad hoc labels; if self-hit branches require unbounded energy growth or lose deterministic multistability near Jacobian singularities; if Lorentz behavior cannot be derived with bounded preferred-frame leakage; if basin measures cannot recover Born statistics, Bell correlations, and operational no-signalling from the same record and measure machinery; if fixed-void cosmology cannot preserve image sharpness, time dilation, Tolman behavior, blackbody quality, acoustic structure, lensing, and growth together; or if black-hole recycling cannot be reconciled with horizon thermodynamics, gravitational-wave records, and observed cosmic history. In those cases the essay's method would no longer be disciplined retrospection. It would be a protective story.
 
 ##### Paradigms, Research Programs, And Anomalies
 
