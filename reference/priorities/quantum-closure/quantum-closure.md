@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `deferred-priority`
-- Rank: `16`
-- Value: `10.56`
+- Rank: `23`
+- Value: `10.11`
 - Cost: `7.3`
-- ROI: `1.45`
+- ROI: `1.38`
 - Status: `deferred`
 
 ## Task Queue

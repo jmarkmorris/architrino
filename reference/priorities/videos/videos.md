@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `pending`
-- Value: `pending`
-- Cost: `pending`
-- ROI: `pending`
+- Rank: `28`
+- Value: `2.46`
+- Cost: `3.7`
+- ROI: `0.67`
 - Status: `active`
 
 ## Purpose
