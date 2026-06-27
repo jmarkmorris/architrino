@@ -37,6 +37,8 @@ This is the useful lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$: Michelson-Morley
 
 Lorentz symmetry is already a theorem target, not substrate ontology. More precisely, the test-suite problem is exact substrate asymmetry to bounded emergent symmetry: absolute time, the Euclidean void, and finite $c_f$ may remain in the ontology only if moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and photon-channel transport suppress every observer-accessible preferred-frame current below the declared leakage bound. The Noether sea response object and nested shell braid causal closure should make absolute-frame dynamics operationally hidden in the tested regime.
 
+In priority terms this is an invariant-provenance packet, not only a null-test checklist. The same branch must identify the substrate-exact rows, the observer-level Lorentz invariants they export, and the residual leakage coefficients that remain after physical clock, ruler, and photon-channel records are compressed into an operational frame.
+
 ## Task Queue
 
 1. `two_way_signal` — Derive the two-way signal-time cancellation condition $\Delta_{\mathrm{tw}}(\beta)\to0$. Status: `draft`.

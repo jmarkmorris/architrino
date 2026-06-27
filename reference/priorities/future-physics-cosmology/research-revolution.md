@@ -172,6 +172,7 @@ Priority funding classes:
 - False-prior audit grants that ask where standard narratives made assumptions not forced by observations.
 - Implementation grants that require proposed primitive ingredients and laws to recover known effective theories, not merely criticize them.
 - Translation-key grants that turn nonstandard diagrams, open notes, and mined claims into conventional mathematical statements, executable examples, and benchmark tables.
+- Classification grants that test whether particle families, reaction channels, detector signatures, and assembly geometries can be organized with periodic-table-style discipline rather than treated as disconnected catalogues.
 - Workforce-renewal grants that retrain established physicists, recruit re-entrants, and support new mathematical and simulation roles.
 - Sunset-transition grants that fund teach-out, student placement, data and code preservation, and staff transition when obsolete programs are closed.
 - Funding-integrity grants that audit major public and institutional portfolios for assumption risk, benchmark value, and transition eligibility.
@@ -184,7 +185,7 @@ Funding risk is straightforward. A provocative framing can attract attention but
 - `candidate`: claims with a plausible technical route but unresolved proof or validation burdens;
 - `provocation`: ideas retained because they point to a high-value failure mode or research-system risk.
 
-The funding architecture should include a cross-disciplinary pool. Physics alone may be too invested in its inherited narratives to self-correct quickly. Chemistry, mathematics, philosophy of science, engineering, business, and computation can each test different parts of the transition: implementation, dynamical geometry, scientific-method failure modes, tooling, institutional adoption, and practical investment.
+The funding architecture should include a cross-disciplinary pool. Physics alone may be too invested in its inherited narratives to self-correct quickly. Chemistry, materials science, mathematics, philosophy of science, engineering, business, and computation can each test different parts of the transition: structural classification, reaction provenance, implementation, dynamical geometry, scientific-method failure modes, tooling, institutional adoption, and practical investment.
 
 Do not fund "big claim" rhetoric. Fund proof conversion. A credible program would pay for the hard, unglamorous work of converting primitive point-potential or field-generator intuitions into math, simulation, and classical-recovery papers that a skeptical plasma physicist, particle physicist, or mathematical physicist can evaluate without joining the worldview.
 
@@ -258,11 +259,14 @@ The core proof burden is ordinary: can the candidate reobtain classical Hamilton
 
 Several technical work packages are unavoidable: stabilize the primitive dynamics, characterize near-Planck-scale medium response, make the $n$-body simulation problem tractable, preserve discrete path identity, and map internal assembly symmetries to known weak and color sectors if the geometry supports it.
 
+Classification should become a formal work package, not a metaphor. The useful question is whether the Standard Model can be reorganized as a disciplined structure table with declared assembly variables, symmetry exposures, reaction pathways, detector signatures, and failure cases. A periodic-table-style presentation is valuable only if it compresses known families, predicts allowed and forbidden relationships, and makes benchmark recovery easier. It is not evidence by itself.
+
 Departments should rebuild by deconstruction, not replacement theater. They should inventory their mathematical assets by role:
 
 - exact benchmark machinery to preserve;
 - effective-model machinery to domain-label;
 - interpretive scaffolding to audit;
+- classification machinery to compare particle families, reaction channels, symmetries, and empirical signatures;
 - simulation machinery to extend into path-history and retained-branch models;
 - geometry and complex-analysis tools to test against discrete/continuous recovery.
 
@@ -284,6 +288,28 @@ Action ladder:
 - `moderate`: reorganize departments and centers around benchmark recovery, transition testing, and deconstruction papers; restrict admissions into programs under serious review.
 - `aggressive`: close obsolete centers, merge departments, cancel capital projects tied to obsolete narratives, and transfer review authority away from unrequalified legacy specialists.
 
+## Chemistry And Materials Intervention Role
+
+Chemistry should not be treated as a downstream application field only. In a foundation-level transition, chemistry and materials science provide a disciplined counterweight to physics culture because they are organized around structure, classification, reaction pathways, stability, composition, and empirically productive tables. That institutional habit matters when a candidate theory claims that particle families may have a deeper assembly organization.
+
+The intervention role is not "chemistry takes over physics" in a literal administrative sense. The useful policy version is that chemistry and materials science should receive explicit authority in the transition because they can pressure-test whether the proposed particle ontology behaves like a real classification system:
+
+- Does the candidate organize particle families more coherently than the inherited catalogue?
+- Does it distinguish structural necessity from post-hoc diagramming?
+- Does it connect reaction channels, stability, decay, and detector signatures without hidden parameter drift?
+- Does it explain why some combinations occur, why others are absent, and why generations or families have the observed pattern?
+- Does it produce a table or atlas that helps researchers find failures as well as apparent regularities?
+
+This classification discipline should be framed as an institutional control. A persuasive diagram can create false confidence; a rigorous table creates obligations. Each row and column should name the primitive ingredients, conserved quantities, symmetry exposure, reaction permissions, benchmark obligations, and falsification points. If the table cannot carry those burdens, it should remain an exploratory visualization rather than a funded organizing principle.
+
+The natural-sciences governance point is sharper. If physics review becomes structurally defensive, a research agency should be able to move part of the transition into a broader natural-sciences authority structure. Chemists, materials scientists, applied mathematicians, and computational researchers should not have veto power over physics benchmarks, but they should have standing to challenge classification failures, missing reaction provenance, and unexplained table entries.
+
+Action ladder:
+
+- `conservative`: fund chemistry and materials-science participation in classification reviews, reaction-provenance audits, and particle-family atlas work.
+- `moderate`: create joint physics-chemistry-materials programs with shared review authority over classification tables, reaction pathways, stability claims, and assembly-geometry maps.
+- `aggressive`: transfer classification-governance authority away from physics-only panels when those panels cannot distinguish benchmark preservation from narrative defense, and make future funding in vulnerable areas conditional on table-grade classification deliverables.
+
 ## Cross-Disciplinary Mobilization
 
 The intervention should not be housed only inside the subfields most disrupted by it. A credible transition would need a cross-disciplinary review structure:
@@ -292,7 +318,7 @@ The intervention should not be housed only inside the subfields most disrupted b
 - mathematics for dynamical geometry, invariants, and proof discipline;
 - philosophy of science for false-prior detection, theory-ladenness, and narrative governance;
 - plasma and fusion specialists for a hard test of whether the candidate adds anything beyond existing EM, QM, Hamiltonian, and Lagrangian practice;
-- chemistry and materials science for downstream assembly and reaction consequences;
+- chemistry and materials science for classification discipline, reaction provenance, assembly stability, and downstream consequences;
 - engineering and computation for simulation, tooling, and reproducibility;
 - applied mathematicians and dynamical geometers for the discrete/continuous bridge, complex-number recovery, and closed-form/simulation interface;
 - business and policy for funding pathways, institutional adoption, and conflict-of-interest controls.
@@ -302,7 +328,7 @@ The immediate goal is not consensus. The immediate goal is to create enough shar
 Action ladder:
 
 - `conservative`: create advisory panels with physicists, mathematicians, philosophers of science, engineers, computational researchers, and policy experts.
-- `moderate`: launch cross-directorate programs with shared budget authority and mandatory skeptical review from outside the disrupted subfields.
+- `moderate`: launch cross-directorate programs with shared budget authority and mandatory skeptical review from outside the disrupted subfields, including chemistry and materials-science review of classification claims.
 - `aggressive`: move decision authority for structurally conflicted portfolios to independent mixed panels and require institutions to follow external transition determinations.
 
 ## Publishing And Review
@@ -312,8 +338,9 @@ Publishing should not start with manifesto language. It should start with a ladd
 1. Baseline papers: what inherited physics explains and where its assumptions enter.
 2. Translation papers: how field-generator, Noether sea, retained-branch, and effective-geometry terms map into standard mathematical obligations.
 3. Validation reports: residual tables, simulations, negative controls, benchmark comparisons, and failure conditions.
-4. Synthesis papers: only after the bridge papers and validation reports establish enough common language.
-5. Public essays and educational media: after the technical material can support a careful narrative.
+4. Classification atlases: table-grade particle-family, reaction-channel, stability, symmetry-exposure, and detector-signature mappings with explicit missing-row and failed-row accounting.
+5. Synthesis papers: only after the bridge papers, validation reports, and classification atlases establish enough common language.
+6. Public essays and educational media: after the technical material can support a careful narrative.
 
 The archive-and-pivot strategy should be published as a research method. It should say: current physics is not useless; it is the baseline. The question is which pieces are fundamental, which are effective, and which were overextended.
 
@@ -327,11 +354,13 @@ Publication strategy must also handle desk rejection. A non-credentialed or nons
 
 Deconstruction papers should become a third review product. These would take one inherited mathematical tool or theory family and classify its parts as exact benchmark, effective approximation, computational method, notation convenience, or interpretive narrative. Their value is not rhetorical demolition. Their value is to preserve what works while exposing what a deeper implementation must recover.
 
+Classification-atlas papers should become a fourth review product. These would be judged by table discipline rather than visual appeal: declared variables, conserved quantities, family organization, reaction permissions, known exceptions, detector signatures, and falsification points. Their value is to decide whether the candidate gives a better organizing structure for known particles and reactions or merely redraws the inherited list.
+
 Action ladder:
 
 - `conservative`: encourage special issues, workshops, and invited review essays on baseline preservation, translation, and false-prior audits.
-- `moderate`: create dedicated review tracks for translation-key papers, deconstruction papers, and adversarial validation reports.
-- `aggressive`: require assumption-risk disclosure for publication in vulnerable areas, desk-reject narrative-dependent claims without benchmark framing, and discount noncompliant outputs in grant review.
+- `moderate`: create dedicated review tracks for translation-key papers, deconstruction papers, classification atlases, and adversarial validation reports.
+- `aggressive`: require assumption-risk disclosure for publication in vulnerable areas, desk-reject narrative-dependent or classification-table claims without benchmark framing, and discount noncompliant outputs in grant review.
 
 ## Public And Educational Impact
 
@@ -343,6 +372,8 @@ Public impact should be delayed until technical language is disciplined, but pla
 - the careers most at risk are also the careers most needed for translation.
 
 Educational impact would be large if the program matures. Textbooks would need a layered presentation: effective geometry, effective fields, source-history dynamics, conserved event ledgers, and the domains where each description is valid. Students would need to learn how to move between model layers without treating every older result as either final truth or discarded error.
+
+Education should also recover the value of disciplined classification. Students should see the Standard Model not only as a list of particles and interactions, but as a classification problem whose successful and failed organizational principles must be named. A periodic-table-style analogy can be useful in teaching only when the limits are explicit: chemistry supplies the habit of structure-first organization; physics supplies the quantitative recovery burden.
 
 The "chapter change in physics history" language is worth preserving, but only as a policy risk and opportunity. It signals that the program could affect hiring, graduate training, review standards, grant categories, data infrastructure, and public explanation.
 
@@ -396,6 +427,7 @@ If the program became credible enough for serious institutional response, an NSF
 - `Archive`: preserve and classify inherited results by validity domain.
 - `Translate`: fund experts who can restate candidate claims in conventional notation and benchmark terms.
 - `Test`: fund adversarial validation, simulations, and failure-mode discovery.
+- `Classify`: build table-grade organization of particle families, reaction channels, detector signatures, stability rules, and missing or failed entries.
 - `Audit`: classify funded portfolios by observation value, effective-model value, narrative dependency, transition eligibility, and fraud-risk exposure.
 - `Transition`: create career pathways, review standards, and publication venues for researchers moving from legacy specialization into bridge work.
 - `Intervene`: convene cross-disciplinary panels when false-prior risk becomes large enough that ordinary subfield review is structurally conflicted.
@@ -407,7 +439,7 @@ The transition should be reversible at every stage. If the theory fails, the arc
 
 Action ladder:
 
-- `conservative`: run a pilot program with archive, translate, test, audit, and engagement functions, leaving most existing structures intact.
+- `conservative`: run a pilot program with archive, translate, test, classify, audit, and engagement functions, leaving most existing structures intact.
 - `moderate`: create a standing transition office with cross-directorate budget authority, portfolio audit power, and requalification standards.
 - `aggressive`: activate emergency transition authority to freeze vulnerable renewals, cancel grants, close obsolete lines, mandate institutional restructuring, and redirect major budgets toward validation and rebuild.
 
@@ -428,6 +460,8 @@ This document is not a public announcement and not a corpus claim. It is a plann
 - What mathematical rebuild program can show how discrete constituents with continuous histories recover wave variables, complex-number methods, and effective particle behavior?
 - When does continued funding become negligent, misleading, or fraudulent after credible notice that a grant narrative depends on false priors?
 - How can public agencies preserve useful data and instrumentation while rapidly ending narrative-dependent work that no longer justifies public investment?
+- Can particle families and reactions be reorganized into a table-grade classification system that predicts structure, exposes missing entries, and preserves detector-facing benchmarks?
+- What authority should chemistry and materials science have when physics-only review cannot separate classification value from narrative defense?
 
 Drafting action ladder:
 

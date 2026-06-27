@@ -106,6 +106,21 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
 - Define the horizon-interface label ensemble $\mathcal{B}_H(M,\mathbf{J},Q)$ together with a local block label family $\mathcal{L}_U^H(\theta)$, then test whether $\lim_{|U|\to\infty}|U|^{-1}\log|\mathcal{L}_U^H(\theta)|\to 1/4$ supplies the area-scaling coefficient.
 - Test any proposed horizon identification by checking that the induced identified ensemble preserves exterior readout distributions, $\mathcal{R}_{H,\mathrm{bal}}$, Page-compatible release, finite boundary data, and the standard Hawking-temperature normalization within declared tolerances.
 - Decide the release-channel selection between jets, diffuse outflow, dark-sector escape, and candidate dark-sector photon-like modes.
+- For each selected release channel, report an outbound assembly-state ladder across the outward density and cadence gradient. For a channel $c$, use a declared path parameter $\lambda_c$ and a state sequence
+  $$
+  \mathcal{L}_{\mathrm{out}}^{(c)}
+  =
+  \left(
+  \mathrm{packed\ maximum\ curvature},
+  \mathrm{binary\ plasma},
+  \mathrm{semi\ stable\ binary},
+  \mathrm{doubly\ nested\ branch},
+  \mathrm{nested\ shell\ braid\ candidate},
+  \mathrm{planar\ photon/neutrino\ adjacent\ route},
+  \mathrm{axial\ layer/fermion\ stabilization}
+  \right).
+  $$
+  The ladder is a reporting target, not a claim that every route realizes every state. Each occupied step must carry architrino inventory, active causal-root ledgers, $E,\mathbf{p},\mathbf{J}$ balance, shielding/exposure change, Noether sea update, and the release selector that moved the record to the next step. A step may be skipped only with an explicit null route, for example direct photon-channel release, dark-sector escape, remnant capture, or reabsorption by the horizon-interface ensemble. This prevents strong-field recycling claims from jumping directly from a packed interior to a visible jet or CMB-facing output without naming the assembly reconstitution path.
 - State the Page-curve-compatible information-preservation requirement for those release channels.
 - Extract at least one discriminating observable relative to GR-like strong-field behavior.
 

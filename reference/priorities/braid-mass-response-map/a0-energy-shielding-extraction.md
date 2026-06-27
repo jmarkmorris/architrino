@@ -119,6 +119,47 @@ also upstream of any charged-lepton Koide residual: Koide remains a downstream
 benchmark only after the branch-derived mass triplet has already been fixed by
 the shared mass-response map.
 
+The related survival question is whether the accepted branch is also a local
+minimum of exposed leakage among nearby admissible branches. This is a
+priority-only comparison target, not a branch-selection rule. After Tier 1 has
+already accepted a predeclared same-basin candidate family
+$\mathcal{N}_{\Lambda}$ with shared root-ledger conventions, extraction
+radius, angular grid, wake channel, cycle window, and normalization, report the
+leakage score
+
+$$
+S_{\mathrm{leak}}(\Lambda)
+=
+w_0
+\frac{\left\|\Pi_0\mathcal{L}_{\Lambda}\right\|}
+{\left\|\mathcal{L}_{\mathrm{naive},\Lambda}\right\|+\varepsilon_{\mathcal{L}}}
++
+w_{\mathrm{tf}}
+\frac{\left\|\mathcal{L}_{\mathrm{aniso},\Lambda}\right\|}
+{\left\|\mathcal{L}_{\mathrm{naive},\Lambda}\right\|+\varepsilon_{\mathcal{L}}},
+\qquad
+w_0,w_{\mathrm{tf}}\ge0.
+$$
+
+The local leakage-minimum readout for the accepted branch $\Lambda_\ast$ is
+
+$$
+\Delta_{\mathrm{leak}}(\Lambda_\ast)
+=
+\min_{\Lambda\in\mathcal{N}_{\Lambda_\ast}}
+\left[
+S_{\mathrm{leak}}(\Lambda)-S_{\mathrm{leak}}(\Lambda_\ast)
+\right].
+$$
+
+If $\Delta_{\mathrm{leak}}(\Lambda_\ast)\ge0$, the accepted branch is locally
+least-exposed within the declared comparison family. If it is negative, the
+packet should report the lower-leakage competitor as a stability or selection
+pressure, not repair the accepted branch by retuning phases, changing the
+extraction prescription, or fitting $\zeta$ to a particle benchmark. This
+captures the "lowest external emission" intuition only after closure,
+stability, and same-family provenance are already fixed.
+
 The same extraction should report a branch-preserving
 geometry-to-shielding sensitivity readout. Let
 
