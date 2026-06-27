@@ -913,7 +913,13 @@ with the bundle map also satisfying
 $$
 \|\Delta\mathbf{k}_{\perp}\|\le \epsilon_{\mathrm{img}},
 \qquad
-|\Delta\phi_{\perp}|\le \epsilon_{\mathrm{coh}}
+|\Delta\phi_{\perp}|\le \epsilon_{\mathrm{coh}},
+\qquad
+\sup_{\omega_a,\omega_b}
+\left|
+\frac{v_{g,\gamma}(\omega_a)-v_{g,\gamma}(\omega_b)}{c_0}
+\right|
+\le\epsilon_{\mathrm{tof}}
 $$
 
 after declared lensing, aperture, and detector terms have been removed. Equivalently, let $\mathcal{D}_{\lambda}$ denote global frequency dilation on the admitted photon-channel band and let $\mathcal{G}_{\mathrm{tr}}$ denote the transparent-transport generator. The coherent branch must satisfy
@@ -922,10 +928,12 @@ $$
 [\mathcal{G}_{\mathrm{tr}},\mathcal{D}_{\lambda}]_{\mathrm{band}}
 =O(\epsilon_{\mathrm{spec}}),
 \qquad
-\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})
+\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}}),
+\qquad
+\partial_\omega v_{g,\gamma}=O(\epsilon_{\mathrm{tof}})
 $$
 
-for the declared path-depth and Noether sea state. In words: the path term may shift every mode by the same fractional factor, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, or undeclared transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name.
+for the declared path-depth and Noether sea state. In words: the path term may shift every mode by the same fractional factor, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, frequency-dependent group velocity, or undeclared transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name or failed the long-baseline photon time-of-flight row.
 
 #### Equilibrium-Transport Candidate for Path History
 

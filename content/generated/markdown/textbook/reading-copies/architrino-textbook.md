@@ -43904,7 +43904,7 @@ with bounded preferred-frame leakage in measurable observables.
 
 This is an exact-substrate-asymmetry to bounded-emergent-symmetry theorem target. Absolute time, the Euclidean void, and finite $c_f$ are not observer-level Lorentz symmetry. They are admissible only if the source-to-effective map suppresses every observer-accessible preferred-frame current below the declared $\epsilon_{\mathrm{LV}}$ bounds while preserving the clock, ruler, and photon-channel successes of special relativity.
 
-Here $\epsilon_{\mathrm{LV}}$ is a residual budget, not one binary tolerance. It contains distinct rows for two-way signal anisotropy, boost-dependent clock and ruler drift, clock-dilation mismatch, matter-sector clock and energy-level anisotropy, sidereal modulation, photon-channel dispersion, birefringence, time-of-flight leakage, weak-field preferred-frame terms, and gravitational-wave-versus-photon speed matching. Each row must declare its expansion order in the appropriate drift parameter, such as $\beta_\oplus\equiv v_\oplus/c_{\text{eff}}$ for terrestrial null tests, its validity regime, and its experimental tolerance before Lorentz recovery can be counted as bounded.
+Here $\epsilon_{\mathrm{LV}}$ is a residual budget, not one binary tolerance. It contains distinct rows for Michelson-Morley two-way optical isotropy, Kennedy-Thorndike boost dependence, Ives-Stilwell clock-dilation behavior, Hughes-Drever and clock-comparison matter-sector isotropy, sidereal modulation, photon-sector dispersion/birefringence/time-of-flight leakage, weak-field preferred-frame terms, and gravitational-wave-versus-photon speed matching. Each row must declare its expansion order in the appropriate drift parameter, such as $\beta_\oplus\equiv v_\oplus/c_{\text{eff}}$ for terrestrial null tests, its validity regime, and its experimental tolerance before Lorentz recovery can be counted as bounded.
 
 The common-mode requirement is therefore multi-sector. Matter-sector clocks, photon-channel propagation, and the effective gravitational channel cannot be tuned independently. A branch that nulls Michelson-Morley-type two-way optical anisotropy but leaves orientation-dependent clock energy levels, sidereal leakage, photon birefringence, or a separated effective gravitational-wave speed is not a Lorentz recovery branch.
 
@@ -43959,6 +43959,8 @@ R_{\tau\Phi}
 -\left(1+\frac{\Phi_{\text{eff}}}{c_{\text{eff}}^2}+O\!\left(\frac{\Phi_{\text{eff}}^2}{c_{\text{eff}}^4}\right)\right),
 $$
 with the $\Phi_{\text{eff}}$ sign convention declared, and must recover gravitational-redshift and PPN clock/curvature constraints. Equivalence-principle recovery requires $R_{\tau v}$ and $R_{\tau\Phi}$ to come from the same Noether sea response and assembly-clock map.
+
+The absolute velocity used by the substrate solver cannot remain an observer-accessible quantity. In the accepted export, any dependence on absolute $v$ must be absorbed into nonseparable combinations of assembly-clock synchronization, ruler response, and signal-channel calibration, so Physical Observers recover Lorentz-invariant records rather than a direct preferred-frame speed meter.
 
 ###### Mathematical objective
 
@@ -47407,19 +47409,27 @@ $$
 \partial^\mu \bar h_{\mu\nu}=0
 $$
 
-Assume constitutive closure supplies effective $(G_{\text{eff}},c_{\text{GW}})$ in this regime. The speed row is the gravitational-wave component of the structural-integrity common-limit closure in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure): the weak-field tensor channel must share the same Noether sea state record that supports photon timing, PPN, redshift, Shapiro delay, and lensing.
+Assume constitutive closure supplies effective $(G_{\text{eff}},c_{\text{GW}}^{\mathrm{eff}})$ in this regime. The speed row is the gravitational-wave component of the structural-integrity common-limit closure in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure): the weak-field tensor channel must share the same Noether sea state record that supports photon timing, PPN, redshift, Shapiro delay, and lensing. In the multi-messenger branch, the explicit common-mode residual is
+$$
+R_{\mathrm{GW}\gamma}
+\equiv
+\frac{c_{\mathrm{GW}}^{\mathrm{eff}}-c_\gamma}{c_\gamma},
+\qquad
+|R_{\mathrm{GW}\gamma}|\lesssim10^{-15}
+$$
+at the GW170817/GRB 170817A scale, after source-emission lag and propagation-path conventions are declared. A model that gives the effective gravitational channel and the photon channel independently tunable limiting speeds has failed this row before any black-hole or cosmological interpretation can use the gravitational-wave record.
 
 ##### Linear Wave Equation
 
 **Conditional Lemma 1 (linearized propagation equation).**
 Under weak-field, slow-background variation, and linear constitutive response, the transverse-traceless sector obeys
 $$
-\Box_{c_{\text{GW}}}\bar h_{\mu\nu}^{\text{TT}}
+\Box_{c_{\text{GW}}^{\mathrm{eff}}}\bar h_{\mu\nu}^{\text{TT}}
 =
-\frac{16\pi G_{\text{eff}}}{c_{\text{GW}}^4}\,T_{\mu\nu}^{\text{TT}},
+\frac{16\pi G_{\text{eff}}}{(c_{\text{GW}}^{\mathrm{eff}})^4}\,T_{\mu\nu}^{\text{TT}},
 \qquad
-\Box_{c_{\text{GW}}}\equiv
--\frac{1}{c_{\text{GW}}^2}\partial_t^2+\nabla^2
+\Box_{c_{\text{GW}}^{\mathrm{eff}}}\equiv
+-\frac{1}{(c_{\text{GW}}^{\mathrm{eff}})^2}\partial_t^2+\nabla^2
 $$
 
 *Derivation sketch:* If the effective field equations induced by the metric constitutive map exist in this regime, linearize them around the homogeneous background, then project onto the TT sector.
@@ -47427,11 +47437,11 @@ $$
 **Corollary 1 (source-free effective waves).**
 For $T_{\mu\nu}^{\text{TT}}=0$:
 $$
-\Box_{c_{\text{GW}}}\bar h_{\mu\nu}^{\text{TT}}=0
+\Box_{c_{\text{GW}}^{\mathrm{eff}}}\bar h_{\mu\nu}^{\text{TT}}=0
 $$
 so plane waves satisfy
 $$
-\omega^2=c_{\text{GW}}^2k^2
+\omega^2=(c_{\text{GW}}^{\mathrm{eff}})^2k^2
 $$
 to leading order (higher-order dispersive corrections are constitutive and model-dependent).
 
@@ -62948,7 +62958,13 @@ with the bundle map also satisfying
 $$
 \|\Delta\mathbf{k}_{\perp}\|\le \epsilon_{\mathrm{img}},
 \qquad
-|\Delta\phi_{\perp}|\le \epsilon_{\mathrm{coh}}
+|\Delta\phi_{\perp}|\le \epsilon_{\mathrm{coh}},
+\qquad
+\sup_{\omega_a,\omega_b}
+\left|
+\frac{v_{g,\gamma}(\omega_a)-v_{g,\gamma}(\omega_b)}{c_0}
+\right|
+\le\epsilon_{\mathrm{tof}}
 $$
 
 after declared lensing, aperture, and detector terms have been removed. Equivalently, let $\mathcal{D}_{\lambda}$ denote global frequency dilation on the admitted photon-channel band and let $\mathcal{G}_{\mathrm{tr}}$ denote the transparent-transport generator. The coherent branch must satisfy
@@ -62957,10 +62973,12 @@ $$
 [\mathcal{G}_{\mathrm{tr}},\mathcal{D}_{\lambda}]_{\mathrm{band}}
 =O(\epsilon_{\mathrm{spec}}),
 \qquad
-\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})
+\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}}),
+\qquad
+\partial_\omega v_{g,\gamma}=O(\epsilon_{\mathrm{tof}})
 $$
 
-for the declared path-depth and Noether sea state. In words: the path term may shift every mode by the same fractional factor, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, or undeclared transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name.
+for the declared path-depth and Noether sea state. In words: the path term may shift every mode by the same fractional factor, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, frequency-dependent group velocity, or undeclared transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name or failed the long-baseline photon time-of-flight row.
 
 ##### Equilibrium-Transport Candidate for Path History
 
@@ -70850,6 +70868,20 @@ This enforces a clean separation between:
 - Fundamental dynamics in the absolute frame (what the simulation integrates),
 - Emergent observational physics (what real experiments would see).
 
+##### Simulation Scope Envelope
+
+A simulation is a bounded experiment on the model, not a complete copy of $\mathbb{U}_{\text{now}}$. Every run should declare its scope before outputs are interpreted:
+
+- spatial domain and boundary conditions;
+- absolute-time span, $\Delta t$, and retained history depth;
+- entity count, assembly inventory, and Noether sea initialization;
+- spatial, temporal, and path-history resolution ladders;
+- logged $\mathbb{U}_{\text{now}}$ channels and detector-synthetic channels;
+- runtime-rate or cost budget when feasible replay matters;
+- feedback or intervention mode, including whether the run is passive replay, diagnostic probing, controlled perturbation, or detector post-processing.
+
+Near-threshold events need a margin report. If an unresolved perturbation, sampling choice, or detector context can flip a reaction, branch, or record classification, the simulation should report the threshold margin and alternate-outcome band. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not substrate randomness; it is unresolved state sensitivity inside a deterministic causal-history model.
+
 #### Run Protocols
 
 This chapter defines the mandatory runtime protocol for simulations carried out in the absolute-frame implementation of the theory. Its role is to standardize the frame, logging requirements, provenance bookkeeping, metadata, and acceptance gates so results from different runs can be compared and audited coherently.
@@ -70863,7 +70895,10 @@ The opening gives the top-level simulation rule set; the later sections unpack t
 3. **$\mathbb{U}_{\text{now}}$ universe-state interface**: Every run must instantiate an array of fixed virtual sensors to log $\Phi$ and $\nabla\Phi$ at declared absolute-frame grid addresses.
 4. **Noether sea Initialization**: Low-excitation Noether sea runs must pre-populate the grid with a lattice of coupled pro/anti Noether braids to simulate Noether sea influence on test particles.
 5. **Convergence**: $\Delta t$ refinement must be accompanied by "History Resolution" refinement to ensure self-hit calculations are numerically stable.
-6. **Campaign Packet**: Any run used for a proof certificate, branch-certificate gate, or promoted validation claim must emit a machine-checkable packet rather than only plots or summaries.
+6. **Scope Envelope**: Every campaign declares the bounded simulation envelope: spatial domain, absolute-time span, entity count, resolution ladder, history depth, output channels, runtime-rate or cost budget, feedback or intervention mode, and threshold-event policy.
+7. **Campaign Packet**: Any run used for a proof certificate, branch-certificate gate, or promoted validation claim must emit a machine-checkable packet rather than only plots or summaries.
+
+The scope envelope is metadata for the existing campaign packet, not a separate gate family. It prevents a $\mathbb{U}_{\text{now}}$ run from being read as unlimited computation, unlimited observation, or unlimited control. A numerical result is valid only for the declared scale, resolution, feedback path, and observer layer.
 
 ##### Simulation Campaign Object
 
@@ -71489,6 +71524,8 @@ Synthetic observables must be generated by post-processing $\mathbb{U}_{\text{no
    - clock readings $\tau(t)$
    - photon arrival times and frequency shifts, with signed exchange rows separated from endpoint cadence and launch geometry
    - inferred "geodesics" (effective paths) from travel-time minimization through the Noether sea effective signal speed $c_{\text{eff}}$
+
+Synthetic observables are envelope-limited. A detector-like output should carry the sampling cadence, aperture or worldline, sensitivity threshold, and intervention context that generated it. When a near-threshold branch, reaction, or record-forming event can flip under unresolved perturbations, the packet should report a threshold margin and alternate-outcome band instead of promoting one microhistory as uniquely observed.
 
 ###### Validation checks (must pass)
 - **Causality residual (per record $m$):**
@@ -94742,6 +94779,8 @@ The long-term relevance of this subject is as a **permanent methodological princ
 
 This distinction matters because advanced science increasingly depends on numerical integration, inverse modeling, parameter fitting, stochastic sampling, and complexity bounds. It is therefore easy to confuse three different things: the world, our best executable representation of the world, and the formal limits on what we can compute about that representation. A clear account must keep all three distinct.
 
+A simulation also has an envelope: which scales are represented, how accurately, at what precision, at what replay rate, through which feedback paths, and with which interventions allowed. Expanding that envelope can increase scientific control, but control over a model is not control over ontology. The stronger methodological lesson is that every executable result inherits the scope, sampling, perturbation, and observability conditions under which it was produced.
+
 ##### Historical Motivation
 
 The historical motivation came from the explosive growth of computational science. Many systems of interest became too nonlinear, multiscale, or data-rich for closed-form treatment. At the same time, computability theory, complexity analysis, and numerical analysis made it obvious that not every well-defined problem is tractable, stable, or decidable in the same way. The core question thus became whether computational constraint is merely an epistemic fact about us or a clue to the architecture of reality. The central claim of stronger positions is that the boundary of computability tracks the boundary of the physically real.
@@ -94761,6 +94800,8 @@ then no general algorithm can decide that reachability question for every encode
 The primary ontological commitment of the moderate form of this subject is minimal: formal models are tools for representing constrained aspects of real systems, and their limitations partly reflect the structure of those tools. More ambitious versions make stronger claims, suggesting that what cannot be computed cannot be physically realized, or that complexity classes place direct bounds on ontology. What this subject gets right is that scientific access is always shaped by modeling architecture, approximation scheme, and computational feasibility. Those are not superficial concerns. They determine what can even be explored.
 
 It also gets right that simulation can reveal emergent structure inaccessible to purely analytic reasoning. Assembly behavior, nonequilibrium regimes, multiscale feedback, and delayed causal propagation are often intelligible only when a model is executed. In that sense, simulation is not a secondary luxury. It is one of the main ways by which hidden dynamical consequences become visible.
+
+The same point applies to scale control. Scientific progress often appears as increased reach across scale, from local state evolution to large-domain response and from passive replay to controlled perturbation. That reach is operationally important, but it remains a capability of a model, instrument, or intervention protocol. It does not convert the simulated domain into the physical domain itself.
 
 ##### Internal Tensions
 
@@ -94935,10 +94976,10 @@ The retrospective convention is not a shield against burden. For the reading bel
 - The action-spacing wall is that stable delayed braid branches must export one uniform closed-cycle action increment across the accessible band. This wall is downstream of the self-hit wall: a candidate cycle whose energy-like branch functional becomes unbounded across same-source crossings cannot supply a well-defined closed-cycle action integral. If the stable-cycle action spectrum is generically non-uniform rather than clustered by a derived branch-class rule, the claimed recovery of $h$ fails.
 - The Born-measure wall is that an apparatus-partition quotient of an invariant basin measure must recover quadratic Born weights for a nontrivial preparation family. If it merely renames hidden preparation ignorance, it has not recovered quantum probability.
 - The no-signaling/CHSH wall is that the same whole-state record and basin-measure machinery must recover the CHSH value $2\sqrt{2}$ and exact operational no-signaling while keeping preferred-frame leakage below Lorentz-test bounds. The no-signaling part must be a basin-measure invariance condition under local-setting relabelings at each wing, so marginalizing one wing is independent of the far setting while the joint invariant carries the correlation. It must also be ordering-invariant: for observer-level spacelike-separated measurement records, the joint law cannot depend on which wing is first in absolute time. If one mechanism gives the correlation, another blocks signaling, and a third hides absolute-frame access, Bell has been reframed rather than recovered.
-- The preferred-frame leakage wall is that absolute time, the Euclidean void, and finite $c_f$ must remain hidden across every measured Lorentz channel at once. The leakage budget must be decomposed by channel and order: two-way optical isotropy at modern cavity precision, Kennedy-Thorndike boost dependence, Hughes-Drever and clock-comparison matter-sector isotropy, sidereal modulation, photon dispersion/birefringence/time-of-flight rows, weak-field preferred-frame rows, and gravitational-wave-versus-photon speed matching at the GW170817 scale. The architecture passes only if one Noether sea constitutive response makes matter-sector clocks, the photon channel, and the effective gravitational channel common-mode across the budget. A response that hides two-way optical anisotropy but leaves matter-sector clock anisotropy, or that gives the effective gravitational channel and photon channel different limiting speeds, fails Lorentz recovery.
-- The photon-transport wall is that a fixed-void redshift map must be generated by a transport operator that commutes with global frequency rescaling and carries no undeclared transverse momentum transfer, while preserving transported-bundle occupation shape, transverse phase coherence, and a declared energy ledger. Absolute time leaves no expansion sink in which redshift energy can simply disappear. If redshift requires stochastic scattering, absorption/re-emission, unbookkept energy loss, or thermalizing kicks along the transparent path, it will generically blur images, spoil $(1+z)$ time dilation, violate Tolman surface-brightness behavior, or distort the cosmic microwave background beyond observed blackbody and acoustic-structure tolerances.
+- The preferred-frame leakage wall is that absolute time, the Euclidean void, and finite $c_f$ must remain hidden across every measured Lorentz channel at once. The leakage budget must be decomposed by channel and order: Michelson-Morley two-way optical isotropy at modern cavity precision, Kennedy-Thorndike boost dependence, Ives-Stilwell clock-dilation behavior, Hughes-Drever and clock-comparison matter-sector isotropy, sidereal modulation, photon-sector dispersion/birefringence/time-of-flight rows, weak-field preferred-frame rows, and gravitational-wave-versus-photon speed matching at the GW170817 scale. The architecture passes only if one Noether sea constitutive response makes matter-sector clocks, the photon channel, and the effective gravitational channel common-mode across the budget. A response that hides two-way optical anisotropy but leaves matter-sector clock anisotropy, or that gives the effective gravitational channel and photon channel different limiting speeds, fails Lorentz recovery.
+- The photon-transport wall is that a fixed-void redshift map must be generated by a transport operator that commutes with global frequency rescaling and carries no undeclared transverse momentum transfer, while preserving transported-bundle occupation shape, transverse phase coherence, frequency-independent photon group velocity to long-baseline time-of-flight tolerance, and a declared energy ledger. Absolute time leaves no expansion sink in which redshift energy can simply disappear. If redshift requires stochastic scattering, absorption/re-emission, unbookkept energy loss, thermalizing kicks along the transparent path, or a frequency-dependent $c_\gamma(\omega)$ residual, it will generically blur images, spoil $(1+z)$ time dilation, violate Tolman surface-brightness behavior, distort photon arrival times, or deform the cosmic microwave background beyond observed blackbody and acoustic-structure tolerances.
 - The one-constitutive-response wall is that distance-ladder, lensing, growth, and cosmic microwave background inferences must be read through one Noether sea constitutive and transport response. If matching the ladder and the cosmic microwave background requires two unrelated responses, the architecture has inherited the Hubble and $S_8$ tensions rather than dissolved them.
-- The bridge-map wall is to write controlled source-to-effective maps: causal roots to effective fields, basin measures to quantum records, Noether sea response to effective metric behavior, exact substrate asymmetries to bounded observer-level symmetries, and source/release histories to cosmological observables. Each bridge must declare its source variables, target variables, validity regime, error tolerance, and failure condition rather than rely on a verbal matching between layers. For Lorentz recovery, bounded observer-level symmetry is not one scalar pass/fail label: Michelson-Morley two-way anisotropy, Kennedy-Thorndike boost drift, Ives-Stilwell clock-dilation mismatch, photon-sector dispersion/birefringence/time-of-flight leakage, and weak-field preferred-frame rows must each carry their own order, regime, and tolerance.
+- The bridge-map wall is to write controlled source-to-effective maps: causal roots to effective fields, basin measures to quantum records, Noether sea response to effective metric behavior, exact substrate asymmetries to bounded observer-level symmetries, and source/release histories to cosmological observables. Each bridge must declare its source variables, target variables, validity regime, error tolerance, and failure condition rather than rely on a verbal matching between layers. For Lorentz recovery, bounded observer-level symmetry is not one scalar pass/fail label: Michelson-Morley two-way optical isotropy, Kennedy-Thorndike boost dependence, Ives-Stilwell clock-dilation behavior, Hughes-Drever and clock-comparison matter-sector isotropy, sidereal modulation, photon-sector dispersion/birefringence/time-of-flight leakage, weak-field preferred-frame rows, and gravitational-wave-versus-photon speed matching must each carry their own order, regime, and tolerance.
 
 In the cosmology branch, the photon-transport wall, the one-constitutive-response wall, and the lensing/growth constraint should be read as three projections of one energy-ledger obligation. Absolute time nominates a global scalar-energy conservation target; fixed-void redshift must therefore close the photon's missing energy into Noether sea, source/release, recoil, remnant, or boundary-flux bookkeeping rather than let it disappear into metric expansion.
 
@@ -95148,7 +95189,7 @@ The difficulty was that Lorentz's construction still looked compensatory. It cou
 
 In this form Lorentz is not only a failed alternative. He is an under-specified bridge. The closure target is to derive moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage from one Noether sea and assembly response rather than fitting them as separate compensations.
 
-Bounded is doing precise work here. A common-mode response that hides Michelson-Morley at one order is not yet Lorentz recovery. The same retained branch record has to survive the full leakage budget: two-way signal anisotropy, boost-dependent clock and ruler drift, clock-dilation mismatch, photon-channel dispersion or birefringence, photon time-of-flight leakage, and weak-field preferred-frame residues. Each row must declare its order in $\beta$ or the relevant weak-field variables, its validity domain, and the experimental tolerance it must beat.
+Bounded is doing precise work here. A common-mode response that hides Michelson-Morley at one order is not yet Lorentz recovery. The same retained branch record has to survive the full leakage budget: Michelson-Morley two-way optical isotropy, Kennedy-Thorndike boost dependence, Ives-Stilwell clock-dilation behavior, Hughes-Drever and clock-comparison matter-sector isotropy, sidereal modulation, photon-sector dispersion/birefringence/time-of-flight, weak-field preferred-frame rows, and gravitational-wave-versus-photon speed matching. Each row must declare its order in $\beta$ or the relevant weak-field variables, its validity domain, and the experimental tolerance it must beat.
 
 The speed-of-light issue was especially decisive. Physics already knew that light changes speed in glass, water, and other media. It also came to know that relativistic geometry changes clock and ruler scales. The missed synthesis was to treat those facts as expressions of one deeper constitutive response: ordinary materials alter light propagation locally, while the Noether sea and assembly structure set the limiting vacuum behavior shared by embedded measurement systems.
 
@@ -95188,7 +95229,7 @@ n(\mathbf{x},t),\,
 \qquad
 \beta\equiv\frac{v}{c_{\text{eff}}}.
 $$
-Its velocity sector must recover special-relativistic time dilation; its potential sector must recover weak-field gravitational redshift and the PPN limits. Equivalence-principle recovery is precisely the demand that both sectors derive from one Noether sea response and one assembly-clock map, not from two fitted clock laws.
+Its velocity sector must recover special-relativistic time dilation; its potential sector must recover weak-field gravitational redshift and the PPN limits. The velocity-sector burden is not only the square-root form: absolute-frame $v$ may enter the substrate equation, but after observer export it must appear only in combinations inseparable from synchronization, clock, ruler, and signal-channel records. Equivalence-principle recovery is precisely the demand that both sectors derive from one Noether sea response and one assembly-clock map, not from two fitted clock laws.
 
 Robert Dicke later exposed the same pressure from the gravity side. His 1957 criteria for a replacement theory treated Lorentz-compatible strong-interaction physics, economy of primitives, and the constrained use of Mach's principle, the cosmological principle, general covariance, and the equivalence principle as tests any gravitational formalism had to survive. That checklist was close to the current recovery burden: a deeper Noether sea and assembly account should not reject those observer-level successes, but should derive them from one assembly and Noether sea record. The missed turn was to treat those principles as constraints on clock maps, ruler response, signal transport, inertial response, and medium-response reconstruction rather than as final evidence that metric geometry had become underlying ontology.
 
@@ -95514,7 +95555,7 @@ That move is only a starting point. A whole-state record does not by itself reco
 
 There is also a preferred-frame leakage budget hidden inside that burden. The architecture keeps absolute time, finite $c_f$, and the Euclidean void at the substrate, so operational Lorentz invariance is an observer-level recovery rather than a primitive substrate symmetry. A Bell recovery may not buy the $2\sqrt{2}$ correlation by opening an observer-accessible channel to the absolute frame. The same record and measure machinery that recovers the joint law must keep one-wing marginals local and keep preferred-frame leakage in clocks, signal timing, analyzer calibration, and coincidence windows below Lorentz-test bounds. The no-signaling row is therefore not an after-the-fact check; it must appear as basin-measure invariance under local-setting relabelings at each wing, so marginalizing one wing stays independent of the far setting while the joint invariant can still carry the $2\sqrt{2}$ correlation. Otherwise the theory has only traded Bell factorization failure for detectable preferred-frame access.
 
-That is only the marginal half of the Lorentz handoff. Because the architecture keeps absolute time, two observer-level spacelike-separated measurement events still have a substrate order. The Bell recovery must therefore be ordering-invariant as well: the observable joint law may not change when the absolute-time order of the two wings is exchanged inside the spacelike regime. If the first substrate event conditions the second in a way visible through timing statistics or correlation residuals, absolute simultaneity has leaked even if the one-wing marginals remain no-signaling.
+That is only the marginal half of the Lorentz handoff. Because the architecture keeps absolute time, two observer-level spacelike-separated measurement events still have a substrate order. The Bell recovery must therefore be ordering-invariant as well: the observable joint law may not change when the absolute-time order of the two wings is exchanged inside the spacelike regime. This is a derivation burden on the basin measure, not an assumption added after the correlation table is fitted. If the first substrate event conditions the second in a way visible through timing statistics or correlation residuals, absolute simultaneity has leaked even if the one-wing marginals remain no-signaling.
 
 The rational miss came from the danger of bad hidden-variable explanations. Many such explanations either smuggled in faster-than-light influence, denied experimental practice too cheaply, or failed to reproduce the data. Quantum mechanics, by contrast, gave a compact formal rule that worked. The responsible community therefore treated entanglement as a theorem-governed quantum phenomenon rather than a demand for a deeper causal record.
 
