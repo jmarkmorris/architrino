@@ -3,12 +3,12 @@
 - Sources: [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), [2026 archive](https://architrino.wordpress.com/2026/), and the public WordPress API.
 - Crawled: 2026-06-27
 - Total published posts discovered: 379
-- Complete: 119
-- Open for mining: 260
+- Complete: 157
+- Open for mining: 222
 - Completion authority: local source-mining history plus this durable table and the durable queue; WordPress tags are not used.
-- Added to durable queue in this crawl: 5
+- Added to durable queue in this crawl: 6
 - Existing queue entries not present in library crawl: 0
-- Newly visible posts in this refresh: 4 from 2026 plus 1 newly visible 2023 draft.
+- Newly visible posts in this refresh: 4 from 2026 plus 1 newly visible 2023 draft plus 1 API-only 2022 post.
 
 ## Year Counts
 
@@ -34,17 +34,17 @@
 | 2026-06-27 | Ai and Closure | open | [link](https://architrino.wordpress.com/2026/06/27/ai-and-closure/) |
 | 2025-03-27 | On GR and QM by Gemini 2.0 Flash Ai | open | [link](https://architrino.wordpress.com/2025/03/27/on-gr-and-qm-by-gemini-2-0-flash-ai/) |
 | 2025-03-01 | What is an Effective Theory by GPT 4.5 | open | [link](https://architrino.wordpress.com/2025/03/01/what-is-an-effective-theory-by-gpt-4-5/) |
-| 2024-11-26 | Graviton, Higgs, Binary | open | [link](https://architrino.wordpress.com/2024/11/26/graviton-higgs-binary/) |
-| 2024-11-16 | Deep Space Contents | open | [link](https://architrino.wordpress.com/2024/11/16/deep-space-contents/) |
-| 2024-10-27 | Spacetime Assembly Emission | open | [link](https://architrino.wordpress.com/2024/10/27/spacetime-assembly-emission/) |
+| 2024-11-26 | Graviton, Higgs, Binary | complete | [link](https://architrino.wordpress.com/2024/11/26/graviton-higgs-binary/) |
+| 2024-11-16 | Deep Space Contents | complete | [link](https://architrino.wordpress.com/2024/11/16/deep-space-contents/) |
+| 2024-10-27 | Spacetime Assembly Emission | complete | [link](https://architrino.wordpress.com/2024/10/27/spacetime-assembly-emission/) |
 | 2024-10-27 | Ai Needs a Symmetry Breaking Point. | open | [link](https://architrino.wordpress.com/2024/10/27/ai-needs-a-symmetry-breaking-point/) |
-| 2024-08-06 | Mapping Higgs | open | [link](https://architrino.wordpress.com/2024/08/06/mapping-higgs/) |
+| 2024-08-06 | Mapping Higgs | complete | [link](https://architrino.wordpress.com/2024/08/06/mapping-higgs/) |
 | 2024-07-31 | What Is Matter? | complete | [link](https://architrino.wordpress.com/2024/07/31/what-is-matter/) |
 | 2024-07-26 | Mapping Quantum Numbers | open | [link](https://architrino.wordpress.com/2024/07/26/mapping-quantum-numbers/) |
-| 2024-07-19 | Reactions with Spacetime | open | [link](https://architrino.wordpress.com/2024/07/19/reactions-with-spacetime/) |
+| 2024-07-19 | Reactions with Spacetime | complete | [link](https://architrino.wordpress.com/2024/07/19/reactions-with-spacetime/) |
 | 2024-07-14 | Information Theory | complete | [link](https://architrino.wordpress.com/2024/07/14/information-theory/) |
 | 2024-07-12 | Globular Clusters | open | [link](https://architrino.wordpress.com/2024/07/12/globular-clusters/) |
-| 2024-07-08 | There is No Vacuum Catastrophe | open | [link](https://architrino.wordpress.com/2024/07/08/there-is-no-vacuum-catastrophe/) |
+| 2024-07-08 | There is No Vacuum Catastrophe | complete | [link](https://architrino.wordpress.com/2024/07/08/there-is-no-vacuum-catastrophe/) |
 | 2024-07-05 | Symmetry: C, P, T? | complete | [link](https://architrino.wordpress.com/2024/07/05/symmetry-c-p-t/) |
 | 2024-07-05 | How Nature and the Universe Operate | open | [link](https://architrino.wordpress.com/2024/07/05/how-nature-and-the-universe-operate/) |
 | 2024-06-22 | Noether Core Factory | complete | [link](https://architrino.wordpress.com/2024/06/22/noether-core-factory/) |
@@ -79,12 +79,12 @@
 | 2023-01-03 | Mapping Gluons | open | [link](https://architrino.wordpress.com/2023/01/03/mapping-gluons/) |
 | 2023-01-01 | Do Nested Binaries Synchronize? | complete | [link](https://architrino.wordpress.com/2023/01/01/npqg-april-15-2021/) |
 | 2022-12-27 | Mapping “Spinning Gluons in the Proton” | complete | [link](https://architrino.wordpress.com/2022/12/27/mapping-spinning-gluons-in-the-proton/) |
-| 2022-12-25 | Spacetime vs. Time and Space | open | [link](https://architrino.wordpress.com/2022/12/25/spacetime-vs-time-and-space/) |
+| 2022-12-25 | Spacetime vs. Time and Space | complete | [link](https://architrino.wordpress.com/2022/12/25/spacetime-vs-time-and-space/) |
 | 2022-12-24 | Organization of Academia | complete | [link](https://architrino.wordpress.com/2022/12/24/organization-of-academia/) |
 | 2022-12-24 | Noether Core Superposition | complete | [link](https://architrino.wordpress.com/2022/12/24/noether-core-superposition/) |
 | 2022-12-24 | Lagrangian | complete | [link](https://architrino.wordpress.com/2022/12/24/lagrangian/) |
-| 2022-12-24 | How is Spacetime Aether Produced? | open | [link](https://architrino.wordpress.com/2022/12/24/how-is-spacetime-aether-generated/) |
-| 2022-12-24 | How Does Spacetime Aether Decay? | open | [link](https://architrino.wordpress.com/2022/12/24/how-does-spacetime-aether-decay/) |
+| 2022-12-24 | How is Spacetime Aether Produced? | complete | [link](https://architrino.wordpress.com/2022/12/24/how-is-spacetime-aether-generated/) |
+| 2022-12-24 | How Does Spacetime Aether Decay? | complete | [link](https://architrino.wordpress.com/2022/12/24/how-does-spacetime-aether-decay/) |
 | 2022-12-24 | Energy and Potential | complete | [link](https://architrino.wordpress.com/2022/12/24/energy-and-potential/) |
 | 2022-12-21 | Lepton Flavor Universality | complete | [link](https://architrino.wordpress.com/2022/12/21/lepton-flavor-universality/) |
 | 2022-12-19 | Up/Charm/Top Quark Assembly | open | [link](https://architrino.wordpress.com/2022/12/19/up-charm-top-quark-assembly/) |
@@ -147,6 +147,7 @@
 | 2022-03-26 | Sir Roger Penrose : CCC | open | [link](https://architrino.wordpress.com/2022/03/26/sir-roger-ccc-m-c-escher/) |
 | 2022-03-25 | Point Charge Cosmology RuleZ! | open | [link](https://architrino.wordpress.com/2022/03/25/point-charge-cosmology-rulez/) |
 | 2022-03-24 | The Dynamical Geometry of Point Potential Paths | complete | [link](https://architrino.wordpress.com/2022/03/24/the-dynamical-geometry-of-charge-paths/) |
+| 2022-03-24 | J Mark Morris : AITA? | open | [link](https://architrino.wordpress.com/2022/03/24/j-mark-morris-aita/) |
 | 2022-03-23 | Quasar Distribution and Redshift | open | [link](https://architrino.wordpress.com/2022/03/23/quasar-distribution-and-redshift/) |
 | 2022-03-22 | Sara Walker : Life : Lex Fridman | open | [link](https://architrino.wordpress.com/2022/03/22/sara-walker-life-lex-fridman/) |
 | 2022-03-20 | Spin Networks and Foams | open | [link](https://architrino.wordpress.com/2022/03/20/spin-networks-and-foams/) |
@@ -202,7 +203,7 @@
 | 2021-09-29 | Decoding Nature | open | [link](https://architrino.wordpress.com/2021/09/29/numerology-or-insight/) |
 | 2021-09-26 | Neutrino Structure | complete | [link](https://architrino.wordpress.com/2021/09/26/rethinking-neutrino-structure/) |
 | 2021-09-25 | Dr. Justin Khoury on Dark Matter Superfluidity | open | [link](https://architrino.wordpress.com/2021/09/25/dr-justin-khoury-on-dark-matter-superfluidity/) |
-| 2021-09-17 | The Higgs Implementation | open | [link](https://architrino.wordpress.com/2021/09/17/physicists-fubarred-higgs-big-time/) |
+| 2021-09-17 | The Higgs Implementation | complete | [link](https://architrino.wordpress.com/2021/09/17/physicists-fubarred-higgs-big-time/) |
 | 2021-09-16 | Creating Matter from Pure Light | complete | [link](https://architrino.wordpress.com/2021/09/16/creating-matter-from-pure-light/) |
 | 2021-09-13 | Engaging the Particle Physics Reddit | open | [link](https://architrino.wordpress.com/2021/09/13/engaging-the-particle-physics-reddit/) |
 | 2021-09-11 | Dear Particle Data Group | open | [link](https://architrino.wordpress.com/2021/09/11/dear-particle-data-group/) |
@@ -302,7 +303,7 @@
 | 2020-07-17 | Can Planck Cores Spin? | open | [link](https://architrino.wordpress.com/2020/07/17/can-planck-cores-spin/) |
 | 2020-07-15 | T-3, T-2, T-1, NPQG Liftoff!? | complete | [link](https://architrino.wordpress.com/2020/07/15/t-3-2-1-npqg-liftoff/) |
 | 2020-07-14 | Mapping Fine Structure | complete | [link](https://architrino.wordpress.com/2020/07/14/fine-structure-is-both-a-variable-and-constant/) |
-| 2020-07-14 | Absolute Distance and the Path of a Photon | open | [link](https://architrino.wordpress.com/2020/07/14/absolute-distance-and-the-path-of-a-photon/) |
+| 2020-07-14 | Absolute Distance and the Path of a Photon | complete | [link](https://architrino.wordpress.com/2020/07/14/absolute-distance-and-the-path-of-a-photon/) |
 | 2020-07-11 | Dr. Sabine Hossenfelder : Theory of Everything | open | [link](https://architrino.wordpress.com/2020/07/11/dr-sabine-hossenfelder-theory-of-everything/) |
 | 2020-07-09 | NPQG in Wonderland | open | [link](https://architrino.wordpress.com/2020/07/09/npqg-in-wonderland/) |
 | 2020-07-09 | NPQG Prediction of SMBH Jet Inflation Validated | open | [link](https://architrino.wordpress.com/2020/07/09/npqg-prediction-of-smbh-jet-inflation-validated/) |
@@ -402,7 +403,7 @@
 | 2019-06-11 | Religion, Meet NPQG | complete | [link](https://architrino.wordpress.com/2019/06/11/religion-meet-npqg/) |
 | 2019-06-11 | Did the Universe Begin? | open | [link](https://architrino.wordpress.com/2019/06/11/physicists-debate-hawkings-idea-that-the-universe-had-no-beginning/) |
 | 2019-04-05 | A Neoclassical Model of Nature | open | [link](https://architrino.wordpress.com/2019/04/05/a-neoclassical-model-of-nature/) |
-| 2019-01-05 | Spacetime IS an Æther | open | [link](https://architrino.wordpress.com/2019/01/05/superfluid-soup-to-go/) |
-| 2018-12-28 | Is There a Physical Æther? | open | [link](https://architrino.wordpress.com/2018/12/28/is-there-a-physical-aether/) |
+| 2019-01-05 | Spacetime IS an Æther | complete | [link](https://architrino.wordpress.com/2019/01/05/superfluid-soup-to-go/) |
+| 2018-12-28 | Is There a Physical Æther? | complete | [link](https://architrino.wordpress.com/2018/12/28/is-there-a-physical-aether/) |
 | 2018-01-12 | How I Envision Black Holes | open | [link](https://architrino.wordpress.com/2018/01/12/how-i-envision-black-holes/) |
 | 2018-01-05 | Welcome | open | [link](https://architrino.wordpress.com/2018/01/05/first-blog-post/) |

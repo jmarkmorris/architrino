@@ -20,6 +20,8 @@
 
 - Bremsstrahlung schematic: Journey234 assumed by Wikimedia Commons; Public Domain; [local asset](../../../assets/images/effects/bremsstrahlung.svg); [Wikimedia Commons source](https://commons.wikimedia.org/wiki/File:Bremsstrahlung.svg). Full catalog entry: [image manifest](../../../assets/images/images.json).
 
+- Outreach comics: created by the Architrino project, 2026; project-owned. Full catalog entries: [image manifest](../../../assets/images/images.json).
+
 - Three.js runtime: MIT license (see header in [vendor/three/three.module.js](../../../../vendor/three/three.module.js)).
 
 - `markdown-it` runtime: MIT license (see header in [vendor/markdown-it/markdown-it.min.js](../../../../vendor/markdown-it/markdown-it.min.js)).

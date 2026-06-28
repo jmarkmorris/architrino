@@ -62,8 +62,8 @@
         "scenePath": "content/scenes/philosophy_history/philosophy_history.json"
       },
       {
-        "nodeId": "universe",
-        "scenePath": "content/scenes/cosmology/universe.json",
+        "nodeId": "outreach",
+        "scenePath": "content/scenes/outreach/outreach.json",
         "textbookToc": {
           "hideEntry": true
         }
@@ -149,11 +149,11 @@
       "labelTitle": "Philosophy-History"
     },
     {
-      "id": "universe",
-      "title": "Reductionist Universe",
+      "id": "outreach",
+      "title": "Outreach",
       "radius": 2.688,
-      "color": "#243d8f",
-      "labelTitle": "Reductionist Universe"
+      "color": "#be123c",
+      "labelTitle": "Outreach"
     }
   ]
 }

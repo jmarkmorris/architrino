@@ -71,6 +71,29 @@ C_A,
 $$
 where $Y_A(t)$ is the measured readout, $\mathcal{K}_A$ is the apparatus response kernel, $\mathcal{M}_A$ is the modulation or timing protocol, $C_A$ is calibration covariance, and $\mathcal{N}_A$ is the declared nuisance family. Redshift measurements, torsion balances, preferred-frame clock tests, CMB radiometers, and interferometric gravitational-wave detectors differ mainly in these record fields. A comparison that keeps $Y_A(t)$ while replacing $\mathcal{K}_A$, $\mathcal{M}_A$, $C_A$, or $\mathcal{N}_A$ after seeing the result is not the same Physical Observer record.
 
+Photon-distance records need the same separation. For an emission event $E$, reception event $R$, and transported photon-channel packet $\gamma$, a Physical Observer should not collapse three different quantities into one distance:
+$$
+d_{\mathrm{void}}(E,R)
+=
+\left\|\mathbf{x}_R(t_R)-\mathbf{x}_E(t_E)\right\|,
+\qquad
+L_{\gamma}(E\to R)
+=
+\int_{t_E}^{t_R}\left\|\dot{\mathbf{x}}_{\gamma}(t)\right\|\,dt,
+$$
+and
+$$
+D_O(E,R)
+=
+\mathcal{I}_O\!\left(
+z_\gamma,
+\Theta_{\gamma}^{(O,W)},
+\mathcal{K}_O,
+\mathcal{N}_O
+\right).
+$$
+Here $d_{\mathrm{void}}$ is the Euclidean coordinate separation of the two recorded events in the fixed void, $L_\gamma$ is the photon-channel path-history length through the Noether sea, and $D_O$ is the Physical Observer's inferred distance under a declared inference map. Redshift may constrain $D_O$, but it is not by itself a measurement of either absolute separation or photon path length unless the endpoint clock, launch, path-history, and calibration rows are held fixed in the same record.
+
 ## Ontic and Epistemic Levels
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a two-level distinction:

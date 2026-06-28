@@ -229,6 +229,21 @@ $$
 
 This estimate is not a measurement of energy in the Euclidean void. In this chapter it is a stress test for the Noether sea coupling-selection theorem target: a viable constitutive law must explain why high-frequency internal energy is shielded from the observer-level cosmological channel while the slow outer-binary and transport sectors remain exposed.
 
+This reframes the usual vacuum-catastrophe problem as a sector-exposure problem. A large internal Noether sea energy inventory may be real at the substrate level while only a small projection enters the homogeneous cosmological stress channel. In schematic form,
+$$
+\rho_{\mathrm{DE,eff}}
+=
+\Pi_{\mathrm{cos}}
+\!\left[
+u_{\mathrm{sea}}^{\mathrm{internal}},
+u_{\mathrm{sea}}^{\mathrm{outer}},
+\sigma_{\mathrm{sea}},
+\chi_{\text{sea}},
+\theta_{\mathrm{transport}}
+\right],
+$$
+where $\Pi_{\mathrm{cos}}$ is the observer-level cosmology projection. The closure burden is to derive why $\Pi_{\mathrm{cos}}$ exposes the slow stress, transport, and outer-binary response while suppressing the high-frequency internal inventory, not to deny that the suppressed inventory exists.
+
 Fourth, the native closure target is the effective constant reconstructed from a shared Noether sea state:
 
 $$

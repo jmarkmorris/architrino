@@ -100,6 +100,8 @@ For modeling and diagnostics, separate at least three effective channels:
 - source/observer relative-motion (Doppler-like) contribution,
 - propagation contribution from traversed Noether sea state and gradients.
 
+The inferred distance is a fourth observer-level output, not an input identity. A redshift record can support an inferred distance only after the endpoint clock rows, launch geometry, path-history propagation term, and calibration model have been declared. The fixed-void source-receiver separation, the photon-channel path length through the Noether sea, and the distance returned by a supernova, BAO, or CMB inference pipeline may agree in a weak homogeneous limit, but outside that limit they are different projections of one retained record. This prevents cosmological redshift from being silently promoted into absolute distance.
+
 ### Absolute Record Interpretation
 
 The substrate record is not a collection of observer frames. It is the evolving universe state

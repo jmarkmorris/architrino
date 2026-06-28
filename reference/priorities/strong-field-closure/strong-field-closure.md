@@ -108,6 +108,21 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
 - Define the horizon-interface label ensemble $\mathcal{B}_H(M,\mathbf{J},Q)$ together with a local block label family $\mathcal{L}_U^H(\theta)$, then test whether $\lim_{|U|\to\infty}|U|^{-1}\log|\mathcal{L}_U^H(\theta)|\to 1/4$ supplies the area-scaling coefficient.
 - Test any proposed horizon identification by checking that the induced identified ensemble preserves exterior readout distributions, $\mathcal{R}_{H,\mathrm{bal}}$, Page-compatible release, finite boundary data, and the standard Hawking-temperature normalization within declared tolerances.
 - Decide the release-channel selection between jets, diffuse outflow, dark-sector escape, and candidate dark-sector photon-like modes.
+- For any emitted Noether sea assembly or assembly fragment, retain a release-variable packet before routing the branch into visible, dark-sector, or reabsorbed channels:
+  $$
+  \Theta_{\mathrm{emit}}^{(c)}
+  =
+  \left(
+  P_v^{(c)}(v),
+  \xi_c,
+  \xi_{\mathrm{planar}},
+  \Delta V_c,
+  B_c,
+  \mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(c)},
+  \Delta N_{\mathrm{sea}}^{(c)}
+  \right).
+  $$
+  Here $P_v^{(c)}$ is the emitted velocity distribution, $\xi_c$ is the branch shape ratio, $\xi_{\mathrm{planar}}$ is the planarization threshold under test, $\Delta V_c$ is the displaced or vacated Noether sea volume, $B_c$ is the branch identity, and the final two rows carry event-ledger balance and Noether sea recruitment or return. The packet is priority-only until a release route produces an observer prediction or a strong-field residual.
 - For each selected release channel, report an outbound assembly-state ladder across the outward density and cadence gradient. For a channel $c$, use a declared path parameter $\lambda_c$ and a state sequence
   $$
   \mathcal{L}_{\mathrm{out}}^{(c)}

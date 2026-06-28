@@ -1744,6 +1744,16 @@
       "id": "philosophy_history__treasure_physics_overlooked_overview",
       "name": "The Treasure Physics Overlooked",
       "path": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json"
+    },
+    {
+      "id": "outreach__comics",
+      "name": "Comics",
+      "path": "content/scenes/outreach/comics.json"
+    },
+    {
+      "id": "outreach",
+      "name": "Outreach",
+      "path": "content/scenes/outreach/outreach.json"
     }
   ]
 }

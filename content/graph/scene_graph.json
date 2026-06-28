@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 530,
-      "edges": 1284,
-      "scenes": 349,
+      "nodes": 533,
+      "edges": 1287,
+      "scenes": 351,
       "markdownIndexes": 0,
-      "markdownDocs": 168,
+      "markdownDocs": 169,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2243,6 +2243,18 @@
       "nodeType": "scene"
     },
     {
+      "id": "outreach__comics",
+      "name": "Comics",
+      "path": "content/scenes/outreach/comics.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach",
+      "name": "Outreach",
+      "path": "content/scenes/outreach/outreach.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2642,6 +2654,12 @@
       "id": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
       "name": "Nucleon Structure",
       "path": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics.md",
+      "name": "Outreach Comics",
+      "path": "content/markdown/aaa/outreach/comics.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5206,6 +5224,24 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/outreach/comics.json",
+      "nodeType": "scene",
+      "id": "outreach__comics",
+      "name": "Comics",
+      "path": "content/scenes/outreach/comics.json",
+      "searchTarget": "content/scenes/outreach/comics.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/outreach.json",
+      "nodeType": "scene",
+      "id": "outreach",
+      "name": "Outreach",
+      "path": "content/scenes/outreach/outreach.json",
+      "searchTarget": "content/scenes/outreach/outreach.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "nodeType": "scene",
       "id": "philosophy_history__agency_and_internal_causation",
@@ -6997,6 +7033,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics.md",
+      "name": "Outreach Comics",
+      "path": "content/markdown/aaa/outreach/comics.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
@@ -8222,13 +8267,6 @@
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
-      "to": "scene:content/scenes/cosmology/universe.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[11]"
-    },
-    {
-      "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/dynamics/dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
@@ -8254,6 +8292,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
       "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/architrino_assembly_architecture.json",
+      "to": "scene:content/scenes/outreach/outreach.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/architrino_assembly_architecture.json",
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -11385,6 +11430,20 @@
       "field": "scene.children[0]"
     },
     {
+      "from": "scene:content/scenes/outreach/outreach.json",
+      "to": "scene:content/scenes/cosmology/universe.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/outreach.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/outreach.json",
+      "to": "scene:content/scenes/outreach/comics.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/outreach.json",
+      "field": "scene.children[1]"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",
       "to": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "edgeType": "subscene",
@@ -12852,6 +12911,13 @@
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/nuclear/nucleon_structure.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics.json",
       "field": "scene.source.path"
     },
     {

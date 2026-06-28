@@ -8,6 +8,7 @@
 # COMPLETE 2026-06-26 https://architrino.wordpress.com/2019/06/20/max-planck-ahead-of-his-time/
 # COMPLETE 2026-06-26 https://architrino.wordpress.com/2019/06/17/brainstorming-on-electrinos-and-positrinos/
 # COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/03/24/the-dynamical-geometry-of-charge-paths/
+https://architrino.wordpress.com/2022/03/24/j-mark-morris-aita/
 # COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/06/01/absolute-relativity/
 # COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/07/02/the-radius-of-potential/
 # COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/04/19/dirac-sphere-potentials/
@@ -89,7 +90,7 @@ https://architrino.wordpress.com/2022/12/19/neutrino-assembly/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/12/17/w-and-z-boson-reaction-provenance/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/01/18/is-the-patchwork-quilt-of-physics-and-cosmology-isomorphic-to-the-point-charge-universe/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/01/19/npqg-january-19-2021-planar-bosons-on-the-photon-train/
-https://architrino.wordpress.com/2020/07/14/absolute-distance-and-the-path-of-a-photon/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/07/14/absolute-distance-and-the-path-of-a-photon/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/05/18/a-photon-is-both-particles-and-waves/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/01/05/evidence-for-classic-photons/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/11/11/photons-react-with-spacetime-gas/
@@ -97,19 +98,19 @@ https://architrino.wordpress.com/2020/07/14/absolute-distance-and-the-path-of-a-
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/07/17/brainstorming-the-speeds-of-light/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/09/16/creating-matter-from-pure-light/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/12/27/mapping-spinning-gluons-in-the-proton/
-https://architrino.wordpress.com/2022/12/25/spacetime-vs-time-and-space/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/12/25/spacetime-vs-time-and-space/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/11/21/spacetime-aether-vs-the-vacuum/
-https://architrino.wordpress.com/2018/12/28/is-there-a-physical-aether/
-https://architrino.wordpress.com/2019/01/05/superfluid-soup-to-go/
-https://architrino.wordpress.com/2021/09/17/physicists-fubarred-higgs-big-time/
-https://architrino.wordpress.com/2022/12/24/how-is-spacetime-aether-generated/
-https://architrino.wordpress.com/2022/12/24/how-does-spacetime-aether-decay/
-https://architrino.wordpress.com/2024/07/08/there-is-no-vacuum-catastrophe/
-https://architrino.wordpress.com/2024/07/19/reactions-with-spacetime/
-https://architrino.wordpress.com/2024/10/27/spacetime-assembly-emission/
-https://architrino.wordpress.com/2024/11/16/deep-space-contents/
-https://architrino.wordpress.com/2024/11/26/graviton-higgs-binary/
-https://architrino.wordpress.com/2024/08/06/mapping-higgs/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2018/12/28/is-there-a-physical-aether/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/01/05/superfluid-soup-to-go/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/09/17/physicists-fubarred-higgs-big-time/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/12/24/how-is-spacetime-aether-generated/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/12/24/how-does-spacetime-aether-decay/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/07/08/there-is-no-vacuum-catastrophe/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/07/19/reactions-with-spacetime/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/10/27/spacetime-assembly-emission/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/11/16/deep-space-contents/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/11/26/graviton-higgs-binary/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/08/06/mapping-higgs/
 https://architrino.wordpress.com/2019/11/28/is-spacetime-made-of-axions/
 https://architrino.wordpress.com/2019/06/13/fresh-thinking-about-redshift/
 https://architrino.wordpress.com/2022/03/23/quasar-distribution-and-redshift/

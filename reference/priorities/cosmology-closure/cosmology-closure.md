@@ -15,6 +15,8 @@
 2. `predictive_pipeline` — Turn the CMB and tri-binary cosmology story into a predictive transfer-function pipeline. Status: `deferred`. Depends on: `component_interfaces`.
 3. `age_clock_convergence` — Add an oldest-object and material-clock interface for Hubble-time/time-redshift mapping, globular-cluster turnoff ages, white-dwarf cooling ages, Th/U/Eu radiochronometers, and presolar/interstellar-grain provenance. Status: `deferred`. Depends on: `component_interfaces`.
 4. `cmb_noether_braid_spectrum_linkage` — Examine whether the observed CMB spectrum has a derivable linkage to Noether braid ensemble modes, photon-channel provenance, Noether sea thermalization, and coherent photon-channel bundle transport, without treating the linkage as established before a spectrum-level residual exists. Status: `deferred`. Depends on: `predictive_pipeline`.
+5. `noether_sea_source_relaxation_balance` — Tie production, recycling, decay, reclassification, capture, and relaxation of Noether sea content to one continuity and energy ledger. Status: `deferred`. Depends on: `component_interfaces`.
+6. `deep_space_inventory_benchmark` — Build a deep-space component inventory for photons, neutrinos, cosmic rays, atoms, dust, and unknown Noether sea carriers before treating any sparse visible inventory as an ontology argument. Status: `deferred`. Depends on: `component_interfaces`.
 
 ## Scope
 
@@ -30,6 +32,8 @@ This file remains the control surface for deferred cosmology closure. No sibling
 | `predictive_pipeline` | This file | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | The transfer-function pipeline produces direct CMB, $H_0$, and $S_8$ comparison handles rather than narrative analogy. |
 | `age_clock_convergence` | This file | [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [expansion-mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), [BBN-constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), and [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md) | The same Noether sea and assembly history explains why independent age clocks converge near $13$-$14\ \mathrm{Gyr}$ as an effective observer-era record, without promoting that convergence to the absolute age of the Euclidean void and without leaving older visible or material populations unaccounted for. |
 | `cmb_noether_braid_spectrum_linkage` | This file | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), and [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | The branch states whether CMB Planck-occupation recovery, blackbody preservation, coherent photon-channel bundle transport, spectral-distortion bounds, and frequency-map rows can be derived from Noether braid ensemble dynamics and photon-channel provenance using the same Noether sea state as BBN, redshift, and TT/TE/EE transfer. |
+| `noether_sea_source_relaxation_balance` | This file | [Noether sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [Expansion Mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), and [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Noether sea production, return, capture, decay, reclassification, and relaxation share one continuity and energy ledger before they are used in redshift, CMB, BBN, or dark-energy stories. |
+| `deep_space_inventory_benchmark` | This file | [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [dark-energy](../../../content/markdown/aaa/cosmology/dark-energy.md), and [dark-matter](../../../content/markdown/aaa/cosmology/dark-matter.md) | Sparse ordinary deep-space contents are separated from the unknown Noether sea carrier inventory and from observer-level dark-sector inferences. |
 
 ## Closure Goal
 
@@ -51,6 +55,40 @@ This file remains the control surface for deferred cosmology closure. No sibling
 - CMB spectral linkage to Noether braid ensemble dynamics
 
 The goal is to expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from each component.
+
+## Noether Sea Source And Relaxation Balance
+
+The production and decay language inherited from legacy sources is useful only after it is rewritten as a continuity ledger. For a finite cosmology window, the Noether sea content balance should use the same channel split promoted in the Noether sea canon:
+$$
+S_{\rho}
+=
+S_{\mathrm{prod}}
++S_{\mathrm{return}}
+-S_{\mathrm{capture}}
+-S_{\mathrm{decay}}
+-S_{\mathrm{reclass}}
++S_{\mathrm{relax}}.
+$$
+The priority task is to tie these rows to one energy, reaction, and transport record. A cosmology branch that produces redshift, CMB thermalization, dark-energy stress, or dark-sector inventory by changing one of these rows independently has split the Noether sea state it is supposed to close.
+
+## Deep-Space Inventory Benchmark
+
+The low visible density of intergalactic space should be treated as a component inventory, not as proof that the region is empty. The benchmark should record ordinary photon, neutrino, cosmic-ray, atom, plasma, and dust counts per cubic meter, then add the unresolved Noether sea carrier inventory as a separate unknown row:
+$$
+\mathcal{I}_{\mathrm{deep}}
+=
+\left(
+n_{\gamma},
+n_{\nu},
+n_{\mathrm{CR}},
+n_{\mathrm{atom}},
+n_{\mathrm{dust}},
+\rho_{\text{NS}},
+f_N,
+\theta_{\mathrm{sea}}
+\right).
+$$
+The useful pressure is comparative: ordinary components are sparse, while the Noether sea density must be inferred from packing, transparency, clock/ruler response, redshift transport, and effective-metric closure rather than from direct visible-particle counts.
 
 ## CMB Spectrum / Noether Braid Linkage
 
