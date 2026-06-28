@@ -51,7 +51,7 @@ Current manifest:
 Focused test:
 [branch-provider-evidence-report.test.js](../../../tests/branch-provider-evidence-report.test.js)
 
-The current manifest evaluates seven candidate rows:
+The current manifest evaluates eight candidate rows:
 
 | Candidate | Consumer rank(s) | Current source status | First blocker |
 | --- | ---: | --- | --- |
@@ -62,6 +62,7 @@ The current manifest evaluates seven candidate rows:
 | `bounded-speed-normal-candidate-fixture` | 5 | `fixture_normal_candidate` | `accepted_non_fixture_source_missing` |
 | `moving-retained-branch-status-shell` | 6 | `status_shell_only` | `accepted_non_fixture_source_missing` |
 | `tri-binary-torque-wake-same-row-diagnostic` | 2, 6 | `solver_proxy_diagnostic` | `accepted_non_fixture_source_missing` |
+| `h39-aggregate-p-provider-preaggregation-construction-attempt` | 2, 4, 5, 6 | `target_only_not_accepted_source` | `accepted_non_fixture_source_missing` |
 
 The emitted report returns:
 
@@ -69,7 +70,7 @@ The emitted report returns:
 | --- | --- |
 | `provider_verdict` | `same_domain_branch_provider_missing` |
 | `first_failure` | `accepted_non_fixture_source_missing` |
-| `candidate_count` | 7 |
+| `candidate_count` | 8 |
 | `provider_ready_consumer_count` | 0 |
 | `provider_object_construction_attempt.status` | `same_domain_branch_provider_object_construction_blocked` |
 | `provider_object_construction_attempt.ready_candidate_count` | 0 |

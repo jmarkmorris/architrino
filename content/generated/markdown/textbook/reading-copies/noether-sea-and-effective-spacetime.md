@@ -1675,6 +1675,28 @@ d\tau_{\mathcal A}
 $$
 Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock drift relative to local Noether sea flow. A broad expression such as $d\tau/dt=F(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared.
 
+For a two-clock comparison, the native input is not the relative velocity of the two clock centers by itself. It is the pair of local clock records
+$$
+\mathcal{D}_{\tau}^{AB}
+=
+\left(
+\mathbf{w}_A,
+\mathbf{w}_B,
+\mathcal{N}_{\mathrm{sea},A},
+\mathcal{N}_{\mathrm{sea},B},
+R_A,
+R_B,
+H_A,
+H_B
+\right),
+\qquad
+\mathbf{w}_K
+=
+\mathbf{V}_{K,\mathrm{cm}}
+-\mathbf{u}_{\mathrm{sea},K}.
+$$
+Ordinary relative-velocity time dilation is the weak homogeneous limit of this record after the clock, ruler, and signal channels hide any observer-accessible preferred-frame leakage. If two clocks sample different Noether sea cells, a formula using only $\mathbf{V}_{A,\mathrm{cm}}-\mathbf{V}_{B,\mathrm{cm}}$ has already discarded part of the clock map.
+
 The target is to reproduce, in the appropriate regime,
 $$
 \frac{d\tau}{dt} \approx \sqrt{1+\frac{2\Phi_N}{c_0^2} - \frac{\|\mathbf{w}\|^2}{c_0^2}}

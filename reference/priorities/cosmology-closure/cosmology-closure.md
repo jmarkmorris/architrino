@@ -22,6 +22,8 @@
 9. `distributed_release_rate_residual` — Model source-population release rate density, energy spectrum, spatial distribution, and thermalization depth before using recycling release as a CMB or expansion-equivalent source. Status: `deferred`. Depends on: `noether_sea_source_relaxation_balance`, `cmb_noether_braid_spectrum_linkage`.
 10. `nested_shell_cmb_peak_residual` — Test whether first-three-peak CMB ratios can be projected from nested shell braid energy-scale ratios without changing the transfer state used for blackbody, lensing, and growth rows. Status: `deferred`. Depends on: `predictive_pipeline`, `cmb_noether_braid_spectrum_linkage`.
 11. `dark_sector_apparentness_residual` — Separate shielded energy, neutral assemblies, Noether sea stress, projection effects, and catalogue residuals before interpreting a missing component as dark matter or dark energy. Status: `deferred`. Depends on: `deep_space_inventory_benchmark`.
+12. `horizon_computation_benchmark` — Treat finite accessible energy, horizon temperature floor, and finite computation counts as observer-horizon comparison pressure rather than information ontology. Status: `priority-only`. Depends on: `component_interfaces`, `age_clock_convergence`.
+13. `missing_baryon_inventory_guardrail` — Keep observer-level baryon inventory separate from primitive architrino and Noether sea inventories before claiming missing-baryon closure. Status: `priority-only`. Depends on: `deep_space_inventory_benchmark`, `component_interfaces`.
 
 ## Scope
 
@@ -137,6 +139,38 @@ n_{\mathrm{bar}},
 \right),
 $$
 where $f_{\mathrm{mat}}$ is an occupied-volume or packing proxy for ordinary matter, $n_{\mathrm{bar}}$ is the baryonic number-density comparison, $\rho_{\text{NS}}$ is the inferred Noether sea density, $\ell_{\mathrm{coh}}$ is the coherence or response length being tested, and $\mathcal{R}_{\mathrm{trans}}$ checks transparency, dispersion, and clock/ruler constraints. The expected lesson is not a fixed historical number. It is a same-record comparison between sparse visible inventories and the much denser carrier population required by effective metric, redshift, and propagation recovery.
+
+The missing-baryon problem adds a guardrail to that inventory. Primitive architrino conservation and Noether sea density do not by themselves close an observer-level baryon count. A baryon inventory row should keep the standard inferred baryon budget and the visible/unseen ordinary-matter catalogues separate from the deeper substrate inventory:
+$$
+\mathcal{I}_{\mathrm{bar}}
+=
+\left(
+\Omega_b^{\mathrm{BBN/CMB}},
+\Omega_b^{\mathrm{stars}},
+\Omega_b^{\mathrm{ISM/CGM}},
+\Omega_b^{\mathrm{WHIM}},
+\Omega_b^{\mathrm{compact}},
+\Omega_b^{\mathrm{unseen}},
+\mathcal{L}_{b\leftrightarrow\mathrm{sea}}
+\right).
+$$
+The ledger $\mathcal{L}_{b\leftrightarrow\mathrm{sea}}$ is needed only when a branch claims conversion, recycling, shielding/exposure change, or release between baryonic assemblies and Noether sea or neutral-assembly channels. Without that reaction and provenance row, the Noether sea inventory is not allowed to fill a missing-baryon term.
+
+## Horizon Computation Benchmark
+
+Far-future computation limits are useful as observer-horizon comparison pressure. They should not be promoted into information ontology. For a candidate cosmology branch, record
+$$
+\mathcal{B}_{\mathrm{horizon\text{-}comp}}
+=
+\left(
+E_{\mathrm{acc}}^{\mathrm{eff}},
+T_{\mathrm{floor}}^{\mathrm{eff}},
+N_{\mathrm{ops}}^{\max},
+\mathcal{H}_{\mathrm{eff}},
+\theta_{\mathrm{sea}}
+\right),
+$$
+where $E_{\mathrm{acc}}^{\mathrm{eff}}$ is the accessible effective energy inside the observer horizon, $T_{\mathrm{floor}}^{\mathrm{eff}}$ is the effective temperature floor for record-bearing computation, $N_{\mathrm{ops}}^{\max}$ is the comparison operation or bit-transfer budget, $\mathcal{H}_{\mathrm{eff}}$ is the observer-horizon reconstruction, and $\theta_{\mathrm{sea}}$ is the same Noether sea record used by redshift, clock, and structure rows. A branch that changes the far-future horizon, floor temperature, or accessible-energy law independently of the expansion, redshift, and clock maps has split the cosmology record.
 
 For dark-sector apparentness, the inventory should expose at least
 $$

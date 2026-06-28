@@ -1,0 +1,29 @@
+{
+  "schema": "aaa-equation-map-eq11a-effective-metric-tensor-source-contract/v1",
+  "claimLevel": "source-contract boundary for the EQ-11A effective_metric_tensor_channel row; score-neutral and not accepted retained evidence by itself",
+  "sourceRole": "effective_metric_tensor_channel_source_contract",
+  "supportsEquationRows": [
+    "EQ-11A"
+  ],
+  "supportsRows": [
+    "effective_metric_tensor_channel"
+  ],
+  "sourceWindowId": "GW150914-v3",
+  "supportId": "H1L1_GWTC1_PE_v3",
+  "eventId": "GWTC-1-confident/GW150914/v3",
+  "requiredSameRecordBinding": {
+    "carrierId": "theta_gwsrc_effective_metric_tensor_source_contract_attempt_0001",
+    "sourceWindowId": "GW150914-v3",
+    "supportId": "H1L1_GWTC1_PE_v3",
+    "eventId": "GWTC-1-confident/GW150914/v3"
+  },
+  "directGeometryLayer": {
+    "standardComparisonTerm": "h_+ and h_x gravitational-wave tensor propagation channel",
+    "aaaGeometricReadout": "effective-metric tensor disturbance readout bound to the same Noether sea and GW150914 source carrier",
+    "requiredCarrierOrRow": "effective_metric_tensor_channel",
+    "sameRecordBinding": "the tensor channel shares the EQ-11A carrierId, sourceWindowId, supportId, eventId, and theta_sea row before chirp, quadrupole, strain, and ringdown residuals can count",
+    "failClosedNegativeControl": "eq11a-gravitational-wave-source-effective-metric-tensor-row-mismatch-negative-control.v1.json",
+    "smallestAcceptedEvidenceObject": "source-backed effective_metric_tensor_channel row bound to the GW150914 carrier; score remains neutral until source ledger, detector strain, provenance, and no-retune rows are accepted"
+  },
+  "scoreDecision": "no_score_increase"
+}

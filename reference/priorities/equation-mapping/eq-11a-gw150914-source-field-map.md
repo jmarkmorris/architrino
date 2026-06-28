@@ -131,10 +131,26 @@ It keeps the accepted-looking carrier and `gw_source_carrier` row source-backed 
 
 ## Smallest Next Source Object
 
-The next score-neutral row template is an accepted-looking `theta_sea` source candidate whose `sourceEvidence` names `theta_sea` support on the same `carrierId`, `sourceWindowId`, `supportId`, and `eventId` as `GW150914-v3`. It still must not move the score by itself: if it ever passes the row-specific source contract, the checker should advance only to `missing_accepted_effective_metric_tensor_channel` until the tensor channel, source event ledger, quadrupole, chirp, Peters-decay, strain-flux, ringdown, detector-strain, provenance, and no-hidden-retune rows are accepted and same-record bound.
+The score-neutral `theta_sea` source-contract boundary is staged in [eq11a-gravitational-wave-source-theta-sea-source-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-theta-sea-source-contract.v1.json), with checker input [eq11a-gravitational-wave-source-theta-sea-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-theta-sea-source-contract-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-theta-sea-source-contract-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-theta-sea-source-contract-attempt.v1.json --summary --pretty --require-populated
+```
+
+The first command advances only to `nextBlocker=missing_accepted_effective_metric_tensor_channel`, with `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. This boundary is not accepted retained evidence. It only proves that a row-specific `sourceEvidence` contract can move the checker from the parent source carrier and `theta_sea` row to the tensor-channel blocker while leaving the tensor channel, source event ledger, quadrupole, chirp, Peters-decay, strain-flux, ringdown, detector-strain, provenance, and no-hidden-retune rows at `attempt`.
+
+The score-neutral tensor-channel boundary is staged in [eq11a-gravitational-wave-source-effective-metric-tensor-source-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-effective-metric-tensor-source-contract.v1.json), with checker input [eq11a-gravitational-wave-source-effective-metric-tensor-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-effective-metric-tensor-source-contract-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-effective-metric-tensor-source-contract-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-effective-metric-tensor-source-contract-attempt.v1.json --summary --pretty --require-populated
+```
+
+The first command advances only to `nextBlocker=missing_accepted_source_event_ledger`, with `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-effective-metric-tensor-row-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-effective-metric-tensor-row-mismatch-negative-control.v1.json) keeps an accepted-looking tensor row blocked at `missing_accepted_effective_metric_tensor_channel` when its `sourceEvidence` names the wrong row.
 
 ## Current Disposition
 
-The source map is ready for a checker-consumable attempt packet, not a score change. A future candidate input should preserve `status: attempt` until all row bindings are source-backed, durable, and accepted by the existing checker contract.
+The source map is ready for a source-event-ledger source-contract attempt, not a score change. A future candidate input should preserve `status: attempt` until all row bindings are source-backed, durable, and accepted by the existing checker contract.
 
 No score changes.

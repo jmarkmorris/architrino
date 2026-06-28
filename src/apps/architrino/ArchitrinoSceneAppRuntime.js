@@ -80,11 +80,11 @@ import {
 } from "../../runtime/SceneLabelSizingRuntime.js";
 import { resolveSharedSceneSphereRadius } from "../../runtime/SceneSphereSizingRuntime.js";
 import { resolveCenterContextDescriptor } from "../../runtime/SceneCenterContextRuntime.js";
-import { createSceneGraphRuntime } from "../../runtime/SceneGraphRuntime.js";
+import { createSceneGraphRuntime } from "../../runtime/SceneGraphRuntime.js?v=2026-06-28-ring-layout-inner-rings";
 import {
   RING_LAYOUT_DEFAULTS as ringLayoutDefaults,
   getRingGuardBand,
-} from "../../runtime/RingLayoutRuntime.js";
+} from "../../runtime/RingLayoutRuntime.js?v=2026-06-28-ring-layout-inner-rings";
 import { createTransitionEngine } from "../../runtime/TransitionEngine.js";
 import { SceneRepository } from "../../services/SceneRepository.js";
 import { SceneIndexService } from "../../services/SceneIndexService.js";

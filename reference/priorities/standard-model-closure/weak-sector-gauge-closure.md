@@ -224,6 +224,20 @@ E_{\nu,\mathrm{exp}},
 $$
 The row fails if the propagation phase, detector flavor projection, and exposed-energy bookkeeping require different weak-exposure projectors. It also fails if hidden internal energy is used as an unconstrained mass reservoir rather than as part of the retained near-photon branch ledger.
 
+The resolved three-binary form of the same burden is
+$$
+\mathcal{R}_{\nu W}^{(3B)}
+=
+\left(
+\Theta_{\nu}^{(3B)},
+\{\zeta_{\ell W}\}_{\ell=1}^{3},
+\Pi_W,
+\mathbf U_{\mathrm{PMNS}},
+\mathcal{L}_{E\mathbf p\mathbf J}^{\mathrm{src/det}}
+\right).
+$$
+This priority row consumes the near-photon state record in the neutrino chapter. It asks whether the exposed fractions of the three residual internal binaries can supply weak detection flavor, oscillation phase, and source/detector event provenance through one geometry, rather than using PMNS parameters as a detached fit layer.
+
 ## CERN Weak, Higgs, and Flavor Event Burdens
 
 The CERN Academic Training / Yellow Report source family sharpens this packet by showing how weak, Higgs, and flavor claims enter as reconstructed event signatures. The weak-sector closure object must therefore expose not only a mass or mixing number, but also the observer channel by which that number is inferred.

@@ -71,6 +71,27 @@ E_{\nu,\mathrm{exp}}+E_{\nu,\mathrm{sh}}
 $$
 with $\Pi_W$ the weak-exposure projector on the near-photon branch. This does not make the neutrino's mass a hidden-energy label. It states that the tiny observer-facing mass and oscillation signal must come from the same exposed fraction that the weak channel samples, while the total retained internal ledger remains conserved during free propagation.
 
+The three residual internal binaries should remain visible in the closure record before PMNS fitting begins. A resolved near-photon branch may be written schematically as
+$$
+\Theta_{\nu}^{(3B)}(t)
+=
+\left\{
+\left(
+E_{\ell}(t),
+R_{\ell}(t),
+\hat{\mathbf{J}}_{\ell}(t),
+\phi_{\ell}(t),
+\zeta_{\ell W}(t)
+\right)
+\right\}_{\ell=1}^{3},
+\qquad
+E_{\nu,\mathrm{exp}}(t)
+=
+\sum_{\ell=1}^{3}
+\zeta_{\ell W}(t)E_{\ell}(t).
+$$
+Here $E_{\ell}$, $R_{\ell}$, $\hat{\mathbf{J}}_{\ell}$, and $\phi_{\ell}$ record the layer energy, scale, angular-momentum direction, and phase of each residual internal binary, while $\zeta_{\ell W}$ is the weak-channel exposure weight derived from the near-photon geometry. The PMNS map should recover its effective three-mode behavior from this exposure record, not from three independent flavor labels added after propagation.
+
 Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar pro/anti lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation. If the lock completed, the object would be read as a photon-channel packet; because it does not complete, the remaining internal-binary rhythm is still available to the weak channel.
 
 ## Conversion and Reaction-Provenance Questions

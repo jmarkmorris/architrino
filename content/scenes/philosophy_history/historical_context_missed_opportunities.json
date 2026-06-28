@@ -11,7 +11,8 @@
       "type": "rings",
       "centerNode": "historical_context_overview",
       "order": "objects",
-      "direction": "clockwise"
+      "direction": "clockwise",
+      "allowInnerRings": false
     },
     "labelDocIconOwnLine": true,
     "source": {

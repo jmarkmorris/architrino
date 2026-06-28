@@ -96,6 +96,32 @@
       "conservation_pullback_hash": null,
       "branch_local_projection_or_normalization_identity": "same-row force/partition/torque/wake diagnostic row ids",
       "notes": "The diagnostic attaches sampled same-row torque and wake rows but leaves retainedBranchClaim=false and branch_certificate_ref absent."
+    },
+    {
+      "id": "h39-aggregate-p-provider-preaggregation-construction-attempt",
+      "claim_scope": "rank2/rank4/rank5/rank6 H39 aggregate-P provider-object construction attempt",
+      "source_ref": "scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs#aggregate_p_provider_preaggregation_branch_bearing_audit",
+      "provider_source_status": "target_only_not_accepted_source",
+      "feeds": [
+        "rank2_field_speed_action_self_hit_scan",
+        "rank4_pressure_row_branch_intake",
+        "rank5_bounded_speed_normal_reconstruction",
+        "rank6_moving_retained_branch_certificate"
+      ],
+      "same_domain_record_ref": "h39-requested-y44-terminal-aggregate-p-provider-preaggregation-branch-bearing-audit",
+      "branch_certificate_ref": null,
+      "active_root_or_live_ledger_identity": null,
+      "conservation_pullback_hash": null,
+      "branch_local_projection_or_normalization_identity": null,
+      "branch_rows_ref": null,
+      "branch_labels": null,
+      "branch_weights_or_intervals": null,
+      "projection_map_ref": null,
+      "pushforward_operator_ref": null,
+      "normalization_identity_ref": null,
+      "source_term_refs_upstream_of_aggregate_p": "source_map_residual_shared_stream_five_node_source_term_provider_probe",
+      "aggregate_erasure_negative_control_ref": "aggregate-P-provider-probe-born-aggregate-only",
+      "notes": "The H39 aggregate-P audit verifies that raw provider probe rows exist but the branch-bearing field hit count is zero; it is target-only evidence and does not certify actual provider-object branch rows or pushforward identity."
     }
   ]
 }

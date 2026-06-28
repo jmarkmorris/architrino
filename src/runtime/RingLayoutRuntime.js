@@ -64,5 +64,11 @@ export function normalizeRingLayoutOptions(layoutConfig = null, fallback = {}) {
     centerOn: centerMode === "none" ? null : centerOn,
     direction: normalizeRingDirection(config.direction, fallback.direction),
     order: normalizeRingOrder(config.order, fallback.order),
+    allowInnerRings:
+      typeof config.allowInnerRings === "boolean"
+        ? config.allowInnerRings
+        : typeof fallback.allowInnerRings === "boolean"
+          ? fallback.allowInnerRings
+          : true,
   };
 }

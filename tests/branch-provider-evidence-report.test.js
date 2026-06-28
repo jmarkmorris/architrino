@@ -22,7 +22,7 @@ function consumer(report, id) {
   return report.consumer_results.find((entry) => entry.consumer_id === id);
 }
 
-test("branch-provider evidence report rejects current fixture, toy, proxy, and status-shell candidates", () => {
+test("branch-provider evidence report rejects current fixture, toy, proxy, status-shell, and target candidates", () => {
   const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
   const report = buildReport(fixture, { sourceRef: CURRENT_FIXTURE });
 
@@ -30,7 +30,7 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, and s
   assert.equal(report.schema, "branch_provider_evidence_report/v0");
   assert.equal(report.provider_verdict, "same_domain_branch_provider_missing");
   assert.equal(report.first_failure, "accepted_non_fixture_source_missing");
-  assert.equal(report.summary.candidate_count, 7);
+  assert.equal(report.summary.candidate_count, 8);
   assert.equal(report.summary.provider_ready_consumer_count, 0);
   assert.equal(
     report.provider_object_construction_attempt.schema,
@@ -102,6 +102,90 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, and s
     (candidate) => candidate.id === "tri-binary-torque-wake-same-row-diagnostic"
   );
   assert.deepEqual(torqueWake.provider_ready_for_consumers, []);
+
+  const h39ConstructionAttempt = report.candidate_results.find(
+    (candidate) =>
+      candidate.id ===
+      "h39-aggregate-p-provider-preaggregation-construction-attempt"
+  );
+  assert.equal(
+    h39ConstructionAttempt.provider_source_status,
+    "target_only_not_accepted_source"
+  );
+  assert.deepEqual(h39ConstructionAttempt.provider_ready_for_consumers, []);
+  assert.equal(
+    h39ConstructionAttempt.consumer_results.every(
+      (result) => result.provider_ready === false
+    ),
+    true
+  );
+  assert.equal(
+    h39ConstructionAttempt.consumer_results.every(
+      (result) => result.first_failure === "accepted_non_fixture_source_missing"
+    ),
+    true
+  );
+
+  const h39ConstructionAttemptDetails =
+    report.provider_object_construction_attempt.candidate_attempts.find(
+      (candidate) =>
+        candidate.candidate_id ===
+        "h39-aggregate-p-provider-preaggregation-construction-attempt"
+    );
+  assert.equal(
+    h39ConstructionAttemptDetails.provider_source_status,
+    "target_only_not_accepted_source"
+  );
+  assert.equal(h39ConstructionAttemptDetails.provider_object_fields_ready, false);
+  assert.equal(h39ConstructionAttemptDetails.branch_materialization_ready, false);
+  assert.equal(
+    h39ConstructionAttemptDetails.missing_or_rejected_fields.includes(
+      "branch_rows_ref"
+    ),
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.missing_or_rejected_fields.includes(
+      "branch_labels"
+    ),
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.missing_or_rejected_fields.includes(
+      "branch_weights_or_intervals"
+    ),
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.missing_or_rejected_fields.includes(
+      "projection_map_ref"
+    ),
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.missing_or_rejected_fields.includes(
+      "pushforward_operator_ref"
+    ),
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.missing_or_rejected_fields.includes(
+      "normalization_identity_ref"
+    ),
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.missing_or_rejected_fields.includes(
+      "conservation_pullback_hash"
+    ),
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.missing_or_rejected_fields.includes(
+      "aggregate_erasure_negative_control_ref"
+    ),
+    false
+  );
 });
 
 test("branch-provider evidence report can accept a complete non-fixture provider per consumer", () => {

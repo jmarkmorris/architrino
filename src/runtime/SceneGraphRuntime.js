@@ -9,7 +9,7 @@ import {
   getRingDirectionSign,
   getRingGuardBand,
   normalizeRingLayoutOptions,
-} from "./RingLayoutRuntime.js";
+} from "./RingLayoutRuntime.js?v=2026-06-28-ring-layout-inner-rings";
 
 export function createSceneGraphRuntime(deps) {
   const ELEMENT_FIRST_SHELL_OFFSET = 0.80;
@@ -215,13 +215,15 @@ export function createSceneGraphRuntime(deps) {
       if (hasCenter) {
         candidates.push({ outerCount: remaining, innerCount: 0, hasCenter: true });
       }
-      const maxInner = Math.floor(remaining / 2);
-      for (let innerCount = 1; innerCount <= maxInner; innerCount += 1) {
-        const outerCount = remaining - innerCount;
-        if (outerCount < innerCount) {
-          continue;
+      if (ringLayoutOptions.allowInnerRings !== false) {
+        const maxInner = Math.floor(remaining / 2);
+        for (let innerCount = 1; innerCount <= maxInner; innerCount += 1) {
+          const outerCount = remaining - innerCount;
+          if (outerCount < innerCount) {
+            continue;
+          }
+          candidates.push({ outerCount, innerCount, hasCenter });
         }
-        candidates.push({ outerCount, innerCount, hasCenter });
       }
     });
 

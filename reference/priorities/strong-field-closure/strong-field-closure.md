@@ -21,6 +21,7 @@
 8. `packed_core_temperature_endpoint_residual` — Keep observer-accessible temperature, stored configuration energy, and packed-core coarse-graining separate before making any low-temperature or low-entropy interior claim. Status: `priority-only`. Depends on: [temperature](../cross-theory-mapping/temperature.md), `embedded_boundary_conditions`.
 9. `hard_em_constitutive_ceiling` — Test whether finite radius, Noether sea effective permittivity/permeability, and maximum-curvature regularity combine into a bounded electromagnetic constitutive response. Status: `priority-only`. Depends on: `embedded_boundary_conditions`.
 10. `ingress_conserved_ledger_deposition` — Route infalling conserved ledgers into horizon-interface, packed-core, Noether sea, defect, or release rows before making any assimilation or information claim. Status: `priority-only`. Depends on: `horizon_entropy_packet`, `release_channel_selection`.
+11. `quasar_wind_mechanical_benchmark` — Use high-power quasar winds as a mechanical outflow benchmark for release-channel selection and galaxy-scale feedback. Status: `priority-only`. Depends on: `release_channel_selection`, `high_energy_source_sink_taxonomy`.
 
 ## Scope
 
@@ -313,6 +314,22 @@ This taxonomy does not add a new closure gate. It keeps `release_channel_selecti
 Odd radio circles are a candidate source-family lead for the catastrophic row, not evidence for a new class by themselves. If used, the packet should record host association, morphology, spectrum, polarization, environment, merger/AGN history, and null controls against ordinary shock, lobe, and projection explanations. A strong-field release interpretation is admissible only if the same source/sink ledger supplies the energy, angular momentum, medium loading, and exterior radiative handoff without changing the release selector per object.
 
 Fermi-bubble and eROSITA-bubble comparisons are a cleaner galaxy-scale release lead because they already point to bounded energy, age, axis, and environment rows. If used, the packet should record total energy, radiative and dynamical age, Galactic-center or AGN history, axis symmetry, polarization or spectrum where available, surrounding gas state, and null controls against starburst winds, ordinary AGN feedback, and projection effects. The useful question is whether one release-channel selector can connect compact-source history to large-scale medium work without becoming a free feedback term.
+
+High-power quasar winds supply a mechanical outflow benchmark for the same source/sink taxonomy. The useful data product is not the legacy claim that a Planck-plasma jet is established. It is the observer-level fact that some quasar systems drive galaxy-scale winds with large mass-loading, percent-of-$c$ velocities, and host-scale feedback. A compact benchmark packet is
+$$
+\mathcal{B}_{\mathrm{QSO\text{-}wind}}
+=
+\left(
+\dot M_{\mathrm{out}},
+v_{\mathrm{out}},
+\dot E_{\mathrm{mech}},
+t_{\mathrm{duty}},
+R_{\mathrm{shock}},
+\Delta\mathrm{SFR},
+\mathcal{L}_{E\mathbf p\mathbf J}^{\mathrm{wind}}
+\right).
+$$
+The release selector should pass this benchmark only when the same compact-source, disk/interface, wind-propagation, and surrounding Noether sea loading record supplies the mass outflow, mechanical power, duty cycle, shock scale, star-formation feedback, and $E,\mathbf p,\mathbf J$ ledger. A branch that explains a launch impulse but not the sustained mechanical work has not closed the quasar-wind channel.
 
 Asymmetric jet release needs its own momentum-balance residual before it is allowed to influence host dynamics. For a compact source with two polar channels, define
 $$

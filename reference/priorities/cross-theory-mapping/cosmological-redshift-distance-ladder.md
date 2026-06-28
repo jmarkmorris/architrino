@@ -501,6 +501,7 @@ The allowed difference between rows is the data-product context $\nu_i$, not a n
 9. `cadence_scale_retuning_map` — Derive or falsify the single-core map from an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction to $(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$ and show how its coarse-grained average becomes $J_\nu$. Status: `fixture-seeded`; proof scaffold: `content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#cadence-scale-retuning-closure`; runtime fixture: `scripts/nested-shell-braid/retuning-map-toy-model.mjs`.
 10. `noether_braid_equilibrium_transport` — Derive or falsify the candidate $f_N$ transport law, including $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, and $R_{\mathrm{eq}}[f_N]$, and test whether it supplies a signed contribution to $\alpha_{\mathrm{prop},X}$ without violating photon coherence gates. Status: `continuity-packet-seeded`.
 11. `matter_assembly_redshift_consistency` — Derive or falsify the companion map $\mathfrak M_M[\mathcal S_{M;E\to R}]$ and residual $\mathcal R_{M\leftrightarrow X}$ so matter assembly cadence, source-branch retuning, and growth variables use the same restricted $S(t)$ record as photon redshift factors. Status: `priority-only scaffold`.
+12. `discrete_medium_transparency_residual` — Bound transverse diffusion, chromatic delay, polarization drift, and image blur for photon-channel propagation through a discrete Noether sea. Status: `priority-only scaffold`.
 
 ## Closure Objects
 
@@ -524,6 +525,16 @@ The allowed difference between rows is the data-product context $\nu_i$, not a n
 - Cadence-scale retuning map: an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction maps one core closure label into another through $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}=(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$, with the ensemble average supplying the candidate current $J_\nu\sim f_N\langle\dot{\nu}_N\rangle_{\Delta A_{\mathrm{cyc}}=\pm h}$ and first estimate $J_\nu=\sum_\sigma f_N r_\sigma\Delta\nu_N^{(q,\sigma)}+O((\Delta\nu_N)^2\partial_\nu f_N)$.
 - Retuning-map toy fixture: `scripts/nested-shell-braid/retuning-map-toy-model.mjs` with documentation in `content/markdown/aaa/validation/simulations/retuning-map-toy-model.md`; this fixture solves the linearized constrained compliance problem and reports branch speed gates plus net $J_\nu$.
 - Noether braid equilibrium transport packet: $f_N(\nu,\mathbf{x},t)$, $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, $R_{\mathrm{eq}}[f_N]$, and the projection from that packet into $\alpha_{\mathrm{prop},X}$ through the fixed row $\Theta_X=(\mathbf b_N,\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$.
+- Discrete-medium transparency residual:
+  $$
+  \mathcal{R}_{\mathrm{gran\text{-}tr}}
+  =
+  w_{\perp}\langle\Delta\mathbf{k}_{\perp}^{2}\rangle_L
+  +w_{\omega}\operatorname{Var}_X(\Delta Y_X)
+  +w_t\Delta t_{\gamma}
+  +w_{\Pi}\Delta\Pi_{\gamma}.
+  $$
+  This row is the granular Noether sea version of the tired-light negative control. It permits coherent cadence or path-history transfer only if transverse momentum diffusion, line-family chromaticity, photon timing, and polarization drift stay below the image-sharpness and time-dilation tolerances already carried by the transport packet.
 - Cosmology acceptance vector: $(z,D_L,D_A,H(z),T_{\mathrm{CMB}},P(k),f\sigma_8)$.
 - Shared medium variables: $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and $\mathcal{M}_{\mathrm{sea}}^{ab}$.
 - Frame-consistency record for CMB, matter dipoles, supernova directionality, BAO anisotropy, and local $H_0$ scatter.
