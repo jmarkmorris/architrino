@@ -9,7 +9,7 @@ import {
   getRingDirectionSign,
   getRingGuardBand,
   normalizeRingLayoutOptions,
-} from "./RingLayoutRuntime.js?v=2026-06-28-ring-layout-inner-rings";
+} from "./RingLayoutRuntime.js?v=2026-06-28-historical-context-single-ring";
 
 export function createSceneGraphRuntime(deps) {
   const ELEMENT_FIRST_SHELL_OFFSET = 0.80;

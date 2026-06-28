@@ -1334,6 +1334,7 @@ def shared_interval_boxes_target_row(
     past_profile_interval_box_attempt: dict | None,
     past_profile_interval_box_certificate: dict | None = None,
     future_transport_interval_box_certificate: dict | None = None,
+    retained_root_window_bracket_replay: dict | None = None,
 ) -> dict:
     required_box_ids = [
         "past_profile_interval_box",
@@ -1426,6 +1427,28 @@ def shared_interval_boxes_target_row(
                 ),
             }
         )
+    if retained_root_window_bracket_replay is not None:
+        row["retained_root_window_bracket_replay"] = {
+            key: retained_root_window_bracket_replay[key]
+            for key in (
+                "schema",
+                "artifact_id",
+                "method",
+                "status",
+                "sampled_bracket_count",
+                "sampled_brackets_verified",
+                "sampled_min_endpoint_abs_value",
+                "sampled_max_endpoint_abs_value",
+                "bounds_retained_root_interval_boxes",
+                "bounds_inactive_cover_interval_boxes",
+                "used_as_certificate",
+                "used_as_local_certificate",
+                "used_as_shared_certificate",
+                "authorizes_outward_certificate",
+                "authorizes_obstruction_or_channel_decision",
+                "replay_digest",
+            )
+        }
     return row
 
 
@@ -1841,6 +1864,7 @@ def a1_shared_interval_box_certificate_target(
     past_profile_interval_box_attempt: dict | None = None,
     past_profile_interval_box_certificate: dict | None = None,
     future_transport_interval_box_certificate: dict | None = None,
+    retained_root_window_bracket_replay: dict | None = None,
     directed_rounding_backend_target: dict | None = None,
     directed_rounding_backend_self_audit: dict | None = None,
 ) -> dict:
@@ -1860,6 +1884,7 @@ def a1_shared_interval_box_certificate_target(
             past_profile_interval_box_attempt,
             past_profile_interval_box_certificate,
             future_transport_interval_box_certificate,
+            retained_root_window_bracket_replay,
         ),
         "directed_rounding_backend": directed_rounding_backend_target_row(
             directed_rounding_backend_target,
