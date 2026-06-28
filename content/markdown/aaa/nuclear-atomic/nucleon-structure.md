@@ -135,6 +135,46 @@ Here $\mathsf{I}_{\mathrm{strong},uud}^{ab}$ denotes the closed color-corridor a
 
 The proton-current-quark mass mismatch is therefore a required benchmark for the hadronic mass map: most of the proton's observed rest response should come from the accepted composite strong-sector ledger and its Noether sea response, not from isolated current-quark mass addition and not from ordinary nuclear binding. Nuclear binding starts one level higher, after proton and neutron source envelopes have already been accepted as nucleon branches.
 
+### Proton Spin Budget
+
+The proton spin comparison should be treated the same way as the mass comparison: the observer-level spin-$1/2$ label is a composite readout after the three quark branches, color-corridor structure, orbital terms, and Noether sea dressing are projected into one accepted proton source envelope. In a declared resolution window $Q$, write the proton angular-momentum ledger as
+$$
+\mathbf J_p(Q)
+=
+\sum_{q\in\{u_1,u_2,d\}}
+\left(
+\mathbf J_{q,\mathrm{braid}}(Q)
++
+\mathbf L_{q,\mathrm{orb}}(Q)
+\right)
++
+\mathbf J_{\mathrm{color\ corr}}(Q)
++
+\mathbf L_{\mathrm{tube}}(Q)
++
+\mathbf J_{\mathrm{sea}}(Q).
+$$
+
+Here $\mathbf J_{q,\mathrm{braid}}$ is the retained internal Noether braid angular-momentum contribution of each quark branch, $\mathbf L_{q,\mathrm{orb}}$ is the quark-branch orbital contribution inside the accepted proton envelope, $\mathbf J_{\mathrm{color\ corr}}$ is the angular momentum carried by color-corridor and flux-tube reconfiguration, $\mathbf L_{\mathrm{tube}}$ records tube geometry and recoil circulation, and $\mathbf J_{\mathrm{sea}}$ records Noether sea and sea-pair dressing that remains inside the proton branch rather than outside as ambient medium.
+
+The closure target is
+$$
+\mathcal R_{J_p}(Q)
+=
+\frac{
+\left\|
+\mathbf J_p(Q)
+-
+\frac{\hbar}{2}\hat{\mathbf J}_p
+\right\|
+}{
+\hbar+\varepsilon_J
+}
+\le
+\Delta_{J_p}(Q).
+$$
+This is the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading of the proton-spin puzzle. Standard quark-spin, gluon-spin, sea, and orbital fractions are useful resolution-dependent comparison data, but "gluon spin" should map to color-corridor and flux-tube angular-momentum rows rather than to a standalone point-particle spin inserted into the proton.
+
 The first closure condition is absence of open color leakage at the proton boundary:
 
 $$

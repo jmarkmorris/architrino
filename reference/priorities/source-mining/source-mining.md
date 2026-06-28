@@ -53,7 +53,7 @@ The completed target list lives in [source-mining-history](source-mining-history
 - Source: [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), and current-year archive pages such as [2026](https://architrino.wordpress.com/2026/).
 - Last crawl: June 27, 2026.
 - Published posts discovered: `379`.
-- Current local queue state: `135` complete and `243` open for mining.
+- Current local queue state: `144` complete and `234` open for mining.
 - Completion authority: local source-mining history, durable queue status, and durable table status. WordPress tags were retired from this workflow on June 28, 2026.
 - The June 27, 2026 refresh added `5` posts beyond the previous table: `4` from the [2026 archive](https://architrino.wordpress.com/2026/) plus `1` newly visible 2023 draft.
 - The WordPress site is now treated as an official historical archive to mine while the subscription remains active, currently expected through approximately June 2029.

@@ -64,6 +64,38 @@ $$
 
 The UV-failure test is therefore two-sided: the mapping fails if it leaves the Rayleigh-Jeans divergence in place, and it also fails if it inserts an unmotivated cutoff without deriving the Planck occupation and thermalization record.
 
+## High-Occupation Photon-Bath Limit
+
+The Bose occupation side should be recovered from the same photon branch, not assumed because the observer-level carrier is a boson. A large photon occupation number means many coaxial contra-rotating pro/anti planar pair ledgers occupy the same effective phase-space cell while preserving their Gate A kinematics, Gate B transverse records, and Gate C emission/capture exchange rows.
+
+For a phase-space cell $B_\nu$ in a material or Noether sea environment $\Omega$, write the retained occupation and the branch headroom as
+$$
+N_\gamma(B_\nu;\Omega)
+=
+\int_{B_\nu}
+\bar n_\gamma(\nu,\mathbf{x},\hat{\mathbf{k}};\Omega)\,d\Pi_\gamma,
+\qquad
+N_{\max}(B_\nu;\Omega;\Theta_{\mathrm{bb}})
+=
+N_{\mathrm{geom}}\,
+N_{\mathrm{phase}}\,
+N_{\mathrm{resp}}.
+$$
+
+Here $N_{\mathrm{geom}}$ records the available Gate A mode geometry, $N_{\mathrm{phase}}$ records phase-lock compatibility among planar-pair ledgers, and $N_{\mathrm{resp}}$ records the material or Noether sea response before scattering, pair production, plasma breakdown, or other reaction channels take over. The high-occupation residual is
+$$
+\mathcal R_{\mathrm{occ}}
+=
+\frac{
+\max\{0,N_\gamma(B_\nu;\Omega)-N_{\max}(B_\nu;\Omega;\Theta_{\mathrm{bb}})\}
+}{
+N_{\max}(B_\nu;\Omega;\Theta_{\mathrm{bb}})+\varepsilon_N
+}
++
+\mathcal R_{\mathrm{BE}}
+$$
+where $\mathcal R_{\mathrm{BE}}$ compares the recovered occupation law against the Bose-Einstein/Planck limit in the weak homogeneous thermal branch. A candidate blackbody carrier fails if it gets the Planck spectrum only by importing unlimited occupation, or if dense coherent photon branches collapse into pair production or medium excitation before the standard high-occupation regimes remain available.
+
 ## Wien Peak As Stationarity Diagnostic
 
 Wien's peak should be treated as a stationarity diagnostic on the recovered ensemble spectrum, not as a primitive radius, a speed transition, or a single-binary feature. Once a candidate finite-window thermal photon carrier $\Theta_{\mathrm{bb}}$ supplies mode density, photon occupation, zero photon chemical potential, thermalization depth, and the shared photon-action scale, the frequency-spectrum peak is defined by
@@ -159,14 +191,16 @@ sampled across $s<c_f$, $s\approx c_f$, and $s>c_f$ when those regimes are admis
 1. `field_speed_binary_speed_sweep` — Compute the branch-resolved opposite-polarity binary energy record across sub-field-speed, hinge, and super-field-speed regimes before using hinge intuition in photon or blackbody claims. Status: `draft`.
 2. `mode_count_gate` — Define the allowed photon-channel mode density from Gate A/B geometry, including the maximum-curvature or Planck-alignment scale only where the local variables justify it. Status: `draft`.
 3. `occupation_measure_gate` — Derive or approximate Planck occupation from basin/thermal measures and detailed balance rather than assigned probabilities. Status: `draft`.
-4. `wien_stationarity_residual` — After the same $\Theta_{\mathrm{bb}}$ record supplies mode density, occupation, zero photon chemical potential, and thermalization depth, recover the frequency and wavelength Wien peak stationarity constants without per-bin fitting or a single-branch peak import. Status: `draft`.
-5. `cmb_blackbody_handoff` — Tie local blackbody recovery to CMB photon-loading, thermalization depth, damping, anisotropy, polarization, and redshift records. Status: `draft`.
-6. `continuum_excess_bridge` — State exactly how this case represents the continuum-excess canon without treating blackbody recovery as a complete solution to all QFT UV divergences. Status: `draft`.
+4. `high_occupation_density_limit` — Recover high photon occupation as compatible planar-pair phase-space loading with declared material and Noether sea headroom, rather than importing unlimited boson stacking. Status: `draft`.
+5. `wien_stationarity_residual` — After the same $\Theta_{\mathrm{bb}}$ record supplies mode density, occupation, zero photon chemical potential, and thermalization depth, recover the frequency and wavelength Wien peak stationarity constants without per-bin fitting or a single-branch peak import. Status: `draft`.
+6. `cmb_blackbody_handoff` — Tie local blackbody recovery to CMB photon-loading, thermalization depth, damping, anisotropy, polarization, and redshift records. Status: `draft`.
+7. `continuum_excess_bridge` — State exactly how this case represents the continuum-excess canon without treating blackbody recovery as a complete solution to all QFT UV divergences. Status: `draft`.
 
 ## Closure Objects
 
 - Mode density: $g(\nu)$ in the effective photon channel.
 - Occupation measure: $\mu_*(B_\nu)$ or equivalent thermal basin measure.
+- High-occupation headroom: $N_{\max}(B_\nu;\Omega;\Theta_{\mathrm{bb}})$ with Gate A/B geometry, phase-lock compatibility, and material/Noether sea response rows.
 - Event ledger for absorption, emission, recoil, heat, and medium update.
 - CMB thermalization depth and zero effective photon chemical potential.
 - Wien stationarity residual: $\mathcal R_{\mathrm{Wien}}$ for the frequency-density and wavelength-density peaks on the same $\Theta_{\mathrm{bb}}$ record.

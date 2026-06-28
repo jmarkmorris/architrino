@@ -398,6 +398,24 @@ The ideal-analyzer closure target is $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\math
 
 The same material-projector logic should govern ordinary surfaces. A metal, absorber, dielectric, or analyzer is not a passive wall for a photon object. It supplies a material return map whose electron-envelope, nuclear-source, bonding/lattice, and Noether sea records decide whether the incoming transverse ledger is coherently re-released, captured, scattered, routed into $B_{\mathrm{heat}}$, or retained as a bound excitation. Here $B_{\mathrm{heat}}$ is a declared heating channel in which captured action thermalizes through electron-envelope, bonding/lattice, and Noether sea ensemble updates rather than disappearing into untracked heat. In this framing a reflected photon is an outgoing coaxial contra-rotating pro/anti planar pair with a new path-history ledger, while an absorbed photon has no remaining free planar-pair identity even though its energy, momentum, transverse angular momentum, and medium update remain in the event record. That statement covers surface capture, heating, bound excitation, and coherent re-release. It should not be read as a shortcut for pair production, photoproduction, or any other channel with different outgoing Standard Model assemblies; those channels need their own identity-routing rows. This is a Gate C surface-routing target, not a completed proof of reflectivity, opacity, or blackbody behavior.
 
+The same return-map language distinguishes common polarization material effects without adding new photon species. A local material response maps the incoming transverse ledger to the outgoing ledger by
+$$
+a_{\perp,\mathrm{out}}^a
+=
+T_\Omega{}^a{}_{b}(\omega,\hat{\mathbf e})\,
+a_{\perp,\mathrm{in}}^b
++r_\Omega^a,
+$$
+where $T_\Omega$ is the effective response of the material branch $\Omega$ and $r_\Omega^a$ carries capture, heat, scattering, or remnant leakage. In this notation:
+
+| Optical effect | Material return-map reading | Required ledger behavior |
+| --- | --- | --- |
+| Birefringence | two transverse eigenchannels accumulate different phase delays | phase split with bounded absorption and one shared material response record |
+| Dichroism | one transverse channel has larger capture or dephasing probability | differential $B_{\mathrm{cap}}$, $B_{\mathrm{heat}}$, or $B_{\mathrm{scat}}$ routing, not a new photon ontology |
+| Optical activity | the material branch rotates the transverse ledger in the helicity or circular basis | handed phase rotation with no free longitudinal photon mode |
+
+Thus polarization optics becomes a material-response classification layered on top of Gate B. The photon ledger remains the same coaxial contra-rotating pro/anti planar pair; the material decides which transverse components are phase-delayed, captured, re-released, or rotated.
+
 The polarization-pair no-signaling test is part of the same gate. For entangled photon preparations with analyzer settings $\alpha,\beta$, the completed ledger must recover setting-independent local marginals:
 
 $$
@@ -583,7 +601,22 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 - This note covers photon-triggered conversion, not ordinary atomic or material absorption. Consuming the incoming photon means closing the free planar-pair ledger; it does not automatically mean that the outgoing fermion identities are inherited from the photon constituents.
 - A neutral Noether Pair should be treated as the local source architecture for spontaneous pro-anti fermion pair production. With sufficient energy input, a pair-conversion mode can unpack that neutral pair into a fermion and antifermion while returning the Noether braid bookkeeping to overall neutrality.
 - In this framing, the key point is not limited to the electron channel. A Noether Pair can furnish the neutral braid content needed for any pro-anti fermion pair, provided the supplied energy and axial-bookkeeping conditions match the target pair.
-- In photon-photon pair production, the photons supply the energy; the Sea contributes the neutral Noether Pair, and the axial excess arranges into the outgoing pro/anti fermion inventories. Electric bookkeeping and architrino counts stay balanced because the Noether-pair source remains neutral after the conversion bookkeeping closes.
+- Photon-photon pair production must carry an explicit provenance fork rather than assuming the answer. The direct-rearrangement row sets $\Delta\mathcal I_{\mathrm{sea}}=0$ and asks whether the two incoming photon ledgers alone supply the outgoing $e^-e^+$ Noether braid and axial inventories. The recruited-source row allows a neutral Noether Pair from the Noether sea to supply or receive braid content while the photons provide the energy and event trigger.
+- A compact inventory equation for the fork is
+$$
+\mathcal I_{\gamma_1}^{\mathrm{in}}
++
+\mathcal I_{\gamma_2}^{\mathrm{in}}
++
+\mathcal I_{\mathrm{sea}}^{\mathrm{req}}
+=
+\mathcal I_{e^-}^{\mathrm{out}}
++
+\mathcal I_{e^+}^{\mathrm{out}}
++
+\mathcal I_{\mathrm{sea}}^{\mathrm{ret}},
+$$
+with the direct row given by $\mathcal I_{\mathrm{sea}}^{\mathrm{req}}=\mathcal I_{\mathrm{sea}}^{\mathrm{ret}}=0$. Whichever row survives must also close energy, momentum, angular momentum, charge/polarity, path-history, and Noether sea recoil. If neither row closes, the channel has not explained Breit-Wheeler pair production.
 - The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon pro/anti braid pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
 - Sketch model: energy in -> pair-conversion mode forms using a neutral Noether Pair plus the required axial split -> fermion + antifermion -> the neutral Noether-pair bookkeeping relaxes back into the Sea.
 

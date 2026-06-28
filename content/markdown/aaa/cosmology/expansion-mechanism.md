@@ -775,6 +775,36 @@ is the trace-free strain-rate part, with contractions taken using the Euclidean 
 
 This ansatz gives the distance ladder a concrete target: recover the observed low-redshift slope from the leading homogeneous part of $\alpha_{\mathrm{prop},X}$, while requiring local gravitational redshift, motion, and source-branch changes to be removed before fitting path accumulation.
 
+The same path coefficient must also close an energy-transfer ledger. If the source and receiver use the same photon packet after endpoint and source-branch factors have been separated, the path contribution gives
+$$
+\frac{d\ln\nu_\gamma}{d\ell}
+=
+-\alpha_{\mathrm{prop},X},
+\qquad
+\frac{dE_\gamma}{d\ell}
+=
+-E_\gamma\alpha_{\mathrm{prop},X},
+$$
+with $E_\gamma=h\nu_\gamma$ on the retained photon-channel ledger. Conservation then requires a compensating path row
+$$
+\mathcal R_{E,\mathrm{prop}}
+=
+\frac{
+\left|
+\frac{dE_\gamma}{d\ell}
++
+\frac{dE_{\mathrm{sea,path}}}{d\ell}
++
+\frac{dE_{\mathrm{recoil/path}}}{d\ell}
++
+\frac{dE_{\mathrm{rem/path}}}{d\ell}
+\right|
+}{
+|dE_\gamma/d\ell|+\varepsilon_E
+}
+$$
+that vanishes in a valid propagation-redshift segment. The term $E_{\mathrm{sea,path}}$ is the Noether sea uptake or release associated with the same local transport record; $E_{\mathrm{recoil/path}}$ and $E_{\mathrm{rem/path}}$ are retained only when the path segment crosses material, strong-gradient, or nontransparent regions. In transparent cosmological use those latter rows should be negligible, and the surviving energy transfer must still preserve image sharpness and $(1+z)$ time dilation. This keeps propagation redshift from becoming untracked photon energy loss under another name.
+
 ### First-Order Coefficient Constraints
 
 At first order the propagation ansatz constrains combinations of coefficients, not each coefficient separately. Let barred quantities denote the homogeneous isotropic component at observation time $t_{\mathrm{obs}}$, with $\bar S_{ij}=0$. Then the path rate entering the corrected low-redshift slope is

@@ -65,6 +65,35 @@ Use each dated score as a maturity indicator, not as a value judgment. A low-sco
 | `EQ-31` | Resonance widths, lifetimes, and branching fractions | $\sigma(E)\propto[(E-E_0)^2+\Gamma^2/4]^{-1}$; $\tau=\hbar/\Gamma$ | Metastable Noether braid branch, leakage corridor, decay provenance ledger | `2` | `2` | Derive width, lifetime, and branching fractions from branch stability and admissible decay corridors. |  |
 | `EQ-32` | Baryonic Tully-Fisher and radial-acceleration relation | $g_{\mathrm{obs}}\approx\sqrt{g_{\mathrm{bar}}a_0}$; $v_f^4=GM_ba_0$ | Noether sea constitutive response around baryonic assemblies | `2` | `3` | Treat low-acceleration galaxy regularities as constitutive-response benchmarks without importing a new ontology. |  |
 
+## Speed-Symbol Audit Target
+
+Many imported equations use a generic $c$ while current $\mathbb{A}\mathbb{A}\mathbb{A}$ work separates primitive wake speed, photon-channel transport speed, observer-limit light speed, Noether sea-dressed effective speed, and internal constituent motion. A row should not count as materially advanced if the same symbol silently changes roles between branch dynamics, photon propagation, clock export, and particle kinematics.
+
+For an equation row `EQ-k`, define a speed-role assignment
+$$
+\mathcal C_{\mathrm{EQ}\text{-}k}
+=
+\left\{
+c_f,\ c_\gamma,\ c_{\text{eff}},\ c_0,\ \|\mathbf v_a\|,\ \|\mathbf u_{a,\perp}\|
+\right\}
+$$
+restricted to the roles actually used by that row. The audit residual is
+$$
+\mathcal R_{c,\mathrm{EQ}\text{-}k}
+=
+\sum_{\rho\in\mathcal C_{\mathrm{EQ}\text{-}k}}
+\left\|
+\Pi_{\rho}(\mathrm{formula})
+-
+\Pi_{\rho}(\mathrm{carrier})
+\right\|_{\rho}
++
+\mathcal S_{\mathrm{retune}},
+$$
+where $\Pi_{\rho}$ projects the standard formula and the proposed native carrier onto the selected speed role, and $\mathcal S_{\mathrm{retune}}$ penalizes using different speed assignments for the same event or branch record. The first audit targets are `EQ-04`, `EQ-12`, `EQ-17`, `EQ-22A`, `EQ-26A`, and `EQ-28`, because these rows frequently mix $E=mc^2$, null transport, redshift, blackbody mode density, $\alpha$, and pair-threshold formulas.
+
+The success condition is not that all speeds are identical. In weak homogeneous observer comparisons the accepted limit may require $c_\gamma=c_{\text{eff}}=c_0+O(\epsilon_{\mathrm{LV}}c_0)$ while keeping $c_f$ as the primitive causal wake speed. Internal constituent speeds such as $\|\mathbf v_a\|$ and $\|\mathbf u_{a,\perp}\|$ remain separate unless a branch derivation proves the collapse.
+
 ## EQ-01: Causal Wake Master Equation And Per-Hit Law
 
 ### Standard or Native Form
