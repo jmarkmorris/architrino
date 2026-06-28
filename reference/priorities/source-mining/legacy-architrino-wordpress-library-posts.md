@@ -118,7 +118,7 @@
 | 2022-07-16 | Black Holes | open | [link](https://architrino.wordpress.com/2022/07/16/black-holes/) |
 | 2022-07-04 | Mapping to Supersymmetry | open | [link](https://architrino.wordpress.com/2022/07/04/mapping-to-supersymmetry/) |
 | 2022-07-02 | Vector Potential | complete | [link](https://architrino.wordpress.com/2022/07/02/the-radius-of-potential/) |
-| 2022-06-20 | Implementation of the Weak Nuclear Force | open | [link](https://architrino.wordpress.com/2022/06/20/implementation-of-the-weak-nuclear-force/) |
+| 2022-06-20 | Implementation of the Weak Nuclear Force | complete | [link](https://architrino.wordpress.com/2022/06/20/implementation-of-the-weak-nuclear-force/) |
 | 2022-06-07 | Radioactivity and the Drake Equation | open | [link](https://architrino.wordpress.com/2022/06/07/radioactivity-and-the-drake-equation/) |
 | 2022-06-07 | Assembling a Theory | complete | [link](https://architrino.wordpress.com/2022/06/07/assembling-a-theory/) |
 | 2022-06-01 | Absolute Relativity | complete | [link](https://architrino.wordpress.com/2022/06/01/absolute-relativity/) |
@@ -147,7 +147,6 @@
 | 2022-03-26 | Sir Roger Penrose : CCC | open | [link](https://architrino.wordpress.com/2022/03/26/sir-roger-ccc-m-c-escher/) |
 | 2022-03-25 | Point Charge Cosmology RuleZ! | open | [link](https://architrino.wordpress.com/2022/03/25/point-charge-cosmology-rulez/) |
 | 2022-03-24 | The Dynamical Geometry of Point Potential Paths | complete | [link](https://architrino.wordpress.com/2022/03/24/the-dynamical-geometry-of-charge-paths/) |
-| 2022-03-24 | J Mark Morris : AITA? | open | [link](https://architrino.wordpress.com/2022/03/24/j-mark-morris-aita/) |
 | 2022-03-23 | Quasar Distribution and Redshift | open | [link](https://architrino.wordpress.com/2022/03/23/quasar-distribution-and-redshift/) |
 | 2022-03-22 | Sara Walker : Life : Lex Fridman | open | [link](https://architrino.wordpress.com/2022/03/22/sara-walker-life-lex-fridman/) |
 | 2022-03-20 | Spin Networks and Foams | open | [link](https://architrino.wordpress.com/2022/03/20/spin-networks-and-foams/) |
@@ -208,7 +207,7 @@
 | 2021-09-13 | Engaging the Particle Physics Reddit | open | [link](https://architrino.wordpress.com/2021/09/13/engaging-the-particle-physics-reddit/) |
 | 2021-09-11 | Dear Particle Data Group | open | [link](https://architrino.wordpress.com/2021/09/11/dear-particle-data-group/) |
 | 2021-09-07 | New Ideas on Galaxy Dynamics | open | [link](https://architrino.wordpress.com/2021/09/07/new-ideas-on-galaxy-dynamics/) |
-| 2021-08-24 | Mass | open | [link](https://architrino.wordpress.com/2021/08/24/mass/) |
+| 2021-08-24 | Mass | complete | [link](https://architrino.wordpress.com/2021/08/24/mass/) |
 | 2021-08-22 | The Noether Core is Self-Tuning | complete | [link](https://architrino.wordpress.com/2021/08/22/the-immutable-point-charge-architecture-is-self-tuning/) |
 | 2021-08-10 | Physicist, Heal Thyself | complete | [link](https://architrino.wordpress.com/2021/08/10/fire-the-physicists/) |
 | 2021-08-10 | Nature is Continuous and Discrete | complete | [link](https://architrino.wordpress.com/2021/08/10/nature-is-continuous-and-discrete/) |

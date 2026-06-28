@@ -69,8 +69,8 @@
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/20/conjecture-on-plancks-law-wiens-peaks-and-orbiting-point-charge-dipoles/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/12/14/the-mystery-islands-of-shielded-energy/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2019/06/17/unifying-the-four-forces/
-https://architrino.wordpress.com/2022/06/20/implementation-of-the-weak-nuclear-force/
-https://architrino.wordpress.com/2021/08/24/mass/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/06/20/implementation-of-the-weak-nuclear-force/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/08/24/mass/
 https://architrino.wordpress.com/2019/12/25/gravity-and-time/
 https://architrino.wordpress.com/2022/05/13/how-does-nature-implement-time/
 https://architrino.wordpress.com/2021/05/28/the-curled-up-dimension-of-time/
@@ -261,7 +261,6 @@ https://architrino.wordpress.com/2022/04/16/physics-and-the-dragons-tail/
 https://architrino.wordpress.com/2022/04/16/nonsense-pop-woo-physics/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/08/jefimenko-lienard-wiechert/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/06/who-let-the-frames-out/
-https://architrino.wordpress.com/2022/03/24/j-mark-morris-aita/
 https://architrino.wordpress.com/2022/03/20/big-picture-of-point-charge-theory/
 https://architrino.wordpress.com/2022/03/19/conversations-in-the-aether/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/30/dear-keepers-of-the-scientific-method/

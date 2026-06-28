@@ -439,6 +439,35 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
 
 The weak corridor is an event record, not a permanent container that owns the outgoing fermion inventory. Its provenance rows must identify which architrinos participate, which neutral Noether braids supply the scaffold, which payload moves through the corridor, and where the balancing recoil is stored.
 
+For a resolved weak-corridor event $\mathsf e$, the substrate record should expose the corridor row as a routed output rather than as a primitive particle mass:
+$$
+Y_{\mathsf e}^{W/Z}
+=
+\left(
+\Delta A_W,
+N_{\mathrm{NB}}^{\mathrm{corr}},
+E_{\mathrm{sh}\to W/Z},
+\mathcal Q_{\mathrm{corr}},
+\mathcal Q_{\mathrm{recoil}},
+\mathcal Q_{\mathrm{sea}}
+\right)
+$$
+Here $\Delta A_W$ is the axial-inventory payload, $N_{\mathrm{NB}}^{\mathrm{corr}}$ records any neutral Noether braid scaffold recruited into the corridor, $E_{\mathrm{sh}\to W/Z}$ records shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, and the $\mathcal Q$ rows carry energy, momentum, angular momentum, polarity, architrino inventory, path-history, and medium update terms. For each conserved or routed quantity $\mathcal Q\in\{E,\mathbf p,\mathbf J,\mathrm{pol},\mathrm{arch},\mathrm{path},\mathrm{med}\}$, closure requires a balance of the form
+$$
+\Delta\mathcal Q_{\mathrm{src}}^{0}
++
+\Delta\mathcal Q_{\mathrm{sea}}^{0}
+=
+\mathcal Q_{\mathrm{corr}}^{0}
++
+\mathcal Q_{\mathrm{products}}^{0}
++
+\mathcal Q_{\mathrm{recoil}}^{0}
++
+\mathcal Q_{\mathrm{rem}}^{0}.
+$$
+This is the local mathematical burden behind the claim that a $W/Z$ corridor can appear massive and short-lived without becoming an elementary container that manufactures outgoing fermion identity.
+
 | Corridor event | Participating architrinos | Neutral Noether braid provenance | Corridor payload | Required ledger closure |
 | --- | --- | --- | --- | --- |
 | Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3P$ and active $3E$; the shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral core provenance; the corridor does not manufacture a new Noether braid. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3P\to3E$, while emitting $W^-$ balances a source-side $3E\to3P$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether sea recoil must close across the source assembly, target assembly or reaction products, corridor, and ambient Noether sea. |

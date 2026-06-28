@@ -55,6 +55,40 @@ $$
 
 where $c\in\{H,M,L\}$ labels the exceptional-axis sector, $\sigma_{\text{ax}}$ records the axial inventory, and $\Lambda_{\text{NS}}$ records the reduced nested shell braid closure label. The weak `V-A` gate passes only if $\mathcal{E}_W$ exposes the charged-current coupling domain for left-handed channels while suppressing right-handed charged-current coupling in the validated regime.
 
+### Braid-Orientation Handedness Selector
+
+The 2022 weak-force source sharpens the handedness burden by pointing to the ordered orientation of the nested shell braid angular-momentum triad. Treat this as a priority-only selector until the angular-momentum ledger supplies the retained branch. If the branch supplies unit angular-momentum directions for the H, M, and L binaries, define the orientation sign
+$$
+\chi_{\mathrm{br}}
+=
+\operatorname{sgn}
+\left[
+\left(
+\hat{\mathbf J}_H
+\times
+\hat{\mathbf J}_M
+\right)
+\cdot
+\hat{\mathbf J}_L
+\right].
+$$
+
+The weak-exposure functional should then be tested with both the leading-side site geometry and this braid-orientation sign:
+$$
+\eta_a^{(h)}
+=
+E_{\mathrm{lead}}
+\left(
+\hat{\mathbf n}_a(R_{\text{rel}})\cdot\hat{\mathbf v}
+\right)
+E_{\mathrm{phase}}^{(h)}
+\left(
+a;\chi_{\mathrm{br}},\sigma_{\text{ax}},\Lambda_{\text{NS}}
+\right).
+$$
+
+The selector is useful only if the same $\chi_{\mathrm{br}}$ row also feeds matter/antimatter conjugation, weak `V-A` exposure, CKM/PMNS overlap, and weak-corridor provenance. It fails if handedness is chosen by a separate label after the exposure, overlap, and reaction-provenance rows have already been fit.
+
 ## Gauge Compatibility Gate
 
 The effective gauge chapter supplies a formal connection spine. This packet should make that spine compatible with assembly geometry:

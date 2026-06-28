@@ -32,7 +32,7 @@ Rachel stands beside a whiteboard headed `Claim Level`. A large arrow points fro
 
 ### Bubble Text
 
-- Rachel speech bubble, sharp angled projection: `Nice try. You are not "future work" until you tell us what would prove you.`
+- Rachel speech bubble, rounded with smooth tapered tail: `Nice try. You are not "future work" until you tell us what would prove you.`
 - Paper stack thought bubble, dot trail: `Maybe if I cite three reviews...`
 
 ### Background Text
@@ -59,7 +59,7 @@ Mia points calmly at a board showing two columns: `effective description` and `o
 ### Bubble Text
 
 - Mia speech bubble, rounded: `This can be a useful summary without becoming the deepest thing that exists.`
-- Rachel speech bubble, sharp angled projection: `And if it crosses that line, it owes us a derivation.`
+- Rachel speech bubble, rounded with smooth tapered tail: `And if it crosses that line, it owes us a derivation.`
 - Floating label thought bubble, dot trail: `I was told this was obvious.`
 
 ### Background Text
@@ -112,7 +112,7 @@ Julian has opened a simulation dashboard on a large screen. The main plot is bea
 ### Bubble Text
 
 - Julian speech bubble, rounded: `The big curve is what people share.`
-- Rachel speech bubble, sharp angled projection: `The little curve is what decides whether we should.`
+- Rachel speech bubble, rounded with smooth tapered tail: `The little curve is what decides whether we should.`
 - Residual plot thought bubble, dot trail: `Please do not make me a supplementary figure.`
 
 ### Background Text
@@ -166,7 +166,7 @@ Sophia is at the board with a clean geometric diagram. Rachel watches a giant au
 
 - Audience speech bubble, long rounded bubble: `This may be naive, but when you say recovered spacetime, do you mean ontology, approximation, gauge language, analogy, or the part my grant panel will understand?`
 - Sophia thought bubble, cloud-like with dot trail: `At least they separated five problems.`
-- Rachel speech bubble, sharp angled projection: `Good. Now answer them one at a time.`
+- Rachel speech bubble, rounded with smooth tapered tail: `Good. Now answer them one at a time.`
 
 ### Background Text
 
@@ -234,3 +234,11 @@ For image generation, start with:
 1. `Future Work, Obviously` because the visual trapdoor and claim-level board should be immediately readable.
 2. `Version 67` because it tests thought-bubble timing and academic hidden humor without needing a dense physics diagram.
 3. `Signals From Earlier` because it tests whether $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry can be integrated into a funny panel without becoming a detached diagram.
+
+## Generated Roughs
+
+First rough visual prototypes:
+
+- [Future Work, Obviously](assets/future-work-obviously-prototype-v2-rounded-bubbles.png)
+- [Version 67](assets/version-67-prototype.png)
+- [Signals From Earlier](assets/signals-from-earlier-prototype.png)

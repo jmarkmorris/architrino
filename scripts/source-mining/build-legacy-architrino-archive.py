@@ -2,7 +2,8 @@
 """Build archive-level mining artifacts for the legacy Architrino WordPress site.
 
 The script retrieves public WordPress posts, writes full cleaned text only under
-/tmp, then writes compact source-mining reports under reference/priorities.
+the platform temporary directory, then writes compact source-mining reports under
+reference/priorities.
 It is intentionally deterministic: topic labels, duplicate grouping, and corpus
 coverage scores are heuristics for triage, not canonization.
 """
@@ -19,6 +20,7 @@ import json
 import math
 import re
 import sys
+import tempfile
 import textwrap
 import urllib.parse
 import urllib.request
@@ -31,7 +33,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SOURCE_MINING_DIR = ROOT / "reference" / "priorities" / "source-mining"
 LIBRARY_TABLE_PATH = SOURCE_MINING_DIR / "legacy-architrino-wordpress-library-posts.md"
 REPORT_DIR = SOURCE_MINING_DIR / "archive-analysis"
-TMP_ROOT = Path("/tmp/architrino-archive-mining")
+TMP_ROOT = Path(tempfile.gettempdir()) / "architrino-archive-mining"
 TMP_TEXT_DIR = TMP_ROOT / "clean-text"
 POSTS_JSONL = TMP_ROOT / "legacy-architrino-posts.jsonl"
 CARDS_JSONL = TMP_ROOT / "legacy-architrino-idea-cards.jsonl"

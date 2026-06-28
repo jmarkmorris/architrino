@@ -10,5 +10,5 @@ This package contains the canonical Architrino QR code export.
 ## Regeneration
 
 ```bash
-VIRTUAL_ENV=/Users/markmorris/vibe/.venv /Users/markmorris/vibe/.venv/bin/python scripts/qr-codes/build-architrino-qr-assets.py --write
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" scripts/qr-codes/build-architrino-qr-assets.py --write
 ```

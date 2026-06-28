@@ -10,8 +10,8 @@ This document distinguishes three audience scopes:
 
 - Do not address the agent by name in prompts or operator/developer communication. This is a one-on-one interaction; prompts should start directly with `Closure goal:`.
 - Preferred title/role reference when a role label is useful: `Principal Proof Architect & Integrator`; see [reference/entourage/cody/codex.md](reference/entourage/cody/codex.md).
-- For Python commands in this workspace, use the shared venv at `/Users/markmorris/vibe/.venv`; prefer `VIRTUAL_ENV=/Users/markmorris/vibe/.venv` and `/Users/markmorris/vibe/.venv/bin/python` over system `python` or `python3`.
-- For live PDG work, use the shared venv at `/Users/markmorris/vibe/.venv`; prefer `VIRTUAL_ENV=/Users/markmorris/vibe/.venv` and `/Users/markmorris/vibe/.venv/bin/python` for `pdgfeed.py build-live-manifest` and related sweep commands.
+- For Python commands in this workspace, use the shared venv exposed as `$AAA_VENV`, falling back to the repo-adjacent `../.venv`; prefer `VIRTUAL_ENV="${AAA_VENV:-../.venv}"` and `"${AAA_VENV:-../.venv}/bin/python"` over system `python` or `python3`.
+- For live PDG work, use the shared venv exposed as `$AAA_VENV`, falling back to the repo-adjacent `../.venv`; prefer `VIRTUAL_ENV="${AAA_VENV:-../.venv}"` and `"${AAA_VENV:-../.venv}/bin/python"` for `pdgfeed.py build-live-manifest` and related sweep commands.
 
 ### Math and TeX Rendering
 

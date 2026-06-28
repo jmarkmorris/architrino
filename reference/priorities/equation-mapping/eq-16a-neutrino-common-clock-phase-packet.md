@@ -27,6 +27,7 @@ The active source signals are:
 - [equal-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/equal-frequency-energy-radius-candidate.md): the equal-frequency candidate supplies current-proxy evidence for `(f,f,f)` with phase offsets and different effective lever-arm / speed relations, but retained row-set acceptance is still missing.
 - [neutrino-oscillations.md](../cross-theory-mapping/neutrino-oscillations.md): the cross-theory packet names the phase, weak projection, PMNS import, and matter-effect failure modes.
 - [weak-sector-gauge-closure.md](../standard-model-closure/weak-sector-gauge-closure.md): PMNS recovery must use the same weak-exposure domain as `V-A`, CKM overlap, and weak-reaction provenance.
+- J Mark Morris, [Implementation of the Weak Nuclear Force](https://architrino.wordpress.com/2022/06/20/implementation-of-the-weak-nuclear-force/): legacy NPQG source suggesting that neutrino handedness may be a survival/stability discriminator near the photon-boundary geometry; this packet keeps that signal priority-only and translates it into a branch-stability test, not a neutrino doctrine.
 
 ## Common-Clock Decomposition
 
@@ -257,6 +258,41 @@ Thus the equal-frequency row must pass two conditions at once:
 - common-clock cancellation: $\omega_f C_0\mathbf 1$ drops out of probabilities;
 - residual survival: $\bar H_{\nu}^{\mathrm{res}}$ has one small solar-scale gap and one atmospheric-scale gap.
 
+## Near-Photon Handedness Stability Discriminator
+
+The legacy weak-force source suggests a useful but speculative discriminator: near the photon boundary, the observed left-handed neutrino and right-handed antineutrino channels may survive because their near-planar pro/anti braid-pair branches remain dynamically stable, while the mirror channels are unstable, sterile, or too weakly exposed to appear as ordinary weak products. In current terminology this is not a claim that neutrinos are photon precursors or photon remnants. It is a priority-only stability test on the near-photon neutral-lepton branch.
+
+Let $B_{\nu}^{L}$ and $B_{\bar\nu}^{R}$ denote the weak-visible survivor candidates, and let $B_{\nu}^{R}$ and $B_{\bar\nu}^{L}$ denote the mirror candidates under the same near-photon branch family. For any candidate branch $B$, define a local stability readout
+$$
+\rho_{\nu}(B)
+=
+\max_{j\ne 1}|\mu_j(B)|
+$$
+from the nontrivial Floquet multipliers of the retained branch return map, together with an effective free-energy or action cost $\mathcal F_{\nu}(B)$ when the solver supplies one. The first discriminator can be stated as
+$$
+\mathcal R_{\nu,\mathrm{hand}}
+=
+\max(0,\rho_{\nu}(B_{\nu}^{L})-1)
++
+\max(0,\rho_{\nu}(B_{\bar\nu}^{R})-1)
++
+\max(0,1-\rho_{\nu}(B_{\nu}^{R}))
++
+\max(0,1-\rho_{\nu}(B_{\bar\nu}^{L})).
+$$
+
+This hard version requires the survivor candidates to be stable and the mirror candidates to be unstable over the declared branch window. A softened version may replace the mirror-instability terms with a free-energy or exposure gap such as
+$$
+\Delta\mathcal F_{\nu,\mathrm{mirror}}
+=
+\min
+\left[
+\mathcal F_{\nu}(B_{\nu}^{R})-\mathcal F_{\nu}(B_{\nu}^{L}),
+\mathcal F_{\nu}(B_{\bar\nu}^{L})-\mathcal F_{\nu}(B_{\bar\nu}^{R})
+\right],
+$$
+with the branch accepted only when the mirror channels are sufficiently suppressed relative to the survivor channels. This row is downstream of the common-clock and residual-operator rows: it cannot substitute for $H_{\nu}^{\mathrm{res}}$, phase-gap recovery, PMNS readout, or source/detector event provenance.
+
 ## Minimal Residual
 
 The first executable closure object should be
@@ -305,10 +341,12 @@ w_{\mathrm{norm}}\mathcal S_{\widehat\lambda}
 +
 w_{\mathrm{PMNS}}\mathcal R_{\mathrm{PMNS}}
 +
-w_{\mathrm{domain}}\mathcal R_{\mathrm{weak,domain}}.
+w_{\mathrm{domain}}\mathcal R_{\mathrm{weak,domain}}
++
+w_{\mathrm{hand}}\mathcal R_{\nu,\mathrm{hand}}.
 $$
 
-Here $r_{\mathrm{atm/sol}}$ is the updateable atmospheric-to-solar gap benchmark, $\mathcal Z$ penalizes an all-zero residual, $\mathcal S_{\mathrm{dbl+sgl}}$ penalizes equal residual spacing when the target is doublet-plus-singlet, $\mathcal S_{\widehat\lambda}$ checks the identity-shift-invariant normalized spectrum, $\mathcal R_{\mathrm{PMNS}}$ measures readout mismatch, and $\mathcal R_{\mathrm{weak,domain}}$ reports any split weak-exposure domain.
+Here $r_{\mathrm{atm/sol}}$ is the updateable atmospheric-to-solar gap benchmark, $\mathcal Z$ penalizes an all-zero residual, $\mathcal S_{\mathrm{dbl+sgl}}$ penalizes equal residual spacing when the target is doublet-plus-singlet, $\mathcal S_{\widehat\lambda}$ checks the identity-shift-invariant normalized spectrum, $\mathcal R_{\mathrm{PMNS}}$ measures readout mismatch, $\mathcal R_{\mathrm{weak,domain}}$ reports any split weak-exposure domain, and $\mathcal R_{\nu,\mathrm{hand}}$ is the priority-only near-photon handedness stability discriminator.
 
 ## Equation Attack Card
 
@@ -335,6 +373,7 @@ This layer keeps the common-clock and residual-phase equations tied to one retai
 | $|\nu_\alpha\rangle=\sum_iU_{\alpha i}|\nu_i\rangle$ | Weak readout projection from propagation basis to weak source/detector labels. | `pmns_readout`, `weak_domain`, `event_ledger` | PMNS readout, source reaction, propagation, detector reaction, weak corridor, and event ledger use one `weakDomainId`. | `weak_hidden_domain_split` and `pmns_readout_domain` reject imported PMNS matrices or split weak-exposure domains. | Accepted PMNS-readout and weak-domain rows bound to the same event ledger. |
 | $V_{\mathrm{sea}}(n,\Pi_{\mathrm{weak}})$ | Matter correction in the same mass-squared-response units and weak domain as the vacuum residual operator. | `matter_correction`, `weak_domain`, `event_ledger` | Matter correction, Noether sea row, weak exposure domain, and propagation ledger share one domain id and unit convention. | `matter_correction_domain` and `neutrino.matter_split` reject a matter row sourced from another domain or unit system. | Accepted matter-correction row on the same weak-domain/event-ledger record. |
 | $R_{\nu,\mathrm{cancel}}$ plus nonzero residual survival | Exterior exposure cancellation without erasing the residual operator. | `cancellation`, `residual_operator`, `event_ledger` | Cancellation row and residual operator share the retained branch and event ledger. | `cancellation_residual` and `residual_operator_erased_by_cancellation` reject cancellation that destroys the observed phase gaps. | Accepted cancellation row plus nonzero residual-operator witness on the same branch. |
+| Near-photon handedness survival | Stable weak-visible survivor branches for $\nu_L$ and $\bar\nu_R$ with mirror branches suppressed or unstable. | `handedness_stability`, `weak_domain`, `event_ledger` | Survivor and mirror branches share the same near-photon branch family, weak-domain convention, and source/detector event ledger. | `neutrino.handedness_by_label` and `neutrino.mirror_branch_unchecked` reject handedness assigned after the branch evidence has been selected. | Accepted branch-stability or suppression row for $B_{\nu}^{L}$, $B_{\bar\nu}^{R}$, $B_{\nu}^{R}$, and $B_{\bar\nu}^{L}$ on one branch family. |
 | Source provenance and retained-row identity | Checker-consumable retained evidence for every required row. | All required rows | Every row has concrete row identity, source reference, branch carrier id, weak-domain id where required, and event-ledger id where required. | Current checker rejects missing row ids and missing sources; future source hardening should also reject attempts, probes, priority prose, and non-durable sources as accepted evidence. | A retained $\Theta_{\nu,16A}$ packet whose required rows are accepted, source-backed, same-record bound, and still fail closed under the domain-split control. |
 
 The smallest accepted evidence object is therefore not the `(f,f,f)` numeric phase shape alone. It is a retained neutral-lepton branch packet where the common clock, residual operator, phase gaps, PMNS readout, matter correction, cancellation row, and event ledger all cite the same branch/domain record and survive the existing checker gates.
@@ -382,7 +421,8 @@ The retained branch must provide:
 6. a weak readout projection that produces $U_{\mathrm{PMNS}}$ from the same weak-exposure domain used by weak chirality and reaction provenance;
 7. Noether sea matter correction in the same mass-squared-response units as the vacuum residual operator;
 8. cancellation without erasing the residual operator;
-9. source reaction, propagation, detector reaction, energy, momentum, angular momentum, wake/coupling transfer, and Noether sea state in one event or positive-width domain.
+9. near-photon handedness stability or suppression rows for the weak-visible survivor channels and mirror channels;
+10. source reaction, propagation, detector reaction, energy, momentum, angular momentum, wake/coupling transfer, and Noether sea state in one event or positive-width domain.
 
 ## Failure Modes
 
@@ -393,6 +433,8 @@ The retained branch must provide:
 - `neutrino.matrix_import`: $U_{\mathrm{PMNS}}$ is imported as a fitted matrix rather than derived from weak readout projection.
 - `weak.hidden_domain_split`: source flavor, propagation eigenstate, detector readout, `V-A`, CKM/PMNS overlap, and weak-corridor provenance require different weak-exposure domains.
 - `neutrino.matter_split`: $V_{\mathrm{sea}}$ uses a different Noether sea or weak-domain record from the vacuum residual operator.
+- `neutrino.handedness_by_label`: left-handed neutrino and right-handed antineutrino survival is assigned by observer labels rather than by branch stability, suppression, and weak-domain evidence.
+- `neutrino.mirror_branch_unchecked`: mirror branches are ignored rather than shown unstable, suppressed, sterile, or outside the admitted near-photon branch family.
 - `equation_map.imported_formula`: the standard oscillation equation is copied as explanation without the retained branch, exposure, and residual rows above.
 
 ## Promotion Posture

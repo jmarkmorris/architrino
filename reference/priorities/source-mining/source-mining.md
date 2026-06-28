@@ -53,7 +53,7 @@ The completed target list lives in [source-mining-history](source-mining-history
 - Source: [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), and current-year archive pages such as [2026](https://architrino.wordpress.com/2026/).
 - Last crawl: June 27, 2026.
 - Published posts discovered: `379`.
-- Current local queue state: `119` complete and `260` open for mining.
+- Current local queue state: `121` complete and `258` open for mining.
 - Completion authority: local source-mining history, durable queue status, and durable table status. WordPress tags were retired from this workflow on June 28, 2026.
 - The June 27, 2026 refresh added `5` posts beyond the previous table: `4` from the [2026 archive](https://architrino.wordpress.com/2026/) plus `1` newly visible 2023 draft.
 - The WordPress site is now treated as an official historical archive to mine while the subscription remains active, currently expected through approximately June 2029.
@@ -62,7 +62,7 @@ The completed target list lives in [source-mining-history](source-mining-history
 
 - Phase 1 archive report generated: June 27, 2026.
 - Script: [build-legacy-architrino-archive.py](../../../scripts/source-mining/build-legacy-architrino-archive.py).
-- Local artifact root: `/tmp/architrino-archive-mining`.
+- Local artifact root: `${TMPDIR:-/tmp}/architrino-archive-mining`.
 - Retrieval result: `379` posts, `1030` idea cards, and `841` deterministic idea clusters.
 - Route-level triage reports: [archive mining report](archive-analysis/legacy-architrino-archive-mining-report.md), [candidate gaps](archive-analysis/legacy-architrino-candidate-gaps.md), and [idea clusters](archive-analysis/legacy-architrino-idea-clusters.md).
 - This archive-level pass did not mark posts mined, did not update durable completion status, and did not promote material into `content/markdown/aaa`.

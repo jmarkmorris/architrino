@@ -15,7 +15,7 @@ Run a corrected nine-hour, multi-agent equation-mapping breakthrough restart tha
 Use the AAA corpus advancement skill in team-agent mode.
 
 Context:
-- Work in `/Users/markmorris/vibe/architrino`.
+- Work from the repository root (`$REPO_ROOT`).
 - The previous overnight-style run did not actually satisfy the hard runtime requirement. It hit a token-limit interruption and did not automatically restart. Do not claim that run reached nine or ten hours.
 - Treat [Equation Breakthrough Search 2026-06-26](equation-breakthrough-search-2026-06-26.md) as useful score-neutral checkpoint material, but correct its `Checkpoint 11` runtime claim as interrupted rather than completed.
 - This restart is not a one-pass closure audit. It is a long-running research attack intended to run for up to 9 hours without operator babysitting.

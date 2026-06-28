@@ -66,7 +66,7 @@ the branch chart.
 
 ## Preledger Replay
 
-The full v1-v6 replay was run in `/private/tmp/proof-lambda0305/preledger`.
+The full v1-v6 replay was run in a scratch preledger directory under `${TMPDIR:-/tmp}`.
 The full ledgers were not promoted because the replay remains branch-chart
 blocked; the counts and ledger hashes below are preserved for deterministic
 rerun comparison.

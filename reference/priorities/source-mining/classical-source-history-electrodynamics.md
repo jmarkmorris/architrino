@@ -6,10 +6,10 @@ This priority-only packet captures what the Lienard-Wiechert/Jefimenko source-mi
 
 ## Sources
 
-- J Mark Morris, [Frames of Reference](https://architrino.wordpress.com/2022/04/06/who-let-the-frames-out/), WordPress legacy source, April 6, 2022; local extraction `/private/tmp/who-let-the-frames-out.extraction.md`.
-- J Mark Morris, [Jefimenko Lienard Wiechert](https://architrino.wordpress.com/2022/04/08/jefimenko-lienard-wiechert/), WordPress legacy source, April 8, 2022; local extraction `/tmp/architrino-jefimenko-lienard-wiechert-2022-04-08.txt`.
-- J Mark Morris, [Nature Fooled Physicists](https://architrino.wordpress.com/2022/09/15/nature-fooled-physicists/), WordPress legacy source, September 15, 2022; local extraction `/tmp/architrino-nature-fooled-physicists-2022-09-15.txt`.
-- J Mark Morris, [Ontological Errors Occluded Nature's Solution](https://architrino.wordpress.com/2022/11/30/ontological-errors-may-have-occluded-a-neoclassical-solution-to-nature/), WordPress legacy source, November 30, 2022; local extraction `/tmp/architrino-ontological-errors-2022-11-30.txt`.
+- J Mark Morris, [Frames of Reference](https://architrino.wordpress.com/2022/04/06/who-let-the-frames-out/), WordPress legacy source, April 6, 2022; scratch extraction used during mining.
+- J Mark Morris, [Jefimenko Lienard Wiechert](https://architrino.wordpress.com/2022/04/08/jefimenko-lienard-wiechert/), WordPress legacy source, April 8, 2022; scratch extraction used during mining.
+- J Mark Morris, [Nature Fooled Physicists](https://architrino.wordpress.com/2022/09/15/nature-fooled-physicists/), WordPress legacy source, September 15, 2022; scratch extraction used during mining.
+- J Mark Morris, [Ontological Errors Occluded Nature's Solution](https://architrino.wordpress.com/2022/11/30/ontological-errors-may-have-occluded-a-neoclassical-solution-to-nature/), WordPress legacy source, November 30, 2022; scratch extraction used during mining.
 
 `Frames of Reference` contributes reference-frame provenance for the three-speed distinction and absolute-frame routing in this packet; it does not add a new gate, checker, or reader-facing doctrine.
 

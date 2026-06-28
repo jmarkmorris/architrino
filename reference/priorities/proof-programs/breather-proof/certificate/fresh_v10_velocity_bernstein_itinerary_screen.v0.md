@@ -26,7 +26,7 @@ Artifacts:
 ## Executed Command
 
 ```bash
-/Users/markmorris/vibe/.venv/bin/python scripts/proof-programs/fresh-v10-velocity-bernstein-itinerary-screen.py --pretty
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" scripts/proof-programs/fresh-v10-velocity-bernstein-itinerary-screen.py --pretty
 ```
 
 ## Structural Screen

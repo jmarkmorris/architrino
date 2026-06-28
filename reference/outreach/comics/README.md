@@ -29,7 +29,8 @@ The first style target should be clean, literate, and visually precise rather th
 - Dialogue should be short enough to letter cleanly in speech bubbles.
 - Use bubble text as the default reader-facing text: speech bubbles for dialogue, thought bubbles for private realizations, and small caption boxes only when a claim-level note, hidden academic joke, or source-artifact label needs a separate voice.
 - Thought bubbles are welcome when the joke depends on a private realization, quiet skepticism, or an academic double-take that should not be spoken aloud.
-- Bubble shapes may be rounded or cloud-like. Attach bubbles to the speaker or thinker with dot-bubble trails for thoughts, soft uncertainty, or private realization, and sharp angled projections for spoken lines, interruptions, corrections, or dry satirical timing.
+- Bubble shapes must be rounded or cloud-like. Do not use polygonal, angular, jagged, or boxy speech boxes.
+- Attach speech bubbles to the speaker with smooth tapered tails. Attach thought bubbles to the thinker with dot-bubble trails for thoughts, soft uncertainty, or private realization.
 - Visual geometry should be part of the scene, not a detached diagram pasted beside the joke.
 - Color should help preserve level distinctions: physical objects, causal wakes, Noether sea context, effective diagrams, and source-artifact UI should not blur into one decorative glow.
 - The punchline can be funny, but the correction should be accurate.

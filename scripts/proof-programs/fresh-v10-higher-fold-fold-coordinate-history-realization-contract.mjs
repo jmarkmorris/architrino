@@ -448,7 +448,7 @@ function buildContract(inputs, sources) {
   const artifactPresenceCount = Object.values(expectedArtifacts).filter((artifact) => artifact.present).length;
   const candidateRunId = "fold-coordinate-candidate.nonlinear-v0";
   const artifactStem = `${PACKET_ID}.${candidateRunId}`;
-  const candidateReplayOutputDir = "/private/tmp/proof-programs-fold-coordinate-candidate-nonlinear-v0/preledger";
+  const candidateReplayOutputDir = "${TMPDIR:-/tmp}/proof-programs-fold-coordinate-candidate-nonlinear-v0/preledger";
   const replayPlan = [1, 2, 3, 4, 5, 6].map((stage) => ({
     stage: `proof-interval-v${stage}`,
     previous_ledger:

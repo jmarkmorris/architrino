@@ -48,7 +48,7 @@ Closure goal:
 [One concrete objective this worker can complete or advance independently.]
 
 Context:
-- Repository: /Users/markmorris/vibe/architrino
+- Repository: `$REPO_ROOT`
 - Workflow: [implementation / review / exploration / verification / source mining]
 - Priority item, issue, or target file: [exact path and item number when applicable]
 - Preferred write ownership: [files or directories this worker may touch]
