@@ -1,0 +1,55 @@
+{
+  "schema": "pressure_row_branch_intake_provider_target/v0",
+  "row_id": "retained-pressure-row-branch-intake-provider-target",
+  "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md",
+  "provider_source_status": "target_only_not_accepted_source",
+  "target_status": "same_row_branch_intake_provider_missing",
+  "provider_target": {
+    "required_provider_fields": [
+      "accepted_non_fixture_source",
+      "same_domain_record_ref",
+      "branch_certificate_ref",
+      "active_root_or_live_ledger_identity",
+      "branch_local_projection_or_normalization_identity"
+    ],
+    "required_pressure_row_fields": [
+      "accepted_branch_identity",
+      "accepted_history_segment",
+      "source_path",
+      "quotient_chart",
+      "residual_status",
+      "gap_or_stability_status",
+      "eta_ladder_status_when_required",
+      "pressure_record",
+      "exposure_source_record",
+      "pressure_response_record",
+      "reversible_domain_row",
+      "null_sector_record"
+    ],
+    "excluded_current_partials": [
+      "pressure-row-branch-intake-fe-silicate-toy-partial",
+      "pressure-row-branch-intake-a0-branch-source-partial",
+      "earth-core-iron-replay.mock"
+    ],
+    "provider_target_reading": "target_only_same_row_branch_intake_provider_missing"
+  },
+  "authorization": {
+    "branch_derived_pressure_response": false,
+    "empirical_mass_response": false,
+    "retained_branch_claim": false
+  },
+  "branch_id": null,
+  "accepted_history_segment_id": null,
+  "source_path": null,
+  "quotient_chart_id": null,
+  "residual_status": "target_only",
+  "gap_or_stability_status": null,
+  "eta_ladder_status": null,
+  "pressure_record": {},
+  "exposure_source_record": {},
+  "pressure_response_record": {},
+  "reversible_domain": {
+    "loss_channels_closed": false
+  },
+  "null_sector_record": {}
+}

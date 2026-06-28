@@ -53,6 +53,28 @@ $$
 
 The proof burden is to derive or constrain the signs, range, and saturation behavior of these terms from hadronic assembly geometry, meson-like corridor formation, and local Noether sea polarization. It is not enough to borrow the nuclear-force shape and relabel it.
 
+## Branch-Interface Exchange Residual
+
+Source-mining intake 2026-06-28. Legacy "bonded vortices" language is not current terminology, but it preserves one useful nuclear target: residual-strong binding should report a coupled interface row rather than only a scalar potential. In current terms, the candidate branch-interface exchange record is
+
+$$
+\mathcal B_{ij}^{\mathrm{int}}
+=
+\left(
+\chi_i,\chi_j,
+\sigma_{\mathrm{orient}},
+\Delta\phi_{ij},
+\Delta\omega_{ij},
+\lambda_{\mathrm{exp}},
+\Delta E_{\mathrm{out}},
+\mathcal L_{E\mathbf p\mathbf J}^{ij}
+\right),
+$$
+
+where $\chi_i,\chi_j$ are the participating nucleon branch labels, $\sigma_{\mathrm{orient}}$ records relative orientation, $\Delta\phi_{ij}$ and $\Delta\omega_{ij}$ record phase and cadence mismatch, $\lambda_{\mathrm{exp}}$ records exposure leakage through the shared corridor, $\Delta E_{\mathrm{out}}$ records output radiation or heat-channel terms when present, and $\mathcal L_{E\mathbf p\mathbf J}^{ij}$ closes the local ledger.
+
+This row is not a new gate. It is the concrete residual to test whether one hadronic interface account can carry corridor sharing, saturation, photon or radiation output, and Noether sea update without smuggling in an independent residual-force rule.
+
 ## Reaction-Provenance Worked Example
 
 Pu-238 radioisotope power is a useful downstream worked example once the alpha-channel and heat-channel rows are ready. The target is not a new gate; it is a concrete provenance exercise:

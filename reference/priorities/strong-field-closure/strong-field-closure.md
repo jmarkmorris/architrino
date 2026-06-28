@@ -18,6 +18,7 @@
 5. `discriminating_observable` — Extract at least one discriminating observable against GR-like strong-field behavior. Status: `pending`. Depends on: `release_channel_selection`.
 6. `hypothesis_bank_review` — Preserve strong-field and tri-binary hypotheses as a watchlist, and promote only hypotheses that gain a boundary condition, equation, simulation target, or observable. Status: `ongoing`. Depends on: none.
 7. `high_energy_source_sink_taxonomy` — Classify horizon release, jets, mergers, diffuse release, catastrophic candidates, reabsorption, and return channels before using strong-field events as cosmology source terms. Status: `pending`. Depends on: `release_channel_selection`.
+8. `packed_core_temperature_endpoint_residual` — Keep observer-accessible temperature, stored configuration energy, and packed-core coarse-graining separate before making any low-temperature or low-entropy interior claim. Status: `priority-only`. Depends on: [temperature](../cross-theory-mapping/temperature.md), `embedded_boundary_conditions`.
 
 ## Scope
 
@@ -87,6 +88,40 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
   k_B\log\left|\mathcal{M}_{\mathcal{Q}}(\Omega)\right|.
   $$
   A small $S_{\mathcal{Q}}(\Omega)$ for the interior packing record must not be confused with horizon-interface entropy, exterior observer entropy, release-channel information, or global information loss.
+- Keep isolated-binary Planck-scale rows separate from many-body packed-core rows. A free binary record such as
+  $$
+  \Theta_{\mathrm{free\text{-}bin}}
+  =
+  \left(
+  R,\omega,s,J,\mathcal A_{\mathrm{root}},E_{\mathrm{branch}}
+  \right)
+  $$
+  does not by itself imply a packed-core record
+  $$
+  \Theta_{\mathrm{pack}}
+  =
+  \left(
+  N,\rho_{\mathrm{pack}},
+  \mathcal B_{\mathrm{pack}}^{(\Omega)},
+  \mathcal L_{E\mathbf p\mathbf J}^{(\Omega)},
+  \partial\Omega
+  \right).
+  $$
+  The former may seed scale estimates for a two-body branch; the latter requires density, defect, surface, shielding, release, and many-body ledger rows.
+- Treat packed-core temperature as an accessible-ensemble row, not as stored-energy shorthand. The priority-only endpoint residual is
+  $$
+  T_{\mathrm{obs}}^{(\Omega)}
+  =
+  T\!\left[
+  E_{\mathrm{kin,acc}}^{(\Omega)},
+  \mu_{\mathcal Q,W},
+  \Omega_{\mathrm{acc}}^{(\Omega)}
+  \right],
+  \qquad
+  E_{\mathrm{store}}^{(\Omega)}
+  \ \text{reported separately}.
+  $$
+  A compact interior may have high stored configuration energy and few accessible rearrangements, but low $T_{\mathrm{obs}}^{(\Omega)}$ is only a claim about the declared accessible ensemble.
 - Add a packed-geometry residual before treating the maximum-curvature barrier as quantitative. If $\mathcal{B}_{\mathrm{pack}}^{(\Omega)}$ is represented by candidate local packing cells, defects, or surface layers, require
   $$
   \mathcal{R}_{\mathrm{pack,geom}}

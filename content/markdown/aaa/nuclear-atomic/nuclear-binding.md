@@ -22,6 +22,26 @@ From the $\mathbb{A}\mathbb{A}\mathbb{A}$ perspective, the released energy was h
 
 For that reason, ordinary fission and fusion should not be treated as direct releases of the deeply shielded internal energy of Standard Model particle assemblies. The shielded internal energy and far-field leakage pattern of each surviving proton or neutron mostly carry through the reaction. What changes is the higher-level nuclear binding ledger and the surrounding Noether sea response of the nuclear assembly. A reaction that actually opened, destroyed, or changed the internal branch of a nucleon would be a different claim and would require its own particle-level provenance and shielding ledger.
 
+The same accounting applies to fission. The mass defect is exposed nuclear-assembly energy because the daughter arrangement has a cheaper corridor, Coulomb, shell, deformation, and Noether sea polarization ledger than the parent arrangement. A schematic fission ledger is
+
+$$
+\Delta E_{\mathrm{fis}}
+=
+\left(
+M_{\mathrm{parent}}
+-\sum_d M_d
+-\sum_b M_b
+\right)c_{\text{eff}}^2
+=
+K_{\mathrm{frag}}
++E_\gamma
++\Delta E_{\mathrm{heat}}
++\Delta E_{\mathrm{recoil}}
++\Delta E_{\mathrm{sea}},
+$$
+
+where the daughter masses $M_d$, emitted branch masses $M_b$, fragment kinetic energy, photon output, medium heating, recoil, and local Noether sea update all belong to the exposed nuclear ledger. That accounting is different from claiming that ordinary fission releases the shielded internal branch energy of the surviving nucleons.
+
 ### Fusion Reaction Ledger Benchmark
 
 The deuterium-tritium reaction is a compact benchmark for this distinction:

@@ -10,10 +10,12 @@ It is sampled support, not an interval certificate.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 from bisect import bisect_right
 from dataclasses import dataclass
+from fractions import Fraction
 from typing import Iterable
 
 import spiral_branch_chart_certificate as fixed
@@ -1130,6 +1132,717 @@ def build_endpoint_slope_cancel_past_profile(args: argparse.Namespace) -> PastPr
     return spec
 
 
+def endpoint_cancel_source_identity_payload(
+    spec: PastProfileSpec,
+    base_coefficients: tuple[float, ...],
+    perturbation: tuple[float, ...],
+    sensitivity: dict,
+    constraint_rows: list[list[float]],
+    constraint_rhs: list[float],
+    args: argparse.Namespace,
+) -> dict:
+    sensitivity_rows = [
+        {
+            "label": row["label"],
+            "kind": row.get("kind"),
+            "delta": row.get("delta"),
+            "B_prime_endpoint_slope_coefficient": row[
+                "B_prime_endpoint_slope_coefficient"
+            ],
+        }
+        for row in sensitivity["rows"]
+    ]
+    return {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_endpoint_slope_cancel_source_identity.v0"
+        ),
+        "candidate": "a1",
+        "source_object": "endpoint_slope_cancel_homogeneous_perturbation",
+        "past_profile_kind": spec.kind,
+        "degree": len(spec.coefficients),
+        "basis_scale": spec.basis_scale,
+        "radius_b": args.admissible_profile_radius_b,
+        "retained_deltas": RETAINED_DELTAS,
+        "coefficients": list(spec.coefficients),
+        "base_coefficients": list(base_coefficients),
+        "perturbation": list(perturbation),
+        "constraint_rows": constraint_rows,
+        "constraint_rhs": constraint_rhs,
+        "sensitivity": {
+            "radial_substituted_slope_from_zero": sensitivity[
+                "radial_substituted_slope_from_zero"
+            ],
+            "B_Q_slope_from_zero": sensitivity["B_Q_slope_from_zero"],
+            "center_tangential_slope_term": sensitivity[
+                "center_tangential_slope_term"
+            ],
+            "rows": sensitivity_rows,
+        },
+        "construction_summary": spec.summary,
+    }
+
+
+def endpoint_cancel_source_identity_digest(payload: dict) -> dict:
+    canonical = canonical_json_bytes(payload)
+    return {
+        "schema": payload["schema"],
+        "artifact_id": "a1_endpoint_slope_cancel_source_identity.v0",
+        "digest": f"sha256:{hashlib.sha256(canonical).hexdigest()}",
+        "digest_payload_byte_count": len(canonical),
+        "canonical_payload_fields": sorted(payload.keys()),
+    }
+
+
+def canonical_json_bytes(payload: dict) -> bytes:
+    return json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+
+
+def canonical_json_digest(payload: dict) -> str:
+    return f"sha256:{hashlib.sha256(canonical_json_bytes(payload)).hexdigest()}"
+
+
+def endpoint_cancel_source_identity(
+    spec: PastProfileSpec,
+    base_coefficients: tuple[float, ...],
+    perturbation: tuple[float, ...],
+    sensitivity: dict,
+    constraint_rows: list[list[float]],
+    constraint_rhs: list[float],
+    args: argparse.Namespace,
+) -> dict:
+    payload = endpoint_cancel_source_identity_payload(
+        spec,
+        base_coefficients,
+        perturbation,
+        sensitivity,
+        constraint_rows,
+        constraint_rhs,
+        args,
+    )
+    identity = endpoint_cancel_source_identity_digest(payload)
+    return {
+        **identity,
+        "payload_diagnostic_mode": "a1_endpoint_slope_cancel_source_identity",
+        "constraint_row_count": len(constraint_rows),
+        "constraint_column_count": len(constraint_rows[0]) if constraint_rows else 0,
+        "coefficient_count": len(spec.coefficients),
+        "used_as_certificate": False,
+        "status": "source_identity_digest_only_not_interval_certificate",
+    }
+
+
+def float64_nextafter_interval(value: float) -> dict:
+    lower = math.nextafter(value, -math.inf)
+    upper = math.nextafter(value, math.inf)
+    return {
+        "value": value,
+        "value_hex": float(value).hex(),
+        "lower": lower,
+        "lower_hex": lower.hex(),
+        "upper": upper,
+        "upper_hex": upper.hex(),
+        "width": upper - lower,
+    }
+
+
+def a1_coefficient_interval_enclosure_attempt(
+    source_digest: str,
+    spec: PastProfileSpec,
+    base_coefficients: tuple[float, ...],
+    perturbation: tuple[float, ...],
+) -> dict:
+    coefficient_rows = [
+        ("endpoint_slope_cancel_coefficients", tuple(spec.coefficients)),
+        ("base_coefficients", base_coefficients),
+        ("homogeneous_perturbation_coefficients", perturbation),
+    ]
+    rows = [
+        {
+            "row": row_name,
+            "coefficient_count": len(values),
+            "intervals": [float64_nextafter_interval(value) for value in values],
+        }
+        for row_name, values in coefficient_rows
+    ]
+    widths = [
+        interval["width"]
+        for row in rows
+        for interval in row["intervals"]
+    ]
+    return {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_coefficient_interval_enclosure_attempt.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "method": "float64_nextafter_single_ulp_enclosure",
+        "row_count": len(rows),
+        "total_coefficient_intervals": len(widths),
+        "max_interval_width": max(widths) if widths else 0.0,
+        "rows": rows,
+        "used_as_certificate": False,
+        "status": (
+            "float64_nextafter_enclosure_attempt_not_directed_rounding_certificate"
+        ),
+    }
+
+
+def coefficient_interval_enclosure_attempt_summary(attempt: dict) -> dict:
+    return {
+        key: attempt[key]
+        for key in (
+            "schema",
+            "source_artifact_hash",
+            "method",
+            "row_count",
+            "total_coefficient_intervals",
+            "max_interval_width",
+            "used_as_certificate",
+            "status",
+        )
+    }
+
+
+def coefficient_interval_target_row(coefficient_enclosure_attempt: dict | None) -> dict:
+    required_rows = [
+        "endpoint_slope_cancel_coefficients",
+        "base_coefficients",
+        "homogeneous_perturbation_coefficients",
+    ]
+    if coefficient_enclosure_attempt is None:
+        return {
+            "status": "absent",
+            "required_rows": required_rows,
+        }
+    return {
+        "status": (
+            "float64_nextafter_enclosure_attempt_present_not_certificate"
+        ),
+        "required_rows": required_rows,
+        "attempt_schema": coefficient_enclosure_attempt["schema"],
+        "attempt_method": coefficient_enclosure_attempt["method"],
+        "attempt_row_count": coefficient_enclosure_attempt["row_count"],
+        "attempt_total_coefficient_intervals": coefficient_enclosure_attempt[
+            "total_coefficient_intervals"
+        ],
+        "used_as_certificate": False,
+    }
+
+
+def shared_interval_boxes_target_row(
+    past_profile_interval_box_attempt: dict | None,
+    past_profile_interval_box_certificate: dict | None = None,
+) -> dict:
+    required_box_ids = [
+        "past_profile_interval_box",
+        "future_transport_interval_box",
+        "retained_root_interval_boxes",
+        "inactive_cover_interval_boxes",
+    ]
+    if past_profile_interval_box_attempt is None:
+        return {
+            "status": "absent",
+            "required_box_ids": required_box_ids,
+        }
+    past_profile_status = (
+        "past_profile_interval_box_certificate_present_not_shared_certificate"
+        if past_profile_interval_box_certificate is not None
+        else "past_profile_interval_box_attempt_present_not_shared_certificate"
+    )
+    row = {
+        "status": past_profile_status,
+        "required_box_ids": required_box_ids,
+        "attempt_box_ids_present": [past_profile_interval_box_attempt["box_id"]],
+        "missing_box_ids": [
+            box_id
+            for box_id in required_box_ids
+            if box_id != past_profile_interval_box_attempt["box_id"]
+        ],
+        "past_profile_interval_box_attempt_schema": (
+            past_profile_interval_box_attempt["schema"]
+        ),
+        "past_profile_interval_box_attempt_digest": (
+            past_profile_interval_box_attempt["attempt_digest"]
+        ),
+        "used_as_certificate": False,
+    }
+    if past_profile_interval_box_certificate is not None:
+        row.update(
+            {
+                "past_profile_interval_box_certificate_schema": (
+                    past_profile_interval_box_certificate["schema"]
+                ),
+                "past_profile_interval_box_certificate_digest": (
+                    past_profile_interval_box_certificate["certificate_digest"]
+                ),
+                "past_profile_interval_box_certificate_status": (
+                    past_profile_interval_box_certificate["status"]
+                ),
+                "past_profile_interval_box_certificate_used_locally": (
+                    past_profile_interval_box_certificate["used_as_local_certificate"]
+                ),
+            }
+        )
+    return row
+
+
+def bernstein_control_point_proof_target_row(
+    past_profile_interval_box_attempt: dict | None,
+    past_profile_interval_box_certificate: dict | None = None,
+) -> dict:
+    required_rows = [
+        "past_profile_control_point_enclosure",
+        "rounding_error_bound",
+        "subdivision_tree_digest",
+    ]
+    if past_profile_interval_box_attempt is None:
+        return {
+            "status": "absent",
+            "required_rows": required_rows,
+        }
+    if past_profile_interval_box_certificate is not None:
+        return {
+            "status": "past_profile_bernstein_certificate_present_not_shared_certificate",
+            "required_rows": required_rows,
+            "certificate_schema": past_profile_interval_box_certificate[
+                "schema"
+            ],
+            "certificate_digest": past_profile_interval_box_certificate[
+                "certificate_digest"
+            ],
+            "control_point_interval_payload_digest": (
+                past_profile_interval_box_certificate[
+                    "control_point_interval_payload_digest"
+                ]
+            ),
+            "subdivision_tree_digest_attempt": past_profile_interval_box_attempt[
+                "subdivision_tree_digest"
+            ],
+            "local_certificate_used": past_profile_interval_box_certificate[
+                "used_as_local_certificate"
+            ],
+            "used_as_certificate": False,
+        }
+    return {
+        "status": "subdivision_tree_digest_attempt_present_not_bernstein_proof",
+        "required_rows": required_rows,
+        "subdivision_tree_digest_attempt": past_profile_interval_box_attempt[
+            "subdivision_tree_digest"
+        ],
+        "missing_rows": [
+            "past_profile_control_point_enclosure",
+            "rounding_error_bound",
+        ],
+        "used_as_certificate": False,
+    }
+
+
+def a1_directed_rounding_backend_target(
+    source_digest: str,
+    coefficient_enclosure_attempt: dict,
+    past_profile_interval_box_attempt: dict,
+) -> dict:
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_directed_rounding_backend_target.v0"
+        ),
+        "artifact_id": "a1_directed_rounding_backend_target.v0",
+        "backend_id": "a1_directed_rounding_interval_backend",
+        "source_artifact_hash": source_digest,
+        "required_method": "directed_rounding_interval_arithmetic",
+        "required_rounding_modes": [
+            "round_toward_negative_infinity",
+            "round_toward_positive_infinity",
+        ],
+        "required_capabilities": [
+            "outward_rounded_coefficient_interval_rows",
+            "outward_rounded_bernstein_subdivision_control_points",
+            "shared_interval_box_family_for_past_future_roots_and_inactive_cover",
+            "rounding_mode_audit_trail",
+        ],
+        "input_attempts": {
+            "coefficient_interval_enclosure_attempt_schema": (
+                coefficient_enclosure_attempt["schema"]
+            ),
+            "coefficient_interval_enclosure_attempt_method": (
+                coefficient_enclosure_attempt["method"]
+            ),
+            "coefficient_interval_enclosure_attempt_status": (
+                coefficient_enclosure_attempt["status"]
+            ),
+            "past_profile_interval_box_attempt_schema": (
+                past_profile_interval_box_attempt["schema"]
+            ),
+            "past_profile_interval_box_attempt_status": (
+                past_profile_interval_box_attempt["status"]
+            ),
+            "past_profile_interval_box_attempt_digest": (
+                past_profile_interval_box_attempt["attempt_digest"]
+            ),
+            "subdivision_tree_digest": past_profile_interval_box_attempt[
+                "subdivision_tree_digest"
+            ],
+        },
+        "current_runtime_probe": {
+            "float64_nextafter_probe_present": True,
+            "float64_hex_payloads_present": True,
+            "directed_rounding_backend_available": False,
+            "directed_rounding_mode_audit_trail_available": False,
+            "probe_status": "float64_probe_present_not_directed_rounding_backend",
+        },
+        "used_as_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "target_digest": canonical_json_digest(payload),
+        "status": "directed_rounding_backend_target_declared_probe_not_certificate",
+    }
+
+
+def float64_outward_interval_for_fraction(value: Fraction) -> dict:
+    nearest = float(value)
+    if not math.isfinite(nearest):
+        raise ValueError("A1 directed-rounding self-audit expects finite values")
+
+    nearest_fraction = Fraction.from_float(nearest)
+    if nearest_fraction > value:
+        lower = math.nextafter(nearest, -math.inf)
+        upper = nearest
+    elif nearest_fraction < value:
+        lower = nearest
+        upper = math.nextafter(nearest, math.inf)
+    else:
+        lower = nearest
+        upper = nearest
+
+    lower_fraction = Fraction.from_float(lower)
+    upper_fraction = Fraction.from_float(upper)
+    return {
+        "lower": lower,
+        "lower_hex": lower.hex(),
+        "upper": upper,
+        "upper_hex": upper.hex(),
+        "width": upper - lower,
+        "nearest": nearest,
+        "nearest_hex": nearest.hex(),
+        "exact_numerator_bit_length": abs(value.numerator).bit_length(),
+        "exact_denominator_bit_length": value.denominator.bit_length(),
+        "lower_leq_exact": lower_fraction <= value,
+        "exact_leq_upper": value <= upper_fraction,
+    }
+
+
+def directed_rounding_self_audit_row(
+    row_id: str,
+    operation: str,
+    exact_value: Fraction,
+    computed_float: float,
+    input_refs: list[str],
+) -> dict:
+    enclosure = float64_outward_interval_for_fraction(exact_value)
+    computed_inside = enclosure["lower"] <= computed_float <= enclosure["upper"]
+    row_pass = (
+        enclosure["lower_leq_exact"]
+        and enclosure["exact_leq_upper"]
+        and computed_inside
+    )
+    return {
+        "row_id": row_id,
+        "operation": operation,
+        "input_refs": input_refs,
+        "computed_float": computed_float,
+        "computed_float_hex": float(computed_float).hex(),
+        "directed_interval": enclosure,
+        "computed_float_inside_directed_interval": computed_inside,
+        "row_pass": row_pass,
+    }
+
+
+def exact_bernstein_control_point(
+    power_coefficients: tuple[float, ...],
+    k: int,
+) -> Fraction:
+    degree = len(power_coefficients) - 1
+    return sum(
+        Fraction.from_float(power_coefficients[index])
+        * math.comb(k, index)
+        / math.comb(degree, index)
+        for index in range(k + 1)
+    )
+
+
+def a1_directed_rounding_backend_self_audit(
+    source_digest: str,
+    directed_rounding_backend_target: dict,
+    spec: PastProfileSpec,
+) -> dict:
+    power_coefficients = (1.0, *spec.coefficients)
+    bernstein_coefficients = power_to_bernstein_coefficients(power_coefficients)
+    degree = len(power_coefficients) - 1
+    bernstein_indices = sorted({0, degree // 2, degree})
+    rows = [
+        directed_rounding_self_audit_row(
+            "coefficient_interval_first",
+            "exact_float64_coefficient_identity",
+            Fraction.from_float(spec.coefficients[0]),
+            spec.coefficients[0],
+            ["endpoint_slope_cancel_coefficients[0]"],
+        ),
+        directed_rounding_self_audit_row(
+            "coefficient_pair_add",
+            "exact_float64_pair_addition",
+            Fraction.from_float(spec.coefficients[0])
+            + Fraction.from_float(spec.coefficients[1]),
+            spec.coefficients[0] + spec.coefficients[1],
+            [
+                "endpoint_slope_cancel_coefficients[0]",
+                "endpoint_slope_cancel_coefficients[1]",
+            ],
+        ),
+        directed_rounding_self_audit_row(
+            "coefficient_pair_multiply",
+            "exact_float64_pair_multiplication",
+            Fraction.from_float(spec.coefficients[0])
+            * Fraction.from_float(spec.coefficients[1]),
+            spec.coefficients[0] * spec.coefficients[1],
+            [
+                "endpoint_slope_cancel_coefficients[0]",
+                "endpoint_slope_cancel_coefficients[1]",
+            ],
+        ),
+    ]
+    for index in bernstein_indices:
+        exact_control_point = exact_bernstein_control_point(
+            power_coefficients,
+            index,
+        )
+        rows.append(
+            directed_rounding_self_audit_row(
+                f"bernstein_control_point_{index}",
+                "exact_rational_power_to_bernstein_control_point",
+                exact_control_point,
+                float(exact_control_point),
+                [f"power_coefficients[0..{index}]"],
+            )
+        )
+    rows.append(
+        directed_rounding_self_audit_row(
+            "bernstein_split_midpoint_left0",
+            "exact_bernstein_split_midpoint",
+            (
+                Fraction.from_float(bernstein_coefficients[0])
+                + Fraction.from_float(bernstein_coefficients[1])
+            )
+            / 2,
+            0.5 * (bernstein_coefficients[0] + bernstein_coefficients[1]),
+            ["bernstein_control_point_0", "bernstein_control_point_1"],
+        )
+    )
+    rows_passed = sum(1 for row in rows if row["row_pass"])
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_directed_rounding_backend_self_audit.v0"
+        ),
+        "artifact_id": "a1_directed_rounding_backend_self_audit.v0",
+        "source_artifact_hash": source_digest,
+        "backend_target_digest": directed_rounding_backend_target[
+            "target_digest"
+        ],
+        "backend_id": directed_rounding_backend_target["backend_id"],
+        "method": "exact_rational_float64_nextafter_outward_self_audit",
+        "rounding_policy": {
+            "lower_bound": "round_toward_negative_infinity_by_nextafter_bracket",
+            "upper_bound": "round_toward_positive_infinity_by_nextafter_bracket",
+            "exact_reference_arithmetic": "fractions.Fraction.from_float",
+            "hardware_rounding_mode_control": False,
+            "audit_trail_available": True,
+        },
+        "audited_capabilities": [
+            "outward_rounded_coefficient_interval_rows",
+            "outward_rounded_bernstein_subdivision_control_points",
+            "rounding_mode_audit_trail",
+        ],
+        "unaudited_capabilities": [
+            "shared_interval_box_family_for_past_future_roots_and_inactive_cover",
+        ],
+        "row_count": len(rows),
+        "rows_passed": rows_passed,
+        "rows_failed": len(rows) - rows_passed,
+        "rows": rows,
+        "used_as_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "self_audit_digest": canonical_json_digest(payload),
+        "status": (
+            "directed_rounding_backend_self_audit_passed_not_shared_interval_box_certificate"
+            if rows_passed == len(rows)
+            else "directed_rounding_backend_self_audit_failed_not_certificate"
+        ),
+    }
+
+
+def directed_rounding_backend_self_audit_summary(audit: dict) -> dict:
+    return {
+        key: audit[key]
+        for key in (
+            "schema",
+            "artifact_id",
+            "source_artifact_hash",
+            "backend_target_digest",
+            "backend_id",
+            "method",
+            "rounding_policy",
+            "audited_capabilities",
+            "unaudited_capabilities",
+            "row_count",
+            "rows_passed",
+            "rows_failed",
+            "self_audit_digest",
+            "used_as_certificate",
+            "authorizes_outward_certificate",
+            "authorizes_obstruction_or_channel_decision",
+            "status",
+        )
+    }
+
+
+def directed_rounding_backend_target_summary(target: dict) -> dict:
+    return {
+        key: target[key]
+        for key in (
+            "schema",
+            "artifact_id",
+            "backend_id",
+            "source_artifact_hash",
+            "required_method",
+            "required_rounding_modes",
+            "required_capabilities",
+            "current_runtime_probe",
+            "target_digest",
+            "used_as_certificate",
+            "authorizes_outward_certificate",
+            "authorizes_obstruction_or_channel_decision",
+            "status",
+        )
+    }
+
+
+def directed_rounding_backend_target_row(
+    directed_rounding_backend_target: dict | None,
+    directed_rounding_backend_self_audit: dict | None = None,
+) -> dict:
+    if directed_rounding_backend_target is None:
+        return {
+            "status": "absent",
+            "required_method": "directed_rounding_interval_arithmetic",
+        }
+    row = {
+        "status": (
+            "backend_target_self_audit_passed_not_shared_certificate"
+            if directed_rounding_backend_self_audit
+            and directed_rounding_backend_self_audit["rows_failed"] == 0
+            else "backend_target_declared_probe_present_not_certificate"
+        ),
+        "required_method": directed_rounding_backend_target["required_method"],
+        "backend_id": directed_rounding_backend_target["backend_id"],
+        "target_schema": directed_rounding_backend_target["schema"],
+        "target_digest": directed_rounding_backend_target["target_digest"],
+        "required_capabilities": directed_rounding_backend_target[
+            "required_capabilities"
+        ],
+        "capability_probe_status": directed_rounding_backend_target[
+            "current_runtime_probe"
+        ]["probe_status"],
+        "used_as_certificate": False,
+    }
+    if directed_rounding_backend_self_audit is not None:
+        row.update(
+            {
+                "self_audit_schema": directed_rounding_backend_self_audit[
+                    "schema"
+                ],
+                "self_audit_status": directed_rounding_backend_self_audit[
+                    "status"
+                ],
+                "self_audit_digest": directed_rounding_backend_self_audit[
+                    "self_audit_digest"
+                ],
+                "self_audit_rows_passed": directed_rounding_backend_self_audit[
+                    "rows_passed"
+                ],
+                "self_audit_rows_failed": directed_rounding_backend_self_audit[
+                    "rows_failed"
+                ],
+                "audited_capabilities": directed_rounding_backend_self_audit[
+                    "audited_capabilities"
+                ],
+                "unaudited_capabilities": directed_rounding_backend_self_audit[
+                    "unaudited_capabilities"
+                ],
+                "authorizes_outward_certificate": False,
+            }
+        )
+    return row
+
+
+def a1_shared_interval_box_certificate_target(
+    source_digest: str,
+    coefficient_enclosure_attempt: dict | None = None,
+    past_profile_interval_box_attempt: dict | None = None,
+    past_profile_interval_box_certificate: dict | None = None,
+    directed_rounding_backend_target: dict | None = None,
+    directed_rounding_backend_self_audit: dict | None = None,
+) -> dict:
+    return {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_shared_interval_box_certificate_target.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "source_payload_diagnostic_mode": "a1_endpoint_slope_cancel_source_identity",
+        "source_payload_bound": True,
+        "target_status": "certificate_target_only_not_interval_certificate",
+        "coefficient_interval_enclosure": coefficient_interval_target_row(
+            coefficient_enclosure_attempt
+        ),
+        "shared_interval_boxes": shared_interval_boxes_target_row(
+            past_profile_interval_box_attempt,
+            past_profile_interval_box_certificate,
+        ),
+        "directed_rounding_backend": directed_rounding_backend_target_row(
+            directed_rounding_backend_target,
+            directed_rounding_backend_self_audit,
+        ),
+        "bernstein_control_point_proof": bernstein_control_point_proof_target_row(
+            past_profile_interval_box_attempt,
+            past_profile_interval_box_certificate,
+        ),
+        "future_transport_constants": {
+            "status": "absent",
+            "required_constants": ["E_Q_plus_b", "K_Q"],
+        },
+        "residual_envelope_constants": {
+            "status": "absent",
+            "required_constants": [
+                "branch_sum_constants",
+                "transport_constants",
+                "radial_residual_envelope",
+            ],
+        },
+        "used_as_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+
+
 def sampled_q_bounds(coefficients: tuple[float, ...], basis_scale: float, samples: int) -> dict:
     samples = max(2, samples)
     values = [
@@ -1152,6 +1865,21 @@ def power_to_bernstein_coefficients(power_coefficients: tuple[float, ...]) -> li
     ]
 
 
+def exact_power_to_bernstein_coefficients(
+    power_coefficients: tuple[float, ...],
+) -> list[Fraction]:
+    degree = len(power_coefficients) - 1
+    return [
+        sum(
+            Fraction.from_float(power_coefficients[index])
+            * math.comb(k, index)
+            / math.comb(degree, index)
+            for index in range(k + 1)
+        )
+        for k in range(degree + 1)
+    ]
+
+
 def split_bernstein_coefficients(
     coefficients: list[float],
 ) -> tuple[list[float], list[float]]:
@@ -1160,6 +1888,21 @@ def split_bernstein_coefficients(
         previous = levels[-1]
         levels.append(
             [0.5 * (previous[index] + previous[index + 1]) for index in range(len(previous) - 1)]
+        )
+    return [level[0] for level in levels], [level[-1] for level in reversed(levels)]
+
+
+def split_exact_bernstein_coefficients(
+    coefficients: list[Fraction],
+) -> tuple[list[Fraction], list[Fraction]]:
+    levels = [list(coefficients)]
+    while len(levels[-1]) > 1:
+        previous = levels[-1]
+        levels.append(
+            [
+                (previous[index] + previous[index + 1]) / 2
+                for index in range(len(previous) - 1)
+            ]
         )
     return [level[0] for level in levels], [level[-1] for level in reversed(levels)]
 
@@ -1183,6 +1926,16 @@ def subdivided_bernstein_q_bounds(
     raw_lower = min(min(segment) for segment in segments)
     raw_upper = max(max(segment) for segment in segments)
     max_control_abs = max(abs(value) for segment in segments for value in segment)
+    subdivision_tree_payload = {
+        "method": "subdivided_bernstein_convex_hull_float64",
+        "degree": degree,
+        "normalized_interval": [0.0, 1.0],
+        "subdivision_depth": subdivision_depth,
+        "subinterval_count": len(segments),
+        "segment_control_hex": [
+            [float(value).hex() for value in segment] for segment in segments
+        ],
+    }
     roundoff_padding = (
         128.0
         * 2.220446049250313e-16
@@ -1197,6 +1950,11 @@ def subdivided_bernstein_q_bounds(
         "normalized_interval": [0.0, 1.0],
         "subdivision_depth": subdivision_depth,
         "subinterval_count": 2**subdivision_depth,
+        "control_point_count": sum(len(segment) for segment in segments),
+        "subdivision_tree_digest": canonical_json_digest(subdivision_tree_payload),
+        "subdivision_tree_payload_byte_count": len(
+            canonical_json_bytes(subdivision_tree_payload)
+        ),
         "raw_lower": raw_lower,
         "raw_upper": raw_upper,
         "roundoff_padding": roundoff_padding,
@@ -1204,6 +1962,213 @@ def subdivided_bernstein_q_bounds(
         "upper": upper,
         "H_b": max(abs(lower - 1.0), abs(upper - 1.0)),
         "status": "floating_bernstein_outward_attempt_not_interval_certificate",
+    }
+
+
+def subdivided_bernstein_exact_rational_certificate(
+    source_digest: str,
+    coefficients: tuple[float, ...],
+    subdivision_depth: int,
+) -> dict:
+    if subdivision_depth < 0:
+        raise ValueError("--admissible-profile-bernstein-depth must be nonnegative")
+
+    degree = len(coefficients)
+    segments = [exact_power_to_bernstein_coefficients((1.0, *coefficients))]
+    for _ in range(subdivision_depth):
+        next_segments = []
+        for segment in segments:
+            left, right = split_exact_bernstein_coefficients(segment)
+            next_segments.extend((left, right))
+        segments = next_segments
+
+    control_points = [value for segment in segments for value in segment]
+    exact_lower = min(control_points)
+    exact_upper = max(control_points)
+    lower_interval = float64_outward_interval_for_fraction(exact_lower)
+    upper_interval = float64_outward_interval_for_fraction(exact_upper)
+    exact_h_b = max(abs(exact_lower - 1), abs(exact_upper - 1))
+    h_b_interval = float64_outward_interval_for_fraction(exact_h_b)
+    control_point_intervals = [
+        [
+            {
+                "lower_hex": interval["lower_hex"],
+                "upper_hex": interval["upper_hex"],
+                "nearest_hex": interval["nearest_hex"],
+                "exact_numerator_bit_length": interval[
+                    "exact_numerator_bit_length"
+                ],
+                "exact_denominator_bit_length": interval[
+                    "exact_denominator_bit_length"
+                ],
+                "lower_leq_exact": interval["lower_leq_exact"],
+                "exact_leq_upper": interval["exact_leq_upper"],
+            }
+            for interval in (
+                float64_outward_interval_for_fraction(value)
+                for value in segment
+            )
+        ]
+        for segment in segments
+    ]
+    control_point_interval_payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_past_profile_bernstein_control_point_intervals.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "method": "exact_rational_subdivided_bernstein_float64_nextafter",
+        "exact_reference_arithmetic": "fractions.Fraction.from_float",
+        "degree": degree,
+        "normalized_interval": [0.0, 1.0],
+        "subdivision_depth": subdivision_depth,
+        "subinterval_count": len(segments),
+        "segment_control_intervals": control_point_intervals,
+    }
+    max_interval_width = max(
+        float64_outward_interval_for_fraction(value)["width"]
+        for value in control_points
+    )
+    certificate_payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_past_profile_interval_box_certificate.v0"
+        ),
+        "artifact_id": "a1_past_profile_interval_box_certificate.v0",
+        "box_id": "past_profile_interval_box",
+        "source_artifact_hash": source_digest,
+        "method": "exact_rational_subdivided_bernstein_float64_nextafter_certificate",
+        "exact_reference_arithmetic": "fractions.Fraction.from_float",
+        "source_float64_payload_bound": True,
+        "normalized_interval": [0.0, 1.0],
+        "subdivision_depth": subdivision_depth,
+        "subinterval_count": len(segments),
+        "control_point_count": len(control_points),
+        "control_point_interval_payload_digest": canonical_json_digest(
+            control_point_interval_payload
+        ),
+        "control_point_interval_payload_byte_count": len(
+            canonical_json_bytes(control_point_interval_payload)
+        ),
+        "all_control_point_intervals_enclose_exact": all(
+            interval["lower_leq_exact"] and interval["exact_leq_upper"]
+            for segment in control_point_intervals
+            for interval in segment
+        ),
+        "max_control_point_interval_width": max_interval_width,
+        "exact_q_lower_numerator_bit_length": abs(
+            exact_lower.numerator
+        ).bit_length(),
+        "exact_q_lower_denominator_bit_length": exact_lower.denominator.bit_length(),
+        "exact_q_upper_numerator_bit_length": abs(
+            exact_upper.numerator
+        ).bit_length(),
+        "exact_q_upper_denominator_bit_length": exact_upper.denominator.bit_length(),
+        "q_lower_interval": lower_interval,
+        "q_upper_interval": upper_interval,
+        "q_interval": [lower_interval["lower"], upper_interval["upper"]],
+        "q_interval_hex": [lower_interval["lower_hex"], upper_interval["upper_hex"]],
+        "H_b_upper": h_b_interval["upper"],
+        "H_b_upper_hex": h_b_interval["upper_hex"],
+        "H_b_exact_numerator_bit_length": abs(exact_h_b.numerator).bit_length(),
+        "H_b_exact_denominator_bit_length": exact_h_b.denominator.bit_length(),
+        "used_as_certificate": True,
+        "used_as_local_certificate": True,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **certificate_payload,
+        "certificate_digest": canonical_json_digest(certificate_payload),
+        "status": "past_profile_interval_box_certificate_local_only_not_shared_certificate",
+    }
+
+
+def a1_past_profile_interval_box_attempt(
+    source_digest: str,
+    past_bernstein_bounds: dict,
+) -> dict:
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_past_profile_interval_box_attempt.v0"
+        ),
+        "box_id": "past_profile_interval_box",
+        "source_artifact_hash": source_digest,
+        "method": past_bernstein_bounds["method"],
+        "normalized_interval": past_bernstein_bounds["normalized_interval"],
+        "subdivision_depth": past_bernstein_bounds["subdivision_depth"],
+        "subinterval_count": past_bernstein_bounds["subinterval_count"],
+        "control_point_count": past_bernstein_bounds["control_point_count"],
+        "subdivision_tree_digest": past_bernstein_bounds[
+            "subdivision_tree_digest"
+        ],
+        "q_interval": [
+            past_bernstein_bounds["lower"],
+            past_bernstein_bounds["upper"],
+        ],
+        "H_b": past_bernstein_bounds["H_b"],
+    }
+    return {
+        **payload,
+        "attempt_digest": canonical_json_digest(payload),
+        "used_as_certificate": False,
+        "status": "past_profile_interval_box_float64_attempt_not_certificate",
+    }
+
+
+def past_profile_interval_box_certificate_summary(certificate: dict) -> dict:
+    return {
+        key: certificate[key]
+        for key in (
+            "schema",
+            "artifact_id",
+            "box_id",
+            "source_artifact_hash",
+            "method",
+            "exact_reference_arithmetic",
+            "source_float64_payload_bound",
+            "subdivision_depth",
+            "subinterval_count",
+            "control_point_count",
+            "control_point_interval_payload_digest",
+            "control_point_interval_payload_byte_count",
+            "all_control_point_intervals_enclose_exact",
+            "max_control_point_interval_width",
+            "q_interval",
+            "q_interval_hex",
+            "H_b_upper",
+            "H_b_upper_hex",
+            "used_as_certificate",
+            "used_as_local_certificate",
+            "used_as_shared_certificate",
+            "authorizes_outward_certificate",
+            "authorizes_obstruction_or_channel_decision",
+            "certificate_digest",
+            "status",
+        )
+    }
+
+
+def past_profile_interval_box_attempt_summary(attempt: dict) -> dict:
+    return {
+        key: attempt[key]
+        for key in (
+            "schema",
+            "box_id",
+            "source_artifact_hash",
+            "method",
+            "subdivision_depth",
+            "subinterval_count",
+            "control_point_count",
+            "subdivision_tree_digest",
+            "attempt_digest",
+            "q_interval",
+            "H_b",
+            "used_as_certificate",
+            "status",
+        )
     }
 
 
@@ -4599,6 +5564,111 @@ def finite_collar_remainder_constants_ladder(args: argparse.Namespace) -> dict:
     }
 
 
+def a1_endpoint_slope_cancel_source_identity(args: argparse.Namespace) -> dict:
+    (
+        past_profile,
+        base_coefficients,
+        perturbation,
+        sensitivity,
+        constraint_rows,
+        constraint_rhs,
+    ) = build_endpoint_slope_cancel_seed(args, args.endpoint_cancel_degree)
+    payload = endpoint_cancel_source_identity_payload(
+        past_profile,
+        base_coefficients,
+        perturbation,
+        sensitivity,
+        constraint_rows,
+        constraint_rhs,
+        args,
+    )
+    identity = endpoint_cancel_source_identity_digest(payload)
+    coefficient_enclosure_attempt = a1_coefficient_interval_enclosure_attempt(
+        identity["digest"],
+        past_profile,
+        base_coefficients,
+        perturbation,
+    )
+    past_bernstein_bounds = subdivided_bernstein_q_bounds(
+        past_profile.coefficients,
+        args.admissible_profile_bernstein_depth,
+    )
+    past_profile_interval_box_attempt = a1_past_profile_interval_box_attempt(
+        identity["digest"],
+        past_bernstein_bounds,
+    )
+    past_profile_interval_box_certificate = (
+        subdivided_bernstein_exact_rational_certificate(
+            identity["digest"],
+            past_profile.coefficients,
+            args.admissible_profile_bernstein_depth,
+        )
+    )
+    directed_rounding_backend_target = a1_directed_rounding_backend_target(
+        identity["digest"],
+        coefficient_enclosure_attempt,
+        past_profile_interval_box_attempt,
+    )
+    directed_rounding_backend_self_audit = a1_directed_rounding_backend_self_audit(
+        identity["digest"],
+        directed_rounding_backend_target,
+        past_profile,
+    )
+    shared_interval_target = a1_shared_interval_box_certificate_target(
+        identity["digest"],
+        coefficient_enclosure_attempt,
+        past_profile_interval_box_attempt,
+        past_profile_interval_box_certificate,
+        directed_rounding_backend_target,
+        directed_rounding_backend_self_audit,
+    )
+    return {
+        "schema": identity["schema"],
+        "artifact_id": identity["artifact_id"],
+        "diagnostic_mode": "a1_endpoint_slope_cancel_source_identity",
+        "claim_level": (
+            "priority-only source-identity payload; not interval certificate"
+        ),
+        "digest": identity["digest"],
+        "digest_payload_byte_count": identity["digest_payload_byte_count"],
+        "canonical_payload_fields": identity["canonical_payload_fields"],
+        "payload": payload,
+        "payload_reading": (
+            "exact source identity for endpoint-slope-cancelled perturbation"
+        ),
+        "coefficient_interval_enclosure_attempt": coefficient_enclosure_attempt,
+        "past_profile_interval_box_attempt": past_profile_interval_box_attempt,
+        "past_profile_interval_box_certificate": (
+            past_profile_interval_box_certificate
+        ),
+        "directed_rounding_backend_target": directed_rounding_backend_target,
+        "directed_rounding_backend_self_audit": (
+            directed_rounding_backend_self_audit
+        ),
+        "shared_interval_box_certificate_target": shared_interval_target,
+        "used_as_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+        "status": "source_identity_payload_only_not_interval_box_certificate",
+        "blocked_rows": [
+            "coefficient_interval_enclosure_attempt_not_directed_rounding_certificate",
+            "past_profile_interval_box_certificate_not_shared_certificate",
+            "directed_rounding_backend_self_audit_not_shared_certificate",
+            "future_outward_profile_bounds_absent",
+            "E_Q_plus_b_absent",
+        ],
+        "policy": (
+            "This diagnostic emits the canonical source payload whose SHA-256 "
+            "digest is recorded by a1_admissible_profile_bounds/v0. It fixes "
+            "source identity and emits fail-closed float64 coefficient and "
+            "past-profile interval-box attempts plus a local exact-rational "
+            "past-profile Bernstein certificate, directed-rounding backend "
+            "target, and self-audit; it does not certify shared boxes, future "
+            "transport constants, or residual-envelope constants."
+        ),
+    }
+
+
 def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
     if args.profile_mode != "tangential_transport":
         raise ValueError(
@@ -4621,7 +5691,62 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
     attempt_args.transport_steps = args.finite_collar_transport_steps
     attempt_args.delta_steps = args.finite_collar_delta_steps
 
-    past_profile = build_endpoint_slope_cancel_past_profile(args)
+    (
+        past_profile,
+        base_coefficients,
+        perturbation,
+        sensitivity,
+        constraint_rows,
+        constraint_rhs,
+    ) = build_endpoint_slope_cancel_seed(args, args.endpoint_cancel_degree)
+    source_identity = endpoint_cancel_source_identity(
+        past_profile,
+        base_coefficients,
+        perturbation,
+        sensitivity,
+        constraint_rows,
+        constraint_rhs,
+        args,
+    )
+    coefficient_enclosure_attempt = a1_coefficient_interval_enclosure_attempt(
+        source_identity["digest"],
+        past_profile,
+        base_coefficients,
+        perturbation,
+    )
+    past_bernstein_bounds = subdivided_bernstein_q_bounds(
+        past_profile.coefficients,
+        args.admissible_profile_bernstein_depth,
+    )
+    past_profile_interval_box_attempt = a1_past_profile_interval_box_attempt(
+        source_identity["digest"],
+        past_bernstein_bounds,
+    )
+    past_profile_interval_box_certificate = (
+        subdivided_bernstein_exact_rational_certificate(
+            source_identity["digest"],
+            past_profile.coefficients,
+            args.admissible_profile_bernstein_depth,
+        )
+    )
+    directed_rounding_backend_target = a1_directed_rounding_backend_target(
+        source_identity["digest"],
+        coefficient_enclosure_attempt,
+        past_profile_interval_box_attempt,
+    )
+    directed_rounding_backend_self_audit = a1_directed_rounding_backend_self_audit(
+        source_identity["digest"],
+        directed_rounding_backend_target,
+        past_profile,
+    )
+    shared_interval_target = a1_shared_interval_box_certificate_target(
+        source_identity["digest"],
+        coefficient_enclosure_attempt,
+        past_profile_interval_box_attempt,
+        past_profile_interval_box_certificate,
+        directed_rounding_backend_target,
+        directed_rounding_backend_self_audit,
+    )
     profile = build_tangential_transport_profile(
         attempt_args, past_profile=past_profile
     )
@@ -4635,10 +5760,6 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         past_profile.coefficients,
         past_profile.basis_scale,
         args.finite_collar_positivity_samples,
-    )
-    past_bernstein_bounds = subdivided_bernstein_q_bounds(
-        past_profile.coefficients,
-        args.admissible_profile_bernstein_depth,
     )
     future_node_bounds = {
         "method": "piecewise_linear_transport_node_envelope_float64",
@@ -4722,12 +5843,38 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
                 for window in RETAINED_WINDOWS
             ],
             "inactive_cover_id": "absent",
-            "source_artifact_hash": "absent",
+            "source_artifact_hash": source_identity["digest"],
+            "source_artifact_hash_status": source_identity["status"],
         },
+        "shared_interval_box_certificate_target": shared_interval_target,
         "past_profile": {
             "kind": past_profile.kind,
             "degree": len(past_profile.coefficients),
             "basis_scale": past_profile.basis_scale,
+            "source_identity": source_identity,
+            "coefficient_interval_enclosure_attempt_summary": (
+                coefficient_interval_enclosure_attempt_summary(
+                    coefficient_enclosure_attempt
+                )
+            ),
+            "interval_box_attempt_summary": past_profile_interval_box_attempt_summary(
+                past_profile_interval_box_attempt
+            ),
+            "interval_box_certificate_summary": (
+                past_profile_interval_box_certificate_summary(
+                    past_profile_interval_box_certificate
+                )
+            ),
+            "directed_rounding_backend_target_summary": (
+                directed_rounding_backend_target_summary(
+                    directed_rounding_backend_target
+                )
+            ),
+            "directed_rounding_backend_self_audit_summary": (
+                directed_rounding_backend_self_audit_summary(
+                    directed_rounding_backend_self_audit
+                )
+            ),
             "endpoint_cancel_summary": {
                 "construction": endpoint_summary.get("construction"),
                 "positivity_lp_success": endpoint_summary.get(
@@ -4760,9 +5907,13 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "outward_q_max": past_bernstein_bounds["upper"],
             "H_b": past_bernstein_bounds["H_b"],
             "outward_attempt": past_bernstein_bounds,
-            "used_as_certificate": False,
+            "local_certificate": past_profile_interval_box_certificate_summary(
+                past_profile_interval_box_certificate
+            ),
+            "used_as_certificate": True,
+            "used_as_shared_certificate": False,
             "status": (
-                "past_profile_float_bernstein_outward_attempt_not_interval_certificate"
+                "past_profile_exact_rational_bernstein_certificate_local_only_not_shared"
             ),
         },
         "future_profile_admissibility": {
@@ -4808,11 +5959,12 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         ),
         "first_failure": "admissible_profile_bounds",
         "blocked_rows": [
-            "past_profile_interval_certificate_absent",
+            "past_profile_interval_box_certificate_not_shared_certificate",
             "future_outward_profile_bounds_absent",
             "E_Q_plus_b_absent",
             "inactive_cover_id_absent",
-            "source_artifact_hash_absent",
+            "source_identity_digest_not_shared_interval_box_certificate",
+            "directed_rounding_backend_self_audit_not_shared_certificate",
             "retained_root_boxes_absent",
             "inactive_gap_cover_absent",
             "branch_sum_constants_absent",
@@ -4831,10 +5983,12 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         "authorizes_obstruction_or_channel_decision": False,
         "policy": (
             "This diagnostic records a floating subdivided-Bernstein outward "
-            "attempt for the past endpoint-slope-cancelled profile and a node "
-            "envelope for the emitted piecewise-linear transport profile. It "
-            "does not supply an interval certificate for q_min, q_max, H_b, "
-            "E_Q_plus_b, inactive-cover, branch-sum, transport, or "
+            "attempt and a local exact-rational Bernstein certificate for the "
+            "past endpoint-slope-cancelled profile, plus a node envelope for "
+            "the emitted piecewise-linear transport profile. It declares a "
+            "directed-rounding backend target and self-audit, but it does not "
+            "supply a shared interval-box certificate for future transport, "
+            "retained roots, inactive cover, branch-sum, transport, or "
             "residual-envelope constants."
         ),
     }
@@ -5664,6 +6818,7 @@ def main(argv: Iterable[str] | None = None) -> int:
             "finite_collar_second_order_response_audit",
             "finite_collar_mixed_second_order_response_audit",
             "finite_collar_remainder_constants_ladder",
+            "a1_endpoint_slope_cancel_source_identity",
             "a1_admissible_profile_bounds_attempt",
         ),
         default="evaluate",
@@ -5720,6 +6875,8 @@ def main(argv: Iterable[str] | None = None) -> int:
         result = finite_collar_mixed_second_order_response_audit(args)
     elif args.diagnostic_mode == "finite_collar_remainder_constants_ladder":
         result = finite_collar_remainder_constants_ladder(args)
+    elif args.diagnostic_mode == "a1_endpoint_slope_cancel_source_identity":
+        result = a1_endpoint_slope_cancel_source_identity(args)
     elif args.diagnostic_mode == "a1_admissible_profile_bounds_attempt":
         result = a1_admissible_profile_bounds_attempt(args)
     else:

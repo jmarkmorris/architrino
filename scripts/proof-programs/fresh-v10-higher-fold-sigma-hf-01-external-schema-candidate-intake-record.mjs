@@ -18,6 +18,14 @@ const LOCAL_CANDIDATE_STEM =
   "sigma_hf_01_external_schema_candidate.local-source-data-partial.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305";
 const LOCAL_CANDIDATE_JSON = `${LOCAL_CANDIDATE_STEM}.json`;
 const LOCAL_CANDIDATE_REPORT = `${LOCAL_CANDIDATE_STEM}_report.md`;
+const PLACEHOLDER_REJECTION_CANDIDATE_STEM =
+  "sigma_hf_01_external_schema_candidate.local-missing-proof-grade-placeholders-rejected.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305";
+const PLACEHOLDER_REJECTION_CANDIDATE_JSON = `${PLACEHOLDER_REJECTION_CANDIDATE_STEM}.json`;
+const PLACEHOLDER_REJECTION_CANDIDATE_REPORT = `${PLACEHOLDER_REJECTION_CANDIDATE_STEM}_report.md`;
+const PLACEHOLDER_REJECTION_RECORD_STEM =
+  "sigma_hf_01_external_schema_candidate.placeholder-rejection-intake-record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305";
+const PLACEHOLDER_REJECTION_RECORD_JSON = `${PLACEHOLDER_REJECTION_RECORD_STEM}.json`;
+const PLACEHOLDER_REJECTION_RECORD_REPORT = `${PLACEHOLDER_REJECTION_RECORD_STEM}_report.md`;
 
 const DEFAULT_SOURCE_DATA_READINESS = `${CERT_DIR}/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_source_data_readiness_classifier.${PACKET_ID}.proof-interval-v6.lambda0305.json`;
 const DEFAULT_SCHEMA_TARGET = `${CERT_DIR}/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_target_packet.${PACKET_ID}.proof-interval-v6.lambda0305.json`;
@@ -68,6 +76,7 @@ function parseArgs(argv) {
     outDir: CERT_DIR,
     validate: null,
     localSourceCandidate: false,
+    placeholderRejectionCandidate: false,
     sourceDataReadiness: DEFAULT_SOURCE_DATA_READINESS,
     schemaTarget: DEFAULT_SCHEMA_TARGET,
     contractSatisfaction: DEFAULT_CONTRACT_SATISFACTION,
@@ -87,6 +96,8 @@ function parseArgs(argv) {
       args.validate = argv[++i];
     } else if (arg === "--local-source-candidate") {
       args.localSourceCandidate = true;
+    } else if (arg === "--placeholder-rejection-candidate") {
+      args.placeholderRejectionCandidate = true;
     } else if (arg === "--source-data-readiness") {
       args.sourceDataReadiness = argv[++i];
     } else if (arg === "--schema-target") {
@@ -110,6 +121,8 @@ Options:
   --candidate PATH  Optional candidate external schema JSON to test against the Sigma_hf_01 intake predicate.
   --local-source-candidate
                     Emit the local source-data partial candidate plus its intake record.
+  --placeholder-rejection-candidate
+                    Emit a local missing-proof-grade-field placeholder rejection candidate plus its intake record.
   --source-data-readiness PATH
                     Source-data readiness JSON for --local-source-candidate.
   --schema-target PATH
@@ -244,6 +257,7 @@ function hasNonReinterpretationGuard(value) {
 }
 
 function fieldVerdict(candidate, field) {
+  const candidateFieldSupplied = present(candidate[field]);
   const checks = {
     compatible_schema_role_lock: () => hasExpectedString(candidate, field, COMPATIBLE_SCHEMA_ROLE),
     compatible_proof_object_role_lock: () => hasExpectedString(candidate, field, COMPATIBLE_PROOF_OBJECT_ROLE),
@@ -258,6 +272,7 @@ function fieldVerdict(candidate, field) {
   return {
     field,
     present: isPresent,
+    candidate_field_supplied: candidateFieldSupplied,
     verdict: isPresent ? "present_on_candidate_for_intake_screen" : "external_input_required",
   };
 }
@@ -271,6 +286,9 @@ export function buildRecord(candidate = null, options = {}) {
   const fieldResults = REQUIRED_FIELDS.map((field) => fieldVerdict(candidateInput, field));
   const presentCount = fieldResults.filter((field) => field.present).length;
   const missingFields = fieldResults.filter((field) => !field.present).map((field) => field.field);
+  const suppliedButRejectedFields = fieldResults
+    .filter((field) => field.candidate_field_supplied && !field.present)
+    .map((field) => field.field);
   const allFieldsPresent = presentCount === REQUIRED_FIELDS.length;
   const slotResult =
     candidateReceived && allFieldsPresent
@@ -289,6 +307,7 @@ export function buildRecord(candidate = null, options = {}) {
     required_fields_total: REQUIRED_FIELDS.length,
     required_fields_present: presentCount,
     missing_fields: missingFields,
+    supplied_but_rejected_fields: suppliedButRejectedFields,
     first_missing_field: missingFields[0] ?? null,
     lock_mismatches: mismatches,
     field_results: fieldResults,
@@ -305,6 +324,7 @@ export function buildRecord(candidate = null, options = {}) {
       branch_chart: false,
     },
     candidate_status: candidateInput.candidate_status ?? null,
+    placeholder_rejection: candidateInput.placeholder_rejection ?? null,
     candidate_file_ref: options.candidateRef ?? null,
   };
 }
@@ -402,6 +422,52 @@ export function buildLocalSourceDataCandidate(sourceDataReadiness, schemaTarget,
   };
 }
 
+export function buildPlaceholderRejectionCandidate(sourceDataReadiness, schemaTarget, contractSatisfaction, sourceRefs = []) {
+  const candidate = buildLocalSourceDataCandidate(sourceDataReadiness, schemaTarget, contractSatisfaction, sourceRefs);
+  const placeholderFields = [
+    "rule_kernel_obligation_binding",
+    "rule_kernel_derivation_payload_target_binding",
+    "proof_grade_derivation_schema_statement",
+  ];
+
+  return {
+    ...candidate,
+    candidate_status: "local_missing_proof_grade_field_placeholders_rejected_not_external_schema",
+    candidate_external_schema_ref: `local-placeholder-rejection:${TARGET_SLOT}:${PACKET_ID}:${PROOF_INTERVAL}:${LAMBDA_BRANCH}`,
+    candidate_origin: "local_source_data_records_with_rejected_missing_proof_grade_field_placeholders",
+    placeholder_rejection: {
+      status: "local_missing_proof_grade_field_placeholders_rejected_not_external_schema",
+      placeholder_fields: placeholderFields,
+      required_fields_expected_after_rejection: 5,
+      slot_result_expected_after_rejection: "external_input_required",
+      schema_validation_intake: false,
+      row_consumption: false,
+      updates_live_ledger: false,
+      branch_chart_authorized: false,
+    },
+    rule_kernel_obligation_binding: {
+      placeholder_status: "placeholder_rejected_not_rule_kernel_obligation_binding",
+      derivation_proof_obligation: "placeholder_not_discharged",
+      soundness_proof_obligation: "placeholder_not_discharged",
+      endpoint_application_proof_obligation: "placeholder_not_discharged",
+    },
+    rule_kernel_derivation_payload_target_binding: {
+      placeholder_status: "placeholder_rejected_not_rule_kernel_derivation_payload_target_binding",
+      slot: TARGET_SLOT,
+      payload_target_declared: false,
+      proof_binds_to_payload_target: false,
+      rule_kernel_derivation_payload_constructed: false,
+    },
+    proof_grade_derivation_schema_statement: {
+      placeholder_status: "placeholder_rejected_not_proof_grade_derivation_schema_statement",
+      hypotheses: [],
+      inference_steps: [],
+      conclusion: "",
+      source_data_correspondence: "",
+    },
+  };
+}
+
 export function validationErrors(record) {
   const errors = [];
   if (!isObject(record)) {
@@ -450,13 +516,52 @@ export function validationErrors(record) {
   if (record.authorization?.branch_chart !== false) {
     errors.push("authorization.branch_chart must remain false");
   }
+  if (record.placeholder_rejection?.status === "local_missing_proof_grade_field_placeholders_rejected_not_external_schema") {
+    const expectedRejectedFields = [
+      "rule_kernel_obligation_binding",
+      "rule_kernel_derivation_payload_target_binding",
+      "proof_grade_derivation_schema_statement",
+    ];
+    for (const field of expectedRejectedFields) {
+      if (!record.supplied_but_rejected_fields?.includes(field)) {
+        errors.push(`placeholder rejection must reject ${field}`);
+      }
+    }
+    if (record.required_fields_present !== 5) {
+      errors.push("placeholder rejection must leave required_fields_present at 5");
+    }
+    if (record.slot_result !== "external_input_required") {
+      errors.push("placeholder rejection must leave slot_result external_input_required");
+    }
+    if (record.authorization?.schema_validation_intake !== false) {
+      errors.push("placeholder rejection must not authorize schema_validation_intake");
+    }
+  }
   return errors;
 }
 
 function renderReport(record) {
   const rows = record.field_results
-    .map((field) => `| \`${field.field}\` | ${field.present ? "present" : "absent"} | \`${field.verdict}\` |`)
+    .map((field) => {
+      const reading = field.present
+        ? "present"
+        : field.candidate_field_supplied
+          ? "supplied but rejected"
+          : "absent";
+      return `| \`${field.field}\` | ${reading} | \`${field.verdict}\` |`;
+    })
     .join("\n");
+  const placeholderSection = record.placeholder_rejection
+    ? `
+## Placeholder Rejection
+
+- Status: \`${record.placeholder_rejection.status}\`
+- Supplied but rejected fields: ${record.supplied_but_rejected_fields.map((field) => `\`${field}\``).join(", ")}
+- Expected slot result after rejection: \`${record.placeholder_rejection.slot_result_expected_after_rejection}\`
+
+These placeholders are local negative controls. They do not construct a proof-grade derivation schema, satisfy rule-kernel obligations, bind the payload target, consume rows, update the live ledger, or authorize a branch chart.
+`
+    : "";
 
   return `# Sigma_hf_01 External Schema Candidate Intake Record
 
@@ -480,6 +585,7 @@ ${rows}
 
 Current count: ${record.required_fields_present} / ${record.required_fields_total} required fields present.
 First missing field: ${record.first_missing_field ? `\`${record.first_missing_field}\`` : "none"}.
+${placeholderSection}
 
 ## Authorization Locks
 
@@ -496,11 +602,32 @@ This record is priority-only. It does not construct or accept a proof-grade exte
 
 function renderCandidateReport(candidate, record) {
   const fieldRows = record.field_results
-    .map((field) => `| \`${field.field}\` | ${field.present ? "present" : "absent"} | \`${field.verdict}\` |`)
+    .map((field) => {
+      const reading = field.present
+        ? "present"
+        : field.candidate_field_supplied
+          ? "supplied but rejected"
+          : "absent";
+      return `| \`${field.field}\` | ${reading} | \`${field.verdict}\` |`;
+    })
     .join("\n");
   const absentRows = candidate.absent_required_fields
     .map((field) => `| \`${field.field}\` | \`${field.blocker}\` | ${field.source_status} |`)
     .join("\n");
+  const placeholderSection = candidate.placeholder_rejection
+    ? `
+## Placeholder Rejection
+
+- Status: \`${candidate.placeholder_rejection.status}\`
+- Placeholder fields: ${candidate.placeholder_rejection.placeholder_fields.map((field) => `\`${field}\``).join(", ")}
+- Required fields after rejection: ${record.required_fields_present} / ${record.required_fields_total}
+- Slot result after rejection: \`${record.slot_result}\`
+
+The placeholder fields are intentionally supplied in forms that do not satisfy
+the intake predicates. This proves local placeholders cannot replace the missing
+external proof-grade derivation schema object.
+`
+    : "";
 
   return `# Sigma_hf_01 Local Source-Data Partial External Schema Candidate
 
@@ -522,6 +649,7 @@ Status: \`${candidate.candidate_status}\`
 ${fieldRows}
 
 Current count: ${record.required_fields_present} / ${record.required_fields_total} required fields present.
+${placeholderSection}
 
 ## Missing Proof-Grade Fields
 
@@ -573,6 +701,36 @@ function emitLocalSourceCandidate(args) {
   writeText(path.join(args.outDir, OUTPUT_REPORT), renderReport(record));
 }
 
+function emitPlaceholderRejectionCandidate(args) {
+  const sourceDataReadiness = readJson(args.sourceDataReadiness);
+  const schemaTarget = readJson(args.schemaTarget);
+  const contractSatisfaction = readJson(args.contractSatisfaction);
+  const sourceRefs = [
+    sourceRef("source_data_readiness", args.sourceDataReadiness),
+    sourceRef("schema_target", args.schemaTarget),
+    sourceRef("contract_satisfaction", args.contractSatisfaction),
+  ];
+  const candidate = buildPlaceholderRejectionCandidate(
+    sourceDataReadiness,
+    schemaTarget,
+    contractSatisfaction,
+    sourceRefs,
+  );
+  const candidatePath = path.join(args.outDir, PLACEHOLDER_REJECTION_CANDIDATE_JSON);
+  const candidateReportPath = path.join(args.outDir, PLACEHOLDER_REJECTION_CANDIDATE_REPORT);
+  const recordPath = path.join(args.outDir, PLACEHOLDER_REJECTION_RECORD_JSON);
+  const recordReportPath = path.join(args.outDir, PLACEHOLDER_REJECTION_RECORD_REPORT);
+  const record = buildRecord(candidate, { candidateRef: candidatePath });
+  const errors = validationErrors(record);
+  if (errors.length > 0) {
+    throw new Error(`Generated invalid placeholder rejection record: ${errors.join("; ")}`);
+  }
+  writeJson(candidatePath, candidate, args.pretty);
+  writeText(candidateReportPath, renderCandidateReport(candidate, record));
+  writeJson(recordPath, record, args.pretty);
+  writeText(recordReportPath, renderReport(record));
+}
+
 function validateAndPrint(filePath) {
   const record = readJson(filePath);
   const errors = validationErrors(record);
@@ -603,6 +761,10 @@ function main() {
   }
   if (args.localSourceCandidate) {
     emitLocalSourceCandidate(args);
+    return;
+  }
+  if (args.placeholderRejectionCandidate) {
+    emitPlaceholderRejectionCandidate(args);
     return;
   }
 

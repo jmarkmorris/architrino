@@ -113,6 +113,7 @@
 4. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `certified_eigen_braid`.
 5. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
 6. `emission_flux_jacobian_conservation` — Prove that source-provenanced constant causal-wake emission over an expanding wake surface preserves emitted polarity weight and collapses to the current $r^{-2}|J|^{-1}$ branch law on a simple-root chart, without importing legacy potential-sphere language or treating the wake as an autonomous field substance. Status: `priority-only`. Depends on: dual-mollified law; branch promotion depends on the retained branch-chart packet.
+7. `binary_perturbation_projection_classifier` — Split finite binary perturbations into radial and tangential projection rows, then decide whether the response is same-branch phase, radius/cadence retuning, or branch transition. Status: `priority-only`. Depends on: `certified_eigen_braid`.
 
 ## Scope
 
@@ -286,6 +287,27 @@ $$
 =
 P_{\mathcal S}(\Gamma_{\mathrm{bin}}^p)-\Gamma_{\mathrm{bin}}.
 $$
+The perturbation should also be split by projection on the retained chart:
+
+$$
+v_r(p)=\mathbf v(p)\cdot\hat{\mathbf r},
+\qquad
+\mathbf v_\perp(p)
+=
+\mathbf v(p)-v_r(p)\hat{\mathbf r},
+$$
+
+with response rows
+
+$$
+\Delta R(p),\quad
+\Delta\omega(p),\quad
+\Delta\phi(p),\quad
+\Delta\mathcal A_{\mathrm{bin}}(p).
+$$
+
+The radial row tests radius change, over-compression, and branch-transition pressure. The tangential row tests phase response, cadence retuning, emission timing, and source-history bookkeeping. A scalar force or energy response is not enough unless these projection rows state which branch variable absorbed the perturbation.
+
 The response classification target is:
 
 | Response class | Required condition |
@@ -293,6 +315,21 @@ The response classification target is:
 | Same-branch phase response | $\mathcal A_{\mathrm{bin}}$, $\nu_J$, inactive gaps, finite memory depth, and $(R,\omega)$ remain inside the declared chart tolerance, while $\mathcal R_{\mathrm{bin}}(p)$ is absorbed by a phase offset $\Delta\phi$ on the same branch. |
 | Same-regime radius/cadence retuning | The root ledger and speed-regime identity remain unchanged, but closure requires new rows $(R',\omega')$ with a declared work/action increment and no loss of the Jacobian or inactive-gap floors. |
 | Branch transition | The perturbation changes the active root ledger, self-hit/partner-hit split, speed-regime identity, finite-memory window, returned-section stability, or inactive-gap/Jacobian-floor status beyond tolerance. |
+
+This same classifier can serve as a measurement bridge. Legacy eigenstate-transition language should translate to a concrete retained-chart outcome: phase response on the same branch, radius/cadence retuning inside the same speed regime, or an actual branch transition with a changed active-root ledger and event record. A measurement claim is not promoted merely because a state label changes; it needs the event ledger, projection rows, and post-event branch record.
+
+The local-potential summary remains secondary to the causal-root stream. A useful diagnostic is
+
+$$
+\mathcal R_{\mathrm{stream}\to\Phi}
+=
+\left\|
+\mathbf F_{\mathrm{root}}
+-\mathbf F_{\nabla\Phi_\eta}
+\right\|_W,
+$$
+
+where $\mathbf F_{\mathrm{root}}$ is computed from the retained causal roots, Jacobian rows, and source-history weights, while $\mathbf F_{\nabla\Phi_\eta}$ is any smoothed potential-gradient summary over the same window $W$. A local potential surface may be used only when this residual is small under the declared regulator and branch chart; it is not a substitute for the root stream.
 
 The first simulation packet should scan perturbation amplitude, injection phase, injection time, and support width on one retained binary chart, then report which of the three response classes survives refinement. This is not a new gate; it is a concrete way to turn finite-energy binary response into branch-chart mathematics before any life, agency, or assembly-evolution analogy is promoted.
 

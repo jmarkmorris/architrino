@@ -4,9 +4,9 @@
 
 - Kind: `priority`
 - Rank: `3`
-- Value: `24.02`
+- Value: `23.83`
 - Cost: `4.7`
-- ROI: `5.11`
+- ROI: `5.07`
 - Status: `active`
 
 ## Current Stopping Point
@@ -62,10 +62,19 @@ make that state machine-checkable: the internal locks are fixed,
 present, the slot result remains `external_input_required`, 11 row slots remain
 parked, row consumption is 0, `preledger_pass=false`,
 `updates_live_ledger=false`, and no branch chart is authorized.
+The local-source-data partial then supplies 5 / 8 screen fields for the same
+slot without becoming an external proof-grade schema. The
+[placeholder-rejection intake record](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.placeholder-rejection-intake-record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+now proves that local placeholders for `rule_kernel_obligation_binding`,
+`rule_kernel_derivation_payload_target_binding`, and
+`proof_grade_derivation_schema_statement` are supplied but rejected, leaving
+`required_fields_present=5`, `slot_result=external_input_required`, row
+consumption 0, `updates_live_ledger=false`, and branch-chart authorization
+false.
 
 ## Task Queue
 
-1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `sigma-hf-01-external-schema-pilot-staged`; the live continuation is one compatible external proof-grade derivation schema or derivation proof for the `Sigma_hf_01` separator slot satisfying the external schema acceptance contract, not another current-pool rescan. Depends on: none.
+1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `sigma-hf-01-placeholder-rejection-staged`; the live continuation is one compatible external proof-grade derivation schema or derivation proof for the `Sigma_hf_01` separator slot satisfying the external schema acceptance contract, not another local placeholder or current-pool rescan. Depends on: none.
 2. `planar_bridge` — Develop the first planar delayed-bridge closure as the higher-dimensional extension of the breather proof architecture. Status: `queued`; do not promote ahead of the collinear certificate unless that certificate fails with an explicit obstruction that the planar bridge is meant to resolve. Depends on: `breather_certificate`.
 3. `proof_program_handoff` — Keep theorem-program chapters, certificate artifacts, and downstream priority links aligned as proof targets are promoted or retired. Status: `active`. Depends on: `breather_certificate`, `planar_bridge`.
 

@@ -15,15 +15,18 @@ Requirements:
 2) Evaluate each existing scorecard category in closure-scorecard.md on a 0-100 scale.
 3) Use the validated-closure lens: certified equations, derivation depth, coefficient recovery, parameter determination, empirical precision, geometry/dynamics consistency, unresolved placeholders, and falsification-readiness.
 4) Do not let architectural coherence, explanatory logic, or ontology compensate for missing equations, missing coefficients, unfixed parameters, or unvalidated benchmark recovery.
-5) Add or populate the next dated assessment column in closure-scorecard.md with raw numeric scores, placing it after existing dated $\mathbb{A}\mathbb{A}\mathbb{A}$ columns and before $\Delta$; preserve previous assessment columns unless explicitly told to replace or remove them.
-6) Recompute each $\Delta$ value as the latest dated $\mathbb{A}\mathbb{A}\mathbb{A}$ score minus $\max(\text{Modern Physics Operational},\text{Modern Physics Mechanism})$.
-7) Recompute the TOTAL row as the weighted arithmetic mean using the Weight column; round the displayed TOTAL only after computing the weighted mean from the raw row scores.
-8) Add a dated assessment-notes section for the new column, naming concrete gains, regressions, and remaining blockers. If an assessment column or note is removed, remove or rewrite stale date references that pointed to it.
-9) Keep all TeX intact and preserve category definitions unless explicitly asked to revise them.
+5) Apply anti-ratchet scoring discipline: begin from null movement, require category-specific accepted evidence before increasing a score, and lower a score when new evidence shows that an earlier assessment counted scaffolding, plans, local fits, or provisional diagnostics as accepted closure.
+6) Add or populate the next dated assessment column in closure-scorecard.md with raw numeric scores, placing it after existing dated $\mathbb{A}\mathbb{A}\mathbb{A}$ columns and before $\Delta$; preserve previous assessment columns unless explicitly told to replace or remove them.
+7) Recompute each $\Delta$ value as the latest dated $\mathbb{A}\mathbb{A}\mathbb{A}$ score minus $\max(\text{Modern Physics Operational},\text{Modern Physics Mechanism})$.
+8) Recompute the TOTAL row as the weighted arithmetic mean using the Weight column; round the displayed TOTAL only after computing the weighted mean from the raw row scores.
+9) Add a dated assessment-notes section for the new column, naming concrete gains, regressions, and remaining blockers. If an assessment column or note is removed, remove or rewrite stale date references that pointed to it.
+10) Keep all TeX intact and preserve category definitions unless explicitly asked to revise them.
 ```
 
 Scale: `0-100` (standard numeric grading scale).  
 Total score rule: weighted arithmetic mean using the Weight column.
+
+Challenger-theory weighting rule: the table must test incumbent recovery first, then challenger surplus. Empirical benchmarks, formula/coefficient recovery, parameter closure, and certified dynamics keep the largest combined weight because a challenger theory must recover the accepted operational stack before claiming replacement status. Architecture, ontology, coverage, and anomaly discipline are scored explicitly but remain bounded so that explanatory reach cannot compensate for missing recovered coefficients or benchmark passes.
 
 ## Scoring Lens
 
@@ -32,6 +35,14 @@ The scorecard now weights highly validated mathematical closure. A high score re
 This lens scores accepted closure, not the presence of a plan for closure. Protocols, ledgers, mock packets, replay fixtures, and negative controls can raise Falsification Gates, Coverage+Interface Readiness, or adjacent readiness rows. They should raise Formula+Coefficient Recovery, Parameter+Scale Closure, or Empirical Precision+Benchmark Validation only when they produce retained branch-derived coefficients, fixed parameters, or benchmark passes under declared tolerances.
 
 Shared-record discipline is part of the score. A result that works only after changing the branch record, Noether sea state, coefficient row, apparatus kernel, or calibration context per observable remains local; it should not be scored as cross-regime or empirical closure. Negative and no-go diagnostics can improve auditability and falsification readiness, but they do not by themselves recover target formulas, constants, or benchmark data.
+
+### Anti-Ratchet Scoring Discipline
+
+Score changes are symmetric. A new assessment may increase, decrease, or leave unchanged any row, and the default posture is null movement unless category-specific evidence crosses the score boundary. Do not award points merely because a new assessment was requested, more documents exist, more ledgers, gates, or protocols were added, or a workstream feels closer than before.
+
+The burden of proof is highest for upward movement. A score can rise only when the new evidence satisfies the category being scored: accepted coefficients for Formula+Coefficient Recovery, fixed constants for Parameter+Scale Closure, benchmark passes for Empirical Precision+Benchmark Validation, certified dynamics for Master EOM+Local Dynamics, and so on. If new work clarifies that an earlier assessment counted scaffolding, provisional diagnostics, local fits, or bookkeeping as accepted closure, the score must go down.
+
+Ledgers, gates, validation packets, mocks, source-mining records, and fail-closed diagnostics usually score as Falsification Gates or Coverage+Interface Readiness only when they add enforceable acceptance or failure conditions. They do not raise formula, parameter, empirical, or coefficient rows until they carry accepted recovered values, same-record derivations, or declared-tolerance passes.
 
 Score bands:
 
@@ -61,22 +72,33 @@ Modern physics columns use the same categories for the effective-theory stack (`
 
 The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb{A}$ score minus $\max(\text{Modern Physics Operational},\text{Modern Physics Mechanism})$; negative values mark current $\mathbb{A}\mathbb{A}\mathbb{A}$ deficits against the stronger modern-physics comparator.
 
-| Category | Weight | Description | Modern Physics Operational | Modern Physics Mechanism | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-16 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-06-26 | $\Delta$ |
+| Category | Weight | Description | Modern Physics Operational | Modern Physics Mechanism | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-16 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-06-28 | $\Delta$ |
 | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
-| Empirical Precision+Benchmark Validation | 14 | Agreement with direct observation, precision tests, benchmark experiments, simulations, and quantitative pass/fail thresholds. | 98 | 78 | 20 | 42 | -56 |
-| Formula+Coefficient Recovery | 13 | Explicit recovery of target formulas and coefficients: Lorentz behavior, clock/redshift laws, PPN terms, mass formulas, quantum probabilities, and Standard Model mappings. | 96 | 78 | 28 | 51 | -45 |
-| Parameter+Scale Closure | 10 | Determination status of constants, couplings, scales, constitutive coefficients, and renormalization or calibration freedom. | 70 | 42 | 25 | 44 | -26 |
-| Potential+Action Closure | 9 | Action, potential, variational, and force/acceleration closure, including whether the central dynamics derive from a stable mathematical principle. | 98 | 86 | 45 | 75 | -23 |
-| Conservation+Invariant Closure | 7 | Energy, momentum, angular momentum, charge, quantum-number, and symmetry-invariant closure, including no-go consistency. | 98 | 92 | 50 | 74 | -24 |
-| UV/IR+Regularization Completion | 6 | Ultraviolet and infrared completion quality, including cutoff dependence, singular behavior, regularization limits, horizon/singularity issues, and asymptotics. | 70 | 35 | 30 | 54 | -16 |
-| Master EOM+Local Dynamics | 10 | Certified closure of the core equations of motion: local field/effective equations in modern physics and delayed path-history dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 96 | 75 | 60 | 83 | -13 |
-| Cross-Regime Bridge | 8 | Mathematical consistency across regimes: micro to macro, quantum to classical, particle to cosmology, weak to strong gravity, and thermodynamics. | 82 | 48 | 42 | 73 | -9 |
-| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and nested shell braid/Noether braid dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 50 | 55 | 81 | -1 |
-| Falsification Gates | 4 | Explicitness and enforceability of falsification thresholds, stop conditions, validation gates, and failure criteria. | 98 | 88 | 80 | 97 | -1 |
-| Coverage+Interface Readiness | 2 | Coverage completeness across mathematics/geometry-relevant domains, including interface consistency and minimally developed sections. | 99 | 82 | 72 | 97 | -2 |
-| Axiom+Notation | 4 | Canonical symbols, definitions, and cross-chapter mathematical language consistency. | 96 | 82 | 92 | 99 | 3 |
-| Theory Architecture+Ontic Logic | 8 | Unified theoretical architecture, explanatory parsimony, substrate logic, and avoidance of ad-hoc patching, scored separately from validated formula recovery. | 58 | 35 | 96 | 99 | 41 |
-| **TOTAL** | **100** | **Weighted mean across all categories.** | **88** | **67** | **46** | **68** | **-20** |
+| Empirical Precision+Benchmark Validation | 14 | Agreement with direct observation, precision tests, benchmark experiments, simulations, and quantitative pass/fail thresholds. | 98 | 62 | 20 | 42 | -56 |
+| Formula+Coefficient Recovery | 12 | Explicit recovery of target formulas and coefficients: Lorentz behavior, clock/redshift laws, PPN terms, mass formulas, quantum probabilities, and Standard Model mappings. | 96 | 64 | 28 | 51 | -45 |
+| Parameter+Scale Closure | 9 | Determination status of constants, couplings, scales, constitutive coefficients, and renormalization or calibration freedom. | 68 | 34 | 25 | 44 | -24 |
+| Potential+Action Closure | 8 | Action, potential, variational, and force/acceleration closure, including whether the central dynamics derive from a stable mathematical principle. | 96 | 76 | 45 | 75 | -21 |
+| Conservation+Invariant Closure | 7 | Energy, momentum, angular momentum, charge, quantum-number, and symmetry-invariant closure, including no-go consistency. | 98 | 88 | 50 | 75 | -23 |
+| UV/IR+Regularization Completion | 6 | Ultraviolet and infrared completion quality, including cutoff dependence, singular behavior, regularization limits, horizon/singularity issues, and asymptotics. | 72 | 30 | 30 | 54 | -18 |
+| Master EOM+Local Dynamics | 9 | Certified closure of the core equations of motion: local field/effective equations in modern physics and delayed path-history dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 95 | 64 | 60 | 83 | -12 |
+| Cross-Regime Bridge | 8 | Mathematical consistency across regimes: micro to macro, quantum to classical, particle to cosmology, weak to strong gravity, and thermodynamics. | 78 | 38 | 42 | 74 | -4 |
+| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and nested shell braid/Noether braid dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 52 | 55 | 82 | 0 |
+| Falsification Gates | 4 | Explicitness and enforceability of falsification thresholds, stop conditions, validation gates, and failure criteria. | 98 | 82 | 80 | 98 | 0 |
+| Discriminating Predictions+Anomaly Discipline | 6 | Independently checkable risky predictions, anomaly-resolution discipline, residual accounting for known tensions, and protection against post-hoc fitting. | 86 | 48 | 48 | 70 | -16 |
+| Coverage+Interface Readiness | 2 | Coverage completeness across mathematics/geometry-relevant domains, including interface consistency and minimally developed sections. | 97 | 72 | 72 | 97 | 0 |
+| Axiom+Notation | 3 | Canonical symbols, definitions, and cross-chapter mathematical language consistency. | 94 | 74 | 92 | 99 | 5 |
+| Theory Architecture+Ontic Logic | 7 | Unified theoretical architecture, explanatory parsimony, substrate logic, and avoidance of ad-hoc patching, scored separately from validated formula recovery. | 50 | 25 | 96 | 99 | 49 |
+| **TOTAL** | **100** | **Weighted mean across all categories.** | **86** | **56** | **46** | **68** | **-18** |
+
+## 2026-06-28 Comparator and AAA Rescore Notes
+
+The 2026-06-28 comparator rescore changes the Modern Physics Operational column from `88` to `86` and the Modern Physics Mechanism column from `67` to `56`. The prior comparator overcredited the mechanism column by letting sector-by-sector operational success stand in for a unified foundational mechanism. Under the challenger-theory lens, the inherited stack remains extremely strong operationally, but its mechanism score is lower because GR, QFT, the Standard Model, and Lambda-CDM do not yet form one ontic dynamics with fixed constants, a shared quantum-gravity bridge, a solved measurement mechanism, or a single dark-sector account.
+
+One new row is added: Discriminating Predictions+Anomaly Discipline. This row is necessary because a challenger theory is not assessed only by reproducing known benchmarks or by having falsification gates. It must also expose independently checkable consequences, anomaly-resolution residuals, and protections against post-hoc fitting. The row is bounded at weight `6` so that it records challenger surplus without letting speculative reach substitute for benchmark recovery.
+
+The reweighting keeps incumbent recovery dominant. Empirical Precision+Benchmark Validation remains weight `14`, while Formula+Coefficient Recovery, Parameter+Scale Closure, Potential+Action Closure, and Master EOM+Local Dynamics together still carry `38` more points. Architecture and ontology remain important, but Theory Architecture+Ontic Logic falls from weight `8` to `7`, and Axiom+Notation falls from weight `4` to `3`, preventing the table from turning into an architecture-preference score.
+
+The latest $\mathbb{A}\mathbb{A}\mathbb{A}$ column is also replaced with the 2026-06-28 anti-ratchet rescore. Conservation+Invariant Closure rises from `74` to `75`, Cross-Regime Bridge rises from `73` to `74`, Internal Constituent Dynamics rises from `81` to `82`, and Falsification Gates rises from `97` to `98`; all other latest-row scores remain unchanged. The latest $\mathbb{A}\mathbb{A}\mathbb{A}$ weighted total remains displayed as `68` with raw value `67.90`, and the comparator adjustment changes the displayed total deficit from `-20` to `-18`. The row-level advantage is still concentrated in Axiom+Notation and Theory Architecture+Ontic Logic; the major deficits remain Empirical Precision+Benchmark Validation, Formula+Coefficient Recovery, Parameter+Scale Closure, Conservation+Invariant Closure, Potential+Action Closure, UV/IR+Regularization Completion, and Discriminating Predictions+Anomaly Discipline.
 
 ## 2026-06-26 Assessment Notes
 

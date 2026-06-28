@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1472
+      "sections": 1473
     }
   },
   "tocRoot": {
@@ -9348,6 +9348,14 @@
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
                 "markdownSection": "Assessment Table",
                 "sectionKey": "assessment table",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "2026-06-28 Comparator and AAA Rescore Notes",
+                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
+                "markdownSection": "2026-06-28 Comparator and AAA Rescore Notes",
+                "sectionKey": "2026 06 28 comparator and aaa rescore notes",
                 "headingLevel": 2
               },
               {

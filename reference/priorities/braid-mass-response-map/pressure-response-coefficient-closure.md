@@ -594,6 +594,17 @@ This record advances the branch-intake surface only by making the same-row
 missing fields explicit. It does not authorize an empirical mass response,
 pressure coefficient, or retained branch claim.
 
+The target-only provider fixture
+[pressure-row-branch-intake-provider-target.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-provider-target.json)
+names the provider side of the same blocker without populating it from Fe/silicate
+toy rows, empirical replay, or the $A_0$ frontier partial. It is
+`target_only_not_accepted_source` with target status
+`same_row_branch_intake_provider_missing`, so it must continue to return
+`finite_branch_evidence_missing` until one accepted non-fixture retained
+pressure row supplies accepted branch identity, accepted history segment, source
+path, quotient chart, exposure source record, pressure response record,
+reversible-domain row, and null-sector record together.
+
 Executable current-status checker:
 [pressure-row-branch-intake-report.mjs](../../../scripts/mass-map/pressure-row-branch-intake-report.mjs)
 checks the same `branch_intake` boundary before replay consumption. The current

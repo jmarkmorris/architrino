@@ -305,6 +305,13 @@ mode is:
 VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.02 --delta-steps 128 --integration-panels 16 --profile-mode tangential_transport --transport-steps 16 --past-profile endpoint_slope_cancel --endpoint-cancel-positivity-samples 101 --diagnostic-mode a1_admissible_profile_bounds_attempt --finite-collar-samples 3 --finite-collar-integration-panels 16 --finite-collar-transport-steps 16 --finite-collar-delta-steps 128 --finite-collar-positivity-samples 101 --admissible-profile-bernstein-depth 12
 ```
 
+The source-identity payload that binds the endpoint-slope-cancelled
+perturbation to that packet is emitted by the sibling diagnostic mode:
+
+```bash
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.02 --delta-steps 128 --integration-panels 16 --profile-mode tangential_transport --transport-steps 16 --past-profile endpoint_slope_cancel --endpoint-cancel-positivity-samples 101 --diagnostic-mode a1_endpoint_slope_cancel_source_identity --finite-collar-samples 3 --finite-collar-integration-panels 16 --finite-collar-transport-steps 16 --finite-collar-delta-steps 128 --finite-collar-positivity-samples 101 --admissible-profile-bernstein-depth 12
+```
+
 The sampled seed and transported $Q$ values stay inside the declared
 $0.2\le Q\le3.0$ convention on this grid, and the retained rows replay with no
 sampled retained-window failure. The packet now also emits a floating
@@ -318,14 +325,42 @@ polynomial:
 | $H_b$ | `0.5368080736162038` |
 
 This advances the past-profile subrow, but it is not yet an interval
-certificate because the source artifact hash, shared interval boxes, and
-rounding-verified proof object are still absent. The transported future profile
-has only a node envelope for the emitted piecewise-linear numerical profile;
-the certificate-grade $E_Q^+(b)$ row remains absent pending branch-sum and
-transport constants. The inactive cover, retained-root boxes, branch-sum
-constants, transport constants, and residual envelope are also still absent, so
-the current first failure remains `admissible_profile_bounds`. The reduced smoke
-result is carried only as diagnostic context with `used_as_certificate=false`.
+certificate. The packet now records a deterministic source-identity digest for
+the endpoint-slope-cancelled homogeneous perturbation:
+`sha256:cba10155d5b54719bf7e4a48f86abd27dcabdca4fe24fd040a67b35e2c7a73b0`.
+The digest now has a reproducible source-payload diagnostic, but that payload is
+provenance only, with `used_as_certificate=false`; it is not a shared
+interval-box certificate or rounding-verified proof object. The packet also
+emits `shared_interval_box_certificate_target` as a fail-closed contract. Its
+coefficient-enclosure subrow now carries a
+`float64_nextafter_single_ulp_enclosure` attempt with 42 intervals, but that row
+has `used_as_certificate=false` and is not a directed-rounding interval
+certificate. The past-profile interval-box subrow now also carries a float64
+subdivided-Bernstein attempt with a subdivision-tree digest, but that row also
+has `used_as_certificate=false` and is not a shared interval-box certificate.
+The directed-rounding backend subrow now carries a digestible backend target,
+`a1_directed_rounding_backend_target.v0`, plus
+`a1_directed_rounding_backend_self_audit.v0`. The self-audit uses
+exact-rational float64 `nextafter` brackets, passes all 7 audited rows with
+zero failures, and records the rounding-policy audit trail for the audited
+coefficient and Bernstein-control-point rows. It still has
+`used_as_certificate=false` and `authorizes_outward_certificate=false`; it is
+not a shared interval-box certificate, does not control hardware rounding mode,
+and does not certify the shared past/future/root/inactive-cover interval-box
+family. The target records the required outward-rounded coefficient rows,
+Bernstein subdivision control points, shared past/future/root/inactive-cover
+interval-box family, and rounding-mode audit trail for the next
+certificate-grade pass.
+The future transport interval box, retained-root interval boxes,
+inactive-cover interval boxes, Bernstein proof object, future transport
+constants, and residual-envelope constants remain absent. The transported
+future profile has only a node envelope for the emitted
+piecewise-linear numerical profile; the certificate-grade $E_Q^+(b)$ row remains
+absent pending branch-sum and transport constants. The inactive cover,
+retained-root boxes, branch-sum constants, transport constants, and residual
+envelope are also still absent, so the current first failure remains
+`admissible_profile_bounds`. The reduced smoke result is carried only as
+diagnostic context with `used_as_certificate=false`.
 
 ## Advancement Decision
 

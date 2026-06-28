@@ -23,6 +23,9 @@ const FE_SILICATE_PARTIAL_FIXTURE = fileURLToPath(
 const A0_BRANCH_SOURCE_PARTIAL_FIXTURE = fileURLToPath(
   new URL("../scripts/mass-map/fixtures/pressure-row-branch-intake-a0-branch-source-partial.json", import.meta.url)
 );
+const PROVIDER_TARGET_FIXTURE = fileURLToPath(
+  new URL("../scripts/mass-map/fixtures/pressure-row-branch-intake-provider-target.json", import.meta.url)
+);
 
 test("pressure-row branch intake report rejects current diagnostic-only status", () => {
   const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
@@ -157,6 +160,46 @@ test("pressure-row branch intake report records A0 branch-source frontier withou
   assert.equal(residualStatus.present, true);
   assert.equal(residualStatus.pass, false);
   assert.equal(residualStatus.failure_code, "pressure_row_residual_not_accepted");
+});
+
+test("pressure-row branch intake report rejects target-only provider fixture", () => {
+  const fixture = JSON.parse(fs.readFileSync(PROVIDER_TARGET_FIXTURE, "utf8"));
+  const report = buildReport(fixture, { sourceRef: PROVIDER_TARGET_FIXTURE });
+
+  assert.deepEqual(validationErrors(report), []);
+  assert.equal(fixture.schema, "pressure_row_branch_intake_provider_target/v0");
+  assert.equal(report.provider_source_status, "target_only_not_accepted_source");
+  assert.equal(report.target_status, "same_row_branch_intake_provider_missing");
+  assert.equal(
+    report.provider_target.provider_target_reading,
+    "target_only_same_row_branch_intake_provider_missing"
+  );
+  assert.deepEqual(report.provider_target.required_provider_fields, [
+    "accepted_non_fixture_source",
+    "same_domain_record_ref",
+    "branch_certificate_ref",
+    "active_root_or_live_ledger_identity",
+    "branch_local_projection_or_normalization_identity",
+  ]);
+  assert.equal(report.branch_intake_verdict, "finite_branch_evidence_missing");
+  assert.equal(report.first_failure, "finite_branch_evidence_missing");
+  assert.equal(report.same_row_binding, false);
+  assert.equal(report.authorization.branch_derived_pressure_response, false);
+  assert.equal(report.authorization.empirical_mass_response, false);
+  assert.equal(report.authorization.retained_branch_claim, false);
+  assert.equal(report.missing_or_rejected_fields.includes("branch_id"), true);
+  assert.equal(
+    report.missing_or_rejected_fields.includes("accepted_history_segment_id"),
+    true
+  );
+  assert.equal(
+    report.missing_or_rejected_fields.includes("pressure_response_record.C_chi_iso"),
+    true
+  );
+  assert.equal(
+    report.missing_or_rejected_fields.includes("null_sector_record.transport"),
+    true
+  );
 });
 
 test("pressure-row branch intake CLI emits and validates current fixture report", () => {

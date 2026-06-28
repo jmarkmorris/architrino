@@ -43,6 +43,26 @@ This packet absorbs two former top-level queue items without discarding them:
 
 For weak-reaction event accounting, this packet consumes the shared [residual-routing event-ledger theorem](../braid-nested-shell-causal-closure/residual-routing-event-ledger.md). It owns the weak exposure domain and provenance burden; the shared packet owns the general rule that a charged-current route must close $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ without unbalanced source inventory.
 
+## External Weak-Isospin Error Checkpoint
+
+Source-mining intake 2026-06-28. An external physicist critique in the legacy archive usefully flags weak isospin as an error checkpoint. The electromagnetic and polarity geometry can look promising while still failing if it cannot recover weak-sector covariance, charged-current handedness, and flavor overlap in one exposure domain.
+
+The checkpoint is:
+
+$$
+\mathcal E_W
+\longrightarrow
+\left(
+\mathrm{SU(2)}_L,
+V\!-\!A,
+\mathbf V_{\mathrm{CKM}},
+\mathbf U_{\mathrm{PMNS}},
+W/Z\ \mathrm{corridor\ provenance}
+\right).
+$$
+
+Failure is explicit: if $\mathcal E_W$ cannot supply the effective $\mathrm{SU(2)}_L$ channel, left-handed charged-current selection, CKM/PMNS overlap structure, and $W^\pm/Z$ provenance without separately tuned rules, then the Standard Model mapping has not closed even if charge, mass, or color rows appear geometrically plausible.
+
 ## Weak Exposure Operator
 
 Define a provisional weak-exposure functional

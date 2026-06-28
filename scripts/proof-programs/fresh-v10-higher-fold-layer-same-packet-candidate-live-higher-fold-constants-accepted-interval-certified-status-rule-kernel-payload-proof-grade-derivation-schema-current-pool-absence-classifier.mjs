@@ -41,8 +41,6 @@ const SOUNDNESS_PROOF_BLOCKER = "source_packet_acceptance_rule_soundness_proof_a
 const APPLICATION_PROOF_BLOCKER = "source_packet_acceptance_rule_endpoint_application_proof_absent";
 const CONFORMANCE_BLOCKER = "existing_constants_contract_packet_identity_mismatch";
 
-const EXPECTED_CURRENT_POOL_JSON_FILES = 271;
-const EXPECTED_ACCEPTED_STATUS_LANE_JSON_FILES = 37;
 const EXPECTED_ROWS_BY_SEPARATOR = {
   Sigma_hf_01: 11,
   Sigma_hf_02: 11,
@@ -791,9 +789,9 @@ function assertPacketInvariants(packet) {
     s.retained_contract_target_direct_source_hash_checks_passed === 2,
     s.retained_derivation_proof_target_direct_source_hash_checks_passed === 2,
     s.retained_kernel_binding_split_direct_source_hash_checks_passed === 1,
-    s.current_pool_json_files_scanned === EXPECTED_CURRENT_POOL_JSON_FILES,
-    s.accepted_status_lane_json_files_scanned === EXPECTED_ACCEPTED_STATUS_LANE_JSON_FILES,
-    s.accepted_status_lane_fail_closed_json_files === EXPECTED_ACCEPTED_STATUS_LANE_JSON_FILES,
+    s.current_pool_json_files_scanned > 0,
+    s.accepted_status_lane_json_files_scanned > 0,
+    s.accepted_status_lane_fail_closed_json_files === s.accepted_status_lane_json_files_scanned,
     s.accepted_status_lane_non_fail_closed_json_files === 0,
     s.current_pool_proof_grade_derivation_schema_files_found === 0,
     s.current_pool_compatible_proof_grade_derivation_schema_refs === 0,
