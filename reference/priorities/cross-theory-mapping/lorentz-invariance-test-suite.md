@@ -45,6 +45,8 @@ In priority terms this is an invariant-provenance packet, not only a null-test c
 
 The same single-response discipline makes a sharper coefficient prediction. RMS offsets and SME-style coefficients should not be tuned as independent rows if the branch is real; a toy Noether sea constitutive response should project them onto a constrained coefficient submanifold. The useful calculation is therefore not only whether each row is individually small, but whether any nonzero residuals carry the correlated pattern forced by one common-mode branch rather than the full free SME coefficient space.
 
+This single-response claim is cross-sector. The $\chi_{\text{sea}}(\mathbf{x},t)$ row used by the Lorentz clock map and preferred-frame leakage budget must be the same Noether sea response row consumed by cosmological transport, redshift, CMB transfer, lensing, and growth. A branch that hides the preferred frame only by choosing a Lorentz-specific $\chi_{\text{sea}}$, while the cosmology module uses a different transport row, has failed the implementation-economy claim even if each sector fits its own observables.
+
 ## Task Queue
 
 1. `two_way_signal` — Derive the two-way signal-time cancellation condition $\Delta_{\mathrm{tw}}(\beta)\to0$. Status: `draft`.
@@ -54,6 +56,7 @@ The same single-response discipline makes a sharper coefficient prediction. RMS 
 5. `gw_photon_common_speed` — Show that the effective gravitational channel and photon channel share a limiting speed to the GW170817-class tolerance in the tested weak-field transport regime. Status: `draft`.
 6. `clock_map_velocity_potential` — Derive one clock map $d\tau/dt=f_{\tau}(\beta,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{assembly state})$ whose velocity sector recovers special-relativistic time dilation and whose potential sector recovers weak-field gravitational redshift and PPN clock/curvature constraints. Status: `draft`.
 7. `coefficient_submanifold` — Project one toy Noether sea constitutive response into RMS and low-order SME-style residual rows and test whether the induced coefficients occupy a correlated submanifold rather than independent fit dimensions. Status: `draft`.
+8. `cross_sector_chi_sea` — Verify that the $\chi_{\text{sea}}$ row used for Lorentz hiding is the same response row used by cosmological redshift, CMB transfer, lensing, and growth, not a sector-specific tuning. Status: `draft`.
 
 ## Closure Objects
 
@@ -66,6 +69,7 @@ The same single-response discipline makes a sharper coefficient prediction. RMS 
 - Constitutive coefficients: $(k_2,\ell_2,k_4,\ell_4)$ for stiffness-channel closure.
 - GW/photon speed residual: $R_{\mathrm{GW}\gamma}\equiv(c_{\mathrm{GW}}^{\mathrm{eff}}-c_\gamma)/c_\gamma$.
 - Coefficient-submanifold projection for $\mathbf{R}_{\mathrm{RMS}}$ and $\mathbf{R}_{\mathrm{SME}}^{\mathrm{eff}}$ from one common-mode response.
+- Cross-sector $\chi_{\text{sea}}$ identity row connecting Lorentz recovery to cosmology transport.
 
 ## Source-Mined Residual Suite
 
@@ -97,6 +101,8 @@ c_{\gamma,\rightarrow}(\beta,\hat{\mathbf n};\mathcal{S})-c_0
 }{c_0},
 $$
 where $\mathcal{S}$ is the clock-synchronization convention physically realized by the same assembly branch. This residual is not a Michelson-Morley observable by itself. The operational requirement is that $\mathcal{S}$ pushes any substrate one-way anisotropy into unobservable convention dependence while the measurable residual vector remains bounded.
+
+The conditional reabsorption calculation in [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#conditional-synchronization-reabsorption-lemma) is the local closure template for this row. If one branch supplies $L_{\parallel}=L_0/\gamma_\gamma$ and $d\tau/dt=\gamma_\gamma^{-1}$ for the photon-channel comparison, the forward and return one-way legs remain asymmetric in absolute time while the moving clock records $\tau_{\mathrm{rt}}=2L_0/c_\gamma$. The calculation does not derive the square-root response; it converts the remaining obligation into the measurable residuals $R_{\tau v}$, $\Delta_{\mathrm{tw}}$, and the matter/photon/GW common-speed rows.
 
 For Earth-laboratory preferred-frame rows, use the explicit drift parameter
 $$
@@ -199,6 +205,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a common-mode Noether sea response c
 | Clock-map velocity sector | $R_{\tau v}$ | Time dilation of moving assembly clocks | experiment-specific; storage-ring/Ives-Stilwell class tests reach ppb scale and better |
 | Clock-map potential sector | $R_{\tau\Phi}$ | Gravitational redshift and weak-field clock/curvature response | clock-redshift bounds plus Cassini-class $\gamma_{\mathrm{PPN}}-1$ at order $10^{-5}$ |
 | Sidereal modulation | sidereal and annual Fourier rows of the same residuals | Daily or annual modulation of clock, cavity, or signal records | band-specific; report frequency, phase convention, and coefficient row |
+| Bell record-order leakage | $\Delta_{\mathrm{ord}}$ and wake-reach margins | Timing or correlation dependence on which wing is first in absolute time | photon-spacelike but wake-timelike Bell windows must remain ordering-invariant or suppressed below coincidence and correlation residual tolerances |
 | Photon dispersion/birefringence/time-of-flight | $\tilde\kappa^{\mathrm{eff}}$ rows and time-of-flight residuals | Energy-dependent $c_\gamma$, polarization rotation, arrival-time leakage | source-specific; can reach $10^{-20}$-class and tighter in astrophysical photon comparisons |
 | Weak-field preferred-frame terms | $\bar{s}^{\mu\nu}_{\mathrm{eff}}$ and PPN preferred-frame rows | Effective gravity and clock/ruler response in weak fields | compare coefficient by coefficient against PPN/SME bounds |
 | GW/photon speed split | $R_{\mathrm{GW}\gamma}$ | $c_{\mathrm{GW}}^{\mathrm{eff}}$ versus $c_\gamma$ | $\sim10^{-15}$ class from GW170817/GRB 170817A |

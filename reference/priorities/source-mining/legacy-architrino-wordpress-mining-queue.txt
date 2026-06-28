@@ -1,0 +1,379 @@
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2023/12/26/you-can-solve-nature/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2021/06/15/new-physics-in-pictures/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2020/05/15/introduction-to-npqg/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2020/08/23/what-would-nature-do/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2019/06/24/idealized-neoclassical-model/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/02/13/math-of-nature-from-first-principles/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2019/06/12/glossary-of-neoclassical-physics-and-quantum-gravity/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2019/06/20/max-planck-ahead-of-his-time/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2019/06/17/brainstorming-on-electrinos-and-positrinos/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/03/24/the-dynamical-geometry-of-charge-paths/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/06/01/absolute-relativity/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/07/02/the-radius-of-potential/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/04/19/dirac-sphere-potentials/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/03/07/point-charge-action-and-self-action/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2021/08/10/nature-is-continuous-and-discrete/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/04/10/deep-in-the-point-charge-sea/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/04/10/free-will-from-floating-ground/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2023/03/05/the-equation-of-nature-and-the-universe/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/12/24/lagrangian/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/05/23/the-dynamical-geometry-of-nature-3-drafted/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2020/05/30/a-vulnerability-in-the-mathematics-of-physics/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2024/06/07/dynamical-systems-theory-delay-differential-equations-or-control-theory/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2019/06/12/wheres-the-npqg-math/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/03/18/dynamical-eight-ball/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/01/31/a-bit-of-math-for-the-new-era/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2024/02/21/is-potential-a-dimension/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/02/26/collider-collisions-nines-of-c/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/01/29/fascinating-ideas/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/02/04/orbital-dualities/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2021/04/27/npqg-april-27-2021-the-closest-approach/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2020/07/14/fine-structure-is-both-a-variable-and-constant/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2020/07/06/the-maps-and-the-territory/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2021/01/08/npqg-january-8-2021-walking-the-planck/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2024/06/22/causal-contact-and-information/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2024/07/14/information-theory/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/10/10/revisiting-classical-physics/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2020/02/13/missing-magnetic-monopoles/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/04/03/scalar-and-vector-potential/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2021/10/13/dirac-strings-debunked/
+# COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/04/06/canceling-the-right-hand-rule/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/03/13/lee-cronin-assembly-theory/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2024/02/17/the-primal-assembly/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2024/02/26/its-the-standing-waves-doh/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/12/15/the-tau-transformation/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/12/21/npqg-december-21-2020/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/11/26/revolutionizing-physics-orbiting-point-charges/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/02/26/orbiting-point-charge-action/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/08/11/orbiting-point-charges/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/08/12/the-dipole-curvature-limit-is-the-anchor-to-planck-scale/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/02/23/point-charges-implement-asymptotic-safety/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/05/07/turning-physics-and-cosmology-inside-out/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/10/17/zooming-in-on-a-noether-core/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2023/01/01/npqg-april-15-2021/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/08/22/the-immutable-point-charge-architecture-is-self-tuning/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/06/noether-cores-and-quantum-spin/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2019/06/29/wave-function-collapse/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/12/24/noether-core-superposition/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/03/27/tilting-tensorsial-tri-dipoles/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/05/30/noether-cores-and-polar-personality-charges-20/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2024/03/26/spin-and-noether-core-geometry/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/05/05/are-orbiting-electrino-positrino-point-charges-the-perfect-blackbody/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/06/07/assembling-a-theory/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/09/assembly-redux/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/03/doh-its-the-superposition/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2024/06/22/noether-core-factory/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2024/07/05/symmetry-c-p-t/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/12/24/energy-and-potential/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/22/apparent-energy-aka-mass-vs-total-energy/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/20/conjecture-on-plancks-law-wiens-peaks-and-orbiting-point-charge-dipoles/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/12/14/the-mystery-islands-of-shielded-energy/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2019/06/17/unifying-the-four-forces/
+https://architrino.wordpress.com/2022/06/20/implementation-of-the-weak-nuclear-force/
+https://architrino.wordpress.com/2021/08/24/mass/
+https://architrino.wordpress.com/2019/12/25/gravity-and-time/
+https://architrino.wordpress.com/2022/05/13/how-does-nature-implement-time/
+https://architrino.wordpress.com/2021/05/28/the-curled-up-dimension-of-time/
+https://architrino.wordpress.com/2021/01/03/npqg-january-3-2021/
+https://architrino.wordpress.com/2022/04/03/how-are-fermions-assembled/
+https://architrino.wordpress.com/2022/12/21/lepton-flavor-universality/
+https://architrino.wordpress.com/2022/04/10/gluon-color-charge-assembly/
+https://architrino.wordpress.com/2022/03/18/everything-spins/
+https://architrino.wordpress.com/2019/06/16/anti-matter-mystery-solved/
+https://architrino.wordpress.com/2022/02/19/visualising-the-dynamics-of-the-electron-structure/
+https://architrino.wordpress.com/2022/12/19/up-charm-top-quark-assembly/
+https://architrino.wordpress.com/2022/12/19/down-strange-bottom-quark-assembly/
+https://architrino.wordpress.com/2019/06/23/neutrino-oscillation-musings/
+https://architrino.wordpress.com/2021/09/26/rethinking-neutrino-structure/
+https://architrino.wordpress.com/2022/12/19/neutrino-assembly/
+https://architrino.wordpress.com/2022/12/17/w-and-z-boson-reaction-provenance/
+https://architrino.wordpress.com/2022/01/18/is-the-patchwork-quilt-of-physics-and-cosmology-isomorphic-to-the-point-charge-universe/
+https://architrino.wordpress.com/2021/01/19/npqg-january-19-2021-planar-bosons-on-the-photon-train/
+https://architrino.wordpress.com/2020/07/14/absolute-distance-and-the-path-of-a-photon/
+https://architrino.wordpress.com/2020/05/18/a-photon-is-both-particles-and-waves/
+https://architrino.wordpress.com/2020/01/05/evidence-for-classic-photons/
+https://architrino.wordpress.com/2019/11/11/photons-react-with-spacetime-gas/
+https://architrino.wordpress.com/2021/01/14/npqg-january-14-2021-maluss-law/
+https://architrino.wordpress.com/2019/07/17/brainstorming-the-speeds-of-light/
+https://architrino.wordpress.com/2021/09/16/creating-matter-from-pure-light/
+https://architrino.wordpress.com/2022/12/27/mapping-spinning-gluons-in-the-proton/
+https://architrino.wordpress.com/2022/12/25/spacetime-vs-time-and-space/
+https://architrino.wordpress.com/2021/11/21/spacetime-aether-vs-the-vacuum/
+https://architrino.wordpress.com/2018/12/28/is-there-a-physical-aether/
+https://architrino.wordpress.com/2019/01/05/superfluid-soup-to-go/
+https://architrino.wordpress.com/2021/09/17/physicists-fubarred-higgs-big-time/
+https://architrino.wordpress.com/2022/12/24/how-is-spacetime-aether-generated/
+https://architrino.wordpress.com/2022/12/24/how-does-spacetime-aether-decay/
+https://architrino.wordpress.com/2024/07/08/there-is-no-vacuum-catastrophe/
+https://architrino.wordpress.com/2024/07/19/reactions-with-spacetime/
+https://architrino.wordpress.com/2024/10/27/spacetime-assembly-emission/
+https://architrino.wordpress.com/2024/11/16/deep-space-contents/
+https://architrino.wordpress.com/2024/11/26/graviton-higgs-binary/
+https://architrino.wordpress.com/2024/08/06/mapping-higgs/
+https://architrino.wordpress.com/2019/11/28/is-spacetime-made-of-axions/
+https://architrino.wordpress.com/2019/06/13/fresh-thinking-about-redshift/
+https://architrino.wordpress.com/2022/03/23/quasar-distribution-and-redshift/
+https://architrino.wordpress.com/2022/08/21/the-periodic-table-of-the-standard-model/
+https://architrino.wordpress.com/2020/05/22/radiation-and-radioactivity/
+https://architrino.wordpress.com/2022/05/30/fusion/
+https://architrino.wordpress.com/2021/12/21/secrets-of-the-standard-model/
+https://architrino.wordpress.com/2024/07/26/mapping-quantum-numbers/
+https://architrino.wordpress.com/2022/07/04/mapping-to-supersymmetry/
+https://architrino.wordpress.com/2020/07/01/does-npqg-inform-string-theory/
+https://architrino.wordpress.com/2022/08/05/lattice-qcd/
+https://architrino.wordpress.com/2019/06/15/interpreting-quantum-mechanics-neoclassically/
+https://architrino.wordpress.com/2021/07/11/mass-denial-in-the-physics-community/
+https://architrino.wordpress.com/2022/02/23/quantum-lissajou-scars/
+https://architrino.wordpress.com/2020/01/05/bohmian-mechanics-and-npqg-ii/
+https://architrino.wordpress.com/2020/07/08/bohmian-mechanics-and-npqg-iii/
+https://architrino.wordpress.com/2022/09/28/paul-sutter-quantum-mechanics/
+https://architrino.wordpress.com/2022/11/04/physics-nobel-2022/
+https://architrino.wordpress.com/2022/03/10/e8-is-a-red-herring/
+https://architrino.wordpress.com/2022/09/24/quantum-theory/
+https://architrino.wordpress.com/2020/07/20/epr-1-spooky-action-0/
+https://architrino.wordpress.com/2024/07/05/how-nature-and-the-universe-operate/
+https://architrino.wordpress.com/2022/08/14/cosmology/
+https://architrino.wordpress.com/2021/11/25/helge-kragh-steady-state-cosmological-models/
+https://architrino.wordpress.com/2020/08/28/dr-becky-big-bang-vs-steady-state/
+https://architrino.wordpress.com/2024/03/18/the-apparent-darkness-of-cosmology/
+https://architrino.wordpress.com/2023/05/29/mapping-the-friedmann-equations/
+https://architrino.wordpress.com/2020/08/06/tensions-in-cosmology/
+https://architrino.wordpress.com/2022/04/07/rearranging-cosmology/
+https://architrino.wordpress.com/2019/06/11/physicists-debate-hawkings-idea-that-the-universe-had-no-beginning/
+https://architrino.wordpress.com/2020/06/27/discord-june-27-2020-chipping-away/
+https://architrino.wordpress.com/2024/02/14/mapping-the-cosmic-web/
+https://architrino.wordpress.com/2021/11/24/debate-alan-guth-vs-roger-penrose/
+https://architrino.wordpress.com/2022/03/26/sir-roger-ccc-m-c-escher/
+https://architrino.wordpress.com/2020/03/03/subir-sarkar-questions-evidence-for-dark-energy/
+https://architrino.wordpress.com/2023/04/22/planck-epoch-peak-density-of-energetic-point-charges/
+https://architrino.wordpress.com/2023/04/23/grand-unification-epoch-dipoles-dominate/
+https://architrino.wordpress.com/2023/04/23/inflationary-epoch-noether-cores-form/
+https://architrino.wordpress.com/2023/04/28/electroweak-epoch-personality-charges-bond-to-noether-cores/
+https://architrino.wordpress.com/2023/04/29/quark-epoch-emerging-surviving-quarks-couple-vortices/
+https://architrino.wordpress.com/2023/06/16/mapping-dipole-assembly-and-cmb/
+https://architrino.wordpress.com/2019/10/24/how-nature-implements-gravity/
+https://architrino.wordpress.com/2019/06/12/quantum-gravity/
+https://architrino.wordpress.com/2020/01/26/gravity-and-the-temperature-of-spacetime-gas/
+https://architrino.wordpress.com/2020/05/23/forces-mass-and-gravity/
+https://architrino.wordpress.com/2020/01/21/gravity-is-both-quantum-and-continuous/
+https://architrino.wordpress.com/2021/11/18/the-hierarchy-problem-in-particle-physics/
+https://architrino.wordpress.com/2022/08/20/the-equivalence-principle/
+https://architrino.wordpress.com/2021/09/25/dr-justin-khoury-on-dark-matter-superfluidity/
+https://architrino.wordpress.com/2020/07/18/superfluid-vacuum-theory/
+https://architrino.wordpress.com/2022/08/10/themessenger-and-dr-donald-c-chang/
+https://architrino.wordpress.com/2020/07/25/loop-quantum-gravity-and-npqg/
+https://architrino.wordpress.com/2021/05/30/general-relativity-is-wrong/
+https://architrino.wordpress.com/2021/05/30/quantum-general-relativity-vs-mit-gr-1/
+https://architrino.wordpress.com/2021/12/28/fixing-machs-principle-and-self-energy/
+https://architrino.wordpress.com/2022/03/20/spin-networks-and-foams/
+https://architrino.wordpress.com/2020/02/12/freeman-dyson-is-a-graviton-detectable/
+https://architrino.wordpress.com/2022/05/23/inflation-expansion-deflation-5-drafted/
+https://architrino.wordpress.com/2019/07/16/cosmic-inflation-is-wrong-long-live-inflation/
+https://architrino.wordpress.com/2020/08/01/transforming-guth-to-truth/
+https://architrino.wordpress.com/2022/03/20/ontological-transformation-of-the-big-bang/
+https://architrino.wordpress.com/2020/06/18/particle-rain/
+https://architrino.wordpress.com/2022/03/25/point-charge-cosmology-rulez/
+https://architrino.wordpress.com/2020/05/14/taking-the-wind-out-of-the-sails-of-universe-expansion/
+https://architrino.wordpress.com/2020/10/23/positive-infinity-meets-negative-infinity/
+https://architrino.wordpress.com/2021/06/27/what-really-causes-the-cmb/
+https://architrino.wordpress.com/2019/07/18/the-planck-satellite-data-set/
+https://architrino.wordpress.com/2019/06/20/fresh-thinking-on-the-cosmic-microwave-background/
+https://architrino.wordpress.com/2024/07/12/globular-clusters/
+https://architrino.wordpress.com/2022/07/29/the-anthropic-principle/
+https://architrino.wordpress.com/2020/06/22/dear-one-time-inflationary-big-bangers-and-expanders/
+https://architrino.wordpress.com/2020/07/03/cosmological-metrics/
+https://architrino.wordpress.com/2021/11/21/the-%ce%b1%ce%b2%ce%b3-paper/
+https://architrino.wordpress.com/2022/07/16/black-holes/
+https://architrino.wordpress.com/2021/05/06/black-holes-and-planck-cores/
+https://architrino.wordpress.com/2020/02/14/planck-core-energy/
+https://architrino.wordpress.com/2022/03/07/planck-cores-and-asymptotic-safety/
+https://architrino.wordpress.com/2020/07/17/can-planck-cores-spin/
+https://architrino.wordpress.com/2019/07/30/black-holes-are-not-opaque/
+https://architrino.wordpress.com/2019/07/09/rethink-supermassive-black-hole-dynamics/
+https://architrino.wordpress.com/2021/09/07/new-ideas-on-galaxy-dynamics/
+https://architrino.wordpress.com/2019/06/27/can-supermassive-black-holes-explain-galaxy-rotation-curves/
+https://architrino.wordpress.com/2019/06/12/a-new-model-for-bl-lacs-with-help-from-planck-and-arp/
+https://architrino.wordpress.com/2019/06/15/does-a-black-hole-shrink-while-jetting-planck-plasma/
+https://architrino.wordpress.com/2020/07/09/npqg-prediction-of-smbh-jet-inflation-validated/
+https://architrino.wordpress.com/2023/03/14/do-black-holes-emit-spacetime-aether/
+https://architrino.wordpress.com/2022/07/16/reasoning-on-the-universes-shape/
+https://architrino.wordpress.com/2019/06/29/nature-destroys-information/
+https://architrino.wordpress.com/2018/01/12/how-i-envision-black-holes/
+https://architrino.wordpress.com/2021/01/14/npqg-january-14-2021-tweaking-physicsists/
+https://architrino.wordpress.com/2020/02/07/the-joy-of-x-priya-natarajan/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/10/12/the-false-narratives-of-physics-and-cosmology/
+https://architrino.wordpress.com/2019/10/11/will-earths-intelligent-life-spread-or-be-snuffed/
+https://architrino.wordpress.com/2021/12/06/bohr-and-heisenberg-plasma-ten/
+https://architrino.wordpress.com/2022/06/07/radioactivity-and-the-drake-equation/
+https://architrino.wordpress.com/2024/10/27/ai-needs-a-symmetry-breaking-point/
+https://architrino.wordpress.com/2023/08/02/in-the-midst-of-experiment-1-phase-1/
+https://architrino.wordpress.com/2023/08/08/fermion-architecture-animation/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/10/11/are-we-ai/
+https://architrino.wordpress.com/2022/01/19/dear-pdg-lets-talk/
+https://architrino.wordpress.com/2021/09/11/dear-particle-data-group/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/19/how-will-point-charge-provenance-benefit-science-and-technology/
+https://architrino.wordpress.com/2023/05/06/depicting-assemblies-and-reactions-as-paths/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/17/what-is-next-for-npqg/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/07/19/daydreaming-about-an-npqg-research-institute/
+https://architrino.wordpress.com/2020/08/11/planck-shell-memory-and-computation/
+https://architrino.wordpress.com/2020/02/22/predictions-of-npqg/
+https://architrino.wordpress.com/2022/09/07/innovation-contest/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/07/15/t-3-2-1-npqg-liftoff/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/01/05/npqg-january-5-2021-lets-get-on-with-it/
+https://architrino.wordpress.com/2021/05/08/nanosheet-technology/
+https://architrino.wordpress.com/2022/03/22/sara-walker-life-lex-fridman/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/07/10/cd-career-rm-rf/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/14/dear-mit-physics-needs-a-compassionate-intervention/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/17/commenter-i-poor-mit/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/08/10/fire-the-physicists/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/26/fraud-and-funding-in-physics-and-cosmology/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/10/01/is-chemistry-the-best-description-of-nature-why-do-we-need-physics/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/05/31/its-time-to-cancel-gr-qm-%ce%bbcdm/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/10/24/physicists-take-the-l/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/11/23/a-wish-for-senior-physicists/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/05/23/the-quandary-in-physics-and-cosmology/
+https://architrino.wordpress.com/2022/02/09/spoiler-alert-solving-nature/
+https://architrino.wordpress.com/2019/07/20/solving-the-unsolved-problems-in-physics/
+https://architrino.wordpress.com/2020/03/04/response-to-paul-diracs-1963-scientific-american-article/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/12/24/organization-of-academia/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2023/06/11/particle-colliders-are-primitive-technology/
+https://architrino.wordpress.com/2025/03/01/what-is-an-effective-theory-by-gpt-4-5/
+https://architrino.wordpress.com/2025/03/27/on-gr-and-qm-by-gemini-2-0-flash-ai/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2024/07/31/what-is-matter/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2024/06/01/life-begins-with-point-potentials/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2024/01/20/ontological-illusions-false-narratives-in-physics-obscure-the-architecture-of-nature/
+https://architrino.wordpress.com/2023/04/04/npqg-social-media-journey/
+https://architrino.wordpress.com/2023/03/14/maya-benowitz-on-the-origins-of-the-universe-and-the-nature-of-the-cosmological-singularity/
+https://architrino.wordpress.com/2023/01/06/barry-barish/
+https://architrino.wordpress.com/2023/01/03/mapping-gluons/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/11/30/ontological-errors-may-have-occluded-a-neoclassical-solution-to-nature/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/11/28/long-live-philosophy/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/11/28/gr-and-qm-are-not-connected-to-nature/
+https://architrino.wordpress.com/2022/09/24/pbs-space-time-convo/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/09/15/nature-fooled-physicists/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/09/10/comparing-models-of-nature/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/08/21/determinism/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/08/20/nature-of-a-gravitational-theory/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/08/18/what-is-reality/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/07/17/michelson-morley-experiment/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/19/euclidean-time-and-space/
+https://architrino.wordpress.com/2022/04/16/physics-and-the-dragons-tail/
+https://architrino.wordpress.com/2022/04/16/nonsense-pop-woo-physics/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/08/jefimenko-lienard-wiechert/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/06/who-let-the-frames-out/
+https://architrino.wordpress.com/2022/03/24/j-mark-morris-aita/
+# SKIP MINED 2026-06-27 https://architrino.wordpress.com/2022/03/20/big-picture-of-point-charge-theory/
+https://architrino.wordpress.com/2022/03/19/conversations-in-the-aether/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/30/dear-keepers-of-the-scientific-method/
+https://architrino.wordpress.com/2022/01/28/sometimes-i-laugh-sometimes-i-cry-sometimes-i-do-both/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/11/waxing-philosophical-on-nature/
+https://architrino.wordpress.com/2021/11/11/guardians-of-physics-are-an-embarassment/
+https://architrino.wordpress.com/2021/10/22/the-standard-model-of-particle-physics/
+https://architrino.wordpress.com/2021/09/29/numerology-or-insight/
+https://architrino.wordpress.com/2021/09/13/engaging-the-particle-physics-reddit/
+https://architrino.wordpress.com/2021/06/18/despondency-at-triton-station/
+https://architrino.wordpress.com/2021/06/02/bickering-with-a-guardian-of-physics/
+https://architrino.wordpress.com/2021/06/01/draw-freely-upon-your-imagination/
+https://architrino.wordpress.com/2021/05/29/lee-smolin-the-trouble-with-physics/
+https://architrino.wordpress.com/2021/05/23/dr-anna-christina-eilers-quasars/
+https://architrino.wordpress.com/2021/05/07/matthew-von-hippel-lost-and-clueless/
+https://architrino.wordpress.com/2021/05/07/pbs-space-time-dialog-with-a-dreamer/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/05/04/npqg-may-4-2021-quantum-ontology-and-metaphysics/
+https://architrino.wordpress.com/2021/05/04/npqg-may-4-2021-dr-sabine-hossenfelder-dark-matter/
+https://architrino.wordpress.com/2021/04/29/npqg-april-29-2021-triton-station-eerily-quiet/
+https://architrino.wordpress.com/2021/04/26/npqg-april-26-2021-how-the-universe-works/
+https://architrino.wordpress.com/2021/04/24/npqg-april-24-2021-dr-brian-keating-and-dr-carlo-rovelli/
+https://architrino.wordpress.com/2021/04/21/npqg-april-21-2021/
+https://architrino.wordpress.com/2021/04/13/triton-station-divergence/
+https://architrino.wordpress.com/2021/01/31/npqg-february-1-2021-dr-stacy-mcgaugh-triton-station/
+https://architrino.wordpress.com/2021/01/31/npqg-january-31-2021-quantum-field-theory/
+https://architrino.wordpress.com/2021/01/18/npqg-january-18-2021-decoded-standard-model/
+https://architrino.wordpress.com/2021/01/07/npqg-january-7-2020-bubbly-bubbles/
+https://architrino.wordpress.com/2021/01/06/five-gatekeepers-of-speech/
+https://architrino.wordpress.com/2021/01/02/npqg-january-2-2021/
+https://architrino.wordpress.com/2021/01/01/dr-brian-keating-dr-max-tegmark-and-dr-eric-weinstein/
+https://architrino.wordpress.com/2020/12/31/npqg-december-31-2020-eureka/
+https://architrino.wordpress.com/2020/12/29/npqg-december-30-2020/
+https://architrino.wordpress.com/2020/12/28/npqg-december-28-2020-morning-edition/
+https://architrino.wordpress.com/2020/12/26/npqg-december-26-2020/
+https://architrino.wordpress.com/2020/12/24/npqg-december-24-2020-morning-edition/
+https://architrino.wordpress.com/2020/12/24/npqg-december-24-2020-evening-edition/
+https://architrino.wordpress.com/2020/12/23/npqg-december-23-2020/
+https://architrino.wordpress.com/2020/12/19/npqg-december-19-2020/
+https://architrino.wordpress.com/2020/12/18/npqg-december-18-2020/
+https://architrino.wordpress.com/2020/12/18/dr-brian-keaton-dr-frank-wilczek/
+https://architrino.wordpress.com/2020/12/17/npqg-december-17-2020/
+https://architrino.wordpress.com/2020/12/14/dr-brian-keating-dr-leonard-susskind/
+https://architrino.wordpress.com/2020/12/13/dr-brian-keating-dr-cumrun-vafa/
+https://architrino.wordpress.com/2020/12/13/a-new-recipe-for-the-universe/
+https://architrino.wordpress.com/2020/12/08/dr-brian-keating-dr-janna-levin/
+https://architrino.wordpress.com/2020/12/06/dr-brian-keating-geraint-lewis-luke-barnes/
+https://architrino.wordpress.com/2020/11/28/pbs-space-time-how-the-penrose-singularity-theorem-predicts-the-end-of-space-time/
+https://architrino.wordpress.com/2020/08/23/comparing-wolfram-physics-and-npqg/
+https://architrino.wordpress.com/2020/08/19/a-pleasant-conversation-with-a-physicist/
+https://architrino.wordpress.com/2020/08/17/the-trials-and-tribulations-of-an-independent-ideator/
+https://architrino.wordpress.com/2020/08/15/hostility-and-bullying-are-endemic-in-physics-and-cosmology/
+https://architrino.wordpress.com/2020/08/09/career-advice/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/08/08/revisiting-nobel-prize-research/
+https://architrino.wordpress.com/2020/08/03/insights-on-injustice-via-gell-mann/
+https://architrino.wordpress.com/2020/08/02/dr-stacy-mcgaugh-triton-station-blog/
+https://architrino.wordpress.com/2020/08/02/lawrence-krauss-5-minute-physics-vs-npqg-episodes-19-thru-21/
+https://architrino.wordpress.com/2020/07/25/encouragement-from-dr-w/
+https://architrino.wordpress.com/2020/07/20/lawrence-krauss-5-minute-physics-vs-npqg-episodes-15-thru-18/
+https://architrino.wordpress.com/2020/07/20/lawrence-krauss-5-minute-physics-vs-npqg-episodes-12-thru-14/
+https://architrino.wordpress.com/2020/07/19/lawrence-krauss-5-minute-physics-vs-npqg-episodes-8-thru-11/
+https://architrino.wordpress.com/2020/07/19/lawrence-krauss-5-minute-physics-vs-npqg-episodes-22-thru-23/
+https://architrino.wordpress.com/2020/07/18/lawrence-krauss-freemans-90th/
+https://architrino.wordpress.com/2020/07/18/lawrence-krauss-5-minute-physics-vs-npqg-episodes-4-7/
+https://architrino.wordpress.com/2020/07/18/lawrence-krauss-5-minute-physics-vs-npqg-episodes-24-thru-25/
+# SKIP MINED 2026-06-27 https://architrino.wordpress.com/2020/07/17/paradoxes-are-errors-in-thinking/
+https://architrino.wordpress.com/2020/07/11/dr-sabine-hossenfelder-theory-of-everything/
+https://architrino.wordpress.com/2020/07/09/npqg-in-wonderland/
+https://architrino.wordpress.com/2020/07/03/dr-alexander-unzicker/
+https://architrino.wordpress.com/2020/07/01/the-proselytizing-of-physics/
+https://architrino.wordpress.com/2020/07/01/social-media-struggle/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/06/25/missed-opportunities-to-discover-nature/
+https://architrino.wordpress.com/2020/06/19/about-dad/
+https://architrino.wordpress.com/2020/06/06/dr-sabine-hossenfelder-physics-in-crisis/
+https://architrino.wordpress.com/2020/05/24/lawrence-krauss-5-minute-physics-vs-npqg-episodes-1-and-2/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/05/24/nature-is-a-trickster/
+https://architrino.wordpress.com/2020/05/23/npqg-book-outline/
+https://architrino.wordpress.com/2020/05/23/lawrence-krauss-5-minute-physics-episode-26/
+https://architrino.wordpress.com/2020/05/20/dr-paul-sutter-the-mystery-of-the-missing-matter-in-the-universe-ask-a-spaceman/
+https://architrino.wordpress.com/2020/05/16/dr-paul-sutter-is-space-time-smooth-or-chunky/
+https://architrino.wordpress.com/2020/05/13/nasa-quasar-tsunamis-rip-across-galaxies/
+https://architrino.wordpress.com/2020/05/13/dr-becky-an-astrophysicists-top-10-unsolved-mysteries/
+https://architrino.wordpress.com/2020/04/30/kirsten-hacker-black-hole-sun/
+https://architrino.wordpress.com/2020/02/25/standard-model-bingo/
+https://architrino.wordpress.com/2020/02/22/my-posts-on-discord-the-portal/
+https://architrino.wordpress.com/2020/02/15/kirsten-hacker-weary-light/
+https://architrino.wordpress.com/2020/02/13/npqg-resistance-is-futile/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/02/10/simulation-what-is-possible/
+https://architrino.wordpress.com/2020/02/06/in-response-to-kirsten-hackers-jocularity-jocks-jokes-and-jacksons-em/
+https://architrino.wordpress.com/2020/02/04/garrett-lisi-and-eric-weinstein-on-the-portal-015/
+https://architrino.wordpress.com/2020/01/20/kirsten-hacker-the-walrus-and-the-carpenter/
+https://architrino.wordpress.com/2020/01/04/bohmian-mechanics-and-npqg-i/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2019/12/13/consciousness-at-scale/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2019/10/24/dont-aggravate-nature/
+https://architrino.wordpress.com/2019/10/20/nature-and-math/
+https://architrino.wordpress.com/2019/10/14/kirsten-hacker-thought-experiments/
+https://architrino.wordpress.com/2019/10/14/kirsten-hacker-disentanglement/
+https://architrino.wordpress.com/2019/10/14/kirsten-hacker-blue-skies/
+https://architrino.wordpress.com/2019/10/13/kirsten-hacker-signs-of-the-times/
+https://architrino.wordpress.com/2019/10/06/kirsten-hacker-true-genius/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2019/07/26/complexity-and-simplicity/
+https://architrino.wordpress.com/2019/07/19/brainstorming-composite-particles/
+https://architrino.wordpress.com/2019/06/29/physics-outreach-stars/
+https://architrino.wordpress.com/2019/06/26/recommended-physics-books/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2019/06/19/modern-physics-is-wrong/
+https://architrino.wordpress.com/2019/06/16/recipe-for-a-cosmos/
+https://architrino.wordpress.com/2019/06/15/is-neoclassical-physics-the-grand-unified-theory-of-everything/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2019/06/15/fresh-thinking-on-entropy/
+# COMPLETE 2026-06-27 https://architrino.wordpress.com/2019/06/11/religion-meet-npqg/
+https://architrino.wordpress.com/2019/04/05/a-neoclassical-model-of-nature/
+https://architrino.wordpress.com/2018/01/05/first-blog-post/
+https://architrino.wordpress.com/2026/06/27/unfinished-notes-on-temperature/
+https://architrino.wordpress.com/2026/06/27/unfinished-notes-on-bonded-vortices/
+https://architrino.wordpress.com/2026/06/27/unfinished-notes-and-math-ramblings/
+https://architrino.wordpress.com/2026/06/27/ai-and-closure/
+https://architrino.wordpress.com/2023/04/04/unfinished-notes-on-potential-energy-kinetic-energy-and-the-virial-theorem/

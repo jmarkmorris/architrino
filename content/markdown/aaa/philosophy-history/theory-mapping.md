@@ -27,6 +27,17 @@ One compact way to read this chapter is as a set of ontological relocations. The
 | $\Lambda\mathrm{CDM}$, Big Bang, and inflationary chronology | Redshift, CMB, BBN, growth, lensing, and parameter-fit data products remain hard comparison constraints. | Expansion variables are observer-level summaries of source/release history, Noether sea evolution, transport, and clock-rate comparison in a fixed Euclidean void. |
 | Quantum Field Theory | Effective actions, perturbation theory, detector-event reconstruction, renormalized summaries, and field symmetries remain indispensable. | Fields and particle-number changes are effective descriptions of assembly association, dissociation, normal-mode changes, causal wakes, and source-history transport. |
 
+### Four Interactions As Sector Projections
+
+The same relocation discipline applies to the inherited four-interaction language. Electromagnetism, weak interaction, strong interaction, and gravity are not four primitive substances in $\mathbb{A}\mathbb{A}\mathbb{A}$; they are observer-level sectors that project different parts of the assembly, causal-wake, event-ledger, and Noether sea record. The unification target is therefore not to erase their differences, but to derive each effective sector from one substrate architecture without giving any sector an independent hidden ontology.
+
+| Observer-level interaction | What remains valid | Relocation in $\mathbb{A}\mathbb{A}\mathbb{A}$ |
+| --- | --- | --- |
+| Electromagnetic | Charge bookkeeping, photon transport, Maxwell/QED benchmarks, and effective $U(1)$ phase behavior remain recovery targets. | The photon channel is routed through the [coaxial contra-rotating pro/anti planar pair](../assemblies/bosons/electroweak-bosons.md), while effective electromagnetic potentials are reconstructed from causal-wake/action ledgers and Noether sea response in the [gauge-structure map](../assemblies/gauge-structure-emergence.md). |
+| Weak | Chiral weak reactions, $W^\pm/Z$ corridor behavior, weak mixing, CKM/PMNS constraints, and electroweak precision data remain hard comparison targets. | Weak interaction is relocated into exposed weak-coupling-triad geometry, transient corridor provenance, and reaction-ledger accounting; the effective $SU(2)_L$ record must be recovered without treating weak bosons as primitive substrate carriers. |
+| Strong | Color confinement, gluon exchange, hadron structure, and nuclear binding phenomenology remain required recoveries. | Strong interaction is relocated into axis-exceptionality, color-corridor and flux closure, Noether sea routing of exposed axial traffic, and residual-strong coarse graining; see [Gluons and the Strong Force](../assemblies/bosons/gluons.md) and [Nuclear Binding](../nuclear-atomic/nuclear-binding.md). |
+| Gravitational | Weak-field GR, lensing, Shapiro delay, orbital dynamics, gravitational waves, and strong-field benchmarks remain recovery targets. | Gravity is relocated into Noether sea constitutive response, clock/ruler retuning, photon and gravitational-channel propagation, and effective-metric reconstruction; the Euclidean void remains uncurved while [Emergent Metric](../spacetime/emergent-metric.md) and [General Relativity](../spacetime/general-relativity.md) carry the recovery burden. |
+
 **Document Type:** Matrix-split chapter with two axes:
 - Layer axis (`##`): ontological/phenomenological domains.
 - Theory axis (`###`): individual theories mapped within each domain.

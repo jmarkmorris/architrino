@@ -33,6 +33,8 @@ During the current core geometrical theory push, do not treat corpus coverage as
 
 Use [source-mining-best-practice](source-mining-best-practice.md) for source-type workflows, report shape, theory-mapping discipline, corpus deferral rules, and source-family intake rules.
 
+Use topic-sweep mode when the operator needs to reconstruct what the legacy archive says about one concept across many posts before choosing individual sources to mine. A topic sweep is source discovery and synthesis; it should not mark posts mined unless the normal source-mining triage and history update are also completed for those posts.
+
 ## Mining History
 
 The completed target list lives in [source-mining-history](source-mining-history.md). When a source or source family is mined, add it to that history file with the date mined.
@@ -40,6 +42,17 @@ The completed target list lives in [source-mining-history](source-mining-history
 ## Active Mining Batches
 
 - [Entropy video mining](entropy-video-mining.md) tracks the current operator-supplied entropy video batch for the later rollup report.
+- [Legacy Architrino WordPress mining queue](legacy-architrino-wordpress-mining-queue.txt) preserves the normalized post queue for future mining batches. Treat it as the durable queue; `/tmp` copies are active-session working copies only.
+- [Legacy Architrino WordPress library posts](legacy-architrino-wordpress-library-posts.md) is the full title/date/status table crawled from the WordPress library page.
+
+## Legacy Architrino WordPress Library Stats
+
+- Source: [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), and current-year archive pages such as [2026](https://architrino.wordpress.com/2026/).
+- Last crawl: June 27, 2026.
+- Published posts discovered: `379`.
+- Queue state after crawl: `118` complete, `2` already `MINED` on WordPress but not locally complete, and `259` open for mining.
+- The June 27, 2026 refresh added `5` posts beyond the previous table: `4` from the [2026 archive](https://architrino.wordpress.com/2026/) plus `1` newly visible 2023 draft.
+- The WordPress site is now treated as an official historical archive to mine while the subscription remains active, currently expected through approximately June 2029.
 
 ## Comparison Packets
 

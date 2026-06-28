@@ -58,6 +58,10 @@ The linkage question is whether the observed CMB spectrum, including near-Planck
 
 The first pass should keep the claim level narrow. A viable linkage requires one event and medium record to connect Noether braid ensemble dynamics, photon assembly source/capture/release rows, thermalization depth, coherent photon-channel bundle transport, redshift handoff, and the CMB frequency-map residuals. If the spectrum can be fit only by changing the Noether sea state separately from BBN, redshift, or TT/TE/EE transfer, the linkage fails as a shared-cosmology closure route.
 
+That same medium record is also shared with the Lorentz closure stack. The $\chi_{\text{sea}}(\mathbf{x},t)$ row used for redshift, transparent photon-channel transport, CMB transfer, lensing, and growth must remain the same row used for clock/ruler retuning and preferred-frame hiding. A branch that closes cosmology only by choosing a cosmology-specific delay factor, while Lorentz recovery uses a different $\chi_{\text{sea}}$, has split the response law the one-constitutive-response wall is meant to protect.
+
+The speed rows are part of that shared response. The transparent transport map acts on photon-channel packets whose group-speed row is $c_\gamma(\mathbf{x},t)$; primitive causal wakes and Noether sea exchange remain constrained by $c_f$; clock and ruler reconstruction belongs to $c_{\text{eff}}$; and $c_0$ is only the weak homogeneous calibration value. A branch that recovers redshift by changing frequency while leaving the propagation speed undefined has not closed the map. The admissible case is redshift through coherent photon-channel transport at $c_\gamma$, with the energy sink bookkept through Noether sea and causal-wake exchange without generating a detectable frequency-dependent $c_\gamma(\omega)$ residual.
+
 The thermalization and transparent-transport rows must remain distinct. Pre-free-streaming thermalization can drive the photon bath toward a Planck occupation law, but long-path redshift must preserve that shape by coherent scaling. For a declared path factor $\lambda$, the comparison target is
 
 $$
@@ -112,6 +116,8 @@ $$
 
 The same Noether sea state that preserves blackbody shape and image coherence must carry that energy balance, or the transport branch has split the very constitutive response this priority is testing. Failure is explicit: if no single bookkept Noether sea sink can close the redshift energy row while preserving redshift-distance behavior, observed $(1+z)$ time dilation, Tolman surface brightness, blackbody quality, acoustic structure, image sharpness, lensing, and growth, the fixed-void redshift branch fails on its own absolute-time conservation target.
 
+Long-time stability adds one more required accounting row. The transparent-path sink $\Delta E_{\mathrm{sea,path}}$ may not accumulate as unbounded secular heating of the Noether sea. A viable branch must route that deposited energy through the same source/release, black-hole recycling, Noether sea equilibration, or boundary-flux records used by the cosmology module. In the cadence-transport notation of the expansion mechanism, the $f_N$ current, $S_{\mathrm{BH}}$, and $R_{\mathrm{eq}}[f_N]$ rows must supply a bounded recycling or relaxation balance for the path-energy deposit; otherwise the local redshift ledger conserves energy only by moving a divergence into $E_{\mathrm{sea}}$.
+
 If the total scalar energy of the unbounded populated Euclidean void is not finite or not convergently summable on a constant-$t$ leaf, this target demotes to a bounded-region flux balance rather than disappearing:
 
 $$
@@ -139,6 +145,15 @@ The interface should keep these clock families distinct:
 - Presolar and interstellar-grain ages as parent-star, ejection, mixing, and solar-system incorporation records.
 
 The closure question is why those clocks converge in the accessible material and stellar record. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ branch may interpret the convergence as the age of the current effective observer era, dominant recycling/thermalization history, or accessible star-forming material record, but it must also explain why much older visible populations are absent, reset, hidden, or outside the declared observation record.
+
+Observer eligibility must consume the same measure-theoretic object used by the quantum measurement program. Let $B_{\mathrm{obs}}\subset\Gamma$ denote the subset of finite-window basin states that satisfy the Physical Observer criteria: durable record channels, free-energy supply, chemical and environmental support, and access-region stability over the declared window. A typicality statement over interval $I$ should use
+$$
+\mu_{\mathrm{obs}}(A\mid I)
+=
+\frac{\mu_{*,T}(A\cap B_{\mathrm{obs}}\cap I)}
+{\mu_{*,T}(B_{\mathrm{obs}}\cap I)}
+$$
+when the denominator is nonzero, with $\mu_{*,T}$ inherited from the same transfer-operator and basin-measure grammar used for Born weights, apparatus partitions, and Bell records. If cosmology uses a separate anthropic sampling measure unrelated to $\mu_{*,T}$, observer eligibility has become a second probability ontology rather than a Physical Observer subset.
 
 ## Tier 2 Lecture-Note Interfaces
 

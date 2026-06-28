@@ -371,6 +371,18 @@ The no-signaling row cannot be checked only after the CHSH fit. It must be a mea
 
 The ordering row must be a measure-invariance statement too. For spacelike-separated observer records, exchanging the substrate order sector $A\prec_tB$ with $B\prec_tA$ inside the same prepared Bell regime may not change the observer-accessible joint table beyond $\epsilon_{\mathrm{ord}}$.
 
+The relevant separation condition is set by causal-wake reach, not only by the photon-channel cone used in the observer description. Let the two record-closure windows be $W_A=[t_A,t_A+\tau_A]$ and $W_B=[t_B,t_B+\tau_B]$, with wing separation $d_{AB}=\|\mathbf{x}_A-\mathbf{x}_B\|$. Define the wake-reach margins
+$$
+\Delta_{\mathrm{reach}}^{A\to B}
+=
+t_B+\tau_B-t_A-\frac{d_{AB}}{c_f},
+\qquad
+\Delta_{\mathrm{reach}}^{B\to A}
+=
+t_A+\tau_A-t_B-\frac{d_{AB}}{c_f}.
+$$
+If both margins are negative, neither wing's causal wake can enter the other wing's record-closure window before the relevant record closes. If either margin is nonnegative, the experiment lies in a wake-reach exposure window. This matters whenever $c_f>c_\gamma$: a pair can be spacelike by the dressed photon-channel record while still allowing primitive causal-wake reach during the measurement window. A Bell closure must therefore either keep the record windows mutually outside $c_f$ causal-wake reach or prove that any such reach leaves $\Delta_{\mathrm{ord}}$ below the coincidence-timing and correlation-residual tolerance.
+
 Using the preferred-motion null-test residual $\mathcal{R}_{\mathrm{PF\text{-}bundle}}$ from [PPN Parameters](../../spacetime/ppn-parameters.md#preferred-motion-null-test-bundle), a Bell candidate $\theta$ over a validity window $W$ must therefore satisfy
 
 $$
