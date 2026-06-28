@@ -82,6 +82,7 @@ These gates are not separate ontologies. They are bookkeeping filters that preve
 | BBN photon bath | [BBN Constraints](../cosmology/BBN-constraints.md) | Show that pair, bremsstrahlung, synchrotron, and related channels maintain effective $\eta\approx6\times10^{-10}$ during the bottleneck window | Closure target |
 | CMB thermal spectrum | [CMB](../cosmology/CMB.md) | Show that source emission, transport, and thermalization produce a near-blackbody photon bath with allowed anisotropy and damping structure | Closure target |
 | Horizon-interface photon release | [Black Holes](../spacetime/black-holes.md#horizon-adjacent-photon-channel) and [CMB](../cosmology/CMB.md#horizon-interface-photon-release-candidate) | Record photon-channel or photon-channel-adjacent packets processed near the symmetry-breaking threshold, including interior blueshift, exterior redshift, thermalization, and release-channel selection | Candidate strong-field source row |
+| Intergalactic pair/reaction production | [CMB](../cosmology/CMB.md), [Expansion Mechanism](../cosmology/expansion-mechanism.md), and [Dark Matter](../cosmology/dark-matter.md) | Inventory photon, neutrino, plasma, cosmic-ray, neutral-assembly, and Noether sea source components before using sparse visible matter as an ontology argument | Source-component target |
 | Redshift and clock handoff | [Expansion Mechanism](../cosmology/expansion-mechanism.md) | Map photon transport through $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, and clock-rate comparison | Effective summary with open derivation |
 | Sunyaev-Zeldovich / Compton-like frequency exchange | [CMB](../cosmology/CMB.md#sunyaev-zeldovich-path-history-calibration) and [Radiation](../reactions/radiation.md#path-frequency-exchange) | Record incoming photon packet, intervening electron or medium state, outgoing frequency, recoil, medium energy change, and thermalization side effects | Calibration row and closure target |
 
@@ -124,6 +125,26 @@ The event record must avoid creation-from-nothing wording. Incoming photon assem
 - and the standard-limit cross-section target.
 
 This is the ledger distinction that ordinary absorption does not need: atomic or material capture closes the photon ledger into an existing target or medium record, while pair production closes the photon ledger and separately recruits identity-routed substrate content into new charged assemblies.
+
+### Intergalactic Pair And Reaction Source Components
+
+Sparse visible matter between galaxies is not enough to close a cosmology source inventory. A reaction-cosmology packet should include a component row
+$$
+\mathcal{I}_{\mathrm{IGM}}
+=
+\left(
+N_\gamma,
+N_\nu,
+N_{\mathrm{CR}},
+N_{\mathrm{plasma}},
+N_{\mathrm{dust}},
+N_A,
+\rho_{\text{NS}},
+S_{\mathrm{pair}},
+S_{\mathrm{return}}
+\right)_W
+$$
+for a declared window $W$. Here $N_A$ records neutral or dark assembly candidates, $S_{\mathrm{pair}}$ records pair or reaction production inside the window, and $S_{\mathrm{return}}$ records content returned to the Noether sea or reclassified after reactions. This row is a source-component inventory, not a proof of a specific production rate; it prevents "empty intergalactic space" from replacing the actual component ledger.
 
 ### BBN Photon Loading
 

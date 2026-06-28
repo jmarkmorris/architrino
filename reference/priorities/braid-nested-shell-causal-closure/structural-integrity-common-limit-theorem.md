@@ -248,6 +248,53 @@ The status field $\sigma_{\gamma A}^{(q)}$ is one of:
 
 Current population status: no row is accepted. The $A_0$ seed is a rest-branch diagnostic with no active photon sector event, no moving same-branch drift band, no common $c_{\text{eff}}/c_\gamma/c_0$ extraction, and no Gate A proportional-collapse row. Its admissible status for this packet is therefore `blocked_pending_accepted_branch_chart`, not `accepted_same_branch`.
 
+### Gate A Population Intake Boundary
+
+The smallest population artifact for this row is
+
+$$
+\mathcal{I}_{\gamma A}^{(q)}(W)
+=
+\left(
+\mathsf{branch\_certificate\_ref},
+\mathsf{photon\_carrier\_ref},
+\mathsf{common\_speed\_record\_ref},
+\mathsf{phase\_lock\_ref},
+\mathsf{null\_shell\_ref},
+\mathsf{no\_rest\_clock\_ref},
+\mathsf{nondispersion\_ref},
+\mathsf{two\_way\_signal\_ref},
+\mathsf{event\_ledger\_ref}
+\right).
+$$
+
+Every reference must name an artifact on the same branch label $q$, extraction
+window $W$, active-root ledger $\mathcal{A}_q$, Noether sea dressing record,
+and event-ledger convention. A reference may be `not_applicable` only for
+`event_ledger_ref` when no emission, absorption, scattering, analyzer handoff,
+or radiation event is active on $W$; the no-event declaration must itself be
+part of the branch certificate.
+
+Applying this intake to the current priority tree stops at the first field:
+
+| Intake field | Current status | First-failure reading |
+| --- | --- | --- |
+| `branch_certificate_ref` | absent for any retained moving material/photon common branch | `blocked_pending_accepted_branch_chart` |
+| `photon_carrier_ref` | candidate Gate A theorem scaffold exists, but no same-branch carrier artifact is populated | not reached |
+| `common_speed_record_ref` | no shared $c_{\text{eff},q}^{\mathrm{hom}}$, $c_{\gamma,q}^{\mathrm{hom}}$, and $c_0$ extraction on one Noether sea dressing record | not reached |
+| `phase_lock_ref` | no same-branch proportional-collapse row | not reached |
+| `null_shell_ref` | no same-branch null photon mass-shell residual | not reached |
+| `no_rest_clock_ref` | no same-branch no-rest proper-time row | not reached |
+| `nondispersion_ref` | no same-branch nondispersion row | not reached |
+| `two_way_signal_ref` | no same-branch Lorentz two-way signal residual population | not reached |
+| `event_ledger_ref` | no active event declaration for the current diagnostic seed | not reached |
+
+Therefore future Gate A work should first produce a retained branch certificate
+or explicitly declare a candidate branch packet that remains below
+`accepted_same_branch`. Independent photon speed, phase, dispersion, or
+event-ledger rows are not eligible population inputs until
+`branch_certificate_ref` exists.
+
 ## First Proof Sequence
 
 1. Fix the retained branch certificate $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ with positive gap rows and no hidden branch transition. This step is inherited from the shared branch certificate contract.

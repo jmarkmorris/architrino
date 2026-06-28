@@ -39,6 +39,8 @@ at the GW170817/GRB 170817A scale, after source-emission lag and propagation-pat
 
 The same row is also a $\chi_{\text{sea}}$ identity condition. The Noether sea delay factor that dresses photon-channel timing to $c_\gamma$ cannot split into a photon-only value and a tensor-only value; it must dress the effective gravitational channel to $c_{\mathrm{GW}}^{\mathrm{eff}}$ within the declared multimessenger tolerance. Otherwise the branch has preserved the language of one medium while using two transport laws.
 
+Coherent photon/gravity conversion comparisons belong at this same shared-record level. They are useful only if the photon channel and the effective gravitational channel read from one Noether sea state, one speed/delay convention, and one event ledger. A proposed conversion amplitude, phase lock, or common propagation speed cannot be used as evidence for a new carrier unless it also preserves the GW170817-style timing row, photon nondispersion, image coherence, and the tensor-mode detector record.
+
 ## Linear Wave Equation
 
 **Conditional Lemma 1 (linearized propagation equation).**
@@ -229,6 +231,8 @@ $$
 1
 $$
 with $\delta_{\mathrm{req}}\sim L_{\mathrm{P}}$ for a single-graviton interferometric distance readout, $\delta_{\mathrm{det}}$ the achieved distance uncertainty, $M_{\mathrm{det}}$ and $D_{\mathrm{det}}$ the detector mass and size, $S_{\mathrm{1g}}$ the predicted single-graviton count, $B_{\mathrm{th}}$ the relevant thermal or particle-background count, and $\epsilon_N$ the allowed occupation-window tolerance. The compactness term prevents a sensitivity claim from hiding a black-hole detector; the background term prevents a thermal-graviton claim from being promoted when statistical scatter in known backgrounds dominates the putative count. Failure of this residual does not refute gravitons as a comparison basis and does not add graviton ontology to $\mathbb{A}\mathbb{A}\mathbb{A}$; it only blocks the stronger detector claim that an observed strain or thermal count has directly resolved individual quanta.
+
+This is the Dyson lesson in current terminology. The durable comparison is not that individual gravitons are impossible by definition, but that any single-quantum claim must close the detector sensitivity, compactness, background, and occupation rows at the same time. A classical strain packet with huge occupation number remains a gravitational-wave recovery success without becoming a single-graviton observation.
 
 When $\theta_{\mathrm{GW}}$ is also used to support a finite-range or dark-energy comparison, $\mathcal{R}_{\mathrm{GW,low}}(\theta)$ must be carried beside this detector residual. Passing a high-frequency event-timing gate alone is not enough to promote a long-wavelength dispersion claim.
 

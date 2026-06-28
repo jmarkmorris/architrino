@@ -88,9 +88,14 @@ the received schema constructs a rule-kernel derivation payload.
 
 ## Smallest Next Artifact
 
-The smallest useful continuation is a single-separator pilot external schema
-packet for `Sigma_hf_01` and its 11 row slots. It should attempt to satisfy 12
-of the 124 external obligation slots under this contract while leaving the
-other 112 slots unchanged. A failed pilot is still useful if it names the first
-missing one of the eight required fields without consuming rows or authorizing
-a branch chart.
+The smallest useful continuation is now materialized as the
+[Sigma_hf_01 external schema pilot packet](sigma_hf_01_external_schema_pilot_packet.md).
+It freezes the separator slot and 11 row slots for `Sigma_hf_01`, preserving
+0 / 12 received external schema inputs, 0 / 12 accepted validation slots,
+0 rule-kernel derivation payloads, 0 consumed rows, `preledger_pass=false`,
+`updates_live_ledger=false`, and no branch-chart authorization.
+
+The next live proof-program action is not another 124-slot scan. It is to
+receive or construct one candidate external schema for the `Sigma_hf_01`
+separator slot and test the eight required fields above. If the separator slot
+cannot satisfy those fields, the 11 row slots remain parked.

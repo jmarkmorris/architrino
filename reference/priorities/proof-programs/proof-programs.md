@@ -43,9 +43,19 @@ fold-layer lanes. The contract receives 0 schema inputs, satisfies 0 / 124
 slots, consumes 0 rows, keeps `preledger_pass=false`, keeps
 `updates_live_ledger=false`, and authorizes no branch chart.
 
+Pilot routing update, 2026-06-28: the [Sigma_hf_01 external schema pilot
+packet](./breather-proof/certificate/sigma_hf_01_external_schema_pilot_packet.md)
+materializes the first single-separator intake surface: one `Sigma_hf_01`
+separator slot plus 11 row slots. It receives 0 / 12 external schema inputs,
+accepts 0 / 12 slots for validation, constructs 0 rule-kernel derivation
+payloads, consumes 0 rows, keeps `preledger_pass=false`, keeps
+`updates_live_ledger=false`, and authorizes no branch chart. The next live
+proof-program action is to test one candidate external schema against the
+`Sigma_hf_01` separator slot before the 11 row slots are considered.
+
 ## Task Queue
 
-1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `next-external-schema-contract-required`; the live continuation is a compatible external proof-grade derivation schema or derivation proof satisfying the external schema acceptance contract, not another current-pool rescan. Depends on: none.
+1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `sigma-hf-01-external-schema-pilot-staged`; the live continuation is one compatible external proof-grade derivation schema or derivation proof for the `Sigma_hf_01` separator slot satisfying the external schema acceptance contract, not another current-pool rescan. Depends on: none.
 2. `planar_bridge` — Develop the first planar delayed-bridge closure as the higher-dimensional extension of the breather proof architecture. Status: `queued`; do not promote ahead of the collinear certificate unless that certificate fails with an explicit obstruction that the planar bridge is meant to resolve. Depends on: `breather_certificate`.
 3. `proof_program_handoff` — Keep theorem-program chapters, certificate artifacts, and downstream priority links aligned as proof targets are promoted or retired. Status: `active`. Depends on: `breather_certificate`, `planar_bridge`.
 

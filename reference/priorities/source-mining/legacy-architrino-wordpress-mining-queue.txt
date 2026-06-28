@@ -154,26 +154,26 @@
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/06/16/mapping-dipole-assembly-and-cmb/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/10/24/how-nature-implements-gravity/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/12/quantum-gravity/
-https://architrino.wordpress.com/2020/01/26/gravity-and-the-temperature-of-spacetime-gas/
-https://architrino.wordpress.com/2020/05/23/forces-mass-and-gravity/
-https://architrino.wordpress.com/2020/01/21/gravity-is-both-quantum-and-continuous/
-https://architrino.wordpress.com/2021/11/18/the-hierarchy-problem-in-particle-physics/
-https://architrino.wordpress.com/2022/08/20/the-equivalence-principle/
-https://architrino.wordpress.com/2021/09/25/dr-justin-khoury-on-dark-matter-superfluidity/
-https://architrino.wordpress.com/2020/07/18/superfluid-vacuum-theory/
-https://architrino.wordpress.com/2022/08/10/themessenger-and-dr-donald-c-chang/
-https://architrino.wordpress.com/2020/07/25/loop-quantum-gravity-and-npqg/
-https://architrino.wordpress.com/2021/05/30/general-relativity-is-wrong/
-https://architrino.wordpress.com/2021/05/30/quantum-general-relativity-vs-mit-gr-1/
-https://architrino.wordpress.com/2021/12/28/fixing-machs-principle-and-self-energy/
-https://architrino.wordpress.com/2022/03/20/spin-networks-and-foams/
-https://architrino.wordpress.com/2020/02/12/freeman-dyson-is-a-graviton-detectable/
-https://architrino.wordpress.com/2022/05/23/inflation-expansion-deflation-5-drafted/
-https://architrino.wordpress.com/2019/07/16/cosmic-inflation-is-wrong-long-live-inflation/
-https://architrino.wordpress.com/2020/08/01/transforming-guth-to-truth/
-https://architrino.wordpress.com/2022/03/20/ontological-transformation-of-the-big-bang/
-https://architrino.wordpress.com/2020/06/18/particle-rain/
-https://architrino.wordpress.com/2022/03/25/point-charge-cosmology-rulez/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/01/26/gravity-and-the-temperature-of-spacetime-gas/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/05/23/forces-mass-and-gravity/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/01/21/gravity-is-both-quantum-and-continuous/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/11/18/the-hierarchy-problem-in-particle-physics/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/08/20/the-equivalence-principle/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/09/25/dr-justin-khoury-on-dark-matter-superfluidity/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/07/18/superfluid-vacuum-theory/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/08/10/themessenger-and-dr-donald-c-chang/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/07/25/loop-quantum-gravity-and-npqg/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/05/30/general-relativity-is-wrong/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/05/30/quantum-general-relativity-vs-mit-gr-1/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/12/28/fixing-machs-principle-and-self-energy/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/20/spin-networks-and-foams/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/02/12/freeman-dyson-is-a-graviton-detectable/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/05/23/inflation-expansion-deflation-5-drafted/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/07/16/cosmic-inflation-is-wrong-long-live-inflation/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/08/01/transforming-guth-to-truth/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/20/ontological-transformation-of-the-big-bang/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/06/18/particle-rain/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/25/point-charge-cosmology-rulez/
 https://architrino.wordpress.com/2020/05/14/taking-the-wind-out-of-the-sails-of-universe-expansion/
 https://architrino.wordpress.com/2020/10/23/positive-infinity-meets-negative-infinity/
 https://architrino.wordpress.com/2021/06/27/what-really-causes-the-cmb/

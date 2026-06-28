@@ -158,6 +158,8 @@ Before a strong-field branch can feed cosmology, it needs a source/sink ledger r
 
 This taxonomy does not add a new closure gate. It keeps `release_channel_selection` from collapsing physically different source and sink routes into one adjustable cosmology term.
 
+Odd radio circles are a candidate source-family lead for the catastrophic row, not evidence for a new class by themselves. If used, the packet should record host association, morphology, spectrum, polarization, environment, merger/AGN history, and null controls against ordinary shock, lobe, and projection explanations. A strong-field release interpretation is admissible only if the same source/sink ledger supplies the energy, angular momentum, medium loading, and exterior radiative handoff without changing the release selector per object.
+
 ### MIT 8.962 Compact-Source Scaffold
 
 The MIT 8.962 sequence gives this workstream a controlled strong-field benchmark ladder without turning GR into substrate ontology. The OCW lecture summaries route compact sources through TOV stellar structure, Buchdahl compactness, black-hole horizons, black-hole orbits, light rings, post-Newtonian expansion, perturbation theory, and numerical relativity (`https://ocw.mit.edu/courses/8-962-general-relativity-spring-2020/pages/lecture-summaries/`). Hughes's typed-note index mirrors that ladder through compact sources, black holes, orbits, Kerr, post-Newtonian expansion, perturbation theory, and numerical integration (`https://web.mit.edu/sahughes/www/8.962/index.html`). The safe priority extraction is that the native horizon-interface program should pass the compact-star predecessor branch before claiming a black-hole departure.

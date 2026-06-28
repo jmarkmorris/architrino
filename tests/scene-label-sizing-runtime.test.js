@@ -10,6 +10,10 @@ import {
   formatCenterContextCount,
   resolveCenterContextChapterLabel,
 } from "../src/runtime/SceneCenterContextRuntime.js";
+import {
+  enforceSharedSceneSphereRadius,
+  resolveSharedSceneSphereRadius,
+} from "../src/runtime/SceneSphereSizingRuntime.js";
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
@@ -136,4 +140,21 @@ test("center context chapter label omits mixed top-level chapter markers", () =>
 test("center context count uses section wording", () => {
   assert.equal(formatCenterContextCount(1), "1 section");
   assert.equal(formatCenterContextCount(13), "13 sections");
+});
+
+test("scene sphere sizing resolves one shared visible sphere radius", () => {
+  const nodes = [
+    { id: "small", radius: 0.8 },
+    { id: "middle", radius: 1.2 },
+    { id: "large", radius: 2.4 },
+    { id: "legend", category: "legend", radius: 99 },
+    { id: "hidden", hideSphere: true, radius: 42 },
+  ];
+
+  assert.equal(resolveSharedSceneSphereRadius(nodes), 1.2);
+  assert.equal(enforceSharedSceneSphereRadius(nodes), 1.2);
+  assert.deepEqual(
+    nodes.map((node) => node.radius),
+    [1.2, 1.2, 1.2, 99, 42]
+  );
 });

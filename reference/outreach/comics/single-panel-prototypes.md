@@ -303,3 +303,10 @@ First rough visual prototypes:
 
 - [Group Project Assumption](assets/group-project-assumption-prototype.png)
 - [Signals From Earlier](assets/signals-from-earlier-prototype-v2-present-inbox.png)
+
+Second rough visual prototypes:
+
+- [New Theory, Same Budget](assets/new-theory-same-budget-prototype.png)
+- [Citation Needed](assets/citation-needed-prototype.png)
+- [Show The Residuals](assets/show-the-residuals-prototype.png)
+- [Office Hours For A Claim](assets/office-hours-for-a-claim-prototype.png)

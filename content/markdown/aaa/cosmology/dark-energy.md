@@ -377,6 +377,16 @@ $$
 
 The closure condition is $\mathcal{R}_{\mathrm{role}}\to 0$ without changing $\theta_{\mathrm{sea}}$ between the distance, age, growth, and source ledgers. A negative sign in an effective fluid may be retained only as a sign in the comparison stress tensor; it does not license negative masses as native assemblies. A phase-transition or vacuum-energy comparison may constrain $\dot{\Lambda}_{\mathrm{eff}}$ or the shielding law; it does not make $\Lambda(t)$ fundamental. A Hubble-age repair may motivate a branch constant; it does not supply $\mathcal{S}_{m,\mathrm{eff}}$. This protects the Noether sea derivation from smuggling negative masses, matter creation, or variable $\Lambda$ into $\mathbb{A}\mathbb{A}\mathbb{A}$ as doctrine.
 
+The same translation applies to "negative energy" language. In the native ledger, the sign belongs to an effective stress projection or transfer term:
+$$
+\mathrm{sign}\!\left(p_{\mathrm{eff}}\right),
+\qquad
+\mathrm{sign}\!\left(\Delta E_{\mathrm{sea}\leftrightarrow X}\right),
+\qquad
+\mathrm{sign}\!\left(\Pi_{\mathrm{cos}}\mathcal{L}_{\mathrm{sea}}\right),
+$$
+not to a new negative-energy assembly. A dark-energy branch may expose shielded energy with a negative-pressure readout, or route energy between matter, radiation, black-hole recycling, and Noether sea tension sectors, but the event ledger must still close with positive native inventories and declared transfer signs.
+
 ## Effective Friedmann Framework
 
 ### Background Equations

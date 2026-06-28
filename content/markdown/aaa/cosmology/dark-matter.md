@@ -437,6 +437,8 @@ $$
 
 This residual records the Berezhiani-Khoury pressure in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms. The same $\theta_{\mathrm{sea}}$ must pass the galaxy RAR/BTFR comparison, the cluster temperature/lensing comparison, and the cosmological CDM-like comparison. $\mathcal{R}_{\mathrm{stable\ branch}}$ is included because the source's MOND branch requires finite-temperature stabilization; the native analogue is that a low-acceleration Noether sea response branch must be dynamically stable, not only curve-fit successful.
 
+The legacy Khoury-source lead reinforces the same point: the useful signal is the phase-environment split, not literal superfluid ontology. A galaxy, cluster, diffuse absorber, and cosmological-background environment may project different response coordinates from one Noether sea and neutral-assembly record, but the transition between those coordinates has to be derived from $\Pi_E\theta_{\mathrm{sea}}$ rather than assigned as a separate dark-sector phase per environment.
+
 Ferreira-Franzmann-Khoury-Brandenberger unified-superfluid dark-sector models add a sharper comparison target: late-time acceleration can be driven by the same dark substance if that substance has two distinguishable states whose relative phase is coupled by a Josephson/Rabi interaction. In this chapter that is comparison language, not substrate ontology. The Noether sea is not identified with a literal superfluid, and the phase variables are not introduced as new $\mathbb{A}\mathbb{A}\mathbb{A}$ constituents. What survives is a one-record discipline: the same dark-sector state must carry CDM-like loading, state conversion, late-time acceleration, and the growth history.
 
 Introduce comparison coordinates for two dark-sector populations,

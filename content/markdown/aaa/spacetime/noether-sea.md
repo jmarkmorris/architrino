@@ -252,6 +252,8 @@ Production, return, capture, decay, reclassification, and relaxation are not sep
 
 The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether braid population dynamics, causal wakes, and branch ledgers.
 
+The same guardrail applies to superfluid analogies. A Noether sea passage should use literal superfluid language only if it supplies a technical analogue such as an order parameter, transport equation, critical criterion, quantized-circulation analogue, or two-state response split. Otherwise the safe translation is medium response: density, flow, cadence, orientation, strain, delay factor, and excitation variables carried by a resolved Noether sea record.
+
 The kinetic-theory lesson is that hydrodynamic variables are the slow variables associated with conserved quantities. For the Noether sea, the candidate slow state is
 $$
 \mathcal{N}_{\mathrm{sea}}

@@ -217,6 +217,46 @@ The first failed row determines the next mathematical packet:
    agreement. The next packet must replace the diagnostic, not search along
    those columns.
 
+## Minimal Executable Smoke 2026-06-28
+
+The full default sampled ladder remains too expensive for rapid inner-loop
+certificate work because repeated retained-root bisection dominates each
+candidate transport. A reduced deterministic smoke therefore uses the
+finite-collar knobs directly:
+
+```bash
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.02 --delta-steps 256 --integration-panels 32 --profile-mode tangential_transport --transport-steps 40 --past-profile endpoint_slope_cancel --endpoint-cancel-positivity-samples 201 --diagnostic-mode finite_collar_remainder_constants_ladder --finite-collar-samples 3 --finite-collar-integration-panels 16 --finite-collar-transport-steps 16 --finite-collar-delta-steps 128 --finite-collar-positivity-samples 101 --finite-collar-remainder-ray-count 1 --finite-collar-second-order-steps 0.01,0.02 --finite-collar-remainder-radii 0.001,0.003,0.01
+```
+
+The smoke reports
+
+$$
+\|R(0)\|_\infty\approx5.043133339652168\times10^{-3},
+\qquad
+C_{1,\mathrm{samp}}\approx1.0080330167277282\times10^{-9},
+\qquad
+C_{2,\mathrm{samp}}\approx1.6920762560199143\times10^{-4},
+$$
+
+with a one-coordinate ray, two amplitudes, and
+
+$$
+\max\frac{|\Delta C_2|}{|C_2|}\approx0.7060743371539325.
+$$
+
+The resulting classification is still
+`sampled_remainder_constants_unstable`. The small radius ladder remains below
+the smoke material floor at the sampled level, but the boolean obstruction
+support is false because $C_2$ is unstable. This row is therefore useful only as
+a turnaround smoke and not as evidence for any outward constant, obstruction
+certificate, or admissible channel.
+
+This adds one operational constraint to the certificate target: future runner
+work should preserve a fast smoke mode that reports the same decision fields as
+the full ladder, while the certificate-grade path must still emit outward
+profile, retained-root, inactive-gap, branch-sum, transport, and residual
+constants on the same boxes.
+
 ## Advancement Decision
 
 This packet materially narrows `a1_outward_constants_handoff` from "make the

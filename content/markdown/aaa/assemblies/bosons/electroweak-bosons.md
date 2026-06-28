@@ -488,6 +488,17 @@ $$
 $$
 This is the local mathematical burden behind the claim that a $W/Z$ corridor can appear massive and short-lived without becoming an elementary container that manufactures outgoing fermion identity.
 
+The exposed-energy burden is therefore stricter than saying that the weak corridor is heavy. The Standard Model $W/Z$ scale must be recovered as the apparent energy cost of a routed event in which shielded assembly energy becomes corridor stiffness and bounded Noether sea participation:
+$$
+\Delta E_{\mathrm{EW}}^{\mathsf e}
+=
+E_{\mathrm{stiff}}^{\mathrm{corr}}
++E_{\mathrm{sh}\to W/Z}
++E_{\mathrm{sea}}^{\mathrm{bound}}
++O(\epsilon_{\mathrm{corr}}).
+$$
+The same event record must also recover low-energy weak rates after the corridor is integrated out. If the apparent $W/Z$ mass scale is fit separately from the corridor payload, axial-inventory routing, and recoil/medium rows, the weak channel has imported a mass parameter rather than deriving one.
+
 | Corridor event | Participating architrinos | Neutral Noether braid provenance | Corridor payload | Required ledger closure |
 | --- | --- | --- | --- | --- |
 | Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3P$ and active $3E$; the shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral core provenance; the corridor does not manufacture a new Noether braid. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3P\to3E$, while emitting $W^-$ balances a source-side $3E\to3P$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether sea recoil must close across the source assembly, target assembly or reaction products, corridor, and ambient Noether sea. |

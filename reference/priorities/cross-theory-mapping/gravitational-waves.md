@@ -176,6 +176,20 @@ R_{c_g}(e)
 $$
 and compare the allowed interval for $R_{c_g}$ with the LVK photon-channel speed bound. The intrinsic source delay $\Delta t_{\mathrm{src}}$ is a nuisance variable constrained by the source model; setting it to zero without a row in $\mathcal{P}_{\mathrm{GW}}$ is hidden tuning.
 
+## Measurement-Theory Boundary
+
+The Bohr-Rosenfeld compensation problem is a comparison boundary, not a native negative-mass claim. If a thought experiment cancels detector recoil or measures a gravitational field component by invoking negative mass, the $\mathbb{A}\mathbb{A}\mathbb{A}$ translation must keep it as a measurement-theory stress test:
+$$
+\mathcal{R}_{\mathrm{BR\text{-}grav}}
+=
+\max\left(
+\frac{|\Delta \mathbf p_{\mathrm{det}}+\Delta \mathbf p_{\mathrm{comp}}|}{\epsilon_p},
+\frac{|\Delta E_{\mathrm{det}}+\Delta E_{\mathrm{comp}}|}{\epsilon_E},
+\frac{M_{\mathrm{comp}}^{-}}{\epsilon_M}
+\right).
+$$
+The first two rows ask whether recoil and energy can be balanced by an admitted apparatus record. The third row is a fail-closed flag for any native negative-mass substitute. A comparison may remain useful for understanding why gravitational-field measurement is harder than electromagnetic-field measurement, but it cannot import negative masses as assemblies.
+
 ## Public Benchmark Rows
 
 | Benchmark | Source signal | $\mathbb{A}\mathbb{A}\mathbb{A}$ closure artifact |

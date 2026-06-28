@@ -8,6 +8,7 @@ The opening sections define the absolute-frame picture and the document set that
 
 1. **Expansion Ontology**: the universe is a fixed Euclidean container with an evolving Noether sea; the container itself does not expand.
 2. **Primordial Language**: "primordial" denotes an early effective observer-era regime in $\tau_c$ chronology, not a required literal one-time ontic origin event.
+3. **Bang Language**: a "bang" is admissible only as an effective exposure or release event in which high-energy retained structures become visible to a lower-energy observer environment. It is not, by itself, a claim that the Euclidean void, absolute time, or the full architrino inventory began at that event.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology: Overview
 

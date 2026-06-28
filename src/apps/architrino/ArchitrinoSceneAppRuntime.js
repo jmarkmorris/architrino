@@ -78,6 +78,7 @@ import {
   resolveSharedLabelTypography,
   resolveWrappedLabelFit,
 } from "../../runtime/SceneLabelSizingRuntime.js";
+import { resolveSharedSceneSphereRadius } from "../../runtime/SceneSphereSizingRuntime.js";
 import { resolveCenterContextDescriptor } from "../../runtime/SceneCenterContextRuntime.js";
 import { createSceneGraphRuntime } from "../../runtime/SceneGraphRuntime.js";
 import {
@@ -404,9 +405,10 @@ const elementNavButtons = {
   right: elementNavRightButton,
 };
 
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(window.innerWidth, window.innerHeight, false);
+renderer.setClearAlpha(0);
 renderer.domElement.style.touchAction = "none";
 
 const labelRenderer = new CSS2DRenderer();
@@ -431,7 +433,7 @@ function measureSceneLabelTextWidth({ text, fontSize, fontWeight }) {
 }
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color("#24113d");
+scene.background = null;
 scene.add(new THREE.HemisphereLight(0xdce7ff, 0x070a12, 1.45));
 const sphereKeyLight = new THREE.DirectionalLight(0xffffff, 0.62);
 sphereKeyLight.position.set(-4, 6, 9);
@@ -6367,7 +6369,8 @@ function computeRingFit(frameRadius, count) {
     const haloDiameter = haloRadius * 2;
     const guardBand = getRingGuardBand(haloDiameter);
     const requiredChord = haloDiameter + guardBand;
-    return requiredChord / (2 * sinHalfStep);
+    const requiredAdjacentRadius = requiredChord / (2 * sinHalfStep);
+    return Math.max(requiredAdjacentRadius, requiredChord);
   };
 
   let low = 0;
@@ -7544,23 +7547,24 @@ function shouldShowCenterContext(level, center) {
 }
 
 function resolveCenterContextRadius(level, center) {
-  const nodeRadii = level.nodes
-    .map((node) => Math.max(0, Number(node?.data?.radius) || 0))
-    .filter((radius) => radius > 0);
-  if (!nodeRadii.length) {
+  const targetRadius = resolveSharedSceneSphereRadius(level.nodes);
+  if (!Number.isFinite(targetRadius) || targetRadius <= 0) {
     return 0;
   }
-  const averageRadius = nodeRadii.reduce((sum, radius) => sum + radius, 0) / nodeRadii.length;
-  const targetRadius = averageRadius;
   const nearestClearance = level.nodes.reduce((nearest, node) => {
     const distance = node.group.position.distanceTo(center);
     return Math.min(nearest, distance - getNodeBoundsRadius(node));
   }, Infinity);
-  const safeRadius = Number.isFinite(nearestClearance)
-    ? (nearestClearance - averageRadius * 0.08) / 1.1
-    : targetRadius;
-  const radius = Math.min(targetRadius, safeRadius);
-  return radius >= averageRadius * 0.8 ? radius : 0;
+  if (!Number.isFinite(nearestClearance)) {
+    return targetRadius;
+  }
+  const centerBoundsRadius = targetRadius * ringLayoutDefaults.haloScale;
+  const guardBand =
+    centerBoundsRadius * 2 * Math.max(0, ringLayoutDefaults.guardBandRatio ?? 0.08);
+  const clearanceSlack = Math.max(targetRadius * 0.02, guardBand * 0.25);
+  return nearestClearance + clearanceSlack >= centerBoundsRadius + guardBand
+    ? targetRadius
+    : 0;
 }
 
 function removeCenterContext(level) {

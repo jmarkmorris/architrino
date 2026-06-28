@@ -510,11 +510,50 @@ The status vector is deliberately fail-closed:
 | Status key | Pass condition | Fail or bound-only reading |
 | --- | --- | --- |
 | `source_descent` | $M_0^{\mathrm{src}}$ and $\partial_P M_0^{\mathrm{src}}$ descend through the mass-facing exposure quotient. | `pending_source_descent` or `source_nondescent` |
+| `branch_intake` | The pressure coefficient row is bound to an accepted finite-branch source record with accepted history, quotient chart identity, stability or branch-gap status, eta-ladder status when required, and branch-emitted pressure/Hessian or response entries. | `finite_branch_evidence_missing` |
 | `isotropic_trace` | $C_{\mathrm{tr}}^{\mathrm{iso}}$ is computed from branch-emitted $\partial_{\Pi}\delta_PM_0^{\mathrm{src}}$ and $C_{\chi}^{\mathrm{iso}}$. | `coefficient_fit_contamination` if either term is replay-fitted after benchmark comparison |
 | `trace_free_span` | $\mathcal{V}_{P,A}$ is declared before the replay and $B_P^{ab}\in\mathcal{V}_{P,A}$. | `tf_bound_only` when anisotropy is masked; `projection_mismatch` when directions drift |
 | `no_hidden_mass_handle` | $\mathcal{R}_{\mathrm{nohandle}}^{P}\le\epsilon_{\mathrm{nohandle}}^{P}$. | `hidden_pressure_mass_handle` |
 | `reversible_domain` | $\mathcal{R}_{\mathrm{tr}}<\mathcal{R}_{\text{tr},*}$ and loss channels are closed. | `threshold_event` or `loss_below_threshold` |
 | `null_sector` | all null-sector bounds remain below their declared budgets. | `metric_null_violation` |
+
+### Finite-Branch Intake Boundary
+
+The pressure coefficient artifact inherits the finite-branch source-status rule
+from the envelope-Hessian pressure work. A row cannot upgrade from algebraic
+coefficient accounting to branch-derived pressure response unless it carries
+
+$$
+\mathcal{I}_{P,A}^{\mathrm{branch}}
+=
+\left(
+\mathsf{branch\_id},
+\mathsf{accepted\_history\_segment\_id},
+\mathsf{quotient\_chart\_id},
+\mathsf{residual\_status},
+\mathsf{gap\_or\_stability\_status},
+\mathsf{eta\_ladder\_status},
+\mathsf{exposure\_source\_record},
+\mathsf{pressure\_response\_record}
+\right).
+$$
+
+The accepted-history source must include the path to the priority packet or
+generated report that emits it. Scanner, correction-packet, waveform-replay,
+toy-Hessian, empirical pressure, or source-mining rows may be cited as
+diagnostics, but they must produce `finite_branch_evidence_missing` unless the
+same record also supplies the accepted history segment, quotient chart identity,
+positive branch-gap or stability status, required eta-ladder persistence, and
+branch-emitted exposure and pressure-response records.
+
+Current status for $\mathcal{C}_{P,A}$ is
+`finite_branch_evidence_missing`: no accepted branch currently emits
+$E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$,
+$\mathcal{N}_{\mathrm{tf},ab}(A)$,
+$\partial_PM_0^{\mathrm{src}}(A)$, $C_{\chi}^{\mathrm{iso}}$,
+$C_{\chi}^{\mathrm{aniso}}$, and $m_S$ on one retained pressure row.
+Therefore every Fe/Cr, Ni/Co, or toy replay remains algebraic or empirical
+screening only until the branch intake is present.
 
 The first empirical or toy replay boundary is therefore narrow: a toy row may populate $\Pi$, $A$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, and masked $\mathcal{V}_{P,A}$ to exercise the algebra, but it must mark `pending_source_descent` until an accepted branch emits $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, $\mathcal{N}_{\mathrm{tf},ab}(A)$, and the derivative $\partial_P M_0^{\mathrm{src}}(A)$. A real Fe/Cr or Ni/Co replay can at most upgrade the status from `tf_bound_only` to a retained-span test unless the same branch-side source record is present.
 

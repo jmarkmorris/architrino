@@ -483,3 +483,34 @@ $$
 \qquad
 \texttt{not_retained}.
 $$
+
+## 11. Current First-Failure Application 2026-06-28
+
+Applying the ladder to the current priority tree stops at the first row:
+
+$$
+\texttt{normal-candidate-missing}.
+$$
+
+The frozen fixed-speed root ledger, frozen speed-ODE diagnostic, zero-mean
+correction intake, range/cokernel probes, live-matrix previews, $\alpha_B$
+directions, post-correction speed primitive feasibility rows, clock/length
+return rows, and normal-reconstruction handoff packets remain source
+provenance only. None currently emits a same-ledger
+`bounded-speed-normal-reconstruction-candidate` with the scalar speed row,
+primitive return, speed band, clock/length row, normal residual, tangent
+holonomy, position closure, unit-tangent residual, support margin,
+noncollision, root-ledger persistence, and normal Krawczyk rows all closed on
+one bounded-speed ledger id.
+
+Therefore the after-normal action/stability consumer must not attempt
+$\Gamma_B^\nu$, action curl, Noether/event exchange, tail/refinement,
+stability, observer-export eligibility, or coupled fixed-point consumption yet.
+The next admissible artifact is the normal candidate itself. Until it exists,
+every downstream row in this packet inherits
+
+$$
+\texttt{retention=not\_retained},
+\qquad
+\texttt{retained\_branch=false}.
+$$

@@ -189,6 +189,17 @@ $$
 
 for the declared path depth and Noether sea state. Breaking the commutator spoils blackbody-shape preservation; undeclared transverse momentum transfer spoils image sharpness.
 
+A fixed photon-lifetime or photon-ablation model is a negative control for this row. If the lifetime is implemented as stochastic absorption, scattering, or species loss along transparent paths, the branch must fail unless it also preserves
+$$
+\left(
+\epsilon_{\mathrm{spec}},
+\epsilon_{\mathrm{img}},
+\epsilon_{\mathrm{td}},
+\epsilon_{\mathrm{pol}}
+\right)
+$$
+for blackbody shape, image sharpness, observed $(1+z)$ time dilation, and polarization transfer. The admissible fixed-void redshift route is coherent photon-channel transport with a closed Noether sea energy row, not untracked photon attrition.
+
 Absolute time also makes the redshift-energy row non-optional. A fixed-void branch cannot let the photon's missing energy disappear into expansion bookkeeping; it must close the finite-window ledger through Noether sea update, source/release or remnant rows, recoil/exchange rows, and declared boundary flux. The global target behind that finite-window row is
 
 $$

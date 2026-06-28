@@ -48,6 +48,15 @@ fold-layer continuations. It receives 0 schema inputs, satisfies 0 / 124 slots,
 consumes 0 rows, keeps `preledger_pass=false`, keeps `updates_live_ledger=false`,
 and authorizes no branch chart.
 
+Pilot routing update, 2026-06-28: the
+[Sigma_hf_01 external schema pilot packet](./certificate/sigma_hf_01_external_schema_pilot_packet.md)
+narrows the first continuation to one separator slot and 11 row slots. It
+receives 0 / 12 external schema inputs, accepts 0 / 12 slots for validation,
+constructs 0 rule-kernel derivation payloads, consumes 0 rows, keeps
+`preledger_pass=false`, keeps `updates_live_ledger=false`, and authorizes no
+branch chart. The next live action is a candidate external schema for the
+`Sigma_hf_01` separator slot, not another whole-pool rescan.
+
 ## Task Queue
 
 1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `fresh-successor-artifacts-created`; the rejected cosine template is historical, and `scripts/proof-programs/fresh-fold-shear-candidate-packet.mjs` now emits the fresh phase-shifted fold-shear `phi_cyc`, shifted mesh, diagnostic pre-ledger input screen, and packet report under `fresh-same-packet-fold-shear-seed-v0`. Depends on: none.

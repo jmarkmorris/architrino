@@ -427,6 +427,15 @@ When the braid moves or is placed under a gradient, the closure does not remain 
 
 In this view, rest energy is the energy stored in the closed causal ledger, and mass is the externally exposed response of that ledger when the braid is accelerated, perturbed, or placed in a Noether sea gradient. Shielding determines how much of the internal closure couples to the far field.
 
+The useful ledger split is:
+
+| Mass-facing factor | What it records | What it must not replace |
+| --- | --- | --- |
+| $E_{\text{internal}}(A)$ | Closed branch energy stored in retained causal history | Observed mass inserted as input |
+| $\zeta(A)$ | Far-field exposure after shielding and quotienting | A tunable small number chosen per particle |
+| $\mathcal{M}_{\text{sea}}^{ab}$ | Reversible Noether sea response that turns exposed source into inertia and gradient response | Ordinary dissipative drag |
+| $M_{\mathrm{sh}}(A;\theta)$ | Observer-facing shielded mass prediction in a declared response record | A sum of isolated constituent masses |
+
 ### Mechanism Stack
 
 Apparent inertial mass is expected to arise from a connected stack of effects:
@@ -617,6 +626,15 @@ m_{\text{inertial}}(A)
 $$
 
 but a derivation in which $\zeta(A)$ is fixed by the same root ledger, shielding geometry, and Noether sea response that also preserves stability and equivalence-principle behavior. If $\zeta(A)$ has to be tuned independently for each particle family, the analogy to QCD naturalness fails and the hierarchy has only been renamed.
+
+This is the hierarchy-problem version of the mass thesis. The small observer mass does not require that the accepted branch contain little internal energy; it requires that most of that internal energy be hidden from the scalar mass channel by branch geometry. The quantitative burden is therefore
+$$
+\zeta(A)
+=
+\frac{\|\Pi_{\mathrm{mass}}\mathcal{L}_A\|}{\|\mathcal{L}_{\mathrm{naive}}(A)\|}
++O(\epsilon_{\mathrm{quot}})
+$$
+with $\Pi_{\mathrm{mass}}$ fixed by the sector exposure quotient. A derivation of this ratio from the accepted branch would explain why large internal scales can coexist with small exposed masses without fine tuning.
 
 ### Generation-Mass Fitting Packet
 
