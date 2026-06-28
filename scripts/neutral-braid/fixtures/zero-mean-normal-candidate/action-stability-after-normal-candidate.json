@@ -1,0 +1,98 @@
+{
+  "schema": "neutral-braid-octahedral-zero-mean-bounded-speed-action-stability-after-normal-candidate-intake/v1",
+  "claim_scope": "bounded-speed-action-stability-after-normal-candidate-intake",
+  "promotion_status": "priority-only",
+  "source_intake_schema": "neutral-braid-octahedral-zero-mean-correction-intake/v1",
+  "source_artifact_id": "neutral_braid_octahedral_zero_mean_correction_intake.frozen_constant_vector.v1",
+  "source_bounded_speed_normal_reconstruction_candidate_schema": "neutral-braid-octahedral-zero-mean-bounded-speed-normal-reconstruction-candidate/v1",
+  "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture",
+  "action_stability_intake_id": "after-normal-action-stability-intake-fixture",
+  "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+  "force_checksum_id": "force-checksum-fixture",
+  "consumer_checksum_id": "consumer-checksum-fixture",
+  "live_ledger_identity": {
+    "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+    "force_checksum_id": "force-checksum-fixture",
+    "consumer_checksum_id": "consumer-checksum-fixture",
+    "certification_status": "bounded-speed-live-ledger-open"
+  },
+  "bounded_speed_live_ledger": {
+    "claim_scope": "bounded-speed-live-ledger-target-after-normal-candidate",
+    "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture",
+    "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+    "force_checksum_id": "force-checksum-fixture",
+    "consumer_checksum_id": "consumer-checksum-fixture",
+    "intake_status": "bounded-speed-live-ledger-open",
+    "first_failure_row": "bounded-speed-live-ledger-open",
+    "required_same_ledger_rows": {
+      "action_derived_scale": {
+        "downstream_row": "action_scale",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "action_curl": {
+        "downstream_row": "action_curl",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "speed_factor_storage_exchange": {
+        "downstream_row": "speed_factor_storage_exchange",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "noether_event_exchange": {
+        "downstream_row": "noether_event_exchange",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "tail_refinement_persistence": {
+        "downstream_row": "tail_refinement_persistence",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "bounded_speed_stability": {
+        "downstream_row": "bounded_speed_stability",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "observer_export_eligibility": {
+        "downstream_row": "observer_export_eligibility",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "coupled_fixed_point": {
+        "downstream_row": "coupled_fixed_point",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      }
+    },
+    "certifies_bounded_speed_live_ledger": false,
+    "certifies_action_stability": false,
+    "certifies_observer_export": false,
+    "retention": "not_retained",
+    "retained_branch": false
+  },
+  "normal_candidate_status": "bounded-speed-normal-reconstruction-candidate",
+  "live_ledger_status": "bounded-speed-live-ledger-open",
+  "first_failure_row": "bounded-speed-live-ledger-open",
+  "downstream_row_statuses": {
+    "action_scale": "blocked:bounded-speed-live-ledger-open",
+    "action_curl": "blocked:bounded-speed-live-ledger-open",
+    "speed_factor_storage_exchange": "blocked:bounded-speed-live-ledger-open",
+    "noether_event_exchange": "blocked:bounded-speed-live-ledger-open",
+    "tail_refinement_persistence": "blocked:bounded-speed-live-ledger-open",
+    "bounded_speed_stability": "blocked:bounded-speed-live-ledger-open",
+    "observer_export_eligibility": "blocked:bounded-speed-live-ledger-open",
+    "coupled_fixed_point": "blocked:bounded-speed-live-ledger-open"
+  },
+  "certifies_live_derivative_matrix": true,
+  "certifies_correction_direction": true,
+  "certifies_speed_primitive_feasibility": true,
+  "certifies_speed_clock_length": true,
+  "certifies_normal_reconstruction": true,
+  "certifies_bounded_speed_live_ledger": false,
+  "certifies_action_stability": false,
+  "certifies_observer_export": false,
+  "retention": "not_retained",
+  "retained_branch": false
+}

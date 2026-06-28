@@ -796,6 +796,190 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(futureContinuousAttempt.used_as_certificate, false);
   assert.equal(futureContinuousAttempt.used_as_shared_certificate, false);
   assert.equal(futureContinuousAttempt.authorizes_outward_certificate, false);
+  const branchSumAttempt = packet.branch_sum_feedback_bound_attempt;
+  assert.equal(
+    branchSumAttempt.schema,
+    "architrino.priority.master_equation_closure.a1_branch_sum_feedback_bound_attempt.v0"
+  );
+  assert.equal(
+    branchSumAttempt.artifact_id,
+    "a1_branch_sum_feedback_bound_attempt.v0"
+  );
+  assert.match(branchSumAttempt.attempt_digest, /^sha256:[0-9a-f]{64}$/);
+  assert.equal(
+    branchSumAttempt.source_artifact_hash,
+    packet.row_identity.source_artifact_hash
+  );
+  assert.equal(
+    branchSumAttempt.source_future_continuous_transport_attempt_digest,
+    futureContinuousAttempt.attempt_digest
+  );
+  assert.equal(branchSumAttempt.nullspace_dimension, 2);
+  assert.equal(branchSumAttempt.theta_sample_count, 3);
+  assert.equal(branchSumAttempt.sample_count, 6);
+  assert.deepEqual(branchSumAttempt.retained_labels, ["P_1", "P_2", "P_3", "S_1"]);
+  assert.equal(
+    branchSumAttempt.existing_code_paths_sampled.includes("tangent_branch_sums"),
+    true
+  );
+  assert.equal(
+    branchSumAttempt.existing_code_paths_sampled.includes(
+      "tangent_transport_derivative"
+    ),
+    true
+  );
+  assert.equal(
+    branchSumAttempt.sample_rows.every(
+      (row) => row.summand_rows.length === 4
+    ),
+    true
+  );
+  assert.equal(
+    branchSumAttempt.sample_rows.every((row) =>
+      row.summand_rows.every(
+        (summand) =>
+          summand.partial_source_function === "branch_partials_with_source_q" &&
+          summand.partial_method ===
+            "central_float64_finite_difference_not_interval_box" &&
+          typeof summand.partials.tangential_delta === "number" &&
+          typeof summand.partials.radial_q_source === "number"
+      )
+    ),
+    true
+  );
+  assert.ok(
+    branchSumAttempt.sampled_unit_nullspace_tangent_bounds
+      .max_abs_delta_T_Q_per_unit_parameter > 0
+  );
+  assert.ok(
+    branchSumAttempt.sampled_unit_nullspace_tangent_bounds
+      .max_abs_delta_B_Q_per_unit_parameter > 0
+  );
+  const summandDerivativeTarget =
+    branchSumAttempt.outward_summand_derivative_boxes_target;
+  assert.equal(
+    summandDerivativeTarget.schema,
+    "architrino.priority.master_equation_closure.a1_outward_summand_derivative_boxes_target.v0"
+  );
+  assert.equal(
+    summandDerivativeTarget.artifact_id,
+    "a1_outward_summand_derivative_boxes_target.v0"
+  );
+  assert.match(summandDerivativeTarget.target_digest, /^sha256:[0-9a-f]{64}$/);
+  assert.deepEqual(summandDerivativeTarget.required_labels, [
+    "P_1",
+    "P_2",
+    "P_3",
+    "S_1",
+  ]);
+  assert.deepEqual(
+    summandDerivativeTarget.same_box_binding.required_labels,
+    summandDerivativeTarget.required_labels
+  );
+  assert.deepEqual(
+    summandDerivativeTarget.same_box_binding.required_box_ids,
+    [
+      "past_profile_interval_box",
+      "future_transport_interval_box",
+      "retained_root_interval_boxes",
+      "inactive_cover_interval_boxes",
+      "outward_summand_derivative_boxes",
+    ]
+  );
+  assert.equal(
+    summandDerivativeTarget.same_box_binding.requires_same_theta_box_family,
+    true
+  );
+  assert.equal(
+    summandDerivativeTarget.same_box_binding
+      .requires_retained_labels_in_same_box_order,
+    true
+  );
+  assert.deepEqual(
+    summandDerivativeTarget.derivative_families.map(
+      (family) => family.family_id
+    ),
+    [
+      "tangential_summand_partials",
+      "radial_summand_partials",
+      "retained_root_motion",
+      "source_profile_variation",
+    ]
+  );
+  assert.ok(
+    summandDerivativeTarget.missing_interval_rows.includes(
+      "summand_partial_interval_boxes"
+    )
+  );
+  assert.equal(
+    summandDerivativeTarget.first_missing_interval_row,
+    "summand_partial_interval_boxes"
+  );
+  assert.equal(
+    summandDerivativeTarget.negative_control_policy
+      .sampled_float64_finite_differences,
+    "reject_as_certificate"
+  );
+  assert.ok(
+    summandDerivativeTarget.sampled_float64_rejection.rejected_methods.includes(
+      "central_float64_finite_difference_not_interval_box"
+    )
+  );
+  assert.ok(
+    summandDerivativeTarget.sampled_float64_rejection
+      .why_sampled_attempt_cannot_satisfy.length >= 5
+  );
+  assert.equal(
+    summandDerivativeTarget.bounds_outward_summand_derivative_boxes,
+    false
+  );
+  assert.equal(summandDerivativeTarget.emits_K_Q, false);
+  assert.equal(summandDerivativeTarget.emits_E_Q_plus_b, false);
+  assert.equal(
+    summandDerivativeTarget.first_failure,
+    "summand_derivative_boxes_absent"
+  );
+  assert.equal(summandDerivativeTarget.used_as_certificate, false);
+  assert.equal(summandDerivativeTarget.authorizes_outward_certificate, false);
+  assert.equal(
+    branchSumAttempt.target_only_objects
+      .outward_summand_derivative_boxes_target_digest,
+    summandDerivativeTarget.target_digest
+  );
+  assert.equal(
+    branchSumAttempt.target_only_objects
+      .outward_summand_derivative_boxes_target_status,
+    summandDerivativeTarget.status
+  );
+  assert.equal(branchSumAttempt.target_constants.K_Q, "absent");
+  assert.equal(branchSumAttempt.target_constants.E_Q_plus_b, "absent");
+  assert.equal(branchSumAttempt.emits_K_Q, false);
+  assert.equal(branchSumAttempt.emits_E_Q_plus_b, false);
+  assert.equal(
+    branchSumAttempt.bounds_branch_sum_feedback_for_admissible_class,
+    false
+  );
+  assert.equal(
+    branchSumAttempt.required_missing_evidence_objects.includes(
+      "outward_summand_derivative_boxes"
+    ),
+    true
+  );
+  assert.equal(
+    branchSumAttempt.first_failure,
+    "summand_derivative_boxes_absent"
+  );
+  assert.equal(branchSumAttempt.used_as_certificate, false);
+  assert.equal(branchSumAttempt.used_as_shared_certificate, false);
+  assert.equal(branchSumAttempt.authorizes_outward_certificate, false);
+  assert.equal(
+    packet.future_profile_admissibility.branch_sum_feedback_attempt_digest,
+    branchSumAttempt.attempt_digest
+  );
+  assert.equal(
+    packet.future_profile_admissibility.branch_sum_feedback_attempt_status,
+    branchSumAttempt.status
+  );
   assert.equal(
     packet.certificate_composition_readiness.schema,
     "architrino.priority.master_equation_closure.a1_certificate_composition_readiness.v0"
@@ -1184,6 +1368,9 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     packet.blocked_rows.includes(
       "future_continuous_transport_bounds_attempt_not_shared_certificate"
     )
+  );
+  assert.ok(
+    packet.blocked_rows.includes("branch_sum_feedback_bound_attempt_not_certificate")
   );
   assert.ok(
     packet.blocked_rows.includes("branch_sum_feedback_bound_missing")

@@ -529,12 +529,16 @@ $$
 \left(
 \mathsf{branch\_id},
 \mathsf{accepted\_history\_segment\_id},
+\mathsf{source\_path},
 \mathsf{quotient\_chart\_id},
 \mathsf{residual\_status},
 \mathsf{gap\_or\_stability\_status},
 \mathsf{eta\_ladder\_status},
+\mathsf{pressure\_record},
 \mathsf{exposure\_source\_record},
-\mathsf{pressure\_response\_record}
+\mathsf{pressure\_response\_record},
+\mathsf{reversible\_domain},
+\mathsf{null\_sector\_record}
 \right).
 $$
 
@@ -543,8 +547,9 @@ generated report that emits it. Scanner, correction-packet, waveform-replay,
 toy-Hessian, empirical pressure, or source-mining rows may be cited as
 diagnostics, but they must produce `finite_branch_evidence_missing` unless the
 same record also supplies the accepted history segment, quotient chart identity,
-positive branch-gap or stability status, required eta-ladder persistence, and
-branch-emitted exposure and pressure-response records.
+source path, positive branch-gap or stability status, required eta-ladder
+persistence, pressure record, branch-emitted exposure and pressure-response
+records, reversible-domain row, and null-sector record.
 
 Current status for $\mathcal{C}_{P,A}$ is
 `finite_branch_evidence_missing`: no accepted branch currently emits
@@ -562,12 +567,16 @@ cross-row bundle. Its required fields are:
 | --- | --- | --- |
 | `branch_id` | Accepted finite branch identity for the row. | absent |
 | `accepted_history_segment_id` | History segment emitted by the accepted branch packet or generated report. | absent |
+| `source_path` | Path to the accepted branch packet or generated report that emits the history segment. | absent |
 | `quotient_chart_id` | Exposure quotient chart used by the mass-facing source row. | absent |
 | `residual_status` | Pass/fail residual status for the same pressure row. | absent |
 | `gap_or_stability_status` | Positive branch-gap or stability status for the same row. | absent |
 | `eta_ladder_status` | Eta-ladder persistence status when the row requires it. | absent |
+| `pressure_record` | Branch-emitted $\Pi$, $A$, $s_n$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, and retained replay direction. | absent |
 | `exposure_source_record` | Branch-emitted $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, and $\mathcal{N}_{\mathrm{tf},ab}(A)$. | absent |
 | `pressure_response_record` | Branch-emitted $\partial_PM_0^{\mathrm{src}}(A)$, $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, and $m_S$. | absent |
+| `reversible_domain` | Same-row $\mathcal{R}_{\mathrm{tr}}$, threshold $\mathcal{R}_{\mathrm{tr},*}$, and closed loss-channel status. | absent |
+| `null_sector_record` | Same-row clock/signal, birefringence, photon-dispersion, preferred-frame, directional-tensor, and transport records. | absent |
 
 Any replay missing one row in this table remains
 `finite_branch_evidence_missing`, even if its algebraic pressure residual is
@@ -583,12 +592,16 @@ Hessian, Fe/Cr, or Ni/Co material to stand in for accepted branch evidence.
 | --- | --- | --- |
 | `branch_id` | A0 rest diagnostic and toy rows only | absent for retained pressure row |
 | `accepted_history_segment_id` | no accepted finite pressure-row history segment | `finite_branch_evidence_missing` |
+| `source_path` | no accepted branch report path emitting a pressure-row history segment | absent |
 | `quotient_chart_id` | no branch-local exposure quotient chart for the same row | absent |
 | `residual_status` | algebraic or toy residuals only | diagnostic-only |
 | `gap_or_stability_status` | no same-row positive branch-gap or stability status | absent |
 | `eta_ladder_status` | no same-row eta-ladder persistence record | absent |
+| `pressure_record` | $\Pi$, $A$, $s_n$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, and retained direction are toy, target-only, or absent rather than branch-emitted | absent |
 | `exposure_source_record` | $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, and $\mathcal{N}_{\mathrm{tf},ab}(A)$ not branch-emitted on one row | absent |
 | `pressure_response_record` | $\partial_PM_0^{\mathrm{src}}(A)$, $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, and $m_S$ not branch-emitted on one row | absent |
+| `reversible_domain` | no same-row reversible trace residual, threshold, and closed loss-channel record from an accepted branch | absent |
+| `null_sector_record` | no same-row null-sector record from an accepted branch | absent |
 
 This record advances the branch-intake surface only by making the same-row
 missing fields explicit. It does not authorize an empirical mass response,
@@ -605,9 +618,25 @@ pressure row supplies accepted branch identity, accepted history segment, source
 path, quotient chart, exposure source record, pressure response record,
 reversible-domain row, and null-sector record together.
 
+The target-only provider/intake artifact
+[pressure-row-branch-intake-provider-intake-artifact.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-provider-intake-artifact.json)
+is the stricter same-row negative control. It populates accepted branch
+identity, accepted history segment, source path, quotient chart, pressure
+record, exposure source, pressure response, reversible-domain, and null-sector
+fields under one row id so `same_row_binding_evidence.pass=true`, but it is
+still `target_only_provider_intake_artifact_fail_closed`. The checker therefore
+returns `finite_branch_evidence_missing` with first failure
+`accepted_non_fixture_source_missing` and keeps branch-derived pressure
+response, empirical mass response, retained-branch claim, observer export, and
+export readiness false. A complete-looking fixture or target row is not an
+accepted pressure-row intake.
+
 Executable current-status checker:
 [pressure-row-branch-intake-report.mjs](../../../scripts/mass-map/pressure-row-branch-intake-report.mjs)
-checks the same `branch_intake` boundary before replay consumption. The current
+checks the same `branch_intake` boundary before replay consumption. It reports
+`same_row_binding_evidence` separately from `accepted_source_evidence`, so a
+target-only, toy, empirical, diagnostic, partial, fixture, or negative-control
+row can prove row coherence without authorizing pressure response. The current
 status fixture
 [pressure-row-branch-intake-current-status.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-current-status.json)
 returns `finite_branch_evidence_missing` because no retained pressure row

@@ -91,10 +91,22 @@ constructed rule-kernel derivation payload; and
 inference steps, conclusion, and source-data correspondence. This target is
 not a received external schema and keeps schema-validation intake, row
 consumption, live-ledger update, and branch-chart authorization false.
+The
+[local proof-program pool non-reclassification classifier](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.local-proof-program-pool-nonreclassification-classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+now screens 280 local certificate JSON objects and records 0 accepted external
+provenance records, 0 schema-validation intake candidates, 0 local objects
+reclassified as external schema, 0 records with 8 / 8 required fields, and
+0 external schema inputs received. The
+[external provenance contract replay](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.external-provenance-contract-replay.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+then replays those 280 local JSON paths as attempted candidate refs, rejects
+all 280 by provenance, and makes the first failure
+`external_schema_provenance_required_before_schema_validation_intake`. This
+does not construct proof evidence, authorize schema-validation intake, consume
+rows, update the live ledger, or authorize a branch chart.
 
 ## Task Queue
 
-1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `sigma-hf-01-missing-proof-grade-fields-target-staged`; the live continuation is one compatible external proof-grade derivation schema or derivation proof for the `Sigma_hf_01` separator slot satisfying the external schema acceptance contract, not another local placeholder, local proof-object envelope, missing-fields target, or current-pool rescan. Depends on: none.
+1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `sigma-hf-01-external-provenance-contract-replay-fail-closed`; the live continuation is one compatible external proof-grade derivation schema or derivation proof for the `Sigma_hf_01` separator slot with accepted external provenance and the eight schema fields required by the external schema acceptance contract, not another local placeholder, local proof-object envelope, missing-fields target, local-pool reclassification, or current-pool rescan. Depends on: none.
 2. `planar_bridge` — Develop the first planar delayed-bridge closure as the higher-dimensional extension of the breather proof architecture. Status: `queued`; do not promote ahead of the collinear certificate unless that certificate fails with an explicit obstruction that the planar bridge is meant to resolve. Depends on: `breather_certificate`.
 3. `proof_program_handoff` — Keep theorem-program chapters, certificate artifacts, and downstream priority links aligned as proof targets are promoted or retired. Status: `active`. Depends on: `breather_certificate`, `planar_bridge`.
 
@@ -512,7 +524,13 @@ source packets, 0 derivation proofs, 0 rule-kernel derivation payloads, and 0
 proof-grade derivation schemata, makes no route, proof-rule,
 primitive-acceptance, or source-packet acceptance decision, consumes 0 rows,
 and leaves `preledger_pass=false`, `updates_live_ledger=false`, and
-branch-chart authorization false.
+branch-chart authorization false. The follow-on `Sigma_hf_01` local
+proof-program pool non-reclassification classifier then applies the same
+eight-field external schema intake predicate to 279 local certificate JSON
+objects and finds 0 schema-validation intake candidates, 0 local objects
+reclassified as external schema, 0 records with 8 / 8 required fields, and
+0 external schema inputs received. The blocker remains
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_external_input_required`.
 
 Promotion-gate update: the ref/value non-domain carrier-pair theorem attempt is
 now the latest endpoint proof packet after the independent constructed

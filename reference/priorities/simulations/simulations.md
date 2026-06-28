@@ -404,6 +404,22 @@ returns `first_failure=branch_certificate_ref_missing`, keeps
 missing. It is useful dependency-routing evidence only; it is not an
 `accepted_transition_source` and cannot authorize `candidate_h_recovery`.
 
+Rank 2 / rank 6 branch-source join status, 2026-06-28:
+`scripts/nested-shell-braid/rank2-rank6-branch-source-join-report.mjs` compares
+the current rank 2 source-binding report, rank 6 moving-certificate candidate,
+and torque/wake same-row diagnostic. The fixture set passes only the torque/wake
+same-row id check; it returns `first_failure=source_row_binding_open` because no
+non-fixture accepted transition source is present. Its
+`same_record_provider_intake` now names the needed same-record fields:
+non-fixture `accepted_transition_source`, accepted branch chart,
+`moving_retained_branch_certificate/v0`, common branch certificate, active-root
+ledger identity, conservation-pullback hash, and a common negative-control
+reference. It also records bounded-speed live ledger, Photon Gate A, Lorentz
+rows, and observer export as missing or not authorized, and its negative-control
+guard rejects cross-report or synthetic mismatches. The report keeps
+`candidate_h_recovery`, `moving_retained_branch_certificate`, bounded-speed live
+ledger, Photon Gate A, Lorentz rows, and observer export unauthorized.
+
 The remaining promotion blockers are executable, not editorial: no current artifact has shown same-row active-root identity under refinement, a positive Jacobian floor through the approach-to-$c_f$ scan, bounded particle-plus-wake energy on the retained branch rows, delayed-Noether status above `diagnostic-only`, stable one-cluster $\Delta I_{\mathrm{ME}}$ behavior, and a failing negative control with content hashes.
 
 ## Simulation Campaign Object

@@ -2187,6 +2187,491 @@ def a1_future_continuous_transport_bounds_attempt(
     }
 
 
+def a1_outward_summand_derivative_boxes_target(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    future_continuous_transport_bounds_attempt: dict,
+) -> dict:
+    required_labels = [window["label"] for window in RETAINED_WINDOWS]
+    active_rows = [
+        {
+            "label": window["label"],
+            "kind": window["kind"],
+            "window": list(window["window"]),
+        }
+        for window in RETAINED_WINDOWS
+    ]
+    derivative_families = [
+        {
+            "family_id": "tangential_summand_partials",
+            "summand": "T_alpha",
+            "required_partials": [
+                "partial_T_alpha_partial_delta_alpha",
+                "partial_T_alpha_partial_q_source",
+            ],
+            "required_output_row": "delta_T_alpha_interval_box",
+        },
+        {
+            "family_id": "radial_summand_partials",
+            "summand": "B_alpha",
+            "required_partials": [
+                "partial_B_alpha_partial_delta_alpha",
+                "partial_B_alpha_partial_q_source",
+            ],
+            "required_output_row": "delta_B_alpha_interval_box",
+        },
+        {
+            "family_id": "retained_root_motion",
+            "summand": "Delta_alpha",
+            "required_partials": [
+                "root_denominator_interval_floor",
+                "memory_variation_interval_operator_bound",
+            ],
+            "required_output_row": "delta_Delta_alpha_interval_box",
+        },
+        {
+            "family_id": "source_profile_variation",
+            "summand": "q_source_alpha",
+            "required_partials": [
+                "source_eta_interval_box",
+                "source_q_prime_interval_box",
+                "delta_Delta_alpha_interval_box",
+            ],
+            "required_output_row": "delta_q_source_alpha_interval_box",
+        },
+    ]
+    missing_interval_rows = [
+        "theta_interval_boxes",
+        "retained_root_delta_alpha_interval_boxes",
+        "root_denominator_interval_floors",
+        "memory_variation_interval_operator_bounds",
+        "source_theta_interval_boxes",
+        "q_source_interval_boxes",
+        "source_q_prime_interval_boxes",
+        "summand_partial_interval_boxes",
+        "summand_delta_tangential_interval_boxes",
+        "summand_delta_radial_interval_boxes",
+        "branch_sum_envelope_rows_C_T_minus_C_T_plus_C_B_minus_C_B_plus",
+    ]
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_outward_summand_derivative_boxes_target.v0"
+        ),
+        "artifact_id": "a1_outward_summand_derivative_boxes_target.v0",
+        "source_artifact_hash": source_digest,
+        "method": (
+            "target_only_same_box_summand_derivative_obligation_declaration"
+        ),
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "required_labels": required_labels,
+        "active_rows": active_rows,
+        "same_box_binding": {
+            "source_artifact_hash": source_digest,
+            "radius_b": radius_b,
+            "theta_interval": theta_interval,
+            "required_labels": required_labels,
+            "required_box_ids": [
+                "past_profile_interval_box",
+                "future_transport_interval_box",
+                "retained_root_interval_boxes",
+                "inactive_cover_interval_boxes",
+                "outward_summand_derivative_boxes",
+            ],
+            "requires_same_theta_box_family": True,
+            "requires_same_admissible_profile_radius": True,
+            "requires_same_source_artifact_hash": True,
+            "requires_retained_labels_in_same_box_order": True,
+            "requires_continuous_transport_bounds": True,
+        },
+        "input_attempts": {
+            "future_continuous_transport_bounds_attempt_digest": (
+                future_continuous_transport_bounds_attempt["attempt_digest"]
+            ),
+            "future_continuous_transport_bounds_attempt_status": (
+                future_continuous_transport_bounds_attempt["status"]
+            ),
+            "future_continuous_transport_bounds_attempt_used_as_certificate": (
+                future_continuous_transport_bounds_attempt["used_as_certificate"]
+            ),
+        },
+        "derivative_families": derivative_families,
+        "missing_interval_rows": missing_interval_rows,
+        "first_missing_interval_row": "summand_partial_interval_boxes",
+        "negative_control_policy": {
+            "missing_required_label": "fail_closed",
+            "missing_derivative_family": "fail_closed",
+            "mixed_source_digest": "fail_closed",
+            "mixed_theta_or_root_box": "fail_closed",
+            "missing_inactive_cover_binding": "fail_closed",
+            "partial_label_success_without_all_labels": "fail_closed",
+            "sampled_float64_finite_differences": "reject_as_certificate",
+        },
+        "sampled_float64_rejection": {
+            "rejected_methods": [
+                "sampled_float64_nullspace_tangent_branch_sum_feedback_screen",
+                "central_float64_finite_difference_not_interval_box",
+                "float64_bisection_root_motion_sample",
+                "simpson_memory_integral_sample_replay",
+            ],
+            "why_sampled_attempt_cannot_satisfy": [
+                "theta samples are grid points, not theta interval boxes",
+                "central float64 finite differences do not supply outward rounded derivative intervals",
+                "root motion is sampled from float64 roots rather than retained-root interval boxes",
+                "Simpson memory integrals are not interval operator bounds",
+                "partials are not bound on the shared retained-root and inactive-cover boxes",
+            ],
+            "replacement_required_method": (
+                "directed_rounding_or_exact_interval_arithmetic_on_shared_boxes"
+            ),
+        },
+        "required_evidence_objects": [
+            "outward_summand_derivative_boxes",
+            "same_box_retained_root_motion_bounds",
+            "same_box_memory_variation_operator_bounds",
+            "same_box_source_profile_variation_bounds",
+            "outward_branch_sum_envelopes_C_T_minus_C_T_plus_C_B_minus_C_B_plus",
+        ],
+        "bounds_outward_summand_derivative_boxes": False,
+        "emits_branch_sum_constants": False,
+        "emits_K_Q": False,
+        "emits_E_Q_plus_b": False,
+        "first_failure": "summand_derivative_boxes_absent",
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "target_digest": canonical_json_digest(payload),
+        "status": "target_only_outward_summand_derivative_boxes_absent",
+    }
+
+
+def a1_branch_sum_feedback_bound_attempt(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    theta_samples: list[float],
+    profile: TransportProfile,
+    past_profile: PastProfileSpec,
+    constraint_rows: list[list[float]],
+    future_continuous_transport_bounds_attempt: dict,
+    panels: int,
+    gamma_star: float,
+) -> dict:
+    try:
+        import numpy as np
+        from scipy.linalg import null_space
+    except ImportError as exc:
+        raise RuntimeError(
+            "a1_branch_sum_feedback_bound_attempt requires scipy and numpy"
+        ) from exc
+
+    constraints = np.asarray(constraint_rows, dtype=float)
+    null_basis = null_space(constraints)
+    column_count = int(null_basis.shape[1])
+    sample_rows: list[dict] = []
+    min_abs_root_denominator = math.inf
+    min_abs_j = math.inf
+    max_abs_delta_t_q = 0.0
+    max_abs_delta_b_q = 0.0
+    max_abs_eta = 0.0
+    max_abs_eta_prime_rhs = 0.0
+    max_abs_summand_delta_tangential = 0.0
+    max_abs_summand_delta_radial = 0.0
+    label_summaries = {
+        window["label"]: {
+            "label": window["label"],
+            "kind": window["kind"],
+            "sample_count": 0,
+            "max_abs_delta_root": 0.0,
+            "max_abs_source_q_variation": 0.0,
+            "max_abs_delta_tangential": 0.0,
+            "max_abs_delta_radial": 0.0,
+            "max_abs_partial_tangential_delta": 0.0,
+            "max_abs_partial_tangential_q_source": 0.0,
+            "max_abs_partial_radial_delta": 0.0,
+            "max_abs_partial_radial_q_source": 0.0,
+            "min_abs_root_denominator": math.inf,
+            "min_abs_J": math.inf,
+        }
+        for window in RETAINED_WINDOWS
+    }
+
+    for column_index in range(column_count):
+        direction = tuple(float(value) for value in null_basis[:, column_index])
+        tangent_profile = build_tangent_transport_profile(
+            argparse.Namespace(
+                theta_hi=theta_interval[1],
+                transport_steps=len(profile.theta_nodes) - 1,
+                integration_panels=panels,
+                gamma_star=gamma_star,
+            ),
+            base_profile=profile,
+            past_direction=direction,
+            past_basis_scale=past_profile.basis_scale,
+        )
+        for theta in theta_samples:
+            eta_prime_rhs, branch_tangent = tangent_transport_derivative(
+                theta,
+                profile=profile,
+                tangent=tangent_profile,
+                panels=panels,
+                gamma_star=gamma_star,
+            )
+            eta = tangent_profile.eta(theta)
+            base_rows = branch_tangent["base_rows"]
+            base_t_q = sum(row.tangential for row in base_rows)
+            base_b_q = sum(row.radial for row in base_rows)
+            delta_t_q = branch_tangent["delta_T_Q"]
+            delta_b_q = branch_tangent["delta_B_Q"]
+            max_abs_delta_t_q = max(max_abs_delta_t_q, abs(delta_t_q))
+            max_abs_delta_b_q = max(max_abs_delta_b_q, abs(delta_b_q))
+            max_abs_eta = max(max_abs_eta, abs(eta))
+            max_abs_eta_prime_rhs = max(max_abs_eta_prime_rhs, abs(eta_prime_rhs))
+            min_abs_j = min(min_abs_j, *(abs(row.jacobian) for row in base_rows))
+            summand_rows: list[dict] = []
+            for tangent_row in branch_tangent["rows"]:
+                label_summary = label_summaries[tangent_row["label"]]
+                partials = tangent_row["partials"]
+                abs_root_denominator = abs(tangent_row["root_denominator"])
+                min_abs_root_denominator = min(
+                    min_abs_root_denominator,
+                    abs_root_denominator,
+                )
+                max_abs_summand_delta_tangential = max(
+                    max_abs_summand_delta_tangential,
+                    abs(tangent_row["delta_tangential"]),
+                )
+                max_abs_summand_delta_radial = max(
+                    max_abs_summand_delta_radial,
+                    abs(tangent_row["delta_radial"]),
+                )
+                label_summary["sample_count"] += 1
+                label_summary["max_abs_delta_root"] = max(
+                    label_summary["max_abs_delta_root"],
+                    abs(tangent_row["delta_root"]),
+                )
+                label_summary["max_abs_source_q_variation"] = max(
+                    label_summary["max_abs_source_q_variation"],
+                    abs(tangent_row["source_q_variation"]),
+                )
+                label_summary["max_abs_delta_tangential"] = max(
+                    label_summary["max_abs_delta_tangential"],
+                    abs(tangent_row["delta_tangential"]),
+                )
+                label_summary["max_abs_delta_radial"] = max(
+                    label_summary["max_abs_delta_radial"],
+                    abs(tangent_row["delta_radial"]),
+                )
+                label_summary["max_abs_partial_tangential_delta"] = max(
+                    label_summary["max_abs_partial_tangential_delta"],
+                    abs(partials["tangential_delta"]),
+                )
+                label_summary["max_abs_partial_tangential_q_source"] = max(
+                    label_summary["max_abs_partial_tangential_q_source"],
+                    abs(partials["tangential_q_source"]),
+                )
+                label_summary["max_abs_partial_radial_delta"] = max(
+                    label_summary["max_abs_partial_radial_delta"],
+                    abs(partials["radial_delta"]),
+                )
+                label_summary["max_abs_partial_radial_q_source"] = max(
+                    label_summary["max_abs_partial_radial_q_source"],
+                    abs(partials["radial_q_source"]),
+                )
+                label_summary["min_abs_root_denominator"] = min(
+                    label_summary["min_abs_root_denominator"],
+                    abs_root_denominator,
+                )
+                label_summary["min_abs_J"] = min(
+                    label_summary["min_abs_J"],
+                    abs(tangent_row["jacobian"]),
+                )
+                summand_rows.append(
+                    {
+                        "label": tangent_row["label"],
+                        "kind": tangent_row["kind"],
+                        "delta": tangent_row["delta"],
+                        "source_theta": tangent_row["source_theta"],
+                        "q_source": tangent_row["q_source"],
+                        "source_eta": tangent_row["source_eta"],
+                        "source_q_prime": tangent_row["source_q_prime"],
+                        "source_q_variation": tangent_row[
+                            "source_q_variation"
+                        ],
+                        "delta_root": tangent_row["delta_root"],
+                        "root_denominator": tangent_row["root_denominator"],
+                        "memory_variation": tangent_row["memory_variation"],
+                        "delta_tangential": tangent_row["delta_tangential"],
+                        "delta_radial": tangent_row["delta_radial"],
+                        "jacobian": tangent_row["jacobian"],
+                        "partials": partials,
+                        "partial_source_function": (
+                            "branch_partials_with_source_q"
+                        ),
+                        "partial_method": (
+                            "central_float64_finite_difference_not_interval_box"
+                        ),
+                    }
+                )
+            sample_rows.append(
+                {
+                    "column": column_index,
+                    "theta": theta,
+                    "theta_hex": float(theta).hex(),
+                    "eta": eta,
+                    "eta_prime_rhs": eta_prime_rhs,
+                    "base_T_Q": base_t_q,
+                    "base_B_Q": base_b_q,
+                    "delta_T_Q": delta_t_q,
+                    "delta_B_Q": delta_b_q,
+                    "summand_rows": summand_rows,
+                }
+            )
+
+    label_summary_rows = []
+    for summary in label_summaries.values():
+        row = dict(summary)
+        if row["min_abs_root_denominator"] == math.inf:
+            row["min_abs_root_denominator"] = None
+        if row["min_abs_J"] == math.inf:
+            row["min_abs_J"] = None
+        label_summary_rows.append(row)
+
+    outward_summand_derivative_boxes_target = (
+        a1_outward_summand_derivative_boxes_target(
+            source_digest,
+            radius_b=radius_b,
+            theta_interval=theta_interval,
+            future_continuous_transport_bounds_attempt=(
+                future_continuous_transport_bounds_attempt
+            ),
+        )
+    )
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_branch_sum_feedback_bound_attempt.v0"
+        ),
+        "artifact_id": "a1_branch_sum_feedback_bound_attempt.v0",
+        "source_artifact_hash": source_digest,
+        "method": (
+            "sampled_float64_nullspace_tangent_branch_sum_feedback_screen"
+        ),
+        "source_future_continuous_transport_attempt_digest": (
+            future_continuous_transport_bounds_attempt["attempt_digest"]
+        ),
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "theta_samples": theta_samples,
+        "theta_sample_count": len(theta_samples),
+        "parameter_basis": (
+            "scipy.linalg.null_space orthonormal basis for the "
+            "endpoint-slope-cancel homogeneous constraint rows"
+        ),
+        "constraint_row_count": len(constraint_rows),
+        "constraint_column_count": len(constraint_rows[0])
+        if constraint_rows
+        else 0,
+        "nullspace_dimension": column_count,
+        "sample_count": len(sample_rows),
+        "retained_labels": [window["label"] for window in RETAINED_WINDOWS],
+        "existing_code_paths_sampled": [
+            "build_tangent_transport_profile",
+            "tangent_transport_derivative",
+            "tangent_branch_sums",
+            "branch_partials_with_source_q",
+        ],
+        "sampled_unit_nullspace_tangent_bounds": {
+            "max_abs_eta_per_unit_parameter": max_abs_eta,
+            "max_abs_eta_prime_rhs_per_unit_parameter": max_abs_eta_prime_rhs,
+            "max_abs_delta_T_Q_per_unit_parameter": max_abs_delta_t_q,
+            "max_abs_delta_B_Q_per_unit_parameter": max_abs_delta_b_q,
+            "max_abs_summand_delta_tangential_per_unit_parameter": (
+                max_abs_summand_delta_tangential
+            ),
+            "max_abs_summand_delta_radial_per_unit_parameter": (
+                max_abs_summand_delta_radial
+            ),
+            "radius_scaled_delta_T_Q_screen": radius_b * max_abs_delta_t_q,
+            "radius_scaled_delta_B_Q_screen": radius_b * max_abs_delta_b_q,
+            "min_abs_root_denominator_sampled": (
+                None
+                if min_abs_root_denominator == math.inf
+                else min_abs_root_denominator
+            ),
+            "min_abs_J_sampled": None if min_abs_j == math.inf else min_abs_j,
+        },
+        "label_summaries": label_summary_rows,
+        "sample_rows": sample_rows,
+        "outward_summand_derivative_boxes_target": (
+            outward_summand_derivative_boxes_target
+        ),
+        "target_only_objects": {
+            "outward_summand_derivative_boxes_target_digest": (
+                outward_summand_derivative_boxes_target["target_digest"]
+            ),
+            "outward_summand_derivative_boxes_target_status": (
+                outward_summand_derivative_boxes_target["status"]
+            ),
+        },
+        "target_constants": {
+            "C_T_minus": "absent",
+            "C_T_plus": "absent",
+            "C_B_minus": "absent",
+            "C_B_plus": "absent",
+            "E_T_1": "absent",
+            "E_B_1": "absent",
+            "E_T_2": "absent",
+            "E_B_2": "absent",
+            "K_Q": "absent",
+            "E_Q_plus_b": "absent",
+        },
+        "required_missing_evidence_objects": [
+            "outward_summand_derivative_boxes",
+            "same_box_retained_root_motion_bounds",
+            "same_box_memory_variation_operator_bounds",
+            "same_box_source_profile_variation_bounds",
+            "outward_branch_sum_envelopes_C_T_minus_C_T_plus_C_B_minus_C_B_plus",
+            "same_box_small_gain_or_direct_interval_propagation",
+            "transport_gronwall_constant_K_Q",
+            "E_Q_plus_b_outward_bound",
+        ],
+        "bounds_branch_sum_feedback_for_admissible_class": False,
+        "emits_K_Q": False,
+        "emits_E_Q_plus_b": False,
+        "first_failure": "summand_derivative_boxes_absent",
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+        "policy": (
+            "This row samples the existing analytic tangent branch-sum code "
+            "on the retained A1 nullspace. It cannot emit E_Q^+(b) or K_Q "
+            "because sampled float64 root motion, finite-difference summand "
+            "partials, and Simpson memory integrals are not outward summand "
+            "derivative boxes on the shared theta/root/inactive-cover boxes."
+        ),
+    }
+    return {
+        **payload,
+        "attempt_digest": canonical_json_digest(payload),
+        "status": (
+            "branch_sum_feedback_bound_attempt_sampled_not_certificate_"
+            "summand_derivative_boxes_absent"
+        ),
+    }
+
+
 def a1_future_continuous_transport_bounds_target(
     source_digest: str,
     *,
@@ -7084,6 +7569,20 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
     theta_samples = theta_grid(
         0.0, attempt_args.theta_hi, attempt_args.theta_samples
     )
+    branch_sum_feedback_bound_attempt = a1_branch_sum_feedback_bound_attempt(
+        source_identity["digest"],
+        radius_b=args.admissible_profile_radius_b,
+        theta_interval=[0.0, attempt_args.theta_hi],
+        theta_samples=theta_samples,
+        profile=profile,
+        past_profile=past_profile,
+        constraint_rows=constraint_rows,
+        future_continuous_transport_bounds_attempt=(
+            future_continuous_transport_bounds_attempt
+        ),
+        panels=attempt_args.integration_panels,
+        gamma_star=args.gamma_star,
+    )
     retained_root_bracket_replay = (
         a1_retained_root_window_sign_bracket_sample_replay(
             source_identity["digest"],
@@ -7237,6 +7736,7 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         "future_continuous_transport_bounds_attempt": (
             future_continuous_transport_bounds_attempt
         ),
+        "branch_sum_feedback_bound_attempt": branch_sum_feedback_bound_attempt,
         "past_profile": {
             "kind": past_profile.kind,
             "degree": len(past_profile.coefficients),
@@ -7342,6 +7842,12 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "continuous_transport_attempt_status": (
                 future_continuous_transport_bounds_attempt["status"]
             ),
+            "branch_sum_feedback_attempt_digest": (
+                branch_sum_feedback_bound_attempt["attempt_digest"]
+            ),
+            "branch_sum_feedback_attempt_status": (
+                branch_sum_feedback_bound_attempt["status"]
+            ),
             "continuous_transport_defect_sup_upper": (
                 future_continuous_transport_bounds_attempt[
                     "continuous_profile_defect_bound"
@@ -7416,6 +7922,7 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "past_profile_interval_box_certificate_not_shared_certificate",
             "future_piecewise_linear_profile_box_certificate_not_shared_certificate",
             "future_continuous_transport_bounds_attempt_not_shared_certificate",
+            "branch_sum_feedback_bound_attempt_not_certificate",
             "branch_sum_feedback_bound_missing",
             "inactive_cover_interval_boxes_absent",
             "source_identity_digest_not_shared_interval_box_certificate",
@@ -7446,7 +7953,10 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "It also computes a priority-only sampled transport RHS and "
             "piecewise-linear defect envelope against tangential_transport_derivative; "
             "that row does not emit E_Q^+(b) or K_Q because the branch-sum "
-            "feedback bound is still missing. The packet declares a "
+            "feedback bound is still missing. The packet also samples the "
+            "existing nullspace tangent branch-sum path, but that attempt is "
+            "not an outward summand derivative-box certificate and still "
+            "cannot emit E_Q^+(b) or K_Q. The packet declares a "
             "directed-rounding backend target and self-audit, but it does not "
             "supply a shared interval-box certificate for retained roots, "
             "inactive cover, branch-sum, transport, or residual-envelope "

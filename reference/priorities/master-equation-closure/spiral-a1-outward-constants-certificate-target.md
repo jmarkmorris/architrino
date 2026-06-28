@@ -426,19 +426,48 @@ Bernstein subdivision control points, shared past/future/root/inactive-cover
 interval-box family, and rounding-mode audit trail for the next
 certificate-grade pass.
 The shared target row now records local certificates for
-`past_profile_interval_box` and `future_transport_interval_box`, a target-only
+`past_profile_interval_box` and `future_transport_interval_box`, a computed
+sampled `a1_future_continuous_transport_bounds_attempt.v0`, the target
 continuous-transport / $E_Q^+(b)$ obligation object, and a target-only
-retained-root / inactive-cover obligation object. The top-level row identity
-now carries `inactive_cover_id=inactive_cover_interval_boxes`, so the live
-blocker is no longer an absent cover id; it is the absent
-`inactive_cover_interval_boxes` certificate. The sampled retained-root replay,
-sampled sign-bracket replay, sampled inactive-cover replay, and target-only
-obligation object do not change that missing-box status. The local past-profile
-Bernstein certificate and emitted future-profile certificate are not a shared
-interval-box certificate because the retained-root and inactive-cover boxes are
-still absent, hardware directed rounding is not controlled, and the continuous
-transport / $E_Q^+(b)$ row is still target-only pending branch-sum and transport
-constants.
+retained-root / inactive-cover obligation object. The computed attempt consumes
+the future node certificate, samples `tangential_transport_derivative` on the 16
+transport steps, bounds the piecewise-linear transport defect by
+`defect_sup_upper=0.0027421963363138966`, and reports
+`integrated_l1_defect_upper=5.109894306984598e-05`. It still has
+`outward_for_continuous_transport_equation=false`, `emits_E_Q_plus_b=false`, and
+`first_failure=branch_sum_feedback_bound_missing`; it is not a replacement for
+summand derivative boxes, $E_Q^+(b)$, or $K_Q$. The packet now also records
+`a1_branch_sum_feedback_bound_attempt.v0`, which samples the existing tangent
+branch-sum code on 2 nullspace columns across 3 $\theta$ samples for 6 total
+rows. That row has `emits_E_Q_plus_b=false`, `emits_K_Q=false`, and
+`first_failure=summand_derivative_boxes_absent`, so it narrows the branch-sum
+blocker without authorizing an outward certificate. That branch-sum row now
+nests `a1_outward_summand_derivative_boxes_target.v0` with target digest
+`sha256:e641c41515cdb888c6a100900a37b7d86000d6bfad302eb79111afafc75f4a36` and
+status `target_only_outward_summand_derivative_boxes_absent`. The target
+requires the retained labels `P_1`, `P_2`, `P_3`, and `S_1` on the same source
+digest, $b=0.001$, $\theta$ interval, retained-root boxes, inactive-cover
+boxes, and outward summand-derivative boxes. It names the derivative families
+for tangential summand partials, radial summand partials, retained-root motion,
+and source-profile variation, with `summand_partial_interval_boxes` as the
+first missing interval row. Its negative-control policy rejects sampled float64
+finite differences as certificate evidence because grid samples, central
+float64 partials, sampled root motion, and Simpson memory integrals do not
+produce outward intervals on the shared boxes. It keeps
+`emits_E_Q_plus_b=false`, `emits_K_Q=false`, and
+`authorizes_outward_certificate=false`.
+
+The top-level row identity now carries
+`inactive_cover_id=inactive_cover_interval_boxes`, so the live blocker is no
+longer an absent cover id; it is the absent `inactive_cover_interval_boxes`
+certificate. The sampled retained-root replay, sampled sign-bracket replay,
+sampled inactive-cover replay, computed transport-defect attempt, branch-sum
+feedback attempt, and target-only obligation objects do not change that
+missing-box status. The local past-profile Bernstein certificate and emitted
+future-profile certificate are not a shared interval-box certificate because
+the retained-root and inactive-cover boxes are still absent, hardware directed
+rounding is not controlled, and the $E_Q^+(b)$ row is still missing pending
+branch-sum and transport constants.
 
 The packet now adds `a1_certificate_composition_readiness.v0` with readiness
 digest `sha256:50bb230a9f01ed7b3cefcc67b5188ee86c6800c608356e4fd0ecb06ffcaaebc8`.

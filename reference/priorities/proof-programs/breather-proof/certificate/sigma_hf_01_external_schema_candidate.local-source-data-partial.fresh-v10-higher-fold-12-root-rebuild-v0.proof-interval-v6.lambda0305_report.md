@@ -10,6 +10,8 @@ Status: `partial_local_source_data_candidate_not_external_proof_grade`
 - Target slot: `Sigma_hf_01`
 - Fold interval: `F01`
 - Candidate ref: `local-source-data-partial:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305`
+- External provenance accepted: `false`
+- External provenance status: `external_schema_provenance_required`
 
 ## Candidate Field Screen
 

@@ -471,6 +471,7 @@ The packet must emit:
 | --- | --- |
 | `normal_candidate_input` | source artifact id, `bounded-speed-normal-reconstruction-candidate` status, speed/clock/normal/root/support rows, force checksum, consumer checksum, and non-retention flags |
 | `live_ledger_identity` | full $\operatorname{id}\mathcal{L}_{\mathrm{live}}^{\nu}$ tuple and equality checks across normal, action, event, tail, stability, observer, and coupled rows |
+| `bounded_speed_live_ledger` | fail-closed target object with the normal-candidate ledger id, force checksum, consumer checksum, `bounded-speed-live-ledger-open`, and the required same-ledger rows for action-derived scale, action curl, speed-factor storage/exchange, Noether/event exchange, tail/refinement persistence, bounded-speed stability, observer-export eligibility, and coupled fixed point |
 | `action_scale` | $\Gamma_B^{\nu}$, `gamma-action-derived` / `gamma-fitted-not-derived` / `gamma-ledger-mismatch`, inertia or scale derivation, and scale margins |
 | `action_curl` | $\omega_{\mathrm{hist}}^{\nu}$, clock-corrected variations, bounded-speed root derivatives, $\mathcal{R}_{\mathrm{curl}}^{\nu}$, and tolerance |
 | `storage_exchange` | $E_{\mathrm{spd}}^{\nu}$, $\mathcal{R}_{\mathrm{exch}}^{\nu}$, support-work assignment, Noether sea/event exchange, and window residuals |
@@ -486,14 +487,15 @@ Current priority status:
 $$
 \texttt{bounded-speed-action-stability-after-normal-candidate-open},
 \qquad
-\texttt{normal-candidate-consumer-packet-staged},
+\texttt{after-normal-fixture-fails-closed-at-bounded-speed-live-ledger-open},
 \qquad
 \texttt{not_retained}.
 $$
 
 ## 11. Current First-Failure Application 2026-06-28
 
-Applying the ladder to the current priority tree stops at the first row:
+Applying the ladder to non-fixture branch work in the current priority tree
+still stops at the first row:
 
 $$
 \texttt{normal-candidate-missing}.
@@ -540,30 +542,38 @@ Current candidate-source boundary:
 | Supplied normal candidate | fixture-only; absent for non-fixture branch work | keeps non-fixture branch work below retention |
 | Downstream action/stability rows | not reached | keep `retention=not_retained` and `retained_branch=false` |
 
-Executable fixture status, 2026-06-28:
+Executable normal-candidate fixture status, 2026-06-28:
 [zero-mean-normal-candidate](../../../../scripts/neutral-braid/fixtures/zero-mean-normal-candidate/README.md)
 supplies the same-ledger packet chain consumed by
 `scripts/neutral-braid/octahedral-zero-mean-correction-intake.mjs`. The fixture
 validates the plumbing path through `live-derivative-matrix-certified`,
 `correction-direction-found`, `speed-primitive-feasibility-certified`,
 `speed-clock-length-return-certified`, `normal-reconstruction-handoff-staged`,
-and `bounded-speed-normal-reconstruction-candidate`.
+`bounded-speed-normal-reconstruction-candidate`, and the fail-closed
+`bounded-speed-action-stability-after-normal-candidate-intake` boundary.
 
 The generated artifact reports:
 
 | Field | Fixture result |
 | --- | --- |
-| `result.intake_status` | `zero-mean-bounded-speed-normal-reconstruction-candidate` |
+| `result.intake_status` | `zero-mean-action-stability-after-normal-candidate-blocked` |
 | `residual_vector.first_failure_row` | `bounded-speed-live-ledger-open` |
 | `artifact_claim.emits_bounded_speed_normal_reconstruction_candidate` | `true` |
+| `artifact_claim.emits_action_stability_after_normal_candidate_intake` | `true` |
 | `artifact_claim.certifies_normal_reconstruction` | `true` for supplied same-ledger candidate rows |
 | `artifact_claim.certifies_bounded_speed_live_ledger` | `false` |
+| `artifact_claim.certifies_action_stability` | `false` |
+| `artifact_claim.certifies_observer_export` | `false` |
+| `action_stability_after_normal_candidate_intake.bounded_speed_live_ledger.required_same_ledger_rows.*` | all required rows present and `blocked:bounded-speed-live-ledger-open` |
+| `action_stability_after_normal_candidate_intake.downstream_row_statuses.*` | `blocked:bounded-speed-live-ledger-open` |
 | `result.retained_branch` | `false` |
 
 This moves the executable fixture boundary past `normal-candidate-missing` for a
-supplied same-ledger packet chain only. It does not create a retained branch,
-certify bounded-speed live-ledger closure, or authorize action/Noether/event,
-stability, observer-export, or coupled fixed-point consumption.
+supplied same-ledger packet chain only, and then records the first after-normal
+failure at `bounded-speed-live-ledger-open`. It does not create a retained
+branch, certify bounded-speed live-ledger closure, or authorize
+action/Noether/event, stability, observer-export, or coupled fixed-point
+consumption.
 
 The smallest durable artifact is one supplied same-ledger normal candidate that
 matches the handoff's bounded-speed ledger id, force checksum, and consumer
@@ -573,11 +583,17 @@ Krawczyk rows. Even if that artifact passes, it may only set
 `bounded-speed-normal-reconstruction-candidate`; it still does not retain a
 branch or certify bounded-speed live-ledger closure.
 
-Therefore the after-normal action/stability consumer must not attempt
-$\Gamma_B^\nu$, action curl, Noether/event exchange, tail/refinement,
-stability, observer-export eligibility, or coupled fixed-point consumption yet.
-The next admissible artifact is the normal candidate itself. Until it exists,
-every downstream row in this packet inherits
+Therefore the after-normal action/stability consumer may only consume the
+normal candidate as a fail-closed intake boundary until a real same-ledger live
+ledger exists. It must not attempt $\Gamma_B^\nu$, action curl, Noether/event
+exchange, tail/refinement, stability, observer-export eligibility, or coupled
+fixed-point consumption from the fixture. For non-fixture branch work, the next
+admissible artifact remains the normal candidate itself. For the fixture path,
+the next admissible artifact is a real same-ledger live-ledger certificate
+whose action, event, tail/refinement, stability, observer-export eligibility,
+and coupled-fixed-point rows are not merely blocked by
+`bounded-speed-live-ledger-open`. Until that exists, every downstream row in
+this packet inherits
 
 $$
 \texttt{retention=not\_retained},

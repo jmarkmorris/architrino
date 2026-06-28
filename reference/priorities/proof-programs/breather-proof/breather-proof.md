@@ -57,8 +57,23 @@ constructs 0 rule-kernel derivation payloads, consumes 0 rows, keeps
 branch chart. The next live action is a candidate external schema for the
 `Sigma_hf_01` separator slot, not another whole-pool rescan. The
 [Sigma_hf_01 external schema candidate intake checklist](./certificate/sigma_hf_01_external_schema_candidate_intake_checklist.md)
-is the current fail-closed slot state: internal locks fixed, no
-`candidate_external_schema_ref`, and 0 / 8 required predicate fields present.
+is the current fail-closed slot state: the local source-data partial fixes
+5 / 8 required fields, but no proof-grade external schema is received and the
+three proof-grade fields remain absent.
+The
+[Sigma_hf_01 local proof-program pool non-reclassification classifier](./certificate/sigma_hf_01_external_schema_candidate.local-proof-program-pool-nonreclassification-classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+now applies that same eight-field intake predicate to 280 local certificate
+JSON objects and finds 0 accepted external provenance records, 0
+schema-validation intake candidates, 0 local objects reclassified as external
+schema, 0 records with 8 / 8 required fields, and 0 external schema inputs
+received. The
+[Sigma_hf_01 external provenance contract replay](./certificate/sigma_hf_01_external_schema_candidate.external-provenance-contract-replay.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+then replays all 280 local JSON paths as attempted candidate refs, rejects all
+280 by provenance, and keeps the first failure at
+`external_schema_provenance_required_before_schema_validation_intake`. The
+result remains priority-only and keeps `external_input_required`, 0 row
+consumption, `preledger_pass=false`, `updates_live_ledger=false`, and no
+branch-chart authorization.
 
 ## Task Queue
 

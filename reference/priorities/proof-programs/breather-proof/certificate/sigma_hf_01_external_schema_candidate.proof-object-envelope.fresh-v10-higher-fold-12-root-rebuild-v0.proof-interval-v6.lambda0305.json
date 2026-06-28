@@ -7,6 +7,16 @@
   "target_slot": "Sigma_hf_01",
   "fold_interval": "F01",
   "candidate_external_schema_received": false,
+  "external_schema_provenance": {
+    "provenance_class": "local_proof_program_proof_object_envelope_target",
+    "source_ref": "reference/priorities/proof-programs/breather-proof/certificate/sigma_hf_01_external_schema_candidate.proof-object-envelope.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+    "acceptance_contract_ref": "reference/priorities/proof-programs/breather-proof/certificate/external_proof_grade_derivation_schema_acceptance_contract.md",
+    "received_for_schema_validation": false,
+    "authored_inside_local_proof_program_pool": true,
+    "derived_from_local_certificate_json": true,
+    "self_authored_placeholder": false,
+    "local_path_treated_as_external_evidence": false
+  },
   "local_source_candidate_status": "partial_local_source_data_candidate_not_external_proof_grade",
   "required_fields_total": 8,
   "required_fields_present": 5,

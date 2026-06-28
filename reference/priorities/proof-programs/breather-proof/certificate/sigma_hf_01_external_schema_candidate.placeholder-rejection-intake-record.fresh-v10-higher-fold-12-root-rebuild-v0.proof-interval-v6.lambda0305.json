@@ -9,6 +9,86 @@
   "candidate_external_schema_received": false,
   "candidate_file_screened": true,
   "candidate_known_local_non_external_artifact": true,
+  "external_provenance_accepted": false,
+  "external_provenance_status": "external_schema_provenance_required",
+  "external_provenance_diagnostics": {
+    "accepted": false,
+    "status": "external_schema_provenance_required",
+    "required_predicate_fields": [
+      "external_schema_provenance.provenance_class",
+      "external_schema_provenance.source_ref",
+      "external_schema_provenance.acceptance_contract_ref",
+      "external_schema_provenance.received_for_schema_validation",
+      "external_schema_provenance.authored_inside_local_proof_program_pool",
+      "external_schema_provenance.derived_from_local_certificate_json",
+      "external_schema_provenance.self_authored_placeholder",
+      "external_schema_provenance.local_path_treated_as_external_evidence"
+    ],
+    "passed_predicate_fields": [
+      "external_schema_provenance.source_ref",
+      "external_schema_provenance.acceptance_contract_ref"
+    ],
+    "failed_predicate_fields": [
+      "external_schema_provenance.provenance_class",
+      "external_schema_provenance.received_for_schema_validation",
+      "external_schema_provenance.authored_inside_local_proof_program_pool",
+      "external_schema_provenance.derived_from_local_certificate_json",
+      "external_schema_provenance.self_authored_placeholder",
+      "external_schema_provenance.local_path_treated_as_external_evidence"
+    ],
+    "candidate_ref_is_local_proof_program_path": false,
+    "known_local_non_external_artifact": true,
+    "predicate_results": [
+      {
+        "field": "external_schema_provenance.provenance_class",
+        "expected": "external_proof_grade_derivation_schema_candidate",
+        "actual": "local_self_authored_placeholder_rejection",
+        "present": false
+      },
+      {
+        "field": "external_schema_provenance.source_ref",
+        "expected": "nonempty external source reference",
+        "actual": "local-placeholder-rejection:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305",
+        "present": true
+      },
+      {
+        "field": "external_schema_provenance.acceptance_contract_ref",
+        "expected": "reference/priorities/proof-programs/breather-proof/certificate/external_proof_grade_derivation_schema_acceptance_contract.md",
+        "actual": "reference/priorities/proof-programs/breather-proof/certificate/external_proof_grade_derivation_schema_acceptance_contract.md",
+        "present": true
+      },
+      {
+        "field": "external_schema_provenance.received_for_schema_validation",
+        "expected": true,
+        "actual": false,
+        "present": false
+      },
+      {
+        "field": "external_schema_provenance.authored_inside_local_proof_program_pool",
+        "expected": false,
+        "actual": true,
+        "present": false
+      },
+      {
+        "field": "external_schema_provenance.derived_from_local_certificate_json",
+        "expected": false,
+        "actual": true,
+        "present": false
+      },
+      {
+        "field": "external_schema_provenance.self_authored_placeholder",
+        "expected": false,
+        "actual": true,
+        "present": false
+      },
+      {
+        "field": "external_schema_provenance.local_path_treated_as_external_evidence",
+        "expected": false,
+        "actual": false,
+        "present": false
+      }
+    ]
+  },
   "required_fields_total": 8,
   "required_fields_present": 5,
   "missing_fields": [

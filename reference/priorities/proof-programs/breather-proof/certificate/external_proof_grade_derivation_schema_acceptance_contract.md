@@ -103,7 +103,26 @@ narrows the local 5 / 8 state to three required proof-grade predicates for
 `proof_grade_derivation_schema_statement`. It is not input received and does
 not authorize schema-validation intake.
 
+The
+[Sigma_hf_01 local proof-program pool non-reclassification classifier](sigma_hf_01_external_schema_candidate.local-proof-program-pool-nonreclassification-classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+is the current fail-closed local-pool check. It applies the same eight-field
+intake predicate to 280 local certificate JSON objects and finds 0 accepted
+external provenance records, 0 schema-validation intake candidates, 0 local
+objects reclassified as external schema, 0 records with 8 / 8 required fields,
+and 0 external schema inputs received. It records only that the local pool
+cannot satisfy the boundary; it does not create a proof-grade schema or move
+any slot into validation intake.
+
+The
+[Sigma_hf_01 external provenance contract replay](sigma_hf_01_external_schema_candidate.external-provenance-contract-replay.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+is the current provenance-boundary check. It replays 280 local JSON paths as
+attempted candidate refs, rejects all 280 by provenance, accepts 0 external
+provenance records, authorizes 0 schema-validation intake candidates, and
+keeps the first failure at
+`external_schema_provenance_required_before_schema_validation_intake`.
+
 The next live proof-program action is not another 124-slot scan. It is to
 receive or construct one candidate external schema for the `Sigma_hf_01`
-separator slot and test the eight required fields above. If the separator slot
-cannot satisfy those fields, the 11 row slots remain parked.
+separator slot with accepted external provenance and the eight required fields
+above. If the separator slot cannot satisfy those fields, the 11 row slots
+remain parked.

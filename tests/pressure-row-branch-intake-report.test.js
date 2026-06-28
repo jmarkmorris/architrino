@@ -26,6 +26,12 @@ const A0_BRANCH_SOURCE_PARTIAL_FIXTURE = fileURLToPath(
 const PROVIDER_TARGET_FIXTURE = fileURLToPath(
   new URL("../scripts/mass-map/fixtures/pressure-row-branch-intake-provider-target.json", import.meta.url)
 );
+const PROVIDER_INTAKE_ARTIFACT_FIXTURE = fileURLToPath(
+  new URL(
+    "../scripts/mass-map/fixtures/pressure-row-branch-intake-provider-intake-artifact.json",
+    import.meta.url
+  )
+);
 const CROSS_ROW_BUNDLE_NEGATIVE_CONTROL_FIXTURE = fileURLToPath(
   new URL(
     "../scripts/mass-map/fixtures/pressure-row-branch-intake-cross-row-bundle-negative-control.json",
@@ -210,6 +216,53 @@ test("pressure-row branch intake report rejects target-only provider fixture", (
     report.missing_or_rejected_fields.includes("null_sector_record.transport"),
     true
   );
+});
+
+test("pressure-row branch intake report rejects target-only same-row provider/intake artifact", () => {
+  const fixture = JSON.parse(fs.readFileSync(PROVIDER_INTAKE_ARTIFACT_FIXTURE, "utf8"));
+  const report = buildReport(fixture, { sourceRef: PROVIDER_INTAKE_ARTIFACT_FIXTURE });
+
+  assert.deepEqual(validationErrors(report), []);
+  assert.equal(fixture.schema, "pressure_row_branch_intake_provider_intake_artifact/v0");
+  assert.equal(report.provider_source_status, "same_row_provider_intake_artifact_target_only_not_accepted_source");
+  assert.equal(report.target_status, "accepted_non_fixture_retained_pressure_row_missing");
+  assert.equal(
+    report.provider_intake.artifact_reading,
+    "same_row_provider_intake_artifact_target_only_fail_closed"
+  );
+  assert.deepEqual(
+    Object.keys(report.provider_intake.required_intake_records),
+    [
+      "accepted_branch_identity",
+      "accepted_history_segment",
+      "source_path",
+      "quotient_chart",
+      "pressure_record",
+      "exposure_source_record",
+      "pressure_response_record",
+      "reversible_domain",
+      "null_sector_record",
+    ]
+  );
+  assert.equal(report.negative_control.expected_report.first_failure, "accepted_non_fixture_source_missing");
+  assert.equal(report.branch_intake_verdict, "finite_branch_evidence_missing");
+  assert.equal(report.first_failure, "accepted_non_fixture_source_missing");
+  assert.equal(report.same_row_binding, true);
+  assert.equal(report.same_row_binding_evidence.pass, true);
+  assert.deepEqual(report.field_results.filter((field) => !field.pass), []);
+  assert.equal(report.accepted_source_evidence.pass, false);
+  assert.equal(
+    report.accepted_source_evidence.rejected_status_fields.some(
+      (field) => field.path === "provider_source_status"
+    ),
+    true
+  );
+  assert.deepEqual(report.missing_or_rejected_fields, ["accepted_non_fixture_source"]);
+  assert.equal(report.authorization.branch_derived_pressure_response, false);
+  assert.equal(report.authorization.empirical_mass_response, false);
+  assert.equal(report.authorization.retained_branch_claim, false);
+  assert.equal(report.authorization.observer_export, false);
+  assert.equal(report.authorization.export_readiness, false);
 });
 
 test("pressure-row branch intake report rejects cross-row bundle negative control", () => {

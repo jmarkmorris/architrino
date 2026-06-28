@@ -18,6 +18,7 @@ import {
   OCTAHEDRAL_ZERO_MEAN_SPEED_CLOCK_LENGTH_CERTIFICATE_SCHEMA,
   OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA,
   OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA,
+  OCTAHEDRAL_ZERO_MEAN_ACTION_STABILITY_AFTER_NORMAL_CANDIDATE_INTAKE_SCHEMA,
   evaluateCandidateBRangeProbe,
   evaluateLiveCorrectionDirectionCertificate,
   evaluateLiveDerivativeMatrixCertificate,
@@ -27,6 +28,7 @@ import {
   evaluateSpeedClockLengthCertificate,
   evaluateNormalReconstructionHandoff,
   evaluateBoundedSpeedNormalReconstructionCandidate,
+  evaluateActionStabilityAfterNormalCandidateIntake,
   buildOctahedralZeroMeanCorrectionIntake,
   validateOctahedralZeroMeanCorrectionIntake,
 } from "../scripts/neutral-braid/octahedral-zero-mean-correction-intake.mjs";
@@ -62,6 +64,26 @@ const REQUIRED_CORRECTION_DIRECTION_GUARDS = [
   "support_margin_guard",
   "action_convention_guard",
   "event_convention_guard",
+];
+const REQUIRED_ACTION_STABILITY_DOWNSTREAM_ROWS = [
+  "action_scale",
+  "action_curl",
+  "speed_factor_storage_exchange",
+  "noether_event_exchange",
+  "tail_refinement_persistence",
+  "bounded_speed_stability",
+  "observer_export_eligibility",
+  "coupled_fixed_point",
+];
+const REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_TARGET_ROWS = [
+  ["action_derived_scale", "action_scale"],
+  ["action_curl", "action_curl"],
+  ["speed_factor_storage_exchange", "speed_factor_storage_exchange"],
+  ["noether_event_exchange", "noether_event_exchange"],
+  ["tail_refinement_persistence", "tail_refinement_persistence"],
+  ["bounded_speed_stability", "bounded_speed_stability"],
+  ["observer_export_eligibility", "observer_export_eligibility"],
+  ["coupled_fixed_point", "coupled_fixed_point"],
 ];
 
 function candidateBPacket(matrix, overrides = {}) {
@@ -373,6 +395,75 @@ function boundedSpeedNormalReconstructionCandidatePacket(overrides = {}) {
       root_persistence_margin_min: 0.125,
       krawczyk_residual_norm_2: 0,
     })),
+    ...overrides,
+  };
+}
+
+function actionStabilityAfterNormalCandidatePacket(overrides = {}) {
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_ACTION_STABILITY_AFTER_NORMAL_CANDIDATE_INTAKE_SCHEMA,
+    claim_scope: "bounded-speed-action-stability-after-normal-candidate-intake",
+    promotion_status: "priority-only",
+    source_intake_schema: OCTAHEDRAL_ZERO_MEAN_CORRECTION_INTAKE_SCHEMA,
+    source_artifact_id: SOURCE_ARTIFACT_ID,
+    source_bounded_speed_normal_reconstruction_candidate_schema:
+      OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA,
+    source_normal_reconstruction_candidate_id:
+      "post-correction-bounded-speed-normal-reconstruction-candidate-test",
+    action_stability_intake_id: "after-normal-action-stability-intake-test",
+    bounded_speed_ledger_id: "bounded-speed-live-ledger-test",
+    force_checksum_id: "force-checksum-test",
+    consumer_checksum_id: "consumer-checksum-test",
+    live_ledger_identity: {
+      bounded_speed_ledger_id: "bounded-speed-live-ledger-test",
+      force_checksum_id: "force-checksum-test",
+      consumer_checksum_id: "consumer-checksum-test",
+      certification_status: "bounded-speed-live-ledger-open",
+    },
+    bounded_speed_live_ledger: {
+      claim_scope: "bounded-speed-live-ledger-target-after-normal-candidate",
+      source_normal_reconstruction_candidate_id:
+        "post-correction-bounded-speed-normal-reconstruction-candidate-test",
+      bounded_speed_ledger_id: "bounded-speed-live-ledger-test",
+      force_checksum_id: "force-checksum-test",
+      consumer_checksum_id: "consumer-checksum-test",
+      intake_status: "bounded-speed-live-ledger-open",
+      first_failure_row: "bounded-speed-live-ledger-open",
+      required_same_ledger_rows: Object.fromEntries(
+        REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_TARGET_ROWS.map(([row, downstreamRow]) => [
+          row,
+          {
+            downstream_row: downstreamRow,
+            same_ledger_binding: "same-normal-candidate-ledger-checksum",
+            status: "blocked:bounded-speed-live-ledger-open",
+          },
+        ])
+      ),
+      certifies_bounded_speed_live_ledger: false,
+      certifies_action_stability: false,
+      certifies_observer_export: false,
+      retention: "not_retained",
+      retained_branch: false,
+    },
+    normal_candidate_status: "bounded-speed-normal-reconstruction-candidate",
+    live_ledger_status: "bounded-speed-live-ledger-open",
+    first_failure_row: "bounded-speed-live-ledger-open",
+    downstream_row_statuses: Object.fromEntries(
+      REQUIRED_ACTION_STABILITY_DOWNSTREAM_ROWS.map((row) => [
+        row,
+        "blocked:bounded-speed-live-ledger-open",
+      ])
+    ),
+    certifies_live_derivative_matrix: true,
+    certifies_correction_direction: true,
+    certifies_speed_primitive_feasibility: true,
+    certifies_speed_clock_length: true,
+    certifies_normal_reconstruction: true,
+    certifies_bounded_speed_live_ledger: false,
+    certifies_action_stability: false,
+    certifies_observer_export: false,
+    retention: "not_retained",
+    retained_branch: false,
     ...overrides,
   };
 }
@@ -1500,6 +1591,249 @@ test("octahedral zero-mean correction intake certifies bounded-speed normal reco
   );
 });
 
+test("octahedral zero-mean correction intake emits fail-closed action stability boundary after normal candidate", () => {
+  const baseArtifact = buildOctahedralZeroMeanCorrectionIntake({
+    phaseSamples: 120,
+    ySubdivisions: 240,
+  });
+  const matrixPacket = liveDerivativeMatrixPacket(Array.from({ length: 6 }, () => [1]), {
+    matrix_id: "same-ledger-constant-column-pass",
+    column_labels: ["constant_receiver_direction"],
+  });
+  const directionPacket = liveCorrectionDirectionPacket({
+    alpha_b_vector: [baseArtifact.linear_system_intake.rhs_vector[0]],
+  });
+  const primitivePacket = speedPrimitiveFeasibilityPacket();
+  const clockPacket = speedClockLengthPacket();
+  const handoffPacket = normalReconstructionHandoffPacket();
+  const candidatePacket = boundedSpeedNormalReconstructionCandidatePacket();
+  const actionPacket = actionStabilityAfterNormalCandidatePacket();
+  const candidateArtifact = buildOctahedralZeroMeanCorrectionIntake({
+    phaseSamples: 120,
+    ySubdivisions: 240,
+    liveDerivativeMatrixPacket: matrixPacket,
+    liveCorrectionDirectionPacket: directionPacket,
+    speedPrimitiveFeasibilityPacket: primitivePacket,
+    speedClockLengthPacket: clockPacket,
+    normalReconstructionHandoffPacket: handoffPacket,
+    boundedSpeedNormalReconstructionCandidatePacket: candidatePacket,
+  });
+  const artifact = buildOctahedralZeroMeanCorrectionIntake({
+    phaseSamples: 120,
+    ySubdivisions: 240,
+    liveDerivativeMatrixPacket: matrixPacket,
+    liveCorrectionDirectionPacket: directionPacket,
+    speedPrimitiveFeasibilityPacket: primitivePacket,
+    speedClockLengthPacket: clockPacket,
+    normalReconstructionHandoffPacket: handoffPacket,
+    boundedSpeedNormalReconstructionCandidatePacket: candidatePacket,
+    actionStabilityAfterNormalCandidatePacket: actionPacket,
+  });
+  const evaluatedIntake = evaluateActionStabilityAfterNormalCandidateIntake(candidateArtifact, actionPacket);
+
+  assert.deepEqual(validateOctahedralZeroMeanCorrectionIntake(artifact), []);
+  assert.deepEqual(artifact.action_stability_after_normal_candidate_intake, evaluatedIntake);
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.schema,
+    OCTAHEDRAL_ZERO_MEAN_ACTION_STABILITY_AFTER_NORMAL_CANDIDATE_INTAKE_SCHEMA
+  );
+  assert.equal(artifact.artifact_claim.emits_action_stability_after_normal_candidate_intake, true);
+  assert.equal(artifact.artifact_claim.certifies_bounded_speed_live_ledger, false);
+  assert.equal(artifact.artifact_claim.certifies_action_stability, false);
+  assert.equal(artifact.artifact_claim.certifies_observer_export, false);
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.source_normal_reconstruction_candidate_id,
+    artifact.bounded_speed_normal_reconstruction_candidate.normal_reconstruction_candidate_id
+  );
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.live_ledger_status,
+    "bounded-speed-live-ledger-open"
+  );
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.bounded_speed_live_ledger.intake_status,
+    "bounded-speed-live-ledger-open"
+  );
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.bounded_speed_live_ledger.consumer_checksum_id,
+    artifact.bounded_speed_normal_reconstruction_candidate.consumer_checksum_id
+  );
+  assert.deepEqual(
+    Object.keys(
+      artifact.action_stability_after_normal_candidate_intake.bounded_speed_live_ledger
+        .required_same_ledger_rows
+    ),
+    REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_TARGET_ROWS.map(([row]) => row)
+  );
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.bounded_speed_live_ledger
+      .required_same_ledger_rows.action_derived_scale.downstream_row,
+    "action_scale"
+  );
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.bounded_speed_live_ledger
+      .required_same_ledger_rows.noether_event_exchange.status,
+    "blocked:bounded-speed-live-ledger-open"
+  );
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.first_failure_row,
+    "bounded-speed-live-ledger-open"
+  );
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.downstream_row_statuses.action_scale,
+    "blocked:bounded-speed-live-ledger-open"
+  );
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.downstream_row_statuses.coupled_fixed_point,
+    "blocked:bounded-speed-live-ledger-open"
+  );
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.certifies_bounded_speed_live_ledger,
+    false
+  );
+  assert.equal(artifact.action_stability_after_normal_candidate_intake.certifies_action_stability, false);
+  assert.equal(artifact.action_stability_after_normal_candidate_intake.certifies_observer_export, false);
+  assert.equal(artifact.action_stability_after_normal_candidate_intake.retention, "not_retained");
+  assert.equal(artifact.action_stability_after_normal_candidate_intake.retained_branch, false);
+  assert.equal(artifact.result.intake_status, "zero-mean-action-stability-after-normal-candidate-blocked");
+  assert.equal(artifact.result.action_stability, "not_certified");
+  assert.equal(artifact.result.observer_export, "not_authorized");
+  assert.equal(artifact.result.retention, "not_retained");
+  assert.equal(artifact.result.retained_branch, false);
+  assert.equal(artifact.residual_vector.first_failure_row, "bounded-speed-live-ledger-open");
+  assert.equal(
+    artifact.residual_vector.rows.some(
+      (row) =>
+        row.row === "R_bounded_speed_action_stability_after_normal_candidate" &&
+        row.status === "open" &&
+        row.value === "bounded-speed-live-ledger-open"
+    ),
+    true
+  );
+
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        actionStabilityAfterNormalCandidatePacket: actionPacket,
+      }),
+    /requires an attached bounded speed normal reconstruction candidate/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: candidatePacket,
+        actionStabilityAfterNormalCandidatePacket: actionStabilityAfterNormalCandidatePacket({
+          bounded_speed_ledger_id: "wrong-ledger",
+        }),
+      }),
+    /bounded_speed_ledger_id must match/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: candidatePacket,
+        actionStabilityAfterNormalCandidatePacket: actionStabilityAfterNormalCandidatePacket({
+          bounded_speed_live_ledger: undefined,
+        }),
+      }),
+    /must declare bounded_speed_live_ledger target/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: candidatePacket,
+        actionStabilityAfterNormalCandidatePacket: actionStabilityAfterNormalCandidatePacket({
+          bounded_speed_live_ledger: {
+            ...actionPacket.bounded_speed_live_ledger,
+            consumer_checksum_id: "wrong-consumer-checksum",
+          },
+        }),
+      }),
+    /bounded_speed_live_ledger consumer_checksum_id must match/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: candidatePacket,
+        actionStabilityAfterNormalCandidatePacket: actionStabilityAfterNormalCandidatePacket({
+          downstream_row_statuses: {
+            ...actionPacket.downstream_row_statuses,
+            action_curl: "action-curl-open",
+          },
+        }),
+      }),
+    /downstream row action_curl must be blocked:bounded-speed-live-ledger-open/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: candidatePacket,
+        actionStabilityAfterNormalCandidatePacket: actionStabilityAfterNormalCandidatePacket({
+          certifies_action_stability: true,
+        }),
+      }),
+    /must set certifies_action_stability=false/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: candidatePacket,
+        actionStabilityAfterNormalCandidatePacket: actionStabilityAfterNormalCandidatePacket({
+          retained_branch: true,
+        }),
+      }),
+    /must set retained_branch=false/
+  );
+});
+
 test("octahedral zero-mean correction intake CLI emits and validates JSON artifacts", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "neutral-braid-zero-mean-intake-"));
   const artifactPath = path.join(tempDir, "artifact.json");
@@ -1514,6 +1848,10 @@ test("octahedral zero-mean correction intake CLI emits and validates JSON artifa
   const boundedSpeedNormalReconstructionCandidatePath = path.join(
     tempDir,
     "bounded-speed-normal-reconstruction-candidate.json"
+  );
+  const actionStabilityAfterNormalCandidatePath = path.join(
+    tempDir,
+    "action-stability-after-normal-candidate.json"
   );
   const baseArtifact = buildOctahedralZeroMeanCorrectionIntake({
     phaseSamples: 120,
@@ -1565,6 +1903,10 @@ test("octahedral zero-mean correction intake CLI emits and validates JSON artifa
     boundedSpeedNormalReconstructionCandidatePath,
     `${JSON.stringify(boundedSpeedNormalReconstructionCandidatePacket())}\n`
   );
+  fs.writeFileSync(
+    actionStabilityAfterNormalCandidatePath,
+    `${JSON.stringify(actionStabilityAfterNormalCandidatePacket())}\n`
+  );
 
   execFileSync(
     process.execPath,
@@ -1591,6 +1933,8 @@ test("octahedral zero-mean correction intake CLI emits and validates JSON artifa
       normalReconstructionHandoffPath,
       "--bounded-speed-normal-reconstruction-candidate",
       boundedSpeedNormalReconstructionCandidatePath,
+      "--action-stability-after-normal-candidate",
+      actionStabilityAfterNormalCandidatePath,
       "--out",
       artifactPath,
       "--pretty",
@@ -1610,8 +1954,10 @@ test("octahedral zero-mean correction intake CLI emits and validates JSON artifa
     execFileSync(process.execPath, [scriptPath, "--validate", artifactPath], { encoding: "utf8" })
   );
   assert.equal(validation.valid, true);
-  assert.equal(validation.result.intake_status, "zero-mean-bounded-speed-normal-reconstruction-candidate");
+  assert.equal(validation.result.intake_status, "zero-mean-action-stability-after-normal-candidate-blocked");
   assert.equal(validation.result.correction_direction, "found_first_order_not_retained");
+  assert.equal(validation.result.action_stability, "not_certified");
+  assert.equal(validation.result.observer_export, "not_authorized");
   assert.equal(validation.result.retention, "not_retained");
   assert.equal(validation.result.retained_branch, false);
   assert.equal(validation.linear_system_intake.live_derivative_status, "live-derivative-matrix-certified");
@@ -1647,6 +1993,28 @@ test("octahedral zero-mean correction intake CLI emits and validates JSON artifa
     validation.bounded_speed_normal_reconstruction_candidate.certifies_bounded_speed_live_ledger,
     false
   );
+  assert.equal(
+    validation.action_stability_after_normal_candidate_intake.first_failure_row,
+    "bounded-speed-live-ledger-open"
+  );
+  assert.equal(
+    validation.action_stability_after_normal_candidate_intake.bounded_speed_live_ledger
+      .required_same_ledger_rows.coupled_fixed_point.status,
+    "blocked:bounded-speed-live-ledger-open"
+  );
+  assert.equal(
+    validation.action_stability_after_normal_candidate_intake.downstream_row_statuses.action_scale,
+    "blocked:bounded-speed-live-ledger-open"
+  );
+  assert.equal(
+    validation.action_stability_after_normal_candidate_intake.certifies_action_stability,
+    false
+  );
+  assert.equal(
+    validation.action_stability_after_normal_candidate_intake.certifies_observer_export,
+    false
+  );
+  assert.equal(validation.action_stability_after_normal_candidate_intake.retained_branch, false);
 
   const validationWithColumnPacket = JSON.parse(
     execFileSync(
@@ -1708,6 +2076,10 @@ test("octahedral zero-mean correction intake CLI emits and validates JSON artifa
     schema.bounded_speed_normal_reconstruction_candidate_schema,
     OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA
   );
+  assert.equal(
+    schema.action_stability_after_normal_candidate_intake_schema,
+    OCTAHEDRAL_ZERO_MEAN_ACTION_STABILITY_AFTER_NORMAL_CANDIDATE_INTAKE_SCHEMA
+  );
 });
 
 test("octahedral zero-mean correction intake validates committed normal-candidate fixture", () => {
@@ -1740,6 +2112,8 @@ test("octahedral zero-mean correction intake validates committed normal-candidat
       path.join(fixtureDir, "normal-reconstruction-handoff.json"),
       "--bounded-speed-normal-reconstruction-candidate",
       path.join(fixtureDir, "bounded-speed-normal-reconstruction-candidate.json"),
+      "--action-stability-after-normal-candidate",
+      path.join(fixtureDir, "action-stability-after-normal-candidate.json"),
       "--out",
       artifactPath,
       "--pretty",
@@ -1752,15 +2126,32 @@ test("octahedral zero-mean correction intake validates committed normal-candidat
   );
   const artifact = JSON.parse(fs.readFileSync(artifactPath, "utf8"));
   assert.equal(validation.valid, true);
-  assert.equal(artifact.result.intake_status, "zero-mean-bounded-speed-normal-reconstruction-candidate");
+  assert.equal(artifact.result.intake_status, "zero-mean-action-stability-after-normal-candidate-blocked");
   assert.equal(artifact.residual_vector.first_failure_row, "bounded-speed-live-ledger-open");
   assert.equal(artifact.artifact_claim.emits_bounded_speed_normal_reconstruction_candidate, true);
+  assert.equal(artifact.artifact_claim.emits_action_stability_after_normal_candidate_intake, true);
   assert.equal(artifact.artifact_claim.certifies_normal_reconstruction, true);
   assert.equal(artifact.artifact_claim.certifies_bounded_speed_live_ledger, false);
+  assert.equal(artifact.artifact_claim.certifies_action_stability, false);
+  assert.equal(artifact.artifact_claim.certifies_observer_export, false);
   assert.equal(artifact.result.retained_branch, false);
   assert.equal(
     artifact.bounded_speed_normal_reconstruction_candidate.candidate_status,
     "bounded-speed-normal-reconstruction-candidate"
   );
   assert.equal(artifact.bounded_speed_normal_reconstruction_candidate.retained_branch, false);
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.first_failure_row,
+    "bounded-speed-live-ledger-open"
+  );
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.bounded_speed_live_ledger
+      .required_same_ledger_rows.action_derived_scale.downstream_row,
+    "action_scale"
+  );
+  assert.equal(
+    artifact.action_stability_after_normal_candidate_intake.downstream_row_statuses.observer_export_eligibility,
+    "blocked:bounded-speed-live-ledger-open"
+  );
+  assert.equal(artifact.action_stability_after_normal_candidate_intake.retained_branch, false);
 });

@@ -12,6 +12,9 @@ import {
   buildPlaceholderRejectionCandidate,
   buildProofObjectEnvelope,
   buildMissingProofGradeFieldsDerivationTarget,
+  buildLocalProofProgramPoolNonReclassificationClassifier,
+  buildExternalSchemaProvenanceContractReplay,
+  scanLocalProofProgramPool,
   validationErrors,
 } from "../scripts/proof-programs/fresh-v10-higher-fold-sigma-hf-01-external-schema-candidate-intake-record.mjs";
 
@@ -37,6 +40,8 @@ const COMPATIBLE_SCHEMA_ROLE =
 const COMPATIBLE_PROOF_OBJECT_ROLE = "source_packet_acceptance_rule_derivation_proof_object";
 const DERIVATION_PROOF_TARGET =
   "source_packet_acceptance_rule_derivation_proof_for_live_same_packet_separator_aggregate_family";
+const EXTERNAL_SCHEMA_ACCEPTANCE_CONTRACT_REF =
+  `${CERT_DIR}/external_proof_grade_derivation_schema_acceptance_contract.md`;
 const FORBIDDEN_SCHEMA_REINTERPRETATIONS = [
   "rule_kernel_payload_proof_grade_derivation_schema_external_input_obligation_packet_as_proof_grade_derivation_schema",
   "rule_kernel_payload_proof_grade_derivation_schema_current_pool_absence_classifier_as_proof_grade_derivation_schema",
@@ -54,32 +59,24 @@ function readJson(pathname) {
   return JSON.parse(fs.readFileSync(pathname, "utf8"));
 }
 
-test("Sigma_hf_01 intake record emits fail-closed absent-input state", () => {
-  const record = buildRecord();
-
-  assert.deepEqual(validationErrors(record), []);
-  assert.equal(record.schema, "sigma_hf_01_external_schema_candidate_intake_record/v0");
-  assert.equal(record.target_slot, "Sigma_hf_01");
-  assert.equal(record.candidate_external_schema_ref, null);
-  assert.equal(record.candidate_external_schema_received, false);
-  assert.equal(record.required_fields_present, 0);
-  assert.equal(record.missing_fields.length, 8);
-  assert.equal(record.slot_result, "external_input_required");
-  assert.equal(record.row_slots_parked, 11);
-  assert.equal(record.row_consumption_count, 0);
-  assert.equal(record.preledger_pass, false);
-  assert.equal(record.updates_live_ledger, false);
-  assert.equal(record.branch_chart_authorized, false);
-});
-
-test("Sigma_hf_01 intake record accepts complete synthetic candidate only for schema validation", () => {
-  const record = buildRecord({
+function buildCompleteSyntheticCandidate(overrides = {}) {
+  return {
     packet_id: PACKET_ID,
     proof_interval: PROOF_INTERVAL,
     lambda_branch: LAMBDA_BRANCH,
     target_slot: "Sigma_hf_01",
     fold_interval: "F01",
     candidate_external_schema_ref: "external-proof:sigma-hf-01-test",
+    external_schema_provenance: {
+      provenance_class: "external_proof_grade_derivation_schema_candidate",
+      source_ref: "external-proof:sigma-hf-01-test",
+      acceptance_contract_ref: EXTERNAL_SCHEMA_ACCEPTANCE_CONTRACT_REF,
+      received_for_schema_validation: true,
+      authored_inside_local_proof_program_pool: false,
+      derived_from_local_certificate_json: false,
+      self_authored_placeholder: false,
+      local_path_treated_as_external_evidence: false,
+    },
     compatible_schema_role_lock: COMPATIBLE_SCHEMA_ROLE,
     compatible_proof_object_role_lock: COMPATIBLE_PROOF_OBJECT_ROLE,
     derivation_proof_target_lock: DERIVATION_PROOF_TARGET,
@@ -110,15 +107,58 @@ test("Sigma_hf_01 intake record accepts complete synthetic candidate only for sc
     non_reinterpretation_guard: {
       forbidden_reinterpretations: FORBIDDEN_SCHEMA_REINTERPRETATIONS,
     },
-  });
+    ...overrides,
+  };
+}
+
+test("Sigma_hf_01 intake record emits fail-closed absent-input state", () => {
+  const record = buildRecord();
+
+  assert.deepEqual(validationErrors(record), []);
+  assert.equal(record.schema, "sigma_hf_01_external_schema_candidate_intake_record/v0");
+  assert.equal(record.target_slot, "Sigma_hf_01");
+  assert.equal(record.candidate_external_schema_ref, null);
+  assert.equal(record.candidate_external_schema_received, false);
+  assert.equal(record.external_provenance_accepted, false);
+  assert.equal(record.external_provenance_status, "external_schema_provenance_required");
+  assert.equal(record.required_fields_present, 0);
+  assert.equal(record.missing_fields.length, 8);
+  assert.equal(record.slot_result, "external_input_required");
+  assert.equal(record.row_slots_parked, 11);
+  assert.equal(record.row_consumption_count, 0);
+  assert.equal(record.preledger_pass, false);
+  assert.equal(record.updates_live_ledger, false);
+  assert.equal(record.branch_chart_authorized, false);
+});
+
+test("Sigma_hf_01 intake record accepts complete synthetic candidate only for schema validation", () => {
+  const record = buildRecord(buildCompleteSyntheticCandidate());
 
   assert.deepEqual(validationErrors(record), []);
   assert.equal(record.slot_result, "external_schema_input_received_for_schema_validation");
+  assert.equal(record.external_provenance_accepted, true);
   assert.equal(record.required_fields_present, 8);
   assert.equal(record.authorization.schema_validation_intake, true);
   assert.equal(record.authorization.row_consumption, false);
   assert.equal(record.authorization.accepted_source_packet, false);
   assert.equal(record.authorization.branch_chart, false);
+});
+
+test("Sigma_hf_01 intake rejects eight fields without accepted external provenance", () => {
+  const candidate = buildCompleteSyntheticCandidate({
+    external_schema_provenance: undefined,
+  });
+  const record = buildRecord(candidate);
+
+  assert.deepEqual(validationErrors(record), []);
+  assert.equal(record.required_fields_present, 8);
+  assert.equal(record.external_provenance_accepted, false);
+  assert.equal(record.candidate_external_schema_received, false);
+  assert.equal(record.slot_result, "external_input_required");
+  assert.equal(record.authorization.schema_validation_intake, false);
+  assert.equal(record.authorization.row_consumption, false);
+  assert.equal(record.updates_live_ledger, false);
+  assert.equal(record.branch_chart_authorized, false);
 });
 
 test("Sigma_hf_01 local source-data candidate records exact partial fields and stays fail-closed", () => {
@@ -556,4 +596,122 @@ test("Sigma current-pool schema absence classifier tolerates pool growth without
   assert.equal(record.authorization.row_consumption, false);
   assert.equal(record.updates_live_ledger, false);
   assert.equal(record.branch_chart_authorized, false);
+});
+
+test("Sigma_hf_01 local proof-program pool classifier rejects local reclassification", () => {
+  const packet = buildLocalProofProgramPoolNonReclassificationClassifier(
+    scanLocalProofProgramPool(CERT_DIR),
+  );
+  const summary = packet.summary;
+  const localSourceDataPartial = packet.local_partial_or_known_non_external_records.find((record) =>
+    record.basename.includes("local-source-data-partial"),
+  );
+
+  assert.equal(packet.target_slot, "Sigma_hf_01");
+  assert.ok(summary.local_proof_program_json_files_screened > 0);
+  assert.equal(summary.schema_validation_intake_candidates_found, 0);
+  assert.equal(summary.local_proof_program_json_files_reclassified_as_external_schema, 0);
+  assert.equal(summary.external_schema_input_received_records, 0);
+  assert.equal(summary.records_with_required_fields_present_8_of_8, 0);
+  assert.equal(summary.schema_validation_intake_authorized_records, 0);
+  assert.equal(
+    summary.external_input_required_records,
+    summary.local_proof_program_json_files_screened,
+  );
+  assert.equal(localSourceDataPartial.required_fields_present, 5);
+  assert.equal(localSourceDataPartial.slot_result, "external_input_required");
+  assert.equal(localSourceDataPartial.candidate_known_local_non_external_artifact, true);
+  assert.equal(packet.authorization_lock.schema_validation_intake, false);
+  assert.equal(packet.authorization_lock.row_consumption, false);
+  assert.equal(packet.authorization_lock.preledger_pass, false);
+  assert.equal(packet.authorization_lock.updates_live_ledger, false);
+  assert.equal(packet.authorization_lock.branch_chart_authorized, false);
+});
+
+test("Sigma_hf_01 external provenance contract replay rejects local candidate refs", () => {
+  const packet = buildExternalSchemaProvenanceContractReplay(
+    scanLocalProofProgramPool(CERT_DIR),
+  );
+  const summary = packet.summary;
+
+  assert.equal(packet.target_slot, "Sigma_hf_01");
+  assert.deepEqual(packet.required_schema_predicate_fields, [
+    "compatible_schema_role_lock",
+    "compatible_proof_object_role_lock",
+    "derivation_proof_target_lock",
+    "derivation_proof_source_data_record_lock",
+    "rule_kernel_obligation_binding",
+    "rule_kernel_derivation_payload_target_binding",
+    "proof_grade_derivation_schema_statement",
+    "non_reinterpretation_guard",
+  ]);
+  assert.equal(summary.external_provenance_accepted_records, 0);
+  assert.equal(summary.schema_validation_intake_candidates_found, 0);
+  assert.equal(summary.external_schema_inputs_received, 0);
+  assert.equal(summary.local_path_candidate_refs_rejected, summary.local_proof_program_json_files_screened_as_candidate_refs);
+  assert.equal(summary.first_failure, "external_schema_provenance_required_before_schema_validation_intake");
+  assert.equal(packet.authorization_lock.schema_validation_intake, false);
+  assert.equal(packet.authorization_lock.row_consumption, false);
+  assert.equal(packet.authorization_lock.updates_live_ledger, false);
+  assert.equal(packet.authorization_lock.branch_chart_authorized, false);
+  assert.equal(
+    packet.actual_external_object_must_bind.includes(
+      "post_intake_schema_validation_before_any_row_slot_consumption",
+    ),
+    true,
+  );
+});
+
+test("Sigma_hf_01 intake CLI writes local proof-program pool classifier", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sigma-hf-01-local-pool-classifier-"));
+  execFileSync(
+    process.execPath,
+    [SCRIPT_PATH, "--local-proof-program-pool-classifier", "--out-dir", tempDir, "--pretty"],
+    { encoding: "utf8" },
+  );
+
+  const jsonPath = path.join(
+    tempDir,
+    "sigma_hf_01_external_schema_candidate.local-proof-program-pool-nonreclassification-classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  );
+  const reportPath = path.join(
+    tempDir,
+    "sigma_hf_01_external_schema_candidate.local-proof-program-pool-nonreclassification-classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md",
+  );
+
+  assert.equal(fs.existsSync(jsonPath), true);
+  assert.equal(fs.existsSync(reportPath), true);
+  const packet = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  assert.equal(packet.summary.schema_validation_intake_candidates_found, 0);
+  assert.equal(packet.summary.records_with_required_fields_present_8_of_8, 0);
+  assert.equal(packet.authorization_lock.schema_validation_intake, false);
+  assert.equal(packet.authorization_lock.row_consumption, false);
+  assert.equal(packet.authorization_lock.branch_chart_authorized, false);
+});
+
+test("Sigma_hf_01 intake CLI writes external provenance contract replay", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sigma-hf-01-provenance-replay-"));
+  execFileSync(
+    process.execPath,
+    [SCRIPT_PATH, "--external-provenance-contract-replay", "--out-dir", tempDir, "--pretty"],
+    { encoding: "utf8" },
+  );
+
+  const jsonPath = path.join(
+    tempDir,
+    "sigma_hf_01_external_schema_candidate.external-provenance-contract-replay.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  );
+  const reportPath = path.join(
+    tempDir,
+    "sigma_hf_01_external_schema_candidate.external-provenance-contract-replay.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md",
+  );
+
+  assert.equal(fs.existsSync(jsonPath), true);
+  assert.equal(fs.existsSync(reportPath), true);
+  const packet = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  assert.equal(packet.summary.external_provenance_accepted_records, 0);
+  assert.equal(packet.summary.schema_validation_intake_candidates_found, 0);
+  assert.equal(packet.authorization_lock.schema_validation_intake, false);
+  assert.equal(packet.authorization_lock.row_consumption, false);
+  assert.equal(packet.authorization_lock.branch_chart_authorized, false);
 });

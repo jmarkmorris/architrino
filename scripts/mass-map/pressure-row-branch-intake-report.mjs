@@ -175,6 +175,19 @@ const SAME_ROW_BINDING_KEYS = [
   "record_ref",
 ];
 
+const SOURCE_REJECTION_PATTERNS = [
+  /target[_-]only/i,
+  /toy/i,
+  /empirical/i,
+  /diagnostic/i,
+  /partial/i,
+  /negative[_-]control/i,
+  /fixture/i,
+  /priority[_-]only/i,
+  /not[_-]accepted/i,
+  /missing/i,
+];
+
 function parseArgs(argv) {
   const args = {
     input: null,
@@ -268,6 +281,48 @@ function bindingValue(value) {
   return null;
 }
 
+function rejectedStatus(value) {
+  if (value === true) {
+    return true;
+  }
+  if (typeof value !== "string") {
+    return false;
+  }
+  return SOURCE_REJECTION_PATTERNS.some((pattern) => pattern.test(value));
+}
+
+function evaluateAcceptedSource(candidate, options) {
+  const sourceRef = options.sourceRef ?? candidate.source_ref ?? "";
+  const statusFields = [
+    ["schema", candidate.schema],
+    ["provider_source_status", candidate.provider_source_status],
+    ["target_status", candidate.target_status],
+    ["candidate_status", candidate.candidate_status],
+    ["promotion_status", candidate.promotion_status],
+    ["source_kind", candidate.source_kind],
+    ["diagnostic_only", candidate.diagnostic_only],
+  ];
+  const rejected_status_fields = statusFields
+    .filter(([, value]) => rejectedStatus(value))
+    .map(([path, value]) => ({ path, value }));
+
+  if (typeof sourceRef === "string" && /(^|\/)fixtures\//.test(sourceRef)) {
+    rejected_status_fields.push({
+      path: "source_ref",
+      value: sourceRef,
+    });
+  }
+
+  return {
+    requirement:
+      "Accepted non-fixture source for the retained pressure row; target-only, toy, empirical, diagnostic, partial, and negative-control sources cannot authorize pressure response.",
+    pass: rejected_status_fields.length === 0,
+    failure_code:
+      rejected_status_fields.length === 0 ? null : "accepted_non_fixture_source_missing",
+    rejected_status_fields,
+  };
+}
+
 function directBindingEntries(value, fieldPath) {
   if (!isObject(value)) {
     return [];
@@ -338,6 +393,7 @@ function contract() {
     authorization_boundary: {
       branch_derived_pressure_response_requires_all_fields: true,
       branch_derived_pressure_response_requires_same_row_binding: true,
+      branch_derived_pressure_response_requires_accepted_non_fixture_source: true,
       cross_row_bundle_authorized_by_this_contract: false,
       empirical_mass_response_authorized_by_this_contract: false,
       toy_or_material_replay_authorized_by_this_contract: false,
@@ -366,12 +422,19 @@ export function buildReport(candidate, options = {}) {
   const fieldResults = REQUIRED_FIELDS.map((field) => evaluateField(candidate, field));
   const failedFields = fieldResults.filter((field) => !field.pass);
   const sameRowBindingEvidence = evaluateSameRowBinding(candidate);
+  const acceptedSourceEvidence = evaluateAcceptedSource(candidate, options);
   const sameRowBinding = failedFields.length === 0 && sameRowBindingEvidence.pass;
-  const firstFailure = failedFields[0]?.failure_code ?? sameRowBindingEvidence.failure_code;
-  const accepted = sameRowBinding;
+  const accepted = sameRowBinding && acceptedSourceEvidence.pass;
+  const firstFailure =
+    failedFields[0]?.failure_code ??
+    sameRowBindingEvidence.failure_code ??
+    acceptedSourceEvidence.failure_code;
   const missingOrRejectedFields = failedFields.map((field) => field.path);
   if (!sameRowBindingEvidence.pass) {
     missingOrRejectedFields.push("same_row_binding");
+  }
+  if (!acceptedSourceEvidence.pass) {
+    missingOrRejectedFields.push("accepted_non_fixture_source");
   }
 
   return {
@@ -381,6 +444,9 @@ export function buildReport(candidate, options = {}) {
     provider_source_status: candidate.provider_source_status ?? null,
     target_status: candidate.target_status ?? null,
     provider_target: candidate.provider_target ?? null,
+    provider_intake: candidate.provider_intake ?? null,
+    negative_control: candidate.negative_control ?? null,
+    accepted_source_evidence: acceptedSourceEvidence,
     same_row_binding: sameRowBinding,
     same_row_binding_evidence: sameRowBindingEvidence,
     branch_intake_verdict: accepted ? "accepted_retained_pressure_row" : "finite_branch_evidence_missing",
@@ -422,8 +488,8 @@ export function validationErrors(report) {
   if (report.branch_intake_verdict === "accepted_retained_pressure_row" && report.same_row_binding !== true) {
     errors.push("accepted reports must carry same_row_binding");
   }
-  if (report.branch_intake_verdict === "finite_branch_evidence_missing" && report.same_row_binding !== false) {
-    errors.push("blocked reports must not carry same_row_binding");
+  if (typeof report.same_row_binding !== "boolean") {
+    errors.push("same_row_binding must be a boolean");
   }
   if (!isObject(report.same_row_binding_evidence)) {
     errors.push("same_row_binding_evidence must be an object");

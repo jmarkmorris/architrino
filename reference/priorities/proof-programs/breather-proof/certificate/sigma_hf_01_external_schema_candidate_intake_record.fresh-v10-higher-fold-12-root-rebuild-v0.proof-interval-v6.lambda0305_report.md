@@ -12,6 +12,8 @@ Status: `external_input_required`
 - Candidate external schema ref: `local-source-data-partial:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305`
 - Candidate external schema received: `false`
 - Candidate known local non-external artifact: `true`
+- External provenance accepted: `false`
+- External provenance status: `external_schema_provenance_required`
 - Candidate status: `partial_local_source_data_candidate_not_external_proof_grade`
 
 ## Intake Predicate
@@ -30,6 +32,22 @@ Status: `external_input_required`
 Current count: 5 / 8 required fields present.
 First missing field: `rule_kernel_obligation_binding`.
 
+
+## External Provenance Predicate
+
+| Provenance field | Current reading | Verdict |
+| --- | --- | --- |
+| `external_schema_provenance.provenance_class` | `local_proof_program_source_data_partial` | `external provenance required` |
+| `external_schema_provenance.source_ref` | `local-source-data-partial:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305` | `present` |
+| `external_schema_provenance.acceptance_contract_ref` | `reference/priorities/proof-programs/breather-proof/certificate/external_proof_grade_derivation_schema_acceptance_contract.md` | `present` |
+| `external_schema_provenance.received_for_schema_validation` | `false` | `external provenance required` |
+| `external_schema_provenance.authored_inside_local_proof_program_pool` | `true` | `external provenance required` |
+| `external_schema_provenance.derived_from_local_certificate_json` | `true` | `external provenance required` |
+| `external_schema_provenance.self_authored_placeholder` | `false` | `present` |
+| `external_schema_provenance.local_path_treated_as_external_evidence` | `false` | `external provenance required` |
+
+External provenance accepted: `false`.
+First failed provenance field: `external_schema_provenance.provenance_class`.
 
 ## Authorization Locks
 
