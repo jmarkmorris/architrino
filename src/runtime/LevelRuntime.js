@@ -195,6 +195,29 @@ export function createLevelRuntime(deps) {
     });
   }
 
+  function setLevelCenterContextOpacity(level, meshOpacity, labelOpacity = meshOpacity) {
+    const centerContextSphere = level?.centerContextSphere;
+    if (!centerContextSphere) {
+      return;
+    }
+    if (Number.isFinite(meshOpacity) && centerContextSphere.mesh?.material) {
+      centerContextSphere.mesh.material.opacity =
+        centerContextSphere.baseOpacity.mesh * meshOpacity;
+    }
+    if (Number.isFinite(meshOpacity) && centerContextSphere.outline?.material) {
+      centerContextSphere.outline.material.opacity =
+        centerContextSphere.baseOpacity.outline * meshOpacity;
+    }
+    if (Number.isFinite(meshOpacity) && centerContextSphere.ring?.material) {
+      centerContextSphere.ring.material.opacity =
+        centerContextSphere.baseOpacity.ring * meshOpacity;
+    }
+    if (Number.isFinite(labelOpacity) && centerContextSphere.labelObject?.element) {
+      centerContextSphere.labelObject.element.style.opacity =
+        String(centerContextSphere.baseOpacity.label * labelOpacity);
+    }
+  }
+
   function setLevelOpacity(level, opacity) {
     level.nodes.forEach((node) => {
       node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
@@ -204,6 +227,7 @@ export function createLevelRuntime(deps) {
       setNodeExtraOpacity(node, opacity);
     });
     setLevelShellGuideOpacity(level, opacity);
+    setLevelCenterContextOpacity(level, opacity);
   }
 
   function setLevelOpacityWithLabel(level, meshOpacity, labelOpacity) {
@@ -215,12 +239,14 @@ export function createLevelRuntime(deps) {
       setNodeExtraOpacity(node, meshOpacity);
     });
     setLevelShellGuideOpacity(level, meshOpacity);
+    setLevelCenterContextOpacity(level, meshOpacity, labelOpacity);
   }
 
   function setLevelLabelOpacity(level, labelOpacity) {
     level.nodes.forEach((node) => {
       setNodeLabelOpacity(node, labelOpacity);
     });
+    setLevelCenterContextOpacity(level, NaN, labelOpacity);
   }
 
   function setLevelOpacityWithFocus(
@@ -242,6 +268,41 @@ export function createLevelRuntime(deps) {
       setNodeExtraOpacity(node, opacity);
     });
     setLevelShellGuideOpacity(level, shellGuideOpacity);
+    setLevelCenterContextOpacity(level, otherOpacity);
+  }
+
+  function setLevelHoverFocus(level, focusId) {
+    if (!level) {
+      return;
+    }
+    if (!focusId) {
+      setLevelOpacity(level, 1);
+      return;
+    }
+
+    const siblingOpacity = 0.66;
+    level.nodes.forEach((node) => {
+      const isFocusNode = node.data.id === focusId || node.data.name === focusId;
+      if (isFocusNode) {
+        node.mesh.material.opacity = node.baseOpacity.mesh;
+        node.outline.material.opacity = Math.min(
+          1,
+          Math.max(node.baseOpacity.outline * 2.35, 0.78)
+        );
+        setNodeLabelOpacity(node, 1);
+        node.haloIntensity = 1.35;
+        setNodeExtraOpacity(node, 1.15);
+        return;
+      }
+
+      node.mesh.material.opacity = node.baseOpacity.mesh * siblingOpacity;
+      node.outline.material.opacity = node.baseOpacity.outline * siblingOpacity;
+      setNodeLabelOpacity(node, siblingOpacity);
+      node.haloIntensity = siblingOpacity;
+      setNodeExtraOpacity(node, siblingOpacity);
+    });
+    setLevelShellGuideOpacity(level, siblingOpacity);
+    setLevelCenterContextOpacity(level, siblingOpacity);
   }
 
   function setLevelOpacityWithFocusAndLabel(
@@ -264,6 +325,7 @@ export function createLevelRuntime(deps) {
       setNodeExtraOpacity(node, opacity);
     });
     setLevelShellGuideOpacity(level, shellGuideOpacity);
+    setLevelCenterContextOpacity(level, otherOpacity, otherOpacity * labelOpacity);
   }
 
   function updateLevelHalo(level, timeSeconds) {
@@ -328,6 +390,7 @@ export function createLevelRuntime(deps) {
     setLevelOpacityWithLabel,
     setLevelLabelOpacity,
     setLevelOpacityWithFocus,
+    setLevelHoverFocus,
     setLevelOpacityWithFocusAndLabel,
     updateLevelHalo,
     updateBinaryRingPulse,

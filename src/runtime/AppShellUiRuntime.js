@@ -22,6 +22,12 @@ export function createAppShellUiRuntime(deps) {
     canvas.addEventListener("pointercancel", interactionRuntime.onPointerUp);
     canvas.addEventListener("pointerleave", () => {
       hideHoverTooltip();
+      interactionRuntime.onPointerLeave?.();
+    });
+    windowRef.addEventListener("pointermove", (event) => {
+      if (event.target !== canvas) {
+        interactionRuntime.onPointerLeave?.();
+      }
     });
     canvas.addEventListener("wheel", interactionRuntime.onWheel, { passive: false });
 

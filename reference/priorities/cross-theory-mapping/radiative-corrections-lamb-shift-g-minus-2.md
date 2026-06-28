@@ -43,6 +43,10 @@ w_L\mathcal R_{\mathrm{Lamb}}
 $$
 The weights select the active benchmark family; they are not fit knobs. The value of the bundle is same-record discipline: a calculation may use QED loop language as an observer-level comparison, but it must not switch Noether sea state, boundary response, photon ledger, or pair provenance separately for each correction.
 
+## Precision Benchmark Boundary
+
+QED precision is a hard recovery constraint, not an ontology proof. Agreement among precision observables and independent extractions of $\alpha$ constrains the observer-level electromagnetic record and the effective gauge bookkeeping that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover. It does not remove the implementation burden: the same benchmark packet must still show how causal-wake regularization, Noether sea response, photon ledgers, spin response, material boundaries, and detector records produce the finite correction being compared.
+
 ## Task Queue
 
 1. `regularization_dictionary` — Map QED regularization objects to causal-wake mollification and finite ledger observables. Status: `draft`.

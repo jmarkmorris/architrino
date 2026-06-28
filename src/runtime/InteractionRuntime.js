@@ -152,5 +152,11 @@ export function createInteractionRuntime(deps) {
     deps.setLastZoomGestureTime(deps.now());
   }
 
-  return { onPointerDown, onPointerMove, onPointerUp, onWheel };
+  function onPointerLeave() {
+    if (typeof deps.clearHoverState === "function") {
+      deps.clearHoverState();
+    }
+  }
+
+  return { onPointerDown, onPointerMove, onPointerUp, onPointerLeave, onWheel };
 }

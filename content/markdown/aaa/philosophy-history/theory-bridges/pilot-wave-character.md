@@ -94,6 +94,8 @@ dBB theory has **two ontological categories**:
 
 The ontological status of $\psi$ is debated: is it a physical field (Valentini), a law of nature (Dürr, Goldstein, Zanghì), or an effective description of deeper structure? This two-category structure is the principal conceptual cost of the theory.
 
+The comparison boundary is therefore precise. De Broglie--Bohm theory is useful because it keeps deterministic trajectories, a transported measure, and measurement back-action on the table. It is not a finished $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism because its guiding wave lives on configuration space and its quantum potential is not implemented by causal-root, apparatus, and Noether sea records. The native replacement must recover the helpful trajectory and measure structure while replacing the configuration-space ontology with physical assemblies, causal wakes, pair provenance, and apparatus records.
+
 ---
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$: Single-Ontology Guidance

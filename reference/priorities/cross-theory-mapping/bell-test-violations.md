@@ -16,6 +16,7 @@ Bell is a hard replacement constraint, not an ontology shortcut. The corpus alre
 4. `no_signaling_gate` — Prove that local marginals do not transmit controllable signals by deriving local-setting relabeling invariance of the joint basin measure, rather than adding no-signaling as a post-fit cancellation. Status: `draft`.
 5. `ordering_invariance_gate` — Prove that observer-level spacelike-separated joint tables do not depend on whether the substrate order is $A\prec_tB$ or $B\prec_tA$ in absolute time, while also reporting the $c_f$ causal-wake reach margins for the two record-closure windows. Status: `draft`.
 6. `preferred_frame_handoff` — Show that the same observer export used for Bell records keeps clock, signal-timing, analyzer-calibration, coincidence-window, and ordering preferred-frame leakage below Lorentz-test bounds. Status: `draft`.
+7. `measurement_independence_audit` — Demonstrate that the source-pair provenance record excludes later detector settings and that any residual setting-source dependence is reported as leakage, not used as a generic superdeterministic escape route. Status: `draft`.
 
 ## Closure Objects
 
@@ -28,7 +29,25 @@ Bell is a hard replacement constraint, not an ontology shortcut. The corpus alre
 - Wake-reach margins $\Delta_{\mathrm{reach}}^{A\to B}$ and $\Delta_{\mathrm{reach}}^{B\to A}$ for the $c_f$ causal-wake relation during the measurement windows.
 - Correlation target $E(\alpha,\beta)$ and CHSH statistic $S$.
 - No-signaling marginal tests.
+- Measurement-independence residual $\Delta_{\mathrm{MI}}$ tying source-pair provenance to detector-setting exclusion.
 - Preferred-frame leakage residual inherited from the Lorentz / PPN observer-export channel.
+
+## Pair-Provenance And Superdeterminism Guardrail
+
+The shared source event can carry conserved-quantity provenance, angular-momentum balance, phase/path-history rows, and daughter-pair construction data. That common-source record is necessary bookkeeping, but by itself it does not solve Bell: if the completed two-wing law reduces to independent local response kernels over a setting-independent source measure, the CHSH bound returns.
+
+The corresponding measurement-independence residual should be explicit:
+$$
+\Delta_{\mathrm{MI}}
+=
+\sup_{\alpha,\beta,\Pi}
+\left|
+P_{\mathrm{src}}(\Pi\mid\alpha,\beta)
+-
+P_{\mathrm{src}}(\Pi)
+\right|.
+$$
+A candidate packet may be deterministic and absolute-time without using superdeterminism as doctrine. If a nonzero $\Delta_{\mathrm{MI}}$ is required to fit the correlation table, the packet has left the stated $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route and must be reclassified as measurement-independence failure rather than recorded as Bell closure.
 
 ## Ordering-Invariance And Wake-Reach Sign Condition
 
@@ -80,6 +99,7 @@ If both margins are negative, the record windows are mutually outside $c_f$ caus
 - `bell.classical_axis`: the model reduces to classical-axis linear correlations.
 - `bell.signal_transfer`: correlations require controllable superluminal signal transfer.
 - `bell.measurement_independence_blur`: source, settings, and detector records are conflated without a precise assumption map.
+- `bell.superdeterminism_escape`: setting-source dependence is used to fit correlations without a declared leakage mechanism, no-conspiracy residual, and observer-level falsifier.
 - `bell.no_pair_ledger`: singlet or polarization correlations are asserted without source-pair provenance.
 - `bell.ordering_leakage`: joint tables depend on which wing is first in absolute time for observer-level spacelike-separated records.
 - `bell.wake_reach_leakage`: a photon-spacelike but wake-timelike record-window pair exposes absolute-frame order through timing statistics, analyzer response, coincidence windows, or correlation residuals.

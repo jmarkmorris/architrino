@@ -20,6 +20,7 @@
 7. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether sea coarse-graining boundaries. Status: `tolerance-rule-scaffolded`. Depends on: `confinement_energetics`, `nuclear_potential_derivation`.
 8. `supersymmetry_internal_partner_comparison` — Treat supersymmetry-like organization as a comparison framework for internal branch degrees of freedom and null-result pressure, not as a prediction of external low-energy superpartner particles. Status: `pending`. Depends on: gauge-running residuals, LHC null-result bounds, and branch-record algebra.
 9. `lattice_qcd_direct_assembly_comparison` — Compare lattice-QCD benchmark observables against a future finite-assembly nucleon simulation without claiming lattice QCD is obsolete before masses, form factors, and scattering rows are recovered. Status: `pending`. Depends on: `confinement_energetics`, `nuclear_potential_derivation`, and simulations `direct_nucleon_assembly_monte_carlo`.
+10. `e8_redundancy_heuristic_audit` — Treat $248=256-8$ only as a speculative quotient/redundancy clue for algebra mapping, not as evidence that E8 is native ontology. Status: `pending`. Depends on: accepted branch-state records and gauge-record rows.
 
 ## Scope
 
@@ -28,6 +29,24 @@ This workstream owns the remaining Standard Model-facing closure tasks that are 
 The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in place. The remaining leverage is mass prediction, explicit overlap-integral flavor mixing, confinement energetics, weak-sector exposure/gauge closure, and nuclear coarse-graining. Weak `V-A` chirality and weak-reaction provenance are preserved as subgates of `weak_sector_gauge_closure`, not as separate top-level queue items.
 
 The hydrogen boundary question is now a staged standard-model-to-atomic bridge. Its value is not another validation gate; it is the first clean local map between four charged fermion assemblies, the proton's color-singlet closure, the electron resonance envelope, and the ambient Noether sea coarse-graining used as local spacetime.
+
+## E8 Redundancy Heuristic Boundary
+
+E8 remains a comparison framework, not a native ontology. The only retained legacy-source signal is the speculative arithmetic clue that a $256$-state branch-pair or sign/velocity inventory might lose eight rows under a reversal, gauge, or branch-record equivalence, leaving a $248$-dimensional comparison surface. That clue is priority-only until a declared $\mathbb{A}\mathbb{A}\mathbb{A}$ branch-state space supplies the $256$ rows, the eight-row quotient, and at least one accepted Standard Model gauge-record recovery.
+
+The first audit object is
+$$
+\mathcal{Q}_{248/256}
+=
+\left(
+\mathcal{S}_{256},
+\mathcal{E}_8,
+\pi_{\mathrm{quot}},
+\mathcal{G}_{\mathrm{SM}},
+\mathcal{R}_{\mathrm{fit}}
+\right),
+$$
+where $\mathcal{S}_{256}$ is the candidate branch-state inventory, $\mathcal{E}_8$ is the eight-row equivalence or redundancy, $\pi_{\mathrm{quot}}$ is the quotient map, $\mathcal{G}_{\mathrm{SM}}$ is the Standard Model gauge-record comparison, and $\mathcal{R}_{\mathrm{fit}}$ reports whether any accepted row is recovered. Failure is the default if the number match does not produce a physical branch record.
 
 ## Supersymmetry Comparison Boundary
 

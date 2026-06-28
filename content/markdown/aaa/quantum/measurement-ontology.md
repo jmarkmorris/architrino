@@ -689,6 +689,8 @@ B_k^{O,\mathcal{K}_A}
 $$
 This condition keeps the Bricmont-Goldstein/Bohmian warning in native form: a channel may reveal a position-like record, but spin-, momentum-, phase-, and energy-like labels are often apparatus-defined outcomes of an interaction. They need not be primitive properties carried unchanged into the apparatus. The deterministic substrate may still contain velocities, angular-momentum ledgers, phases, and causal-wake histories; the measurement claim is narrower, namely that the chosen apparatus kernel maps the coupled flow into a persistent record with the advertised observer-level statistics.
 
+For composite assemblies, position-like and energy-like records are projections of a retained internal ledger, not primitive one-body properties. A detector may report a response center, arrival cell, ionization energy, calorimeter deposit, or spectral transition, but the substrate variables are constituent positions, velocities, shielded internal causal history, exposed coupling rows, recoil, and Noether sea response. The apparatus kernel must state which projection it reports and what internal rows are left unmeasured.
+
 ### Position-like measurements
 
 The apparatus couples to spatial localization or arrival geometry. The record is a site-selective apparatus response such as a screen hit or detector cell trigger.

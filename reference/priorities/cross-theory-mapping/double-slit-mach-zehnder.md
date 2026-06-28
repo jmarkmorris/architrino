@@ -21,6 +21,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ should map interference into assembly and wake 
 1. `phase_history_functional` — Define a path-history phase or action functional from causal-wake records. Status: `draft`.
 2. `which_path_disturbance` — Model detector coupling as a material/assembly ledger update that changes the basin partition. Status: `draft`.
 3. `interference_measure` — Recover $|\psi_1+\psi_2|^2$ as an effective basin-measure result. Status: `draft`.
+4. `quantum_potential_comparison` — Recover Bohmian quantum-potential trajectory patterns as an effective output of the same causal-wake, apparatus, and Noether sea record, without treating $Q$ as primitive. Status: `draft`.
 
 ## Closure Objects
 
@@ -28,6 +29,22 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ should map interference into assembly and wake 
 - Effective phase difference $\Delta\phi$ derived from action or wake history.
 - Detector response kernel $K_i(\Gamma,\mathcal{H},\zeta)$.
 - Basin partition $\{B_x\}$ with measure $\mu_*(B_x)$.
+- Bohmian comparison potential $Q_{\mathrm{dBB}}$ treated only as an observer-level trajectory-shaping target.
+
+## Quantum-Potential Comparison Residual
+
+For a declared two-path apparatus record $\theta$, compare the Bohmian trajectory field and the native wake-response trajectory field only after the same path-history, apparatus, Noether sea, and record variables are fixed. A useful priority-only residual is
+$$
+\mathcal{R}_{Q\text{-}\mathrm{wake}}(\theta)
+=
+\left(
+\Delta \mathbf{v}_{\mathrm{traj}},
+\Delta \rho_x,
+\Delta_{\mathrm{which}},
+\Delta_{\mathrm{rec}}
+\right),
+$$
+where the rows compare trajectory flow, screen-density output, which-path disturbance, and record eligibility. The residual fails if matching $Q_{\mathrm{dBB}}$ requires a separate configuration-space field or a detector ensemble different from the one used for the interference record.
 
 ## Promotion Map
 

@@ -645,7 +645,7 @@ export class SceneRepository {
         node.docDrillDownPreferred = isEligible;
         node.glowRing = isEligible;
         if (isEligible) {
-          node.glowRingColor = node.glowRingColor ?? "#aeb6c6";
+          node.glowRingColor = node.glowRingColor ?? "#d8c6ff";
           node.glowRingOpacity = node.glowRingOpacity ?? 0.3;
           node.glowRingThickness =
             node.glowRingThickness ?? Math.max(0.028, node.radius * 0.06);

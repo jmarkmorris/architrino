@@ -122,18 +122,18 @@
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/07/04/mapping-to-supersymmetry/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/07/01/does-npqg-inform-string-theory/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/08/05/lattice-qcd/
-https://architrino.wordpress.com/2019/06/15/interpreting-quantum-mechanics-neoclassically/
-https://architrino.wordpress.com/2021/07/11/mass-denial-in-the-physics-community/
-https://architrino.wordpress.com/2022/02/23/quantum-lissajou-scars/
-https://architrino.wordpress.com/2020/01/05/bohmian-mechanics-and-npqg-ii/
-https://architrino.wordpress.com/2020/07/08/bohmian-mechanics-and-npqg-iii/
-https://architrino.wordpress.com/2022/09/28/paul-sutter-quantum-mechanics/
-https://architrino.wordpress.com/2022/11/04/physics-nobel-2022/
-https://architrino.wordpress.com/2022/03/10/e8-is-a-red-herring/
-https://architrino.wordpress.com/2022/09/24/quantum-theory/
-https://architrino.wordpress.com/2020/07/20/epr-1-spooky-action-0/
-https://architrino.wordpress.com/2024/07/05/how-nature-and-the-universe-operate/
-https://architrino.wordpress.com/2022/08/14/cosmology/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/15/interpreting-quantum-mechanics-neoclassically/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/07/11/mass-denial-in-the-physics-community/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/02/23/quantum-lissajou-scars/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/01/05/bohmian-mechanics-and-npqg-ii/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/07/08/bohmian-mechanics-and-npqg-iii/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/09/28/paul-sutter-quantum-mechanics/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/11/04/physics-nobel-2022/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/10/e8-is-a-red-herring/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/09/24/quantum-theory/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/07/20/epr-1-spooky-action-0/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/07/05/how-nature-and-the-universe-operate/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/08/14/cosmology/
 https://architrino.wordpress.com/2021/11/25/helge-kragh-steady-state-cosmological-models/
 https://architrino.wordpress.com/2020/08/28/dr-becky-big-bang-vs-steady-state/
 https://architrino.wordpress.com/2024/03/18/the-apparent-darkness-of-cosmology/

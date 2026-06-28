@@ -6,6 +6,10 @@ import {
   resolveSharedLabelTypography,
   resolveWrappedLabelFit,
 } from "../src/runtime/SceneLabelSizingRuntime.js";
+import {
+  formatCenterContextCount,
+  resolveCenterContextChapterLabel,
+} from "../src/runtime/SceneCenterContextRuntime.js";
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
@@ -115,4 +119,21 @@ test("ordinary wrapped scene labels can still use the larger visual cap", () => 
   });
 
   assert.ok(fit.titleSize > 15.5);
+});
+
+test("center context chapter label collapses child chapter markers to the parent", () => {
+  const nodes = philosophyHistoryLabels.map((data) => ({ data }));
+
+  assert.equal(resolveCenterContextChapterLabel(nodes), "Ch 11");
+});
+
+test("center context chapter label omits mixed top-level chapter markers", () => {
+  const nodes = homeSceneLabels.map((data) => ({ data }));
+
+  assert.equal(resolveCenterContextChapterLabel(nodes), "");
+});
+
+test("center context count uses section wording", () => {
+  assert.equal(formatCenterContextCount(1), "1 section");
+  assert.equal(formatCenterContextCount(13), "13 sections");
 });

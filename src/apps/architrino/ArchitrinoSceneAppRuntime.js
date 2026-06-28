@@ -73,9 +73,12 @@ import {
   computeCenteredSceneFitZoom,
 } from "../../runtime/SceneViewportFitRuntime.js";
 import {
+  estimateLabelLineCount,
+  resolveLabelTitleWeight,
   resolveSharedLabelTypography,
   resolveWrappedLabelFit,
 } from "../../runtime/SceneLabelSizingRuntime.js";
+import { resolveCenterContextDescriptor } from "../../runtime/SceneCenterContextRuntime.js";
 import { createSceneGraphRuntime } from "../../runtime/SceneGraphRuntime.js";
 import {
   RING_LAYOUT_DEFAULTS as ringLayoutDefaults,
@@ -428,7 +431,14 @@ function measureSceneLabelTextWidth({ text, fontSize, fontWeight }) {
 }
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color("#0b0e1a");
+scene.background = new THREE.Color("#24113d");
+scene.add(new THREE.HemisphereLight(0xdce7ff, 0x070a12, 1.45));
+const sphereKeyLight = new THREE.DirectionalLight(0xffffff, 0.62);
+sphereKeyLight.position.set(-4, 6, 9);
+scene.add(sphereKeyLight);
+const sphereFillLight = new THREE.DirectionalLight(0x9ab6ff, 0.22);
+sphereFillLight.position.set(6, -3, 5);
+scene.add(sphereFillLight);
 
 const camera = new THREE.OrthographicCamera();
 camera.position.set(0, 0, 30);
@@ -6305,6 +6315,7 @@ const sceneStateHashService = createSceneStateHashService({
   rootScenePath,
   getNavigationStack: () => navigationStack,
 });
+let pendingSceneHashHistoryMode = "replace";
 
 const standardRingMaxCount = 14;
 
@@ -6495,6 +6506,7 @@ const detailFieldOrder = [
 ];
 let activeDetailNodeId = null;
 let hoveredDetailNodeId = null;
+let hoveredSphereNodeId = null;
 let hoverTooltipVisible = false;
 const periodicCategoryColors = {
   "alkali metal": "#d24d57",
@@ -6514,7 +6526,44 @@ function formatSuperscripts(text) {
   return String(text).replace(/\^(-?\d+)/g, "<sup>$1</sup>");
 }
 
+function getSphereHoverNodeId(node) {
+  return node?.data?.id ?? node?.data?.name ?? null;
+}
+
+function setSphereHoverNode(node) {
+  const nextId = getSphereHoverNodeId(node);
+  if (nextId === hoveredSphereNodeId) {
+    return;
+  }
+  hoveredSphereNodeId = nextId;
+  setLevelHoverFocus(currentLevel, nextId);
+}
+
+function clearSphereHover() {
+  setSphereHoverNode(null);
+}
+
+function getPointerSphereNode(clientX, clientY) {
+  if (!currentLevel) {
+    return null;
+  }
+  const rect = canvas.getBoundingClientRect();
+  pointerNdc.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+  pointerNdc.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+  raycaster.setFromCamera(pointerNdc, camera);
+  const intersections = raycaster.intersectObjects(
+    currentLevel.nodes.map((node) => node.mesh),
+    false
+  );
+  if (!intersections.length) {
+    return null;
+  }
+  const hit = intersections[0].object;
+  return currentLevel.nodes.find((node) => node.mesh === hit) ?? null;
+}
+
 function closeDetailPanel() {
+  clearSphereHover();
   if (!detailPanel) {
     return;
   }
@@ -6936,6 +6985,13 @@ function areNavigationStacksEqual(a, b) {
   return true;
 }
 
+function areHistoryEntriesEqual(a, b) {
+  return (
+    a?.levelId === b?.levelId &&
+    areNavigationStacksEqual(a?.navigationStack ?? [], b?.navigationStack ?? [])
+  );
+}
+
 function pushBrowserHistoryEntry(stack, entry) {
   if (!Array.isArray(stack) || !entry?.levelId) {
     return;
@@ -6955,15 +7011,77 @@ function pushBrowserHistoryEntry(stack, entry) {
   stack.push(normalizedEntry);
 }
 
+function requestSceneHashHistoryPush() {
+  pendingSceneHashHistoryMode = "push";
+}
+
+function takeSceneHashHistoryMode() {
+  const mode = pendingSceneHashHistoryMode;
+  pendingSceneHashHistoryMode = "replace";
+  return mode;
+}
+
 function recordBrowserBackHistory(options = {}) {
   if (options.historyTraversal) {
-    return;
+    return false;
   }
   const entry = captureCurrentHistoryEntry();
   if (!entry) {
-    return;
+    return false;
   }
   pushBrowserHistoryEntry(browserBackStack, entry);
+  browserForwardStack.length = 0;
+  requestSceneHashHistoryPush();
+  return true;
+}
+
+function createHistoryEntryFromSceneState(sceneState) {
+  const levelId = sceneState?.scenePath || rootScenePath;
+  const navigationStack = cloneNavigationStackEntries(sceneState?.navigationStack);
+  if (
+    navigationStack.length === 0 &&
+    sceneState?.parentLevelId &&
+    sceneState?.parentFocusNodeId
+  ) {
+    navigationStack.push({
+      levelId: sceneState.parentLevelId,
+      focusNodeId: sceneState.parentFocusNodeId,
+    });
+  }
+  return {
+    levelId,
+    navigationStack,
+  };
+}
+
+function syncHistoryStacksForBrowserTraversal(targetEntry, direction) {
+  const currentEntry = captureCurrentHistoryEntry();
+  if (!targetEntry?.levelId || areHistoryEntriesEqual(currentEntry, targetEntry)) {
+    return;
+  }
+  if (direction === "back") {
+    pushBrowserHistoryEntry(browserForwardStack, currentEntry);
+    while (browserBackStack.length > 0) {
+      const poppedEntry = browserBackStack.pop();
+      if (areHistoryEntriesEqual(poppedEntry, targetEntry)) {
+        return;
+      }
+      pushBrowserHistoryEntry(browserForwardStack, poppedEntry);
+    }
+    return;
+  }
+  if (direction === "forward") {
+    pushBrowserHistoryEntry(browserBackStack, currentEntry);
+    while (browserForwardStack.length > 0) {
+      const poppedEntry = browserForwardStack.pop();
+      if (areHistoryEntriesEqual(poppedEntry, targetEntry)) {
+        return;
+      }
+      pushBrowserHistoryEntry(browserBackStack, poppedEntry);
+    }
+    return;
+  }
+  browserBackStack.length = 0;
   browserForwardStack.length = 0;
 }
 
@@ -7262,6 +7380,7 @@ function layoutRootLevel(level) {
   }
   const nodes = level.nodes;
   if (!nodes?.length) {
+    syncLevelCenterContext(level);
     return;
   }
   const layoutMode = getEffectiveLayoutMode(level);
@@ -7296,6 +7415,7 @@ function layoutRootLevel(level) {
       node.group.position.set(0, 0, node.group.position.z);
       node.basePosition = node.group.position.clone();
     });
+    syncLevelCenterContext(level);
     return;
   }
 
@@ -7332,6 +7452,7 @@ function layoutRootLevel(level) {
       node.group.position.set(x, y, node.group.position.z);
       node.basePosition = node.group.position.clone();
     });
+    syncLevelCenterContext(level);
     return;
   }
 
@@ -7395,6 +7516,88 @@ function layoutRootLevel(level) {
       node.data.radius = node.data.baseRadius * scaleFactor;
     }
   });
+  syncLevelCenterContext(level);
+}
+
+function hasOccupiedCenterNode(level, center) {
+  if (!level?.nodes?.length) {
+    return false;
+  }
+  return level.nodes.some((node) => {
+    const distance = node.group.position.distanceTo(center);
+    const radius = Math.max(0.05, getNodeBoundsRadius(node) * 0.3);
+    return distance <= radius;
+  });
+}
+
+function shouldShowCenterContext(level, center) {
+  if (!level?.nodes?.length) {
+    return false;
+  }
+  if (!isCenteredRingLevel(level)) {
+    return false;
+  }
+  if (level.ringLayout?.centerMode === "node") {
+    return false;
+  }
+  return !hasOccupiedCenterNode(level, center);
+}
+
+function resolveCenterContextRadius(level, center) {
+  const nodeRadii = level.nodes
+    .map((node) => Math.max(0, Number(node?.data?.radius) || 0))
+    .filter((radius) => radius > 0);
+  if (!nodeRadii.length) {
+    return 0;
+  }
+  const averageRadius = nodeRadii.reduce((sum, radius) => sum + radius, 0) / nodeRadii.length;
+  const targetRadius = averageRadius;
+  const nearestClearance = level.nodes.reduce((nearest, node) => {
+    const distance = node.group.position.distanceTo(center);
+    return Math.min(nearest, distance - getNodeBoundsRadius(node));
+  }, Infinity);
+  const safeRadius = Number.isFinite(nearestClearance)
+    ? (nearestClearance - averageRadius * 0.08) / 1.1
+    : targetRadius;
+  const radius = Math.min(targetRadius, safeRadius);
+  return radius >= averageRadius * 0.8 ? radius : 0;
+}
+
+function removeCenterContext(level) {
+  if (!level?.centerContextSphere) {
+    return;
+  }
+  level.group.remove(level.centerContextSphere.group);
+  nodeFactory.disposeCenterContextSphere(level.centerContextSphere);
+  level.centerContextSphere = null;
+}
+
+function syncLevelCenterContext(level) {
+  if (!level) {
+    return;
+  }
+  const center = getLevelFrameCenter(level);
+  if (!shouldShowCenterContext(level, center)) {
+    removeCenterContext(level);
+    return;
+  }
+  const radius = resolveCenterContextRadius(level, center);
+  const descriptor = resolveCenterContextDescriptor(level);
+  if (!descriptor || radius <= 0) {
+    removeCenterContext(level);
+    return;
+  }
+  const contextData = {
+    ...descriptor,
+    radius,
+  };
+  if (!level.centerContextSphere) {
+    level.centerContextSphere = nodeFactory.createCenterContextSphere(contextData);
+    level.group.add(level.centerContextSphere.group);
+  } else {
+    nodeFactory.updateCenterContextSphere(level.centerContextSphere, contextData);
+  }
+  level.centerContextSphere.group.position.copy(center);
 }
 
 function getLevelBoundsLocal(level) {
@@ -7722,6 +7925,7 @@ function updateLevelLabelWrap(level) {
   });
 
   if (!labelFits.length) {
+    updateCenterContextLabelWrap(level);
     return;
   }
 
@@ -7750,6 +7954,60 @@ function updateLevelLabelWrap(level) {
       labelStyle.setProperty("--label-badge-size", `${typography.badgeSize.toFixed(2)}px`);
     }
   });
+  updateCenterContextLabelWrap(level);
+}
+
+function updateCenterContextLabelWrap(level) {
+  const centerContextSphere = level?.centerContextSphere;
+  if (!centerContextSphere?.labelObject?.element) {
+    return;
+  }
+  const metrics = getNodeScreenMetrics(centerContextSphere);
+  const diameter = metrics.radiusPx * 2;
+  if (!Number.isFinite(diameter) || diameter <= 0) {
+    return;
+  }
+  const maxWidth = Math.max(48, Math.round(diameter * 0.78));
+  if (centerContextSphere.labelMaxWidth !== maxWidth) {
+    centerContextSphere.labelMaxWidth = maxWidth;
+    centerContextSphere.labelObject.element.style.maxWidth = `${maxWidth}px`;
+    centerContextSphere.labelObject.element.style.width = `${maxWidth}px`;
+  }
+
+  const title = centerContextSphere.data?.title ?? "";
+  let titleSize = clamp(diameter * 0.13, 10.5, 18);
+  let titleLineCount = 1;
+  for (let index = 0; index < 6; index += 1) {
+    titleLineCount = Math.max(
+      1,
+      estimateLabelLineCount(title, titleSize, maxWidth, {
+        fontWeight: resolveLabelTitleWeight(titleSize, titleLineCount),
+        measureTextWidth: measureSceneLabelTextWidth,
+      })
+    );
+    const lineHeight = titleSize <= 12.5 ? 1.15 : 1.12;
+    const metaLineCount = centerContextSphere.data?.chapterLabel ? 1 : 0;
+    const countLineCount = centerContextSphere.data?.countLabel ? 1 : 0;
+    const totalHeight =
+      titleLineCount * titleSize * lineHeight +
+      metaLineCount * titleSize * 0.76 +
+      countLineCount * titleSize * 0.68 +
+      (metaLineCount + countLineCount) * 2;
+    const budget = diameter * 0.64;
+    if (totalHeight <= budget) {
+      break;
+    }
+    titleSize = clamp(titleSize * (budget / totalHeight), 8.5, titleSize);
+  }
+  const titleWeight = resolveLabelTitleWeight(titleSize, titleLineCount);
+  const lineHeight = titleSize <= 12.5 ? 1.15 : 1.12;
+  const style = centerContextSphere.labelObject.element.style;
+  style.setProperty("--label-title-size", `${titleSize.toFixed(2)}px`);
+  style.setProperty("--label-title-weight", `${titleWeight}`);
+  style.setProperty("--label-title-line-height", lineHeight.toFixed(2));
+  style.setProperty("--label-title-letter-spacing", "0em");
+  style.setProperty("--label-center-meta-size", `${clamp(titleSize * 0.72, 8, 12.5).toFixed(2)}px`);
+  style.setProperty("--label-center-count-size", `${clamp(titleSize * 0.64, 7.5, 11.5).toFixed(2)}px`);
 }
 
 function updateGlowRingOrientation(level) {
@@ -7782,6 +8040,10 @@ function setLevelOpacityWithFocus(
     otherOpacity,
     shellGuideOpacity
   );
+}
+
+function setLevelHoverFocus(level, focusId) {
+  levelRuntime.setLevelHoverFocus(level, focusId);
 }
 
 function setLevelOpacityWithFocusAndLabel(
@@ -8338,7 +8600,9 @@ const elementNavigationRuntime = createElementNavigationRuntime({
 });
 
 function updateSceneLabel() {
-  sceneStateHashService.syncSceneHash(currentLevel?.id ?? null);
+  sceneStateHashService.syncSceneHash(currentLevel?.id ?? null, {
+    historyMode: takeSceneHashHistoryMode(),
+  });
   appSceneChromeRuntime.updateSceneLabel(currentLevel);
   appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
     textbookTocScenePath,
@@ -8355,6 +8619,53 @@ function updateSceneLabel() {
   periodicOverlayRuntime.updateElementLegend();
   periodicOverlayRuntime.updateElementInfoPanel();
   updateElementNavigationUi();
+}
+
+function cancelActiveTransitionForBrowserHistoryTraversal() {
+  if (!transitionState.active) {
+    return;
+  }
+  transitionState.active = false;
+  transitionState.mode = null;
+  transitionState.fromLevel = null;
+  transitionState.toLevel = null;
+  transitionState.payload = null;
+  zoomState.active = false;
+  panTween.active = false;
+  pendingSceneHashHistoryMode = "replace";
+}
+
+async function restoreSceneFromBrowserHistory(event) {
+  const sceneState =
+    sceneStateHashService.getSceneStateFromHistoryState(event.state) ??
+    sceneStateHashService.getSceneStateFromHash();
+  const targetEntry = createHistoryEntryFromSceneState(sceneState);
+  if (!targetEntry?.levelId) {
+    return;
+  }
+  const targetHistoryIndex = sceneState?.historyIndex;
+  const currentHistoryIndex = sceneStateHashService.getCurrentHistoryIndex();
+  const direction =
+    Number.isSafeInteger(targetHistoryIndex) && targetHistoryIndex < currentHistoryIndex
+      ? "back"
+      : Number.isSafeInteger(targetHistoryIndex) && targetHistoryIndex > currentHistoryIndex
+        ? "forward"
+        : "unknown";
+
+  cancelActiveTransitionForBrowserHistoryTraversal();
+  syncHistoryStacksForBrowserTraversal(targetEntry, direction);
+  sceneStateHashService.setCurrentHistoryIndex(targetHistoryIndex);
+  pendingSceneHashHistoryMode = "replace";
+
+  if (targetEntry.levelId === rootScenePath) {
+    await resetToRootScene({ historyTraversal: true });
+    return;
+  }
+  await jumpToScene(targetEntry.levelId, {
+    mode: "jump",
+    restoreNavStack: targetEntry.navigationStack,
+    historyTraversal: true,
+  });
 }
 
 function openArchieRing() {
@@ -8468,6 +8779,7 @@ function focusOnPointer(clientX, clientY) {
         false
       );
       if (intersections.length) {
+        clearSphereHover();
         closeDetailPanel();
         hideHoverTooltip();
         generationBackStack.push({
@@ -8503,6 +8815,7 @@ function focusOnPointer(clientX, clientY) {
   if (!targetNode) {
     return false;
   }
+  clearSphereHover();
 
   const hasMarkdownTarget =
     typeof targetNode?.data?.markdownPath === "string" &&
@@ -8586,31 +8899,26 @@ function focusOnPointer(clientX, clientY) {
 
 function updateDetailHover(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
+    clearSphereHover();
     return;
   }
   if (!isPointerWithinInteractiveViewport(clientX, clientY)) {
+    clearSphereHover();
+    return;
+  }
+  const targetNode = getPointerSphereNode(clientX, clientY);
+  if (!targetNode) {
+    clearSphereHover();
+    return;
+  }
+  setSphereHoverNode(targetNode);
+  if (!targetNode.data?.details) {
     return;
   }
   if (!detailPanel) {
     return;
   }
-  const rect = canvas.getBoundingClientRect();
-  pointerNdc.x = ((clientX - rect.left) / rect.width) * 2 - 1;
-  pointerNdc.y = -((clientY - rect.top) / rect.height) * 2 + 1;
-  raycaster.setFromCamera(pointerNdc, camera);
-  const intersections = raycaster.intersectObjects(
-    currentLevel.nodes.map((node) => node.mesh),
-    false
-  );
-  if (!intersections.length) {
-    return;
-  }
-  const hit = intersections[0].object;
-  const targetNode = currentLevel.nodes.find((node) => node.mesh === hit);
-  if (!targetNode || !targetNode.data.details) {
-    return;
-  }
-  const nextId = targetNode.data.id ?? targetNode.data.name;
+  const nextId = getSphereHoverNodeId(targetNode);
   if (nextId && nextId === hoveredDetailNodeId) {
     return;
   }
@@ -8671,6 +8979,7 @@ const interactionRuntime = createInteractionRuntime({
   focusOnPointer,
   updateDetailHover,
   updateGenerationTransitionHover,
+  clearHoverState: clearSphereHover,
   onSuccessfulSphereClick: dismissZoomToastPermanently,
   isPointerWithinInteractiveViewport,
   setLastZoomGestureTime: (value) => {
@@ -8835,6 +9144,11 @@ async function init() {
 }
 
 if (typeof window !== "undefined") {
+  window.addEventListener("popstate", (event) => {
+    restoreSceneFromBrowserHistory(event).catch((error) => {
+      console.warn("[ArchitrinoSceneAppRuntime] Failed to restore browser history state", error);
+    });
+  });
   window.openArchieRing = openArchieRing;
 }
 
