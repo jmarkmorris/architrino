@@ -274,6 +274,5 @@ For image generation, start with:
 
 First rough visual prototypes:
 
-- [Future Work, Obviously](assets/future-work-obviously-prototype-v3-public-joke.png)
 - [Group Project Assumption](assets/group-project-assumption-prototype.png)
 - [Signals From Earlier](assets/signals-from-earlier-prototype-v2-present-inbox.png)
