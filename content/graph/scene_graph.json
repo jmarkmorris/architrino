@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 548,
-      "edges": 1301,
-      "scenes": 358,
+      "nodes": 550,
+      "edges": 1303,
+      "scenes": 359,
       "markdownIndexes": 0,
-      "markdownDocs": 177,
+      "markdownDocs": 178,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2297,6 +2297,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "outreach__comics__we_need_to_talk_remake",
+      "name": "We Need To Talk",
+      "path": "content/scenes/outreach/comics/we_need_to_talk_remake.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2744,6 +2750,12 @@
       "id": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
       "name": "Signals From Earlier",
       "path": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
+      "name": "We Need To Talk",
+      "path": "content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5386,6 +5398,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/outreach/comics/we_need_to_talk_remake.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__we_need_to_talk_remake",
+      "name": "We Need To Talk",
+      "path": "content/scenes/outreach/comics/we_need_to_talk_remake.json",
+      "searchTarget": "content/scenes/outreach/comics/we_need_to_talk_remake.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/outreach/outreach.json",
       "nodeType": "scene",
       "id": "outreach",
@@ -7255,6 +7276,15 @@
       "name": "Signals From Earlier",
       "path": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
       "searchTarget": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
+      "name": "We Need To Talk",
+      "path": "content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
       "implicit": false
     },
     {
@@ -11704,6 +11734,13 @@
       "field": "scene.children[0]"
     },
     {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/we_need_to_talk_remake.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[7]"
+    },
+    {
       "from": "scene:content/scenes/outreach/outreach.json",
       "to": "scene:content/scenes/cosmology/universe.json",
       "edgeType": "subscene",
@@ -13234,6 +13271,13 @@
       "to": "markdown_doc:content/markdown/aaa/outreach/comics/signals-from-earlier.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/outreach/comics/signals_from_earlier.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/we_need_to_talk_remake.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/we_need_to_talk_remake.json",
       "field": "scene.source.path"
     },
     {

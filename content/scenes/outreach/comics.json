@@ -40,6 +40,10 @@
       {
         "nodeId": "curvefit_remake",
         "scenePath": "content/scenes/outreach/comics/curvefit_remake.json"
+      },
+      {
+        "nodeId": "we_need_to_talk_remake",
+        "scenePath": "content/scenes/outreach/comics/we_need_to_talk_remake.json"
       }
     ]
   },
@@ -50,7 +54,7 @@
       "radius": 1.8,
       "color": "#2f6b6f",
       "labelTitle": "Signals From Earlier",
-      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/signals-from-earlier-present-inbox-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/signals-from-earlier-present-inbox-thumb.png",
       "labelBadgeAlt": "Signals From Earlier thumbnail"
     },
     {
@@ -59,7 +63,7 @@
       "radius": 1.8,
       "color": "#7a5a2f",
       "labelTitle": "Group Project Assumption",
-      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/group-project-assumption-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/group-project-assumption-thumb.png",
       "labelBadgeAlt": "Group Project Assumption thumbnail"
     },
     {
@@ -68,7 +72,7 @@
       "radius": 1.8,
       "color": "#7a4a1f",
       "labelTitle": "New Theory Same Budget",
-      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/new-theory-same-budget-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/new-theory-same-budget-thumb.png",
       "labelBadgeAlt": "New Theory Same Budget thumbnail"
     },
     {
@@ -77,7 +81,7 @@
       "radius": 1.8,
       "color": "#3a5f9f",
       "labelTitle": "Show The Residuals",
-      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/show-the-residuals-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/show-the-residuals-thumb.png",
       "labelBadgeAlt": "Show The Residuals thumbnail"
     },
     {
@@ -86,7 +90,7 @@
       "radius": 1.8,
       "color": "#5a1f2e",
       "labelTitle": "Office Hours For A Claim",
-      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/office-hours-for-a-claim-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/office-hours-for-a-claim-thumb.png",
       "labelBadgeAlt": "Office Hours For A Claim thumbnail"
     },
     {
@@ -95,7 +99,7 @@
       "radius": 1.8,
       "color": "#3c6a7a",
       "labelTitle": "First Page Problem",
-      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/first-page-problem-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/first-page-problem-thumb.png",
       "labelBadgeAlt": "First Page Problem thumbnail"
     },
     {
@@ -104,8 +108,17 @@
       "radius": 1.8,
       "color": "#6c4f8d",
       "labelTitle": "Four Theories, One Oval",
-      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/curvefit-remake-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/curvefit-remake-thumb.png",
       "labelBadgeAlt": "Four Theories, One Oval thumbnail"
+    },
+    {
+      "id": "we_need_to_talk_remake",
+      "title": "We Need To Talk",
+      "radius": 1.8,
+      "color": "#4f6f58",
+      "labelTitle": "We Need To Talk",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/we-need-to-talk-remake-thumb.png",
+      "labelBadgeAlt": "We Need To Talk thumbnail"
     }
   ]
 }

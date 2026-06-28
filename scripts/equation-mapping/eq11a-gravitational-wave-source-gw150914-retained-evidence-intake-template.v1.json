@@ -272,6 +272,54 @@
     "expectedSupportId": "H1L1_GWTC1_PE_v3",
     "expectedEventId": "GWTC-1-confident/GW150914/v3"
   },
+  "firstLocalArtifactBundleShape": {
+    "claimLevel": "score-neutral local artifact bundle shape; incomplete until every path exists in-repo and every family has a content hash",
+    "status": "template_only",
+    "mustNotBeCitedAsAcceptedEvidence": true,
+    "bundleId": "gw150914_local_artifact_bundle_v1",
+    "requiredTopLevelFields": [
+      "bundleId",
+      "sourceWindowId",
+      "supportId",
+      "eventId",
+      "artifacts",
+      "rowBindings",
+      "extractionManifest"
+    ],
+    "artifactFieldsPerFamily": [
+      "familyId",
+      "localPath",
+      "sha256",
+      "sourceUrlOrSourceReport",
+      "role",
+      "rowsSupported"
+    ],
+    "requiredArtifactFamilies": [
+      "gwosc_event_release_metadata",
+      "h1_l1_strain_products",
+      "parameter_estimation_posterior_or_release",
+      "waveform_or_phase_provenance",
+      "aaa_local_extraction_manifest"
+    ],
+    "rowBindingFieldsPerRow": [
+      "rowId",
+      "carrierId",
+      "sourceWindowId",
+      "supportId",
+      "eventId",
+      "sharedRecordId",
+      "sourceEvidence",
+      "artifactPaths",
+      "artifactHashes"
+    ],
+    "acceptanceGuard": "A future checker input may mark rows accepted-looking only after every required artifact family has a durable in-repo localPath, a sha256 hash, and row-specific sourceEvidence for the exact row.",
+    "failClosedIf": [
+      "any localPath is missing or points outside the repo",
+      "any required sha256 is missing",
+      "the bundle is cited directly as the sourcePath for an accepted row",
+      "rowBindings split carrierId, sourceWindowId, supportId, eventId, or sharedRecordId"
+    ]
+  },
   "failClosedControls": [
     "eq11a-gravitational-wave-source-retained-evidence-object-contract-negative-control.v1.json",
     "eq11a-gravitational-wave-source-artifact-hash-missing-negative-control.v1.json",

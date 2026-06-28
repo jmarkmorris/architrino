@@ -434,7 +434,8 @@ Prior-comic remake rough visual prototypes:
 
 - [Curvefit Remake](assets/curvefit-remake-prototype.png)
 - [Acknowledgements Remake](assets/acknowledgements-remake-prototype.png)
-- [We Need To Talk Remake](assets/we-need-to-talk-remake-prototype.png)
+- [Acknowledgements Remake v2, Word Limit](assets/acknowledgements-remake-prototype-v2-word-limit.png) - preferred ack candidate; replaces the Reviewer 2 thought bubble with `The word limit just left the room.`
+- [We Need To Talk Remake](assets/we-need-to-talk-remake-prototype.png) - selected keeper direction.
 - [Alchemy Remake](assets/alchemy-remake-prototype.png)
 - [Jets Remake](assets/jets-remake-prototype.png)
 - [SMBH Remake](assets/smbh-remake-prototype.png)

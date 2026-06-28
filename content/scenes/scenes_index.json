@@ -1789,6 +1789,11 @@
       "id": "outreach__comics__curvefit_remake",
       "name": "Four Theories, One Oval",
       "path": "content/scenes/outreach/comics/curvefit_remake.json"
+    },
+    {
+      "id": "outreach__comics__we_need_to_talk_remake",
+      "name": "We Need To Talk",
+      "path": "content/scenes/outreach/comics/we_need_to_talk_remake.json"
     }
   ]
 }

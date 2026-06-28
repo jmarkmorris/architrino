@@ -273,6 +273,16 @@ The next candidate packet must replace every boundary-only row with durable reta
 | Row-specific source evidence | Each row has `sourceEvidence.supportsEquationRows=["EQ-11A"]`, `supportsRows` containing that exact row id, and matching source-window, support, and event ids. | Generic or wrong-row support blocks at `source_contract_row_mismatch` or `source_contract_identity_mismatch`. |
 | Direct Geometry Layer binding | The packet maps chirp, quadrupole, Peters decay, strain flux, ringdown, provenance, and no-hidden-retune comparisons to one source-event ledger and tensor-channel geometry. | Numerically passing rows still remain score-neutral if the geometry is split across records or formula fits. |
 
+### First Local Artifact Bundle Shape
+
+The intake template now names the first local artifact bundle shape as `gw150914_local_artifact_bundle_v1`. This is still template-only, not retained evidence. A future accepted-looking packet must first materialize an in-repo bundle with these fields:
+
+| Bundle field | Required content | Fail-closed condition |
+| --- | --- | --- |
+| `artifacts` | One entry for each required artifact family: `gwosc_event_release_metadata`, `h1_l1_strain_products`, `parameter_estimation_posterior_or_release`, `waveform_or_phase_provenance`, and `aaa_local_extraction_manifest`. Each entry carries `localPath`, `sha256`, source URL or source report, role, and supported rows. | Missing path or hash keeps the checker at `source_artifact_hashes_missing`. |
+| `rowBindings` | One row-binding object per `EQ-11A` required row with `rowId`, `carrierId`, `sourceWindowId`, `supportId`, `eventId`, `sharedRecordId`, row-specific `sourceEvidence`, `artifactPaths`, and `artifactHashes`. | Split identity remains blocked by carrier binding or no-hidden-retune checks. |
+| `extractionManifest` | A durable local extraction manifest that records input artifact paths, input hashes, extracted fields, extracted-field hashes, and the script or process used to build the row fields. | A bundle cited directly as accepted evidence, without row-specific source evidence, remains a boundary object rather than a retained packet. |
+
 ### Row Artifact-Family Targets
 
 The intake template uses these artifact-family keys. A future accepted-looking row must carry both a local artifact path and a hash for each required family listed here.

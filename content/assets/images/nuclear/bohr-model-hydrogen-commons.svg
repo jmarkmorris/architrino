@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="900"
+   height="650"
+   id="svg2827"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="Bohr_model_Hydrogen_SVG.svg">
+  <defs
+     id="defs2829">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective2835" />
+    <inkscape:perspective
+       id="perspective2845"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="391.24794"
+     inkscape:cy="321.18808"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="765"
+     inkscape:window-height="778"
+     inkscape:window-x="207"
+     inkscape:window-y="10"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata2832">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-17.973423,10.249069)">
+    <text
+       xml:space="preserve"
+       style="font-size:26.57020569px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif"
+       x="66.697823"
+       y="541.82263"
+       id="text2851"
+       transform="scale(0.98408171,1.0161758)"><tspan
+         sodipodi:role="line"
+         id="tspan2853"
+         x="66.697823"
+         y="541.82263"
+         style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans Italic">This diagram shows a very basic atomic structure, with one proton and one </tspan><tspan
+         sodipodi:role="line"
+         x="66.697823"
+         y="571.82263"
+         style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans Italic"
+         id="tspan2857">electron. This should depict the basic structure of the Hydrogen atom (H).</tspan><tspan
+         sodipodi:role="line"
+         x="66.697823"
+         y="601.82263"
+         style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans Italic"
+         id="tspan2861">Hydrogen has an atomic weight of 1. </tspan></text>
+    <g
+       id="g3641"
+       transform="translate(103.03556,6.0609153)">
+      <path
+         transform="matrix(1.1309904,0,0,1.1309904,-59.95436,21.748997)"
+         d="m 588.57143,210.21933 c 0,123.47509 -100.09634,223.57143 -223.57143,223.57143 -123.47509,0 -223.57143,-100.09634 -223.57143,-223.57143 0,-123.475089 100.09634,-223.571427 223.57143,-223.571427 123.47509,0 223.57143,100.096338 223.57143,223.571427 z"
+         sodipodi:ry="223.57143"
+         sodipodi:rx="223.57143"
+         sodipodi:cy="210.21933"
+         sodipodi:cx="365"
+         id="path2863"
+         style="fill:none;stroke:#000000;stroke-width:0.88418078;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         d="m 384.28572,257.36218 c 0,10.65121 -8.63451,19.28572 -19.28572,19.28572 -10.65121,0 -19.28572,-8.63451 -19.28572,-19.28572 0,-10.6512 8.63451,-19.28571 19.28572,-19.28571 10.65121,0 19.28572,8.63451 19.28572,19.28571 z"
+         sodipodi:ry="19.285715"
+         sodipodi:rx="19.285715"
+         sodipodi:cy="257.36218"
+         sodipodi:cx="365"
+         id="path3637"
+         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(2.0203051,1.0101525)"
+         d="m 204.28571,56.647896 c 0,3.155913 -2.55837,5.714286 -5.71428,5.714286 -3.15592,0 -5.71429,-2.558373 -5.71429,-5.714286 0,-3.155913 2.55837,-5.714286 5.71429,-5.714286 3.15591,0 5.71428,2.558373 5.71428,5.714286 z"
+         sodipodi:ry="5.7142859"
+         sodipodi:rx="5.7142859"
+         sodipodi:cy="56.647896"
+         sodipodi:cx="198.57143"
+         id="path3639"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         sodipodi:type="arc" />
+    </g>
+  </g>
+</svg>
