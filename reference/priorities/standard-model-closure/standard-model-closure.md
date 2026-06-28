@@ -102,6 +102,20 @@ V_{\mathrm{wake}},
 $$
 The first comparison should ask whether the retained records produce stable hadron-like bound states, confinement-scale growth with separation, and gluon-comparison transition behavior before importing QCD language as ontology. Failure modes include a stable free-quark branch, color leakage outside a singlet ledger, and a fitted force law that does not arise from the retained wake-coupling rows.
 
+The octet check should be explicit. A candidate color-corridor run should start from the naive $3\times3$ axis-coupling space and show that the symmetric singlet is not an open long-range corridor while the eight traceless directions remain as active reconfiguration modes:
+$$
+\mathcal{O}_{8/9}
+=
+\left(
+\mathcal{C}_{3\times3},
+\Pi_{\mathrm{singlet}},
+\Pi_{\mathrm{octet}},
+\mathcal{R}_{\mathrm{open}},
+\mathcal{R}_{\mathrm{conf}}
+\right).
+$$
+Here $\mathcal{C}_{3\times3}$ is the candidate color-coupling inventory, $\Pi_{\mathrm{singlet}}$ and $\Pi_{\mathrm{octet}}$ are the singlet and octet projections, $\mathcal{R}_{\mathrm{open}}$ rejects an independent ninth open mode, and $\mathcal{R}_{\mathrm{conf}}$ checks that the same corridor record still supports confinement-scale behavior. This is a refinement of the existing quark vortex-coupling target, not a new top-level gate.
+
 ## Scalar-Boson Acceptance Target
 
 The Higgs discovery benchmark is a required Standard Model-facing recovery target, not evidence for primitive Higgs ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$. The acceptance target is a shared scalar residual combining ATLAS mass, inclusive signal strength, channel-rate compatibility, and excluded-scalar-window pressure. The benchmark fails if the native scalar mode is fit only by mass, if production and branching channels require independent tuning, or if extra scalar strength survives in search windows where ATLAS reports no accepted resonance.

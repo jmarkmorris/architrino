@@ -124,6 +124,20 @@ f_N,
 $$
 The useful pressure is comparative: ordinary components are sparse, while the Noether sea density must be inferred from packing, transparency, clock/ruler response, redshift transport, and effective-metric closure rather than from direct visible-particle counts.
 
+The ordinary-matter sparsity check should be developed as a scale estimate rather than as legacy point-volume arithmetic. A useful target is
+$$
+\mathcal{S}_{\mathrm{sparse}}
+=
+\left(
+f_{\mathrm{mat}},
+n_{\mathrm{bar}},
+\rho_{\text{NS}},
+\ell_{\mathrm{coh}},
+\mathcal{R}_{\mathrm{trans}}
+\right),
+$$
+where $f_{\mathrm{mat}}$ is an occupied-volume or packing proxy for ordinary matter, $n_{\mathrm{bar}}$ is the baryonic number-density comparison, $\rho_{\text{NS}}$ is the inferred Noether sea density, $\ell_{\mathrm{coh}}$ is the coherence or response length being tested, and $\mathcal{R}_{\mathrm{trans}}$ checks transparency, dispersion, and clock/ruler constraints. The expected lesson is not a fixed historical number. It is a same-record comparison between sparse visible inventories and the much denser carrier population required by effective metric, redshift, and propagation recovery.
+
 For dark-sector apparentness, the inventory should expose at least
 $$
 \mathcal{I}_{\mathrm{dark}}^\theta

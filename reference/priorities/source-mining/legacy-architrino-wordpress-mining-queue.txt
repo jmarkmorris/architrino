@@ -221,8 +221,8 @@
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/09/07/innovation-contest/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/07/15/t-3-2-1-npqg-liftoff/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/01/05/npqg-january-5-2021-lets-get-on-with-it/
-https://architrino.wordpress.com/2021/05/08/nanosheet-technology/
-https://architrino.wordpress.com/2022/03/22/sara-walker-life-lex-fridman/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/05/08/nanosheet-technology/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/22/sara-walker-life-lex-fridman/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/07/10/cd-career-rm-rf/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/14/dear-mit-physics-needs-a-compassionate-intervention/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/17/commenter-i-poor-mit/
@@ -233,24 +233,24 @@ https://architrino.wordpress.com/2022/03/22/sara-walker-life-lex-fridman/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/10/24/physicists-take-the-l/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/11/23/a-wish-for-senior-physicists/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/05/23/the-quandary-in-physics-and-cosmology/
-https://architrino.wordpress.com/2022/02/09/spoiler-alert-solving-nature/
-https://architrino.wordpress.com/2019/07/20/solving-the-unsolved-problems-in-physics/
-https://architrino.wordpress.com/2020/03/04/response-to-paul-diracs-1963-scientific-american-article/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/02/09/spoiler-alert-solving-nature/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/07/20/solving-the-unsolved-problems-in-physics/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/03/04/response-to-paul-diracs-1963-scientific-american-article/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/12/24/organization-of-academia/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2023/06/11/particle-colliders-are-primitive-technology/
-https://architrino.wordpress.com/2025/03/01/what-is-an-effective-theory-by-gpt-4-5/
-https://architrino.wordpress.com/2025/03/27/on-gr-and-qm-by-gemini-2-0-flash-ai/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2025/03/01/what-is-an-effective-theory-by-gpt-4-5/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2025/03/27/on-gr-and-qm-by-gemini-2-0-flash-ai/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2024/07/31/what-is-matter/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2024/06/01/life-begins-with-point-potentials/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2024/01/20/ontological-illusions-false-narratives-in-physics-obscure-the-architecture-of-nature/
-https://architrino.wordpress.com/2023/04/04/npqg-social-media-journey/
-https://architrino.wordpress.com/2023/03/14/maya-benowitz-on-the-origins-of-the-universe-and-the-nature-of-the-cosmological-singularity/
-https://architrino.wordpress.com/2023/01/06/barry-barish/
-https://architrino.wordpress.com/2023/01/03/mapping-gluons/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/04/04/npqg-social-media-journey/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/03/14/maya-benowitz-on-the-origins-of-the-universe-and-the-nature-of-the-cosmological-singularity/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/01/06/barry-barish/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/01/03/mapping-gluons/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/11/30/ontological-errors-may-have-occluded-a-neoclassical-solution-to-nature/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/11/28/long-live-philosophy/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/11/28/gr-and-qm-are-not-connected-to-nature/
-https://architrino.wordpress.com/2022/09/24/pbs-space-time-convo/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/09/24/pbs-space-time-convo/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/09/15/nature-fooled-physicists/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/09/10/comparing-models-of-nature/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/08/21/determinism/
@@ -258,18 +258,18 @@ https://architrino.wordpress.com/2022/09/24/pbs-space-time-convo/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/08/18/what-is-reality/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/07/17/michelson-morley-experiment/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/19/euclidean-time-and-space/
-https://architrino.wordpress.com/2022/04/16/physics-and-the-dragons-tail/
-https://architrino.wordpress.com/2022/04/16/nonsense-pop-woo-physics/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/04/16/physics-and-the-dragons-tail/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/04/16/nonsense-pop-woo-physics/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/08/jefimenko-lienard-wiechert/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/06/who-let-the-frames-out/
-https://architrino.wordpress.com/2022/03/20/big-picture-of-point-charge-theory/
-https://architrino.wordpress.com/2022/03/19/conversations-in-the-aether/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/20/big-picture-of-point-charge-theory/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/19/conversations-in-the-aether/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/30/dear-keepers-of-the-scientific-method/
-https://architrino.wordpress.com/2022/01/28/sometimes-i-laugh-sometimes-i-cry-sometimes-i-do-both/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/01/28/sometimes-i-laugh-sometimes-i-cry-sometimes-i-do-both/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/11/waxing-philosophical-on-nature/
-https://architrino.wordpress.com/2021/11/11/guardians-of-physics-are-an-embarassment/
-https://architrino.wordpress.com/2021/10/22/the-standard-model-of-particle-physics/
-https://architrino.wordpress.com/2021/09/29/numerology-or-insight/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/11/11/guardians-of-physics-are-an-embarassment/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/10/22/the-standard-model-of-particle-physics/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/09/29/numerology-or-insight/
 https://architrino.wordpress.com/2021/09/13/engaging-the-particle-physics-reddit/
 https://architrino.wordpress.com/2021/06/18/despondency-at-triton-station/
 https://architrino.wordpress.com/2021/06/02/bickering-with-a-guardian-of-physics/

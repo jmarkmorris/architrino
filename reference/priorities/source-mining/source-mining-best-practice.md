@@ -47,6 +47,7 @@ This guide is a source-intake and source-processing practice. It is not another 
 - Priority workstreams remain the staging area for unresolved source material, backlog rows, report packets, and follow-up prompts. A source-mining report is working memory and traceability, not reader-facing doctrine.
 - Existing validation, gate, certificate, residual, and ledger processes remain separate. Source mining may identify benchmark pressure or an existing recovery target, but it should not create new hurdle artifacts by default.
 - Authored corpus pages should receive only the safe current substance: definitions, equations, proof routes, worked examples, claim-level corrections, or source-backed bridge prose. They should not link back to priority-only source-mining process material.
+- Legacy "solved problem" lists require disposition before reuse. For each claimed solution, classify it as current canon, priority target, rejected legacy, duplicate, source lead, or historical process. Do not promote a legacy list simply because it enumerates many modern problems; preserve only the current-useful mechanism, benchmark pressure, proof route, or source lead that survives terminology and claim-level triage.
 
 ## Mining History
 

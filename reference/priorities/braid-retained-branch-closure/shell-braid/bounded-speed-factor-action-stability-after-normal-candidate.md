@@ -536,9 +536,34 @@ Current candidate-source boundary:
 | Frozen fixed-speed root ledger | certified only for rigid octahedral fixed-speed roots; `retained_branch=false` | provenance only |
 | Frozen speed-ODE diagnostic | fails `sampled-speed-ode-zero-mean-failed` with no bounded-speed live ledger | provenance only |
 | Zero-mean correction intake schema | can accept supplied normal-candidate packets | schema support only |
-| Normal-reconstruction handoff | not currently emitted on one bounded-speed ledger id with force and consumer checksums | first missing prerequisite |
-| Supplied normal candidate | absent | keeps `normal-candidate-missing` |
+| Normal-reconstruction handoff | fixture-only; not currently emitted by a non-fixture bounded-speed ledger id with force and consumer checksums | first missing non-fixture prerequisite |
+| Supplied normal candidate | fixture-only; absent for non-fixture branch work | keeps non-fixture branch work below retention |
 | Downstream action/stability rows | not reached | keep `retention=not_retained` and `retained_branch=false` |
+
+Executable fixture status, 2026-06-28:
+[zero-mean-normal-candidate](../../../../scripts/neutral-braid/fixtures/zero-mean-normal-candidate/README.md)
+supplies the same-ledger packet chain consumed by
+`scripts/neutral-braid/octahedral-zero-mean-correction-intake.mjs`. The fixture
+validates the plumbing path through `live-derivative-matrix-certified`,
+`correction-direction-found`, `speed-primitive-feasibility-certified`,
+`speed-clock-length-return-certified`, `normal-reconstruction-handoff-staged`,
+and `bounded-speed-normal-reconstruction-candidate`.
+
+The generated artifact reports:
+
+| Field | Fixture result |
+| --- | --- |
+| `result.intake_status` | `zero-mean-bounded-speed-normal-reconstruction-candidate` |
+| `residual_vector.first_failure_row` | `bounded-speed-live-ledger-open` |
+| `artifact_claim.emits_bounded_speed_normal_reconstruction_candidate` | `true` |
+| `artifact_claim.certifies_normal_reconstruction` | `true` for supplied same-ledger candidate rows |
+| `artifact_claim.certifies_bounded_speed_live_ledger` | `false` |
+| `result.retained_branch` | `false` |
+
+This moves the executable fixture boundary past `normal-candidate-missing` for a
+supplied same-ledger packet chain only. It does not create a retained branch,
+certify bounded-speed live-ledger closure, or authorize action/Noether/event,
+stability, observer-export, or coupled fixed-point consumption.
 
 The smallest durable artifact is one supplied same-ledger normal candidate that
 matches the handoff's bounded-speed ledger id, force checksum, and consumer

@@ -676,6 +676,20 @@ Effective Field Theory carries specific ontological commitments even when it is 
 
 Effective Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
+The word "effective" should therefore be read as a disciplined status label, not as a dismissal. An effective theory preserves predictive machinery inside a declared domain, exposes which variables are coarse-grained, and states which lower-level substrate records would have to recover its coefficients. The retained audit object is
+$$
+\mathcal{E}_{\mathrm{eff}}
+=
+\left(
+D_{\mathrm{valid}},
+\mathcal{V}_{\mathrm{coarse}},
+\mathcal{B}_{\mathrm{bench}},
+\Theta_{\mathrm{sub}},
+\mathcal{R}_{\mathrm{lim}}
+\right),
+$$
+where $D_{\mathrm{valid}}$ is the domain of validity, $\mathcal{V}_{\mathrm{coarse}}$ the effective variables, $\mathcal{B}_{\mathrm{bench}}$ the benchmark family, $\Theta_{\mathrm{sub}}$ the candidate substrate source record, and $\mathcal{R}_{\mathrm{lim}}$ the residual for recovering the effective limit. Without this row, effective-theory language can preserve calculations while leaving ontology unexamined.
+
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Effective Field Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
@@ -695,6 +709,17 @@ The clearest limiting tension for Effective Field Theory is that empirical and c
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+
+The first recovery step is to name the preserved calculation before changing its interpretation. For a candidate effective framework $T_{\mathrm{eff}}$, the reduction target is not merely a new story about the same observable. It is a same-benchmark limit
+$$
+\lim_{\Theta_{\mathrm{sub}}\to D_{\mathrm{valid}}}
+\Pi_{\mathrm{obs}}(\Theta_{\mathrm{sub}})
+=
+T_{\mathrm{eff}}
+\quad\text{within}\quad
+\mathcal{B}_{\mathrm{bench}},
+$$
+with the same declared benchmark family and no hidden retuning between observables.
 
 ---
 
@@ -720,6 +745,20 @@ Renormalization Group carries specific ontological commitments even when it is p
 #### 3. What This Concept Gets Right
 
 Renormalization Group gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+
+The retained content is the controlled flow of descriptions across scale, not the assumption that scale flow is final ontology. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the corresponding burden is to show how branch records, shielding, Noether sea response, and observer export change when the retained description is coarse-grained. The comparison row is
+$$
+\mathcal{R}_{\mathrm{RG}}
+=
+\left(
+\mu_{\mathrm{scale}},
+\Theta_{\mathrm{sub}}(\mu),
+\mathcal{C}_{\mathrm{eff}}(\mu),
+\mathcal{B}_{\mathrm{run}},
+\mathcal{S}_{\mathrm{retune}}
+\right),
+$$
+where $\mu_{\mathrm{scale}}$ is the comparison scale, $\Theta_{\mathrm{sub}}(\mu)$ the substrate record retained at that scale, $\mathcal{C}_{\mathrm{eff}}(\mu)$ the effective coefficient family, $\mathcal{B}_{\mathrm{run}}$ the running-coupling benchmark, and $\mathcal{S}_{\mathrm{retune}}$ checks whether separate scale windows are being fitted independently.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 

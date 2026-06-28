@@ -1,0 +1,40 @@
+{
+  "schema": "neutral-braid-octahedral-zero-mean-live-derivative-matrix-certificate/v1",
+  "claim_scope": "live-derivative-matrix-range-certificate",
+  "source_intake_schema": "neutral-braid-octahedral-zero-mean-correction-intake/v1",
+  "source_artifact_id": "neutral_braid_octahedral_zero_mean_correction_intake.frozen_constant_vector.v1",
+  "matrix_id": "same-ledger-constant-column-pass",
+  "ledger_convention_id": "bounded-speed-ledger-convention-fixture",
+  "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+  "force_checksum_id": "force-checksum-fixture",
+  "consumer_checksum_id": "consumer-checksum-fixture",
+  "certifies_live_derivative_matrix": true,
+  "certifies_bounded_speed_live_ledger": false,
+  "certifies_correction_direction": false,
+  "retained_branch": false,
+  "row_labels": ["1+", "1-", "2+", "2-", "3+", "3-"],
+  "column_labels": ["constant_receiver_direction"],
+  "derivative_column_blocks": [
+    "clock",
+    "inverse-clock",
+    "root",
+    "jacobian",
+    "force-weight",
+    "support",
+    "action",
+    "event"
+  ],
+  "guards": {
+    "clock_guard": "passed",
+    "inverse_clock_guard": "passed",
+    "root_guard": "passed",
+    "jacobian_guard": "passed",
+    "force_weight_guard": "passed",
+    "support_guard": "passed",
+    "action_guard": "passed",
+    "event_guard": "passed",
+    "force_checksum_guard": "passed",
+    "consumer_checksum_guard": "passed"
+  },
+  "matrix": [[1], [1], [1], [1], [1], [1]]
+}

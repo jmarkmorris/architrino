@@ -1709,3 +1709,58 @@ test("octahedral zero-mean correction intake CLI emits and validates JSON artifa
     OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA
   );
 });
+
+test("octahedral zero-mean correction intake validates committed normal-candidate fixture", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "neutral-braid-zero-mean-fixture-"));
+  const artifactPath = path.join(tempDir, "fixture-artifact.json");
+  const scriptPath = fileURLToPath(
+    new URL("../scripts/neutral-braid/octahedral-zero-mean-correction-intake.mjs", import.meta.url)
+  );
+  const fixtureDir = fileURLToPath(
+    new URL("../scripts/neutral-braid/fixtures/zero-mean-normal-candidate/", import.meta.url)
+  );
+
+  execFileSync(
+    process.execPath,
+    [
+      scriptPath,
+      "--samples",
+      "120",
+      "--subdivisions",
+      "240",
+      "--live-derivative-matrix",
+      path.join(fixtureDir, "live-derivative-matrix.json"),
+      "--live-correction-direction",
+      path.join(fixtureDir, "live-correction-direction.json"),
+      "--speed-primitive-feasibility",
+      path.join(fixtureDir, "speed-primitive-feasibility.json"),
+      "--speed-clock-length",
+      path.join(fixtureDir, "speed-clock-length.json"),
+      "--normal-reconstruction-handoff",
+      path.join(fixtureDir, "normal-reconstruction-handoff.json"),
+      "--bounded-speed-normal-reconstruction-candidate",
+      path.join(fixtureDir, "bounded-speed-normal-reconstruction-candidate.json"),
+      "--out",
+      artifactPath,
+      "--pretty",
+    ],
+    { encoding: "utf8" }
+  );
+
+  const validation = JSON.parse(
+    execFileSync(process.execPath, [scriptPath, "--validate", artifactPath], { encoding: "utf8" })
+  );
+  const artifact = JSON.parse(fs.readFileSync(artifactPath, "utf8"));
+  assert.equal(validation.valid, true);
+  assert.equal(artifact.result.intake_status, "zero-mean-bounded-speed-normal-reconstruction-candidate");
+  assert.equal(artifact.residual_vector.first_failure_row, "bounded-speed-live-ledger-open");
+  assert.equal(artifact.artifact_claim.emits_bounded_speed_normal_reconstruction_candidate, true);
+  assert.equal(artifact.artifact_claim.certifies_normal_reconstruction, true);
+  assert.equal(artifact.artifact_claim.certifies_bounded_speed_live_ledger, false);
+  assert.equal(artifact.result.retained_branch, false);
+  assert.equal(
+    artifact.bounded_speed_normal_reconstruction_candidate.candidate_status,
+    "bounded-speed-normal-reconstruction-candidate"
+  );
+  assert.equal(artifact.bounded_speed_normal_reconstruction_candidate.retained_branch, false);
+});

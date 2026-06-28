@@ -1,0 +1,73 @@
+{
+  "schema": "neutral-braid-octahedral-zero-mean-speed-clock-length-certificate/v1",
+  "claim_scope": "speed-clock-length-certificate",
+  "source_intake_schema": "neutral-braid-octahedral-zero-mean-correction-intake/v1",
+  "source_artifact_id": "neutral_braid_octahedral_zero_mean_correction_intake.frozen_constant_vector.v1",
+  "source_speed_primitive_feasibility_schema": "neutral-braid-octahedral-zero-mean-speed-primitive-feasibility-certificate/v1",
+  "source_speed_primitive_feasibility_id": "post-correction-speed-primitive-fixture",
+  "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+  "clock_length_id": "post-correction-speed-clock-length-fixture",
+  "certifies_live_derivative_matrix": true,
+  "certifies_correction_direction": true,
+  "certifies_speed_primitive_feasibility": true,
+  "certifies_speed_clock_length": true,
+  "certifies_bounded_speed_live_ledger": false,
+  "retained_branch": false,
+  "row_labels": ["1+", "1-", "2+", "2-", "3+", "3-"],
+  "receiver_clock_length_rows": [
+    {
+      "receiver_label": "1+",
+      "center_time_period": 2,
+      "target_length": 2,
+      "winding_number": 1,
+      "nu_initial": 1,
+      "primitive_integral": 0,
+      "length_return_residual": 0
+    },
+    {
+      "receiver_label": "1-",
+      "center_time_period": 2,
+      "target_length": 2,
+      "winding_number": 1,
+      "nu_initial": 1,
+      "primitive_integral": 0,
+      "length_return_residual": 0
+    },
+    {
+      "receiver_label": "2+",
+      "center_time_period": 2,
+      "target_length": 2,
+      "winding_number": 1,
+      "nu_initial": 1,
+      "primitive_integral": 0,
+      "length_return_residual": 0
+    },
+    {
+      "receiver_label": "2-",
+      "center_time_period": 2,
+      "target_length": 2,
+      "winding_number": 1,
+      "nu_initial": 1,
+      "primitive_integral": 0,
+      "length_return_residual": 0
+    },
+    {
+      "receiver_label": "3+",
+      "center_time_period": 2,
+      "target_length": 2,
+      "winding_number": 1,
+      "nu_initial": 1,
+      "primitive_integral": 0,
+      "length_return_residual": 0
+    },
+    {
+      "receiver_label": "3-",
+      "center_time_period": 2,
+      "target_length": 2,
+      "winding_number": 1,
+      "nu_initial": 1,
+      "primitive_integral": 0,
+      "length_return_residual": 0
+    }
+  ]
+}

@@ -349,18 +349,26 @@ Current source-binding report object: `field_speed_action_self_hit_scan_source_b
 | --- | --- | --- |
 | `transition_source_ref` | `scripts/nested-shell-braid/fixtures/action-increment-packet/` | fixture-only; not a live source |
 | `branch_certificate_ref` | absent | first blocker for branch ownership |
-| `action_row_hash` | absent for a non-fixture row | `source_row_binding_open` |
+| `action_row_hash` | fixture row `fixture-B12-B13-a` now hashes to `sha256:0f6bab71d0aec1882afcbd9dcbe40f97f19a90ef928f85f392ed5602160d7bb9`; absent for a non-fixture row | `source_row_binding_open` |
 | `root_ledger_hash` | absent for live binding | `source_row_binding_open` |
 | `conservation_pullback_hash` | absent for live binding | `source_row_binding_open` |
 | `source_verdict` | fixture rows have `status=accepted`, but `promotion_status=fixture-shape-only` | `diagnostic_rejected_endpoint_source` for closure purposes |
 | `negative_control_ref` | absent | fail-closed hash mismatch control still required |
 | `candidate_h_recovery_vote` | not authorized | no simulation vote |
 
-The fixture packet and blocked source-contract fixture can test parser and
-failure-code behavior, but they do not populate the source-binding report
-object. The first executable closure move is a non-fixture action-increment row
-with a retained branch certificate, matching active-root and
-conservation-pullback hashes, and a failing negative control for mismatched
+Executable report status, 2026-06-28:
+`scripts/nested-shell-braid/field-speed-action-self-hit-scan-source-binding-report.mjs`
+emits and validates the source-binding report object. Running it on the fixture
+packet with `--branch-row-id fixture-B12-B13-a` produces
+`source_verdict=diagnostic_rejected_endpoint_source`,
+`first_failure=source_row_binding_open`, and
+`candidate_h_recovery_vote=not_authorized`.
+
+The fixture packet and blocked source-contract fixture can test parser,
+failure-code, and source-binding behavior, but they do not satisfy
+`accepted_transition_source`. The first executable closure move is a non-fixture
+action-increment row with a retained branch certificate, matching active-root
+and conservation-pullback hashes, and a failing negative control for mismatched
 hashes.
 
 The remaining promotion blockers are executable, not editorial: no current artifact has shown same-row active-root identity under refinement, a positive Jacobian floor through the approach-to-$c_f$ scan, bounded particle-plus-wake energy on the retained branch rows, delayed-Noether status above `diagnostic-only`, stable one-cluster $\Delta I_{\mathrm{ME}}$ behavior, and a failing negative control with content hashes.

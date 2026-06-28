@@ -127,6 +127,7 @@ At the Standard Model level, gluons are spin-1 gauge bosons. Because color is co
 
 - **Vector channel:** the open color corridor selects a spatial axis and transverse twist data. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that geometry is the candidate substrate for the observer-level spin-1 representation; it is not a derivation merely from the fact that a flux tube has a direction.
 - **Helicity limit:** in the massless short-distance gauge-boson limit, the physical gluon polarizations are transverse helicity states. The vortex-bundle twist must reproduce those helicity degrees of freedom where QCD treats gluons as propagating internal degrees of freedom.
+- **No free longitudinal mode:** the same corridor record must project out a free longitudinal gluon degree of freedom. Direction alone is not enough; the accepted vector-channel row must bind corridor axis, transverse twist, source-binary angular-momentum change, and Noether sea recoil so that only the two transverse helicity readouts survive in the perturbative comparison limit.
 - **Angular-momentum ledger:** during exchange, the rotating vortex link is the candidate carrier of spin and orbital angular momentum between Noether braids. The full hadron accounting must still include Noether braid spinor structure, color-corridor circulation, and flux-network response, but that accounting remains open until the reusable angular-momentum ledger has been derived.
 
 ---

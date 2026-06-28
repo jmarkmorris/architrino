@@ -4531,6 +4531,226 @@ def finite_collar_remainder_constants_ladder(args: argparse.Namespace) -> dict:
     }
 
 
+def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
+    if args.profile_mode != "tangential_transport":
+        raise ValueError(
+            "--diagnostic-mode a1_admissible_profile_bounds_attempt requires "
+            "--profile-mode tangential_transport"
+        )
+    if args.past_profile != PAST_PROFILE_ENDPOINT_SLOPE_CANCEL:
+        raise ValueError(
+            "--diagnostic-mode a1_admissible_profile_bounds_attempt requires "
+            "--past-profile endpoint_slope_cancel"
+        )
+    if args.admissible_profile_radius_b <= 0.0:
+        raise ValueError("--admissible-profile-radius-b must be positive")
+
+    attempt_args = argparse.Namespace(**vars(args))
+    attempt_args.theta_lo = 0.0
+    attempt_args.theta_hi = args.finite_collar_theta_hi
+    attempt_args.theta_samples = args.finite_collar_samples
+    attempt_args.integration_panels = args.finite_collar_integration_panels
+    attempt_args.transport_steps = args.finite_collar_transport_steps
+    attempt_args.delta_steps = args.finite_collar_delta_steps
+
+    past_profile = build_endpoint_slope_cancel_past_profile(args)
+    profile = build_tangential_transport_profile(
+        attempt_args, past_profile=past_profile
+    )
+    theta_samples = theta_grid(
+        0.0, attempt_args.theta_hi, attempt_args.theta_samples
+    )
+    future_values = [profile.q(theta) for theta in theta_samples]
+    future_prime_values = [profile.q_prime(theta) for theta in theta_samples]
+    retained_label_order = [window["label"] for window in RETAINED_WINDOWS]
+    past_bounds = sampled_q_bounds(
+        past_profile.coefficients,
+        past_profile.basis_scale,
+        args.finite_collar_positivity_samples,
+    )
+
+    retained_rows_summary: list[dict] = []
+    retained_failures: list[str] = []
+    min_abs_j = math.inf
+    max_abs_tangential_residual = 0.0
+    max_abs_radial_residual = 0.0
+    for theta in theta_samples:
+        try:
+            rows = retained_rows(
+                theta, panels=attempt_args.integration_panels, profile=profile
+            )
+            residuals = force_residuals(
+                theta, rows, gamma_star=args.gamma_star, profile=profile
+            )
+            min_abs_j = min(min_abs_j, *(abs(row.jacobian) for row in rows))
+            max_abs_tangential_residual = max(
+                max_abs_tangential_residual,
+                abs(residuals["tangential_residual"]),
+            )
+            max_abs_radial_residual = max(
+                max_abs_radial_residual,
+                abs(residuals["radial_residual_tangential_substituted"]),
+            )
+            retained_rows_summary.append(
+                {
+                    "theta": theta,
+                    "labels": [row.label for row in rows],
+                    "deltas": [row.delta for row in rows],
+                    "min_abs_J": min(abs(row.jacobian) for row in rows),
+                    "tangential_residual": residuals["tangential_residual"],
+                    "radial_residual_tangential_substituted": residuals[
+                        "radial_residual_tangential_substituted"
+                    ],
+                }
+            )
+        except ValueError as exc:
+            retained_failures.append(f"theta={theta}: {exc}")
+
+    sampled_min_q = min(past_bounds["min_q"], min(future_values))
+    sampled_max_q = max(past_bounds["max_q"], max(future_values))
+    sampled_within_declared_convention = (
+        sampled_min_q >= args.finite_collar_min_q
+        and sampled_max_q <= args.finite_collar_max_q
+    )
+    endpoint_summary = past_profile.summary or {}
+
+    return {
+        "schema": "architrino.priority.master_equation_closure.a1_admissible_profile_bounds.v0",
+        "artifact_id": "a1_admissible_profile_bounds.v0",
+        "diagnostic_mode": "a1_admissible_profile_bounds_attempt",
+        "claim_level": (
+            "priority-only sampled admissibility attempt; not interval certificate"
+        ),
+        "radius_b": args.admissible_profile_radius_b,
+        "row_identity": {
+            "retained_row_set_path": (
+                "reference/priorities/master-equation-closure/"
+                "spiral-a1-outward-constants-certificate-target.md"
+            ),
+            "theta_interval": [0.0, attempt_args.theta_hi],
+            "theta_samples": attempt_args.theta_samples,
+            "theta_boxes": "sample_grid_only_not_interval_boxes",
+            "active_windows": [
+                {
+                    "label": window["label"],
+                    "kind": window["kind"],
+                    "window": list(window["window"]),
+                }
+                for window in RETAINED_WINDOWS
+            ],
+            "inactive_cover_id": "absent",
+            "source_artifact_hash": "absent",
+        },
+        "past_profile": {
+            "kind": past_profile.kind,
+            "degree": len(past_profile.coefficients),
+            "basis_scale": past_profile.basis_scale,
+            "endpoint_cancel_summary": {
+                "construction": endpoint_summary.get("construction"),
+                "positivity_lp_success": endpoint_summary.get(
+                    "positivity_lp_success"
+                ),
+                "positivity_lp_margin": endpoint_summary.get(
+                    "positivity_lp_margin"
+                ),
+                "target_radial_slope_shift": endpoint_summary.get(
+                    "target_radial_slope_shift"
+                ),
+                "weighted_shift_error": endpoint_summary.get(
+                    "weighted_shift_error"
+                ),
+                "min_sampled_q_on_past_interval": endpoint_summary.get(
+                    "min_sampled_q_on_past_interval"
+                ),
+                "max_sampled_q_on_past_interval": endpoint_summary.get(
+                    "max_sampled_q_on_past_interval"
+                ),
+            },
+        },
+        "past_profile_bounds": {
+            "sampled_seed_q_min": past_bounds["min_q"],
+            "sampled_seed_q_max": past_bounds["max_q"],
+            "sample_count": past_bounds["samples"],
+            "declared_q_min_convention": args.finite_collar_min_q,
+            "declared_q_max_convention": args.finite_collar_max_q,
+            "outward_q_min": "absent",
+            "outward_q_max": "absent",
+            "H_b": "absent",
+            "used_as_certificate": False,
+            "status": "sampled_seed_bounds_only_not_certified",
+        },
+        "future_profile_admissibility": {
+            "sampled_transport_q_min": min(future_values),
+            "sampled_transport_q_max": max(future_values),
+            "sampled_transport_q_prime_min": min(future_prime_values),
+            "sampled_transport_q_prime_max": max(future_prime_values),
+            "sample_count": len(future_values),
+            "declared_q_min_convention": args.finite_collar_min_q,
+            "declared_q_max_convention": args.finite_collar_max_q,
+            "sampled_within_declared_convention": sampled_within_declared_convention,
+            "outward_q_min": "absent",
+            "outward_q_max": "absent",
+            "E_Q_plus_b": "absent",
+            "used_as_certificate": False,
+            "status": (
+                "sampled_transport_bounds_only_not_certified"
+                if sampled_within_declared_convention
+                else "sampled_transport_exits_declared_convention_not_certified"
+            ),
+        },
+        "retained_root_context": {
+            "sampled_active_labels_match_retained_set": all(
+                row["labels"] == retained_label_order
+                for row in retained_rows_summary
+            )
+            and not retained_failures,
+            "sampled_min_abs_J": min_abs_j if retained_rows_summary else None,
+            "max_abs_tangential_residual": max_abs_tangential_residual,
+            "max_abs_radial_residual_tangential_substituted": (
+                max_abs_radial_residual
+            ),
+            "rows": retained_rows_summary,
+            "retained_failures": retained_failures,
+            "used_as_certificate": False,
+            "status": "sampled_retained_context_only_not_root_persistence_row",
+        },
+        "sampled_attempt_reading": (
+            "sampled_bounds_within_declared_convention"
+            if sampled_within_declared_convention
+            else "sampled_bounds_violate_declared_convention"
+        ),
+        "first_failure": "admissible_profile_bounds",
+        "blocked_rows": [
+            "outward_profile_bounds_absent",
+            "H_b_absent",
+            "E_Q_plus_b_absent",
+            "inactive_cover_id_absent",
+            "source_artifact_hash_absent",
+            "retained_root_boxes_absent",
+            "inactive_gap_cover_absent",
+            "branch_sum_constants_absent",
+            "transport_constants_absent",
+            "residual_envelope_absent",
+        ],
+        "reduced_smoke_context": {
+            "status": "sampled_remainder_constants_unstable",
+            "C2_sampled_stable": False,
+            "max_adjacent_C2_relative_change": 0.7060743371539325,
+            "used_as_certificate": False,
+            "recomputed_by_this_mode": False,
+        },
+        "promotion_authorized": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+        "policy": (
+            "This diagnostic records sampled seed and transported profile bounds "
+            "for the A1 endpoint-slope-cancelled retained chart. It does not "
+            "supply outward q_min, q_max, H_b, E_Q_plus_b, inactive-cover, "
+            "branch-sum, transport, or residual-envelope constants."
+        ),
+    }
+
+
 def build_past_profile_spec(args: argparse.Namespace) -> PastProfileSpec:
     past_profile = getattr(args, "past_profile", PAST_PROFILE_POLYNOMIAL_WITNESS)
     if past_profile == PAST_PROFILE_ENDPOINT_SLOPE_CANCEL:
@@ -5316,6 +5536,15 @@ def main(argv: Iterable[str] | None = None) -> int:
         ),
     )
     parser.add_argument(
+        "--admissible-profile-radius-b",
+        type=float,
+        default=0.001,
+        help=(
+            "Declared radius for --diagnostic-mode "
+            "a1_admissible_profile_bounds_attempt."
+        ),
+    )
+    parser.add_argument(
         "--transport-steps",
         type=int,
         default=120,
@@ -5337,6 +5566,7 @@ def main(argv: Iterable[str] | None = None) -> int:
             "finite_collar_second_order_response_audit",
             "finite_collar_mixed_second_order_response_audit",
             "finite_collar_remainder_constants_ladder",
+            "a1_admissible_profile_bounds_attempt",
         ),
         default="evaluate",
         help="Choose the emitted diagnostic packet.",
@@ -5392,6 +5622,8 @@ def main(argv: Iterable[str] | None = None) -> int:
         result = finite_collar_mixed_second_order_response_audit(args)
     elif args.diagnostic_mode == "finite_collar_remainder_constants_ladder":
         result = finite_collar_remainder_constants_ladder(args)
+    elif args.diagnostic_mode == "a1_admissible_profile_bounds_attempt":
+        result = a1_admissible_profile_bounds_attempt(args)
     else:
         result = evaluate(args)
     print(json.dumps(result, indent=2 if args.pretty else None, sort_keys=True))

@@ -34,6 +34,33 @@ The current methodological profile of $\mathbb{A}\mathbb{A}\mathbb{A}$ can be su
 
 If $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds, its philosophy of science will not be an afterthought. It will be part of the explanation for why previous theories were simultaneously powerful, partial, and often ontologically mislocated.
 
+One practical distinction is the status of a number or adjustable quantity. A primitive empirical constant is an input until a deeper derivation exists. A branch-derived coefficient is an output of a retained assembly or Noether sea record. A model-control parameter is an explicit coordinate used to explore a family of solutions. A post-hoc retuning is a repair made after comparing to the target data. These roles should not be collapsed. A compact audit row is
+$$
+\mathcal{P}_{\mathrm{status}}
+=
+\left(
+P_{\mathrm{emp}},
+P_{\mathrm{branch}},
+P_{\mathrm{ctrl}},
+P_{\mathrm{retune}}
+\right),
+$$
+where the four entries separate empirical inputs, branch outputs, model controls, and after-the-fact repairs. A replacement theory earns explanatory compression only by moving quantities from $P_{\mathrm{emp}}$ or $P_{\mathrm{ctrl}}$ into $P_{\mathrm{branch}}$ without increasing $P_{\mathrm{retune}}$.
+
+A related constructor-set audit is required whenever inherited theories are recast. Observations and successful formal constraints are retained as evidence and benchmark pressure, while the ontology attached to them must be re-earned. The minimal constructor question is therefore not "which old story is preferred?" but which primitive substrate, branch record, and observer-export map can recover the data with the fewest independent assumptions:
+$$
+\mathcal{C}_{\mathrm{audit}}
+=
+\left(
+\mathcal{O}_{\mathrm{data}},
+\mathcal{F}_{\mathrm{formal}},
+\mathcal{S}_{\mathrm{sub}},
+\Pi_{\mathrm{obs}},
+\mathcal{R}_{\mathrm{rec}}
+\right).
+$$
+Here $\mathcal{O}_{\mathrm{data}}$ records the observation family, $\mathcal{F}_{\mathrm{formal}}$ records inherited mathematical constraints worth preserving, $\mathcal{S}_{\mathrm{sub}}$ is the proposed substrate record, $\Pi_{\mathrm{obs}}$ is the observer export, and $\mathcal{R}_{\mathrm{rec}}$ is the recovery residual. The rule is forward-only: keep the data, recover the successful formalism where it is tested, and let ontology pass only through the constructor and recovery rows.
+
 This layer needs one standard coverage template so subjects are treated systematically rather than ad hoc.
 
 ### Philosophy-of-Science Subject Template (Unified)
