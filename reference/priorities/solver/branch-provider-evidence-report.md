@@ -111,16 +111,38 @@ This is not provider acceptance. It keeps
 
 The readout also carries
 `branch_provider_candidate_source_provenance_refinement/v0`. This records the
-current H39 narrowing without changing the official blockers:
-`term_width_reduced_to_signed_radius_source_provenance=true`,
-`term_width_is_primary_blocker=false`,
+current H39 narrowing without changing the official blockers. Term width has
+been reduced to signed-radius source-provenance machinery, the signed-radius
+subinterval emitter primitive is materialized, source-term producer-image fields
+are projected, and the lambda terminal witness branch intervals are available.
+The nested `source_provenance_emitter_target` records the signed-radius
+subinterval emitter primitive target while keeping
+`source_provenance_emitter_materialized=false` and
+`provider_ready_authorized_by_this_target=false`.
+The replay still keeps
 `directed_rounded_source_provenance_still_open=true`,
 `source_provenance_certificate_fields_present=false`,
 `source_provenance_emitter_materialized=false`, and
-`provider_object_branch_intervals_present=false`. The refinement therefore
-points the next evidence object at a directed-rounded same-domain
-source-provenance emitter or actual branch-resolved centered-residual source
-object, but keeps `provider_ready_authorized_by_this_refinement=false`.
+`source_map_provider_branch_intervals_available=false`. The current H39 blocker
+is `same-domain-source-map-provider-object-branch-intervals-needed`, with
+`current_primary_missing_object_kind=source-map-provider-object-branch-intervals`
+and `next_evidence_object="same-domain source-map provider-object branch
+intervals on every terminal row"`. It keeps
+`provider_ready_authorized_by_this_refinement=false`.
+
+The refinement now also carries
+`branch_provider_candidate_source_map_provider_object_branch_interval_readout/v0`
+as a negative-control readout. It records 15 terminal rows and 30 branch rows
+while keeping `source_map_provider_branch_intervals_available=false`,
+`provider_object_branch_intervals_present=false`, and
+`accepted_provider_object_branch_interval_count=0`. The readout explicitly
+rejects lambda terminal witness branch intervals, aggregate-$P$-only provider
+rows, variable-owned alpha candidates, and row-local expression branch feeds as
+provider-object branch intervals. The missing identity kinds remain the
+same-domain branch-bearing $P_b$ map, branch projection or alpha map,
+pushforward operator reference, and normalization identity reference. It keeps
+`provider_ready_authorized_by_this_readout=false` and
+`downstream_consumer_authorization=false`.
 
 ## Authorization Boundary
 

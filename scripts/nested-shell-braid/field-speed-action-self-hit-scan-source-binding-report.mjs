@@ -156,6 +156,26 @@ function normalizeStatus(value) {
   return status === "accepted" || status === "accept" || status === "pass" ? "accepted" : "rejected";
 }
 
+function rowField(row, field) {
+  const value = row?.[field];
+  return isNonemptyString(value) ? value.trim() : null;
+}
+
+function recordMissingOrMismatch({ missing, row, field, optionValue, optionField, missingRowCode, mismatchCode }) {
+  const rowValue = rowField(row, field);
+  const expectedValue = isNonemptyString(optionValue) ? optionValue.trim() : null;
+  if (expectedValue === null) {
+    missing.push(optionField);
+  }
+  if (rowValue === null) {
+    missing.push(missingRowCode);
+  }
+  if (rowValue !== null && expectedValue !== null && rowValue !== expectedValue) {
+    missing.push(mismatchCode);
+  }
+  return rowValue;
+}
+
 function buildReport(options) {
   if (!isNonemptyString(options.packetDir)) {
     throw new Error("--packet-dir is required unless --validate is used");
@@ -178,15 +198,36 @@ function buildReport(options) {
   const fixtureShapeOnly = promotionStatus === "fixture-shape-only";
   const actionRowHash = `sha256:${sha256(stableJson(selectedRow))}`;
   const missing = [];
+  const actionRowBranchCertificateRef = rowField(selectedRow, "branch_certificate_ref");
+  const actionRowRootLedgerHash = recordMissingOrMismatch({
+    missing,
+    row: selectedRow,
+    field: "root_ledger_hash",
+    optionValue: options.rootLedgerHash,
+    optionField: "root_ledger_hash",
+    missingRowCode: "action_row_root_ledger_hash",
+    mismatchCode: "root_ledger_hash_mismatch",
+  });
+  const actionRowConservationPullbackHash = recordMissingOrMismatch({
+    missing,
+    row: selectedRow,
+    field: "conservation_pullback_hash",
+    optionValue: options.conservationPullbackHash,
+    optionField: "conservation_pullback_hash",
+    missingRowCode: "action_row_conservation_pullback_hash",
+    mismatchCode: "conservation_pullback_hash_mismatch",
+  });
 
   if (!isNonemptyString(options.branchCertificateRef)) {
     missing.push("branch_certificate_ref");
   }
-  if (!isNonemptyString(options.rootLedgerHash)) {
-    missing.push("root_ledger_hash");
-  }
-  if (!isNonemptyString(options.conservationPullbackHash)) {
-    missing.push("conservation_pullback_hash");
+  if (actionRowBranchCertificateRef === null) {
+    missing.push("action_row_branch_certificate_ref");
+  } else if (
+    isNonemptyString(options.branchCertificateRef) &&
+    actionRowBranchCertificateRef !== options.branchCertificateRef.trim()
+  ) {
+    missing.push("branch_certificate_ref_mismatch");
   }
   if (!isNonemptyString(options.negativeControlRef)) {
     missing.push("negative_control_ref");
@@ -218,8 +259,11 @@ function buildReport(options) {
     endpoint_eligibility: acceptedTransitionSource ? "accepted_transition_source" : "not_eligible",
     source_verdict: sourceVerdict,
     branch_certificate_ref: options.branchCertificateRef ?? null,
+    action_row_branch_certificate_ref: actionRowBranchCertificateRef,
     root_ledger_hash: options.rootLedgerHash ?? null,
+    action_row_root_ledger_hash: actionRowRootLedgerHash,
     conservation_pullback_hash: options.conservationPullbackHash ?? null,
+    action_row_conservation_pullback_hash: actionRowConservationPullbackHash,
     negative_control_ref: options.negativeControlRef ?? null,
     packet_promotion_status: promotionStatus,
     fixture_shape_only: fixtureShapeOnly,

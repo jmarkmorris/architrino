@@ -237,6 +237,42 @@ test("Sigma_hf_01 missing proof-grade fields derivation target names the three o
   assert.equal(targetRecord.authorization.row_consumption, false);
   assert.equal(targetRecord.updates_live_ledger, false);
   assert.equal(targetRecord.branch_chart_authorized, false);
+  assert.deepEqual(
+    targetRecord.field_results
+      .filter((field) => field.predicate_diagnostics)
+      .map((field) => ({
+        field: field.field,
+        failedPredicates: field.predicate_diagnostics.failed_predicates,
+      })),
+    [
+      {
+        field: "rule_kernel_obligation_binding",
+        failedPredicates: [
+          "derivation_proof_obligation",
+          "soundness_proof_obligation",
+          "endpoint_application_proof_obligation",
+        ],
+      },
+      {
+        field: "rule_kernel_derivation_payload_target_binding",
+        failedPredicates: [
+          "slot=Sigma_hf_01",
+          "payload_target_declared=true",
+          "proof_binds_to_payload_target=true",
+          "rule_kernel_derivation_payload_constructed=true",
+        ],
+      },
+      {
+        field: "proof_grade_derivation_schema_statement",
+        failedPredicates: [
+          "hypotheses_nonempty",
+          "inference_steps_nonempty",
+          "conclusion_nonempty",
+          "source_data_correspondence_nonempty",
+        ],
+      },
+    ],
+  );
   assert.equal(target.required_fields_present, 5);
   assert.deepEqual(target.local_locks_bound, [
     "compatible_schema_role_lock",

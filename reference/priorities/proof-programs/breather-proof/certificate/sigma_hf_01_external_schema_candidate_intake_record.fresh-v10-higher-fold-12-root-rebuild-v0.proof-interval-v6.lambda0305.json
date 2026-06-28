@@ -48,19 +48,62 @@
       "field": "rule_kernel_obligation_binding",
       "present": false,
       "candidate_field_supplied": false,
-      "verdict": "external_input_required"
+      "verdict": "external_input_required",
+      "predicate_diagnostics": {
+        "expected_predicates": [
+          "derivation_proof_obligation",
+          "soundness_proof_obligation",
+          "endpoint_application_proof_obligation"
+        ],
+        "passed_predicates": [],
+        "failed_predicates": [
+          "derivation_proof_obligation",
+          "soundness_proof_obligation",
+          "endpoint_application_proof_obligation"
+        ]
+      }
     },
     {
       "field": "rule_kernel_derivation_payload_target_binding",
       "present": false,
       "candidate_field_supplied": false,
-      "verdict": "external_input_required"
+      "verdict": "external_input_required",
+      "predicate_diagnostics": {
+        "expected_predicates": [
+          "slot=Sigma_hf_01",
+          "payload_target_declared=true",
+          "proof_binds_to_payload_target=true",
+          "rule_kernel_derivation_payload_constructed=true"
+        ],
+        "passed_predicates": [],
+        "failed_predicates": [
+          "slot=Sigma_hf_01",
+          "payload_target_declared=true",
+          "proof_binds_to_payload_target=true",
+          "rule_kernel_derivation_payload_constructed=true"
+        ]
+      }
     },
     {
       "field": "proof_grade_derivation_schema_statement",
       "present": false,
       "candidate_field_supplied": false,
-      "verdict": "external_input_required"
+      "verdict": "external_input_required",
+      "predicate_diagnostics": {
+        "expected_predicates": [
+          "hypotheses_nonempty",
+          "inference_steps_nonempty",
+          "conclusion_nonempty",
+          "source_data_correspondence_nonempty"
+        ],
+        "passed_predicates": [],
+        "failed_predicates": [
+          "hypotheses_nonempty",
+          "inference_steps_nonempty",
+          "conclusion_nonempty",
+          "source_data_correspondence_nonempty"
+        ]
+      }
     },
     {
       "field": "non_reinterpretation_guard",

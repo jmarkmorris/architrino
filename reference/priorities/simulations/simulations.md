@@ -336,8 +336,11 @@ Shared H39 provider boundary, 2026-06-28. The
 maps the H39 aggregate-$P$ construction attempt to this rank as
 `target_only_not_accepted_source`. Its
 `branch_provider_candidate_source_contract_readout/v0` verifies the five-cell
-boundary replay and now records a non-authorizing source-provenance refinement,
-but the shared report still returns
+boundary replay and now records a non-authorizing source-provenance refinement:
+the signed-radius subinterval primitive, projected source-term producer-image
+fields, and lambda terminal witness branch intervals are present, but
+source-map provider-object branch intervals remain unavailable. The shared
+report still returns
 `provider_verdict=same_domain_branch_provider_missing` and
 `first_failure=accepted_non_fixture_source_missing`. The remaining H39
 blockers are `source_term_provider_directed_source_certification_open` and
@@ -379,11 +382,16 @@ packet with `--branch-row-id fixture-B12-B13-a` produces
 `first_failure=source_row_binding_open`, and
 `candidate_h_recovery_vote=not_authorized`.
 
-The fixture packet and blocked source-contract fixture can test parser,
-failure-code, and source-binding behavior, but they do not satisfy
-`accepted_transition_source`. The first executable closure move is a non-fixture
-action-increment row with a retained branch certificate, matching active-root
-and conservation-pullback hashes, and a failing negative control for mismatched
+The fixture packet, blocked source-contract fixture, and rank-2 transition-source
+attempt at
+`scripts/nested-shell-braid/fixtures/action-increment-source-contract-rank2-transition-source-attempt.json`
+can test parser, failure-code, and source-binding behavior, but they do not
+satisfy `accepted_transition_source`. The rank-2 attempt intentionally provides
+a populated transition shell with no accepted branch-state source; the checker
+therefore fails at the accepted-source boundary while keeping the benchmark
+policy clean. The first executable closure move is a non-fixture action-increment
+row with a retained branch certificate, matching active-root and
+conservation-pullback hashes, and a failing negative control for mismatched
 hashes.
 
 The remaining promotion blockers are executable, not editorial: no current artifact has shown same-row active-root identity under refinement, a positive Jacobian floor through the approach-to-$c_f$ scan, bounded particle-plus-wake energy on the retained branch rows, delayed-Noether status above `diagnostic-only`, stable one-cluster $\Delta I_{\mathrm{ME}}$ behavior, and a failing negative control with content hashes.

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-28T13:47:47.925Z",
-  "total_links": 1587,
+  "generated_at": "2026-06-28T19:46:11.729Z",
+  "total_links": 1588,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -6130,6 +6130,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/aaa-journey.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/aaa-journey.md"
     },
     {
       "sourceChapterId": "philosophy_history",

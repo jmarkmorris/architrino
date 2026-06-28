@@ -1336,6 +1336,7 @@ def shared_interval_boxes_target_row(
     future_transport_interval_box_certificate: dict | None = None,
     retained_root_window_bracket_replay: dict | None = None,
     inactive_cover_exclusion_replay: dict | None = None,
+    retained_root_inactive_cover_interval_box_target: dict | None = None,
 ) -> dict:
     required_box_ids = [
         "past_profile_interval_box",
@@ -1472,6 +1473,10 @@ def shared_interval_boxes_target_row(
                 "replay_digest",
             )
         }
+    if retained_root_inactive_cover_interval_box_target is not None:
+        row["retained_root_inactive_cover_interval_box_target"] = (
+            retained_root_inactive_cover_interval_box_target
+        )
     return row
 
 
@@ -1881,8 +1886,116 @@ def directed_rounding_backend_target_row(
     return row
 
 
+def a1_future_continuous_transport_bounds_target(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    declared_q_bounds: tuple[float, float],
+    past_profile_interval_box_certificate: dict | None = None,
+    future_transport_interval_box_certificate: dict | None = None,
+) -> dict:
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_future_continuous_transport_bounds_target.v0"
+        ),
+        "artifact_id": "a1_future_continuous_transport_bounds_target.v0",
+        "source_artifact_hash": source_digest,
+        "method": "target_only_same_box_continuous_transport_obligation_declaration",
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "declared_q_bounds": list(declared_q_bounds),
+        "same_box_binding": {
+            "source_artifact_hash": source_digest,
+            "radius_b": radius_b,
+            "theta_interval": theta_interval,
+            "required_box_ids": [
+                "past_profile_interval_box",
+                "future_transport_interval_box",
+                "retained_root_interval_boxes",
+                "inactive_cover_interval_boxes",
+            ],
+            "requires_same_theta_box_family": True,
+            "requires_same_admissible_profile_radius": True,
+            "requires_same_source_artifact_hash": True,
+        },
+        "local_certificate_inputs": {
+            "past_profile_interval_box_certificate_digest": (
+                past_profile_interval_box_certificate.get("certificate_digest")
+                if past_profile_interval_box_certificate
+                else None
+            ),
+            "future_transport_interval_box_certificate_digest": (
+                future_transport_interval_box_certificate.get("certificate_digest")
+                if future_transport_interval_box_certificate
+                else None
+            ),
+            "future_transport_interval_box_certificate_status": (
+                future_transport_interval_box_certificate.get("status")
+                if future_transport_interval_box_certificate
+                else "absent"
+            ),
+            "future_bounds_emitted_piecewise_linear_profile": (
+                future_transport_interval_box_certificate.get(
+                    "bounds_emitted_piecewise_linear_profile"
+                )
+                if future_transport_interval_box_certificate
+                else False
+            ),
+            "future_bounds_continuous_transport_equation": (
+                future_transport_interval_box_certificate.get(
+                    "bounds_continuous_transport_equation"
+                )
+                if future_transport_interval_box_certificate
+                else False
+            ),
+            "future_E_Q_plus_b_for_admissible_class": (
+                future_transport_interval_box_certificate.get(
+                    "E_Q_plus_b_for_admissible_class"
+                )
+                if future_transport_interval_box_certificate
+                else "absent"
+            ),
+        },
+        "required_evidence_objects": [
+            "continuous_transport_equation_interval_boxes",
+            "future_profile_bounds_on_same_theta_boxes",
+            "E_Q_plus_b_outward_bound",
+            "transport_gronwall_constant_K_Q",
+            "branch_sum_feedback_bound_for_E_Q_plus_b",
+        ],
+        "required_rows": [
+            "transport_rhs_interval_enclosure",
+            "future_profile_bounds_on_same_theta_boxes",
+            "E_Q_plus_b_outward_bound",
+            "small_gain_or_direct_propagation_inequality",
+        ],
+        "disallowed_evidence_sources": [
+            "piecewise_linear_node_extrema_only",
+            "q_prime_auxiliary_interpolant",
+            "sampled_transport_replay",
+        ],
+        "bounds_continuous_transport_equation": False,
+        "emits_E_Q_plus_b": False,
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "target_digest": canonical_json_digest(payload),
+        "status": "target_only_future_continuous_transport_bounds_absent",
+    }
+
+
 def a1_shared_interval_box_certificate_target(
     source_digest: str,
+    radius_b: float,
+    theta_interval: list[float],
+    declared_q_bounds: tuple[float, float],
     coefficient_enclosure_attempt: dict | None = None,
     past_profile_interval_box_attempt: dict | None = None,
     past_profile_interval_box_certificate: dict | None = None,
@@ -1891,6 +2004,7 @@ def a1_shared_interval_box_certificate_target(
     directed_rounding_backend_self_audit: dict | None = None,
     retained_root_window_bracket_replay: dict | None = None,
     inactive_cover_exclusion_replay: dict | None = None,
+    retained_root_inactive_cover_interval_box_target: dict | None = None,
 ) -> dict:
     return {
         "schema": (
@@ -1910,6 +2024,7 @@ def a1_shared_interval_box_certificate_target(
             future_transport_interval_box_certificate,
             retained_root_window_bracket_replay,
             inactive_cover_exclusion_replay,
+            retained_root_inactive_cover_interval_box_target,
         ),
         "directed_rounding_backend": directed_rounding_backend_target_row(
             directed_rounding_backend_target,
@@ -1920,8 +2035,25 @@ def a1_shared_interval_box_certificate_target(
             past_profile_interval_box_certificate,
         ),
         "future_transport_constants": {
-            "status": "absent",
+            "status": "target_only_future_continuous_transport_bounds_absent",
             "required_constants": ["E_Q_plus_b", "K_Q"],
+            "first_missing_evidence_object": (
+                "a1_future_continuous_transport_bounds/v0"
+            ),
+            "future_continuous_transport_bounds_target": (
+                a1_future_continuous_transport_bounds_target(
+                    source_digest,
+                    radius_b=radius_b,
+                    theta_interval=theta_interval,
+                    declared_q_bounds=declared_q_bounds,
+                    past_profile_interval_box_certificate=(
+                        past_profile_interval_box_certificate
+                    ),
+                    future_transport_interval_box_certificate=(
+                        future_transport_interval_box_certificate
+                    ),
+                )
+            ),
         },
         "residual_envelope_constants": {
             "status": "absent",
@@ -1934,6 +2066,74 @@ def a1_shared_interval_box_certificate_target(
         "used_as_certificate": False,
         "authorizes_outward_certificate": False,
         "authorizes_obstruction_or_channel_decision": False,
+    }
+
+
+def a1_certificate_composition_readiness(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    shared_interval_target: dict,
+) -> dict:
+    shared_boxes = shared_interval_target["shared_interval_boxes"]
+    future_target = shared_interval_target["future_transport_constants"][
+        "future_continuous_transport_bounds_target"
+    ]
+    retained_target = shared_boxes["retained_root_inactive_cover_interval_box_target"]
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_certificate_composition_readiness.v0"
+        ),
+        "artifact_id": "a1_certificate_composition_readiness.v0",
+        "source_artifact_hash": source_digest,
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "local_certificate_inputs": {
+            "past_profile_interval_box_certificate_digest": (
+                shared_boxes["past_profile_interval_box_certificate_digest"]
+            ),
+            "future_transport_interval_box_certificate_digest": (
+                shared_boxes["future_transport_interval_box_certificate_digest"]
+            ),
+            "local_certificate_box_ids_present": (
+                shared_boxes["local_certificate_box_ids_present"]
+            ),
+        },
+        "target_only_objects": {
+            "future_continuous_transport_bounds_target_digest": (
+                future_target["target_digest"]
+            ),
+            "retained_root_inactive_cover_target_digest": (
+                retained_target["target_digest"]
+            ),
+            "inactive_cover_id": retained_target["inactive_cover_id"],
+        },
+        "missing_certificate_grade_objects": [
+            "future_continuous_transport_bounds",
+            "E_Q_plus_b_outward_bound",
+            "retained_root_interval_boxes",
+            "inactive_cover_interval_boxes",
+            "branch_sum_constants",
+            "transport_constants",
+            "residual_envelope",
+        ],
+        "first_missing_evidence_object": (
+            "a1_future_continuous_transport_bounds/v0"
+        ),
+        "first_failure": "admissible_profile_bounds",
+        "used_as_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "readiness_digest": canonical_json_digest(payload),
+        "status": (
+            "composition_readiness_open_local_certificates_present_"
+            "future_continuous_transport_and_same_box_rows_absent"
+        ),
     }
 
 
@@ -2511,6 +2711,121 @@ def inactive_cover_intervals_by_kind() -> dict[str, list[list[float]]]:
             intervals.append([cursor, DELTA_MAX])
         intervals_by_kind[kind] = intervals
     return intervals_by_kind
+
+
+def a1_retained_root_inactive_cover_interval_box_target(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+) -> dict:
+    active_windows = [
+        {
+            "label": window["label"],
+            "kind": window["kind"],
+            "window": list(window["window"]),
+        }
+        for window in RETAINED_WINDOWS
+    ]
+    inactive_intervals = inactive_cover_intervals_by_kind()
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_retained_root_inactive_cover_interval_box_target.v0"
+        ),
+        "artifact_id": (
+            "a1_retained_root_inactive_cover_interval_box_target.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "method": "target_only_same_box_interval_obligation_declaration",
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "theta_boxes": "interval_box_required_not_constructed",
+        "delta_domain": [DELTA_CO, DELTA_MAX],
+        "retained_root_box_family_id": "retained_root_interval_boxes",
+        "inactive_cover_id": "inactive_cover_interval_boxes",
+        "active_windows": active_windows,
+        "inactive_cover_intervals_by_kind": inactive_intervals,
+        "same_box_binding": {
+            "source_artifact_hash": source_digest,
+            "radius_b": radius_b,
+            "theta_interval": theta_interval,
+            "required_box_ids": [
+                "past_profile_interval_box",
+                "future_transport_interval_box",
+                "retained_root_interval_boxes",
+                "inactive_cover_interval_boxes",
+            ],
+            "requires_same_theta_box_family": True,
+            "requires_same_admissible_profile_radius": True,
+            "requires_continuous_transport_bounds": True,
+        },
+        "retained_root_endpoint_sign_obligations": [
+            {
+                "label": window["label"],
+                "kind": window["kind"],
+                "window": list(window["window"]),
+                "theta_interval": theta_interval,
+                "required_box_id": "retained_root_interval_boxes",
+                "required_endpoint_sign_change": True,
+                "required_endpoint_signs": (
+                    "opposite_or_endpoint_zero_on_outward_interval_endpoints"
+                ),
+            }
+            for window in RETAINED_WINDOWS
+        ],
+        "retained_root_jacobian_floor_obligations": [
+            {
+                "label": window["label"],
+                "kind": window["kind"],
+                "window": list(window["window"]),
+                "theta_interval": theta_interval,
+                "required_box_id": "retained_root_interval_boxes",
+                "required_jacobian_floor": (
+                    "strictly_positive_on_I_c_x_retained_window"
+                ),
+            }
+            for window in RETAINED_WINDOWS
+        ],
+        "inactive_cover_no_root_obligations": [
+            {
+                "kind": kind,
+                "inactive_interval": interval,
+                "theta_interval": theta_interval,
+                "required_box_id": "inactive_cover_interval_boxes",
+                "required_no_root": True,
+                "required_sign_separation": (
+                    "outward_no_root_gap_on_I_c_x_inactive_interval"
+                ),
+            }
+            for kind, intervals in inactive_intervals.items()
+            for interval in intervals
+        ],
+        "required_evidence_objects": [
+            "retained_root_endpoint_sign_interval_boxes",
+            "retained_root_jacobian_floor_interval_boxes",
+            "inactive_cover_no_root_interval_boxes",
+        ],
+        "disallowed_evidence_sources": [
+            "float64_grid_replay",
+            "root_scan_replay",
+            "endpoint_sign_replay",
+        ],
+        "bounds_retained_root_interval_boxes": False,
+        "bounds_inactive_cover_interval_boxes": False,
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "target_digest": canonical_json_digest(payload),
+        "status": (
+            "target_only_retained_root_inactive_cover_interval_boxes_absent"
+        ),
+    }
 
 
 def retained_window_for_root(kind: str, delta: float) -> dict | None:
@@ -6276,14 +6591,33 @@ def a1_endpoint_slope_cancel_source_identity(args: argparse.Namespace) -> dict:
         directed_rounding_backend_target,
         past_profile,
     )
+    retained_root_inactive_cover_interval_box_target = (
+        a1_retained_root_inactive_cover_interval_box_target(
+            identity["digest"],
+            radius_b=args.admissible_profile_radius_b,
+            theta_interval=[0.0, args.theta_hi],
+        )
+    )
     shared_interval_target = a1_shared_interval_box_certificate_target(
         identity["digest"],
+        args.admissible_profile_radius_b,
+        [0.0, args.theta_hi],
+        (args.finite_collar_min_q, args.finite_collar_max_q),
         coefficient_enclosure_attempt,
         past_profile_interval_box_attempt,
         past_profile_interval_box_certificate,
         future_transport_interval_box_certificate,
         directed_rounding_backend_target,
         directed_rounding_backend_self_audit,
+        retained_root_inactive_cover_interval_box_target=(
+            retained_root_inactive_cover_interval_box_target
+        ),
+    )
+    certificate_composition_readiness = a1_certificate_composition_readiness(
+        identity["digest"],
+        radius_b=args.admissible_profile_radius_b,
+        theta_interval=[0.0, args.theta_hi],
+        shared_interval_target=shared_interval_target,
     )
     blocked_rows = [
         "coefficient_interval_enclosure_attempt_not_directed_rounding_certificate",
@@ -6329,6 +6663,7 @@ def a1_endpoint_slope_cancel_source_identity(args: argparse.Namespace) -> dict:
             directed_rounding_backend_self_audit
         ),
         "shared_interval_box_certificate_target": shared_interval_target,
+        "certificate_composition_readiness": certificate_composition_readiness,
         "used_as_certificate": False,
         "authorizes_outward_certificate": False,
         "authorizes_obstruction_or_channel_decision": False,
@@ -6448,8 +6783,18 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             panels=attempt_args.integration_panels,
         )
     )
+    retained_root_inactive_cover_interval_box_target = (
+        a1_retained_root_inactive_cover_interval_box_target(
+            source_identity["digest"],
+            radius_b=args.admissible_profile_radius_b,
+            theta_interval=[0.0, attempt_args.theta_hi],
+        )
+    )
     shared_interval_target = a1_shared_interval_box_certificate_target(
         source_identity["digest"],
+        args.admissible_profile_radius_b,
+        [0.0, attempt_args.theta_hi],
+        (args.finite_collar_min_q, args.finite_collar_max_q),
         coefficient_enclosure_attempt,
         past_profile_interval_box_attempt,
         past_profile_interval_box_certificate,
@@ -6458,6 +6803,15 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         directed_rounding_backend_self_audit,
         retained_root_window_bracket_replay=retained_root_bracket_replay,
         inactive_cover_exclusion_replay=inactive_cover_exclusion_replay,
+        retained_root_inactive_cover_interval_box_target=(
+            retained_root_inactive_cover_interval_box_target
+        ),
+    )
+    certificate_composition_readiness = a1_certificate_composition_readiness(
+        source_identity["digest"],
+        radius_b=args.admissible_profile_radius_b,
+        theta_interval=[0.0, attempt_args.theta_hi],
+        shared_interval_target=shared_interval_target,
     )
     retained_root_replay = a1_retained_root_window_sample_replay(
         source_identity["digest"],
@@ -6554,8 +6908,14 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "inactive_cover_id": "absent",
             "source_artifact_hash": source_identity["digest"],
             "source_artifact_hash_status": source_identity["status"],
+            "inactive_cover_id": (
+                retained_root_inactive_cover_interval_box_target[
+                    "inactive_cover_id"
+                ]
+            ),
         },
         "shared_interval_box_certificate_target": shared_interval_target,
+        "certificate_composition_readiness": certificate_composition_readiness,
         "past_profile": {
             "kind": past_profile.kind,
             "degree": len(past_profile.coefficients),
@@ -6703,7 +7063,7 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "future_piecewise_linear_profile_box_local_certificate_not_continuous_transport_certificate",
             "continuous_transport_equation_bounds_absent",
             "E_Q_plus_b_absent_for_admissible_class",
-            "inactive_cover_id_absent",
+            "inactive_cover_interval_boxes_absent",
             "source_identity_digest_not_shared_interval_box_certificate",
             "directed_rounding_backend_self_audit_not_shared_certificate",
             "retained_root_boxes_absent",

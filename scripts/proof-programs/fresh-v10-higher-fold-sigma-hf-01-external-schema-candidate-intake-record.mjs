@@ -274,6 +274,82 @@ function hasNonReinterpretationGuard(value) {
   return REQUIRED_SCHEMA_FORBIDDEN_REINTERPRETATIONS.every((entry) => forbidden.has(entry));
 }
 
+const PROOF_GRADE_FIELD_PREDICATES = {
+  rule_kernel_obligation_binding: [
+    {
+      predicate: "derivation_proof_obligation",
+      passes: (value) => isObject(value) && value.derivation_proof_obligation === "discharged",
+    },
+    {
+      predicate: "soundness_proof_obligation",
+      passes: (value) => isObject(value) && value.soundness_proof_obligation === "discharged",
+    },
+    {
+      predicate: "endpoint_application_proof_obligation",
+      passes: (value) =>
+        isObject(value) && value.endpoint_application_proof_obligation === "discharged",
+    },
+  ],
+  rule_kernel_derivation_payload_target_binding: [
+    {
+      predicate: "slot=Sigma_hf_01",
+      passes: (value) => isObject(value) && value.slot === TARGET_SLOT,
+    },
+    {
+      predicate: "payload_target_declared=true",
+      passes: (value) => isObject(value) && value.payload_target_declared === true,
+    },
+    {
+      predicate: "proof_binds_to_payload_target=true",
+      passes: (value) => isObject(value) && value.proof_binds_to_payload_target === true,
+    },
+    {
+      predicate: "rule_kernel_derivation_payload_constructed=true",
+      passes: (value) =>
+        isObject(value) && value.rule_kernel_derivation_payload_constructed === true,
+    },
+  ],
+  proof_grade_derivation_schema_statement: [
+    {
+      predicate: "hypotheses_nonempty",
+      passes: (value) => isObject(value) && Array.isArray(value.hypotheses) && value.hypotheses.length > 0,
+    },
+    {
+      predicate: "inference_steps_nonempty",
+      passes: (value) =>
+        isObject(value) && Array.isArray(value.inference_steps) && value.inference_steps.length > 0,
+    },
+    {
+      predicate: "conclusion_nonempty",
+      passes: (value) => isObject(value) && present(value.conclusion),
+    },
+    {
+      predicate: "source_data_correspondence_nonempty",
+      passes: (value) => isObject(value) && present(value.source_data_correspondence),
+    },
+  ],
+};
+
+function proofGradePredicateDiagnostics(value, field) {
+  const predicates = PROOF_GRADE_FIELD_PREDICATES[field];
+  if (!predicates) {
+    return null;
+  }
+  const predicateResults = predicates.map((entry) => ({
+    predicate: entry.predicate,
+    present: entry.passes(value),
+  }));
+  return {
+    expected_predicates: predicateResults.map((entry) => entry.predicate),
+    passed_predicates: predicateResults
+      .filter((entry) => entry.present)
+      .map((entry) => entry.predicate),
+    failed_predicates: predicateResults
+      .filter((entry) => !entry.present)
+      .map((entry) => entry.predicate),
+  };
+}
+
 function fieldVerdict(candidate, field) {
   const candidateFieldSupplied = present(candidate[field]);
   const checks = {
@@ -287,12 +363,17 @@ function fieldVerdict(candidate, field) {
     non_reinterpretation_guard: () => hasNonReinterpretationGuard(candidate[field]),
   };
   const isPresent = checks[field]();
-  return {
+  const verdict = {
     field,
     present: isPresent,
     candidate_field_supplied: candidateFieldSupplied,
     verdict: isPresent ? "present_on_candidate_for_intake_screen" : "external_input_required",
   };
+  const predicateDiagnostics = proofGradePredicateDiagnostics(candidate[field], field);
+  if (predicateDiagnostics !== null) {
+    verdict.predicate_diagnostics = predicateDiagnostics;
+  }
+  return verdict;
 }
 
 function candidateTextMarkers(candidate, candidateRef) {

@@ -30,12 +30,12 @@ The candidate source is suitable for a source-field map because it is versioned 
 | Current score | `2` |
 | Closure driver | Recover quadrupole, chirp, orbital decay, detector strain, radiated energy/angular momentum, and ringdown from one source carrier. |
 | Primary $\mathbb{A}\mathbb{A}\mathbb{A}$ carrier | $\Theta_{\mathrm{GWsrc}}(W,P)$ with source window $W$ and detector path-history window $P$. |
-| Smallest score-moving evidence object | Accepted source-backed `gw_source_carrier` plus accepted bindings for all `EQ-11A` required rows in one source-window record. |
+| Smallest score-moving evidence object | Accepted source-backed `gw_source_carrier` plus accepted bindings, local artifact paths, and artifact-family hashes for all `EQ-11A` required rows in one source-window record. |
 | Exact first blocker | `missing_accepted_gw_source_carrier` |
 | Existing scripts/fixtures/packets | [eq11a-gravitational-wave-source-residual.mjs](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs), [eq11a-gravitational-wave-source-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-attempt.v1.json), [EQ-11A Gravitational-Wave Source Recovery](eq-11a-gravitational-wave-source-recovery.md) |
 | Breakthrough angle | Reuse `EQ-29` source-ledger grammar and `EQ-23A` source-window identity fields, while keeping the gravitational-wave effective-metric tensor channel separate from photon radiation or explosive-source carriers. |
 | Fail-closed negative control | `gw.source_window_split`: chirp, quadrupole, strain, and ringdown rows pass numerically but use different `carrierId`, `sourceWindowId`, or detector path-history window. Expected failure: carrier split or hidden-retune failure before residual scoring. |
-| Next action | Replace the source-contract shell with the smallest accepted retained $\Theta_{\mathrm{GWsrc}}(W,P)$ evidence object; the shell itself must remain score-neutral. |
+| Next action | Fill the GW150914 retained-evidence intake template with local event, strain, parameter-estimation, waveform, calibration, extraction, path, and hash artifacts; only after that, replace the source-contract shell with the smallest accepted retained $\Theta_{\mathrm{GWsrc}}(W,P)$ evidence object. |
 
 ## Required Row Map
 
@@ -230,7 +230,68 @@ node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --inp
 
 The first command reports `status=blocked_source_contract_boundary`, `nextBlocker=source_contract_boundary_not_retained_evidence`, and `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-no-hidden-retune-witness-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-no-hidden-retune-witness-mismatch-negative-control.v1.json) keeps an accepted-looking no-hidden-retune row blocked at `missing_accepted_no_hidden_retune_witness` when its `sourceEvidence` names the wrong row.
 
-The checker also reports `sourceContractBoundaryRows` and blocks all-source-contract shells at `status=blocked_source_contract_boundary`, `nextBlocker=source_contract_boundary_not_retained_evidence`. Source-contract boundaries can expose blocker order, but they cannot by themselves produce `status=populated`.
+The smallest retained-evidence object contract is staged in [eq11a-gravitational-wave-source-retained-evidence-object-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-retained-evidence-object-contract.v1.json). The fail-closed contract-only control is [eq11a-gravitational-wave-source-retained-evidence-object-contract-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-retained-evidence-object-contract-negative-control.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-retained-evidence-object-contract-negative-control.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-retained-evidence-object-contract-negative-control.v1.json --summary --pretty --require-populated
+```
+
+The first command reports `status=blocked_source_contract_boundary`, `nextBlocker=source_contract_boundary_not_retained_evidence`, `sourceContractBoundaryCount=12`, and `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. This prevents a contract-only object from being mistaken for a retained $\Theta_{\mathrm{GWsrc}}(W,P)$ evidence packet.
+
+The artifact-hash negative control is [eq11a-gravitational-wave-source-artifact-hash-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-artifact-hash-missing-negative-control.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-artifact-hash-missing-negative-control.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-artifact-hash-missing-negative-control.v1.json --summary --pretty --require-populated
+```
+
+The first command reports `status=blocked_source_artifact_hashes_missing`, `nextBlocker=source_artifact_hashes_missing`, `sourceArtifactHashMissingCount=13`, and `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. This prevents a durable but document-level source-mining summary from standing in for the row-specific retained event-page, strain-product, posterior-sample, calibration, waveform, extraction artifact paths, and artifact-family hashes.
+
+The artifact-path negative control is [eq11a-gravitational-wave-source-artifact-path-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-artifact-path-missing-negative-control.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-artifact-path-missing-negative-control.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-artifact-path-missing-negative-control.v1.json --summary --pretty --require-populated
+```
+
+The first command also reports `status=blocked_source_artifact_hashes_missing`, `nextBlocker=source_artifact_hashes_missing`, and `sourceArtifactHashMissingCount=13`; the `--require-populated` form exits nonzero. This prevents hash labels without accepted local artifact paths from satisfying retained evidence.
+
+The score-neutral intake template is [eq11a-gravitational-wave-source-gw150914-retained-evidence-intake-template.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-gw150914-retained-evidence-intake-template.v1.json). It records the required GWOSC event metadata, H1/L1 strain products, parameter-estimation or posterior artifacts, waveform or phase provenance, calibration/detector-quality rows, local extraction manifest, row-specific `sourceEvidence`, artifact-family path/hash keys, and same-record identity fields. Its status is `artifact_incomplete`; it is a path-and-hash manifest target, not retained evidence. The checker treats `intake-template` paths as boundary-only if a future fixture tries to cite the template itself as accepted evidence.
+
+The checker also reports `sourceContractBoundaryRows`, `sourceArtifactHashMissingRows`, and blocks all source-contract or retained-evidence-contract shells at `status=blocked_source_contract_boundary`, `nextBlocker=source_contract_boundary_not_retained_evidence`. Boundary contracts can expose blocker order and evidence shape, but they cannot by themselves produce `status=populated`. Durable non-contract rows also remain blocked until their artifact hashes are present on the carrier and every required row.
+
+## Retained Evidence Intake Checklist
+
+The next candidate packet must replace every boundary-only row with durable retained evidence. This checklist is not an additional score gate; it is the minimum intake shape for the first real $\Theta_{\mathrm{GWsrc}}(W,P)$ evidence object.
+
+| Intake field | Minimum retained-evidence requirement | Fail-closed condition |
+| --- | --- | --- |
+| Source paths | Every accepted row points to a durable non-priority, non-generated, non-attempt, non-probe, non-mock, non-negative-control file that is not a contract-only or intake-template object. | `accepted_without_evidence_source`, `non_durable_source_path`, or `source_contract_boundary_not_retained_evidence` remains blocking. |
+| Artifact identity | The carrier and all required rows record their required local artifact paths and artifact-family hashes for the event page, strain products, posterior samples or parameter-estimation record, waveform/phase provenance, calibration/detector-quality rows, and local retained extraction. | Rows with source names but no artifact-family identity block at `source_artifact_hashes_missing`. |
+| Same-record identity | `carrierId`, `sourceWindowId=GW150914-v3`, `supportId=H1L1_GWTC1_PE_v3`, `eventId=GWTC-1-confident/GW150914/v3`, and `sharedRecordId` are shared by all required rows. | Split identity blocks at `carrier_split` or the no-hidden-retune identity checks. |
+| Row-specific source evidence | Each row has `sourceEvidence.supportsEquationRows=["EQ-11A"]`, `supportsRows` containing that exact row id, and matching source-window, support, and event ids. | Generic or wrong-row support blocks at `source_contract_row_mismatch` or `source_contract_identity_mismatch`. |
+| Direct Geometry Layer binding | The packet maps chirp, quadrupole, Peters decay, strain flux, ringdown, provenance, and no-hidden-retune comparisons to one source-event ledger and tensor-channel geometry. | Numerically passing rows still remain score-neutral if the geometry is split across records or formula fits. |
+
+### Row Artifact-Family Targets
+
+The intake template uses these artifact-family keys. A future accepted-looking row must carry both a local artifact path and a hash for each required family listed here.
+
+| Row | Required artifact families | First missing retained field |
+| --- | --- | --- |
+| `carrier` | `gwosc_event_release_metadata`, `aaa_local_extraction_manifest` | Local event/extraction artifact paths and hashes. |
+| `gw_source_carrier` | `gwosc_event_release_metadata`, `parameter_estimation_posterior_or_release`, `aaa_local_extraction_manifest` | Event metadata, PE/release artifact, and extracted carrier hashes. |
+| `theta_sea` | `aaa_local_extraction_manifest` | Accepted Noether sea/effective-metric constitutive extraction. |
+| `effective_metric_tensor_channel` | `aaa_local_extraction_manifest` | Accepted tensor-channel extraction bound to the same carrier. |
+| `source_event_ledger` | `gwosc_event_release_metadata`, `parameter_estimation_posterior_or_release`, `aaa_local_extraction_manifest` | Same-event ledger extraction and source artifact hashes. |
+| `quadrupole_source_row` | `parameter_estimation_posterior_or_release`, `waveform_or_phase_provenance`, `aaa_local_extraction_manifest` | Quadrupole projection artifact tied to PE and waveform provenance. |
+| `chirp_mass_row` | `parameter_estimation_posterior_or_release`, `aaa_local_extraction_manifest` | Chirp-mass extraction from the same PE/release artifact. |
+| `peters_decay_row` | `waveform_or_phase_provenance`, `aaa_local_extraction_manifest` | Orbital-decay projection tied to the same waveform/source ledger. |
+| `strain_flux_row` | `h1_l1_strain_products`, `waveform_or_phase_provenance`, `aaa_local_extraction_manifest` | H1/L1 strain and strain-flux extraction artifacts. |
+| `ringdown_label_row` | `parameter_estimation_posterior_or_release`, `waveform_or_phase_provenance`, `aaa_local_extraction_manifest` | Final-state/ringdown label extraction from the same remnant record. |
+| `detector_strain_record` | `h1_l1_strain_products`, `aaa_local_extraction_manifest` | H1/L1 strain files, detector mask, calibration/nuisance row, and hashes. |
+| `source_provenance` | `gwosc_event_release_metadata`, `parameter_estimation_posterior_or_release`, `h1_l1_strain_products`, `waveform_or_phase_provenance`, `aaa_local_extraction_manifest` | Complete source artifact manifest with hashes. |
+| `no_hidden_retune_witness` | `gwosc_event_release_metadata`, `parameter_estimation_posterior_or_release`, `h1_l1_strain_products`, `waveform_or_phase_provenance`, `aaa_local_extraction_manifest` | Hash-backed same-record witness across all required rows. |
 
 ## Current Disposition
 

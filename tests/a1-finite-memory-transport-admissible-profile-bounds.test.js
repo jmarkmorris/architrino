@@ -401,6 +401,69 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
       .inactive_cover_exclusion_replay.used_as_certificate,
     false
   );
+  const retainedRootInactiveCoverTarget =
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .retained_root_inactive_cover_interval_box_target;
+  assert.equal(
+    retainedRootInactiveCoverTarget.schema,
+    "architrino.priority.master_equation_closure.a1_retained_root_inactive_cover_interval_box_target.v0"
+  );
+  assert.equal(
+    retainedRootInactiveCoverTarget.status,
+    "target_only_retained_root_inactive_cover_interval_boxes_absent"
+  );
+  assert.equal(
+    retainedRootInactiveCoverTarget.source_artifact_hash,
+    packet.row_identity.source_artifact_hash
+  );
+  assert.equal(
+    packet.row_identity.inactive_cover_id,
+    retainedRootInactiveCoverTarget.inactive_cover_id
+  );
+  assert.deepEqual(retainedRootInactiveCoverTarget.theta_interval, [0, 0.02]);
+  assert.equal(retainedRootInactiveCoverTarget.radius_b, 0.001);
+  assert.equal(
+    retainedRootInactiveCoverTarget.retained_root_endpoint_sign_obligations
+      .length,
+    4
+  );
+  assert.equal(
+    retainedRootInactiveCoverTarget.retained_root_jacobian_floor_obligations
+      .length,
+    4
+  );
+  assert.ok(
+    retainedRootInactiveCoverTarget.inactive_cover_no_root_obligations.length >
+      0
+  );
+  assert.equal(
+    retainedRootInactiveCoverTarget.bounds_retained_root_interval_boxes,
+    false
+  );
+  assert.equal(
+    retainedRootInactiveCoverTarget.bounds_inactive_cover_interval_boxes,
+    false
+  );
+  assert.equal(retainedRootInactiveCoverTarget.used_as_certificate, false);
+  assert.equal(
+    retainedRootInactiveCoverTarget.authorizes_outward_certificate,
+    false
+  );
+  assert.equal(
+    retainedRootInactiveCoverTarget.authorizes_obstruction_or_channel_decision,
+    false
+  );
+  assert.equal(
+    Object.keys(retainedRootInactiveCoverTarget).some((key) =>
+      key.startsWith("sampled_")
+    ),
+    false
+  );
+  assert.deepEqual(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .missing_box_ids,
+    ["retained_root_interval_boxes", "inactive_cover_interval_boxes"]
+  );
   assert.equal(
     packet.shared_interval_box_certificate_target.shared_interval_boxes
       .used_as_certificate,
@@ -579,6 +642,93 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     packet.shared_interval_box_certificate_target.future_transport_constants
       .required_constants[0],
     "E_Q_plus_b"
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.future_transport_constants
+      .status,
+    "target_only_future_continuous_transport_bounds_absent"
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.future_transport_constants
+      .first_missing_evidence_object,
+    "a1_future_continuous_transport_bounds/v0"
+  );
+  const futureContinuousTarget =
+    packet.shared_interval_box_certificate_target.future_transport_constants
+      .future_continuous_transport_bounds_target;
+  assert.equal(
+    futureContinuousTarget.schema,
+    "architrino.priority.master_equation_closure.a1_future_continuous_transport_bounds_target.v0"
+  );
+  assert.equal(
+    futureContinuousTarget.status,
+    "target_only_future_continuous_transport_bounds_absent"
+  );
+  assert.equal(
+    futureContinuousTarget.source_artifact_hash,
+    packet.row_identity.source_artifact_hash
+  );
+  assert.deepEqual(
+    futureContinuousTarget.same_box_binding.required_box_ids,
+    [
+      "past_profile_interval_box",
+      "future_transport_interval_box",
+      "retained_root_interval_boxes",
+      "inactive_cover_interval_boxes",
+    ]
+  );
+  assert.equal(
+    futureContinuousTarget.local_certificate_inputs
+      .future_bounds_emitted_piecewise_linear_profile,
+    true
+  );
+  assert.equal(
+    futureContinuousTarget.local_certificate_inputs
+      .future_bounds_continuous_transport_equation,
+    false
+  );
+  assert.equal(futureContinuousTarget.emits_E_Q_plus_b, false);
+  assert.equal(futureContinuousTarget.used_as_certificate, false);
+  assert.equal(futureContinuousTarget.authorizes_outward_certificate, false);
+  assert.equal(
+    futureContinuousTarget.disallowed_evidence_sources.includes(
+      "q_prime_auxiliary_interpolant"
+    ),
+    true
+  );
+  assert.equal(
+    packet.certificate_composition_readiness.schema,
+    "architrino.priority.master_equation_closure.a1_certificate_composition_readiness.v0"
+  );
+  assert.equal(
+    packet.certificate_composition_readiness.status,
+    "composition_readiness_open_local_certificates_present_future_continuous_transport_and_same_box_rows_absent"
+  );
+  assert.equal(
+    packet.certificate_composition_readiness.first_missing_evidence_object,
+    "a1_future_continuous_transport_bounds/v0"
+  );
+  assert.equal(packet.certificate_composition_readiness.used_as_certificate, false);
+  assert.equal(
+    packet.certificate_composition_readiness.authorizes_outward_certificate,
+    false
+  );
+  assert.deepEqual(
+    packet.certificate_composition_readiness.local_certificate_inputs
+      .local_certificate_box_ids_present,
+    ["past_profile_interval_box", "future_transport_interval_box"]
+  );
+  assert.deepEqual(
+    packet.certificate_composition_readiness.missing_certificate_grade_objects,
+    [
+      "future_continuous_transport_bounds",
+      "E_Q_plus_b_outward_bound",
+      "retained_root_interval_boxes",
+      "inactive_cover_interval_boxes",
+      "branch_sum_constants",
+      "transport_constants",
+      "residual_envelope",
+    ]
   );
   assert.equal(packet.past_profile.source_identity.used_as_certificate, false);
   assert.equal(packet.past_profile.source_identity.constraint_row_count, 12);
@@ -922,6 +1072,10 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     packet.blocked_rows.includes("E_Q_plus_b_absent_for_admissible_class")
   );
   assert.ok(
+    packet.blocked_rows.includes("inactive_cover_interval_boxes_absent")
+  );
+  assert.equal(packet.blocked_rows.includes("inactive_cover_id_absent"), false);
+  assert.ok(
     packet.blocked_rows.includes(
       "source_identity_digest_not_shared_interval_box_certificate"
     )
@@ -977,6 +1131,10 @@ test("A1 source identity diagnostic reproduces the admissible profile digest", (
   assert.deepEqual(
     sourceIdentity.shared_interval_box_certificate_target,
     withoutAdmissibilityOnlyReplays(packet.shared_interval_box_certificate_target)
+  );
+  assert.deepEqual(
+    sourceIdentity.certificate_composition_readiness,
+    packet.certificate_composition_readiness
   );
   assert.equal(
     sourceIdentity.shared_interval_box_certificate_target.shared_interval_boxes
@@ -1231,6 +1389,11 @@ test("A1 source identity diagnostic reproduces the admissible profile digest", (
     sourceIdentity.shared_interval_box_certificate_target.shared_interval_boxes
       .required_box_ids.length,
     4
+  );
+  assert.equal(
+    sourceIdentity.shared_interval_box_certificate_target
+      .future_transport_constants.status,
+    "target_only_future_continuous_transport_bounds_absent"
   );
   assert.equal(
     sourceIdentity.shared_interval_box_certificate_target

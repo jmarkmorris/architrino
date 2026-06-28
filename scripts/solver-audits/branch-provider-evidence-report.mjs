@@ -12,6 +12,10 @@ const SOURCE_CONTRACT_READOUT_SCHEMA =
   "branch_provider_candidate_source_contract_readout/v0";
 const SOURCE_PROVENANCE_REFINEMENT_SCHEMA =
   "branch_provider_candidate_source_provenance_refinement/v0";
+const SOURCE_PROVENANCE_EMITTER_TARGET_SCHEMA =
+  "branch_provider_candidate_source_provenance_emitter_target/v0";
+const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_INTERVAL_READOUT_SCHEMA =
+  "branch_provider_candidate_source_map_provider_object_branch_interval_readout/v0";
 
 const ACCEPTED_SOURCE_STATUS = "accepted_non_fixture_source";
 
@@ -295,6 +299,26 @@ function sourceContractReadoutValidationErrors(readout, label) {
     "source_term_provider_directed_source_certification_open",
     "source_term_provider_term_width_realization_open",
   ];
+  const expectedLatestBoundary =
+    "terminal-source-covariance-lambda-provider-object-replay-audit-provider-branch-intervals-open";
+  const expectedCurrentBlocker =
+    "same-domain-source-map-provider-object-branch-intervals-needed";
+  const expectedCurrentMissingObject =
+    "source-map-provider-object-branch-intervals";
+  const expectedNextEvidenceObject =
+    "same-domain source-map provider-object branch intervals on every terminal row";
+  const expectedRejectedCandidateSourceKinds = [
+    "lambda-terminal-witness-branch-interval",
+    "aggregate-P-only-provider-row",
+    "variable-owned-alpha-candidate",
+    "row-local-expression-branch-feed",
+  ];
+  const expectedMissingIdentityKinds = [
+    "same-domain-branch-bearing-P_b-map",
+    "branch_projection_or_alpha_map",
+    "pushforward_operator_ref",
+    "normalization_identity_ref",
+  ];
   if (!isObject(readout)) {
     return [`${label} must be an object when present`];
   }
@@ -336,25 +360,92 @@ function sourceContractReadoutValidationErrors(readout, label) {
   const refinement = readout.source_provenance_refinement;
   if (!isObject(refinement)) {
     errors.push(`${label} must include source_provenance_refinement`);
-  } else if (
-    refinement.schema !== SOURCE_PROVENANCE_REFINEMENT_SCHEMA ||
-    refinement.status !==
-      "candidate-term-width-reduced-source-provenance-emitter-open" ||
-    refinement.term_width_reduced_to_signed_radius_source_provenance !== true ||
-    refinement.term_width_is_primary_blocker !== false ||
-    refinement.directed_rounded_source_provenance_still_open !== true ||
-    refinement.source_provenance_certificate_fields_present !== false ||
-    refinement.source_provenance_emitter_materialized !== false ||
-    refinement.provider_object_branch_intervals_present !== false ||
-    refinement.source_term_provider_probe_rows_certify_directed_rounded_source !==
-      false ||
-    refinement.source_term_provider_probe_term_width_realization_closed !==
-      false ||
-    refinement.provider_ready_authorized_by_this_refinement !== false ||
-    typeof refinement.current_primary_missing_object_kind !== "string" ||
-    typeof refinement.next_evidence_object !== "string"
-  ) {
-    errors.push(`${label} source_provenance_refinement must stay fail-closed`);
+  } else {
+    const emitterTarget = refinement.source_provenance_emitter_target;
+    const sourceMapProviderObjectReadout =
+      refinement.source_map_provider_object_branch_interval_readout;
+    if (
+      refinement.schema !== SOURCE_PROVENANCE_REFINEMENT_SCHEMA ||
+      refinement.status !==
+        "candidate-source-covariance-lambda-provider-object-replay-branch-intervals-open" ||
+      refinement.term_width_reduced_to_signed_radius_source_provenance !== true ||
+      refinement.term_width_is_primary_blocker !== false ||
+      refinement.directed_rounded_source_provenance_still_open !== true ||
+      refinement.source_provenance_certificate_fields_present !== false ||
+      refinement.source_provenance_emitter_materialized !== false ||
+      refinement.signed_radius_subinterval_emitter_primitive_materialized !==
+        true ||
+      refinement.source_term_producer_image_fields_projected !== true ||
+      refinement.lambda_terminal_witness_branch_intervals_available !== true ||
+      refinement.source_map_provider_branch_intervals_available !== false ||
+      refinement.provider_object_branch_intervals_present !== false ||
+      refinement.source_term_provider_probe_rows_certify_directed_rounded_source !==
+        false ||
+      refinement.source_term_provider_probe_term_width_realization_closed !==
+        false ||
+      refinement.latest_candidate_boundary !== expectedLatestBoundary ||
+      refinement.current_blocker_classification !== expectedCurrentBlocker ||
+      refinement.current_primary_missing_object_kind !==
+        expectedCurrentMissingObject ||
+      refinement.next_evidence_object !== expectedNextEvidenceObject ||
+      refinement.provider_ready_authorized_by_this_refinement !== false
+    ) {
+      errors.push(`${label} source_provenance_refinement must stay fail-closed`);
+    }
+    if (
+      !isObject(emitterTarget) ||
+      emitterTarget.schema !== SOURCE_PROVENANCE_EMITTER_TARGET_SCHEMA ||
+      emitterTarget.status !==
+        "candidate-signed-radius-subinterval-emitter-primitive-materialized-source-provenance-open" ||
+      emitterTarget.signed_radius_subinterval_emitter_primitive_verified !==
+        true ||
+      emitterTarget.signed_radius_subinterval_emitter_primitive_materialized !==
+        true ||
+      emitterTarget.source_provenance_emitter_materialized !== false ||
+      emitterTarget.source_provenance_emitter_certified_directed_rounded !==
+        false ||
+      emitterTarget.source_term_producer_image_provenance_fields_present !==
+        false ||
+      emitterTarget.source_term_producer_image_provenance_fields_still_missing !==
+        true ||
+      !sameStringSet(emitterTarget.source_cell_ids, expectedSharedSourceCellIds) ||
+      emitterTarget.provider_ready_authorized_by_this_target !== false ||
+      emitterTarget.downstream_consumer_authorization !== false
+    ) {
+      errors.push(`${label} source_provenance_emitter_target must stay fail-closed`);
+    }
+    if (
+      !isObject(sourceMapProviderObjectReadout) ||
+      sourceMapProviderObjectReadout.schema !==
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_INTERVAL_READOUT_SCHEMA ||
+      sourceMapProviderObjectReadout.status !==
+        "candidate-source-map-provider-object-branch-intervals-open" ||
+      sourceMapProviderObjectReadout.terminal_row_count !== 15 ||
+      sourceMapProviderObjectReadout.branch_row_count !== 30 ||
+      sourceMapProviderObjectReadout
+        .lambda_terminal_witness_branch_intervals_available !== true ||
+      sourceMapProviderObjectReadout
+        .source_map_provider_branch_intervals_available !== false ||
+      sourceMapProviderObjectReadout
+        .provider_object_branch_intervals_present !== false ||
+      sourceMapProviderObjectReadout
+        .accepted_provider_object_branch_interval_count !== 0 ||
+      !sameStringSet(
+        sourceMapProviderObjectReadout.rejected_candidate_source_kinds,
+        expectedRejectedCandidateSourceKinds
+      ) ||
+      !sameStringSet(
+        sourceMapProviderObjectReadout.missing_identity_kinds,
+        expectedMissingIdentityKinds
+      ) ||
+      sourceMapProviderObjectReadout.provider_ready_authorized_by_this_readout !==
+        false ||
+      sourceMapProviderObjectReadout.downstream_consumer_authorization !== false
+    ) {
+      errors.push(
+        `${label} source_map_provider_object_branch_interval_readout must stay fail-closed`
+      );
+    }
   }
   return errors;
 }

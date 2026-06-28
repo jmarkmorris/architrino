@@ -363,6 +363,18 @@ with certificate digest
 It has `used_as_local_certificate=true`, but
 `used_as_shared_certificate=false`, `authorizes_outward_certificate=false`, and
 does not supply $E_Q^+(b)$ for the admissible class.
+The shared target now also emits
+`a1_future_continuous_transport_bounds_target.v0` with target digest
+`sha256:df8f4fe0cef71edfde0063149ad0cfe4cbc01cd0449f78a646195d19a9e998f9`.
+That row binds the same source digest, radius $b=0.001$, $\theta$ interval,
+declared $0.2\le Q\le3.0$ bounds, local past-profile certificate digest, and
+local future emitted-profile certificate digest to the still-missing
+continuous-transport and $E_Q^+(b)$ obligation. It is target-only: it requires
+continuous-transport equation interval boxes, future-profile bounds on the same
+$\theta$ boxes, an outward $E_Q^+(b)$ bound, a transport Gronwall constant
+$K_Q$, and the branch-sum feedback bound. It explicitly rejects
+piecewise-linear node extrema, the auxiliary $Q'$ interpolant, and sampled
+transport replay as certificate evidence.
 The retained-root context now also emits
 `a1_retained_root_window_sample_replay.v0` with replay digest
 `sha256:f17e6495fa4f91631f26d9b5c8e39dd9573f73b5bf320ab95924452614ed9c5e`.
@@ -390,6 +402,16 @@ and records `sampled_inactive_root_count=0`. This is an inactive-complement
 sample replay only: it has `used_as_certificate=false`,
 `bounds_retained_root_interval_boxes=false`, and
 `bounds_inactive_cover_interval_boxes=false`.
+The shared target row now additionally records
+`a1_retained_root_inactive_cover_interval_box_target.v0` with target digest
+`sha256:63dede344647775adc3afdf507b6664b2fd52173ffb5e713c87b3af524a22618`.
+That target binds the same source digest, radius $b=0.001$, and
+$0\le\theta\le0.02$ interval to 4 retained-window endpoint-sign obligations,
+4 retained-window Jacobian-floor obligations, and 6 inactive-cover no-root
+obligations. It is still target-only: it has `used_as_certificate=false`,
+`authorizes_outward_certificate=false`,
+`bounds_retained_root_interval_boxes=false`, and
+`bounds_inactive_cover_interval_boxes=false`.
 The directed-rounding backend subrow now carries a digestible backend target,
 `a1_directed_rounding_backend_target.v0`, plus
 `a1_directed_rounding_backend_self_audit.v0`. The self-audit uses
@@ -404,18 +426,35 @@ Bernstein subdivision control points, shared past/future/root/inactive-cover
 interval-box family, and rounding-mode audit trail for the next
 certificate-grade pass.
 The shared target row now records local certificates for
-`past_profile_interval_box` and `future_transport_interval_box`, but
-`retained_root_interval_boxes` and `inactive_cover_interval_boxes` remain
-absent. The sampled retained-root replay and sampled sign-bracket replay do not
-change that missing-box status. The local past-profile Bernstein certificate and emitted future-profile
-certificate are not a shared interval-box certificate because the retained-root
-and inactive-cover boxes are still absent, hardware directed rounding is not
-controlled, and the continuous transport / $E_Q^+(b)$ row is still absent
-pending branch-sum and transport constants. The branch-sum constants, transport
-constants, and residual envelope are also still absent, so the current first
-failure remains `admissible_profile_bounds`. The reduced smoke result and
-retained-root replay are carried only as diagnostic context with
-`used_as_certificate=false`.
+`past_profile_interval_box` and `future_transport_interval_box`, a target-only
+continuous-transport / $E_Q^+(b)$ obligation object, and a target-only
+retained-root / inactive-cover obligation object. The top-level row identity
+now carries `inactive_cover_id=inactive_cover_interval_boxes`, so the live
+blocker is no longer an absent cover id; it is the absent
+`inactive_cover_interval_boxes` certificate. The sampled retained-root replay,
+sampled sign-bracket replay, sampled inactive-cover replay, and target-only
+obligation object do not change that missing-box status. The local past-profile
+Bernstein certificate and emitted future-profile certificate are not a shared
+interval-box certificate because the retained-root and inactive-cover boxes are
+still absent, hardware directed rounding is not controlled, and the continuous
+transport / $E_Q^+(b)$ row is still target-only pending branch-sum and transport
+constants.
+
+The packet now adds `a1_certificate_composition_readiness.v0` with readiness
+digest `sha256:50bb230a9f01ed7b3cefcc67b5188ee86c6800c608356e4fd0ecb06ffcaaebc8`.
+This row composes the local past/future certificate digests with the
+continuous-transport target and retained-root/inactive-cover target, then names
+the still-missing certificate-grade objects:
+`future_continuous_transport_bounds`, `E_Q_plus_b_outward_bound`,
+`retained_root_interval_boxes`, `inactive_cover_interval_boxes`,
+`branch_sum_constants`, `transport_constants`, and `residual_envelope`. Its
+first missing evidence object is
+`a1_future_continuous_transport_bounds/v0`; it has
+`used_as_certificate=false` and authorizes no outward certificate or
+obstruction/channel decision. The branch-sum constants, transport constants,
+and residual envelope are also still absent, so the current first failure
+remains `admissible_profile_bounds`. The reduced smoke result and retained-root
+replay are carried only as diagnostic context with `used_as_certificate=false`.
 
 ## Advancement Decision
 

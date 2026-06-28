@@ -58,12 +58,13 @@ now records the current fail-closed separator-slot state, and the generated
 plus
 [report](./breather-proof/certificate/sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
 make that state machine-checkable: the internal locks are fixed,
-`candidate_external_schema_ref` is absent, 0 / 8 required predicate fields are
-present, the slot result remains `external_input_required`, 11 row slots remain
-parked, row consumption is 0, `preledger_pass=false`,
-`updates_live_ledger=false`, and no branch chart is authorized.
-The local-source-data partial then supplies 5 / 8 screen fields for the same
-slot without becoming an external proof-grade schema. The
+the local-source-data partial is screened with
+`candidate_external_schema_received=false`, 5 / 8 required predicate fields are
+present, and the slot result remains `external_input_required`; 11 row slots
+remain parked, row consumption is 0, `preledger_pass=false`,
+`updates_live_ledger=false`, and no branch chart is authorized. The local
+source-data partial supplies those 5 / 8 screen fields for the same slot
+without becoming an external proof-grade schema. The
 [placeholder-rejection intake record](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.placeholder-rejection-intake-record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
 now proves that local placeholders for `rule_kernel_obligation_binding`,
 `rule_kernel_derivation_payload_target_binding`, and

@@ -257,6 +257,11 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
   );
   assert.equal(
     h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.status,
+    "candidate-source-covariance-lambda-provider-object-replay-branch-intervals-open"
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
       .source_provenance_refinement
       .term_width_reduced_to_signed_radius_source_provenance,
     true
@@ -285,8 +290,142 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
   );
   assert.equal(
     h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement
+      .signed_radius_subinterval_emitter_primitive_materialized,
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.source_term_producer_image_fields_projected,
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement
+      .lambda_terminal_witness_branch_intervals_available,
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement
+      .source_map_provider_branch_intervals_available,
+    false
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.source_provenance_emitter_target.schema,
+    "branch_provider_candidate_source_provenance_emitter_target/v0"
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.source_provenance_emitter_target.status,
+    "candidate-signed-radius-subinterval-emitter-primitive-materialized-source-provenance-open"
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.source_provenance_emitter_target
+      .signed_radius_subinterval_emitter_primitive_materialized,
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.source_provenance_emitter_target
+      .source_provenance_emitter_materialized,
+    false
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.source_provenance_emitter_target
+      .source_provenance_emitter_certified_directed_rounded,
+    false
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.source_provenance_emitter_target
+      .provider_ready_authorized_by_this_target,
+    false
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
       .source_provenance_refinement.provider_object_branch_intervals_present,
     false
+  );
+  const sourceMapProviderObjectReadout =
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement
+      .source_map_provider_object_branch_interval_readout;
+  assert.equal(
+    sourceMapProviderObjectReadout.schema,
+    "branch_provider_candidate_source_map_provider_object_branch_interval_readout/v0"
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.status,
+    "candidate-source-map-provider-object-branch-intervals-open"
+  );
+  assert.equal(sourceMapProviderObjectReadout.terminal_row_count, 15);
+  assert.equal(sourceMapProviderObjectReadout.branch_row_count, 30);
+  assert.equal(
+    sourceMapProviderObjectReadout
+      .lambda_terminal_witness_branch_intervals_available,
+    true
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.source_map_provider_branch_intervals_available,
+    false
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.provider_object_branch_intervals_present,
+    false
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.accepted_provider_object_branch_interval_count,
+    0
+  );
+  assert.deepEqual(
+    sourceMapProviderObjectReadout.rejected_candidate_source_kinds,
+    [
+      "lambda-terminal-witness-branch-interval",
+      "aggregate-P-only-provider-row",
+      "variable-owned-alpha-candidate",
+      "row-local-expression-branch-feed",
+    ]
+  );
+  assert.deepEqual(
+    sourceMapProviderObjectReadout.missing_identity_kinds,
+    [
+      "same-domain-branch-bearing-P_b-map",
+      "branch_projection_or_alpha_map",
+      "pushforward_operator_ref",
+      "normalization_identity_ref",
+    ]
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.provider_ready_authorized_by_this_readout,
+    false
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.downstream_consumer_authorization,
+    false
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.latest_candidate_boundary,
+    "terminal-source-covariance-lambda-provider-object-replay-audit-provider-branch-intervals-open"
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.current_blocker_classification,
+    "same-domain-source-map-provider-object-branch-intervals-needed"
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.current_primary_missing_object_kind,
+    "source-map-provider-object-branch-intervals"
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.next_evidence_object,
+    "same-domain source-map provider-object branch intervals on every terminal row"
   );
   assert.equal(
     h39ConstructionAttemptDetails.source_contract_readout
@@ -409,6 +548,42 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
     h39Readouts.every(
       (readout) =>
         readout.source_contract_readout?.source_provenance_refinement
+          ?.source_provenance_emitter_target?.schema ===
+        "branch_provider_candidate_source_provenance_emitter_target/v0"
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.source_provenance_emitter_target
+          ?.signed_radius_subinterval_emitter_primitive_materialized === true
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.source_provenance_emitter_target
+          ?.source_provenance_emitter_materialized === false
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.source_provenance_emitter_target
+          ?.provider_ready_authorized_by_this_target === false
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
           ?.directed_rounded_source_provenance_still_open === true
     ),
     true
@@ -418,6 +593,47 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
       (readout) =>
         readout.source_contract_readout?.source_provenance_refinement
           ?.source_provenance_emitter_materialized === false
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.signed_radius_subinterval_emitter_primitive_materialized === true
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.source_term_producer_image_fields_projected === true
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.lambda_terminal_witness_branch_intervals_available === true
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.source_map_provider_branch_intervals_available === false
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.current_primary_missing_object_kind ===
+        "source-map-provider-object-branch-intervals"
     ),
     true
   );

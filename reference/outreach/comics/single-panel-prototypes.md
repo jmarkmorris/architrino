@@ -425,7 +425,7 @@ Second rough visual prototypes:
 
 Cosmology comparison rough visual prototypes:
 
-- [First Page Problem](assets/first-page-problem-prototype-v2-mia-gaze.png)
+- [First Page Problem](assets/first-page-problem-prototype-v4-snail-gaze.png)
 - [The Observable Edge Receipt](assets/observable-edge-receipt-prototype.png)
 - [Opening Scene, Not Building Permit](assets/opening-scene-not-building-permit-prototype.png)
 - [Birthday Cake For The Observer Era](assets/birthday-cake-observer-era-prototype.png)

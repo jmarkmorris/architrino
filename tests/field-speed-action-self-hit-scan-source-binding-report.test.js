@@ -42,8 +42,8 @@ test("field-speed source-binding report can accept a non-fixture same-record sou
   fs.writeFileSync(
     path.join(tempDir, "action_increment_rows.csv"),
     [
-      "id,branch_from,branch_to,cluster_id,delta_I_ME,status,failure_code",
-      "candidate-row,B_1,B_2,cluster-a,1.0,accepted,",
+      "id,branch_from,branch_to,cluster_id,delta_I_ME,status,failure_code,branch_certificate_ref,root_ledger_hash,conservation_pullback_hash",
+      "candidate-row,B_1,B_2,cluster-a,1.0,accepted,,branch-certificate:test,sha256:root,sha256:conservation",
       "",
     ].join("\n")
   );
@@ -64,8 +64,46 @@ test("field-speed source-binding report can accept a non-fixture same-record sou
   assert.deepEqual(validationErrors(report), []);
   assert.equal(report.source_verdict, "accepted_transition_source");
   assert.equal(report.same_record_binding, true);
+  assert.equal(report.action_row_branch_certificate_ref, "branch-certificate:test");
+  assert.equal(report.action_row_root_ledger_hash, "sha256:root");
+  assert.equal(report.action_row_conservation_pullback_hash, "sha256:conservation");
   assert.equal(report.first_failure, null);
   assert.equal(report.candidate_h_recovery_vote, "authorized_not_computed");
+});
+
+test("field-speed source-binding report rejects sideband hashes that do not bind to the action row", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "field-speed-source-binding-mismatch-"));
+  fs.writeFileSync(
+    path.join(tempDir, "action_increment_rows.csv"),
+    [
+      "id,branch_from,branch_to,cluster_id,delta_I_ME,status,failure_code,branch_certificate_ref,root_ledger_hash,conservation_pullback_hash",
+      "candidate-row,B_1,B_2,cluster-a,1.0,accepted,,branch-certificate:test,sha256:row-root,sha256:row-conservation",
+      "",
+    ].join("\n")
+  );
+  fs.writeFileSync(
+    path.join(tempDir, "cluster_summary.json"),
+    `${JSON.stringify({ schema: "test/v1", promotion_status: "non-fixture-source-candidate" })}\n`
+  );
+
+  const report = buildReport({
+    packetDir: tempDir,
+    branchRowId: "candidate-row",
+    branchCertificateRef: "branch-certificate:test",
+    rootLedgerHash: "sha256:other-root",
+    conservationPullbackHash: "sha256:other-conservation",
+    negativeControlRef: "negative-control:test",
+  });
+
+  assert.deepEqual(validationErrors(report), []);
+  assert.equal(report.source_verdict, "diagnostic_rejected_endpoint_source");
+  assert.equal(report.same_record_binding, false);
+  assert.equal(report.candidate_h_recovery_vote, "not_authorized");
+  assert.equal(report.missing_or_rejected_fields.includes("root_ledger_hash_mismatch"), true);
+  assert.equal(
+    report.missing_or_rejected_fields.includes("conservation_pullback_hash_mismatch"),
+    true
+  );
 });
 
 test("field-speed source-binding CLI emits and validates fixture report", () => {
