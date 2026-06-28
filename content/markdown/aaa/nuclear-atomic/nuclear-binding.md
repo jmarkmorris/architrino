@@ -22,6 +22,33 @@ From the $\mathbb{A}\mathbb{A}\mathbb{A}$ perspective, the released energy was h
 
 For that reason, ordinary fission and fusion should not be treated as direct releases of the deeply shielded internal energy of Standard Model particle assemblies. The shielded internal energy and far-field leakage pattern of each surviving proton or neutron mostly carry through the reaction. What changes is the higher-level nuclear binding ledger and the surrounding Noether sea response of the nuclear assembly. A reaction that actually opened, destroyed, or changed the internal branch of a nucleon would be a different claim and would require its own particle-level provenance and shielding ledger.
 
+### Fusion Reaction Ledger Benchmark
+
+The deuterium-tritium reaction is a compact benchmark for this distinction:
+
+$$
+{}^2\mathrm H+{}^3\mathrm H
+\to
+{}^4\mathrm{He}+n+\Delta E.
+$$
+
+In the current interpretation, $\Delta E$ is the difference between two nuclear assembly ledgers, not a literal conversion of nucleon substance into energy. The event should be recorded as
+
+$$
+\Delta E_{\mathrm{DT}}
+=
+\left(M_D+M_T-M_{\alpha}-M_n\right)c_{\text{eff}}^2
+=
+K_{\alpha}
++K_n
++E_{\gamma}
++\Delta E_{\mathrm{med}}
++\Delta E_{\mathrm{recoil}}
++\Delta E_{\mathrm{sea}},
+$$
+
+after the branch convention for $c_{\text{eff}}$ and the environment is declared. The right side names where the exposed binding-energy difference leaves the event: kinetic energy of the helium and neutron products, possible photon output, medium heating or excitation, recoil, and local Noether sea update. The surviving nucleons still carry their own internal branch histories. A stronger claim that fusion exposes quark-level or architrino-level shielded energy would require a separate particle-level reaction ledger.
+
 ## Core Claim
 
 Nuclear binding is the residual strong interaction between color-singlet nucleons. It arises when neighboring proton and neutron assemblies couple through the surrounding Noether sea and through meson-like exchange channels, lowering the total energy relative to separated nucleons.

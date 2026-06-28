@@ -22,6 +22,20 @@ In ordinary physics language, radiation can mean electromagnetic light, emitted 
 
 This overview focuses on photon-channel and radiation-coupled reaction routing. Particle-output and gravitational-wave uses of the word `radiation` should remain discoverable here without being folded into the photon planar-mode ontology.
 
+### Radioactivity Naming
+
+Radioactivity labels mix carrier names with source mechanisms. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the useful split is:
+
+| Standard label | Carrier or product | Native ledger reading |
+| --- | --- | --- |
+| Alpha radiation | outgoing helium nucleus | reaction-product routing of a bound nuclear assembly, with recoil and nuclear-remnant rows |
+| Beta radiation | outgoing electron or positron plus neutrino-sector product in a beta reaction | weak-corridor reaction provenance, axial-inventory payload, neutrino routing, and recoil |
+| Neutron radiation | outgoing neutron assembly | nuclear product routing, not photon-channel radiation |
+| Gamma radiation | photon-channel packet from nuclear de-excitation or related high-energy nuclear transition | planar-mode photon output whose source mechanism is nuclear |
+| X-ray radiation | photon-channel packet usually sourced by electron-envelope transition, braking, or inner-shell rearrangement | planar-mode photon output whose source mechanism is atomic or charged-particle transport |
+
+Thus gamma rays and X-rays differ mainly by source mechanism and frequency band, not by photon ontology. Alpha, beta, and neutron radiation are outgoing assemblies or reaction products and must use the reaction ledger rather than the photon-only planar-mode record.
+
 ## Foundation-Up Mechanism
 
 The foundation-up radiation question is whether rapid transport changes can leave a Noether braid internally mismatched relative to its nearest stable closure class. A moving Noether braid has a velocity-deformed causal envelope, while a gravitational gradient skews its delay loops and phase closure. If a reaction suddenly decelerates the assembly, if curved transport changes too quickly, or if the assembly crosses a sharp Noether sea gradient, the external transport state can change faster than the inner, middle, and outer binary ledgers can adiabatically retune.

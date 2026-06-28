@@ -8,7 +8,7 @@
 # COMPLETE 2026-06-26 https://architrino.wordpress.com/2019/06/20/max-planck-ahead-of-his-time/
 # COMPLETE 2026-06-26 https://architrino.wordpress.com/2019/06/17/brainstorming-on-electrinos-and-positrinos/
 # COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/03/24/the-dynamical-geometry-of-charge-paths/
-https://architrino.wordpress.com/2022/03/24/j-mark-morris-aita/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/24/j-mark-morris-aita/
 # COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/06/01/absolute-relativity/
 # COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/07/02/the-radius-of-potential/
 # COMPLETE 2026-06-26 https://architrino.wordpress.com/2022/04/19/dirac-sphere-potentials/
@@ -82,11 +82,11 @@ https://architrino.wordpress.com/2022/03/24/j-mark-morris-aita/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/18/everything-spins/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/16/anti-matter-mystery-solved/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/02/19/visualising-the-dynamics-of-the-electron-structure/
-https://architrino.wordpress.com/2022/12/19/up-charm-top-quark-assembly/
-https://architrino.wordpress.com/2022/12/19/down-strange-bottom-quark-assembly/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/12/19/up-charm-top-quark-assembly/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/12/19/down-strange-bottom-quark-assembly/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/23/neutrino-oscillation-musings/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/09/26/rethinking-neutrino-structure/
-https://architrino.wordpress.com/2022/12/19/neutrino-assembly/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/12/19/neutrino-assembly/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/12/17/w-and-z-boson-reaction-provenance/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/01/18/is-the-patchwork-quilt-of-physics-and-cosmology-isomorphic-to-the-point-charge-universe/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/01/19/npqg-january-19-2021-planar-bosons-on-the-photon-train/
@@ -111,17 +111,17 @@ https://architrino.wordpress.com/2022/12/19/neutrino-assembly/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/11/16/deep-space-contents/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/11/26/graviton-higgs-binary/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/08/06/mapping-higgs/
-https://architrino.wordpress.com/2019/11/28/is-spacetime-made-of-axions/
-https://architrino.wordpress.com/2019/06/13/fresh-thinking-about-redshift/
-https://architrino.wordpress.com/2022/03/23/quasar-distribution-and-redshift/
-https://architrino.wordpress.com/2022/08/21/the-periodic-table-of-the-standard-model/
-https://architrino.wordpress.com/2020/05/22/radiation-and-radioactivity/
-https://architrino.wordpress.com/2022/05/30/fusion/
-https://architrino.wordpress.com/2021/12/21/secrets-of-the-standard-model/
-https://architrino.wordpress.com/2024/07/26/mapping-quantum-numbers/
-https://architrino.wordpress.com/2022/07/04/mapping-to-supersymmetry/
-https://architrino.wordpress.com/2020/07/01/does-npqg-inform-string-theory/
-https://architrino.wordpress.com/2022/08/05/lattice-qcd/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/11/28/is-spacetime-made-of-axions/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/13/fresh-thinking-about-redshift/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/23/quasar-distribution-and-redshift/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/08/21/the-periodic-table-of-the-standard-model/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/05/22/radiation-and-radioactivity/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/05/30/fusion/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/12/21/secrets-of-the-standard-model/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/07/26/mapping-quantum-numbers/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/07/04/mapping-to-supersymmetry/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/07/01/does-npqg-inform-string-theory/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/08/05/lattice-qcd/
 https://architrino.wordpress.com/2019/06/15/interpreting-quantum-mechanics-neoclassically/
 https://architrino.wordpress.com/2021/07/11/mass-denial-in-the-physics-community/
 https://architrino.wordpress.com/2022/02/23/quantum-lissajou-scars/

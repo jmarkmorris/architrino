@@ -17,6 +17,8 @@
 4. `cmb_noether_braid_spectrum_linkage` — Examine whether the observed CMB spectrum has a derivable linkage to Noether braid ensemble modes, photon-channel provenance, Noether sea thermalization, and coherent photon-channel bundle transport, without treating the linkage as established before a spectrum-level residual exists. Status: `deferred`. Depends on: `predictive_pipeline`.
 5. `noether_sea_source_relaxation_balance` — Tie production, recycling, decay, reclassification, capture, and relaxation of Noether sea content to one continuity and energy ledger. Status: `deferred`. Depends on: `component_interfaces`.
 6. `deep_space_inventory_benchmark` — Build a deep-space component inventory for photons, neutrinos, cosmic rays, atoms, dust, and unknown Noether sea carriers before treating any sparse visible inventory as an ontology argument. Status: `deferred`. Depends on: `component_interfaces`.
+7. `quasar_population_transport_decomposition` — Separate quasar luminosity-function evolution, survey selection, obscuration, lensing, classification, and redshift-transfer law before using quasar count distributions as cosmology evidence. Status: `deferred`. Depends on: `component_interfaces`, distance-ladder transfer law, survey-selection modeling.
+8. `controversial_qso_association_audit` — Preserve older galaxy/QSO association claims only as a fail-closed source lead requiring modern selection, lensing, extinction, classification, and look-elsewhere controls. Status: `deferred`. Depends on: `quasar_population_transport_decomposition`.
 
 ## Scope
 
@@ -34,6 +36,8 @@ This file remains the control surface for deferred cosmology closure. No sibling
 | `cmb_noether_braid_spectrum_linkage` | This file | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), and [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | The branch states whether CMB Planck-occupation recovery, blackbody preservation, coherent photon-channel bundle transport, spectral-distortion bounds, and frequency-map rows can be derived from Noether braid ensemble dynamics and photon-channel provenance using the same Noether sea state as BBN, redshift, and TT/TE/EE transfer. |
 | `noether_sea_source_relaxation_balance` | This file | [Noether sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [Expansion Mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), and [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Noether sea production, return, capture, decay, reclassification, and relaxation share one continuity and energy ledger before they are used in redshift, CMB, BBN, or dark-energy stories. |
 | `deep_space_inventory_benchmark` | This file | [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [dark-energy](../../../content/markdown/aaa/cosmology/dark-energy.md), and [dark-matter](../../../content/markdown/aaa/cosmology/dark-matter.md) | Sparse ordinary deep-space contents are separated from the unknown Noether sea carrier inventory and from observer-level dark-sector inferences. |
+| `quasar_population_transport_decomposition` | This file and [cosmological-redshift-distance-ladder](../cross-theory-mapping/cosmological-redshift-distance-ladder.md) | [expansion-mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | Quasar counts are decomposed into population, survey, obscuration, lensing, classification, and redshift-transfer rows before any fixed-void or LambdaCDM comparison is scored. |
+| `controversial_qso_association_audit` | This file | Priority-only unless a modern data audit survives controls | Older QSO/galaxy association claims remain source leads only; no corpus claim is promoted unless modern survey selection, lensing, extinction, classification, and look-elsewhere corrections survive. |
 
 ## Closure Goal
 
@@ -89,6 +93,16 @@ f_N,
 \right).
 $$
 The useful pressure is comparative: ordinary components are sparse, while the Noether sea density must be inferred from packing, transparency, clock/ruler response, redshift transport, and effective-metric closure rather than from direct visible-particle counts.
+
+## Quasar Population And Redshift-Transport Decomposition
+
+Quasar redshift distributions are useful only after population and transport rows are separated. A non-uniform count distribution in $z$ can come from luminosity-function evolution, survey flux limits, color selection, obscuration, lensing, source-class changes, classification uncertainty, or the redshift-transfer map. The priority comparison should therefore start from the decomposition in the distance-ladder benchmark and ask which rows are fixed by data before any cosmology interpretation is drawn.
+
+The fail condition is symmetric: a fixed-void redshift branch fails if it treats quasar counts as direct evidence for path transport while ignoring source evolution and selection; a LambdaCDM comparison fails if it treats the same counts as settled population history while leaving unexplained transfer residuals in the photon-channel record.
+
+## Controversial QSO Association Source Lead
+
+Older QSO/galaxy-association claims can remain in this workstream only as a source lead. They do not become evidence for intrinsic redshift, source ejection, fixed-void redshift, or any other cosmology interpretation by citation alone. A usable audit would need a modern survey packet with predeclared galaxy/QSO samples, angular and redshift selection functions, lensing and extinction corrections, spectroscopic/photometric classification quality, catalog masks, and a look-elsewhere correction. If those controls are absent, the material is historical pressure to be careful about inference pipelines, not a corpus claim.
 
 ## CMB Spectrum / Noether Braid Linkage
 

@@ -3,8 +3,8 @@
 - Sources: [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), [2026 archive](https://architrino.wordpress.com/2026/), and the public WordPress API.
 - Crawled: 2026-06-27
 - Total published posts discovered: 379
-- Complete: 157
-- Open for mining: 222
+- Complete: 172
+- Open for mining: 207
 - Completion authority: local source-mining history plus this durable table and the durable queue; WordPress tags are not used.
 - Added to durable queue in this crawl: 6
 - Existing queue entries not present in library crawl: 0
@@ -40,7 +40,7 @@
 | 2024-10-27 | Ai Needs a Symmetry Breaking Point. | open | [link](https://architrino.wordpress.com/2024/10/27/ai-needs-a-symmetry-breaking-point/) |
 | 2024-08-06 | Mapping Higgs | complete | [link](https://architrino.wordpress.com/2024/08/06/mapping-higgs/) |
 | 2024-07-31 | What Is Matter? | complete | [link](https://architrino.wordpress.com/2024/07/31/what-is-matter/) |
-| 2024-07-26 | Mapping Quantum Numbers | open | [link](https://architrino.wordpress.com/2024/07/26/mapping-quantum-numbers/) |
+| 2024-07-26 | Mapping Quantum Numbers | complete | [link](https://architrino.wordpress.com/2024/07/26/mapping-quantum-numbers/) |
 | 2024-07-19 | Reactions with Spacetime | complete | [link](https://architrino.wordpress.com/2024/07/19/reactions-with-spacetime/) |
 | 2024-07-14 | Information Theory | complete | [link](https://architrino.wordpress.com/2024/07/14/information-theory/) |
 | 2024-07-12 | Globular Clusters | open | [link](https://architrino.wordpress.com/2024/07/12/globular-clusters/) |
@@ -87,9 +87,9 @@
 | 2022-12-24 | How Does Spacetime Aether Decay? | complete | [link](https://architrino.wordpress.com/2022/12/24/how-does-spacetime-aether-decay/) |
 | 2022-12-24 | Energy and Potential | complete | [link](https://architrino.wordpress.com/2022/12/24/energy-and-potential/) |
 | 2022-12-21 | Lepton Flavor Universality | complete | [link](https://architrino.wordpress.com/2022/12/21/lepton-flavor-universality/) |
-| 2022-12-19 | Up/Charm/Top Quark Assembly | open | [link](https://architrino.wordpress.com/2022/12/19/up-charm-top-quark-assembly/) |
-| 2022-12-19 | Neutrino Assembly | open | [link](https://architrino.wordpress.com/2022/12/19/neutrino-assembly/) |
-| 2022-12-19 | Down/Strange/Bottom Quark Assembly | open | [link](https://architrino.wordpress.com/2022/12/19/down-strange-bottom-quark-assembly/) |
+| 2022-12-19 | Up/Charm/Top Quark Assembly | complete | [link](https://architrino.wordpress.com/2022/12/19/up-charm-top-quark-assembly/) |
+| 2022-12-19 | Neutrino Assembly | complete | [link](https://architrino.wordpress.com/2022/12/19/neutrino-assembly/) |
+| 2022-12-19 | Down/Strange/Bottom Quark Assembly | complete | [link](https://architrino.wordpress.com/2022/12/19/down-strange-bottom-quark-assembly/) |
 | 2022-12-17 | W and Z Boson Reaction Provenance | complete | [link](https://architrino.wordpress.com/2022/12/17/w-and-z-boson-reaction-provenance/) |
 | 2022-11-30 | Ontological Errors Occluded Nature’s Solution | complete | [link](https://architrino.wordpress.com/2022/11/30/ontological-errors-may-have-occluded-a-neoclassical-solution-to-nature/) |
 | 2022-11-28 | Long Live Philosophy | complete | [link](https://architrino.wordpress.com/2022/11/28/long-live-philosophy/) |
@@ -102,7 +102,7 @@
 | 2022-09-15 | Nature Fooled Physicists | complete | [link](https://architrino.wordpress.com/2022/09/15/nature-fooled-physicists/) |
 | 2022-09-10 | Comparing Models of Nature | complete | [link](https://architrino.wordpress.com/2022/09/10/comparing-models-of-nature/) |
 | 2022-09-07 | Innovation Contest | open | [link](https://architrino.wordpress.com/2022/09/07/innovation-contest/) |
-| 2022-08-21 | The Periodic Table of the Standard Model | open | [link](https://architrino.wordpress.com/2022/08/21/the-periodic-table-of-the-standard-model/) |
+| 2022-08-21 | The Periodic Table of the Standard Model | complete | [link](https://architrino.wordpress.com/2022/08/21/the-periodic-table-of-the-standard-model/) |
 | 2022-08-21 | Determinism | complete | [link](https://architrino.wordpress.com/2022/08/21/determinism/) |
 | 2022-08-20 | The Equivalence Principle | open | [link](https://architrino.wordpress.com/2022/08/20/the-equivalence-principle/) |
 | 2022-08-20 | Nature of a Gravitational Theory | complete | [link](https://architrino.wordpress.com/2022/08/20/nature-of-a-gravitational-theory/) |
@@ -111,18 +111,18 @@
 | 2022-08-12 | The Binary Curvature Limit Matches the Planck Scale | complete | [link](https://architrino.wordpress.com/2022/08/12/the-dipole-curvature-limit-is-the-anchor-to-planck-scale/) |
 | 2022-08-11 | The Orbiting Point Charge Binary V | complete | [link](https://architrino.wordpress.com/2022/08/11/orbiting-point-charges/) |
 | 2022-08-10 | The Messenger and Dr. Donald C. Chang | open | [link](https://architrino.wordpress.com/2022/08/10/themessenger-and-dr-donald-c-chang/) |
-| 2022-08-05 | Mapping from Lattice QCD | open | [link](https://architrino.wordpress.com/2022/08/05/lattice-qcd/) |
+| 2022-08-05 | Mapping from Lattice QCD | complete | [link](https://architrino.wordpress.com/2022/08/05/lattice-qcd/) |
 | 2022-07-29 | The Anthropic Principle | open | [link](https://architrino.wordpress.com/2022/07/29/the-anthropic-principle/) |
 | 2022-07-17 | Michelson-Morley Experiment | complete | [link](https://architrino.wordpress.com/2022/07/17/michelson-morley-experiment/) |
 | 2022-07-16 | Reasoning on the Universe’s Shape | open | [link](https://architrino.wordpress.com/2022/07/16/reasoning-on-the-universes-shape/) |
 | 2022-07-16 | Black Holes | open | [link](https://architrino.wordpress.com/2022/07/16/black-holes/) |
-| 2022-07-04 | Mapping to Supersymmetry | open | [link](https://architrino.wordpress.com/2022/07/04/mapping-to-supersymmetry/) |
+| 2022-07-04 | Mapping to Supersymmetry | complete | [link](https://architrino.wordpress.com/2022/07/04/mapping-to-supersymmetry/) |
 | 2022-07-02 | Vector Potential | complete | [link](https://architrino.wordpress.com/2022/07/02/the-radius-of-potential/) |
 | 2022-06-20 | Implementation of the Weak Nuclear Force | complete | [link](https://architrino.wordpress.com/2022/06/20/implementation-of-the-weak-nuclear-force/) |
 | 2022-06-07 | Radioactivity and the Drake Equation | open | [link](https://architrino.wordpress.com/2022/06/07/radioactivity-and-the-drake-equation/) |
 | 2022-06-07 | Assembling a Theory | complete | [link](https://architrino.wordpress.com/2022/06/07/assembling-a-theory/) |
 | 2022-06-01 | Absolute Relativity | complete | [link](https://architrino.wordpress.com/2022/06/01/absolute-relativity/) |
-| 2022-05-30 | Reactions : Disassembly and Reassembly | open | [link](https://architrino.wordpress.com/2022/05/30/fusion/) |
+| 2022-05-30 | Reactions : Disassembly and Reassembly | complete | [link](https://architrino.wordpress.com/2022/05/30/fusion/) |
 | 2022-05-30 | Noether Cores and Polar Personality Charges | complete | [link](https://architrino.wordpress.com/2022/05/30/noether-cores-and-polar-personality-charges-20/) |
 | 2022-05-23 | The Expansion of Spacetime | open | [link](https://architrino.wordpress.com/2022/05/23/inflation-expansion-deflation-5-drafted/) |
 | 2022-05-23 | The Dynamical Geometry of Nature | complete | [link](https://architrino.wordpress.com/2022/05/23/the-dynamical-geometry-of-nature-3-drafted/) |
@@ -147,8 +147,8 @@
 | 2022-03-26 | Sir Roger Penrose : CCC | open | [link](https://architrino.wordpress.com/2022/03/26/sir-roger-ccc-m-c-escher/) |
 | 2022-03-25 | Point Charge Cosmology RuleZ! | open | [link](https://architrino.wordpress.com/2022/03/25/point-charge-cosmology-rulez/) |
 | 2022-03-24 | The Dynamical Geometry of Point Potential Paths | complete | [link](https://architrino.wordpress.com/2022/03/24/the-dynamical-geometry-of-charge-paths/) |
-| 2022-03-24 | J Mark Morris : AITA? | open | [link](https://architrino.wordpress.com/2022/03/24/j-mark-morris-aita/) |
-| 2022-03-23 | Quasar Distribution and Redshift | open | [link](https://architrino.wordpress.com/2022/03/23/quasar-distribution-and-redshift/) |
+| 2022-03-24 | J Mark Morris : AITA? | complete | [link](https://architrino.wordpress.com/2022/03/24/j-mark-morris-aita/) |
+| 2022-03-23 | Quasar Distribution and Redshift | complete | [link](https://architrino.wordpress.com/2022/03/23/quasar-distribution-and-redshift/) |
 | 2022-03-22 | Sara Walker : Life : Lex Fridman | open | [link](https://architrino.wordpress.com/2022/03/22/sara-walker-life-lex-fridman/) |
 | 2022-03-20 | Spin Networks and Foams | open | [link](https://architrino.wordpress.com/2022/03/20/spin-networks-and-foams/) |
 | 2022-03-20 | Ontological Transformation of the Big Bang | open | [link](https://architrino.wordpress.com/2022/03/20/ontological-transformation-of-the-big-bang/) |
@@ -183,7 +183,7 @@
 | 2022-01-11 | Waxing Philosophical on Nature | complete | [link](https://architrino.wordpress.com/2022/01/11/waxing-philosophical-on-nature/) |
 | 2022-01-03 | Superposition and Survival | complete | [link](https://architrino.wordpress.com/2022/01/03/doh-its-the-superposition/) |
 | 2021-12-28 | Mapping Mach’s Principle | open | [link](https://architrino.wordpress.com/2021/12/28/fixing-machs-principle-and-self-energy/) |
-| 2021-12-21 | Decoding the Standard Model | open | [link](https://architrino.wordpress.com/2021/12/21/secrets-of-the-standard-model/) |
+| 2021-12-21 | Decoding the Standard Model | complete | [link](https://architrino.wordpress.com/2021/12/21/secrets-of-the-standard-model/) |
 | 2021-12-14 | The Mystery Islands of Shielded Energy | complete | [link](https://architrino.wordpress.com/2021/12/14/the-mystery-islands-of-shielded-energy/) |
 | 2021-12-06 | Bohr and Heisenberg : Plasma-Ten | open | [link](https://architrino.wordpress.com/2021/12/06/bohr-and-heisenberg-plasma-ten/) |
 | 2021-11-26 | The Orbiting Point Charge Binary III | complete | [link](https://architrino.wordpress.com/2021/11/26/revolutionizing-physics-orbiting-point-charges/) |
@@ -313,7 +313,7 @@
 | 2020-07-03 | Cosmological Metrics | open | [link](https://architrino.wordpress.com/2020/07/03/cosmological-metrics/) |
 | 2020-07-01 | The Proselytizing of Physics | open | [link](https://architrino.wordpress.com/2020/07/01/the-proselytizing-of-physics/) |
 | 2020-07-01 | Social Media Struggle | open | [link](https://architrino.wordpress.com/2020/07/01/social-media-struggle/) |
-| 2020-07-01 | Mapping to String Theory | open | [link](https://architrino.wordpress.com/2020/07/01/does-npqg-inform-string-theory/) |
+| 2020-07-01 | Mapping to String Theory | complete | [link](https://architrino.wordpress.com/2020/07/01/does-npqg-inform-string-theory/) |
 | 2020-06-27 | Mapping the Big Bang | open | [link](https://architrino.wordpress.com/2020/06/27/discord-june-27-2020-chipping-away/) |
 | 2020-06-25 | Missed Opportunities to Discover Nature | complete | [link](https://architrino.wordpress.com/2020/06/25/missed-opportunities-to-discover-nature/) |
 | 2020-06-22 | Falsifying the Hubble Constant | open | [link](https://architrino.wordpress.com/2020/06/22/dear-one-time-inflationary-big-bangers-and-expanders/) |
@@ -327,7 +327,7 @@
 | 2020-05-23 | NPQG Book Outline | open | [link](https://architrino.wordpress.com/2020/05/23/npqg-book-outline/) |
 | 2020-05-23 | Lawrence Krauss : 5 Minute Physics : Episode 26 | open | [link](https://architrino.wordpress.com/2020/05/23/lawrence-krauss-5-minute-physics-episode-26/) |
 | 2020-05-23 | Forces, Mass, and Gravity | open | [link](https://architrino.wordpress.com/2020/05/23/forces-mass-and-gravity/) |
-| 2020-05-22 | Radiation and Radioactivity | open | [link](https://architrino.wordpress.com/2020/05/22/radiation-and-radioactivity/) |
+| 2020-05-22 | Radiation and Radioactivity | complete | [link](https://architrino.wordpress.com/2020/05/22/radiation-and-radioactivity/) |
 | 2020-05-20 | Dr. Paul Sutter: The Mystery Of The Missing Matter In The Universe | open | [link](https://architrino.wordpress.com/2020/05/20/dr-paul-sutter-the-mystery-of-the-missing-matter-in-the-universe-ask-a-spaceman/) |
 | 2020-05-18 | A Photon is Both Particles and Waves! | complete | [link](https://architrino.wordpress.com/2020/05/18/a-photon-is-both-particles-and-waves/) |
 | 2020-05-16 | Dr. Paul Sutter : Is Space-Time Smooth or Chunky? | open | [link](https://architrino.wordpress.com/2020/05/16/dr-paul-sutter-is-space-time-smooth-or-chunky/) |
@@ -358,7 +358,7 @@
 | 2020-01-04 | Bohmian Mechanics and NPQG I | open | [link](https://architrino.wordpress.com/2020/01/04/bohmian-mechanics-and-npqg-i/) |
 | 2019-12-25 | Aether, Mass, and Time | complete | [link](https://architrino.wordpress.com/2019/12/25/gravity-and-time/) |
 | 2019-12-13 | Consciousness at Scale | complete | [link](https://architrino.wordpress.com/2019/12/13/consciousness-at-scale/) |
-| 2019-11-28 | Mapping to Axions? | open | [link](https://architrino.wordpress.com/2019/11/28/is-spacetime-made-of-axions/) |
+| 2019-11-28 | Mapping to Axions? | complete | [link](https://architrino.wordpress.com/2019/11/28/is-spacetime-made-of-axions/) |
 | 2019-11-11 | Photons React with Spacetime Aether | complete | [link](https://architrino.wordpress.com/2019/11/11/photons-react-with-spacetime-gas/) |
 | 2019-10-24 | Is Fundamental Knowledge of Nature Risky? | complete | [link](https://architrino.wordpress.com/2019/10/24/dont-aggravate-nature/) |
 | 2019-10-24 | How Nature Implements Gravity! | open | [link](https://architrino.wordpress.com/2019/10/24/how-nature-implements-gravity/) |
@@ -395,7 +395,7 @@
 | 2019-06-15 | Interpreting Quantum Mechanics Neoclassically | open | [link](https://architrino.wordpress.com/2019/06/15/interpreting-quantum-mechanics-neoclassically/) |
 | 2019-06-15 | Fresh Thinking on Entropy | complete | [link](https://architrino.wordpress.com/2019/06/15/fresh-thinking-on-entropy/) |
 | 2019-06-15 | Does a Black Hole Shrink While Jetting Planck Plasma? | open | [link](https://architrino.wordpress.com/2019/06/15/does-a-black-hole-shrink-while-jetting-planck-plasma/) |
-| 2019-06-13 | Mapping Redshift | open | [link](https://architrino.wordpress.com/2019/06/13/fresh-thinking-about-redshift/) |
+| 2019-06-13 | Mapping Redshift | complete | [link](https://architrino.wordpress.com/2019/06/13/fresh-thinking-about-redshift/) |
 | 2019-06-12 | NPQG Math | complete | [link](https://architrino.wordpress.com/2019/06/12/wheres-the-npqg-math/) |
 | 2019-06-12 | Implementing Gravity | open | [link](https://architrino.wordpress.com/2019/06/12/quantum-gravity/) |
 | 2019-06-12 | Glossary | complete | [link](https://architrino.wordpress.com/2019/06/12/glossary-of-neoclassical-physics-and-quantum-gravity/) |

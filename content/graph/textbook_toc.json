@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1471
+      "sections": 1472
     }
   },
   "tocRoot": {
@@ -4625,6 +4625,14 @@
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
                     "markdownSection": "The Fermion Mapping (Generation I)",
                     "sectionKey": "the fermion mapping generation i",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Quantum-Number Ledger Roles",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
+                    "markdownSection": "Quantum-Number Ledger Roles",
+                    "sectionKey": "quantum number ledger roles",
                     "headingLevel": 2
                   },
                   {

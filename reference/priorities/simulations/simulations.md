@@ -17,6 +17,7 @@
 4. `eta_positive_package` — Consolidate the formal $\eta > 0$ existence and continuation package. Status: `pending`. Depends on: `tier0_tier1_runs`.
 5. `hydrogen_gamma_n_record_extraction` — The hydrogen $\Gamma_N$ spectral coefficient-row scan now derives $\Lambda_{ab}$, observer frequency, and replay envelope gap entries from recovered principal labels, `frequency_scale`, and `line_inferred_ln_Gamma_N`; the remaining proof/simulation burden is to derive or bound $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ from the same hydrogen spectral channel ledger, replace the scaffolded static response vector only with a constitutive response row for the same Noether sea cell, and replace the shared line-inferred cadence stretch only with electron-envelope gaps from the hydrogen branch. A May 22, 2026 inspection found no declared native $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ artifact in scope, so no scaffold input is safe to replace yet. Residual recoil, hyperfine structure, photon-channel propagation, and source-branch effects must remain outside $\Gamma_N$ unless a declared residual budget carries them. Status: `pending`. Depends on: `hydrogen_fermion_sea_boundary` and Noether sea response rows from `mass-map`.
 6. `gw_public_waveform_packet` — Build a public-data gravitational-wave benchmark packet from GWOSC/LVK event records. The packet must replay GW150914-class short binary-black-hole strain, GW170817-class long binary-neutron-star inspiral and photon-channel speed timing, and current GWTC-4.0 catalog provenance with versioned strain files, detector masks, PE samples, waveform family, calibration notes, artifact hashes, and predeclared waveform/energy/speed residuals. A May 22, 2026 inspection fixes the first document-level packet manifest around `GW150914_short_bbh`, `GW170817_long_bns`, and `GW170817_GRB_speed`; executable artifact collection remains pending until GWOSC/LVK strain, PE, release-metadata, and hash files exist locally. Status: `pending`. Depends on: gravitational-wave effective-metric and event-ledger closure rows.
+7. `direct_nucleon_assembly_monte_carlo` — Define the first finite-assembly nucleon simulation target with declared architrino inventory, causal-root ledger, Noether sea embedding, color-corridor event records, and lattice-QCD negative controls. Status: `pending`. Depends on: `tier0_tier1_runs`, standard-model `confinement_energetics`, and nuclear-binding closure.
 
 ## Open Simulation-Side Questions
 
@@ -76,6 +77,28 @@ C_{\mathrm{store}}(E)+C_{\mathrm{query}}(E)+\varepsilon_0
 $$
 
 Here $Q$ is the scientific question, $E$ is the declared simulation envelope, $N_{\mathrm{amb}}^{\mathrm{coarse}}$ is the admissible replay or explanation count after coarse summaries, $N_{\mathrm{amb}}^{\mathrm{prov}}$ is the count after retained provenance, and $C_{\mathrm{store}}+C_{\mathrm{query}}$ is the storage/query cost. This is a priority heuristic for simulation design, not a promotion gate.
+
+### Direct Nucleon Assembly Monte Carlo
+
+The lattice-QCD comparison source suggests a concrete simulation target: a finite-assembly nucleon run should attempt the hadron problem from declared architrino provenance rather than from a lattice gauge-field configuration. The target is not to replace lattice QCD by assertion. It is to build the smallest native run whose outputs can be compared against lattice-QCD and experimental rows.
+
+The first campaign object should include
+
+$$
+\mathcal{C}_{\mathrm{nuc}}^{\mathrm{MC}}
+=
+\left(
+\mathcal{I}_{36},
+S_{\eta},
+\mathcal{L}_{\mathrm{root}},
+\mathcal{N}_{\mathrm{sea}},
+\mathcal{L}_{\mathrm{color}},
+\mathcal{O}_{\mathrm{QCD}},
+\mathcal{R}_{\mathrm{ctrl}}
+\right),
+$$
+
+where $\mathcal{I}_{36}$ is the declared 36-architrino candidate inventory for the three-quark nucleon picture, $S_{\eta}$ is the regularized state history, $\mathcal{L}_{\mathrm{root}}$ is the causal-root ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea embedding, $\mathcal{L}_{\mathrm{color}}$ records color-corridor closure, $\mathcal{O}_{\mathrm{QCD}}$ lists the hadronic observables being compared, and $\mathcal{R}_{\mathrm{ctrl}}$ records negative controls. Required outputs should include mass, form-factor, spin-decomposition, and scattering or matrix-element comparisons before any claim of QCD recovery is made.
 
 ### Wake-Pattern Return Diagnostic
 
