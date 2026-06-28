@@ -15,6 +15,13 @@
 2. `predictive_pipeline` — Turn the CMB and tri-binary cosmology story into a predictive transfer-function pipeline. Status: `deferred`. Depends on: `component_interfaces`.
 3. `age_clock_convergence` — Add an oldest-object and material-clock interface for Hubble-time/time-redshift mapping, globular-cluster turnoff ages, white-dwarf cooling ages, Th/U/Eu radiochronometers, and presolar/interstellar-grain provenance. Status: `deferred`. Depends on: `component_interfaces`.
 4. `cmb_noether_braid_spectrum_linkage` — Examine whether the observed CMB spectrum has a derivable linkage to Noether braid ensemble modes, photon-channel provenance, Noether sea thermalization, and coherent photon-channel bundle transport, without treating the linkage as established before a spectrum-level residual exists. Status: `deferred`. Depends on: `predictive_pipeline`.
+5. `noether_sea_source_relaxation_balance` — Tie production, recycling, decay, reclassification, capture, and relaxation of Noether sea content to one continuity and energy ledger. Status: `deferred`. Depends on: `component_interfaces`.
+6. `deep_space_inventory_benchmark` — Build a deep-space component inventory for photons, neutrinos, cosmic rays, atoms, dust, and unknown Noether sea carriers before treating any sparse visible inventory as an ontology argument. Status: `deferred`. Depends on: `component_interfaces`.
+7. `quasar_population_transport_decomposition` — Separate quasar luminosity-function evolution, survey selection, obscuration, lensing, classification, and redshift-transfer law before using quasar count distributions as cosmology evidence. Status: `deferred`. Depends on: `component_interfaces`, distance-ladder transfer law, survey-selection modeling.
+8. `controversial_qso_association_audit` — Preserve older galaxy/QSO association claims only as a fail-closed source lead requiring modern selection, lensing, extinction, classification, and look-elsewhere controls. Status: `deferred`. Depends on: `quasar_population_transport_decomposition`.
+9. `distributed_release_rate_residual` — Model source-population release rate density, energy spectrum, spatial distribution, and thermalization depth before using recycling release as a CMB or expansion-equivalent source. Status: `deferred`. Depends on: `noether_sea_source_relaxation_balance`, `cmb_noether_braid_spectrum_linkage`.
+10. `nested_shell_cmb_peak_residual` — Test whether first-three-peak CMB ratios can be projected from nested shell braid energy-scale ratios without changing the transfer state used for blackbody, lensing, and growth rows. Status: `deferred`. Depends on: `predictive_pipeline`, `cmb_noether_braid_spectrum_linkage`.
+11. `dark_sector_apparentness_residual` — Separate shielded energy, neutral assemblies, Noether sea stress, projection effects, and catalogue residuals before interpreting a missing component as dark matter or dark energy. Status: `deferred`. Depends on: `deep_space_inventory_benchmark`.
 
 ## Scope
 
@@ -30,6 +37,10 @@ This file remains the control surface for deferred cosmology closure. No sibling
 | `predictive_pipeline` | This file | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | The transfer-function pipeline produces direct CMB, $H_0$, and $S_8$ comparison handles rather than narrative analogy. |
 | `age_clock_convergence` | This file | [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [expansion-mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), [BBN-constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), and [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md) | The same Noether sea and assembly history explains why independent age clocks converge near $13$-$14\ \mathrm{Gyr}$ as an effective observer-era record, without promoting that convergence to the absolute age of the Euclidean void and without leaving older visible or material populations unaccounted for. |
 | `cmb_noether_braid_spectrum_linkage` | This file | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), and [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | The branch states whether CMB Planck-occupation recovery, blackbody preservation, coherent photon-channel bundle transport, spectral-distortion bounds, and frequency-map rows can be derived from Noether braid ensemble dynamics and photon-channel provenance using the same Noether sea state as BBN, redshift, and TT/TE/EE transfer. |
+| `noether_sea_source_relaxation_balance` | This file | [Noether sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [Expansion Mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), and [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Noether sea production, return, capture, decay, reclassification, and relaxation share one continuity and energy ledger before they are used in redshift, CMB, BBN, or dark-energy stories. |
+| `deep_space_inventory_benchmark` | This file | [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md), [dark-energy](../../../content/markdown/aaa/cosmology/dark-energy.md), and [dark-matter](../../../content/markdown/aaa/cosmology/dark-matter.md) | Sparse ordinary deep-space contents are separated from the unknown Noether sea carrier inventory and from observer-level dark-sector inferences. |
+| `quasar_population_transport_decomposition` | This file and [cosmological-redshift-distance-ladder](../cross-theory-mapping/cosmological-redshift-distance-ladder.md) | [expansion-mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), [structure-formation](../../../content/markdown/aaa/cosmology/structure-formation.md), and [hubble-s8-tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | Quasar counts are decomposed into population, survey, obscuration, lensing, classification, and redshift-transfer rows before any fixed-void or LambdaCDM comparison is scored. |
+| `controversial_qso_association_audit` | This file | Priority-only unless a modern data audit survives controls | Older QSO/galaxy association claims remain source leads only; no corpus claim is promoted unless modern survey selection, lensing, extinction, classification, and look-elsewhere corrections survive. |
 
 ## Closure Goal
 
@@ -52,11 +63,148 @@ This file remains the control surface for deferred cosmology closure. No sibling
 
 The goal is to expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from each component.
 
+## Noether Sea Source And Relaxation Balance
+
+The production and decay language inherited from legacy sources is useful only after it is rewritten as a continuity ledger. For a finite cosmology window, the Noether sea content balance should use the same channel split promoted in the Noether sea canon:
+$$
+S_{\rho}
+=
+S_{\mathrm{prod}}
++S_{\mathrm{return}}
+-S_{\mathrm{capture}}
+-S_{\mathrm{decay}}
+-S_{\mathrm{reclass}}
++S_{\mathrm{relax}}.
+$$
+The priority task is to tie these rows to one energy, reaction, and transport record. A cosmology branch that produces redshift, CMB thermalization, dark-energy stress, or dark-sector inventory by changing one of these rows independently has split the Noether sea state it is supposed to close.
+
+The distributed-release residual is the source-population version of this rule. For a candidate recycling branch $\theta$, the minimum record is
+$$
+\mathcal{R}_{\mathrm{release}}
+=
+d_{\dot n}\!\left(\dot n_{\mathrm{src}}^\theta,\dot n_{\mathrm{req}}\right)
++
+d_E\!\left(F_E^\theta,F_E^{\mathrm{req}}\right)
++
+d_x\!\left(P_x^\theta,P_x^{\mathrm{req}}\right)
++
+d_{\mathrm{th}}\!\left(\mathcal{D}_{\mathrm{th}}^\theta,\mathcal{D}_{\mathrm{th}}^{\mathrm{req}}\right),
+$$
+where $\dot n_{\mathrm{src}}^\theta$ is source-event density, $F_E^\theta$ is release-energy spectrum, $P_x^\theta$ is spatial distribution, and $\mathcal{D}_{\mathrm{th}}^\theta$ is thermalization depth. The residual fails if a branch fits the CMB monopole, redshift, or dark-sector inventory by changing any one of these rows without updating the shared source ledger.
+
+The blackbody negative control is strict. A distributed-source branch may not claim that many redshifted stellar, AGN, jet, or compact-object spectra simply average into the CMB Planck curve. The admissible route must identify a detailed-balance or thermalization mechanism before free streaming, then show that the later transparent transport preserves the occupation shape. A compact failure row is
+$$
+\mathcal{R}_{\mathrm{mix\to BB}}
+=
+\left\|
+\sum_s w_s\,\mathcal{T}_{s\to R}I_s(\nu)
+-B_\nu(T)
+\right\|_{C^{-1}}
++
+\mathcal{R}_{\mathrm{side}},
+$$
+where $I_s$ are declared source spectra, $\mathcal{T}_{s\to R}$ are their transport maps, and $\mathcal{R}_{\mathrm{side}}$ carries spectral-distortion, image-sharpness, anisotropy, and polarization side effects. The route fails if the Planck curve is recovered only by averaging arbitrary spectra without the same source, thermalization, transport, and CMB-transfer record.
+
+## Deep-Space Inventory Benchmark
+
+The low visible density of intergalactic space should be treated as a component inventory, not as proof that the region is empty. The benchmark should record ordinary photon, neutrino, cosmic-ray, atom, plasma, and dust counts per cubic meter, then add the unresolved Noether sea carrier inventory as a separate unknown row:
+$$
+\mathcal{I}_{\mathrm{deep}}
+=
+\left(
+n_{\gamma},
+n_{\nu},
+n_{\mathrm{CR}},
+n_{\mathrm{atom}},
+n_{\mathrm{dust}},
+\rho_{\text{NS}},
+f_N,
+\theta_{\mathrm{sea}}
+\right).
+$$
+The useful pressure is comparative: ordinary components are sparse, while the Noether sea density must be inferred from packing, transparency, clock/ruler response, redshift transport, and effective-metric closure rather than from direct visible-particle counts.
+
+For dark-sector apparentness, the inventory should expose at least
+$$
+\mathcal{I}_{\mathrm{dark}}^\theta
+=
+\left(
+E_{\mathrm{shield}},
+N_{\mathrm{neutral}},
+\Sigma_{\mathrm{sea}},
+\Pi_{\mathrm{proj}},
+\Delta_{\mathrm{cat}}
+\right),
+$$
+where $E_{\mathrm{shield}}$ records shielded energy, $N_{\mathrm{neutral}}$ neutral assembly content, $\Sigma_{\mathrm{sea}}$ Noether sea stress, $\Pi_{\mathrm{proj}}$ observer-projection effects, and $\Delta_{\mathrm{cat}}$ catalogue residuals. Treating all five as one "dark" scalar is a failure mode, not a closure.
+
+## Galaxy-Dynamics Source-Family Watchlist
+
+Legacy SMBH and galaxy-dynamics sources are useful here as observable-family prompts, not as established explanations. The priority watchlist should preserve source leads only when they can be written as controlled records:
+$$
+\mathcal{O}_{\mathrm{gal-src}}
+=
+\left(
+\mathbf{A}_{\mathrm{jet}},
+\mathcal{B}_{\mathrm{bubble}},
+\mathcal{M}_{\mathrm{morph}},
+V_{\mathrm{rot}},
+\mathcal{G}_{\mathrm{cluster}},
+\mathcal{H}_{\mathrm{SMBH}}
+\right),
+$$
+where $\mathbf{A}_{\mathrm{jet}}$ records jet-axis geometry and precession, $\mathcal{B}_{\mathrm{bubble}}$ records bubble or lobe energy and age, $\mathcal{M}_{\mathrm{morph}}$ records spiral/bar/elliptical morphology, $V_{\mathrm{rot}}$ records rotation-curve and lensing data, $\mathcal{G}_{\mathrm{cluster}}$ records globular-cluster age, metallicity, orbit, and central-compact-object context, and $\mathcal{H}_{\mathrm{SMBH}}$ records the black-hole growth, spin, and release history. A source-family claim fails if it uses one of these rows as direct evidence for the others without a shared source, transport, and selection record.
+
+Shielded compact-core energy can remain a dark-sector residual only under strong controls. For a galaxy branch $\theta$, write an exposure contribution
+$$
+\Delta\Phi_{\mathrm{core}}^\theta(r)
+=
+\Phi_{\mathrm{exposed}}^\theta(r)
+-\Phi_{\mathrm{shielded}}^\theta(r),
+$$
+and compare it against rotation, lensing, cluster, CMB, and growth constraints before assigning any dark-matter role. If the branch improves $V_{\mathrm{rot}}(r)$ while worsening lensing, cluster dynamics, BBN/CMB transfer, or structure growth, it remains a speculative source lead rather than a promoted dark-sector mechanism.
+
+## Quasar Population And Redshift-Transport Decomposition
+
+Quasar redshift distributions are useful only after population and transport rows are separated. A non-uniform count distribution in $z$ can come from luminosity-function evolution, survey flux limits, color selection, obscuration, lensing, source-class changes, classification uncertainty, or the redshift-transfer map. The priority comparison should therefore start from the decomposition in the distance-ladder benchmark and ask which rows are fixed by data before any cosmology interpretation is drawn.
+
+The fail condition is symmetric: a fixed-void redshift branch fails if it treats quasar counts as direct evidence for path transport while ignoring source evolution and selection; a LambdaCDM comparison fails if it treats the same counts as settled population history while leaving unexplained transfer residuals in the photon-channel record.
+
+## Controversial QSO Association Source Lead
+
+Older QSO/galaxy-association claims can remain in this workstream only as a source lead. They do not become evidence for intrinsic redshift, source ejection, fixed-void redshift, or any other cosmology interpretation by citation alone. A usable audit would need a modern survey packet with predeclared galaxy/QSO samples, angular and redshift selection functions, lensing and extinction corrections, spectroscopic/photometric classification quality, catalog masks, and a look-elsewhere correction. If those controls are absent, the material is historical pressure to be careful about inference pipelines, not a corpus claim.
+
+BL Lac and companion-galaxy association claims belong in the same fail-closed family. A useful modern audit would need jet-axis geometry, host and companion catalogues, spectroscopic quality, radio/X-ray selection functions, lensing and extinction controls, and null tests against ordinary chance alignment and survey-depth effects. The only retained value of the legacy claim is source-family pressure: do not collapse source evolution, jet morphology, and redshift-transfer interpretation into one conclusion before the observation pipeline has separated them.
+
 ## CMB Spectrum / Noether Braid Linkage
 
 The linkage question is whether the observed CMB spectrum, including near-Planck blackbody quality and allowed spectral-distortion bounds, is only a thermalized observer-level transfer output or also constrains the Noether braid ensemble modes that feed photon-channel provenance.
 
 The first pass should keep the claim level narrow. A viable linkage requires one event and medium record to connect Noether braid ensemble dynamics, photon assembly source/capture/release rows, thermalization depth, coherent photon-channel bundle transport, redshift handoff, and the CMB frequency-map residuals. If the spectrum can be fit only by changing the Noether sea state separately from BBN, redshift, or TT/TE/EE transfer, the linkage fails as a shared-cosmology closure route.
+
+That same medium record is also shared with the Lorentz closure stack. The $\chi_{\text{sea}}(\mathbf{x},t)$ row used for redshift, transparent photon-channel transport, CMB transfer, lensing, and growth must remain the same row used for clock/ruler retuning and preferred-frame hiding. A branch that closes cosmology only by choosing a cosmology-specific delay factor, while Lorentz recovery uses a different $\chi_{\text{sea}}$, has split the response law the one-constitutive-response wall is meant to protect.
+
+The speed rows are part of that shared response. The transparent transport map acts on photon-channel packets whose group-speed row is $c_\gamma(\mathbf{x},t)$; primitive causal wakes and Noether sea exchange remain constrained by $c_f$; clock and ruler reconstruction belongs to $c_{\text{eff}}$; and $c_0$ is only the weak homogeneous calibration value. A branch that recovers redshift by changing frequency while leaving the propagation speed undefined has not closed the map. The admissible case is redshift through coherent photon-channel transport at $c_\gamma$, with the energy sink bookkept through Noether sea and causal-wake exchange without generating a detectable frequency-dependent $c_\gamma(\omega)$ residual.
+
+The nested-shell CMB peak residual belongs here only as a priority-only route. If the outer, middle, and inner nested shell braid energy scales are proposed as seed ratios for the first acoustic peaks, the comparison must still pass through the ordinary CMB transfer packet:
+$$
+\mathcal{R}_{\mathrm{peak}}
+=
+d\!\left(
+\frac{\ell_2^\theta}{\ell_1^\theta},
+\frac{\ell_2^{\mathrm{obs}}}{\ell_1^{\mathrm{obs}}}
+\right)
++
+d\!\left(
+\frac{\ell_3^\theta}{\ell_1^\theta},
+\frac{\ell_3^{\mathrm{obs}}}{\ell_1^{\mathrm{obs}}}
+\right)
++
+\mathcal{R}_{\mathrm{transfer}}.
+$$
+The route fails if the shell-ratio story fits peak locations while using a different medium state than blackbody preservation, damping, lensing, BAO, or growth.
+
+The same rule applies to broader Noether-braid ensemble peak stories. If formation epochs, source-network cadence, or nested shell braid energy scales are proposed as inputs to the acoustic features, they must enter as a source side of $\mathcal{R}_{\mathrm{transfer}}$, not as a bypass around the photon-baryon transfer calculation. The source ensemble can seed phase structure only after the same state also preserves near-Planck occupation, damping, lensing, and the TT/TE/EE phase relations.
 
 The thermalization and transparent-transport rows must remain distinct. Pre-free-streaming thermalization can drive the photon bath toward a Planck occupation law, but long-path redshift must preserve that shape by coherent scaling. For a declared path factor $\lambda$, the comparison target is
 
@@ -83,6 +231,25 @@ $$
 $$
 
 for the declared path depth and Noether sea state. Breaking the commutator spoils blackbody-shape preservation; undeclared transverse momentum transfer spoils image sharpness.
+
+A fixed photon-lifetime or photon-ablation model is a negative control for this row. If the lifetime is implemented as stochastic absorption, scattering, or species loss along transparent paths, the branch must fail unless it also preserves
+$$
+\left(
+\epsilon_{\mathrm{spec}},
+\epsilon_{\mathrm{img}},
+\epsilon_{\mathrm{td}},
+\epsilon_{\mathrm{pol}}
+\right)
+$$
+for blackbody shape, image sharpness, observed $(1+z)$ time dilation, and polarization transfer. The admissible fixed-void redshift route is coherent photon-channel transport with a closed Noether sea energy row, not untracked photon attrition.
+
+Low-energy photon endpoint speculation is useful only as a boundary condition, not as a redshift mechanism. If a photon-channel packet loses the geometry needed for coherent transparent transport, the branch should route it into capture, medium excitation, reaction, or assembly reclassification, and then remove it from the transparent CMB/redshift carrier population. It must not be allowed to drift continuously as a tired-light term. A candidate endpoint row should therefore ask whether
+$$
+G_{\gamma}^{\mathrm{A/B}}(\theta_{\gamma},\theta_{\mathrm{sea}})
+\ge
+\epsilon_{\gamma}
+$$
+still holds for the transported packet, where $G_{\gamma}^{\mathrm{A/B}}$ denotes the photon-channel geometry and coherence conditions being tested. Failure of this condition is a carrier-exit event with an energy and remnant ledger, not an untracked cosmological redshift increment.
 
 Absolute time also makes the redshift-energy row non-optional. A fixed-void branch cannot let the photon's missing energy disappear into expansion bookkeeping; it must close the finite-window ledger through Noether sea update, source/release or remnant rows, recoil/exchange rows, and declared boundary flux. The global target behind that finite-window row is
 
@@ -112,6 +279,8 @@ $$
 
 The same Noether sea state that preserves blackbody shape and image coherence must carry that energy balance, or the transport branch has split the very constitutive response this priority is testing. Failure is explicit: if no single bookkept Noether sea sink can close the redshift energy row while preserving redshift-distance behavior, observed $(1+z)$ time dilation, Tolman surface brightness, blackbody quality, acoustic structure, image sharpness, lensing, and growth, the fixed-void redshift branch fails on its own absolute-time conservation target.
 
+Long-time stability adds one more required accounting row. The transparent-path sink $\Delta E_{\mathrm{sea,path}}$ may not accumulate as unbounded secular heating of the Noether sea. A viable branch must route that deposited energy through the same source/release, black-hole recycling, Noether sea equilibration, or boundary-flux records used by the cosmology module. In the cadence-transport notation of the expansion mechanism, the $f_N$ current, $S_{\mathrm{BH}}$, and $R_{\mathrm{eq}}[f_N]$ rows must supply a bounded recycling or relaxation balance for the path-energy deposit; otherwise the local redshift ledger conserves energy only by moving a divergence into $E_{\mathrm{sea}}$.
+
 If the total scalar energy of the unbounded populated Euclidean void is not finite or not convergently summable on a constant-$t$ leaf, this target demotes to a bounded-region flux balance rather than disappearing:
 
 $$
@@ -139,6 +308,15 @@ The interface should keep these clock families distinct:
 - Presolar and interstellar-grain ages as parent-star, ejection, mixing, and solar-system incorporation records.
 
 The closure question is why those clocks converge in the accessible material and stellar record. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ branch may interpret the convergence as the age of the current effective observer era, dominant recycling/thermalization history, or accessible star-forming material record, but it must also explain why much older visible populations are absent, reset, hidden, or outside the declared observation record.
+
+Observer eligibility must consume the same measure-theoretic object used by the quantum measurement program. Let $B_{\mathrm{obs}}\subset\Gamma$ denote the subset of finite-window basin states that satisfy the Physical Observer criteria: durable record channels, free-energy supply, chemical and environmental support, and access-region stability over the declared window. A typicality statement over interval $I$ should use
+$$
+\mu_{\mathrm{obs}}(A\mid I)
+=
+\frac{\mu_{*,T}(A\cap B_{\mathrm{obs}}\cap I)}
+{\mu_{*,T}(B_{\mathrm{obs}}\cap I)}
+$$
+when the denominator is nonzero, with $\mu_{*,T}$ inherited from the same transfer-operator and basin-measure grammar used for Born weights, apparatus partitions, and Bell records. If cosmology uses a separate anthropic sampling measure unrelated to $\mu_{*,T}$, observer eligibility has become a second probability ontology rather than a Physical Observer subset.
 
 ## Tier 2 Lecture-Note Interfaces
 

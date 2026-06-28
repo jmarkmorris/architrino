@@ -194,6 +194,25 @@ In the reversible below-threshold regime, $\mathsf{I}_{A}^{ab}$ is built from th
 
 This ratio form is a sharper anti-fitting invariant than the absolute scalar formula. Changing $\alpha_{\mathrm{m}}$ cannot improve one particle without changing all particles in the same regime. Changing $\zeta(A)$ is admissible only when it is produced by the branch ledger and exposure quotient for $A$, not when it is selected from the observed mass table. Failure of the tensor replacement in anisotropic or pressure-dependent cells is evidence that the scalar mass map is being used outside its regime.
 
+#### Composite Branch Mass Is Not Constituent Mass Addition
+
+The mass-ratio formulas apply to accepted branches after their own closure, exposure quotient, and Noether sea response record have been evaluated. If a composite branch $C$ is built from retained sub-branches $A_i$, its scalar mass trace is therefore not generally the sum of the scalar mass traces those sub-branches would have as isolated free branches:
+
+$$
+m_{\mathrm{tr}}(C)
+=
+\frac{1}{3}h_{ab}\mathsf{I}_{C}^{ab},
+\qquad
+m_{\mathrm{tr}}(C)
+\ne
+\sum_i m_{\mathrm{tr}}(A_i)
+\quad\text{in general.}
+$$
+
+The composite branch has its own coupling ledger: color-corridor closure for hadrons, residual-strong and nuclear-binding terms for nuclei, shared shielding, multipole cancellation, recoil channels, and local Noether sea polarization. Those entries change $\mathsf{I}_{C}^{ab}$ before the scalar trace is taken. Apparent mass is additive only in the limiting case where the interaction ledger, binding energy, shared shielding, and medium-response cross terms are negligible on the declared comparison window.
+
+This is the mass-map reading of the familiar nuclear and hadronic warning that a proton, neutron, or deuteron is not weighed by adding the observer-facing masses of the quark or nucleon records visible at a different resolution. Conservation is still enforced at the full event ledger: any decrease in the composite scalar mass appears as binding energy, radiation, recoil, neutrino rows when weak channels participate, or a changed Noether sea response record. The nuclear-side bookkeeping is stated in [Nuclear Binding](../nuclear-atomic/nuclear-binding.md), while the nucleon-side source envelope is stated in [Nucleon Structure](../nuclear-atomic/nucleon-structure.md).
+
 #### Charge-Conjugate Mass Equality
 
 The equality of a particle's rest mass with the rest mass of its antiparticle is a mass-map constraint, not a separate fitted fact. Let $\bar A$ denote the charge-conjugate branch obtained from an accepted assembly $A$ by reversing all intrinsic polarity signs and pro/anti orientation while preserving the shielding-coherence class, causal-root ledger, branch geometry, and Noether sea response record:
@@ -408,6 +427,15 @@ When the braid moves or is placed under a gradient, the closure does not remain 
 
 In this view, rest energy is the energy stored in the closed causal ledger, and mass is the externally exposed response of that ledger when the braid is accelerated, perturbed, or placed in a Noether sea gradient. Shielding determines how much of the internal closure couples to the far field.
 
+The useful ledger split is:
+
+| Mass-facing factor | What it records | What it must not replace |
+| --- | --- | --- |
+| $E_{\text{internal}}(A)$ | Closed branch energy stored in retained causal history | Observed mass inserted as input |
+| $\zeta(A)$ | Far-field exposure after shielding and quotienting | A tunable small number chosen per particle |
+| $\mathcal{M}_{\text{sea}}^{ab}$ | Reversible Noether sea response that turns exposed source into inertia and gradient response | Ordinary dissipative drag |
+| $M_{\mathrm{sh}}(A;\theta)$ | Observer-facing shielded mass prediction in a declared response record | A sum of isolated constituent masses |
+
 ### Mechanism Stack
 
 Apparent inertial mass is expected to arise from a connected stack of effects:
@@ -598,6 +626,15 @@ m_{\text{inertial}}(A)
 $$
 
 but a derivation in which $\zeta(A)$ is fixed by the same root ledger, shielding geometry, and Noether sea response that also preserves stability and equivalence-principle behavior. If $\zeta(A)$ has to be tuned independently for each particle family, the analogy to QCD naturalness fails and the hierarchy has only been renamed.
+
+This is the hierarchy-problem version of the mass thesis. The small observer mass does not require that the accepted branch contain little internal energy; it requires that most of that internal energy be hidden from the scalar mass channel by branch geometry. The quantitative burden is therefore
+$$
+\zeta(A)
+=
+\frac{\|\Pi_{\mathrm{mass}}\mathcal{L}_A\|}{\|\mathcal{L}_{\mathrm{naive}}(A)\|}
++O(\epsilon_{\mathrm{quot}})
+$$
+with $\Pi_{\mathrm{mass}}$ fixed by the sector exposure quotient. A derivation of this ratio from the accepted branch would explain why large internal scales can coexist with small exposed masses without fine tuning.
 
 ### Generation-Mass Fitting Packet
 

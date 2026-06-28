@@ -34,65 +34,29 @@
       "title": "Theory Mapping",
       "radius": 2.25,
       "color": "#2f4f7a",
-      "position": [
-        0,
-        3.2,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Theory Mapping",
-      "fixedPosition": true
+      "labelTitle": "Theory Mapping"
     },
     {
       "id": "theory_differentials",
       "title": "Theory Differentials",
       "radius": 2.25,
       "color": "#3f6a5a",
-      "position": [
-        -3.8,
-        -3.3,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Theory Differentials",
-      "fixedPosition": true
+      "labelTitle": "Theory Differentials"
     },
     {
       "id": "theory_inheritance_discipline",
       "title": "Theory Inheritance Discipline",
       "radius": 2.25,
       "color": "#4b5e2f",
-      "position": [
-        0,
-        -8.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Theory Inheritance",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "theory_bridges",
       "title": "Theory Bridges",
       "radius": 2.25,
       "color": "#4f5d75",
-      "position": [
-        3.8,
-        -3.3,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Theory Bridges",
-      "fixedPosition": true
+      "labelTitle": "Theory Bridges"
     }
   ]
 }

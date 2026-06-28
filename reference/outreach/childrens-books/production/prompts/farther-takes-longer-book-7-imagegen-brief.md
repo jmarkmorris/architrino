@@ -1,12 +1,10 @@
 # Book 7 Image-Generation Brief: Farther Takes Longer
 
-Use this brief after Book 6 review, before adding Book 7 back into `generation-manifest.json`.
-
 ## Master Style Prompt
 
 Generate text-free 3:2 landscape source illustrations for **Farther Takes Longer**, Book 7 of **The Wonder of Nature and the Universe**.
 
-Match the Book 1 through Book 6 first-draft visual direction, with Book 7 focused on distance, direction, finite-speed travel, and the source-to-arrival line of action.
+Use the established series visual direction, with Book 7 focused on distance, direction, finite-speed travel, and the source-to-arrival line of action.
 
 - Electra is a young child with medium-brown skin, dark curly hair in two small puffs, and simple white-and-lavender play clothes.
 - Poz is a young child with light-brown skin, short straight dark hair, and simple white-and-purple play clothes.
@@ -82,9 +80,3 @@ A clean text-free adult-led near/far bell activity: Electra listens at one side 
 ### Backmatter Activity 2
 
 A clean text-free adult-led rope-wave activity: Electra and Poz hold or watch the ends of a soft white-and-purple rope while a small grown-up hand flicks one end. A purple wave bump travels along the rope, with older/fainter positions behind it and untouched rope ahead. Keep source end, traveling wave, and arrival end visible. Do not use arrows, labels, numbers, rulers, grids, panels, axes, or graph shapes.
-
-## Notes Before Generation
-
-- Book 7 should have `15` source images: cover, 12 story spreads, and 2 backmatter activity images.
-- Do not generate Book 7 until Book 6 source images and layout are reviewed.
-- After approval, add Book 7 to `tools/build_generation_manifest.py` with `back_matter_count` set to `2`, add production prompt blocks to `farther-takes-longer.md`, rebuild the manifest, generate sources with the built-in `image_gen` workflow used for Books 1-6, run QA, render pages, then refresh the manifest again.

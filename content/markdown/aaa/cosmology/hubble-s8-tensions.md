@@ -41,6 +41,14 @@ $$
 
 with the next correction governed by the local curvature $\mathcal{K}_X(R,\hat{\mathbf{k}})$ of the corrected log-redshift curve. The $H_0$ tension is therefore not only a disagreement between two scalar estimates. In this ontology it is a question about whether early-inferred and late-inferred pipelines are sampling the same local transfer coefficient, the same higher-order redshift curvature, and the same environment-conditioned Noether sea state record.
 
+The environment-conditioned version should remain directional until the data justify an isotropic scalar:
+$$
+H_{\mathrm{eff},X}^{E}(R,\hat{\mathbf{k}})
+=
+c_0\,\partial_R Z_{\mathrm{prop},X}^{E}(R,\hat{\mathbf{k}}).
+$$
+Here $E$ denotes the source, host, line-of-sight, and observer-environment class after catalogue corrections. A local ladder can be promoted to a universal $H_0$ coefficient only after the residual scatter in $H_{\mathrm{eff},X}^{E}$ is either bounded or derived from the same Noether sea density, delay, flow, and calibration record used by CMB, BAO, and growth.
+
 For diagnostic use, raw measured redshift should first be converted into the propagation residual
 
 $$

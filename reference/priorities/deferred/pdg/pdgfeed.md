@@ -40,7 +40,7 @@ Assumptions:
 - Python 3 runtime;
 - installed `pdg` package from `requirements.txt`;
 - local SQLite database access through `pdg.connect(...)`;
-- for live PDG work in this workspace, the shared venv at `/Users/markmorris/vibe/.venv`;
+- for live PDG work in this workspace, the shared venv exposed as `$AAA_VENV`, falling back to the repo-adjacent `../.venv`;
 - no PDG website dependency during normal ingest.
 
 Policy:

@@ -105,6 +105,76 @@ $$
 
 Here $C_{\ell,X}^{p}$ is the declared proton-window projection and $\mathcal W_{\mathrm{strong},X}^{uud}$ is the channel exposure of $\mathcal L_{\mathrm{strong}}^{uud}(t)$. The strong-sector term includes the closed color-corridor contribution needed to make the three quark branches one proton source; it is not ambient Noether sea and is not a fourth quark-like constituent.
 
+### Proton Mass Is Not Current-Quark Mass Addition
+
+The same source-envelope rule explains why the proton mass is not obtained by adding the Standard Model current-quark mass entries for two up quarks and one down quark. Those current-quark entries are comparison-layer parameters for quark fields inside the strong sector; they are not the observer-facing scalar masses of three isolated free quark branches. Free quarks are not accepted asymptotic branches.
+
+For the accepted proton branch, the mass-facing response must be computed after color-singlet closure and the proton-window projection. Schematically,
+
+$$
+\mathsf{I}_{p}^{ab}
+=
+\mathsf{I}_{u_1}^{ab}
++
+\mathsf{I}_{u_2}^{ab}
++
+\mathsf{I}_{d}^{ab}
++
+\mathsf{I}_{\mathrm{strong},uud}^{ab}
++
+\mathsf{I}_{\mathrm{cross},uud}^{ab}
++
+\mathsf{I}_{\mathrm{sea},uud}^{ab},
+\qquad
+m_{\mathrm{tr}}(p)
+=
+\frac{1}{3}h_{ab}\mathsf{I}_{p}^{ab}.
+$$
+
+Here $\mathsf{I}_{\mathrm{strong},uud}^{ab}$ denotes the closed color-corridor and flux contribution, $\mathsf{I}_{\mathrm{cross},uud}^{ab}$ denotes branch-cross terms created by locking the three quark records into one baryon, and $\mathsf{I}_{\mathrm{sea},uud}^{ab}$ denotes the retained local Noether sea response for the proton branch. This is hadronic composite closure, not a conversion of Generation-I quarks into higher-generation exposed cores. Strong-sector exchange may change color exceptionality and flux routing, but on the strong-interaction timescale it must preserve the generation tier unless a separate weak or high-energy branch-transition ledger is supplied.
+
+The proton-current-quark mass mismatch is therefore a required benchmark for the hadronic mass map: most of the proton's observed rest response should come from the accepted composite strong-sector ledger and its Noether sea response, not from isolated current-quark mass addition and not from ordinary nuclear binding. Nuclear binding starts one level higher, after proton and neutron source envelopes have already been accepted as nucleon branches.
+
+### Proton Spin Budget
+
+The proton spin comparison should be treated the same way as the mass comparison: the observer-level spin-$1/2$ label is a composite readout after the three quark branches, color-corridor structure, orbital terms, and Noether sea dressing are projected into one accepted proton source envelope. In a declared resolution window $Q$, write the proton angular-momentum ledger as
+$$
+\mathbf J_p(Q)
+=
+\sum_{q\in\{u_1,u_2,d\}}
+\left(
+\mathbf J_{q,\mathrm{braid}}(Q)
++
+\mathbf L_{q,\mathrm{orb}}(Q)
+\right)
++
+\mathbf J_{\mathrm{color\ corr}}(Q)
++
+\mathbf L_{\mathrm{tube}}(Q)
++
+\mathbf J_{\mathrm{sea}}(Q).
+$$
+
+Here $\mathbf J_{q,\mathrm{braid}}$ is the retained internal Noether braid angular-momentum contribution of each quark branch, $\mathbf L_{q,\mathrm{orb}}$ is the quark-branch orbital contribution inside the accepted proton envelope, $\mathbf J_{\mathrm{color\ corr}}$ is the angular momentum carried by color-corridor and flux-tube reconfiguration, $\mathbf L_{\mathrm{tube}}$ records tube geometry and recoil circulation, and $\mathbf J_{\mathrm{sea}}$ records Noether sea and sea-pair dressing that remains inside the proton branch rather than outside as ambient medium.
+
+The closure target is
+$$
+\mathcal R_{J_p}(Q)
+=
+\frac{
+\left\|
+\mathbf J_p(Q)
+-
+\frac{\hbar}{2}\hat{\mathbf J}_p
+\right\|
+}{
+\hbar+\varepsilon_J
+}
+\le
+\Delta_{J_p}(Q).
+$$
+This is the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading of the proton-spin puzzle. Standard quark-spin, gluon-spin, sea, and orbital fractions are useful resolution-dependent comparison data, but "gluon spin" should map to color-corridor and flux-tube angular-momentum rows rather than to a standalone point-particle spin inserted into the proton.
+
 The first closure condition is absence of open color leakage at the proton boundary:
 
 $$

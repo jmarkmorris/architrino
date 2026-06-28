@@ -145,6 +145,62 @@ $$
 - emission source depletion, recoil, wake, remnant, and handoff rows;
 - packet momentum $\mathbf{p}_\gamma$, phase ledger, and receiver capture record.
 
+### Constituent Motion Versus Photon-Channel Speed
+
+The photon-channel speed $c_\gamma$ is the group/transport speed of the retained coaxial contra-rotating pro/anti planar pair. It should not be identified with every constituent architrino's instantaneous internal speed. A useful priority-only decomposition for constituent $a$ is
+$$
+\mathbf v_a
+=
+c_\gamma\hat{\mathbf e}
++
+\mathbf u_{a,\perp},
+\qquad
+\hat{\mathbf e}\cdot\mathbf u_{a,\perp}=0,
+$$
+with the internal transverse component represented schematically by
+$$
+\mathbf u_{a,\perp}
+=
+\sum_{\ell\in\mathcal I_\gamma}
+\omega_\ell R_\ell
+\hat{\boldsymbol\phi}_{a\ell}.
+$$
+Then
+$$
+\|\mathbf v_a\|^2
+=
+c_\gamma^2
++
+\|\mathbf u_{a,\perp}\|^2
+$$
+for the constituent path, while the packet-level null row still uses $E_\gamma=\|\mathbf p_\gamma\|c_\gamma$. This split gives `EQ-12` a sharper way to ask how frequency and energy live in the internal phase-cycle variables $(\omega_\ell,R_\ell,\phi_\ell)$ while homogeneous photon transport remains frequency-independent. A candidate branch fails if internal transverse motion leaks into free-space dispersion, creates a rest branch, or lets $c_\gamma$ be retuned separately from the same Noether sea and event ledger.
+
+### Eikonal And Fermat Recovery
+
+Fermat's principle belongs here as an eikonal recovery target, not as a substrate rule in which one photon samples many possible paths. A single photon-channel event keeps one path-history ledger
+$$
+Y_\gamma^{\mathrm{path}}
+=
+\left(
+\mathsf e_{\mathrm{src}},
+\Gamma_\gamma,
+\theta_{\mathrm{sea}}|_{\Gamma_\gamma},
+\mathsf e_{\mathrm{rec}},
+\mathcal L_{E\mathbf p\mathbf J}^{\gamma}
+\right),
+$$
+where $\Gamma_\gamma$ is the retained Euclidean path of the packet and $\theta_{\mathrm{sea}}|_{\Gamma_\gamma}$ is the Noether sea record sampled along that path. The ray-optics comparison appears only after neighboring admissible path records share one medium-response map. In that limit the stationary-path target is
+$$
+\delta_\perp
+\int_{\Gamma}
+\chi_\gamma(\mathbf{x},t)\,d\ell
+=0,
+\qquad
+\chi_\gamma(\mathbf{x},t)=\frac{c_0}{c_\gamma(\mathbf{x},t)}.
+$$
+
+This stationary condition is a comparison-layer summary of the same $c_\gamma$ and $\chi_\gamma$ rows used by the null and time-of-flight tests. The recovery fails if the model requires a single photon to carry multiple realized paths, if the eikonal path uses a different photon-channel speed from the Gate A packet, or if refraction at an interface is computed without the material return-map and recoil rows that determine the outgoing path.
+
 ### Noether Sea Variables
 
 - $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$ for medium state;
@@ -326,7 +382,7 @@ J_{\mathrm{eff},\mu}^{\theta}
 \right].
 $$
 
-Solved Maxwell or scalar-wave families should be treated as inverse clues. Retarded Green functions constrain causal support and source provenance; plane waves and eikonal solutions constrain dispersion and phase/group velocity; cavity and boundary modes constrain mode counting and boundary readout; scattering solutions constrain phase shifts and flux ledgers. These are acceptance tests for the coarse-grained wake/photon-channel map, not substrate fields.
+Solved Maxwell or scalar-wave families should be treated as inverse clues. Causal-delay Green-function kernels constrain causal support and source provenance; plane waves and eikonal solutions constrain dispersion and phase/group velocity; cavity and boundary modes constrain mode counting and boundary readout; scattering solutions constrain phase shifts and flux ledgers. These are acceptance tests for the coarse-grained wake/photon-channel map, not substrate fields.
 
 The row should score only through a residual such as
 

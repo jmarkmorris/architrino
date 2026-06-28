@@ -45,6 +45,20 @@ The pilot-wave bridge keeps four active proof tasks:
 2. Simulate ensembles of identically prepared assemblies under the Master Equation with controlled unresolved Noether sea boundary histories; extract outcome distributions and compare them against $|\psi|^2$ only after the basin partition and measure source are declared.
 3. Compute phase-locking conditions for a single tri-binary assembly in a Coulomb-like confining potential, as a hydrogen-analog energy-spectrum stress test.
 4. Characterize non-Markovian guidance corrections from self-hit memory and identify regimes where causal-wake guidance can diverge from standard de Broglie-Bohm summaries.
+5. Add a Lissajous-scar benchmark for mode-lock and near-degeneracy: when a reduced assembly oscillator has commensurate frequency rows and a weak perturbation, determine whether the same return map that supplies basin weights also predicts persistent density enhancement along the corresponding classical periodic-orbit family.
+
+For the scar benchmark, a minimal comparison object is
+$$
+\mathcal{R}_{\mathrm{scar}}(m:n;\theta)
+=
+\left(
+\Delta_{\mathrm{orbit}},
+\Delta_{\mathrm{dens}},
+\Delta_{\mathrm{split}},
+\Delta_{\mathrm{pert}}
+\right),
+$$
+where $m:n$ is the declared commensurate mode ratio, $\Delta_{\mathrm{orbit}}$ compares the projected periodic-orbit family, $\Delta_{\mathrm{dens}}$ compares the density enhancement, $\Delta_{\mathrm{split}}$ tracks near-degenerate level splitting, and $\Delta_{\mathrm{pert}}$ records robustness under a declared perturbation. This is a benchmark only; it does not promote Lissajous imagery into native ontology.
 
 ### Superposition and collapse separatrix tasks
 

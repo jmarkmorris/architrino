@@ -940,9 +940,10 @@ Each reaction record should state:
 5. **Polarity and charge accounting:** how observer-level charge bookkeeping emerges from the conserved $E/P$ routing, axial-layer exposure, shielding state, Noether sea participation, and outgoing assembly routing.
 6. **Energy-momentum and angular-momentum accounting:** where kinetic energy, internal binding energy, photon assemblies, recoil, medium excitation, spin/vector ledger terms, and wake-carried angular momentum enter and exit.
 7. **Path-history provenance:** which emitted causal wakes, source identities, and delayed interactions are needed to make the reaction deterministic in absolute time.
-8. **Radiation event record, when applicable:** for emitted, absorbed, shifted, captured, or failed photon channels, attach the shared event fields from [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), including $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, and causal-wake ledger.
-9. **Hybrid Standard Model matching, when applicable:** identify the source lane for the observer-level prediction: perturbative electroweak chart, matched weak effective theory, lattice-QCD or nuclear matrix element, infrared-safe QCD observable, QED, kinetic model, or detector functional. Include the scheme, operator or observable definition, matching normalization, CKM/PMNS factor when applicable, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record when one is used.
-10. **Closure status:** baseline, provisional map, derivation target, failed map, or inherited gate.
+8. **Weak-corridor record, when applicable:** for $W^\pm$ or $Z^0$ channels, record the axial-inventory payload $\Delta A_W$, any neutral Noether braid scaffold recruited into the corridor, shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, corridor recoil, outgoing-product identity routing, and Noether sea return row.
+9. **Radiation event record, when applicable:** for emitted, absorbed, shifted, captured, or failed photon channels, attach the shared event fields from [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), including $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, and causal-wake ledger.
+10. **Hybrid Standard Model matching, when applicable:** identify the source lane for the observer-level prediction: perturbative electroweak chart, matched weak effective theory, lattice-QCD or nuclear matrix element, infrared-safe QCD observable, QED, kinetic model, or detector functional. Include the scheme, operator or observable definition, matching normalization, CKM/PMNS factor when applicable, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record when one is used.
+11. **Closure status:** baseline, provisional map, derivation target, failed map, or inherited gate.
 
 ### Record Template
 
@@ -953,6 +954,7 @@ Each reaction record should state:
 | Noether sea input/output | Neutral braids, axial material, or medium excitations recruited or returned |
 | Conserved inventory | $E/P$ totals and charge/polarity balance |
 | Energy-momentum and angular-momentum ledger | Internal energy, recoil, emitted assemblies, spin/vector ledger terms, wake-carried angular momentum, and medium excitation |
+| Weak-corridor record, when applicable | $\Delta A_W$, neutral Noether braid scaffold sourcing, shielded-energy exposure, corridor payload, recoil, product identity routing, and Noether sea return row |
 | Radiation event record, when applicable | Source assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, photon Gate B event residual when $E_\gamma\ne0$, and closure status |
 | Provenance data | Source identity, emission time, causal-root branch, and local Noether sea state |
 | Hybrid Standard Model matching, when applicable | Source lane, scheme, operator or observable, matching normalization, CKM/PMNS factor when applicable, matrix-element or factorization source, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record |
@@ -1460,6 +1462,7 @@ The minimal useful first path is BBN photon loading: identify a source-zone radi
 | --- | --- | --- |
 | Architrino inventory | $E/P$ counts, braid/axial-layer separation, and identity routing for recruited or returned substrate content | Prevents creation-from-nothing wording in pair and weak channels |
 | Noether sea state | $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, and excitation state | Keeps density, delay, and transport variables distinct |
+| Noether sea recruitment and return | Neutral Noether braid content recruited into a reaction, returned to the ambient population, reclassified into another branch, or left as local excitation | Treats the Noether sea as a participant in vertices that change apparent inventory, not as a passive background |
 | Radiation event record | Source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, and closure status | Provides the local event schema that can be propagated into source-zone, transport, and observer-level cosmology claims |
 | Photon assembly channel | Planar-mode nucleation threshold, emitted energy, direction, polarization basis, and transverse angular-momentum ledger | Links bremsstrahlung, synchrotron, and CMB photon-bath claims |
 | Pair channel | Incoming photon assemblies, identity-routed recruited Noether braid content, final $e^+e^-$ assemblies, and recoil/medium excitation | Keeps pair production as association from local substrate content, not ex nihilo creation |
@@ -1491,6 +1494,7 @@ These gates are not separate ontologies. They are bookkeeping filters that preve
 | BBN photon bath | [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md) | Show that pair, bremsstrahlung, synchrotron, and related channels maintain effective $\eta\approx6\times10^{-10}$ during the bottleneck window | Closure target |
 | CMB thermal spectrum | [CMB](../../../../markdown/aaa/cosmology/CMB.md) | Show that source emission, transport, and thermalization produce a near-blackbody photon bath with allowed anisotropy and damping structure | Closure target |
 | Horizon-interface photon release | [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md#horizon-adjacent-photon-channel) and [CMB](../../../../markdown/aaa/cosmology/CMB.md#horizon-interface-photon-release-candidate) | Record photon-channel or photon-channel-adjacent packets processed near the symmetry-breaking threshold, including interior blueshift, exterior redshift, thermalization, and release-channel selection | Candidate strong-field source row |
+| Intergalactic pair/reaction production | [CMB](../../../../markdown/aaa/cosmology/CMB.md), [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), and [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md) | Inventory photon, neutrino, plasma, cosmic-ray, neutral-assembly, and Noether sea source components before using sparse visible matter as an ontology argument | Source-component target |
 | Redshift and clock handoff | [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md) | Map photon transport through $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, and clock-rate comparison | Effective summary with open derivation |
 | Sunyaev-Zeldovich / Compton-like frequency exchange | [CMB](../../../../markdown/aaa/cosmology/CMB.md#sunyaev-zeldovich-path-history-calibration) and [Radiation](../../../../markdown/aaa/reactions/radiation.md#path-frequency-exchange) | Record incoming photon packet, intervening electron or medium state, outgoing frequency, recoil, medium energy change, and thermalization side effects | Calibration row and closure target |
 
@@ -1533,6 +1537,26 @@ The event record must avoid creation-from-nothing wording. Incoming photon assem
 - and the standard-limit cross-section target.
 
 This is the ledger distinction that ordinary absorption does not need: atomic or material capture closes the photon ledger into an existing target or medium record, while pair production closes the photon ledger and separately recruits identity-routed substrate content into new charged assemblies.
+
+#### Intergalactic Pair And Reaction Source Components
+
+Sparse visible matter between galaxies is not enough to close a cosmology source inventory. A reaction-cosmology packet should include a component row
+$$
+\mathcal{I}_{\mathrm{IGM}}
+=
+\left(
+N_\gamma,
+N_\nu,
+N_{\mathrm{CR}},
+N_{\mathrm{plasma}},
+N_{\mathrm{dust}},
+N_A,
+\rho_{\text{NS}},
+S_{\mathrm{pair}},
+S_{\mathrm{return}}
+\right)_W
+$$
+for a declared window $W$. Here $N_A$ records neutral or dark assembly candidates, $S_{\mathrm{pair}}$ records pair or reaction production inside the window, and $S_{\mathrm{return}}$ records content returned to the Noether sea or reclassified after reactions. This row is a source-component inventory, not a proof of a specific production rate; it prevents "empty intergalactic space" from replacing the actual component ledger.
 
 #### BBN Photon Loading
 
@@ -3311,6 +3335,26 @@ This enforces a clean separation between:
 - Fundamental dynamics in the absolute frame (what the simulation integrates),
 - Emergent observational physics (what real experiments would see).
 
+#### Simulation Scope Envelope
+
+A simulation is a bounded experiment on the model, not a complete copy of $\mathbb{U}_{\text{now}}$. Every run should declare its scope before outputs are interpreted:
+
+- spatial domain and boundary conditions;
+- absolute-time span, $\Delta t$, and retained history depth;
+- entity count, assembly inventory, and Noether sea initialization;
+- spatial, temporal, and path-history resolution ladders;
+- logged $\mathbb{U}_{\text{now}}$ channels and detector-synthetic channels;
+- runtime-rate or cost budget when feasible replay matters;
+- feedback or intervention mode, including whether the run is passive replay, diagnostic probing, controlled perturbation, or detector post-processing.
+
+Near-threshold events need a margin report. If an unresolved perturbation, sampling choice, or detector context can flip a reaction, branch, or record classification, the simulation should report the threshold margin and alternate-outcome band. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not substrate randomness; it is unresolved state sensitivity inside a deterministic causal-history model.
+
+#### Path-History Provenance
+
+Path-history provenance lets a simulation record support replay and audit, not merely trajectory display. A provenance-rich run keeps stable identities for modeled architrinos and assemblies, authoritative path segments for position and velocity, causal-root rows, delayed source-state rows, assembly-membership intervals, and reaction or record-forming event references. Those records let a later audit ask which source history, emitted causal wake, receiver state, Noether sea context, and outgoing assembly record produced a synthetic observation.
+
+This does not make the simulator a physical observer and does not require unbounded storage of $\mathbb{U}_{\text{now}}$. The scope envelope decides how much provenance is retained, at what resolution, for which entities, and under which replay or compression authority. Full path retention is valuable only where it changes the scientific claim: reaction balancing, branch replay, process demographics, detector-synthetic output, or failure analysis.
+
 ### Run Protocols
 
 This chapter defines the mandatory runtime protocol for simulations carried out in the absolute-frame implementation of the theory. Its role is to standardize the frame, logging requirements, provenance bookkeeping, metadata, and acceptance gates so results from different runs can be compared and audited coherently.
@@ -3324,7 +3368,10 @@ The opening gives the top-level simulation rule set; the later sections unpack t
 3. **$\mathbb{U}_{\text{now}}$ universe-state interface**: Every run must instantiate an array of fixed virtual sensors to log $\Phi$ and $\nabla\Phi$ at declared absolute-frame grid addresses.
 4. **Noether sea Initialization**: Low-excitation Noether sea runs must pre-populate the grid with a lattice of coupled pro/anti Noether braids to simulate Noether sea influence on test particles.
 5. **Convergence**: $\Delta t$ refinement must be accompanied by "History Resolution" refinement to ensure self-hit calculations are numerically stable.
-6. **Campaign Packet**: Any run used for a proof certificate, branch-certificate gate, or promoted validation claim must emit a machine-checkable packet rather than only plots or summaries.
+6. **Scope Envelope**: Every campaign declares the bounded simulation envelope: spatial domain, absolute-time span, entity count, resolution ladder, history depth, output channels, runtime-rate or cost budget, feedback or intervention mode, and threshold-event policy.
+7. **Campaign Packet**: Any run used for a proof certificate, branch-certificate gate, or promoted validation claim must emit a machine-checkable packet rather than only plots or summaries.
+
+The scope envelope is metadata for the existing campaign packet, not a separate gate family. It prevents a $\mathbb{U}_{\text{now}}$ run from being read as unlimited computation, unlimited observation, or unlimited control. A numerical result is valid only for the declared scale, resolution, feedback path, and observer layer.
 
 #### Simulation Campaign Object
 
@@ -3368,6 +3415,8 @@ $$
 \mathcal{G}_h=(\Omega_h,\Delta x,\{x_k\}_{k=1}^{K},\Theta_h,\Delta h,\mathsf{bc})
 $$
 where $\Omega_h\subset\mathbb{R}^3$ is the Euclidean-void computational domain, $\{x_k\}$ are the fixed $\mathbb{U}_{\text{now}}$ sample points, $\Theta_h\subset[-h,0]$ is the stored path-history mesh, $\Delta h$ is the history resolution, and $\mathsf{bc}$ records boundary conditions. The interpolation operator $I_h^q$ is part of the packet; delayed source states cannot be reconstructed by an implicit or undocumented lookup rule.
+
+The path-history part of $\mathcal{G}_h$ and $\Pi_{\mathbb{U}_{\text{now}}}$ should distinguish authoritative kinematic segments from attached audit rows. Authoritative segments reconstruct $\mathbf{x}_i(t)$ and $\mathbf{v}_i(t)$ over declared intervals with error bounds. Causal-root rows, delayed source-state rows, assembly-membership intervals, reaction-event references, and display projections attach to those segments by identifier and time range. Chunking, compression, and broad-phase indices are allowed as storage or acceleration layers; they do not replace authoritative replay when a promoted claim depends on provenance.
 
 #### Executable Diagnostic Contract
 
@@ -3950,6 +3999,8 @@ Synthetic observables must be generated by post-processing $\mathbb{U}_{\text{no
    - clock readings $\tau(t)$
    - photon arrival times and frequency shifts, with signed exchange rows separated from endpoint cadence and launch geometry
    - inferred "geodesics" (effective paths) from travel-time minimization through the Noether sea effective signal speed $c_{\text{eff}}$
+
+Synthetic observables are envelope-limited. A detector-like output should carry the sampling cadence, aperture or worldline, sensitivity threshold, and intervention context that generated it. When a near-threshold branch, reaction, or record-forming event can flip under unresolved perturbations, the packet should report a threshold margin and alternate-outcome band instead of promoting one microhistory as uniquely observed.
 
 ##### Validation checks (must pass)
 - **Causality residual (per record $m$):**

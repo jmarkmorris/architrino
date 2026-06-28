@@ -34,6 +34,38 @@ with the clock map depending on $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},
 - source/observer relative-motion contribution,
 - propagation through the traversed Noether sea state and gradients.
 
+### Energy-Dependent Transport And Source-Population Checks
+
+Legacy redshift notes contain a useful warning: a fixed-void redshift map must not hide frequency- or source-class dependence inside a single scalar distance. If path transport depends on the photon-channel family $X$, then a same-source or same-population comparison across bands must expose that residual after ordinary astrophysical and detector effects are removed. For source class $C$ and bands $X,Y$, use the priority-only diagnostic
+
+$$
+\Delta Y_{XY}^{C}
+=
+Y_{X,E\to R}
+-Y_{Y,E\to R}
+-\Delta Y_{XY}^{\mathrm{src}}
+-\Delta Y_{XY}^{\mathrm{sel}}
+-\Delta Y_{XY}^{\mathrm{dust/plasma}}
+-\Delta Y_{XY}^{\mathrm{cal}}.
+$$
+
+Here $Y_{X,E\to R}$ is the logarithmic path-history propagation factor already used below, while the subtraction terms record source evolution, survey selection, dust/plasma propagation, and calibration. A transparent photon-channel branch should predict whether $\Delta Y_{XY}^{C}$ vanishes within tolerance for the declared class and band pair. A nonzero residual is allowed only if the same Noether sea state and photon-channel ledger explain the band dependence without stochastic image blurring, undeclared absorption/re-emission, or a band-specific redshift law.
+
+Quasar count data add a separate source-population pressure. The observed distribution cannot be read directly as a distance law until the luminosity function, survey selection, obscuration, lensing, source evolution, and redshift-transfer map are separated. A compact comparison form is
+
+$$
+N_Q(z,L,\hat{\mathbf n})
+=
+\int
+\Phi_Q(L',t,\Theta_{\mathrm{env}})
+S_{\mathrm{survey}}(L',z,\hat{\mathbf n})
+P_{\mathrm{class}}(Q\mid\mathcal D)
+T_z(\mathcal S_{E\to R})
+\,d\Theta_{\mathrm{env}}\,dL',
+$$
+
+where $\Phi_Q$ is the source-population model, $S_{\mathrm{survey}}$ is the survey selection function, $P_{\mathrm{class}}$ is the classification probability, and $T_z$ is the redshift-transfer extraction from the restricted source-to-receiver record. The closure burden is to use quasar counts as a decomposition benchmark, not as standalone evidence for or against a cosmology ontology.
+
 ### Candidate Noether Sea Core Factorization
 
 The more substrate-facing version should use the local Noether sea core cadence itself as the clock. Let $\Omega_N(\mathbf{x},t)$ be the representative local Noether sea core cadence and $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$ its cycle period. Relative to a weak homogeneous reference core, define the candidate endpoint deformation factor

@@ -58,8 +58,8 @@ authorize a branch chart.
 | `split_required_base_rows` | 162 | 162 | 0 |
 | `branch_chart_authorized` | false | false |  |
 
-Ephemeral replay ledgers present at recorded run directory
-`/private/tmp/proof-lambda0305/preledger`: false.
+Ephemeral replay ledgers present at the recorded scratch preledger directory:
+false.
 
 ## Regular Source-Cover Rows
 

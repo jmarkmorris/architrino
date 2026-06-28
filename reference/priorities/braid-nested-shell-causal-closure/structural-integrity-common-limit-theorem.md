@@ -8,7 +8,7 @@ The compact theorem target is surfaced in the $\mathbb{A}\mathbb{A}\mathbb{A}$ c
 
 - Kind: `priority-detail`
 - Workstream item: `structural_integrity_common_limit`
-- Current status: `proof-route-scaffolded; branch-population-blocked`
+- Current status: `proof-route-scaffolded; gate-a-population-intake-defined; first-failure-branch-certificate-ref-absent`
 - Upstream dependencies: `shared_branch_certificate_contract`, `photon_gate_a_kinematics`, `lorentz_residual_packet`, `lorentz_gr_bridge`
 - Corpus-facing target: [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure) owns the compact theorem target; [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry) owns the conceptual structural-integrity explanation; [Constraint Ledger](../../../content/markdown/aaa/validation/constraint-ledger.md#gw-speed) owns the empirical gravitational-wave speed gate.
 - Remaining promotion target: theorem proof, full dependency graph, residual-population material, and failure-map refinements may promote only after one retained branch supplies clock, ruler, matter-limit, photon, gravitational-wave, two-way signal, and Noether sea dressing rows together.
@@ -22,7 +22,7 @@ The compact theorem target is surfaced in the $\mathbb{A}\mathbb{A}\mathbb{A}$ c
 | [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md#moving-branch-clock-retuning-target) | The moving-clock row is not sufficient in isolation; the same branch must also produce moving-ruler deformation and photon synchronization. |
 | [Electroweak Bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md#gate-a-theorem-scaffold-kinematics-and-optics) | Photon Gate A is the photon side of the common-limit condition and cannot tune $c_\gamma$ separately from the clock/ruler $c_{\text{eff}}$ row. |
 | [Lorentz Test Residual Handoff](../master-equation-closure/lorentz-test-residual-handoff.md) | Residual export already requires shared branch, clock, ruler, signal, speed, medium-response, frame-projection, and null-row discipline. |
-| [Shared Branch Certificate Contract](braid-nested-shell-causal-closure.md#shared-branch-certificate-contract) | The accepted branch package already carries $c_f$, $c_{\text{eff}}$, $c_\gamma$, $c_0$, active-root ledger, stability gaps, Lorentz residual, photon rows, medium response, and event ledger. |
+| [Shared Branch Certificate Contract](braid-nested-shell-causal-closure.md#shared-branch-certificate-contract) | The shared branch certificate contract defines the retained-branch package that must carry $c_f$, $c_{\text{eff}}$, $c_\gamma$, $c_0$, active-root ledger, stability gaps, Lorentz residual, photon rows, medium response, and event ledger. |
 
 ## Theorem Target
 
@@ -180,6 +180,134 @@ $$
 $$
 The theorem route closes only when $\widehat{\mathcal{R}}_{\mathrm{SI}}^{(q)}\le1$ with replayable source artifacts and without changing branch, speed convention, or dressing record between rows.
 
+## Photon Gate A Same-Branch Acceptance Object
+
+For common-limit use, Photon Gate A is accepted only as a sector row inside the shared branch certificate, not as a separately tuned photon chart. The priority-only same-branch row is
+$$
+\mathfrak{S}_{\gamma A}^{(q)}(W)
+\in
+\mathfrak{S}^{(q)}(W),
+$$
+with payload
+$$
+\mathfrak{S}_{\gamma A}^{(q)}(W)
+=
+\left(
+q,
+W,
+\mathcal{G}_{A,q},
+\mathcal{A}_{q},
+\nu_J^{(q)},
+g_{\mathrm{inactive}}^{(q)},
+h_{\mathrm{mem}}^{(q)},
+\Delta_{\mathbf{k}}^{(q)},
+\rho_{\text{NS}},
+\chi_{\text{sea}},
+c_f,
+c_{\text{eff},q}^{\mathrm{hom}},
+c_{\gamma,q}^{\mathrm{hom}},
+c_0,
+\hat{\mathbf e},
+\omega,
+d,
+\delta_\gamma,
+\Lambda_\gamma,
+R_{\phi\gamma}^{(q)},
+R_{m\gamma}^{(q)},
+R_{\tau\gamma}^{(q)},
+R_{\gamma\mathrm{disp}}^{(q)},
+\Delta_{\text{tw}}^{(q)},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)},
+\sigma_{\gamma A}^{(q)}
+\right).
+$$
+Here $\delta_\gamma\equiv1-c_{\gamma,q}^{\mathrm{hom}}/c_f$, and the branch-identity rows $(q,W,\mathcal{G}_{A,q},\mathcal{A}_q,\nu_J^{(q)},g_{\mathrm{inactive}}^{(q)},h_{\mathrm{mem}}^{(q)},\Delta_{\mathbf{k}}^{(q)})$ must be the same rows used by the clock, ruler, two-way signal, matter-limit, and event-ledger records. The row is not populated by declaring a photon speed. It is populated only when the photon carrier, the Noether sea dressing record, and the operational clock/ruler/signal records replay on the same retained branch.
+
+The row has five required acceptance tests:
+
+| Test | Required same-branch evidence | Failure status |
+| --- | --- | --- |
+| Branch provenance | $d_{\mathcal{A}}(\mathcal{A}_{\mathrm{clk}}^{(q)},\mathcal{A}_{\mathrm{rul}}^{(q)})+d_{\mathcal{A}}(\mathcal{A}_{\mathrm{rul}}^{(q)},\mathcal{A}_{\mathrm{sig}}^{(q)})+d_{\mathcal{A}}(\mathcal{A}_{\mathrm{sig}}^{(q)},\mathcal{A}_{\gamma A}^{(q)})+d_{\mathcal{A}}(\mathcal{A}_{\gamma A}^{(q)},\mathcal{A}_{\mathrm{event}}^{(q)})=0$ on the same extraction window. | `structural.branch_split` |
+| Common speed record | $c_{\gamma,q}^{\mathrm{hom}}$ and $c_{\text{eff},q}^{\mathrm{hom}}$ are extracted from the same weak homogeneous $\rho_{\text{NS}}$ and $\chi_{\text{sea}}$ record, with no independent $\chi_\gamma$ fit, and $\lvert c_{\gamma,q}^{\mathrm{hom}}/c_{\text{eff},q}^{\mathrm{hom}}-1\rvert\le\epsilon_{\text{LV}}$. | `tri_lorentz.photon_gate_split` or `residual.speed_conflation` |
+| Finite phase branch | The proportional-collapse row $d=\Lambda_\gamma(c_f-c_{\gamma,q}^{\mathrm{hom}})/\omega+O(\epsilon_\phi)$ keeps $R_{\phi\gamma}^{(q)}=\lvert\omega d/(c_f-c_{\gamma,q}^{\mathrm{hom}})+\phi_{\text{geom}}-\Phi_{\gamma A,*}\rvert$ below tolerance on the same branch. | `photon.phase_divergence` |
+| Null and no-rest rows | The null shell residual $R_{m\gamma}^{(q)}$ is below tolerance and the rest-clock row is reported as `zero_with_bound`: no retained $v=0$ photon branch with a proper-time cycle exists on the same closure graph. | `photon.mass_shell_residual` or `photon.rest_clock_leakage` |
+| Nondispersion and operational signal | $R_{\gamma\mathrm{disp}}^{(q)}$ stays below the long-baseline bound while $\Delta_{\text{tw}}^{(q)}$ remains inside the same leakage scale used by the Lorentz residual packet. | `photon.dispersion_leakage` or `lorentz.two_way_residual` |
+
+If an emission, absorption, scattering, analyzer handoff, or radiation event is active, $\mathfrak{S}_{\gamma A}^{(q)}(W)$ must also embed in $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$ through the residual-routing event-ledger predicate. Source depletion, recoil, wake update, medium update, remnant state, photon output, and any analyzer handoff are then ledger rows, not optional explanatory terms. A Gate A row that closes the finite phase and nondispersion tests but leaves $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}\ne\mathbf{0}$ remains `event.ledger_residual`.
+
+The status field $\sigma_{\gamma A}^{(q)}$ is one of:
+
+| Status | Meaning |
+| --- | --- |
+| `accepted_same_branch` | All five Gate A tests pass, event-ledger rows close when an event is active, and the row can feed $\widehat{\mathcal{R}}_{\mathrm{SI}}^{(q)}$. |
+| `blocked_pending_accepted_branch_chart` | The row is well-defined but no retained branch supplies the shared finite-ledger and positive-gap records. |
+| `blocked_pending_common_speed_record` | The photon carrier exists as a candidate but $c_\gamma$, $c_{\text{eff}}$, and $c_0$ are not yet extracted from one Noether sea dressing record. |
+| `failed_independent_photon_fit` | Gate A can pass only by fitting $c_\gamma$, $\chi_\gamma$, phase, or dispersion independently of the clock/ruler/signal rows. |
+| `failed_rest_or_dispersion_row` | A rest-clock leakage, non-null mass shell, fixed-$d$ dispersion, birefringence, or time-of-flight residual exceeds the declared bound. |
+| `failed_event_embedding` | The photon row cannot embed in the residual-routing event ledger without hidden source depletion, recoil, wake, medium, remnant, or analyzer terms. |
+
+Current population status: no row is accepted. The $A_0$ seed is a rest-branch diagnostic with no active photon sector event, no moving same-branch drift band, no common $c_{\text{eff}}/c_\gamma/c_0$ extraction, and no Gate A proportional-collapse row. Its admissible status for this packet is therefore `blocked_pending_accepted_branch_chart`, not `accepted_same_branch`.
+
+### Gate A Population Intake Boundary
+
+The smallest population artifact for this row is
+
+$$
+\mathcal{I}_{\gamma A}^{(q)}(W)
+=
+\left(
+\mathsf{branch\_certificate\_ref},
+\mathsf{photon\_carrier\_ref},
+\mathsf{common\_speed\_record\_ref},
+\mathsf{phase\_lock\_ref},
+\mathsf{null\_shell\_ref},
+\mathsf{no\_rest\_clock\_ref},
+\mathsf{nondispersion\_ref},
+\mathsf{two\_way\_signal\_ref},
+\mathsf{event\_ledger\_ref}
+\right).
+$$
+
+Every reference must name an artifact on the same branch label $q$, extraction
+window $W$, active-root ledger $\mathcal{A}_q$, Noether sea dressing record,
+and event-ledger convention. A reference may be `not_applicable` only for
+`event_ledger_ref` when no emission, absorption, scattering, analyzer handoff,
+or radiation event is active on $W$; the no-event declaration must itself be
+part of the branch certificate.
+
+Applying this intake to the current priority tree stops at the first field:
+
+| Intake field | Current status | First-failure reading |
+| --- | --- | --- |
+| `branch_certificate_ref` | absent for any retained moving material/photon common branch | `blocked_pending_accepted_branch_chart` |
+| `photon_carrier_ref` | candidate Gate A theorem scaffold exists, but no same-branch carrier artifact is populated | not reached |
+| `common_speed_record_ref` | no shared $c_{\text{eff},q}^{\mathrm{hom}}$, $c_{\gamma,q}^{\mathrm{hom}}$, and $c_0$ extraction on one Noether sea dressing record | not reached |
+| `phase_lock_ref` | no same-branch proportional-collapse row | not reached |
+| `null_shell_ref` | no same-branch null photon mass-shell residual | not reached |
+| `no_rest_clock_ref` | no same-branch no-rest proper-time row | not reached |
+| `nondispersion_ref` | no same-branch nondispersion row | not reached |
+| `two_way_signal_ref` | no same-branch Lorentz two-way signal residual population | not reached |
+| `event_ledger_ref` | no active event declaration for the current diagnostic seed | not reached |
+
+Therefore future Gate A work should first produce a retained branch certificate
+or explicitly declare a candidate branch packet that remains below
+`accepted_same_branch`. Independent photon speed, phase, dispersion, or
+event-ledger rows are not eligible population inputs until
+`branch_certificate_ref` exists.
+
+The minimum `branch_certificate_ref` object for this packet is:
+
+| Field | Required same-record content | Current reading |
+| --- | --- | --- |
+| `branch_label` | One retained or explicitly candidate moving branch label $q$. | absent for a retained moving branch |
+| `extraction_window` | One window $W$ shared by clock, ruler, signal, photon, gravitational-wave, and event rows. | absent |
+| `active_root_ledger_ref` | Active-root ledger $\mathcal{A}_q$ with stable identity over $W$. | absent |
+| `gap_or_stability_ref` | Positive stability gap, inactive-root gap, ledger transversality floor, or retained signed root-index boundary. | absent |
+| `moving_deformation_ref` | Moving material deformation row for clock/ruler/signal extraction. | absent |
+| `noether_sea_dressing_ref` | Reserved same-branch dressing-record placeholder for later common-speed rows; no $c_\gamma$, $c_{\mathrm{GW}}$, or $c_0$ extraction is populated until `branch_certificate_ref` passes. | absent |
+| `event_convention_ref` | Event-ledger convention, or a same-certificate no-event declaration for $W$. | absent |
+| `certificate_status` | `accepted_same_branch` only after every required Gate A and common-limit row is populated; otherwise candidate status remains below population. | `blocked_pending_accepted_branch_chart` |
+
 ## First Proof Sequence
 
 1. Fix the retained branch certificate $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ with positive gap rows and no hidden branch transition. This step is inherited from the shared branch certificate contract.
@@ -187,7 +315,7 @@ The theorem route closes only when $\widehat{\mathcal{R}}_{\mathrm{SI}}^{(q)}\le
 3. Define $c_{\mathrm{mat},q}^{\mathrm{lim}}$ from the persistence boundary of the same retained moving branch: the branch limit is where the stability gap, inactive-root gap, ledger transversality floor, or retained signed root index $\chi_{\mathrm{root},q}$ fails, not where a fitted Lorentz formula is declared singular.
 4. Derive the weak homogeneous Noether sea dressing row that maps primitive wake speed $c_f$ to $c_{\text{eff},q}^{\mathrm{hom}}$ and fixes the observer calibration $c_0$. This row must preserve the distinction between $c_f$, $c_{\text{eff}}$, $c_\gamma$, and $c_0$.
 5. Populate the two-way signal row $\Delta_{\text{tw}}^{(q)}$ using the same clocks, rulers, and declared channel speed. A Michelson-Morley-like cancellation is insufficient unless Kennedy-Thorndike and Ives-Stilwell rows remain tied to the same coefficients.
-6. Close photon Gate A on the same weak homogeneous response record: prove the finite phase-locking branch, null photon mass shell, no rest-clock row, nondispersion row, and $c_{\gamma,q}^{\mathrm{hom}}=c_{\text{eff},q}^{\mathrm{hom}}+O(\epsilon_{\text{LV}}c_0)$.
+6. Populate $\mathfrak{S}_{\gamma A}^{(q)}(W)$ on the same weak homogeneous response record: prove the finite phase-locking branch, null photon mass shell, no rest-clock row, nondispersion row, two-way signal compatibility, and $c_{\gamma,q}^{\mathrm{hom}}=c_{\text{eff},q}^{\mathrm{hom}}+O(\epsilon_{\text{LV}}c_0)$ without independent photon retuning.
 7. Close the gravitational-wave TT row from the same weak-field constitutive record: prove $|R_{\mathrm{GW}\gamma}^{(q)}|\le\epsilon_{\mathrm{GW}}$, bounded dispersion, and no unsuppressed non-TT detector mode in the validated band.
 8. Export $\mathcal{R}_{\mathrm{SI}}^{(q)}$ into the Lorentz-test residual handoff and null-row audit. Any zero row must be reported as `zero_with_bound`, not omitted.
 
@@ -214,6 +342,29 @@ The theorem route closes only when $\widehat{\mathcal{R}}_{\mathrm{SI}}^{(q)}\le
 The packet is blocked by the absence of an accepted moving retained branch record. The current $A_0$ seed row is a rest-branch diagnostic with $\mathcal{D}_{\beta}=\{0\}$, and its compact corrected-carrier attempt remains fail-closed on direct one-period residuals. Until a moving continuation preserves one finite causal-root ledger with positive gaps, the proof route can define residual rows and failure modes but cannot populate $\widehat{\mathcal{R}}_{\mathrm{SI}}^{(q)}$.
 
 The next admissible proof move is therefore not another wording pass. It is a branch-chart or simulation/proof artifact that supplies a moving continuation and lets the common-limit residual vector be populated.
+
+### Minimum Evidence Object: `moving_retained_branch_certificate/v0`
+
+The next acceptable object for this packet is a same-branch moving retained
+branch certificate. It may be supplied by a branch-chart proof packet or by a
+replayable simulation/proof artifact, but it is not accepted if it only
+improves the $A_0$ rest seed, fits a Lorentz coefficient, or supplies an
+independent photon or gravitational-wave speed row.
+
+| Required row | Same-record binding | First-failure if absent or split |
+| --- | --- | --- |
+| `branch_certificate_ref` | One branch label $q$, window $W$, separator chart, active root ledger $\mathcal{A}_q$, positive $\nu_J^{(q)}$, $g_{\mathrm{inactive}}^{(q)}$, $h_{\mathrm{mem}}^{(q)}$, and $\Delta_{\mathbf{k}}^{(q)}$. | `blocked_pending_accepted_branch_chart` |
+| `moving_continuation_ref` | Same $q$, $W$, and $\mathcal{A}_q$ with nonzero drift band $\mathcal{D}_{\beta}$ and no branch transition. | `structural.branch_split` |
+| `root_boundary_ref` | Same active-root record reports the stability-gap, inactive-root-gap, transversality-floor, or signed root-index boundary for $c_{\mathrm{mat},q}^{\mathrm{lim}}$. | `structural.root_index_unreported` |
+| `deformation_generator_ref` | One generator $K_q$ produces both the envelope coefficient row and the clock-phase row. | `structural.generator_split` |
+| `common_speed_record_ref` | Same weak homogeneous $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, and clock/ruler map extracts $c_{\text{eff},q}^{\mathrm{hom}}$, $c_{\gamma,q}^{\mathrm{hom}}$, $c_{\mathrm{GW},q}^{\mathrm{hom}}$, and $c_0$ without independent speed fits. | `residual.speed_conflation` |
+| `signal_sector_refs` | Photon Gate A, gravitational-wave TT row, two-way signal residual, and nondispersion rows replay on the same branch and dressing record; inactive sector rows are explicitly `not_applicable` with a certificate reason. | `tri_lorentz.photon_gate_split` or `gw.metric_split` |
+| `event_ledger_ref` | $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$ closes or names the first residual channel on the same extraction window. | `event.ledger_residual` |
+
+Passing this checklist only permits population of
+$\widehat{\mathcal{R}}_{\mathrm{SI}}^{(q)}$. It does not by itself accept
+Photon Gate A, close the Lorentz or gravitational-wave rows, or authorize
+observer export.
 
 ## Promotion Decision
 

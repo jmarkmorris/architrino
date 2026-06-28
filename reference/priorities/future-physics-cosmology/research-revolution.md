@@ -2,7 +2,9 @@
 
 ## Executive Frame
 
-This working draft treats a validated future-physics and cosmology program as a research-system disruption, not only as a theory update. The intended planning audience is an NSF-scale research leader deciding how to protect scientific integrity, manage career disruption, and fund a disciplined transition if the technical case becomes strong enough.
+This priority memo treats a validated future-physics and cosmology program as a research-system disruption, not only as a theory update. The intended planning audience is science and technology leaders deciding how to protect scientific integrity, manage career disruption, and fund a disciplined transition if the technical case becomes strong enough.
+
+Status: priority-only planning material. This memo is not a public announcement, a corpus claim, or a finding that the transition has been validated. Its function is to preserve the institutional decision architecture that would be needed if the technical case crosses defined evidence thresholds.
 
 The central management problem is not whether existing physics should be rhetorically discarded. The problem is how to turn a possible foundation-level error into a controlled research transition:
 
@@ -20,9 +22,9 @@ The strongest management thesis is that physics may need a compassionate interve
 
 The most provocative transition risk is that particle physics and astrophysics may have built impressive, difficult, and valuable work on an early wrong prior about the vacuum, spacetime, point-charge exclusion, and field ontology. In an executive report, that should be handled as an institutional risk, not a slogan: if a deeper field-generator implementation is right, the research system needs an archive-and-pivot strategy rather than denial, panic, or performative revolution language.
 
-The first adoption failure may not be technical refutation; it may be an inability to form a shared object of review. Critics will ask for equations, classical recovery, computations, predictions, and serious papers. Advocates may respond with diagrams, primitive ontology, open notes, and claims of parsimony. An NSF-scale response would have to close that translation gap before it could judge the deeper claim.
+The first adoption failure may not be technical refutation; it may be an inability to form a shared object of review. Critics will ask for equations, classical recovery, computations, predictions, and serious papers. Advocates may respond with diagrams, primitive ontology, open notes, and claims of parsimony. A response by science and technology leaders would have to close that translation gap before it could judge the deeper claim.
 
-Credential renewal is a core management issue. If a foundation-level transition becomes credible, existing expertise remains valuable only when it is requalified against the new implementation basis. The question for an NSF-scale leader is how to make that requalification fast, prestigious, technically strict, and humane while also recognizing that some roles and programs may need to end.
+Credential renewal is a core management issue. If a foundation-level transition becomes credible, existing expertise remains valuable only when it is requalified against the new implementation basis. The question for science and technology leaders is how to make that requalification fast, prestigious, technically strict, and humane while also recognizing that some roles and programs may need to end.
 
 Funding integrity is the parallel institutional risk. A wrong paradigm is not fraud by itself; science advances through models that later fail. The risk changes when a field has credible notice that its grant narratives may depend on false priors and continues to request, review, or spend public funds without disclosing that dependency. A serious transition plan must therefore separate honest historical error, negligent non-response, and intentional misrepresentation.
 
@@ -36,7 +38,7 @@ Action ladder:
 
 ## Intervention Trigger
 
-An NSF-scale intervention would be justified only when a candidate framework meets enough evidence thresholds to make ordinary review channels insufficient. The trigger is not "a contrarian idea exists." The trigger is a structured mismatch:
+An intervention by science and technology leaders would be justified only when a candidate framework meets enough evidence thresholds to make ordinary review channels insufficient. The trigger is not "a contrarian idea exists." The trigger is a structured mismatch:
 
 - the candidate preserves major observations that existing effective theories already fit;
 - it supplies a smaller or more primitive implementation basis;
@@ -55,6 +57,24 @@ Action ladder:
 - `conservative`: maintain a watchlist of false-prior risks and invite voluntary translation packets from insiders and outsiders.
 - `moderate`: convene cross-disciplinary panels with authority to request bridge papers, reproducible packets, and assumption disclosures from funded programs.
 - `aggressive`: initiate a formal intervention review, pause renewals in structurally conflicted areas, and require affected institutions to submit transition or closure plans.
+
+## Evidence Thresholds And Escalation Control
+
+The report needs explicit escalation control because many recommendations become unacceptable if they are detached from evidence maturity. The policy posture should be conditional at every stage:
+
+- `signal`: a nonstandard claim, outsider packet, anomaly cluster, or false-prior critique exists. Appropriate response: archive, intake, translation request, and named technical rejection if the packet fails basic object formation.
+- `reviewable object`: the candidate supplies primitives, update laws, equations or algorithms, assumptions, and failure conditions. Appropriate response: translation grants, skeptical review, toy simulations, and benchmark-target selection.
+- `benchmark pressure`: the candidate recovers or improves a limited set of recognized results without obvious parameter drift. Appropriate response: adversarial validation, independent replication, portfolio-risk disclosure, and limited ring-fenced funding.
+- `transition evidence`: multiple independent recoveries, simulations, classifications, or residual comparisons make the old narrative materially risky. Appropriate response: requalification requirements, new-grant restrictions, facility review, student-protection measures, and authority reassignment in affected review channels.
+- `institutional transition`: the candidate becomes a superior implementation basis for major benchmark families. Appropriate response: major budget reallocation, grant nonrenewal or cancellation where justified, departmental restructuring, leadership removal, and closure of obsolete lines after due process.
+
+This ladder protects both sides. It prevents institutions from ignoring credible transition evidence, and it prevents advocates from treating parsimony, frustration, or application upside as authorization for premature disruption.
+
+Action ladder:
+
+- `conservative`: require every transition recommendation to state its evidence threshold before any funding, staffing, or public-communication action.
+- `moderate`: tie grant renewals, facility reviews, and requalification duties to declared threshold movement reviewed by mixed panels.
+- `aggressive`: prohibit major legacy continuation, new capital commitments, or public narrative claims in affected areas once the institutional-transition threshold is met.
 
 ## Governance Architecture And Strategic Maintenance
 
@@ -82,6 +102,31 @@ Action ladder:
 - `moderate`: separate administrative management from technical decision authority, create rotating cross-disciplinary review cells, fund rollback papers, and require strategic portfolio maps with sunset categories.
 - `aggressive`: remove conflicted legacy authorities from decisive review roles, redirect funds from low-return narrative-defense programs, close paywalled or status-filtered review channels for transition work, and restructure departments that cannot separate personnel hierarchy from technical judgment.
 
+## Research Organization And Employment Architecture
+
+A transition office should not assume that the legacy university department is the right container for the rebuild. The existing structure combines employment hierarchy, grant hierarchy, publication hierarchy, graduate supervision, technical authority, and social prestige in ways that can produce bullying, favoritism, intellectual intimidation, slow correction, and poor working conditions. A foundation-level reset is an opportunity to redesign the research organization itself.
+
+The replacement model should be team-based and contract-explicit. Researchers should know what they are expected to produce, what they own, what the institution owns, what publication duties apply, what fundraising duties apply, what outside media or educational work is permitted, how disputes are reviewed, and what happens if a contract ends early. This is not only an HR concern. It is a scientific-integrity concern because unclear employment power can suppress technical disagreement.
+
+Core design principles:
+
+- separate people management, technical review, funding decisions, publication decisions, and student protection;
+- make decision records, meeting records, conflict disclosures, and review rationales visible by default inside transition organizations;
+- organize around agile research teams with rotating technical councils rather than one-way command chains;
+- use HR and legal functions to enforce fair contracts, dispute review, arbitration or mediation, anti-retaliation controls, and early-termination rules;
+- define intellectual property, data rights, code rights, publication rights, media rights, and monetization rights before work begins;
+- make psychological safety a measurable operating condition, not a slogan.
+
+Clean-sheet institutes may be necessary. Existing departments can participate in the transition, but some may be too entangled with old power structures to host the rebuild. A clean-sheet institute would not abolish hierarchy entirely; it would distribute decision rights across executive operations, technical councils, review cells, and research teams so no single manager can convert employment power into technical truth.
+
+The academic workforce model should also become more plural. Tenure, long-term employment, fixed-term appointments, fellowships, corporate secondments, national-lab assignments, and independent-contractor-style research contracts may all be useful. The policy question is not which form is ideologically pure. The policy question is which form gives skilled researchers enough independence, protection, mobility, and accountability to do hard correction work without being trapped by abusive hierarchy or grant dependency.
+
+Action ladder:
+
+- `conservative`: create model transition contracts, anti-retaliation rules, transparent decision records, dispute-resolution protocols, and team-based pilot projects inside existing universities.
+- `moderate`: fund clean-sheet research units with separated HR, technical review, funding, publication, and student-protection functions; require IP/data/media terms and early-termination rules in transition appointments.
+- `aggressive`: move major transition work out of departments that cannot protect dissent, dissolve PI-dominated control structures for affected programs, replace command-chain review with rotating technical councils, and shift funding to clean-sheet institutes, national labs, or public-private teams with enforceable worker protections.
+
 ## Career Impact
 
 A foundation-level physics transition would directly affect careers. Many researchers would not be "wrong" in the ordinary sense; they would hold expertise in an inherited model that may remain predictive inside a narrower domain. The risk is that their professional identity, grants, publication record, graduate training, and review authority are tied to assumptions that may need reinterpretation.
@@ -94,7 +139,7 @@ Career disruption should be managed as a portfolio issue:
 - `field-transition mentors`: senior researchers who help students and postdocs move from legacy specialization into bridge work without losing status;
 - `critical reviewers`: skeptics funded to attack the transition on technical grounds, not cultural grounds.
 
-An NSF-scale response should not incentivize career self-destruction. It should make it professionally rational for established researchers to say, "This part of my field is an effective approximation; this part may need a deeper implementation; here is the bridge problem I can help solve."
+A response by science and technology leaders should not incentivize career self-destruction. It should make it professionally rational for established researchers to say, "This part of my field is an effective approximation; this part may need a deeper implementation; here is the bridge problem I can help solve."
 
 The constructive policy response is not automatic career deletion. It is a triage system: archive the old work, label its validity domain, create prestigious roles for the people capable of translating, stress-testing, and narrowing the new framework, and sunset roles whose expertise no longer carries enough current value.
 
@@ -198,7 +243,7 @@ That translation key should answer five questions in the field's native review l
 
 The minimum threshold for institutional seriousness is clear: diagrams and essays can motivate review, but they cannot substitute for equations, computation, references, and benchmark recovery. The working posture should therefore be neither apologetic nor triumphalist. The claim may be provocative, but the review object must be ordinary: variables, equations, algorithms, residuals, papers, and failure conditions.
 
-Much pushback will occur above the ideas: credential status, tone, publication venue, social confidence, or fear of self-delusion. Those concerns are not irrelevant, but they are not decisive. An NSF-scale process should convert them into technical review questions whenever possible:
+Much pushback will occur above the ideas: credential status, tone, publication venue, social confidence, or fear of self-delusion. Those concerns are not irrelevant, but they are not decisive. A review process led by science and technology leaders should convert them into technical review questions whenever possible:
 
 - lack of credential becomes a demand for reproducible packets;
 - unconventional language becomes a demand for a translation table;
@@ -284,12 +329,13 @@ Priority funding classes:
 - Communication grants only after technical packets exist, so public narratives follow evidence rather than lead it.
 - False-prior audit grants that ask where standard narratives made assumptions not forced by observations.
 - Implementation grants that require proposed primitive ingredients and laws to recover known effective theories, not merely criticize them.
-- Translation-key grants that turn nonstandard diagrams, open notes, and mined claims into conventional mathematical statements, executable examples, and benchmark tables.
+- Translation-key grants that turn nonstandard diagrams, open notes, and candidate claims into conventional mathematical statements, executable examples, and benchmark tables.
 - Classification grants that test whether particle families, reaction channels, detector signatures, and assembly geometries can be organized with periodic-table-style discipline rather than treated as disconnected catalogues.
 - Workforce-renewal grants that retrain established physicists, recruit re-entrants, and support new mathematical and simulation roles.
 - Sunset-transition grants that fund teach-out, student placement, data and code preservation, and staff transition when obsolete programs are closed.
 - Funding-integrity grants that audit major public and institutional portfolios for assumption risk, benchmark value, and transition eligibility.
 - Opportunity-cost grants that estimate lost productivity, delayed benchmark correction, stranded graduate training, and deferred application value when a field remains locked onto false priors.
+- Capital-infrastructure triage grants that decide whether colliders, detectors, beamlines, and other large facilities should be preserved as benchmark infrastructure, converted to narrower validation work, paused, sunset, or shut down.
 
 The proposal has a high-upside funding story: if a foundation-level reset is real, it could open a research cycle comparable in economic and cultural force to major computing-era transitions. That upside should not be used to bypass validation. It should justify funding the hard translation and test infrastructure that ordinary grant programs often underfund.
 
@@ -312,6 +358,32 @@ Action ladder:
 - `conservative`: add small translation, validation, and assumption-audit supplements to existing programs while preserving ordinary grant continuity.
 - `moderate`: shift new awards toward benchmark recovery, adversarial validation, opportunity-cost assessment, workforce renewal, and transition tooling; restrict speculative legacy renewals.
 - `aggressive`: cancel or non-renew grants whose value depends on obsolete narratives, reallocate major program budgets, and reserve clawback or enforcement review for misconduct, concealment, or reckless post-notice misrepresentation.
+
+## Collider And Capital Infrastructure Triage
+
+Large particle colliders should be treated as capital infrastructure under assumption-risk review, not as automatically protected monuments to foundational physics. They may retain value as detector, calibration, data, precision-test, engineering, and historical-baseline assets. But if a parsimonious implementation explains the Standard Model family structure and collision products without requiring higher-energy brute-force discovery, then collider expansion becomes a major opportunity-cost risk.
+
+The first policy distinction is between `data value` and `discovery-program value`. Existing collider data, detector methods, reconstruction pipelines, uncertainty practice, and open benchmark records should be preserved. The question is whether future billion-scale or tens-of-billions-scale collider construction remains justified as a discovery strategy once the field has credible notice that the core ontology may be wrong.
+
+Collider programs should therefore receive a facility bill of materials:
+
+- observations and data products that remain benchmark assets;
+- detector, trigger, reconstruction, and statistical methods that remain useful;
+- unresolved measurements that directly constrain the candidate implementation;
+- capital and operating costs by scientific function;
+- workforce and regional economic dependencies;
+- safety, decommissioning, data-preservation, and reuse obligations;
+- assumptions that would make the facility obsolete as a frontier-discovery instrument.
+
+The transition posture should be blunt: do not build another giant machine to protect an old narrative. If a facility cannot state which benchmark, recovery obligation, or falsification target it uniquely serves under the candidate implementation, it should not receive expansion funding. If its main value is legacy momentum, it should be sunset.
+
+Alternative application funding must be held to a stricter standard, not a looser one. Claims around shielded energy, reaction transmutation, or new control over matter should remain downstream of validated mechanism, ordinary physics recovery, radiation accounting, environmental safety, fail-safe design, and public-interest governance. Redirecting funds away from colliders should not mean funding unconstrained application hype. It should mean funding proof conversion, safe validation, and open benchmark infrastructure.
+
+Action ladder:
+
+- `conservative`: freeze new major collider-construction commitments pending assumption-risk review, preserve existing data and detector expertise, and require facility bills of materials.
+- `moderate`: convert collider budgets toward benchmark recovery, open detector records, reusable instrumentation, simulation validation, safety studies, and workforce transition; decline expansions whose discovery rationale depends on vulnerable ontology.
+- `aggressive`: cancel proposed next-generation colliders, shut down or mothball facilities whose current value no longer justifies operating cost, repurpose usable infrastructure, and redirect large capital budgets to translation, validation, deconstruction, and safe application research after evidence thresholds are met.
 
 ## Funding Accountability And Fraud Risk
 
@@ -369,7 +441,7 @@ Modern physics can accurately fit observations and still lose the implementation
 
 The field-generator claim should be treated as a translation challenge. "Immutable field generators" is not enough for institutional adoption. The program needs mathematical obligations: conserved variables, source records, density limits, effective fields, benchmark predictions, and failure modes.
 
-The candidate minimal-ingredient posture should be retained as a strategic compression test, not as established doctrine. A research program claiming a Euclidean void, equal and opposite point-potential constituents, large-scale constituent density, and large-scale energy density as primitive inputs is making an auditable claim: can that small basis recover the observed complexity without hidden parameter drift? This becomes an NSF-relevant evaluation question because parsimony can justify review only if it survives recovery pressure.
+The candidate minimal-ingredient posture should be retained as a strategic compression test, not as established doctrine. A research program claiming a Euclidean void, equal and opposite point-potential constituents, large-scale constituent density, and large-scale energy density as primitive inputs is making an auditable claim: can that small basis recover the observed complexity without hidden parameter drift? This becomes a practical evaluation question for science and technology leaders because parsimony can justify review only if it survives recovery pressure.
 
 The core proof burden is ordinary: can the candidate reobtain classical Hamiltonian mechanics, electromagnetism, plasma-relevant approximations, quantum benchmarks, and detector-facing observables? This is the correct institutional filter. The program should not ask for special tolerance because the ontology is unconventional. It should ask for a defined bridge budget to show whether the ontology can reproduce the inherited machinery.
 
@@ -551,20 +623,73 @@ Longer-term opportunities must remain conditional:
 
 The corporate governance rule should be simple: private money can fund tooling and applications, but it must not become the authority for claim acceptance. Core acceptance must remain attached to open equations, reproducible benchmarks, negative controls, and public evidence packets.
 
+The most provocative application horizon is direct control over matter, radiation, and reaction pathways. That horizon should remain visible because it is exactly the kind of upside that will attract corporate and national-lab attention, but it must be gated hard. Matter-synthesis, transmutation, shielded-energy, photonic-manufacturing, or high-energy reaction-control claims require all-point constituent accounting, energy and momentum closure, radiation safety, medium-state accounting, environmental review, and independent benchmark recovery before they are treated as investable technology programs.
+
+Corporate tooling should also include compressed, queryable reaction-provenance data sets. A mature simulation program should let researchers ask where primitive constituents, energy, charge, angular momentum, shielding state, detector-facing photons, and medium excitations enter and exit across a modeled event family. The value is not the database metaphor. The value is that every proposed reaction or application becomes auditable as a conserved transaction rather than a diagram with missing participants.
+
 Action ladder:
 
 - `conservative`: support corporate tooling partnerships for visualization, provenance systems, proof search, and simulation infrastructure.
 - `moderate`: build public-private validation consortia with open benchmark packets, conflict-of-interest rules, and shared workforce-placement programs.
 - `aggressive`: redirect national-lab and corporate-facing funds toward transition infrastructure, require open validation for publicly supported applications, and block proprietary capture of claim-acceptance authority.
 
-## NSF-Scale Operating Model
+## $\mathbb{A}\mathbb{A}\mathbb{A}$ Launch Sequence And Institute Buildout
 
-If the program became credible enough for serious institutional response, an NSF-scale operating model would need parallel tracks:
+If the program crosses the threshold for serious institutional review, the next problem is execution speed without hype. A foundation-level transition can fail in two opposite ways: it can move too slowly because legacy review systems never form a shared technical object, or it can move too quickly because advocates, investors, and public audiences treat conceptual parsimony as proof. The launch sequence must therefore separate urgency from validation.
+
+The first deliverable is a launch packet, not a manifesto. It should contain:
+
+- primitive variables, update laws, assumptions, and failure conditions;
+- a translation key from candidate terms into standard mathematical obligations;
+- the first executable simulations and benchmark-recovery attempts;
+- a classified archive of inherited frameworks by benchmark, effective formalism, computation tool, and ontology-risk layer;
+- a public status page that separates exploratory notes, reviewable packets, accepted recoveries, rejected claims, and application horizons.
+
+Open-source development is an asset only if it is governed. Raw notebooks, diagrams, simulations, and educational drafts can accelerate discovery, but they can also blur claim levels. The public archive should be versioned, status-labeled, and reviewable. Educational videos, online books, interactive simulations, and public talks should exist, but their first duty is to show the ladder from idea to equation to simulation to benchmark, not to recruit belief before the technical packet is ready.
+
+A dedicated transition institute may be necessary because the work does not fit cleanly inside existing departments. Its charter should be narrower than "replace physics" and broader than a single-theory advocacy shop. The institute should exist to test whether a candidate primitive implementation can recover inherited benchmarks, reorganize particle and reaction classification, and produce useful applications only after mechanism and safety are established.
+
+Core institute functions:
+
+- `foundation lab`: primitive dynamics, conserved quantities, path-history modeling, and mathematical rebuild.
+- `translation lab`: bridge papers, notation tables, baseline comparisons, and skeptical review packets.
+- `simulation lab`: executable models, visualization, validation data sets, negative controls, and reproducible runs.
+- `classification lab`: particle-family atlases, reaction-provenance tables, detector-signature maps, and missing-entry discipline.
+- `education lab`: versioned online books, simulations, course modules, certification tracks, and public correction material.
+- `application lab`: strictly downstream energy, matter, sensing, propulsion, manufacturing, and environmental programs with safety and governance gates.
+- `institutional lab`: grant policy, publication reform, workforce renewal, public-private governance, and transition economics.
+
+The institute should be distributed and plural rather than a single personality-controlled center. A credible model would use public funding for open validation infrastructure, corporate funding for tooling and downstream application development, university partnerships for baseline preservation and teaching, and national-lab partnerships for instrumentation and safety. If evidence thresholds are met, a multi-sponsor program on the order of USD 1 billion per year for a decade could be rational as option-value funding, but only if the budget is staged by proof conversion, benchmark recovery, workforce renewal, and safety review rather than speculative application promises.
+
+The institute should also solve a public-interface failure in existing science. It should host serious public lectures, controlled visitor programs, technical intake channels, and written dispositions for nonstandard claims. Public engagement is not a courtesy; it is a false-negative control and a legitimacy control. A field that has spent decades broadcasting simplified narratives needs a disciplined return channel for high-quality outside signals.
+
+Launch phasing:
+
+- `pre-trigger`: preserve the archive, label exploratory material, build the translation key, and identify the first benchmark packets.
+- `0-6 months after trigger`: convene skeptical panels, publish the launch packet, fund simulation and translation sprints, and protect students in vulnerable programs.
+- `6-12 months`: stand up a transition office or institute, create bridge fellowships, open review tracks, and publish initial benchmark pass/fail records.
+- `1-3 years`: scale distributed teams, certification programs, baseline refactoring, classification atlases, and public-private tooling consortia.
+- `3-10 years`: expand application programs only where recovery, mechanism, safety, and governance evidence justify major capital.
+
+The main launch risk is uncontrolled capital. Corporate and defense interest may appear before public validation is mature. The institute should welcome capital into tooling, benchmark recovery, simulation, and safety research while refusing to let private urgency define scientific acceptance.
+
+Action ladder:
+
+- `conservative`: form a temporary transition office, publish a status-labeled launch packet, and fund open translation, simulation, and education scaffolding without creating a new institute.
+- `moderate`: establish a distributed transition institute with public, university, national-lab, and corporate partners; require versioned open artifacts, skeptical review, public-intake rules, and staged funding tied to benchmark milestones.
+- `aggressive`: create a large clean-sheet institute, redirect major legacy and capital budgets into it after evidence thresholds, recruit displaced and requalified researchers at scale, and suspend application programs that bypass public validation or safety governance.
+
+## Science And Technology Leaders Operating Model
+
+If the program became credible enough for serious institutional response, science and technology leaders would need parallel tracks:
 
 - `Archive`: preserve and classify inherited results by validity domain.
 - `Translate`: fund experts who can restate candidate claims in conventional notation and benchmark terms.
 - `Test`: fund adversarial validation, simulations, and failure-mode discovery.
+- `Launch`: convert the candidate from open notes into status-labeled launch packets, executable simulations, bridge papers, public education artifacts, and a staged institute plan without lowering validation thresholds.
+- `Capital`: classify colliders and other large facilities as preserve, convert, pause, sunset, or shut down by current benchmark and transition value.
 - `Govern`: separate management hierarchy from technical decision authority, maintain branch-point audits, and enforce strategic portfolio maintenance.
+- `Organize`: build team-based research units with explicit contracts, transparent decision records, worker protections, and distributed technical councils.
 - `Classify`: build table-grade organization of particle families, reaction channels, detector signatures, stability rules, and missing or failed entries.
 - `Refactor`: decompose GR, QM, QFT, QED, QCD, and Lambda-CDM-era cosmology into benchmarks, effective formalisms, computational tools, ontology-risk claims, and recovery obligations.
 - `Audit`: classify funded portfolios by observation value, effective-model value, narrative dependency, transition eligibility, and fraud-risk exposure.
@@ -580,38 +705,84 @@ The transition should be reversible at every stage. If the theory fails, the arc
 
 Action ladder:
 
-- `conservative`: run a pilot program with archive, translate, test, classify, refactor, audit, and engagement functions, leaving most existing structures intact.
+- `conservative`: run a pilot program with archive, translate, test, launch, capital, classify, refactor, audit, and engagement functions, leaving most existing structures intact.
 - `moderate`: create a standing transition office with cross-directorate budget authority, portfolio audit power, and requalification standards.
 - `aggressive`: activate emergency transition authority to freeze vulnerable renewals, cancel grants, close obsolete lines, mandate institutional restructuring, and redirect major budgets toward validation and rebuild.
 
-## Current Working Position
+## Open Decision Questions And Revision Tracks
 
-This document is not a public announcement and not a corpus claim. It is a planning draft for the consequences of a possible validated paradigm change. Its useful function is to preserve the hard institutional questions:
+The planning posture should now shift from expansion toward executive-instrument discipline. The strongest policy options should remain visible, but every option must stay conditional on evidence threshold, due process, student protection, benchmark preservation, and independent validation.
 
-- Who owns the transition if the old assumptions are effective rather than fundamental?
-- How are careers protected while assumptions are reclassified?
-- What must be funded before public claims are responsible?
-- How do publication and review systems reward translation instead of punishing it?
-- How does corporate R&D help without capturing validation authority?
-- When does a false-prior risk become serious enough for an intervention rather than ordinary peer review?
-- How can a research agency make narrative revision prestigious without lowering evidentiary standards?
-- What concession pathway lets legacy authorities acknowledge narrative failure, preserve useful assets, and exit control roles when requalification fails?
-- How should the transition manage legitimate anger from fields that bore downstream complexity while particle physics retained foundational prestige?
-- Which senior physicists can become transition assets, and which should lose authority because they cannot separate benchmark stewardship from narrative defense?
-- How should management hierarchy, technical decision authority, and strategic portfolio allocation be separated so foundational rollback remains possible?
-- What translation key would let a skeptical expert review the candidate without first accepting its ontology?
-- Which first computations would convert the program from provocative story to ordinary technical object?
-- How should academic departments retain baseline authority while corporate and government labs absorb application-driven talent?
+Evidence and review questions:
+
+- When does a false-prior risk become serious enough for intervention rather than ordinary peer review?
+- What translation key lets skeptical experts review the candidate without first accepting its ontology?
+- Which first computations convert the program from provocative story to ordinary technical object?
 - What mathematical rebuild program can show how discrete constituents with continuous histories recover wave variables, complex-number methods, and effective particle behavior?
-- When does continued funding become negligent, misleading, or fraudulent after credible notice that a grant narrative depends on false priors?
-- How can public agencies preserve useful data and instrumentation while rapidly ending narrative-dependent work that no longer justifies public investment?
 - Can particle families and reactions be reorganized into a table-grade classification system that predicts structure, exposes missing entries, and preserves detector-facing benchmarks?
-- What authority should chemistry and materials science have when physics-only review cannot separate classification value from narrative defense?
-- How should GR, QM, QFT, QED, QCD, and Lambda-CDM-era cosmology be refactored into benchmark assets, effective formalisms, computation tools, ontology-risk claims, and recovery obligations?
+
+Governance and authority questions:
+
+- Who owns the transition if inherited assumptions are effective rather than fundamental?
+- How should management hierarchy, technical decision authority, and strategic portfolio allocation be separated so foundational rollback remains possible?
+- What concession pathway lets legacy authorities acknowledge narrative failure, preserve useful assets, and exit control roles when requalification fails?
+- Which senior physicists can become transition assets, and which should lose authority because they cannot separate benchmark stewardship from narrative defense?
 - What independent-claim intake process can prevent systematic false negatives without overburdening reviewers or lowering technical standards?
 
-Drafting action ladder:
+Funding and infrastructure questions:
 
-- `conservative`: continue incorporating new inputs as abstracted recommendations inside the existing sections.
-- `moderate`: reorganize the report around decision ladders and evidence thresholds, reducing narrative paragraphs where they duplicate action guidance.
-- `aggressive`: convert the document into an NSF-style transition memorandum with explicit triggers, authorities, cancellation criteria, workforce actions, and public-accountability appendices.
+- What must be funded before public claims are responsible?
+- When does continued funding become negligent, misleading, or fraudulent after credible notice that a grant narrative depends on false priors?
+- Which colliders or other large facilities remain benchmark assets, and which should be paused, sunset, shut down, or cancelled as obsolete capital infrastructure?
+- How can public agencies preserve useful data and instrumentation while rapidly ending narrative-dependent work that no longer justifies public investment?
+- How does corporate R&D help without capturing validation authority?
+
+Workforce and field-reconciliation questions:
+
+- How are careers protected while assumptions are reclassified?
+- How can a research agency make narrative revision prestigious without lowering evidentiary standards?
+- How should the transition manage legitimate anger from fields that bore downstream complexity while particle physics retained foundational prestige?
+- What employment and organization model protects dissent, mobility, IP clarity, publication independence, student safety, and rapid technical decision-making during the transition?
+- How should academic departments retain baseline authority while corporate and government labs absorb application-driven talent?
+
+Program-design questions:
+
+- What authority should chemistry and materials science have when physics-only review cannot separate classification value from narrative defense?
+- How should GR, QM, QFT, QED, QCD, and Lambda-CDM-era cosmology be refactored into benchmark assets, effective formalisms, computation tools, ontology-risk claims, and recovery obligations?
+- How do publication and review systems reward translation instead of punishing it?
+- What launch sequence converts an independent candidate theory into a governed institute, public education program, and application pipeline without turning urgency into hype or allowing private capital to capture validation authority?
+
+Revision action ladder:
+
+- `conservative`: compress repetition section by section while preserving each action ladder and the evidence-threshold conditions attached to disruptive options.
+- `moderate`: reorganize the memo into a leadership instrument for science and technology leaders, with evidence thresholds, decision rights, funding classes, workforce actions, company-side support, and public-accountability controls.
+- `aggressive`: convert the memo into a formal transition playbook with appendices for grant triage, facility triage, requalification, institute chartering, company implementation roles, and public-correction obligations.
+
+## Architrino Corporation Consulting Role
+
+Architrino Corporation should be planned as the company-side implementation layer around the research transition. Its role is not to certify the theory. Scientific acceptance still belongs to open equations, reproducible benchmark packets, skeptical review, negative controls, public evidence packets, and safety governance. The company role is to help institutions, funders, developers, educators, and application teams translate a candidate or validated program into practical work.
+
+The company-side operating model should target several customer classes: technology executives, universities, funding organizations, entrepreneurial ventures, software users, public agencies, national laboratories, educators, and learners. Services should be offered only with explicit claim levels: exploratory, candidate, benchmark-pressure, transition-evidence, or institutional-transition. That protects the business model from turning application excitement into scientific overclaim.
+
+Service platform:
+
+- `executive strategy and due diligence`: brief executives, boards, investors, national labs, and public agencies on what the program claims, what remains unproven, which applications are premature, and which near-term tooling or validation investments have option value.
+- `technology review`: inspect proposed Architrino-related ideas, prototypes, patents, simulations, educational materials, and venture claims; classify them by evidence level, proof burden, safety burden, and likely technical blocker.
+- `transition planning`: help universities, institutes, labs, and funders map vulnerable programs, identify preserve/convert/stress-test/pause/sunset categories, design requalification paths, and write department or portfolio transition plans.
+- `application design`: design proof-of-concept applications, simulation workbenches, validation dashboards, reaction-provenance tools, detector-record explorers, education apps, public status pages, and internal decision-support systems.
+- `technical specification writing`: write product requirements, research specifications, benchmark packet specs, API contracts, data schemas, validation protocols, safety requirements, model cards, grant work plans, and request-for-proposal language.
+- `software engineering and support`: build and support open Architrino software, private extensions, data pipelines, visualization systems, numerical models, provenance ledgers, documentation sites, developer tools, and integration kits.
+- `specialized AI systems`: train, fine-tune, or configure AI assistants for source mining, equation mapping, terminology control, literature review, validation triage, simulation steering, curriculum support, and institutional decision support, with claim-level and provenance guardrails.
+- `modeling and simulation`: create efficient, performant, and precise models of natural processes where the claim level permits it; maintain separate tracks for exploratory toy models, benchmark-recovery simulations, negative controls, and application prototypes.
+- `education and training`: offer executive briefings, university modules, distance learning, recorded courseware, workshops, requalification tracks, certification-style assessments, developer onboarding, and public explainers that distinguish exploratory notes from reviewable artifacts.
+- `publication and communication support`: prepare translation papers, white papers, technical memos, grant narratives, public-facing explainers, investor-facing diligence packets, and curriculum materials without letting marketing language outrun evidence.
+- `partnership and venture formation`: structure public-private research programs, corporate pilots, licensing discussions, incubated ventures, safety reviews, and staged roadmaps for applications that remain downstream of recovery and validation.
+- `long-horizon application roadmaps`: plan conditional roadmaps for energy, materials, sensing, propulsion, manufacturing, environmental remediation, and space-settlement applications while keeping all such claims subordinate to mechanism, benchmark, radiation, safety, and governance requirements.
+
+The Noether sea energy and material-creation vision should remain a far-future application horizon. A science-industry roadmap can be drafted now, but investment-grade application work requires prior recovery of ordinary EM, QM, Hamiltonian, Lagrangian, thermodynamic, radiation, and safety obligations. Energy extraction, atom or molecule creation, localized manufacturing, and abundance claims should therefore be treated as conditional destinations, not near-term promises.
+
+Action ladder:
+
+- `conservative`: operate Architrino Corporation as a consulting, specification, education, software-support, AI-tooling, and portfolio-review layer while evidence remains candidate-level.
+- `moderate`: let the company participate in public-private validation consortia, application-design pilots, university redesign projects, workforce-renewal courseware, specialized AI deployments, and benchmark-facing software projects once benchmark pressure is independently visible.
+- `aggressive`: if institutional-transition evidence is reached, use the company as one implementation contractor among several for transition-institute buildout, open-source tooling, application platforms, AI systems, department and funder redesign, venture formation, and downstream application-roadmap governance, while preserving independent scientific validation.

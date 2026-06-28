@@ -1,12 +1,10 @@
 # Book 3 Image-Generation Brief: Nature Remembers Motion
 
-Use this brief after Book 2 review, before adding Book 3 back into `generation-manifest.json`.
-
 ## Master Style Prompt
 
 Generate text-free 3:2 landscape source illustrations for **Nature Remembers Motion**, Book 3 of **The Wonder of Nature and the Universe**.
 
-Match the Book 1 and Book 2 first-draft visual direction, with the approved **Nature Remembers Motion** exemplar as the trace/path-history reference:
+Use the established early-series visual direction, with the approved **Nature Remembers Motion** exemplar as the trace/path-history reference:
 
 - Electra is a toddler girl with medium-brown skin, dark curly hair in two small puffs, and simple white-and-lavender play clothes.
 - Poz is a toddler boy with light-brown skin, short straight dark hair, and simple white-and-purple play clothes.
@@ -76,9 +74,3 @@ Electra and Poz sit together on the white floor, looking at the quiet traces lef
 ### Backmatter Activity
 
 A clean text-free activity scene for adult-led play: Electra and Poz sit by a white play surface where a grown-up hand gently makes a simple purple ribbon trace or places the red ball at the start of a purple trail. The red and blue balls are both visible for repeating and comparing. A shallow white water tray with one small set of purple-blue rings may sit nearby, but it must not crowd the main ribbon/ball trace. Keep all traces physical and visible; do not use arrows, labels, symbols, musical notes, panels, or abstract diagrams.
-
-## Notes Before Generation
-
-- Book 3 should have `14` source images: cover, 12 story spreads, and 1 backmatter activity.
-- Do not generate Book 3 until Book 2 source images and layout are reviewed.
-- After approval, add Book 3 to `tools/build_generation_manifest.py`, add production prompt blocks to `nature-remembers-motion.md`, rebuild the manifest, generate sources, run QA, render pages, then refresh the manifest again.

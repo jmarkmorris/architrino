@@ -86,7 +86,7 @@ The candidate artifact namespace is
 `fresh-v10-higher-fold-12-root-rebuild-v0.fold-coordinate-candidate.nonlinear-v0`.
 
 The candidate replay output directory is
-`/private/tmp/proof-programs-fold-coordinate-candidate-nonlinear-v0/preledger`. This directory
+`${TMPDIR:-/tmp}/proof-programs-fold-coordinate-candidate-nonlinear-v0/preledger`. This directory
 carries the fold-coordinate candidate identity because the preledger scripts
 emit hard-coded proof-interval basenames.
 

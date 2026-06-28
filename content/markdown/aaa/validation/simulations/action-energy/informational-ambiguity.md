@@ -19,6 +19,7 @@ From the perspective of the receiving architrino, the information carried by an 
     - Sign/side ambiguity: an attractive lift on one ray and a repulsive lift on the opposite ray can produce the same receiver-local acceleration record. With receiver polarity held fixed, this can be written as a side/polarity flip of the source; with receiver polarity flipped, the source-polarity labels interchange as well.
     - Superposition along a line: multiple sources aligned on either ray of the same unoriented line of action can sum to the same net receiver-local magnitude at one instant, while their source count, side distribution, and polarities remain hidden.
     - Self-hit confound: a self-interaction and an external source can yield identical instantaneous data if they lie on the same line with compensating magnitudes.
+    - Super-field-speed self-history ambiguity: when same-source delayed roots exist, the receiver-local event still reports a line component, not the full past trajectory that produced it. The self-hit label must come from the retained causal-root ledger, not from instantaneous magnitude and line data alone.
     - Continuum of surrogate locations: for any instantaneous hit there exists a continuum of stationary surrogate source positions along the same unoriented line of action, each with a correspondingly adjusted emission time $t_0$, that reproduces the same instantaneous data; hence instantaneous inversion is severely underdetermined.
 
   - Surrogate-location recast:

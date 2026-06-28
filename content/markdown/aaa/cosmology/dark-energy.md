@@ -134,6 +134,22 @@ $$
 
 Here $\hat{\mathbf{n}}$ is the line of sight, $\mathcal{E}$ denotes source and host environment, $A_\mu\hat{\mathbf{d}}_\mu$ is a possible dipolar component, $\delta\mu_{\mathrm{cal}}$ records standardization and population-evolution corrections, $\delta\mu_{\mathrm{sea}}$ records Noether sea state contributions, and $\epsilon_\mu$ is the remaining noise term. A Noether sea acceleration or relaxation claim is promotable only after the dipole, calibration, and environment terms are either bounded below the claimed effect or derived from the same medium variables used elsewhere.
 
+The isotropic acceleration term is therefore a residual inference, not the first variable to name. A useful comparison packet should expose
+$$
+\mathcal{R}_{\mathrm{iso\text{-}acc}}
+=
+\Delta\mu_{\mathrm{iso}}
+-
+\Pi_{\mathrm{flow}}
+-
+\Pi_{\mathrm{cal}}
+-
+\Pi_{\mathrm{cat}}
+-
+\Pi_{\mathrm{sea}},
+$$
+where $\Pi_{\mathrm{flow}}$ removes dipole and bulk-flow structure, $\Pi_{\mathrm{cal}}$ removes standard-candle calibration and host-population drift, $\Pi_{\mathrm{cat}}$ removes catalogue and selection effects, and $\Pi_{\mathrm{sea}}$ records the declared Noether sea transport term. A nonzero $\mathcal{R}_{\mathrm{iso\text{-}acc}}$ can motivate a dark-energy comparison only after those rows share the same medium state as lensing, BAO, CMB, and growth.
+
 For BAO and CMB distance anchors, the corresponding requirement is frame consistency. A fit that assumes a homogeneous and isotropic Friedmann-Lemaître-Robertson-Walker background must also report whether the BAO scale, source-count dipoles, and local supernova residuals remain consistent with the CMB-frame correction. If they do not, the result becomes a directional cosmology problem before it becomes a dark-energy mechanism.
 
 The historical redshift lesson is also an interpretation lesson. Hubble-style redshift-distance evidence did not by itself dictate a unique ontology; it weakened the static assumption after the redshifts were interpreted through a declared kinematic or metric model. The native comparison rule is therefore to keep the data product and its interpretation map separate:
@@ -228,6 +244,36 @@ $$
 $$
 
 This estimate is not a measurement of energy in the Euclidean void. In this chapter it is a stress test for the Noether sea coupling-selection theorem target: a viable constitutive law must explain why high-frequency internal energy is shielded from the observer-level cosmological channel while the slow outer-binary and transport sectors remain exposed.
+
+The same point separates void language from packed-phase language. A very large energy density may be meaningful inside a packed maximum-curvature or Noether sea phase, where constituents, exclusion geometry, and interface exposure are part of the state. That does not make the Euclidean void itself a reservoir with the same energy density. Dark-energy comparison should therefore ask which fraction of a dense internal or packed-phase inventory projects into homogeneous cosmological stress:
+$$
+\rho_{\mathrm{exposed}}
+=
+\Pi_{\mathrm{cos}}
+\!\left[
+\rho_{\mathrm{pack}},
+\rho_{\text{NS}},
+\mathcal{D}_{\mathrm{defect}},
+\partial\Omega,
+\theta_{\mathrm{transport}}
+\right],
+$$
+not whether every internal mode contributes equally to $\rho_{\mathrm{DE,eff}}$.
+
+This reframes the usual vacuum-catastrophe problem as a sector-exposure problem. A large internal Noether sea energy inventory may be real at the substrate level while only a small projection enters the homogeneous cosmological stress channel. In schematic form,
+$$
+\rho_{\mathrm{DE,eff}}
+=
+\Pi_{\mathrm{cos}}
+\!\left[
+u_{\mathrm{sea}}^{\mathrm{internal}},
+u_{\mathrm{sea}}^{\mathrm{outer}},
+\sigma_{\mathrm{sea}},
+\chi_{\text{sea}},
+\theta_{\mathrm{transport}}
+\right],
+$$
+where $\Pi_{\mathrm{cos}}$ is the observer-level cosmology projection. The closure burden is to derive why $\Pi_{\mathrm{cos}}$ exposes the slow stress, transport, and outer-binary response while suppressing the high-frequency internal inventory, not to deny that the suppressed inventory exists.
 
 Fourth, the native closure target is the effective constant reconstructed from a shared Noether sea state:
 
@@ -345,6 +391,16 @@ p_{\mathrm{sea}} \\
 $$
 
 The closure condition is $\mathcal{R}_{\mathrm{role}}\to 0$ without changing $\theta_{\mathrm{sea}}$ between the distance, age, growth, and source ledgers. A negative sign in an effective fluid may be retained only as a sign in the comparison stress tensor; it does not license negative masses as native assemblies. A phase-transition or vacuum-energy comparison may constrain $\dot{\Lambda}_{\mathrm{eff}}$ or the shielding law; it does not make $\Lambda(t)$ fundamental. A Hubble-age repair may motivate a branch constant; it does not supply $\mathcal{S}_{m,\mathrm{eff}}$. This protects the Noether sea derivation from smuggling negative masses, matter creation, or variable $\Lambda$ into $\mathbb{A}\mathbb{A}\mathbb{A}$ as doctrine.
+
+The same translation applies to "negative energy" language. In the native ledger, the sign belongs to an effective stress projection or transfer term:
+$$
+\mathrm{sign}\!\left(p_{\mathrm{eff}}\right),
+\qquad
+\mathrm{sign}\!\left(\Delta E_{\mathrm{sea}\leftrightarrow X}\right),
+\qquad
+\mathrm{sign}\!\left(\Pi_{\mathrm{cos}}\mathcal{L}_{\mathrm{sea}}\right),
+$$
+not to a new negative-energy assembly. A dark-energy branch may expose shielded energy with a negative-pressure readout, or route energy between matter, radiation, black-hole recycling, and Noether sea tension sectors, but the event ledger must still close with positive native inventories and declared transfer signs.
 
 ## Effective Friedmann Framework
 

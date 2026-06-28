@@ -10,13 +10,13 @@ It is not an interval certificate and does not certify a nonconstant A1 orbit.
 Compact $C^2$ baseline command:
 
 ```bash
-/Users/markmorris/vibe/.venv/bin/python reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-lo -0.02 --theta-hi 0.02 --theta-samples 9 --delta-steps 1024 --integration-panels 128 --profile-mode compact_c2
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-lo -0.02 --theta-hi 0.02 --theta-samples 9 --delta-steps 1024 --integration-panels 128 --profile-mode compact_c2
 ```
 
 Tangential-transport future-collar command:
 
 ```bash
-/Users/markmorris/vibe/.venv/bin/python reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-lo 0 --theta-hi 0.02 --theta-samples 9 --delta-steps 1024 --integration-panels 128 --profile-mode tangential_transport --transport-steps 160
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-lo 0 --theta-hi 0.02 --theta-samples 9 --delta-steps 1024 --integration-panels 128 --profile-mode tangential_transport --transport-steps 160
 ```
 
 ## Profiles Tested

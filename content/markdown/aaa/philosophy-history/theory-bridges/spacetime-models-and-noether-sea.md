@@ -29,6 +29,8 @@ Any outside model must therefore answer five questions before it can influence a
 4. Which equation, invariant, or constitutive law would have to be derived?
 5. Which failure mode would falsify the comparison?
 
+Modern vacuum language often functions as a medium-response comparison even when the word `aether` is avoided. Vacuum polarization, zero-point estimates, condensate analogies, refractive-index language, and effective field modes all point toward response variables, boundary conditions, and excitation spectra. The safe translation is not to revive a mechanical aether. It is to ask which part of the calculation should be rewritten as Noether sea density, delay, compliance, orientation, excitation, or boundary-response data, and which part remains only an observer-level field-theory export.
+
 ## Boundary-Response Equivalence
 
 Analog and vacuum-response comparisons should preserve the effective boundary response, not the literal laboratory object. A moving mirror, a superconducting circuit, a condensate interface, or another apparatus can serve as the same comparison only when the calibrated response kernel is equivalent on the declared window. For two boundary implementations $B_1$ and $B_2$, observer-level response channel $A$, and window $W$, a compact local residual is

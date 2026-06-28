@@ -82,6 +82,36 @@ Methodological priority:
   \mu_{\text{arch}}\,
   \|\mathbf{v}_i(t)\|^2
   $$
+  Before the branch average is formed, retain the root-resolved virial rows
+  $$
+  V_{i\leftarrow j,t_0}^{(\eta)}(t)
+  =
+  \mu_{\text{arch}}\,
+  \mathbf{x}_i(t)
+  \cdot
+  \mathbf{a}_{i\leftarrow j}^{(\eta)}(t;t_0)
+  $$
+  and the corresponding delivered-power rows
+  $$
+  P_{i\leftarrow j,t_0}^{(\eta)}(t)
+  =
+  \mu_{\text{arch}}\,
+  \mathbf{a}_{i\leftarrow j}^{(\eta)}(t;t_0)
+  \cdot
+  \mathbf{v}_i(t)
+  $$
+  for every retained source/root hit $t_0\in\mathcal C_{ij,b}^{(\eta)}(t)$. The net virial term is then the ledger-preserving sum
+  $$
+  \sum_i
+  \mu_{\text{arch}}\,
+  \mathbf{x}_i(t)\cdot\mathbf{a}_{i,b}^{(\eta)}(t)
+  =
+  \sum_i
+  \sum_j
+  \sum_{t_0\in\mathcal C_{ij,b}^{(\eta)}(t)}
+  V_{i\leftarrow j,t_0}^{(\eta)}(t)
+  $$
+  on the same active causal-root ledger used by the force residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after source identity, polarity, emission time, Jacobian, and receiver radial power have survived the row aggregation.
   When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
   $$
   \left\langle

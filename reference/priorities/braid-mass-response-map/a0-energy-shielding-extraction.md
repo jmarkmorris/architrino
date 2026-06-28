@@ -119,6 +119,107 @@ also upstream of any charged-lepton Koide residual: Koide remains a downstream
 benchmark only after the branch-derived mass triplet has already been fixed by
 the shared mass-response map.
 
+### Two-Binary Shielding Precursor
+
+A reduced two-binary experiment can test the source-mined intuition that an
+outer orbit may suppress the exposed wake of a fixed inner orbit before the
+full three-layer $A_0$ branch is available. This is a priority-only solver
+precursor, not a Tier 2 shielding output and not a branch-selection rule.
+First fix the inner-binary ledger and extraction convention
+
+$$
+\Theta_I
+=
+\left(
+\mathcal{G}_I,
+\mathcal{L}_I,
+R_{\mathrm{ext}},
+\Omega_{\mathrm{grid}},
+W_{\mathrm{cycle}},
+\chi_{\mathrm{wake}},
+\Pi_0
+\right),
+$$
+
+where $\mathcal{G}_I$ is the retained inner root ledger and
+$\mathcal{L}_I$ is the fixed inner far-field wake record on the declared
+extraction radius, angular grid, cycle window, wake channel, and isotropic
+projection. Let the admissible outer-binary family be declared before
+evaluation as
+
+$$
+\theta_O
+=
+\left(
+R_O,\omega_O,\phi_O,\mathcal{B}_O,\lambda_O,\sigma_O
+\right)
+\in
+\mathcal{A}_{2B}(\Theta_I),
+$$
+
+with the admissibility constraints carrying only closure, noncollision,
+bounded-root, and same-extraction requirements. For each candidate, compute the
+combined two-binary leakage record
+
+$$
+\mathcal{L}_{2B}(\theta_O;\Theta_I)
+=
+\mathcal{L}_I
++
+\mathcal{L}_O(\theta_O)
++
+\mathcal{L}_{IO}(\theta_O;\Theta_I),
+$$
+
+where $\mathcal{L}_{IO}$ records inter-binary wake terms when they are retained
+rather than absorbed into the separate layer records. The precursor leakage
+functional is
+
+$$
+S_{2B}(\theta_O\mid\Theta_I)
+=
+w_0
+\frac{
+\left\|\Pi_0\mathcal{L}_{2B}(\theta_O;\Theta_I)\right\|
+}{
+\left\|\Pi_0\mathcal{L}_I\right\|
++
+\left\|\Pi_0\mathcal{L}_O(\theta_O)\right\|
++
+\varepsilon_{\mathcal{L}}
+}
++
+w_{\mathrm{tf}}
+\frac{
+\left\|(1-\Pi_0)\mathcal{L}_{2B}(\theta_O;\Theta_I)\right\|
+}{
+\left\|\mathcal{L}_I\right\|
++
+\left\|\mathcal{L}_O(\theta_O)\right\|
++
+\varepsilon_{\mathcal{L}}
+},
+\qquad
+w_0,w_{\mathrm{tf}}\ge0.
+$$
+
+A local minimizer
+
+$$
+\theta_O^\star
+\in
+\operatorname*{arg\,min}_{\theta_O\in\mathcal{A}_{2B}(\Theta_I)}
+S_{2B}(\theta_O\mid\Theta_I)
+$$
+
+may seed an outer-layer initial condition for a full $I/M/O$ branch search.
+It does not supply $\zeta(A_0)$, does not replace the middle hinge, and cannot
+use observed particle masses, charged-lepton ratios, electron radius, or a
+measured $\alpha$ value as inputs. If the minimum disappears under fixed
+extraction refinements or requires changing $\Theta_I$, the result is a failed
+two-binary shielding precursor rather than evidence against the full nested
+shell braid class.
+
 The related survival question is whether the accepted branch is also a local
 minimum of exposed leakage among nearby admissible branches. This is a
 priority-only comparison target, not a branch-selection rule. After Tier 1 has

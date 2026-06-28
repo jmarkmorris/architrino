@@ -27,6 +27,16 @@ v_M=c_f,\quad v_O\to c_f
 $$
 The boundary data $\partial\Omega$ record the surrounding Noether sea state and effective exterior state. A viable singularity replacement must solve the alignment condition with finite boundary data in embedded, non-isolated settings, rather than relying on asymptotic flatness as an implicit support.
 
+### Observer-Time Boundary
+
+A maximum-curvature interior is not assigned an ordinary physical-observer clock unless a recoverable clock channel survives. At the horizon-interface boundary, exterior records remain ordered by absolute time and by the observer-level clocks recovered outside the compact region. Inside a hard packed regime, the local Noether braid cadence, signal access, and material ruler channels may no longer supply a Physical Observer state. The safe statement is therefore:
+$$
+\mathrm{Clock}_{\mathrm{PO}}(\Omega_{\mathrm{int}})=\varnothing
+\quad\text{while}\quad
+t_{\mathrm{abs}}\ \text{still orders exterior and boundary records.}
+$$
+This prevents a singularity replacement from smuggling in an interior observer time where the required clock-and-ruler carrier has already failed.
+
 ### Trapped-Surface Comparison Pressure
 
 Penrose-style singularity theorems are useful here because they remove a misleading loophole: collapse failure cannot be dismissed merely by abandoning exact spherical symmetry. At the effective GR comparison layer, a trapped surface is detected by both future-directed null expansions becoming negative,
@@ -97,6 +107,20 @@ $$
 <\infty
 $$
 together with the horizon-interface condition $F_H=0$ and a finite Noether braid closure-label ensemble. This is a theorem target, not a definition of success: the strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
+
+The packed-state replacement must also keep interior storage distinct from interface exposure. A dense interior may carry a large finite energy inventory while only the surface, defect, or horizon-interface rows couple efficiently to exterior clock, ruler, lensing, release, or dark-sector readouts. For a compact region $\Omega$, write the exposed response schematically as
+$$
+E_{\mathrm{ext}}(\Omega)
+=
+\Pi_{\mathrm{surf}}
+\!\left[
+E_{\mathrm{pack}}(\Omega),
+\partial\Omega,
+\mathcal{D}_{\mathrm{defect}},
+\theta_{\mathrm{sea}}
+\right],
+$$
+where $\Pi_{\mathrm{surf}}$ is an exposure projection rather than an energy source. The closure burden is to derive this projection from packing, interface, and Noether sea boundary data. Without that split, a model risks counting hidden packed energy as ordinary exterior mass in one paragraph and shielding it in the next.
 
 A sharper endpoint criterion is that those same finite data admit a continuation map
 $$

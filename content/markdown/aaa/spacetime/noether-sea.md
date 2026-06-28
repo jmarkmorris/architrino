@@ -138,6 +138,19 @@ $$
 
 with every non-internal contribution either computed from the surrounding Noether sea state and assembly record or explicitly assigned a residual. The isolated equation is recovered only when $F_{i,\mathrm{sea}}$, $F_{i,\mathrm{asm}}$, and $F_{i,\partial\Omega}$ vanish, are homogeneous enough to collapse into fixed boundary data, or are below the declared tolerance.
 
+Reaction records use the same embedding discipline. The Noether sea is not a passive stage when a vertex recruits neutral Noether braid content, returns unbound or reclassified content to the ambient medium, changes local cadence or excitation, or absorbs recoil and remnant energy. For a finite reaction window $\Omega$, the Noether sea participation row can be written schematically as
+$$
+\Delta N_{\mathrm{sea}}^{\Omega}
+=
+N_{\mathrm{return}}
+-N_{\mathrm{recruit}}
++N_{\mathrm{prod}}
+-N_{\mathrm{reclass}}
++N_{\mathrm{relax}}
++R_{N,\Omega}.
+$$
+Each term must be tied to the same identity, energy, momentum, angular-momentum, and causal-wake ledger used by the local reaction. If a reaction changes apparent particle inventory while leaving the Noether sea row undeclared, the source story is incomplete rather than closed.
+
 This does not require solving the entire universe before studying one assembly. It does require a controlled embedding record. The useful analytic hierarchy is:
 
 1. solve or approximate a homogeneous Noether sea record;
@@ -224,7 +237,22 @@ S_{\rho}
 $$
 The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether braid population and the residual decreases under refinement.
 
+The source term should be decomposed before it is used in cosmology or reaction provenance:
+$$
+S_{\rho}
+=
+S_{\mathrm{prod}}
++S_{\mathrm{return}}
+-S_{\mathrm{capture}}
+-S_{\mathrm{decay}}
+-S_{\mathrm{reclass}}
++S_{\mathrm{relax}}.
+$$
+Production, return, capture, decay, reclassification, and relaxation are not separate ontologies. They are bookkeeping channels for how neutral Noether braid content enters, leaves, or changes class inside the local Noether sea population. A long-time Noether sea model is credible only when these rows share one continuity ledger with the energy and reaction records.
+
 The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether braid population dynamics, causal wakes, and branch ledgers.
+
+The same guardrail applies to superfluid analogies. A Noether sea passage should use literal superfluid language only if it supplies a technical analogue such as an order parameter, transport equation, critical criterion, quantized-circulation analogue, or two-state response split. Otherwise the safe translation is medium response: density, flow, cadence, orientation, strain, delay factor, and excitation variables carried by a resolved Noether sea record.
 
 The kinetic-theory lesson is that hydrodynamic variables are the slow variables associated with conserved quantities. For the Noether sea, the candidate slow state is
 $$

@@ -1,4 +1,5 @@
 import { shouldExcludeStructuredSpherePalette } from "./SceneCapabilitiesService.js";
+import { enforceSharedSceneSphereRadius } from "../runtime/SceneSphereSizingRuntime.js";
 
 export class SceneRepository {
   constructor(deps) {
@@ -645,7 +646,7 @@ export class SceneRepository {
         node.docDrillDownPreferred = isEligible;
         node.glowRing = isEligible;
         if (isEligible) {
-          node.glowRingColor = node.glowRingColor ?? "#aeb6c6";
+          node.glowRingColor = node.glowRingColor ?? "#d8c6ff";
           node.glowRingOpacity = node.glowRingOpacity ?? 0.3;
           node.glowRingThickness =
             node.glowRingThickness ?? Math.max(0.028, node.radius * 0.06);
@@ -743,6 +744,7 @@ export class SceneRepository {
     if (autoNodes.length) {
       nodes = nodes.concat(autoNodes);
     }
+    const sceneSphereRadius = enforceSharedSceneSphereRadius(nodes);
     await this.applyTextbookChapterLabels(nodes);
     await this.applyMarkdownDocEligibility(nodes);
 
@@ -764,6 +766,7 @@ export class SceneRepository {
           ? data.scene.layoutColumns
           : null,
       nodes,
+      sceneSphereRadius,
       links: Array.isArray(data.links) ? data.links : [],
       sceneName,
       sceneId,
@@ -858,6 +861,7 @@ export class SceneRepository {
         config.nodes = config.nodes.concat(autoNodes);
       }
     }
+    config.sceneSphereRadius = enforceSharedSceneSphereRadius(config.nodes);
 
     const needsEligibility = config.nodes.some(
       (node) =>

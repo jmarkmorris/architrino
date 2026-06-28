@@ -27,6 +27,19 @@ One compact way to read this chapter is as a set of ontological relocations. The
 | $\Lambda\mathrm{CDM}$, Big Bang, and inflationary chronology | Redshift, CMB, BBN, growth, lensing, and parameter-fit data products remain hard comparison constraints. | Expansion variables are observer-level summaries of source/release history, Noether sea evolution, transport, and clock-rate comparison in a fixed Euclidean void. |
 | Quantum Field Theory | Effective actions, perturbation theory, detector-event reconstruction, renormalized summaries, and field symmetries remain indispensable. | Fields and particle-number changes are effective descriptions of assembly association, dissociation, normal-mode changes, causal wakes, and source-history transport. |
 
+A parsimony test belongs at this level. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not become simpler merely by rejecting inherited theories; it becomes simpler only if one substrate architecture recovers many of their successful higher-level equations, conventions, and fitted parameters as projections of a smaller ledger. The Occam-style claim is therefore a parameter-burden claim: anthropic or fine-tuning explanations lose force only where masses, couplings, redshift variables, effective metric terms, and statistical rules are derived from common assembly and Noether sea records rather than assigned as unrelated constants.
+
+### Four Interactions As Sector Projections
+
+The same relocation discipline applies to the inherited four-interaction language. Electromagnetism, weak interaction, strong interaction, and gravity are not four primitive substances in $\mathbb{A}\mathbb{A}\mathbb{A}$; they are observer-level sectors that project different parts of the assembly, causal-wake, event-ledger, and Noether sea record. The unification target is therefore not to erase their differences, but to derive each effective sector from one substrate architecture without giving any sector an independent hidden ontology.
+
+| Observer-level interaction | What remains valid | Relocation in $\mathbb{A}\mathbb{A}\mathbb{A}$ |
+| --- | --- | --- |
+| Electromagnetic | Charge bookkeeping, photon transport, Maxwell/QED benchmarks, and effective $U(1)$ phase behavior remain recovery targets. | The photon channel is routed through the [coaxial contra-rotating pro/anti planar pair](../assemblies/bosons/electroweak-bosons.md), while effective electromagnetic potentials are reconstructed from causal-wake/action ledgers and Noether sea response in the [gauge-structure map](../assemblies/gauge-structure-emergence.md). |
+| Weak | Chiral weak reactions, $W^\pm/Z$ corridor behavior, weak mixing, CKM/PMNS constraints, and electroweak precision data remain hard comparison targets. | Weak interaction is relocated into exposed weak-coupling-triad geometry, transient corridor provenance, and reaction-ledger accounting; the effective $SU(2)_L$ record must be recovered without treating weak bosons as primitive substrate carriers. |
+| Strong | Color confinement, gluon exchange, hadron structure, and nuclear binding phenomenology remain required recoveries. | Strong interaction is relocated into axis-exceptionality, color-corridor and flux closure, Noether sea routing of exposed axial traffic, and residual-strong coarse graining; see [Gluons and the Strong Force](../assemblies/bosons/gluons.md) and [Nuclear Binding](../nuclear-atomic/nuclear-binding.md). |
+| Gravitational | Weak-field GR, lensing, Shapiro delay, orbital dynamics, gravitational waves, and strong-field benchmarks remain recovery targets. | Gravity is relocated into Noether sea constitutive response, clock/ruler retuning, photon and gravitational-channel propagation, and effective-metric reconstruction; the Euclidean void remains uncurved while [Emergent Metric](../spacetime/emergent-metric.md) and [General Relativity](../spacetime/general-relativity.md) carry the recovery burden. |
+
 **Document Type:** Matrix-split chapter with two axes:
 - Layer axis (`##`): ontological/phenomenological domains.
 - Theory axis (`###`): individual theories mapped within each domain.
@@ -473,8 +486,11 @@ A \sim 8\pi \gamma \ell_P^2 \sum_i \sqrt{j_i(j_i+1)}
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ starts from a continuous Euclidean void and discrete architrinos. Any apparent discreteness of area/volume would be emergent, arising from quantized, stable patterns of nested shell braid assemblies in the Noether sea and selection rules on their configurations. Spin networks can be viewed as effective graphs summarizing how these assemblies connect and exchange architrinos, not as a fundamental replacement of the Euclidean container.
 
+The most useful comparison is therefore reconstructive. LQG area and volume labels should be treated as observer-geometry readouts that a successful Noether sea branch would have to reproduce in the appropriate limit, not as proof that the Euclidean void itself is granular. Spin-network and spin-foam graphs can remain valuable as comparison graphs for adjacency, boundary data, and coarse geometric spectra while the underlying carrier remains architrino assemblies and Noether sea state.
+
 **What Still Works:** Loop Quantum Gravity (LQG) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**Bounce Boundary:** LQG bounce and black-hole-to-white-hole proposals should be retained as strong-field local comparison tests, not promoted into global cosmology doctrine. The native question is whether a maximum-curvature branch supplies finite boundary data, release-channel accounting, and exterior effective-metric recovery without requiring the whole universe to pass through a single bounce.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
@@ -603,7 +619,7 @@ from equilibrium.
 $$
 \Delta B \neq 0,\quad \mathrm{CP}\ \text{violation},\quad \text{out of equilibrium}
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Net matter–antimatter asymmetry may reflect subtle asymmetries in the initial architrino polarity distribution, in nested shell braid formation pathways, or in how self-hit dynamics favor certain assembly channels. Sakharov-like conditions become constraints on allowed assembly-level processes and their CP properties in the high-energy Noether sea environment.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Net matter–antimatter asymmetry should not be framed first as missing electrinos, missing positrinos, or a primitive imbalance in the fundamental polarity inventory. The sharper native question is why stable low-energy assembly channels favor matter-like pro/anti braid outcomes over accessible antimatter-like counterparts while the deeper architrino and Noether sea bookkeeping remains polarity-balanced. Sakharov-like conditions become constraints on allowed assembly-level processes, chiral branch stability, and CP-facing readouts in the high-energy Noether sea environment rather than a license to treat fundamental polarity imbalance as the mechanism.
 
 **What Still Works:** Baryogenesis / Leptogenesis remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -718,6 +734,8 @@ G_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G (T_{\mu\nu} + T^{(C)}_{\mu\nu})
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** A truly steady large-scale state would require ongoing generation of new Noether braid assemblies from architrino-level processes to offset dilution. Any effective $T^{(C)}_{\mu\nu}$ would summarize net creation of assemblies from underlying architrino dynamics, possibly tied to self-hit-driven instabilities in high-curvature regions.
 
+The durable lesson is source provenance. A creation or recycling term is not explanatory merely because it balances an effective density equation. It must identify the source population, release rate, thermalization route, and observer-facing residuals that would let CMB blackbody quality, element yields, structure growth, and redshift-distance data face the same medium record.
+
 **What Still Works:** Steady-State / Quasi-Steady-State (Hoyle--Narlikar--Burbidge) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
 **Transition Relevance:** Transition relevance is high because cosmological inference will continue to be performed first in the legacy parameter language before any deeper substrate reconstruction is accepted.
@@ -787,6 +805,8 @@ $$
 \tilde g_{\mu\nu} = \Omega^2 g_{\mu\nu}
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Conformal matching here is an effective way of gluing together different large-scale phases of the Noether sea when mass scales (set by nested shell braid internal dynamics) become negligible. Whether an exact CCC picture arises in $\mathbb{A}\mathbb{A}\mathbb{A}$ depends on long-time evolution of assembly masses and the eventual fate of nested shell braid structures, but conformal rescaling is not a fundamental ingredient of the underlying architrino substrate.
+
+The historical caution is that serial, global narratives can hide a missing local mechanism. A cyclic or aeon-level chart may be useful, but the native burden is parallel and local: source populations, release ledgers, medium relaxation, and observer transfer must each be carried by finite records before the global story earns explanatory status.
 
 **What Still Works:** Conformal Cyclic Cosmology (Penrose) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.

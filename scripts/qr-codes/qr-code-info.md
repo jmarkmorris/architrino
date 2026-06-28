@@ -20,31 +20,31 @@ The generator intentionally has no arbitrary payload argument. If the canonical 
 Check the committed QR asset:
 
 ```bash
-VIRTUAL_ENV=/Users/markmorris/vibe/.venv /Users/markmorris/vibe/.venv/bin/python scripts/qr-codes/build-architrino-qr-assets.py --check
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" scripts/qr-codes/build-architrino-qr-assets.py --check
 ```
 
 Regenerate the committed QR asset:
 
 ```bash
-VIRTUAL_ENV=/Users/markmorris/vibe/.venv /Users/markmorris/vibe/.venv/bin/python scripts/qr-codes/build-architrino-qr-assets.py --write
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" scripts/qr-codes/build-architrino-qr-assets.py --write
 ```
 
 Create a one-off reproduction file while still checking the committed asset:
 
 ```bash
-VIRTUAL_ENV=/Users/markmorris/vibe/.venv /Users/markmorris/vibe/.venv/bin/python scripts/qr-codes/build-architrino-qr-assets.py --check --output /tmp/architrino-qr-recreated.png
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" scripts/qr-codes/build-architrino-qr-assets.py --check --output "${TMPDIR:-/tmp}/architrino-qr-recreated.png"
 ```
 
 Regenerate the selected logo-plus-QR composites and reader-facing landscape asset:
 
 ```bash
-VIRTUAL_ENV=/Users/markmorris/vibe/.venv /Users/markmorris/vibe/.venv/bin/python scripts/qr-codes/build-architrino-qr-assets.py --write-logo-composites
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" scripts/qr-codes/build-architrino-qr-assets.py --write-logo-composites
 ```
 
 Regenerate the committed QR asset, selected logo-plus-QR composites, and reader-facing landscape asset together:
 
 ```bash
-VIRTUAL_ENV=/Users/markmorris/vibe/.venv /Users/markmorris/vibe/.venv/bin/python scripts/qr-codes/build-architrino-qr-assets.py --write-all
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" scripts/qr-codes/build-architrino-qr-assets.py --write-all
 ```
 
 ## Layout Guidance

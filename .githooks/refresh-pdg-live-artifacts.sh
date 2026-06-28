@@ -6,8 +6,13 @@ mode="${1:-check}"
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
 
-python_bin="/Users/markmorris/vibe/.venv/bin/python"
-if [[ ! -x "$python_bin" ]]; then
+if [[ -n "${AAA_PYTHON:-}" ]]; then
+  python_bin="$AAA_PYTHON"
+elif [[ -n "${VIRTUAL_ENV:-}" && -x "${VIRTUAL_ENV}/bin/python" ]]; then
+  python_bin="${VIRTUAL_ENV}/bin/python"
+elif [[ -x "${repo_root}/../.venv/bin/python" ]]; then
+  python_bin="${repo_root}/../.venv/bin/python"
+else
   python_bin="python3"
 fi
 

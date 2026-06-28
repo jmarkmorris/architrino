@@ -332,6 +332,13 @@ $C_1b+\frac12C_2b^2$ or direct $E_\ast(b)$ bound against both
 $\Delta_{\mathrm{mat}}$ and $\rho_\ast$. Until that is done, the ladder is
 evidence for an obstruction-side proof route, not an A1 no-go theorem.
 
+The concrete outward-constants handoff is now specified in
+[spiral-a1-outward-constants-certificate-target](spiral-a1-outward-constants-certificate-target.md).
+That packet fixes the endpoint-slope-cancelled admissible perturbation class,
+the retained A1 row set, the constants that must be emitted outward, the
+material and theorem-grade obstruction inequalities, and the first failure modes
+that distinguish failed admissibility from a legal finite-amplitude channel.
+
 ## Row-by-Row Bound Program
 
 The proof packet has five controlled rows.

@@ -38,7 +38,7 @@ has Euler–Lagrange equation
 $$
 \ddot x + \omega^2 x = \tfrac{g}{2}\big[x(t-\tau)+x(t+\tau)\big],
 $$
-i.e. variationality **forces the advanced + retarded symmetric pair**. This is the Wheeler–Feynman structure, and it is the *nearest variational replacement*. Your physical self-hit is causal (retarded only), so you are in a genuinely **non-variational, dissipative-or-time-irreversible** setting. This is not a defect to repair — it is a fact to design around (see Comment 5).
+i.e. variationality **forces the advanced + delayed symmetric pair**. This is the Wheeler–Feynman structure, and it is the *nearest variational replacement*. Your physical self-hit is causal only, so you are in a genuinely **non-variational, dissipative-or-time-irreversible** setting. This is not a defect to repair — it is a fact to design around (see Comment 5).
 
 **Comment 5 — Drop the symplectic-Hessian framing; adopt a Poincare-return-map / monodromy framing. This is the decisive strategic correction. [conjectured, strong]**
 

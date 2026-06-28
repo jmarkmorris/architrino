@@ -221,6 +221,55 @@ $$
 $$
 Thus a simple causal root moves continuously with receiver time as long as the denominator stays away from zero. Simulations should track this root-transport residual alongside the root residual and the $J$ floor; failure of the transport equation is a branch-chart failure, not an ordinary force fluctuation.
 
+##### Source-Flux Weighting, Receiver Root Transport, and Action Residual
+
+For a retained branch row $(i,j,t,t_0)$, keep the source flux weight, receiver root transport, and action residual as separate equations.
+
+**Source flux weighting.** The source, i.e. the emitting architrino, enters the received branch strength through the delay-map Jacobian
+$$
+J_{ij}(t;t_0)
+=
+1-\frac{\hat{\mathbf r}_{ij}(t;t_0)\cdot\mathbf v_j(t_0)}{c_f},
+\qquad
+w_{\mathrm{flux},ij}(t;t_0)
+=
+\frac{1}{|J_{ij}(t;t_0)|}.
+$$
+Only the source velocity projection along $\hat{\mathbf r}_{ij}$ appears in this local flux multiplier. Tangential source motion still matters through the source worldline, active root set, separation vector, and inactive-root gaps, but it is not a second instantaneous multiplier on the received branch strength.
+
+**Receiver root transport.** The receiver velocity controls how the same causal root moves as receiver time advances:
+$$
+\frac{ds}{dt}
+=
+\frac{1-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_i(t)/c_f}
+{1-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_j(s)/c_f}.
+$$
+Thus receiver motion belongs to the root-transport row, not to the source-flux denominator by itself. A chart that changes receiver velocity can change which branch is sampled over time even when the instantaneous source flux factor has the same form.
+
+**Action residual.** The variational-action question adds an independent proof burden. On a regularized action chart,
+$$
+\mu_{\text{arch}}\mathbf a_i(t)
+=
+\sum_j\kappa\,\sigma_{ij}|q_iq_j|
+\left(
+\mathbf F_{ij,\mathrm{scale}}^{(\eta)}(t)
++
+\mathbf C_{ij}^{(\eta)}(t)
+\right),
+$$
+and the scale-only action scaffold derives the canonical branch law only when
+$$
+\lim_{\eta\to0^+}
+\int_W
+\left\|
+\sum_j\kappa\,\sigma_{ij}|q_iq_j|
+\mathbf C_{ij}^{(\eta)}(t)
+\right\|dt
+=
+0
+$$
+with the same branch floors and boundary convention used by the branch chart. If this residual is retained rather than cancelled, it must close as a recoil-inclusive wake-history term in the same energy, momentum, and angular-momentum ledger. This residual condition is not an extra source- or receiver-velocity factor in the Master EOM; it is the test for promoting the action scaffold in [Exact Nonlocal Lagrangian](#exact-nonlocal-lagrangian).
+
 ##### Branch-Chart Closure Object
 
 A local master-equation closure claim should be attached to an explicit branch-chart object, not just to a plotted orbit or a small force residual. For a branch chart on a section $\mathcal{S}$, define
@@ -4076,6 +4125,8 @@ For a receiver architrino $o'$ with polarity $q_{o'}$ at position $\mathbf{s}_{o
 
 $$U_{o'}(t) = q_{o'}\,\Phi_{\text{net}}[\text{history}]\big(\mathbf{s}_{o'}(t),t\big).$$
 
+The sign of $\Phi_{\text{net}}$ is not a sign on total energy. A negative causal-wake potential contribution from an electrino source is a polarity-signed interaction record; it becomes energy bookkeeping only after the receiver polarity, active causal root, line-of-action geometry, branch Jacobian, and receiver radial motion are specified. Work can therefore occur relative to a negative potential without introducing a negative-energy substance or a negative total-energy reservoir.
+
 Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal-wake record of $\mathbf{s}_{o'}(t)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed. In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth continuum field.
 
 When we work with the mollified effective potential $\Phi_\eta$, we can also write the fixed-history, force-like relation:
@@ -4109,6 +4160,8 @@ Both bounds must use the same horizon, screening, and summation prescription tha
 
 Mean-zero wake potential is therefore not zero total energy. A statistically neutral $50/50$ electrino/positrino inventory can make the large-scale potential gradient and received power nearly vanish while still carrying kinetic energy, local correlated interaction energy, retained wake-history content, and Noether sea organization. The conserved quantity for an isolated exact trajectory is the history-aware total ledger, not "initial kinetic energy plus a naive instantaneous potential" evaluated after the wake record has been discarded.
 
+For energy accounting, cancellation is applied only after source identity, polarity, emission time, active causal root, branch Jacobian, line-of-action geometry, and receiver radial power have been retained. A net-zero scalar potential channel is therefore a projection of a richer source-tagged ledger, not proof that no wake-history energy, internal branch energy, or coherent work opportunity remains available to a receiver whose branch resolves the contributing rows.
+
 Phase-locked bound states are the important exception. In a localized assembly, nearby constituents do not sample random phases; their active causal roots are correlated, and the $1/r^2$ distance factor lets the nearest coherent branches dominate over the far incoherent background. A [collinear breather](../../../../markdown/aaa/proof-programs/collinear-breather.md), for example, is precisely a reduced setting in which two opposite-polarity architrinos can form a localized, non-canceling causal resonance. The breather ansatz isolates this effect: instead of averaging away, the partner-hit and self-hit branches stay phase organized enough to exchange kinetic and potential energy across a bounded cycle.
 
 ---
@@ -4116,6 +4169,8 @@ Phase-locked bound states are the important exception. In a localized assembly, 
 ### Energy Conservation and Exchange
 
 In the exact causal theory, energy conservation is enforced through exchange between kinetic motion and the causal-history interaction content encoded by wakes. This wake term should not be read as an independent material reservoir that drains from the emitter with every unreceived isochron; it is the nonlocal bookkeeping required by the same delayed causal action that generates the hits. For mollified working models, the strongest exact conservation claims remain conditional on the regularization being derived from the same time-translation-invariant causal action rather than inserted only at the equation-of-motion level.
+
+Classical virial language is recovered only at branch level. The familiar comparison form $\langle 2T-pU\rangle=0$ is admissible after a retained branch chart supplies a branch-local potential, homogeneity degree, and proof that the same acceleration row used by the Master EOM is generated by that potential over the declared window. Until those rows close, virial behavior remains a diagnostic on the causal-root ledger rather than a primitive substrate axiom; see the branch-virial target in [Analytic Baselines](../../../../markdown/aaa/validation/simulations/action-energy/analytic-baselines.md#analytic-baselines).
 
 For a single architrino:
 
@@ -5611,6 +5666,36 @@ Methodological priority:
   \mu_{\text{arch}}\,
   \|\mathbf{v}_i(t)\|^2
   $$
+  Before the branch average is formed, retain the root-resolved virial rows
+  $$
+  V_{i\leftarrow j,t_0}^{(\eta)}(t)
+  =
+  \mu_{\text{arch}}\,
+  \mathbf{x}_i(t)
+  \cdot
+  \mathbf{a}_{i\leftarrow j}^{(\eta)}(t;t_0)
+  $$
+  and the corresponding delivered-power rows
+  $$
+  P_{i\leftarrow j,t_0}^{(\eta)}(t)
+  =
+  \mu_{\text{arch}}\,
+  \mathbf{a}_{i\leftarrow j}^{(\eta)}(t;t_0)
+  \cdot
+  \mathbf{v}_i(t)
+  $$
+  for every retained source/root hit $t_0\in\mathcal C_{ij,b}^{(\eta)}(t)$. The net virial term is then the ledger-preserving sum
+  $$
+  \sum_i
+  \mu_{\text{arch}}\,
+  \mathbf{x}_i(t)\cdot\mathbf{a}_{i,b}^{(\eta)}(t)
+  =
+  \sum_i
+  \sum_j
+  \sum_{t_0\in\mathcal C_{ij,b}^{(\eta)}(t)}
+  V_{i\leftarrow j,t_0}^{(\eta)}(t)
+  $$
+  on the same active causal-root ledger used by the force residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after source identity, polarity, emission time, Jacobian, and receiver radial power have survived the row aggregation.
   When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
   $$
   \left\langle
@@ -5986,6 +6071,25 @@ P_{b,\mathrm{work}}^{(\eta)}(t)
 \cdot
 \mathbf{v}_i(t)
 $$
+The same row must also be available before superposition. For each retained source/root hit $(i,j,t_0)$ on the branch chart, define the root-resolved delivered power
+$$
+P_{i\leftarrow j,t_0}^{(\eta)}(t)
+=
+\mu_{\text{arch}}\,
+\mathbf{a}_{i\leftarrow j}^{(\eta)}(t;t_0)
+\cdot
+\mathbf{v}_i(t)
+$$
+so that
+$$
+P_{b,\mathrm{work}}^{(\eta)}(t)
+=
+\sum_i
+\sum_j
+\sum_{t_0\in\mathcal C_{ij,b}^{(\eta)}(t)}
+P_{i\leftarrow j,t_0}^{(\eta)}(t)
+$$
+on the same active causal-root ledger. This root-resolved form is the accounting guardrail: source identity, polarity, emission time, Jacobian, and receiver radial power are retained before the net branch work is collapsed to one scalar.
 and reconstruct the compatible causal-history interaction contribution by
 $$
 U_{b,\mathrm{work}}^{(\eta)}(t)
@@ -6156,6 +6260,7 @@ From the perspective of the receiving architrino, the information carried by an 
     - Sign/side ambiguity: an attractive lift on one ray and a repulsive lift on the opposite ray can produce the same receiver-local acceleration record. With receiver polarity held fixed, this can be written as a side/polarity flip of the source; with receiver polarity flipped, the source-polarity labels interchange as well.
     - Superposition along a line: multiple sources aligned on either ray of the same unoriented line of action can sum to the same net receiver-local magnitude at one instant, while their source count, side distribution, and polarities remain hidden.
     - Self-hit confound: a self-interaction and an external source can yield identical instantaneous data if they lie on the same line with compensating magnitudes.
+    - Super-field-speed self-history ambiguity: when same-source delayed roots exist, the receiver-local event still reports a line component, not the full past trajectory that produced it. The self-hit label must come from the retained causal-root ledger, not from instantaneous magnitude and line data alone.
     - Continuum of surrogate locations: for any instantaneous hit there exists a continuum of stationary surrogate source positions along the same unoriented line of action, each with a correspondingly adjusted emission time $t_0$, that reproduces the same instantaneous data; hence instantaneous inversion is severely underdetermined.
 
   - Surrogate-location recast:
@@ -6411,6 +6516,7 @@ An architrino can intersect an expanding causal isochron that it emitted earlier
     \mathcal{C}_{aa}(t)=\{\,s<t:\|\mathbf{x}_a(t)-\mathbf{x}_a(s)\|=c_f(t-s)\,\}
     $$
     A speed excursion above $c_f$ flags a candidate interval; it is not an acceptance test without root existence and a nonzero Jacobian/transversality margin.
+  - Coincident $r=0$ contact is not an active same-source hit. At $\Delta=0$ the convention $H(0)=0$ blocks instantaneous self-kicks, and for a coincident delayed candidate the unit line of action $\hat{\mathbf{r}}$ is undefined. The active channel begins with a nonzero-delay same-source root that supplies both direction and transversality.
 
 - Repulsive character:
   - For like-on-like (self) interaction, $\sigma_{q_a q_a}=+1$ ensures the self-contribution points outward along $+\hat{\mathbf{r}}$, opposing further collapse.

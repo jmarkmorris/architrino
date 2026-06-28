@@ -10,8 +10,6 @@ Wonder question: How can moving things make a pattern that holds?
 
 Discovery sentence: A stable pattern can hold even while its parts keep moving.
 
-Text status: first-draft source images generated; landscape pages and derivatives exported. QA and manual geometry review pending.
-
 ## Book Promise
 
 This bridge book teaches:
@@ -44,7 +42,7 @@ Moving relation, stable pattern, fit, timed message cues, first assembly intuiti
 
 Illustration prompt:
 
-> Generate text-free 3:2 landscape source illustration for **Patterns That Hold**, Book 8 of **The Wonder of Nature and the Universe**. Match the Book 1 through Book 7 first-draft visual direction: Electra is a young child with medium-brown skin, dark curly hair in two small puffs, and simple white-and-lavender play clothes; Poz is a young child with light-brown skin, short straight dark hair, and simple white-and-purple play clothes. They are ordinary human children, not symbols, polarity figures, or architrinos.
+> Generate text-free 3:2 landscape source illustration for **Patterns That Hold**, Book 8 of **The Wonder of Nature and the Universe**. Use the established series visual direction: Electra is a young child with medium-brown skin, dark curly hair in two small puffs, and simple white-and-lavender play clothes; Poz is a young child with light-brown skin, short straight dark hair, and simple white-and-purple play clothes. They are ordinary human children, not symbols, polarity figures, or architrinos.
 >
 > Use natural skin and hair tones only for people. Use only white, black, pure red, pure blue, and red-blue purples for beads, strings, balls, tabletop pieces, paths, timing rings, glow cues, shadows, floor details, play objects, clothing, and all non-human visual systems. Keep the art as a simple early-elementary board-book scene with generous white paper space, black expressive linework, soft purple shadows, and calm readable actions.
 >

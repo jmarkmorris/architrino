@@ -1,7 +1,28 @@
+import { SCENE_CHAPTER_MARKER_RADIUS_SCALE } from "./SceneLabelSizingRuntime.js";
+
 export function createNodeFactory(deps) {
   const { THREE, CSS2DObject, binaryStyle } = deps;
   let haloSeed = 0;
   const orbitRingLightenFactor = 0.2;
+  const premiumSphereSpecularColor = "#d8c6ff";
+  const premiumSphereOutlineColor = "#b9a8e8";
+  const premiumSphereGlowRingColor = "#d8c6ff";
+  const premiumSphereCenterRingColor = "#c7b9ff";
+
+  function createPremiumSphereMaterial(nodeData, { hideSphere = false, isReaction = false } = {}) {
+    const baseColor = new THREE.Color(nodeData.color ?? "#3a5a8a");
+    const emissiveColor = baseColor.clone().multiplyScalar(isReaction ? 0.14 : 0.11);
+    const material = new THREE.MeshPhongMaterial({
+      color: baseColor,
+      emissive: emissiveColor,
+      specular: premiumSphereSpecularColor,
+      shininess: isReaction ? 8 : 6,
+      transparent: true,
+      opacity: hideSphere ? 0 : isReaction ? 0.9 : 0.84,
+    });
+    material.depthWrite = false;
+    return material;
+  }
 
   function escapeHtml(text) {
     return String(text ?? "")
@@ -156,29 +177,38 @@ export function createNodeFactory(deps) {
     const ringScale = nodeData.glowRingScale ?? 1.04;
     const ringThickness =
       nodeData.glowRingThickness ?? Math.max(0.028, nodeData.radius * 0.06);
-    const ringColor = nodeData.glowRingColor ?? "#aeb6c6";
+    const ringColor = nodeData.glowRingColor ?? premiumSphereGlowRingColor;
     const ringOpacity = nodeData.glowRingOpacity ?? 0.3;
     return { ringScale, ringThickness, ringColor, ringOpacity };
   }
 
+  function createRingGeometry(radius, style) {
+    return new THREE.TorusGeometry(radius * style.ringScale, style.ringThickness, 12, 64);
+  }
+
   function createRingMesh(nodeData, style) {
-    const ringGeometry = new THREE.TorusGeometry(
-      nodeData.radius * style.ringScale,
-      style.ringThickness,
-      12,
-      64
-    );
+    const ringGeometry = createRingGeometry(nodeData.radius, style);
     const ringMaterial = new THREE.MeshBasicMaterial({
       color: style.ringColor,
       transparent: true,
       opacity: style.ringOpacity,
       side: THREE.DoubleSide,
       depthWrite: false,
-      blending: THREE.AdditiveBlending,
+      blending: style.blending ?? THREE.AdditiveBlending,
     });
     const ring = new THREE.Mesh(ringGeometry, ringMaterial);
     ring.renderOrder = -1;
     return ring;
+  }
+
+  function getCenterContextRingStyle(radius) {
+    return {
+      ringScale: 1.04,
+      ringThickness: Math.max(0.028, radius * 0.06),
+      ringColor: premiumSphereCenterRingColor,
+      ringOpacity: 0.5,
+      blending: THREE.NormalBlending,
+    };
   }
 
   function createLabel(node) {
@@ -283,8 +313,125 @@ export function createNodeFactory(deps) {
     label.className = "label-chapter-marker";
     label.textContent = chapterLabel;
     const labelObject = new CSS2DObject(label);
-    labelObject.position.set(0, -Math.max(0, node.radius ?? 0) * 0.7, 0);
+    labelObject.position.set(
+      0,
+      -Math.max(0, node.radius ?? 0) * SCENE_CHAPTER_MARKER_RADIUS_SCALE,
+      0
+    );
     return labelObject;
+  }
+
+  function getCenterContextContentKey(data) {
+    return [
+      data?.title ?? "",
+      data?.chapterLabel ?? "",
+      data?.countLabel ?? "",
+    ].join("|");
+  }
+
+  function renderCenterContextLabel(data) {
+    const title = String(data?.title ?? "").trim();
+    const chapterLabel = String(data?.chapterLabel ?? "").trim();
+    const countLabel = String(data?.countLabel ?? "").trim();
+    const chapterHtml = chapterLabel
+      ? `<div class="label-center-context-meta">${escapeHtml(chapterLabel)}</div>`
+      : "";
+    const countHtml = countLabel
+      ? `<div class="label-center-context-count">${escapeHtml(countLabel)}</div>`
+      : "";
+    return `<div class="label-title">${escapeHtml(title)}</div>${chapterHtml}${countHtml}`;
+  }
+
+  function createCenterContextSphere(data) {
+    const radius = Math.max(0.01, Number(data?.radius) || 1);
+    const group = new THREE.Group();
+    const geometry = new THREE.SphereGeometry(radius, 32, 20);
+    const material = new THREE.MeshBasicMaterial({
+      color: data?.color ?? "#243047",
+      transparent: true,
+      opacity: 0.42,
+    });
+    material.depthWrite = false;
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.userData.isCenterContextSphere = true;
+    group.add(mesh);
+
+    const outlineGeometry = new THREE.EdgesGeometry(geometry);
+    const outlineMaterial = new THREE.LineBasicMaterial({
+      color: premiumSphereCenterRingColor,
+      transparent: true,
+      opacity: 0.24,
+    });
+    outlineMaterial.depthWrite = false;
+    const outline = new THREE.LineSegments(outlineGeometry, outlineMaterial);
+    outline.userData.isCenterContextSphere = true;
+    group.add(outline);
+
+    const ringStyle = getCenterContextRingStyle(radius);
+    const ring = createRingMesh({ radius }, ringStyle);
+    ring.userData.isCenterContextRing = true;
+    group.add(ring);
+
+    const label = document.createElement("div");
+    label.className = "label label-wrap label-center-context";
+    label.innerHTML = renderCenterContextLabel(data);
+    const labelObject = new CSS2DObject(label);
+    group.add(labelObject);
+
+    return {
+      group,
+      mesh,
+      outline,
+      ring,
+      labelObject,
+      data: { ...data, radius },
+      labelMaxWidth: null,
+      labelContentKey: getCenterContextContentKey(data),
+      baseOpacity: {
+        mesh: material.opacity,
+        outline: outlineMaterial.opacity,
+        ring: ring.material.opacity,
+        label: 1,
+      },
+    };
+  }
+
+  function updateCenterContextSphere(contextSphere, data) {
+    if (!contextSphere || !data) {
+      return;
+    }
+    const radius = Math.max(0.01, Number(data.radius) || contextSphere.data?.radius || 1);
+    if (Math.abs(radius - (contextSphere.data?.radius ?? 0)) > 0.0001) {
+      const geometry = new THREE.SphereGeometry(radius, 32, 20);
+      contextSphere.mesh.geometry.dispose();
+      contextSphere.mesh.geometry = geometry;
+      contextSphere.outline.geometry.dispose();
+      contextSphere.outline.geometry = new THREE.EdgesGeometry(geometry);
+      if (contextSphere.ring) {
+        const ringStyle = getCenterContextRingStyle(radius);
+        contextSphere.ring.geometry.dispose();
+        contextSphere.ring.geometry = createRingGeometry(radius, ringStyle);
+      }
+    }
+
+    const nextContentKey = getCenterContextContentKey(data);
+    if (nextContentKey !== contextSphere.labelContentKey) {
+      contextSphere.labelObject.element.innerHTML = renderCenterContextLabel(data);
+      contextSphere.labelContentKey = nextContentKey;
+    }
+    contextSphere.data = { ...data, radius };
+  }
+
+  function disposeCenterContextSphere(contextSphere) {
+    if (!contextSphere) {
+      return;
+    }
+    contextSphere.mesh?.geometry?.dispose?.();
+    contextSphere.mesh?.material?.dispose?.();
+    contextSphere.outline?.geometry?.dispose?.();
+    contextSphere.outline?.material?.dispose?.();
+    contextSphere.ring?.geometry?.dispose?.();
+    contextSphere.ring?.material?.dispose?.();
   }
 
   function getBinaryBandRadii(shellRadius, bands) {
@@ -320,7 +467,7 @@ export function createNodeFactory(deps) {
 
     const outlineGeometry = new THREE.EdgesGeometry(shellGeometry);
     const outlineMaterial = new THREE.LineBasicMaterial({
-      color: "#7a7a7a",
+      color: premiumSphereOutlineColor,
       transparent: true,
       opacity: binaryStyle.shellOutlineOpacity,
     });
@@ -441,20 +588,15 @@ export function createNodeFactory(deps) {
     const geometry = new THREE.SphereGeometry(nodeData.radius, 32, 20);
     const isReaction = nodeData.category === "Reaction";
     const hideSphere = nodeData.hideSphere === true;
-    const material = new THREE.MeshBasicMaterial({
-      color: nodeData.color,
-      transparent: true,
-      opacity: hideSphere ? 0 : isReaction ? 0.92 : 0.86,
-    });
-    material.depthWrite = false;
+    const material = createPremiumSphereMaterial(nodeData, { hideSphere, isReaction });
     const mesh = new THREE.Mesh(geometry, material);
     group.add(mesh);
 
     const outlineGeometry = new THREE.EdgesGeometry(geometry);
     const outlineMaterial = new THREE.LineBasicMaterial({
-      color: isReaction ? "#f6dd9c" : "#7a7a7a",
+      color: isReaction ? premiumSphereGlowRingColor : premiumSphereOutlineColor,
       transparent: true,
-      opacity: hideSphere ? 0 : isReaction ? 0.55 : 0.3,
+      opacity: hideSphere ? 0 : isReaction ? 0.44 : 0.24,
     });
     outlineMaterial.depthWrite = false;
     const outline = new THREE.LineSegments(outlineGeometry, outlineMaterial);
@@ -508,5 +650,5 @@ export function createNodeFactory(deps) {
     };
   }
 
-  return { createNode };
+  return { createNode, createCenterContextSphere, updateCenterContextSphere, disposeCenterContextSphere };
 }

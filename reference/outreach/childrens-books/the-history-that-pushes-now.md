@@ -10,8 +10,6 @@ Wonder question: Which old messages can reach now?
 
 Discovery sentence: Present motion depends on admissible path-history.
 
-Text status: text-only manuscript draft; no image prompts in this pass.
-
 ## Book Promise
 
 This first formal dynamics book teaches:

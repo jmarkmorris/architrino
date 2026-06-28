@@ -1,12 +1,10 @@
 # Book 5 Image-Generation Brief: What Changed?
 
-Use this brief after Book 4 review, before adding Book 5 back into `generation-manifest.json`.
-
 ## Master Style Prompt
 
 Generate text-free 3:2 landscape source illustrations for **What Changed?**, Book 5 of **The Wonder of Nature and the Universe**.
 
-Match the Book 1 through Book 4 first-draft visual direction, with Book 5 focused on first experimental discipline: predict, change one thing, observe, and compare what happened.
+Use the established series visual direction, with Book 5 focused on first experimental discipline: predict, change one thing, observe, and compare what happened.
 
 - Electra is a young child with medium-brown skin, dark curly hair in two small puffs, and simple white-and-lavender play clothes.
 - Poz is a young child with light-brown skin, short straight dark hair, and simple white-and-purple play clothes.
@@ -78,9 +76,3 @@ Electra and Poz sit together beside the play surface with the red and blue balls
 ### Backmatter Activity
 
 A clean text-free activity scene for adult-led play: Electra and Poz sit beside a white play surface while a grown-up hand changes exactly one thing, such as moving a low purple guide piece from near to far or swapping a shallow dip for a flat path piece. A red ball waits at the purple star-shaped start marker, a blue ball sits nearby for comparison, and two soft purple paths show old result and new result. Keep the grown-up hand small and secondary. Do not use arrows, labels, numbers, rulers, grids, mazes, panels, check marks, or abstract diagrams.
-
-## Notes Before Generation
-
-- Book 5 should have `14` source images: cover, 12 story spreads, and 1 backmatter activity.
-- Do not generate Book 5 until Book 4 source images and layout are reviewed.
-- After approval, add Book 5 to `tools/build_generation_manifest.py`, add production prompt blocks to `what-changed.md`, rebuild the manifest, generate sources with the built-in `image_gen` workflow used for Books 1-4, run QA, render pages, then refresh the manifest again.

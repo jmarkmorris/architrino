@@ -20,6 +20,7 @@ export function createMarkdownRuntime(deps) {
   let markdownPreferredColumnCount = 2;
   let previousDocumentTitle = null;
   const textbookTocMarkdownPath = "content/generated/markdown/textbook/toc.md";
+  const outreachComicsMarkdownPath = "content/markdown/aaa/outreach/comics.md";
   const supportResearchMarkdownPath = "content/markdown/aaa/archie/support-architrino-research.md";
   const liberapayWidgetScriptSrc = "https://liberapay.com/Architrino/widgets/button.js";
   const mathTypesetRetryDelayMs = 120;
@@ -162,6 +163,29 @@ export function createMarkdownRuntime(deps) {
     });
   }
 
+  function decorateLocalAssetLinks() {
+    if (!markdownBody || typeof markdownBody.querySelectorAll !== "function") {
+      return;
+    }
+    markdownBody.querySelectorAll("a[href]").forEach((link) => {
+      const rawHref = link.getAttribute?.("href");
+      if (resolveMarkdownLinkTarget(rawHref)) {
+        return;
+      }
+      const resolved = resolveLocalMarkdownHref(rawHref);
+      const resolvedPath = resolved?.path ?? "";
+      if (!resolvedPath.startsWith("content/assets/")) {
+        return;
+      }
+      link.setAttribute(
+        "href",
+        typeof appendCacheBust === "function" ? appendCacheBust(resolvedPath) : resolvedPath
+      );
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
+    });
+  }
+
   function protectMathSegments(markdown) {
     const protectedSegments = [];
     let protectedIndex = 0;
@@ -268,6 +292,10 @@ export function createMarkdownRuntime(deps) {
     return normalizeRepoPath(markdownPath) === textbookTocMarkdownPath;
   }
 
+  function isOutreachComicsPath(markdownPath) {
+    return normalizeRepoPath(markdownPath) === outreachComicsMarkdownPath;
+  }
+
   function isSupportResearchPath(markdownPath) {
     return normalizeRepoPath(markdownPath) === supportResearchMarkdownPath;
   }
@@ -280,6 +308,8 @@ export function createMarkdownRuntime(deps) {
     markdownPanel.classList.toggle("is-textbook-toc", isTextbookToc);
     if (isTextbookToc) {
       markdownPanel.dataset.markdownKind = "textbook-toc";
+    } else if (isOutreachComicsPath(markdownPath)) {
+      markdownPanel.dataset.markdownKind = "outreach-comics";
     } else {
       delete markdownPanel.dataset.markdownKind;
     }
@@ -738,6 +768,7 @@ export function createMarkdownRuntime(deps) {
     activeMarkdownSourcePath = markdownPath;
     setMarkdownKind(markdownPath);
     decorateMarkdownImages();
+    decorateLocalAssetLinks();
     applyMarkdownLayout();
     typesetMarkdownWithRetry(startTypesetRetryCycle());
     decorateTextbookToc();

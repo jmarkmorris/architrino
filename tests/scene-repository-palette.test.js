@@ -270,6 +270,49 @@ test("Scene-Index nodes receive textbook chapter labels from resolver", async ()
   );
 });
 
+test("authored scene nodes are normalized to one visible sphere radius", async () => {
+  const repository = createRepositoryWithScenes({});
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/example/mixed-radius.json",
+    {
+      scene: {
+        type: "Scene-Index",
+      },
+      objects: [
+        {
+          id: "small",
+          radius: 0.8,
+        },
+        {
+          id: "middle",
+          radius: 1.2,
+        },
+        {
+          id: "large",
+          radius: 2.4,
+        },
+        {
+          id: "legend",
+          category: "legend",
+          radius: 99,
+        },
+        {
+          id: "hidden",
+          hideSphere: true,
+          radius: 42,
+        },
+      ],
+    }
+  );
+
+  assert.equal(config.sceneSphereRadius, 1.2);
+  assert.deepEqual(
+    config.nodes.map((node) => node.radius),
+    [1.2, 1.2, 1.2, 99, 42]
+  );
+});
+
 test("markdown view options propagate to runtime nodes", async () => {
   const repository = createRepositoryWithScenes({});
 

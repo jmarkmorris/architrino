@@ -45,3 +45,23 @@ This enforces a clean separation between:
 
 - Fundamental dynamics in the absolute frame (what the simulation integrates),
 - Emergent observational physics (what real experiments would see).
+
+## Simulation Scope Envelope
+
+A simulation is a bounded experiment on the model, not a complete copy of $\mathbb{U}_{\text{now}}$. Every run should declare its scope before outputs are interpreted:
+
+- spatial domain and boundary conditions;
+- absolute-time span, $\Delta t$, and retained history depth;
+- entity count, assembly inventory, and Noether sea initialization;
+- spatial, temporal, and path-history resolution ladders;
+- logged $\mathbb{U}_{\text{now}}$ channels and detector-synthetic channels;
+- runtime-rate or cost budget when feasible replay matters;
+- feedback or intervention mode, including whether the run is passive replay, diagnostic probing, controlled perturbation, or detector post-processing.
+
+Near-threshold events need a margin report. If an unresolved perturbation, sampling choice, or detector context can flip a reaction, branch, or record classification, the simulation should report the threshold margin and alternate-outcome band. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not substrate randomness; it is unresolved state sensitivity inside a deterministic causal-history model.
+
+## Path-History Provenance
+
+Path-history provenance lets a simulation record support replay and audit, not merely trajectory display. A provenance-rich run keeps stable identities for modeled architrinos and assemblies, authoritative path segments for position and velocity, causal-root rows, delayed source-state rows, assembly-membership intervals, and reaction or record-forming event references. Those records let a later audit ask which source history, emitted causal wake, receiver state, Noether sea context, and outgoing assembly record produced a synthetic observation.
+
+This does not make the simulator a physical observer and does not require unbounded storage of $\mathbb{U}_{\text{now}}$. The scope envelope decides how much provenance is retained, at what resolution, for which entities, and under which replay or compression authority. Full path retention is valuable only where it changes the scientific claim: reaction balancing, branch replay, process demographics, detector-synthetic output, or failure analysis.

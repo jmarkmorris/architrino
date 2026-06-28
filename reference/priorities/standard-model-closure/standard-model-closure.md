@@ -18,6 +18,10 @@
 5. `scalar_boson_acceptance` — Add the ATLAS Higgs discovery benchmark as a Standard Model closure target: scalar mass $126.0\pm0.4\text{ (stat)}\pm0.4\text{ (sys)}\,\mathrm{GeV}$, signal strength $\hat{\mu}=1.4\pm0.3$, channel-rate compatibility for $ZZ^{(*)}4\ell$, $\gamma\gamma$, and $WW^{(*)}\ell\nu\ell\nu$, and excluded-scalar-window pressure. Status: `pending`. Depends on: `weak_sector_gauge_closure`, mass-map scalar-response handoff.
 6. `nuclear_potential_derivation` — Consume the promoted nuclear benchmark ladder and derive or constrain the signs, ranges, and saturation behavior of $V_{\text{excl}}$, $V_{\text{Coul}}$, $V_{\pi/\text{corr}}$, and $V_{\text{sea-pol}}$ from hadronic geometry, meson-like corridors, and Noether sea polarization. Status: `derivation-pending`; benchmark gates already promoted. Depends on: `confinement_energetics`.
 7. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether sea coarse-graining boundaries. Status: `tolerance-rule-scaffolded`. Depends on: `confinement_energetics`, `nuclear_potential_derivation`.
+8. `supersymmetry_internal_partner_comparison` — Treat supersymmetry-like organization as a comparison framework for internal branch degrees of freedom and null-result pressure, not as a prediction of external low-energy superpartner particles. Status: `pending`. Depends on: gauge-running residuals, LHC null-result bounds, and branch-record algebra.
+9. `lattice_qcd_direct_assembly_comparison` — Compare lattice-QCD benchmark observables against a future finite-assembly nucleon simulation without claiming lattice QCD is obsolete before masses, form factors, and scattering rows are recovered. Status: `pending`. Depends on: `confinement_energetics`, `nuclear_potential_derivation`, and simulations `direct_nucleon_assembly_monte_carlo`.
+10. `e8_redundancy_heuristic_audit` — Treat $248=256-8$ only as a speculative quotient/redundancy clue for algebra mapping, not as evidence that E8 is native ontology. Status: `pending`. Depends on: accepted branch-state records and gauge-record rows.
+11. `quark_vortex_coupling_simulation` — Build a finite-assembly quark-era simulation target that tests whether vortex-like wake coupling can recover confinement behavior, quark stability, and gluon-comparison observables without bypassing the color-singlet ledger. Status: `pending`. Depends on: `confinement_energetics`, `lattice_qcd_direct_assembly_comparison`.
 
 ## Scope
 
@@ -26,6 +30,77 @@ This workstream owns the remaining Standard Model-facing closure tasks that are 
 The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in place. The remaining leverage is mass prediction, explicit overlap-integral flavor mixing, confinement energetics, weak-sector exposure/gauge closure, and nuclear coarse-graining. Weak `V-A` chirality and weak-reaction provenance are preserved as subgates of `weak_sector_gauge_closure`, not as separate top-level queue items.
 
 The hydrogen boundary question is now a staged standard-model-to-atomic bridge. Its value is not another validation gate; it is the first clean local map between four charged fermion assemblies, the proton's color-singlet closure, the electron resonance envelope, and the ambient Noether sea coarse-graining used as local spacetime.
+
+## E8 Redundancy Heuristic Boundary
+
+E8 remains a comparison framework, not a native ontology. The only retained legacy-source signal is the speculative arithmetic clue that a $256$-state branch-pair or sign/velocity inventory might lose eight rows under a reversal, gauge, or branch-record equivalence, leaving a $248$-dimensional comparison surface. That clue is priority-only until a declared $\mathbb{A}\mathbb{A}\mathbb{A}$ branch-state space supplies the $256$ rows, the eight-row quotient, and at least one accepted Standard Model gauge-record recovery.
+
+The first audit object is
+$$
+\mathcal{Q}_{248/256}
+=
+\left(
+\mathcal{S}_{256},
+\mathcal{E}_8,
+\pi_{\mathrm{quot}},
+\mathcal{G}_{\mathrm{SM}},
+\mathcal{R}_{\mathrm{fit}}
+\right),
+$$
+where $\mathcal{S}_{256}$ is the candidate branch-state inventory, $\mathcal{E}_8$ is the eight-row equivalence or redundancy, $\pi_{\mathrm{quot}}$ is the quotient map, $\mathcal{G}_{\mathrm{SM}}$ is the Standard Model gauge-record comparison, and $\mathcal{R}_{\mathrm{fit}}$ reports whether any accepted row is recovered. Failure is the default if the number match does not produce a physical branch record.
+
+## Supersymmetry Comparison Boundary
+
+Supersymmetry is a comparison framework unless a retained $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record supplies the algebra, spectra, and null-result discipline from native variables. The safe legacy-source signal is that some "partner" structure might be internal to a shielded assembly branch rather than a second external particle spectrum. That idea is useful only as a restricted comparison:
+
+$$
+\mathcal{R}_{\mathrm{SUSY}\text{-}\mathrm{cmp}}
+=
+\left(
+R_{\mathrm{alg}},
+R_{\mathrm{spin/stat}},
+R_{\mathrm{mass}},
+R_{\mathrm{coupling}},
+R_{\mathrm{null}}
+\right),
+$$
+
+where $R_{\mathrm{alg}}$ asks whether the branch record has a supersymmetry-like organizing algebra, $R_{\mathrm{spin/stat}}$ compares spin/statistics pairing behavior, $R_{\mathrm{mass}}$ and $R_{\mathrm{coupling}}$ compare the missing external spectrum, and $R_{\mathrm{null}}$ carries LHC and other superpartner null bounds. The comparison succeeds only if it explains why supersymmetry-like mathematics can organize sectors while observed low-energy superpartners remain absent. It does not promote superpartners into native ontology.
+
+## Lattice-QCD And Direct Assembly Comparison
+
+Lattice QCD remains a required comparison benchmark for hadronic observables. The native aspiration is a finite-assembly calculation in which a declared nucleon inventory, causal-root ledger, Noether sea embedding, and color-corridor record produce the same observer-level quantities without importing QCD fields as primitives. The comparison target is
+
+$$
+\mathcal{R}_{\mathrm{QCD}\text{-}\mathrm{asm}}
+=
+\left(
+R_m,\,
+R_{\mathrm{form}},\,
+R_{\mathrm{spin}},\,
+R_{\mathrm{scatter}},\,
+R_{\mathrm{scheme}}
+\right),
+$$
+
+where the rows compare hadron masses, form factors, spin decomposition, scattering or matrix-element benchmarks, and the lattice scheme/continuum conventions being matched. The claim level is priority-only until a direct finite-assembly simulation recovers accepted hadronic observables with declared negative controls.
+
+### Quark Vortex-Coupling Simulation Target
+
+The quark-era source-mining signal is useful only as a simulation target. A candidate finite-assembly run should retain quark-like nested shell braid records with axial layers, a color-singlet constraint, and vortex-like wake-coupling rows:
+$$
+\Theta_q
+=
+\left(
+B_q,
+A_q,
+C_q,
+V_{\mathrm{wake}},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}},
+\mathcal{P}_{\mathrm{singlet}}
+\right).
+$$
+The first comparison should ask whether the retained records produce stable hadron-like bound states, confinement-scale growth with separation, and gluon-comparison transition behavior before importing QCD language as ontology. Failure modes include a stable free-quark branch, color leakage outside a singlet ledger, and a fitted force law that does not arise from the retained wake-coupling rows.
 
 ## Scalar-Boson Acceptance Target
 

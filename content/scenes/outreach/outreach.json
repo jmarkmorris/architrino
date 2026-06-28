@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "outreach",
+    "title": "Outreach",
+    "type": "Scene-Index",
+    "units": "relative",
+    "layout": {
+      "type": "rings"
+    },
+    "wrapLabels": true,
+    "children": [
+      {
+        "nodeId": "reductionist_universe",
+        "scenePath": "content/scenes/cosmology/universe.json"
+      },
+      {
+        "nodeId": "comics",
+        "scenePath": "content/scenes/outreach/comics.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "reductionist_universe",
+      "title": "Reductionist Universe",
+      "radius": 2.4,
+      "color": "#243d8f",
+      "labelTitle": "Reductionist Universe"
+    },
+    {
+      "id": "comics",
+      "title": "Comics",
+      "radius": 2.4,
+      "color": "#be123c",
+      "labelTitle": "Comics",
+      "labelBadge": "doc"
+    }
+  ]
+}

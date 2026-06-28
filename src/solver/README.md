@@ -17,7 +17,7 @@ node scripts/solver-toolchain-preflight.mjs
 To override it for a shell session:
 
 ```bash
-export EM_CACHE=/private/tmp/architrino-emcache
+export EM_CACHE="${TMPDIR:-/tmp}/architrino-emcache"
 ```
 
 ## Smoke Builds

@@ -1,4 +1,9 @@
 import { isElementScene } from "../services/SceneCapabilitiesService.js";
+import { SCENE_CHAPTER_MARKER_RADIUS_SCALE } from "./SceneLabelSizingRuntime.js";
+import {
+  isSceneSphereSizingNode,
+  resolveSharedSceneSphereRadius,
+} from "./SceneSphereSizingRuntime.js";
 import {
   RING_LAYOUT_DEFAULTS,
   getRingDirectionSign,
@@ -163,7 +168,7 @@ export function createSceneGraphRuntime(deps) {
     const { requiredChord } = getLayoutPackingMetrics(nodes);
     const ringLayoutOptions = normalizeRingLayoutOptions(options);
     const startAngle = RING_LAYOUT_DEFAULTS.startAngle;
-    const ringRadius = ringSelfRadius(count, requiredChord);
+    const ringRadius = Math.max(ringSelfRadius(count, requiredChord), requiredChord);
     return buildRingPoints(
       count,
       ringRadius,
@@ -226,7 +231,10 @@ export function createSceneGraphRuntime(deps) {
 
     const scoreCandidate = (candidate) => {
       if (candidate.innerCount === 0) {
-        const outerRadius = ringSelfRadius(candidate.outerCount, requiredChord);
+        const outerRadius = Math.max(
+          ringSelfRadius(candidate.outerCount, requiredChord),
+          requiredChord
+        );
         return {
           ...candidate,
           outerRadius,
@@ -419,7 +427,7 @@ export function createSceneGraphRuntime(deps) {
     }
     node.mesh.geometry = new deps.THREE.SphereGeometry(radius, 32, 20);
     if (node.chapterLabelObject) {
-      node.chapterLabelObject.position.set(0, -radius * 0.7, 0);
+      node.chapterLabelObject.position.set(0, -radius * SCENE_CHAPTER_MARKER_RADIUS_SCALE, 0);
     }
     if (node.outline?.geometry) {
       node.outline.geometry.dispose();
@@ -668,11 +676,19 @@ export function createSceneGraphRuntime(deps) {
     const spacing = config.spacing ?? 7;
     const centerOffset = (config.nodes.length - 1) / 2;
     const isElementLevel = isElementScene({ id: levelId });
+    const sharedSceneSphereRadius = resolveSharedSceneSphereRadius(config.nodes);
 
     config.nodes.forEach((nodeDataRaw, index) => {
       const nodeData = deps.cloneNodeData(nodeDataRaw);
       if (nodeData.category === "legend") {
         return;
+      }
+      if (
+        Number.isFinite(sharedSceneSphereRadius) &&
+        sharedSceneSphereRadius > 0 &&
+        isSceneSphereSizingNode(nodeData)
+      ) {
+        nodeData.radius = sharedSceneSphereRadius;
       }
       const usesFixedPosition = nodeData.fixedPosition === true;
       if (explicitRingsPositions && !usesFixedPosition) {

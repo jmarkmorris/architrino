@@ -1,6 +1,6 @@
 # Story Design
 
-This document defines what the children's book series should teach, how the concepts should unfold by age, and what story framing to avoid.
+The children's book series teaches a single cumulative story: children notice nature, ask a concrete question, test what happens, and discover one lawful pattern at a time.
 
 ## Core Aim
 
@@ -39,7 +39,7 @@ The series uses numbered books. For Books `1-16`, the numbers are calibrated to 
 
 > **For the initial line, Book N is designed around the developmental year from age N-1 to age N, but readers move self-paced.**
 
-Book `1` is calibrated to ages `0-1`. Book `2` is calibrated to ages `1-2`. Book `16` is calibrated to ages `15-16` and acts as the capstone of the initial line. These targets guide language, scenes, caregiver role, and expected abstraction level; they do not say that a reader must be exactly that age. The series may later add companion, activity, merchandise, or advanced follow-on books, but the core curriculum should read as one grand story from birth through the first capstone: **The Wonder of Nature and the Universe**.
+Book `1` is calibrated to ages `0-1`. Book `2` is calibrated to ages `1-2`. Book `16` is calibrated to ages `15-16` and acts as the capstone of the initial line. These targets guide language, scenes, caregiver role, and expected abstraction level; they do not say that a reader must be exactly that age. The core curriculum should read as one grand story from birth through the first capstone: **The Wonder of Nature and the Universe**.
 
 Manuscript files are the source of truth for story review. Images, page exports, PDFs, and social derivatives are generated only after text approval and image-planning approval.
 

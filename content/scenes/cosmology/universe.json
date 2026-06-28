@@ -38,83 +38,53 @@
       "label": "cosmic void",
       "radius": 2.05,
       "color": "#5a1f2e",
-      "position": [
-        -5.2,
-        5.6,
-        0
-      ],
       "motion": {
         "type": "fixed"
       },
       "labelTitle": "cosmic void",
       "details": {
         "interpretation": "Cosmological voids are not empty. In this model they remain active Noether sea regions with photon and neutrino transport, occasional hydrogen atoms, and possible high-energy photon reaction channels."
-      },
-      "fixedPosition": true
+      }
     },
     {
       "id": "cosmic_web",
       "label": "cosmic web",
       "radius": 2.05,
       "color": "#2f4f7a",
-      "position": [
-        5.2,
-        5.6,
-        0
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "cosmic web",
-      "fixedPosition": true
+      "labelTitle": "cosmic web"
     },
     {
       "id": "galaxy_cluster",
       "label": "galaxy cluster",
       "radius": 2.05,
       "color": "#4b0082",
-      "position": [
-        0,
-        0.6,
-        0
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "galaxy cluster",
-      "fixedPosition": true
+      "labelTitle": "galaxy cluster"
     },
     {
       "id": "galaxy",
       "label": "galaxy",
       "radius": 2.05,
       "color": "#3f6a5a",
-      "position": [
-        -4.8,
-        -4.8,
-        0
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "galaxy",
-      "fixedPosition": true
+      "labelTitle": "galaxy"
     },
     {
       "id": "intracluster_medium",
       "label": "intracluster medium",
       "radius": 2.05,
       "color": "#6a4d1b",
-      "position": [
-        4.8,
-        -4.8,
-        0
-      ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "intracluster medium",
-      "fixedPosition": true
+      "labelTitle": "intracluster medium"
     }
   ]
 }

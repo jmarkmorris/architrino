@@ -1,12 +1,10 @@
 # Book 9 Image-Generation Brief: The Tiny Transceivers
 
-Use this brief after Book 8 review, before adding Book 9 back into `generation-manifest.json`.
-
 ## Master Style Prompt
 
 Generate text-free 3:2 landscape source illustrations for **The Tiny Transceivers**, Book 9 of **The Wonder of Nature and the Universe**.
 
-Match the Book 1 through Book 8 first-draft visual direction, with Book 9 focused on explicit architrinos, two intrinsic kinds, persistent paths, transmission, reception, and first inward/outward response intuition.
+Use the established series visual direction, with Book 9 focused on explicit architrinos, two intrinsic kinds, persistent paths, transmission, reception, and first inward/outward response intuition.
 
 - Electra is a young child with medium-brown skin, dark curly hair in two small puffs, and simple white-and-lavender play clothes.
 - Poz is a young child with light-brown skin, short straight dark hair, and simple white-and-purple play clothes.
@@ -92,9 +90,3 @@ A clean text-free adult-led point-with-path activity: Electra and Poz sit beside
 ### Backmatter Activity 2
 
 A clean text-free adult-led send-and-receive activity: Electra and Poz watch while a small grown-up hand points to an earlier red source position, a soft red wake traveling from it, and a blue point whose path bends after the wake arrives. Keep the activity on one white tabletop lab surface with sparse red, blue, and purple geometry. Do not use labels, numbers, rulers, grids, panels, equations, warning symbols, or detached diagrams.
-
-## Notes Before Generation
-
-- Book 9 should have `17` source images: cover, 14 story spreads, and 2 backmatter activity images.
-- Do not generate Book 9 until Book 8 source images and layout are reviewed.
-- After approval, add Book 9 to `tools/build_generation_manifest.py` with `back_matter_count` set to `2`, add production prompt blocks to `the-tiny-transceivers.md`, rebuild the manifest, generate sources with the built-in `image_gen` workflow used for Books 1-8, run QA, render pages, create a review contact sheet, then refresh the manifest again.

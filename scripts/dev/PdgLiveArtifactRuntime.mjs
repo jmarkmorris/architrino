@@ -48,9 +48,18 @@ function formatRefreshFailure(error, stderr) {
   return details ? `${message}\n${details}` : message;
 }
 
-function resolvePreferredPythonExecutablePath() {
-  const preferredPath = "/Users/markmorris/vibe/.venv/bin/python";
-  return existsSync(preferredPath) ? preferredPath : "python3";
+function resolvePreferredPythonExecutablePath(environment = process.env) {
+  const explicitPath = String(environment.AAA_PYTHON || "").trim();
+  if (explicitPath) {
+    return explicitPath;
+  }
+  const virtualEnvPath = String(environment.VIRTUAL_ENV || "").trim();
+  const virtualEnvPythonPath = virtualEnvPath ? join(virtualEnvPath, "bin/python") : "";
+  if (virtualEnvPythonPath && existsSync(virtualEnvPythonPath)) {
+    return virtualEnvPythonPath;
+  }
+  const repoAdjacentVenvPythonPath = resolve(DEFAULT_REPO_ROOT, "../.venv/bin/python");
+  return existsSync(repoAdjacentVenvPythonPath) ? repoAdjacentVenvPythonPath : "python3";
 }
 
 function buildRefreshEnvironment(baseEnvironment = process.env, pythonExecutablePath = "") {
@@ -66,7 +75,7 @@ function buildRefreshEnvironment(baseEnvironment = process.env, pythonExecutable
 export function createPdgLiveArtifactRuntime({
   repoRootPath = DEFAULT_REPO_ROOT,
   refreshScriptPath = DEFAULT_PDG_LIVE_ARTIFACT_REFRESH_SCRIPT_PATH,
-  pythonExecutablePath = resolvePreferredPythonExecutablePath(),
+  pythonExecutablePath,
   watchRelativePaths = DEFAULT_PDG_LIVE_ARTIFACT_WATCH_RELATIVE_PATHS,
   refreshDebounceMs = 150,
   execFileImpl = execFile,
@@ -80,6 +89,8 @@ export function createPdgLiveArtifactRuntime({
   let queuedRefreshTimer = null;
   let activeRefreshPromise = null;
   const watchers = [];
+  const resolvedPythonExecutablePath =
+    pythonExecutablePath || resolvePreferredPythonExecutablePath(environment);
 
   function writeLogLine(message) {
     const text = String(message || "").trim();
@@ -103,11 +114,11 @@ export function createPdgLiveArtifactRuntime({
     activeRefreshPromise = new Promise((resolvePromise, rejectPromise) => {
       queueMicrotask(() => {
         execFileImpl(
-          pythonExecutablePath,
+          resolvedPythonExecutablePath,
           [refreshScriptPath],
           {
             cwd: repoRootPath,
-            env: buildRefreshEnvironment(environment, pythonExecutablePath),
+            env: buildRefreshEnvironment(environment, resolvedPythonExecutablePath),
           },
           (error, stdout, stderr) => {
             activeRefreshPromise = null;

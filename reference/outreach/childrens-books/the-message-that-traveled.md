@@ -10,8 +10,6 @@ Wonder question: How can a message arrive later?
 
 Discovery sentence: A message can be real before it reaches you.
 
-Text status: first-draft source images generated; landscape pages and derivatives exported. QA and manual geometry review pending.
-
 ## Book Promise
 
 This kindergarten book teaches:

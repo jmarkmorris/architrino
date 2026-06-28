@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1467
+      "sections": 1472
     }
   },
   "tocRoot": {
@@ -244,6 +244,14 @@
                 "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
                 "markdownSection": "Core Concept",
                 "sectionKey": "core concept",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Time Implementation Ladder",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Time Implementation Ladder",
+                "sectionKey": "time implementation ladder",
                 "headingLevel": 2
               },
               {
@@ -4621,6 +4629,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Quantum-Number Ledger Roles",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
+                    "markdownSection": "Quantum-Number Ledger Roles",
+                    "sectionKey": "quantum number ledger roles",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Weak Isospin ($T_3$) and Chirality",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
                     "markdownSection": "Weak Isospin ($T_3$) and Chirality",
@@ -8413,6 +8429,22 @@
                     "markdownPath": "content/markdown/aaa/validation/simulations/README.md",
                     "markdownSection": "Simulation Frame: Virtual $\\mathbb{U}_{\\text{now}}$ Perspective",
                     "sectionKey": "simulation frame virtual mathbb u text now perspective",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Simulation Scope Envelope",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/README.md",
+                    "markdownSection": "Simulation Scope Envelope",
+                    "sectionKey": "simulation scope envelope",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Path-History Provenance",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/README.md",
+                    "markdownSection": "Path-History Provenance",
+                    "sectionKey": "path history provenance",
                     "headingLevel": 2
                   }
                 ]
@@ -13407,6 +13439,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
                 "markdownSection": "Functional Agency",
                 "sectionKey": "functional agency",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Biological and Artificial Embodiments",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Biological and Artificial Embodiments",
+                "sectionKey": "biological and artificial embodiments",
                 "headingLevel": 2
               },
               {

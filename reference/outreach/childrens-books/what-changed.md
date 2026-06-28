@@ -10,8 +10,6 @@ Wonder question: What changed?
 
 Discovery sentence: Change one thing, compare what happened, and learn from the difference.
 
-Text status: first-draft source images generated; landscape pages and derivatives exported. QA and manual geometry review pending.
-
 ## Book Promise
 
 This pre-K book teaches:

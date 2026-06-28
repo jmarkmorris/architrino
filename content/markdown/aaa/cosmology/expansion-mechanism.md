@@ -100,6 +100,8 @@ For modeling and diagnostics, separate at least three effective channels:
 - source/observer relative-motion (Doppler-like) contribution,
 - propagation contribution from traversed Noether sea state and gradients.
 
+The inferred distance is a fourth observer-level output, not an input identity. A redshift record can support an inferred distance only after the endpoint clock rows, launch geometry, path-history propagation term, and calibration model have been declared. The fixed-void source-receiver separation, the photon-channel path length through the Noether sea, and the distance returned by a supernova, BAO, or CMB inference pipeline may agree in a weak homogeneous limit, but outside that limit they are different projections of one retained record. This prevents cosmological redshift from being silently promoted into absolute distance.
+
 ### Absolute Record Interpretation
 
 The substrate record is not a collection of observer frames. It is the evolving universe state
@@ -227,6 +229,8 @@ $$
 
 where $E_{\mathrm{arch}}$ collects architrino kinetic and configuration energy, $E_{\mathrm{wake}}$ collects causal-wake energy in flight, and $E_{\mathrm{sea}}$ collects Noether sea constitutive energy. This is a conservation target rather than a proved theorem until the delayed action or a quasi-Noether replacement supplies the required invariant.
 
+The speed rows must stay separated inside this ledger. The transparent record-bearing bundle propagates as the dressed photon channel at $c_\gamma(\mathbf{x},t)$, as used in the path-time integral below. Primitive causal wakes and Noether sea exchange remain constrained by $c_f$ and enter the sink bookkeeping through $E_{\mathrm{wake}}$ and $E_{\mathrm{sea}}$. Observer clock and ruler reconstruction belongs to $c_{\text{eff}}$, while $c_0$ is only the weak homogeneous calibration value. A redshift branch therefore cannot use $c_f$ as the observed photon-channel speed, nor can it let the energy sink induce an unbounded or frequency-dependent $c_\gamma(\omega)$ residual without failing image sharpness and time-of-flight constraints.
+
 The global form also assumes that the total energy on the constant-$t$ leaf is finite or convergently summable. If an unbounded populated Noether sea does not admit that sum, the operational conservation statement is local continuity on bounded regions:
 
 $$
@@ -262,6 +266,8 @@ $$
 $$
 
 The same term $\Delta E_{\mathrm{sea,path}}$ is then not adjustable per observable. It must be the energy face of the transport operator that preserves occupation shape and image sharpness; its path integral must recover redshift-distance and observed $(1+z)$ time dilation; and its spatial gradient must remain compatible with the lensing and growth budgets. If those rows require separate Noether sea responses, the branch has reproduced the standard tension split rather than closing it.
+
+The long-time balance is an additional stability condition on the same ledger. A redshift branch may not let $\Delta E_{\mathrm{sea,path}}$ accumulate as unbounded secular heating of the Noether sea. Over cosmic history, the deposited path energy must be routed through the declared source/release, black-hole recycling, Noether sea equilibration, or boundary-flux rows already used by the cosmology module. If the transparent-path sink closes locally but drives $E_{\mathrm{sea}}$ without a compensating recycling or relaxation balance, the branch has conserved energy only by moving the divergence into the medium sector.
 
 ### Observable Frequency Form
 
@@ -459,6 +465,8 @@ $$
 
 If the endpoint, launch, and propagation terms can be made to fit only by changing $\Pi_N S$, $\Pi_E S$, $\Pi_\gamma S$, or the coefficient row independently for each observational family, then the factorization is a useful diagnostic but not yet an $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
 
+The same response record also touches the Lorentz sector. The $\chi_{\text{sea}}(\mathbf{x},t)$ row that appears in cosmological clock and transport comparisons is not allowed to take sector-specific values when the theory turns to clock/ruler retuning, photon-channel timing, or preferred-frame leakage. A candidate cosmology closure must therefore remain compatible with the Lorentz common-mode response: one Noether sea record should support redshift, CMB transfer, lensing, growth, clock export, and preferred-frame hiding rather than fitting each sector with a private medium law.
+
 ### Coherent Photon-Channel Bundle Transport
 
 The transparent-path part of the redshift map cannot be an ordinary thermalizing loss process. Thermalization can prepare a radiation bath before the free-streaming record is fixed, and source/release regions can exchange energy with photon-channel packets. But once a photon bundle is being used as a transparent cosmological record, the admissible transport is a coherent rescaling map.
@@ -481,7 +489,13 @@ with the bundle map also satisfying
 $$
 \|\Delta\mathbf{k}_{\perp}\|\le \epsilon_{\mathrm{img}},
 \qquad
-|\Delta\phi_{\perp}|\le \epsilon_{\mathrm{coh}}
+|\Delta\phi_{\perp}|\le \epsilon_{\mathrm{coh}},
+\qquad
+\sup_{\omega_a,\omega_b}
+\left|
+\frac{v_{g,\gamma}(\omega_a)-v_{g,\gamma}(\omega_b)}{c_0}
+\right|
+\le\epsilon_{\mathrm{tof}}
 $$
 
 after declared lensing, aperture, and detector terms have been removed. Equivalently, let $\mathcal{D}_{\lambda}$ denote global frequency dilation on the admitted photon-channel band and let $\mathcal{G}_{\mathrm{tr}}$ denote the transparent-transport generator. The coherent branch must satisfy
@@ -490,10 +504,12 @@ $$
 [\mathcal{G}_{\mathrm{tr}},\mathcal{D}_{\lambda}]_{\mathrm{band}}
 =O(\epsilon_{\mathrm{spec}}),
 \qquad
-\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})
+\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}}),
+\qquad
+\partial_\omega v_{g,\gamma}=O(\epsilon_{\mathrm{tof}})
 $$
 
-for the declared path-depth and Noether sea state. In words: the path term may shift every mode by the same fractional factor, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, or undeclared transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name.
+for the declared path-depth and Noether sea state. In words: the path term may shift every mode by the same fractional factor, but it may not hide stochastic photon creation, absorption/re-emission, chromatic diffusion, frequency-dependent group velocity, or undeclared transverse momentum transfer inside the redshift coefficient. If it does, it has reproduced the tired-light failure mode under a more sophisticated name or failed the long-baseline photon time-of-flight row.
 
 ### Equilibrium-Transport Candidate for Path History
 
@@ -760,6 +776,36 @@ $$
 is the trace-free strain-rate part, with contractions taken using the Euclidean spatial metric $h_{ij}$. The coefficients $a_\chi^X$, $a_n^X$, $a_R^X$, $a_u^X$, and $a_S^X$ are dimensionless closure coefficients for the line family $X$, not independent fitting parameters for each object. The residual $\mathcal{R}_{\mathrm{prop},X}$ contains unresolved higher-order and anisotropic terms and must be bounded by the same image-sharpness, coherence, and time-dilation constraints that exclude ordinary tired-light loss.
 
 This ansatz gives the distance ladder a concrete target: recover the observed low-redshift slope from the leading homogeneous part of $\alpha_{\mathrm{prop},X}$, while requiring local gravitational redshift, motion, and source-branch changes to be removed before fitting path accumulation.
+
+The same path coefficient must also close an energy-transfer ledger. If the source and receiver use the same photon packet after endpoint and source-branch factors have been separated, the path contribution gives
+$$
+\frac{d\ln\nu_\gamma}{d\ell}
+=
+-\alpha_{\mathrm{prop},X},
+\qquad
+\frac{dE_\gamma}{d\ell}
+=
+-E_\gamma\alpha_{\mathrm{prop},X},
+$$
+with $E_\gamma=h\nu_\gamma$ on the retained photon-channel ledger. Conservation then requires a compensating path row
+$$
+\mathcal R_{E,\mathrm{prop}}
+=
+\frac{
+\left|
+\frac{dE_\gamma}{d\ell}
++
+\frac{dE_{\mathrm{sea,path}}}{d\ell}
++
+\frac{dE_{\mathrm{recoil/path}}}{d\ell}
++
+\frac{dE_{\mathrm{rem/path}}}{d\ell}
+\right|
+}{
+|dE_\gamma/d\ell|+\varepsilon_E
+}
+$$
+that vanishes in a valid propagation-redshift segment. The term $E_{\mathrm{sea,path}}$ is the Noether sea uptake or release associated with the same local transport record; $E_{\mathrm{recoil/path}}$ and $E_{\mathrm{rem/path}}$ are retained only when the path segment crosses material, strong-gradient, or nontransparent regions. In transparent cosmological use those latter rows should be negligible, and the surviving energy transfer must still preserve image sharpness and $(1+z)$ time dilation. This keeps propagation redshift from becoming untracked photon energy loss under another name.
 
 ### First-Order Coefficient Constraints
 
@@ -1216,6 +1262,18 @@ $$
 $$
 
 The useful first question is whether local voids, filaments, clusters, galaxy halos, and strong-source recycling environments share one $\alpha_{\mathcal{E},X}$ within tolerance after endpoint cadence, launch geometry, and source-branch factors have been removed. If they do not, a single all-sky $H_0$ is a lossy summary of distinct redshift-transfer environments.
+
+For a resolved line of sight, the environment version should be additive in the logarithmic transfer variable rather than averaged only at the end. If the path is divided into segments $j$ with environment labels $\mathcal{E}_j$, write
+$$
+Y_{X,E\to R}
+=
+Y_{\mathrm{endpoint},X}
++Y_{\mathrm{source},X}
++Y_{\mathrm{launch},X}
++\sum_{j=1}^{N}
+\Delta Y_{X,j}(\mathcal{E}_j,\theta_{\mathrm{sea},j}),
+$$
+with each $\Delta Y_{X,j}$ allowed to be positive, negative, or negligible only when its energy, medium-update, and coherence rows close in the same transport record. This segment form is the mathematical place for galaxy-local expansion-like regions, contraction-like regions, cluster crossings, void paths, and strong-source recycling environments. A fitted Hubble-like slope is then a coarse derivative of this path sum, not a primitive universal constant.
 
 ### $\Lambda\mathrm{CDM}$ Reference Curve
 

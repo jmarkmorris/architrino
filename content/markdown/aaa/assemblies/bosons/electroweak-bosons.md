@@ -398,6 +398,24 @@ The ideal-analyzer closure target is $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\math
 
 The same material-projector logic should govern ordinary surfaces. A metal, absorber, dielectric, or analyzer is not a passive wall for a photon object. It supplies a material return map whose electron-envelope, nuclear-source, bonding/lattice, and Noether sea records decide whether the incoming transverse ledger is coherently re-released, captured, scattered, routed into $B_{\mathrm{heat}}$, or retained as a bound excitation. Here $B_{\mathrm{heat}}$ is a declared heating channel in which captured action thermalizes through electron-envelope, bonding/lattice, and Noether sea ensemble updates rather than disappearing into untracked heat. In this framing a reflected photon is an outgoing coaxial contra-rotating pro/anti planar pair with a new path-history ledger, while an absorbed photon has no remaining free planar-pair identity even though its energy, momentum, transverse angular momentum, and medium update remain in the event record. That statement covers surface capture, heating, bound excitation, and coherent re-release. It should not be read as a shortcut for pair production, photoproduction, or any other channel with different outgoing Standard Model assemblies; those channels need their own identity-routing rows. This is a Gate C surface-routing target, not a completed proof of reflectivity, opacity, or blackbody behavior.
 
+The same return-map language distinguishes common polarization material effects without adding new photon species. A local material response maps the incoming transverse ledger to the outgoing ledger by
+$$
+a_{\perp,\mathrm{out}}^a
+=
+T_\Omega{}^a{}_{b}(\omega,\hat{\mathbf e})\,
+a_{\perp,\mathrm{in}}^b
++r_\Omega^a,
+$$
+where $T_\Omega$ is the effective response of the material branch $\Omega$ and $r_\Omega^a$ carries capture, heat, scattering, or remnant leakage. In this notation:
+
+| Optical effect | Material return-map reading | Required ledger behavior |
+| --- | --- | --- |
+| Birefringence | two transverse eigenchannels accumulate different phase delays | phase split with bounded absorption and one shared material response record |
+| Dichroism | one transverse channel has larger capture or dephasing probability | differential $B_{\mathrm{cap}}$, $B_{\mathrm{heat}}$, or $B_{\mathrm{scat}}$ routing, not a new photon ontology |
+| Optical activity | the material branch rotates the transverse ledger in the helicity or circular basis | handed phase rotation with no free longitudinal photon mode |
+
+Thus polarization optics becomes a material-response classification layered on top of Gate B. The photon ledger remains the same coaxial contra-rotating pro/anti planar pair; the material decides which transverse components are phase-delayed, captured, re-released, or rotated.
+
 The polarization-pair no-signaling test is part of the same gate. For entangled photon preparations with analyzer settings $\alpha,\beta$, the completed ledger must recover setting-independent local marginals:
 
 $$
@@ -439,6 +457,48 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
 
 The weak corridor is an event record, not a permanent container that owns the outgoing fermion inventory. Its provenance rows must identify which architrinos participate, which neutral Noether braids supply the scaffold, which payload moves through the corridor, and where the balancing recoil is stored.
 
+In the reaction-stage chronology, axial architrino association is the boundary at which weak-visible channels become meaningful. The photon comparison asks whether a planar-pair channel can propagate with a transverse phase ledger; the $W/Z$ comparison asks whether an axial payload can be routed through a short-lived corridor with vector directionality and finite stiffness; the Higgs comparison asks whether the Noether sea supports a scalar radial response tied to the same mass-channel ledger. These are three observer-level channel roles, not three independent substances added to the substrate.
+
+For a resolved weak-corridor event $\mathsf e$, the substrate record should expose the corridor row as a routed output rather than as a primitive particle mass:
+$$
+Y_{\mathsf e}^{W/Z}
+=
+\left(
+\Delta A_W,
+N_{\mathrm{NB}}^{\mathrm{corr}},
+E_{\mathrm{sh}\to W/Z},
+\mathcal Q_{\mathrm{corr}},
+\mathcal Q_{\mathrm{recoil}},
+\mathcal Q_{\mathrm{sea}}
+\right)
+$$
+Here $\Delta A_W$ is the axial-inventory payload, $N_{\mathrm{NB}}^{\mathrm{corr}}$ records any neutral Noether braid scaffold recruited into the corridor, $E_{\mathrm{sh}\to W/Z}$ records shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, and the $\mathcal Q$ rows carry energy, momentum, angular momentum, polarity, architrino inventory, path-history, and medium update terms. For each conserved or routed quantity $\mathcal Q\in\{E,\mathbf p,\mathbf J,\mathrm{pol},\mathrm{arch},\mathrm{path},\mathrm{med}\}$, closure requires a balance of the form
+$$
+\Delta\mathcal Q_{\mathrm{src}}^{0}
++
+\Delta\mathcal Q_{\mathrm{sea}}^{0}
+=
+\mathcal Q_{\mathrm{corr}}^{0}
++
+\mathcal Q_{\mathrm{products}}^{0}
++
+\mathcal Q_{\mathrm{recoil}}^{0}
++
+\mathcal Q_{\mathrm{rem}}^{0}.
+$$
+This is the local mathematical burden behind the claim that a $W/Z$ corridor can appear massive and short-lived without becoming an elementary container that manufactures outgoing fermion identity.
+
+The exposed-energy burden is therefore stricter than saying that the weak corridor is heavy. The Standard Model $W/Z$ scale must be recovered as the apparent energy cost of a routed event in which shielded assembly energy becomes corridor stiffness and bounded Noether sea participation:
+$$
+\Delta E_{\mathrm{EW}}^{\mathsf e}
+=
+E_{\mathrm{stiff}}^{\mathrm{corr}}
++E_{\mathrm{sh}\to W/Z}
++E_{\mathrm{sea}}^{\mathrm{bound}}
++O(\epsilon_{\mathrm{corr}}).
+$$
+The same event record must also recover low-energy weak rates after the corridor is integrated out. If the apparent $W/Z$ mass scale is fit separately from the corridor payload, axial-inventory routing, and recoil/medium rows, the weak channel has imported a mass parameter rather than deriving one.
+
 | Corridor event | Participating architrinos | Neutral Noether braid provenance | Corridor payload | Required ledger closure |
 | --- | --- | --- | --- | --- |
 | Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3P$ and active $3E$; the shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral core provenance; the corridor does not manufacture a new Noether braid. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3P\to3E$, while emitting $W^-$ balances a source-side $3E\to3P$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether sea recoil must close across the source assembly, target assembly or reaction products, corridor, and ambient Noether sea. |
@@ -477,6 +537,19 @@ This is not a new substrate interaction. It is the low-energy observer limit of 
 
 ### Effective Mass Scales
 *   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
+    For a resolved weak event $\mathsf e$ observed through an event window $\mathcal W$, the effective mass-scale target can be written schematically as
+    $$
+    M_{W/Z}^{\mathrm{eff}}(\mathsf e;\mathcal W)c_0^2
+    =
+    E_{\mathrm{corr}}^{\mathrm{app}}(\mathcal W)
+    =
+    E_{\mathrm{stiff}}^{\mathrm{corr}}(\mathcal W)
+    +
+    \Delta E_{\mathrm{sh}\to W/Z}(\mathcal W)
+    +
+    \Delta E_{\mathrm{sea}}^{\mathrm{bound}}(\mathcal W).
+    $$
+    The terms must be read inside the same event ledger as the weak-corridor payload: corridor stiffness, shielded internal energy exposed during the transition, and bounded Noether sea participation together produce the measured peak and width. The target is not a persistent assembly rest mass, and it does not allow the Standard Model value to be inserted independently of the weak-corridor provenance record.
 *   **Environment Dependence as a bounded closure target:**
     *   Because a $W/Z$ corridor is a dynamic bundle, its effective width and peak position may depend on Noether sea density, compliance, drift, and tethering stiffness only through the same medium-response record that recovers ordinary electroweak precision behavior.
     *   In calibrated collider and weak laboratory conditions, any predicted shift $\delta M_{W/Z}$ or width change must remain below the applicable precision bounds before the model can claim a new environmental effect.
@@ -541,7 +614,22 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 - This note covers photon-triggered conversion, not ordinary atomic or material absorption. Consuming the incoming photon means closing the free planar-pair ledger; it does not automatically mean that the outgoing fermion identities are inherited from the photon constituents.
 - A neutral Noether Pair should be treated as the local source architecture for spontaneous pro-anti fermion pair production. With sufficient energy input, a pair-conversion mode can unpack that neutral pair into a fermion and antifermion while returning the Noether braid bookkeeping to overall neutrality.
 - In this framing, the key point is not limited to the electron channel. A Noether Pair can furnish the neutral braid content needed for any pro-anti fermion pair, provided the supplied energy and axial-bookkeeping conditions match the target pair.
-- In photon-photon pair production, the photons supply the energy; the Sea contributes the neutral Noether Pair, and the axial excess arranges into the outgoing pro/anti fermion inventories. Electric bookkeeping and architrino counts stay balanced because the Noether-pair source remains neutral after the conversion bookkeeping closes.
+- Photon-photon pair production must carry an explicit provenance fork rather than assuming the answer. The direct-rearrangement row sets $\Delta\mathcal I_{\mathrm{sea}}=0$ and asks whether the two incoming photon ledgers alone supply the outgoing $e^-e^+$ Noether braid and axial inventories. The recruited-source row allows a neutral Noether Pair from the Noether sea to supply or receive braid content while the photons provide the energy and event trigger.
+- A compact inventory equation for the fork is
+$$
+\mathcal I_{\gamma_1}^{\mathrm{in}}
++
+\mathcal I_{\gamma_2}^{\mathrm{in}}
++
+\mathcal I_{\mathrm{sea}}^{\mathrm{req}}
+=
+\mathcal I_{e^-}^{\mathrm{out}}
++
+\mathcal I_{e^+}^{\mathrm{out}}
++
+\mathcal I_{\mathrm{sea}}^{\mathrm{ret}},
+$$
+with the direct row given by $\mathcal I_{\mathrm{sea}}^{\mathrm{req}}=\mathcal I_{\mathrm{sea}}^{\mathrm{ret}}=0$. Whichever row survives must also close energy, momentum, angular momentum, charge/polarity, path-history, and Noether sea recoil. If neither row closes, the channel has not explained Breit-Wheeler pair production.
 - The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon pro/anti braid pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
 - Sketch model: energy in -> pair-conversion mode forms using a neutral Noether Pair plus the required axial split -> fermion + antifermion -> the neutral Noether-pair bookkeeping relaxes back into the Sea.
 

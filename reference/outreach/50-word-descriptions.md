@@ -1,6 +1,6 @@
 # 50-Word Descriptions
 
-Each description below is exactly 50 words by whitespace count. The constraint forces each version to choose one audience, one emphasis, and one invitation.
+Six 50-word options give different audiences one clear emphasis and one invitation.
 
 ## General Architecture
 

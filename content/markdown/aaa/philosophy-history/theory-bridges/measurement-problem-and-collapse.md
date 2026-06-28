@@ -34,6 +34,8 @@ The correspondence between the quantum mechanical measurement formalism and arch
 *   **Irreversibility / Record Creation**: The transition's energy, momentum and angular momentum, apparatus work or recoil, medium excitation, and phase/path-history content must be routed into named apparatus, environment, and Noether sea records. Thermalization and dissipation are redistribution into those records, not destruction of energy or record content.
 *   **The Born Rule ($P_k = |c_k|^2$)**: The emergent statistical distribution reflecting the relative fractional volumes of the competing attractor basins in the target's phase space, mapped over unresolved Noether sea boundary data and path-history structure.
 
+The event is conservative before it is epistemic. A record-forming transition must close one event ledger in which the pre-record effective envelope loses autonomy, the target/probe/apparatus system exchanges energy, momentum, angular momentum, recoil, and Noether sea response, and the next effective state is assigned only after those rows have been routed into durable records. The "restart" of the wavefunction description is therefore a projection of a completed physical transaction, not the transaction itself.
+
 A target assembly can still be perturbed by an energy exchange without a
 completed measurement. If the interaction changes the effective state but
 does not supply a durable record, a restartable basin, event-ledger closure,

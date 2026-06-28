@@ -81,6 +81,8 @@ The Fermi-Dirac regime has $\xi$ bounded away from zero. The envelope is oblate 
 
 This ratio is not yet a final derivation of spin-statistics. It is a geometric control variable for the proof program. A complete closure must show how stable 3D nested shell braid configurations inherit the ordered-frame spinor proof and produce the fermionic exchange sign, and how the 2D coherent channel limit produces symmetric occupation at the observer level.
 
+Neutrality is not enough to make a carrier bosonic. A neutral Noether sea braid may still have a volumetric exclusion envelope, branch identity, and packing pressure, so it belongs on the Fermi-Dirac side of this geometry hypothesis until a coherent planar or phase-compatible support limit is derived. Conversely, bosonic behavior is licensed by the supported-channel geometry and exchange projection, not by the absence of electric charge. This distinction keeps neutral Noether sea inventory from being mistaken for unlimited Bose occupation.
+
 ## Effective Exchange-State Contract
 
 The standard vector-space structure sharpens what this chapter must recover. Once a single-excitation effective Hilbert chart $\mathcal{H}_\theta$ has been derived, the $N$-excitation observer-level comparison space is not an arbitrary list of labels. It is the tensor space $\mathcal{H}_\theta^{\otimes N}$, followed by an exchange projection. If $U_\sigma$ permutes the $N$ effective slots for $\sigma\in S_N$, the two standard projectors are

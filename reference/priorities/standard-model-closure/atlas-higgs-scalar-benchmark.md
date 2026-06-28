@@ -89,6 +89,23 @@ $$
 
 Here $\mathbf a_a^{\mathrm{pole}}(\theta)$ is the signed exposed polar-action contribution for constituent $a$, $\mathbf J_{\mathrm{exposed}}(\theta)$ is the residual exposed vector angular-momentum ledger, and $\varepsilon$ prevents a degenerate denominator from passing by convention. Low values of these residuals are not Higgs closure. They only keep a native scalar topology from failing the preliminary spin-$0$ admissibility check before the full $\mathcal{R}_{\mathrm{ATLAS}\text{-}H}(\theta)$ benchmark tests mass, signal strength, production, branching, detector provenance, and excluded scalar windows.
 
+Legacy Higgs and graviton/Higgs comparison posts sharpen the taxonomy, but not the identity claim. Keep three rows separate: the ATLAS Higgs benchmark row, an ambient Noether sea scalar or breathing-response candidate row, and a gravity-channel collective-response row. A candidate record may be compared across those rows only if it uses the same branch state for mass, rate, spin/parity, production, decay, and detector provenance:
+$$
+\Theta_{\mathrm{scalar}}
+=
+\left(
+\Theta_{\mathrm{branch}},
+M,
+J^{PC},
+\sigma_p,
+B_c,
+N_{s,c,k},
+\Delta_{\mathrm{vec}},
+\Delta_{\mathrm{scalar\,pole}}
+\right).
+$$
+Matching a neutral or scalar-looking topology is therefore only an admissibility condition. Higgs closure still requires the ATLAS mass, signal-strength, channel-rate, and excluded-window residuals, while gravity-channel and ambient-medium scalar comparisons remain separate priority-only candidates unless those same residuals are solved.
+
 ## Promotion Targets
 
 | Target | Proposed promotion | Gate |

@@ -10,8 +10,6 @@ Wonder question: Why do paths bend toward some places?
 
 Discovery sentence: A path can move through a landscape of hills, dips, ridges, and basins.
 
-Text status: text-only manuscript draft; no image prompts in this pass.
-
 ## Book Promise
 
 This book teaches:

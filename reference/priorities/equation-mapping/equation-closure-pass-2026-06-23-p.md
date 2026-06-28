@@ -16,7 +16,7 @@ Current solver-proxy replay:
 
 ```text
 node scripts/equation-mapping/check-same-branch-chart-identity.mjs \
-  --input /private/tmp/tri-binary-equation-bearing-check-e.json \
+  --input "${TMPDIR:-/tmp}/tri-binary-equation-bearing-check-e.json" \
   --summary --pretty
 ```
 

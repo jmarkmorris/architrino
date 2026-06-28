@@ -11,6 +11,20 @@ The parent charge target is a protected six-unit polarity inventory whose signed
 
 This is a charged-fermion working model, not a proof that every six-unit charge carrier must be axial or external to the braid. The six units may ultimately be internal to the Noether braid, externally coupled to it, embedded in the retained path-history, or realized by a non-axial coupled branch. The axial layer remains useful because it supplies a concrete six-site geometry on which weak-triad and color-exceptionality hypotheses can be tested.
 
+The six-unit inventory has seven possible net charge sums. The table records the charge bookkeeping before stability, chirality, color, weak exposure, and null-result exclusions are applied:
+
+| Axial inventory | Net electric bookkeeping | Current interpretation |
+| --- | ---: | --- |
+| $0P,6E$ | $-6\epsilon=-1e$ | charged lepton row on a pro-braid branch |
+| $1P,5E$ | $-4\epsilon=-2/3e$ | anti-up-type charge row when paired with the corresponding antimatter geometry |
+| $2P,4E$ | $-2\epsilon=-1/3e$ | down-type quark row |
+| $3P,3E$ | $0$ | neutral weak projection or non-charged inventory candidate; not automatically a stable neutrino axial layer |
+| $4P,2E$ | $+2\epsilon=+1/3e$ | anti-down-type charge row when paired with the corresponding antimatter geometry |
+| $5P,1E$ | $+4\epsilon=+2/3e$ | up-type quark row |
+| $6P,0E$ | $+6\epsilon=+1e$ | charged antilepton row on an anti-braid branch |
+
+This table is an inventory ledger, not a particle list. A row becomes a Standard Model assembly only after the Noether braid branch, axial-frame exposure, color-sector status, handed weak channel, and null-result exclusions are all supplied.
+
 Neutrinos are the current exception to this inventory model. They are treated as near-photon neutral pro/anti braid pairings; balanced $3P,3E$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](./neutrinos.md).
 
 Note: **Mass is derived**, not a quantum number here; it comes from shielded internal causal history and medium-dressed Noether sea response. See [Particle Masses](../particle-masses.md) for the mass thesis and [Emergent Metric](../../spacetime/emergent-metric.md) for metric-level translation.
@@ -41,6 +55,19 @@ This is the charged-fermion working realization of the more general six-unit pol
 *   **Occupancy:** Stable charged leptons and quarks have all 6 sites filled. Neutrinos do not carry a stable charged-fermion-style axial layer in the current architecture.
 *   **Function:** This layer interacts through external effective-field channels (EM, Weak).
 *   **Association picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials associate with the Noether braid scaffold.
+
+### Selection Ladder For The Charged-Fermion Candidate
+
+The Noether braid plus axial layer should be read as a selected stability candidate, not as an arbitrary list of parts. The working model has a ladder of rejection and selection pressures:
+
+| Candidate assembly stage | Selection pressure | Current status |
+| :--- | :--- | :--- |
+| Opposite-polarity binary | Causal-wake attraction and opposite-polarity locking make a neutral two-body branch dynamically available across many energy regimes. | Natural assembly seed, but too externally reactive to serve as a stable low-energy fermion by itself. |
+| Two-binary nest | A larger, lower-energy binary can partially shield a smaller, higher-energy binary. | Partial shielding is not enough for the charged-fermion scaffold; this branch still lacks the full three-dimensional angular-momentum accommodation required by the current model. |
+| Three-binary Noether braid | Three nested binaries supply a neutral core, retained internal causal history, a shielding hierarchy, and rotational accommodation across three spatial directions. | Working charged-fermion scaffold. Its stability, mass scale, and generation hierarchy remain derivation targets rather than asserted facts. |
+| Six-site axial layer | The binary axes provide six polar sites where a protected polarity inventory can phase-lock to the scaffold. | Working realization of charged-fermion electric bookkeeping and weak/color exposure. Non-SM low-energy inventories must still be dynamically excluded. |
+
+This makes selection a closure burden. A viable fermion branch must pass branch stability, shielding, angular-momentum accommodation, axial-inventory stability, and the null constraint that unobserved low-energy partners do not appear as stable assemblies.
 
 ### Why Polar Sites Are Plausible Dwell Regions
 
@@ -109,6 +136,21 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid** 
 | **Down Quark** ($d$) | Pro-Nested Shell Braid | 2P, 4E | -1/3 | 12 |
 
 ---
+
+## Quantum-Number Ledger Roles
+
+Standard Model quantum numbers are observer-level bookkeeping rows extracted from assembly geometry. They are conserved or changed by reactions only through constituent routing, exposure changes, and branch reconfiguration:
+
+| Observer quantum-number row | $\mathbb{A}\mathbb{A}\mathbb{A}$ ledger source | Reaction use |
+| --- | --- | --- |
+| Electric charge $Q$ | Signed six-unit polarity inventory, with $\epsilon=|e|/6$ and any shielding/exposure state declared. | Charge-changing notation is allowed only after conserved $P/E$ routing and axial-layer exposure explain the before/after charge. |
+| Weak isospin $T_3$ | Exposed weak-coupling triad selected from the axial frame or, for neutrinos, from the near-photon neutral weak projection. | Charged weak reactions change the exposed triad payload while preserving primitive polarity inventory. |
+| Hypercharge $Y$ | Complementary polar-site bookkeeping plus core-offset and weak-sector exposure record. | The relation $Q=T_3+Y/2$ is a recovery target for the same assembly record, not an independent charge assignment. |
+| Color | Axis exceptionality of the Noether braid plus axial-layer pattern in quark rows. | Strong reactions must preserve color-singlet closure for observed hadrons while allowing axis reconfiguration through effective gluon channels. |
+| Baryon and lepton labels | Stable branch-family and reaction-provenance bookkeeping for quark triplets, charged leptons, and neutral lepton-family channels. | These labels constrain allowed product routing; they are not primitive architrino species. |
+| Flavor and generation | Branch geometry, shielding hierarchy, and weak-overlap record. | Flavor changes are weak-corridor branch transitions or overlap effects; neutrino oscillation is assigned to near-photon internal exposure, not to axial-layer charge flips. |
+
+The closure target is one retained assembly record whose projections recover these rows together. A map that fits charge, weak isospin, color, and flavor by changing the underlying exposure rule from sector to sector has only matched labels.
 
 ## Weak Isospin ($T_3$) and Chirality
 

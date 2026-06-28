@@ -59,6 +59,21 @@ Those equations are not substrate kinematics. They are the target export seen by
 
 In this language, the equal-interval hyperbola is a useful recovery target. If the clock channel supplies one $\varphi_{\text{eff}}$, the ruler channel another, and photon synchronization a third, then Physical Observers would not reconstruct one Minkowski diagram. Lorentz closure requires the same branch update $B_q\to B_{q'}$ to supply the shared rapidity parameter that makes the effective interval, null boundary, and unit hyperbolas cohere.
 
+The interval is therefore a path-record export. For two observer-recorded events $E$ and $R$, a single Minkowski interval may be reconstructed only when endpoint clocks, ruler calibration, photon synchronization, and the transported path-history record consume the same effective rapidity and synchronization map:
+$$
+\Theta_{ER}^{\mathrm{SR}}
+=
+\left(
+\Theta_E,
+\Theta_R,
+\mathcal{H}_{\gamma,E\to R},
+\mathcal{B}_{\partial\Omega}^{(O)}(W),
+\varphi_{\text{eff}},
+\mathcal{S}_{\mathrm{sync}}
+\right).
+$$
+The observer-level interval $s_{\mathrm{eff}}^2(E,R)$ is then an export of $\Theta_{ER}^{\mathrm{SR}}$, not a primitive substrate distance in the Euclidean void. If the photon path record, endpoint clock rows, or synchronization convention require different $\varphi_{\text{eff}}$ values, the Minkowski diagram has not been recovered for that record.
+
 ## Clock Channel
 
 In special relativity, the moving-clock law is usually written

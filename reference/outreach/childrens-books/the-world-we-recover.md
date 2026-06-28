@@ -10,8 +10,6 @@ Wonder question: How does the familiar universe appear from the deeper architect
 
 Discovery sentence: Clocks, rulers, light paths, mass behavior, records, and effective spacetime geometry must be recovered from deeper dynamics, not assumed at the start.
 
-Text status: text-only manuscript draft; no image prompts in this pass.
-
 ## Book Promise
 
 This capstone book teaches:

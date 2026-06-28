@@ -10,8 +10,6 @@ Wonder question: How does looking make a record?
 
 Discovery sentence: Measurement is a physical interaction that changes matter into a readable record.
 
-Text status: text-only manuscript draft; no image prompts in this pass.
-
 ## Book Promise
 
 This book teaches:

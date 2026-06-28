@@ -603,7 +603,11 @@ function main() {
   const inputPath = path.resolve(args.input);
   const input = readJson(inputPath);
   const result = scan(input, args);
-  result.input_path = inputPath;
+  const relativeInputPath = path.relative(process.cwd(), inputPath);
+  result.input_path =
+    relativeInputPath && !relativeInputPath.startsWith("..") && !path.isAbsolute(relativeInputPath)
+      ? relativeInputPath
+      : inputPath;
   writeJson(args.out ? path.resolve(args.out) : null, result, args.pretty);
 }
 

@@ -12,11 +12,12 @@
 ## Task Queue
 
 1. `tier0_tier1_runs` — The $A_0$ self-root fold/splitting diagnostic now classifies all ready rows as `fold-layer`; the step-fraction controller, event-local fold-layer lock, and macro-stride packet brought the compact fixture under the $10^6$ attempt cap with `963815` retained steps. The May 18, 2026 direct fold-layer-locked one-period runner executed that plan without trajectory abort, preserved the two locked self-root keys in $\mathcal{R}_{\text{lock}}$, and failed closed on state return, root closure, phase closure, speed ordering, center drift, and energy-like speed closure. The new residual-balance ledger shows scalar branch-native relation weights over $B_{\text{self}}$, $B_{\text{partner}}$, and $B_{\text{inter}}$ leave relative acceleration residual about `0.755` against tolerance `0.02`. A May 22, 2026 regenerated corrected one-period packet reproduced the same boundary: default chart policy blocked as `blocked_chart_mode_dominated`; `--omit-modes none` emitted `correction_packet_ready` and `waveform_replay_ready`; the corrected run completed `963815` steps with center drift passing, but still failed closed with state-return residual `0.941735939861014`, root residual `40.11726413905969` against tolerance `0.000001`, phase residual `0.2805922799292434`, speed-ordering residual `1.5917288827774456`, energy-like speed residual `0.8721694814657742`, refined-basis residual `0.4262791208762879`, and I-phase-bin residual `0.3500173344435869`. The pre-rerun branch-chart checker rejects residual-surface splits as hidden fitting; the supported predeclared source declarations `prefit_branch_chart`, `active_roots`, `root_times`, and `corrected_carrier_state` all pass the source declaration guard but fail the held-out residual with `R_xval = 2.4537879974811028`. A low-degree scan over one-, two-, and three-mode subsets of modes `1..7` also fails, with best simple row mode `6` still at held-out residual about `1.094`. The runner now emits a root-transport source record with `512` root rows and `128` retained `I`-receiver inter-layer single-artifact transport slots for the first $J$ / delay shear coordinate. The source-declared coordinate-specific checker passes source, coordinate-construction, and degrees-of-freedom guards, but fails holdout with `R_xval = 1.712369148202459`; diagnostic signed-polarity and mixed M-Jacobian quotients are not source-declared and also fail held-out residual at `1.6156063295193552` and `1.944813346261963`. The root-transport feature-span scanner now tests eight fixed branch-geometric feature families over the same source record and still returns `root_transport_feature_span_no_go`: the best source-declared family is `source_layer_shear` at `1.712369148202459`, and the best diagnostic-only family is `source_layer_DJ_Dtau_no_phase_projection` at `1.2474273873652615`. A residual-spectrum diagnostic over the same sampled forcing reports `I`-layer residual norm `313.09723758998507`, dominant total cyclic mode `6` at energy fraction `0.20679763310995922`, and modes `4..7` carrying about `0.7552232385377363` of the one-sided cyclic energy. A mode-band source-eligibility diagnostic then finds lawful pre-fit source-direction evidence in reciprocal inter-layer transport and corrected-carrier motion: `transport:M:inter_layer:I:mean_D_J` has mode-band fraction `0.9944893706413693`, and `body:I:rel_vel:x` has `0.9353099187288153`. The reciprocal inter-layer branch-equation checker tests the smallest lawful version of that lead with three source channels projected along normalized `I` relative velocity; it passes degrees-of-freedom controls but fails held-out residual with maximum relative residual `1.4057625588588099`, so the source-direction evidence is not rerun authority. The carrier-frame residual spectrum then localizes the same target as primarily radial in the corrected `I` frame under declared linear time alignment, with radial energy fraction `0.5823726218116948` and radial mode-band fraction `0.7984257865887138`. The direct carrier-frame branch-coordinate checker then rules out the smallest source-side deformation ladder: `delta_radius * e_I,r` has maximum held-out residual `1.0492394121933206`, and radial-rate or radial/tangential companions worsen holdout to `1.5341171039338615` or `1.6498611276202226`. The reciprocal carrier-frame projection checker also rules out the remaining same-source projection ladder: radial, tangential, and radial/tangential reciprocal projections all pass degrees-of-freedom controls but fail held-out residual, with best held-out variant `tangential` still at `1.0546122909019986`. The root-loop branch-coordinate checker rules out the immediate two-edge active-root delay/J holonomy coordinate: all checked families fail held-out residual, with best row `tangential/im_loop_curl` still at `1.705996205813595`. The delayed source-direction branch-coordinate checker then rules out the root-specific line-of-action coordinate in the corrected `I` carrier frame: the receiver-polarity-signed `im_delayed_direction` row has the best held-out residual at `1.0408163198841647`, still about `52.0` times tolerance. The same root-transport path now keeps $R_{\mathrm{transport}}$ pending unless `transport_identity_refinement_stable`, `phase_origin_covariance_certified`, and raw-row root-ledger stability are true; the current identity-form source remains `root-transport-identity-not-refinement-stable`. The new `a0-root-transport-refinement-certificate/v1` script can compare two source records by root key and cyclic order without using `transport_id`, and can verify quotient-feature bucket covariance after cyclic reindexing only when the phase shift is declared; auto-detected shifts are diagnostic-only. A May 22, 2026 sidecar, `a0-root-transport-phase-origin-variant/v1`, now re-emits a declared bucket-shift variant from the raw `active_causal_root_ledger` rather than by copying the prior source record. Its first production-shaped pair passes the declared shift-`1` certificate with `matched_root_count = 512`, `feature_bucket_count = 16`, and `max_feature_relative_delta = 6.516707155123344e-15`, while the auto-shift run remains diagnostic-only. The checker now consumes that certificate through `--root-transport-certificate`. A separate `a0-root-ledger-refinement-stability-certificate/v1` discriminator compares `active_causal_root_ledger` rows directly, rejects the same phase-origin sidecar as `phase-origin-variant-not-root-ledger-refinement`, and now consumes a carrier-replay continuation source as non-phase-origin certificate-only root-ledger evidence with `matched_root_count = 512`, `max_field_relative_delta = 4.976849768509301e-7`, and `carrier-root-refinement-J-drift-reported`. Certificate-only root-ledger evidence is reported but is not corrected-rerun authority while the source row still says `root_ledger_stable_under_refinement = false`. The source-declared root-transport coordinate, reciprocal branch-equation, reciprocal carrier-frame projection ladder, root-loop branch-coordinate, delayed source-direction branch-coordinate, and corrected-carrier radial deformation ladder all fail held-out residual, $R_{\mathrm{transport}}$ remains pending, and no corrected rerun is authorized. Current boundary: branch-chart revision checker and anti-overfit coordinate tests may advance as pre-rerun simulation work, but no corrected $A_0$ branch may be promoted as accepted physics until `master-equation-closure` supplies the matching dynamics/branch-chart basis. $\Delta_k$ and eta-ladder persistence remain downstream until corrected one-period residuals pass. Status: `active`. Depends on: none for fail-closed checker work; accepted-branch promotion depends on the matching `master-equation-closure` branch-chart basis.
-2. `field_speed_action_self_hit_scan` — Run the binary-delay approach-to-$c_f$ scan on the same branch rows used for the nested shell braid action-increment packet. Each row must report causal-root multiplicity, active-root identity, minimum accepted Jacobian floor, branch-selection verdict, particle-plus-wake energy functional value and drift under refinement, delayed-Noether status (`action-derived`, `quasi-Noether`, or `diagnostic-only`), stable-cycle action-increment cluster, and failure code while the branch approaches $c_f$ from below, at the boundary, and from any admitted super-field-speed interval. The scan is the first executable test of the action-spacing and self-hit well-posedness walls: no `candidate_h_recovery` promotion is allowed if root identity changes under refinement, the Jacobian floor collapses, the particle-plus-wake energy row is unbounded or nonconvergent, the Noether status remains `diagnostic-only`, or stable increments split without a derived branch-class reason. Status: `pending`. Depends on: `tier0_tier1_runs`, `eta_positive_package`, and the nested shell braid action-increment protocol.
+2. `field_speed_action_self_hit_scan` — Run the binary-delay approach-to-$c_f$ scan on the same branch rows used for the nested shell braid action-increment packet. Each row must report causal-root multiplicity, active-root identity, minimum accepted Jacobian floor, branch-selection verdict, particle-plus-wake energy functional value and drift under refinement, delayed-Noether status (`action-derived`, `quasi-Noether`, or `diagnostic-only`), stable-cycle action-increment cluster, and failure code while the branch approaches $c_f$ from below, at the boundary, and from any admitted super-field-speed interval. The scan is the first executable test of the action-spacing and self-hit well-posedness walls: no `candidate_h_recovery` promotion is allowed if root identity changes under refinement, the Jacobian floor collapses, the particle-plus-wake energy row is unbounded or nonconvergent, the Noether status remains `diagnostic-only`, stable increments split without a derived branch-class reason, or the v0 source row cannot bind to a named action-increment row with matching root-ledger and conservation-pullback hashes. Status: `source_row_binding_open; fixture_shape_only_packet_not_source`; execution and artifact hashes remain pending. Depends on: `tier0_tier1_runs`, `eta_positive_package`, and the nested shell braid action-increment protocol.
 3. `convergence_and_provenance` — Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs. Status: `pending`. Depends on: `tier0_tier1_runs`.
 4. `eta_positive_package` — Consolidate the formal $\eta > 0$ existence and continuation package. Status: `pending`. Depends on: `tier0_tier1_runs`.
 5. `hydrogen_gamma_n_record_extraction` — The hydrogen $\Gamma_N$ spectral coefficient-row scan now derives $\Lambda_{ab}$, observer frequency, and replay envelope gap entries from recovered principal labels, `frequency_scale`, and `line_inferred_ln_Gamma_N`; the remaining proof/simulation burden is to derive or bound $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ from the same hydrogen spectral channel ledger, replace the scaffolded static response vector only with a constitutive response row for the same Noether sea cell, and replace the shared line-inferred cadence stretch only with electron-envelope gaps from the hydrogen branch. A May 22, 2026 inspection found no declared native $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ artifact in scope, so no scaffold input is safe to replace yet. Residual recoil, hyperfine structure, photon-channel propagation, and source-branch effects must remain outside $\Gamma_N$ unless a declared residual budget carries them. Status: `pending`. Depends on: `hydrogen_fermion_sea_boundary` and Noether sea response rows from `mass-map`.
 6. `gw_public_waveform_packet` — Build a public-data gravitational-wave benchmark packet from GWOSC/LVK event records. The packet must replay GW150914-class short binary-black-hole strain, GW170817-class long binary-neutron-star inspiral and photon-channel speed timing, and current GWTC-4.0 catalog provenance with versioned strain files, detector masks, PE samples, waveform family, calibration notes, artifact hashes, and predeclared waveform/energy/speed residuals. A May 22, 2026 inspection fixes the first document-level packet manifest around `GW150914_short_bbh`, `GW170817_long_bns`, and `GW170817_GRB_speed`; executable artifact collection remains pending until GWOSC/LVK strain, PE, release-metadata, and hash files exist locally. Status: `pending`. Depends on: gravitational-wave effective-metric and event-ledger closure rows.
+7. `direct_nucleon_assembly_monte_carlo` — Define the first finite-assembly nucleon simulation target with declared architrino inventory, causal-root ledger, Noether sea embedding, color-corridor event records, and lattice-QCD negative controls. Status: `pending`. Depends on: `tier0_tier1_runs`, standard-model `confinement_energetics`, and nuclear-binding closure.
 
 ## Open Simulation-Side Questions
 
@@ -27,6 +28,77 @@ This section collects the main open simulation-side questions that remain after 
 - Clarify how **event-horizon alignment conditions** (nested shell braid coplanarity/co-linearity at $v=c_f$) map to conventional Planck units.
 - Identify observables that distinguish **alignment-driven strong-field effects** from inner-binary maximal-curvature dynamics.
 - Specify which parameters control alignment onset (Noether sea density, compression, external field gradients).
+
+### Simulation Scope Envelope
+
+Each simulation campaign should declare a bounded scope envelope before any result is interpreted. The envelope includes the Euclidean-void domain, absolute-time span, entity inventory, assembly inventory, Noether sea initialization, path-history depth, spatial and temporal resolution ladder, $\mathbb{U}_{\text{now}}$ logging channels, detector-synthetic channels, feedback/intervention mode, and runtime-rate or cost budget. This is not another promotion gate; it is the pre-run declaration that makes the existing campaign packet auditable.
+
+The durable target is to separate four questions that are often conflated:
+
+- What portion of $S(t)$ is being integrated?
+- What portion of $S(t)$ is being logged?
+- What observer-level quantity is being reconstructed from those logs?
+- Which perturbations or interventions are allowed during the run?
+
+Threshold-sensitive events should be reported as deterministic basin-boundary questions, not as substrate randomness. For an event region $\Omega_E$ in the declared state coordinates and unresolved perturbation scale $\|\delta S_t\|_{\mathrm{unres}}$, a useful diagnostic margin is
+
+$$
+m_E(t)
+=
+\frac{d(S_t,\partial\Omega_E)}
+{\|\delta S_t\|_{\mathrm{unres}}+\varepsilon_0}
+$$
+
+Rows with $m_E(t)\le 1$ are threshold-sensitive. They can guide reruns, perturbation sweeps, and detector-synthetic caution flags, but they do not promote one branch, reaction, or record outcome without the ordinary root-ledger, residual, convergence, and provenance rows.
+
+### Provenance-Scale Simulation Utility
+
+A provenance-rich simulation is valuable only when retained path histories answer a question that a coarse field, aggregate ledger, or detector-synthetic export cannot. The working question is: for which domains does all-entity provenance reduce replay ambiguity enough to justify path-history storage and query cost?
+
+Candidate utility classes:
+
+- reaction balancing: trace incoming and outgoing architrino, Noether-braid, wake, and Noether sea inventory through one event;
+- branch replay: recover which source history and causal-root branch generated a retained hit;
+- process demographics: count source classes, routing classes, and retained products through outflows, thermalization, jets, or radiation cascades over a declared domain;
+- visualization and debugging: show path trails and expanding causal wakes as display-only projections while preserving authoritative segment records separately.
+
+The smallest quantitative object is a provenance-value heuristic:
+
+$$
+R_{\mathrm{prov,value}}(Q;E)
+=
+\frac{
+N_{\mathrm{amb}}^{\mathrm{coarse}}(Q;E)
+-
+N_{\mathrm{amb}}^{\mathrm{prov}}(Q;E)
+}{
+C_{\mathrm{store}}(E)+C_{\mathrm{query}}(E)+\varepsilon_0
+}.
+$$
+
+Here $Q$ is the scientific question, $E$ is the declared simulation envelope, $N_{\mathrm{amb}}^{\mathrm{coarse}}$ is the admissible replay or explanation count after coarse summaries, $N_{\mathrm{amb}}^{\mathrm{prov}}$ is the count after retained provenance, and $C_{\mathrm{store}}+C_{\mathrm{query}}$ is the storage/query cost. This is a priority heuristic for simulation design, not a promotion gate.
+
+### Direct Nucleon Assembly Monte Carlo
+
+The lattice-QCD comparison source suggests a concrete simulation target: a finite-assembly nucleon run should attempt the hadron problem from declared architrino provenance rather than from a lattice gauge-field configuration. The target is not to replace lattice QCD by assertion. It is to build the smallest native run whose outputs can be compared against lattice-QCD and experimental rows.
+
+The first campaign object should include
+
+$$
+\mathcal{C}_{\mathrm{nuc}}^{\mathrm{MC}}
+=
+\left(
+\mathcal{I}_{36},
+S_{\eta},
+\mathcal{L}_{\mathrm{root}},
+\mathcal{N}_{\mathrm{sea}},
+\mathcal{L}_{\mathrm{color}},
+\mathcal{O}_{\mathrm{QCD}},
+\mathcal{R}_{\mathrm{ctrl}}
+\right),
+$$
+
+where $\mathcal{I}_{36}$ is the declared 36-architrino candidate inventory for the three-quark nucleon picture, $S_{\eta}$ is the regularized state history, $\mathcal{L}_{\mathrm{root}}$ is the causal-root ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea embedding, $\mathcal{L}_{\mathrm{color}}$ records color-corridor closure, $\mathcal{O}_{\mathrm{QCD}}$ lists the hadronic observables being compared, and $\mathcal{R}_{\mathrm{ctrl}}$ records negative controls. Required outputs should include mass, form-factor, spin-decomposition, and scattering or matrix-element comparisons before any claim of QCD recovery is made.
 
 ### Wake-Pattern Return Diagnostic
 
@@ -99,6 +171,179 @@ This file remains the control surface for the simulations workstream. No sibling
 | `eta_positive_package` | This file | [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | The formal $\eta > 0$ package states existence, uniqueness, continuation criteria, and no-runaway bounds for the relevant causal-wake model. |
 | `hydrogen_gamma_n_record_extraction` | This file | [hydrogen-gamma-n-spectral-row-toy-scan](../../../content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md), [atomic-spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | The scaffolded hydrogen row is promoted beyond scaffold status only when $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, envelope gaps, observer frequencies, and static response inputs come from one declared hydrogen spectral channel record and the same clock-rate conversion survives refinement. |
 | `gw_public_waveform_packet` | [gravitational-waves](../cross-theory-mapping/gravitational-waves.md) | [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) and future strong-field validation rows | A public gravitational-wave packet compares predicted detector strain, phase, event energy ledger, photon/gravity timing, and provenance against versioned GWOSC/LVK records rather than against unversioned plots or hand-tuned templates. |
+
+## Field-Speed Action Self-Hit Scan Packet
+
+The priority-side campaign target for `field_speed_action_self_hit_scan` is the non-promotional packet
+$$
+\mathcal{C}_{c_f}^{\mathrm{self/action}}
+=
+\left(
+\mathcal{C}_{\mathrm{sim}},
+\mathcal{B}_{\Delta I},
+\mathcal{S}_{c_f},
+\mathcal{R}_{c_f},
+\mathcal{N}_{\mathrm{dN}},
+\mathcal{E}_{\mathrm{p+w}},
+\mathcal{P}_{c_f}
+\right),
+$$
+where $\mathcal{B}_{\Delta I}$ is the retained branch-row set from the nested shell braid action-increment protocol, $\mathcal{S}_{c_f}$ is the binary approach-to-$c_f$ scan grid, $\mathcal{R}_{c_f}$ is the retained root-ledger and branch-selection row family, $\mathcal{N}_{\mathrm{dN}}$ records the delayed-Noether status, $\mathcal{E}_{\mathrm{p+w}}$ is the particle-plus-wake energy row, and $\mathcal{P}_{c_f}$ is the promotion-blocker ledger. This packet is priority-only until executable artifacts exist and pass the same source-commit, refinement, negative-control, and artifact-hash rules as $\mathcal{C}_{\mathrm{sim}}$.
+
+The scan variables are declared before output inspection:
+
+| Variable | Meaning | Pre-run declaration |
+| --- | --- | --- |
+| $\mathsf{branch\_row\_id}$ | Nested shell braid endpoint or transition row consumed from $\mathcal{B}_{\Delta I}$ | Must match the row identifiers used by `action_increment_rows.csv`; no scan-only branch row may vote on `candidate_h_recovery`. |
+| $a$ | Scanned layer or speed coordinate | Must name the layer speed ratio being varied while all unscanned branch labels, plane normals, endpoint charges, and transaction axis remain declared. |
+| $\beta_a=s_a/c_f$ | Dimensionless field-speed coordinate | The only scan coordinate for approach-to-$c_f$ status; fitted reparameterizations are diagnostic-only. |
+| $W=[t_0,t_1]$ and $T$ | Analysis window and declared cycle or certificate period | Must match the action-increment packet window when the row contributes to stable-cycle clustering. |
+| $(\Delta t,\Delta h,\Delta x,\eta)$ | Temporal, history, spatial, and regulator resolutions | Must include at least one refinement pair for each active gate: $(\Delta t,\Delta t/2)$, $(\Delta h,\Delta h/2)$, $(\Delta x,\Delta x/2)$, and $(\eta,\eta/2)$ when the run makes a regulator claim. |
+| $\nu_{\min}$ and $B_{\max}$ | Minimum accepted Jacobian floor and active-root count bound | Must be declared before the scan; rows that choose these after seeing near-boundary behavior route to $\mathsf{hidden\_tuning}$. |
+| $\tau_{E,\mathrm{p+w}}$ and $\tau_{\Delta I}$ | Energy-drift and action-cluster tolerances | Must be no looser than the tolerances in the action-increment packet that consumes the row. |
+
+The binary scan grid is
+$$
+\mathcal{S}_{c_f}
+=
+\left\{
+1-2^{-m}:m\in\{6,7,8,9\}
+\right\}
+\cup
+\mathcal{S}_{=}
+\cup
+\mathcal{S}_{+},
+$$
+with
+$$
+\mathcal{S}_{=}
+=
+\begin{cases}
+\{1\},&\text{if the finite-}\eta\text{ continuation reaches }\beta_a=1\text{ without leaving }\mathcal{A}_\eta,\\
+\varnothing,&\text{otherwise,}
+\end{cases}
+$$
+and
+$$
+\mathcal{S}_{+}
+=
+\begin{cases}
+\{1+2^{-9},1+2^{-8},1+2^{-7},1+2^{-6}\},&\text{if the declared branch chart admits that super-field-speed interval,}\\
+\varnothing,&\text{otherwise.}
+\end{cases}
+$$
+The below-boundary rows are mandatory for the first artifact. The boundary and super-field-speed rows are retained as explicit `not-admitted` or `eta-continuation-failure` rows when the declared continuation cannot lawfully enter them; omitting them silently makes the artifact incomplete.
+
+Each retained row in `field_speed_approach_scan.csv` must contain:
+
+| Column family | Required entries |
+| --- | --- |
+| Identity | `scan_family_id`, `branch_row_id`, source commit, run id, protocol version, $\beta_a$, speed-window label `below_cf` / `at_cf` / `above_cf`, and refinement level. |
+| Root ledger | Active partner-root count, active self-root count, active inter-layer-root count, excluded near-zero self-root count, separator count, active-root identity hash, root-ledger refinement match flag, and transition-record hash when a fold-layer, separator, or active-root status window is crossed. |
+| Jacobian and branch status | Minimum accepted $|J|$, declared $\nu_{\min}$, branch-selection verdict, branch-status label, and failure code if the row is rejected. |
+| Action and energy | $\Delta I_{\mathrm{ME}}$, cluster id, cluster spread contribution, $E_{\mathrm{p+w}}^{(\eta)}(t_0)$, $E_{\mathrm{p+w}}^{(\eta)}(t_1)$, and $\epsilon_{E,\mathrm{p+w}}$. |
+| Noether status | Delayed-Noether status `action-derived`, `quasi-Noether`, or `diagnostic-only`, plus the artifact that justifies the status. |
+| Promotion blockers | Boolean columns for root identity change, Jacobian floor loss, unbounded or nonconvergent particle-plus-wake energy, `diagnostic-only` Noether status, nonuniform action spacing, missing negative-control failure, missing artifact hash, and hidden tuning. |
+
+The particle-plus-wake energy row is
+$$
+E_{\mathrm{p+w}}^{(\eta)}(t)
+=
+K_{\mu}(t)+E_{\mathrm{wake}}^{(\eta)}(t),
+\qquad
+\epsilon_{E,\mathrm{p+w}}
+=
+\frac{
+\sup_{t\in W}\left|E_{\mathrm{p+w}}^{(\eta)}(t)-E_{\mathrm{p+w}}^{(\eta)}(t_0)\right|
+}{
+\left|E_{\mathrm{p+w}}^{(\eta)}(t_0)\right|+\varepsilon_0
+}.
+$$
+If $E_{\mathrm{wake}}^{(\eta)}$ lacks a lower bound on the same branch row, the scan status is `energy-row-unbounded` and no action-spacing promotion may consume the row.
+
+Failure routing is fail-closed:
+
+| Condition | Status or failure code |
+| --- | --- |
+| Required campaign metadata, source commit, declared tolerance, or artifact hash is missing | $\mathsf{artifact\_incomplete}$ |
+| $\beta_a$, $\nu_{\min}$, $\tau_{E,\mathrm{p+w}}$, $\tau_{\Delta I}$, branch labels, or promoted observables are changed after output inspection | $\mathsf{hidden\_tuning}$ |
+| Active-root identity changes under $\Delta t$, $\Delta h$, $\Delta x$, or $\eta$ refinement without a certified separator or fold-layer explanation | $\mathsf{branch\_root\_instability}$ |
+| A boundary or super-field-speed row is not admitted by the declared branch chart | `not-admitted` |
+| The minimum accepted $|J|$ falls below $\nu_{\min}$ on a retained near-boundary row | `jacobian-floor-loss` |
+| $E_{\mathrm{p+w}}^{(\eta)}$ is unbounded or lacks a lower bound on the same branch row | `energy-row-unbounded` |
+| $E_{\mathrm{p+w}}^{(\eta)}$ is nonconvergent or exceeds $\tau_{E,\mathrm{p+w}}$ | $\mathsf{conservation\_drift}$ |
+| The finite-$\eta$ continuation leaves $\mathcal{A}_\eta$ before completing the declared row | $\mathsf{eta\_continuation\_failure}$ |
+| The delayed-Noether row remains `diagnostic-only` | `noether-diagnostic-only` |
+| Stable-cycle $\Delta I_{\mathrm{ME}}$ rows split into multiple clusters without a derived branch-class reason | `nonuniform-action-spacing` |
+| The negative control also passes the scan gates | $\mathsf{null\_control\_passed}$ |
+| All declared rows pass with artifact hashes and the action-increment packet also passes its own gates | `candidate_h_recovery-eligible` |
+
+The minimal first executable artifact is `field_speed_action_self_hit_scan/v0`: one declared scan family over one already-retained nested shell braid action-increment branch row, the four mandatory below-$c_f$ values in $\mathcal{S}_{c_f}$, one temporal refinement pair, one history-resolution refinement pair, the active-root identity hash at both refinements, $J_{\min}$, $\Delta I_{\mathrm{ME}}$, $E_{\mathrm{p+w}}^{(\eta)}$, delayed-Noether status, a wrong-$c_f$ negative control, `field_speed_approach_scan.csv`, and `failure_report.md`. This v0 artifact may only produce `diagnostic-only`, one of the fail-closed statuses above, or `candidate_h_recovery-eligible` priority statuses; it may not assert accepted physics or theorem-level conservation.
+
+### V0 Source-Row Binding
+
+The first v0 row must bind to an action-increment source before any scan output
+is interpreted. The binding object is
+
+$$
+\mathcal{B}_{c_f}^{v0}
+=
+\left(
+\mathsf{branch\_row\_id},
+\mathsf{endpoint\_eligibility},
+\mathsf{action\_row\_hash},
+\mathsf{root\_ledger\_hash},
+\mathsf{conservation\_pullback\_hash},
+\mathsf{source\_verdict}
+\right).
+$$
+
+The `endpoint_eligibility` value is inherited from the nested shell braid
+action-increment protocol. Because that protocol sets
+$\mathcal{T}_{\mathrm{acc}}=\varnothing$ until both endpoint packets have
+matching ledger identity, matching active-root convention, positive Jacobian
+floors, inactive-root or tail status, $\Delta_{\mathbf{k}}>0$, conservation
+pullback, and refinement records, the field-speed scan has only two legal
+pre-acceptance modes:
+
+| Source verdict | Meaning | Allowed v0 interpretation |
+| --- | --- | --- |
+| `accepted_transition_source` | The named `branch_row_id` is an accepted action-increment transition row with source hashes for the same root ledger and conservation pullback. | May test `candidate_h_recovery-eligible`, subject to all scan gates. |
+| `diagnostic_rejected_endpoint_source` | The named `branch_row_id` is present in the action-increment packet but rejected by endpoint eligibility or conservation pullback. | May emit only `diagnostic-only` or a fail-closed status. |
+| `source_row_binding_open` | No named action-increment row and matching hashes exist. | The scan artifact is incomplete and cannot vote on action spacing, self-hit well-posedness, or `candidate_h_recovery`. |
+
+This binding rule is not an additional promotion gate. It is the row-identity
+bridge between `action_increment_rows.csv` and `field_speed_approach_scan.csv`.
+If a run only has a visual branch, an unversioned notebook row, or a row whose
+root ledger and conservation pullback hashes differ, the correct v0 result is
+`source_row_binding_open` before any near-$c_f$ behavior is interpreted.
+
+Current fixture boundary, 2026-06-28. The repository contains the shape-only
+fixture packet under
+`scripts/nested-shell-braid/fixtures/action-increment-packet/`. Its
+`action_increment_rows.csv` includes two fixture rows with `status=accepted`,
+but `cluster_summary.json` declares `promotion_status:
+fixture-shape-only`. Therefore those rows may validate parser shape and
+failure-code plumbing only. They do not satisfy `accepted_transition_source`,
+do not bind to a retained branch certificate, and do not authorize
+`field_speed_action_self_hit_scan/v0` to vote on `candidate_h_recovery`.
+Current live v0 status remains `source_row_binding_open` until a non-fixture
+action-increment packet emits matching root-ledger and conservation-pullback
+hashes.
+
+Minimum non-fixture `accepted_transition_source` object:
+
+| Field | Required content | Fixture packet reading |
+| --- | --- | --- |
+| `transition_source_ref` | Path or generated artifact id for the branch-emitted transition source. | fixture-only |
+| `branch_certificate_ref` | Retained branch certificate that owns the source row. | absent |
+| `root_ledger_hash` | Hash of the active-root ledger consumed by the action-increment row. | absent for live binding |
+| `conservation_pullback_hash` | Hash of the conservation-pullback row consumed by the same action-increment row. | absent for live binding |
+| `action_increment_row_id` | Named non-fixture action-increment row with accepted status. | fixture row only |
+| `negative_control_ref` | Fail-closed control showing mismatched root or conservation hashes reject. | absent |
+| `candidate_h_recovery_vote` | May be emitted only after every row above binds on the same retained branch record. | not authorized |
+
+The remaining promotion blockers are executable, not editorial: no current artifact has shown same-row active-root identity under refinement, a positive Jacobian floor through the approach-to-$c_f$ scan, bounded particle-plus-wake energy on the retained branch rows, delayed-Noether status above `diagnostic-only`, stable one-cluster $\Delta I_{\mathrm{ME}}$ behavior, and a failing negative control with content hashes.
 
 ## Simulation Campaign Object
 

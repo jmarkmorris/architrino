@@ -11,43 +11,43 @@ continuation.
 Command:
 
 ```bash
-/Users/markmorris/vibe/.venv/bin/python reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.005 --delta-steps 2048 --integration-panels 512 --profile-mode tangential_transport --transport-steps 320 --diagnostic-mode radial_jet --jet-levels 5
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.005 --delta-steps 2048 --integration-panels 512 --profile-mode tangential_transport --transport-steps 320 --diagnostic-mode radial_jet --jet-levels 5
 ```
 
 Cross-check command on the larger collar:
 
 ```bash
-/Users/markmorris/vibe/.venv/bin/python reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.02 --delta-steps 2048 --integration-panels 256 --profile-mode tangential_transport --transport-steps 320 --diagnostic-mode radial_jet --jet-levels 7
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.02 --delta-steps 2048 --integration-panels 256 --profile-mode tangential_transport --transport-steps 320 --diagnostic-mode radial_jet --jet-levels 7
 ```
 
 Convergence wrapper smoke command:
 
 ```bash
-/Users/markmorris/vibe/.venv/bin/python reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.005 --delta-steps 1024 --integration-panels 256 --profile-mode tangential_transport --transport-steps 160 --diagnostic-mode radial_convergence --jet-levels 5 --convergence-levels 2 --refinement-factor 2
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.005 --delta-steps 1024 --integration-panels 256 --profile-mode tangential_transport --transport-steps 160 --diagnostic-mode radial_convergence --jet-levels 5 --convergence-levels 2 --refinement-factor 2
 ```
 
 Endpoint-slope sensitivity command:
 
 ```bash
-/Users/markmorris/vibe/.venv/bin/python reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.005 --delta-steps 2048 --integration-panels 512 --profile-mode tangential_transport --transport-steps 320 --diagnostic-mode radial_sensitivity --sensitivity-theta 0.0003125
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.005 --delta-steps 2048 --integration-panels 512 --profile-mode tangential_transport --transport-steps 320 --diagnostic-mode radial_sensitivity --sensitivity-theta 0.0003125
 ```
 
 Endpoint-slope cancellation command:
 
 ```bash
-/Users/markmorris/vibe/.venv/bin/python reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.005 --delta-steps 2048 --integration-panels 512 --profile-mode tangential_transport --transport-steps 320 --past-profile endpoint_slope_cancel --diagnostic-mode radial_jet --jet-levels 5
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.005 --delta-steps 2048 --integration-panels 512 --profile-mode tangential_transport --transport-steps 320 --past-profile endpoint_slope_cancel --diagnostic-mode radial_jet --jet-levels 5
 ```
 
 Endpoint-slope cancellation convergence command:
 
 ```bash
-/Users/markmorris/vibe/.venv/bin/python reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.005 --delta-steps 1024 --integration-panels 256 --profile-mode tangential_transport --transport-steps 160 --past-profile endpoint_slope_cancel --diagnostic-mode radial_convergence --jet-levels 5 --convergence-levels 2 --refinement-factor 2
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.005 --delta-steps 1024 --integration-panels 256 --profile-mode tangential_transport --transport-steps 160 --past-profile endpoint_slope_cancel --diagnostic-mode radial_convergence --jet-levels 5 --convergence-levels 2 --refinement-factor 2
 ```
 
 Endpoint-slope cancellation finite-collar command:
 
 ```bash
-/Users/markmorris/vibe/.venv/bin/python reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-lo 0 --theta-hi 0.02 --theta-samples 9 --delta-steps 2048 --integration-panels 256 --profile-mode tangential_transport --transport-steps 320 --past-profile endpoint_slope_cancel --diagnostic-mode evaluate
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-lo 0 --theta-hi 0.02 --theta-samples 9 --delta-steps 2048 --integration-panels 256 --profile-mode tangential_transport --transport-steps 320 --past-profile endpoint_slope_cancel --diagnostic-mode evaluate
 ```
 
 ## Diagnostic

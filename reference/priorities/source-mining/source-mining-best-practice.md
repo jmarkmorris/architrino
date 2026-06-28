@@ -184,10 +184,10 @@ Use this process when mining a YouTube video or a video family with available ca
 
 Acquisition steps:
 
-1. Run `git status --short` in `/Users/markmorris/vibe/architrino`.
+1. Run `git status --short` from the repository root.
 2. Use `yt-dlp --list-subs <URL>` to find subtitles. Prefer manual English subtitles when available; otherwise use automatic English captions.
 3. Use `--write-subs` for available manual subtitles and `--write-auto-subs` when automatic captions are the only available transcript source. Use `--sub-langs` and `--sub-format` to keep language and format choices explicit.
-4. Save the caption or transcript artifact under `/tmp`, with the video id in the filename.
+4. Save the caption or transcript artifact under `${TMPDIR:-/tmp}`, with the video id in the filename.
 5. Extract metadata: title, channel, upload date, duration, video URL, description, chapter list when available, and linked references.
 6. Preserve traceability with timestamps. Do not paste the full transcript into the report.
 7. Optional outreach output: write a helpful comment suitable for the video. Teach the relevant perspective in ordinary language, without using internal project terminology.
@@ -212,7 +212,7 @@ YouTube link:
 Acquisition steps:
 - Use `yt-dlp --list-subs` to find subtitles.
 - Prefer manual English subtitles; otherwise use automatic English captions.
-- Save the transcript artifact under `/tmp` with the video id in the filename.
+- Save the transcript artifact under `${TMPDIR:-/tmp}` with the video id in the filename.
 - Extract title, channel, upload date, duration, URL, description, chapters, and linked references.
 - Preserve timestamp traceability and do not paste the full transcript.
 
@@ -271,6 +271,12 @@ Acquisition steps:
 5. Keep historical process material out of the reader-facing corpus unless it yields a current definition, equation, proof route, worked example, or reader-facing bridge.
 6. Do not preserve process-history prose in corpus drafts; rewrite promoted material as current source of truth.
 
+For long-running blog queues, preserve the normalized URL list in `reference/priorities/source-mining/`, not only in platform temporary storage. A temporary queue is acceptable as an active-session working copy, but before pausing or closing a mining batch, resync completed/open status into the durable queue so future passes inherit the repaired URLs, local completion accounting, and remaining worklist.
+
+Use topic-sweep mode when the operator asks what the legacy archive says about a particular concept, mechanism, historical phrase, or source lead. Search the durable queue, local extraction artifacts, WordPress public API records, downloaded HTML, and current corpus before recommending edits. The output should be a topic map: matched posts or artifacts, dates, repaired URLs, strongest source signals, contradictions or later corrections, likely current-canon destinations, and which posts still need ordinary per-source mining. A topic sweep may identify a cluster worth mining, but do not mark a post complete unless its source signals were individually triaged and any accepted edits, source-mining-history row, and durable queue/table status update are complete.
+
+Use archive-level mining mode when the operator needs a full legacy-archive map before selecting individual posts or topic sweeps. The current implementation is [build-legacy-architrino-archive.py](../../../scripts/source-mining/build-legacy-architrino-archive.py). It retrieves public WordPress records, writes full cleansed text and JSONL idea cards under `${TMPDIR:-/tmp}/architrino-archive-mining`, writes compact reports starting with [legacy-architrino-archive-mining-report.md](archive-analysis/legacy-architrino-archive-mining-report.md), applies deterministic topic routing and duplicate grouping, flags legacy terminology and high-risk language, and performs coarse corpus-overlap checks. Treat those reports as triage maps only: they do not mark posts mined, do not update source-mining history or durable queue/table status, and do not promote any claim into `content/markdown/aaa`.
+
 Prompt addendum:
 
 ```text
@@ -291,6 +297,36 @@ Source-specific output additions:
 - Hierarchy map.
 - Idea-development map.
 - Current-useful claims separated from historical process or abandoned language.
+```
+
+Topic-sweep prompt addendum:
+
+```text
+Closure goal:
+Reconstruct what the legacy archive says about one topic across all relevant posts or artifacts, then identify the source cluster and current-canon value before ordinary per-source mining.
+
+Topic:
+[PASTE TOPIC, TERM SET, MECHANISM, HISTORICAL PHRASE, OR SOURCE LEAD]
+
+Search surfaces:
+- Durable source-mining queues under `reference/priorities/source-mining/`.
+- Existing local extraction artifacts under `${TMPDIR:-/tmp}` when available.
+- WordPress public API records and downloaded HTML for candidate posts.
+- Current corpus and priority files that may already capture the topic.
+
+Acquisition steps:
+- Build a search-term set with exact phrases, legacy synonyms, current AAA terms, and likely misspellings.
+- Search the durable queue and any local extraction artifacts before fetching new pages.
+- Apply the URL repair rule before fetching candidate posts.
+- For each candidate post, record title, date, repaired URL, local table status, and the matched topic signals.
+- Preserve the distinction between topic discovery and source completion. Do not mark a post mined unless it receives ordinary per-source triage, accepted edits when needed, source-mining-history logging, and durable queue/table status update.
+
+Source-specific output additions:
+- Topic map sorted by strongest signal and chronology.
+- Matched posts and artifacts with repaired URLs.
+- Legacy terminology mapped to current AAA terminology.
+- Contradictions, later corrections, abandoned paths, and durable source leads.
+- Current-canon coverage check and recommended per-source mining order.
 ```
 
 ### Research PDFs, arXiv Papers, Books, And Reports
@@ -409,6 +445,8 @@ Acquisition steps:
 3. Preserve productization, big-picture outlook writing, and future-technology packaging as source material, but do not let them outrank the derivation spine.
 4. Mark abandoned language and historical process as non-corpus unless it can be rewritten as current doctrine with a clear claim level.
 5. Route product or outlook material through priority-only planning unless it directly improves a current definition, equation, proof route, or reader-facing bridge.
+
+For legacy WordPress batches, use [legacy-architrino-wordpress-mining-queue.txt](legacy-architrino-wordpress-mining-queue.txt) as the durable Architrino post queue and [legacy-architrino-wordpress-library-posts.md](legacy-architrino-wordpress-library-posts.md) as the full title/date/status table. The current authoritative discovery surfaces are the [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), year archive pages such as [2026](https://architrino.wordpress.com/2026/), and the public WordPress API. Crawl the archive links or API before assuming the queue is complete. Treat the WordPress site as an official historical archive while the subscription remains active, currently expected through approximately June 2029. As of June 28, 2026, WordPress tags are not used for source-mining completion; local source-mining history, the durable post table, and the durable queue are authoritative. If a session uses `${TMPDIR:-/tmp}/architrino-unmined-links.txt` or another scratch queue, copy status changes back to the durable queue before ending the pass.
 
 Deferred legacy material classes:
 

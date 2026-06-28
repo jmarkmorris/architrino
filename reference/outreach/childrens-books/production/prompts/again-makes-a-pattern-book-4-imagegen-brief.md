@@ -1,12 +1,10 @@
 # Book 4 Image-Generation Brief: Again Makes A Pattern
 
-Use this brief after Book 3 review, before adding Book 4 back into `generation-manifest.json`.
-
 ## Master Style Prompt
 
 Generate text-free 3:2 landscape source illustrations for **Again Makes A Pattern**, Book 4 of **The Wonder of Nature and the Universe**.
 
-Match the Book 1, Book 2, and Book 3 first-draft visual direction, with Book 4 focused on repeated path traces becoming a readable pattern:
+Use the established early-series visual direction, with Book 4 focused on repeated path traces becoming a readable pattern:
 
 - Electra is a toddler girl with medium-brown skin, dark curly hair in two small puffs, and simple white-and-lavender play clothes.
 - Poz is a toddler boy with light-brown skin, short straight dark hair, and simple white-and-purple play clothes.
@@ -77,9 +75,3 @@ Electra and Poz sit together on the white floor and look at the finished set of 
 ### Backmatter Activity
 
 A clean text-free activity scene for adult-led play: Electra and Poz sit by a white play surface where a grown-up hand places the red ball at one start point and the blue ball at a nearby or farther start point. Several soft purple path traces show repeated rolls making a simple pattern. Keep the grown-up hand small and secondary. The red and blue balls must both be clear and visible for repeating and comparing. Do not use arrows, labels, numbers, rulers, grids, mazes, panels, or abstract diagrams.
-
-## Notes Before Generation
-
-- Book 4 should have `14` source images: cover, 12 story spreads, and 1 backmatter activity.
-- Do not generate Book 4 until Book 3 source images and layout are reviewed.
-- After approval, add Book 4 to `tools/build_generation_manifest.py`, add production prompt blocks to `again-makes-a-pattern.md`, rebuild the manifest, generate sources with the built-in `image_gen` workflow used for Book 1, run QA, render pages, then refresh the manifest again.

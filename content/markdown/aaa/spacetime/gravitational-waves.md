@@ -27,19 +27,31 @@ $$
 \partial^\mu \bar h_{\mu\nu}=0
 $$
 
-Assume constitutive closure supplies effective $(G_{\text{eff}},c_{\text{GW}})$ in this regime. The speed row is the gravitational-wave component of the structural-integrity common-limit closure in [Lorentz Kinematics](./lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure): the weak-field tensor channel must share the same Noether sea state record that supports photon timing, PPN, redshift, Shapiro delay, and lensing.
+Assume constitutive closure supplies effective $(G_{\text{eff}},c_{\text{GW}}^{\mathrm{eff}})$ in this regime. The speed row is the gravitational-wave component of the structural-integrity common-limit closure in [Lorentz Kinematics](./lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure): the weak-field tensor channel must share the same Noether sea state record that supports photon timing, PPN, redshift, Shapiro delay, and lensing. In the multi-messenger branch, the explicit common-mode residual is
+$$
+R_{\mathrm{GW}\gamma}
+\equiv
+\frac{c_{\mathrm{GW}}^{\mathrm{eff}}-c_\gamma}{c_\gamma},
+\qquad
+|R_{\mathrm{GW}\gamma}|\lesssim10^{-15}
+$$
+at the GW170817/GRB 170817A scale, after source-emission lag and propagation-path conventions are declared. A model that gives the effective gravitational channel and the photon channel independently tunable limiting speeds has failed this row before any black-hole or cosmological interpretation can use the gravitational-wave record.
+
+The same row is also a $\chi_{\text{sea}}$ identity condition. The Noether sea delay factor that dresses photon-channel timing to $c_\gamma$ cannot split into a photon-only value and a tensor-only value; it must dress the effective gravitational channel to $c_{\mathrm{GW}}^{\mathrm{eff}}$ within the declared multimessenger tolerance. Otherwise the branch has preserved the language of one medium while using two transport laws.
+
+Coherent photon/gravity conversion comparisons belong at this same shared-record level. They are useful only if the photon channel and the effective gravitational channel read from one Noether sea state, one speed/delay convention, and one event ledger. A proposed conversion amplitude, phase lock, or common propagation speed cannot be used as evidence for a new carrier unless it also preserves the GW170817-style timing row, photon nondispersion, image coherence, and the tensor-mode detector record.
 
 ## Linear Wave Equation
 
 **Conditional Lemma 1 (linearized propagation equation).**
 Under weak-field, slow-background variation, and linear constitutive response, the transverse-traceless sector obeys
 $$
-\Box_{c_{\text{GW}}}\bar h_{\mu\nu}^{\text{TT}}
+\Box_{c_{\text{GW}}^{\mathrm{eff}}}\bar h_{\mu\nu}^{\text{TT}}
 =
-\frac{16\pi G_{\text{eff}}}{c_{\text{GW}}^4}\,T_{\mu\nu}^{\text{TT}},
+\frac{16\pi G_{\text{eff}}}{(c_{\text{GW}}^{\mathrm{eff}})^4}\,T_{\mu\nu}^{\text{TT}},
 \qquad
-\Box_{c_{\text{GW}}}\equiv
--\frac{1}{c_{\text{GW}}^2}\partial_t^2+\nabla^2
+\Box_{c_{\text{GW}}^{\mathrm{eff}}}\equiv
+-\frac{1}{(c_{\text{GW}}^{\mathrm{eff}})^2}\partial_t^2+\nabla^2
 $$
 
 *Derivation sketch:* If the effective field equations induced by the metric constitutive map exist in this regime, linearize them around the homogeneous background, then project onto the TT sector.
@@ -47,11 +59,11 @@ $$
 **Corollary 1 (source-free effective waves).**
 For $T_{\mu\nu}^{\text{TT}}=0$:
 $$
-\Box_{c_{\text{GW}}}\bar h_{\mu\nu}^{\text{TT}}=0
+\Box_{c_{\text{GW}}^{\mathrm{eff}}}\bar h_{\mu\nu}^{\text{TT}}=0
 $$
 so plane waves satisfy
 $$
-\omega^2=c_{\text{GW}}^2k^2
+\omega^2=(c_{\text{GW}}^{\mathrm{eff}})^2k^2
 $$
 to leading order (higher-order dispersive corrections are constitutive and model-dependent).
 
@@ -219,6 +231,8 @@ $$
 1
 $$
 with $\delta_{\mathrm{req}}\sim L_{\mathrm{P}}$ for a single-graviton interferometric distance readout, $\delta_{\mathrm{det}}$ the achieved distance uncertainty, $M_{\mathrm{det}}$ and $D_{\mathrm{det}}$ the detector mass and size, $S_{\mathrm{1g}}$ the predicted single-graviton count, $B_{\mathrm{th}}$ the relevant thermal or particle-background count, and $\epsilon_N$ the allowed occupation-window tolerance. The compactness term prevents a sensitivity claim from hiding a black-hole detector; the background term prevents a thermal-graviton claim from being promoted when statistical scatter in known backgrounds dominates the putative count. Failure of this residual does not refute gravitons as a comparison basis and does not add graviton ontology to $\mathbb{A}\mathbb{A}\mathbb{A}$; it only blocks the stronger detector claim that an observed strain or thermal count has directly resolved individual quanta.
+
+This is the Dyson lesson in current terminology. The durable comparison is not that individual gravitons are impossible by definition, but that any single-quantum claim must close the detector sensitivity, compactness, background, and occupation rows at the same time. A classical strain packet with huge occupation number remains a gravitational-wave recovery success without becoming a single-graviton observation.
 
 When $\theta_{\mathrm{GW}}$ is also used to support a finite-range or dark-energy comparison, $\mathcal{R}_{\mathrm{GW,low}}(\theta)$ must be carried beside this detector residual. Passing a high-frequency event-timing gate alone is not enough to promote a long-wavelength dispersion claim.
 

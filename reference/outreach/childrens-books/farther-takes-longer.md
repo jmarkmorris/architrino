@@ -10,8 +10,6 @@ Wonder question: Why does farther take longer?
 
 Discovery sentence: If a message travels at a speed, distance changes arrival time.
 
-Text status: text-only manuscript draft; no image prompts in this pass.
-
 ## Book Promise
 
 This early elementary book teaches:

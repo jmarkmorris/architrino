@@ -8,6 +8,7 @@ The opening sections define the absolute-frame picture and the document set that
 
 1. **Expansion Ontology**: the universe is a fixed Euclidean container with an evolving Noether sea; the container itself does not expand.
 2. **Primordial Language**: "primordial" denotes an early effective observer-era regime in $\tau_c$ chronology, not a required literal one-time ontic origin event.
+3. **Bang Language**: a "bang" is admissible only as an effective exposure or release event in which high-energy retained structures become visible to a lower-energy observer environment. It is not, by itself, a claim that the Euclidean void, absolute time, or the full architrino inventory began at that event.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology: Overview
 
@@ -190,11 +191,17 @@ This framework does not treat cosmology as "$\mathbb{A}\mathbb{A}\mathbb{A}$ vs 
 
 This decomposition prevents hidden dependency loops where one assumed foundation silently fixes another observable domain.
 
+### Effective Observer-Era Age Boundary
+
+The familiar $13$-$14\ \mathrm{Gyr}$ age scale is treated here as a convergence pressure on the current observer-era reconstruction, not as a primitive age assigned to the Euclidean void. Stellar ages, white-dwarf cooling, radioactive clocks, interstellar grains, CMB fits, and redshift-distance histories all have to converge in the accessible material record. A fixed-void branch may interpret that convergence as the age of the current effective observer era, dominant recycling/thermalization history, or accessible star-forming material record, but it must not silently convert the convergence into a proof that the underlying container began at that time.
+
 ## Inference-Dependency Ledger
 
 The standard cosmological fit package obtains much of its strength by combining observables inside a common Friedmann-Lemaître-Robertson-Walker limit. That limit is useful as an effective comparison layer, but it is not an ontological premise of this framework. Each observational module must therefore state which parts of its inference require large-scale homogeneity, isotropy, standard-candle or standard-ruler calibration, CMB-frame correction, and the Friedmann energy-density sum rule.
 
 The practical rule is to separate measurement from interpretation. Supernova magnitudes, BAO angles, redshift catalogues, CMB spectra, and weak-lensing maps are retained as observational data products. The inferred variables $a(t)$, $H(z)$, $\Omega_m$, $\Omega_\Lambda$, and $w(z)$ are effective reconstruction variables whose meaning depends on the model used to convert those data products into a background history. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology must reproduce the data products or explain controlled residuals, not merely refit the inherited parameters after changing their ontology.
+
+The same split applies to the cosmological principle. Large-scale homogeneity and isotropy are statements about a reconstructed comparison slice, while the observer receives sources on a past light-cone with redshift transfer, source evolution, lensing, dust/plasma effects, survey selection, and calibration already mixed into the catalogue. A fixed-void $\mathbb{A}\mathbb{A}\mathbb{A}$ branch may use homogeneity and isotropy only after the light-cone inference pipeline has declared which rows belong to absolute-slice ontology and which rows belong to observer transport and population reconstruction.
 
 Directional tests are part of this ledger. If a data reduction assumes a cosmic rest frame, a kinematic CMB dipole correction, or an all-sky isotropic background, the same reduction must expose the residual dipole, quadrupole, and environment dependence left after the correction. Those residuals are not automatically evidence against the model; they are diagnostic handles for the Noether sea flow, density, delay, and clock-rate fields.
 

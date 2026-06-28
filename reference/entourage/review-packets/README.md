@@ -2,11 +2,15 @@
 
 ## Purpose
 
-This folder holds self-contained packets for outside-style entourage review. Each packet should include enough context, equations, assumptions, and questions that the reviewer does not need repo access.
+This folder holds self-contained packets for AI-agent review. Names in this folder refer to AI agents asked to emulate the public intellectual persona, knowledge domain, and skill perspective associated with a historical or contemporary figure. They do not indicate real participation, endorsement, authorship, correspondence, or approval by those individuals or their estates.
+
+The intent is to use the AI persona as a disciplined review lens. A packet routed to an Emmy Noether-style agent should emphasize symmetry, invariants, and conservation law; a Terence Tao-style agent should emphasize analysis and well-posedness; a Hendrik Lorentz-style agent should emphasize frame mapping and emergent relativity. The value is the perspective, not an attribution claim.
+
+Each packet should include enough context, equations, assumptions, and questions that the AI reviewer does not need repo access.
 
 ## Active Packets
 
-| Packet | Intended reviewer | Status |
+| Packet | AI persona lens | Status |
 | --- | --- | --- |
 | [emmy-noether-planck-alpha-2026-06-24.md](emmy-noether-planck-alpha-2026-06-24.md) | Emmy Noether | Response integrated |
 | [emmy-noether-planck-alpha-response-2026-06-24.md](emmy-noether-planck-alpha-response-2026-06-24.md) | Emmy Noether | Source response integrated |

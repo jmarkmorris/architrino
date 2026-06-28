@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 .obsidian/
 .tmp/
+.codex/
 
 # Xcode per-user UI/session state
 **/xcuserdata/
