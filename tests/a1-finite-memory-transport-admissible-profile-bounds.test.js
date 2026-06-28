@@ -1080,12 +1080,88 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   );
   assert.equal(
     oneSlotConstructionAttempt.helper_gap.source_q_jacobian_interval_missing,
-    true
+    false
   );
   assert.equal(
     oneSlotConstructionAttempt.helper_gap
       .delta_partial_interval_automatic_differentiation_missing,
+    false
+  );
+  const formulaDependencyAudit =
+    oneSlotConstructionAttempt.formula_dependency_audit;
+  assert.equal(
+    formulaDependencyAudit.schema,
+    "architrino.priority.master_equation_closure.a1_one_slot_formula_dependency_audit.v0"
+  );
+  assert.equal(
+    formulaDependencyAudit.artifact_id,
+    "a1_one_slot_formula_dependency_audit.v0"
+  );
+  assert.match(formulaDependencyAudit.audit_digest, /^sha256:[0-9a-f]{64}$/);
+  assert.equal(
+    formulaDependencyAudit.first_missing_row,
+    "P_1_retained_root_delta_alpha_interval_box"
+  );
+  assert.equal(
+    formulaDependencyAudit.emits_local_formula_interval_probe,
     true
+  );
+  assert.equal(formulaDependencyAudit.emits_one_slot_interval_box, false);
+  assert.equal(
+    formulaDependencyAudit.delta_interval_source
+      .satisfies_retained_root_delta_alpha_interval_box,
+    false
+  );
+  assert.equal(
+    formulaDependencyAudit.q_source_interval_source
+      .satisfies_P_1_q_source_alpha_interval_box,
+    false
+  );
+  assert.deepEqual(
+    formulaDependencyAudit.q_source_interval_source.q_interval,
+    packet.past_profile.interval_box_certificate_summary.q_interval
+  );
+  assert.equal(
+    formulaDependencyAudit.local_interval_formula_probe.formula_available,
+    true
+  );
+  assert.equal(
+    formulaDependencyAudit.local_interval_formula_probe.J_partner_sign,
+    "positive"
+  );
+  assert.ok(
+    formulaDependencyAudit.local_interval_formula_probe
+      .abs_J_partner_interval_floor > 0
+  );
+  assert.ok(
+    formulaDependencyAudit.local_interval_formula_probe
+      .partial_delta_J_partner_with_source_q_interval.lower <
+      formulaDependencyAudit.local_interval_formula_probe
+        .partial_delta_J_partner_with_source_q_interval.upper
+  );
+  assert.ok(
+    formulaDependencyAudit.local_interval_formula_probe
+      .partial_T_alpha_partial_delta_alpha_interval.lower <
+      formulaDependencyAudit.local_interval_formula_probe
+        .partial_T_alpha_partial_delta_alpha_interval.upper
+  );
+  assert.equal(
+    formulaDependencyAudit.sampled_partial_containment
+      .sampled_partials_inside_formula_interval,
+    true
+  );
+  assert.equal(
+    formulaDependencyAudit.sampled_partial_containment
+      .accepted_as_interval_evidence,
+    false
+  );
+  assert.ok(
+    formulaDependencyAudit.dependency_rows.some(
+      (row) =>
+        row.row === "partial_delta_J_partner_with_source_q_interval_formula" &&
+        row.status === "local_interval_formula_present" &&
+        row.used_as_certificate === false
+    )
   );
   assert.equal(
     oneSlotConstructionAttempt.sampled_reference_readout.sampled_row_count,
@@ -1110,6 +1186,11 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     false
   );
   assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .emits_local_formula_interval_probe,
+    true
+  );
+  assert.equal(
     oneSlotConstructionAttempt.construction_status.satisfies_selected_slot,
     false
   );
@@ -1119,16 +1200,16 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   );
   assert.equal(
     oneSlotConstructionAttempt.construction_status.first_missing_formula_row,
-    "partial_delta_J_partner_with_source_q_interval_formula"
+    null
   );
   assert.equal(
     oneSlotConstructionAttempt.construction_status
       .first_missing_backend_capability,
-    "directed_rounded_interval_derivative_backend_for_branch_values_with_source_q"
+    "shared_directed_rounding_audit_trail_for_source_q_derivative_composition"
   );
   assert.equal(
     oneSlotConstructionAttempt.first_failure,
-    "one_slot_interval_formula_backend_missing"
+    "one_slot_retained_root_delta_interval_source_missing"
   );
   assert.equal(oneSlotConstructionAttempt.emits_K_Q, false);
   assert.equal(oneSlotConstructionAttempt.emits_E_Q_plus_b, false);

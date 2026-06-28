@@ -421,6 +421,21 @@ are fixture, proxy-diagnostic, or target-only surfaces rather than non-fixture
 same-record action-increment sources. This scanner is priority-only candidate
 intake: it does not run `field_speed_action_self_hit_scan/v0`, does not accept
 synthetic or proxy rows, and keeps `candidate_h_recovery_vote=not_authorized`.
+Its embedded `field_speed_action_self_hit_scan_source_family_delta_scout/v0`
+adds a delta report over six current source families: action-increment packet,
+action-increment source contracts, rank-2 branch-provider rows, torque/wake
+same-row diagnostic, moving-retained-branch certificate candidates, and the
+rank 2 / rank 6 branch-source join checker. The scout also finds zero accepted
+transition-source families and keeps the overall first failure at
+`source_row_binding_open`. The closest partial family is the torque/wake
+diagnostic: it carries `action_increment_row_ref`,
+`active_root_ledger_hash`, `conservation_pullback_hash`, and
+`negative_control_ref`, but fails at `branch_certificate_ref_missing` and
+still lacks `retained_branch` plus an accepted non-fixture
+`action_increment_row_id`. The exact next rank-2 source object is therefore a
+branch-emitted non-fixture action-increment transition row owned by a retained
+`branch_certificate_ref`, with same-row `root_ledger_hash`,
+`conservation_pullback_hash`, and `negative_control_ref`.
 
 Related torque/wake diagnostic status, 2026-06-28:
 `scripts/nested-shell-braid/torque-wake-same-row-diagnostic-report.mjs` emits

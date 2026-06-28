@@ -157,6 +157,58 @@
       "first_missing_required_row": "action_measure_row",
       "negative_control_status": "same-ledger-tuple-without-action-scale-rows-not-action-derived-scale",
       "rejected_current_fixture": true,
+      "action_measure_row_target": {
+        "schema": "neutral-braid-octahedral-zero-mean-action-measure-row-target/v0",
+        "claim_scope": "bounded-speed-action-measure-row-target-after-normal-candidate",
+        "promotion_status": "priority-only",
+        "status": "target-only",
+        "row": "action_measure_row",
+        "source_action_derived_scale_row": "action_derived_scale",
+        "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture",
+        "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+        "force_checksum_id": "force-checksum-fixture",
+        "consumer_checksum_id": "consumer-checksum-fixture",
+        "required_identity_tuple": {
+          "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+          "force_checksum_id": "force-checksum-fixture",
+          "consumer_checksum_id": "consumer-checksum-fixture",
+          "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture"
+        },
+        "required_variables": [
+          "action_functional_A_nu",
+          "branch_scope",
+          "period_rows",
+          "root_support_event_rows",
+          "normalization_scale_R_star",
+          "finite_chart"
+        ],
+        "required_measure_fields": [
+          "same_ledger_identity_tuple",
+          "branch_scope",
+          "period_rows",
+          "action_functional",
+          "root_support_event_rows"
+        ],
+        "current_fixture_supplied_measure_fields": [
+          "same_ledger_identity_tuple"
+        ],
+        "missing_measure_fields": [
+          "branch_scope",
+          "period_rows",
+          "action_functional",
+          "root_support_event_rows"
+        ],
+        "first_missing_measure_field": "branch_scope",
+        "negative_control_status": "same-ledger-tuple-without-action-functional-not-action-measure-row",
+        "rejected_current_fixture": true,
+        "certifies_action_measure_row": false,
+        "certifies_action_derived_scale": false,
+        "certifies_bounded_speed_live_ledger": false,
+        "certifies_action_stability": false,
+        "certifies_observer_export": false,
+        "retention": "not_retained",
+        "retained_branch": false
+      },
       "certifies_action_derived_scale": false,
       "certifies_bounded_speed_live_ledger": false,
       "certifies_action_stability": false,

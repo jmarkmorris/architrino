@@ -15,7 +15,9 @@ import {
   buildLocalProofProgramPoolNonReclassificationClassifier,
   buildExternalSchemaProvenanceContractReplay,
   buildExternalLabelDecoyNegativeControlCandidate,
+  buildExternalProvenanceSourceAudit,
   scanLocalProofProgramPool,
+  scanReferenceProvenanceArtifacts,
   validationErrors,
 } from "../scripts/proof-programs/fresh-v10-higher-fold-sigma-hf-01-external-schema-candidate-intake-record.mjs";
 
@@ -743,6 +745,45 @@ test("Sigma_hf_01 external provenance contract replay rejects local candidate re
   );
 });
 
+test("Sigma_hf_01 external provenance source audit classifies current sources fail-closed", () => {
+  const packet = buildExternalProvenanceSourceAudit(
+    scanLocalProofProgramPool(CERT_DIR),
+    scanReferenceProvenanceArtifacts([
+      "reference/priorities/proof-programs",
+      "reference/priorities/source-mining",
+      "reference/priorities/aaa-work-threads/closure-join-matrix.md",
+    ]),
+  );
+  const summary = packet.summary;
+
+  assert.equal(packet.target_slot, "Sigma_hf_01");
+  assert.ok(summary.proof_program_json_files_screened > 0);
+  assert.ok(summary.reference_markdown_artifacts_screened > 0);
+  assert.ok(summary.local_generated_artifact_records > 0);
+  assert.ok(summary.local_decoy_records >= 1);
+  assert.ok(summary.source_data_partial_records >= 1);
+  assert.ok(summary.external_looking_label_records >= 1);
+  assert.equal(summary.accepted_external_provenance_records, 0);
+  assert.equal(summary.schema_validation_intake_candidates_found, 0);
+  assert.equal(summary.candidate_external_schema_received_records, 0);
+  assert.equal(
+    summary.first_failure,
+    "external_schema_provenance_required_before_schema_validation_intake",
+  );
+  assert.equal(packet.authorization_lock.schema_validation_intake, false);
+  assert.equal(packet.authorization_lock.row_consumption, false);
+  assert.equal(packet.authorization_lock.updates_live_ledger, false);
+  assert.equal(packet.authorization_lock.branch_chart_authorized, false);
+  assert.equal(packet.next_certificate_handoff.decision_required, true);
+  assert.equal(packet.next_certificate_handoff.mechanical_continuation_available, false);
+  assert.equal(
+    packet.focused_source_records.some(
+      (record) => record.category_flags.field_complete_without_provenance === true,
+    ),
+    true,
+  );
+});
+
 test("Sigma_hf_01 intake CLI writes local proof-program pool classifier", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sigma-hf-01-local-pool-classifier-"));
   execFileSync(
@@ -793,6 +834,36 @@ test("Sigma_hf_01 intake CLI writes external provenance contract replay", () => 
   assert.equal(packet.summary.external_provenance_accepted_records, 0);
   assert.equal(packet.summary.schema_validation_intake_candidates_found, 0);
   assert.equal(packet.authorization_lock.schema_validation_intake, false);
+  assert.equal(packet.authorization_lock.row_consumption, false);
+  assert.equal(packet.authorization_lock.branch_chart_authorized, false);
+});
+
+test("Sigma_hf_01 intake CLI writes external provenance source audit", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sigma-hf-01-provenance-source-audit-"));
+  execFileSync(
+    process.execPath,
+    [SCRIPT_PATH, "--external-provenance-source-audit", "--out-dir", tempDir, "--pretty"],
+    { encoding: "utf8" },
+  );
+
+  const jsonPath = path.join(
+    tempDir,
+    "sigma_hf_01_external_schema_candidate.external-provenance-source-audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  );
+  const reportPath = path.join(
+    tempDir,
+    "sigma_hf_01_external_schema_candidate.external-provenance-source-audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md",
+  );
+
+  assert.equal(fs.existsSync(jsonPath), true);
+  assert.equal(fs.existsSync(reportPath), true);
+  const packet = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  assert.equal(packet.summary.accepted_external_provenance_records, 0);
+  assert.equal(packet.summary.schema_validation_intake_candidates_found, 0);
+  assert.ok(packet.summary.local_generated_artifact_records > 0);
+  assert.ok(packet.summary.local_decoy_records >= 1);
+  assert.ok(packet.summary.source_data_partial_records >= 1);
+  assert.ok(packet.summary.external_looking_label_records >= 1);
   assert.equal(packet.authorization_lock.row_consumption, false);
   assert.equal(packet.authorization_lock.branch_chart_authorized, false);
 });

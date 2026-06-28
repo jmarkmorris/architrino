@@ -16,7 +16,11 @@ already supplied by the normal candidate, and the missing downstream closed
 rows that prove the tuple is not yet a certified bounded-speed live ledger. Its
 `action_derived_scale_target` makes the first missing downstream row executable
 and rejects this fixture by
-`same-ledger-tuple-without-action-scale-rows-not-action-derived-scale`.
+`same-ledger-tuple-without-action-scale-rows-not-action-derived-scale`. The
+nested `action_measure_row_target` records that no same-ledger action-measure
+row is supplied; tuple identity alone is rejected by
+`same-ledger-tuple-without-action-functional-not-action-measure-row`, with
+`branch_scope` as the first missing measure field.
 Every packet keeps `certifies_bounded_speed_live_ledger=false` and
 `retained_branch=false`.
 

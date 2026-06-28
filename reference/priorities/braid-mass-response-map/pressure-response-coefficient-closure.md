@@ -653,14 +653,33 @@ nested target-provenance probe, the provider target, Fe/silicate toy replay, the
 $A_0$ branch-source frontier partial, the cross-row negative control, the
 current-status fixture, the finite-branch Hessian target packet, the branch-chart
 revision contract, the Fe/Cr toy and empirical replay packets, and the exposure
-and Noether sea response theorem targets. The scout reports zero accepted
-non-fixture candidates and stable rejection codes for target-only, toy, fixture,
-diagnostic, partial, negative-control, empirical, nested-target, missing
-same-row, missing required-field, missing accepted-history, priority-packet, and
-contract-target sources. Its first failure is therefore still
+and Noether sea response theorem targets. The scout also auto-discovers the
+shared [branch-provider evidence report](../solver/branch-provider-evidence-report.md)
+as a branch-provider boundary candidate, so the emitted source scope now covers
+13 manifest candidates plus one provider-boundary report. The scout reports
+zero accepted non-fixture candidates and stable rejection codes for target-only,
+toy, fixture, diagnostic, partial, negative-control, empirical, nested-target,
+missing same-row, missing required-field, missing accepted-history,
+priority-packet, contract-target, and provider-boundary sources. Its first
+failure is therefore still
 `accepted_non_fixture_source_missing`, and it does not authorize branch-derived
 pressure response, retained-branch claims, observer export, export readiness, or
 empirical mass response.
+
+The source scout now emits a compact `failure_family_delta`. The nearest current
+contract-field candidate is
+[pressure-row-branch-intake-nested-source-status-probe.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json):
+all retained pressure-row contract fields bind to one row and no contract field
+is missing, but every required field still carries target-required provenance
+rather than accepted non-fixture source evidence. The minimal positive source
+object is therefore still one accepted retained pressure row carrying
+`branch_id`, `accepted_history_segment_id`, `source_path`, `quotient_chart_id`,
+the pressure-record entries, the exposure-source entries, the pressure-response
+entries, the reversible-domain row, and the null-sector row as accepted source
+evidence on that same row. The provider-boundary candidate reads the shared
+branch-provider report as `provider_verdict=same_domain_branch_provider_missing`,
+`first_failure=accepted_non_fixture_source_missing`, and
+`provider_ready_consumer_count=0`; it is not a retained pressure-row source.
 
 Executable current-status checker:
 [pressure-row-branch-intake-report.mjs](../../../scripts/mass-map/pressure-row-branch-intake-report.mjs)

@@ -408,6 +408,9 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
 
   assert.deepEqual(scoutValidationErrors(report), []);
   assert.equal(report.schema, "pressure_row_branch_intake_source_scout_report/v0");
+  assert.equal(report.candidate_count, 14);
+  assert.equal(report.source_scope.manifest_candidate_count, 13);
+  assert.equal(report.source_scope.auto_discovered_candidate_count, 1);
   assert.equal(report.accepted_non_fixture_candidate_count, 0);
   assert.equal(report.first_failure, "accepted_non_fixture_source_missing");
   assert.equal(report.authorization.branch_derived_pressure_response, false);
@@ -424,6 +427,7 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
     "diagnostic_source",
     "nested_target_provenance",
     "empirical_source",
+    "provider_boundary_not_pressure_row",
   ]) {
     assert.equal(rejectionCodes.has(expectedCode), true);
   }
@@ -435,6 +439,41 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
   assert.equal(nestedProbe.pressure_row_report.same_row_binding, true);
   assert.equal(nestedProbe.pressure_row_report.first_failure, "accepted_non_fixture_source_missing");
   assert.equal(nestedProbe.rejection_codes.includes("nested_target_provenance"), true);
+
+  const branchProviderReport = report.candidates.find(
+    (candidate) => candidate.path === "reference/priorities/solver/branch-provider-evidence-report.md"
+  );
+  assert.ok(branchProviderReport);
+  assert.equal(branchProviderReport.candidate_kind, "branch_provider_boundary_report");
+  assert.equal(branchProviderReport.accepted_non_fixture_source, false);
+  assert.equal(branchProviderReport.rejection_codes.includes("provider_boundary_not_pressure_row"), true);
+  assert.equal(
+    branchProviderReport.provider_report_reading.provider_verdict,
+    "same_domain_branch_provider_missing"
+  );
+  assert.equal(branchProviderReport.provider_report_reading.first_failure, "accepted_non_fixture_source_missing");
+  assert.equal(branchProviderReport.provider_report_reading.provider_ready_consumer_count, "0");
+
+  assert.ok(report.failure_family_delta.nearest_candidate);
+  assert.equal(
+    report.failure_family_delta.nearest_candidate.path,
+    "scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json"
+  );
+  assert.equal(report.failure_family_delta.nearest_candidate.first_failure, "accepted_non_fixture_source_missing");
+  assert.equal(report.failure_family_delta.nearest_candidate.same_row_binding, true);
+  assert.equal(report.failure_family_delta.nearest_candidate.failed_field_count, 0);
+  assert.equal(
+    report.failure_family_delta.minimal_missing_rows.includes("exposure_source_record.E_internal"),
+    true
+  );
+  assert.equal(
+    report.failure_family_delta.minimal_missing_rows.includes("pressure_response_record.C_chi_iso"),
+    true
+  );
+  assert.equal(
+    report.failure_family_delta.provider_boundary_candidate.path,
+    "reference/priorities/solver/branch-provider-evidence-report.md"
+  );
 });
 
 test("pressure-row accepted-source scout CLI emits and validates manifest report", () => {
@@ -448,6 +487,7 @@ test("pressure-row accepted-source scout CLI emits and validates manifest report
   );
 
   const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+  assert.equal(report.candidate_count, 14);
   assert.equal(report.accepted_non_fixture_candidate_count, 0);
   assert.equal(report.first_failure, "accepted_non_fixture_source_missing");
 

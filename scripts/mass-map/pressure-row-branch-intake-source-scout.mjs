@@ -24,7 +24,53 @@ const REJECTION_CODE_LEGEND = {
   accepted_history_missing: "No accepted history segment is available for the candidate row.",
   priority_packet_not_source_row: "Priority prose states a target or contract but does not emit a source row.",
   contract_target_not_source_row: "The file defines an intake contract or theorem target rather than source evidence.",
+  provider_boundary_not_pressure_row:
+    "Branch-provider boundary reports do not emit the retained pressure-row fields until provider readiness is accepted.",
 };
+
+const AUTO_DISCOVERED_CANDIDATES = [
+  {
+    path: "reference/priorities/solver/branch-provider-evidence-report.md",
+    candidate_kind: "branch_provider_boundary_report",
+    source_status: "same_domain_branch_provider_missing_not_retained_pressure_row",
+    rejection_codes: [
+      "provider_boundary_not_pressure_row",
+      "contract_target_not_source_row",
+      "required_fields_missing",
+      "accepted_history_missing",
+    ],
+  },
+];
+
+const RETAINED_PRESSURE_ROW_SOURCE_FIELDS = [
+  "branch_id",
+  "accepted_history_segment_id",
+  "source_path",
+  "quotient_chart_id",
+  "pressure_record.Pi",
+  "pressure_record.A",
+  "pressure_record.s_n",
+  "pressure_record.Q_chi_ab",
+  "pressure_record.S_dev_ab",
+  "pressure_record.retained_replay_direction",
+  "exposure_source_record.E_internal",
+  "exposure_source_record.zeta",
+  "exposure_source_record.M0_src",
+  "exposure_source_record.N_tf_ab",
+  "pressure_response_record.partial_P_M0_src",
+  "pressure_response_record.C_chi_iso",
+  "pressure_response_record.C_chi_aniso",
+  "pressure_response_record.m_S",
+  "reversible_domain.R_tr",
+  "reversible_domain.R_tr_star",
+  "reversible_domain.loss_channels_closed",
+  "null_sector_record.clock_signal",
+  "null_sector_record.birefringence",
+  "null_sector_record.photon_dispersion",
+  "null_sector_record.preferred_frame",
+  "null_sector_record.directional_tensor",
+  "null_sector_record.transport",
+];
 
 const REJECTION_PATTERNS = [
   ["target_only_source", /target[_-]?only|target_required|provider_target/i],
@@ -57,6 +103,17 @@ function isObject(value) {
 
 function uniqueSorted(values) {
   return [...new Set(values.filter(Boolean))].sort();
+}
+
+function withoutDuplicatePaths(candidates) {
+  const seen = new Set();
+  return candidates.filter((candidate) => {
+    if (seen.has(candidate.path)) {
+      return false;
+    }
+    seen.add(candidate.path);
+    return true;
+  });
 }
 
 function classifyRejectedValue(value) {
@@ -127,9 +184,24 @@ function pressureRowCandidate(entry, repoRoot) {
       accepted_source_pass: pressureRowReport.accepted_source_evidence.pass,
       rejected_status_field_count:
         pressureRowReport.accepted_source_evidence.rejected_status_fields.length,
+      missing_or_rejected_fields: pressureRowReport.missing_or_rejected_fields,
       validation_errors: reportErrors,
     },
   };
+}
+
+function stripMarkdownCell(cell) {
+  return cell.trim().replace(/^`+|`+$/g, "").trim();
+}
+
+function markdownTableValue(body, fieldName) {
+  for (const line of body.split(/\r?\n/)) {
+    const cells = line.split("|").map(stripMarkdownCell);
+    if (cells.length >= 4 && cells[1] === fieldName) {
+      return cells[2] === "" ? null : cells[2];
+    }
+  }
+  return null;
 }
 
 function documentCandidate(entry, repoRoot) {
@@ -140,6 +212,15 @@ function documentCandidate(entry, repoRoot) {
       (term) => [term, (body.match(new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) ?? []).length]
     )
   );
+  const providerReportReading =
+    entry.candidate_kind === "branch_provider_boundary_report"
+      ? {
+          provider_verdict: markdownTableValue(body, "provider_verdict"),
+          first_failure: markdownTableValue(body, "first_failure"),
+          candidate_count: markdownTableValue(body, "candidate_count"),
+          provider_ready_consumer_count: markdownTableValue(body, "provider_ready_consumer_count"),
+        }
+      : null;
 
   return {
     path: entry.path,
@@ -148,6 +229,91 @@ function documentCandidate(entry, repoRoot) {
     accepted_non_fixture_source: false,
     rejection_codes: uniqueSorted(entry.rejection_codes ?? ["priority_packet_not_source_row"]),
     term_counts: termCounts,
+    ...(providerReportReading ? { provider_report_reading: providerReportReading } : {}),
+  };
+}
+
+function candidateDistance(candidate) {
+  const pressureReport = candidate.pressure_row_report;
+  if (!pressureReport) {
+    return [1, 1, Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER, candidate.path];
+  }
+  return [
+    0,
+    pressureReport.same_row_binding ? 0 : 1,
+    pressureReport.failed_field_count,
+    pressureReport.rejected_status_field_count,
+    candidate.path,
+  ];
+}
+
+function compareDistance(left, right) {
+  const leftDistance = candidateDistance(left);
+  const rightDistance = candidateDistance(right);
+  for (let i = 0; i < leftDistance.length; i += 1) {
+    const leftValue = leftDistance[i];
+    const rightValue = rightDistance[i];
+    if (leftValue < rightValue) {
+      return -1;
+    }
+    if (leftValue > rightValue) {
+      return 1;
+    }
+  }
+  return 0;
+}
+
+function minimalMissingRows(candidate) {
+  const missing = candidate.pressure_row_report?.missing_or_rejected_fields ?? [];
+  if (missing.length === 1 && missing[0] === "accepted_non_fixture_source") {
+    return RETAINED_PRESSURE_ROW_SOURCE_FIELDS;
+  }
+  return missing;
+}
+
+function buildFailureFamilyDelta(candidates, acceptedCandidates) {
+  if (acceptedCandidates.length > 0) {
+    return {
+      nearest_candidate: null,
+      minimal_missing_rows: [],
+      provider_boundary_candidate: null,
+    };
+  }
+
+  const nearestCandidate = candidates
+    .filter((candidate) => candidate.pressure_row_report)
+    .sort(compareDistance)[0];
+  const providerBoundaryCandidate = candidates.find(
+    (candidate) => candidate.candidate_kind === "branch_provider_boundary_report"
+  );
+
+  return {
+    nearest_candidate: nearestCandidate
+      ? {
+          path: nearestCandidate.path,
+          candidate_kind: nearestCandidate.candidate_kind,
+          source_status: nearestCandidate.source_status,
+          first_failure: nearestCandidate.pressure_row_report.first_failure,
+          same_row_binding: nearestCandidate.pressure_row_report.same_row_binding,
+          failed_field_count: nearestCandidate.pressure_row_report.failed_field_count,
+          rejected_status_field_count:
+            nearestCandidate.pressure_row_report.rejected_status_field_count,
+          reason:
+            nearestCandidate.pressure_row_report.failed_field_count === 0 &&
+            nearestCandidate.pressure_row_report.same_row_binding
+              ? "All retained pressure-row contract fields bind to one row, but accepted non-fixture source provenance is still absent."
+              : "This candidate has the shortest current missing-field list under the pressure-row intake contract.",
+        }
+      : null,
+    minimal_missing_rows: nearestCandidate ? minimalMissingRows(nearestCandidate) : [],
+    provider_boundary_candidate: providerBoundaryCandidate
+      ? {
+          path: providerBoundaryCandidate.path,
+          source_status: providerBoundaryCandidate.source_status,
+          rejection_codes: providerBoundaryCandidate.rejection_codes,
+          provider_report_reading: providerBoundaryCandidate.provider_report_reading ?? null,
+        }
+      : null,
   };
 }
 
@@ -157,7 +323,10 @@ export function buildSourceScoutReport(manifest, options = {}) {
     throw new Error("Scout manifest must be an object with a candidates array.");
   }
 
-  const candidates = manifest.candidates.map((entry) => {
+  const manifestCandidates = manifest.candidates;
+  const autoDiscoveredCandidates = AUTO_DISCOVERED_CANDIDATES;
+  const entries = withoutDuplicatePaths([...manifestCandidates, ...autoDiscoveredCandidates]);
+  const candidates = entries.map((entry) => {
     const absolutePath = path.join(repoRoot, entry.path);
     if (!fs.existsSync(absolutePath)) {
       return {
@@ -182,11 +351,19 @@ export function buildSourceScoutReport(manifest, options = {}) {
     purpose:
       "Enumerate current repo candidates for an accepted non-fixture retained pressure-row source before branch-derived pressure response can be consumed.",
     candidate_count: candidates.length,
+    source_scope: {
+      manifest_candidate_count: manifestCandidates.length,
+      auto_discovered_candidate_count: autoDiscoveredCandidates.filter(
+        (candidate) => !manifestCandidates.some((entry) => entry.path === candidate.path)
+      ).length,
+      auto_discovered_families: ["branch_provider_boundary_report"],
+    },
     accepted_non_fixture_candidate_count: acceptedCandidates.length,
     first_failure:
       acceptedCandidates.length === 0 ? "accepted_non_fixture_source_missing" : null,
     rejection_code_legend: REJECTION_CODE_LEGEND,
     candidates,
+    failure_family_delta: buildFailureFamilyDelta(candidates, acceptedCandidates),
     authorization: {
       branch_derived_pressure_response: false,
       empirical_mass_response: false,
@@ -207,6 +384,9 @@ export function scoutValidationErrors(report) {
   }
   if (!Array.isArray(report.candidates)) {
     errors.push("candidates must be an array");
+  }
+  if (Array.isArray(report.candidates) && report.candidate_count !== report.candidates.length) {
+    errors.push("candidate_count must equal candidates.length");
   }
   if (report.accepted_non_fixture_candidate_count === 0 && report.first_failure !== "accepted_non_fixture_source_missing") {
     errors.push("empty accepted-source scout must fail at accepted_non_fixture_source_missing");

@@ -52,7 +52,17 @@ const EXTERNAL_LABEL_DECOY_RECORD_STEM =
   "sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control-intake-record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305";
 const EXTERNAL_LABEL_DECOY_RECORD_JSON = `${EXTERNAL_LABEL_DECOY_RECORD_STEM}.json`;
 const EXTERNAL_LABEL_DECOY_RECORD_REPORT = `${EXTERNAL_LABEL_DECOY_RECORD_STEM}_report.md`;
+const EXTERNAL_PROVENANCE_SOURCE_AUDIT_STEM =
+  "sigma_hf_01_external_schema_candidate.external-provenance-source-audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305";
+const EXTERNAL_PROVENANCE_SOURCE_AUDIT_JSON = `${EXTERNAL_PROVENANCE_SOURCE_AUDIT_STEM}.json`;
+const EXTERNAL_PROVENANCE_SOURCE_AUDIT_REPORT = `${EXTERNAL_PROVENANCE_SOURCE_AUDIT_STEM}_report.md`;
 const EXTERNAL_SCHEMA_ACCEPTANCE_CONTRACT_REF = `${CERT_DIR}/external_proof_grade_derivation_schema_acceptance_contract.md`;
+
+const DEFAULT_REFERENCE_PROVENANCE_SCAN_PATHS = [
+  "reference/priorities/proof-programs",
+  "reference/priorities/source-mining",
+  "reference/priorities/aaa-work-threads/closure-join-matrix.md",
+];
 
 const DEFAULT_SOURCE_DATA_READINESS = `${CERT_DIR}/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_source_data_readiness_classifier.${PACKET_ID}.proof-interval-v6.lambda0305.json`;
 const DEFAULT_SCHEMA_TARGET = `${CERT_DIR}/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_target_packet.${PACKET_ID}.proof-interval-v6.lambda0305.json`;
@@ -120,7 +130,9 @@ function parseArgs(argv) {
     localProofProgramPoolClassifier: false,
     externalProvenanceContractReplay: false,
     externalLabelDecoyNegativeControl: false,
+    externalProvenanceSourceAudit: false,
     proofProgramPoolDir: CERT_DIR,
+    referenceScanPaths: null,
     sourceDataReadiness: DEFAULT_SOURCE_DATA_READINESS,
     schemaTarget: DEFAULT_SCHEMA_TARGET,
     contractSatisfaction: DEFAULT_CONTRACT_SATISFACTION,
@@ -152,8 +164,15 @@ function parseArgs(argv) {
       args.externalProvenanceContractReplay = true;
     } else if (arg === "--external-label-decoy-negative-control") {
       args.externalLabelDecoyNegativeControl = true;
+    } else if (arg === "--external-provenance-source-audit") {
+      args.externalProvenanceSourceAudit = true;
     } else if (arg === "--proof-program-pool-dir") {
       args.proofProgramPoolDir = argv[++i];
+    } else if (arg === "--reference-scan-path") {
+      if (args.referenceScanPaths === null) {
+        args.referenceScanPaths = [];
+      }
+      args.referenceScanPaths.push(argv[++i]);
     } else if (arg === "--source-data-readiness") {
       args.sourceDataReadiness = argv[++i];
     } else if (arg === "--schema-target") {
@@ -189,8 +208,12 @@ Options:
                     Emit a fail-closed provenance contract replay proving local/self-authored artifacts cannot satisfy external schema provenance.
   --external-label-decoy-negative-control
                     Emit a local complete-looking negative control whose external-looking labels and 8/8 fields still fail external provenance.
+  --external-provenance-source-audit
+                    Emit a fail-closed audit of current proof-program and reference provenance sources for Sigma_hf_01.
   --proof-program-pool-dir PATH
                     Local proof-program JSON pool for --local-proof-program-pool-classifier or --external-provenance-contract-replay. Defaults to ${CERT_DIR}.
+  --reference-scan-path PATH
+                    Reference Markdown path to scan for Sigma_hf_01 provenance-source signals. May be repeated. Defaults to proof-programs, source-mining, and closure-join matrix paths.
   --source-data-readiness PATH
                     Source-data readiness JSON for --local-source-candidate.
   --schema-target PATH
@@ -1401,6 +1424,348 @@ function assertExternalSchemaProvenanceContractReplayInvariants(packet) {
   }
 }
 
+function collectStrings(value, out = []) {
+  if (typeof value === "string") {
+    out.push(value);
+  } else if (Array.isArray(value)) {
+    for (const entry of value) {
+      collectStrings(entry, out);
+    }
+  } else if (isObject(value)) {
+    for (const entry of Object.values(value)) {
+      collectStrings(entry, out);
+    }
+  }
+  return out;
+}
+
+function hasMarker(strings, markers) {
+  return strings.some((value) => {
+    const lower = value.toLowerCase();
+    return markers.some((marker) => lower.includes(marker));
+  });
+}
+
+function actualExternalRef(value) {
+  if (typeof value !== "string") {
+    return null;
+  }
+  const trimmed = value.trim();
+  const lower = trimmed.toLowerCase();
+  if (
+    lower.includes("external-proof-looking") ||
+    lower.includes("external_label_decoy") ||
+    lower.includes("external-label-decoy") ||
+    lower.includes("local-placeholder") ||
+    lower.includes("local-source-data-partial") ||
+    lower.includes("local_")
+  ) {
+    return null;
+  }
+  if (/^(https?:\/\/|doi:|arxiv:|urn:|external-proof:)/i.test(trimmed)) {
+    return trimmed;
+  }
+  return null;
+}
+
+function uniqueSorted(values) {
+  return [...new Set(values)].sort();
+}
+
+function poolRecordCategoryFlags(entry, record, strings) {
+  const basename = entry.basename.toLowerCase();
+  const joined = strings.join(" ").toLowerCase();
+  const localDecoy =
+    basename.includes("external-label-decoy") ||
+    basename.includes("placeholder-rejection") ||
+    hasMarker(strings, [
+      "external_label_decoy_negative_control",
+      "external-label-decoy-negative-control",
+      "local_self_authored_negative_control",
+      "local_self_authored_placeholder_rejection",
+    ]);
+  const sourceDataPartial =
+    basename.includes("local-source-data-partial") ||
+    hasMarker(strings, [
+      "partial_local_source_data_candidate_not_external_proof_grade",
+      "local_source_data_records",
+      "source-data partial",
+      "source_data_partial",
+      "source_data_readiness",
+    ]);
+  const externalLookingLabel =
+    hasMarker(strings, [
+      "external-proof-looking-label",
+      "external-looking",
+      "external_label",
+      "external-label",
+    ]) ||
+    (typeof record.candidate_external_schema_ref === "string" &&
+      record.candidate_external_schema_ref.toLowerCase().includes("external"));
+  const actualExternalRefs = uniqueSorted(
+    strings.map(actualExternalRef).filter((value) => value !== null),
+  );
+  return {
+    local_generated_artifact: true,
+    local_decoy: localDecoy,
+    source_data_partial: sourceDataPartial,
+    external_looking_label: externalLookingLabel,
+    actual_external_ref: actualExternalRefs.length > 0,
+    actual_external_refs: actualExternalRefs,
+    accepted_external_provenance: record.external_provenance_accepted === true,
+    schema_validation_intake_candidate:
+      record.authorization?.schema_validation_intake === true,
+    field_complete_without_provenance:
+      record.required_fields_present === REQUIRED_FIELDS.length &&
+      record.external_provenance_accepted === false,
+    known_local_non_external_artifact:
+      record.candidate_known_local_non_external_artifact === true ||
+      joined.includes("local proof-program") ||
+      joined.includes("proof-program pool"),
+  };
+}
+
+function compactProvenanceSourcePoolRecord(entry) {
+  const record = buildRecord(entry.parsed);
+  const strings = collectStrings(entry.parsed);
+  const flags = poolRecordCategoryFlags(entry, record, strings);
+  return {
+    source_kind: "proof_program_certificate_json",
+    path: entry.path,
+    basename: entry.basename,
+    sha256: entry.sha256,
+    schema: entry.parsed.schema ?? null,
+    status: entry.parsed.status ?? null,
+    candidate_status: entry.parsed.candidate_status ?? null,
+    candidate_external_schema_ref: record.candidate_external_schema_ref,
+    candidate_external_schema_received: record.candidate_external_schema_received,
+    external_provenance_accepted: record.external_provenance_accepted,
+    external_provenance_status: record.external_provenance_status,
+    required_fields_present: record.required_fields_present,
+    slot_result: record.slot_result,
+    schema_validation_intake_authorized: record.authorization.schema_validation_intake,
+    row_consumption_count: record.row_consumption_count,
+    updates_live_ledger: record.updates_live_ledger,
+    branch_chart_authorized: record.branch_chart_authorized,
+    first_failed_provenance_predicate:
+      record.external_provenance_diagnostics.failed_predicate_fields[0] ?? null,
+    category_flags: flags,
+  };
+}
+
+function walkMarkdownFiles(rootPath) {
+  if (!fs.existsSync(rootPath)) {
+    return [];
+  }
+  const stat = fs.statSync(rootPath);
+  if (stat.isFile()) {
+    return rootPath.endsWith(".md") ? [rootPath] : [];
+  }
+  if (!stat.isDirectory()) {
+    return [];
+  }
+  return fs
+    .readdirSync(rootPath)
+    .sort()
+    .flatMap((entry) => walkMarkdownFiles(path.join(rootPath, entry)));
+}
+
+function relevantReferenceText(text) {
+  return /Sigma_hf_01|sigma_hf_01|proof[-_ ]grade derivation schema|external_schema_provenance|external proof-grade/i.test(
+    text,
+  );
+}
+
+function extractExternalRefsFromText(text) {
+  const refs = [];
+  for (const match of text.matchAll(/https?:\/\/[^\s)>,]+|doi:[^\s)>,]+|arXiv:[^\s)>,]+|external-proof:[A-Za-z0-9:_./-]+/gi)) {
+    const ref = actualExternalRef(match[0]);
+    if (ref !== null) {
+      refs.push(ref);
+    }
+  }
+  return uniqueSorted(refs);
+}
+
+function compactReferenceProvenanceArtifact(filePath) {
+  const text = fs.readFileSync(filePath, "utf8");
+  if (!relevantReferenceText(text)) {
+    return null;
+  }
+  const strings = [text];
+  const actualExternalRefs = extractExternalRefsFromText(text);
+  const flags = {
+    local_generated_artifact:
+      filePath.includes("reference/priorities/proof-programs/") &&
+      /script hash|json hash|report hash|generated|certificate/i.test(text),
+    local_decoy: /external-label decoy|external_label_decoy|negative control|placeholder/i.test(text),
+    source_data_partial: /source-data partial|source_data_partial|local source-data/i.test(text),
+    external_looking_label: /external-looking|external_label|external-label|candidate_external_schema_ref/i.test(text),
+    actual_external_ref: actualExternalRefs.length > 0,
+    actual_external_refs: actualExternalRefs,
+    accepted_external_provenance: /accepted external provenance[^0-9]*(?:true|[1-9])/i.test(text),
+    schema_validation_intake_candidate: false,
+    field_complete_without_provenance: /8 \/ 8|required_fields_present=8/i.test(text),
+    known_local_non_external_artifact: /local proof-program|local source-data|local negative control/i.test(text),
+  };
+  return {
+    source_kind: "reference_markdown_signal",
+    path: filePath,
+    basename: path.basename(filePath),
+    sha256: sha256File(filePath),
+    category_flags: flags,
+    sigma_or_schema_signal: hasMarker(strings, [
+      "sigma_hf_01",
+      "proof-grade derivation schema",
+      "external_schema_provenance",
+    ]),
+    candidate_external_schema_received: false,
+    external_provenance_accepted: false,
+    schema_validation_intake_authorized: false,
+    slot_result: "reference_text_not_schema_intake_candidate",
+  };
+}
+
+export function scanReferenceProvenanceArtifacts(scanPaths) {
+  const excludedBasenames = new Set([
+    EXTERNAL_PROVENANCE_SOURCE_AUDIT_REPORT,
+  ]);
+  return scanPaths
+    .flatMap((scanPath) => walkMarkdownFiles(scanPath))
+    .filter((filePath) => !excludedBasenames.has(path.basename(filePath)))
+    .map(compactReferenceProvenanceArtifact)
+    .filter((entry) => entry !== null);
+}
+
+function countFlag(records, flag) {
+  return records.filter((record) => record.category_flags?.[flag] === true).length;
+}
+
+export function buildExternalProvenanceSourceAudit(poolEntries, referenceArtifacts) {
+  const poolRecords = poolEntries.map(compactProvenanceSourcePoolRecord);
+  const allRecords = [...poolRecords, ...referenceArtifacts];
+  const acceptedExternalProvenanceRecords = poolRecords.filter(
+    (record) => record.category_flags.accepted_external_provenance,
+  );
+  const schemaValidationCandidates = poolRecords.filter(
+    (record) => record.category_flags.schema_validation_intake_candidate,
+  );
+  const focusedRecords = allRecords.filter(
+    (record) =>
+      record.category_flags.local_decoy ||
+      record.category_flags.source_data_partial ||
+      record.category_flags.external_looking_label ||
+      record.category_flags.actual_external_ref ||
+      record.category_flags.accepted_external_provenance ||
+      record.category_flags.field_complete_without_provenance,
+  );
+  const firstFailure =
+    schemaValidationCandidates.length > 0
+      ? "post_intake_schema_validation_required_before_row_consumption"
+      : "external_schema_provenance_required_before_schema_validation_intake";
+  const summary = {
+    proof_program_json_files_screened: poolRecords.length,
+    reference_markdown_artifacts_screened: referenceArtifacts.length,
+    total_provenance_source_records_screened: allRecords.length,
+    local_generated_artifact_records: countFlag(allRecords, "local_generated_artifact"),
+    local_decoy_records: countFlag(allRecords, "local_decoy"),
+    source_data_partial_records: countFlag(allRecords, "source_data_partial"),
+    external_looking_label_records: countFlag(allRecords, "external_looking_label"),
+    actual_external_ref_records: countFlag(allRecords, "actual_external_ref"),
+    accepted_external_provenance_records: acceptedExternalProvenanceRecords.length,
+    schema_validation_intake_candidates_found: schemaValidationCandidates.length,
+    field_complete_without_provenance_records: countFlag(
+      allRecords,
+      "field_complete_without_provenance",
+    ),
+    candidate_external_schema_received_records: poolRecords.filter(
+      (record) => record.candidate_external_schema_received,
+    ).length,
+    row_consumption_count: 0,
+    preledger_pass: false,
+    updates_live_ledger: false,
+    branch_chart_authorized: false,
+    first_failure: firstFailure,
+  };
+
+  const packet = {
+    schema: "sigma_hf_01_external_schema_candidate_external_provenance_source_audit/v0",
+    packet_id: PACKET_ID,
+    proof_interval: PROOF_INTERVAL,
+    lambda_branch: LAMBDA_BRANCH,
+    target_slot: TARGET_SLOT,
+    fold_interval: FOLD_INTERVAL,
+    status:
+      acceptedExternalProvenanceRecords.length > 0
+        ? "sigma_hf_01_external_provenance_source_audit_external_provenance_source_found_pending_schema_validation_no_row_consumption_no_live_ledger_update_no_branch_chart_authorization"
+        : "sigma_hf_01_external_provenance_source_audit_fail_closed_no_current_accepted_external_provenance_source_no_schema_validation_intake_no_row_consumption_no_live_ledger_update_no_branch_chart_authorization",
+    claim_level:
+      "priority-only Sigma_hf_01 provenance-source audit; distinguishes local generated artifacts, local decoys, source-data partials, external-looking labels, and actual external refs before the external schema-validation intake predicate",
+    basis_contract_ref: EXTERNAL_SCHEMA_ACCEPTANCE_CONTRACT_REF,
+    required_schema_predicate_fields: REQUIRED_FIELDS,
+    external_schema_provenance_predicate_fields: EXTERNAL_SCHEMA_PROVENANCE_PREDICATE_FIELDS,
+    source_categories: {
+      local_generated_artifact:
+        "Repo-local proof-program or certificate artifact. It may document the intake but cannot supply accepted external provenance.",
+      local_decoy:
+        "Self-authored placeholder or negative control, including field-complete decoys.",
+      source_data_partial:
+        "Local source-data readiness or partial candidate that may bind local locks but is not proof-grade external schema evidence.",
+      external_looking_label:
+        "A string or label that uses external-looking naming but still fails the accepted provenance predicate.",
+      actual_external_ref:
+        "A non-local ref pattern such as URL, DOI, arXiv, URN, or external-proof ref; it is only intake-relevant when it appears on a candidate object with accepted provenance and all eight Sigma_hf_01 fields.",
+    },
+    proof_program_source_records: poolRecords,
+    reference_signal_records: referenceArtifacts,
+    focused_source_records: focusedRecords.slice(0, 24),
+    summary,
+    authorization_lock: {
+      schema_validation_intake: false,
+      row_consumption: false,
+      accepted_source_packet: false,
+      preledger_pass: false,
+      updates_live_ledger: false,
+      branch_chart_authorized: false,
+    },
+    next_certificate_handoff: {
+      handoff_class: "sigma_hf_01_external_provenance_source_audit",
+      sharpened_blocker: firstFailure,
+      required_next_input:
+        "one non-local external proof-grade derivation schema candidate whose external_schema_provenance is accepted and whose candidate object supplies all eight Sigma_hf_01 schema predicate fields",
+      row_slot_policy:
+        "the 11 Sigma_hf_01 row slots remain parked; this audit never consumes rows and never authorizes a live-ledger update or branch chart",
+      mechanical_continuation_available: schemaValidationCandidates.length > 0,
+      decision_required: schemaValidationCandidates.length === 0,
+    },
+    capture_decision:
+      "Priority-only. This audit does not construct or accept a proof-grade derivation schema, consumes no rows, updates no live ledger, and authorizes no branch chart.",
+  };
+  assertExternalProvenanceSourceAuditInvariants(packet);
+  return packet;
+}
+
+function assertExternalProvenanceSourceAuditInvariants(packet) {
+  const s = packet.summary;
+  const checks = [
+    packet.authorization_lock.schema_validation_intake === false,
+    packet.authorization_lock.row_consumption === false,
+    packet.authorization_lock.accepted_source_packet === false,
+    packet.authorization_lock.preledger_pass === false,
+    packet.authorization_lock.updates_live_ledger === false,
+    packet.authorization_lock.branch_chart_authorized === false,
+    s.proof_program_json_files_screened > 0,
+    s.total_provenance_source_records_screened >= s.proof_program_json_files_screened,
+    s.row_consumption_count === 0,
+    s.preledger_pass === false,
+    s.updates_live_ledger === false,
+    s.branch_chart_authorized === false,
+  ];
+  if (!checks.every(Boolean)) {
+    throw new Error("Sigma_hf_01 external provenance source audit invariant failure.");
+  }
+}
+
 export function validationErrors(record) {
   const errors = [];
   if (!isObject(record)) {
@@ -2022,6 +2387,97 @@ schema validation.
 `;
 }
 
+function renderExternalProvenanceSourceAuditReport(packet) {
+  const s = packet.summary;
+  const categoryRows = Object.entries(packet.source_categories)
+    .map(([category, description]) => {
+      const countKey = `${category}_records`;
+      return `| \`${category}\` | ${s[countKey] ?? 0} | ${description} |`;
+    })
+    .join("\n");
+  const focusedRows = packet.focused_source_records
+    .map((record) => {
+      const flags = Object.entries(record.category_flags)
+        .filter(([, value]) => value === true)
+        .map(([key]) => `\`${key}\``)
+        .join(", ");
+      return [
+        `\`${record.basename}\``,
+        `\`${record.source_kind}\``,
+        flags || "`none`",
+        record.required_fields_present === undefined
+          ? "n/a"
+          : `${record.required_fields_present} / ${REQUIRED_FIELDS.length}`,
+        `\`${record.external_provenance_accepted}\``,
+        `\`${record.slot_result}\``,
+      ];
+    })
+    .map((row) => `| ${row.join(" | ")} |`)
+    .join("\n");
+  const focusedTable =
+    focusedRows === ""
+      ? "| none | none | `none` | n/a | `false` | `external_input_required` |"
+      : focusedRows;
+
+  return `# Sigma_hf_01 External Provenance Source Audit
+
+Status: \`${packet.status}\`
+
+## Claim Level
+
+${packet.claim_level}
+
+## Source Audit Summary
+
+- proof-program JSON files screened: ${s.proof_program_json_files_screened}
+- reference Markdown artifacts screened: ${s.reference_markdown_artifacts_screened}
+- total provenance-source records screened: ${s.total_provenance_source_records_screened}
+- accepted external provenance records: ${s.accepted_external_provenance_records}
+- schema-validation intake candidates found: ${s.schema_validation_intake_candidates_found}
+- candidate external schema received records: ${s.candidate_external_schema_received_records}
+- field-complete without provenance records: ${s.field_complete_without_provenance_records}
+- first failure: \`${s.first_failure}\`
+
+## Category Counts
+
+| Category | Count | Meaning |
+| --- | ---: | --- |
+${categoryRows}
+
+## Focused Source Records
+
+| Record | Source kind | Category flags | Schema fields | External provenance accepted | Slot result |
+| --- | --- | --- | ---: | --- | --- |
+${focusedTable}
+
+## Intake Boundary
+
+A current object may enter \`Sigma_hf_01\` schema-validation intake only when a
+candidate object supplies accepted external provenance and all eight schema
+predicate fields:
+
+${packet.required_schema_predicate_fields.map((field) => `- \`${field}\``).join("\n")}
+
+Accepted provenance also requires:
+
+${packet.external_schema_provenance_predicate_fields.map((field) => `- \`${field}\``).join("\n")}
+
+## Authorization Locks
+
+- schema_validation_intake by this audit: \`${packet.authorization_lock.schema_validation_intake}\`
+- row_consumption: \`${packet.authorization_lock.row_consumption}\`
+- accepted_source_packet: \`${packet.authorization_lock.accepted_source_packet}\`
+- \`preledger_pass\`: \`${packet.authorization_lock.preledger_pass}\`
+- \`updates_live_ledger\`: \`${packet.authorization_lock.updates_live_ledger}\`
+- branch_chart_authorized: \`${packet.authorization_lock.branch_chart_authorized}\`
+
+This audit is fail-closed for the current pool. It distinguishes local generated
+artifacts, local decoys, source-data partials, external-looking labels, and
+actual external refs, but it does not itself construct proof evidence, consume
+rows, update the live ledger, or authorize a branch chart.
+`;
+}
+
 function emitLocalSourceCandidate(args) {
   const sourceDataReadiness = readJson(args.sourceDataReadiness);
   const schemaTarget = readJson(args.schemaTarget);
@@ -2164,6 +2620,26 @@ function emitExternalProvenanceContractReplay(args) {
   );
 }
 
+function effectiveReferenceScanPaths(args) {
+  return args.referenceScanPaths ?? DEFAULT_REFERENCE_PROVENANCE_SCAN_PATHS;
+}
+
+function emitExternalProvenanceSourceAudit(args) {
+  const poolEntries = scanLocalProofProgramPool(
+    args.proofProgramPoolDir,
+    EXTERNAL_PROVENANCE_SOURCE_AUDIT_JSON,
+  );
+  const referenceArtifacts = scanReferenceProvenanceArtifacts(
+    effectiveReferenceScanPaths(args),
+  );
+  const packet = buildExternalProvenanceSourceAudit(poolEntries, referenceArtifacts);
+  writeJson(path.join(args.outDir, EXTERNAL_PROVENANCE_SOURCE_AUDIT_JSON), packet, args.pretty);
+  writeText(
+    path.join(args.outDir, EXTERNAL_PROVENANCE_SOURCE_AUDIT_REPORT),
+    renderExternalProvenanceSourceAuditReport(packet),
+  );
+}
+
 function validateAndPrint(filePath) {
   const record = readJson(filePath);
   const errors = validationErrors(record);
@@ -2218,6 +2694,10 @@ function main() {
   }
   if (args.externalLabelDecoyNegativeControl) {
     emitExternalLabelDecoyNegativeControl(args);
+    return;
+  }
+  if (args.externalProvenanceSourceAudit) {
+    emitExternalProvenanceSourceAudit(args);
     return;
   }
 

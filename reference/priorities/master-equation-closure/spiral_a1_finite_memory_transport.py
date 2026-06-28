@@ -2510,12 +2510,288 @@ def a1_summand_partial_interval_boxes_negative_control(
     }
 
 
+def interval_row(interval: fixed.Interval) -> dict:
+    return {
+        "lower": interval.lo,
+        "upper": interval.hi,
+        "lower_hex": float(interval.lo).hex(),
+        "upper_hex": float(interval.hi).hex(),
+        "width": interval.width,
+    }
+
+
+def interval_contains_all(interval: fixed.Interval, values: Iterable[float]) -> bool:
+    return all(interval.lo <= value <= interval.hi for value in values)
+
+
+def a1_partner_tangential_delta_partial_interval_formula(
+    theta_box: fixed.Interval,
+    delta_box: fixed.Interval,
+    q_source_box: fixed.Interval,
+) -> dict:
+    rho_row = fixed.rho_interval(theta_box, delta_box)
+    lambda_row = fixed.lambda_interval("partner", theta_box, delta_box)
+    p_theta = fixed.p_interval(theta_box)
+    p_source = fixed.p_interval(theta_box - delta_box)
+    p_source_delta = A * fixed.cos_interval(theta_box - delta_box)
+    rho_delta = p_source * rho_row
+    sin_delta = fixed.sin_interval(delta_box)
+    cos_delta = fixed.cos_interval(delta_box)
+    numerator = (
+        p_theta * (1.0 + rho_row * cos_delta) + rho_row * sin_delta
+    )
+    numerator_delta = (
+        p_theta * (rho_delta * cos_delta - rho_row * sin_delta)
+        + rho_delta * sin_delta
+        + rho_row * cos_delta
+    )
+    radicand_delta = (
+        2.0 * rho_row * rho_delta
+        + 2.0 * (rho_delta * cos_delta - rho_row * sin_delta)
+    )
+    lambda_delta = radicand_delta / (2.0 * lambda_row)
+    sigma_row = fixed.exp_interval(A * (1.0 - fixed.cos_interval(theta_box)))
+    source_speed = B_STAR * sigma_row * rho_row / q_source_box
+    source_speed_delta = B_STAR * sigma_row * rho_delta / q_source_box
+    bracket = sin_delta - p_source * (cos_delta + rho_row)
+    bracket_delta = (
+        cos_delta
+        - p_source_delta * (cos_delta + rho_row)
+        + p_source * sin_delta
+        - p_source * rho_delta
+    )
+    jacobian_row = 1.0 + source_speed * bracket / lambda_row
+    jacobian_delta = (
+        (source_speed_delta * bracket + source_speed * bracket_delta)
+        / lambda_row
+        - source_speed * bracket * lambda_delta / (lambda_row * lambda_row)
+    )
+    abs_jacobian = fixed.abs_away_from_zero(jacobian_row)
+    if abs_jacobian is None:
+        return {
+            "formula_available": False,
+            "first_failure": "abs_J_partner_interval_floor_crosses_zero",
+            "jacobian_interval": interval_row(jacobian_row),
+        }
+    if jacobian_row.lo > 0.0:
+        abs_jacobian_delta = jacobian_delta
+        jacobian_sign = "positive"
+    elif jacobian_row.hi < 0.0:
+        abs_jacobian_delta = -jacobian_delta
+        jacobian_sign = "negative"
+    else:
+        return {
+            "formula_available": False,
+            "first_failure": "abs_J_partner_interval_sign_unstable",
+            "jacobian_interval": interval_row(jacobian_row),
+        }
+    lambda_cubed = lambda_row * lambda_row * lambda_row
+    denominator = lambda_cubed * abs_jacobian
+    denominator_delta = (
+        3.0 * lambda_row * lambda_row * lambda_delta * abs_jacobian
+        + lambda_cubed * abs_jacobian_delta
+    )
+    partial_interval = (
+        numerator_delta * denominator - numerator * denominator_delta
+    ) / (denominator * denominator)
+    return {
+        "formula_available": True,
+        "first_failure": None,
+        "theta_interval": interval_row(theta_box),
+        "delta_interval": interval_row(delta_box),
+        "q_source_interval": interval_row(q_source_box),
+        "rho_interval": interval_row(rho_row),
+        "lambda_interval": interval_row(lambda_row),
+        "lambda_delta_interval": interval_row(lambda_delta),
+        "tangential_numerator_interval": interval_row(numerator),
+        "partial_delta_tangential_numerator_interval": interval_row(
+            numerator_delta
+        ),
+        "J_partner_interval": interval_row(jacobian_row),
+        "J_partner_sign": jacobian_sign,
+        "abs_J_partner_interval_floor": abs_jacobian.lo,
+        "partial_delta_J_partner_with_source_q_interval": interval_row(
+            jacobian_delta
+        ),
+        "partial_T_alpha_partial_delta_alpha_interval": interval_row(
+            partial_interval
+        ),
+    }
+
+
+def a1_one_slot_formula_dependency_audit(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    slot: dict,
+    past_profile_interval_box_certificate: dict,
+    sampled_rows: list[dict],
+) -> dict:
+    delta_interval = fixed.Interval(slot["window"][0], slot["window"][1])
+    theta_box = fixed.Interval(theta_interval[0], theta_interval[1])
+    source_theta_interval = [
+        theta_interval[0] - slot["window"][1],
+        theta_interval[1] - slot["window"][0],
+    ]
+    q_interval = past_profile_interval_box_certificate["q_interval"]
+    q_source_box = fixed.Interval(q_interval[0], q_interval[1])
+    formula_interval = a1_partner_tangential_delta_partial_interval_formula(
+        theta_box, delta_interval, q_source_box
+    )
+    sampled_partials = [row["sampled_partial"] for row in sampled_rows]
+    sampled_deltas = [row["delta"] for row in sampled_rows]
+    sampled_q_sources = [row["q_source"] for row in sampled_rows]
+    partial_row = formula_interval.get(
+        "partial_T_alpha_partial_delta_alpha_interval"
+    )
+    partial_interval_box = (
+        fixed.Interval(partial_row["lower"], partial_row["upper"])
+        if partial_row is not None
+        else None
+    )
+    dependency_rows = [
+        {
+            "row": "partial_delta_tangential_numerator_interval_formula",
+            "status": "local_interval_formula_present",
+            "used_as_certificate": False,
+        },
+        {
+            "row": "partial_delta_lambda_partner_interval_formula",
+            "status": "local_interval_formula_present",
+            "used_as_certificate": False,
+        },
+        {
+            "row": "partial_delta_J_partner_with_source_q_interval_formula",
+            "status": "local_interval_formula_present",
+            "used_as_certificate": False,
+        },
+        {
+            "row": "abs_J_partner_sign_stability_or_interval_abs_floor",
+            "status": (
+                "local_positive_interval_floor_present"
+                if formula_interval.get("J_partner_sign") == "positive"
+                else "missing_or_unstable"
+            ),
+            "used_as_certificate": False,
+        },
+        {
+            "row": "P_1_retained_root_delta_alpha_interval_box",
+            "status": "missing_certificate_row_active_window_used_only",
+            "used_as_certificate": False,
+        },
+        {
+            "row": "P_1_q_source_alpha_interval_box",
+            "status": (
+                "global_past_profile_q_interval_present_not_source_window_box"
+            ),
+            "used_as_certificate": False,
+        },
+        {
+            "row": (
+                "directed_rounded_interval_derivative_backend_for_"
+                "branch_values_with_source_q"
+            ),
+            "status": (
+                "local_nextafter_interval_formula_probe_present_not_shared_"
+                "backend_certificate"
+            ),
+            "used_as_certificate": False,
+        },
+    ]
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_one_slot_formula_dependency_audit.v0"
+        ),
+        "artifact_id": "a1_one_slot_formula_dependency_audit.v0",
+        "source_artifact_hash": source_digest,
+        "method": (
+            "local_nextafter_interval_formula_audit_for_P_1_"
+            "partial_T_alpha_partial_delta_alpha"
+        ),
+        "radius_b": radius_b,
+        "slot": slot,
+        "theta_interval": theta_interval,
+        "source_theta_interval": source_theta_interval,
+        "delta_interval_source": {
+            "row": "active_windows.P_1.window",
+            "delta_interval": slot["window"],
+            "sampled_deltas_inside_interval": interval_contains_all(
+                delta_interval, sampled_deltas
+            ),
+            "satisfies_retained_root_delta_alpha_interval_box": False,
+        },
+        "q_source_interval_source": {
+            "row": "a1_past_profile_interval_box_certificate.v0.q_interval",
+            "certificate_digest": past_profile_interval_box_certificate[
+                "certificate_digest"
+            ],
+            "q_interval": q_interval,
+            "source_theta_interval_inside_past_profile_domain": (
+                -DELTA_R <= source_theta_interval[0]
+                and source_theta_interval[1] <= 0.0
+            ),
+            "sampled_q_sources_inside_interval": interval_contains_all(
+                q_source_box, sampled_q_sources
+            ),
+            "satisfies_P_1_q_source_alpha_interval_box": False,
+        },
+        "local_interval_formula_probe": formula_interval,
+        "sampled_partial_containment": {
+            "sampled_partial_count": len(sampled_partials),
+            "sampled_partials_inside_formula_interval": (
+                partial_interval_box is not None
+                and interval_contains_all(partial_interval_box, sampled_partials)
+            ),
+            "sampled_method": "central_float64_finite_difference_not_interval_box",
+            "accepted_as_interval_evidence": False,
+        },
+        "dependency_rows": dependency_rows,
+        "first_missing_row": "P_1_retained_root_delta_alpha_interval_box",
+        "next_required_rows_ordered": [
+            "P_1_retained_root_delta_alpha_interval_box",
+            "P_1_q_source_alpha_interval_box",
+            "shared_theta_interval_box_family",
+            (
+                "shared_directed_rounding_audit_trail_for_"
+                "source_q_derivative_composition"
+            ),
+            "same_box_inactive_cover_binding",
+        ],
+        "emits_local_formula_interval_probe": formula_interval[
+            "formula_available"
+        ],
+        "emits_one_slot_interval_box": False,
+        "satisfies_selected_slot": False,
+        "satisfies_summand_partial_interval_boxes": False,
+        "bounds_outward_summand_derivative_boxes": False,
+        "emits_branch_sum_constants": False,
+        "emits_K_Q": False,
+        "emits_E_Q_plus_b": False,
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "audit_digest": canonical_json_digest(payload),
+        "status": (
+            "local_formula_interval_probe_present_retained_root_delta_"
+            "interval_source_missing"
+        ),
+    }
+
+
 def a1_summand_partial_interval_box_one_slot_construction_attempt(
     source_digest: str,
     *,
     radius_b: float,
     theta_interval: list[float],
     outward_summand_derivative_boxes_target: dict,
+    past_profile_interval_box_certificate: dict,
     sample_rows: list[dict],
 ) -> dict:
     slot = {
@@ -2549,6 +2825,16 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
     ]
     sampled_values = [row["sampled_partial"] for row in sampled_rows]
     sampled_reference_enclosure = float64_nextafter_bounds(sampled_values)
+    formula_dependency_audit = a1_one_slot_formula_dependency_audit(
+        source_digest,
+        radius_b=radius_b,
+        theta_interval=theta_interval,
+        slot=slot,
+        past_profile_interval_box_certificate=(
+            past_profile_interval_box_certificate
+        ),
+        sampled_rows=sampled_rows,
+    )
 
     payload = {
         "schema": (
@@ -2609,11 +2895,12 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
         ],
         "helper_gap": {
             "bare_spiral_interval_helpers_only": True,
-            "source_q_jacobian_interval_missing": True,
-            "delta_partial_interval_automatic_differentiation_missing": True,
+            "source_q_jacobian_interval_missing": False,
+            "delta_partial_interval_automatic_differentiation_missing": False,
             "directed_rounding_audit_for_trig_exp_derivative_composition_missing": True,
             "retained_root_interval_box_for_P_1_missing": True,
         },
+        "formula_dependency_audit": formula_dependency_audit,
         "sampled_reference_readout": {
             "sampled_method": "central_float64_finite_difference_not_interval_box",
             "sampled_row_count": len(sampled_rows),
@@ -2630,20 +2917,21 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
         },
         "construction_status": {
             "emits_one_slot_interval_box": False,
+            "emits_local_formula_interval_probe": True,
             "satisfies_selected_slot": False,
             "satisfies_summand_partial_interval_boxes": False,
             "first_missing_interval_input": (
                 "P_1_retained_root_delta_alpha_interval_box"
             ),
-            "first_missing_formula_row": (
-                "partial_delta_J_partner_with_source_q_interval_formula"
-            ),
+            "first_missing_formula_row": None,
             "first_missing_backend_capability": (
-                "directed_rounded_interval_derivative_backend_for_"
-                "branch_values_with_source_q"
+                "shared_directed_rounding_audit_trail_for_"
+                "source_q_derivative_composition"
             ),
         },
-        "first_failure": "one_slot_interval_formula_backend_missing",
+        "first_failure": (
+            "one_slot_retained_root_delta_interval_source_missing"
+        ),
         "bounds_outward_summand_derivative_boxes": False,
         "emits_branch_sum_constants": False,
         "emits_K_Q": False,
@@ -2658,8 +2946,8 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
         **payload,
         "construction_attempt_digest": canonical_json_digest(payload),
         "status": (
-            "one_slot_construction_attempt_blocked_by_interval_"
-            "formula_backend"
+            "one_slot_formula_probe_present_retained_root_delta_"
+            "interval_source_missing"
         ),
     }
 
@@ -2672,6 +2960,7 @@ def a1_branch_sum_feedback_bound_attempt(
     theta_samples: list[float],
     profile: TransportProfile,
     past_profile: PastProfileSpec,
+    past_profile_interval_box_certificate: dict,
     constraint_rows: list[list[float]],
     future_continuous_transport_bounds_attempt: dict,
     panels: int,
@@ -2885,6 +3174,9 @@ def a1_branch_sum_feedback_bound_attempt(
             theta_interval=theta_interval,
             outward_summand_derivative_boxes_target=(
                 outward_summand_derivative_boxes_target
+            ),
+            past_profile_interval_box_certificate=(
+                past_profile_interval_box_certificate
             ),
             sample_rows=sample_rows,
         )
@@ -7931,6 +8223,9 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         theta_samples=theta_samples,
         profile=profile,
         past_profile=past_profile,
+        past_profile_interval_box_certificate=(
+            past_profile_interval_box_certificate
+        ),
         constraint_rows=constraint_rows,
         future_continuous_transport_bounds_attempt=(
             future_continuous_transport_bounds_attempt

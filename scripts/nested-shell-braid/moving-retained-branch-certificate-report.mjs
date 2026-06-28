@@ -45,6 +45,12 @@ const REQUIRED_ROWS = [
   },
 ];
 
+const SOURCE_SCOUT_SCHEMA =
+  "moving_retained_branch_certificate_accepted_branch_chart_source_scout/v0";
+const SOURCE_SCOUT_MANIFEST_SCHEMA =
+  "moving_retained_branch_certificate_accepted_branch_chart_source_scout_manifest/v0";
+const ACCEPTED_BRANCH_CHART_SOURCE_STATUS = "accepted_same_record_branch_chart";
+
 const SAME_RECORD_IDENTITY_ROWS = [
   {
     path: "same_record_identity.branch_label",
@@ -101,6 +107,8 @@ function parseArgs(argv) {
     input: null,
     out: null,
     validate: null,
+    sourceScout: null,
+    validateSourceScout: null,
     pretty: false,
     printContract: false,
     help: false,
@@ -116,6 +124,10 @@ function parseArgs(argv) {
       args.out = argv[++i];
     } else if (arg === "--validate") {
       args.validate = argv[++i];
+    } else if (arg === "--source-scout") {
+      args.sourceScout = argv[++i];
+    } else if (arg === "--validate-source-scout") {
+      args.validateSourceScout = argv[++i];
     } else if (arg === "--pretty") {
       args.pretty = true;
     } else if (arg === "--print-contract") {
@@ -134,6 +146,10 @@ function printHelp() {
 Options:
   --input PATH       Candidate moving retained branch certificate JSON.
   --validate PATH    Validate an emitted moving retained branch certificate report.
+  --source-scout PATH
+                     Evaluate current accepted-branch-chart source candidates.
+  --validate-source-scout PATH
+                     Validate an emitted accepted-branch-chart source scout.
   --print-contract   Print the required moving retained branch certificate rows.
   --out PATH         Write JSON output to a file instead of stdout.
   --pretty           Pretty-print JSON output.
@@ -176,6 +192,21 @@ function proxyValue(value) {
   return typeof value === "string" && value.trim().startsWith("proxy:");
 }
 
+function rejectionCodeForPath(rowPath, kind) {
+  const suffix = kind === "proxy" ? "proxy_not_accepted" : "missing";
+  return `${rowPath.replaceAll(".", "_")}_${suffix}`;
+}
+
+function sourceStatusRejectionCode(sourceStatus) {
+  if (sourceStatus === ACCEPTED_BRANCH_CHART_SOURCE_STATUS) {
+    return null;
+  }
+  if (!present(sourceStatus)) {
+    return "accepted_same_record_branch_chart_source_status_missing";
+  }
+  return `${String(sourceStatus).replace(/[^a-zA-Z0-9]+/g, "_").replace(/^_+|_+$/g, "")}_not_accepted_branch_chart_source`;
+}
+
 function contract() {
   return {
     schema: "moving_retained_branch_certificate_contract/v0",
@@ -202,6 +233,32 @@ function contract() {
   };
 }
 
+function sourceScoutContract() {
+  return {
+    schema: `${SOURCE_SCOUT_SCHEMA}_contract`,
+    purpose:
+      "Enumerate current rank-6 branch-chart source candidates before accepting moving_retained_branch_certificate/v0.",
+    accepted_source_status: ACCEPTED_BRANCH_CHART_SOURCE_STATUS,
+    required_candidate_fields: [
+      {
+        path: "branch_certificate_ref",
+        requirement: "Non-proxy retained branch certificate reference on the candidate source.",
+      },
+      ...SAME_RECORD_IDENTITY_ROWS.map(({ path: rowPath, requirement }) => ({
+        path: rowPath,
+        requirement,
+      })),
+    ],
+    authorization_boundary: {
+      source_scout_accepts_moving_certificate: false,
+      structural_integrity_residual_vector: false,
+      photon_gate_a: false,
+      lorentz_rows: false,
+      observer_export: false,
+    },
+  };
+}
+
 function evaluateSameRecordIdentity(candidate) {
   const rows = SAME_RECORD_IDENTITY_ROWS.map(({ path: rowPath, requirement, missingCode, proxyCode }) => {
     const value = getPath(candidate, rowPath);
@@ -223,6 +280,23 @@ function evaluateSameRecordIdentity(candidate) {
     rows,
     missing_or_rejected_fields: failedRows.map((row) => row.path),
     missing_or_rejected_field_codes: failedRows.map((row) => row.failure_code),
+  };
+}
+
+function evaluateSourceScoutField(candidate, rowPath, requirement) {
+  const value = rowPath.startsWith("same_record_identity.")
+    ? getPath(candidate, rowPath) ?? getPath(candidate, rowPath.replace("same_record_identity.", ""))
+    : getPath(candidate, rowPath);
+  const fieldPresent = present(value);
+  const proxy = proxyValue(value);
+  const pass = fieldPresent && !proxy;
+  return {
+    path: rowPath,
+    requirement,
+    present: fieldPresent,
+    proxy,
+    pass,
+    failure_code: pass ? null : rejectionCodeForPath(rowPath, proxy ? "proxy" : "missing"),
   };
 }
 
@@ -266,6 +340,40 @@ function evaluateRow(candidate, row) {
   };
 }
 
+function evaluateSourceScoutCandidate(candidate) {
+  const fieldRows = [
+    {
+      path: "branch_certificate_ref",
+      requirement: "Non-proxy retained branch certificate reference on the candidate source.",
+    },
+    ...SAME_RECORD_IDENTITY_ROWS.map(({ path: rowPath, requirement }) => ({
+      path: rowPath,
+      requirement,
+    })),
+  ].map((row) => evaluateSourceScoutField(candidate, row.path, row.requirement));
+  const failedFields = fieldRows.filter((row) => !row.pass);
+  const sourceStatusAccepted = candidate.source_status === ACCEPTED_BRANCH_CHART_SOURCE_STATUS;
+  const sourceStatusCode = sourceStatusRejectionCode(candidate.source_status);
+  const firstRejectionCode =
+    failedFields[0]?.failure_code ?? sourceStatusCode ?? null;
+  const accepted = failedFields.length === 0 && sourceStatusAccepted;
+
+  return {
+    id: candidate.id ?? null,
+    family: candidate.family ?? null,
+    source_ref: candidate.source_ref ?? null,
+    source_status: candidate.source_status ?? null,
+    source_status_accepted: sourceStatusAccepted,
+    source_status_rejection_code: sourceStatusCode,
+    accepted,
+    first_rejection_code: accepted ? null : firstRejectionCode,
+    missing_or_rejected_fields: failedFields.map((row) => row.path),
+    missing_or_rejected_field_codes: failedFields.map((row) => row.failure_code),
+    field_results: fieldRows,
+    evidence_note: candidate.evidence_note ?? null,
+  };
+}
+
 export function buildReport(candidate, options = {}) {
   if (!isObject(candidate)) {
     throw new Error("Candidate moving retained branch certificate must be a JSON object.");
@@ -300,6 +408,61 @@ export function buildReport(candidate, options = {}) {
       photon_gate_a_accepted: false,
       observer_export: false,
     },
+  };
+}
+
+export function buildAcceptedBranchChartSourceScout(manifest, options = {}) {
+  if (!isObject(manifest)) {
+    throw new Error("Accepted branch chart source scout manifest must be a JSON object.");
+  }
+  if (!Array.isArray(manifest.candidates)) {
+    throw new Error("Accepted branch chart source scout manifest must include candidates array.");
+  }
+
+  const candidateResults = manifest.candidates.map(evaluateSourceScoutCandidate);
+  const acceptedCandidates = candidateResults.filter((candidate) => candidate.accepted);
+
+  return {
+    schema: SOURCE_SCOUT_SCHEMA,
+    manifest_schema: manifest.schema ?? null,
+    scout_id: manifest.scout_id ?? "moving-retained-branch-accepted-branch-chart-source-scout",
+    source_ref: options.sourceRef ?? manifest.source_ref ?? null,
+    promotion_status: "priority-only",
+    contract: sourceScoutContract(),
+    candidate_count: candidateResults.length,
+    accepted_count: acceptedCandidates.length,
+    accepted_candidate_ids: acceptedCandidates.map((candidate) => candidate.id).filter(Boolean),
+    first_failure:
+      acceptedCandidates.length > 0
+        ? null
+        : "accepted_same_record_branch_chart_absent",
+    first_rejection_code:
+      acceptedCandidates.length > 0
+        ? null
+        : candidateResults.find((candidate) => candidate.first_rejection_code)?.first_rejection_code ??
+          "accepted_same_record_branch_chart_candidate_absent",
+    candidate_results: candidateResults,
+    required_next_object: {
+      object:
+        "accepted_same_record_branch_chart on one moving branch window",
+      required_fields: sourceScoutContract().required_candidate_fields.map((field) => field.path),
+      must_be_non_fixture: true,
+      must_bind_same_record_identity: true,
+    },
+    authorization: {
+      accepted_branch_chart_source_ready: acceptedCandidates.length > 0,
+      moving_retained_branch_certificate: false,
+      structural_integrity_residual_vector: false,
+      photon_gate_a: false,
+      lorentz_rows: false,
+      observer_export: false,
+    },
+    not_authorized: [
+      "does not populate moving_retained_branch_certificate/v0",
+      "does not populate structural-integrity residual rows",
+      "does not accept Photon Gate A",
+      "does not authorize Lorentz, gravitational-wave, or observer export rows",
+    ],
   };
 }
 
@@ -350,6 +513,52 @@ export function validationErrors(report) {
   return errors;
 }
 
+export function sourceScoutValidationErrors(report) {
+  const errors = [];
+  if (!isObject(report)) {
+    return ["source scout report must be an object"];
+  }
+  if (report.schema !== SOURCE_SCOUT_SCHEMA) {
+    errors.push(`schema must be ${SOURCE_SCOUT_SCHEMA}`);
+  }
+  if (report.manifest_schema !== SOURCE_SCOUT_MANIFEST_SCHEMA) {
+    errors.push(`manifest_schema must be ${SOURCE_SCOUT_MANIFEST_SCHEMA}`);
+  }
+  if (report.promotion_status !== "priority-only") {
+    errors.push("promotion_status must remain priority-only");
+  }
+  if (!Number.isInteger(report.candidate_count) || report.candidate_count < 0) {
+    errors.push("candidate_count must be a nonnegative integer");
+  }
+  if (!Number.isInteger(report.accepted_count) || report.accepted_count < 0) {
+    errors.push("accepted_count must be a nonnegative integer");
+  }
+  if (!Array.isArray(report.candidate_results)) {
+    errors.push("candidate_results must be an array");
+  } else if (report.candidate_results.length !== report.candidate_count) {
+    errors.push("candidate_results length must equal candidate_count");
+  }
+  if (report.accepted_count === 0 && report.first_failure !== "accepted_same_record_branch_chart_absent") {
+    errors.push("zero-accepted source scouts must carry accepted_same_record_branch_chart_absent");
+  }
+  if (!isObject(report.authorization)) {
+    errors.push("authorization must be an object");
+  }
+  if (report.authorization?.moving_retained_branch_certificate !== false) {
+    errors.push("source scout must not authorize moving_retained_branch_certificate");
+  }
+  if (report.authorization?.structural_integrity_residual_vector !== false) {
+    errors.push("source scout must not authorize structural-integrity residual rows");
+  }
+  if (report.authorization?.photon_gate_a !== false) {
+    errors.push("source scout must not authorize Photon Gate A");
+  }
+  if (report.authorization?.observer_export !== false) {
+    errors.push("source scout must not authorize observer export");
+  }
+  return errors;
+}
+
 function writeOutput(value, args) {
   const body = `${JSON.stringify(value, null, args.pretty ? 2 : 0)}\n`;
   if (args.out) {
@@ -368,6 +577,29 @@ function main() {
   }
   if (args.printContract) {
     writeOutput(contract(), args);
+    return;
+  }
+  if (args.sourceScout) {
+    const manifest = readJson(args.sourceScout);
+    writeOutput(buildAcceptedBranchChartSourceScout(manifest, { sourceRef: args.sourceScout }), args);
+    return;
+  }
+  if (args.validateSourceScout) {
+    const report = readJson(args.validateSourceScout);
+    const errors = sourceScoutValidationErrors(report);
+    writeOutput(
+      {
+        valid: errors.length === 0,
+        errors,
+        scout_id: report.scout_id ?? null,
+        candidate_count: report.candidate_count ?? null,
+        accepted_count: report.accepted_count ?? null,
+        first_failure: report.first_failure ?? null,
+        first_rejection_code: report.first_rejection_code ?? null,
+      },
+      args,
+    );
+    process.exitCode = errors.length === 0 ? 0 : 1;
     return;
   }
   if (args.validate) {

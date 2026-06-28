@@ -30,8 +30,30 @@ test("rank-2 candidate intake rejects the current repo candidate pool fail-close
   assert.equal(report.first_candidate_failure_code, "fixture_shape_only_packet_not_source");
   assert.equal(report.first_required_source_field, "transition_source_ref");
   assert.equal(report.candidate_h_recovery_vote, "not_authorized");
+  assert.equal(
+    report.source_family_delta_scout.schema,
+    "field_speed_action_self_hit_scan_source_family_delta_scout/v0"
+  );
+  assert.equal(report.source_family_delta_scout.family_count, 6);
+  assert.equal(report.source_family_delta_scout.accepted_transition_source_family_count, 0);
+  assert.equal(report.source_family_delta_scout.first_failure, "source_row_binding_open");
+  assert.equal(
+    report.source_family_delta_scout.strongest_partial_family_id,
+    "torque_wake_same_row_diagnostic_family"
+  );
+  assert.equal(
+    report.source_family_delta_scout.strongest_partial_first_failure,
+    "branch_certificate_ref_missing"
+  );
+  assert.equal(
+    report.source_family_delta_scout.exact_next_rank2_source_object.object_id,
+    "non_fixture_branch_emitted_action_increment_transition_source"
+  );
 
   const byId = Object.fromEntries(report.candidates.map((candidate) => [candidate.id, candidate]));
+  const byFamilyId = Object.fromEntries(
+    report.source_family_delta_scout.families.map((family) => [family.id, family])
+  );
   assert.equal(
     byId["action-increment-packet-current"].first_failure,
     "fixture_shape_only_packet_not_source"
@@ -51,6 +73,27 @@ test("rank-2 candidate intake rejects the current repo candidate pool fail-close
   assert.equal(
     byId["h39-aggregate-p-provider-preaggregation-construction-attempt"].first_failure,
     "accepted_non_fixture_source_missing"
+  );
+  assert.equal(
+    byFamilyId["torque_wake_same_row_diagnostic_family"].first_failure,
+    "branch_certificate_ref_missing"
+  );
+  assert.deepEqual(
+    byFamilyId["torque_wake_same_row_diagnostic_family"].present_fields,
+    [
+      "action_increment_row_ref",
+      "active_root_ledger_hash",
+      "conservation_pullback_hash",
+      "negative_control_ref",
+    ]
+  );
+  assert.deepEqual(
+    byFamilyId["torque_wake_same_row_diagnostic_family"].missing_or_rejected_fields,
+    ["branch_certificate_ref", "retained_branch", "accepted_action_increment_row_id"]
+  );
+  assert.equal(
+    byFamilyId["rank2_rank6_branch_source_join_family"].first_failure,
+    "source_row_binding_open"
   );
 });
 
@@ -80,6 +123,9 @@ test("rank-2 candidate intake can recognize a complete non-fixture packet surfac
   assert.equal(report.accepted_transition_source_candidate_count, 1);
   assert.equal(report.first_failure, null);
   assert.equal(report.first_required_source_field, null);
+  assert.equal(report.source_family_delta_scout.accepted_transition_source_family_count, 1);
+  assert.equal(report.source_family_delta_scout.first_failure, null);
+  assert.equal(report.source_family_delta_scout.exact_next_rank2_source_object, null);
   assert.equal(report.candidates[0].verdict, "accepted_transition_source_candidate");
   assert.equal(report.candidates[0].candidate_h_recovery_vote, "not_authorized");
 });
