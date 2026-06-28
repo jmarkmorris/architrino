@@ -2,7 +2,7 @@
 
 This chapter is the canonical substrate-level specification for the Euclidean void in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the fixed spatial container, the Euclidean metric, the coordinate and operator conventions, and the boundary between the void itself and the Noether sea that occupies it.
 
-The core distinction is simple: the Euclidean void is the fixed spatial container; the Noether sea is physical content within that container; effective spacetime is an observer-level geometry reconstructed from assembly and wake behavior. The present chapter specifies the first of those three objects.
+The core distinction is simple: the Euclidean void is the fixed spatial container; the Noether sea is physical content within that container; effective spacetime is an observer-level geometry reconstructed from assembly and wake behavior. This chapter specifies the first of those three objects.
 
 The exposition follows that distinction. First the chapter fixes the substrate geometry. It then explains how coordinate charts, event identity, and spatial operators work inside that geometry. Finally it marks which claims belong instead to medium dynamics, effective metric closure, or observational inference.
 

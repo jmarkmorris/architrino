@@ -623,6 +623,23 @@ $\partial_PM_0^{\mathrm{src}}(A)$, $C_{\chi}^{\mathrm{iso}}$,
 $C_{\chi}^{\mathrm{aniso}}$, $m_S$, loss-channel closure, preferred-frame, and
 directional-tensor records.
 
+The first branch-source frontier candidate is
+[pressure-row-branch-intake-a0-branch-source-partial.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-a0-branch-source-partial.json).
+It records the current compact $A_0$ branch-source state without allowing it to
+stand in for accepted pressure evidence. The available branch-side data is a
+Tier 0 continuation-ready row with branch label
+`k=(60,5,1)`, `q=(55,4,59)`, partner/self/inter-layer active-root counts
+`96/32/384`, and root residual `2.8e-7`. That is useful source ownership, not an
+accepted retained pressure row: the corrected A0 route still lacks direct
+one-period residual closure, quotient-row identity carried through a corrected
+branch row, a monodromy operator with positive $\Delta_{\mathbf{k}}$,
+same-branch persistence across the declared $\eta$ ladder, finite
+envelope-Hessian evidence, exposure-source descent, and branch-emitted pressure
+response. The checker therefore still returns `finite_branch_evidence_missing`
+and keeps `branch_id`, `accepted_history_segment_id`, `source_path`,
+`quotient_chart_id`, `exposure_source_record`, and `pressure_response_record`
+unpopulated in the contract fields.
+
 The first empirical or toy replay boundary is therefore narrow: a toy row may populate $\Pi$, $A$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, and masked $\mathcal{V}_{P,A}$ to exercise the algebra, but it must mark `pending_source_descent` until an accepted branch emits $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, $\mathcal{N}_{\mathrm{tf},ab}(A)$, and the derivative $\partial_P M_0^{\mathrm{src}}(A)$. A real Fe/Cr or Ni/Co replay can at most upgrade the status from `tf_bound_only` to a retained-span test unless the same branch-side source record is present.
 
 The pressure row also fixes the response-visible trace-free span for this specialization. At first order the pressure-visible span is contained in

@@ -1,6 +1,6 @@
 # Nuclear Binding
 
-This chapter gives the first effective-level nuclear-binding picture for the nuclear branch. Its purpose is to say what the binding ingredients are, what level of coarse-graining is being used, and what kinds of nuclear questions the current language is meant to support before any precision model exists.
+This chapter gives the first effective-level nuclear-binding picture for the nuclear branch. Its purpose is to say what the binding ingredients are, what level of coarse-graining is being used, and what kinds of nuclear questions the shared language is meant to support before any precision model exists.
 
 ## Purpose
 
@@ -32,7 +32,7 @@ $$
 {}^4\mathrm{He}+n+\Delta E.
 $$
 
-In the current interpretation, $\Delta E$ is the difference between two nuclear assembly ledgers, not a literal conversion of nucleon substance into energy. The event should be recorded as
+In this interpretation, $\Delta E$ is the difference between two nuclear assembly ledgers, not a literal conversion of nucleon substance into energy. The event should be recorded as
 
 $$
 \Delta E_{\mathrm{DT}}
@@ -96,7 +96,7 @@ Binding requires the negative medium-plus-residual-strong terms to outweigh the 
 
 ### Residual strong attraction
 
-The dominant attractive channel is expected to come from meson-like exchange and shared polarization corridors between neighboring nucleons. In the current repo picture, pions are the lightest and therefore longest-range residual exchange packets.
+The dominant attractive channel is expected to come from meson-like exchange and shared polarization corridors between neighboring nucleons. In the residual-exchange picture, pions are the lightest and therefore longest-range residual exchange packets.
 
 So, at coarse level,
 $$
@@ -160,7 +160,7 @@ $$
 d = p+n
 $$
 
-In the present language, the deuteron should exist if the proton-neutron channel admits
+In this language, the deuteron should exist if the proton-neutron channel admits
 $$
 E_{pn}^{\text{bound}}
 <
@@ -194,7 +194,7 @@ $$
 
 ## Why Alpha-Like Structures Should Be Special
 
-A four-nucleon cluster with two protons and two neutrons is expected to be especially favorable in the current assembly picture because it combines:
+A four-nucleon cluster with two protons and two neutrons is expected to be especially favorable in the assembly picture because it combines:
 
 - charge balance,
 - multiple proton-neutron attractive channels,
@@ -228,7 +228,7 @@ This chapter will count as successful only if a later quantitative version can r
 4. special alpha-like stability,
 5. the qualitative valley of beta stability.
 
-If the effective nuclear potential cannot even satisfy the sign structure needed for those five features, the current coarse-grained hadronic picture is inadequate.
+If the effective nuclear potential cannot even satisfy the sign structure needed for those five features, the coarse-grained hadronic picture is inadequate.
 
 ## Relation to Mesons
 

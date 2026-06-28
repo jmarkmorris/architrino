@@ -302,17 +302,30 @@ records the current fail-closed packet for $b=0.001$. The executable diagnostic
 mode is:
 
 ```bash
-VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.02 --delta-steps 128 --integration-panels 16 --profile-mode tangential_transport --transport-steps 16 --past-profile endpoint_slope_cancel --endpoint-cancel-positivity-samples 101 --diagnostic-mode a1_admissible_profile_bounds_attempt --finite-collar-samples 3 --finite-collar-integration-panels 16 --finite-collar-transport-steps 16 --finite-collar-delta-steps 128 --finite-collar-positivity-samples 101
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.02 --delta-steps 128 --integration-panels 16 --profile-mode tangential_transport --transport-steps 16 --past-profile endpoint_slope_cancel --endpoint-cancel-positivity-samples 101 --diagnostic-mode a1_admissible_profile_bounds_attempt --finite-collar-samples 3 --finite-collar-integration-panels 16 --finite-collar-transport-steps 16 --finite-collar-delta-steps 128 --finite-collar-positivity-samples 101 --admissible-profile-bernstein-depth 12
 ```
 
 The sampled seed and transported $Q$ values stay inside the declared
 $0.2\le Q\le3.0$ convention on this grid, and the retained rows replay with no
-sampled retained-window failure. Those values are not outward bounds. The
-artifact still leaves outward $q_{\min},q_{\max},H_b,E_Q^+(b)$, the inactive
-cover, source artifact hash, retained-root boxes, branch-sum constants,
-transport constants, and residual envelope absent, so the current first failure
-remains `admissible_profile_bounds`. The reduced smoke result is carried only
-as diagnostic context with `used_as_certificate=false`.
+sampled retained-window failure. The packet now also emits a floating
+subdivided-Bernstein outward attempt for the past endpoint-slope-cancelled
+polynomial:
+
+| Past-profile quantity | Current executable attempt |
+| --- | --- |
+| $q_{\min}$ | `0.6542907673232438` |
+| $q_{\max}$ | `1.5368080736162038` |
+| $H_b$ | `0.5368080736162038` |
+
+This advances the past-profile subrow, but it is not yet an interval
+certificate because the source artifact hash, shared interval boxes, and
+rounding-verified proof object are still absent. The transported future profile
+has only a node envelope for the emitted piecewise-linear numerical profile;
+the certificate-grade $E_Q^+(b)$ row remains absent pending branch-sum and
+transport constants. The inactive cover, retained-root boxes, branch-sum
+constants, transport constants, and residual envelope are also still absent, so
+the current first failure remains `admissible_profile_bounds`. The reduced smoke
+result is carried only as diagnostic context with `used_as_certificate=false`.
 
 ## Advancement Decision
 

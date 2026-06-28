@@ -31,7 +31,9 @@ from typing import Iterable
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE_MINING_DIR = ROOT / "reference" / "priorities" / "source-mining"
+REGISTRY_JSONL_PATH = SOURCE_MINING_DIR / "legacy-architrino-wordpress-posts.jsonl"
 LIBRARY_TABLE_PATH = SOURCE_MINING_DIR / "legacy-architrino-wordpress-library-posts.md"
+QUEUE_PATH = SOURCE_MINING_DIR / "legacy-architrino-wordpress-mining-queue.txt"
 REPORT_DIR = SOURCE_MINING_DIR / "archive-analysis"
 TMP_ROOT = Path(tempfile.gettempdir()) / "architrino-archive-mining"
 TMP_TEXT_DIR = TMP_ROOT / "clean-text"
@@ -43,6 +45,7 @@ TMP_TEXT_DIR_DISPLAY = f"{TMP_ROOT_DISPLAY}/clean-text"
 POSTS_JSONL_DISPLAY = f"{TMP_ROOT_DISPLAY}/legacy-architrino-posts.jsonl"
 CARDS_JSONL_DISPLAY = f"{TMP_ROOT_DISPLAY}/legacy-architrino-idea-cards.jsonl"
 CLUSTERS_JSON_DISPLAY = f"{TMP_ROOT_DISPLAY}/legacy-architrino-clusters.json"
+REGISTRY_JSONL_DISPLAY = "reference/priorities/source-mining/legacy-architrino-wordpress-posts.jsonl"
 
 WP_API = "https://public-api.wordpress.com/wp/v2/sites/architrino.wordpress.com/posts"
 
@@ -81,6 +84,8 @@ STOPWORDS = {
     "have",
     "having",
     "here",
+    "http",
+    "https",
     "into",
     "itself",
     "just",
@@ -129,6 +134,7 @@ STOPWORDS = {
     "with",
     "without",
     "would",
+    "www",
     "your",
 }
 
@@ -140,6 +146,7 @@ DOMAIN_GENERIC_TERMS = {
     "assembly",
     "brian",
     "book",
+    "com",
     "charge",
     "charges",
     "energy",
@@ -172,6 +179,7 @@ DOMAIN_GENERIC_TERMS = {
     "universe",
     "videos",
     "watching",
+    "wordpress",
 }
 
 
@@ -566,20 +574,22 @@ POLEMIC_MARKERS = [
 
 @dataclasses.dataclass
 class PostRecord:
-    id: int
+    wp_id: int
     title: str
     date: str
     year: str
-    url: str
-    status: str
+    canonical_url: str
     slug: str
+    keywords: list[str]
+    topics: list[str]
+    claim_buckets: list[str]
     tags: list[str]
     categories: list[str]
     outbound_links: list[str]
     mined_marker_present: bool
-    raw_html_hash: str
+    content_sha256: str
     word_count: int
-    text_path: str
+    clean_text_path: str
     text: str
 
 
@@ -589,8 +599,7 @@ class IdeaCard:
     post_id: int
     title: str
     date: str
-    url: str
-    status: str
+    canonical_url: str
     topic_id: str
     topic_title: str
     claim_bucket: str
@@ -700,6 +709,22 @@ def slug_from_url(url: str) -> str:
     slug = path.split("/")[-1] if path else "post"
     slug = re.sub(r"[^a-zA-Z0-9._-]+", "-", slug).strip("-").lower()
     return slug or "post"
+
+
+def display_tmp_path(path: Path | str) -> str:
+    path_obj = Path(path)
+    try:
+        rel = path_obj.relative_to(TMP_ROOT)
+    except ValueError:
+        return str(path_obj)
+    return f"{TMP_ROOT_DISPLAY}/{rel.as_posix()}"
+
+
+def resolve_tmp_display_path(path_text: str) -> Path:
+    if path_text.startswith(TMP_ROOT_DISPLAY):
+        rel = path_text.removeprefix(TMP_ROOT_DISPLAY).lstrip("/")
+        return TMP_ROOT / rel
+    return Path(path_text)
 
 
 def clean_html(html_text: str) -> tuple[str, list[str]]:
@@ -853,28 +878,7 @@ def extract_terms(post: dict) -> tuple[list[str], list[str]]:
     return categories, tags
 
 
-def load_library_statuses() -> dict[str, dict[str, str]]:
-    statuses: dict[str, dict[str, str]] = {}
-    if not LIBRARY_TABLE_PATH.exists():
-        return statuses
-    pattern = re.compile(
-        r"^\| (?P<date>\d{4}-\d{2}-\d{2}) \| (?P<title>.*?) \| (?P<status>.*?) \| \[link\]\((?P<url>https?://[^)]+)\) \|$"
-    )
-    for line in LIBRARY_TABLE_PATH.read_text(encoding="utf-8").splitlines():
-        match = pattern.match(line)
-        if not match:
-            continue
-        data = match.groupdict()
-        url = normalized_url(data["url"])
-        statuses[url] = {
-            "date": data["date"],
-            "title": data["title"],
-            "status": data["status"],
-        }
-    return statuses
-
-
-def build_post_records(api_posts: list[dict], status_map: dict[str, dict[str, str]]) -> list[PostRecord]:
+def build_post_records(api_posts: list[dict]) -> list[PostRecord]:
     records: list[PostRecord] = []
     for post in api_posts:
         title = clean_html(post.get("title", {}).get("rendered", ""))[0] or f"post-{post.get('id')}"
@@ -888,29 +892,30 @@ def build_post_records(api_posts: list[dict], status_map: dict[str, dict[str, st
                 outbound_links.append(link)
         url = normalized_url(post.get("link", ""))
         categories, tags = extract_terms(post)
-        status = status_map.get(url, {}).get("status", "unknown")
         marker_source = " ".join([raw_html, post.get("excerpt", {}).get("rendered", ""), title, *tags])
         slug = slug_from_url(url)
         date = (post.get("date") or "")[:10]
         year = date[:4] if date else "unknown"
-        raw_hash = hashlib.sha256(raw_html.encode("utf-8")).hexdigest()[:16]
         text_path = TMP_TEXT_DIR / f"{date}-{slug}.txt"
+        keywords = sorted(set(top_terms(f"{title}\n{text}", limit=24)))
         records.append(
             PostRecord(
-                id=int(post.get("id", 0)),
+                wp_id=int(post.get("id", 0)),
                 title=title,
                 date=date,
                 year=year,
-                url=url,
-                status=status,
+                canonical_url=url,
                 slug=slug,
+                keywords=keywords,
+                topics=[],
+                claim_buckets=[],
                 tags=tags,
                 categories=categories,
                 outbound_links=outbound_links[:40],
                 mined_marker_present="MINED" in marker_source,
-                raw_html_hash=raw_hash,
+                content_sha256=hashlib.sha256(text.encode("utf-8")).hexdigest(),
                 word_count=len(tokenize(text)),
-                text_path=str(text_path),
+                clean_text_path=display_tmp_path(text_path),
                 text=text,
             )
         )
@@ -941,12 +946,11 @@ def split_into_cards(post: PostRecord, min_words: int = 70, max_words: int = 260
             card_index = len(cards) + 1
             cards.append(
                 IdeaCard(
-                    id=f"{post.id}-{card_index:03d}",
-                    post_id=post.id,
+                    id=f"{post.wp_id}-{card_index:03d}",
+                    post_id=post.wp_id,
                     title=post.title,
                     date=post.date,
-                    url=post.url,
-                    status=post.status,
+                    canonical_url=post.canonical_url,
                     topic_id=topic["id"],
                     topic_title=topic["title"],
                     claim_bucket=topic["claim_bucket"],
@@ -1021,8 +1025,7 @@ def cluster_cards(cards: list[IdeaCard]) -> list[dict]:
             duplicate_pairs = count_duplicate_pairs(cluster_cards_list)
             topic = next(t for t in TOPICS if t["id"] == topic_id)
             flags = collections.Counter(flag for c in cluster_cards_list for flag in c.risk_flags)
-            source_urls = {c.url for c in cluster_cards_list}
-            status_counts = collections.Counter(c.status for c in cluster_cards_list)
+            source_urls = {c.canonical_url for c in cluster_cards_list}
             cluster_record = {
                 "id": f"C{cluster_id:03d}",
                 "topic_id": topic_id,
@@ -1034,8 +1037,6 @@ def cluster_cards(cards: list[IdeaCard]) -> list[dict]:
                 "terms": label_terms[:12],
                 "card_count": len(cluster_cards_list),
                 "source_count": len(source_urls),
-                "open_source_count": sum(1 for url in source_urls if any(c.url == url and c.status == "open" for c in cluster_cards_list)),
-                "status_counts": dict(status_counts),
                 "risk_flags": dict(flags),
                 "duplicate_pair_count": duplicate_pairs,
                 "representative": [card_to_reference(c) for c in representative],
@@ -1046,7 +1047,6 @@ def cluster_cards(cards: list[IdeaCard]) -> list[dict]:
     clusters.sort(
         key=lambda c: (
             -c["priority"],
-            -c["open_source_count"],
             -c["source_count"],
             c["topic_title"],
             c["label"],
@@ -1061,8 +1061,6 @@ def select_representative_cards(cards: list[IdeaCard], limit: int) -> list[IdeaC
     scored = []
     for card in cards:
         score = card.word_count
-        if card.status == "open":
-            score += 120
         if "abandoned-or-corrected-language" in card.risk_flags:
             score -= 80
         if "polemic-marker" in card.risk_flags:
@@ -1072,10 +1070,10 @@ def select_representative_cards(cards: list[IdeaCard], limit: int) -> list[IdeaC
     result = []
     seen_urls = set()
     for _, _, _, card in scored:
-        if card.url in seen_urls:
+        if card.canonical_url in seen_urls:
             continue
         result.append(card)
-        seen_urls.add(card.url)
+        seen_urls.add(card.canonical_url)
         if len(result) >= limit:
             break
     return result
@@ -1097,8 +1095,7 @@ def card_to_reference(card: IdeaCard) -> dict:
     return {
         "title": card.title,
         "date": card.date,
-        "url": card.url,
-        "status": card.status,
+        "url": card.canonical_url,
         "card_id": card.id,
         "terms": card.terms[:6],
         "risk_flags": card.risk_flags,
@@ -1180,8 +1177,8 @@ def score_coverage(clusters: list[dict], corpus_docs: list[dict]) -> None:
         cluster["corpus_hits"] = top_docs
 
 
-def cluster_current_use_score(cluster: dict) -> float:
-    score = cluster["priority"] * 3 + cluster["open_source_count"] * 2 + cluster["source_count"]
+def cluster_route_score(cluster: dict) -> float:
+    score = cluster["priority"] * 3 + cluster["source_count"]
     if cluster["corpus_coverage"] == "needs review":
         score += 8
     elif cluster["corpus_coverage"] == "partially captured":
@@ -1213,15 +1210,12 @@ def build_topic_routes(clusters: list[dict]) -> list[dict]:
         term_counts = collections.Counter()
         representative_refs = []
         seen_urls = set()
-        for cluster in sorted(topic_clusters, key=cluster_current_use_score, reverse=True):
+        for cluster in sorted(topic_clusters, key=cluster_route_score, reverse=True):
             risk_counts.update(cluster.get("risk_flags", {}))
             for term in cluster.get("terms", []):
                 if term not in DOMAIN_GENERIC_TERMS and term not in STOPWORDS:
                     term_counts[term] += max(1, cluster.get("source_count", 1))
-            sorted_refs = sorted(
-                cluster.get("representative", []),
-                key=lambda ref: (ref.get("status") != "open", ref.get("date", "")),
-            )
+            sorted_refs = sorted(cluster.get("representative", []), key=lambda ref: ref.get("date", ""), reverse=True)
             for ref in sorted_refs:
                 if ref["url"] in seen_urls:
                     continue
@@ -1232,10 +1226,9 @@ def build_topic_routes(clusters: list[dict]) -> list[dict]:
             if len(representative_refs) >= 5:
                 continue
 
-        open_source_estimate = sum(cluster.get("open_source_count", 0) for cluster in topic_clusters)
         source_estimate = sum(cluster.get("source_count", 0) for cluster in topic_clusters)
         pressure = coverage_counts.get("needs review", 0) * 2 + coverage_counts.get("partially captured", 0)
-        route_score = topic["priority"] * 4 + pressure + open_source_estimate
+        route_score = topic["priority"] * 4 + pressure + source_estimate
         routes.append(
             {
                 "topic_id": topic["id"],
@@ -1244,7 +1237,6 @@ def build_topic_routes(clusters: list[dict]) -> list[dict]:
                 "destinations": topic["destinations"],
                 "cluster_count": len(topic_clusters),
                 "source_estimate": source_estimate,
-                "open_source_estimate": open_source_estimate,
                 "coverage_counts": dict(coverage_counts),
                 "risk_counts": dict(risk_counts),
                 "terms": [term for term, _ in term_counts.most_common(8)],
@@ -1256,6 +1248,17 @@ def build_topic_routes(clusters: list[dict]) -> list[dict]:
     return routes
 
 
+def annotate_posts_with_card_metadata(posts: list[PostRecord], cards: list[IdeaCard]) -> None:
+    post_topics: dict[int, set[str]] = collections.defaultdict(set)
+    post_buckets: dict[int, set[str]] = collections.defaultdict(set)
+    for card in cards:
+        post_topics[card.post_id].add(card.topic_id)
+        post_buckets[card.post_id].add(card.claim_bucket)
+    for post in posts:
+        post.topics = sorted(post_topics.get(post.wp_id, set()))
+        post.claim_buckets = sorted(post_buckets.get(post.wp_id, set()))
+
+
 def write_jsonl(path: Path, rows: Iterable[dict]) -> None:
     with path.open("w", encoding="utf-8") as handle:
         for row in rows:
@@ -1263,25 +1266,132 @@ def write_jsonl(path: Path, rows: Iterable[dict]) -> None:
             handle.write("\n")
 
 
+def post_registry_dict(post: PostRecord) -> dict:
+    return {
+        "wp_id": post.wp_id,
+        "date": post.date,
+        "year": post.year,
+        "title": post.title,
+        "slug": post.slug,
+        "canonical_url": post.canonical_url,
+        "keywords": post.keywords,
+        "topics": post.topics,
+        "claim_buckets": post.claim_buckets,
+        "outbound_links": post.outbound_links,
+        "wordpress_categories": post.categories,
+        "wordpress_tags": post.tags,
+        "word_count": post.word_count,
+        "content_sha256": post.content_sha256,
+        "clean_text_path": post.clean_text_path,
+    }
+
+
+def post_cache_dict(post: PostRecord) -> dict:
+    data = post_registry_dict(post)
+    data["mined_marker_present"] = post.mined_marker_present
+    return data
+
+
 def write_tmp_artifacts(posts: list[PostRecord], cards: list[IdeaCard], clusters: list[dict]) -> None:
     TMP_TEXT_DIR.mkdir(parents=True, exist_ok=True)
     for post in posts:
-        Path(post.text_path).write_text(post.text, encoding="utf-8")
-    write_jsonl(POSTS_JSONL, (post_to_dict(post, include_text=False) for post in posts))
+        resolve_tmp_display_path(post.clean_text_path).write_text(post.text, encoding="utf-8")
+    write_jsonl(POSTS_JSONL, (post_cache_dict(post) for post in posts))
     write_jsonl(CARDS_JSONL, (dataclasses.asdict(card) for card in cards))
     CLUSTERS_JSON.write_text(json.dumps(clusters, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
 
 
-def post_to_dict(post: PostRecord, include_text: bool = False) -> dict:
-    data = dataclasses.asdict(post)
-    if not include_text:
-        data.pop("text", None)
-    return data
+def write_registry(posts: list[PostRecord]) -> None:
+    write_jsonl(REGISTRY_JSONL_PATH, (post_registry_dict(post) for post in posts))
 
 
 def markdown_link(title: str, url: str) -> str:
     clean_title = title.replace("|", "\\|").replace("\n", " ").strip()
     return f"[{clean_title}]({url})"
+
+
+def markdown_cell(text: str) -> str:
+    return text.replace("|", "\\|").replace("\n", " ").strip()
+
+
+def topic_title_map() -> dict[str, str]:
+    return {topic["id"]: topic["title"] for topic in TOPICS}
+
+
+def topic_labels(topic_ids: list[str], limit: int = 2) -> str:
+    titles = topic_title_map()
+    labels = [titles.get(topic_id, topic_id) for topic_id in topic_ids[:limit]]
+    if len(topic_ids) > limit:
+        labels.append(f"+{len(topic_ids) - limit}")
+    return "<br>".join(markdown_cell(label) for label in labels) or "-"
+
+
+def keyword_labels(keywords: list[str], limit: int = 8) -> str:
+    labels = keywords[:limit]
+    if len(keywords) > limit:
+        labels.append(f"+{len(keywords) - limit}")
+    return ", ".join(markdown_cell(label) for label in labels) or "-"
+
+
+def render_library_table(posts: list[PostRecord]) -> str:
+    now = dt.datetime.now().strftime("%Y-%m-%d")
+    year_counts = collections.Counter(post.year for post in posts)
+    lines = [
+        "# Legacy Architrino WordPress Library Posts",
+        "",
+        "- Sources: [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), [2026 archive](https://architrino.wordpress.com/2026/), and the public WordPress API.",
+        f"- Crawled: {now}",
+        f"- Total published posts discovered: {len(posts)}",
+        f"- Durable registry: [{REGISTRY_JSONL_PATH.name}]({REGISTRY_JSONL_PATH.name})",
+        f"- Clean-text cache root: `{TMP_TEXT_DIR_DISPLAY}`",
+        "- Completion authority: topic and batch mining events are recorded in source-mining history; this table is a generated archive inventory.",
+        "",
+        "## Year Counts",
+        "",
+        "| Year | Posts |",
+        "| --- | ---: |",
+    ]
+    for year, count in sorted(year_counts.items(), reverse=True):
+        lines.append(f"| {year} | {count} |")
+    lines.extend(
+        [
+            "",
+            "## Posts",
+            "",
+            "| Date | Title | Topics | Keywords | URL |",
+            "| --- | --- | --- | --- | --- |",
+        ]
+    )
+    for post in posts:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    post.date,
+                    markdown_cell(post.title),
+                    topic_labels(post.topics),
+                    keyword_labels(post.keywords),
+                    f"[link]({post.canonical_url})",
+                ]
+            )
+            + " |"
+        )
+    return "\n".join(lines) + "\n"
+
+
+def render_queue(posts: list[PostRecord]) -> str:
+    now = dt.datetime.now().strftime("%Y-%m-%d")
+    lines = [
+        "# Legacy Architrino WordPress Mining Queue",
+        f"# Generated: {now}",
+        f"# Source registry: {REGISTRY_JSONL_DISPLAY}",
+        "# This is an all-post archive URL view. Completion is topic/pass-specific and belongs in source-mining-history.md.",
+        "",
+    ]
+    for post in posts:
+        lines.append(f"# {post.date} {post.title}")
+        lines.append(post.canonical_url)
+    return "\n".join(lines) + "\n"
 
 
 def short_destinations(destinations: list[str], limit: int = 2) -> str:
@@ -1291,7 +1401,7 @@ def short_destinations(destinations: list[str], limit: int = 2) -> str:
 def render_reference_links(representatives: list[dict], limit: int = 3) -> str:
     links = []
     for ref in representatives[:limit]:
-        links.append(f"{ref['date']} {markdown_link(ref['title'], ref['url'])} ({ref['status']})")
+        links.append(f"{ref['date']} {markdown_link(ref['title'], ref['url'])}")
     return "<br>".join(links)
 
 
@@ -1320,7 +1430,6 @@ def risk_pressure_text(route: dict) -> str:
 
 def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list[dict]) -> str:
     now = dt.datetime.now().strftime("%Y-%m-%d")
-    status_counts = collections.Counter(post.status for post in posts)
     year_counts = collections.Counter(post.year for post in posts)
     coverage_counts = collections.Counter(cluster["corpus_coverage"] for cluster in clusters)
     topic_counts = collections.Counter(card.topic_title for card in cards)
@@ -1330,7 +1439,7 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
     lines = [
         "# Legacy Architrino Archive Mining Report",
         "",
-        "This is an archive-level source-mining triage report. It does not mark individual posts mined, does not update durable completion status, and does not promote claims into the reader-facing corpus. Full cleaned post text is kept only in platform temporary artifacts. Website `MINED` markers, if present in legacy HTML or metadata, are retained only as non-authoritative audit metadata.",
+        "This is an archive-level source-mining triage report. It does not mark individual posts mined and does not promote claims into the reader-facing corpus. Full cleaned post text is kept only in platform temporary artifacts. Website `MINED` markers, if present in legacy HTML or metadata, are retained only as non-authoritative audit metadata.",
         "",
         "## Source Map",
         "",
@@ -1342,7 +1451,8 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
         f"| Posts retrieved | `{len(posts)}` |",
         f"| Idea cards | `{len(cards)}` |",
         f"| Idea clusters | `{len(clusters)}` |",
-        f"| Local post JSONL | `{POSTS_JSONL_DISPLAY}` |",
+        f"| Durable post registry JSONL | `{REGISTRY_JSONL_DISPLAY}` |",
+        f"| Local post cache JSONL | `{POSTS_JSONL_DISPLAY}` |",
         f"| Local idea-card JSONL | `{CARDS_JSONL_DISPLAY}` |",
         f"| Local cluster JSON | `{CLUSTERS_JSON_DISPLAY}` |",
         f"| Local clean-text directory | `{TMP_TEXT_DIR_DISPLAY}` |",
@@ -1356,9 +1466,6 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
         "| Metric | Count |",
         "| --- | ---: |",
         f"| Posts | {len(posts)} |",
-        f"| Complete in durable table | {status_counts.get('complete', 0)} |",
-        f"| Open in durable table | {status_counts.get('open', 0)} |",
-        f"| Unknown table status | {status_counts.get('unknown', 0)} |",
         f"| Posts with visible legacy `MINED` marker in API HTML or metadata, non-authoritative | {sum(1 for post in posts if post.mined_marker_present)} |",
         f"| Cards carrying legacy terminology flags | {flag_counts.get('legacy-terminology', 0)} |",
         f"| Cards carrying speculation markers | {flag_counts.get('speculation-marker', 0)} |",
@@ -1404,7 +1511,7 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
             "",
             "These routes are the strongest archive-level areas to inspect next. They are not automatically approved recommendations; each route should become either an ordinary per-source mining batch or a focused topic sweep.",
             "",
-            "| Rank | Topic route | Coverage pressure | Open-source estimate | Main signals | Likely destinations | Representative posts |",
+            "| Rank | Topic route | Coverage pressure | Source estimate | Main signals | Likely destinations | Representative posts |",
             "| ---: | --- | --- | ---: | --- | --- | --- |",
         ]
     )
@@ -1416,7 +1523,7 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
                     str(index),
                     route["topic_title"],
                     coverage_pressure_text(route),
-                    str(route["open_source_estimate"]),
+                    str(route["source_estimate"]),
                     ", ".join(route["terms"][:6]) or "-",
                     short_destinations(route["destinations"]),
                     render_reference_links(route["representative"]),
@@ -1456,9 +1563,9 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
             "",
             "## Next Operating Modes",
             "",
-            "1. Use a candidate-gap route for an ordinary post-by-post mining batch, starting with the representative open posts.",
+            "1. Use a candidate-gap route for an ordinary post-by-post mining batch, starting with the representative posts.",
             "2. Use topic-sweep mode when the operator asks what the legacy archive says about one concept across many posts.",
-            "3. Use the platform temporary JSONL artifacts as the retrieval cache, but keep durable queue and status accounting in `reference/priorities/source-mining/`.",
+            "3. Use the durable registry as the archive inventory, and use source-mining history for pass-specific completion and incorporation events.",
         ]
     )
     return "\n".join(lines) + "\n"
@@ -1507,7 +1614,7 @@ def render_candidate_gaps_report(clusters: list[dict]) -> str:
     ]
     for index, route in enumerate(routes, start=1):
         why = (
-            f"{route['cluster_count']} cluster(s), open-source estimate {route['open_source_estimate']}, "
+            f"{route['cluster_count']} cluster(s), source estimate {route['source_estimate']}, "
             f"{coverage_pressure_text(route)}; {risk_pressure_text(route)}"
         )
         lines.append(
@@ -1540,28 +1647,42 @@ def write_reports(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
     )
 
 
+def write_generated_views(posts: list[PostRecord]) -> None:
+    LIBRARY_TABLE_PATH.write_text(render_library_table(posts), encoding="utf-8")
+    QUEUE_PATH.write_text(render_queue(posts), encoding="utf-8")
+
+
 def load_cached_posts() -> list[dict]:
-    if not POSTS_JSONL.exists():
-        raise FileNotFoundError(f"No cached posts at {POSTS_JSONL}")
+    source_path = REGISTRY_JSONL_PATH if REGISTRY_JSONL_PATH.exists() else POSTS_JSONL
+    if not source_path.exists():
+        raise FileNotFoundError(f"No cached posts at {source_path}")
     posts = []
-    for line in POSTS_JSONL.read_text(encoding="utf-8").splitlines():
+    for line in source_path.read_text(encoding="utf-8").splitlines():
         if not line.strip():
             continue
         posts.append(json.loads(line))
     converted = []
     for post in posts:
+        url = post.get("canonical_url") or post.get("url")
+        text_path = resolve_tmp_display_path(post["clean_text_path"] if "clean_text_path" in post else post["text_path"])
         converted.append(
             {
-                "id": post["id"],
+                "id": post.get("wp_id") or post.get("id"),
                 "title": {"rendered": post["title"]},
                 "date": post["date"],
-                "link": post["url"],
-                "content": {"rendered": Path(post["text_path"]).read_text(encoding="utf-8")},
+                "link": url,
+                "content": {"rendered": text_path.read_text(encoding="utf-8")},
                 "excerpt": {"rendered": ""},
                 "_embedded": {
                     "wp:term": [
-                        [{"name": name, "taxonomy": "category"} for name in post.get("categories", [])],
-                        [{"name": name, "taxonomy": "post_tag"} for name in post.get("tags", [])],
+                        [
+                            {"name": name, "taxonomy": "category"}
+                            for name in post.get("wordpress_categories", post.get("categories", []))
+                        ],
+                        [
+                            {"name": name, "taxonomy": "post_tag"}
+                            for name in post.get("wordpress_tags", post.get("tags", []))
+                        ],
                     ]
                 },
             }
@@ -1573,8 +1694,8 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Build archive-level source-mining artifacts for legacy Architrino WordPress posts."
     )
-    parser.add_argument("--write", action="store_true", help="write /tmp artifacts and tracked markdown reports")
-    parser.add_argument("--use-cache", action="store_true", help="use cached /tmp post artifacts instead of fetching")
+    parser.add_argument("--write", action="store_true", help="write tracked registry/views/reports and /tmp artifacts")
+    parser.add_argument("--use-cache", action="store_true", help="use durable registry plus cached text artifacts instead of fetching")
     parser.add_argument("--limit", type=int, default=None, help="limit posts for test runs")
     parser.add_argument("--per-page", type=int, default=100, help="WordPress API page size")
     return parser.parse_args()
@@ -1582,19 +1703,19 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    status_map = load_library_statuses()
     if args.use_cache:
         api_posts = load_cached_posts()
     else:
         api_posts = fetch_posts(per_page=args.per_page, limit=args.limit)
-    posts = build_post_records(api_posts, status_map)
+    posts = build_post_records(api_posts)
     cards = [card for post in posts for card in split_into_cards(post)]
+    annotate_posts_with_card_metadata(posts, cards)
     clusters = cluster_cards(cards)
     corpus_docs = build_corpus_index()
     score_coverage(clusters, corpus_docs)
     clusters.sort(
         key=lambda c: (
-            -cluster_current_use_score(c),
+            -cluster_route_score(c),
             c["topic_title"],
             c["label"],
         )
@@ -1604,6 +1725,8 @@ def main() -> int:
 
     if args.write:
         TMP_ROOT.mkdir(parents=True, exist_ok=True)
+        write_registry(posts)
+        write_generated_views(posts)
         write_tmp_artifacts(posts, cards, clusters)
         write_reports(posts, cards, clusters)
 
@@ -1614,6 +1737,7 @@ def main() -> int:
             Posts: {len(posts)}
             Idea cards: {len(cards)}
             Clusters: {len(clusters)}
+            Registry: {REGISTRY_JSONL_PATH if args.write else 'not written; pass --write'}
             Reports: {REPORT_DIR if args.write else 'not written; pass --write'}
             Tmp artifacts: {TMP_ROOT if args.write else 'not written; pass --write'}
             """

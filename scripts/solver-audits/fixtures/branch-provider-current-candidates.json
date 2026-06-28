@@ -1,0 +1,101 @@
+{
+  "schema": "branch_provider_evidence_candidates/v0",
+  "report_id": "branch-provider-current-candidates-2026-06-28",
+  "source_ref": "reference/priorities/aaa-work-threads/closure-join-matrix.md",
+  "candidates": [
+    {
+      "id": "field-speed-action-increment-fixture-source",
+      "claim_scope": "rank2 fixture source-binding boundary",
+      "source_ref": "scripts/nested-shell-braid/fixtures/action-increment-packet",
+      "provider_source_status": "fixture_shape_only",
+      "feeds": ["rank2_field_speed_action_self_hit_scan"],
+      "same_domain_record_ref": null,
+      "branch_certificate_ref": null,
+      "active_root_or_live_ledger_identity": null,
+      "conservation_pullback_hash": null,
+      "branch_local_projection_or_normalization_identity": null,
+      "notes": "The source-binding report hashes the fixture action row but rejects it as diagnostic endpoint-source evidence, not an accepted transition source."
+    },
+    {
+      "id": "pressure-row-current-status",
+      "claim_scope": "rank4 pressure-row branch-intake boundary",
+      "source_ref": "scripts/mass-map/fixtures/pressure-row-branch-intake-current-status.json",
+      "provider_source_status": "diagnostic_only",
+      "feeds": ["rank4_pressure_row_branch_intake"],
+      "same_domain_record_ref": null,
+      "branch_certificate_ref": null,
+      "active_root_or_live_ledger_identity": null,
+      "conservation_pullback_hash": null,
+      "branch_local_projection_or_normalization_identity": null,
+      "notes": "A0 rest diagnostics, toy Hessian rows, and material replay candidates do not provide one retained pressure-row provider."
+    },
+    {
+      "id": "pressure-row-fe-silicate-toy-partial",
+      "claim_scope": "rank4 toy pressure-row partial",
+      "source_ref": "scripts/mass-map/fixtures/pressure-row-branch-intake-fe-silicate-toy-partial.json",
+      "provider_source_status": "toy_replay_only",
+      "feeds": ["rank4_pressure_row_branch_intake"],
+      "same_domain_record_ref": "fe-silicate-segregation-toy",
+      "branch_certificate_ref": null,
+      "active_root_or_live_ledger_identity": null,
+      "conservation_pullback_hash": null,
+      "branch_local_projection_or_normalization_identity": "toy-pressure-row-algebraic-screen",
+      "notes": "The Fe/silicate row reduces unknown algebra fields but remains toy/source-descent evidence."
+    },
+    {
+      "id": "pressure-row-a0-branch-source-frontier-partial",
+      "claim_scope": "rank4 A0 branch-source frontier partial",
+      "source_ref": "scripts/mass-map/fixtures/pressure-row-branch-intake-a0-branch-source-partial.json",
+      "provider_source_status": "tier0_continuation_ready_not_accepted_history",
+      "feeds": ["rank4_pressure_row_branch_intake"],
+      "same_domain_record_ref": "a0-tier0-continuation-ready:k=(60,5,1):q=(55,4,59)",
+      "branch_certificate_ref": null,
+      "active_root_or_live_ledger_identity": "a0-tier0-root-ledger:partner=96:self=32:inter_layer=384:maxRootResidual=2.8e-7",
+      "conservation_pullback_hash": null,
+      "branch_local_projection_or_normalization_identity": "a0-branch-label-frontier:k=(60,5,1):q=(55,4,59)",
+      "notes": "The A0 frontier carries branch-label and root-ledger diagnostics, but the corrected A0 route still lacks accepted history, positive Delta_k, eta-ladder persistence, exposure descent, and pressure-response emission."
+    },
+    {
+      "id": "bounded-speed-normal-candidate-fixture",
+      "claim_scope": "rank5 bounded-speed normal reconstruction fixture",
+      "source_ref": "scripts/neutral-braid/fixtures/zero-mean-normal-candidate/bounded-speed-normal-reconstruction-candidate.json",
+      "provider_source_status": "fixture_normal_candidate",
+      "feeds": ["rank5_bounded_speed_normal_reconstruction"],
+      "same_domain_record_ref": "post-correction-normal-reconstruction-handoff-fixture",
+      "branch_certificate_ref": null,
+      "active_root_or_live_ledger_identity": "bounded-speed-live-ledger-fixture",
+      "conservation_pullback_hash": null,
+      "branch_local_projection_or_normalization_identity": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture",
+      "notes": "The normal candidate closes fixture normal rows but explicitly sets certifies_bounded_speed_live_ledger=false and retained_branch=false."
+    },
+    {
+      "id": "moving-retained-branch-status-shell",
+      "claim_scope": "rank6 moving retained branch status shell",
+      "source_ref": "scripts/nested-shell-braid/fixtures/moving-retained-branch-certificate-current-status.json",
+      "provider_source_status": "status_shell_only",
+      "feeds": ["rank6_moving_retained_branch_certificate"],
+      "same_domain_record_ref": "current-moving-retained-branch-certificate-status-2026-06-28",
+      "branch_certificate_ref": null,
+      "active_root_or_live_ledger_identity": "neutral_braid_octahedral_root_ledger.certified.v1",
+      "conservation_pullback_hash": null,
+      "branch_local_projection_or_normalization_identity": null,
+      "notes": "The shell names a root-ledger reference but carries no branch certificate, continuation, root boundary, deformation generator, common-speed record, signal sector, or event ledger."
+    },
+    {
+      "id": "tri-binary-torque-wake-same-row-diagnostic",
+      "claim_scope": "rank2/rank6 angular-momentum proxy diagnostic",
+      "source_ref": "scripts/angular-momentum/tri-binary-offset-family-runner.mjs#torque_wake_same_row_diagnostic",
+      "provider_source_status": "solver_proxy_diagnostic",
+      "feeds": [
+        "rank2_field_speed_action_self_hit_scan",
+        "rank6_moving_retained_branch_certificate"
+      ],
+      "same_domain_record_ref": "torque_wake_same_row_diagnostic:index-ratio:f2",
+      "branch_certificate_ref": null,
+      "active_root_or_live_ledger_identity": "route-root-key:2856731379702547500",
+      "conservation_pullback_hash": null,
+      "branch_local_projection_or_normalization_identity": "same-row force/partition/torque/wake diagnostic row ids",
+      "notes": "The diagnostic attaches sampled same-row torque and wake rows but leaves retainedBranchClaim=false and branch_certificate_ref absent."
+    }
+  ]
+}

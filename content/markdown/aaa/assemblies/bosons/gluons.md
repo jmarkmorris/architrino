@@ -5,7 +5,7 @@ This chapter should be read together with [Quarks](../fermions/quarks.md), [Colo
 
 ## The Geometric Origin of Color Charge
 
-In the Standard Model, color is an abstract $SU(3)$ label. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether braid with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../fermions/color-charge-su3.md).
+In the Standard Model, color is an abstract $SU(3)$ label. In $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether braid with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../fermions/color-charge-su3.md).
 
 ### The Noether Braid Substrate
 
@@ -31,7 +31,7 @@ A Noether braid also has three ordered axes $(H,M,L)$, each carrying two polar s
 #### Case B: The Down Quark ($d$)
 
 - **Composition:** $2P,4E$, so $Q=-\frac{1}{3}e$.
-- **Axis pattern:** the current architecture admits two families:
+- **Axis pattern:** the architecture admits two families:
   - Family I: one $P^+$ axis and two $P^-$ axes.
   - Family II: one $P^-$ axis and two $P^{m}$ axes.
 - **Color basis:** in either family, color is still the position of the exceptional axis:

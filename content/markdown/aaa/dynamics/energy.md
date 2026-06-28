@@ -932,7 +932,7 @@ p_{\text{CM}}=\gamma_{\text{eff}} M_0 v_{\text{CM}},\qquad
 \gamma_{\text{eff}}=\frac{1}{\sqrt{1-v_{\text{CM}}^2/c_{\text{eff}}^2}}
 $$
 
-Consistency requirement: if this closure fails in regimes where emergent Lorentz behavior is claimed, the current mass-loading and medium-response model is incomplete.
+Consistency requirement: if this closure fails in regimes where emergent Lorentz behavior is claimed, the mass-loading and medium-response model is incomplete.
 
 Cross-links:
 - [Proper-time closure test](../spacetime/proper-time-and-time-dilation.md#effective-energy-momentum-closure-test)
@@ -1061,7 +1061,7 @@ This does **not** change dynamics; it sets a physically meaningful reference.
 
 ### Self-Hit Echo and Discrete Steps (Working Note)
 
-In the current picture, the self-hit region is **not** assumed to change the local force law. The radial slope remains smooth:
+In this picture, the self-hit region is **not** assumed to change the local force law. The radial slope remains smooth:
 
 $$\frac{dU}{dr} \text{ remains finite and continuous across the retained regularized branch chart.}$$
 

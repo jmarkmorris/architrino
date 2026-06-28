@@ -10,7 +10,7 @@ This chapter addresses the quantum branch at the level of ontology and epistemic
 - Connect the **Decider** and **Switch** case studies to those requirements.
 - Tie the chapter to [Ontology](../foundations/ontology.md), [Observer Framework](../spacetime/observer-framework.md), and [Master Equation](../dynamics/master-equation.md).
 
-**Scope note:** This chapter states current $\mathbb{A}\mathbb{A}\mathbb{A}$ working claims unless a passage is explicitly labeled as a toy model, phenomenological mapping, or closure target.
+**Scope note:** This chapter states $\mathbb{A}\mathbb{A}\mathbb{A}$ working claims unless a passage is explicitly labeled as a toy model, phenomenological mapping, or closure target.
 
 ## Reality: Absolute vs Operational
 
@@ -221,7 +221,7 @@ This also prevents a common overreading of branch language. In a quantum compari
 
 Complex assemblies can, however, have **agency** in the compatibilist sense: the capacity to navigate deterministic dynamics in ways that depend on their internal structure and history, making their behavior functionally autonomous and practically unpredictable.
 
-The distinction matters because "free will" is a philosophically loaded term with multiple incompatible definitions. The present chapter uses agency only in the dynamical sense defined above.
+The distinction matters because "free will" is a philosophically loaded term with multiple incompatible definitions. This chapter uses agency only in the dynamical sense defined above.
 
 ### Determinism in This Framework
 

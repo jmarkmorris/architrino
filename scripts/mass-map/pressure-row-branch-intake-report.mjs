@@ -292,6 +292,8 @@ export function buildReport(candidate, options = {}) {
     first_failure: firstFailure,
     missing_or_rejected_fields: failedFields.map((field) => field.path),
     field_results: fieldResults,
+    source_frontier: candidate.branch_source_frontier ?? null,
+    source_ownership: candidate.source_ownership ?? null,
     authorization: {
       branch_derived_pressure_response: accepted,
       empirical_mass_response: false,
@@ -325,6 +327,18 @@ export function validationErrors(report) {
   }
   if (!isObject(report.authorization)) {
     errors.push("authorization must be an object");
+  }
+  if (
+    report.branch_intake_verdict === "finite_branch_evidence_missing" &&
+    report.authorization?.branch_derived_pressure_response !== false
+  ) {
+    errors.push("blocked reports must not authorize branch_derived_pressure_response");
+  }
+  if (
+    report.branch_intake_verdict === "accepted_retained_pressure_row" &&
+    report.authorization?.branch_derived_pressure_response !== true
+  ) {
+    errors.push("accepted reports must authorize branch_derived_pressure_response");
   }
   if (report.authorization?.empirical_mass_response !== false) {
     errors.push("empirical_mass_response must remain false");

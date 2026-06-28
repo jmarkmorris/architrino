@@ -1,15 +1,16 @@
 # Sigma_hf_01 External Schema Pilot Packet
 
-Status: `priority-only-pilot-scope-materialized-no-external-schema-received-no-row-consumption-no-live-ledger-update-no-branch-chart-authorization`
+Status: `priority-only-pilot-scope-materialized-local-source-data-partial-no-proof-grade-external-schema-no-row-consumption-no-live-ledger-update-no-branch-chart-authorization`
 
 ## Claim Level
 
 Priority-only pilot intake packet for the `Sigma_hf_01` slice of the
 external proof-grade derivation schema blocker. This packet does not construct
-an external schema, does not accept a source packet, does not make a
-proof-rule or primitive-acceptance decision, consumes 0 rows, keeps
+an external proof-grade schema, does not accept a source packet, does not make
+a proof-rule or primitive-acceptance decision, consumes 0 rows, keeps
 `preledger_pass=false`, keeps `updates_live_ledger=false`, and authorizes no
-branch chart.
+branch chart. The current local source-data partial candidate screens 5 / 8
+fields for `Sigma_hf_01`, but the slot remains `external_input_required`.
 
 ## Imported Contract
 
@@ -93,12 +94,12 @@ the eight-field predicate above before any row slot is opened.
 
 | Intake field | Required value for first candidate | Current value |
 | --- | --- | --- |
-| `candidate_external_schema_ref` | A stable file, citation, or proof-object identifier for the external schema. | absent |
-| `target_slot` | `Sigma_hf_01` before any `R_*` row slot is considered. | `Sigma_hf_01` selected; no object received |
-| `source_data_record_lock` | Exact binding to the `Sigma_hf_01` separator source-data record under `fresh-v10-higher-fold-12-root-rebuild-v0`, `proof-interval-v6`, and `lambda0305`. | absent |
-| `required_fields_present` | All eight predicate fields present on the same object. | `0 / 8` |
-| `schema_statement_check` | Hypotheses, inference steps, conclusion, and correspondence to the payload target are explicit enough for validation. | not started |
-| `non_reinterpretation_check` | The object proves that fail-closed diagnostics, target packets, and absence classifiers are not being used as proof-grade input. | not started |
+| `candidate_external_schema_ref` | A stable file, citation, or proof-object identifier for the external schema. | `local-source-data-partial:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305`; local source-data partial, not proof-grade external schema |
+| `target_slot` | `Sigma_hf_01` before any `R_*` row slot is considered. | `Sigma_hf_01` selected |
+| `source_data_record_lock` | Exact binding to the `Sigma_hf_01` separator source-data record under `fresh-v10-higher-fold-12-root-rebuild-v0`, `proof-interval-v6`, and `lambda0305`. | present on local candidate |
+| `required_fields_present` | All eight predicate fields present on the same object. | `5 / 8` |
+| `schema_statement_check` | Hypotheses, inference steps, conclusion, and correspondence to the payload target are explicit enough for validation. | absent |
+| `non_reinterpretation_check` | The object proves that fail-closed diagnostics, target packets, and absence classifiers are not being used as proof-grade input. | present as fail-closed local guard |
 | `slot_result` | `external_schema_input_received_for_schema_validation` only after every row above passes. | `external_input_required` |
 
 This record is the smallest acceptable next artifact for the pilot. A prose
@@ -109,22 +110,29 @@ external schema object and all eight required fields for `Sigma_hf_01`.
 Current checklist artifact:
 [sigma_hf_01_external_schema_candidate_intake_checklist.md](sigma_hf_01_external_schema_candidate_intake_checklist.md)
 records the current fail-closed separator-slot intake. It fixes the internal
-scope locks, leaves `candidate_external_schema_ref` absent, records 0 / 8
+scope locks, records the local source-data partial candidate, records 5 / 8
 required predicate fields present, and keeps the slot at
-`external_input_required`.
+`external_input_required` because `rule_kernel_obligation_binding`,
+`rule_kernel_derivation_payload_target_binding`, and
+`proof_grade_derivation_schema_statement` remain absent.
 
 Machine-checkable current record:
 [sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json](sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
 and
 [report](sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
-preserve the same absent-input state with 11 row slots parked and no row
-consumption, live-ledger update, or branch-chart authorization.
+preserve the same fail-closed state with 11 row slots parked and no row
+consumption, live-ledger update, or branch-chart authorization. The local
+source-data partial candidate is recorded in
+[JSON](sigma_hf_01_external_schema_candidate.local-source-data-partial.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+and
+[report](sigma_hf_01_external_schema_candidate.local-source-data-partial.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md).
 
 ## Pilot Verdict
 
 Current pilot result:
 
-- external schema inputs received: 0 / 12;
+- local source-data partial candidates screened: 1 / 1 for `Sigma_hf_01`;
+- proof-grade external schema inputs received: 0 / 12;
 - external schema slots accepted for validation: 0 / 12;
 - rule-kernel derivation payloads constructed: 0 / 12;
 - accepted source packets: 0 / 12;

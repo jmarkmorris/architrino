@@ -20,6 +20,9 @@ const CURRENT_FIXTURE = fileURLToPath(
 const FE_SILICATE_PARTIAL_FIXTURE = fileURLToPath(
   new URL("../scripts/mass-map/fixtures/pressure-row-branch-intake-fe-silicate-toy-partial.json", import.meta.url)
 );
+const A0_BRANCH_SOURCE_PARTIAL_FIXTURE = fileURLToPath(
+  new URL("../scripts/mass-map/fixtures/pressure-row-branch-intake-a0-branch-source-partial.json", import.meta.url)
+);
 
 test("pressure-row branch intake report rejects current diagnostic-only status", () => {
   const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
@@ -118,6 +121,37 @@ test("pressure-row branch intake report records Fe/silicate toy row fields witho
   assert.equal(report.missing_or_rejected_fields.includes("reversible_domain.loss_channels_closed"), true);
   assert.equal(report.missing_or_rejected_fields.includes("null_sector_record.preferred_frame"), true);
   assert.equal(report.missing_or_rejected_fields.includes("null_sector_record.directional_tensor"), true);
+
+  const residualStatus = report.field_results.find((field) => field.path === "residual_status");
+  assert.equal(residualStatus.present, true);
+  assert.equal(residualStatus.pass, false);
+  assert.equal(residualStatus.failure_code, "pressure_row_residual_not_accepted");
+});
+
+test("pressure-row branch intake report records A0 branch-source frontier without accepting provisional rows", () => {
+  const fixture = JSON.parse(fs.readFileSync(A0_BRANCH_SOURCE_PARTIAL_FIXTURE, "utf8"));
+  const report = buildReport(fixture, { sourceRef: A0_BRANCH_SOURCE_PARTIAL_FIXTURE });
+
+  assert.deepEqual(validationErrors(report), []);
+  assert.equal(report.branch_intake_verdict, "finite_branch_evidence_missing");
+  assert.equal(report.first_failure, "finite_branch_evidence_missing");
+  assert.equal(report.same_row_binding, false);
+  assert.equal(report.authorization.branch_derived_pressure_response, false);
+  assert.equal(report.authorization.empirical_mass_response, false);
+  assert.equal(report.authorization.retained_branch_claim, false);
+
+  assert.equal(report.source_frontier.source_status, "tier0_continuation_ready_not_accepted_history");
+  assert.equal(report.source_frontier.branch_label.k.I, 60);
+  assert.equal(report.source_ownership.A0_branch_search.includes("accepted_history_segment_id"), true);
+  assert.equal(report.source_ownership.exposure_quotient.includes("exposure_source_record.M0_src"), true);
+  assert.equal(report.source_ownership.pressure_replay.includes("pressure_response_record.C_chi_aniso"), true);
+
+  assert.equal(report.missing_or_rejected_fields.includes("branch_id"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("accepted_history_segment_id"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("source_path"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("quotient_chart_id"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("pressure_record.Pi"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("pressure_response_record.C_chi_iso"), true);
 
   const residualStatus = report.field_results.find((field) => field.path === "residual_status");
   assert.equal(residualStatus.present, true);

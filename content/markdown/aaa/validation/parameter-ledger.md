@@ -1,6 +1,6 @@
 # Parameter Ledger
 
-This chapter is the canonical bookkeeping page for the symbols that control closure across the current $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus. Its purpose is not to re-derive every quantity. Its purpose is to keep the roles of primitive postulates, geometric closure targets, constitutive coefficients, state variables, and observer-level benchmarks from collapsing into one another.
+This chapter is the canonical bookkeeping page for the symbols that control closure across the $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus. Its purpose is not to re-derive every quantity. Its purpose is to keep the roles of primitive postulates, geometric closure targets, constitutive coefficients, state variables, and observer-level benchmarks from collapsing into one another.
 
 The central bookkeeping rule is simple: not every symbol that appears in an equation is a free parameter. Some symbols are fixed substrate inputs, some are assembly-dependent outputs, some are constitutive functions of the Noether sea, and some are measured benchmarks that the theory is supposed to recover.
 
@@ -9,11 +9,11 @@ The central bookkeeping rule is simple: not every symbol that appears in an equa
 This ledger records, for each recurrent symbol:
 
 - what kind of object it is,
-- whether it is currently treated as primitive, derived, or still open,
+- whether it is treated as primitive, derived, or still open,
 - which chapter owns its definition,
 - and which closure program is responsible for fixing it.
 
-That distinction matters because the corpus currently spans several layers at once:
+That distinction matters because the corpus spans several layers at once:
 
 - substrate dynamics in the Euclidean void,
 - assembly geometry and delay-lock structure,
@@ -95,7 +95,7 @@ u_r(y)=\frac{u(y)}{|y|}
 $$
 for $y\ne0$. When the quoted distribution is approximately Gaussian, $y\pm u(y)$ is the one-standard-uncertainty comparison interval, not a broad tolerance band to be enlarged after a fit.
 
-Useful 2022 CODATA rows for the current closure stack are:
+Useful 2022 CODATA rows for the closure stack are:
 
 | Quantity | CODATA 2022 value | Standard uncertainty | Ledger role |
 | --- | ---: | ---: | --- |
@@ -132,7 +132,7 @@ as the default sensitivity diagnostic.
 
 Here $\Delta p/p$ is the fractional perturbation of a parameter or closure output, and $\Delta \mathrm{obs}/\mathrm{obs}$ is the resulting fractional perturbation of the observable being tested. Values $\mathrm{FTQ}(p)>10$ should be treated as fine-tuning pressure unless a discrete topology, symmetry, attractor basin, or measured benchmark explains the sensitivity.
 
-Current status:
+Status:
 
 - $\epsilon=|e|/6$ is treated as a discrete polarity-unit input and an explanatory target, not as a continuous fit.
 - $\kappa$ is the universal coupling in the primitive acceleration law. In the bare two-body scale closure below it combines with $c_f$ and $\epsilon$ to set length and time units rather than an independent dimensionless tuning knob, while its primitive, derived, or normalization-sensitive status in the observer-level unit map remains open.
@@ -186,7 +186,7 @@ Consequently, every dimensionless output of the isolated bare two-body problem i
 
 These symbols belong to the delayed microscopic law itself.
 
-| ID | Symbol | Class | Current status | Meaning | Primary home |
+| ID | Symbol | Class | Status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | K1 | $c_f$ | Fundamental parameter | Primitive | field speed of causal wake propagation | [../dynamics/master-equation.md](../dynamics/master-equation.md), [../foundations/absolute-timespace.md](../foundations/absolute-timespace.md) |
 | K2 | $\epsilon$ | Fundamental parameter | Primitive | potential polarity-unit magnitude, with observer-level electric charge reconstructed from it | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../assemblies/gauge-structure-emergence.md](../assemblies/gauge-structure-emergence.md) |
@@ -198,7 +198,7 @@ These symbols belong to the delayed microscopic law itself.
 
 These quantities belong to Noether braid architecture, shielding, branch structure, and assembly response.
 
-| ID | Symbol | Class | Current status | Meaning | Primary home |
+| ID | Symbol | Class | Status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch Noether braid reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [Particle Masses](../assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md), [Energy](../dynamics/energy.md) |
 | G0a | $\mathcal{P}_{A_0}$ | Geometric closure target | Open; compact finite-coordinate no-go recorded, branch-chart revision required before Tier 1 continuation | certificate packet tying the finite closure graph $\mathcal{G}_{A_0}$, active root ledger, quotient Floquet gap $\Delta_{\mathbf{k}}$, shielding extraction, and $\mathcal{M}_{\text{sea}}^{ab}$ response probe into one promotion sequence | [simulations/a0-branch-certificate-protocol.md](./simulations/a0-branch-certificate-protocol.md), [simulations/a0-tier0-result-interpretation.md](./simulations/a0-tier0-result-interpretation.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
@@ -214,7 +214,7 @@ These quantities belong to Noether braid architecture, shielding, branch structu
 
 These symbols control the handoff from the Euclidean substrate plus Noether sea to effective metric language.
 
-| ID | Symbol | Class | Current status | Meaning | Primary home |
+| ID | Symbol | Class | Status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | C1 | $\rho_{\text{NS},0}$ | Constitutive closure target | Open | reference Noether braid density used to normalize the Noether sea | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
 | C2 | $n(\mathbf{x},t)$ | State variable / field | Derived field | normalized Noether braid density, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
@@ -231,7 +231,7 @@ These symbols control the handoff from the Euclidean substrate plus Noether sea 
 
 These quantities are where closure is tested. They are not substrate inputs.
 
-| ID | Symbol | Class | Current status | Meaning | Primary home |
+| ID | Symbol | Class | Status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | O1 | $e$ | Observable benchmark | Derived target | elementary charge reconstructed from substrate charge and normalization map | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../assemblies/gauge-structure-emergence.md](../assemblies/gauge-structure-emergence.md) |
 | O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | full-cycle action quantum and radian-normalized angular-momentum quantum to be related to nested shell braid alignment, orbital closure, and any lower recordable basin-measure scale derived by quantum closure | [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Architrino SI Base Units](./architrino-si-base-units.md) |
@@ -243,7 +243,7 @@ These quantities are where closure is tested. They are not substrate inputs.
 
 ## Canonical Relations
 
-The ledger above is only useful if the interfaces between layers stay explicit. The following relations are the current canonical handoff points in the corpus.
+The ledger above is only useful if the interfaces between layers stay explicit. The following relations are canonical handoff points in the corpus.
 
 ### 1. Microscopic delayed dynamics
 
@@ -265,7 +265,7 @@ This is the substrate-side parameter core. Any exact or numerical closure that c
 
 ### 2. Charge reconstruction
 
-The current substrate-to-observer charge map is
+The substrate-to-observer charge map is
 $$
 |e| = 6\epsilon \sqrt{\kappa c_f}\,Z_e
 $$
@@ -293,7 +293,7 @@ $$
 
 Here $\xi$ is the Noether braid envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed.
 
-This is the cleanest current statement of the Noether sea-to-metric handoff:
+This is the cleanest statement of the Noether sea-to-metric handoff:
 $$
 (\delta_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})
 \mapsto
@@ -332,7 +332,7 @@ $$
 
 ### 5. Mass map
 
-The current assembly-side inertial map is
+The assembly-side inertial map is
 $$
 m_{\text{inertial}}(A)
 \approx
@@ -364,11 +364,11 @@ $$
 $$
 together with the unresolved constants and response-map assumptions needed to turn that dimensionless coefficient into an observer-level mass prediction.
 
-The current compact finite-coordinate no-go is a status blocker inside $\mathcal{P}_{A_0}$, not an additional free parameter and not a benchmark input. It requires a predeclared branch-chart revision before Tier 1 continuation can be interpreted as progress toward the mass-facing output above.
+The compact finite-coordinate no-go is a status blocker inside $\mathcal{P}_{A_0}$, not an additional free parameter and not a benchmark input. It requires a predeclared branch-chart revision before Tier 1 continuation can be interpreted as progress toward the mass-facing output above.
 
 ### 6. Planck-alignment map
 
-The current Planck-scale program uses the conjectural relations
+The Planck-scale program uses the conjectural relations
 $$
 \mathcal{A}_{\text{align}}^{\text{cycle}} \stackrel{\text{hyp.}}{\approx} h,
 \qquad
@@ -383,7 +383,7 @@ G_{\text{eff}}
 \frac{R_{\text{align}}^2 c_f^3}{\mathcal{A}_{\text{align}}^{\text{cycle}}}
 $$
 
-These are not yet closed derivations. They are the current alignment-side targets connecting geometric closure to $(h,G)$.
+These are not yet closed derivations. They are the alignment-side targets connecting geometric closure to $(h,G)$.
 
 ### 7. Weak-mixing branch structure
 
@@ -398,11 +398,11 @@ $$
 \alpha_n=n\,\theta_W^{\text{bare}}
 $$
 
-This means the present quark-sector use of $\alpha$ is a geometric branch label tied to a candidate bare electroweak increment, not yet a finished derivation of the measured weak angle.
+This means the quark-sector use of $\alpha$ is a geometric branch label tied to a candidate bare electroweak increment, not yet a finished derivation of the measured weak angle.
 
 ## What Is Not Yet Closed
 
-The current corpus supports the following conservative closure assessment.
+The corpus supports the following conservative closure assessment.
 
 ### Closed enough to treat as canonical
 

@@ -19,7 +19,7 @@ This ledger separates four levels:
 
 The opportunity tracked here is a possible unification of four previously separate bookkeeping problems: radiative planar-mode nucleation, pair-production provenance, BBN photon loading, and CMB thermalization. The shared claim is not that these channels are already derived from one equation. The disciplined claim is that they may need one common provenance ledger because each asks the same question at a different scale: which assemblies, Noether braid material, energy-momentum terms, and Noether sea state variables enter and exit the channel?
 
-### Current Claim Status
+### Claim Status
 
 | Claim | Bucket | Status | Decision gate |
 | --- | --- | --- | --- |
@@ -74,7 +74,7 @@ These gates are not separate ontologies. They are bookkeeping filters that preve
 
 ## Channel Map
 
-| Channel | Source document | Provenance target | Current status |
+| Channel | Source document | Provenance target | Status |
 | --- | --- | --- | --- |
 | Bremsstrahlung planar-mode nucleation | [Bremsstrahlung](../reactions/bremsstrahlung.md) | Record electron assembly energy loss, target recoil, photon assembly output, and medium excitation | Provisional map |
 | Synchrotron planar-mode nucleation | [Synchrotron](../reactions/synchrotron.md) | Derive photon output from curved charged-assembly transport in anisotropic Noether sea states | Provisional map |

@@ -69,11 +69,27 @@
     "sample_count": 101,
     "declared_q_min_convention": 0.2,
     "declared_q_max_convention": 3.0,
-    "outward_q_min": "absent",
-    "outward_q_max": "absent",
-    "H_b": "absent",
+    "outward_q_min": 0.6542907673232438,
+    "outward_q_max": 1.5368080736162038,
+    "H_b": 0.5368080736162038,
+    "outward_attempt": {
+      "method": "subdivided_bernstein_convex_hull_float64",
+      "normalized_interval": [
+        0.0,
+        1.0
+      ],
+      "subdivision_depth": 12,
+      "subinterval_count": 4096,
+      "raw_lower": 0.6542907673317611,
+      "raw_upper": 1.5368080736076863,
+      "roundoff_padding": 8.517348941083435e-12,
+      "lower": 0.6542907673232438,
+      "upper": 1.5368080736162038,
+      "H_b": 0.5368080736162038,
+      "status": "floating_bernstein_outward_attempt_not_interval_certificate"
+    },
     "used_as_certificate": false,
-    "status": "sampled_seed_bounds_only_not_certified"
+    "status": "past_profile_float_bernstein_outward_attempt_not_interval_certificate"
   },
   "future_profile_admissibility": {
     "sampled_transport_q_min": 1.0,
@@ -86,9 +102,20 @@
     "sampled_within_declared_convention": true,
     "outward_q_min": "absent",
     "outward_q_max": "absent",
+    "transport_node_envelope": {
+      "method": "piecewise_linear_transport_node_envelope_float64",
+      "node_count": 17,
+      "q_min": 1.0,
+      "q_max": 1.0152046296486557,
+      "q_prime_min": 0.720598851445857,
+      "q_prime_max": 0.8023571583642308,
+      "outward_for_emitted_piecewise_linear_profile": true,
+      "outward_for_continuous_transport_equation": false,
+      "status": "transport_node_envelope_not_interval_certificate"
+    },
     "E_Q_plus_b": "absent",
     "used_as_certificate": false,
-    "status": "sampled_transport_bounds_only_not_certified"
+    "status": "transport_node_envelope_only_not_interval_certificate"
   },
   "retained_root_context": {
     "sampled_active_labels_match_retained_set": true,
@@ -158,8 +185,8 @@
   "sampled_attempt_reading": "sampled_bounds_within_declared_convention",
   "first_failure": "admissible_profile_bounds",
   "blocked_rows": [
-    "outward_profile_bounds_absent",
-    "H_b_absent",
+    "past_profile_interval_certificate_absent",
+    "future_outward_profile_bounds_absent",
     "E_Q_plus_b_absent",
     "inactive_cover_id_absent",
     "source_artifact_hash_absent",
@@ -179,5 +206,5 @@
   "promotion_authorized": false,
   "authorizes_outward_certificate": false,
   "authorizes_obstruction_or_channel_decision": false,
-  "policy": "This diagnostic records sampled seed and transported profile bounds for the A1 endpoint-slope-cancelled retained chart. It does not supply outward q_min, q_max, H_b, E_Q_plus_b, inactive-cover, branch-sum, transport, or residual-envelope constants."
+  "policy": "This diagnostic records a floating subdivided-Bernstein outward attempt for the past endpoint-slope-cancelled profile and a node envelope for the emitted piecewise-linear transport profile. It does not supply an interval certificate for q_min, q_max, H_b, E_Q_plus_b, inactive-cover, branch-sum, transport, or residual-envelope constants."
 }

@@ -47,6 +47,8 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
       "128",
       "--finite-collar-positivity-samples",
       "101",
+      "--admissible-profile-bernstein-depth",
+      "12",
     ],
     {
       cwd: repoRoot,
@@ -74,20 +76,54 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(packet.retained_root_context.used_as_certificate, false);
   assert.equal(
     packet.past_profile_bounds.status,
-    "sampled_seed_bounds_only_not_certified"
+    "past_profile_float_bernstein_outward_attempt_not_interval_certificate"
   );
   assert.equal(
+    packet.past_profile_bounds.outward_attempt.method,
+    "subdivided_bernstein_convex_hull_float64"
+  );
+  assert.equal(packet.past_profile_bounds.outward_attempt.subdivision_depth, 12);
+  assert.equal(
+    packet.past_profile_bounds.outward_attempt.subinterval_count,
+    4096
+  );
+  assert.ok(packet.past_profile_bounds.outward_q_min > 0.65);
+  assert.ok(
+    packet.past_profile_bounds.outward_q_min
+      < packet.past_profile_bounds.sampled_seed_q_min
+  );
+  assert.ok(
+    packet.past_profile_bounds.outward_q_max
+      > packet.past_profile_bounds.sampled_seed_q_max
+  );
+  assert.ok(packet.past_profile_bounds.H_b > 0.53);
+  assert.equal(packet.past_profile_bounds.used_as_certificate, false);
+  assert.equal(
     packet.future_profile_admissibility.status,
-    "sampled_transport_bounds_only_not_certified"
+    "transport_node_envelope_only_not_interval_certificate"
+  );
+  assert.equal(
+    packet.future_profile_admissibility.transport_node_envelope.status,
+    "transport_node_envelope_not_interval_certificate"
+  );
+  assert.equal(
+    packet.future_profile_admissibility.transport_node_envelope.outward_for_continuous_transport_equation,
+    false
   );
   assert.equal(
     packet.retained_root_context.status,
     "sampled_retained_context_only_not_root_persistence_row"
   );
   assert.equal(packet.sampled_attempt_reading, "sampled_bounds_within_declared_convention");
-  assert.equal(packet.retained_root_context.sampled_active_labels_match_retained_set, true);
+  assert.equal(
+    packet.retained_root_context.sampled_active_labels_match_retained_set,
+    true
+  );
   assert.equal(packet.reduced_smoke_context.used_as_certificate, false);
   assert.equal(packet.reduced_smoke_context.recomputed_by_this_mode, false);
-  assert.ok(packet.blocked_rows.includes("outward_profile_bounds_absent"));
+  assert.ok(
+    packet.blocked_rows.includes("past_profile_interval_certificate_absent")
+  );
+  assert.ok(packet.blocked_rows.includes("future_outward_profile_bounds_absent"));
   assert.ok(packet.blocked_rows.includes("E_Q_plus_b_absent"));
 });

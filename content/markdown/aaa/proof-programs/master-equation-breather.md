@@ -192,7 +192,7 @@ play different roles and should not be conflated. The first regularizes caustic 
 
 ### 2. Convex Banach bounds and tame delayed geometry must be split
 
-The 1D chapter now makes a clean distinction between:
+The 1D chapter makes a clean distinction between:
 
 - a convex section envelope
   $$
@@ -2070,7 +2070,7 @@ This synthesis also isolates the exact difference from the frozen 1D scaffold. T
 $$
 \rho\dot\vartheta^2
 $$
-So the present note is not “the general 2D case.” It is the first reduced 2D bridge in which tangential escape is already real, but still symmetry-controlled.
+So this note is not “the general 2D case.” It is the first reduced 2D bridge in which tangential escape is already real, but still symmetry-controlled.
 
 What remains missing before the Schauder route can be executed as a serious closure theorem is now sharply delimited:
 
@@ -2390,7 +2390,7 @@ Any one of these constitutes a precise statement that the frozen 1D scaffold doe
 
 The next genuinely new 2D regime would not yet be the full many-body master equation. It would already arise if one dropped the reflection-symmetric binary reduction while staying in a single plane. Even that smaller step introduces new burdens that are absent from the present bridge.
 
-First, the section and gauge problem becomes genuinely multicomponent. The present note fixes one relative planar degree of freedom and resets the return by a single rotation back to
+First, the section and gauge problem becomes genuinely multicomponent. This note fixes one relative planar degree of freedom and resets the return by a single rotation back to
 $$
 \rho_\ast \mathbf{e}_1
 $$
@@ -2422,7 +2422,7 @@ The burden growth is cumulative:
 | Recapture | one radial channel plus one angular leakage term | finite leakage-channel comparison with resonance control | finite escape-observable family with channel margins |
 | Closure domain | closed convex tame envelope in one reduced chart | quotient-space convex envelope preserving graph and holonomy data | atlas-level convex core preserving hypergraph, ancestry, and recapture windows |
 
-For that reason, the present chapter should be read as the first 2D bridge, not as the general planar theorem program. Only after these additional burdens are isolated and given their own theorem targets would it be honest to say that the work has moved beyond the reduced planar bridge.
+For that reason, this chapter should be read as the first 2D bridge, not as the general planar theorem program. Only after these additional burdens are isolated and given their own theorem targets would it be honest to say that the work has moved beyond the reduced planar bridge.
 
 ### First unreduced planar theorem targets
 
@@ -3710,7 +3710,7 @@ and a coercive comparison law that dominates all open scattering channels at onc
 
 Fifth, the tame-envelope problem becomes atlas-level. It is no longer enough to preserve one branch graph, one provenance count, and one leakage count on one fixed quotient chart. The many-body closure problem must preserve the active delay hypergraph, the cluster ancestry data, the recapture margins for all escape observables, and the choice of gauge representative on one closed convex tame self-map domain, or else state precisely why no such single chart exists.
 
-For that reason, the present chapter should still be read as a binary bridge note, even after the unreduced planar extension. Only after the many-body section, hypergraph, ancestry, multi-observable recapture, and closure targets are isolated in the same theorem-level way would it be honest to say that the breather program has moved from the binary bridge toward the full master-equation setting.
+For that reason, this chapter should still be read as a binary bridge note, even after the unreduced planar extension. Only after the many-body section, hypergraph, ancestry, multi-observable recapture, and closure targets are isolated in the same theorem-level way would it be honest to say that the breather program has moved from the binary bridge toward the full master-equation setting.
 
 ### First planar three-body bridge regime
 
@@ -4201,7 +4201,7 @@ Then the first two inward channels are positive before any refined delay bookkee
 >    \rho^{\mathrm{mb}}_2.
 >    $$
 
-This is the many-body analogue of the old seed-neighborhood realization step in the frozen 1D chapter. Its role is only to certify that the principal inward hierarchy is not attached to one isolated affine history, but persists on one genuine local seed packet from which the later delayed and hypergraph packages may start.
+This is the many-body analogue of the seed-neighborhood realization step in the frozen 1D chapter. Its role is only to certify that the principal inward hierarchy is not attached to one isolated affine history, but persists on one genuine local seed packet from which the later delayed and hypergraph packages may start.
 
 The remaining seed-side burden is to pass from these Coulomb-like proxy margins to the true delayed branch-sum law. On the affine seed this should be a perturbative step, because every emitter speed is strictly sub-field-speed and the recent history is exactly linear.
 
@@ -4687,7 +4687,7 @@ the exact causal-delay partner/source times on the preserved seed-side branch fa
 > **Proof.**
 > The delayed seed-margin persistence lemma gives positive lower bounds for the two leading seed-side inward terms after subtracting the causal-delay perturbation ceilings. The remaining fold and deep-past contributions enter the principal-margin inequalities only through their stated ceilings. If those ceilings are smaller than the remaining slack in the two displayed inequalities, subtracting them leaves both principal margins strictly positive on the same controlled seed window.
 
-This is the missing bridge from the explicit geometric seed packet to the real delayed master equation. Once this perturbative upgrade is available, the many-body seed no longer lives only in the Coulomb-like proxy model; it enters the exact branch-sum dynamics with quantitative slack.
+This is the missing bridge from the explicit geometric seed packet to the real delayed master equation. Once this perturbative upgrade is available, the many-body seed enters the exact branch-sum dynamics with quantitative slack rather than remaining only in the Coulomb-like proxy model.
 
 This is the first genuine many-body seed-side margin calculation in the chapter. It does not yet prove the full delayed recapture theorem, but it identifies one concrete planar geometry in which the desired inward hierarchy is already visible in the bare Jacobi dynamics.
 
@@ -8022,7 +8022,7 @@ are the concrete margin versions of the four principal escape-channel inequaliti
 
 This proposition is the bridge between the local channel calculations and the full many-body recapture theorem. It says that once the four principal channels are controlled, any residual failure is no longer hidden in the obvious geometry; it must come from either a higher auxiliary channel or an explicit closure-stage obstruction.
 
-> **Proof draft of the principal four-channel recapture closure proposition.**
+> **Proof of the principal four-channel recapture closure proposition.**
 > On the corresponding smooth windows, positivity of
 > $$
 > \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}},
@@ -9549,7 +9549,7 @@ This is the correct tame-structure target because the first two Jacobi channels 
 > \mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}.
 > $$
 
-> **Proof draft of the invariant-envelope closure theorem.**
+> **Proof of the invariant-envelope closure theorem.**
 > Assume the coupled parameter solvability proposition and the explicit convex tame core proposition.
 > The remaining closure burden is to show that the gauge-reset return map
 > $$
@@ -9642,7 +9642,7 @@ The planar-three-body bridge has the same explicit theorem-ladder shape as the e
 
 ## Capstone Statement
 
-The 1D collinear chapter should now be used as a frozen reference theorem scaffold. The present chapter records the higher-level lesson:
+The 1D collinear chapter should be used as a frozen reference theorem scaffold. This chapter records the higher-level lesson:
 
 > **Theorem Program (Breather architecture for the master equation).**
 > A master-equation breather theorem should be pursued from the dual-mollified absolute-time integral law, with branch sums used only on certified simple-root charts. The proof task is to construct a sectioned history-space return map, produce one candidate cycle with finite certificate data, separate convex Banach bounds from tame delayed-root geometry, and then close the resulting return map on one closed convex tame self-map domain. The unresolved burden is no longer the abstract fixed-point theorem or an elementary closed-form orbit. It is the geometric production and certification of that domain outside the ordered 1D setting.

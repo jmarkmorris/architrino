@@ -10,7 +10,7 @@ Spin and Pauli language in this chapter is downstream of [Angular Momentum and S
 
 This chapter states the first working closure target for molecular geometry in $\mathbb{A}\mathbb{A}\mathbb{A}$. It does not yet derive molecular shape from the master equation. It fixes the ingredients that a later derivation must combine.
 
-## Current Framing
+## Framing
 
 Molecular geometry should emerge from the coupled equilibrium of atomic-scale assemblies, directional bonding corridors, and delayed path-history constraints that favor particular angular arrangements and bond lengths.
 

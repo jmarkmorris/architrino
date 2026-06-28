@@ -9,22 +9,24 @@ Status: `external_input_required`
 - Lambda branch: `lambda0305`
 - Target slot: `Sigma_hf_01`
 - Fold interval: `F01`
-- Candidate external schema ref: absent
+- Candidate external schema ref: `local-source-data-partial:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305`
+- Candidate status: `partial_local_source_data_candidate_not_external_proof_grade`
 
 ## Intake Predicate
 
 | Required field | Current reading | Verdict |
 | --- | --- | --- |
-| `compatible_schema_role_lock` | absent | `external_input_required` |
-| `compatible_proof_object_role_lock` | absent | `external_input_required` |
-| `derivation_proof_target_lock` | absent | `external_input_required` |
-| `derivation_proof_source_data_record_lock` | absent | `external_input_required` |
+| `compatible_schema_role_lock` | present | `present_on_candidate_for_intake_screen` |
+| `compatible_proof_object_role_lock` | present | `present_on_candidate_for_intake_screen` |
+| `derivation_proof_target_lock` | present | `present_on_candidate_for_intake_screen` |
+| `derivation_proof_source_data_record_lock` | present | `present_on_candidate_for_intake_screen` |
 | `rule_kernel_obligation_binding` | absent | `external_input_required` |
 | `rule_kernel_derivation_payload_target_binding` | absent | `external_input_required` |
 | `proof_grade_derivation_schema_statement` | absent | `external_input_required` |
-| `non_reinterpretation_guard` | absent | `external_input_required` |
+| `non_reinterpretation_guard` | present | `present_on_candidate_for_intake_screen` |
 
-Current count: 0 / 8 required fields present.
+Current count: 5 / 8 required fields present.
+First missing field: `rule_kernel_obligation_binding`.
 
 ## Authorization Locks
 
@@ -35,4 +37,4 @@ Current count: 0 / 8 required fields present.
 - `updates_live_ledger`: `false`
 - Branch chart authorized: `false`
 
-This record is priority-only. It does not construct an external schema, accept a source packet, consume rows, update the live ledger, or authorize a branch chart.
+This record is priority-only. It does not construct or accept a proof-grade external schema, accept a source packet, consume rows, update the live ledger, or authorize a branch chart.
