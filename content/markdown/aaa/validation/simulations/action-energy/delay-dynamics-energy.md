@@ -88,6 +88,25 @@ P_{b,\mathrm{work}}^{(\eta)}(t)
 \cdot
 \mathbf{v}_i(t)
 $$
+The same row must also be available before superposition. For each retained source/root hit $(i,j,t_0)$ on the branch chart, define the root-resolved delivered power
+$$
+P_{i\leftarrow j,t_0}^{(\eta)}(t)
+=
+\mu_{\text{arch}}\,
+\mathbf{a}_{i\leftarrow j}^{(\eta)}(t;t_0)
+\cdot
+\mathbf{v}_i(t)
+$$
+so that
+$$
+P_{b,\mathrm{work}}^{(\eta)}(t)
+=
+\sum_i
+\sum_j
+\sum_{t_0\in\mathcal C_{ij,b}^{(\eta)}(t)}
+P_{i\leftarrow j,t_0}^{(\eta)}(t)
+$$
+on the same active causal-root ledger. This root-resolved form is the accounting guardrail: source identity, polarity, emission time, Jacobian, and receiver radial power are retained before the net branch work is collapsed to one scalar.
 and reconstruct the compatible causal-history interaction contribution by
 $$
 U_{b,\mathrm{work}}^{(\eta)}(t)

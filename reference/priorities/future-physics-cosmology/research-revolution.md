@@ -2,9 +2,9 @@
 
 ## Executive Frame
 
-This working draft treats a validated future-physics and cosmology program as a research-system disruption, not only as a theory update. The intended planning audience is an NSF-scale research leader deciding how to protect scientific integrity, manage career disruption, and fund a disciplined transition if the technical case becomes strong enough.
+This priority memo treats a validated future-physics and cosmology program as a research-system disruption, not only as a theory update. The intended planning audience is an NSF-scale research leader deciding how to protect scientific integrity, manage career disruption, and fund a disciplined transition if the technical case becomes strong enough.
 
-Status of this draft: priority-only planning material. It is not a public announcement, a corpus claim, or a finding that the transition has been validated. Its function is to preserve the institutional decision architecture that would be needed if the technical case crosses defined evidence thresholds.
+Status: priority-only planning material. This memo is not a public announcement, a corpus claim, or a finding that the transition has been validated. Its function is to preserve the institutional decision architecture that would be needed if the technical case crosses defined evidence thresholds.
 
 The central management problem is not whether existing physics should be rhetorically discarded. The problem is how to turn a possible foundation-level error into a controlled research transition:
 
@@ -709,9 +709,9 @@ Action ladder:
 - `moderate`: create a standing transition office with cross-directorate budget authority, portfolio audit power, and requalification standards.
 - `aggressive`: activate emergency transition authority to freeze vulnerable renewals, cancel grants, close obsolete lines, mandate institutional restructuring, and redirect major budgets toward validation and rebuild.
 
-## Current Working Position
+## Open Decision Questions And Revision Tracks
 
-The document now has enough substance to stop expanding and start shaping it into an executive instrument. The next cleanup should preserve the provocative policy options while making every option conditional on evidence threshold, due process, student protection, and benchmark preservation.
+The planning posture should now shift from expansion toward executive-instrument discipline. The strongest policy options should remain visible, but every option must stay conditional on evidence threshold, due process, student protection, benchmark preservation, and independent validation.
 
 Evidence and review questions:
 
@@ -752,8 +752,37 @@ Program-design questions:
 - How do publication and review systems reward translation instead of punishing it?
 - What launch sequence converts an independent candidate theory into a governed institute, public education program, and application pipeline without turning urgency into hype or allowing private capital to capture validation authority?
 
-Drafting action ladder:
+Revision action ladder:
 
-- `conservative`: line-edit section by section to remove repetition while preserving each existing action ladder.
-- `moderate`: reorganize the report into an NSF-style memo with evidence thresholds, decision rights, funding classes, workforce actions, and public-accountability controls.
-- `aggressive`: convert the document into a formal transition playbook with appendices for grant triage, facility triage, requalification, institute chartering, and public-correction obligations.
+- `conservative`: compress repetition section by section while preserving each action ladder and the evidence-threshold conditions attached to disruptive options.
+- `moderate`: reorganize the memo into an NSF-style instrument with evidence thresholds, decision rights, funding classes, workforce actions, company-side support, and public-accountability controls.
+- `aggressive`: convert the memo into a formal transition playbook with appendices for grant triage, facility triage, requalification, institute chartering, company implementation roles, and public-correction obligations.
+
+## Architrino Corporation Consulting Role
+
+Architrino Corporation should be planned as the company-side implementation layer around the research transition. Its role is not to certify the theory. Scientific acceptance still belongs to open equations, reproducible benchmark packets, skeptical review, negative controls, public evidence packets, and safety governance. The company role is to help institutions, funders, developers, educators, and application teams translate a candidate or validated program into practical work.
+
+The company-side operating model should target several customer classes: technology executives, universities, funding organizations, entrepreneurial ventures, software users, public agencies, national laboratories, educators, and learners. Services should be offered only with explicit claim levels: exploratory, candidate, benchmark-pressure, transition-evidence, or institutional-transition. That protects the business model from turning application excitement into scientific overclaim.
+
+Service platform:
+
+- `executive strategy and due diligence`: brief executives, boards, investors, national labs, and public agencies on what the program claims, what remains unproven, which applications are premature, and which near-term tooling or validation investments have option value.
+- `technology review`: inspect proposed Architrino-related ideas, prototypes, patents, simulations, educational materials, and venture claims; classify them by evidence level, proof burden, safety burden, and likely technical blocker.
+- `transition planning`: help universities, institutes, labs, and funders map vulnerable programs, identify preserve/convert/stress-test/pause/sunset categories, design requalification paths, and write department or portfolio transition plans.
+- `application design`: design proof-of-concept applications, simulation workbenches, validation dashboards, reaction-provenance tools, detector-record explorers, education apps, public status pages, and internal decision-support systems.
+- `technical specification writing`: write product requirements, research specifications, benchmark packet specs, API contracts, data schemas, validation protocols, safety requirements, model cards, grant work plans, and request-for-proposal language.
+- `software engineering and support`: build and support open Architrino software, private extensions, data pipelines, visualization systems, numerical models, provenance ledgers, documentation sites, developer tools, and integration kits.
+- `specialized AI systems`: train, fine-tune, or configure AI assistants for source mining, equation mapping, terminology control, literature review, validation triage, simulation steering, curriculum support, and institutional decision support, with claim-level and provenance guardrails.
+- `modeling and simulation`: create efficient, performant, and precise models of natural processes where the claim level permits it; maintain separate tracks for exploratory toy models, benchmark-recovery simulations, negative controls, and application prototypes.
+- `education and training`: offer executive briefings, university modules, distance learning, recorded courseware, workshops, requalification tracks, certification-style assessments, developer onboarding, and public explainers that distinguish exploratory notes from reviewable artifacts.
+- `publication and communication support`: prepare translation papers, white papers, technical memos, grant narratives, public-facing explainers, investor-facing diligence packets, and curriculum materials without letting marketing language outrun evidence.
+- `partnership and venture formation`: structure public-private research programs, corporate pilots, licensing discussions, incubated ventures, safety reviews, and staged roadmaps for applications that remain downstream of recovery and validation.
+- `long-horizon application roadmaps`: plan conditional roadmaps for energy, materials, sensing, propulsion, manufacturing, environmental remediation, and space-settlement applications while keeping all such claims subordinate to mechanism, benchmark, radiation, safety, and governance requirements.
+
+The Noether sea energy and material-creation vision should remain a far-future application horizon. A science-industry roadmap can be drafted now, but investment-grade application work requires prior recovery of ordinary EM, QM, Hamiltonian, Lagrangian, thermodynamic, radiation, and safety obligations. Energy extraction, atom or molecule creation, localized manufacturing, and abundance claims should therefore be treated as conditional destinations, not near-term promises.
+
+Action ladder:
+
+- `conservative`: operate Architrino Corporation as a consulting, specification, education, software-support, AI-tooling, and portfolio-review layer while evidence remains candidate-level.
+- `moderate`: let the company participate in public-private validation consortia, application-design pilots, university redesign projects, workforce-renewal courseware, specialized AI deployments, and benchmark-facing software projects once benchmark pressure is independently visible.
+- `aggressive`: if institutional-transition evidence is reached, use the company as one implementation contractor among several for transition-institute buildout, open-source tooling, application platforms, AI systems, department and funder redesign, venture formation, and downstream application-roadmap governance, while preserving independent scientific validation.

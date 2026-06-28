@@ -1191,6 +1191,64 @@ def cluster_current_use_score(cluster: dict) -> float:
     return score
 
 
+def build_topic_routes(clusters: list[dict]) -> list[dict]:
+    by_topic: dict[str, list[dict]] = collections.defaultdict(list)
+    for cluster in clusters:
+        by_topic[cluster["topic_id"]].append(cluster)
+
+    routes = []
+    for topic in TOPICS:
+        topic_clusters = by_topic.get(topic["id"], [])
+        if not topic_clusters:
+            continue
+        coverage_counts = collections.Counter(cluster["corpus_coverage"] for cluster in topic_clusters)
+        risk_counts = collections.Counter()
+        term_counts = collections.Counter()
+        representative_refs = []
+        seen_urls = set()
+        for cluster in sorted(topic_clusters, key=cluster_current_use_score, reverse=True):
+            risk_counts.update(cluster.get("risk_flags", {}))
+            for term in cluster.get("terms", []):
+                if term not in DOMAIN_GENERIC_TERMS and term not in STOPWORDS:
+                    term_counts[term] += max(1, cluster.get("source_count", 1))
+            sorted_refs = sorted(
+                cluster.get("representative", []),
+                key=lambda ref: (ref.get("status") != "open", ref.get("date", "")),
+            )
+            for ref in sorted_refs:
+                if ref["url"] in seen_urls:
+                    continue
+                representative_refs.append(ref)
+                seen_urls.add(ref["url"])
+                if len(representative_refs) >= 5:
+                    break
+            if len(representative_refs) >= 5:
+                continue
+
+        open_source_estimate = sum(cluster.get("open_source_count", 0) for cluster in topic_clusters)
+        source_estimate = sum(cluster.get("source_count", 0) for cluster in topic_clusters)
+        pressure = coverage_counts.get("needs review", 0) * 2 + coverage_counts.get("partially captured", 0)
+        route_score = topic["priority"] * 4 + pressure + open_source_estimate
+        routes.append(
+            {
+                "topic_id": topic["id"],
+                "topic_title": topic["title"],
+                "claim_bucket": topic["claim_bucket"],
+                "destinations": topic["destinations"],
+                "cluster_count": len(topic_clusters),
+                "source_estimate": source_estimate,
+                "open_source_estimate": open_source_estimate,
+                "coverage_counts": dict(coverage_counts),
+                "risk_counts": dict(risk_counts),
+                "terms": [term for term, _ in term_counts.most_common(8)],
+                "representative": representative_refs,
+                "route_score": route_score,
+            }
+        )
+    routes.sort(key=lambda route: (-route["route_score"], route["topic_title"]))
+    return routes
+
+
 def write_jsonl(path: Path, rows: Iterable[dict]) -> None:
     with path.open("w", encoding="utf-8") as handle:
         for row in rows:
@@ -1230,6 +1288,29 @@ def render_reference_links(representatives: list[dict], limit: int = 3) -> str:
     return "<br>".join(links)
 
 
+def coverage_pressure_text(route: dict) -> str:
+    counts = route["coverage_counts"]
+    return (
+        f"needs review {counts.get('needs review', 0)}, "
+        f"partial {counts.get('partially captured', 0)}, "
+        f"likely {counts.get('likely captured', 0)}"
+    )
+
+
+def risk_pressure_text(route: dict) -> str:
+    counts = route["risk_counts"]
+    notes = []
+    if counts.get("legacy-terminology"):
+        notes.append("translate legacy terms")
+    if counts.get("speculation-marker"):
+        notes.append("separate speculation")
+    if counts.get("polemic-marker"):
+        notes.append("remove polemic")
+    if counts.get("abandoned-or-corrected-language"):
+        notes.append("check later corrections")
+    return ", ".join(notes) if notes else "low explicit risk flags"
+
+
 def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list[dict]) -> str:
     now = dt.datetime.now().strftime("%Y-%m-%d")
     status_counts = collections.Counter(post.status for post in posts)
@@ -1237,14 +1318,7 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
     coverage_counts = collections.Counter(cluster["corpus_coverage"] for cluster in clusters)
     topic_counts = collections.Counter(card.topic_title for card in cards)
     flag_counts = collections.Counter(flag for card in cards for flag in card.risk_flags)
-    current_use_clusters = sorted(clusters, key=cluster_current_use_score, reverse=True)
-    candidate_gaps = [
-        cluster
-        for cluster in current_use_clusters
-        if cluster["corpus_coverage"] in {"needs review", "partially captured"}
-        and cluster["claim_bucket"] != "historical/provenance only"
-        and cluster.get("risk_flags", {}).get("abandoned-or-corrected-language", 0) < max(2, cluster["card_count"] // 2)
-    ][:20]
+    topic_routes = build_topic_routes(clusters)
 
     lines = [
         "# Legacy Architrino Archive Mining Report",
@@ -1320,26 +1394,26 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
     lines.extend(
         [
             "",
-            "## Current-Use Candidate Gaps",
+            "## Archive-Level Topic Routes",
             "",
-            "These are the strongest archive-level clusters to inspect next. They are not automatically approved recommendations; they are the best candidates for ordinary per-source mining or a focused topic sweep.",
+            "These routes are the strongest archive-level areas to inspect next. They are not automatically approved recommendations; each route should become either an ordinary per-source mining batch or a focused topic sweep.",
             "",
-            "| Rank | Cluster | Topic | Coverage | Sources | Likely destinations | Representative posts |",
-            "| ---: | --- | --- | --- | ---: | --- | --- |",
+            "| Rank | Topic route | Coverage pressure | Open-source estimate | Main signals | Likely destinations | Representative posts |",
+            "| ---: | --- | --- | ---: | --- | --- | --- |",
         ]
     )
-    for index, cluster in enumerate(candidate_gaps, start=1):
+    for index, route in enumerate(topic_routes[:12], start=1):
         lines.append(
             "| "
             + " | ".join(
                 [
                     str(index),
-                    cluster["label"],
-                    cluster["topic_title"],
-                    cluster["corpus_coverage"],
-                    str(cluster["source_count"]),
-                    short_destinations(cluster["destinations"]),
-                    render_reference_links(cluster["representative"]),
+                    route["topic_title"],
+                    coverage_pressure_text(route),
+                    str(route["open_source_estimate"]),
+                    ", ".join(route["terms"][:6]) or "-",
+                    short_destinations(route["destinations"]),
+                    render_reference_links(route["representative"]),
                 ]
             )
             + " |"
@@ -1376,7 +1450,7 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
             "",
             "## Next Operating Modes",
             "",
-            "1. Use a candidate-gap cluster for an ordinary post-by-post mining batch, starting with the representative open posts.",
+            "1. Use a candidate-gap route for an ordinary post-by-post mining batch, starting with the representative open posts.",
             "2. Use topic-sweep mode when the operator asks what the legacy archive says about one concept across many posts.",
             "3. Use the `/tmp` JSONL artifacts as the retrieval cache, but keep durable queue and status accounting in `reference/priorities/source-mining/`.",
         ]
@@ -1416,47 +1490,30 @@ def render_clusters_report(clusters: list[dict]) -> str:
 
 
 def render_candidate_gaps_report(clusters: list[dict]) -> str:
-    candidates = [
-        cluster
-        for cluster in sorted(clusters, key=cluster_current_use_score, reverse=True)
-        if cluster["claim_bucket"] != "historical/provenance only"
-        and cluster["corpus_coverage"] in {"needs review", "partially captured", "historical review"}
-    ][:40]
+    routes = build_topic_routes(clusters)
     lines = [
         "# Legacy Architrino Candidate Gaps",
         "",
-        "This queue is for selecting future ordinary source-mining batches. A row here does not mean the cluster is true or corpus-ready; it means the archive contains enough signal to justify targeted review.",
+        "This queue is for selecting future ordinary source-mining batches and topic sweeps. A row here does not mean the route is true or corpus-ready; it means the archive contains enough signal to justify targeted review.",
         "",
-        "| Rank | Candidate cluster | Why inspect | Likely destinations | Corpus hits | Starting posts |",
+        "| Rank | Candidate route | Why inspect | Main signals | Likely destinations | Starting posts |",
         "| ---: | --- | --- | --- | --- | --- |",
     ]
-    for index, cluster in enumerate(candidates, start=1):
-        flags = cluster.get("risk_flags", {})
-        risk_note = []
-        if flags.get("legacy-terminology"):
-            risk_note.append("translate legacy terms")
-        if flags.get("speculation-marker"):
-            risk_note.append("separate speculation")
-        if flags.get("polemic-marker"):
-            risk_note.append("remove polemic")
-        if flags.get("abandoned-or-corrected-language"):
-            risk_note.append("check later correction")
+    for index, route in enumerate(routes, start=1):
         why = (
-            f"{cluster['source_count']} source(s), {cluster['card_count']} card(s), "
-            f"{cluster['corpus_coverage']}; "
-            + (", ".join(risk_note) if risk_note else "low explicit risk flags")
+            f"{route['cluster_count']} cluster(s), open-source estimate {route['open_source_estimate']}, "
+            f"{coverage_pressure_text(route)}; {risk_pressure_text(route)}"
         )
-        corpus_hits = "<br>".join(f"`{hit['path']}` ({hit['score']})" for hit in cluster.get("corpus_hits", [])[:3]) or "-"
         lines.append(
             "| "
             + " | ".join(
                 [
                     str(index),
-                    cluster["label"],
+                    route["topic_title"],
                     why,
-                    short_destinations(cluster["destinations"], limit=3),
-                    corpus_hits,
-                    render_reference_links(cluster["representative"], limit=3),
+                    ", ".join(route["terms"][:8]) or "-",
+                    short_destinations(route["destinations"], limit=3),
+                    render_reference_links(route["representative"], limit=4),
                 ]
             )
             + " |"

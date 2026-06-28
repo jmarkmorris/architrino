@@ -35,6 +35,8 @@ Use [source-mining-best-practice](source-mining-best-practice.md) for source-typ
 
 Use topic-sweep mode when the operator needs to reconstruct what the legacy archive says about one concept across many posts before choosing individual sources to mine. A topic sweep is source discovery and synthesis; it should not mark posts mined unless the normal source-mining triage and history update are also completed for those posts.
 
+Use archive-level mining mode when the operator needs a full-archive idea map before selecting individual sources or topic sweeps. This mode retrieves all public WordPress post text, stores cleansed full text under `/tmp`, clusters source signals, flags legacy terminology and high-risk language, checks coarse corpus coverage, and writes compact priority reports without marking posts mined.
+
 ## Mining History
 
 The completed target list lives in [source-mining-history](source-mining-history.md). When a source or source family is mined, add it to that history file with the date mined.
@@ -44,6 +46,7 @@ The completed target list lives in [source-mining-history](source-mining-history
 - [Entropy video mining](entropy-video-mining.md) tracks the current operator-supplied entropy video batch for the later rollup report.
 - [Legacy Architrino WordPress mining queue](legacy-architrino-wordpress-mining-queue.txt) preserves the normalized post queue for future mining batches. Treat it as the durable queue; `/tmp` copies are active-session working copies only.
 - [Legacy Architrino WordPress library posts](legacy-architrino-wordpress-library-posts.md) is the full title/date/status table crawled from the WordPress library page.
+- [Legacy Architrino archive mining report](archive-analysis/legacy-architrino-archive-mining-report.md), [candidate gaps](archive-analysis/legacy-architrino-candidate-gaps.md), and [idea clusters](archive-analysis/legacy-architrino-idea-clusters.md) preserve the Phase 1 archive-level source map.
 
 ## Legacy Architrino WordPress Library Stats
 
@@ -53,6 +56,15 @@ The completed target list lives in [source-mining-history](source-mining-history
 - Queue state after crawl: `118` complete, `2` already `MINED` on WordPress but not locally complete, and `259` open for mining.
 - The June 27, 2026 refresh added `5` posts beyond the previous table: `4` from the [2026 archive](https://architrino.wordpress.com/2026/) plus `1` newly visible 2023 draft.
 - The WordPress site is now treated as an official historical archive to mine while the subscription remains active, currently expected through approximately June 2029.
+
+## Legacy Architrino Archive-Level Mining Stats
+
+- Phase 1 archive report generated: June 27, 2026.
+- Script: [build-legacy-architrino-archive.py](../../../scripts/source-mining/build-legacy-architrino-archive.py).
+- Local artifact root: `/tmp/architrino-archive-mining`.
+- Retrieval result: `379` posts, `1030` idea cards, and `841` deterministic idea clusters.
+- Route-level triage reports: [archive mining report](archive-analysis/legacy-architrino-archive-mining-report.md), [candidate gaps](archive-analysis/legacy-architrino-candidate-gaps.md), and [idea clusters](archive-analysis/legacy-architrino-idea-clusters.md).
+- This archive-level pass did not mark posts mined, did not update WordPress tags, and did not promote material into `content/markdown/aaa`.
 
 ## Comparison Packets
 

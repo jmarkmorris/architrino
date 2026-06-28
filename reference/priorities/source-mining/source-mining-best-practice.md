@@ -275,6 +275,8 @@ For long-running blog queues, preserve the normalized URL list in `reference/pri
 
 Use topic-sweep mode when the operator asks what the legacy archive says about a particular concept, mechanism, historical phrase, or source lead. Search the durable queue, local extraction artifacts, WordPress public API records, downloaded HTML, and current corpus before recommending edits. The output should be a topic map: matched posts or artifacts, dates, repaired URLs, strongest source signals, contradictions or later corrections, likely current-canon destinations, and which posts still need ordinary per-source mining. A topic sweep may identify a cluster worth mining, but do not mark a post complete unless its source signals were individually triaged and any accepted edits, source-mining-history row, and WordPress `MINED` tag update are complete.
 
+Use archive-level mining mode when the operator needs a full legacy-archive map before selecting individual posts or topic sweeps. The current implementation is [build-legacy-architrino-archive.py](../../../scripts/source-mining/build-legacy-architrino-archive.py). It retrieves public WordPress records, writes full cleansed text and JSONL idea cards under `/tmp/architrino-archive-mining`, writes compact reports starting with [legacy-architrino-archive-mining-report.md](archive-analysis/legacy-architrino-archive-mining-report.md), applies deterministic topic routing and duplicate grouping, flags legacy terminology and high-risk language, and performs coarse corpus-overlap checks. Treat those reports as triage maps only: they do not mark posts mined, do not confirm WordPress tags, do not update source-mining history, and do not promote any claim into `content/markdown/aaa`.
+
 Prompt addendum:
 
 ```text

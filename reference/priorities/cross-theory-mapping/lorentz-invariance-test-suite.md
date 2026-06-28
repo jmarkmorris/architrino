@@ -50,7 +50,7 @@ This single-response claim is cross-sector. The $\chi_{\text{sea}}(\mathbf{x},t)
 ## Task Queue
 
 1. `two_way_signal` — Derive the two-way signal-time cancellation condition $\Delta_{\mathrm{tw}}(\beta)\to0$. Status: `draft`.
-2. `moving_assembly_deformation` — Derive $\xi\to1/\gamma$ for the longitudinal envelope ratio in the homogeneous weak-response limit. Status: `draft`.
+2. `moving_assembly_deformation` — Derive $\xi\to1/\gamma$ for the longitudinal envelope ratio in the homogeneous weak-response limit, then show the selected contracted branch is a stable attractor of the boosted delay dynamics. Status: `draft`.
 3. `clock_ruler_retuning` — Show that clock frequency, ruler length, and signal synchronization use one closure record. Status: `draft`.
 4. `leakage_bound` — Define $\epsilon_{\mathrm{LV}}$ against modern test-suite bounds without making the bound itself an input coefficient. Status: `draft`.
 5. `gw_photon_common_speed` — Show that the effective gravitational channel and photon channel share a limiting speed to the GW170817-class tolerance in the tested weak-field transport regime. Status: `draft`.
@@ -103,6 +103,10 @@ $$
 where $\mathcal{S}$ is the clock-synchronization convention physically realized by the same assembly branch. This residual is not a Michelson-Morley observable by itself. The operational requirement is that $\mathcal{S}$ pushes any substrate one-way anisotropy into unobservable convention dependence while the measurable residual vector remains bounded.
 
 The conditional reabsorption calculation in [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#conditional-synchronization-reabsorption-lemma) is the local closure template for this row. If one branch supplies $L_{\parallel}=L_0/\gamma_\gamma$ and $d\tau/dt=\gamma_\gamma^{-1}$ for the photon-channel comparison, the forward and return one-way legs remain asymmetric in absolute time while the moving clock records $\tau_{\mathrm{rt}}=2L_0/c_\gamma$. The calculation does not derive the square-root response; it converts the remaining obligation into the measurable residuals $R_{\tau v}$, $\Delta_{\mathrm{tw}}$, and the matter/photon/GW common-speed rows.
+
+A later wake-bound binary derivation attempt strengthens the deformation row but does not close it. In the closed-return benchmark, requiring a material clock to have no orientation-dependent period selects the axial law $g(\beta)=\sqrt{1-\beta^2}$ as the unique zero-leakage deformation among simple axial contraction laws. This is a contraction-selection lemma, not a completed dynamics theorem. The unresolved step is to prove that the boosted delay force law relaxes to that contracted branch as a stable attractor, and that the same branch supplies the clock, ruler, and signal-channel rows rather than only a kinematic compatibility condition.
+
+The same source also sharpens the speed-identification burden. A square-root clock law computed with one limiting speed and a photon synchronization row computed with another generically leaves an $O(\beta^2)$ two-way residual. The priority target is therefore common-mode speed identification after Noether sea dressing: the observer-facing clock, ruler, photon, and effective gravitational channels must share one homogeneous limiting speed. Do not record this as a proved primitive equality $c_f=c_\gamma=c_{\text{eff}}=c_{\mathrm{GW}}^{\mathrm{eff}}$ until the photon dispersion and gravitational-channel transport derivations are supplied.
 
 For Earth-laboratory preferred-frame rows, use the explicit drift parameter
 $$

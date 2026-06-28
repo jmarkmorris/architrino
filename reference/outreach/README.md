@@ -16,8 +16,11 @@ The outreach path should therefore build many on-ramps: caregiver-led early lear
 - [elevator-stories.md](elevator-stories.md): short spoken-story versions for different audiences.
 - [early-learning.md](early-learning.md): age-banded curriculum sketch for introducing $\mathbb{A}\mathbb{A}\mathbb{A}$ concepts to children with AI-assisted learning.
 - [childrens-books/](childrens-books/README.md): children's book series map and pilot manuscripts with page-level AAA geometry and image prompts.
+- [comics/](comics/README.md): comics outreach strategy, continuity model, format families, arcs, and starter series candidates.
 - [250-word-to-one-page-descriptions.md](250-word-to-one-page-descriptions.md): longer descriptions for profiles, handouts, posts, or short pages.
 - [technical-brief-master-equation.md](technical-brief-master-equation.md): longer technical brief with the master equation, definitions, interpretation, and validation burden.
+- [treasure-physics-overlooked/](treasure-physics-overlooked/README.md): targeted review companions for the full treasure-physics essay.
+- [research-revolution/](research-revolution/README.md): targeted review companions for research-transition, governance, and proof-burden audiences.
 - [outreach-plan.md](outreach-plan.md): audience, channel, and return-on-investment planning template.
 
 ## Working Rule
