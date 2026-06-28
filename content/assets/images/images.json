@@ -820,6 +820,104 @@
       ]
     },
     {
+      "id": "first-page-problem",
+      "title": "First Page Problem",
+      "description": "Single-panel outreach comic in which a physics student mistakes page one of a cosmology binder for the beginning of everything.",
+      "path": "content/assets/images/outreach/comics/first-page-problem.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "fileSizeBytes": 2776280,
+      "sha256": "dd01a46055a006356e4be35f1cb8ca8aaab57e1d9627cd2eb48cf6ff87fba058",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "OpenAI image generation",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "comic direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach comics line from project direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Selected because the page-one joke separates observer-era reconstruction from ontic-beginning language while staying readable as an academic classroom gag."
+      ]
+    },
+    {
+      "id": "first-page-problem-thumb",
+      "title": "First Page Problem Thumbnail",
+      "description": "Thumbnail derivative for the First Page Problem outreach comic gallery entry.",
+      "path": "content/assets/images/outreach/comics/thumbnails/first-page-problem-thumb.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 360,
+        "height": 360
+      },
+      "fileSizeBytes": 164644,
+      "sha256": "1819464f47b5fcb032e192f1b7663c06697e9588077b235d66cd646692e652cf",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic-thumbnail",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "sips derivative from first-page-problem",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "thumbnail generation"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a derivative of the project-owned First Page Problem outreach comic.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic thumbnail",
+          "markdown gallery thumbnail"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Generated as a smaller gallery thumbnail that links to the full-size comic image."
+      ]
+    },
+    {
       "id": "albert-einstein-head-cleaned",
       "title": "Albert Einstein Portrait, 1947",
       "description": "Cleaned Library of Congress portrait of Albert Einstein by Orren Jack Turner, used as a free-source facsimile for the EPR portrait composite.",

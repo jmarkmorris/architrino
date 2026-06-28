@@ -26,6 +26,12 @@ const A0_BRANCH_SOURCE_PARTIAL_FIXTURE = fileURLToPath(
 const PROVIDER_TARGET_FIXTURE = fileURLToPath(
   new URL("../scripts/mass-map/fixtures/pressure-row-branch-intake-provider-target.json", import.meta.url)
 );
+const CROSS_ROW_BUNDLE_NEGATIVE_CONTROL_FIXTURE = fileURLToPath(
+  new URL(
+    "../scripts/mass-map/fixtures/pressure-row-branch-intake-cross-row-bundle-negative-control.json",
+    import.meta.url
+  )
+);
 
 test("pressure-row branch intake report rejects current diagnostic-only status", () => {
   const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
@@ -36,6 +42,8 @@ test("pressure-row branch intake report rejects current diagnostic-only status",
   assert.equal(report.branch_intake_verdict, "finite_branch_evidence_missing");
   assert.equal(report.first_failure, "finite_branch_evidence_missing");
   assert.equal(report.same_row_binding, false);
+  assert.equal(report.authorization.observer_export, false);
+  assert.equal(report.authorization.export_readiness, false);
   assert.equal(report.authorization.branch_derived_pressure_response, false);
   assert.equal(report.authorization.empirical_mass_response, false);
   assert.equal(report.missing_or_rejected_fields.includes("branch_id"), true);
@@ -95,6 +103,8 @@ test("pressure-row branch intake report accepts a complete same-row synthetic re
   assert.equal(report.same_row_binding, true);
   assert.equal(report.authorization.branch_derived_pressure_response, true);
   assert.equal(report.authorization.retained_branch_claim, false);
+  assert.equal(report.authorization.observer_export, false);
+  assert.equal(report.authorization.export_readiness, false);
 });
 
 test("pressure-row branch intake report records Fe/silicate toy row fields without accepting replay-only evidence", () => {
@@ -198,6 +208,58 @@ test("pressure-row branch intake report rejects target-only provider fixture", (
   );
   assert.equal(
     report.missing_or_rejected_fields.includes("null_sector_record.transport"),
+    true
+  );
+});
+
+test("pressure-row branch intake report rejects cross-row bundle negative control", () => {
+  const fixture = JSON.parse(fs.readFileSync(CROSS_ROW_BUNDLE_NEGATIVE_CONTROL_FIXTURE, "utf8"));
+  const report = buildReport(fixture, { sourceRef: CROSS_ROW_BUNDLE_NEGATIVE_CONTROL_FIXTURE });
+
+  assert.deepEqual(validationErrors(report), []);
+  assert.equal(fixture.schema, "pressure_row_branch_intake_cross_row_bundle_negative_control/v0");
+  assert.equal(report.branch_intake_verdict, "finite_branch_evidence_missing");
+  assert.equal(report.first_failure, "finite_branch_evidence_missing");
+  assert.equal(report.same_row_binding, false);
+  assert.equal(report.authorization.branch_derived_pressure_response, false);
+  assert.equal(report.authorization.empirical_mass_response, false);
+  assert.equal(report.authorization.retained_branch_claim, false);
+  assert.equal(report.authorization.observer_export, false);
+  assert.equal(report.authorization.export_readiness, false);
+
+  assert.deepEqual(
+    report.field_results.filter((field) => !field.pass).map((field) => field.path),
+    []
+  );
+  assert.equal(report.missing_or_rejected_fields.includes("same_row_binding"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("branch_id"), false);
+  assert.equal(report.missing_or_rejected_fields.includes("pressure_response_record.C_chi_iso"), false);
+  assert.equal(report.missing_or_rejected_fields.includes("null_sector_record.transport"), false);
+
+  const rowConflict = report.same_row_binding_evidence.conflicting_bindings.find(
+    (binding) => binding.binding_key === "row_id"
+  );
+  assert.ok(rowConflict);
+  assert.deepEqual(rowConflict.values, [
+    "a0-compact-fixture-branch-source-frontier-partial",
+    "fe-silicate-toy-Fe_metal-step1-partial-same-row",
+    "retained-pressure-row-branch-intake-provider-target",
+  ]);
+
+  const sourceConflict = report.same_row_binding_evidence.conflicting_bindings.find(
+    (binding) => binding.binding_key === "source_ref"
+  );
+  assert.ok(sourceConflict);
+  assert.equal(
+    sourceConflict.values.includes("reference/priorities/braid-mass-response-map/a0-reduced-branch-certificate.md"),
+    true
+  );
+  assert.equal(
+    sourceConflict.values.includes("scripts/mass-map/fe-silicate-segregation-toy.json#materials[Fe_metal].steps[1]"),
+    true
+  );
+  assert.equal(
+    sourceConflict.values.includes("reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md"),
     true
   );
 });

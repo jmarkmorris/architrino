@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 534,
-      "edges": 1288,
-      "scenes": 351,
+      "nodes": 546,
+      "edges": 1299,
+      "scenes": 357,
       "markdownIndexes": 0,
-      "markdownDocs": 170,
+      "markdownDocs": 176,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2255,6 +2255,42 @@
       "nodeType": "scene"
     },
     {
+      "id": "outreach__comics__first_page_problem",
+      "name": "First Page Problem",
+      "path": "content/scenes/outreach/comics/first_page_problem.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__group_project_assumption",
+      "name": "Group Project Assumption",
+      "path": "content/scenes/outreach/comics/group_project_assumption.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__new_theory_same_budget",
+      "name": "New Theory Same Budget",
+      "path": "content/scenes/outreach/comics/new_theory_same_budget.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__office_hours_for_a_claim",
+      "name": "Office Hours For A Claim",
+      "path": "content/scenes/outreach/comics/office_hours_for_a_claim.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__show_the_residuals",
+      "name": "Show The Residuals",
+      "path": "content/scenes/outreach/comics/show_the_residuals.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__signals_from_earlier",
+      "name": "Signals From Earlier",
+      "path": "content/scenes/outreach/comics/signals_from_earlier.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2660,6 +2696,42 @@
       "id": "content/markdown/aaa/outreach/comics.md",
       "name": "Outreach Comics",
       "path": "content/markdown/aaa/outreach/comics.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/first-page-problem.md",
+      "name": "First Page Problem",
+      "path": "content/markdown/aaa/outreach/comics/first-page-problem.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/group-project-assumption.md",
+      "name": "Group Project Assumption",
+      "path": "content/markdown/aaa/outreach/comics/group-project-assumption.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/new-theory-same-budget.md",
+      "name": "New Theory Same Budget",
+      "path": "content/markdown/aaa/outreach/comics/new-theory-same-budget.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/office-hours-for-a-claim.md",
+      "name": "Office Hours For A Claim",
+      "path": "content/markdown/aaa/outreach/comics/office-hours-for-a-claim.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/show-the-residuals.md",
+      "name": "Show The Residuals",
+      "path": "content/markdown/aaa/outreach/comics/show-the-residuals.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "name": "Signals From Earlier",
+      "path": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5239,6 +5311,60 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/outreach/comics/first_page_problem.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__first_page_problem",
+      "name": "First Page Problem",
+      "path": "content/scenes/outreach/comics/first_page_problem.json",
+      "searchTarget": "content/scenes/outreach/comics/first_page_problem.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/group_project_assumption.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__group_project_assumption",
+      "name": "Group Project Assumption",
+      "path": "content/scenes/outreach/comics/group_project_assumption.json",
+      "searchTarget": "content/scenes/outreach/comics/group_project_assumption.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/new_theory_same_budget.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__new_theory_same_budget",
+      "name": "New Theory Same Budget",
+      "path": "content/scenes/outreach/comics/new_theory_same_budget.json",
+      "searchTarget": "content/scenes/outreach/comics/new_theory_same_budget.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/office_hours_for_a_claim.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__office_hours_for_a_claim",
+      "name": "Office Hours For A Claim",
+      "path": "content/scenes/outreach/comics/office_hours_for_a_claim.json",
+      "searchTarget": "content/scenes/outreach/comics/office_hours_for_a_claim.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/show_the_residuals.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__show_the_residuals",
+      "name": "Show The Residuals",
+      "path": "content/scenes/outreach/comics/show_the_residuals.json",
+      "searchTarget": "content/scenes/outreach/comics/show_the_residuals.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/signals_from_earlier.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__signals_from_earlier",
+      "name": "Signals From Earlier",
+      "path": "content/scenes/outreach/comics/signals_from_earlier.json",
+      "searchTarget": "content/scenes/outreach/comics/signals_from_earlier.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/outreach/outreach.json",
       "nodeType": "scene",
       "id": "outreach",
@@ -7045,6 +7171,60 @@
       "name": "Outreach Comics",
       "path": "content/markdown/aaa/outreach/comics.md",
       "searchTarget": "content/markdown/aaa/outreach/comics.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/first-page-problem.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/first-page-problem.md",
+      "name": "First Page Problem",
+      "path": "content/markdown/aaa/outreach/comics/first-page-problem.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/first-page-problem.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/group-project-assumption.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/group-project-assumption.md",
+      "name": "Group Project Assumption",
+      "path": "content/markdown/aaa/outreach/comics/group-project-assumption.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/group-project-assumption.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/new-theory-same-budget.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/new-theory-same-budget.md",
+      "name": "New Theory Same Budget",
+      "path": "content/markdown/aaa/outreach/comics/new-theory-same-budget.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/new-theory-same-budget.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/office-hours-for-a-claim.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/office-hours-for-a-claim.md",
+      "name": "Office Hours For A Claim",
+      "path": "content/markdown/aaa/outreach/comics/office-hours-for-a-claim.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/office-hours-for-a-claim.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/show-the-residuals.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/show-the-residuals.md",
+      "name": "Show The Residuals",
+      "path": "content/markdown/aaa/outreach/comics/show-the-residuals.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/show-the-residuals.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "name": "Signals From Earlier",
+      "path": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
       "implicit": false
     },
     {
@@ -11445,6 +11625,48 @@
       "field": "scene.children[0]"
     },
     {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/first_page_problem.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/group_project_assumption.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/new_theory_same_budget.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/office_hours_for_a_claim.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/show_the_residuals.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/signals_from_earlier.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[0]"
+    },
+    {
       "from": "scene:content/scenes/outreach/outreach.json",
       "to": "scene:content/scenes/cosmology/universe.json",
       "edgeType": "subscene",
@@ -12929,10 +13151,45 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/outreach/comics.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics.md",
+      "from": "scene:content/scenes/outreach/comics/first_page_problem.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/first-page-problem.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/outreach/comics.json",
+      "source": "content/scenes/outreach/comics/first_page_problem.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/group_project_assumption.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/group-project-assumption.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/group_project_assumption.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/new_theory_same_budget.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/new-theory-same-budget.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/new_theory_same_budget.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/office_hours_for_a_claim.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/office-hours-for-a-claim.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/office_hours_for_a_claim.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/show_the_residuals.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/show-the-residuals.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/show_the_residuals.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/signals_from_earlier.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/signals_from_earlier.json",
       "field": "scene.source.path"
     },
     {

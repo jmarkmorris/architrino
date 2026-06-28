@@ -1,0 +1,41 @@
+{
+  "schema": "torque_wake_same_row_diagnostic/v0",
+  "id": "tri-binary-torque-wake-same-row-diagnostic",
+  "source_report_ref": "scripts/angular-momentum/tri-binary-offset-family-runner.mjs#torque_wake_same_row_diagnostic",
+  "selected_case_id": "index-ratio:f2",
+  "route_root_key": "2856731379702547500",
+  "retained_branch": false,
+  "branch_certificate_ref": null,
+  "sampled_active_row_ids": [
+    "index-ratio:f2:active-row:inner-middle-edge-28",
+    "index-ratio:f2:active-row:inner-outer-edge-17",
+    "index-ratio:f2:active-row:inner-outer-edge-31"
+  ],
+  "force_row_ids": [
+    "index-ratio:f2:active-row:inner-middle-edge-28",
+    "index-ratio:f2:active-row:inner-outer-edge-17",
+    "index-ratio:f2:active-row:inner-outer-edge-31"
+  ],
+  "partition_row_ids": [
+    "index-ratio:f2:active-row:inner-middle-edge-28",
+    "index-ratio:f2:active-row:inner-outer-edge-17",
+    "index-ratio:f2:active-row:inner-outer-edge-31"
+  ],
+  "torque_row_ids": [
+    "index-ratio:f2:active-row:inner-middle-edge-28",
+    "index-ratio:f2:active-row:inner-outer-edge-17",
+    "index-ratio:f2:active-row:inner-outer-edge-31"
+  ],
+  "wake_row_ids": [
+    "index-ratio:f2:active-row:inner-middle-edge-28",
+    "index-ratio:f2:active-row:inner-outer-edge-17",
+    "index-ratio:f2:active-row:inner-outer-edge-31"
+  ],
+  "action_increment_row_ref": "priority-only:action-increment-row:index-ratio:f2",
+  "active_root_ledger_hash": "route-root-key:2856731379702547500",
+  "conservation_pullback_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "torque_integrals_ref": "blocked_until_retained_time_window_torque_integral_is_available",
+  "wake_energy_routing_ref": "blocked_until_normalized_action_kernel_boundary_charge_is_available",
+  "event_ledger_convention_ref": "priority-only:event-ledger-convention:index-ratio:f2",
+  "negative_control_ref": "branch_certificate_ref_missing_negative_control"
+}

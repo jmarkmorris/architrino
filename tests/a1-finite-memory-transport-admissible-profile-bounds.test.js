@@ -696,6 +696,106 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     ),
     true
   );
+  const futureContinuousAttempt =
+    packet.future_continuous_transport_bounds_attempt;
+  assert.equal(
+    futureContinuousAttempt.schema,
+    "architrino.priority.master_equation_closure.a1_future_continuous_transport_bounds_attempt.v0"
+  );
+  assert.equal(
+    futureContinuousAttempt.artifact_id,
+    "a1_future_continuous_transport_bounds_attempt.v0"
+  );
+  assert.match(futureContinuousAttempt.attempt_digest, /^sha256:[0-9a-f]{64}$/);
+  assert.equal(
+    futureContinuousAttempt.source_artifact_hash,
+    packet.row_identity.source_artifact_hash
+  );
+  assert.equal(
+    futureContinuousAttempt.source_node_certificate.certificate_digest,
+    packet.future_profile_admissibility.local_certificate.certificate_digest
+  );
+  assert.equal(futureContinuousAttempt.node_certificate_consumed, true);
+  assert.equal(
+    futureContinuousAttempt.node_certificate_consistency
+      .theta_nodes_match_profile,
+    true
+  );
+  assert.equal(
+    futureContinuousAttempt.node_certificate_consistency.q_nodes_match_profile,
+    true
+  );
+  assert.equal(
+    futureContinuousAttempt.node_certificate_consistency
+      .q_prime_nodes_match_profile,
+    true
+  );
+  assert.equal(futureContinuousAttempt.transport_step_count, 16);
+  assert.equal(futureContinuousAttempt.transport_rows.length, 16);
+  assert.equal(
+    futureContinuousAttempt.transport_rows.every(
+      (row) =>
+        row.transport_rhs_interval_enclosure.rhs_function ===
+        "tangential_transport_derivative"
+    ),
+    true
+  );
+  assert.equal(
+    futureContinuousAttempt.transport_rows.every(
+      (row) => row.transport_rhs_interval_enclosure.sample_count === 5
+    ),
+    true
+  );
+  assert.equal(
+    futureContinuousAttempt.continuous_profile_defect_bound.sample_count,
+    80
+  );
+  assert.equal(
+    futureContinuousAttempt.continuous_profile_defect_bound
+      .sampled_retained_labels_match_retained_set,
+    true
+  );
+  assert.ok(
+    futureContinuousAttempt.continuous_profile_defect_bound.defect_sup_upper > 0
+  );
+  assert.ok(
+    futureContinuousAttempt.continuous_profile_defect_bound.defect_sup_upper <
+      0.003
+  );
+  assert.ok(
+    futureContinuousAttempt.continuous_profile_defect_bound
+      .integrated_l1_defect_upper > 0
+  );
+  assert.ok(
+    futureContinuousAttempt.continuous_profile_defect_bound
+      .integrated_l1_defect_upper < 0.00006
+  );
+  assert.equal(
+    futureContinuousAttempt.first_failure,
+    "branch_sum_feedback_bound_missing"
+  );
+  assert.equal(
+    futureContinuousAttempt.gronwall_closure_row.status,
+    "branch_sum_feedback_bound_missing"
+  );
+  assert.equal(futureContinuousAttempt.gronwall_closure_row.K_Q, "absent");
+  assert.equal(
+    futureContinuousAttempt.gronwall_closure_row.E_Q_plus_b,
+    "absent"
+  );
+  assert.equal(
+    futureContinuousAttempt.gronwall_closure_row.required_missing_row,
+    "branch_sum_feedback_bound_for_E_Q_plus_b"
+  );
+  assert.equal(futureContinuousAttempt.bounds_continuous_transport_equation, true);
+  assert.equal(
+    futureContinuousAttempt.outward_for_continuous_transport_equation,
+    false
+  );
+  assert.equal(futureContinuousAttempt.emits_E_Q_plus_b, false);
+  assert.equal(futureContinuousAttempt.used_as_certificate, false);
+  assert.equal(futureContinuousAttempt.used_as_shared_certificate, false);
+  assert.equal(futureContinuousAttempt.authorizes_outward_certificate, false);
   assert.equal(
     packet.certificate_composition_readiness.schema,
     "architrino.priority.master_equation_closure.a1_certificate_composition_readiness.v0"
@@ -867,10 +967,30 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
       .outward_for_continuous_transport_equation,
     false
   );
+  assert.equal(
+    packet.future_profile_admissibility.continuous_transport_attempt_digest,
+    futureContinuousAttempt.attempt_digest
+  );
+  assert.equal(
+    packet.future_profile_admissibility.continuous_transport_attempt_status,
+    futureContinuousAttempt.status
+  );
+  assert.equal(
+    packet.future_profile_admissibility.bounds_continuous_transport_equation,
+    true
+  );
+  assert.equal(
+    packet.future_profile_admissibility.outward_for_continuous_transport_equation,
+    false
+  );
+  assert.equal(
+    packet.future_profile_admissibility.continuous_transport_defect_sup_upper,
+    futureContinuousAttempt.continuous_profile_defect_bound.defect_sup_upper
+  );
   assert.equal(packet.future_profile_admissibility.E_Q_plus_b, "absent");
   assert.equal(
     packet.future_profile_admissibility.E_Q_plus_b_status,
-    "absent_for_admissible_class"
+    "branch_sum_feedback_bound_missing"
   );
   assert.equal(
     packet.future_profile_admissibility.local_certificate
@@ -1062,14 +1182,25 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   );
   assert.ok(
     packet.blocked_rows.includes(
-      "future_piecewise_linear_profile_box_local_certificate_not_continuous_transport_certificate"
+      "future_continuous_transport_bounds_attempt_not_shared_certificate"
     )
   );
   assert.ok(
-    packet.blocked_rows.includes("continuous_transport_equation_bounds_absent")
+    packet.blocked_rows.includes("branch_sum_feedback_bound_missing")
   );
-  assert.ok(
-    packet.blocked_rows.includes("E_Q_plus_b_absent_for_admissible_class")
+  assert.equal(
+    packet.blocked_rows.includes(
+      "future_piecewise_linear_profile_box_local_certificate_not_continuous_transport_certificate"
+    ),
+    false
+  );
+  assert.equal(
+    packet.blocked_rows.includes("continuous_transport_equation_bounds_absent"),
+    false
+  );
+  assert.equal(
+    packet.blocked_rows.includes("E_Q_plus_b_absent_for_admissible_class"),
+    false
   );
   assert.ok(
     packet.blocked_rows.includes("inactive_cover_interval_boxes_absent")

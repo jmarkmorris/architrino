@@ -9,3 +9,5 @@
 [![Show The Residuals](../../../assets/images/outreach/comics/thumbnails/show-the-residuals-thumb.png)](../../../assets/images/outreach/comics/show-the-residuals.png)
 
 [![Office Hours For A Claim](../../../assets/images/outreach/comics/thumbnails/office-hours-for-a-claim-thumb.png)](../../../assets/images/outreach/comics/office-hours-for-a-claim.png)
+
+[![First Page Problem](../../../assets/images/outreach/comics/thumbnails/first-page-problem-thumb.png)](../../../assets/images/outreach/comics/first-page-problem.png)

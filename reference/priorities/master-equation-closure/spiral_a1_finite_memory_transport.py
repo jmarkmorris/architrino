@@ -1246,6 +1246,27 @@ def float64_nextafter_interval(value: float) -> dict:
     }
 
 
+def float64_nextafter_bounds(values: Iterable[float]) -> dict:
+    values = tuple(values)
+    if not values:
+        raise ValueError("cannot enclose an empty value set")
+    lower_value = min(values)
+    upper_value = max(values)
+    lower = math.nextafter(lower_value, -math.inf)
+    upper = math.nextafter(upper_value, math.inf)
+    return {
+        "lower": lower,
+        "upper": upper,
+        "lower_hex": lower.hex(),
+        "upper_hex": upper.hex(),
+        "min_sample": lower_value,
+        "max_sample": upper_value,
+        "min_sample_hex": float(lower_value).hex(),
+        "max_sample_hex": float(upper_value).hex(),
+        "width": upper - lower,
+    }
+
+
 def a1_coefficient_interval_enclosure_attempt(
     source_digest: str,
     spec: PastProfileSpec,
@@ -1884,6 +1905,286 @@ def directed_rounding_backend_target_row(
             }
         )
     return row
+
+
+def a1_future_continuous_transport_bounds_attempt(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    declared_q_bounds: tuple[float, float],
+    future_transport_interval_box_certificate: dict,
+    profile: TransportProfile,
+    panels: int,
+    gamma_star: float,
+) -> dict:
+    theta_nodes = tuple(
+        float.fromhex(value)
+        for value in future_transport_interval_box_certificate["theta_nodes_hex"]
+    )
+    q_nodes = tuple(
+        float.fromhex(value)
+        for value in future_transport_interval_box_certificate["q_nodes_hex"]
+    )
+    q_prime_nodes = tuple(
+        float.fromhex(value)
+        for value in future_transport_interval_box_certificate["q_prime_nodes_hex"]
+    )
+    node_count = len(theta_nodes)
+    if node_count < 2:
+        raise ValueError("future continuous transport attempt requires at least two nodes")
+    if len(q_nodes) != node_count or len(q_prime_nodes) != node_count:
+        raise ValueError("future transport node certificate has mismatched node counts")
+
+    transport_rows: list[dict] = []
+    max_defect_abs_upper = 0.0
+    integrated_l1_defect_upper = 0.0
+    max_rhs_abs_upper = 0.0
+    min_abs_j = math.inf
+    retained_labels_match = True
+    retained_label_order = [window["label"] for window in RETAINED_WINDOWS]
+
+    for index, (theta_lo, theta_hi) in enumerate(zip(theta_nodes, theta_nodes[1:])):
+        if theta_hi <= theta_lo:
+            raise ValueError("future transport theta nodes must be strictly increasing")
+        q_lo = q_nodes[index]
+        q_hi = q_nodes[index + 1]
+        step = theta_hi - theta_lo
+        segment_slope = (q_hi - q_lo) / step
+        sample_thetas = (
+            theta_lo,
+            theta_lo + 0.25 * step,
+            theta_lo + 0.5 * step,
+            theta_lo + 0.75 * step,
+            theta_hi,
+        )
+        rhs_samples: list[dict] = []
+        rhs_values: list[float] = []
+        defect_values: list[float] = []
+        q_values: list[float] = []
+        min_segment_abs_j = math.inf
+        for sample_theta in sample_thetas:
+            derivative, rows, residuals = tangential_transport_derivative(
+                sample_theta,
+                profile=profile,
+                panels=panels,
+                gamma_star=gamma_star,
+            )
+            labels = [row.label for row in rows]
+            retained_labels_match = retained_labels_match and (
+                labels == retained_label_order
+            )
+            q_sample = profile.q(sample_theta)
+            defect = segment_slope - derivative
+            q_values.append(q_sample)
+            rhs_values.append(derivative)
+            defect_values.append(defect)
+            sample_min_abs_j = min(abs(row.jacobian) for row in rows)
+            min_segment_abs_j = min(min_segment_abs_j, sample_min_abs_j)
+            rhs_samples.append(
+                {
+                    "theta": sample_theta,
+                    "theta_hex": float(sample_theta).hex(),
+                    "Q": q_sample,
+                    "Q_hex": float(q_sample).hex(),
+                    "transport_rhs": derivative,
+                    "transport_rhs_hex": float(derivative).hex(),
+                    "segment_slope_minus_rhs": defect,
+                    "segment_slope_minus_rhs_hex": float(defect).hex(),
+                    "T_Q": residuals["T_Q"],
+                    "B_Q": residuals["B_Q"],
+                    "retained_labels": labels,
+                    "min_abs_J": sample_min_abs_j,
+                }
+            )
+
+        rhs_interval = float64_nextafter_bounds(rhs_values)
+        q_interval = float64_nextafter_bounds(q_values)
+        defect_interval = float64_nextafter_bounds(defect_values)
+        defect_abs_upper = math.nextafter(
+            max(abs(defect_interval["lower"]), abs(defect_interval["upper"])),
+            math.inf,
+        )
+        rhs_abs_upper = math.nextafter(
+            max(abs(rhs_interval["lower"]), abs(rhs_interval["upper"])),
+            math.inf,
+        )
+        step_l1_defect_upper = math.nextafter(step * defect_abs_upper, math.inf)
+        max_defect_abs_upper = max(max_defect_abs_upper, defect_abs_upper)
+        max_rhs_abs_upper = max(max_rhs_abs_upper, rhs_abs_upper)
+        integrated_l1_defect_upper += step_l1_defect_upper
+        min_abs_j = min(min_abs_j, min_segment_abs_j)
+        transport_rows.append(
+            {
+                "step_index": index,
+                "theta_interval": [theta_lo, theta_hi],
+                "theta_interval_hex": [float(theta_lo).hex(), float(theta_hi).hex()],
+                "q_node_interval": [min(q_lo, q_hi), max(q_lo, q_hi)],
+                "q_node_interval_hex": [
+                    float(min(q_lo, q_hi)).hex(),
+                    float(max(q_lo, q_hi)).hex(),
+                ],
+                "q_sample_interval": [q_interval["lower"], q_interval["upper"]],
+                "q_sample_interval_hex": [
+                    q_interval["lower_hex"],
+                    q_interval["upper_hex"],
+                ],
+                "segment_slope": segment_slope,
+                "segment_slope_hex": float(segment_slope).hex(),
+                "transport_rhs_interval_enclosure": {
+                    "method": (
+                        "five_point_float64_nextafter_sample_enclosure_not_"
+                        "interval_certificate"
+                    ),
+                    "rhs_function": "tangential_transport_derivative",
+                    "sample_count": len(rhs_samples),
+                    "rhs_interval": [rhs_interval["lower"], rhs_interval["upper"]],
+                    "rhs_interval_hex": [
+                        rhs_interval["lower_hex"],
+                        rhs_interval["upper_hex"],
+                    ],
+                    "rhs_abs_upper": rhs_abs_upper,
+                    "rhs_abs_upper_hex": float(rhs_abs_upper).hex(),
+                    "min_abs_J": min_segment_abs_j,
+                    "samples": rhs_samples,
+                },
+                "piecewise_linear_transport_defect_interval": [
+                    defect_interval["lower"],
+                    defect_interval["upper"],
+                ],
+                "piecewise_linear_transport_defect_interval_hex": [
+                    defect_interval["lower_hex"],
+                    defect_interval["upper_hex"],
+                ],
+                "piecewise_linear_transport_defect_abs_upper": defect_abs_upper,
+                "piecewise_linear_transport_defect_abs_upper_hex": (
+                    float(defect_abs_upper).hex()
+                ),
+                "step_integrated_defect_upper": step_l1_defect_upper,
+                "step_integrated_defect_upper_hex": (
+                    float(step_l1_defect_upper).hex()
+                ),
+            }
+        )
+
+    integrated_l1_defect_upper = math.nextafter(
+        integrated_l1_defect_upper, math.inf
+    )
+    q_certificate_interval = future_transport_interval_box_certificate["q_interval"]
+    within_declared_q_bounds = (
+        q_certificate_interval[0] >= declared_q_bounds[0]
+        and q_certificate_interval[1] <= declared_q_bounds[1]
+    )
+    node_certificate_consistency = {
+        "theta_nodes_match_profile": theta_nodes == profile.theta_nodes,
+        "q_nodes_match_profile": q_nodes == profile.q_nodes,
+        "q_prime_nodes_match_profile": q_prime_nodes == profile.q_prime_nodes,
+        "node_count": node_count,
+    }
+    first_failure = (
+        "transport_exit"
+        if not within_declared_q_bounds
+        else "branch_sum_feedback_bound_missing"
+    )
+    gronwall_closure_row = {
+        "row_id": first_failure,
+        "transport_defect_sup_upper": max_defect_abs_upper,
+        "transport_defect_sup_upper_hex": float(max_defect_abs_upper).hex(),
+        "integrated_l1_defect_upper": integrated_l1_defect_upper,
+        "integrated_l1_defect_upper_hex": float(integrated_l1_defect_upper).hex(),
+        "K_Q": "absent",
+        "E_Q_plus_b": "absent",
+        "E_Q_plus_b_status": (
+            "transport_exit"
+            if not within_declared_q_bounds
+            else "branch_sum_feedback_bound_missing"
+        ),
+        "required_missing_row": (
+            "future_profile_within_declared_q_bounds"
+            if not within_declared_q_bounds
+            else "branch_sum_feedback_bound_for_E_Q_plus_b"
+        ),
+        "status": first_failure,
+    }
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_future_continuous_transport_bounds_attempt.v0"
+        ),
+        "artifact_id": "a1_future_continuous_transport_bounds_attempt.v0",
+        "source_artifact_hash": source_digest,
+        "method": (
+            "sampled_float64_piecewise_linear_transport_defect_gronwall_attempt"
+        ),
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "declared_q_bounds": list(declared_q_bounds),
+        "source_node_certificate": {
+            "schema": future_transport_interval_box_certificate["schema"],
+            "artifact_id": future_transport_interval_box_certificate["artifact_id"],
+            "box_id": future_transport_interval_box_certificate["box_id"],
+            "certificate_digest": future_transport_interval_box_certificate[
+                "certificate_digest"
+            ],
+            "node_payload_digest": future_transport_interval_box_certificate[
+                "node_payload_digest"
+            ],
+            "q_interval": q_certificate_interval,
+            "q_prime_auxiliary_interval": (
+                future_transport_interval_box_certificate[
+                    "q_prime_auxiliary_interval"
+                ]
+            ),
+            "q_prime_semantics": future_transport_interval_box_certificate[
+                "q_prime_semantics"
+            ],
+        },
+        "node_certificate_consumed": True,
+        "node_certificate_consistency": node_certificate_consistency,
+        "transport_step_count": len(transport_rows),
+        "transport_rhs_interval_enclosure_method": (
+            "five_point_float64_nextafter_sample_enclosure_not_interval_certificate"
+        ),
+        "transport_rhs_abs_upper": max_rhs_abs_upper,
+        "transport_rhs_abs_upper_hex": float(max_rhs_abs_upper).hex(),
+        "transport_rows": transport_rows,
+        "continuous_profile_defect_bound": {
+            "defect_quantity": (
+                "piecewise_linear_segment_slope_minus_tangential_transport_rhs"
+            ),
+            "defect_sup_upper": max_defect_abs_upper,
+            "defect_sup_upper_hex": float(max_defect_abs_upper).hex(),
+            "integrated_l1_defect_upper": integrated_l1_defect_upper,
+            "integrated_l1_defect_upper_hex": float(
+                integrated_l1_defect_upper
+            ).hex(),
+            "sample_count": sum(
+                row["transport_rhs_interval_enclosure"]["sample_count"]
+                for row in transport_rows
+            ),
+            "min_sampled_abs_J": min_abs_j,
+            "sampled_retained_labels_match_retained_set": retained_labels_match,
+        },
+        "future_profile_within_declared_q_bounds": within_declared_q_bounds,
+        "bounds_continuous_transport_equation": True,
+        "outward_for_continuous_transport_equation": False,
+        "emits_E_Q_plus_b": False,
+        "gronwall_closure_row": gronwall_closure_row,
+        "first_failure": first_failure,
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "attempt_digest": canonical_json_digest(payload),
+        "status": (
+            "future_continuous_transport_bounds_attempt_computed_not_certificate_"
+            f"{first_failure}"
+        ),
+    }
 
 
 def a1_future_continuous_transport_bounds_target(
@@ -6763,6 +7064,23 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             profile,
         )
     )
+    future_continuous_transport_bounds_attempt = (
+        a1_future_continuous_transport_bounds_attempt(
+            source_identity["digest"],
+            radius_b=args.admissible_profile_radius_b,
+            theta_interval=[0.0, attempt_args.theta_hi],
+            declared_q_bounds=(
+                args.finite_collar_min_q,
+                args.finite_collar_max_q,
+            ),
+            future_transport_interval_box_certificate=(
+                future_transport_interval_box_certificate
+            ),
+            profile=profile,
+            panels=attempt_args.integration_panels,
+            gamma_star=args.gamma_star,
+        )
+    )
     theta_samples = theta_grid(
         0.0, attempt_args.theta_hi, attempt_args.theta_samples
     )
@@ -6916,6 +7234,9 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         },
         "shared_interval_box_certificate_target": shared_interval_target,
         "certificate_composition_readiness": certificate_composition_readiness,
+        "future_continuous_transport_bounds_attempt": (
+            future_continuous_transport_bounds_attempt
+        ),
         "past_profile": {
             "kind": past_profile.kind,
             "degree": len(past_profile.coefficients),
@@ -7015,8 +7336,42 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
                 ][1]
             ),
             "local_certificate": future_profile_certificate_summary,
-            "E_Q_plus_b": "absent",
-            "E_Q_plus_b_status": "absent_for_admissible_class",
+            "continuous_transport_attempt_digest": (
+                future_continuous_transport_bounds_attempt["attempt_digest"]
+            ),
+            "continuous_transport_attempt_status": (
+                future_continuous_transport_bounds_attempt["status"]
+            ),
+            "continuous_transport_defect_sup_upper": (
+                future_continuous_transport_bounds_attempt[
+                    "continuous_profile_defect_bound"
+                ]["defect_sup_upper"]
+            ),
+            "continuous_transport_integrated_l1_defect_upper": (
+                future_continuous_transport_bounds_attempt[
+                    "continuous_profile_defect_bound"
+                ]["integrated_l1_defect_upper"]
+            ),
+            "bounds_continuous_transport_equation": (
+                future_continuous_transport_bounds_attempt[
+                    "bounds_continuous_transport_equation"
+                ]
+            ),
+            "outward_for_continuous_transport_equation": (
+                future_continuous_transport_bounds_attempt[
+                    "outward_for_continuous_transport_equation"
+                ]
+            ),
+            "E_Q_plus_b": (
+                future_continuous_transport_bounds_attempt[
+                    "gronwall_closure_row"
+                ]["E_Q_plus_b"]
+            ),
+            "E_Q_plus_b_status": (
+                future_continuous_transport_bounds_attempt[
+                    "gronwall_closure_row"
+                ]["E_Q_plus_b_status"]
+            ),
             "used_as_certificate": True,
             "used_as_local_certificate": True,
             "used_as_shared_certificate": False,
@@ -7060,9 +7415,8 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         "blocked_rows": [
             "past_profile_interval_box_certificate_not_shared_certificate",
             "future_piecewise_linear_profile_box_certificate_not_shared_certificate",
-            "future_piecewise_linear_profile_box_local_certificate_not_continuous_transport_certificate",
-            "continuous_transport_equation_bounds_absent",
-            "E_Q_plus_b_absent_for_admissible_class",
+            "future_continuous_transport_bounds_attempt_not_shared_certificate",
+            "branch_sum_feedback_bound_missing",
             "inactive_cover_interval_boxes_absent",
             "source_identity_digest_not_shared_interval_box_certificate",
             "directed_rounding_backend_self_audit_not_shared_certificate",
@@ -7089,9 +7443,12 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "node-extrema certificate for the emitted future piecewise-linear "
             "transport profile. The q-prime row is an auxiliary transport-"
             "derivative interpolant, not the derivative of piecewise-linear q. "
-            "The packet declares a directed-rounding backend target and "
-            "self-audit, but it does not supply a shared interval-box "
-            "certificate for continuous future transport, retained roots, "
+            "It also computes a priority-only sampled transport RHS and "
+            "piecewise-linear defect envelope against tangential_transport_derivative; "
+            "that row does not emit E_Q^+(b) or K_Q because the branch-sum "
+            "feedback bound is still missing. The packet declares a "
+            "directed-rounding backend target and self-audit, but it does not "
+            "supply a shared interval-box certificate for retained roots, "
             "inactive cover, branch-sum, transport, or residual-envelope "
             "constants."
         ),

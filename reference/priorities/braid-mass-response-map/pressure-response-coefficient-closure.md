@@ -617,6 +617,16 @@ record together. A complete synthetic row may pass the checker only as
 `accepted_retained_pressure_row`; the checker still authorizes no empirical
 mass response and no retained-branch claim.
 
+The cross-row bundle negative-control fixture
+[pressure-row-branch-intake-cross-row-bundle-negative-control.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-cross-row-bundle-negative-control.json)
+fills the required contract fields by combining the $A_0$ branch-source
+frontier, Fe/silicate toy pressure entries, and provider-target metadata. The
+checker still returns `finite_branch_evidence_missing` because the populated
+subrecords carry distinct row identifiers and source references rather than one
+accepted retained pressure row. It also leaves branch-derived pressure response,
+observer export, export readiness, empirical mass response, and retained-branch
+claim authorization false.
+
 The first mined partial candidate is the Fe/silicate toy row
 [pressure-row-branch-intake-fe-silicate-toy-partial.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-fe-silicate-toy-partial.json).
 It reduces the unknown set for one same-row diagnostic replay: the row carries

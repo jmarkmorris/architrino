@@ -3,20 +3,96 @@
   "scene": {
     "id": "outreach__comics",
     "title": "Comics",
-    "type": "Scene-Markdown-View",
+    "type": "Scene-Index",
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "static"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
-    "source": {
-      "type": "markdown",
-      "path": "content/markdown/aaa/outreach/comics.md"
-    },
-    "view": {
-      "columns": 1,
-      "autoOpen": true
-    }
+    "children": [
+      {
+        "nodeId": "signals_from_earlier",
+        "scenePath": "content/scenes/outreach/comics/signals_from_earlier.json"
+      },
+      {
+        "nodeId": "group_project_assumption",
+        "scenePath": "content/scenes/outreach/comics/group_project_assumption.json"
+      },
+      {
+        "nodeId": "new_theory_same_budget",
+        "scenePath": "content/scenes/outreach/comics/new_theory_same_budget.json"
+      },
+      {
+        "nodeId": "show_the_residuals",
+        "scenePath": "content/scenes/outreach/comics/show_the_residuals.json"
+      },
+      {
+        "nodeId": "office_hours_for_a_claim",
+        "scenePath": "content/scenes/outreach/comics/office_hours_for_a_claim.json"
+      },
+      {
+        "nodeId": "first_page_problem",
+        "scenePath": "content/scenes/outreach/comics/first_page_problem.json"
+      }
+    ]
   },
-  "objects": []
+  "objects": [
+    {
+      "id": "signals_from_earlier",
+      "title": "Signals From Earlier",
+      "radius": 1.8,
+      "color": "#2f6b6f",
+      "labelTitle": "Signals From Earlier",
+      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/signals-from-earlier-present-inbox-thumb.png",
+      "labelBadgeAlt": "Signals From Earlier thumbnail"
+    },
+    {
+      "id": "group_project_assumption",
+      "title": "Group Project Assumption",
+      "radius": 1.8,
+      "color": "#7a5a2f",
+      "labelTitle": "Group Project Assumption",
+      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/group-project-assumption-thumb.png",
+      "labelBadgeAlt": "Group Project Assumption thumbnail"
+    },
+    {
+      "id": "new_theory_same_budget",
+      "title": "New Theory Same Budget",
+      "radius": 1.8,
+      "color": "#7a4a1f",
+      "labelTitle": "New Theory Same Budget",
+      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/new-theory-same-budget-thumb.png",
+      "labelBadgeAlt": "New Theory Same Budget thumbnail"
+    },
+    {
+      "id": "show_the_residuals",
+      "title": "Show The Residuals",
+      "radius": 1.8,
+      "color": "#3a5f9f",
+      "labelTitle": "Show The Residuals",
+      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/show-the-residuals-thumb.png",
+      "labelBadgeAlt": "Show The Residuals thumbnail"
+    },
+    {
+      "id": "office_hours_for_a_claim",
+      "title": "Office Hours For A Claim",
+      "radius": 1.8,
+      "color": "#5a1f2e",
+      "labelTitle": "Office Hours For A Claim",
+      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/office-hours-for-a-claim-thumb.png",
+      "labelBadgeAlt": "Office Hours For A Claim thumbnail"
+    },
+    {
+      "id": "first_page_problem",
+      "title": "First Page Problem",
+      "radius": 1.8,
+      "color": "#3c6a7a",
+      "labelTitle": "First Page Problem",
+      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/first-page-problem-thumb.png",
+      "labelBadgeAlt": "First Page Problem thumbnail"
+    }
+  ]
 }

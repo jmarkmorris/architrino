@@ -1754,6 +1754,36 @@
       "id": "outreach",
       "name": "Outreach",
       "path": "content/scenes/outreach/outreach.json"
+    },
+    {
+      "id": "outreach__comics__first_page_problem",
+      "name": "First Page Problem",
+      "path": "content/scenes/outreach/comics/first_page_problem.json"
+    },
+    {
+      "id": "outreach__comics__group_project_assumption",
+      "name": "Group Project Assumption",
+      "path": "content/scenes/outreach/comics/group_project_assumption.json"
+    },
+    {
+      "id": "outreach__comics__new_theory_same_budget",
+      "name": "New Theory Same Budget",
+      "path": "content/scenes/outreach/comics/new_theory_same_budget.json"
+    },
+    {
+      "id": "outreach__comics__office_hours_for_a_claim",
+      "name": "Office Hours For A Claim",
+      "path": "content/scenes/outreach/comics/office_hours_for_a_claim.json"
+    },
+    {
+      "id": "outreach__comics__show_the_residuals",
+      "name": "Show The Residuals",
+      "path": "content/scenes/outreach/comics/show_the_residuals.json"
+    },
+    {
+      "id": "outreach__comics__signals_from_earlier",
+      "name": "Signals From Earlier",
+      "path": "content/scenes/outreach/comics/signals_from_earlier.json"
     }
   ]
 }

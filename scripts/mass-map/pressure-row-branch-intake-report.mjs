@@ -160,6 +160,21 @@ const REQUIRED_FIELDS = [
   },
 ];
 
+const SAME_ROW_BINDING_KEYS = [
+  "row_id",
+  "pressure_row_id",
+  "retained_pressure_row_id",
+  "record_row_id",
+  "same_row_id",
+  "row_ref",
+  "pressure_row_ref",
+  "retained_pressure_row_ref",
+  "same_row_ref",
+  "source_ref",
+  "source_path",
+  "record_ref",
+];
+
 function parseArgs(argv) {
   const args = {
     input: null,
@@ -242,6 +257,73 @@ function acceptedStatus(value, acceptedValues) {
   return acceptedValues.includes(value);
 }
 
+function bindingValue(value) {
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    return trimmed === "" ? null : trimmed;
+  }
+  if (typeof value === "number" || typeof value === "boolean") {
+    return String(value);
+  }
+  return null;
+}
+
+function directBindingEntries(value, fieldPath) {
+  if (!isObject(value)) {
+    return [];
+  }
+  return SAME_ROW_BINDING_KEYS.flatMap((key) => {
+    const normalized = bindingValue(value[key]);
+    return normalized === null
+      ? []
+      : [
+          {
+            path: fieldPath,
+            binding_key: key,
+            value: normalized,
+          },
+        ];
+  });
+}
+
+function evaluateSameRowBinding(candidate) {
+  const entries = REQUIRED_FIELDS.flatMap((field) =>
+    directBindingEntries(getPath(candidate, field.path), field.path)
+  );
+  const entriesByKey = new Map();
+
+  for (const entry of entries) {
+    const valueToPaths = entriesByKey.get(entry.binding_key) ?? new Map();
+    const paths = valueToPaths.get(entry.value) ?? new Set();
+    paths.add(entry.path);
+    valueToPaths.set(entry.value, paths);
+    entriesByKey.set(entry.binding_key, valueToPaths);
+  }
+
+  const bindingGroups = [...entriesByKey.entries()]
+    .map(([bindingKey, valueToPaths]) => ({
+      binding_key: bindingKey,
+      values: [...valueToPaths.keys()].sort(),
+      paths_by_value: Object.fromEntries(
+        [...valueToPaths.entries()]
+          .sort(([left], [right]) => left.localeCompare(right))
+          .map(([value, paths]) => [value, [...paths].sort()])
+      ),
+    }))
+    .sort((left, right) => left.binding_key.localeCompare(right.binding_key));
+  const conflictingBindings = bindingGroups.filter((group) => group.values.length > 1);
+
+  return {
+    rule:
+      "Every declared row or source binding on required pressure-row fields must resolve to one retained pressure row.",
+    checked_binding_keys: SAME_ROW_BINDING_KEYS,
+    binding_groups: bindingGroups,
+    conflicting_bindings: conflictingBindings,
+    pass: conflictingBindings.length === 0,
+    failure_code: conflictingBindings.length === 0 ? null : "finite_branch_evidence_missing",
+  };
+}
+
 function contract() {
   return {
     schema: "pressure_row_branch_intake_contract/v0",
@@ -255,8 +337,11 @@ function contract() {
     })),
     authorization_boundary: {
       branch_derived_pressure_response_requires_all_fields: true,
+      branch_derived_pressure_response_requires_same_row_binding: true,
+      cross_row_bundle_authorized_by_this_contract: false,
       empirical_mass_response_authorized_by_this_contract: false,
       toy_or_material_replay_authorized_by_this_contract: false,
+      observer_or_export_readiness_authorized_by_this_contract: false,
     },
   };
 }
@@ -280,8 +365,14 @@ export function buildReport(candidate, options = {}) {
 
   const fieldResults = REQUIRED_FIELDS.map((field) => evaluateField(candidate, field));
   const failedFields = fieldResults.filter((field) => !field.pass);
-  const firstFailure = failedFields[0]?.failure_code ?? null;
-  const accepted = failedFields.length === 0;
+  const sameRowBindingEvidence = evaluateSameRowBinding(candidate);
+  const sameRowBinding = failedFields.length === 0 && sameRowBindingEvidence.pass;
+  const firstFailure = failedFields[0]?.failure_code ?? sameRowBindingEvidence.failure_code;
+  const accepted = sameRowBinding;
+  const missingOrRejectedFields = failedFields.map((field) => field.path);
+  if (!sameRowBindingEvidence.pass) {
+    missingOrRejectedFields.push("same_row_binding");
+  }
 
   return {
     schema: "pressure_row_branch_intake_report/v0",
@@ -290,10 +381,11 @@ export function buildReport(candidate, options = {}) {
     provider_source_status: candidate.provider_source_status ?? null,
     target_status: candidate.target_status ?? null,
     provider_target: candidate.provider_target ?? null,
-    same_row_binding: accepted,
+    same_row_binding: sameRowBinding,
+    same_row_binding_evidence: sameRowBindingEvidence,
     branch_intake_verdict: accepted ? "accepted_retained_pressure_row" : "finite_branch_evidence_missing",
     first_failure: firstFailure,
-    missing_or_rejected_fields: failedFields.map((field) => field.path),
+    missing_or_rejected_fields: missingOrRejectedFields,
     field_results: fieldResults,
     source_frontier: candidate.branch_source_frontier ?? null,
     source_ownership: candidate.source_ownership ?? null,
@@ -301,6 +393,8 @@ export function buildReport(candidate, options = {}) {
       branch_derived_pressure_response: accepted,
       empirical_mass_response: false,
       retained_branch_claim: false,
+      observer_export: false,
+      export_readiness: false,
     },
   };
 }
@@ -325,6 +419,15 @@ export function validationErrors(report) {
   if (report.branch_intake_verdict === "finite_branch_evidence_missing" && typeof report.first_failure !== "string") {
     errors.push("blocked reports must carry first_failure");
   }
+  if (report.branch_intake_verdict === "accepted_retained_pressure_row" && report.same_row_binding !== true) {
+    errors.push("accepted reports must carry same_row_binding");
+  }
+  if (report.branch_intake_verdict === "finite_branch_evidence_missing" && report.same_row_binding !== false) {
+    errors.push("blocked reports must not carry same_row_binding");
+  }
+  if (!isObject(report.same_row_binding_evidence)) {
+    errors.push("same_row_binding_evidence must be an object");
+  }
   if (!Array.isArray(report.field_results)) {
     errors.push("field_results must be an array");
   }
@@ -348,6 +451,12 @@ export function validationErrors(report) {
   }
   if (report.authorization?.retained_branch_claim !== false) {
     errors.push("retained_branch_claim must remain false");
+  }
+  if (report.authorization?.observer_export !== false) {
+    errors.push("observer_export must remain false");
+  }
+  if (report.authorization?.export_readiness !== false) {
+    errors.push("export_readiness must remain false");
   }
   return errors;
 }

@@ -394,6 +394,16 @@ row with a retained branch certificate, matching active-root and
 conservation-pullback hashes, and a failing negative control for mismatched
 hashes.
 
+Related torque/wake diagnostic status, 2026-06-28:
+`scripts/nested-shell-braid/torque-wake-same-row-diagnostic-report.mjs` emits
+and validates `torque_wake_same_row_diagnostic_report/v0` for the angular
+momentum same-row payload. The current fixture records sampled same-row
+force/partition/torque/wake ids on `selected_case_id=index-ratio:f2`, but it
+returns `first_failure=branch_certificate_ref_missing`, keeps
+`same_record_source_binding=false`, and records the retained-row upgrade as
+missing. It is useful dependency-routing evidence only; it is not an
+`accepted_transition_source` and cannot authorize `candidate_h_recovery`.
+
 The remaining promotion blockers are executable, not editorial: no current artifact has shown same-row active-root identity under refinement, a positive Jacobian floor through the approach-to-$c_f$ scan, bounded particle-plus-wake energy on the retained branch rows, delayed-Noether status above `diagnostic-only`, stable one-cluster $\Delta I_{\mathrm{ME}}$ behavior, and a failing negative control with content hashes.
 
 ## Simulation Campaign Object
