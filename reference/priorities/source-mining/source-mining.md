@@ -33,13 +33,13 @@ During the current core geometrical theory push, do not treat corpus coverage as
 
 Use [source-mining-best-practice](source-mining-best-practice.md) for source-type workflows, report shape, theory-mapping discipline, corpus deferral rules, and source-family intake rules.
 
-Use topic-sweep mode when the operator needs to reconstruct what the legacy archive says about one concept across many posts before choosing individual sources to mine. A topic sweep is source discovery and synthesis; it should not mark posts mined unless the normal source-mining triage and history update are also completed for those posts.
+Use topic-sweep mode when the operator needs to reconstruct what the legacy archive says about one concept across many posts before choosing individual sources to mine. A topic sweep is source discovery and synthesis; it should not mark posts mined unless the normal source-mining triage, history update, and durable queue/table status update are also completed for those posts.
 
 Use archive-level mining mode when the operator needs a full-archive idea map before selecting individual sources or topic sweeps. This mode retrieves all public WordPress post text, stores cleansed full text under `/tmp`, clusters source signals, flags legacy terminology and high-risk language, checks coarse corpus coverage, and writes compact priority reports without marking posts mined.
 
 ## Mining History
 
-The completed target list lives in [source-mining-history](source-mining-history.md). When a source or source family is mined, add it to that history file with the date mined.
+The completed target list lives in [source-mining-history](source-mining-history.md). When a source or source family is mined, add it to that history file with the date mined. WordPress tags are not used for source-mining completion; local source-mining history plus the durable queue/table status are authoritative.
 
 ## Active Mining Batches
 
@@ -53,7 +53,8 @@ The completed target list lives in [source-mining-history](source-mining-history
 - Source: [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), and current-year archive pages such as [2026](https://architrino.wordpress.com/2026/).
 - Last crawl: June 27, 2026.
 - Published posts discovered: `379`.
-- Queue state after crawl: `118` complete, `2` already `MINED` on WordPress but not locally complete, and `259` open for mining.
+- Current local queue state: `119` complete and `260` open for mining.
+- Completion authority: local source-mining history, durable queue status, and durable table status. WordPress tags were retired from this workflow on June 28, 2026.
 - The June 27, 2026 refresh added `5` posts beyond the previous table: `4` from the [2026 archive](https://architrino.wordpress.com/2026/) plus `1` newly visible 2023 draft.
 - The WordPress site is now treated as an official historical archive to mine while the subscription remains active, currently expected through approximately June 2029.
 
@@ -64,7 +65,7 @@ The completed target list lives in [source-mining-history](source-mining-history
 - Local artifact root: `/tmp/architrino-archive-mining`.
 - Retrieval result: `379` posts, `1030` idea cards, and `841` deterministic idea clusters.
 - Route-level triage reports: [archive mining report](archive-analysis/legacy-architrino-archive-mining-report.md), [candidate gaps](archive-analysis/legacy-architrino-candidate-gaps.md), and [idea clusters](archive-analysis/legacy-architrino-idea-clusters.md).
-- This archive-level pass did not mark posts mined, did not update WordPress tags, and did not promote material into `content/markdown/aaa`.
+- This archive-level pass did not mark posts mined, did not update durable completion status, and did not promote material into `content/markdown/aaa`.
 
 ## Comparison Packets
 

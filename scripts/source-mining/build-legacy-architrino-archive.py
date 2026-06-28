@@ -3,7 +3,7 @@
 
 The script retrieves public WordPress posts, writes full cleaned text only under
 /tmp, then writes compact source-mining reports under reference/priorities.
-It is intentionally deterministic: topic tags, duplicate grouping, and corpus
+It is intentionally deterministic: topic labels, duplicate grouping, and corpus
 coverage scores are heuristics for triage, not canonization.
 """
 
@@ -1323,7 +1323,7 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
     lines = [
         "# Legacy Architrino Archive Mining Report",
         "",
-        "This is an archive-level source-mining triage report. It does not mark individual posts mined, does not update WordPress tags, and does not promote claims into the reader-facing corpus. Full cleaned post text is kept only in `/tmp` artifacts.",
+        "This is an archive-level source-mining triage report. It does not mark individual posts mined, does not update durable completion status, and does not promote claims into the reader-facing corpus. Full cleaned post text is kept only in `/tmp` artifacts. Website `MINED` markers, if present in legacy HTML or metadata, are retained only as non-authoritative audit metadata.",
         "",
         "## Source Map",
         "",
@@ -1351,9 +1351,8 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
         f"| Posts | {len(posts)} |",
         f"| Complete in durable table | {status_counts.get('complete', 0)} |",
         f"| Open in durable table | {status_counts.get('open', 0)} |",
-        f"| Skip-mined in durable table | {status_counts.get('skip-mined', 0)} |",
         f"| Unknown table status | {status_counts.get('unknown', 0)} |",
-        f"| Posts with visible `MINED` marker in API HTML/tags | {sum(1 for post in posts if post.mined_marker_present)} |",
+        f"| Posts with visible legacy `MINED` marker in API HTML or metadata, non-authoritative | {sum(1 for post in posts if post.mined_marker_present)} |",
         f"| Cards carrying legacy terminology flags | {flag_counts.get('legacy-terminology', 0)} |",
         f"| Cards carrying speculation markers | {flag_counts.get('speculation-marker', 0)} |",
         f"| Cards carrying polemic markers | {flag_counts.get('polemic-marker', 0)} |",

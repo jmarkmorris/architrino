@@ -262,7 +262,7 @@ https://architrino.wordpress.com/2022/04/16/nonsense-pop-woo-physics/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/08/jefimenko-lienard-wiechert/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/06/who-let-the-frames-out/
 https://architrino.wordpress.com/2022/03/24/j-mark-morris-aita/
-# SKIP MINED 2026-06-27 https://architrino.wordpress.com/2022/03/20/big-picture-of-point-charge-theory/
+https://architrino.wordpress.com/2022/03/20/big-picture-of-point-charge-theory/
 https://architrino.wordpress.com/2022/03/19/conversations-in-the-aether/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/30/dear-keepers-of-the-scientific-method/
 https://architrino.wordpress.com/2022/01/28/sometimes-i-laugh-sometimes-i-cry-sometimes-i-do-both/
@@ -326,7 +326,7 @@ https://architrino.wordpress.com/2020/07/19/lawrence-krauss-5-minute-physics-vs-
 https://architrino.wordpress.com/2020/07/18/lawrence-krauss-freemans-90th/
 https://architrino.wordpress.com/2020/07/18/lawrence-krauss-5-minute-physics-vs-npqg-episodes-4-7/
 https://architrino.wordpress.com/2020/07/18/lawrence-krauss-5-minute-physics-vs-npqg-episodes-24-thru-25/
-# SKIP MINED 2026-06-27 https://architrino.wordpress.com/2020/07/17/paradoxes-are-errors-in-thinking/
+https://architrino.wordpress.com/2020/07/17/paradoxes-are-errors-in-thinking/
 https://architrino.wordpress.com/2020/07/11/dr-sabine-hossenfelder-theory-of-everything/
 https://architrino.wordpress.com/2020/07/09/npqg-in-wonderland/
 https://architrino.wordpress.com/2020/07/03/dr-alexander-unzicker/
@@ -376,4 +376,4 @@ https://architrino.wordpress.com/2026/06/27/unfinished-notes-on-temperature/
 https://architrino.wordpress.com/2026/06/27/unfinished-notes-on-bonded-vortices/
 https://architrino.wordpress.com/2026/06/27/unfinished-notes-and-math-ramblings/
 https://architrino.wordpress.com/2026/06/27/ai-and-closure/
-https://architrino.wordpress.com/2023/04/04/unfinished-notes-on-potential-energy-kinetic-energy-and-the-virial-theorem/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/04/04/unfinished-notes-on-potential-energy-kinetic-energy-and-the-virial-theorem/

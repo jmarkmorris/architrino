@@ -3,9 +3,9 @@
 - Sources: [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), [2026 archive](https://architrino.wordpress.com/2026/), and the public WordPress API.
 - Crawled: 2026-06-27
 - Total published posts discovered: 379
-- Complete: 118
-- Already `MINED` on WordPress but not in local mining history: 2
-- Open for mining: 259
+- Complete: 119
+- Open for mining: 260
+- Completion authority: local source-mining history plus this durable table and the durable queue; WordPress tags are not used.
 - Added to durable queue in this crawl: 5
 - Existing queue entries not present in library crawl: 0
 - Newly visible posts in this refresh: 4 from 2026 plus 1 newly visible 2023 draft.
@@ -70,7 +70,7 @@
 | 2023-04-23 | Inflationary Epoch : Noether Cores Form | open | [link](https://architrino.wordpress.com/2023/04/23/inflationary-epoch-noether-cores-form/) |
 | 2023-04-23 | Grand Unification Epoch: Binaries Dominate | open | [link](https://architrino.wordpress.com/2023/04/23/grand-unification-epoch-dipoles-dominate/) |
 | 2023-04-22 | Planck Epoch : Peak Density of Energetic Point Potentials | open | [link](https://architrino.wordpress.com/2023/04/22/planck-epoch-peak-density-of-energetic-point-charges/) |
-| 2023-04-04 | Unfinished Notes on Potential Energy, Kinetic Energy, and the Virial Theorem | open | [link](https://architrino.wordpress.com/2023/04/04/unfinished-notes-on-potential-energy-kinetic-energy-and-the-virial-theorem/) |
+| 2023-04-04 | Unfinished Notes on Potential Energy, Kinetic Energy, and the Virial Theorem | complete | [link](https://architrino.wordpress.com/2023/04/04/unfinished-notes-on-potential-energy-kinetic-energy-and-the-virial-theorem/) |
 | 2023-04-04 | NPQG Social Media Journey | open | [link](https://architrino.wordpress.com/2023/04/04/npqg-social-media-journey/) |
 | 2023-03-14 | Maya Benowitz : On the Origins of the Universe and the Nature of the Cosmological Singularity | open | [link](https://architrino.wordpress.com/2023/03/14/maya-benowitz-on-the-origins-of-the-universe-and-the-nature-of-the-cosmological-singularity/) |
 | 2023-03-14 | Do Black Holes Emit Spacetime Aether? | open | [link](https://architrino.wordpress.com/2023/03/14/do-black-holes-emit-spacetime-aether/) |
@@ -152,7 +152,7 @@
 | 2022-03-22 | Sara Walker : Life : Lex Fridman | open | [link](https://architrino.wordpress.com/2022/03/22/sara-walker-life-lex-fridman/) |
 | 2022-03-20 | Spin Networks and Foams | open | [link](https://architrino.wordpress.com/2022/03/20/spin-networks-and-foams/) |
 | 2022-03-20 | Ontological Transformation of the Big Bang | open | [link](https://architrino.wordpress.com/2022/03/20/ontological-transformation-of-the-big-bang/) |
-| 2022-03-20 | Big Picture of Point Charge Theory | skip-mined | [link](https://architrino.wordpress.com/2022/03/20/big-picture-of-point-charge-theory/) |
+| 2022-03-20 | Big Picture of Point Charge Theory | open | [link](https://architrino.wordpress.com/2022/03/20/big-picture-of-point-charge-theory/) |
 | 2022-03-19 | Conversations in the Aether | open | [link](https://architrino.wordpress.com/2022/03/19/conversations-in-the-aether/) |
 | 2022-03-18 | Mapping to Spinors | open | [link](https://architrino.wordpress.com/2022/03/18/everything-spins/) |
 | 2022-03-18 | Dynamical Eight Ball | complete | [link](https://architrino.wordpress.com/2022/03/18/dynamical-eight-ball/) |
@@ -299,7 +299,7 @@
 | 2020-07-18 | Lawrence Krauss : Freeman’s 90th | open | [link](https://architrino.wordpress.com/2020/07/18/lawrence-krauss-freemans-90th/) |
 | 2020-07-18 | Lawrence Krauss : 5 Minute Physics : Episodes 4 thru 7 | open | [link](https://architrino.wordpress.com/2020/07/18/lawrence-krauss-5-minute-physics-vs-npqg-episodes-4-7/) |
 | 2020-07-18 | Lawrence Krauss : 5 Minute Physics : Episodes 24 thru 25 | open | [link](https://architrino.wordpress.com/2020/07/18/lawrence-krauss-5-minute-physics-vs-npqg-episodes-24-thru-25/) |
-| 2020-07-17 | Paradoxes Are Errors in Thinking | skip-mined | [link](https://architrino.wordpress.com/2020/07/17/paradoxes-are-errors-in-thinking/) |
+| 2020-07-17 | Paradoxes Are Errors in Thinking | open | [link](https://architrino.wordpress.com/2020/07/17/paradoxes-are-errors-in-thinking/) |
 | 2020-07-17 | Can Planck Cores Spin? | open | [link](https://architrino.wordpress.com/2020/07/17/can-planck-cores-spin/) |
 | 2020-07-15 | T-3, T-2, T-1, NPQG Liftoff!? | complete | [link](https://architrino.wordpress.com/2020/07/15/t-3-2-1-npqg-liftoff/) |
 | 2020-07-14 | Mapping Fine Structure | complete | [link](https://architrino.wordpress.com/2020/07/14/fine-structure-is-both-a-variable-and-constant/) |
