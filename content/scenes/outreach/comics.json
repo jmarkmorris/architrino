@@ -22,6 +22,22 @@
         "scenePath": "content/scenes/outreach/comics/group_project_assumption.json"
       },
       {
+        "nodeId": "citation_needed",
+        "scenePath": "content/scenes/outreach/comics/citation_needed.json"
+      },
+      {
+        "nodeId": "alchemy_remake",
+        "scenePath": "content/scenes/outreach/comics/alchemy_remake.json"
+      },
+      {
+        "nodeId": "smbh_remake",
+        "scenePath": "content/scenes/outreach/comics/smbh_remake.json"
+      },
+      {
+        "nodeId": "jets_remake",
+        "scenePath": "content/scenes/outreach/comics/jets_remake.json"
+      },
+      {
         "nodeId": "new_theory_same_budget",
         "scenePath": "content/scenes/outreach/comics/new_theory_same_budget.json"
       },
@@ -36,6 +52,10 @@
       {
         "nodeId": "first_page_problem",
         "scenePath": "content/scenes/outreach/comics/first_page_problem.json"
+      },
+      {
+        "nodeId": "birthday_cake_observer_era",
+        "scenePath": "content/scenes/outreach/comics/birthday_cake_observer_era.json"
       },
       {
         "nodeId": "curvefit_remake",
@@ -65,6 +85,42 @@
       "labelTitle": "Group Project Assumption",
       "labelBadgeImage": "content/assets/images/comics/thumbnails/group-project-assumption-thumb.png",
       "labelBadgeAlt": "Group Project Assumption thumbnail"
+    },
+    {
+      "id": "citation_needed",
+      "title": "Citation Needed",
+      "radius": 1.8,
+      "color": "#4e647c",
+      "labelTitle": "Citation Needed",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/citation-needed-thumb.png",
+      "labelBadgeAlt": "Citation Needed thumbnail"
+    },
+    {
+      "id": "alchemy_remake",
+      "title": "Old Alchemy, New Apparatus",
+      "radius": 1.8,
+      "color": "#80623c",
+      "labelTitle": "Old Alchemy, New Apparatus",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/alchemy-remake-thumb.png",
+      "labelBadgeAlt": "Old Alchemy, New Apparatus thumbnail"
+    },
+    {
+      "id": "smbh_remake",
+      "title": "Candidate, Not A Throne",
+      "radius": 1.8,
+      "color": "#5f5b77",
+      "labelTitle": "Candidate, Not A Throne",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/smbh-remake-thumb.png",
+      "labelBadgeAlt": "Candidate, Not A Throne thumbnail"
+    },
+    {
+      "id": "jets_remake",
+      "title": "What Counts As Evidence?",
+      "radius": 1.8,
+      "color": "#3e6672",
+      "labelTitle": "What Counts As Evidence?",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/jets-remake-thumb.png",
+      "labelBadgeAlt": "What Counts As Evidence? thumbnail"
     },
     {
       "id": "new_theory_same_budget",
@@ -101,6 +157,15 @@
       "labelTitle": "First Page Problem",
       "labelBadgeImage": "content/assets/images/comics/thumbnails/first-page-problem-thumb.png",
       "labelBadgeAlt": "First Page Problem thumbnail"
+    },
+    {
+      "id": "birthday_cake_observer_era",
+      "title": "Birthday Cake For The Observer Era",
+      "radius": 1.8,
+      "color": "#7a5f3d",
+      "labelTitle": "Birthday Cake For The Observer Era",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/birthday-cake-observer-era-thumb.png",
+      "labelBadgeAlt": "Birthday Cake For The Observer Era thumbnail"
     },
     {
       "id": "curvefit_remake",

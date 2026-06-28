@@ -45,6 +45,26 @@ const DERIVATION_PROOF_TARGET =
   "source_packet_acceptance_rule_derivation_proof_for_live_same_packet_separator_aggregate_family";
 const EXTERNAL_SCHEMA_ACCEPTANCE_CONTRACT_REF =
   `${CERT_DIR}/external_proof_grade_derivation_schema_acceptance_contract.md`;
+const EXTERNAL_SCHEMA_PROVENANCE_PREDICATE_FIELDS = [
+  "external_schema_provenance.provenance_class",
+  "external_schema_provenance.source_ref",
+  "external_schema_provenance.acceptance_contract_ref",
+  "external_schema_provenance.received_for_schema_validation",
+  "external_schema_provenance.authored_inside_local_proof_program_pool",
+  "external_schema_provenance.derived_from_local_certificate_json",
+  "external_schema_provenance.self_authored_placeholder",
+  "external_schema_provenance.local_path_treated_as_external_evidence",
+];
+const PROOF_GRADE_SCHEMA_TRACEABILITY_REQUIRED = [
+  "source_identity",
+  "source_section_or_equation_refs",
+  "sigma_hf_01_source_data_record_lock",
+  "same_record_rule_kernel_obligation_binding",
+  "same_record_payload_target_binding",
+  "same_record_schema_statement",
+  "non_reinterpretation_guard",
+  "negative_control_or_decoy_rejection",
+];
 const FORBIDDEN_SCHEMA_REINTERPRETATIONS = [
   "rule_kernel_payload_proof_grade_derivation_schema_external_input_obligation_packet_as_proof_grade_derivation_schema",
   "rule_kernel_payload_proof_grade_derivation_schema_current_pool_absence_classifier_as_proof_grade_derivation_schema",
@@ -763,6 +783,10 @@ test("Sigma_hf_01 external provenance source audit classifies current sources fa
   assert.ok(summary.local_decoy_records >= 1);
   assert.ok(summary.source_data_partial_records >= 1);
   assert.ok(summary.external_looking_label_records >= 1);
+  assert.ok(summary.actual_external_ref_records >= 3);
+  assert.equal(summary.source_lead_to_schema_fail_closed_packets, 3);
+  assert.equal(summary.source_ref_records_with_all_schema_predicates_present, 0);
+  assert.equal(summary.source_ref_records_with_same_record_binding_complete, 0);
   assert.equal(summary.accepted_external_provenance_records, 0);
   assert.equal(summary.schema_validation_intake_candidates_found, 0);
   assert.equal(summary.candidate_external_schema_received_records, 0);
@@ -776,6 +800,95 @@ test("Sigma_hf_01 external provenance source audit classifies current sources fa
   assert.equal(packet.authorization_lock.branch_chart_authorized, false);
   assert.equal(packet.next_certificate_handoff.decision_required, true);
   assert.equal(packet.next_certificate_handoff.mechanical_continuation_available, false);
+  assert.deepEqual(
+    packet.external_ref_source_lead_records.map((record) => record.basename).sort(),
+    [
+      "sigma-hf-01-external-schema-source-lead-audit-2026-06-28.md",
+      "sigma-hf-01-sieber-engelborghs-mined-schema-packet-2026-06-28.md",
+      "source-mining-history.md",
+    ],
+  );
+  assert.equal(packet.source_lead_to_schema_fail_closed_packets.length, 3);
+  for (const sourceLeadPacket of packet.source_lead_to_schema_fail_closed_packets) {
+    assert.equal(sourceLeadPacket.accepted_external_provenance, false);
+    assert.equal(sourceLeadPacket.accepted_as_external_schema_candidate, false);
+    assert.equal(sourceLeadPacket.candidate_external_schema_received, false);
+    assert.equal(sourceLeadPacket.schema_validation_intake_authorized, false);
+    assert.deepEqual(
+      sourceLeadPacket.failed_external_schema_provenance_predicate_fields,
+      EXTERNAL_SCHEMA_PROVENANCE_PREDICATE_FIELDS,
+    );
+    assert.deepEqual(
+      sourceLeadPacket.external_schema_provenance_predicate_map.map((field) => [
+        field.field,
+        field.accepted,
+      ]),
+      EXTERNAL_SCHEMA_PROVENANCE_PREDICATE_FIELDS.map((field) => [field, false]),
+    );
+    assert.deepEqual(sourceLeadPacket.specific_missing_schema_predicate_fields, [
+      "compatible_schema_role_lock",
+      "compatible_proof_object_role_lock",
+      "derivation_proof_target_lock",
+      "derivation_proof_source_data_record_lock",
+      "rule_kernel_obligation_binding",
+      "rule_kernel_derivation_payload_target_binding",
+      "proof_grade_derivation_schema_statement",
+      "non_reinterpretation_guard",
+    ]);
+    assert.deepEqual(
+      sourceLeadPacket.same_record_binding_gaps.map((gap) => [gap.binding, gap.status]),
+      [
+        ["source_data_lock_to_rule_kernel_obligation_binding", "missing"],
+        ["source_data_lock_to_payload_target_binding", "missing"],
+        ["payload_target_to_schema_statement", "missing"],
+        ["source_section_or_equation_refs_to_schema_statement", "missing"],
+      ],
+    );
+    assert.deepEqual(
+      sourceLeadPacket.specific_missing_traceability_fields,
+      PROOF_GRADE_SCHEMA_TRACEABILITY_REQUIRED,
+    );
+    assert.deepEqual(
+      sourceLeadPacket.traceability_field_map.map((field) => [
+        field.field,
+        field.accepted,
+      ]),
+      PROOF_GRADE_SCHEMA_TRACEABILITY_REQUIRED.map((field) => [field, false]),
+    );
+    assert.equal(
+      sourceLeadPacket.schema_predicate_field_map.every((field) => field.accepted === false),
+      true,
+    );
+    assert.ok(sourceLeadPacket.non_reinterpretation_rejection_reasons.length >= 2);
+    assert.match(
+      sourceLeadPacket.non_reinterpretation_rejection_reasons.join(" "),
+      /not .*schema object|not a candidate schema object|not a non-local proof-grade derivation schema object/i,
+    );
+  }
+  const minedSchemaPacket = packet.source_lead_to_schema_fail_closed_packets.find(
+    (entry) =>
+      entry.source_ref_record_basename ===
+      "sigma-hf-01-sieber-engelborghs-mined-schema-packet-2026-06-28.md",
+  );
+  assert.ok(minedSchemaPacket);
+  const minedFieldStatus = Object.fromEntries(
+    minedSchemaPacket.schema_predicate_field_map.map((field) => [
+      field.field,
+      field.source_lead_status,
+    ]),
+  );
+  assert.match(
+    minedFieldStatus.rule_kernel_obligation_binding,
+    /candidate source structure drafted/,
+  );
+  assert.match(
+    minedFieldStatus.rule_kernel_derivation_payload_target_binding,
+    /candidate finite residual\/root payload target drafted/,
+  );
+  assert.match(
+    minedFieldStatus.proof_grade_derivation_schema_statement,
+    /candidate hypotheses \/ inference \/ conclusion language drafted/,
+  );
   assert.equal(
     packet.focused_source_records.some(
       (record) => record.category_flags.field_complete_without_provenance === true,
@@ -864,6 +977,19 @@ test("Sigma_hf_01 intake CLI writes external provenance source audit", () => {
   assert.ok(packet.summary.local_decoy_records >= 1);
   assert.ok(packet.summary.source_data_partial_records >= 1);
   assert.ok(packet.summary.external_looking_label_records >= 1);
+  assert.ok(packet.summary.actual_external_ref_records >= 3);
+  assert.equal(packet.summary.source_lead_to_schema_fail_closed_packets, 3);
+  assert.equal(packet.summary.source_ref_records_with_all_schema_predicates_present, 0);
+  assert.equal(packet.summary.source_ref_records_with_same_record_binding_complete, 0);
+  assert.equal(packet.source_lead_to_schema_fail_closed_packets.length, 3);
+  assert.equal(
+    packet.source_lead_to_schema_fail_closed_packets.every(
+      (entry) =>
+        entry.accepted_as_external_schema_candidate === false &&
+        entry.same_record_binding_gaps.every((gap) => gap.status === "missing"),
+    ),
+    true,
+  );
   assert.equal(packet.authorization_lock.row_consumption, false);
   assert.equal(packet.authorization_lock.branch_chart_authorized, false);
 });

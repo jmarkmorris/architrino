@@ -361,16 +361,18 @@ A classroom has been staged like a small movie theater. A poster reads `Opening 
 
 ### Bubble Text
 
-- Student speech bubble, rounded with smooth tapered tail: `The ticket says START.`
-- Mia speech bubble, rounded with smooth tapered tail: `The opening scene can be real without being the theater's construction date.`
-- Sophia thought bubble, cloud-like with dot trail: `Backstage wants a provenance ledger.`
+- Student speech bubble, rounded with smooth tapered tail: `So the first scene is the universe's birth certificate?`
+- Mia speech bubble, rounded with smooth tapered tail: `No. It's where the camera finally has footage.`
+- Sophia thought bubble, cloud-like with dot trail: `Backstage is older than the trailer.`
 
 ### Background Text
 
-- Poster: `hot dense phase`.
-- Ticket booth: `Lambda-CDM timeline`.
+- Poster: `Opening scene: hot dense phase`.
+- Ticket booth or marquee: `Lambda-CDM timeline`.
 - Backstage labels: `source history`, `thermalization`, `transport`, `decoupling`.
-- Sticky note: `CMB credits are not a building permit.`
+- Board note: `Start of movie != start of theater`.
+- Popcorn label: `Evidence popcorn`.
+- Small note: `effective description`.
 
 ## 14. Birthday Cake For The Observer Era
 
@@ -419,7 +421,7 @@ First rough visual prototypes:
 Second rough visual prototypes:
 
 - [New Theory, Same Budget](assets/new-theory-same-budget-prototype.png)
-- [Citation Needed](assets/citation-needed-prototype-v2-no-just.png)
+- [Citation Needed](assets/citation-needed-prototype-v2-no-just.png) - selected keeper direction.
 - [Show The Residuals](assets/show-the-residuals-prototype.png)
 - [Office Hours For A Claim](assets/office-hours-for-a-claim-prototype.png)
 
@@ -427,15 +429,14 @@ Cosmology comparison rough visual prototypes:
 
 - [First Page Problem](assets/first-page-problem-prototype-v4-snail-gaze.png)
 - [The Observable Edge Receipt](assets/observable-edge-receipt-prototype.png)
-- [Opening Scene, Not Building Permit](assets/opening-scene-not-building-permit-prototype.png)
-- [Birthday Cake For The Observer Era](assets/birthday-cake-observer-era-prototype.png)
+- [Opening Scene, Not Building Permit v2, First Footage](assets/opening-scene-not-building-permit-prototype-v2-first-footage.png) - revised humor candidate; shifts the joke from building-permit wording to first-scene versus first-footage wording.
+- [Birthday Cake For The Observer Era](assets/birthday-cake-observer-era-prototype.png) - selected keeper direction.
 
 Prior-comic remake rough visual prototypes:
 
 - [Curvefit Remake](assets/curvefit-remake-prototype.png)
-- [Acknowledgements Remake](assets/acknowledgements-remake-prototype.png)
-- [Acknowledgements Remake v2, Word Limit](assets/acknowledgements-remake-prototype-v2-word-limit.png) - preferred ack candidate; replaces the Reviewer 2 thought bubble with `The word limit just left the room.`
+- [Acknowledgements Remake v3, Architrinos Room](assets/acknowledgements-remake-prototype-v3-architrinos-room.png) - preferred ack candidate; uses the architrinos-in-this-room Sophia bubble, replaces the banner words with red and blue architrinos, and keeps the slide list inside the screen.
 - [We Need To Talk Remake](assets/we-need-to-talk-remake-prototype.png) - selected keeper direction.
-- [Alchemy Remake](assets/alchemy-remake-prototype.png)
-- [Jets Remake](assets/jets-remake-prototype.png)
-- [SMBH Remake](assets/smbh-remake-prototype.png)
+- [Alchemy Remake](assets/alchemy-remake-prototype.png) - selected keeper direction.
+- [Jets Remake](assets/jets-remake-prototype.png) - selected keeper direction.
+- [SMBH Remake](assets/smbh-remake-prototype.png) - selected keeper direction.

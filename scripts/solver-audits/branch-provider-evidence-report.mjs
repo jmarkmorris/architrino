@@ -18,8 +18,86 @@ const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_INTERVAL_READOUT_SCHEMA =
   "branch_provider_candidate_source_map_provider_object_branch_interval_readout/v0";
 const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_INTERVAL_TARGET_SCHEMA =
   "branch_provider_candidate_source_map_provider_object_branch_interval_target/v0";
+const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_INTERVAL_SOURCE_FIELD_AUDIT_SCHEMA =
+  "branch_provider_candidate_source_map_provider_object_branch_interval_source_field_availability_audit/v0";
+const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_AVAILABILITY_SCHEMA =
+  "branch_provider_candidate_source_map_provider_object_branch_split_map_availability/v0";
+const PRODUCER_SIDE_SAME_DOMAIN_BRANCH_ROW_EVIDENCE_TARGET_SCHEMA =
+  "branch_provider_candidate_producer_side_same_domain_branch_row_evidence_target/v0";
 
 const ACCEPTED_SOURCE_STATUS = "accepted_non_fixture_source";
+const SOURCE_MAP_PROVIDER_OBJECT_SOURCE_CELL_IDS = Object.freeze([
+  "speed.0.first-y",
+  "speed.1.first-y",
+  "speed.2.first-y",
+  "speed.3.first-y",
+  "speed.4.first-y",
+]);
+const SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_H_INDEXES = Object.freeze([37, 36, 35]);
+const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_LABELS = Object.freeze(["-", "+"]);
+const SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS = Object.freeze(
+  SOURCE_MAP_PROVIDER_OBJECT_SOURCE_CELL_IDS.flatMap((terminalGraphCellId) =>
+    SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_H_INDEXES.map((terminalHIndex) =>
+      Object.freeze({
+        terminal_row_id: `${terminalGraphCellId}:h${terminalHIndex}`,
+        terminal_graph_cell_id: terminalGraphCellId,
+        terminal_h_index: terminalHIndex,
+        source_y_order: 44,
+        required_xi_derivative_order: 4,
+      })
+    )
+  )
+);
+const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS = Object.freeze(
+  SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.flatMap((terminalRow) =>
+    SOURCE_MAP_PROVIDER_OBJECT_BRANCH_LABELS.map((branch) =>
+      Object.freeze({
+        branch_row_id: `${terminalRow.terminal_row_id}:P_${branch}`,
+        terminal_row_id: terminalRow.terminal_row_id,
+        terminal_graph_cell_id: terminalRow.terminal_graph_cell_id,
+        terminal_h_index: terminalRow.terminal_h_index,
+        branch,
+        provider_object_branch_target: branch === "-" ? "P_-" : "P_+",
+      })
+    )
+  )
+);
+const SOURCE_MAP_PROVIDER_OBJECT_REQUIRED_IDENTITY_KINDS = Object.freeze([
+  "same-domain-branch-bearing-P_b-map",
+  "branch_projection_or_alpha_map",
+  "pushforward_operator_ref",
+  "normalization_identity_ref",
+]);
+const SOURCE_MAP_PROVIDER_OBJECT_REQUIRED_INTERVAL_PAYLOADS = Object.freeze([
+  "source_map_provider_branch_intervals",
+  "provider_object_branch_intervals",
+]);
+const SOURCE_MAP_PROVIDER_OBJECT_REJECTED_CANDIDATE_SOURCE_KINDS = Object.freeze([
+  "lambda-terminal-witness-branch-interval",
+  "aggregate-P-only-provider-row",
+  "variable-owned-alpha-candidate",
+  "row-local-expression-branch-feed",
+]);
+const SOURCE_MAP_PROVIDER_OBJECT_SAME_RECORD_BINDING_FIELDS = Object.freeze([
+  "same_domain_record_ref",
+  "terminal_graph_cell_id",
+  "terminal_h_index",
+  "branch",
+  "source_y_order",
+  "required_xi_derivative_order",
+  "source_map_provider_branch_intervals.source_map_provider_object_branch_interval",
+  "provider_object_branch_intervals.provider_object_branch_interval",
+  "same-domain-branch-bearing-P_b-map",
+  "branch_projection_or_alpha_map",
+  "pushforward_operator_ref",
+  "normalization_identity_ref",
+]);
+const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_SOURCE_FIELD =
+  "provider_object_branch_antisymmetric_equation_available_terminal_row_count";
+const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_EVIDENCE_OBJECT =
+  "same-domain provider-object branch antisymmetric equation A_P=P_- - P_+ or explicit expression-level P_- / P_+ branch rows on all 15 terminal rows";
+const SOURCE_MAP_PROVIDER_OBJECT_AGGREGATE_ERASURE_NEGATIVE_CONTROL_REF =
+  "aggregate-P-provider-probe-born-aggregate-only";
 
 const COMMON_REQUIRED_FIELDS = [
   {
@@ -285,6 +363,820 @@ function sameStringSet(left, right) {
   );
 }
 
+function sameJson(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function sourceMapProviderObjectTerminalRowIds() {
+  return SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.map(
+    (row) => row.terminal_row_id
+  );
+}
+
+function sourceMapProviderObjectBranchRowIds() {
+  return SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.map((row) => row.branch_row_id);
+}
+
+function sourceMapProviderObjectTerminalRowsForIds(rowIds) {
+  if (!Array.isArray(rowIds)) {
+    return null;
+  }
+  const idSet = new Set(rowIds);
+  return SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.filter((row) =>
+    idSet.has(row.terminal_row_id)
+  );
+}
+
+function sourceMapProviderObjectBranchRowsForIds(rowIds) {
+  if (!Array.isArray(rowIds)) {
+    return null;
+  }
+  const idSet = new Set(rowIds);
+  return SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.filter((row) =>
+    idSet.has(row.branch_row_id)
+  );
+}
+
+function sourceMapProviderObjectBranchRowIdsForTerminalRowIds(terminalRowIds) {
+  if (!Array.isArray(terminalRowIds)) {
+    return null;
+  }
+  const terminalRowIdSet = new Set(terminalRowIds);
+  return SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.filter((row) =>
+    terminalRowIdSet.has(row.terminal_row_id)
+  ).map((row) => row.branch_row_id);
+}
+
+function finiteNonnegativeNumber(value) {
+  return Number.isFinite(Number(value)) && Number(value) >= 0;
+}
+
+function sourceFieldBoolean(readout, fieldPaths) {
+  const entries = fieldPaths.map((fieldPath) => ({
+    field: fieldPath,
+    value: getPath(readout, fieldPath),
+  }));
+  const emitted = entries.find((entry) => typeof entry.value === "boolean");
+  return {
+    fields: fieldPaths,
+    emitted_by_provider_readout: Boolean(emitted),
+    present: emitted?.value === true,
+    complete: emitted?.value === true,
+  };
+}
+
+function sourceMapProviderObjectDiagnosticSources(
+  readout,
+  sourceProvenanceRefinement = {}
+) {
+  return [
+    {
+      surface: "source-map-provider-object-branch-interval-readout",
+      object: readout,
+    },
+    {
+      surface:
+        "terminal-expression-level-source-map-provider-object-branch-producer",
+      object:
+        readout?.terminal_expression_level_source_map_provider_object_branch_producer ??
+        sourceProvenanceRefinement
+          ?.terminal_expression_level_source_map_provider_object_branch_producer,
+    },
+    {
+      surface:
+        "terminal-expression-level-source-map-provider-object-branch-split-map-underdetermination",
+      object:
+        readout
+          ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination ??
+        sourceProvenanceRefinement
+          ?.terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination,
+    },
+    {
+      surface:
+        "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor",
+      object:
+        readout
+          ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor ??
+        sourceProvenanceRefinement
+          ?.terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor,
+    },
+    {
+      surface: "terminal-row-provider-object-replay",
+      object:
+        readout?.terminal_row_provider_object_replay ??
+        sourceProvenanceRefinement?.terminal_row_provider_object_replay,
+    },
+    {
+      surface:
+        "terminal-source-covariance-provider-object-branch-residual-extractor",
+      object:
+        readout
+          ?.terminal_source_covariance_provider_object_branch_residual_extractor ??
+        sourceProvenanceRefinement
+          ?.terminal_source_covariance_provider_object_branch_residual_extractor,
+    },
+    {
+      surface: "source-provenance-refinement",
+      object: sourceProvenanceRefinement,
+    },
+  ].filter((source) => isObject(source.object));
+}
+
+function sourceFieldCountFromSources(sources, fieldPaths, expectedCount) {
+  const entries = sources.flatMap((source) =>
+    fieldPaths.map((fieldPath) => ({
+      surface: source.surface,
+      field: fieldPath,
+      value: getPath(source.object, fieldPath),
+    }))
+  );
+  const emitted = entries.find((entry) => finiteNonnegativeNumber(entry.value));
+  const observedCount = emitted ? Number(emitted.value) : 0;
+  return {
+    fields: fieldPaths,
+    emitted_by_provider_readout: Boolean(emitted),
+    emitted_surface: emitted?.surface ?? null,
+    emitted_field: emitted?.field ?? null,
+    observed_count: observedCount,
+    required_count: expectedCount,
+    present: observedCount > 0,
+    complete: observedCount === expectedCount,
+  };
+}
+
+function sourceFieldNumberFromSources(sources, fieldPaths) {
+  const entries = sources.flatMap((source) =>
+    fieldPaths.map((fieldPath) => ({
+      surface: source.surface,
+      field: fieldPath,
+      value: getPath(source.object, fieldPath),
+    }))
+  );
+  const emitted = entries.find((entry) => finiteNonnegativeNumber(entry.value));
+  return {
+    fields: fieldPaths,
+    emitted_by_provider_readout: Boolean(emitted),
+    emitted_surface: emitted?.surface ?? null,
+    emitted_field: emitted?.field ?? null,
+    observed_value: emitted ? Number(emitted.value) : null,
+  };
+}
+
+function sourceFieldStringArrayFromSources(sources, fieldPaths) {
+  const entries = sources.flatMap((source) =>
+    fieldPaths.map((fieldPath) => ({
+      surface: source.surface,
+      field: fieldPath,
+      value: getPath(source.object, fieldPath),
+    }))
+  );
+  const emitted = entries.find((entry) => Array.isArray(entry.value));
+  return {
+    fields: fieldPaths,
+    emitted_by_provider_readout: Boolean(emitted),
+    emitted_surface: emitted?.surface ?? null,
+    emitted_field: emitted?.field ?? null,
+    row_ids: emitted
+      ? unique(
+          emitted.value.filter(
+            (value) => typeof value === "string" && value.trim() !== ""
+          )
+        )
+      : null,
+  };
+}
+
+function requiredRowIdSubset(requiredIds, rowIds) {
+  if (!Array.isArray(rowIds)) {
+    return null;
+  }
+  const requiredIdSet = new Set(requiredIds);
+  return unique(rowIds).filter((rowId) => requiredIdSet.has(rowId));
+}
+
+function deriveAvailableRequiredRowIds(requiredIds, rowIdReadout, observedCount) {
+  const emittedRowIds = requiredRowIdSubset(requiredIds, rowIdReadout.row_ids);
+  if (emittedRowIds !== null) {
+    return emittedRowIds;
+  }
+  if (observedCount === 0) {
+    return [];
+  }
+  return null;
+}
+
+function deriveMissingRequiredRowIds(
+  requiredIds,
+  missingRowIdReadout,
+  availableRowIds,
+  observedCount
+) {
+  const emittedMissingRowIds = requiredRowIdSubset(
+    requiredIds,
+    missingRowIdReadout.row_ids
+  );
+  if (emittedMissingRowIds !== null) {
+    return emittedMissingRowIds;
+  }
+  if (Array.isArray(availableRowIds)) {
+    const availableRowIdSet = new Set(availableRowIds);
+    return requiredIds.filter((rowId) => !availableRowIdSet.has(rowId));
+  }
+  if (observedCount === 0) {
+    return requiredIds;
+  }
+  return null;
+}
+
+function buildSourceMapProviderObjectBranchSplitMapAvailability(
+  readout,
+  sourceProvenanceRefinement = {}
+) {
+  const sources = sourceMapProviderObjectDiagnosticSources(
+    readout,
+    sourceProvenanceRefinement
+  );
+  const branchSplitMap = sourceFieldCountFromSources(
+    sources,
+    ["source_map_provider_object_branch_split_map_available_terminal_row_count"],
+    SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length
+  );
+  const branchIntervals = sourceFieldCountFromSources(
+    sources,
+    ["source_map_provider_object_branch_interval_available_branch_row_count"],
+    SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length
+  );
+  const antisymmetricEquation = sourceFieldCountFromSources(
+    sources,
+    [
+      SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_SOURCE_FIELD,
+      "terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor.provider_object_branch_antisymmetric_equation_available_terminal_row_count",
+    ],
+    SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length
+  );
+  const explicitBranchRows = sourceFieldCountFromSources(
+    sources,
+    ["explicit_provider_object_branch_row_count"],
+    SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length
+  );
+  const branchAttributedSourceTerms = sourceFieldCountFromSources(
+    sources,
+    ["source_term_provider_branch_attributed_term_row_count"],
+    45
+  );
+  const antisymmetricAvailableTerminalRowIdsReadout =
+    sourceFieldStringArrayFromSources(sources, [
+      "provider_object_branch_antisymmetric_equation_available_terminal_row_ids",
+      "terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor.provider_object_branch_antisymmetric_equation_available_terminal_row_ids",
+    ]);
+  const antisymmetricMissingTerminalRowIdsReadout =
+    sourceFieldStringArrayFromSources(sources, [
+      "provider_object_branch_antisymmetric_equation_missing_terminal_row_ids",
+      "terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor.provider_object_branch_antisymmetric_equation_missing_terminal_row_ids",
+    ]);
+  const antisymmetricAvailableBranchRowIdsReadout =
+    sourceFieldStringArrayFromSources(sources, [
+      "provider_object_branch_antisymmetric_equation_available_branch_row_ids",
+      "terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor.provider_object_branch_antisymmetric_equation_available_branch_row_ids",
+      "explicit_provider_object_branch_row_ids",
+    ]);
+  const antisymmetricMissingBranchRowIdsReadout =
+    sourceFieldStringArrayFromSources(sources, [
+      "provider_object_branch_antisymmetric_equation_missing_branch_row_ids",
+      "terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor.provider_object_branch_antisymmetric_equation_missing_branch_row_ids",
+    ]);
+  const requiredTerminalRowIds = sourceMapProviderObjectTerminalRowIds();
+  const requiredBranchRowIds = sourceMapProviderObjectBranchRowIds();
+  const availableAntisymmetricTerminalRowIds = deriveAvailableRequiredRowIds(
+    requiredTerminalRowIds,
+    antisymmetricAvailableTerminalRowIdsReadout,
+    antisymmetricEquation.observed_count
+  );
+  const missingAntisymmetricTerminalRowIds = deriveMissingRequiredRowIds(
+    requiredTerminalRowIds,
+    antisymmetricMissingTerminalRowIdsReadout,
+    availableAntisymmetricTerminalRowIds,
+    antisymmetricEquation.observed_count
+  );
+  const availableAntisymmetricBranchRowIds = deriveAvailableRequiredRowIds(
+    requiredBranchRowIds,
+    antisymmetricAvailableBranchRowIdsReadout,
+    explicitBranchRows.observed_count
+  );
+  const missingAntisymmetricBranchRowIds =
+    deriveMissingRequiredRowIds(
+      requiredBranchRowIds,
+      antisymmetricMissingBranchRowIdsReadout,
+      availableAntisymmetricBranchRowIds,
+      explicitBranchRows.observed_count
+    ) ??
+    sourceMapProviderObjectBranchRowIdsForTerminalRowIds(
+      missingAntisymmetricTerminalRowIds
+    );
+  const branchSplitFreeDimension = sourceFieldNumberFromSources(sources, [
+    "provider_object_branch_split_free_dimension",
+    "terminal_expression_level_source_map_provider_object_branch_split_map_underdetermination.provider_object_branch_split_free_dimension",
+  ]);
+  const branchUnknownRows = sourceFieldNumberFromSources(sources, [
+    "provider_object_branch_unknown_row_count",
+  ]);
+  const aggregateEquationCount = sourceFieldNumberFromSources(sources, [
+    "aggregate_provider_object_equation_count",
+  ]);
+  const sourceFieldEmitted = branchSplitMap.emitted_by_provider_readout;
+  const branchSplitMapComplete = branchSplitMap.complete;
+  return {
+    schema: SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_AVAILABILITY_SCHEMA,
+    status: !sourceFieldEmitted
+      ? "source-map-provider-object-branch-split-map-source-field-not-emitted"
+      : branchSplitMapComplete
+        ? "source-map-provider-object-branch-split-map-present-review-required"
+        : "source-map-provider-object-branch-split-map-unavailable",
+    required_terminal_row_count: SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length,
+    required_branch_row_count: SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+    required_terminal_row_ids: requiredTerminalRowIds,
+    required_branch_row_ids: requiredBranchRowIds,
+    source_field:
+      "source_map_provider_object_branch_split_map_available_terminal_row_count",
+    source_field_emitted_by_provider_readout: sourceFieldEmitted,
+    observed_available_terminal_row_count: branchSplitMap.observed_count,
+    branch_split_map_populated: branchSplitMapComplete,
+    branch_split_map_count_readout: branchSplitMap,
+    branch_interval_count_readout: branchIntervals,
+    branch_split_underdetermination_readout: {
+      provider_object_branch_unknown_row_count: branchUnknownRows.observed_value,
+      aggregate_provider_object_equation_count:
+        aggregateEquationCount.observed_value,
+      provider_object_branch_split_free_dimension:
+        branchSplitFreeDimension.observed_value,
+      provider_object_branch_split_free_dimension_emitted:
+        branchSplitFreeDimension.emitted_by_provider_readout,
+    },
+    branch_antisymmetric_equation_readout: {
+      source_field:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_SOURCE_FIELD,
+      fields: antisymmetricEquation.fields,
+      emitted_surface: antisymmetricEquation.emitted_surface,
+      emitted_field: antisymmetricEquation.emitted_field,
+      available_terminal_row_count: antisymmetricEquation.observed_count,
+      required_terminal_row_count: SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length,
+      missing_terminal_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length -
+        antisymmetricEquation.observed_count,
+      required_terminal_row_ids: requiredTerminalRowIds,
+      required_branch_row_ids: requiredBranchRowIds,
+      available_terminal_row_id_readout:
+        antisymmetricAvailableTerminalRowIdsReadout,
+      missing_terminal_row_id_readout:
+        antisymmetricMissingTerminalRowIdsReadout,
+      available_branch_row_id_readout:
+        antisymmetricAvailableBranchRowIdsReadout,
+      missing_branch_row_id_readout: antisymmetricMissingBranchRowIdsReadout,
+      available_terminal_row_ids: availableAntisymmetricTerminalRowIds,
+      missing_terminal_row_ids: missingAntisymmetricTerminalRowIds,
+      missing_terminal_rows: sourceMapProviderObjectTerminalRowsForIds(
+        missingAntisymmetricTerminalRowIds
+      ),
+      available_branch_row_ids: availableAntisymmetricBranchRowIds,
+      missing_branch_row_ids: missingAntisymmetricBranchRowIds,
+      missing_branch_rows: sourceMapProviderObjectBranchRowsForIds(
+        missingAntisymmetricBranchRowIds
+      ),
+      missing_branch_row_count: Array.isArray(missingAntisymmetricBranchRowIds)
+        ? missingAntisymmetricBranchRowIds.length
+        : null,
+      exact_missing_terminal_rows_known: Array.isArray(
+        missingAntisymmetricTerminalRowIds
+      ),
+      exact_missing_branch_rows_known: Array.isArray(
+        missingAntisymmetricBranchRowIds
+      ),
+      emitted_by_provider_readout:
+        antisymmetricEquation.emitted_by_provider_readout,
+      all_required_terminal_rows_available: antisymmetricEquation.complete,
+      all_required_terminal_rows_missing:
+        antisymmetricEquation.emitted_by_provider_readout &&
+        antisymmetricEquation.observed_count === 0,
+      complete: antisymmetricEquation.complete,
+    },
+    explicit_provider_object_branch_row_readout: explicitBranchRows,
+    branch_attributed_source_term_readout: branchAttributedSourceTerms,
+    first_missing_source_field: branchSplitMapComplete
+      ? SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_SOURCE_FIELD
+      : "source_map_provider_object_branch_split_map_available_terminal_row_count",
+    next_missing_source_field_after_branch_split_map_count:
+      SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_SOURCE_FIELD,
+    next_missing_source_surface_after_branch_split_map_count:
+      "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor",
+    smallest_next_evidence_object:
+      SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_EVIDENCE_OBJECT,
+    provider_object_branch_intervals_present: false,
+    provider_ready_authorized_by_this_availability: false,
+    downstream_consumer_authorization: false,
+  };
+}
+
+function buildSourceMapProviderObjectBranchIntervalSourceFieldAudit(
+  readout,
+  sourceProvenanceRefinement = {}
+) {
+  const requiredTerminalRowCount = SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length;
+  const requiredBranchRowCount = SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length;
+  const sources = sourceMapProviderObjectDiagnosticSources(
+    readout,
+    sourceProvenanceRefinement
+  );
+  const branchSplitMap = sourceFieldCountFromSources(
+    sources,
+    ["source_map_provider_object_branch_split_map_available_terminal_row_count"],
+    requiredTerminalRowCount
+  );
+  const antisymmetricEquation = sourceFieldCountFromSources(
+    sources,
+    [
+      SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_SOURCE_FIELD,
+      "terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor.provider_object_branch_antisymmetric_equation_available_terminal_row_count",
+    ],
+    requiredTerminalRowCount
+  );
+  const candidateIntervals = sourceFieldCountFromSources(
+    sources,
+    [
+      "source_map_provider_object_branch_interval_candidate_available_count",
+      "source_map_provider_object_branch_interval_available_branch_row_count",
+    ],
+    requiredBranchRowCount
+  );
+  const admissibleIntervals = sourceFieldCountFromSources(
+    sources,
+    ["source_map_provider_object_branch_interval_admissible_available_count"],
+    requiredBranchRowCount
+  );
+  const actualIntervals = sourceFieldCountFromSources(
+    sources,
+    [
+      "actual_provider_object_branch_intervals_available_count",
+      "accepted_provider_object_branch_interval_count",
+      "provider_object_branch_intervals_available_from_actual_provider_count",
+    ],
+    requiredBranchRowCount
+  );
+  const sourceMapProviderBranchIntervals = sourceFieldBoolean(readout, [
+    "source_map_provider_branch_intervals_available",
+    "all_source_map_provider_branch_intervals_available",
+  ]);
+  const providerObjectBranchIntervals = sourceFieldBoolean(readout, [
+    "provider_object_branch_intervals_present",
+    "all_source_map_provider_object_branch_intervals_available",
+  ]);
+  const missingIdentityKinds = new Set(
+    Array.isArray(readout.missing_identity_kinds)
+      ? readout.missing_identity_kinds
+      : SOURCE_MAP_PROVIDER_OBJECT_REQUIRED_IDENTITY_KINDS
+  );
+  const identityFamilies = SOURCE_MAP_PROVIDER_OBJECT_REQUIRED_IDENTITY_KINDS.map(
+    (identityKind) => ({
+      identity_kind: identityKind,
+      present: !missingIdentityKinds.has(identityKind),
+      complete: !missingIdentityKinds.has(identityKind),
+    })
+  );
+  const sourceFields = [
+    {
+      key: "branch_split_map",
+      field: "source_map_provider_object_branch_split_map_available_terminal_row_count",
+      ...branchSplitMap,
+      role:
+        "Expression-level branch split map required before aggregate P can become P_- / P_+ provider-object rows.",
+    },
+    {
+      key: "branch_antisymmetric_equation",
+      field: SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_SOURCE_FIELD,
+      ...antisymmetricEquation,
+      role:
+        "Producer-side A_P=P_- - P_+ terminal-row equation count; zero keeps the provider-object branch split unavailable.",
+    },
+    {
+      key: "candidate_intervals",
+      field: "source_map_provider_object_branch_interval_candidate_available_count",
+      ...candidateIntervals,
+      role:
+        "Candidate P_- / P_+ interval rows; not sufficient unless admissible and same-record bound.",
+    },
+    {
+      key: "admissible_intervals",
+      field: "source_map_provider_object_branch_interval_admissible_available_count",
+      ...admissibleIntervals,
+      role:
+        "Admissible P_- / P_+ interval rows accepted as source-map provider-object intervals.",
+    },
+    {
+      key: "actual_intervals",
+      field: "actual_source_map_provider_object_branch_interval",
+      ...actualIntervals,
+      role:
+        "Actual provider-object branch intervals available from an accepted source row.",
+    },
+    {
+      key: "source_map_provider_branch_intervals_payload",
+      field: "source_map_provider_branch_intervals",
+      ...sourceMapProviderBranchIntervals,
+      role:
+        "Required interval payload carrying source-map provider branch intervals.",
+    },
+    {
+      key: "provider_object_branch_intervals_payload",
+      field: "provider_object_branch_intervals",
+      ...providerObjectBranchIntervals,
+      role:
+        "Required interval payload carrying provider-object branch intervals.",
+    },
+  ];
+  const firstMissingSourceField =
+    sourceFields.find((field) => field.complete !== true)?.field ?? null;
+  const firstMissingIdentityFamily =
+    identityFamilies.find((identity) => identity.complete !== true)
+      ?.identity_kind ?? null;
+  return {
+    schema:
+      SOURCE_MAP_PROVIDER_OBJECT_BRANCH_INTERVAL_SOURCE_FIELD_AUDIT_SCHEMA,
+    status:
+      firstMissingSourceField || firstMissingIdentityFamily
+        ? "source-map-provider-object-branch-interval-source-fields-incomplete"
+        : "source-map-provider-object-branch-interval-source-fields-present-review-required",
+    required_terminal_row_count: requiredTerminalRowCount,
+    required_branch_row_count: requiredBranchRowCount,
+    inspected_h39_diagnostic_field_refs: [
+      {
+        surface:
+          "terminal-expression-level-source-map-provider-object-branch-producer",
+        fields: [
+          "aggregate_source_map_provider_object_interval_available_terminal_row_count",
+          "source_map_provider_object_branch_split_map_available_terminal_row_count",
+          "source_map_provider_object_branch_interval_available_branch_row_count",
+        ],
+        provider_authorizing_surface: false,
+        note:
+          "Aggregate provider-object intervals are comparison context; provider readiness needs branch split map plus P_- / P_+ interval payloads.",
+      },
+      {
+        surface:
+          "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor",
+        fields: [
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_SOURCE_FIELD,
+        ],
+        provider_authorizing_surface: false,
+        note:
+          "The A_P=P_- - P_+ extractor can prove the producer-side equation count is absent without authorizing provider readiness.",
+      },
+      {
+        surface:
+          "terminal-expression-level-source-map-provider-object-branch-split-map-underdetermination",
+        fields: [
+          "provider_object_branch_unknown_row_count",
+          "aggregate_provider_object_equation_count",
+          "provider_object_branch_split_free_dimension",
+        ],
+        provider_authorizing_surface: false,
+        note:
+          "Underdetermination rows explain why aggregate P does not determine P_- / P_+ provider-object rows.",
+      },
+      {
+        surface: "terminal-row-provider-object-replay",
+        fields: [
+          "source_map_provider_branch_intervals_available_count",
+          "source_map_provider_object_branch_interval_candidate_available_count",
+          "source_map_provider_object_branch_interval_admissible_available_count",
+          "actual_source_map_provider_object_branch_interval",
+        ],
+        provider_authorizing_surface: false,
+        note:
+          "Replay rows can inspect candidates, but only admissible actual branch intervals can feed provider-object readiness.",
+      },
+      {
+        surface:
+          "terminal-source-covariance-provider-object-branch-residual-extractor",
+        fields: [
+          "provider_object_branch_residual_interval_available_branch_row_count",
+          "source_map_provider_object_branch_interval_candidate_available_count",
+          "source_map_provider_object_branch_interval_admissible_available_count",
+        ],
+        provider_authorizing_surface: false,
+        note:
+          "Residual extraction remains downstream of actual P_- / P_+ provider-object branch intervals.",
+      },
+    ],
+    source_fields: sourceFields,
+    identity_families: identityFamilies,
+    first_missing_source_field: firstMissingSourceField,
+    first_missing_identity_family: firstMissingIdentityFamily,
+    first_missing_provider_field:
+      firstMissingSourceField ?? firstMissingIdentityFamily,
+    provider_ready_authorized_by_this_audit: false,
+    downstream_consumer_authorization: false,
+  };
+}
+
+function buildProducerSideSameDomainBranchRowEvidenceTarget(
+  branchSplitMapAvailability,
+  sourceFieldAvailabilityAudit
+) {
+  const branchAntisymmetricEquationReadout =
+    branchSplitMapAvailability?.branch_antisymmetric_equation_readout ?? {};
+  const explicitBranchRowReadout =
+    branchSplitMapAvailability?.explicit_provider_object_branch_row_readout ?? {};
+  const branchAttributedSourceTermReadout =
+    branchSplitMapAvailability?.branch_attributed_source_term_readout ?? {};
+  const missingTerminalRowIds = Array.isArray(
+    branchAntisymmetricEquationReadout.missing_terminal_row_ids
+  )
+    ? branchAntisymmetricEquationReadout.missing_terminal_row_ids
+    : sourceMapProviderObjectTerminalRowIds();
+  const missingBranchRowIds = Array.isArray(
+    branchAntisymmetricEquationReadout.missing_branch_row_ids
+  )
+    ? branchAntisymmetricEquationReadout.missing_branch_row_ids
+    : sourceMapProviderObjectBranchRowIds();
+  const availableTerminalRowCount = Number(
+    branchAntisymmetricEquationReadout.available_terminal_row_count ?? 0
+  );
+  const missingTerminalRowCount = Number(
+    branchAntisymmetricEquationReadout.missing_terminal_row_count ??
+      missingTerminalRowIds.length
+  );
+  const branchSplitMapCountReadout =
+    branchSplitMapAvailability?.branch_split_map_count_readout ?? {};
+  return {
+    schema: PRODUCER_SIDE_SAME_DOMAIN_BRANCH_ROW_EVIDENCE_TARGET_SCHEMA,
+    artifact_id:
+      "h39-producer-side-same-domain-branch-row-evidence-target",
+    claim_level: "priority-only target, not provider acceptance",
+    status:
+      availableTerminalRowCount === SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length &&
+      missingTerminalRowCount === 0 &&
+      missingBranchRowIds.length === 0
+        ? "producer-side-same-domain-branch-row-evidence-present-review-required"
+        : "producer-side-same-domain-branch-row-evidence-missing",
+    target_kind:
+      "same-domain-expression-level-source-map-provider-object-branch-row-evidence",
+    missing_producer_object_kind:
+      "same-domain-expression-level-provider-object-branch-antisymmetric-equation-or-explicit-branch-rows",
+    required_producer_object:
+      SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_EVIDENCE_OBJECT,
+    producer_object_formula: "A_P=P_- - P_+; u_P=A_P/2",
+    producer_source_surface:
+      "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor",
+    producer_source_field:
+      SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_SOURCE_FIELD,
+    required_terminal_row_count: SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length,
+    required_branch_row_count: SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+    required_terminal_rows: SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS,
+    required_terminal_row_ids: sourceMapProviderObjectTerminalRowIds(),
+    required_branch_rows: SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS,
+    required_branch_row_ids: sourceMapProviderObjectBranchRowIds(),
+    current_available_terminal_row_count: availableTerminalRowCount,
+    current_missing_terminal_row_count: missingTerminalRowCount,
+    current_missing_terminal_row_ids: missingTerminalRowIds,
+    current_missing_terminal_rows:
+      sourceMapProviderObjectTerminalRowsForIds(missingTerminalRowIds),
+    current_available_branch_row_ids:
+      branchAntisymmetricEquationReadout.available_branch_row_ids ?? null,
+    current_missing_branch_row_ids: missingBranchRowIds,
+    current_missing_branch_rows:
+      sourceMapProviderObjectBranchRowsForIds(missingBranchRowIds),
+    current_missing_branch_row_count: missingBranchRowIds.length,
+    exact_missing_terminal_rows_known: Array.isArray(
+      branchAntisymmetricEquationReadout.missing_terminal_row_ids
+    ),
+    exact_missing_branch_rows_known: Array.isArray(
+      branchAntisymmetricEquationReadout.missing_branch_row_ids
+    ),
+    current_source_counts: {
+      source_map_provider_object_branch_split_map_available_terminal_row_count:
+        branchSplitMapCountReadout.observed_count ?? 0,
+      provider_object_branch_antisymmetric_equation_available_terminal_row_count:
+        availableTerminalRowCount,
+      explicit_provider_object_branch_row_count:
+        explicitBranchRowReadout.observed_count ?? 0,
+      source_term_provider_branch_attributed_term_row_count:
+        branchAttributedSourceTermReadout.observed_count ?? 0,
+    },
+    same_domain_identity_fields:
+      SOURCE_MAP_PROVIDER_OBJECT_SAME_RECORD_BINDING_FIELDS,
+    required_identity_kinds:
+      SOURCE_MAP_PROVIDER_OBJECT_REQUIRED_IDENTITY_KINDS,
+    required_interval_payloads:
+      SOURCE_MAP_PROVIDER_OBJECT_REQUIRED_INTERVAL_PAYLOADS,
+    first_missing_provider_field:
+      sourceFieldAvailabilityAudit?.first_missing_provider_field ?? null,
+    negative_control: {
+      ref: SOURCE_MAP_PROVIDER_OBJECT_AGGREGATE_ERASURE_NEGATIVE_CONTROL_REF,
+      condition:
+        "Reject any row that has only aggregate P, lambda terminal witness intervals, branch-attributed source terms, or row-local branch feeds without same-record P_- / P_+ provider-object rows, both interval payloads, the P_b map, branch projection or alpha map, pushforward operator reference, and normalization identity.",
+      rejected_candidate_source_kinds:
+        SOURCE_MAP_PROVIDER_OBJECT_REJECTED_CANDIDATE_SOURCE_KINDS,
+      aggregate_p_only_rejected: true,
+      lambda_terminal_witness_only_rejected: true,
+      branch_attributed_source_terms_without_provider_object_rejected: true,
+      row_local_expression_branch_feed_rejected: true,
+      provider_ready_authorized_by_negative_control: false,
+    },
+    provider_ready_authorized_by_this_target: false,
+    downstream_consumer_authorization: false,
+  };
+}
+
+function enrichSourceMapProviderObjectBranchIntervalReadout(
+  readout,
+  sourceProvenanceRefinement = {}
+) {
+  if (!isObject(readout)) {
+    return readout;
+  }
+  const positiveEvidenceTarget = isObject(readout.positive_evidence_target)
+    ? readout.positive_evidence_target
+    : {};
+  const branchSplitMapAvailability =
+    buildSourceMapProviderObjectBranchSplitMapAvailability(
+      readout,
+      sourceProvenanceRefinement
+    );
+  const sourceFieldAvailabilityAudit =
+    buildSourceMapProviderObjectBranchIntervalSourceFieldAudit(
+      readout,
+      sourceProvenanceRefinement
+    );
+  return {
+    ...readout,
+    required_terminal_rows: SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS,
+    required_terminal_row_ids: sourceMapProviderObjectTerminalRowIds(),
+    required_branch_rows: SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS,
+    required_branch_row_ids: sourceMapProviderObjectBranchRowIds(),
+    interval_class_distinction: {
+      lambda_terminal_witness_branch_intervals: {
+        status: "available-comparison-witness-only",
+        admissible_as_provider_object_branch_interval: false,
+        reason:
+          "Lambda terminal witness intervals compare source-covariance width; they do not carry the same-domain source-map/provider-object branch identity.",
+      },
+      source_map_provider_branch_intervals: {
+        status: "missing-provider-object-payload",
+        admissible_as_provider_object_branch_interval: false,
+        required_payload: "source_map_provider_branch_intervals",
+      },
+      provider_object_branch_intervals: {
+        status: "missing-provider-object-payload",
+        admissible_as_provider_object_branch_interval: false,
+        required_payload: "provider_object_branch_intervals",
+      },
+    },
+    same_record_binding_fields:
+      SOURCE_MAP_PROVIDER_OBJECT_SAME_RECORD_BINDING_FIELDS,
+    source_map_provider_object_branch_split_map_availability:
+      branchSplitMapAvailability,
+    source_field_availability_audit: sourceFieldAvailabilityAudit,
+    producer_side_same_domain_branch_row_evidence_target:
+      buildProducerSideSameDomainBranchRowEvidenceTarget(
+        branchSplitMapAvailability,
+        sourceFieldAvailabilityAudit
+      ),
+    positive_evidence_target: {
+      ...positiveEvidenceTarget,
+      required_terminal_rows: SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS,
+      required_terminal_row_ids: sourceMapProviderObjectTerminalRowIds(),
+      required_branch_rows: SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS,
+      required_branch_row_ids: sourceMapProviderObjectBranchRowIds(),
+      required_same_record_binding_fields:
+        SOURCE_MAP_PROVIDER_OBJECT_SAME_RECORD_BINDING_FIELDS,
+      lambda_terminal_witness_branch_intervals_are_provider_object_intervals:
+        false,
+    },
+  };
+}
+
+function enrichSourceContractReadout(readout) {
+  if (!isObject(readout)) {
+    return null;
+  }
+  const refinement = isObject(readout.source_provenance_refinement)
+    ? readout.source_provenance_refinement
+    : null;
+  if (!refinement) {
+    return readout;
+  }
+  return {
+    ...readout,
+    source_provenance_refinement: {
+      ...refinement,
+      source_map_provider_object_branch_interval_readout:
+        enrichSourceMapProviderObjectBranchIntervalReadout(
+          refinement.source_map_provider_object_branch_interval_readout,
+          refinement
+        ),
+    },
+  };
+}
+
 function sourceContractReadoutValidationErrors(readout, label) {
   if (readout === null || readout === undefined) {
     return [];
@@ -309,22 +1201,6 @@ function sourceContractReadoutValidationErrors(readout, label) {
     "source-map-provider-object-branch-intervals";
   const expectedNextEvidenceObject =
     "same-domain source-map provider-object branch intervals on every terminal row";
-  const expectedRejectedCandidateSourceKinds = [
-    "lambda-terminal-witness-branch-interval",
-    "aggregate-P-only-provider-row",
-    "variable-owned-alpha-candidate",
-    "row-local-expression-branch-feed",
-  ];
-  const expectedMissingIdentityKinds = [
-    "same-domain-branch-bearing-P_b-map",
-    "branch_projection_or_alpha_map",
-    "pushforward_operator_ref",
-    "normalization_identity_ref",
-  ];
-  const expectedRequiredIntervalPayloads = [
-    "source_map_provider_branch_intervals",
-    "provider_object_branch_intervals",
-  ];
   if (!isObject(readout)) {
     return [`${label} must be an object when present`];
   }
@@ -438,12 +1314,59 @@ function sourceContractReadoutValidationErrors(readout, label) {
         .accepted_provider_object_branch_interval_count !== 0 ||
       !sameStringSet(
         sourceMapProviderObjectReadout.rejected_candidate_source_kinds,
-        expectedRejectedCandidateSourceKinds
+        SOURCE_MAP_PROVIDER_OBJECT_REJECTED_CANDIDATE_SOURCE_KINDS
       ) ||
       !sameStringSet(
         sourceMapProviderObjectReadout.missing_identity_kinds,
-        expectedMissingIdentityKinds
+        SOURCE_MAP_PROVIDER_OBJECT_REQUIRED_IDENTITY_KINDS
       ) ||
+      !sameJson(
+        sourceMapProviderObjectReadout.required_terminal_rows,
+        SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS
+      ) ||
+      !sameStringSet(
+        sourceMapProviderObjectReadout.required_terminal_row_ids,
+        sourceMapProviderObjectTerminalRowIds()
+      ) ||
+      !sameJson(
+        sourceMapProviderObjectReadout.required_branch_rows,
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS
+      ) ||
+      !sameStringSet(
+        sourceMapProviderObjectReadout.required_branch_row_ids,
+        sourceMapProviderObjectBranchRowIds()
+      ) ||
+      !sameStringSet(
+        sourceMapProviderObjectReadout.same_record_binding_fields,
+        SOURCE_MAP_PROVIDER_OBJECT_SAME_RECORD_BINDING_FIELDS
+      ) ||
+      sourceMapProviderObjectReadout.interval_class_distinction
+        ?.lambda_terminal_witness_branch_intervals
+        ?.admissible_as_provider_object_branch_interval !== false ||
+      sourceMapProviderObjectReadout.interval_class_distinction
+        ?.source_map_provider_branch_intervals
+        ?.required_payload !== "source_map_provider_branch_intervals" ||
+      sourceMapProviderObjectReadout.interval_class_distinction
+        ?.provider_object_branch_intervals
+        ?.required_payload !== "provider_object_branch_intervals" ||
+      sourceMapProviderObjectReadout.interval_class_distinction
+        ?.source_map_provider_branch_intervals
+        ?.admissible_as_provider_object_branch_interval !== false ||
+      sourceMapProviderObjectReadout.interval_class_distinction
+        ?.provider_object_branch_intervals
+        ?.admissible_as_provider_object_branch_interval !== false ||
+      sourceMapProviderObjectReadout.interval_class_distinction
+        ?.lambda_terminal_witness_branch_intervals
+        ?.status !== "available-comparison-witness-only" ||
+      sourceMapProviderObjectReadout.interval_class_distinction
+        ?.source_map_provider_branch_intervals
+        ?.status !== "missing-provider-object-payload" ||
+      sourceMapProviderObjectReadout.interval_class_distinction
+        ?.provider_object_branch_intervals
+        ?.status !== "missing-provider-object-payload" ||
+      sourceMapProviderObjectReadout.positive_evidence_target
+        ?.lambda_terminal_witness_branch_intervals_are_provider_object_intervals !==
+        false ||
       sourceMapProviderObjectReadout.provider_ready_authorized_by_this_readout !==
         false ||
       sourceMapProviderObjectReadout.downstream_consumer_authorization !== false
@@ -452,8 +1375,285 @@ function sourceContractReadoutValidationErrors(readout, label) {
         `${label} source_map_provider_object_branch_interval_readout must stay fail-closed`
       );
     } else {
+      const branchSplitMapAvailability =
+        sourceMapProviderObjectReadout
+          .source_map_provider_object_branch_split_map_availability;
+      const sourceFieldAvailabilityAudit =
+        sourceMapProviderObjectReadout.source_field_availability_audit;
+      const producerSideBranchRowEvidenceTarget =
+        sourceMapProviderObjectReadout
+          .producer_side_same_domain_branch_row_evidence_target;
       const positiveEvidenceTarget =
         sourceMapProviderObjectReadout.positive_evidence_target;
+      const sourceFields = sourceFieldAvailabilityAudit?.source_fields ?? [];
+      const identityFamilies =
+        sourceFieldAvailabilityAudit?.identity_families ?? [];
+      if (
+        !isObject(branchSplitMapAvailability) ||
+        branchSplitMapAvailability.schema !==
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_AVAILABILITY_SCHEMA ||
+        branchSplitMapAvailability.status !==
+          "source-map-provider-object-branch-split-map-source-field-not-emitted" ||
+        branchSplitMapAvailability.required_terminal_row_count !== 15 ||
+        branchSplitMapAvailability.required_branch_row_count !== 30 ||
+        !sameStringSet(
+          branchSplitMapAvailability.required_terminal_row_ids,
+          sourceMapProviderObjectTerminalRowIds()
+        ) ||
+        !sameStringSet(
+          branchSplitMapAvailability.required_branch_row_ids,
+          sourceMapProviderObjectBranchRowIds()
+        ) ||
+        branchSplitMapAvailability.source_field !==
+          "source_map_provider_object_branch_split_map_available_terminal_row_count" ||
+        branchSplitMapAvailability.source_field_emitted_by_provider_readout !==
+          false ||
+        branchSplitMapAvailability.observed_available_terminal_row_count !== 0 ||
+        branchSplitMapAvailability.branch_split_map_populated !== false ||
+        branchSplitMapAvailability.branch_split_map_count_readout
+          ?.observed_count !== 0 ||
+        branchSplitMapAvailability.branch_split_map_count_readout
+          ?.emitted_by_provider_readout !== false ||
+        branchSplitMapAvailability.branch_interval_count_readout
+          ?.observed_count !== 0 ||
+        branchSplitMapAvailability.branch_antisymmetric_equation_readout
+          ?.source_field !==
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_SOURCE_FIELD ||
+        branchSplitMapAvailability.branch_antisymmetric_equation_readout
+          ?.available_terminal_row_count !== 0 ||
+        branchSplitMapAvailability.branch_antisymmetric_equation_readout
+          ?.required_terminal_row_count !== 15 ||
+        !sameStringSet(
+          branchSplitMapAvailability.branch_antisymmetric_equation_readout
+            ?.required_terminal_row_ids,
+          sourceMapProviderObjectTerminalRowIds()
+        ) ||
+        !sameStringSet(
+          branchSplitMapAvailability.branch_antisymmetric_equation_readout
+            ?.required_branch_row_ids,
+          sourceMapProviderObjectBranchRowIds()
+        ) ||
+        !sameStringSet(
+          branchSplitMapAvailability.branch_antisymmetric_equation_readout
+            ?.available_terminal_row_ids,
+          []
+        ) ||
+        !sameStringSet(
+          branchSplitMapAvailability.branch_antisymmetric_equation_readout
+            ?.missing_terminal_row_ids,
+          sourceMapProviderObjectTerminalRowIds()
+        ) ||
+        !sameJson(
+          branchSplitMapAvailability.branch_antisymmetric_equation_readout
+            ?.missing_terminal_rows,
+          SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS
+        ) ||
+        !sameStringSet(
+          branchSplitMapAvailability.branch_antisymmetric_equation_readout
+            ?.available_branch_row_ids,
+          []
+        ) ||
+        !sameStringSet(
+          branchSplitMapAvailability.branch_antisymmetric_equation_readout
+            ?.missing_branch_row_ids,
+          sourceMapProviderObjectBranchRowIds()
+        ) ||
+        !sameJson(
+          branchSplitMapAvailability.branch_antisymmetric_equation_readout
+            ?.missing_branch_rows,
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS
+        ) ||
+        branchSplitMapAvailability.branch_antisymmetric_equation_readout
+          ?.missing_branch_row_count !== 30 ||
+        branchSplitMapAvailability.branch_antisymmetric_equation_readout
+          ?.exact_missing_terminal_rows_known !== true ||
+        branchSplitMapAvailability.branch_antisymmetric_equation_readout
+          ?.exact_missing_branch_rows_known !== true ||
+        branchSplitMapAvailability.branch_antisymmetric_equation_readout
+          ?.missing_terminal_row_count !== 15 ||
+        branchSplitMapAvailability.branch_antisymmetric_equation_readout
+          ?.emitted_by_provider_readout !== true ||
+        branchSplitMapAvailability.branch_antisymmetric_equation_readout
+          ?.emitted_surface !==
+          "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor" ||
+        branchSplitMapAvailability.branch_antisymmetric_equation_readout
+          ?.emitted_field !==
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_SOURCE_FIELD ||
+        branchSplitMapAvailability.branch_antisymmetric_equation_readout
+          ?.all_required_terminal_rows_available !== false ||
+        branchSplitMapAvailability.branch_antisymmetric_equation_readout
+          ?.all_required_terminal_rows_missing !== true ||
+        branchSplitMapAvailability.branch_antisymmetric_equation_readout
+          ?.complete !== false ||
+        branchSplitMapAvailability.explicit_provider_object_branch_row_readout
+          ?.observed_count !== 0 ||
+        branchSplitMapAvailability.branch_attributed_source_term_readout
+          ?.observed_count !== 0 ||
+        branchSplitMapAvailability.first_missing_source_field !==
+          "source_map_provider_object_branch_split_map_available_terminal_row_count" ||
+        branchSplitMapAvailability
+          .next_missing_source_field_after_branch_split_map_count !==
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_SOURCE_FIELD ||
+        branchSplitMapAvailability
+          .next_missing_source_surface_after_branch_split_map_count !==
+          "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor" ||
+        branchSplitMapAvailability.smallest_next_evidence_object !==
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_EVIDENCE_OBJECT ||
+        branchSplitMapAvailability.provider_object_branch_intervals_present !==
+          false ||
+        branchSplitMapAvailability
+          .provider_ready_authorized_by_this_availability !== false ||
+        branchSplitMapAvailability.downstream_consumer_authorization !== false
+      ) {
+        errors.push(
+          `${label} source_map_provider_object_branch_split_map_availability must stay non-authorizing`
+        );
+      }
+      if (
+        !isObject(sourceFieldAvailabilityAudit) ||
+        sourceFieldAvailabilityAudit.schema !==
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_INTERVAL_SOURCE_FIELD_AUDIT_SCHEMA ||
+        sourceFieldAvailabilityAudit.status !==
+          "source-map-provider-object-branch-interval-source-fields-incomplete" ||
+        sourceFieldAvailabilityAudit.required_terminal_row_count !== 15 ||
+        sourceFieldAvailabilityAudit.required_branch_row_count !== 30 ||
+        !Array.isArray(
+          sourceFieldAvailabilityAudit.inspected_h39_diagnostic_field_refs
+        ) ||
+        sourceFieldAvailabilityAudit.inspected_h39_diagnostic_field_refs.length !==
+          5 ||
+        !Array.isArray(sourceFields) ||
+        sourceFields.length !== 7 ||
+        sourceFieldAvailabilityAudit.first_missing_source_field !==
+          "source_map_provider_object_branch_split_map_available_terminal_row_count" ||
+        sourceFieldAvailabilityAudit.first_missing_identity_family !==
+          "same-domain-branch-bearing-P_b-map" ||
+        sourceFieldAvailabilityAudit.first_missing_provider_field !==
+          "source_map_provider_object_branch_split_map_available_terminal_row_count" ||
+        !Array.isArray(identityFamilies) ||
+        identityFamilies.length !==
+          SOURCE_MAP_PROVIDER_OBJECT_REQUIRED_IDENTITY_KINDS.length ||
+        !sameStringSet(
+          identityFamilies.map((identity) => identity.identity_kind),
+          SOURCE_MAP_PROVIDER_OBJECT_REQUIRED_IDENTITY_KINDS
+        ) ||
+        identityFamilies.some((identity) => identity.complete !== false) ||
+        sourceFields.some((field) => field.complete === true) ||
+        sourceFieldAvailabilityAudit.provider_ready_authorized_by_this_audit !==
+          false ||
+        sourceFieldAvailabilityAudit.downstream_consumer_authorization !== false
+      ) {
+        errors.push(
+          `${label} source_map_provider_object_branch_interval_readout source_field_availability_audit must stay fail-closed`
+        );
+      }
+      if (
+        !isObject(producerSideBranchRowEvidenceTarget) ||
+        producerSideBranchRowEvidenceTarget.schema !==
+          PRODUCER_SIDE_SAME_DOMAIN_BRANCH_ROW_EVIDENCE_TARGET_SCHEMA ||
+        producerSideBranchRowEvidenceTarget.claim_level !==
+          "priority-only target, not provider acceptance" ||
+        producerSideBranchRowEvidenceTarget.status !==
+          "producer-side-same-domain-branch-row-evidence-missing" ||
+        producerSideBranchRowEvidenceTarget.target_kind !==
+          "same-domain-expression-level-source-map-provider-object-branch-row-evidence" ||
+        producerSideBranchRowEvidenceTarget.missing_producer_object_kind !==
+          "same-domain-expression-level-provider-object-branch-antisymmetric-equation-or-explicit-branch-rows" ||
+        producerSideBranchRowEvidenceTarget.required_producer_object !==
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_EVIDENCE_OBJECT ||
+        producerSideBranchRowEvidenceTarget.producer_object_formula !==
+          "A_P=P_- - P_+; u_P=A_P/2" ||
+        producerSideBranchRowEvidenceTarget.producer_source_surface !==
+          "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor" ||
+        producerSideBranchRowEvidenceTarget.producer_source_field !==
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_SOURCE_FIELD ||
+        producerSideBranchRowEvidenceTarget.required_terminal_row_count !== 15 ||
+        producerSideBranchRowEvidenceTarget.required_branch_row_count !== 30 ||
+        !sameJson(
+          producerSideBranchRowEvidenceTarget.required_terminal_rows,
+          SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS
+        ) ||
+        !sameStringSet(
+          producerSideBranchRowEvidenceTarget.required_terminal_row_ids,
+          sourceMapProviderObjectTerminalRowIds()
+        ) ||
+        !sameJson(
+          producerSideBranchRowEvidenceTarget.required_branch_rows,
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS
+        ) ||
+        !sameStringSet(
+          producerSideBranchRowEvidenceTarget.required_branch_row_ids,
+          sourceMapProviderObjectBranchRowIds()
+        ) ||
+        producerSideBranchRowEvidenceTarget.current_available_terminal_row_count !==
+          0 ||
+        producerSideBranchRowEvidenceTarget.current_missing_terminal_row_count !==
+          15 ||
+        !sameStringSet(
+          producerSideBranchRowEvidenceTarget.current_missing_terminal_row_ids,
+          sourceMapProviderObjectTerminalRowIds()
+        ) ||
+        !sameJson(
+          producerSideBranchRowEvidenceTarget.current_missing_terminal_rows,
+          SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS
+        ) ||
+        !sameStringSet(
+          producerSideBranchRowEvidenceTarget.current_missing_branch_row_ids,
+          sourceMapProviderObjectBranchRowIds()
+        ) ||
+        !sameJson(
+          producerSideBranchRowEvidenceTarget.current_missing_branch_rows,
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS
+        ) ||
+        producerSideBranchRowEvidenceTarget.current_missing_branch_row_count !==
+          30 ||
+        producerSideBranchRowEvidenceTarget.exact_missing_terminal_rows_known !==
+          true ||
+        producerSideBranchRowEvidenceTarget.exact_missing_branch_rows_known !==
+          true ||
+        producerSideBranchRowEvidenceTarget.current_source_counts
+          ?.provider_object_branch_antisymmetric_equation_available_terminal_row_count !==
+          0 ||
+        producerSideBranchRowEvidenceTarget.current_source_counts
+          ?.explicit_provider_object_branch_row_count !== 0 ||
+        producerSideBranchRowEvidenceTarget.current_source_counts
+          ?.source_term_provider_branch_attributed_term_row_count !== 0 ||
+        !sameStringSet(
+          producerSideBranchRowEvidenceTarget.same_domain_identity_fields,
+          SOURCE_MAP_PROVIDER_OBJECT_SAME_RECORD_BINDING_FIELDS
+        ) ||
+        !sameStringSet(
+          producerSideBranchRowEvidenceTarget.required_identity_kinds,
+          SOURCE_MAP_PROVIDER_OBJECT_REQUIRED_IDENTITY_KINDS
+        ) ||
+        !sameStringSet(
+          producerSideBranchRowEvidenceTarget.required_interval_payloads,
+          SOURCE_MAP_PROVIDER_OBJECT_REQUIRED_INTERVAL_PAYLOADS
+        ) ||
+        producerSideBranchRowEvidenceTarget.first_missing_provider_field !==
+          "source_map_provider_object_branch_split_map_available_terminal_row_count" ||
+        producerSideBranchRowEvidenceTarget.negative_control?.ref !==
+          SOURCE_MAP_PROVIDER_OBJECT_AGGREGATE_ERASURE_NEGATIVE_CONTROL_REF ||
+        !sameStringSet(
+          producerSideBranchRowEvidenceTarget.negative_control
+            ?.rejected_candidate_source_kinds,
+          SOURCE_MAP_PROVIDER_OBJECT_REJECTED_CANDIDATE_SOURCE_KINDS
+        ) ||
+        producerSideBranchRowEvidenceTarget.negative_control
+          ?.aggregate_p_only_rejected !== true ||
+        producerSideBranchRowEvidenceTarget.negative_control
+          ?.lambda_terminal_witness_only_rejected !== true ||
+        producerSideBranchRowEvidenceTarget.negative_control
+          ?.provider_ready_authorized_by_negative_control !== false ||
+        producerSideBranchRowEvidenceTarget
+          .provider_ready_authorized_by_this_target !== false ||
+        producerSideBranchRowEvidenceTarget.downstream_consumer_authorization !==
+          false
+      ) {
+        errors.push(
+          `${label} source_map_provider_object_branch_interval_readout producer-side same-domain branch-row evidence target must stay fail-closed`
+        );
+      }
       if (
         !isObject(positiveEvidenceTarget) ||
         positiveEvidenceTarget.schema !==
@@ -464,11 +1664,31 @@ function sourceContractReadoutValidationErrors(readout, label) {
         positiveEvidenceTarget.required_branch_row_count !== 30 ||
         !sameStringSet(
           positiveEvidenceTarget.required_identity_kinds,
-          expectedMissingIdentityKinds
+          SOURCE_MAP_PROVIDER_OBJECT_REQUIRED_IDENTITY_KINDS
         ) ||
         !sameStringSet(
           positiveEvidenceTarget.required_interval_payloads,
-          expectedRequiredIntervalPayloads
+          SOURCE_MAP_PROVIDER_OBJECT_REQUIRED_INTERVAL_PAYLOADS
+        ) ||
+        !sameJson(
+          positiveEvidenceTarget.required_terminal_rows,
+          SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS
+        ) ||
+        !sameStringSet(
+          positiveEvidenceTarget.required_terminal_row_ids,
+          sourceMapProviderObjectTerminalRowIds()
+        ) ||
+        !sameJson(
+          positiveEvidenceTarget.required_branch_rows,
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS
+        ) ||
+        !sameStringSet(
+          positiveEvidenceTarget.required_branch_row_ids,
+          sourceMapProviderObjectBranchRowIds()
+        ) ||
+        !sameStringSet(
+          positiveEvidenceTarget.required_same_record_binding_fields,
+          SOURCE_MAP_PROVIDER_OBJECT_SAME_RECORD_BINDING_FIELDS
         ) ||
         positiveEvidenceTarget
           .accepted_provider_object_branch_interval_count_required !== 30 ||
@@ -605,9 +1825,9 @@ function evaluateConstructionAttemptCandidate(candidate) {
     branch_materialization_ready: branchMaterializationReady,
     first_failure: providerObjectFieldsReady ? null : failedFields[0]?.failure_code ?? "provider_candidate_absent",
     missing_or_rejected_fields: failedFields.map((field) => field.path),
-    source_contract_readout: isObject(candidate.source_contract_readout)
-      ? candidate.source_contract_readout
-      : null,
+    source_contract_readout: enrichSourceContractReadout(
+      candidate.source_contract_readout
+    ),
     field_results: fieldResults,
   };
 }
@@ -654,9 +1874,9 @@ function buildConsumerConstructionAttemptReadouts(
             candidate.source_term_refs_upstream_of_aggregate_p ?? null,
           aggregate_erasure_negative_control_ref:
             candidate.aggregate_erasure_negative_control_ref ?? null,
-          source_contract_readout: isObject(candidate.source_contract_readout)
-            ? candidate.source_contract_readout
-            : null,
+          source_contract_readout: enrichSourceContractReadout(
+            candidate.source_contract_readout
+          ),
           construction_attempt_ready: attempt.provider_object_fields_ready,
           provider_ready_authorized_by_this_attempt: false,
           downstream_consumer_authorization: false,

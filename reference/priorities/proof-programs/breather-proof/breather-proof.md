@@ -80,6 +80,28 @@ keeps the first failure at
 result remains priority-only and keeps `external_input_required`, 0 row
 consumption, `preledger_pass=false`, `updates_live_ledger=false`, and no
 branch-chart authorization.
+The
+[Sigma_hf_01 external provenance source audit](./certificate/sigma_hf_01_external_schema_candidate.external-provenance-source-audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+then broadens the current-pool question without changing acceptance: it scans
+283 proof-program JSON files and 94 reference Markdown artifacts, 377 records
+total. The audit separates 369 local generated artifacts, 22 local decoys,
+22 source-data partials, 15 external-looking label records, and 3 actual
+external ref records. Those refs remain source leads only because they appear
+in reference text and source-mining rows, not on a same-record external schema
+candidate with accepted provenance. It finds 0 accepted external provenance
+records, 0 schema-validation intake candidates, 0 candidate external schema
+received records, and 15 field-complete-without-provenance records. The first failure
+remains `external_schema_provenance_required_before_schema_validation_intake`;
+row consumption, `preledger_pass`, live-ledger update, and branch-chart
+authorization remain false.
+The source-mining follow-on
+[Sigma_hf_01 Sieber Engelborghs Mined Schema Packet](../../source-mining/archive-analysis/sigma-hf-01-sieber-engelborghs-mined-schema-packet-2026-06-28.md)
+extracts a priority-only hypotheses / inference / conclusion candidate from
+the Sieber state-dependent-delay finite-root equivalence source lead and the
+Engelborghs-Luzyanina-in 't Hout-Roose collocation source family. It narrows
+the three missing proof-grade fields, but it is not accepted external
+provenance, not a received schema-validation input, not row consumption, not a
+live-ledger update, and not branch-chart authorization.
 
 ## Task Queue
 

@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib
 import json
 import math
 from bisect import bisect_right
@@ -59,6 +60,9 @@ Q_COEFFS = (
 PAST_PROFILE_POLYNOMIAL_WITNESS = "polynomial_witness"
 PAST_PROFILE_ENDPOINT_SLOPE_CANCEL = "endpoint_slope_cancel"
 PAST_PROFILE_FINITE_COLLAR_RADIAL_REPAIR = "finite_collar_radial_repair"
+RUNTIME_IDENTITY_ABSENCE_STATUS = (
+    "runtime_identity_absence_probe_executed_backend_identity_missing_fail_closed"
+)
 
 
 @dataclass(frozen=True)
@@ -1557,25 +1561,36 @@ def a1_directed_rounding_backend_target(
     coefficient_enclosure_attempt: dict,
     past_profile_interval_box_attempt: dict,
 ) -> dict:
+    backend_id = "a1_directed_rounding_interval_backend"
+    required_method = "directed_rounding_interval_arithmetic"
+    required_rounding_modes = [
+        "round_toward_negative_infinity",
+        "round_toward_positive_infinity",
+    ]
+    required_capabilities = [
+        "outward_rounded_coefficient_interval_rows",
+        "outward_rounded_bernstein_subdivision_control_points",
+        "shared_interval_box_family_for_past_future_roots_and_inactive_cover",
+        "rounding_mode_audit_trail",
+    ]
+    availability_audit = a1_directed_rounding_runtime_backend_availability_audit(
+        source_digest,
+        backend_id=backend_id,
+        required_method=required_method,
+        required_rounding_modes=required_rounding_modes,
+        required_capabilities=required_capabilities,
+    )
     payload = {
         "schema": (
             "architrino.priority.master_equation_closure."
             "a1_directed_rounding_backend_target.v0"
         ),
         "artifact_id": "a1_directed_rounding_backend_target.v0",
-        "backend_id": "a1_directed_rounding_interval_backend",
+        "backend_id": backend_id,
         "source_artifact_hash": source_digest,
-        "required_method": "directed_rounding_interval_arithmetic",
-        "required_rounding_modes": [
-            "round_toward_negative_infinity",
-            "round_toward_positive_infinity",
-        ],
-        "required_capabilities": [
-            "outward_rounded_coefficient_interval_rows",
-            "outward_rounded_bernstein_subdivision_control_points",
-            "shared_interval_box_family_for_past_future_roots_and_inactive_cover",
-            "rounding_mode_audit_trail",
-        ],
+        "required_method": required_method,
+        "required_rounding_modes": required_rounding_modes,
+        "required_capabilities": required_capabilities,
         "input_attempts": {
             "coefficient_interval_enclosure_attempt_schema": (
                 coefficient_enclosure_attempt["schema"]
@@ -1604,6 +1619,34 @@ def a1_directed_rounding_backend_target(
             "float64_hex_payloads_present": True,
             "directed_rounding_backend_available": False,
             "directed_rounding_mode_audit_trail_available": False,
+            "directed_rounding_runtime_identity_target_status": (
+                availability_audit["runtime_identity_target"]["status"]
+            ),
+            "directed_rounding_runtime_identity_target_digest": (
+                availability_audit["runtime_identity_target"]["target_digest"]
+            ),
+            "directed_rounding_runtime_identity_absence_probe_status": (
+                availability_audit["runtime_identity_target"][
+                    "absence_probe_status"
+                ]
+            ),
+            "directed_rounding_runtime_identity_absence_probe_digest": (
+                availability_audit["runtime_identity_target"][
+                    "absence_probe_digest"
+                ]
+            ),
+            "directed_rounding_backend_availability_audit_status": (
+                availability_audit["status"]
+            ),
+            "directed_rounding_backend_availability_audit_digest": (
+                availability_audit["availability_audit_digest"]
+            ),
+            "first_unavailable_backend_object": (
+                availability_audit["replacement_requirement"][
+                    "required_backend_runtime_identity_object"
+                ]
+            ),
+            "directed_rounding_backend_availability_audit": availability_audit,
             "probe_status": "float64_probe_present_not_directed_rounding_backend",
         },
         "used_as_certificate": False,
@@ -1614,6 +1657,527 @@ def a1_directed_rounding_backend_target(
         **payload,
         "target_digest": canonical_json_digest(payload),
         "status": "directed_rounding_backend_target_declared_probe_not_certificate",
+    }
+
+
+def a1_directed_rounding_runtime_identity_absence_probe(
+    source_digest: str,
+    *,
+    backend_id: str,
+    required_method: str,
+    required_rounding_modes: list[str],
+    required_capabilities: list[str],
+    required_identity_fields: list[str],
+) -> dict:
+    required_runtime_symbols = [
+        "backend_runtime_id",
+        "backend_version_or_build_digest",
+        "round_toward_negative_infinity",
+        "round_toward_positive_infinity",
+        "rounding_mode_transition_log_digest",
+        "source_q_derivative_composition_operation_trace_digest",
+        "shared_interval_box_family_digest",
+    ]
+    identity_field_to_symbols = {
+        "backend_runtime_id": ["backend_runtime_id"],
+        "backend_version_or_build_digest": ["backend_version_or_build_digest"],
+        "rounding_mode_transition_log_digest": [
+            "round_toward_negative_infinity",
+            "round_toward_positive_infinity",
+            "rounding_mode_transition_log_digest",
+        ],
+        "source_q_derivative_composition_operation_trace_digest": [
+            "source_q_derivative_composition_operation_trace_digest"
+        ],
+        "shared_interval_box_family_digest": [
+            "shared_interval_box_family_digest"
+        ],
+    }
+    available_helper_symbols = [
+        name
+        for name in (
+            "Interval",
+            "rho_interval",
+            "lambda_interval",
+            "jacobian_interval",
+            "tangential_contribution_interval",
+        )
+        if hasattr(fixed, name)
+    ]
+    module_candidates = [
+        "a1_directed_rounding_interval_backend",
+        "directed_rounding_interval_backend",
+        "spiral_directed_rounding_interval_backend",
+        "spiral_branch_chart_certificate",
+    ]
+    module_probe_rows = []
+    for module_name in module_candidates:
+        row: dict = {"module_name": module_name}
+        try:
+            spec = importlib.util.find_spec(module_name)
+            row["import_spec_found"] = spec is not None
+            row["module_origin"] = (
+                getattr(spec, "origin", None) if spec is not None else None
+            )
+        except (ImportError, AttributeError, ValueError) as exc:
+            spec = None
+            row.update(
+                {
+                    "import_spec_found": False,
+                    "module_origin": None,
+                    "find_spec_error_type": type(exc).__name__,
+                    "find_spec_error_message": str(exc),
+                }
+            )
+
+        module = fixed if module_name == "spiral_branch_chart_certificate" else None
+        if module is not None:
+            row["import_probe_status"] = "already_imported_a1_helper_module"
+        elif spec is None:
+            row["import_probe_status"] = "module_absent"
+        else:
+            try:
+                module = importlib.import_module(module_name)
+                row["import_probe_status"] = "imported"
+            except Exception as exc:  # pragma: no cover - fail-closed probe row.
+                row.update(
+                    {
+                        "import_probe_status": "import_failed",
+                        "import_error_type": type(exc).__name__,
+                        "import_error_message": str(exc),
+                    }
+                )
+
+        required_symbol_status = {
+            symbol: bool(module is not None and hasattr(module, symbol))
+            for symbol in required_runtime_symbols
+        }
+        row["required_symbol_status"] = required_symbol_status
+        row["missing_required_symbols"] = [
+            symbol
+            for symbol, present in required_symbol_status.items()
+            if not present
+        ]
+        row["available_helper_symbols"] = (
+            available_helper_symbols
+            if module_name == "spiral_branch_chart_certificate"
+            else []
+        )
+        row["satisfies_runtime_identity_provider"] = (
+            module is not None and not row["missing_required_symbols"]
+        )
+        module_probe_rows.append(row)
+
+    identity_field_provider_status = {}
+    for field in required_identity_fields:
+        symbols = identity_field_to_symbols[field]
+        identity_field_provider_status[field] = (
+            "present"
+            if any(
+                all(row["required_symbol_status"][symbol] for symbol in symbols)
+                for row in module_probe_rows
+            )
+            else "absent"
+        )
+
+    missing_identity_fields = [
+        field
+        for field, status in identity_field_provider_status.items()
+        if status != "present"
+    ]
+    backend_runtime_identity_object_available = not missing_identity_fields and any(
+        row["satisfies_runtime_identity_provider"] for row in module_probe_rows
+    )
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_directed_rounding_interval_backend_runtime_identity_absence_probe.v0"
+        ),
+        "artifact_id": (
+            "a1_directed_rounding_interval_backend_runtime_identity_absence_probe.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "backend_id": backend_id,
+        "required_method": required_method,
+        "required_rounding_modes": required_rounding_modes,
+        "required_capabilities": required_capabilities,
+        "required_identity_fields": required_identity_fields,
+        "probe_method": "python_import_spec_and_capability_symbol_probe",
+        "module_candidates": module_candidates,
+        "module_probe_rows": module_probe_rows,
+        "current_a1_helper_capabilities": {
+            "float64_nextafter_probe_present": hasattr(math, "nextafter"),
+            "float64_hex_payloads_present": (
+                hasattr(float, "hex") and hasattr(float, "fromhex")
+            ),
+            "exact_fraction_from_float_available": hasattr(
+                Fraction,
+                "from_float",
+            ),
+            "spiral_branch_chart_interval_helpers_present": bool(
+                available_helper_symbols
+            ),
+            "spiral_branch_chart_interval_helper_symbols": (
+                available_helper_symbols
+            ),
+        },
+        "identity_field_provider_status": identity_field_provider_status,
+        "missing_identity_fields": missing_identity_fields,
+        "first_missing_identity_field": (
+            missing_identity_fields[0] if missing_identity_fields else None
+        ),
+        "capability_status": {
+            "backend_runtime_identity_object_available": (
+                backend_runtime_identity_object_available
+            ),
+            "backend_runtime_id_provider_present": (
+                identity_field_provider_status["backend_runtime_id"] == "present"
+            ),
+            "backend_version_or_build_digest_provider_present": (
+                identity_field_provider_status[
+                    "backend_version_or_build_digest"
+                ]
+                == "present"
+            ),
+            "rounding_mode_transition_log_provider_present": (
+                identity_field_provider_status[
+                    "rounding_mode_transition_log_digest"
+                ]
+                == "present"
+            ),
+            "source_q_derivative_composition_operation_trace_provider_present": (
+                identity_field_provider_status[
+                    "source_q_derivative_composition_operation_trace_digest"
+                ]
+                == "present"
+            ),
+            "shared_interval_box_family_digest_provider_present": (
+                identity_field_provider_status[
+                    "shared_interval_box_family_digest"
+                ]
+                == "present"
+            ),
+        },
+        "failure_readout": {
+            "float64_nextafter_probe_present_but_not_backend_identity": (
+                hasattr(math, "nextafter")
+            ),
+            "spiral_branch_chart_interval_helpers_present_but_not_runtime_identity": (
+                bool(available_helper_symbols)
+            ),
+            "shared_source_q_derivative_composition_backend_identity_present": (
+                backend_runtime_identity_object_available
+            ),
+            "first_missing_identity_field": (
+                missing_identity_fields[0] if missing_identity_fields else None
+            ),
+        },
+        "negative_control": {
+            "local_interval_helpers_do_not_satisfy_backend_identity": True,
+            "float64_nextafter_probe_does_not_satisfy_backend_identity": True,
+            "missing_backend_runtime_id_fails_closed": (
+                "backend_runtime_id" in missing_identity_fields
+            ),
+            "missing_rounding_mode_transition_log_fails_closed": (
+                "rounding_mode_transition_log_digest" in missing_identity_fields
+            ),
+            "missing_operation_trace_digest_fails_closed": (
+                "source_q_derivative_composition_operation_trace_digest"
+                in missing_identity_fields
+            ),
+            "missing_shared_interval_box_family_digest_fails_closed": (
+                "shared_interval_box_family_digest" in missing_identity_fields
+            ),
+        },
+        "runtime_identity_present": backend_runtime_identity_object_available,
+        "directed_rounding_backend_available": backend_runtime_identity_object_available,
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "absence_probe_digest": canonical_json_digest(payload),
+        "status": (
+            "directed_rounding_runtime_identity_absence_probe_"
+            "backend_identity_missing_fail_closed"
+            if missing_identity_fields
+            else "directed_rounding_runtime_identity_probe_unexpectedly_present"
+        ),
+    }
+
+
+def a1_directed_rounding_interval_backend_runtime_identity_target(
+    source_digest: str,
+    *,
+    backend_id: str,
+    required_method: str,
+    required_rounding_modes: list[str],
+    required_capabilities: list[str],
+) -> dict:
+    required_identity_fields = [
+        "backend_runtime_id",
+        "backend_version_or_build_digest",
+        "rounding_mode_transition_log_digest",
+        "source_q_derivative_composition_operation_trace_digest",
+        "shared_interval_box_family_digest",
+    ]
+    absence_probe = a1_directed_rounding_runtime_identity_absence_probe(
+        source_digest,
+        backend_id=backend_id,
+        required_method=required_method,
+        required_rounding_modes=required_rounding_modes,
+        required_capabilities=required_capabilities,
+        required_identity_fields=required_identity_fields,
+    )
+    identity_fields = {field: None for field in required_identity_fields}
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_directed_rounding_interval_backend_runtime_identity.v0"
+        ),
+        "artifact_id": (
+            "a1_directed_rounding_interval_backend_runtime_identity.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "backend_id": backend_id,
+        "required_method": required_method,
+        "required_rounding_modes": required_rounding_modes,
+        "required_capabilities": required_capabilities,
+        "claim_level": (
+            "executable fail-closed runtime identity absence for the selected "
+            "source_q_derivative_composition slot; not a shared "
+            "directed-rounding interval backend"
+        ),
+        "operation_trace_consumer": "source_q_derivative_composition",
+        "required_identity_fields": required_identity_fields,
+        "identity_fields": identity_fields,
+        "identity_field_status": (
+            absence_probe["identity_field_provider_status"]
+        ),
+        "missing_identity_fields": absence_probe["missing_identity_fields"],
+        "first_missing_identity_field": (
+            absence_probe["first_missing_identity_field"]
+        ),
+        "executable_absence_probe": absence_probe,
+        "absence_probe_digest": absence_probe["absence_probe_digest"],
+        "absence_probe_status": absence_probe["status"],
+        "required_shared_interval_box_family": {
+            "required_box_ids": [
+                "past_profile_interval_box",
+                "future_transport_interval_box",
+                "retained_root_interval_boxes",
+                "inactive_cover_interval_boxes",
+                "P_1_retained_root_delta_alpha_interval_box",
+                "P_1_q_source_alpha_interval_box",
+            ],
+            "requires_same_source_artifact_hash": True,
+            "requires_same_theta_box_family": True,
+            "requires_same_backend_runtime_id": True,
+            "shared_interval_box_family_digest": None,
+            "status": "shared_interval_box_family_digest_absent",
+        },
+        "required_operation_trace": {
+            "composition_id": "source_q_derivative_composition",
+            "source_q_derivative_composition_operation_trace_digest": None,
+            "must_bind_each_operation_to_rounding_mode_transition": True,
+            "must_bind_each_operation_to_backend_runtime_id": True,
+            "status": "operation_trace_digest_absent",
+        },
+        "required_rounding_mode_transition_log": {
+            "rounding_mode_transition_log_digest": None,
+            "required_transitions": required_rounding_modes,
+            "status": "rounding_mode_transition_log_digest_absent",
+        },
+        "current_runtime_facts": {
+            "float64_nextafter_probe_present": (
+                absence_probe["current_a1_helper_capabilities"][
+                    "float64_nextafter_probe_present"
+                ]
+            ),
+            "hardware_rounding_mode_control_available": False,
+            "rounding_mode_context_manager_available": False,
+            "directed_rounding_interval_backend_module_available": (
+                absence_probe["capability_status"][
+                    "backend_runtime_identity_object_available"
+                ]
+            ),
+            "operation_level_rounding_mode_transition_log_available": False,
+            "source_q_derivative_composition_operation_trace_available": False,
+            "shared_interval_box_family_digest_available": False,
+            "executable_absence_probe_status": absence_probe["status"],
+            "executable_absence_probe_digest": (
+                absence_probe["absence_probe_digest"]
+            ),
+        },
+        "disallowed_evidence_sources": [
+            "float64_nextafter_probe",
+            "decimal_tolerance",
+            "sampled_float64_finite_differences",
+            "local_envelope_check",
+            "self_audit_rows_without_runtime_identity",
+            "mixed_interval_box_family_digest",
+        ],
+        "negative_control": {
+            "float64_nextafter_probe_does_not_satisfy_runtime_identity": True,
+            "decimal_tolerances_do_not_satisfy_runtime_identity": True,
+            "local_envelope_checks_do_not_satisfy_runtime_identity": True,
+            "missing_rounding_mode_transition_log_fails_closed": True,
+            "missing_operation_trace_digest_fails_closed": True,
+            "missing_shared_interval_box_family_digest_fails_closed": True,
+        },
+        "runtime_identity_present": absence_probe["runtime_identity_present"],
+        "directed_rounding_backend_available": absence_probe[
+            "directed_rounding_backend_available"
+        ],
+        "directed_rounding_mode_audit_trail_available": False,
+        "shared_interval_box_family_digest_available": False,
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "target_digest": canonical_json_digest(payload),
+        "status": RUNTIME_IDENTITY_ABSENCE_STATUS,
+    }
+
+
+def a1_directed_rounding_runtime_backend_availability_audit(
+    source_digest: str,
+    *,
+    backend_id: str,
+    required_method: str,
+    required_rounding_modes: list[str],
+    required_capabilities: list[str],
+) -> dict:
+    target_field = (
+        "directed_rounding_backend_target.current_runtime_probe."
+        "directed_rounding_backend_available"
+    )
+    runtime_identity_target = (
+        a1_directed_rounding_interval_backend_runtime_identity_target(
+            source_digest,
+            backend_id=backend_id,
+            required_method=required_method,
+            required_rounding_modes=required_rounding_modes,
+            required_capabilities=required_capabilities,
+        )
+    )
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_directed_rounding_runtime_backend_availability_audit.v0"
+        ),
+        "artifact_id": (
+            "a1_directed_rounding_runtime_backend_availability_audit.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "backend_id": backend_id,
+        "target_field": target_field,
+        "selected_slot_consumer": "source_q_derivative_composition",
+        "unavailable_backend_target": {
+            "backend_id": backend_id,
+            "required_method": required_method,
+            "required_rounding_modes": required_rounding_modes,
+            "required_capabilities": required_capabilities,
+        },
+        "current_runtime_facts": {
+            "float64_nextafter_probe_present": hasattr(math, "nextafter"),
+            "float64_hex_payloads_present": (
+                hasattr(float, "hex") and hasattr(float, "fromhex")
+            ),
+            "exact_fraction_from_float_available": hasattr(
+                Fraction,
+                "from_float",
+            ),
+            "hardware_rounding_mode_control_available": False,
+            "rounding_mode_context_manager_available": False,
+            "shared_runtime_rounding_mode_audit_trail_available": False,
+            "directed_rounding_interval_backend_module_available": False,
+            "runtime_identity_absence_probe_status": (
+                runtime_identity_target["absence_probe_status"]
+            ),
+            "runtime_identity_absence_probe_digest": (
+                runtime_identity_target["absence_probe_digest"]
+            ),
+        },
+        "runtime_identity_target": runtime_identity_target,
+        "runtime_identity_target_digest": (
+            runtime_identity_target["target_digest"]
+        ),
+        "runtime_identity_target_status": runtime_identity_target["status"],
+        "runtime_identity_absence_probe_digest": (
+            runtime_identity_target["absence_probe_digest"]
+        ),
+        "runtime_identity_absence_probe_status": (
+            runtime_identity_target["absence_probe_status"]
+        ),
+        "missing_runtime_identity_fields": (
+            runtime_identity_target["missing_identity_fields"]
+        ),
+        "observed_available_capabilities": [
+            "float64_nextafter_bracket_probe",
+            "float64_hex_payload_capture",
+            "exact_fraction_reference_replay",
+        ],
+        "unavailable_required_capabilities": [
+            "directed_rounding_interval_arithmetic_backend",
+            "runtime_round_toward_negative_infinity_operation",
+            "runtime_round_toward_positive_infinity_operation",
+            "operation_level_rounding_mode_audit_trail",
+            "shared_backend_identity_digest_for_source_q_derivative_composition",
+        ],
+        "replacement_requirement": {
+            "required_backend_runtime_identity_object": (
+                "a1_directed_rounding_interval_backend_runtime_identity.v0"
+            ),
+            "required_backend_runtime_identity_target_digest": (
+                runtime_identity_target["target_digest"]
+            ),
+            "required_runtime_identity_absence_probe_digest": (
+                runtime_identity_target["absence_probe_digest"]
+            ),
+            "must_set_target_field_true": target_field,
+            "required_runtime_capabilities": [
+                "backend-owned downward and upward interval operations",
+                "per-operation rounding-mode transition log",
+                "formula-composition audit over source_q_derivative_composition",
+                "same-backend digest shared by coefficient, profile, root, and source rows",
+            ],
+            "required_identity_fields": [
+                "backend_runtime_id",
+                "backend_version_or_build_digest",
+                "rounding_mode_transition_log_digest",
+                "source_q_derivative_composition_operation_trace_digest",
+                "shared_interval_box_family_digest",
+            ],
+        },
+        "negative_control": {
+            "float64_nextafter_probe_does_not_satisfy_backend_availability": True,
+            "self_audit_rows_passed_do_not_satisfy_backend_availability": True,
+            "sampled_partials_do_not_satisfy_backend_availability": True,
+            "runtime_identity_target_absence_fails_closed": True,
+            "runtime_identity_absence_probe_fails_closed": True,
+            "missing_rounding_mode_transition_log_fails_closed": True,
+            "mixed_backend_digest_fails_closed": True,
+        },
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "availability_audit_digest": canonical_json_digest(payload),
+        "status": (
+            "directed_rounding_runtime_backend_unavailable_fail_closed"
+        ),
     }
 
 
@@ -1875,6 +2439,23 @@ def directed_rounding_backend_target_row(
         "capability_probe_status": directed_rounding_backend_target[
             "current_runtime_probe"
         ]["probe_status"],
+        "runtime_identity_target_status": directed_rounding_backend_target[
+            "current_runtime_probe"
+        ]["directed_rounding_runtime_identity_target_status"],
+        "runtime_identity_target_digest": directed_rounding_backend_target[
+            "current_runtime_probe"
+        ]["directed_rounding_runtime_identity_target_digest"],
+        "runtime_identity_absence_probe_status": directed_rounding_backend_target[
+            "current_runtime_probe"
+        ]["directed_rounding_runtime_identity_absence_probe_status"],
+        "runtime_identity_absence_probe_digest": directed_rounding_backend_target[
+            "current_runtime_probe"
+        ]["directed_rounding_runtime_identity_absence_probe_digest"],
+        "runtime_identity_target": directed_rounding_backend_target[
+            "current_runtime_probe"
+        ]["directed_rounding_backend_availability_audit"][
+            "runtime_identity_target"
+        ],
         "used_as_certificate": False,
     }
     if directed_rounding_backend_self_audit is not None:
@@ -2524,6 +3105,506 @@ def interval_contains_all(interval: fixed.Interval, values: Iterable[float]) -> 
     return all(interval.lo <= value <= interval.hi for value in values)
 
 
+def past_profile_integral_from_zero(profile: Profile, x: float) -> float:
+    if x <= 0.0:
+        return 0.0
+    if isinstance(profile, TransportProfile):
+        coefficients = profile.past_coefficients
+        basis_scale = profile.past_basis_scale
+    else:
+        coefficients = getattr(profile, "coefficients", Q_COEFFS)
+        basis_scale = getattr(profile, "basis_scale", 1.0)
+    clipped = min(x, DELTA_R)
+    total = clipped + polynomial_integral_offset(
+        coefficients, clipped, basis_scale
+    )
+    if x > DELTA_R:
+        total += x - DELTA_R
+    return total
+
+
+def future_profile_integral_from_zero(profile: Profile, theta: float) -> float:
+    if theta <= 0.0:
+        return 0.0
+    if not isinstance(profile, TransportProfile):
+        # This path is not used by the A1 admissible-profile packet. It keeps
+        # the local audit explicit if another profile mode reaches this helper.
+        return memory_integral(theta, theta, panels=64, profile=profile)
+    total = 0.0
+    nodes = profile.theta_nodes
+    values = profile.q_nodes
+    for index in range(1, len(nodes)):
+        lo = nodes[index - 1]
+        hi = nodes[index]
+        q_lo = values[index - 1]
+        q_hi = values[index]
+        if theta <= lo:
+            break
+        segment_hi = min(theta, hi)
+        width = segment_hi - lo
+        if width > 0.0:
+            slope = (q_hi - q_lo) / (hi - lo)
+            total += q_lo * width + 0.5 * slope * width * width
+        if theta <= hi:
+            break
+    if theta > nodes[-1]:
+        total += values[-1] * (theta - nodes[-1])
+    return total
+
+
+def source_memory_integral_split_interval(
+    profile: Profile,
+    theta_box: fixed.Interval,
+    delta_box: fixed.Interval,
+) -> dict:
+    x_lo = max(0.0, delta_box.lo - theta_box.hi)
+    x_hi = max(0.0, delta_box.hi - theta_box.lo)
+    past_lo = past_profile_integral_from_zero(profile, x_lo)
+    past_hi = past_profile_integral_from_zero(profile, x_hi)
+    future_lo = future_profile_integral_from_zero(profile, max(0.0, theta_box.lo))
+    future_hi = future_profile_integral_from_zero(profile, max(0.0, theta_box.hi))
+    memory_interval = fixed.outward(past_lo + future_lo, past_hi + future_hi)
+    return {
+        "method": (
+            "local_past_polynomial_antiderivative_plus_future_piecewise_linear_"
+            "integral_interval"
+        ),
+        "theta_interval": interval_row(theta_box),
+        "delta_interval": interval_row(delta_box),
+        "past_antiderivative_argument_interval": interval_row(
+            fixed.Interval(x_lo, x_hi)
+        ),
+        "past_integral_interval": interval_row(fixed.outward(past_lo, past_hi)),
+        "future_integral_interval": interval_row(
+            fixed.outward(future_lo, future_hi)
+        ),
+        "memory_integral_interval": interval_row(memory_interval),
+        "used_as_certificate": False,
+        "used_as_local_certificate": True,
+        "used_as_shared_certificate": False,
+    }
+
+
+def finite_memory_root_function_split_interval(
+    kind: str,
+    profile: Profile,
+    theta_box: fixed.Interval,
+    delta_box: fixed.Interval,
+) -> dict:
+    lambda_row = fixed.lambda_interval(kind, theta_box, delta_box)
+    sigma_row = fixed.exp_interval(A * (1.0 - fixed.cos_interval(theta_box)))
+    memory_row = source_memory_integral_split_interval(
+        profile, theta_box, delta_box
+    )
+    memory_interval = fixed.Interval(
+        memory_row["memory_integral_interval"]["lower"],
+        memory_row["memory_integral_interval"]["upper"],
+    )
+    quotient = memory_interval / (B_STAR * sigma_row)
+    root_interval = lambda_row - quotient
+    return {
+        "lambda_interval": interval_row(lambda_row),
+        "sigma_interval": interval_row(sigma_row),
+        "source_memory_integral_row": memory_row,
+        "memory_over_B_sigma_interval": interval_row(quotient),
+        "root_function_interval": interval_row(root_interval),
+        "strict_interval_sign": fixed.strict_interval_sign(root_interval),
+    }
+
+
+def a1_p1_retained_root_delta_alpha_interval_box_attempt(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    slot: dict,
+    profile: Profile,
+    sampled_rows: list[dict],
+) -> dict:
+    sampled_deltas = [row["delta"] for row in sampled_rows]
+    sampled_box = float64_nextafter_bounds(sampled_deltas)
+    pad = max(8.0e-4, 0.30 * (max(sampled_deltas) - min(sampled_deltas)))
+    proposed_lower = math.nextafter(min(sampled_deltas) - pad, -math.inf)
+    proposed_upper = math.nextafter(max(sampled_deltas) + pad, math.inf)
+    theta_box = fixed.Interval(theta_interval[0], theta_interval[1])
+    proposed_box = fixed.Interval(proposed_lower, proposed_upper)
+    lower_endpoint_box = fixed.outward(proposed_lower, proposed_lower)
+    upper_endpoint_box = fixed.outward(proposed_upper, proposed_upper)
+    lower_sign_row_full = finite_memory_root_function_split_interval(
+        slot["kind"], profile, theta_box, lower_endpoint_box
+    )
+    upper_sign_row_full = finite_memory_root_function_split_interval(
+        slot["kind"], profile, theta_box, upper_endpoint_box
+    )
+    theta_slab_count = 16
+    theta_slab_width = (theta_interval[1] - theta_interval[0]) / theta_slab_count
+    endpoint_slab_rows = []
+    for slab_index in range(theta_slab_count):
+        slab_lo = theta_interval[0] + slab_index * theta_slab_width
+        slab_hi = (
+            theta_interval[1]
+            if slab_index == theta_slab_count - 1
+            else theta_interval[0] + (slab_index + 1) * theta_slab_width
+        )
+        slab_box = fixed.Interval(slab_lo, slab_hi)
+        lower_slab_row = finite_memory_root_function_split_interval(
+            slot["kind"], profile, slab_box, lower_endpoint_box
+        )
+        upper_slab_row = finite_memory_root_function_split_interval(
+            slot["kind"], profile, slab_box, upper_endpoint_box
+        )
+        endpoint_slab_rows.append(
+            {
+                "slab_index": slab_index,
+                "theta_interval": interval_row(slab_box),
+                "lower_endpoint": lower_slab_row,
+                "upper_endpoint": upper_slab_row,
+                "lower_endpoint_positive": (
+                    lower_slab_row["strict_interval_sign"] > 0
+                ),
+                "upper_endpoint_negative": (
+                    upper_slab_row["strict_interval_sign"] < 0
+                ),
+            }
+        )
+    jacobian_row = fixed.jacobian_interval(slot["kind"], theta_box, proposed_box)
+    abs_jacobian = fixed.abs_away_from_zero(jacobian_row)
+    endpoint_signs_certified_locally = (
+        bool(endpoint_slab_rows)
+        and all(row["lower_endpoint_positive"] for row in endpoint_slab_rows)
+        and all(row["upper_endpoint_negative"] for row in endpoint_slab_rows)
+    )
+    jacobian_floor_certified_locally = abs_jacobian is not None
+    local_box_present = (
+        endpoint_signs_certified_locally and jacobian_floor_certified_locally
+    )
+    first_failure = (
+        None
+        if local_box_present
+        else (
+            "P_1_endpoint_sign_interval_proof_missing"
+            if not endpoint_signs_certified_locally
+            else "P_1_jacobian_floor_interval_proof_missing"
+        )
+    )
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_p1_retained_root_delta_alpha_interval_box_attempt.v0"
+        ),
+        "artifact_id": "a1_p1_retained_root_delta_alpha_interval_box_attempt.v0",
+        "source_artifact_hash": source_digest,
+        "method": (
+            "local_endpoint_sign_and_jacobian_floor_interval_attempt_for_P_1"
+        ),
+        "claim_level": (
+            "priority-only local retained-root delta interval box attempt; not "
+            "a shared interval-box certificate"
+        ),
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "slot": slot,
+        "sampled_delta_reference": {
+            "sampled_method": "float64_bisection_root_motion_sample",
+            "sampled_row_count": len(sampled_rows),
+            "sampled_delta_enclosure": sampled_box,
+            "accepted_as_interval_evidence": False,
+        },
+        "proposed_interval_box": {
+            "row": "P_1_retained_root_delta_alpha_interval_box",
+            "box_id": "P_1_retained_root_delta_alpha_interval_box",
+            "theta_interval": theta_interval,
+            "delta_alpha_interval": [proposed_lower, proposed_upper],
+            "delta_alpha_interval_hex": [
+                float(proposed_lower).hex(),
+                float(proposed_upper).hex(),
+            ],
+            "sample_padding": pad,
+            "contains_sampled_deltas": interval_contains_all(
+                proposed_box, sampled_deltas
+            ),
+            "same_theta_box_family": True,
+        },
+        "endpoint_sign_interval_rows": {
+            "coarse_theta_box_lower_endpoint": lower_sign_row_full,
+            "coarse_theta_box_upper_endpoint": upper_sign_row_full,
+            "theta_slab_count": theta_slab_count,
+            "theta_slab_rows": endpoint_slab_rows,
+            "endpoint_signs_certified_locally": endpoint_signs_certified_locally,
+            "required_signs": {
+                "lower_endpoint": "positive",
+                "upper_endpoint": "negative",
+            },
+        },
+        "jacobian_floor_interval_row": {
+            "J_partner_interval": interval_row(jacobian_row),
+            "abs_J_partner_interval": (
+                interval_row(abs_jacobian) if abs_jacobian is not None else None
+            ),
+            "abs_J_partner_interval_floor": (
+                abs_jacobian.lo if abs_jacobian is not None else None
+            ),
+            "jacobian_floor_certified_locally": jacobian_floor_certified_locally,
+        },
+        "formula_consumer_status": {
+            "satisfies_retained_root_delta_alpha_interval_box_locally": (
+                local_box_present
+            ),
+            "satisfies_certificate_grade_retained_root_delta_alpha_interval_box": False,
+            "next_required_consumer_row": (
+                "P_1_q_source_alpha_interval_box"
+                if local_box_present
+                else "P_1_endpoint_sign_interval_proof"
+            ),
+        },
+        "first_failure": first_failure,
+        "bounds_retained_root_interval_boxes": local_box_present,
+        "bounds_inactive_cover_interval_boxes": False,
+        "used_as_certificate": False,
+        "used_as_local_certificate": local_box_present,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    status = (
+        "local_P_1_retained_root_delta_alpha_interval_box_present_not_shared_certificate"
+        if local_box_present
+        else "P_1_retained_root_delta_alpha_interval_box_attempt_failed_closed"
+    )
+    return {
+        **payload,
+        "attempt_digest": canonical_json_digest(payload),
+        "status": status,
+    }
+
+
+def a1_p1_q_source_alpha_interval_box_attempt(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    delta_interval: fixed.Interval,
+    profile: Profile,
+    past_profile_interval_box_certificate: dict,
+    sampled_rows: list[dict],
+) -> dict:
+    theta_box = fixed.Interval(theta_interval[0], theta_interval[1])
+    source_theta_box = theta_box - delta_interval
+    source_x_box = fixed.outward(-source_theta_box.hi, -source_theta_box.lo)
+    source_inside_past_profile_domain = (
+        source_x_box.lo >= 0.0 and source_x_box.hi <= DELTA_R
+    )
+    if isinstance(profile, TransportProfile):
+        coefficients = profile.past_coefficients
+        basis_scale = profile.past_basis_scale
+        past_profile_kind = profile.past_kind
+    else:
+        coefficients = getattr(profile, "coefficients", Q_COEFFS)
+        basis_scale = getattr(profile, "basis_scale", 1.0)
+        past_profile_kind = getattr(profile, "kind", "unknown")
+
+    subdivision_depth = past_profile_interval_box_certificate["subdivision_depth"]
+    if source_inside_past_profile_domain:
+        segments = [
+            exact_fraction_power_to_bernstein_coefficients(
+                exact_q_window_power_coefficients(
+                    coefficients, basis_scale, source_x_box
+                )
+            )
+        ]
+        for _ in range(subdivision_depth):
+            next_segments = []
+            for segment in segments:
+                left, right = split_exact_bernstein_coefficients(segment)
+                next_segments.extend((left, right))
+            segments = next_segments
+        control_points = [value for segment in segments for value in segment]
+        exact_lower = min(control_points)
+        exact_upper = max(control_points)
+        lower_interval = float64_outward_interval_for_fraction(exact_lower)
+        upper_interval = float64_outward_interval_for_fraction(exact_upper)
+        control_point_intervals = [
+            [
+                {
+                    "lower_hex": interval["lower_hex"],
+                    "upper_hex": interval["upper_hex"],
+                    "nearest_hex": interval["nearest_hex"],
+                    "lower_leq_exact": interval["lower_leq_exact"],
+                    "exact_leq_upper": interval["exact_leq_upper"],
+                }
+                for interval in (
+                    float64_outward_interval_for_fraction(value)
+                    for value in segment
+                )
+            ]
+            for segment in segments
+        ]
+        all_control_point_intervals_enclose_exact = all(
+            interval["lower_leq_exact"] and interval["exact_leq_upper"]
+            for segment in control_point_intervals
+            for interval in segment
+        )
+        q_interval = [lower_interval["lower"], upper_interval["upper"]]
+        q_interval_hex = [lower_interval["lower_hex"], upper_interval["upper_hex"]]
+        q_source_box = fixed.Interval(q_interval[0], q_interval[1])
+        control_point_interval_payload = {
+            "schema": (
+                "architrino.priority.master_equation_closure."
+                "a1_p1_q_source_alpha_control_point_intervals.v0"
+            ),
+            "source_artifact_hash": source_digest,
+            "method": "exact_rational_subwindow_bernstein_float64_nextafter",
+            "exact_reference_arithmetic": "fractions.Fraction.from_float",
+            "source_theta_interval": interval_row(source_theta_box),
+            "source_x_interval": interval_row(source_x_box),
+            "subdivision_depth": subdivision_depth,
+            "subinterval_count": len(segments),
+            "segment_control_intervals": control_point_intervals,
+        }
+        control_point_interval_payload_digest = canonical_json_digest(
+            control_point_interval_payload
+        )
+        control_point_interval_payload_byte_count = len(
+            canonical_json_bytes(control_point_interval_payload)
+        )
+    else:
+        lower_interval = None
+        upper_interval = None
+        q_interval = None
+        q_interval_hex = None
+        q_source_box = None
+        segments = []
+        control_points = []
+        all_control_point_intervals_enclose_exact = False
+        control_point_interval_payload_digest = None
+        control_point_interval_payload_byte_count = 0
+
+    sampled_q_sources = [row["q_source"] for row in sampled_rows]
+    sampled_q_source_enclosure = float64_nextafter_bounds(sampled_q_sources)
+    sampled_q_sources_inside_interval = (
+        q_source_box is not None
+        and interval_contains_all(q_source_box, sampled_q_sources)
+    )
+    local_box_present = (
+        source_inside_past_profile_domain
+        and all_control_point_intervals_enclose_exact
+        and sampled_q_sources_inside_interval
+    )
+    first_failure = (
+        None
+        if local_box_present
+        else (
+            "P_1_source_theta_interval_leaves_past_profile_domain"
+            if not source_inside_past_profile_domain
+            else "P_1_q_source_alpha_control_point_interval_proof_missing"
+        )
+    )
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_p1_q_source_alpha_interval_box_attempt.v0"
+        ),
+        "artifact_id": "a1_p1_q_source_alpha_interval_box_attempt.v0",
+        "source_artifact_hash": source_digest,
+        "method": "exact_rational_subwindow_bernstein_q_source_interval_attempt",
+        "claim_level": (
+            "priority-only local P_1 q_source_alpha interval box attempt; "
+            "not a shared interval-box certificate"
+        ),
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "delta_interval_source": {
+            "row": "P_1_retained_root_delta_alpha_interval_box",
+            "delta_alpha_interval": [
+                delta_interval.lo,
+                delta_interval.hi,
+            ],
+            "delta_alpha_interval_hex": [
+                float(delta_interval.lo).hex(),
+                float(delta_interval.hi).hex(),
+            ],
+        },
+        "source_theta_interval": interval_row(source_theta_box),
+        "source_x_interval": interval_row(source_x_box),
+        "past_profile_kind": past_profile_kind,
+        "past_profile_basis_scale": basis_scale,
+        "past_profile_certificate_digest": past_profile_interval_box_certificate[
+            "certificate_digest"
+        ],
+        "past_profile_certificate_status": past_profile_interval_box_certificate[
+            "status"
+        ],
+        "past_profile_certificate_used_as_shared_certificate": (
+            past_profile_interval_box_certificate["used_as_shared_certificate"]
+        ),
+        "source_inside_past_profile_domain": source_inside_past_profile_domain,
+        "subdivision_depth": subdivision_depth,
+        "subinterval_count": len(segments),
+        "control_point_count": len(control_points),
+        "control_point_interval_payload_digest": (
+            control_point_interval_payload_digest
+        ),
+        "control_point_interval_payload_byte_count": (
+            control_point_interval_payload_byte_count
+        ),
+        "all_control_point_intervals_enclose_exact": (
+            all_control_point_intervals_enclose_exact
+        ),
+        "q_lower_interval": lower_interval,
+        "q_upper_interval": upper_interval,
+        "proposed_interval_box": {
+            "row": "P_1_q_source_alpha_interval_box",
+            "box_id": "P_1_q_source_alpha_interval_box",
+            "theta_interval": theta_interval,
+            "delta_alpha_interval": [delta_interval.lo, delta_interval.hi],
+            "source_theta_interval": [
+                source_theta_box.lo,
+                source_theta_box.hi,
+            ],
+            "q_source_alpha_interval": q_interval,
+            "q_source_alpha_interval_hex": q_interval_hex,
+            "same_theta_box_family": True,
+            "same_delta_alpha_interval_box": True,
+            "contains_sampled_q_sources": sampled_q_sources_inside_interval,
+        },
+        "sampled_q_source_reference": {
+            "sampled_method": "profile_float64_q_source_sample_not_interval_box",
+            "sampled_row_count": len(sampled_rows),
+            "sampled_q_source_enclosure": sampled_q_source_enclosure,
+            "accepted_as_interval_evidence": False,
+        },
+        "formula_consumer_status": {
+            "satisfies_P_1_q_source_alpha_interval_box_locally": (
+                local_box_present
+            ),
+            "satisfies_certificate_grade_P_1_q_source_alpha_interval_box": False,
+            "next_required_consumer_row": (
+                "shared_directed_rounding_audit_trail_for_"
+                "source_q_derivative_composition"
+                if local_box_present
+                else "P_1_q_source_alpha_interval_box"
+            ),
+        },
+        "first_failure": first_failure,
+        "bounds_q_source_alpha_interval_box": local_box_present,
+        "used_as_certificate": False,
+        "used_as_local_certificate": local_box_present,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    status = (
+        "local_P_1_q_source_alpha_interval_box_present_not_shared_certificate"
+        if local_box_present
+        else "P_1_q_source_alpha_interval_box_attempt_failed_closed"
+    )
+    return {
+        **payload,
+        "attempt_digest": canonical_json_digest(payload),
+        "status": status,
+    }
+
+
 def a1_partner_tangential_delta_partial_interval_formula(
     theta_box: fixed.Interval,
     delta_box: fixed.Interval,
@@ -2619,29 +3700,29 @@ def a1_partner_tangential_delta_partial_interval_formula(
     }
 
 
-def a1_one_slot_formula_dependency_audit(
+def a1_shared_directed_rounding_audit_trail_for_source_q_derivative_composition(
     source_digest: str,
     *,
     radius_b: float,
     theta_interval: list[float],
     slot: dict,
-    past_profile_interval_box_certificate: dict,
-    sampled_rows: list[dict],
+    retained_root_delta_box_attempt: dict,
+    q_source_interval_box_attempt: dict,
+    formula_interval: dict,
+    directed_rounding_backend_target: dict | None,
+    directed_rounding_backend_self_audit: dict | None,
+    sampled_partials: list[float],
 ) -> dict:
-    delta_interval = fixed.Interval(slot["window"][0], slot["window"][1])
-    theta_box = fixed.Interval(theta_interval[0], theta_interval[1])
-    source_theta_interval = [
-        theta_interval[0] - slot["window"][1],
-        theta_interval[1] - slot["window"][0],
+    local_retained_root_delta_box_present = retained_root_delta_box_attempt[
+        "formula_consumer_status"
+    ]["satisfies_retained_root_delta_alpha_interval_box_locally"]
+    local_q_source_box_present = q_source_interval_box_attempt[
+        "formula_consumer_status"
+    ]["satisfies_P_1_q_source_alpha_interval_box_locally"]
+    source_theta_inside_domain = q_source_interval_box_attempt[
+        "source_inside_past_profile_domain"
     ]
-    q_interval = past_profile_interval_box_certificate["q_interval"]
-    q_source_box = fixed.Interval(q_interval[0], q_interval[1])
-    formula_interval = a1_partner_tangential_delta_partial_interval_formula(
-        theta_box, delta_interval, q_source_box
-    )
-    sampled_partials = [row["sampled_partial"] for row in sampled_rows]
-    sampled_deltas = [row["delta"] for row in sampled_rows]
-    sampled_q_sources = [row["q_source"] for row in sampled_rows]
+    formula_available = bool(formula_interval.get("formula_available"))
     partial_row = formula_interval.get(
         "partial_T_alpha_partial_delta_alpha_interval"
     )
@@ -2649,6 +3730,494 @@ def a1_one_slot_formula_dependency_audit(
         fixed.Interval(partial_row["lower"], partial_row["upper"])
         if partial_row is not None
         else None
+    )
+    sampled_partials_inside_formula_interval = (
+        partial_interval_box is not None
+        and interval_contains_all(partial_interval_box, sampled_partials)
+    )
+    backend_probe = (
+        directed_rounding_backend_target.get("current_runtime_probe", {})
+        if directed_rounding_backend_target is not None
+        else {}
+    )
+    backend_availability_audit = backend_probe.get(
+        "directed_rounding_backend_availability_audit",
+        {},
+    )
+    runtime_identity_target = backend_availability_audit.get(
+        "runtime_identity_target",
+        {},
+    )
+    missing_runtime_identity_fields = runtime_identity_target.get(
+        "missing_identity_fields",
+        [],
+    )
+    backend_available = bool(
+        backend_probe.get("directed_rounding_backend_available")
+    )
+    backend_mode_audit_trail_available = bool(
+        backend_probe.get("directed_rounding_mode_audit_trail_available")
+    )
+    self_audit_rows_failed = (
+        directed_rounding_backend_self_audit.get("rows_failed")
+        if directed_rounding_backend_self_audit is not None
+        else None
+    )
+    self_audit_rows_passed = (
+        directed_rounding_backend_self_audit.get("rows_passed")
+        if directed_rounding_backend_self_audit is not None
+        else None
+    )
+    self_audit_passed = self_audit_rows_failed == 0
+    missing_shared_fields: list[str] = []
+    if not backend_available:
+        missing_shared_fields.append(
+            "directed_rounding_backend_target.current_runtime_probe."
+            "directed_rounding_backend_available"
+        )
+    if not backend_mode_audit_trail_available:
+        missing_shared_fields.append(
+            "directed_rounding_backend_target.current_runtime_probe."
+            "directed_rounding_mode_audit_trail_available"
+        )
+    if not retained_root_delta_box_attempt["used_as_shared_certificate"]:
+        missing_shared_fields.append(
+            "P_1_retained_root_delta_alpha_interval_box_attempt."
+            "used_as_shared_certificate"
+        )
+    if not q_source_interval_box_attempt["used_as_shared_certificate"]:
+        missing_shared_fields.append(
+            "P_1_q_source_alpha_interval_box_attempt.used_as_shared_certificate"
+        )
+    if not q_source_interval_box_attempt[
+        "past_profile_certificate_used_as_shared_certificate"
+    ]:
+        missing_shared_fields.append(
+            "P_1_q_source_alpha_interval_box_attempt."
+            "past_profile_certificate_used_as_shared_certificate"
+        )
+
+    local_readout_present = (
+        local_retained_root_delta_box_present
+        and local_q_source_box_present
+        and source_theta_inside_domain
+        and formula_available
+    )
+    shared_audit_trail_present = (
+        local_readout_present
+        and backend_available
+        and backend_mode_audit_trail_available
+        and self_audit_passed
+        and not missing_shared_fields
+    )
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_shared_directed_rounding_audit_trail_for_"
+            "source_q_derivative_composition.v0"
+        ),
+        "artifact_id": (
+            "a1_shared_directed_rounding_audit_trail_for_"
+            "source_q_derivative_composition.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "method": (
+            "local_nextafter_source_q_derivative_composition_readout_"
+            "over_selected_P_1_boxes"
+        ),
+        "claim_level": (
+            "priority-only source_q_derivative_composition audit readout; "
+            "not a shared directed-rounding audit trail"
+        ),
+        "radius_b": radius_b,
+        "slot": slot,
+        "composition_id": "source_q_derivative_composition",
+        "composition_expression": (
+            "partial_delta_alpha T_alpha(theta, delta_alpha, "
+            "q_source_alpha) over the selected theta, retained-root "
+            "delta_alpha, and q_source_alpha interval boxes"
+        ),
+        "theta_interval_box": {
+            "row": "theta_interval",
+            "theta_interval": interval_row(
+                fixed.Interval(theta_interval[0], theta_interval[1])
+            ),
+            "same_theta_box_family": True,
+            "used_as_certificate": False,
+            "used_as_shared_certificate": False,
+        },
+        "retained_root_delta_alpha_interval_box": {
+            "row": "P_1_retained_root_delta_alpha_interval_box",
+            "attempt_digest": retained_root_delta_box_attempt["attempt_digest"],
+            "delta_alpha_interval": retained_root_delta_box_attempt[
+                "proposed_interval_box"
+            ]["delta_alpha_interval"],
+            "delta_alpha_interval_hex": retained_root_delta_box_attempt[
+                "proposed_interval_box"
+            ]["delta_alpha_interval_hex"],
+            "contains_sampled_deltas": retained_root_delta_box_attempt[
+                "proposed_interval_box"
+            ]["contains_sampled_deltas"],
+            "used_as_local_certificate": retained_root_delta_box_attempt[
+                "used_as_local_certificate"
+            ],
+            "used_as_shared_certificate": retained_root_delta_box_attempt[
+                "used_as_shared_certificate"
+            ],
+        },
+        "q_source_alpha_interval_box": {
+            "row": "P_1_q_source_alpha_interval_box",
+            "attempt_digest": q_source_interval_box_attempt["attempt_digest"],
+            "q_source_alpha_interval": q_source_interval_box_attempt[
+                "proposed_interval_box"
+            ]["q_source_alpha_interval"],
+            "q_source_alpha_interval_hex": q_source_interval_box_attempt[
+                "proposed_interval_box"
+            ]["q_source_alpha_interval_hex"],
+            "source_theta_interval": q_source_interval_box_attempt[
+                "source_theta_interval"
+            ],
+            "source_x_interval": q_source_interval_box_attempt[
+                "source_x_interval"
+            ],
+            "control_point_interval_payload_digest": (
+                q_source_interval_box_attempt[
+                    "control_point_interval_payload_digest"
+                ]
+            ),
+            "contains_sampled_q_sources": q_source_interval_box_attempt[
+                "proposed_interval_box"
+            ]["contains_sampled_q_sources"],
+            "used_as_local_certificate": q_source_interval_box_attempt[
+                "used_as_local_certificate"
+            ],
+            "used_as_shared_certificate": q_source_interval_box_attempt[
+                "used_as_shared_certificate"
+            ],
+            "past_profile_certificate_used_as_shared_certificate": (
+                q_source_interval_box_attempt[
+                    "past_profile_certificate_used_as_shared_certificate"
+                ]
+            ),
+        },
+        "composition_input_checks": {
+            "theta_interval_present": True,
+            "retained_root_delta_interval_box_present_locally": (
+                local_retained_root_delta_box_present
+            ),
+            "q_source_interval_box_present_locally": local_q_source_box_present,
+            "source_theta_interval_inside_past_profile_domain": (
+                source_theta_inside_domain
+            ),
+            "formula_probe_available": formula_available,
+            "sampled_partials_inside_formula_interval": (
+                sampled_partials_inside_formula_interval
+            ),
+            "directed_rounding_backend_available": backend_available,
+            "directed_rounding_mode_audit_trail_available": (
+                backend_mode_audit_trail_available
+            ),
+            "directed_rounding_backend_self_audit_rows_passed": (
+                self_audit_rows_passed
+            ),
+            "directed_rounding_backend_self_audit_rows_failed": (
+                self_audit_rows_failed
+            ),
+            "directed_rounding_backend_availability_audit_status": (
+                backend_probe.get(
+                    "directed_rounding_backend_availability_audit_status"
+                )
+            ),
+            "directed_rounding_backend_availability_audit_digest": (
+                backend_probe.get(
+                    "directed_rounding_backend_availability_audit_digest"
+                )
+            ),
+            "directed_rounding_runtime_identity_target_status": (
+                backend_probe.get(
+                    "directed_rounding_runtime_identity_target_status"
+                )
+            ),
+            "directed_rounding_runtime_identity_target_digest": (
+                backend_probe.get(
+                    "directed_rounding_runtime_identity_target_digest"
+                )
+            ),
+            "directed_rounding_runtime_identity_absence_probe_status": (
+                runtime_identity_target.get("absence_probe_status")
+            ),
+            "directed_rounding_runtime_identity_absence_probe_digest": (
+                runtime_identity_target.get("absence_probe_digest")
+            ),
+            "next_required_runtime_backend_object": backend_probe.get(
+                "first_unavailable_backend_object"
+            ),
+            "missing_directed_rounding_runtime_identity_fields": (
+                missing_runtime_identity_fields
+            ),
+            "first_missing_directed_rounding_runtime_identity_field": (
+                missing_runtime_identity_fields[0]
+                if missing_runtime_identity_fields
+                else None
+            ),
+        },
+        "formula_rows_checked": {
+            "partial_delta_tangential_numerator_interval_formula": (
+                formula_interval.get(
+                    "partial_delta_tangential_numerator_interval"
+                )
+            ),
+            "partial_delta_lambda_partner_interval_formula": (
+                formula_interval.get("lambda_delta_interval")
+            ),
+            "partial_delta_J_partner_with_source_q_interval_formula": (
+                formula_interval.get(
+                    "partial_delta_J_partner_with_source_q_interval"
+                )
+            ),
+            "J_partner_interval": formula_interval.get("J_partner_interval"),
+            "J_partner_sign": formula_interval.get("J_partner_sign"),
+            "abs_J_partner_interval_floor": formula_interval.get(
+                "abs_J_partner_interval_floor"
+            ),
+            "partial_T_alpha_partial_delta_alpha_interval": partial_row,
+        },
+        "backend_identity": {
+            "backend_target_schema": (
+                directed_rounding_backend_target.get("schema")
+                if directed_rounding_backend_target is not None
+                else None
+            ),
+            "backend_target_digest": (
+                directed_rounding_backend_target.get("target_digest")
+                if directed_rounding_backend_target is not None
+                else None
+            ),
+            "backend_id": (
+                directed_rounding_backend_target.get("backend_id")
+                if directed_rounding_backend_target is not None
+                else None
+            ),
+            "backend_target_status": (
+                directed_rounding_backend_target.get("status")
+                if directed_rounding_backend_target is not None
+                else None
+            ),
+            "backend_self_audit_schema": (
+                directed_rounding_backend_self_audit.get("schema")
+                if directed_rounding_backend_self_audit is not None
+                else None
+            ),
+            "backend_self_audit_digest": (
+                directed_rounding_backend_self_audit.get("self_audit_digest")
+                if directed_rounding_backend_self_audit is not None
+                else None
+            ),
+            "backend_self_audit_status": (
+                directed_rounding_backend_self_audit.get("status")
+                if directed_rounding_backend_self_audit is not None
+                else None
+            ),
+            "backend_runtime_availability_audit": {
+                "schema": backend_availability_audit.get("schema"),
+                "status": backend_availability_audit.get("status"),
+                "digest": backend_availability_audit.get(
+                    "availability_audit_digest"
+                ),
+                "target_field": backend_availability_audit.get(
+                    "target_field"
+                ),
+                "first_unavailable_backend_object": backend_probe.get(
+                    "first_unavailable_backend_object"
+                ),
+                "replacement_requirement": backend_availability_audit.get(
+                    "replacement_requirement"
+                ),
+                "negative_control": backend_availability_audit.get(
+                    "negative_control"
+                ),
+                "runtime_identity_target": runtime_identity_target,
+                "runtime_identity_target_digest": runtime_identity_target.get(
+                    "target_digest"
+                ),
+                "runtime_identity_target_status": runtime_identity_target.get(
+                    "status"
+                ),
+                "runtime_identity_absence_probe_digest": (
+                    runtime_identity_target.get("absence_probe_digest")
+                ),
+                "runtime_identity_absence_probe_status": (
+                    runtime_identity_target.get("absence_probe_status")
+                ),
+                "missing_runtime_identity_fields": (
+                    missing_runtime_identity_fields
+                ),
+                "first_missing_runtime_identity_field": (
+                    missing_runtime_identity_fields[0]
+                    if missing_runtime_identity_fields
+                    else None
+                ),
+            },
+        },
+        "runtime_identity_status": {
+            "target_artifact_id": runtime_identity_target.get("artifact_id"),
+            "target_digest": runtime_identity_target.get("target_digest"),
+            "status": runtime_identity_target.get("status"),
+            "runtime_identity_present": runtime_identity_target.get(
+                "runtime_identity_present",
+            ),
+            "absence_probe_digest": runtime_identity_target.get(
+                "absence_probe_digest"
+            ),
+            "absence_probe_status": runtime_identity_target.get(
+                "absence_probe_status"
+            ),
+            "missing_identity_fields": missing_runtime_identity_fields,
+            "first_missing_identity_field": (
+                missing_runtime_identity_fields[0]
+                if missing_runtime_identity_fields
+                else None
+            ),
+            "used_as_certificate": False,
+            "used_as_shared_certificate": False,
+        },
+        "missing_shared_backend_or_source_box_identity_fields": (
+            missing_shared_fields
+        ),
+        "first_missing_shared_backend_or_source_box_identity_field": (
+            missing_shared_fields[0] if missing_shared_fields else None
+        ),
+        "local_readout_present": local_readout_present,
+        "shared_audit_trail_present": shared_audit_trail_present,
+        "emits_one_slot_interval_box": False,
+        "satisfies_selected_slot": False,
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": shared_audit_trail_present,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+        "first_failure": (
+            None
+            if shared_audit_trail_present
+            else (
+                "shared_directed_rounding_backend_or_source_box_identity_missing"
+                if local_readout_present
+                else "source_q_derivative_composition_local_inputs_missing"
+            )
+        ),
+    }
+    return {
+        **payload,
+        "audit_trail_digest": canonical_json_digest(payload),
+        "status": (
+            "shared_directed_rounding_audit_trail_for_"
+            "source_q_derivative_composition_present"
+            if shared_audit_trail_present
+            else (
+                "local_source_q_derivative_composition_readout_present_"
+                "not_shared_audit_trail"
+                if local_readout_present
+                else "source_q_derivative_composition_audit_trail_"
+                "failed_closed_missing_local_inputs"
+            )
+        ),
+    }
+
+
+def a1_one_slot_formula_dependency_audit(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    slot: dict,
+    profile: Profile,
+    past_profile_interval_box_certificate: dict,
+    directed_rounding_backend_target: dict | None,
+    directed_rounding_backend_self_audit: dict | None,
+    sampled_rows: list[dict],
+) -> dict:
+    theta_box = fixed.Interval(theta_interval[0], theta_interval[1])
+    global_q_interval = past_profile_interval_box_certificate["q_interval"]
+    sampled_partials = [row["sampled_partial"] for row in sampled_rows]
+    sampled_deltas = [row["delta"] for row in sampled_rows]
+    sampled_q_sources = [row["q_source"] for row in sampled_rows]
+    retained_root_delta_box_attempt = (
+        a1_p1_retained_root_delta_alpha_interval_box_attempt(
+            source_digest,
+            radius_b=radius_b,
+            theta_interval=theta_interval,
+            slot=slot,
+            profile=profile,
+            sampled_rows=sampled_rows,
+        )
+    )
+    local_retained_root_box_present = (
+        retained_root_delta_box_attempt["formula_consumer_status"][
+            "satisfies_retained_root_delta_alpha_interval_box_locally"
+        ]
+    )
+    selected_delta_interval = (
+        retained_root_delta_box_attempt["proposed_interval_box"][
+            "delta_alpha_interval"
+        ]
+        if local_retained_root_box_present
+        else slot["window"]
+    )
+    delta_interval = fixed.Interval(*selected_delta_interval)
+    q_source_interval_box_attempt = a1_p1_q_source_alpha_interval_box_attempt(
+        source_digest,
+        radius_b=radius_b,
+        theta_interval=theta_interval,
+        delta_interval=delta_interval,
+        profile=profile,
+        past_profile_interval_box_certificate=(
+            past_profile_interval_box_certificate
+        ),
+        sampled_rows=sampled_rows,
+    )
+    local_q_source_box_present = (
+        q_source_interval_box_attempt["formula_consumer_status"][
+            "satisfies_P_1_q_source_alpha_interval_box_locally"
+        ]
+    )
+    selected_q_interval = (
+        q_source_interval_box_attempt["proposed_interval_box"][
+            "q_source_alpha_interval"
+        ]
+        if local_q_source_box_present
+        else global_q_interval
+    )
+    q_source_box = fixed.Interval(selected_q_interval[0], selected_q_interval[1])
+    source_theta_interval = [
+        q_source_interval_box_attempt["source_theta_interval"]["lower"],
+        q_source_interval_box_attempt["source_theta_interval"]["upper"],
+    ]
+    formula_interval = a1_partner_tangential_delta_partial_interval_formula(
+        theta_box, delta_interval, q_source_box
+    )
+    partial_row = formula_interval.get(
+        "partial_T_alpha_partial_delta_alpha_interval"
+    )
+    partial_interval_box = (
+        fixed.Interval(partial_row["lower"], partial_row["upper"])
+        if partial_row is not None
+        else None
+    )
+    shared_source_q_derivative_composition_audit = (
+        a1_shared_directed_rounding_audit_trail_for_source_q_derivative_composition(
+            source_digest,
+            radius_b=radius_b,
+            theta_interval=theta_interval,
+            slot=slot,
+            retained_root_delta_box_attempt=retained_root_delta_box_attempt,
+            q_source_interval_box_attempt=q_source_interval_box_attempt,
+            formula_interval=formula_interval,
+            directed_rounding_backend_target=directed_rounding_backend_target,
+            directed_rounding_backend_self_audit=(
+                directed_rounding_backend_self_audit
+            ),
+            sampled_partials=sampled_partials,
+        )
     )
     dependency_rows = [
         {
@@ -2677,15 +4246,27 @@ def a1_one_slot_formula_dependency_audit(
         },
         {
             "row": "P_1_retained_root_delta_alpha_interval_box",
-            "status": "missing_certificate_row_active_window_used_only",
+            "status": (
+                "local_priority_only_interval_box_present_not_shared_certificate"
+                if local_retained_root_box_present
+                else "missing_certificate_row_active_window_used_only"
+            ),
+            "attempt_digest": retained_root_delta_box_attempt["attempt_digest"],
             "used_as_certificate": False,
+            "used_as_local_certificate": local_retained_root_box_present,
+            "used_as_shared_certificate": False,
         },
         {
             "row": "P_1_q_source_alpha_interval_box",
             "status": (
-                "global_past_profile_q_interval_present_not_source_window_box"
+                "local_priority_only_interval_box_present_not_shared_certificate"
+                if local_q_source_box_present
+                else "global_past_profile_q_interval_present_not_source_window_box"
             ),
+            "attempt_digest": q_source_interval_box_attempt["attempt_digest"],
             "used_as_certificate": False,
+            "used_as_local_certificate": local_q_source_box_present,
+            "used_as_shared_certificate": False,
         },
         {
             "row": (
@@ -2697,6 +4278,30 @@ def a1_one_slot_formula_dependency_audit(
                 "backend_certificate"
             ),
             "used_as_certificate": False,
+        },
+        {
+            "row": (
+                "shared_directed_rounding_audit_trail_for_"
+                "source_q_derivative_composition"
+            ),
+            "status": shared_source_q_derivative_composition_audit["status"],
+            "audit_trail_digest": (
+                shared_source_q_derivative_composition_audit[
+                    "audit_trail_digest"
+                ]
+            ),
+            "first_missing_shared_backend_or_source_box_identity_field": (
+                shared_source_q_derivative_composition_audit[
+                    "first_missing_shared_backend_or_source_box_identity_field"
+                ]
+            ),
+            "used_as_certificate": False,
+            "used_as_local_certificate": False,
+            "used_as_shared_certificate": (
+                shared_source_q_derivative_composition_audit[
+                    "used_as_shared_certificate"
+                ]
+            ),
         },
     ]
     payload = {
@@ -2714,28 +4319,59 @@ def a1_one_slot_formula_dependency_audit(
         "slot": slot,
         "theta_interval": theta_interval,
         "source_theta_interval": source_theta_interval,
+        "P_1_retained_root_delta_alpha_interval_box_attempt": (
+            retained_root_delta_box_attempt
+        ),
+        "P_1_q_source_alpha_interval_box_attempt": (
+            q_source_interval_box_attempt
+        ),
+        "shared_directed_rounding_audit_trail_for_source_q_derivative_composition": (
+            shared_source_q_derivative_composition_audit
+        ),
         "delta_interval_source": {
-            "row": "active_windows.P_1.window",
-            "delta_interval": slot["window"],
-            "sampled_deltas_inside_interval": interval_contains_all(
-                delta_interval, sampled_deltas
+            "row": (
+                "a1_p1_retained_root_delta_alpha_interval_box_attempt.v0."
+                "proposed_interval_box"
+                if local_retained_root_box_present
+                else "active_windows.P_1.window"
             ),
-            "satisfies_retained_root_delta_alpha_interval_box": False,
+            "delta_interval": (
+                selected_delta_interval
+            ),
+            "sampled_deltas_inside_interval": interval_contains_all(
+                delta_interval,
+                sampled_deltas,
+            ),
+            "satisfies_retained_root_delta_alpha_interval_box": (
+                local_retained_root_box_present
+            ),
+            "satisfies_certificate_grade_retained_root_delta_alpha_interval_box": False,
         },
         "q_source_interval_source": {
-            "row": "a1_past_profile_interval_box_certificate.v0.q_interval",
-            "certificate_digest": past_profile_interval_box_certificate[
-                "certificate_digest"
-            ],
-            "q_interval": q_interval,
+            "row": (
+                "a1_p1_q_source_alpha_interval_box_attempt.v0."
+                "proposed_interval_box"
+                if local_q_source_box_present
+                else "a1_past_profile_interval_box_certificate.v0.q_interval"
+            ),
+            "attempt_digest": q_source_interval_box_attempt["attempt_digest"],
+            "certificate_digest": (
+                past_profile_interval_box_certificate["certificate_digest"]
+            ),
+            "q_interval": selected_q_interval,
+            "global_past_profile_q_interval": global_q_interval,
             "source_theta_interval_inside_past_profile_domain": (
-                -DELTA_R <= source_theta_interval[0]
-                and source_theta_interval[1] <= 0.0
+                q_source_interval_box_attempt[
+                    "source_inside_past_profile_domain"
+                ]
             ),
             "sampled_q_sources_inside_interval": interval_contains_all(
                 q_source_box, sampled_q_sources
             ),
-            "satisfies_P_1_q_source_alpha_interval_box": False,
+            "satisfies_P_1_q_source_alpha_interval_box": (
+                local_q_source_box_present
+            ),
+            "satisfies_certificate_grade_P_1_q_source_alpha_interval_box": False,
         },
         "local_interval_formula_probe": formula_interval,
         "sampled_partial_containment": {
@@ -2748,17 +4384,48 @@ def a1_one_slot_formula_dependency_audit(
             "accepted_as_interval_evidence": False,
         },
         "dependency_rows": dependency_rows,
-        "first_missing_row": "P_1_retained_root_delta_alpha_interval_box",
-        "next_required_rows_ordered": [
-            "P_1_retained_root_delta_alpha_interval_box",
-            "P_1_q_source_alpha_interval_box",
-            "shared_theta_interval_box_family",
-            (
-                "shared_directed_rounding_audit_trail_for_"
-                "source_q_derivative_composition"
-            ),
-            "same_box_inactive_cover_binding",
-        ],
+        "first_missing_row": (
+            "P_1_retained_root_delta_alpha_interval_box"
+            if not local_retained_root_box_present
+            else (
+                "P_1_q_source_alpha_interval_box"
+                if not local_q_source_box_present
+                else (
+                    "shared_directed_rounding_audit_trail_for_"
+                    "source_q_derivative_composition"
+                )
+            )
+        ),
+        "next_required_rows_ordered": (
+            [
+                (
+                    "shared_directed_rounding_audit_trail_for_"
+                    "source_q_derivative_composition"
+                ),
+                "same_box_inactive_cover_binding",
+            ]
+            if local_retained_root_box_present and local_q_source_box_present
+            else [
+                "P_1_q_source_alpha_interval_box",
+                "shared_theta_interval_box_family",
+                (
+                    "shared_directed_rounding_audit_trail_for_"
+                    "source_q_derivative_composition"
+                ),
+                "same_box_inactive_cover_binding",
+            ]
+            if local_retained_root_box_present
+            else [
+                "P_1_retained_root_delta_alpha_interval_box",
+                "P_1_q_source_alpha_interval_box",
+                "shared_theta_interval_box_family",
+                (
+                    "shared_directed_rounding_audit_trail_for_"
+                    "source_q_derivative_composition"
+                ),
+                "same_box_inactive_cover_binding",
+            ]
+        ),
         "emits_local_formula_interval_probe": formula_interval[
             "formula_available"
         ],
@@ -2779,7 +4446,14 @@ def a1_one_slot_formula_dependency_audit(
         **payload,
         "audit_digest": canonical_json_digest(payload),
         "status": (
-            "local_formula_interval_probe_present_retained_root_delta_"
+            "local_formula_and_P_1_retained_root_delta_and_q_source_"
+            "intervals_present_shared_backend_missing"
+            if local_retained_root_box_present and local_q_source_box_present
+            else
+            "local_formula_and_P_1_retained_root_delta_interval_present_"
+            "q_source_interval_missing"
+            if local_retained_root_box_present
+            else "local_formula_interval_probe_present_retained_root_delta_"
             "interval_source_missing"
         ),
     }
@@ -2792,6 +4466,9 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
     theta_interval: list[float],
     outward_summand_derivative_boxes_target: dict,
     past_profile_interval_box_certificate: dict,
+    profile: Profile,
+    directed_rounding_backend_target: dict | None,
+    directed_rounding_backend_self_audit: dict | None,
     sample_rows: list[dict],
 ) -> dict:
     slot = {
@@ -2830,10 +4507,53 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
         radius_b=radius_b,
         theta_interval=theta_interval,
         slot=slot,
+        profile=profile,
         past_profile_interval_box_certificate=(
             past_profile_interval_box_certificate
         ),
+        directed_rounding_backend_target=directed_rounding_backend_target,
+        directed_rounding_backend_self_audit=directed_rounding_backend_self_audit,
         sampled_rows=sampled_rows,
+    )
+    shared_source_q_derivative_composition_audit = formula_dependency_audit[
+        "shared_directed_rounding_audit_trail_for_source_q_derivative_composition"
+    ]
+    backend_runtime_availability_audit = (
+        shared_source_q_derivative_composition_audit["backend_identity"][
+            "backend_runtime_availability_audit"
+        ]
+    )
+    runtime_identity_target = backend_runtime_availability_audit.get(
+        "runtime_identity_target",
+        {},
+    )
+    missing_runtime_identity_fields = backend_runtime_availability_audit.get(
+        "missing_runtime_identity_fields",
+        [],
+    )
+    first_missing_dependency_row = formula_dependency_audit["first_missing_row"]
+    local_retained_root_delta_box_present = (
+        formula_dependency_audit["delta_interval_source"][
+            "satisfies_retained_root_delta_alpha_interval_box"
+        ]
+    )
+    local_q_source_box_present = (
+        formula_dependency_audit["q_source_interval_source"][
+            "satisfies_P_1_q_source_alpha_interval_box"
+        ]
+    )
+    first_missing_interval_input = (
+        None
+        if local_retained_root_delta_box_present and local_q_source_box_present
+        else first_missing_dependency_row
+    )
+    first_missing_backend_capability = (
+        "shared_directed_rounding_audit_trail_for_source_q_derivative_composition"
+        if local_retained_root_delta_box_present and local_q_source_box_present
+        else (
+            "shared_directed_rounding_audit_trail_for_"
+            "source_q_derivative_composition"
+        )
     )
 
     payload = {
@@ -2898,7 +4618,58 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
             "source_q_jacobian_interval_missing": False,
             "delta_partial_interval_automatic_differentiation_missing": False,
             "directed_rounding_audit_for_trig_exp_derivative_composition_missing": True,
-            "retained_root_interval_box_for_P_1_missing": True,
+            "shared_directed_rounding_audit_trail_for_source_q_derivative_composition_missing": (
+                not shared_source_q_derivative_composition_audit[
+                    "used_as_shared_certificate"
+                ]
+            ),
+            "source_q_derivative_composition_priority_readout_present": (
+                shared_source_q_derivative_composition_audit[
+                    "local_readout_present"
+                ]
+            ),
+            "first_missing_shared_backend_or_source_box_identity_field": (
+                shared_source_q_derivative_composition_audit[
+                    "first_missing_shared_backend_or_source_box_identity_field"
+                ]
+            ),
+            "directed_rounding_backend_availability_audit_status": (
+                backend_runtime_availability_audit["status"]
+            ),
+            "directed_rounding_backend_availability_audit_digest": (
+                backend_runtime_availability_audit["digest"]
+            ),
+            "next_required_runtime_backend_object": (
+                backend_runtime_availability_audit[
+                    "first_unavailable_backend_object"
+                ]
+            ),
+            "runtime_identity_target_status": runtime_identity_target.get(
+                "status"
+            ),
+            "runtime_identity_target_digest": runtime_identity_target.get(
+                "target_digest"
+            ),
+            "runtime_identity_absence_probe_status": runtime_identity_target.get(
+                "absence_probe_status"
+            ),
+            "runtime_identity_absence_probe_digest": runtime_identity_target.get(
+                "absence_probe_digest"
+            ),
+            "missing_runtime_identity_fields": missing_runtime_identity_fields,
+            "first_missing_runtime_identity_field": (
+                missing_runtime_identity_fields[0]
+                if missing_runtime_identity_fields
+                else None
+            ),
+            "retained_root_interval_box_for_P_1_missing": (
+                not local_retained_root_delta_box_present
+            ),
+            "shared_retained_root_interval_box_for_P_1_missing": True,
+            "q_source_interval_box_for_P_1_missing": (
+                not local_q_source_box_present
+            ),
+            "shared_q_source_interval_box_for_P_1_missing": True,
         },
         "formula_dependency_audit": formula_dependency_audit,
         "sampled_reference_readout": {
@@ -2920,17 +4691,63 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
             "emits_local_formula_interval_probe": True,
             "satisfies_selected_slot": False,
             "satisfies_summand_partial_interval_boxes": False,
-            "first_missing_interval_input": (
-                "P_1_retained_root_delta_alpha_interval_box"
-            ),
+            "first_missing_interval_input": first_missing_interval_input,
             "first_missing_formula_row": None,
-            "first_missing_backend_capability": (
-                "shared_directed_rounding_audit_trail_for_"
-                "source_q_derivative_composition"
+            "first_missing_backend_capability": first_missing_backend_capability,
+            "source_q_derivative_composition_audit_trail_status": (
+                shared_source_q_derivative_composition_audit["status"]
+            ),
+            "source_q_derivative_composition_audit_trail_digest": (
+                shared_source_q_derivative_composition_audit[
+                    "audit_trail_digest"
+                ]
+            ),
+            "first_missing_shared_backend_or_source_box_identity_field": (
+                shared_source_q_derivative_composition_audit[
+                    "first_missing_shared_backend_or_source_box_identity_field"
+                ]
+            ),
+            "directed_rounding_backend_availability_audit_status": (
+                backend_runtime_availability_audit["status"]
+            ),
+            "directed_rounding_backend_availability_audit_digest": (
+                backend_runtime_availability_audit["digest"]
+            ),
+            "next_required_runtime_backend_object": (
+                backend_runtime_availability_audit[
+                    "first_unavailable_backend_object"
+                ]
+            ),
+            "runtime_identity_target_status": runtime_identity_target.get(
+                "status"
+            ),
+            "runtime_identity_target_digest": runtime_identity_target.get(
+                "target_digest"
+            ),
+            "runtime_identity_absence_probe_status": runtime_identity_target.get(
+                "absence_probe_status"
+            ),
+            "runtime_identity_absence_probe_digest": runtime_identity_target.get(
+                "absence_probe_digest"
+            ),
+            "missing_runtime_identity_fields": missing_runtime_identity_fields,
+            "first_missing_runtime_identity_field": (
+                missing_runtime_identity_fields[0]
+                if missing_runtime_identity_fields
+                else None
             ),
         },
         "first_failure": (
             "one_slot_retained_root_delta_interval_source_missing"
+            if not local_retained_root_delta_box_present
+            else (
+                "one_slot_q_source_alpha_interval_box_missing"
+                if not local_q_source_box_present
+                else (
+                    "one_slot_shared_directed_rounding_audit_trail_for_"
+                    "source_q_derivative_composition_missing"
+                )
+            )
         ),
         "bounds_outward_summand_derivative_boxes": False,
         "emits_branch_sum_constants": False,
@@ -2946,8 +4763,16 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
         **payload,
         "construction_attempt_digest": canonical_json_digest(payload),
         "status": (
-            "one_slot_formula_probe_present_retained_root_delta_"
-            "interval_source_missing"
+            "one_slot_formula_and_P_1_local_interval_inputs_present_"
+            "shared_backend_missing"
+            if local_retained_root_delta_box_present and local_q_source_box_present
+            else (
+                "one_slot_formula_and_P_1_retained_root_delta_interval_present_"
+                "q_source_interval_missing"
+                if local_retained_root_delta_box_present
+                else "one_slot_formula_probe_present_retained_root_delta_"
+                "interval_source_missing"
+            )
         ),
     }
 
@@ -2961,6 +4786,8 @@ def a1_branch_sum_feedback_bound_attempt(
     profile: TransportProfile,
     past_profile: PastProfileSpec,
     past_profile_interval_box_certificate: dict,
+    directed_rounding_backend_target: dict | None,
+    directed_rounding_backend_self_audit: dict | None,
     constraint_rows: list[list[float]],
     future_continuous_transport_bounds_attempt: dict,
     panels: int,
@@ -3177,6 +5004,11 @@ def a1_branch_sum_feedback_bound_attempt(
             ),
             past_profile_interval_box_certificate=(
                 past_profile_interval_box_certificate
+            ),
+            profile=profile,
+            directed_rounding_backend_target=directed_rounding_backend_target,
+            directed_rounding_backend_self_audit=(
+                directed_rounding_backend_self_audit
             ),
             sample_rows=sample_rows,
         )
@@ -3605,6 +5437,46 @@ def exact_power_to_bernstein_coefficients(
         )
         for k in range(degree + 1)
     ]
+
+
+def exact_fraction_power_to_bernstein_coefficients(
+    power_coefficients: tuple[Fraction, ...],
+) -> list[Fraction]:
+    degree = len(power_coefficients) - 1
+    return [
+        sum(
+            power_coefficients[index]
+            * math.comb(k, index)
+            / math.comb(degree, index)
+            for index in range(k + 1)
+        )
+        for k in range(degree + 1)
+    ]
+
+
+def exact_q_window_power_coefficients(
+    coefficients: tuple[float, ...],
+    basis_scale: float,
+    x_interval: fixed.Interval,
+) -> tuple[Fraction, ...]:
+    degree = len(coefficients)
+    x_lo = Fraction.from_float(x_interval.lo)
+    x_hi = Fraction.from_float(x_interval.hi)
+    basis = Fraction.from_float(basis_scale)
+    y_lo = x_lo / basis
+    y_span = (x_hi - x_lo) / basis
+    power_coefficients = [Fraction(0) for _ in range(degree + 1)]
+    power_coefficients[0] = Fraction(1)
+    for exponent, coefficient in enumerate(coefficients, start=1):
+        coefficient_fraction = Fraction.from_float(coefficient)
+        for term in range(exponent + 1):
+            power_coefficients[term] += (
+                coefficient_fraction
+                * math.comb(exponent, term)
+                * y_lo ** (exponent - term)
+                * y_span**term
+            )
+    return tuple(power_coefficients)
 
 
 def split_bernstein_coefficients(
@@ -8055,6 +9927,7 @@ def a1_endpoint_slope_cancel_source_identity(args: argparse.Namespace) -> dict:
     blocked_rows = [
         "coefficient_interval_enclosure_attempt_not_directed_rounding_certificate",
         "past_profile_interval_box_certificate_not_shared_certificate",
+        "directed_rounding_runtime_identity_absent",
         "directed_rounding_backend_self_audit_not_shared_certificate",
         "E_Q_plus_b_absent_for_admissible_class",
     ]
@@ -8226,6 +10099,8 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         past_profile_interval_box_certificate=(
             past_profile_interval_box_certificate
         ),
+        directed_rounding_backend_target=directed_rounding_backend_target,
+        directed_rounding_backend_self_audit=directed_rounding_backend_self_audit,
         constraint_rows=constraint_rows,
         future_continuous_transport_bounds_attempt=(
             future_continuous_transport_bounds_attempt
@@ -8576,6 +10451,7 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "branch_sum_feedback_bound_missing",
             "inactive_cover_interval_boxes_absent",
             "source_identity_digest_not_shared_interval_box_certificate",
+            "directed_rounding_runtime_identity_absent",
             "directed_rounding_backend_self_audit_not_shared_certificate",
             "retained_root_boxes_absent",
             "inactive_gap_cover_absent",

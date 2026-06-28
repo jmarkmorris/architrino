@@ -42,6 +42,10 @@ export const OCTAHEDRAL_ZERO_MEAN_ACTION_DERIVED_SCALE_TARGET_SCHEMA =
   "neutral-braid-octahedral-zero-mean-bounded-speed-action-derived-scale-target/v0";
 export const OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_ROW_TARGET_SCHEMA =
   "neutral-braid-octahedral-zero-mean-action-measure-row-target/v0";
+export const OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_SCHEMA =
+  "neutral-braid-octahedral-zero-mean-action-measure-branch-scope-source-audit/v0";
+export const OCTAHEDRAL_ZERO_MEAN_SAME_LEDGER_ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_SCHEMA =
+  "neutral-braid-octahedral-zero-mean-same-ledger-action-measure-row-with-branch-scope-attempt/v0";
 
 const PACKET_ID = "octahedral_zero_mean_correction_intake";
 const PROMOTION_STATUS = "priority-only";
@@ -148,10 +152,208 @@ const ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS = [
   "action_functional",
   "root_support_event_rows",
 ];
+const ACTION_MEASURE_ROW_CANDIDATE_REQUIRED_FIELDS = [
+  "bounded_speed_ledger_id",
+  "force_checksum_id",
+  "consumer_checksum_id",
+  "source_normal_reconstruction_candidate_id",
+  "branch_scope",
+  "period_rows",
+  "action_functional",
+  "root_support_event_rows",
+];
+const CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS = [
+  "bounded_speed_ledger_id",
+  "force_checksum_id",
+  "consumer_checksum_id",
+  "source_normal_reconstruction_candidate_id",
+];
+const MISSING_ACTION_MEASURE_ROW_CANDIDATE_FIELDS =
+  ACTION_MEASURE_ROW_CANDIDATE_REQUIRED_FIELDS.filter(
+    (field) => !CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS.includes(field)
+  );
+const ACTION_MEASURE_ROW_MISSING_SAME_LEDGER_BINDINGS = [
+  {
+    field: "branch_scope",
+    required_binding: "same-normal-candidate-ledger-branch-scope-source",
+    blocker: "same_ledger_branch_scope_source_missing",
+  },
+  {
+    field: "period_rows",
+    required_binding: "same-normal-candidate-ledger-period-rows",
+    blocker: "same_ledger_period_rows_source_missing",
+  },
+  {
+    field: "action_functional",
+    required_binding: "same-normal-candidate-ledger-action-functional",
+    blocker: "same_ledger_action_functional_source_missing",
+  },
+  {
+    field: "root_support_event_rows",
+    required_binding: "same-normal-candidate-ledger-root-support-event-rows",
+    blocker: "same_ledger_root_support_event_rows_source_missing",
+  },
+];
+const ACTION_MEASURE_ROW_CANDIDATE_FIELD_STATUS_ROWS = [
+  ...CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS.map((field) => ({
+    field,
+    status: "supplied_on_normal_candidate_ledger",
+    blocker: null,
+  })),
+  ...ACTION_MEASURE_ROW_MISSING_SAME_LEDGER_BINDINGS.map((binding) => ({
+    field: binding.field,
+    status: "missing_same_ledger_binding",
+    blocker: binding.blocker,
+  })),
+];
 const CURRENT_ACTION_MEASURE_ROW_TARGET_FIELDS = ["same_ledger_identity_tuple"];
 const MISSING_ACTION_MEASURE_ROW_TARGET_FIELDS = ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS.filter(
   (field) => !CURRENT_ACTION_MEASURE_ROW_TARGET_FIELDS.includes(field)
 );
+const ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE =
+  "same_ledger_branch_scope_source_missing";
+const ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_NEGATIVE_CONTROL =
+  "branch-scope-artifacts-without-same-ledger-action-measure-row-not-bound";
+const ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS = [
+  "bounded_speed_ledger_id",
+  "force_checksum_id",
+  "consumer_checksum_id",
+  "source_normal_reconstruction_candidate_id",
+];
+const ACTION_MEASURE_BRANCH_SCOPE_NEAREST_PRESENT_FIELDS = ["branch_scope"];
+const ACTION_MEASURE_BRANCH_SCOPE_NEAREST_MISSING_ACTION_MEASURE_FIELDS = [
+  "same_ledger_identity_tuple",
+  "action_measure_row",
+  "period_rows",
+  "action_functional",
+  "root_support_event_rows",
+];
+const ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_ACCEPTANCE_BINDINGS = [
+  "same_ledger_identity_tuple",
+  "action_measure_row",
+];
+const ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_ROOTS = [
+  "scripts/neutral-braid",
+  "reference/priorities/braid-retained-branch-closure",
+];
+const ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_TERMS = [
+  "branch_scope",
+  "action_measure_row",
+  "same_ledger_action_measure_row_with_branch_scope",
+  "accepted_branch_scope_source",
+  "period_rows",
+];
+const ACTION_MEASURE_BRANCH_SCOPE_AUDIT_RESULT =
+  "no-accepted-same-ledger-action-measure-branch-scope-source";
+const ACTION_MEASURE_BRANCH_SCOPE_NEAREST_READINESS_STATUS =
+  "fixed-speed-root-ledger-branch-scope-provenance-only";
+const ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT =
+  "same-ledger-action-measure-row-with-branch-scope";
+const ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_FIELDS = [
+  "same_ledger_identity_tuple",
+  "branch_scope",
+];
+const ACTION_MEASURE_WITH_BRANCH_SCOPE_MISSING_FIELDS =
+  ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS.filter(
+    (field) => !ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_FIELDS.includes(field)
+  );
+const ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_FIRST_FAILURE =
+  "same_ledger_period_rows_source_missing";
+const ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_NEGATIVE_CONTROL =
+  "branch-scope-provenance-without-same-ledger-period-rows-not-action-measure-row";
+const ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_SMALLEST_NEXT_EVIDENCE_OBJECT =
+  "same-ledger-action-measure-row-with-branch-scope-and-period-rows";
+const ACTION_MEASURE_BRANCH_SCOPE_CANDIDATE_FIELD_STATUSES = [
+  {
+    field: "branch_scope",
+    candidate_source_status: "present",
+    normal_candidate_ledger_status: "missing_same_ledger_binding",
+    acceptance_status: "rejected_off_ledger",
+    blocker: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+  },
+  {
+    field: "period_rows",
+    candidate_source_status: "absent",
+    normal_candidate_ledger_status: "missing_same_ledger_binding",
+    acceptance_status: "conditional_blocked_until_branch_scope_binds",
+    blocker: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+    conditional_next_failure: ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_FIRST_FAILURE,
+  },
+  {
+    field: "action_functional",
+    candidate_source_status: "absent",
+    normal_candidate_ledger_status: "missing_same_ledger_binding",
+    acceptance_status: "rejected_missing_same_ledger_binding",
+    blocker: "same_ledger_action_functional_source_missing",
+  },
+  {
+    field: "root_support_event_rows",
+    candidate_source_status: "absent",
+    normal_candidate_ledger_status: "missing_same_ledger_binding",
+    acceptance_status: "rejected_missing_same_ledger_binding",
+    blocker: "same_ledger_root_support_event_rows_source_missing",
+  },
+];
+const ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES = [
+  {
+    source_path: "scripts/neutral-braid/octahedral-root-ledger.mjs",
+    artifact_schema: "neutral-braid-octahedral-root-ledger/v1",
+    artifact_id: "neutral_braid_octahedral_root_ledger.certified.v1",
+    branch_scope_role: "certified fixed-speed all-pairs root ledger",
+    first_rejection_code: "root-ledger-branch-scope-lacks-action-measure-row",
+  },
+  {
+    source_path: "scripts/neutral-braid/octahedral-fixed-speed-witness.mjs",
+    artifact_schema: "neutral-braid-octahedral-fixed-speed-witness/v1",
+    artifact_id: "neutral_braid_octahedral_fixed_speed_witness.deterministic_nodes.v1",
+    branch_scope_role: "fixed-speed tangential residual no-go witness",
+    first_rejection_code: "fixed-speed-witness-branch-scope-lacks-live-ledger-tuple",
+  },
+  {
+    source_path: "scripts/neutral-braid/octahedral-force-residual.mjs",
+    artifact_schema: "neutral-braid-octahedral-force-residual/v1",
+    artifact_id: "neutral_braid_octahedral_force_residual.sampled_diagnostic.v1",
+    branch_scope_role: "sampled fixed-speed force residual diagnostic",
+    first_rejection_code: "force-residual-branch-scope-is-diagnostic-not-action-measure",
+  },
+  {
+    source_path: "scripts/neutral-braid/octahedral-root-force-closure-witness.mjs",
+    artifact_schema: "neutral-braid-octahedral-root-force-closure-witness/v1",
+    artifact_id: "neutral_braid_octahedral_root_force_closure_witness.narrow_no_go.v1",
+    branch_scope_role: "resolved-root force-closure overread rejection",
+    first_rejection_code: "root-force-no-go-branch-scope-not-same-ledger-action-measure",
+  },
+  {
+    source_path: "scripts/neutral-braid/octahedral-inventory-closure-witness.mjs",
+    artifact_schema: "neutral-braid-octahedral-inventory-closure-witness/v1",
+    artifact_id: "neutral_braid_octahedral_inventory_closure_witness.narrow_no_go.v1",
+    branch_scope_role: "inventory-bias closure overread rejection",
+    first_rejection_code: "inventory-witness-branch-scope-not-action-functional-row",
+  },
+  {
+    source_path: "scripts/neutral-braid/octahedral-phase-offset-scan.mjs",
+    artifact_schema: "neutral-braid-octahedral-phase-offset-scan/v1",
+    artifact_id: "neutral_braid_octahedral_phase_offset_scan.sampled_diagnostic.v1",
+    branch_scope_role: "phase-offset sampled diagnostic",
+    first_rejection_code: "phase-offset-branch-scope-not-bounded-speed-live-ledger",
+  },
+  {
+    source_path: "scripts/neutral-braid/octahedral-polarity-phase-retention-witness.mjs",
+    artifact_schema: "neutral-braid-octahedral-polarity-phase-retention-witness/v1",
+    artifact_id: "neutral_braid_octahedral_polarity_phase_retention_witness.best_row_consumption.v1",
+    branch_scope_role: "polarity-phase retention overread rejection",
+    first_rejection_code: "polarity-phase-branch-scope-retention-rejected",
+  },
+  {
+    source_path: "scripts/neutral-braid/finite-mode-artifact.mjs",
+    artifact_schema: "neutral-braid-finite-mode-artifact/v1",
+    artifact_id: "neutral_braid_finite_mode_search.audit_shape.v1",
+    branch_scope_role: "finite-mode open search contract",
+    first_rejection_code: "finite-mode-branch-scope-open-placeholders-not-action-measure",
+  },
+];
+const ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE =
+  ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES[0];
 const LIVE_DERIVATIVE_DIFFERENCE_SCHEMES = new Set(["central-finite-difference"]);
 
 function formatNumber(value) {
@@ -2498,6 +2700,18 @@ function boundedSpeedActionMeasureRowTargetValidationErrors(candidate, actionMea
     "bounded_speed_live_ledger action_measure_row_target must reject the current fixture",
     errors
   );
+  errors.push(
+    ...actionMeasureBranchScopeSourceAuditValidationErrors(
+      candidate,
+      actionMeasureTarget?.branch_scope_source_audit
+    )
+  );
+  errors.push(
+    ...sameLedgerActionMeasureWithBranchScopeAttemptValidationErrors(
+      candidate,
+      actionMeasureTarget
+    )
+  );
   assertField(
     actionMeasureTarget?.certifies_action_measure_row === false,
     "bounded_speed_live_ledger action_measure_row_target must set certifies_action_measure_row=false",
@@ -2535,6 +2749,590 @@ function boundedSpeedActionMeasureRowTargetValidationErrors(candidate, actionMea
   );
 
   return errors;
+}
+
+function actionMeasureBranchScopeSourceAuditValidationErrors(candidate, sourceAudit) {
+  const errors = [];
+  const identityTuple = sourceAudit?.required_identity_tuple ?? {};
+  const candidateSources = sourceAudit?.candidate_branch_scope_sources ?? [];
+  const nearestLineage = sourceAudit?.nearest_candidate_lineage_readout ?? {};
+  const closestRejectedSource = nearestLineage?.closest_rejected_branch_scope_source ?? {};
+  const searchBasis = sourceAudit?.search_basis ?? {};
+  const acceptanceCriteria = sourceAudit?.acceptance_criteria ?? {};
+
+  assertField(
+    isRecordObject(sourceAudit),
+    "bounded_speed_live_ledger action_measure_row_target must declare branch_scope_source_audit",
+    errors
+  );
+  if (!isRecordObject(sourceAudit)) {
+    return errors;
+  }
+  assertField(
+    sourceAudit?.schema === OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_SCHEMA,
+    `bounded_speed_live_ledger branch_scope_source_audit schema must be ${OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_SCHEMA}`,
+    errors
+  );
+  assertField(
+    sourceAudit?.claim_scope === "bounded-speed-action-measure-branch-scope-source-audit-after-normal-candidate",
+    "bounded_speed_live_ledger branch_scope_source_audit claim_scope must be bounded-speed-action-measure-branch-scope-source-audit-after-normal-candidate",
+    errors
+  );
+  assertField(
+    sourceAudit?.promotion_status === PROMOTION_STATUS,
+    `bounded_speed_live_ledger branch_scope_source_audit promotion_status must be ${PROMOTION_STATUS}`,
+    errors
+  );
+  assertField(
+    sourceAudit?.status === "no-same-ledger-branch-scope-source",
+    "bounded_speed_live_ledger branch_scope_source_audit status must be no-same-ledger-branch-scope-source",
+    errors
+  );
+  assertField(
+    sourceAudit?.audited_measure_field === "branch_scope",
+    "bounded_speed_live_ledger branch_scope_source_audit audited_measure_field must be branch_scope",
+    errors
+  );
+  assertField(
+    sourceAudit?.source_action_measure_row === "action_measure_row",
+    "bounded_speed_live_ledger branch_scope_source_audit source_action_measure_row must be action_measure_row",
+    errors
+  );
+  assertField(
+    identityTuple?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id &&
+      identityTuple?.force_checksum_id === candidate?.force_checksum_id &&
+      identityTuple?.consumer_checksum_id === candidate?.consumer_checksum_id &&
+      identityTuple?.source_normal_reconstruction_candidate_id ===
+        candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger branch_scope_source_audit required_identity_tuple must match the normal candidate ledger tuple",
+    errors
+  );
+  assertField(
+    isRecordObject(searchBasis),
+    "bounded_speed_live_ledger branch_scope_source_audit must declare search_basis",
+    errors
+  );
+  if (isRecordObject(searchBasis)) {
+    assertField(
+      sameStringArray(searchBasis.searched_roots, ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_ROOTS),
+      "bounded_speed_live_ledger branch_scope_source_audit searched_roots mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(searchBasis.searched_terms, ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_TERMS),
+      "bounded_speed_live_ledger branch_scope_source_audit searched_terms mismatch",
+      errors
+    );
+    assertField(
+      searchBasis.result === ACTION_MEASURE_BRANCH_SCOPE_AUDIT_RESULT,
+      "bounded_speed_live_ledger branch_scope_source_audit search result mismatch",
+      errors
+    );
+  }
+  assertField(
+    isRecordObject(acceptanceCriteria),
+    "bounded_speed_live_ledger branch_scope_source_audit must declare acceptance_criteria",
+    errors
+  );
+  if (isRecordObject(acceptanceCriteria)) {
+    const criteriaTuple = acceptanceCriteria.required_identity_tuple ?? {};
+    assertField(
+      criteriaTuple.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id &&
+        criteriaTuple.force_checksum_id === candidate?.force_checksum_id &&
+        criteriaTuple.consumer_checksum_id === candidate?.consumer_checksum_id &&
+        criteriaTuple.source_normal_reconstruction_candidate_id ===
+          candidate?.normal_reconstruction_candidate_id,
+      "bounded_speed_live_ledger branch_scope_source_audit acceptance_criteria identity tuple must match",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        acceptanceCriteria.required_same_ledger_fields,
+        ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS
+      ),
+      "bounded_speed_live_ledger branch_scope_source_audit acceptance same-ledger fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        acceptanceCriteria.required_action_measure_fields,
+        ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS
+      ),
+      "bounded_speed_live_ledger branch_scope_source_audit acceptance action-measure fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        acceptanceCriteria.required_acceptance_bindings,
+        ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_ACCEPTANCE_BINDINGS
+      ),
+      "bounded_speed_live_ledger branch_scope_source_audit acceptance bindings mismatch",
+      errors
+    );
+  }
+  assertField(
+    sourceAudit?.candidate_count === ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES.length,
+    "bounded_speed_live_ledger branch_scope_source_audit candidate_count must cover all audited sources",
+    errors
+  );
+  assertField(
+    sourceAudit?.accepted_count === 0,
+    "bounded_speed_live_ledger branch_scope_source_audit accepted_count must be zero",
+    errors
+  );
+  assertField(
+    sourceAudit?.accepted_branch_scope_source === null,
+    "bounded_speed_live_ledger branch_scope_source_audit accepted_branch_scope_source must be null",
+    errors
+  );
+  assertField(
+    sourceAudit?.first_failure === ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+    "bounded_speed_live_ledger branch_scope_source_audit first_failure must be same_ledger_branch_scope_source_missing",
+    errors
+  );
+  assertField(
+    sourceAudit?.negative_control_status === ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_NEGATIVE_CONTROL,
+    "bounded_speed_live_ledger branch_scope_source_audit negative_control_status must reject off-ledger branch scopes",
+    errors
+  );
+  assertField(
+    isRecordObject(nearestLineage),
+    "bounded_speed_live_ledger branch_scope_source_audit must declare nearest_candidate_lineage_readout",
+    errors
+  );
+  if (isRecordObject(nearestLineage)) {
+    assertField(
+      nearestLineage.status === "fail-closed-nearest-candidate-lineage",
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout status must be fail-closed",
+      errors
+    );
+    assertField(
+      nearestLineage.readiness_status === ACTION_MEASURE_BRANCH_SCOPE_NEAREST_READINESS_STATUS,
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout readiness_status mismatch",
+      errors
+    );
+    assertField(
+      isRecordObject(closestRejectedSource),
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout must name closest_rejected_branch_scope_source",
+      errors
+    );
+    assertField(
+      closestRejectedSource.source_path === ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.source_path &&
+        closestRejectedSource.artifact_schema === ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.artifact_schema &&
+        closestRejectedSource.artifact_id === ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.artifact_id &&
+        closestRejectedSource.branch_scope_role ===
+          ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.branch_scope_role &&
+        closestRejectedSource.first_rejection_code ===
+          ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.first_rejection_code,
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout closest source must be the fixed-speed root ledger rejection",
+      errors
+    );
+    assertField(
+      sameStringArray(nearestLineage.present_fields, ACTION_MEASURE_BRANCH_SCOPE_NEAREST_PRESENT_FIELDS),
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout present_fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        nearestLineage.missing_same_ledger_fields,
+        ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS
+      ),
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout missing_same_ledger_fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        nearestLineage.missing_action_measure_fields,
+        ACTION_MEASURE_BRANCH_SCOPE_NEAREST_MISSING_ACTION_MEASURE_FIELDS
+      ),
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout missing_action_measure_fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        nearestLineage.required_acceptance_bindings,
+        ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_ACCEPTANCE_BINDINGS
+      ),
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout required_acceptance_bindings mismatch",
+      errors
+    );
+    assertField(
+      nearestLineage.smallest_next_evidence_object ===
+        ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT,
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout smallest_next_evidence_object mismatch",
+      errors
+    );
+  }
+  assertField(
+    Array.isArray(candidateSources) &&
+      candidateSources.length === ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES.length,
+    "bounded_speed_live_ledger branch_scope_source_audit must list every candidate branch-scope source",
+    errors
+  );
+  if (Array.isArray(candidateSources)) {
+    for (const expected of ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES) {
+      const row = candidateSources.find((candidateRow) => candidateRow?.source_path === expected.source_path);
+      assertField(Boolean(row), `branch_scope_source_audit missing source ${expected.source_path}`, errors);
+      if (!row) {
+        continue;
+      }
+      assertField(row.artifact_schema === expected.artifact_schema, `${expected.source_path} artifact_schema mismatch`, errors);
+      assertField(row.artifact_id === expected.artifact_id, `${expected.source_path} artifact_id mismatch`, errors);
+      assertField(row.branch_scope_status === "present", `${expected.source_path} branch_scope_status must be present`, errors);
+      assertField(
+        sameStringArray(row.observed_fields, ["branch_scope"]),
+        `${expected.source_path} observed_fields must record only branch_scope`,
+        errors
+      );
+      assertField(
+        row.action_measure_row_status === "absent",
+        `${expected.source_path} action_measure_row_status must be absent`,
+        errors
+      );
+      assertField(
+        row.same_ledger_tuple_match === false,
+        `${expected.source_path} same_ledger_tuple_match must be false`,
+        errors
+      );
+      assertField(
+        row.accepted_for_action_measure_branch_scope === false,
+        `${expected.source_path} must not be accepted for action_measure_row branch_scope`,
+        errors
+      );
+      assertField(
+        row.first_rejection_code === expected.first_rejection_code,
+        `${expected.source_path} first_rejection_code mismatch`,
+        errors
+      );
+      const observedIdentity = row.observed_identity_fields ?? {};
+      assertField(
+        observedIdentity.bounded_speed_ledger_id === null &&
+          observedIdentity.force_checksum_id === null &&
+          observedIdentity.consumer_checksum_id === null &&
+          observedIdentity.source_normal_reconstruction_candidate_id === null,
+        `${expected.source_path} observed_identity_fields must not claim the bounded-speed live-ledger tuple`,
+        errors
+      );
+      assertField(
+        sameStringArray(
+          row.missing_required_identity_fields,
+          ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS
+        ),
+        `${expected.source_path} missing_required_identity_fields mismatch`,
+        errors
+      );
+      assertField(
+        sameStringArray(row.missing_action_measure_fields, ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS),
+        `${expected.source_path} missing_action_measure_fields mismatch`,
+        errors
+      );
+      assertField(
+        JSON.stringify(row.action_measure_field_statuses) ===
+          JSON.stringify(ACTION_MEASURE_BRANCH_SCOPE_CANDIDATE_FIELD_STATUSES),
+        `${expected.source_path} action_measure_field_statuses mismatch`,
+        errors
+      );
+      assertField(
+        row.rejection_summary ===
+          "branch_scope provenance is present, but no same-ledger identity tuple or action_measure_row binds it to the bounded-speed normal-candidate ledger",
+        `${expected.source_path} rejection_summary mismatch`,
+        errors
+      );
+    }
+  }
+
+  return errors;
+}
+
+function sameLedgerActionMeasureWithBranchScopeAttemptValidationErrors(candidate, actionMeasureTarget) {
+  const errors = [];
+  const attempt = actionMeasureTarget?.same_ledger_action_measure_row_with_branch_scope_attempt ?? {};
+  const identityTuple = attempt?.required_identity_tuple ?? {};
+  const rowTarget = attempt?.fail_closed_action_measure_row_target ?? {};
+  const periodRowsTarget = attempt?.period_rows_target ?? {};
+
+  assertField(
+    isRecordObject(attempt),
+    "bounded_speed_live_ledger action_measure_row_target must declare same_ledger_action_measure_row_with_branch_scope_attempt",
+    errors
+  );
+  if (!isRecordObject(attempt)) {
+    return errors;
+  }
+  assertField(
+    attempt?.schema === OCTAHEDRAL_ZERO_MEAN_SAME_LEDGER_ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_SCHEMA,
+    `bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt schema must be ${OCTAHEDRAL_ZERO_MEAN_SAME_LEDGER_ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_SCHEMA}`,
+    errors
+  );
+  assertField(
+    attempt?.claim_scope ===
+      "bounded-speed-same-ledger-action-measure-row-with-branch-scope-attempt-after-normal-candidate",
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt claim_scope mismatch",
+    errors
+  );
+  assertField(
+    attempt?.promotion_status === PROMOTION_STATUS,
+    `bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt promotion_status must be ${PROMOTION_STATUS}`,
+    errors
+  );
+  assertField(
+    attempt?.status === "fail-closed-target",
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt status must be fail-closed-target",
+    errors
+  );
+  assertField(
+    attempt?.attempted_evidence_object === ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt attempted_evidence_object mismatch",
+    errors
+  );
+  assertField(
+    attempt?.source_action_measure_row_target === "action_measure_row",
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must target action_measure_row",
+    errors
+  );
+  assertField(
+    identityTuple?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id &&
+      identityTuple?.force_checksum_id === candidate?.force_checksum_id &&
+      identityTuple?.consumer_checksum_id === candidate?.consumer_checksum_id &&
+      identityTuple?.source_normal_reconstruction_candidate_id ===
+        candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt required_identity_tuple must match the normal candidate ledger tuple",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      attempt?.current_fixture_supplied_measure_fields,
+      CURRENT_ACTION_MEASURE_ROW_TARGET_FIELDS
+    ),
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt current fixture fields mismatch",
+    errors
+  );
+  assertField(
+    sameStringArray(attempt?.attempted_measure_fields, ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_FIELDS),
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt attempted fields mismatch",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      attempt?.missing_measure_fields_if_branch_scope_bound,
+      ACTION_MEASURE_WITH_BRANCH_SCOPE_MISSING_FIELDS
+    ),
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt missing fields after branch_scope mismatch",
+    errors
+  );
+  assertField(
+    attempt?.branch_scope_binding_status === "not_accepted",
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt branch_scope_binding_status must be not_accepted",
+    errors
+  );
+  assertField(
+    attempt?.branch_scope_source_audit_first_failure ===
+      ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must cite branch_scope source-audit first failure",
+    errors
+  );
+  assertField(
+    attempt?.first_missing_subfield_after_branch_scope ===
+      ACTION_MEASURE_WITH_BRANCH_SCOPE_MISSING_FIELDS[0],
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt first_missing_subfield_after_branch_scope must be period_rows",
+    errors
+  );
+  assertField(
+    attempt?.constructed_action_measure_row === null,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must not construct an action_measure_row",
+    errors
+  );
+  assertField(
+    isRecordObject(rowTarget),
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must declare fail_closed_action_measure_row_target",
+    errors
+  );
+  if (isRecordObject(rowTarget)) {
+    assertField(
+      rowTarget?.row === "action_measure_row",
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target row must be action_measure_row",
+      errors
+    );
+    assertField(
+      rowTarget?.status === "absent-fail-closed",
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target status must be absent-fail-closed",
+      errors
+    );
+    assertField(
+      rowTarget?.candidate_row_status === "not_constructed",
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target candidate row status must be not_constructed",
+      errors
+    );
+    assertField(
+      rowTarget?.accepted_row_status === "absent",
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target accepted row status must be absent",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        rowTarget?.required_row_fields,
+        ACTION_MEASURE_ROW_CANDIDATE_REQUIRED_FIELDS
+      ),
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target required row fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        rowTarget?.supplied_fields_on_normal_candidate_ledger,
+        CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS
+      ),
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target supplied fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        rowTarget?.missing_fields_on_normal_candidate_ledger,
+        MISSING_ACTION_MEASURE_ROW_CANDIDATE_FIELDS
+      ),
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target missing fields mismatch",
+      errors
+    );
+    assertField(
+      rowTarget?.first_blocker === ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target first blocker must cite branch_scope",
+      errors
+    );
+    assertField(
+      JSON.stringify(rowTarget?.field_statuses_on_normal_candidate_ledger) ===
+        JSON.stringify(ACTION_MEASURE_ROW_CANDIDATE_FIELD_STATUS_ROWS),
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target field statuses mismatch",
+      errors
+    );
+    assertField(
+      Array.isArray(rowTarget?.missing_same_ledger_bindings) &&
+        rowTarget.missing_same_ledger_bindings.length ===
+          ACTION_MEASURE_ROW_MISSING_SAME_LEDGER_BINDINGS.length,
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target missing bindings length mismatch",
+      errors
+    );
+    if (Array.isArray(rowTarget?.missing_same_ledger_bindings)) {
+      for (const expected of ACTION_MEASURE_ROW_MISSING_SAME_LEDGER_BINDINGS) {
+        const actual = rowTarget.missing_same_ledger_bindings.find(
+          (binding) => binding?.field === expected.field
+        );
+        assertField(
+          actual?.required_binding === expected.required_binding &&
+            actual?.blocker === expected.blocker,
+          `bounded_speed_live_ledger fail_closed_action_measure_row_target missing binding ${expected.field} mismatch`,
+          errors
+        );
+      }
+    }
+    assertField(
+      rowTarget?.certifies_action_measure_row === false,
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target must not certify action_measure_row",
+      errors
+    );
+    assertField(
+      rowTarget?.retention === "not_retained" && rowTarget?.retained_branch === false,
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target must not retain a branch",
+      errors
+    );
+  }
+  assertField(
+    isRecordObject(periodRowsTarget),
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must declare period_rows_target",
+    errors
+  );
+  if (isRecordObject(periodRowsTarget)) {
+    assertField(
+      periodRowsTarget?.field === "period_rows",
+      "bounded_speed_live_ledger period_rows_target field must be period_rows",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.status === "target-only-blocked-by-branch-scope",
+      "bounded_speed_live_ledger period_rows_target status must be target-only-blocked-by-branch-scope",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.source_action_measure_row === "action_measure_row",
+      "bounded_speed_live_ledger period_rows_target source_action_measure_row must be action_measure_row",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.blocking_failure === ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+      "bounded_speed_live_ledger period_rows_target blocking_failure must cite the branch_scope first failure",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.first_failure ===
+        ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_FIRST_FAILURE,
+      "bounded_speed_live_ledger period_rows_target first_failure must be same_ledger_period_rows_source_missing",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.accepted_period_rows_source === null,
+      "bounded_speed_live_ledger period_rows_target accepted_period_rows_source must be null",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.candidate_count === 0,
+      "bounded_speed_live_ledger period_rows_target candidate_count must be zero",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.negative_control_status ===
+        ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_NEGATIVE_CONTROL,
+      "bounded_speed_live_ledger period_rows_target negative_control_status mismatch",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.smallest_next_evidence_object ===
+        ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_SMALLEST_NEXT_EVIDENCE_OBJECT,
+      "bounded_speed_live_ledger period_rows_target smallest_next_evidence_object mismatch",
+      errors
+    );
+  }
+  assertField(
+    attempt?.certifies_action_measure_row === false,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must set certifies_action_measure_row=false",
+    errors
+  );
+  assertField(
+    attempt?.certifies_action_derived_scale === false,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must set certifies_action_derived_scale=false",
+    errors
+  );
+  assertField(
+    attempt?.certifies_bounded_speed_live_ledger === false,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must set certifies_bounded_speed_live_ledger=false",
+    errors
+  );
+  assertField(
+    attempt?.retention === "not_retained" && attempt?.retained_branch === false,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must not retain a branch",
+    errors
+  );
+
+  return errors;
+}
+
+function buildActionMeasureBranchScopeNearestCandidateLineageReadout() {
+  const nearestCandidate = ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE;
+  return {
+    status: "fail-closed-nearest-candidate-lineage",
+    readiness_status: ACTION_MEASURE_BRANCH_SCOPE_NEAREST_READINESS_STATUS,
+    closest_rejected_branch_scope_source: {
+      source_path: nearestCandidate.source_path,
+      artifact_schema: nearestCandidate.artifact_schema,
+      artifact_id: nearestCandidate.artifact_id,
+      branch_scope_role: nearestCandidate.branch_scope_role,
+      first_rejection_code: nearestCandidate.first_rejection_code,
+    },
+    closest_candidate_reason:
+      "certified fixed-speed all-pairs root ledger carries branch_scope and certified root rows, but it is provenance only for the bounded-speed action-measure target",
+    present_fields: [...ACTION_MEASURE_BRANCH_SCOPE_NEAREST_PRESENT_FIELDS],
+    missing_same_ledger_fields: [...ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS],
+    missing_action_measure_fields: [...ACTION_MEASURE_BRANCH_SCOPE_NEAREST_MISSING_ACTION_MEASURE_FIELDS],
+    required_acceptance_bindings: [...ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_ACCEPTANCE_BINDINGS],
+    smallest_next_evidence_object: ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT,
+  };
 }
 
 function boundedSpeedActionDerivedScaleTargetValidationErrors(candidate, actionScaleTarget) {
@@ -2720,6 +3518,134 @@ function buildBoundedSpeedLiveLedgerIdentityTarget(candidate) {
   };
 }
 
+function buildActionMeasureBranchScopeSourceAudit(candidate) {
+  const requiredIdentityTuple = {
+    bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+    force_checksum_id: candidate.force_checksum_id,
+    consumer_checksum_id: candidate.consumer_checksum_id,
+    source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+  };
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_SCHEMA,
+    claim_scope: "bounded-speed-action-measure-branch-scope-source-audit-after-normal-candidate",
+    promotion_status: PROMOTION_STATUS,
+    status: "no-same-ledger-branch-scope-source",
+    audited_measure_field: "branch_scope",
+    source_action_measure_row: "action_measure_row",
+    required_identity_tuple: requiredIdentityTuple,
+    search_basis: {
+      searched_roots: [...ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_ROOTS],
+      searched_terms: [...ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_TERMS],
+      result: ACTION_MEASURE_BRANCH_SCOPE_AUDIT_RESULT,
+    },
+    acceptance_criteria: {
+      required_identity_tuple: requiredIdentityTuple,
+      required_same_ledger_fields: [...ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS],
+      required_action_measure_fields: [...ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS],
+      required_acceptance_bindings: [...ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_ACCEPTANCE_BINDINGS],
+    },
+    candidate_count: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES.length,
+    accepted_count: 0,
+    accepted_branch_scope_source: null,
+    first_failure: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+    negative_control_status: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_NEGATIVE_CONTROL,
+    nearest_candidate_lineage_readout: buildActionMeasureBranchScopeNearestCandidateLineageReadout(),
+    candidate_branch_scope_sources: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES.map((candidateSource) => ({
+      ...candidateSource,
+      branch_scope_status: "present",
+      observed_fields: ["branch_scope"],
+      observed_identity_fields: {
+        bounded_speed_ledger_id: null,
+        force_checksum_id: null,
+        consumer_checksum_id: null,
+        source_normal_reconstruction_candidate_id: null,
+      },
+      missing_required_identity_fields: [
+        ...ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS,
+      ],
+      missing_action_measure_fields: [...ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS],
+      same_ledger_tuple_match: false,
+      action_measure_row_status: "absent",
+      accepted_for_action_measure_branch_scope: false,
+      action_measure_field_statuses: ACTION_MEASURE_BRANCH_SCOPE_CANDIDATE_FIELD_STATUSES.map(
+        (fieldStatus) => ({ ...fieldStatus })
+      ),
+      rejection_summary:
+        "branch_scope provenance is present, but no same-ledger identity tuple or action_measure_row binds it to the bounded-speed normal-candidate ledger",
+    })),
+  };
+}
+
+function buildSameLedgerActionMeasureWithBranchScopeAttempt(candidate) {
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_SAME_LEDGER_ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_SCHEMA,
+    claim_scope:
+      "bounded-speed-same-ledger-action-measure-row-with-branch-scope-attempt-after-normal-candidate",
+    promotion_status: PROMOTION_STATUS,
+    status: "fail-closed-target",
+    attempted_evidence_object: ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT,
+    source_action_measure_row_target: "action_measure_row",
+    required_identity_tuple: {
+      bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+      force_checksum_id: candidate.force_checksum_id,
+      consumer_checksum_id: candidate.consumer_checksum_id,
+      source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    },
+    current_fixture_supplied_measure_fields: [...CURRENT_ACTION_MEASURE_ROW_TARGET_FIELDS],
+    attempted_measure_fields: [...ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_FIELDS],
+    missing_measure_fields_if_branch_scope_bound: [
+      ...ACTION_MEASURE_WITH_BRANCH_SCOPE_MISSING_FIELDS,
+    ],
+    branch_scope_binding_status: "not_accepted",
+    branch_scope_source_audit_first_failure:
+      ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+    first_missing_subfield_after_branch_scope:
+      ACTION_MEASURE_WITH_BRANCH_SCOPE_MISSING_FIELDS[0],
+    constructed_action_measure_row: null,
+    fail_closed_action_measure_row_target: {
+      row: "action_measure_row",
+      status: "absent-fail-closed",
+      candidate_row_status: "not_constructed",
+      accepted_row_status: "absent",
+      required_row_fields: [...ACTION_MEASURE_ROW_CANDIDATE_REQUIRED_FIELDS],
+      supplied_fields_on_normal_candidate_ledger: [
+        ...CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS,
+      ],
+      missing_fields_on_normal_candidate_ledger: [
+        ...MISSING_ACTION_MEASURE_ROW_CANDIDATE_FIELDS,
+      ],
+      missing_same_ledger_bindings: ACTION_MEASURE_ROW_MISSING_SAME_LEDGER_BINDINGS.map(
+        (binding) => ({ ...binding })
+      ),
+      first_blocker: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+      field_statuses_on_normal_candidate_ledger:
+        ACTION_MEASURE_ROW_CANDIDATE_FIELD_STATUS_ROWS.map((fieldStatus) => ({
+          ...fieldStatus,
+        })),
+      certifies_action_measure_row: false,
+      retention: "not_retained",
+      retained_branch: false,
+    },
+    period_rows_target: {
+      field: "period_rows",
+      status: "target-only-blocked-by-branch-scope",
+      source_action_measure_row: "action_measure_row",
+      blocking_failure: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+      first_failure: ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_FIRST_FAILURE,
+      accepted_period_rows_source: null,
+      candidate_count: 0,
+      negative_control_status: ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_NEGATIVE_CONTROL,
+      smallest_next_evidence_object:
+        ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_SMALLEST_NEXT_EVIDENCE_OBJECT,
+    },
+    certifies_action_measure_row: false,
+    certifies_action_derived_scale: false,
+    certifies_bounded_speed_live_ledger: false,
+    retention: "not_retained",
+    retained_branch: false,
+  };
+}
+
 function buildBoundedSpeedActionMeasureRowTarget(candidate) {
   return {
     schema: OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_ROW_TARGET_SCHEMA,
@@ -2746,6 +3672,9 @@ function buildBoundedSpeedActionMeasureRowTarget(candidate) {
     negative_control_status:
       "same-ledger-tuple-without-action-functional-not-action-measure-row",
     rejected_current_fixture: true,
+    branch_scope_source_audit: buildActionMeasureBranchScopeSourceAudit(candidate),
+    same_ledger_action_measure_row_with_branch_scope_attempt:
+      buildSameLedgerActionMeasureWithBranchScopeAttempt(candidate),
     certifies_action_measure_row: false,
     certifies_action_derived_scale: false,
     certifies_bounded_speed_live_ledger: false,

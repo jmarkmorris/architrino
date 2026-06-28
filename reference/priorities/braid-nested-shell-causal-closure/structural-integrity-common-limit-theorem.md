@@ -428,6 +428,61 @@ wave-vector gap rows are absent. The checker keeps first failure
 priority-only negative control, not a structural-integrity residual population
 row.
 
+The accepted-branch-chart source scout
+[moving-retained-branch-certificate-accepted-branch-chart-source-scout.json](../../../scripts/nested-shell-braid/fixtures/moving-retained-branch-certificate-accepted-branch-chart-source-scout.json)
+enumerates the current structural-integrity, nested-shell, A0 Tier 0,
+torque/wake, and branch-provider candidate families. The executable scout
+returns `candidate_count=9`, `accepted_count=0`, and
+`first_failure=accepted_same_record_branch_chart_absent`. The nested
+`moving_retained_branch_certificate_nearest_branch_chart_source_readiness/v0`
+readout selects `partial-same-record-identity-scout-fixture` as the closest
+current route: it has four non-proxy required fields
+(`branch_certificate_ref`, `same_record_identity.branch_label`,
+`same_record_identity.extraction_window_id`, and
+`same_record_identity.active_root_ledger_hash`) but still fails first at
+`same_record_identity.accepted_branch_chart_ref` because that value is only
+`proxy:accepted-branch-chart-ref-not-issued`. It also lacks the same-record
+separator-chart, positive-gap, memory-depth, and active wave-vector gap rows and
+retains source status `routing_evidence_only`, not
+`accepted_same_record_branch_chart`. The A0 Tier 0 row, torque/wake diagnostics,
+current status shells, and H39 branch-provider attempt fail before acceptance
+because no non-proxy `branch_certificate_ref` exists on an accepted same-record
+branch-chart source. No Lorentz/common-limit/export row is populated by this
+scout.
+
+The same scout now also emits
+`moving_retained_branch_certificate_branch_chart_and_moving_certificate_ref_path_audit/v0`.
+On the current source set, this fail-closed audit preserves the exact nearest
+blocking refs: `same_record_identity.accepted_branch_chart_ref` is
+`proxy:accepted-branch-chart-ref-not-issued`,
+`moving_retained_branch_certificate_ref` is absent, and the nearest
+`branch_certificate_ref` remains
+`candidate:branch-chart-ref-with-partial-same-record-identity`. Its first
+ref-path failure is
+`same_record_identity_accepted_branch_chart_ref_proxy_not_accepted`, followed by
+`moving_retained_branch_certificate_ref_missing` and
+`branch_certificate_ref_candidate_not_accepted`; it keeps
+`accepted_ref_path_available=false` and authorizes no
+`moving_retained_branch_certificate/v0` consumption.
+
+The torque/wake branch-certificate readiness audit now checks the same blocker
+from the rank 2 / rank 6 route. The embedded
+`torque_wake_branch_certificate_ref_source_availability_audit/v0` passes
+source-report identity and sampled same-row binding for
+`torque_wake_same_row_diagnostic:index-ratio:f2`, then fails at
+`branch_certificate_ref_missing`. It also names the retained active-row fields
+that must arrive together before this packet can consume the torque/wake row:
+`same_retained_active_row_ids` equal to the sampled active rows,
+`retained_branch=true`, accepted branch-chart and moving-certificate refs,
+same-record branch-chart identity fields, active-root ledger hash,
+conservation-pullback hash, and negative control. The audit emits a structured
+`next_retained_active_row_evidence_object` with those sampled rows as the exact
+required `same_retained_active_row_ids`, the complete same-record branch-chart
+field list, and a rejection policy for `priority-only:`, `fixture:`, `proxy:`,
+`candidate:`, and `synthetic:` references. This is a readiness audit only; it
+does not populate `moving_retained_branch_certificate/v0` or any
+structural-integrity residual row.
+
 ## Promotion Decision
 
 - The compact theorem target is surfaced in [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), with conceptual support in [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry) and empirical speed gates in [Constraint Ledger](../../../content/markdown/aaa/validation/constraint-ledger.md).

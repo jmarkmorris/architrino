@@ -231,55 +231,6 @@
       ]
     },
     {
-      "id": "bremsstrahlung",
-      "title": "Bremsstrahlung Schematic",
-      "description": "Vector schematic of bremsstrahlung radiation produced by deflection of a fast electron in a nuclear Coulomb field.",
-      "path": "content/assets/images/effects/bremsstrahlung.svg",
-      "mediaType": "image/svg+xml",
-      "dimensions": {
-        "width": 801,
-        "height": 1024
-      },
-      "fileSizeBytes": 1863,
-      "sha256": "869d62f2acfbf261398e47d6d803af12774f0c844210ee1b34442fe4fceb1a3f",
-      "dateCreated": "2007-01-06",
-      "dateImported": "2026-05-18",
-      "status": "approved",
-      "category": "radiation-effect",
-      "source": {
-        "name": "Wikimedia Commons",
-        "pageUrl": "https://commons.wikimedia.org/wiki/File:Bremsstrahlung.svg",
-        "pageRevisionUrl": "https://commons.wikimedia.org/w/index.php?title=File:Bremsstrahlung.svg&oldid=1097087077",
-        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Bremsstrahlung.svg",
-        "accessedDate": "2026-05-18"
-      },
-      "creators": [
-        {
-          "name": "Journey234",
-          "role": "assumed author listed by Wikimedia Commons"
-        }
-      ],
-      "license": {
-        "rightsStatus": "public-domain",
-        "label": "Public domain",
-        "rationale": "Wikimedia Commons records the copyright holder releasing the work into the public domain.",
-        "requiresAttribution": false
-      },
-      "creditLine": "Bremsstrahlung schematic, Journey234 assumed. Public domain via Wikimedia Commons.",
-      "usage": {
-        "intendedUses": [
-          "radiation-effect reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Chosen as a small public-domain vector schematic for radiation emitted by charge deflection."
-      ]
-    },
-    {
       "id": "architrino-logo-qr-landscape",
       "title": "Architrino Logo and QR Code, Landscape",
       "description": "Repo-native landscape brand image combining the Noether Braid logo with the Architrino QR code pointing to architrino.com.",
@@ -509,6 +460,402 @@
         "rightsStatus": "project-owned",
         "label": "Project license",
         "rationale": "Created as a derivative of the project-owned Group Project Assumption outreach comic.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic thumbnail",
+          "markdown gallery thumbnail"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Generated as a smaller gallery thumbnail that links to the full-size comic image."
+      ]
+    },
+    {
+      "id": "citation-needed",
+      "title": "Citation Needed",
+      "description": "Single-panel outreach comic in which a citation-needed label catches a familiar-sounding sentence before it can cross into ontology.",
+      "path": "content/assets/images/comics/citation-needed.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1535,
+        "height": 1024
+      },
+      "fileSizeBytes": 2332001,
+      "sha256": "abbb0929dce3d2c1cbb1a24426c05cb0623197fc94bd13ebb0452d14a813a37c",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "OpenAI image generation",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "comic direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach comics line from project direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md",
+          "content/markdown/aaa/outreach/comics/citation-needed.md"
+        ]
+      },
+      "selectionNotes": [
+        "Selected because the surface joke about tagging an obvious sentence stays readable while the hidden academic layer separates useful effective summaries from ontology-level derivations."
+      ]
+    },
+    {
+      "id": "citation-needed-thumb",
+      "title": "Citation Needed Thumbnail",
+      "description": "Thumbnail derivative for the Citation Needed outreach comic gallery entry.",
+      "path": "content/assets/images/comics/thumbnails/citation-needed-thumb.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 360,
+        "height": 360
+      },
+      "fileSizeBytes": 217208,
+      "sha256": "addf739e64cb73a01e245afb7a22cc9c8730e3463a1777fd8860a8e0206c7073",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic-thumbnail",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "sips centered square crop derivative from citation-needed",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "thumbnail generation"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a derivative of the project-owned Citation Needed outreach comic.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic thumbnail",
+          "markdown gallery thumbnail"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Generated as a square gallery thumbnail that links to the full-size comic image."
+      ]
+    },
+    {
+      "id": "alchemy-remake",
+      "title": "Old Alchemy, New Apparatus",
+      "description": "Single-panel outreach comic comparing old alchemy and new apparatus as different centuries' shiny tools and tempting stories.",
+      "path": "content/assets/images/comics/alchemy-remake.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "fileSizeBytes": 2605001,
+      "sha256": "062312b2fada66ed3296cffec78f948ab7928284a0b1852879abb8dcca9d6e6b",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "OpenAI image generation",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "comic direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach comics line from project direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md",
+          "content/markdown/aaa/outreach/comics/alchemy-remake.md"
+        ]
+      },
+      "selectionNotes": [
+        "Selected because the surface joke about shiny apparatus and tempting stories stays readable while the hidden academic layer separates spectacle from measurement and proof."
+      ]
+    },
+    {
+      "id": "alchemy-remake-thumb",
+      "title": "Old Alchemy, New Apparatus Thumbnail",
+      "description": "Thumbnail derivative for the Old Alchemy, New Apparatus outreach comic gallery entry.",
+      "path": "content/assets/images/comics/thumbnails/alchemy-remake-thumb.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 360,
+        "height": 360
+      },
+      "fileSizeBytes": 234849,
+      "sha256": "24d9c1716eae771975ab898b3c64f42ce06605df8198b774c2547a76a42b5b38",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic-thumbnail",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "sips derivative from alchemy-remake",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "thumbnail generation"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a derivative of the project-owned Old Alchemy, New Apparatus outreach comic.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic thumbnail",
+          "markdown gallery thumbnail"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Generated as a smaller gallery thumbnail that links to the full-size comic image."
+      ]
+    },
+    {
+      "id": "smbh-remake",
+      "title": "Candidate, Not A Throne",
+      "description": "Single-panel outreach comic in which an SMBH jet mechanism candidate earns tests instead of being promoted into a throne.",
+      "path": "content/assets/images/comics/smbh-remake.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "fileSizeBytes": 2665687,
+      "sha256": "b611b1391caea52c2a176c15d418c40c6ec03c2753c4bfcae25a7c11a6093617",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "OpenAI image generation",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "comic direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach comics line from project direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md",
+          "content/markdown/aaa/outreach/comics/smbh-remake.md"
+        ]
+      },
+      "selectionNotes": [
+        "Selected because the surface joke about an interesting mechanism needing a test stays readable while the hidden academic layer keeps candidate models below proof and observation."
+      ]
+    },
+    {
+      "id": "smbh-remake-thumb",
+      "title": "Candidate, Not A Throne Thumbnail",
+      "description": "Thumbnail derivative for the Candidate, Not A Throne outreach comic gallery entry.",
+      "path": "content/assets/images/comics/thumbnails/smbh-remake-thumb.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 360,
+        "height": 360
+      },
+      "fileSizeBytes": 238954,
+      "sha256": "1caa86426fd6109f848e3cec1d56818b0f9d90c428ac09f0f006db0b48ceae20",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic-thumbnail",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "sips derivative from smbh-remake",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "thumbnail generation"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a derivative of the project-owned Candidate, Not A Throne outreach comic.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic thumbnail",
+          "markdown gallery thumbnail"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Generated as a smaller gallery thumbnail that links to the full-size comic image."
+      ]
+    },
+    {
+      "id": "jets-remake",
+      "title": "What Counts As Evidence?",
+      "description": "Single-panel outreach comic in which an AGN jet discussion routes visual drama into separate evidence questions for horizon, disk, jet, and model mechanism.",
+      "path": "content/assets/images/comics/jets-remake.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "fileSizeBytes": 2503555,
+      "sha256": "96d22edd3d50d7f16f0aec8844db35f5639f7d5bb59efb491cf640b184ac5836",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "OpenAI image generation",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "comic direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach comics line from project direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md",
+          "content/markdown/aaa/outreach/comics/jets-remake.md"
+        ]
+      },
+      "selectionNotes": [
+        "Selected because the dramatic-jet foreground stays public-readable while the hidden academic layer separates observation, mechanism, model elegance, and evidence."
+      ]
+    },
+    {
+      "id": "jets-remake-thumb",
+      "title": "What Counts As Evidence? Thumbnail",
+      "description": "Thumbnail derivative for the What Counts As Evidence? outreach comic gallery entry.",
+      "path": "content/assets/images/comics/thumbnails/jets-remake-thumb.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 360,
+        "height": 360
+      },
+      "fileSizeBytes": 233155,
+      "sha256": "e4b9cd6cee835032676616070aed9b7548d7a2396873983aa55bcb37fc4bbcfc",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic-thumbnail",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "sips derivative from jets-remake",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "thumbnail generation"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a derivative of the project-owned What Counts As Evidence? outreach comic.",
         "requiresAttribution": false
       },
       "creditLine": "Created by the Architrino project, 2026.",
@@ -918,6 +1265,105 @@
       ]
     },
     {
+      "id": "birthday-cake-observer-era",
+      "title": "Birthday Cake For The Observer Era",
+      "description": "Single-panel outreach comic in which a student asks how many candles belong on the whole universe and Rachel routes the answer to the era we can date.",
+      "path": "content/assets/images/comics/birthday-cake-observer-era.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "fileSizeBytes": 2859594,
+      "sha256": "5d593b7d9b250202bb9ced79c1b985cfb238a7d92aad304eadb4a15fd32a5647",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "OpenAI image generation",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "comic direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach comics line from project direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md",
+          "content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md"
+        ]
+      },
+      "selectionNotes": [
+        "Selected because the birthday-cake joke makes observer-era age boundaries public-readable while keeping the proof burden around substrate-age claims explicit."
+      ]
+    },
+    {
+      "id": "birthday-cake-observer-era-thumb",
+      "title": "Birthday Cake For The Observer Era Thumbnail",
+      "description": "Thumbnail derivative for the Birthday Cake For The Observer Era outreach comic gallery entry.",
+      "path": "content/assets/images/comics/thumbnails/birthday-cake-observer-era-thumb.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 360,
+        "height": 360
+      },
+      "fileSizeBytes": 168316,
+      "sha256": "5356fdbef36393e82c12d53fb8ca9b25fcc9cf4833cfe85ddee926c155d67927",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic-thumbnail",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "sips derivative from birthday-cake-observer-era",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "thumbnail generation"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a derivative of the project-owned Birthday Cake For The Observer Era outreach comic.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic thumbnail",
+          "markdown gallery thumbnail"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Generated as a smaller gallery thumbnail that links to the full-size comic image."
+      ]
+    },
+    {
       "id": "curvefit-remake",
       "title": "Four Theories, One Oval",
       "description": "Single-panel outreach comic in which multiple theory curves fit the same oval data cloud while the residuals decide which model survives.",
@@ -1162,57 +1608,10 @@
       }
     },
     {
-      "id": "epr-illustration-commons",
-      "title": "EPR Illustration",
-      "description": "Vector illustration of the Einstein-Podolsky-Rosen thought-experiment setup.",
-      "path": "content/assets/images/physics/epr-illustration.svg",
-      "mediaType": "image/svg+xml",
-      "dateCreated": "2014-08-26",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "physics-diagram",
-      "source": {
-        "name": "Wikimedia Commons",
-        "pageUrl": "https://commons.wikimedia.org/wiki/File:EPR_illustration.svg",
-        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/5/57/EPR_illustration.svg",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "Krishnavedala",
-          "role": "diagram author"
-        }
-      ],
-      "license": {
-        "rightsStatus": "public-domain",
-        "label": "CC0",
-        "rationale": "Wikimedia Commons source page records the file as CC0.",
-        "requiresAttribution": false,
-        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
-      },
-      "creditLine": "EPR illustration by Krishnavedala. CC0 via Wikimedia Commons.",
-      "usage": {
-        "intendedUses": [
-          "image library",
-          "source-mining replacement candidate"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Imported as a clean facsimile for the EPR composite subject rather than preserving the blog portrait collage."
-      ],
-      "fileSizeBytes": 8575,
-      "sha256": "9f280f4555ecd7ef9658c3da9caa60cd9b40ba906e2f6f16079c6711ea6ec967",
-      "dimensions": {
-        "width": 628,
-        "height": 208
-      }
-    },
-    {
       "id": "cmb-timeline-no-wmap",
       "title": "CMB Timeline Without WMAP Overlay",
       "description": "NASA/WMAP public-domain timeline illustration for cosmic history and the cosmic microwave background.",
-      "path": "content/assets/images/cosmology/cmb-timeline-no-wmap.jpg",
+      "path": "content/assets/images/black-holes/cmb-timeline-no-wmap.jpg",
       "mediaType": "image/jpeg",
       "dateCreated": "circa 2006",
       "dateImported": "2026-06-28",
@@ -1258,7 +1657,7 @@
       "id": "universe-evolution-wmap",
       "title": "Universe Evolution WMAP Timeline",
       "description": "Public-domain WMAP-derived timeline illustration of the evolution of the universe.",
-      "path": "content/assets/images/cosmology/universe-evolution-wmap.jpg",
+      "path": "content/assets/images/black-holes/universe-evolution-wmap.jpg",
       "mediaType": "image/jpeg",
       "dateCreated": "2010-05-11",
       "dateImported": "2026-06-28",
@@ -1305,7 +1704,7 @@
       "id": "fermi-bubble-graphic-nasa",
       "title": "Fermi Bubble Graphic",
       "description": "NASA Goddard illustration of the Milky Way Fermi bubbles extending above and below the galactic plane.",
-      "path": "content/assets/images/cosmology/fermi-bubble-graphic-nasa.jpg",
+      "path": "content/assets/images/black-holes/fermi-bubble-graphic-nasa.jpg",
       "mediaType": "image/jpeg",
       "dateCreated": "2010-11-09",
       "dateImported": "2026-06-28",
@@ -1397,7 +1796,7 @@
       "id": "eso1122a-most-distant-quasar",
       "title": "Artist Rendering Of The Most Distant Quasar",
       "description": "ESO artwork of ULAS J1120+0641, the most distant quasar announced in ESO release eso1122.",
-      "path": "content/assets/images/cosmology/eso1122a-most-distant-quasar.jpg",
+      "path": "content/assets/images/black-holes/eso1122a-most-distant-quasar.jpg",
       "mediaType": "image/jpeg",
       "dateCreated": "2011-06-29",
       "dateImported": "2026-06-28",
@@ -1440,95 +1839,162 @@
       }
     },
     {
-      "id": "feynman-diagram-gluon-radiation",
-      "title": "Feynman Diagram Of Gluon Radiation",
-      "description": "Public-domain vector Feynman diagram of gluon radiation in electron-positron annihilation.",
-      "path": "content/assets/images/physics/feynman-diagram-gluon-radiation.svg",
-      "mediaType": "image/svg+xml",
-      "dateCreated": "2007-03-09",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "physics-diagram",
-      "source": {
-        "name": "Wikimedia Commons",
-        "pageUrl": "https://commons.wikimedia.org/wiki/File:Feynman_Diagram_Gluon_Radiation.svg",
-        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/0/00/Feynman_Diagram_Gluon_Radiation.svg",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "Joel Holdsworth",
-          "role": "SVG author"
-        }
-      ],
-      "license": {
-        "rightsStatus": "public-domain",
-        "label": "Public domain",
-        "rationale": "Wikimedia Commons source page records the file as Public domain.",
-        "requiresAttribution": false
-      },
-      "creditLine": "Feynman diagram of gluon radiation by Joel Holdsworth. Public domain via Wikimedia Commons.",
-      "usage": {
-        "intendedUses": [
-          "image library",
-          "source-mining replacement candidate"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Imported as a source/facsimile for the remaining Feynman-diagram WordPress upload."
-      ],
-      "fileSizeBytes": 2486,
-      "sha256": "58f5820a7085fa09b93cdceb641ffeec56bd33415c2013e4d4bb2ebdbb739df0",
-      "dimensions": {
-        "width": 400,
-        "height": 250
-      }
-    },
-    {
-      "id": "bubble-chamber-neutrino-decay-overlay",
-      "title": "Neutrino Bubble Chamber Decay Overlay",
-      "description": "Public-domain bubble-chamber event image with an overlay marking a neutrino interaction candidate.",
-      "path": "content/assets/images/physics/bubble-chamber-neutrino-decay-overlay.png",
-      "mediaType": "image/png",
-      "dateCreated": "2012-03-11",
+      "id": "cern-lhc-cms-detector-commons",
+      "title": "CERN LHC CMS Detector",
+      "description": "Photograph of the Compact Muon Solenoid detector at CERN's Large Hadron Collider.",
+      "path": "content/assets/images/physics/cern-lhc-cms-detector-commons.jpg",
+      "mediaType": "image/jpeg",
+      "dateCreated": "2019-09-15",
       "dateImported": "2026-06-28",
       "status": "approved",
       "category": "physics-photo",
       "source": {
         "name": "Wikimedia Commons",
-        "pageUrl": "https://commons.wikimedia.org/wiki/File:Neutrino_bubble_chamber_decay_overlay.png",
-        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Neutrino_bubble_chamber_decay_overlay.png",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:CERN_LHC_CMS_11.jpg",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/CERN_LHC_CMS_11.jpg",
+        "listedSources": [
+          "Own work according to Commons metadata"
+        ],
         "accessedDate": "2026-06-28"
       },
       "creators": [
         {
-          "name": "Messier",
-          "role": "derivative overlay author"
+          "name": "SimonWaldherr",
+          "role": "photographer"
         }
       ],
       "license": {
-        "rightsStatus": "public-domain",
-        "label": "Public domain",
-        "rationale": "Wikimedia Commons source page records the file as Public domain.",
-        "requiresAttribution": false
+        "rightsStatus": "free-license",
+        "label": "CC BY-SA 4.0",
+        "rationale": "Wikimedia Commons metadata marks the file as Creative Commons Attribution-Share Alike 4.0.",
+        "requiresAttribution": true,
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
       },
-      "creditLine": "Neutrino bubble chamber decay overlay. Public domain via Wikimedia Commons.",
+      "creditLine": "SimonWaldherr. CC BY-SA 4.0 via Wikimedia Commons.",
       "usage": {
         "intendedUses": [
           "image library",
-          "source-mining replacement candidate"
+          "particle detector context",
+          "LHC scale reference",
+          "markdown figure",
+          "scene overlay"
         ],
         "usedBy": []
       },
       "selectionNotes": [
-        "Imported as a free facsimile for the remaining particle-track screenshot."
+        "Selected as a complementary high-resolution LHC detector-scale reference alongside the ATLAS detector image.",
+        "Use as detector context only; it should not be treated as a substitute for event-level collision evidence."
       ],
-      "fileSizeBytes": 658784,
-      "sha256": "9ec0331015cf6d0caa52d04326f32766fded9353ace2a068c538ec337adc879e",
+      "fileSizeBytes": 2798465,
+      "sha256": "6df157a9f9046c5d305dd8c23a192e23fc7dbd1ca2f7316c5d1e0225580863d2",
       "dimensions": {
-        "width": 902,
-        "height": 748
+        "width": 6000,
+        "height": 4000
+      }
+    },
+    {
+      "id": "candidate-higgs-events-atlas-cms-commons",
+      "title": "Candidate Higgs Events in ATLAS and CMS",
+      "description": "Composite event-display image showing candidate Higgs boson events from proton-proton collisions in the LHC.",
+      "path": "content/assets/images/physics/candidate-higgs-events-atlas-cms-commons.png",
+      "mediaType": "image/png",
+      "dateCreated": "2013-11-17",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "physics-visualization",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Candidate_Higgs_Events_in_ATLAS_and_CMS.png",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Candidate_Higgs_Events_in_ATLAS_and_CMS.png",
+        "listedSources": [
+          "CERN Document Server record 1630222: https://cds.cern.ch/record/1630222"
+        ],
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "CERN for the ATLAS and CMS Collaborations",
+          "role": "source author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "CC BY-SA 3.0",
+        "rationale": "Wikimedia Commons metadata marks the file as Creative Commons Attribution-Share Alike 3.0.",
+        "requiresAttribution": true,
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+      },
+      "creditLine": "CERN for the ATLAS and CMS Collaborations. CC BY-SA 3.0 via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "particle collision context",
+          "Higgs-boson event-display reference",
+          "markdown figure",
+          "scene overlay"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected as a canonical event-display reference for LHC collision reconstruction rather than another detector photograph.",
+        "Use as a Standard Model comparison image; it is not a native derivation or validation artifact."
+      ],
+      "fileSizeBytes": 852546,
+      "sha256": "7f9c8f40e1263a45face5396816d2676abcf74860c236f4d480f5c0906d46bf2",
+      "dimensions": {
+        "width": 720,
+        "height": 937
+      }
+    },
+    {
+      "id": "proton-quark-structure-commons",
+      "title": "Proton Quark Structure",
+      "description": "Simple SVG schematic of the proton's standard valence-quark content.",
+      "path": "content/assets/images/physics/proton-quark-structure-commons.svg",
+      "mediaType": "image/svg+xml",
+      "dateCreated": "2018-01-13",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "physics-diagram",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Proton_quark_structure.svg",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Proton_quark_structure.svg",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Jacek rybak",
+          "role": "diagram author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "CC BY-SA 4.0",
+        "rationale": "Wikimedia Commons metadata marks the file as Creative Commons Attribution-Share Alike 4.0.",
+        "requiresAttribution": true,
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      },
+      "creditLine": "Jacek rybak. CC BY-SA 4.0 via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "proton structure context",
+          "quark-model comparison",
+          "markdown figure",
+          "scene overlay"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected as a compact, source-backed quark-model reference for nucleon-structure comparisons.",
+        "Use as a standard-model schematic; do not use it as a completed native assembly-geometry derivation."
+      ],
+      "fileSizeBytes": 4331,
+      "sha256": "0ac168b4457b7a322c5a407f0a7cc237547bafe5dceec5becb5227b81b66f2d5",
+      "dimensions": {
+        "width": 800,
+        "height": 800
       }
     },
     {
@@ -1575,53 +2041,6 @@
       "dimensions": {
         "width": 602,
         "height": 900
-      }
-    },
-    {
-      "id": "relativistic-field-of-a-charge",
-      "title": "Relativistic Field Of A Charge",
-      "description": "Animated diagram showing how the field of a moving charge changes with velocity.",
-      "path": "content/assets/images/physics/relativistic-field-of-a-charge.gif",
-      "mediaType": "image/gif",
-      "dateCreated": "2020-06-25",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "physics-diagram",
-      "source": {
-        "name": "Wikimedia Commons",
-        "pageUrl": "https://commons.wikimedia.org/wiki/File:Relativistic_field_of_a_charge.gif",
-        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Relativistic_field_of_a_charge.gif",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "Jacopo Bertolotti",
-          "role": "animation author"
-        }
-      ],
-      "license": {
-        "rightsStatus": "public-domain",
-        "label": "CC0",
-        "rationale": "Wikimedia Commons source page records the file as CC0.",
-        "requiresAttribution": false,
-        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
-      },
-      "creditLine": "Relativistic field of a charge by Jacopo Bertolotti. CC0 via Wikimedia Commons.",
-      "usage": {
-        "intendedUses": [
-          "image library",
-          "source-mining replacement candidate"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Imported as a clean free facsimile for a legacy electrodynamics textbook screenshot."
-      ],
-      "fileSizeBytes": 2635241,
-      "sha256": "f822affc351c1fd42447f4f8816590c7a12896ac8ffc06194a513c1b058d320b",
-      "dimensions": {
-        "width": 768,
-        "height": 299
       }
     },
     {
@@ -1674,7 +2093,7 @@
       "id": "active-galactic-nucleus-accretion-disk-torus",
       "title": "Active Galactic Nucleus Accretion Disk And Torus",
       "description": "NASA/Chandra illustration of an active galactic nucleus with accretion disk and torus.",
-      "path": "content/assets/images/astronomy/active-galactic-nucleus-accretion-disk-torus.jpg",
+      "path": "content/assets/images/black-holes/active-galactic-nucleus-accretion-disk-torus.jpg",
       "mediaType": "image/jpeg",
       "dateCreated": "2007-07-24",
       "dateImported": "2026-06-28",
@@ -2187,7 +2606,7 @@
         "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/Henri_Poincar%C3%A9%2C_PA03199.jpg",
         "accessedDate": "2026-06-28",
         "wikidataId": "Q81082",
-        "commonsFile": "File:Henri Poincar\u00e9, PA03199.jpg"
+        "commonsFile": "File:Henri Poincaré, PA03199.jpg"
       },
       "creators": [
         {
@@ -2595,7 +3014,7 @@
         "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Carlo_Rovelli_no_Fronteiras_do_Pensamento_S%C3%A3o_Paulo_2017_%2834781380545%29.jpg",
         "accessedDate": "2026-06-28",
         "wikidataId": "Q1042470",
-        "commonsFile": "File:Carlo Rovelli no Fronteiras do Pensamento S\u00e3o Paulo 2017 (34781380545).jpg"
+        "commonsFile": "File:Carlo Rovelli no Fronteiras do Pensamento São Paulo 2017 (34781380545).jpg"
       },
       "creators": [
         {
@@ -3005,7 +3424,7 @@
         "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/Erwin_Schr%C3%B6dinger_-_Narodowe_Archiwum_Cyfrowe_%281-E-939%29.jpg",
         "accessedDate": "2026-06-28",
         "wikidataId": "Q9130",
-        "commonsFile": "File:Erwin Schr\u00f6dinger - Narodowe Archiwum Cyfrowe (1-E-939).jpg"
+        "commonsFile": "File:Erwin Schrödinger - Narodowe Archiwum Cyfrowe (1-E-939).jpg"
       },
       "creators": [
         {
@@ -6520,7 +6939,7 @@
         "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg",
         "accessedDate": "2026-06-28",
         "wikidataId": "Q9191",
-        "commonsFile": "File:Frans Hals - Portret van Ren\u00e9 Descartes.jpg"
+        "commonsFile": "File:Frans Hals - Portret van René Descartes.jpg"
       },
       "creators": [
         {
@@ -6826,7 +7245,7 @@
         "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Pierre-Simon%2C_marquis_de_Laplace_%281745-1827%29_-_Gu%C3%A9rin.jpg",
         "accessedDate": "2026-06-28",
         "wikidataId": "Q44481",
-        "commonsFile": "File:Pierre-Simon, marquis de Laplace (1745-1827) - Gu\u00e9rin.jpg"
+        "commonsFile": "File:Pierre-Simon, marquis de Laplace (1745-1827) - Guérin.jpg"
       },
       "creators": [
         {
@@ -7475,7 +7894,7 @@
       "id": "black-hole-with-jet-nasa-pia22085",
       "title": "Black Hole With Jet (Artist's Concept)",
       "description": "Artist concept of a black hole accretion disk launching a hot-plasma jet, tied to NuSTAR and ULTRACAM measurements of jet acceleration zones.",
-      "path": "content/assets/images/astronomy/black-hole-with-jet-nasa-pia22085.jpg",
+      "path": "content/assets/images/black-holes/black-hole-with-jet-nasa-pia22085.jpg",
       "mediaType": "image/jpeg",
       "dimensions": {
         "width": 5120,
@@ -7527,65 +7946,10 @@
       ]
     },
     {
-      "id": "backward-black-hole-powerful-jets-nasa-pia13168",
-      "title": "Backward Black Hole Shoots Powerful Jets Artist Concept",
-      "description": "Artist concept of a supermassive black hole in a galaxy core emitting powerful radio jets.",
-      "path": "content/assets/images/astronomy/backward-black-hole-powerful-jets-nasa-pia13168.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 3000,
-        "height": 2400
-      },
-      "fileSizeBytes": 400004,
-      "sha256": "3772e96aeab8d7b84512e112e6c112066db5b5e319027087ef33c22f866510e4",
-      "dateCreated": "2010-06-01",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "NASA Image and Video Library",
-        "pageUrl": "https://images.nasa.gov/details/PIA13168",
-        "fileUrl": "https://images-assets.nasa.gov/image/PIA13168/PIA13168~orig.jpg",
-        "metadataUrl": "https://images-assets.nasa.gov/image/PIA13168/metadata.json",
-        "collectionUrl": "https://images-assets.nasa.gov/image/PIA13168/collection.json",
-        "listedSources": [
-          "https://photojournal.jpl.nasa.gov/catalog/PIA13168"
-        ],
-        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "NASA/JPL-Caltech",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "public-domain",
-        "label": "NASA media usage guidelines",
-        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
-        "requiresAttribution": true
-      },
-      "creditLine": "NASA/JPL-Caltech",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
-        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
-      ]
-    },
-    {
       "id": "centaurus-a-black-hole-jets-composite-nasa-gsfc-e001876",
       "title": "Best-Ever Snapshot of a Black Hole's Jets",
       "description": "Composite visible, microwave, and X-ray view of Centaurus A showing jets and radio-emitting lobes from its central black hole.",
-      "path": "content/assets/images/astronomy/centaurus-a-black-hole-jets-composite-nasa-gsfc-e001876.jpg",
+      "path": "content/assets/images/black-holes/centaurus-a-black-hole-jets-composite-nasa-gsfc-e001876.jpg",
       "mediaType": "image/jpeg",
       "dimensions": {
         "width": 1268,
@@ -7637,120 +8001,10 @@
       ]
     },
     {
-      "id": "centaurus-a-radio-lobes-black-hole-jets-nasa-gsfc-e001886",
-      "title": "Best-Ever Snapshot of a Black Hole's Jets",
-      "description": "Optical and radio composite of Centaurus A highlighting large radio lobes extending from the galaxy.",
-      "path": "content/assets/images/astronomy/centaurus-a-radio-lobes-black-hole-jets-nasa-gsfc-e001886.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 1963,
-        "height": 2570
-      },
-      "fileSizeBytes": 3170407,
-      "sha256": "60b94396c216ee929e43b6cf075cda2a0d165ac8bcd85b6a5958fc098b8f8818",
-      "dateCreated": "2017-12-08",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "NASA Image and Video Library",
-        "pageUrl": "https://images.nasa.gov/details/GSFC_20171208_Archive_e001886",
-        "fileUrl": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001886/GSFC_20171208_Archive_e001886~orig.jpg",
-        "metadataUrl": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001886/metadata.json",
-        "collectionUrl": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001886/collection.json",
-        "listedSources": [
-          "https://www.nasa.gov/topics/universe/features/radio-particle-jets.html"
-        ],
-        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "Capella Observatory (optical), with radio data from Ilana Feain, Tim Cornwell, and Ron Ekers (CSIRO/ATNF), R. Morganti (ASTRON), and N. Junkes (MPIfR)",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "public-domain",
-        "label": "NASA media usage guidelines",
-        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
-        "requiresAttribution": true
-      },
-      "creditLine": "Capella Observatory (optical), with radio data from Ilana Feain, Tim Cornwell, and Ron Ekers (CSIRO/ATNF), R. Morganti (ASTRON), and N. Junkes (MPIfR)",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
-        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
-      ]
-    },
-    {
-      "id": "cosmic-jets-coming-at-you-nasa-pia15414",
-      "title": "Cosmic Jets Coming at You Artist Concept",
-      "description": "Artist concept of an active supermassive black hole with a near-light-speed jet pointed toward the observer.",
-      "path": "content/assets/images/astronomy/cosmic-jets-coming-at-you-nasa-pia15414.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 4500,
-        "height": 3000
-      },
-      "fileSizeBytes": 1054051,
-      "sha256": "f6717845e9da2a998d6d2ca7fb153df5be529e4a74c3338c87cb9285efcd6b86",
-      "dateCreated": "2012-04-12",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "NASA Image and Video Library",
-        "pageUrl": "https://images.nasa.gov/details/PIA15414",
-        "fileUrl": "https://images-assets.nasa.gov/image/PIA15414/PIA15414~orig.jpg",
-        "metadataUrl": "https://images-assets.nasa.gov/image/PIA15414/metadata.json",
-        "collectionUrl": "https://images-assets.nasa.gov/image/PIA15414/collection.json",
-        "listedSources": [
-          "https://photojournal.jpl.nasa.gov/catalog/PIA15414"
-        ],
-        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "NASA/JPL-Caltech",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "public-domain",
-        "label": "NASA media usage guidelines",
-        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
-        "requiresAttribution": true
-      },
-      "creditLine": "NASA/JPL-Caltech",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
-        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
-      ]
-    },
-    {
       "id": "flaring-black-hole-gx-339-4-nasa-pia14730",
       "title": "Flaring Black Hole Artist Concept",
       "description": "Artist concept of the flaring stellar-mass black hole GX 339-4 and the chaotic region where its jets emerge.",
-      "path": "content/assets/images/astronomy/flaring-black-hole-gx-339-4-nasa-pia14730.jpg",
+      "path": "content/assets/images/black-holes/flaring-black-hole-gx-339-4-nasa-pia14730.jpg",
       "mediaType": "image/jpeg",
       "dimensions": {
         "width": 4888,
@@ -7802,389 +8056,10 @@
       ]
     },
     {
-      "id": "tidal-disruption-relativistic-jet-nasa-pia22355",
-      "title": "Black Hole vs. Star: A Tidal Disruption Event (Artist's Concept)",
-      "description": "Artist concept of a tidal disruption event in which a supermassive black hole launches a relativistic jet after disrupting a star.",
-      "path": "content/assets/images/astronomy/tidal-disruption-relativistic-jet-nasa-pia22355.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 3816,
-        "height": 2160
-      },
-      "fileSizeBytes": 1165710,
-      "sha256": "b31a1f6768a60d50e79c4243de11ae03fc44bad47ef8b5e203ad63fe2047d875",
-      "dateCreated": "2018-06-15",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "NASA Image and Video Library",
-        "pageUrl": "https://images.nasa.gov/details/PIA22355",
-        "fileUrl": "https://images-assets.nasa.gov/image/PIA22355/PIA22355~orig.jpg",
-        "metadataUrl": "https://images-assets.nasa.gov/image/PIA22355/metadata.json",
-        "collectionUrl": "https://images-assets.nasa.gov/image/PIA22355/collection.json",
-        "listedSources": [
-          "https://photojournal.jpl.nasa.gov/catalog/PIA22355"
-        ],
-        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "NRAO/AUI/NSF/NASA",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "public-domain",
-        "label": "NASA media usage guidelines",
-        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
-        "requiresAttribution": true
-      },
-      "creditLine": "NRAO/AUI/NSF/NASA",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
-        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
-      ]
-    },
-    {
-      "id": "lone-blazar-wise-nasa-pia15424",
-      "title": "Lone Blazar",
-      "description": "WISE image of a blazar, a supermassive black hole system whose jet is pointed toward Earth.",
-      "path": "content/assets/images/astronomy/lone-blazar-wise-nasa-pia15424.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 3150,
-        "height": 3150
-      },
-      "fileSizeBytes": 986423,
-      "sha256": "8be6a06fddaa00231ca65fa2e20cb0796f703c7ff1e2b825817b26163fe81ffc",
-      "dateCreated": "2012-04-12",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "NASA Image and Video Library",
-        "pageUrl": "https://images.nasa.gov/details/PIA15424",
-        "fileUrl": "https://images-assets.nasa.gov/image/PIA15424/PIA15424~orig.jpg",
-        "metadataUrl": "https://images-assets.nasa.gov/image/PIA15424/metadata.json",
-        "collectionUrl": "https://images-assets.nasa.gov/image/PIA15424/collection.json",
-        "listedSources": [
-          "https://photojournal.jpl.nasa.gov/catalog/PIA15424"
-        ],
-        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "NASA/JPL-Caltech/UCLA",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "public-domain",
-        "label": "NASA media usage guidelines",
-        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
-        "requiresAttribution": true
-      },
-      "creditLine": "NASA/JPL-Caltech/UCLA",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
-        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
-      ]
-    },
-    {
-      "id": "m87-spitzer-black-hole-jet-nasa-pia23122",
-      "title": "Spitzer Captures Messier 87",
-      "description": "Spitzer infrared view of M87, the host galaxy of the Event Horizon Telescope black hole, showing the jet region.",
-      "path": "content/assets/images/astronomy/m87-spitzer-black-hole-jet-nasa-pia23122.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 3226,
-        "height": 1814
-      },
-      "fileSizeBytes": 324544,
-      "sha256": "e50893809e50b57196c88ae7da7ae1fbce1e13306806cd62efe029b5061d93f0",
-      "dateCreated": "2019-04-25",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "NASA Image and Video Library",
-        "pageUrl": "https://images.nasa.gov/details/PIA23122",
-        "fileUrl": "https://images-assets.nasa.gov/image/PIA23122/PIA23122~orig.jpg",
-        "metadataUrl": "https://images-assets.nasa.gov/image/PIA23122/metadata.json",
-        "collectionUrl": "https://images-assets.nasa.gov/image/PIA23122/collection.json",
-        "listedSources": [
-          "https://photojournal.jpl.nasa.gov/catalog/PIA23122"
-        ],
-        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "NASA/JPL-Caltech/IPAC/Event Horizon Telescope Collaboration",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "public-domain",
-        "label": "NASA media usage guidelines",
-        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
-        "requiresAttribution": true
-      },
-      "creditLine": "NASA/JPL-Caltech/IPAC/Event Horizon Telescope Collaboration",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
-        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
-      ]
-    },
-    {
-      "id": "ngc-4258-black-hole-jets-shock-waves-nasa-pia18462",
-      "title": "Black Hole Jets Make Shock Waves",
-      "description": "Composite of NGC 4258 showing X-ray and infrared structures associated with black-hole jets and shock waves.",
-      "path": "content/assets/images/astronomy/ngc-4258-black-hole-jets-shock-waves-nasa-pia18462.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 1232,
-        "height": 960
-      },
-      "fileSizeBytes": 36402,
-      "sha256": "45da38c1011b812ee69c3808b8c3fffd51fac0d059bb364f2b8fabb403917ebc",
-      "dateCreated": "2014-07-02",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "NASA Image and Video Library",
-        "pageUrl": "https://images.nasa.gov/details/PIA18462",
-        "fileUrl": "https://images-assets.nasa.gov/image/PIA18462/PIA18462~orig.jpg",
-        "metadataUrl": "https://images-assets.nasa.gov/image/PIA18462/metadata.json",
-        "collectionUrl": "https://images-assets.nasa.gov/image/PIA18462/collection.json",
-        "listedSources": [
-          "https://photojournal.jpl.nasa.gov/catalog/PIA18462"
-        ],
-        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "X-ray: NASA/CXC/NASA/JPL-Caltech",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "public-domain",
-        "label": "NASA media usage guidelines",
-        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
-        "requiresAttribution": true
-      },
-      "creditLine": "X-ray: NASA/CXC/NASA/JPL-Caltech",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
-        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
-      ]
-    },
-    {
-      "id": "milky-way-mini-jet-esa-opo2162a",
-      "title": "Mini-Jet Found Near Milky Way\u2019s Supermassive Black Hole",
-      "description": "Composite view near the Milky Way center showing evidence for a mini-jet from the central supermassive black hole.",
-      "path": "content/assets/images/astronomy/milky-way-mini-jet-esa-opo2162a.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 2678,
-        "height": 3310
-      },
-      "fileSizeBytes": 3391698,
-      "sha256": "ae0863cc35b77127ffd7248dcc3b7b30fd0d3485077abe3ee1f9e7ba98b3871d",
-      "dateCreated": "2021-12-09",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "ESA/Hubble",
-        "pageUrl": "https://esahubble.org/images/opo2162a/",
-        "fileUrl": "https://cdn.esahubble.org/archives/images/large/opo2162a.jpg",
-        "originalFileUrl": "https://esahubble.org/media/archives/images/original/opo2162a.tif",
-        "sourceImageId": "opo2162a",
-        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "NASA, ESA, Gerald Cecil (UNC-Chapel Hill), J. DePasquale (STScI)",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "free-license",
-        "label": "Creative Commons Attribution 4.0 International",
-        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
-        "requiresAttribution": true
-      },
-      "creditLine": "NASA, ESA, Gerald Cecil (UNC-Chapel Hill), J. DePasquale (STScI)",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
-        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
-      ]
-    },
-    {
-      "id": "galaxies-with-relativistic-jets-esa-heic1511b",
-      "title": "Galaxies with relativistic jets",
-      "description": "Hubble survey image group of galaxies associated with relativistic jets from supermassive black holes.",
-      "path": "content/assets/images/astronomy/galaxies-with-relativistic-jets-esa-heic1511b.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 2237,
-        "height": 1086
-      },
-      "fileSizeBytes": 741303,
-      "sha256": "19ed2076edfd36682e92b585b10e9cd7de88d9b23fd0438dd3b84f57aa602fb8",
-      "dateCreated": "2015-05-28",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "ESA/Hubble",
-        "pageUrl": "https://esahubble.org/images/heic1511b/",
-        "fileUrl": "https://cdn.esahubble.org/archives/images/large/heic1511b.jpg",
-        "originalFileUrl": "https://esahubble.org/media/archives/images/original/heic1511b.tif",
-        "sourceImageId": "heic1511b",
-        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "NASA, ESA, M. Chiaberge (STScI)",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "free-license",
-        "label": "Creative Commons Attribution 4.0 International",
-        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
-        "requiresAttribution": true
-      },
-      "creditLine": "NASA, ESA, M. Chiaberge (STScI)",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
-        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
-      ]
-    },
-    {
-      "id": "extragalactic-jets-accretion-disk-esa-opo9943e",
-      "title": "Formation of extragalactic jets from a black hole accretion disk",
-      "description": "Illustration of extragalactic jets forming from a black-hole accretion disk.",
-      "path": "content/assets/images/astronomy/extragalactic-jets-accretion-disk-esa-opo9943e.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 1188,
-        "height": 1050
-      },
-      "fileSizeBytes": 403143,
-      "sha256": "3148dd44ec4ce6e894ed524b9367eb1abc284388013939f69f049fe839090b4d",
-      "dateCreated": "1999-10-27",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "ESA/Hubble",
-        "pageUrl": "https://esahubble.org/images/opo9943e/",
-        "fileUrl": "https://cdn.esahubble.org/archives/images/large/opo9943e.jpg",
-        "originalFileUrl": "https://esahubble.org/media/archives/images/original/opo9943e.tif",
-        "sourceImageId": "opo9943e",
-        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "NASA/ESA and Ann Feild (Space Telescope Science Institute)",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "free-license",
-        "label": "Creative Commons Attribution 4.0 International",
-        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
-        "requiresAttribution": true
-      },
-      "creditLine": "NASA/ESA and Ann Feild (Space Telescope Science Institute)",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
-        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
-      ]
-    },
-    {
       "id": "quasar-3c-273-optical-jet-esa-opo9330a",
       "title": "HST snaps optical jet of quasar 3c 273",
       "description": "Hubble optical view of the jet in quasar 3C 273.",
-      "path": "content/assets/images/astronomy/quasar-3c-273-optical-jet-esa-opo9330a.jpg",
+      "path": "content/assets/images/black-holes/quasar-3c-273-optical-jet-esa-opo9330a.jpg",
       "mediaType": "image/jpeg",
       "dimensions": {
         "width": 3324,
@@ -8234,63 +8109,10 @@
       ]
     },
     {
-      "id": "galaxy-m87-optical-jet-esa-opo9207a",
-      "title": "NASA/ESA Hubble Space Telescope yields clear view of optical jet in galaxy M87",
-      "description": "Hubble view of the optical jet in galaxy M87.",
-      "path": "content/assets/images/astronomy/galaxy-m87-optical-jet-esa-opo9207a.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 2612,
-        "height": 1851
-      },
-      "fileSizeBytes": 564058,
-      "sha256": "452919e631635d392f29c011ead91526d623f07077e8b91930d70cb2ef2b93f6",
-      "dateCreated": "1992-01-16",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "ESA/Hubble",
-        "pageUrl": "https://esahubble.org/images/opo9207a/",
-        "fileUrl": "https://cdn.esahubble.org/archives/images/large/opo9207a.jpg",
-        "originalFileUrl": "https://esahubble.org/media/archives/images/original/opo9207a.tif",
-        "sourceImageId": "opo9207a",
-        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "F. Duccio Macchetto/NASA/ESA",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "free-license",
-        "label": "Creative Commons Attribution 4.0 International",
-        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
-        "requiresAttribution": true
-      },
-      "creditLine": "F. Duccio Macchetto/NASA/ESA",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
-        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
-      ]
-    },
-    {
       "id": "giant-radio-jet-active-galaxy-esa-opo0304b",
       "title": "Giant Radio Jet Coming from Wrong Kind of Galaxy",
       "description": "Hubble archive image of a giant radio jet from an active galaxy.",
-      "path": "content/assets/images/astronomy/giant-radio-jet-active-galaxy-esa-opo0304b.jpg",
+      "path": "content/assets/images/black-holes/giant-radio-jet-active-galaxy-esa-opo0304b.jpg",
       "mediaType": "image/jpeg",
       "dimensions": {
         "width": 3000,
@@ -8340,169 +8162,10 @@
       ]
     },
     {
-      "id": "cosmic-searchlight-jet-esa-opo0020a",
-      "title": "A cosmic searchlight",
-      "description": "Hubble image of a bright jet-like cosmic searchlight associated with an active galactic nucleus.",
-      "path": "content/assets/images/astronomy/cosmic-searchlight-jet-esa-opo0020a.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 1222,
-        "height": 1276
-      },
-      "fileSizeBytes": 684869,
-      "sha256": "c2e5ed30761914b479a1eae698bc81120ad138818c569b004a982462f5f85f61",
-      "dateCreated": "2000-07-06",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "ESA/Hubble",
-        "pageUrl": "https://esahubble.org/images/opo0020a/",
-        "fileUrl": "https://cdn.esahubble.org/archives/images/large/opo0020a.jpg",
-        "originalFileUrl": "https://esahubble.org/media/archives/images/original/opo0020a.tif",
-        "sourceImageId": "opo0020a",
-        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "The Hubble Heritage Team (STScI/AURA) and NASA/ESA",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "free-license",
-        "label": "Creative Commons Attribution 4.0 International",
-        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
-        "requiresAttribution": true
-      },
-      "creditLine": "The Hubble Heritage Team (STScI/AURA) and NASA/ESA",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
-        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
-      ]
-    },
-    {
-      "id": "microquasar-gro-j1655-40-esa-heic0211i",
-      "title": "Microquasar GRO J1655-40 (artist's impression)",
-      "description": "Artist impression of microquasar GRO J1655-40, a stellar-mass black-hole system associated with jets.",
-      "path": "content/assets/images/astronomy/microquasar-gro-j1655-40-esa-heic0211i.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 3000,
-        "height": 2400
-      },
-      "fileSizeBytes": 377651,
-      "sha256": "da86dcfc747fdfb33b2c34f1eb978a0d7640c2ba579e46dcf99f74d09d633d05",
-      "dateCreated": "2002-11-18",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "ESA/Hubble",
-        "pageUrl": "https://esahubble.org/images/heic0211i/",
-        "fileUrl": "https://cdn.esahubble.org/archives/images/large/heic0211i.jpg",
-        "originalFileUrl": "https://esahubble.org/media/archives/images/original/heic0211i.tif",
-        "sourceImageId": "heic0211i",
-        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "European Space Agency, NASA and Felix Mirabel (the French Atomic Energy Commission & the Institute for Astronomy and Space Physics/Conicet of Argentina)",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "free-license",
-        "label": "Creative Commons Attribution 4.0 International",
-        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
-        "requiresAttribution": true
-      },
-      "creditLine": "European Space Agency, NASA and Felix Mirabel (the French Atomic Energy Commission & the Institute for Astronomy and Space Physics/Conicet of Argentina)",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
-        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
-      ]
-    },
-    {
-      "id": "markarian-817-black-hole-outflow-esa-heic0910n",
-      "title": "Capturing the spectacular outflow from Markarian 817",
-      "description": "Hubble archive image capturing a black-hole-driven outflow from active galaxy Markarian 817.",
-      "path": "content/assets/images/astronomy/markarian-817-black-hole-outflow-esa-heic0910n.jpg",
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 2780,
-        "height": 2146
-      },
-      "fileSizeBytes": 1414022,
-      "sha256": "2a0fbc48ccb40f5efb28a3ced4c40bfe01fcfa1c34717ae4c86eb7ba93c46622",
-      "dateCreated": "2009-09-09",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "ESA/Hubble",
-        "pageUrl": "https://esahubble.org/images/heic0910n/",
-        "fileUrl": "https://cdn.esahubble.org/archives/images/large/heic0910n.jpg",
-        "originalFileUrl": "https://esahubble.org/media/archives/images/original/heic0910n.tif",
-        "sourceImageId": "heic0910n",
-        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "NASA, ESA and the Hubble SM4 ERO Team",
-          "role": "source credit line"
-        }
-      ],
-      "license": {
-        "rightsStatus": "free-license",
-        "label": "Creative Commons Attribution 4.0 International",
-        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
-        "requiresAttribution": true
-      },
-      "creditLine": "NASA, ESA and the Hubble SM4 ERO Team",
-      "usage": {
-        "intendedUses": [
-          "astronomy reference",
-          "image tray",
-          "scene overlay",
-          "markdown figure"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
-        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
-      ]
-    },
-    {
       "id": "milky-way-central-outflow-esa-opo1503",
       "title": "Probing the Milky Way's outflow",
       "description": "Hubble image probing the Milky Way central outflow associated with activity near the Galaxy central supermassive black hole.",
-      "path": "content/assets/images/astronomy/milky-way-central-outflow-esa-opo1503.jpg",
+      "path": "content/assets/images/black-holes/milky-way-central-outflow-esa-opo1503.jpg",
       "mediaType": "image/jpeg",
       "dimensions": {
         "width": 2794,
@@ -8552,153 +8215,37 @@
       ]
     },
     {
-      "id": "gaia-sky-in-colour-esa",
-      "title": "Gaia's Sky in Colour",
-      "description": "ESA Gaia all-sky colour map of the Milky Way and neighbouring galaxies, based on nearly 1.7 billion stars observed by Gaia between July 2014 and May 2016.",
-      "path": "content/assets/images/astronomy/gaia-sky-in-colour-esa.jpg",
-      "dateCreated": "2018-04-25",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy",
-      "source": {
-        "name": "European Space Agency",
-        "pageUrl": "https://www.esa.int/ESA_Multimedia/Images/2018/04/Gaia_s_sky_in_colour",
-        "fileUrl": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2018/04/gaia_s_sky_in_colour/17475405-1-eng-GB/Gaia_s_sky_in_colour.jpg",
-        "listedSources": [
-          "ESA/Gaia/DPAC",
-          "Gaia Data Processing and Analysis Consortium (DPAC)",
-          "A. Moitinho / A. F. Silva / M. Barros / C. Barata, University of Lisbon; H. Savietto, Fork Research"
-        ],
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "ESA/Gaia/DPAC",
-          "role": "image source"
-        },
-        {
-          "name": "Gaia Data Processing and Analysis Consortium",
-          "role": "data processing and analysis"
-        }
-      ],
-      "license": {
-        "rightsStatus": "free-license",
-        "label": "CC BY-SA 3.0 IGO or ESA Standard Licence",
-        "rationale": "ESA source page states the image can be used under CC BY-SA 3.0 IGO or the ESA Standard Licence, with credit required.",
-        "requiresAttribution": true,
-        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/igo/"
-      },
-      "creditLine": "ESA/Gaia/DPAC; Map: CC BY-SA 3.0 IGO.",
-      "usage": {
-        "intendedUses": [
-          "image library",
-          "Milky Way context",
-          "cosmic structure context",
-          "markdown figure",
-          "scene overlay"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Replaces the unprovenanced Gaia_Milky_Way_stars.jpg infographic with an official ESA Gaia image and explicit license metadata.",
-        "Selected because it supplies a high-resolution all-sky stellar record for the astronomy side of the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ story."
-      ],
-      "mediaType": "image/jpeg",
-      "dimensions": {
-        "width": 4961,
-        "height": 3307
-      },
-      "fileSizeBytes": 3251945,
-      "sha256": "f2df3096808d490861cc4642f4be688e780ea516d9f49f023c67ab0f397a03b6"
-    },
-    {
-      "id": "escape-energy-gravity-wells-schematic",
-      "title": "Escape-Energy Gravity Wells Schematic",
-      "description": "Project-owned log-scale schematic comparing equivalent escape-energy gravity well depths for the Moon, Mars, Earth, and Jupiter.",
-      "path": "content/assets/images/astronomy/escape-energy-gravity-wells-schematic.svg",
-      "dateCreated": "2026-06-28",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "astronomy-diagram",
-      "source": {
-        "name": "Architrino project",
-        "pageUrl": null,
-        "fileUrl": null,
-        "dataReferences": [
-          "Escape-energy depth formula used in the SVG: h = v_esc^2 / (2 g_earth)",
-          "Rounded conventional escape-velocity values for Moon, Mars, Earth, and Jupiter"
-        ],
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "Architrino project",
-          "role": "diagram author"
-        }
-      ],
-      "license": {
-        "rightsStatus": "project-owned",
-        "label": "Project license",
-        "rationale": "Created as a repo-native SVG replacement for a noncommercial XKCD gravity-well image, using conventional escape-energy comparison values rather than imported artwork.",
-        "requiresAttribution": false
-      },
-      "creditLine": "Created by the Architrino project, 2026.",
-      "usage": {
-        "intendedUses": [
-          "image library",
-          "gravity comparison",
-          "energy-depth schematic",
-          "markdown figure",
-          "scene overlay"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Replaces gravity_wells_large.png, whose provenance was traced to XKCD #681 under CC BY-NC 2.5 and therefore was not suitable as an approved publishable asset.",
-        "The schematic is not a full solar-system map; it preserves the useful escape-energy idea in a project-owned source-backed form."
-      ],
-      "mediaType": "image/svg+xml",
-      "dimensions": {
-        "width": 1600,
-        "height": 900
-      },
-      "fileSizeBytes": 6312,
-      "sha256": "0fa5871d789e6a4e6a0f2c241d2e5ded00d163aeafd2067c7c32139442c330fd"
-    },
-    {
       "id": "phylogenetic-tree-of-life-commons",
-      "title": "Phylogenetic Tree of Life",
-      "description": "High-resolution circular phylogenetic tree of life based on modern phylogenomics literature, showing bacterial, archaeal, and eukaryotic branches from LUCA.",
+      "title": "A Novel Representation Of The Tree Of Life",
+      "description": "Published tree-of-life figure built from 16 ribosomal proteins, showing 92 bacterial phyla, 26 archaeal phyla, and all eukaryotic phyla with color-coded major lineages.",
       "path": "content/assets/images/life-origins/phylogenetic-tree-of-life-commons.png",
-      "dateCreated": "2018-08-16",
+      "dateCreated": "2016-04-11",
       "dateImported": "2026-06-28",
       "status": "approved",
       "category": "life-origins",
       "source": {
         "name": "Wikimedia Commons",
-        "pageUrl": "https://commons.wikimedia.org/wiki/File:Phylogenetic_Tree_of_Life.png",
-        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/Phylogenetic_Tree_of_Life.png",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:A_Novel_Representation_Of_The_Tree_Of_Life.png",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/A_Novel_Representation_Of_The_Tree_Of_Life.png",
         "listedSources": [
-          "Nature Microbiology 1:16048, A new view of the tree of life, DOI 10.1038/nmicrobiol.2016.48",
-          "PNAS 112(7):E693-E699, Bacterial proteins pinpoint a single eukaryotic root, DOI 10.1073/pnas.1420657112",
-          "PLOS One 2(8):e790, Phylogenomics reshuffles the eukaryotic supergroups, DOI 10.1371/journal.pone.0000790"
+          "Laura A. Hug et al., A new view of the tree of life, Nature Microbiology 1:16048, DOI 10.1038/nmicrobiol.2016.48"
         ],
         "accessedDate": "2026-06-28"
       },
       "creators": [
         {
-          "name": "User:Crion",
-          "role": "diagram author"
+          "name": "Laura A. Hug, Brett J. Baker, Karthik Anantharaman, Christopher T. Brown, Alexander J. Probst, Cindy J. Castelle, Cristina N. Butterfield, Alex W. Hernsdorf, Yuki Amano, Kotaro Ise, Yohey Suzuki, Natasha Dudek, David A. Relman, Kari M. Finstad, Ronald Amundson, Brian C. Thomas and Jillian F. Banfield",
+          "role": "figure authors"
         }
       ],
       "license": {
         "rightsStatus": "free-license",
-        "label": "CC BY 3.0",
-        "rationale": "Wikimedia Commons metadata marks the file as Creative Commons Attribution 3.0.",
+        "label": "CC BY 4.0",
+        "rationale": "Wikimedia Commons metadata marks the file as Creative Commons Attribution 4.0.",
         "requiresAttribution": true,
-        "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
       },
-      "creditLine": "User:Crion. CC BY 3.0 via Wikimedia Commons.",
+      "creditLine": "Laura A. Hug et al. CC BY 4.0 via Wikimedia Commons.",
       "usage": {
         "intendedUses": [
           "image library",
@@ -8709,76 +8256,17 @@
         "usedBy": []
       },
       "selectionNotes": [
-        "Replaces tree-of-life_2000.png, which visibly carried all-rights-reserved source text and was not suitable as an approved catalog asset.",
-        "Selected because it is high resolution and source-backed; it is visually dense, so a simpler project-native life-branching diagram may still be useful later."
+        "Replaces the earlier Crion circular tree image because its oversized labels and crop made it poor as a reusable image-library asset.",
+        "Selected because it is a primary-source, visually organized, white-background tree-of-life figure used by Wikipedia and backed by the 2016 Nature Microbiology tree-of-life paper.",
+        "Use as a standard phylogenomic comparison image, not as a native life-origins derivation."
       ],
       "mediaType": "image/png",
       "dimensions": {
-        "width": 8400,
-        "height": 4800
+        "width": 1230,
+        "height": 1446
       },
-      "fileSizeBytes": 3381618,
-      "sha256": "b65cc6e42b238f8001dbaddb27f2700604a50e5348913843e91c7616e7792208"
-    },
-    {
-      "id": "nucleosynthesis-periodic-table-commons",
-      "title": "Nucleosynthesis Periodic Table",
-      "description": "SVG periodic table showing estimated origins of Solar System elements from Big Bang nucleosynthesis, stellar fusion, supernovae, cosmic-ray fission, and neutron-star mergers.",
-      "path": "content/assets/images/nuclear/nucleosynthesis-periodic-table-commons.svg",
-      "dateCreated": "2017-03-25",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "nuclear",
-      "source": {
-        "name": "Wikimedia Commons",
-        "pageUrl": "https://commons.wikimedia.org/wiki/File:Nucleosynthesis_periodic_table.svg",
-        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/31/Nucleosynthesis_periodic_table.svg",
-        "listedSources": [
-          "Jennifer Johnson, Ohio State University nucleosynthesis data",
-          "NASA Astronomy Picture of the Day, 2017-10-24, 2020-08-09, and 2023-01-08",
-          "Sloan Digital Sky Survey blog explanation, Origin of the Elements in the Solar System"
-        ],
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "Cmglee",
-          "role": "diagram author"
-        },
-        {
-          "name": "Jennifer Johnson",
-          "role": "underlying data source"
-        }
-      ],
-      "license": {
-        "rightsStatus": "free-license",
-        "label": "CC BY-SA 3.0",
-        "rationale": "Wikimedia Commons metadata marks the file as Creative Commons Attribution-Share Alike 3.0.",
-        "requiresAttribution": true,
-        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
-      },
-      "creditLine": "Cmglee, based on data by Jennifer Johnson. CC BY-SA 3.0 via Wikimedia Commons.",
-      "usage": {
-        "intendedUses": [
-          "image library",
-          "nucleosynthesis context",
-          "stellar element origin context",
-          "markdown figure",
-          "scene overlay"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Replaces solar_system_element_origins.jpg with a scalable Commons SVG carrying clear source, author, and license metadata.",
-        "Selected because it directly supports the matter-origin and nuclear-ancestry part of the $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ story."
-      ],
-      "mediaType": "image/svg+xml",
-      "dimensions": {
-        "width": 1820,
-        "height": 910
-      },
-      "fileSizeBytes": 60017,
-      "sha256": "8828b18a0255a2f9c0155ac852a50f835d5e1ea3ca1ee46cfad0f3fb41cec488"
+      "fileSizeBytes": 969130,
+      "sha256": "cd1d555c690281f97e7e123e68a4b76e8c5962689df8c4677236eb9c58ec14f1"
     },
     {
       "id": "periodic-table-large-commons",
@@ -8970,31 +8458,190 @@
       "sha256": "7341bec5a25ad05ab502f46fbeca0dea9a37a50a995d37ebdff6ecc5190b9d3a"
     },
     {
-      "id": "hatom-orbitals-commons",
-      "title": "Hydrogen Atom Orbitals",
-      "description": "Cross-section grid of the first few hydrogen-atom orbitals, with color-coded probability density for different principal and angular-momentum quantum-number labels.",
-      "path": "content/assets/images/nuclear/hatom-orbitals-commons.png",
+      "id": "hydrogen-density-plots-commons",
+      "title": "Hydrogen Density Plots",
+      "description": "High-resolution public-domain grid of hydrogen wave-function probability density plots for principal quantum numbers up to n = 4.",
+      "path": "content/assets/images/nuclear/hydrogen-density-plots-commons.png",
+      "dateCreated": "2008-08-17",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "nuclear",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Hydrogen_Density_Plots.png",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Hydrogen_Density_Plots.png",
+        "listedSources": [
+          "Forinash, Kyle. Hydrogen W Simulation. Indiana University Southeast.",
+          "Tokita et al. 2006, Journal of Computer Chemistry, Japan, DOI 10.2477/jccj.5.159"
+        ],
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "PoorLeno",
+          "role": "diagram author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "Public domain",
+        "rationale": "Wikimedia Commons metadata marks the file as public domain.",
+        "requiresAttribution": false
+      },
+      "creditLine": "PoorLeno. Public domain via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "hydrogen orbital context",
+          "atomic spectra context",
+          "quantum comparison",
+          "markdown figure",
+          "scene overlay"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected as a higher-quality replacement for the small HAtomOrbitals import.",
+        "This is a standard probability-density visualization reference, not a native derivation of the underlying assembly geometry."
+      ],
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 2200,
+        "height": 2000
+      },
+      "fileSizeBytes": 1880635,
+      "sha256": "cc59fa48882bc8aba026910245af16e47ddc0b1e79d7a6b9e309c8f65ee1f712"
+    },
+    {
+      "id": "atomic-orbitals-spdf-superpositions-commons",
+      "title": "Atomic Orbitals spdf m-Eigenstates and Superpositions",
+      "description": "High-resolution rendered collection of 16 atomic single-electron orbital families showing chemistry-style real-valued superpositions alongside complex m-eigenstates.",
+      "path": "content/assets/images/nuclear/atomic-orbitals-spdf-superpositions-commons.png",
+      "dateCreated": "2018-03-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "nuclear",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Atomic_orbitals_spdf_m-eigenstates_and_superpositions.png",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Atomic_orbitals_spdf_m-eigenstates_and_superpositions.png",
+        "listedSources": [
+          "Created with hydrogen 1.1 according to Commons metadata"
+        ],
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Geek3",
+          "role": "diagram author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "CC BY-SA 4.0",
+        "rationale": "Wikimedia Commons metadata marks the file as Creative Commons Attribution-Share Alike 4.0.",
+        "requiresAttribution": true,
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      },
+      "creditLine": "Geek3. CC BY-SA 4.0 via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "electron orbital context",
+          "atomic spectra context",
+          "quantum comparison",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected as a chemistry-facing companion to the existing m-eigenstate grid because it includes the real-valued orbital superpositions commonly used in introductory chemistry diagrams.",
+        "Preview labels can be small in dark renderers; use where orbital shape comparison is more important than reading the embedded labels."
+      ],
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 2800,
+        "height": 1600
+      },
+      "fileSizeBytes": 413703,
+      "sha256": "f3358fadf884fcf7024953f6d742cab5fb4a42fa36181edbc197f39a5e35c73c"
+    },
+    {
+      "id": "openstax-d-orbitals-commons",
+      "title": "OpenStax d-Orbital Shapes",
+      "description": "OpenStax Chemistry textbook figure showing the five d-orbital shapes with axes and labels.",
+      "path": "content/assets/images/nuclear/openstax-d-orbitals-commons.png",
+      "dateCreated": "2016-05-18",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "nuclear",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:CNX_Chem_19_03_Pattern_img.png",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/CNX_Chem_19_03_Pattern_img.png",
+        "listedSources": [
+          "OpenStax Chemistry, CNX content havxkyvS"
+        ],
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "OpenStax",
+          "role": "textbook figure source"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "CC BY 4.0",
+        "rationale": "Wikimedia Commons metadata marks the file as Creative Commons Attribution 4.0.",
+        "requiresAttribution": true,
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+      },
+      "creditLine": "OpenStax. CC BY 4.0 via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "electron orbital context",
+          "chemistry comparison",
+          "atomic spectra context",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected as a clean textbook-grade d-orbital reference from OpenStax Chemistry.",
+        "Chosen over the companion Commons d-orbital export because this render has clearer x, y, and z axes and labels."
+      ],
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1300,
+        "height": 361
+      },
+      "fileSizeBytes": 186009,
+      "sha256": "a0830d398c4e89dfb551cc3b25a0d279d06a16e0f004f5f7853d487a57d93cb0"
+    },
+    {
+      "id": "helium-atom-qm-commons",
+      "title": "Helium Atom Quantum Mechanical Diagram",
+      "description": "SVG depiction of helium with an electron cloud, schematic magnified nucleus inset, and scale bars.",
+      "path": "content/assets/images/nuclear/helium-atom-qm-commons.svg",
       "dateCreated": "unknown",
       "dateImported": "2026-06-28",
       "status": "approved",
       "category": "nuclear",
       "source": {
         "name": "Wikimedia Commons",
-        "pageUrl": "https://commons.wikimedia.org/wiki/File:HAtomOrbitals.png",
-        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/HAtomOrbitals.png",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Helium_atom_QM.svg",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/2/23/Helium_atom_QM.svg",
         "listedSources": [
-          "Originally uploaded to English Wikipedia by en:User:FlorianMarquardt on 2002-10-14"
+          "Own work according to Commons metadata"
         ],
         "accessedDate": "2026-06-28"
       },
       "creators": [
         {
-          "name": "Unknown author",
+          "name": "User:Yzmo",
           "role": "diagram author"
-        },
-        {
-          "name": "en:User:FlorianMarquardt",
-          "role": "original uploader credited by Commons"
         }
       ],
       "license": {
@@ -9004,27 +8651,87 @@
         "requiresAttribution": true,
         "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
       },
-      "creditLine": "Author not specified; original upload credited to en:User:FlorianMarquardt. CC BY-SA 3.0 via Wikimedia Commons.",
+      "creditLine": "User:Yzmo. CC BY-SA 3.0 via Wikimedia Commons.",
       "usage": {
         "intendedUses": [
           "image library",
-          "hydrogen orbital context",
-          "atomic spectra context",
+          "atomic representation context",
+          "electron cloud context",
+          "nuclear scale comparison",
+          "markdown figure",
+          "scene overlay"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected as a compact quantum-mechanical atom representation that avoids the planetary-electron reading of Bohr-style diagrams.",
+        "The nucleus inset is schematic and should be used as a scale and representation aid, not as a literal nuclear-structure claim."
+      ],
+      "mediaType": "image/svg+xml",
+      "dimensions": {
+        "width": 665,
+        "height": 667
+      },
+      "fileSizeBytes": 8312,
+      "sha256": "295700a8ab621dbb5ecc38a58e0702b306b5cd91c837f5ac92fccb814a469f71"
+    },
+    {
+      "id": "periodic-table-electron-shells-commons",
+      "title": "Periodic Table of Elements Showing Electron Shells",
+      "description": "High-resolution SVG periodic table where each element cell includes an electron-shell diagram and shell electron counts.",
+      "path": "content/assets/images/nuclear/periodic-table-electron-shells-commons.svg",
+      "dateCreated": "2018-10-13",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "nuclear",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Periodic_Table_of_Elements_showing_Electron_Shells(Repaired).svg",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Periodic_Table_of_Elements_showing_Electron_Shells%28Repaired%29.svg",
+        "listedSources": [
+          "Repaired version of Greg Robson electron-shell periodic table according to Commons metadata"
+        ],
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Icenze",
+          "role": "repaired diagram author"
+        },
+        {
+          "name": "Greg Robson",
+          "role": "original diagram author credited by Commons"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "CC BY-SA 4.0",
+        "rationale": "Wikimedia Commons metadata marks the file as Creative Commons Attribution-Share Alike 4.0.",
+        "requiresAttribution": true,
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      },
+      "creditLine": "Icenze, after Greg Robson. CC BY-SA 4.0 via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "periodic table context",
+          "electron shell context",
+          "chemistry comparison",
           "markdown figure"
         ],
         "usedBy": []
       },
       "selectionNotes": [
-        "Selected because hydrogen is the first atomic-spectra closure benchmark in the local corpus.",
-        "The image is small but canonical and source-backed; it gives a direct cross-section reference for the observer-level labels used in hydrogen orbital discussions."
+        "Selected as a higher-detail chemistry reference than a plain periodic table because it includes electron-shell diagrams for every element.",
+        "The diagram is visually dense and should be used where full-size inspection is useful rather than as a small inline thumbnail."
       ],
-      "mediaType": "image/png",
+      "mediaType": "image/svg+xml",
       "dimensions": {
-        "width": 316,
-        "height": 316
+        "width": 4213,
+        "height": 2980
       },
-      "fileSizeBytes": 14660,
-      "sha256": "a69ffae97a9d5d129c50a0698c66d69ccf6326d3b880bdce328d9862f4262096"
+      "fileSizeBytes": 1033151,
+      "sha256": "6a9133ad2b6daa44d9ec488e30b26944a88520fb9267e5947b19f1bad0f59fe8"
     },
     {
       "id": "atomic-orbitals-spdf-m-eigenstates-commons",
@@ -9079,56 +8786,6 @@
       },
       "fileSizeBytes": 491448,
       "sha256": "0a5c2dcc5a93dd7bbb43976adf47180a1a672e2f0d912cea2a2f2179d9841cee"
-    },
-    {
-      "id": "hydrogen-atom-commons",
-      "title": "Hydrogen Atom Diagram",
-      "description": "Simple public-domain SVG diagram of a hydrogen atom, showing a proton nucleus and electron representation.",
-      "path": "content/assets/images/nuclear/hydrogen-atom-commons.svg",
-      "dateCreated": "2008-11-23",
-      "dateImported": "2026-06-28",
-      "status": "approved",
-      "category": "nuclear",
-      "source": {
-        "name": "Wikimedia Commons",
-        "pageUrl": "https://commons.wikimedia.org/wiki/File:Hydrogen_atom.svg",
-        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Hydrogen_atom.svg",
-        "accessedDate": "2026-06-28"
-      },
-      "creators": [
-        {
-          "name": "Bensaccount",
-          "role": "diagram author"
-        }
-      ],
-      "license": {
-        "rightsStatus": "public-domain",
-        "label": "Public domain",
-        "rationale": "Wikimedia Commons metadata marks the file as public domain.",
-        "requiresAttribution": false
-      },
-      "creditLine": "Bensaccount. Public domain via Wikimedia Commons.",
-      "usage": {
-        "intendedUses": [
-          "image library",
-          "hydrogen context",
-          "atomic structure context",
-          "markdown figure",
-          "scene overlay"
-        ],
-        "usedBy": []
-      },
-      "selectionNotes": [
-        "Selected as a simple atom-level reference for hydrogen examples.",
-        "The diagram is a pedagogical representation and should not be used to imply completed native orbital derivation."
-      ],
-      "mediaType": "image/svg+xml",
-      "dimensions": {
-        "width": 270,
-        "height": 246
-      },
-      "fileSizeBytes": 5419,
-      "sha256": "8267ebb2aefd18a188011b5e75d7da3f714b1036e4e0df0e317ce091cd328559"
     },
     {
       "id": "bohr-model-hydrogen-commons",
@@ -9189,56 +8846,817 @@
       "sha256": "448fa7b618fe6f4b8f883d3d320ed1ad88559395fdccc61a094c34431f2833f7"
     },
     {
-      "id": "ads-cft-bulk-boundary-schematic",
-      "title": "AdS/CFT Bulk-Boundary Schematic",
-      "description": "Project-owned SVG schematic showing a conformal field theory boundary linked to a higher-dimensional anti-de Sitter bulk gravity description.",
-      "path": "content/assets/images/physics/ads-cft-bulk-boundary-schematic.svg",
-      "dateCreated": "2026-06-28",
+      "id": "architrino-qr-code",
+      "title": "Architrino QR Code",
+      "description": "Repo-native QR code image pointing to architrino.com, generated with the project QR-code generator.",
+      "path": "content/assets/images/brand/qr.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 600,
+        "height": 600
+      },
+      "fileSizeBytes": 4868,
+      "sha256": "d772051f40c8b96e252d87a291447d18acedd0e3d1ade3afd5dea874aedce2f5",
+      "dateCreated": "2026-06-25",
       "dateImported": "2026-06-28",
       "status": "approved",
-      "category": "physics-diagram",
+      "category": "brand",
       "source": {
         "name": "Architrino project",
-        "pageUrl": null,
+        "pageUrl": "https://www.architrino.com",
         "fileUrl": null,
-        "comparisonReferences": [
-          "https://commons.wikimedia.org/wiki/File:AdS_CFT.png"
-        ],
+        "generator": "scripts/qr-codes/build-architrino-qr-assets.py",
         "accessedDate": "2026-06-28"
       },
       "creators": [
         {
           "name": "Architrino project",
-          "role": "diagram author"
+          "role": "brand image author"
         }
       ],
       "license": {
         "rightsStatus": "project-owned",
         "label": "Project license",
-        "rationale": "Created as a repo-native SVG replacement for an unprovenanced AdS/CFT PNG after the only clean Commons source found was too low-resolution for the image library.",
+        "rationale": "Created from project-owned logo artwork and the project QR-code generator.",
         "requiresAttribution": false
       },
       "creditLine": "Created by the Architrino project, 2026.",
       "usage": {
         "intendedUses": [
-          "image library",
-          "holography comparison context",
-          "physics concept schematic",
+          "brand sharing",
           "markdown figure"
         ],
         "usedBy": []
       },
       "selectionNotes": [
-        "Replaces ads-cft.png with a source-controlled SVG whose provenance is project-owned rather than unknown.",
-        "The low-resolution public-domain Commons AdS/CFT diagram was used only as a comparison reference, not retained as the repo asset."
-      ],
-      "mediaType": "image/svg+xml",
+        "Registered because the reader-facing brand folder contains the QR image alongside the approved logo-plus-QR composites."
+      ]
+    },
+    {
+      "id": "noether-braid-qr-logo-1x2-logo-top-qr-bottom",
+      "title": "Noether Braid Logo and QR Code, Stacked",
+      "description": "Repo-native stacked brand image combining the Noether Braid logo above the Architrino QR code pointing to architrino.com.",
+      "path": "content/assets/images/brand/noether-braid-qr-logo-1x2-logo-top-qr-bottom.png",
+      "mediaType": "image/png",
       "dimensions": {
-        "width": 1600,
-        "height": 900
+        "width": 600,
+        "height": 1200
       },
-      "fileSizeBytes": 5558,
-      "sha256": "4f3520a40510e2a050cc8fa011a179a40ca655cda25e07f554138219d29ac980"
+      "fileSizeBytes": 264401,
+      "sha256": "029966d14ac517e745432db9a7204173e044a3b2c56e5f331290f1e470825a09",
+      "dateCreated": "2026-06-25",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/qr-codes/build-architrino-qr-assets.py --write-logo-composites",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned logo artwork and the project QR-code generator.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Registered as the stacked 1x2 logo-plus-QR variant copied into the reader-facing image library."
+      ]
+    },
+    {
+      "id": "noether-braid-qr-logo-2x1-logo-left-qr-right",
+      "title": "Noether Braid Logo and QR Code, Landscape Source Filename",
+      "description": "Repo-native landscape brand image combining the Noether Braid logo with the Architrino QR code under the generator source filename.",
+      "path": "content/assets/images/brand/noether-braid-qr-logo-2x1-logo-left-qr-right.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 600
+      },
+      "fileSizeBytes": 271804,
+      "sha256": "eabd1ef937fdf8a49295971e64eaddd320c5d0c250eb2822188459a6c134d6d7",
+      "dateCreated": "2026-06-25",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/qr-codes/build-architrino-qr-assets.py --write-logo-composites",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned logo artwork and the project QR-code generator.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Registered as the generator-named landscape 2x1 variant; bytes match the approved architrino-logo-qr-landscape asset."
+      ]
+    },
+    {
+      "id": "neon-superposition-1",
+      "title": "Neon Superposition 1",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/NeonSuperposition1.jpeg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 1312,
+        "height": 736
+      },
+      "fileSizeBytes": 75365,
+      "sha256": "87d6ef5b7e51d46d295cd7305ff8d9811a6bebaa2c0e36d29adb68c86b7f7f5e",
+      "dateCreated": "2024-08-24",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "Ideogram AI",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "EXIF metadata visible through file inspection names Ideogram AI as the image manufacturer.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "neon-superposition-2",
+      "title": "Neon Superposition 2",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/NeonSuperposition2.jpeg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 1312,
+        "height": 736
+      },
+      "fileSizeBytes": 170426,
+      "sha256": "0d70268aa7c9c4d3da0f4e9d916642b45cfd601b49d8b12039096d728132a244",
+      "dateCreated": "2024-08-24",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "Ideogram AI",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "EXIF metadata visible through file inspection names Ideogram AI as the image manufacturer.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "neon-superposition-3",
+      "title": "Neon Superposition 3",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/NeonSuperposition3.jpeg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 1312,
+        "height": 736
+      },
+      "fileSizeBytes": 159943,
+      "sha256": "833c39c4d132285dac50a713a2884dab54d3262cfcc7b6b6fe612ec1818e0391",
+      "dateCreated": "2024-08-24",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "Ideogram AI",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "EXIF metadata visible through file inspection names Ideogram AI as the image manufacturer.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "neon-superposition-4",
+      "title": "Neon Superposition 4",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/NeonSuperposition4.jpeg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 1312,
+        "height": 736
+      },
+      "fileSizeBytes": 142453,
+      "sha256": "3edb741f32f23a77ec8132d343ae73ea7434362af22cdd5d4f2bf0188ac83503",
+      "dateCreated": "2024-08-24",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "Ideogram AI",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "EXIF metadata visible through file inspection names Ideogram AI as the image manufacturer.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "neon-superposition-5",
+      "title": "Neon Superposition 5",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/NeonSuperposition5.jpeg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 1312,
+        "height": 736
+      },
+      "fileSizeBytes": 190122,
+      "sha256": "6c40611cacc130fb4e279414ec3783257ef52dd5524fda9be6863c146fc33df4",
+      "dateCreated": "2024-08-24",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "Ideogram AI",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "EXIF metadata visible through file inspection names Ideogram AI as the image manufacturer.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "tree-local-art",
+      "title": "Tree Local Art",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/Tree.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "fileSizeBytes": 1508728,
+      "sha256": "88f52a430446cdeaa02e9efaf2169c5fc4317718c5a0fd15496ab9964d610b19",
+      "dateCreated": "unknown",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": null,
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "No repo-visible source, author, prompt, or license metadata was found during image-ledger sync.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "binary-local-art",
+      "title": "Binary Local Art",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/binary.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1274,
+        "height": 1274
+      },
+      "fileSizeBytes": 160689,
+      "sha256": "6a772614687bac7ccc20eacbee589e07c0a7119e7138c97621bcab69ab775e6b",
+      "dateCreated": "unknown",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": null,
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "No repo-visible source, author, prompt, or license metadata was found during image-ledger sync.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "elitoddler-local-art",
+      "title": "Elitoddler Local Art",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/elitoddler.jpeg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "fileSizeBytes": 143614,
+      "sha256": "dc92cdbdd95100aac2fa33f4b97bdf5811e12ccdde449c83fc5acc346d090a00",
+      "dateCreated": "unknown",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": null,
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "No repo-visible source, author, prompt, or license metadata was found during image-ledger sync.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "glasshouse-2-local-art",
+      "title": "Glasshouse 2 Local Art",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/glasshouse2.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "fileSizeBytes": 2116101,
+      "sha256": "e8b3fed35381d68c843a1e7031020dfb542d5a1dbf0edb1bbbee8abf4d9ccf1b",
+      "dateCreated": "unknown",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": null,
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "No repo-visible source, author, prompt, or license metadata was found during image-ledger sync.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "hundreds-of-radiating-red-and-blue-spheres",
+      "title": "Hundreds Of Radiating Red And Blue Spheres",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/hundreds_of_radiating_red_and_blue_spheres_width-960_height-960_seed-2275628746ts-1674882076_idx-0.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 960,
+        "height": 960
+      },
+      "fileSizeBytes": 1822163,
+      "sha256": "6cf27072ea463b0d8d820722e80c2c60ece7f458694d9622d0fa6d163eccbc1b",
+      "dateCreated": "2023-01-28",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "local/generated filename metadata",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "The filename carries width, height, seed, timestamp, and index metadata, but no repo-visible generator, author, prompt, or license record was found.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "minibangs-local-art",
+      "title": "Minibangs Local Art",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/minibangs.jpeg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 1312,
+        "height": 736
+      },
+      "fileSizeBytes": 147483,
+      "sha256": "8192454491aa92562825932ed0f330d6c5e77ac283986119689bc60e068da1c3",
+      "dateCreated": "2024-10-12",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "Ideogram AI",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "EXIF metadata visible through file inspection names Ideogram AI as the image manufacturer.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "nature-beckons-1",
+      "title": "Nature Beckons 1",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/nature-beckons1.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "fileSizeBytes": 2285067,
+      "sha256": "786fe0317c79f25b0efe48fd87e0cfaff5d9a2425fc354d00a2ce97bea3e167a",
+      "dateCreated": "unknown",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": null,
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "No repo-visible source, author, prompt, or license metadata was found during image-ledger sync.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "nature-beckons-2",
+      "title": "Nature Beckons 2",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/nature-beckons2.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "fileSizeBytes": 2536111,
+      "sha256": "458b582859c1016f8912c94cc98a16269a5d333b1e044599f9aa9368e82ad395",
+      "dateCreated": "unknown",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": null,
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "No repo-visible source, author, prompt, or license metadata was found during image-ledger sync.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "nature-beckons-3",
+      "title": "Nature Beckons 3",
+      "description": "Local art image present in content/assets/images/art during image-ledger sync; provenance is incomplete and requires review before publication.",
+      "path": "content/assets/images/art/nature-beckons3.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "fileSizeBytes": 2232265,
+      "sha256": "1cdd363d2810c2f9779365475153f6f5ab71c497f90cd50e30b6f7e64213d351",
+      "dateCreated": "unknown",
+      "dateImported": "2026-06-28",
+      "status": "needs-review",
+      "category": "art-review",
+      "source": {
+        "name": "Local image file",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": null,
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "unknown",
+          "role": "unknown pending provenance review"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "Needs provenance review",
+        "rationale": "The file is present in the local image tree, but source, creator, and reuse/license terms are not established in repo-visible metadata.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Provenance pending review; do not publish as an approved asset.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
+        "No repo-visible source, author, prompt, or license metadata was found during image-ledger sync.",
+        "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
     }
   ]
 }

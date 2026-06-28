@@ -7,6 +7,12 @@ import path from "node:path";
 const SCHEMA = "field_speed_action_self_hit_scan_source_candidate_intake_report/v0";
 const SOURCE_FAMILY_DELTA_SCOUT_SCHEMA =
   "field_speed_action_self_hit_scan_source_family_delta_scout/v0";
+const NEAREST_CANDIDATE_READINESS_AUDIT_SCHEMA =
+  "field_speed_action_self_hit_scan_nearest_candidate_provenance_readiness_audit/v0";
+const SOURCE_BINDING_ABSENCE_RECORD_SCHEMA =
+  "field_speed_action_self_hit_scan_source_binding_absence_record/v0";
+const RETAINED_ACTIVE_ROW_EVIDENCE_OBJECT_SCHEMA =
+  "torque_wake_retained_active_row_branch_certificate_evidence_object/v0";
 const RANK2_FEED = "rank2_field_speed_action_self_hit_scan";
 
 const DEFAULT_CANDIDATE_PATHS = [
@@ -39,6 +45,37 @@ const PROVIDER_REQUIRED_FIELDS = [
   "active_root_or_live_ledger_identity",
   "branch_local_projection_or_normalization_identity",
   "conservation_pullback_hash",
+];
+const DISALLOWED_ACCEPTED_REFERENCE_PREFIXES = [
+  "priority-only:",
+  "fixture:",
+  "proxy:",
+  "candidate:",
+  "synthetic:",
+];
+const SAME_RECORD_IDENTITY_REQUIRED_FIELDS = [
+  "same_record_identity.branch_label",
+  "same_record_identity.extraction_window_id",
+  "same_record_identity.active_root_ledger_hash",
+  "same_record_identity.accepted_branch_chart_ref",
+  "same_record_identity.separator_chart_ref",
+  "same_record_identity.positive_gap_record_ref",
+  "same_record_identity.memory_depth_record_ref",
+  "same_record_identity.active_wave_vector_gap_ref",
+];
+const RETAINED_ACTIVE_ROW_TRANSITION_SOURCE_FIELDS = [
+  "branch_certificate_ref",
+  "retained_branch",
+  "sampled_same_row_id_binding",
+  "same_retained_active_row_ids",
+  "accepted_branch_chart_ref",
+  "moving_retained_branch_certificate_ref",
+  ...SAME_RECORD_IDENTITY_REQUIRED_FIELDS,
+  "accepted_transition_source_ref",
+  "action_increment_row_id",
+  "active_root_ledger_hash",
+  "conservation_pullback_hash",
+  "negative_control_ref",
 ];
 
 const ACCEPTED_PACKET_PROMOTION_STATUSES = new Set([
@@ -186,6 +223,44 @@ function present(value) {
     return Object.keys(value).length > 0;
   }
   return true;
+}
+
+function stringArray(value) {
+  return Array.isArray(value) ? value.filter((entry) => typeof entry === "string" && entry.trim() !== "") : [];
+}
+
+function sameOrderedStrings(left, right) {
+  if (left.length !== right.length) {
+    return false;
+  }
+  return left.every((value, index) => value === right[index]);
+}
+
+function nestedValue(source, dottedPath) {
+  return dottedPath.split(".").reduce((value, key) => (isObject(value) ? value[key] : undefined), source);
+}
+
+function failureFieldName(field) {
+  return field.replaceAll(".", "_");
+}
+
+function rejectedAcceptedReferenceCode(field, value) {
+  const normalized = present(value) ? String(value).trim() : null;
+  if (normalized === null) {
+    return `${failureFieldName(field)}_missing`;
+  }
+  for (const prefix of DISALLOWED_ACCEPTED_REFERENCE_PREFIXES) {
+    if (normalized.startsWith(prefix)) {
+      return `${failureFieldName(field)}_${prefix.slice(0, -1).replaceAll("-", "_")}_not_accepted`;
+    }
+  }
+  if (normalized.includes("synthetic")) {
+    return `${failureFieldName(field)}_synthetic_not_accepted`;
+  }
+  if (normalized.includes(":fixture") || normalized.includes("fixture-")) {
+    return `${failureFieldName(field)}_fixture_not_accepted`;
+  }
+  return null;
 }
 
 function normalizeStatus(value) {
@@ -571,6 +646,21 @@ function buildTorqueWakeFamily(repoRoot) {
   }
 
   const candidate = readout.data;
+  const sampledRows = stringArray(candidate.sampled_active_row_ids);
+  const forceRows = stringArray(candidate.force_row_ids);
+  const partitionRows = stringArray(candidate.partition_row_ids);
+  const torqueRows = stringArray(candidate.torque_row_ids);
+  const wakeRows = stringArray(candidate.wake_row_ids);
+  const sameRetainedRows = stringArray(candidate.same_retained_active_row_ids);
+  const sampledSameRowIdBinding =
+    sampledRows.length > 0 &&
+    [forceRows, partitionRows, torqueRows, wakeRows].every(
+      (rows) => rows.length > 0 && sameOrderedStrings(sampledRows, rows)
+    );
+  const sameRetainedActiveRowIdBinding =
+    sampledSameRowIdBinding &&
+    sameRetainedRows.length > 0 &&
+    sameOrderedStrings(sampledRows, sameRetainedRows);
   const missing = [];
   if (!present(candidate.branch_certificate_ref)) {
     missing.push("branch_certificate_ref");
@@ -611,12 +701,344 @@ function buildTorqueWakeFamily(repoRoot) {
     smallestPositiveObject:
       "promote the sampled torque/wake row ids into one retained active-row certificate with branch_certificate_ref, then emit the same row as a non-fixture accepted transition source",
     details: {
+      source_report_ref: candidate.source_report_ref ?? null,
       selected_case_id: candidate.selected_case_id ?? null,
       route_root_key: candidate.route_root_key ?? null,
+      sampled_active_row_ids: sampledRows,
+      sampled_same_row_id_binding: sampledSameRowIdBinding,
+      same_retained_active_row_ids: sameRetainedRows,
+      same_retained_active_row_id_binding: sameRetainedActiveRowIdBinding,
       retained_branch: candidate.retained_branch === true,
       action_increment_row_ref: candidate.action_increment_row_ref ?? null,
+      accepted_transition_source_ref: candidate.accepted_transition_source_ref ?? null,
+      action_increment_row_id: candidate.action_increment_row_id ?? null,
+      branch_certificate_ref: candidate.branch_certificate_ref ?? null,
+      accepted_branch_chart_ref: candidate.accepted_branch_chart_ref ?? null,
+      moving_retained_branch_certificate_ref: candidate.moving_retained_branch_certificate_ref ?? null,
+      same_record_identity: isObject(candidate.same_record_identity) ? candidate.same_record_identity : {},
+      active_root_ledger_hash: candidate.active_root_ledger_hash ?? null,
+      conservation_pullback_hash: candidate.conservation_pullback_hash ?? null,
+      negative_control_ref: candidate.negative_control_ref ?? null,
     },
   });
+}
+
+function readinessField({ field, requiredContent, currentReading, present, failureCode }) {
+  return {
+    field,
+    required_content: requiredContent,
+    current_reading: currentReading ?? null,
+    verdict: present ? "present" : "missing_or_rejected",
+    failure_code: present ? null : failureCode,
+  };
+}
+
+function absenceField({ field, requiredContent, currentReading, pass, failureCode, details = {} }) {
+  return {
+    field,
+    required_content: requiredContent,
+    current_reading: currentReading ?? null,
+    verdict: pass ? "present" : "missing_or_rejected",
+    failure_code: pass ? null : failureCode,
+    ...details,
+  };
+}
+
+function buildSourceBindingAbsenceRecord(strongestPartial) {
+  const details = strongestPartial?.details ?? {};
+  const sampledRows = stringArray(details.sampled_active_row_ids);
+  const sameRetainedRows = stringArray(details.same_retained_active_row_ids);
+  const sameRecordIdentity = isObject(details.same_record_identity) ? details.same_record_identity : {};
+  const actionIncrementRowId = details.action_increment_row_id ?? null;
+  const actionIncrementRowRef = details.action_increment_row_ref ?? null;
+  const actionIncrementCurrentReading = actionIncrementRowId ?? actionIncrementRowRef;
+  const actionIncrementFailure =
+    present(actionIncrementRowId)
+      ? rejectedAcceptedReferenceCode("action_increment_row_id", actionIncrementRowId)
+      : present(actionIncrementRowRef)
+        ? rejectedAcceptedReferenceCode("action_increment_row_id", actionIncrementRowRef)
+        : "action_increment_row_id_missing";
+  const sameRetainedBinding =
+    details.sampled_same_row_id_binding === true &&
+    sameRetainedRows.length > 0 &&
+    sameOrderedStrings(sampledRows, sameRetainedRows);
+  const fields = [
+    absenceField({
+      field: "branch_certificate_ref",
+      requiredContent: "accepted retained active-row branch_certificate_ref for the selected torque/wake row",
+      currentReading: details.branch_certificate_ref,
+      pass: rejectedAcceptedReferenceCode("branch_certificate_ref", details.branch_certificate_ref) === null,
+      failureCode: rejectedAcceptedReferenceCode("branch_certificate_ref", details.branch_certificate_ref),
+    }),
+    absenceField({
+      field: "retained_branch",
+      requiredContent: "retained_branch=true for the selected row",
+      currentReading: details.retained_branch,
+      pass: details.retained_branch === true,
+      failureCode: "retained_branch_false_not_retained_source",
+    }),
+    absenceField({
+      field: "sampled_same_row_id_binding",
+      requiredContent: "sampled active row ids match force, partition, torque, and wake rows",
+      currentReading: details.sampled_same_row_id_binding,
+      pass: details.sampled_same_row_id_binding === true,
+      failureCode: "sampled_same_row_id_binding_missing",
+      details: { sampled_active_row_ids: sampledRows },
+    }),
+    absenceField({
+      field: "same_retained_active_row_ids",
+      requiredContent: "same_retained_active_row_ids exactly equal the sampled active row ids",
+      currentReading: sameRetainedRows,
+      pass: sameRetainedBinding,
+      failureCode:
+        sameRetainedRows.length > 0 ? "same_retained_active_row_id_mismatch" : "same_retained_active_row_ids_missing",
+      details: { required_same_retained_active_row_ids: sampledRows },
+    }),
+    absenceField({
+      field: "accepted_branch_chart_ref",
+      requiredContent: "accepted branch chart for the same retained active-row source",
+      currentReading: details.accepted_branch_chart_ref,
+      pass: rejectedAcceptedReferenceCode("accepted_branch_chart_ref", details.accepted_branch_chart_ref) === null,
+      failureCode: rejectedAcceptedReferenceCode("accepted_branch_chart_ref", details.accepted_branch_chart_ref),
+    }),
+    absenceField({
+      field: "moving_retained_branch_certificate_ref",
+      requiredContent: "moving_retained_branch_certificate/v0 consuming the same branch certificate and branch chart",
+      currentReading: details.moving_retained_branch_certificate_ref,
+      pass:
+        rejectedAcceptedReferenceCode(
+          "moving_retained_branch_certificate_ref",
+          details.moving_retained_branch_certificate_ref
+        ) === null,
+      failureCode: rejectedAcceptedReferenceCode(
+        "moving_retained_branch_certificate_ref",
+        details.moving_retained_branch_certificate_ref
+      ),
+    }),
+    ...SAME_RECORD_IDENTITY_REQUIRED_FIELDS.map((field) => {
+      const currentReading = nestedValue({ same_record_identity: sameRecordIdentity }, field);
+      return absenceField({
+        field,
+        requiredContent: `same-record identity field required by the retained active-row source: ${field}`,
+        currentReading,
+        pass: rejectedAcceptedReferenceCode(field, currentReading) === null,
+        failureCode: rejectedAcceptedReferenceCode(field, currentReading),
+      });
+    }),
+    absenceField({
+      field: "accepted_transition_source_ref",
+      requiredContent: "branch-emitted non-fixture accepted_transition_source for the selected retained row",
+      currentReading: details.accepted_transition_source_ref,
+      pass: rejectedAcceptedReferenceCode("accepted_transition_source_ref", details.accepted_transition_source_ref) === null,
+      failureCode: rejectedAcceptedReferenceCode("accepted_transition_source_ref", details.accepted_transition_source_ref),
+    }),
+    absenceField({
+      field: "action_increment_row_id",
+      requiredContent: "accepted non-fixture action-increment row id, not a priority-only placeholder",
+      currentReading: actionIncrementCurrentReading,
+      pass: actionIncrementFailure === null,
+      failureCode: actionIncrementFailure,
+      details: { action_increment_row_ref: actionIncrementRowRef },
+    }),
+    absenceField({
+      field: "active_root_ledger_hash",
+      requiredContent: "active-root ledger hash on the same selected row",
+      currentReading: details.active_root_ledger_hash,
+      pass: present(details.active_root_ledger_hash),
+      failureCode: "active_root_ledger_hash_missing",
+    }),
+    absenceField({
+      field: "conservation_pullback_hash",
+      requiredContent: "conservation-pullback hash on the same selected row",
+      currentReading: details.conservation_pullback_hash,
+      pass: present(details.conservation_pullback_hash),
+      failureCode: "conservation_pullback_hash_missing",
+    }),
+    absenceField({
+      field: "negative_control_ref",
+      requiredContent: "negative control for mismatched branch/source/hash bindings",
+      currentReading: details.negative_control_ref,
+      pass: present(details.negative_control_ref),
+      failureCode: "negative_control_ref_missing",
+    }),
+  ];
+  const firstMissing = fields.find((field) => field.verdict !== "present");
+
+  return {
+    schema: SOURCE_BINDING_ABSENCE_RECORD_SCHEMA,
+    claim_scope:
+      "fail-closed source-binding absence row for the nearest rank-2 non-fixture transition-source candidate",
+    row_id: `torque_wake_same_row_diagnostic:${details.selected_case_id ?? "index-ratio:f2"}`,
+    selected_family_id: strongestPartial?.id ?? null,
+    selected_candidate_id: strongestPartial?.related_candidate_ids?.[0] ?? null,
+    source_path: TORQUE_WAKE_DIAGNOSTIC_PATH,
+    selected_case_id: details.selected_case_id ?? null,
+    route_root_key: details.route_root_key ?? null,
+    source_report_ref: details.source_report_ref ?? null,
+    sampled_active_row_ids: sampledRows,
+    sampled_same_row_id_binding: details.sampled_same_row_id_binding === true,
+    required_same_retained_active_row_ids: sampledRows,
+    same_retained_active_row_ids: sameRetainedRows,
+    same_retained_active_row_id_binding: sameRetainedBinding,
+    current_hash_bindings: {
+      active_root_ledger_hash: details.active_root_ledger_hash ?? null,
+      conservation_pullback_hash: details.conservation_pullback_hash ?? null,
+      negative_control_ref: details.negative_control_ref ?? null,
+    },
+    same_record_identity_current: sameRecordIdentity,
+    same_record_identity_required_fields: SAME_RECORD_IDENTITY_REQUIRED_FIELDS,
+    required_accepted_source_fields: RETAINED_ACTIVE_ROW_TRANSITION_SOURCE_FIELDS,
+    field_results: fields,
+    present_useful_fields: fields.filter((field) => field.verdict === "present").map((field) => field.field),
+    missing_or_rejected_fields: fields
+      .filter((field) => field.verdict !== "present")
+      .map((field) => field.field),
+    first_missing_accepted_source_field: firstMissing?.field ?? null,
+    first_failure: firstMissing?.failure_code ?? null,
+    reference_rejection_policy: {
+      schema: "accepted_reference_rejection_policy/v0",
+      disallowed_prefixes: DISALLOWED_ACCEPTED_REFERENCE_PREFIXES,
+      disallowed_substrings: ["synthetic", ":fixture", "fixture-"],
+      rule:
+        "A nonempty reference is not accepted evidence if it is priority-only, fixture, proxy, candidate, or synthetic.",
+    },
+    next_retained_active_row_evidence_object: {
+      schema: RETAINED_ACTIVE_ROW_EVIDENCE_OBJECT_SCHEMA,
+      current_family: `torque_wake_same_row_diagnostic:${details.selected_case_id ?? "index-ratio:f2"}`,
+      required_same_retained_active_row_ids: sampledRows,
+      required_fields: RETAINED_ACTIVE_ROW_TRANSITION_SOURCE_FIELDS,
+      same_record_identity_required_fields: SAME_RECORD_IDENTITY_REQUIRED_FIELDS,
+      rank2_follow_on_fields_after_certificate: ["accepted_transition_source_ref", "action_increment_row_id"],
+      acceptance_boundary:
+        "This is a target only. It becomes evidence only when accepted non-fixture same-record sources replace every missing or rejected reference.",
+    },
+    authorization: {
+      accepted_transition_source: false,
+      candidate_h_recovery: false,
+      moving_retained_branch_certificate: false,
+      retained_branch: false,
+      bounded_speed_live_ledger: false,
+      observer_export: false,
+    },
+  };
+}
+
+function buildNearestCandidateProvenanceReadinessAudit(strongestPartial) {
+  if (!strongestPartial) {
+    return {
+      schema: NEAREST_CANDIDATE_READINESS_AUDIT_SCHEMA,
+      claim_scope: "priority-only nearest candidate provenance/readiness audit",
+      audit_status: "fail_closed_no_candidate_family",
+      selected_family_id: null,
+      selected_candidate_id: null,
+      selected_case_id: null,
+      route_root_key: null,
+      accepted_transition_source_found: false,
+      first_missing_required_field: "branch_certificate_ref",
+      first_failure: "candidate_family_missing",
+      fields: [],
+      source_binding_absence_record: null,
+      smallest_next_evidence_object:
+        "materialize one retained branch certificate before attempting an accepted transition source",
+      candidate_h_recovery_vote: "not_authorized",
+      not_authorized: [
+        "does not create a non-fixture accepted_transition_source",
+        "does not run field_speed_action_self_hit_scan/v0",
+        "does not authorize candidate_h_recovery",
+      ],
+    };
+  }
+
+  const details = strongestPartial.details ?? {};
+  const missing = new Set(strongestPartial.missing_or_rejected_fields ?? []);
+  const actionIncrementRowRef = details.action_increment_row_ref ?? null;
+  const acceptedActionIncrementRowPresent =
+    present(actionIncrementRowRef) && !String(actionIncrementRowRef).startsWith("priority-only:");
+  const fields = [
+    readinessField({
+      field: "branch_certificate_ref",
+      requiredContent: "retained branch certificate that owns the selected same-row diagnostic payload",
+      currentReading: details.branch_certificate_ref,
+      present: present(details.branch_certificate_ref),
+      failureCode: "branch_certificate_ref_missing",
+    }),
+    readinessField({
+      field: "active_root_ledger_hash",
+      requiredContent: "active-root ledger identity for the same selected row",
+      currentReading: details.active_root_ledger_hash,
+      present: present(details.active_root_ledger_hash),
+      failureCode: "active_root_ledger_hash_missing",
+    }),
+    readinessField({
+      field: "conservation_pullback_hash",
+      requiredContent: "conservation-pullback hash for the same selected row",
+      currentReading: details.conservation_pullback_hash,
+      present: present(details.conservation_pullback_hash),
+      failureCode: "conservation_pullback_hash_missing",
+    }),
+    readinessField({
+      field: "negative_control_ref",
+      requiredContent: "fail-closed negative control attached to the same selected row",
+      currentReading: details.negative_control_ref,
+      present: present(details.negative_control_ref),
+      failureCode: "negative_control_ref_missing",
+    }),
+    readinessField({
+      field: "retained_branch",
+      requiredContent: "retained_branch=true for the selected same-row payload",
+      currentReading: details.retained_branch,
+      present: details.retained_branch === true,
+      failureCode: "retained_branch_missing",
+    }),
+    readinessField({
+      field: "accepted_action_increment_row_id",
+      requiredContent: "accepted non-fixture action-increment row id, not a priority-only placeholder",
+      currentReading: actionIncrementRowRef,
+      present: acceptedActionIncrementRowPresent,
+      failureCode: "accepted_action_increment_row_id_missing",
+    }),
+    readinessField({
+      field: "transition_source_ref",
+      requiredContent: "branch-emitted non-fixture accepted_transition_source for the same row",
+      currentReading: null,
+      present: false,
+      failureCode: "blocked_until_branch_certificate_ref",
+    }),
+  ];
+  const firstMissing = fields.find((field) => field.verdict !== "present");
+  const sourceBindingAbsenceRecord = buildSourceBindingAbsenceRecord(strongestPartial);
+
+  return {
+    schema: NEAREST_CANDIDATE_READINESS_AUDIT_SCHEMA,
+    claim_scope: "priority-only nearest candidate provenance/readiness audit",
+    audit_status: "fail_closed_no_accepted_transition_source",
+    selected_family_id: strongestPartial.id,
+    selected_candidate_id: strongestPartial.related_candidate_ids?.[0] ?? null,
+    selected_case_id: details.selected_case_id ?? null,
+    route_root_key: details.route_root_key ?? null,
+    accepted_transition_source_found: false,
+    strongest_partial_first_failure: strongestPartial.first_failure,
+    first_missing_required_field: firstMissing?.field ?? null,
+    first_failure: firstMissing?.failure_code ?? null,
+    present_same_record_fields: fields.filter((field) => field.verdict === "present").map((field) => field.field),
+    missing_or_rejected_same_record_fields: fields
+      .filter((field) => field.verdict !== "present")
+      .map((field) => field.field),
+    first_blocking_context: missing.has("branch_certificate_ref")
+      ? "The torque/wake same-row diagnostic already carries active-root ledger, conservation-pullback, and negative-control references, but no retained branch_certificate_ref owns the row."
+      : "The strongest partial still lacks at least one same-record source-binding field.",
+    smallest_next_evidence_object:
+      "one retained active-row branch_certificate_ref for torque_wake_same_row_diagnostic:index-ratio:f2, preserving the sampled active row ids before emitting the non-fixture accepted transition_source_ref",
+    fields,
+    source_binding_absence_record: sourceBindingAbsenceRecord,
+    source_binding_absence_rows: [sourceBindingAbsenceRecord],
+    candidate_h_recovery_vote: "not_authorized",
+    not_authorized: [
+      "does not create a non-fixture accepted_transition_source",
+      "does not run field_speed_action_self_hit_scan/v0",
+      "does not authorize candidate_h_recovery",
+    ],
+  };
 }
 
 function buildMovingBranchCertificateFamily(repoRoot) {
@@ -713,6 +1135,8 @@ function buildSourceFamilyDeltaScout({ repoRoot, candidates, acceptedCandidates 
   ];
   const firstFamilyFailure = families.find((family) => family.first_failure !== null)?.first_failure ?? null;
   const strongestPartial = families.find((family) => family.id === "torque_wake_same_row_diagnostic_family");
+  const nearestCandidateProvenanceReadinessAudit =
+    acceptedCandidates.length > 0 ? null : buildNearestCandidateProvenanceReadinessAudit(strongestPartial);
 
   return {
     schema: SOURCE_FAMILY_DELTA_SCOUT_SCHEMA,
@@ -729,6 +1153,7 @@ function buildSourceFamilyDeltaScout({ repoRoot, candidates, acceptedCandidates 
     first_required_source_field: acceptedCandidates.length > 0 ? null : "transition_source_ref",
     exact_next_rank2_source_object:
       acceptedCandidates.length > 0 ? null : MINIMUM_ACCEPTED_TRANSITION_SOURCE_OBJECT,
+    nearest_candidate_provenance_readiness_audit: nearestCandidateProvenanceReadinessAudit,
     families,
     candidate_h_recovery_vote: "not_authorized",
     not_authorized: [
@@ -824,6 +1249,8 @@ function buildReport(options = {}) {
         : "non-fixture branch-emitted transition_source_ref with same-row branch_certificate_ref, root_ledger_hash, conservation_pullback_hash, and negative_control_ref",
     required_same_record_fields: REQUIRED_SAME_RECORD_FIELDS,
     source_family_delta_scout: sourceFamilyDeltaScout,
+    nearest_candidate_provenance_readiness_audit:
+      sourceFamilyDeltaScout.nearest_candidate_provenance_readiness_audit,
     candidates,
     candidate_h_recovery_vote: "not_authorized",
     not_authorized: [
@@ -853,6 +1280,37 @@ function validationErrors(report) {
   }
   if (report?.source_family_delta_scout?.candidate_h_recovery_vote !== "not_authorized") {
     errors.push("source_family_delta_scout candidate_h_recovery_vote must remain not_authorized");
+  }
+  if (
+    report?.nearest_candidate_provenance_readiness_audit !== null &&
+    report?.nearest_candidate_provenance_readiness_audit?.schema !== NEAREST_CANDIDATE_READINESS_AUDIT_SCHEMA
+  ) {
+    errors.push(`nearest_candidate_provenance_readiness_audit.schema must be ${NEAREST_CANDIDATE_READINESS_AUDIT_SCHEMA}`);
+  }
+  if (
+    report?.nearest_candidate_provenance_readiness_audit?.source_binding_absence_record &&
+    report.nearest_candidate_provenance_readiness_audit.source_binding_absence_record.schema !==
+      SOURCE_BINDING_ABSENCE_RECORD_SCHEMA
+  ) {
+    errors.push(`source_binding_absence_record.schema must be ${SOURCE_BINDING_ABSENCE_RECORD_SCHEMA}`);
+  }
+  if (
+    report?.nearest_candidate_provenance_readiness_audit?.source_binding_absence_record?.authorization
+      ?.accepted_transition_source !== false
+  ) {
+    errors.push("source_binding_absence_record must not authorize accepted_transition_source");
+  }
+  if (
+    report?.nearest_candidate_provenance_readiness_audit?.source_binding_absence_record?.authorization
+      ?.candidate_h_recovery !== false
+  ) {
+    errors.push("source_binding_absence_record must not authorize candidate_h_recovery");
+  }
+  if (
+    report?.nearest_candidate_provenance_readiness_audit &&
+    report.nearest_candidate_provenance_readiness_audit.candidate_h_recovery_vote !== "not_authorized"
+  ) {
+    errors.push("nearest_candidate_provenance_readiness_audit candidate_h_recovery_vote must remain not_authorized");
   }
   if (!Array.isArray(report?.source_family_delta_scout?.families)) {
     errors.push("source_family_delta_scout families must be an array");

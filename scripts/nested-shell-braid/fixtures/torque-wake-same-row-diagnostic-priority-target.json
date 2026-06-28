@@ -32,6 +32,21 @@
     "index-ratio:f2:active-row:inner-outer-edge-31"
   ],
   "action_increment_row_ref": "priority-only:action-increment-row:index-ratio:f2",
+  "accepted_transition_source_ref": null,
+  "action_increment_row_id": null,
+  "same_retained_active_row_ids": [],
+  "accepted_branch_chart_ref": null,
+  "moving_retained_branch_certificate_ref": null,
+  "same_record_identity": {
+    "branch_label": null,
+    "extraction_window_id": null,
+    "active_root_ledger_hash": null,
+    "accepted_branch_chart_ref": null,
+    "separator_chart_ref": null,
+    "positive_gap_record_ref": null,
+    "memory_depth_record_ref": null,
+    "active_wave_vector_gap_ref": null
+  },
   "active_root_ledger_hash": "route-root-key:2856731379702547500",
   "conservation_pullback_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
   "torque_integrals_ref": "blocked_until_retained_time_window_torque_integral_is_available",

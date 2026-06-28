@@ -20,7 +20,31 @@ and rejects this fixture by
 nested `action_measure_row_target` records that no same-ledger action-measure
 row is supplied; tuple identity alone is rejected by
 `same-ledger-tuple-without-action-functional-not-action-measure-row`, with
-`branch_scope` as the first missing measure field.
+`branch_scope` as the first missing measure field. Its
+`branch_scope_source_audit` checks eight current neutral-braid branch-scope
+artifacts and rejects each because none carries the same bounded-speed
+live-ledger tuple or an `action_measure_row`. The audit records its searched
+roots, searched terms, acceptance criteria, and per-candidate missing identity
+and action-measure fields so that branch-scope cannot be accepted by
+provenance-only reuse. Its nearest-candidate lineage readout names the
+certified fixed-speed all-pairs root ledger as closest, but that source is
+provenance only: it has `branch_scope` while missing
+`bounded_speed_ledger_id`, `force_checksum_id`, `consumer_checksum_id`,
+`source_normal_reconstruction_candidate_id`, `action_measure_row`,
+`period_rows`, `action_functional`, and `root_support_event_rows`.
+The nested `same_ledger_action_measure_row_with_branch_scope_attempt` records
+the next object attempt and fails closed: no action-measure row is constructed,
+`branch_scope` is still not accepted on the normal-candidate ledger, and the
+first conditional subfield after branch-scope is `period_rows`, represented by a
+target-only `period_rows_target` blocked by
+`same_ledger_branch_scope_source_missing`; no `period_rows` source is promoted
+until branch-scope binds on the same ledger. The nested
+`fail_closed_action_measure_row_target` lists the complete attempted row fields:
+the normal-candidate ledger supplies only `bounded_speed_ledger_id`,
+`force_checksum_id`, `consumer_checksum_id`, and
+`source_normal_reconstruction_candidate_id`; `branch_scope`, `period_rows`,
+`action_functional`, and `root_support_event_rows` have no same-ledger binding,
+so the row remains absent and non-certifying.
 Every packet keeps `certifies_bounded_speed_live_ledger=false` and
 `retained_branch=false`.
 

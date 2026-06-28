@@ -110,10 +110,36 @@ and makes the first failure
 `external_schema_provenance_required_before_schema_validation_intake`. This
 does not construct proof evidence, authorize schema-validation intake, consume
 rows, update the live ledger, or authorize a branch chart.
+The
+[external provenance source audit](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.external-provenance-source-audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+now tests the broader current proof-program/reference surface for a provenance
+source before intake: 283 proof-program JSON files and 94 reference Markdown
+artifacts, 377 records total. It separates 369 local generated artifacts,
+22 local decoys, 22 source-data partials, 15 external-looking label records,
+and 3 actual external ref records. The actual refs are source leads only:
+they appear in reference text and source-mining rows, not on a same-record
+external schema candidate with accepted provenance. The audit finds 0 accepted
+external provenance records, 0 schema-validation intake candidates, 0 candidate
+external schema received records, and 15 field-complete-without-provenance
+records. The first failure
+remains `external_schema_provenance_required_before_schema_validation_intake`;
+row consumption, `preledger_pass`, live-ledger update, and branch-chart
+authorization remain false.
+The source-mining follow-on
+[Sigma_hf_01 Sieber Engelborghs Mined Schema Packet](../source-mining/archive-analysis/sigma-hf-01-sieber-engelborghs-mined-schema-packet-2026-06-28.md)
+extracts a priority-only hypotheses / inference / conclusion candidate from
+the Sieber state-dependent-delay finite-root equivalence source lead and the
+Engelborghs-Luzyanina-in 't Hout-Roose collocation source family. It sharpens
+the three missing proof-grade fields
+`rule_kernel_obligation_binding`,
+`rule_kernel_derivation_payload_target_binding`, and
+`proof_grade_derivation_schema_statement`, but it is not a received external
+schema object, establishes no accepted external provenance, opens no
+schema-validation intake, consumes no rows, and authorizes no branch chart.
 
 ## Task Queue
 
-1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `sigma-hf-01-external-provenance-contract-replay-fail-closed`; the live continuation is one compatible external proof-grade derivation schema or derivation proof for the `Sigma_hf_01` separator slot with accepted external provenance and the eight schema fields required by the external schema acceptance contract, not another local placeholder, local proof-object envelope, missing-fields target, local-pool reclassification, or current-pool rescan. Depends on: none.
+1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `sigma-hf-01-mined-source-schema-packet-fail-closed`; the live continuation is one compatible external proof-grade derivation schema or derivation proof for the `Sigma_hf_01` separator slot with accepted external provenance and the eight schema fields required by the external schema acceptance contract, not another local placeholder, local proof-object envelope, missing-fields target, local-pool reclassification, current-pool rescan, source-mining packet, or reference-text provenance mention. Depends on: none.
 2. `planar_bridge` — Develop the first planar delayed-bridge closure as the higher-dimensional extension of the breather proof architecture. Status: `queued`; do not promote ahead of the collinear certificate unless that certificate fails with an explicit obstruction that the planar bridge is meant to resolve. Depends on: `breather_certificate`.
 3. `proof_program_handoff` — Keep theorem-program chapters, certificate artifacts, and downstream priority links aligned as proof targets are promoted or retired. Status: `active`. Depends on: `breather_certificate`, `planar_bridge`.
 

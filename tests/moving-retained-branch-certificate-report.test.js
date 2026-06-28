@@ -7,7 +7,9 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 import {
+  buildAcceptedBranchChartSourceScout,
   buildReport,
+  sourceScoutValidationErrors,
   validationErrors,
 } from "../scripts/nested-shell-braid/moving-retained-branch-certificate-report.mjs";
 
@@ -23,6 +25,12 @@ const PROXY_FIXTURE = fileURLToPath(
 const PARTIAL_SAME_RECORD_IDENTITY_SCOUT_FIXTURE = fileURLToPath(
   new URL(
     "../scripts/nested-shell-braid/fixtures/moving-retained-branch-certificate-partial-same-record-identity-scout.json",
+    import.meta.url
+  )
+);
+const ACCEPTED_BRANCH_CHART_SOURCE_SCOUT_FIXTURE = fileURLToPath(
+  new URL(
+    "../scripts/nested-shell-braid/fixtures/moving-retained-branch-certificate-accepted-branch-chart-source-scout.json",
     import.meta.url
   )
 );
@@ -156,6 +164,128 @@ test("moving retained branch certificate report rejects partial proxy same-recor
   );
 });
 
+test("accepted branch-chart source scout enumerates current candidates fail-closed", () => {
+  const fixture = JSON.parse(fs.readFileSync(ACCEPTED_BRANCH_CHART_SOURCE_SCOUT_FIXTURE, "utf8"));
+  const report = buildAcceptedBranchChartSourceScout(fixture, {
+    sourceRef: ACCEPTED_BRANCH_CHART_SOURCE_SCOUT_FIXTURE,
+  });
+
+  assert.deepEqual(sourceScoutValidationErrors(report), []);
+  assert.equal(
+    report.schema,
+    "moving_retained_branch_certificate_accepted_branch_chart_source_scout/v0"
+  );
+  assert.equal(report.candidate_count, 9);
+  assert.equal(report.accepted_count, 0);
+  assert.deepEqual(report.accepted_candidate_ids, []);
+  assert.equal(report.first_failure, "accepted_same_record_branch_chart_absent");
+  assert.equal(report.first_rejection_code, "branch_certificate_ref_missing");
+  assert.equal(report.authorization.accepted_branch_chart_source_ready, false);
+  assert.equal(report.authorization.moving_retained_branch_certificate, false);
+  assert.equal(report.authorization.structural_integrity_residual_vector, false);
+  assert.equal(report.authorization.photon_gate_a, false);
+  assert.equal(report.authorization.observer_export, false);
+  assert.equal(
+    report.nearest_candidate_readiness.schema,
+    "moving_retained_branch_certificate_nearest_branch_chart_source_readiness/v0"
+  );
+  assert.equal(
+    report.nearest_candidate_readiness.selected_candidate_id,
+    "partial-same-record-identity-scout-fixture"
+  );
+  assert.equal(report.nearest_candidate_readiness.present_non_proxy_required_field_count, 4);
+  assert.deepEqual(report.nearest_candidate_readiness.present_non_proxy_required_fields, [
+    "branch_certificate_ref",
+    "same_record_identity.branch_label",
+    "same_record_identity.extraction_window_id",
+    "same_record_identity.active_root_ledger_hash",
+  ]);
+  assert.equal(
+    report.nearest_candidate_readiness.first_missing_or_rejected_field,
+    "same_record_identity.accepted_branch_chart_ref"
+  );
+  assert.equal(
+    report.nearest_candidate_readiness.first_missing_or_rejected_field_code,
+    "same_record_identity_accepted_branch_chart_ref_proxy_not_accepted"
+  );
+  assert.equal(
+    report.nearest_candidate_readiness.source_status_rejection_code,
+    "routing_evidence_only_not_accepted_branch_chart_source"
+  );
+  assert.equal(report.nearest_candidate_readiness.authorization.moving_retained_branch_certificate, false);
+
+  const refPathAudit = report.branch_chart_and_moving_certificate_ref_path_audit;
+  assert.equal(
+    refPathAudit.schema,
+    "moving_retained_branch_certificate_branch_chart_and_moving_certificate_ref_path_audit/v0"
+  );
+  assert.equal(refPathAudit.selected_candidate_id, "partial-same-record-identity-scout-fixture");
+  assert.deepEqual(refPathAudit.selected_same_record_identity, {
+    branch_label: "q:index-ratio:f2",
+    extraction_window_id: "W:index-ratio:f2:sampled-active-row-window",
+    active_root_ledger_hash: "route-root-key:2856731379702547500",
+  });
+  assert.deepEqual(refPathAudit.reference_rejection_policy.disallowed_prefixes, [
+    "priority-only:",
+    "fixture:",
+    "proxy:",
+    "candidate:",
+    "synthetic:",
+  ]);
+  assert.deepEqual(refPathAudit.missing_or_rejected_ref_fields, [
+    "same_record_identity.accepted_branch_chart_ref",
+    "moving_retained_branch_certificate_ref",
+    "branch_certificate_ref",
+  ]);
+  assert.deepEqual(refPathAudit.missing_or_rejected_ref_codes, [
+    "same_record_identity_accepted_branch_chart_ref_proxy_not_accepted",
+    "moving_retained_branch_certificate_ref_missing",
+    "branch_certificate_ref_candidate_not_accepted",
+  ]);
+  assert.equal(
+    refPathAudit.first_failure,
+    "same_record_identity_accepted_branch_chart_ref_proxy_not_accepted"
+  );
+  assert.deepEqual(refPathAudit.exact_blocking_refs, {
+    branch_certificate_ref: "candidate:branch-chart-ref-with-partial-same-record-identity",
+    same_record_identity_accepted_branch_chart_ref: "proxy:accepted-branch-chart-ref-not-issued",
+    moving_retained_branch_certificate_ref: null,
+  });
+  assert.equal(refPathAudit.accepted_ref_path_available, false);
+  assert.equal(refPathAudit.authorization.moving_retained_branch_certificate, false);
+
+  const partialScout = report.candidate_results.find(
+    (candidate) => candidate.id === "partial-same-record-identity-scout-fixture"
+  );
+  assert.equal(
+    partialScout.first_rejection_code,
+    "same_record_identity_accepted_branch_chart_ref_proxy_not_accepted"
+  );
+  assert.equal(partialScout.source_status_accepted, false);
+  assert.equal(
+    partialScout.source_status_rejection_code,
+    "routing_evidence_only_not_accepted_branch_chart_source"
+  );
+
+  const tier0 = report.candidate_results.find(
+    (candidate) => candidate.id === "a0-tier0-branch-search-continuation-ready-row"
+  );
+  assert.equal(tier0.first_rejection_code, "branch_certificate_ref_missing");
+  assert.equal(
+    tier0.source_status_rejection_code,
+    "tier0_continuation_ready_not_accepted_history_not_accepted_branch_chart_source"
+  );
+
+  const h39 = report.candidate_results.find(
+    (candidate) => candidate.id === "branch-provider-h39-aggregate-p-construction-attempt"
+  );
+  assert.equal(h39.first_rejection_code, "branch_certificate_ref_missing");
+  assert.equal(
+    h39.source_status_rejection_code,
+    "target_only_not_accepted_source_not_accepted_branch_chart_source"
+  );
+});
+
 test("moving retained branch certificate report accepts a complete same-record synthetic certificate", () => {
   const report = buildReport(completeSameRecordCertificate());
 
@@ -187,4 +317,46 @@ test("moving retained branch certificate CLI emits and validates current fixture
   );
   assert.equal(validation.valid, true);
   assert.equal(validation.certificate_verdict, "blocked_pending_accepted_branch_chart");
+});
+
+test("moving retained branch certificate CLI emits and validates accepted branch-chart source scout", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "branch-chart-source-scout-"));
+  const reportPath = path.join(tempDir, "report.json");
+
+  execFileSync(
+    process.execPath,
+    [SCRIPT_PATH, "--source-scout", ACCEPTED_BRANCH_CHART_SOURCE_SCOUT_FIXTURE, "--out", reportPath, "--pretty"],
+    { encoding: "utf8" }
+  );
+
+  const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+  assert.equal(report.candidate_count, 9);
+  assert.equal(report.accepted_count, 0);
+  assert.equal(report.first_failure, "accepted_same_record_branch_chart_absent");
+  assert.equal(report.authorization.moving_retained_branch_certificate, false);
+
+  const validation = JSON.parse(
+    execFileSync(process.execPath, [SCRIPT_PATH, "--validate-source-scout", reportPath, "--pretty"], {
+      encoding: "utf8",
+    })
+  );
+  assert.equal(validation.valid, true);
+  assert.equal(validation.candidate_count, 9);
+  assert.equal(validation.accepted_count, 0);
+  assert.equal(validation.first_failure, "accepted_same_record_branch_chart_absent");
+  assert.equal(report.nearest_candidate_readiness.selected_candidate_id, "partial-same-record-identity-scout-fixture");
+  assert.equal(
+    report.branch_chart_and_moving_certificate_ref_path_audit.first_failure,
+    "same_record_identity_accepted_branch_chart_ref_proxy_not_accepted"
+  );
+  assert.equal(
+    report.branch_chart_and_moving_certificate_ref_path_audit.exact_blocking_refs
+      .same_record_identity_accepted_branch_chart_ref,
+    "proxy:accepted-branch-chart-ref-not-issued"
+  );
+  assert.equal(
+    report.branch_chart_and_moving_certificate_ref_path_audit.exact_blocking_refs
+      .moving_retained_branch_certificate_ref,
+    null
+  );
 });

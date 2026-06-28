@@ -49,7 +49,19 @@ const SOURCE_SCOUT_SCHEMA =
   "moving_retained_branch_certificate_accepted_branch_chart_source_scout/v0";
 const SOURCE_SCOUT_MANIFEST_SCHEMA =
   "moving_retained_branch_certificate_accepted_branch_chart_source_scout_manifest/v0";
+const NEAREST_BRANCH_CHART_SOURCE_READINESS_SCHEMA =
+  "moving_retained_branch_certificate_nearest_branch_chart_source_readiness/v0";
+const BRANCH_CHART_AND_MOVING_CERTIFICATE_REF_PATH_AUDIT_SCHEMA =
+  "moving_retained_branch_certificate_branch_chart_and_moving_certificate_ref_path_audit/v0";
 const ACCEPTED_BRANCH_CHART_SOURCE_STATUS = "accepted_same_record_branch_chart";
+
+const DISALLOWED_REFERENCE_PREFIXES = [
+  "priority-only:",
+  "fixture:",
+  "proxy:",
+  "candidate:",
+  "synthetic:",
+];
 
 const SAME_RECORD_IDENTITY_ROWS = [
   {
@@ -192,6 +204,44 @@ function proxyValue(value) {
   return typeof value === "string" && value.trim().startsWith("proxy:");
 }
 
+function normalizedString(value) {
+  return present(value) ? String(value).trim() : null;
+}
+
+function referenceRejectionPolicy() {
+  return {
+    schema: "accepted_reference_rejection_policy/v0",
+    disallowed_prefixes: DISALLOWED_REFERENCE_PREFIXES,
+    disallowed_substrings: ["synthetic", ":fixture", "fixture-"],
+    applies_to_fields: [
+      "branch_certificate_ref",
+      "same_record_identity.accepted_branch_chart_ref",
+      "moving_retained_branch_certificate_ref",
+    ],
+    rule:
+      "A nonempty reference is not accepted evidence if it is priority-only, fixture, proxy, candidate, or synthetic.",
+  };
+}
+
+function rejectedRefCode(field, value) {
+  const normalized = normalizedString(value);
+  if (normalized === null) {
+    return `${field.replaceAll(".", "_")}_missing`;
+  }
+  for (const prefix of DISALLOWED_REFERENCE_PREFIXES) {
+    if (normalized.startsWith(prefix)) {
+      return `${field.replaceAll(".", "_")}_${prefix.slice(0, -1).replace("-", "_")}_not_accepted`;
+    }
+  }
+  if (normalized.includes("synthetic")) {
+    return `${field.replaceAll(".", "_")}_synthetic_not_accepted`;
+  }
+  if (normalized.includes(":fixture") || normalized.includes("fixture-")) {
+    return `${field.replaceAll(".", "_")}_fixture_not_accepted`;
+  }
+  return null;
+}
+
 function rejectionCodeForPath(rowPath, kind) {
   const suffix = kind === "proxy" ? "proxy_not_accepted" : "missing";
   return `${rowPath.replaceAll(".", "_")}_${suffix}`;
@@ -293,6 +343,7 @@ function evaluateSourceScoutField(candidate, rowPath, requirement) {
   return {
     path: rowPath,
     requirement,
+    value: value ?? null,
     present: fieldPresent,
     proxy,
     pass,
@@ -367,10 +418,179 @@ function evaluateSourceScoutCandidate(candidate) {
     source_status_rejection_code: sourceStatusCode,
     accepted,
     first_rejection_code: accepted ? null : firstRejectionCode,
+    branch_certificate_ref: candidate.branch_certificate_ref ?? null,
+    accepted_branch_chart_ref:
+      getPath(candidate, "same_record_identity.accepted_branch_chart_ref") ??
+      candidate.accepted_branch_chart_ref ??
+      null,
+    moving_retained_branch_certificate_ref: candidate.moving_retained_branch_certificate_ref ?? null,
+    same_record_identity: isObject(candidate.same_record_identity) ? candidate.same_record_identity : {},
     missing_or_rejected_fields: failedFields.map((row) => row.path),
     missing_or_rejected_field_codes: failedFields.map((row) => row.failure_code),
     field_results: fieldRows,
     evidence_note: candidate.evidence_note ?? null,
+  };
+}
+
+function rankSourceScoutCandidate(candidate) {
+  const requiredFieldPassCount = candidate.field_results.filter((row) => row.pass).length;
+  const branchReference = candidate.field_results.find((row) => row.path === "branch_certificate_ref");
+  const acceptedChartRef = candidate.field_results.find(
+    (row) => row.path === "same_record_identity.accepted_branch_chart_ref",
+  );
+  return {
+    candidate,
+    requiredFieldPassCount,
+    branchReferencePass: branchReference?.pass === true ? 1 : 0,
+    acceptedChartRefPresent: acceptedChartRef?.present === true ? 1 : 0,
+    sourceStatusAccepted: candidate.source_status_accepted ? 1 : 0,
+  };
+}
+
+function selectNearestSourceScoutCandidate(candidateResults) {
+  const rankedCandidates = candidateResults
+    .filter((candidate) => !candidate.accepted)
+    .map(rankSourceScoutCandidate)
+    .sort((left, right) => {
+      if (right.requiredFieldPassCount !== left.requiredFieldPassCount) {
+        return right.requiredFieldPassCount - left.requiredFieldPassCount;
+      }
+      if (right.branchReferencePass !== left.branchReferencePass) {
+        return right.branchReferencePass - left.branchReferencePass;
+      }
+      if (right.acceptedChartRefPresent !== left.acceptedChartRefPresent) {
+        return right.acceptedChartRefPresent - left.acceptedChartRefPresent;
+      }
+      if (right.sourceStatusAccepted !== left.sourceStatusAccepted) {
+        return right.sourceStatusAccepted - left.sourceStatusAccepted;
+      }
+      return String(left.candidate.id ?? "").localeCompare(String(right.candidate.id ?? ""));
+    });
+  return rankedCandidates[0]?.candidate ?? null;
+}
+
+function buildNearestBranchChartSourceReadiness(candidateResults) {
+  const nearest = selectNearestSourceScoutCandidate(candidateResults);
+  const requiredFieldCount = sourceScoutContract().required_candidate_fields.length;
+  const passedFields = nearest?.field_results.filter((row) => row.pass).map((row) => row.path) ?? [];
+
+  return {
+    schema: NEAREST_BRANCH_CHART_SOURCE_READINESS_SCHEMA,
+    claim_boundary:
+      "Readiness readout only: it selects the closest current branch-chart source candidate and does not accept moving_retained_branch_certificate/v0.",
+    selected_candidate_id: nearest?.id ?? null,
+    selected_candidate_family: nearest?.family ?? null,
+    selected_candidate_source_ref: nearest?.source_ref ?? null,
+    selection_basis:
+      "highest non-proxy required-field pass count, then non-proxy branch reference, then present accepted-branch-chart reference, then accepted source status",
+    required_field_count: requiredFieldCount,
+    present_non_proxy_required_field_count: passedFields.length,
+    present_non_proxy_required_fields: passedFields,
+    missing_or_rejected_fields: nearest?.missing_or_rejected_fields ?? [],
+    missing_or_rejected_field_codes: nearest?.missing_or_rejected_field_codes ?? [],
+    first_missing_or_rejected_field: nearest?.missing_or_rejected_fields?.[0] ?? null,
+    first_missing_or_rejected_field_code: nearest?.missing_or_rejected_field_codes?.[0] ?? null,
+    source_status: nearest?.source_status ?? null,
+    source_status_accepted: nearest?.source_status_accepted ?? false,
+    source_status_rejection_code: nearest?.source_status_rejection_code ?? null,
+    accepted_same_record_branch_chart_available: false,
+    required_next_object: {
+      object: "same-record accepted branch chart source for the selected moving branch window",
+      first_required_field: nearest?.missing_or_rejected_fields?.[0] ?? null,
+      first_required_field_code: nearest?.missing_or_rejected_field_codes?.[0] ?? null,
+      must_replace_proxy_values: true,
+      must_upgrade_source_status_to: ACCEPTED_BRANCH_CHART_SOURCE_STATUS,
+    },
+    authorization: {
+      moving_retained_branch_certificate: false,
+      structural_integrity_residual_vector: false,
+      photon_gate_a: false,
+      lorentz_rows: false,
+      observer_export: false,
+    },
+  };
+}
+
+function buildBranchChartAndMovingCertificateRefPathAudit(candidateResults) {
+  const nearest = selectNearestSourceScoutCandidate(candidateResults);
+  const sameRecordIdentity = nearest?.same_record_identity ?? {};
+  const branchLabel = sameRecordIdentity.branch_label ?? null;
+  const extractionWindowId = sameRecordIdentity.extraction_window_id ?? null;
+  const activeRootLedgerHash = sameRecordIdentity.active_root_ledger_hash ?? null;
+  const requiredRefs = [
+    {
+      field: "same_record_identity.accepted_branch_chart_ref",
+      required_ref_target:
+        "accepted_same_record_branch_chart for the selected branch label, extraction window, and active-root ledger",
+      current_ref: nearest?.accepted_branch_chart_ref ?? null,
+      first_failure_code: rejectedRefCode(
+        "same_record_identity.accepted_branch_chart_ref",
+        nearest?.accepted_branch_chart_ref
+      ),
+    },
+    {
+      field: "moving_retained_branch_certificate_ref",
+      required_ref_target:
+        "moving_retained_branch_certificate/v0 consuming the same branch_certificate_ref and accepted branch chart",
+      current_ref: nearest?.moving_retained_branch_certificate_ref ?? null,
+      first_failure_code: rejectedRefCode(
+        "moving_retained_branch_certificate_ref",
+        nearest?.moving_retained_branch_certificate_ref
+      ),
+    },
+    {
+      field: "branch_certificate_ref",
+      required_ref_target:
+        "non-fixture retained branch certificate for the selected moving branch window",
+      current_ref: nearest?.branch_certificate_ref ?? null,
+      first_failure_code: rejectedRefCode("branch_certificate_ref", nearest?.branch_certificate_ref),
+    },
+  ];
+  const missingOrRejectedRefs = requiredRefs.filter((ref) => ref.first_failure_code !== null);
+
+  return {
+    schema: BRANCH_CHART_AND_MOVING_CERTIFICATE_REF_PATH_AUDIT_SCHEMA,
+    claim_boundary:
+      "Fail-closed ref-path audit only: it preserves the nearest accepted-branch-chart and moving-certificate blockers and does not accept moving_retained_branch_certificate/v0.",
+    selected_candidate_id: nearest?.id ?? null,
+    selected_candidate_family: nearest?.family ?? null,
+    selected_candidate_source_ref: nearest?.source_ref ?? null,
+    selected_same_record_identity: {
+      branch_label: branchLabel,
+      extraction_window_id: extractionWindowId,
+      active_root_ledger_hash: activeRootLedgerHash,
+    },
+    source_status: nearest?.source_status ?? null,
+    source_status_rejection_code: nearest?.source_status_rejection_code ?? null,
+    source_refs_checked: candidateResults.map((candidate) => candidate.source_ref).filter(Boolean),
+    reference_rejection_policy: referenceRejectionPolicy(),
+    required_ref_path: requiredRefs,
+    missing_or_rejected_ref_fields: missingOrRejectedRefs.map((ref) => ref.field),
+    missing_or_rejected_ref_codes: missingOrRejectedRefs.map((ref) => ref.first_failure_code),
+    first_failure: missingOrRejectedRefs[0]?.first_failure_code ?? "accepted_same_record_branch_chart_absent",
+    exact_blocking_refs: {
+      branch_certificate_ref: nearest?.branch_certificate_ref ?? null,
+      same_record_identity_accepted_branch_chart_ref: nearest?.accepted_branch_chart_ref ?? null,
+      moving_retained_branch_certificate_ref: nearest?.moving_retained_branch_certificate_ref ?? null,
+    },
+    required_next_object: {
+      object:
+        "same-record accepted branch chart plus moving_retained_branch_certificate/v0 ref on one retained moving branch window",
+      branch_label: branchLabel,
+      extraction_window_id: extractionWindowId,
+      active_root_ledger_hash: activeRootLedgerHash,
+      must_replace_proxy_fixture_candidate_synthetic_refs: true,
+      must_upgrade_source_status_to: ACCEPTED_BRANCH_CHART_SOURCE_STATUS,
+    },
+    accepted_ref_path_available: false,
+    authorization: {
+      accepted_branch_chart_source_ready: false,
+      moving_retained_branch_certificate: false,
+      structural_integrity_residual_vector: false,
+      photon_gate_a: false,
+      lorentz_rows: false,
+      observer_export: false,
+    },
   };
 }
 
@@ -421,6 +641,9 @@ export function buildAcceptedBranchChartSourceScout(manifest, options = {}) {
 
   const candidateResults = manifest.candidates.map(evaluateSourceScoutCandidate);
   const acceptedCandidates = candidateResults.filter((candidate) => candidate.accepted);
+  const nearestCandidateReadiness = buildNearestBranchChartSourceReadiness(candidateResults);
+  const branchChartAndMovingCertificateRefPathAudit =
+    buildBranchChartAndMovingCertificateRefPathAudit(candidateResults);
 
   return {
     schema: SOURCE_SCOUT_SCHEMA,
@@ -442,6 +665,8 @@ export function buildAcceptedBranchChartSourceScout(manifest, options = {}) {
         : candidateResults.find((candidate) => candidate.first_rejection_code)?.first_rejection_code ??
           "accepted_same_record_branch_chart_candidate_absent",
     candidate_results: candidateResults,
+    nearest_candidate_readiness: nearestCandidateReadiness,
+    branch_chart_and_moving_certificate_ref_path_audit: branchChartAndMovingCertificateRefPathAudit,
     required_next_object: {
       object:
         "accepted_same_record_branch_chart on one moving branch window",
@@ -537,6 +762,40 @@ export function sourceScoutValidationErrors(report) {
     errors.push("candidate_results must be an array");
   } else if (report.candidate_results.length !== report.candidate_count) {
     errors.push("candidate_results length must equal candidate_count");
+  }
+  if (!isObject(report.nearest_candidate_readiness)) {
+    errors.push("nearest_candidate_readiness must be an object");
+  } else {
+    if (report.nearest_candidate_readiness.schema !== NEAREST_BRANCH_CHART_SOURCE_READINESS_SCHEMA) {
+      errors.push(`nearest_candidate_readiness schema must be ${NEAREST_BRANCH_CHART_SOURCE_READINESS_SCHEMA}`);
+    }
+    if (report.nearest_candidate_readiness.accepted_same_record_branch_chart_available !== false) {
+      errors.push("nearest_candidate_readiness must remain non-authorizing");
+    }
+    if (report.nearest_candidate_readiness.authorization?.moving_retained_branch_certificate !== false) {
+      errors.push("nearest_candidate_readiness must not authorize moving_retained_branch_certificate");
+    }
+  }
+  if (!isObject(report.branch_chart_and_moving_certificate_ref_path_audit)) {
+    errors.push("branch_chart_and_moving_certificate_ref_path_audit must be an object");
+  } else {
+    if (
+      report.branch_chart_and_moving_certificate_ref_path_audit.schema !==
+      BRANCH_CHART_AND_MOVING_CERTIFICATE_REF_PATH_AUDIT_SCHEMA
+    ) {
+      errors.push(
+        `branch_chart_and_moving_certificate_ref_path_audit schema must be ${BRANCH_CHART_AND_MOVING_CERTIFICATE_REF_PATH_AUDIT_SCHEMA}`
+      );
+    }
+    if (report.branch_chart_and_moving_certificate_ref_path_audit.accepted_ref_path_available !== false) {
+      errors.push("branch_chart_and_moving_certificate_ref_path_audit must remain non-authorizing");
+    }
+    if (
+      report.branch_chart_and_moving_certificate_ref_path_audit.authorization
+        ?.moving_retained_branch_certificate !== false
+    ) {
+      errors.push("branch_chart_and_moving_certificate_ref_path_audit must not authorize moving_retained_branch_certificate");
+    }
   }
   if (report.accepted_count === 0 && report.first_failure !== "accepted_same_record_branch_chart_absent") {
     errors.push("zero-accepted source scouts must carry accepted_same_record_branch_chart_absent");

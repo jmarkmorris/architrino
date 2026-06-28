@@ -22,6 +22,23 @@ function consumer(report, id) {
   return report.consumer_results.find((entry) => entry.consumer_id === id);
 }
 
+function h39Candidate(manifest) {
+  return manifest.candidates.find(
+    (candidate) =>
+      candidate.id ===
+      "h39-aggregate-p-provider-preaggregation-construction-attempt"
+  );
+}
+
+function h39SourceMapProviderObjectReadout(report) {
+  return report.provider_object_construction_attempt.candidate_attempts.find(
+    (candidate) =>
+      candidate.candidate_id ===
+      "h39-aggregate-p-provider-preaggregation-construction-attempt"
+  ).source_contract_readout.source_provenance_refinement
+    .source_map_provider_object_branch_interval_readout;
+}
+
 test("branch-provider evidence report rejects current fixture, toy, proxy, status-shell, and target candidates", () => {
   const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
   const report = buildReport(fixture, { sourceRef: CURRENT_FIXTURE });
@@ -399,6 +416,513 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
       "normalization_identity_ref",
     ]
   );
+  assert.equal(sourceMapProviderObjectReadout.required_terminal_row_ids.length, 15);
+  assert.deepEqual(sourceMapProviderObjectReadout.required_terminal_row_ids, [
+    "speed.0.first-y:h37",
+    "speed.0.first-y:h36",
+    "speed.0.first-y:h35",
+    "speed.1.first-y:h37",
+    "speed.1.first-y:h36",
+    "speed.1.first-y:h35",
+    "speed.2.first-y:h37",
+    "speed.2.first-y:h36",
+    "speed.2.first-y:h35",
+    "speed.3.first-y:h37",
+    "speed.3.first-y:h36",
+    "speed.3.first-y:h35",
+    "speed.4.first-y:h37",
+    "speed.4.first-y:h36",
+    "speed.4.first-y:h35",
+  ]);
+  assert.equal(sourceMapProviderObjectReadout.required_branch_row_ids.length, 30);
+  assert.deepEqual(sourceMapProviderObjectReadout.required_branch_row_ids.slice(0, 6), [
+    "speed.0.first-y:h37:P_-",
+    "speed.0.first-y:h37:P_+",
+    "speed.0.first-y:h36:P_-",
+    "speed.0.first-y:h36:P_+",
+    "speed.0.first-y:h35:P_-",
+    "speed.0.first-y:h35:P_+",
+  ]);
+  assert.deepEqual(sourceMapProviderObjectReadout.required_branch_row_ids.slice(-4), [
+    "speed.4.first-y:h36:P_-",
+    "speed.4.first-y:h36:P_+",
+    "speed.4.first-y:h35:P_-",
+    "speed.4.first-y:h35:P_+",
+  ]);
+  assert.equal(
+    sourceMapProviderObjectReadout.required_branch_rows[0]
+      .provider_object_branch_target,
+    "P_-"
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.required_branch_rows[1]
+      .provider_object_branch_target,
+    "P_+"
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.interval_class_distinction
+      .lambda_terminal_witness_branch_intervals
+      .admissible_as_provider_object_branch_interval,
+    false
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.interval_class_distinction
+      .lambda_terminal_witness_branch_intervals.status,
+    "available-comparison-witness-only"
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.interval_class_distinction
+      .source_map_provider_branch_intervals.status,
+    "missing-provider-object-payload"
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.interval_class_distinction
+      .provider_object_branch_intervals.status,
+    "missing-provider-object-payload"
+  );
+  assert.deepEqual(sourceMapProviderObjectReadout.same_record_binding_fields, [
+    "same_domain_record_ref",
+    "terminal_graph_cell_id",
+    "terminal_h_index",
+    "branch",
+    "source_y_order",
+    "required_xi_derivative_order",
+    "source_map_provider_branch_intervals.source_map_provider_object_branch_interval",
+    "provider_object_branch_intervals.provider_object_branch_interval",
+    "same-domain-branch-bearing-P_b-map",
+    "branch_projection_or_alpha_map",
+    "pushforward_operator_ref",
+    "normalization_identity_ref",
+  ]);
+  const branchSplitMapAvailability =
+    sourceMapProviderObjectReadout
+      .source_map_provider_object_branch_split_map_availability;
+  assert.equal(
+    branchSplitMapAvailability.schema,
+    "branch_provider_candidate_source_map_provider_object_branch_split_map_availability/v0"
+  );
+  assert.equal(
+    branchSplitMapAvailability.status,
+    "source-map-provider-object-branch-split-map-source-field-not-emitted"
+  );
+  assert.equal(branchSplitMapAvailability.required_terminal_row_count, 15);
+  assert.equal(branchSplitMapAvailability.required_branch_row_count, 30);
+  assert.deepEqual(
+    branchSplitMapAvailability.required_terminal_row_ids,
+    sourceMapProviderObjectReadout.required_terminal_row_ids
+  );
+  assert.deepEqual(
+    branchSplitMapAvailability.required_branch_row_ids,
+    sourceMapProviderObjectReadout.required_branch_row_ids
+  );
+  assert.equal(
+    branchSplitMapAvailability.source_field,
+    "source_map_provider_object_branch_split_map_available_terminal_row_count"
+  );
+  assert.equal(
+    branchSplitMapAvailability.source_field_emitted_by_provider_readout,
+    false
+  );
+  assert.equal(
+    branchSplitMapAvailability.observed_available_terminal_row_count,
+    0
+  );
+  assert.equal(branchSplitMapAvailability.branch_split_map_populated, false);
+  assert.equal(
+    branchSplitMapAvailability.branch_split_map_count_readout.observed_count,
+    0
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_split_map_count_readout.required_count,
+    15
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_split_map_count_readout
+      .emitted_by_provider_readout,
+    false
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_interval_count_readout.observed_count,
+    0
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_interval_count_readout.required_count,
+    30
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .source_field,
+    "provider_object_branch_antisymmetric_equation_available_terminal_row_count"
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .required_terminal_row_count,
+    15
+  );
+  assert.deepEqual(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .required_terminal_row_ids,
+    sourceMapProviderObjectReadout.required_terminal_row_ids
+  );
+  assert.deepEqual(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .required_branch_row_ids,
+    sourceMapProviderObjectReadout.required_branch_row_ids
+  );
+  assert.deepEqual(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .available_terminal_row_ids,
+    []
+  );
+  assert.deepEqual(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .missing_terminal_row_ids,
+    sourceMapProviderObjectReadout.required_terminal_row_ids
+  );
+  assert.deepEqual(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .missing_terminal_rows,
+    sourceMapProviderObjectReadout.required_terminal_rows
+  );
+  assert.deepEqual(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .available_branch_row_ids,
+    []
+  );
+  assert.deepEqual(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .missing_branch_row_ids,
+    sourceMapProviderObjectReadout.required_branch_row_ids
+  );
+  assert.deepEqual(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .missing_branch_rows,
+    sourceMapProviderObjectReadout.required_branch_rows
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .missing_branch_row_count,
+    30
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .exact_missing_terminal_rows_known,
+    true
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .exact_missing_branch_rows_known,
+    true
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .missing_terminal_row_count,
+    15
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .emitted_by_provider_readout,
+    true
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .emitted_surface,
+    "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor"
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .emitted_field,
+    "provider_object_branch_antisymmetric_equation_available_terminal_row_count"
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .all_required_terminal_rows_available,
+    false
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout
+      .all_required_terminal_rows_missing,
+    true
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout.complete,
+    false
+  );
+  assert.equal(
+    branchSplitMapAvailability.explicit_provider_object_branch_row_readout
+      .observed_count,
+    0
+  );
+  assert.equal(
+    branchSplitMapAvailability.branch_attributed_source_term_readout
+      .observed_count,
+    0
+  );
+  assert.equal(
+    branchSplitMapAvailability.first_missing_source_field,
+    "source_map_provider_object_branch_split_map_available_terminal_row_count"
+  );
+  assert.equal(
+    branchSplitMapAvailability
+      .next_missing_source_field_after_branch_split_map_count,
+    "provider_object_branch_antisymmetric_equation_available_terminal_row_count"
+  );
+  assert.equal(
+    branchSplitMapAvailability
+      .next_missing_source_surface_after_branch_split_map_count,
+    "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor"
+  );
+  assert.equal(
+    branchSplitMapAvailability.smallest_next_evidence_object,
+    "same-domain provider-object branch antisymmetric equation A_P=P_- - P_+ or explicit expression-level P_- / P_+ branch rows on all 15 terminal rows"
+  );
+  assert.equal(
+    branchSplitMapAvailability.provider_object_branch_intervals_present,
+    false
+  );
+  assert.equal(
+    branchSplitMapAvailability.provider_ready_authorized_by_this_availability,
+    false
+  );
+  assert.equal(branchSplitMapAvailability.downstream_consumer_authorization, false);
+  const sourceFieldAudit =
+    sourceMapProviderObjectReadout.source_field_availability_audit;
+  assert.equal(
+    sourceFieldAudit.schema,
+    "branch_provider_candidate_source_map_provider_object_branch_interval_source_field_availability_audit/v0"
+  );
+  assert.equal(
+    sourceFieldAudit.status,
+    "source-map-provider-object-branch-interval-source-fields-incomplete"
+  );
+  assert.equal(sourceFieldAudit.required_terminal_row_count, 15);
+  assert.equal(sourceFieldAudit.required_branch_row_count, 30);
+  assert.equal(sourceFieldAudit.inspected_h39_diagnostic_field_refs.length, 5);
+  assert.deepEqual(
+    sourceFieldAudit.inspected_h39_diagnostic_field_refs.map(
+      (entry) => entry.surface
+    ),
+    [
+      "terminal-expression-level-source-map-provider-object-branch-producer",
+      "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor",
+      "terminal-expression-level-source-map-provider-object-branch-split-map-underdetermination",
+      "terminal-row-provider-object-replay",
+      "terminal-source-covariance-provider-object-branch-residual-extractor",
+    ]
+  );
+  const sourceFieldsByKey = Object.fromEntries(
+    sourceFieldAudit.source_fields.map((field) => [field.key, field])
+  );
+  assert.equal(
+    sourceFieldAudit.first_missing_source_field,
+    "source_map_provider_object_branch_split_map_available_terminal_row_count"
+  );
+  assert.equal(
+    sourceFieldAudit.first_missing_identity_family,
+    "same-domain-branch-bearing-P_b-map"
+  );
+  assert.equal(
+    sourceFieldAudit.first_missing_provider_field,
+    "source_map_provider_object_branch_split_map_available_terminal_row_count"
+  );
+  assert.equal(
+    sourceFieldsByKey.branch_split_map.field,
+    "source_map_provider_object_branch_split_map_available_terminal_row_count"
+  );
+  assert.equal(sourceFieldsByKey.branch_split_map.observed_count, 0);
+  assert.equal(sourceFieldsByKey.branch_split_map.required_count, 15);
+  assert.equal(sourceFieldsByKey.branch_split_map.complete, false);
+  assert.equal(
+    sourceFieldsByKey.branch_antisymmetric_equation.field,
+    "provider_object_branch_antisymmetric_equation_available_terminal_row_count"
+  );
+  assert.equal(sourceFieldsByKey.branch_antisymmetric_equation.observed_count, 0);
+  assert.equal(sourceFieldsByKey.branch_antisymmetric_equation.required_count, 15);
+  assert.equal(
+    sourceFieldsByKey.branch_antisymmetric_equation.emitted_by_provider_readout,
+    true
+  );
+  assert.equal(sourceFieldsByKey.branch_antisymmetric_equation.complete, false);
+  assert.equal(sourceFieldsByKey.candidate_intervals.observed_count, 0);
+  assert.equal(
+    sourceFieldsByKey.candidate_intervals.emitted_by_provider_readout,
+    false
+  );
+  assert.equal(sourceFieldsByKey.admissible_intervals.observed_count, 0);
+  assert.equal(sourceFieldsByKey.actual_intervals.observed_count, 0);
+  assert.equal(sourceFieldsByKey.actual_intervals.required_count, 30);
+  assert.equal(
+    sourceFieldsByKey.source_map_provider_branch_intervals_payload.present,
+    false
+  );
+  assert.equal(
+    sourceFieldsByKey.provider_object_branch_intervals_payload.present,
+    false
+  );
+  assert.deepEqual(
+    sourceFieldAudit.identity_families.map((identity) => [
+      identity.identity_kind,
+      identity.present,
+      identity.complete,
+    ]),
+    [
+      ["same-domain-branch-bearing-P_b-map", false, false],
+      ["branch_projection_or_alpha_map", false, false],
+      ["pushforward_operator_ref", false, false],
+      ["normalization_identity_ref", false, false],
+    ]
+  );
+  assert.equal(sourceFieldAudit.provider_ready_authorized_by_this_audit, false);
+  assert.equal(sourceFieldAudit.downstream_consumer_authorization, false);
+  const producerSideBranchRowEvidenceTarget =
+    sourceMapProviderObjectReadout
+      .producer_side_same_domain_branch_row_evidence_target;
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.schema,
+    "branch_provider_candidate_producer_side_same_domain_branch_row_evidence_target/v0"
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.claim_level,
+    "priority-only target, not provider acceptance"
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.status,
+    "producer-side-same-domain-branch-row-evidence-missing"
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.target_kind,
+    "same-domain-expression-level-source-map-provider-object-branch-row-evidence"
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.missing_producer_object_kind,
+    "same-domain-expression-level-provider-object-branch-antisymmetric-equation-or-explicit-branch-rows"
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.required_producer_object,
+    "same-domain provider-object branch antisymmetric equation A_P=P_- - P_+ or explicit expression-level P_- / P_+ branch rows on all 15 terminal rows"
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.producer_object_formula,
+    "A_P=P_- - P_+; u_P=A_P/2"
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.producer_source_surface,
+    "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor"
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.producer_source_field,
+    "provider_object_branch_antisymmetric_equation_available_terminal_row_count"
+  );
+  assert.deepEqual(
+    producerSideBranchRowEvidenceTarget.required_terminal_row_ids,
+    sourceMapProviderObjectReadout.required_terminal_row_ids
+  );
+  assert.deepEqual(
+    producerSideBranchRowEvidenceTarget.required_branch_row_ids,
+    sourceMapProviderObjectReadout.required_branch_row_ids
+  );
+  assert.deepEqual(
+    producerSideBranchRowEvidenceTarget.current_missing_terminal_row_ids,
+    sourceMapProviderObjectReadout.required_terminal_row_ids
+  );
+  assert.deepEqual(
+    producerSideBranchRowEvidenceTarget.current_missing_branch_row_ids,
+    sourceMapProviderObjectReadout.required_branch_row_ids
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.current_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.current_missing_terminal_row_count,
+    15
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.current_missing_branch_row_count,
+    30
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.current_source_counts
+      .provider_object_branch_antisymmetric_equation_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.current_source_counts
+      .explicit_provider_object_branch_row_count,
+    0
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.current_source_counts
+      .source_term_provider_branch_attributed_term_row_count,
+    0
+  );
+  assert.deepEqual(
+    producerSideBranchRowEvidenceTarget.same_domain_identity_fields,
+    sourceMapProviderObjectReadout.same_record_binding_fields
+  );
+  assert.deepEqual(
+    producerSideBranchRowEvidenceTarget.required_identity_kinds,
+    [
+      "same-domain-branch-bearing-P_b-map",
+      "branch_projection_or_alpha_map",
+      "pushforward_operator_ref",
+      "normalization_identity_ref",
+    ]
+  );
+  assert.deepEqual(
+    producerSideBranchRowEvidenceTarget.required_interval_payloads,
+    [
+      "source_map_provider_branch_intervals",
+      "provider_object_branch_intervals",
+    ]
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.first_missing_provider_field,
+    "source_map_provider_object_branch_split_map_available_terminal_row_count"
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.negative_control.ref,
+    "aggregate-P-provider-probe-born-aggregate-only"
+  );
+  assert.deepEqual(
+    producerSideBranchRowEvidenceTarget.negative_control
+      .rejected_candidate_source_kinds,
+    [
+      "lambda-terminal-witness-branch-interval",
+      "aggregate-P-only-provider-row",
+      "variable-owned-alpha-candidate",
+      "row-local-expression-branch-feed",
+    ]
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.negative_control
+      .aggregate_p_only_rejected,
+    true
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.negative_control
+      .lambda_terminal_witness_only_rejected,
+    true
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.negative_control
+      .branch_attributed_source_terms_without_provider_object_rejected,
+    true
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget
+      .provider_ready_authorized_by_this_target,
+    false
+  );
+  assert.equal(
+    producerSideBranchRowEvidenceTarget.downstream_consumer_authorization,
+    false
+  );
   assert.equal(
     sourceMapProviderObjectReadout.positive_evidence_target.schema,
     "branch_provider_candidate_source_map_provider_object_branch_interval_target/v0"
@@ -444,6 +968,26 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
     sourceMapProviderObjectReadout.positive_evidence_target
       .same_record_binding_required,
     true
+  );
+  assert.deepEqual(
+    sourceMapProviderObjectReadout.positive_evidence_target
+      .required_terminal_row_ids,
+    sourceMapProviderObjectReadout.required_terminal_row_ids
+  );
+  assert.deepEqual(
+    sourceMapProviderObjectReadout.positive_evidence_target
+      .required_branch_row_ids,
+    sourceMapProviderObjectReadout.required_branch_row_ids
+  );
+  assert.deepEqual(
+    sourceMapProviderObjectReadout.positive_evidence_target
+      .required_same_record_binding_fields,
+    sourceMapProviderObjectReadout.same_record_binding_fields
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.positive_evidence_target
+      .lambda_terminal_witness_branch_intervals_are_provider_object_intervals,
+    false
   );
   assert.equal(
     sourceMapProviderObjectReadout.positive_evidence_target
@@ -698,6 +1242,53 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
       (readout) =>
         readout.source_contract_readout?.source_provenance_refinement
           ?.source_map_provider_object_branch_interval_readout
+          ?.source_map_provider_object_branch_split_map_availability
+          ?.provider_ready_authorized_by_this_availability === false
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.source_map_provider_object_branch_interval_readout
+          ?.source_map_provider_object_branch_split_map_availability
+          ?.next_missing_source_field_after_branch_split_map_count ===
+        "provider_object_branch_antisymmetric_equation_available_terminal_row_count"
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) => {
+        const equationReadout =
+          readout.source_contract_readout?.source_provenance_refinement
+            ?.source_map_provider_object_branch_interval_readout
+            ?.source_map_provider_object_branch_split_map_availability
+            ?.branch_antisymmetric_equation_readout;
+        return (
+          equationReadout?.emitted_by_provider_readout === true &&
+          equationReadout?.available_terminal_row_count === 0 &&
+          equationReadout?.missing_terminal_row_count === 15 &&
+          equationReadout?.missing_branch_row_count === 30 &&
+          equationReadout?.exact_missing_terminal_rows_known === true &&
+          equationReadout?.exact_missing_branch_rows_known === true &&
+          Array.isArray(equationReadout?.missing_terminal_row_ids) &&
+          equationReadout.missing_terminal_row_ids.length === 15 &&
+          Array.isArray(equationReadout?.missing_branch_row_ids) &&
+          equationReadout.missing_branch_row_ids.length === 30 &&
+          equationReadout?.all_required_terminal_rows_missing === true &&
+          equationReadout?.complete === false
+        );
+      }
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.source_map_provider_object_branch_interval_readout
           ?.positive_evidence_target
           ?.accepted_provider_object_branch_interval_count_required === 30
     ),
@@ -761,6 +1352,91 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
     ).consumer_specific_missing_fields,
     ["conservation_pullback_hash"]
   );
+});
+
+test("branch-provider evidence report keeps a partial producer-side branch-row object fail-closed", () => {
+  const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
+  const h39 = h39Candidate(fixture);
+  const extractor =
+    h39.source_contract_readout.source_provenance_refinement
+      .terminal_expression_level_source_map_provider_object_branch_antisymmetric_equation_extractor;
+  const terminalRowIds =
+    extractor.provider_object_branch_antisymmetric_equation_missing_terminal_row_ids;
+  const branchRowIds =
+    extractor.provider_object_branch_antisymmetric_equation_missing_branch_row_ids;
+  const missingTerminalRowIds = terminalRowIds.slice(-1);
+  const missingBranchRowIds = branchRowIds.slice(-2);
+
+  extractor.provider_object_branch_antisymmetric_equation_available_terminal_row_count = 14;
+  extractor.provider_object_branch_antisymmetric_equation_missing_terminal_row_count = 1;
+  extractor.provider_object_branch_antisymmetric_equation_available_terminal_row_ids =
+    terminalRowIds.slice(0, -1);
+  extractor.provider_object_branch_antisymmetric_equation_missing_terminal_row_ids =
+    missingTerminalRowIds;
+  extractor.provider_object_branch_antisymmetric_equation_available_branch_row_ids =
+    branchRowIds.slice(0, -2);
+  extractor.provider_object_branch_antisymmetric_equation_missing_branch_row_ids =
+    missingBranchRowIds;
+  extractor.explicit_provider_object_branch_row_count = 28;
+  extractor.all_provider_object_branch_antisymmetric_equations_missing = false;
+
+  const report = buildReport(fixture, { sourceRef: CURRENT_FIXTURE });
+  const readout = h39SourceMapProviderObjectReadout(report);
+  const branchSplitMapAvailability =
+    readout.source_map_provider_object_branch_split_map_availability;
+  const equationReadout =
+    branchSplitMapAvailability.branch_antisymmetric_equation_readout;
+  const producerSideTarget =
+    readout.producer_side_same_domain_branch_row_evidence_target;
+
+  assert.equal(report.provider_verdict, "same_domain_branch_provider_missing");
+  assert.equal(report.summary.provider_ready_consumer_count, 0);
+  assert.equal(
+    report.provider_object_construction_attempt.summary.ready_candidate_count,
+    0
+  );
+  assert.equal(report.authorization.rank2_accepted_transition_source_ready, false);
+  assert.equal(report.authorization.rank4_pressure_row_provider_ready, false);
+  assert.equal(report.authorization.rank5_bounded_speed_live_ledger_ready, false);
+  assert.equal(report.authorization.rank6_moving_branch_provider_ready, false);
+  assert.equal(branchSplitMapAvailability.branch_split_map_populated, false);
+  assert.equal(equationReadout.available_terminal_row_count, 14);
+  assert.equal(equationReadout.missing_terminal_row_count, 1);
+  assert.deepEqual(equationReadout.missing_terminal_row_ids, missingTerminalRowIds);
+  assert.deepEqual(equationReadout.missing_branch_row_ids, missingBranchRowIds);
+  assert.equal(equationReadout.missing_branch_row_count, 2);
+  assert.equal(equationReadout.all_required_terminal_rows_available, false);
+  assert.equal(equationReadout.complete, false);
+  assert.equal(
+    branchSplitMapAvailability.explicit_provider_object_branch_row_readout
+      .observed_count,
+    28
+  );
+  assert.equal(producerSideTarget.status, "producer-side-same-domain-branch-row-evidence-missing");
+  assert.equal(producerSideTarget.current_available_terminal_row_count, 14);
+  assert.equal(producerSideTarget.current_missing_terminal_row_count, 1);
+  assert.deepEqual(
+    producerSideTarget.current_missing_terminal_row_ids,
+    missingTerminalRowIds
+  );
+  assert.deepEqual(
+    producerSideTarget.current_missing_branch_row_ids,
+    missingBranchRowIds
+  );
+  assert.equal(producerSideTarget.current_missing_branch_row_count, 2);
+  assert.equal(
+    producerSideTarget.required_producer_object,
+    "same-domain provider-object branch antisymmetric equation A_P=P_- - P_+ or explicit expression-level P_- / P_+ branch rows on all 15 terminal rows"
+  );
+  assert.equal(
+    producerSideTarget.negative_control.ref,
+    "aggregate-P-provider-probe-born-aggregate-only"
+  );
+  assert.equal(
+    producerSideTarget.provider_ready_authorized_by_this_target,
+    false
+  );
+  assert.equal(producerSideTarget.downstream_consumer_authorization, false);
 });
 
 test("branch-provider evidence report can accept a complete non-fixture provider per consumer", () => {

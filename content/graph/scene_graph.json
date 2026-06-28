@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 550,
-      "edges": 1303,
-      "scenes": 359,
+      "nodes": 560,
+      "edges": 1313,
+      "scenes": 364,
       "markdownIndexes": 0,
-      "markdownDocs": 178,
+      "markdownDocs": 183,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2303,6 +2303,36 @@
       "nodeType": "scene"
     },
     {
+      "id": "outreach__comics__citation_needed",
+      "name": "Citation Needed",
+      "path": "content/scenes/outreach/comics/citation_needed.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__alchemy_remake",
+      "name": "Old Alchemy, New Apparatus",
+      "path": "content/scenes/outreach/comics/alchemy_remake.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__smbh_remake",
+      "name": "Candidate, Not A Throne",
+      "path": "content/scenes/outreach/comics/smbh_remake.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__birthday_cake_observer_era",
+      "name": "Birthday Cake For The Observer Era",
+      "path": "content/scenes/outreach/comics/birthday_cake_observer_era.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__jets_remake",
+      "name": "What Counts As Evidence?",
+      "path": "content/scenes/outreach/comics/jets_remake.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2711,6 +2741,24 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/outreach/comics/alchemy-remake.md",
+      "name": "Old Alchemy, New Apparatus",
+      "path": "content/markdown/aaa/outreach/comics/alchemy-remake.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
+      "name": "Birthday Cake For The Observer Era",
+      "path": "content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/citation-needed.md",
+      "name": "Citation Needed",
+      "path": "content/markdown/aaa/outreach/comics/citation-needed.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/outreach/comics/curvefit-remake.md",
       "name": "Four Theories, One Oval",
       "path": "content/markdown/aaa/outreach/comics/curvefit-remake.md",
@@ -2726,6 +2774,12 @@
       "id": "content/markdown/aaa/outreach/comics/group-project-assumption.md",
       "name": "Group Project Assumption",
       "path": "content/markdown/aaa/outreach/comics/group-project-assumption.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/jets-remake.md",
+      "name": "What Counts As Evidence?",
+      "path": "content/markdown/aaa/outreach/comics/jets-remake.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2750,6 +2804,12 @@
       "id": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
       "name": "Signals From Earlier",
       "path": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/smbh-remake.md",
+      "name": "Candidate, Not A Throne",
+      "path": "content/markdown/aaa/outreach/comics/smbh-remake.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5335,6 +5395,33 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/outreach/comics/alchemy_remake.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__alchemy_remake",
+      "name": "Old Alchemy, New Apparatus",
+      "path": "content/scenes/outreach/comics/alchemy_remake.json",
+      "searchTarget": "content/scenes/outreach/comics/alchemy_remake.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/birthday_cake_observer_era.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__birthday_cake_observer_era",
+      "name": "Birthday Cake For The Observer Era",
+      "path": "content/scenes/outreach/comics/birthday_cake_observer_era.json",
+      "searchTarget": "content/scenes/outreach/comics/birthday_cake_observer_era.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/citation_needed.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__citation_needed",
+      "name": "Citation Needed",
+      "path": "content/scenes/outreach/comics/citation_needed.json",
+      "searchTarget": "content/scenes/outreach/comics/citation_needed.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/outreach/comics/curvefit_remake.json",
       "nodeType": "scene",
       "id": "outreach__comics__curvefit_remake",
@@ -5359,6 +5446,15 @@
       "name": "Group Project Assumption",
       "path": "content/scenes/outreach/comics/group_project_assumption.json",
       "searchTarget": "content/scenes/outreach/comics/group_project_assumption.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/jets_remake.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__jets_remake",
+      "name": "What Counts As Evidence?",
+      "path": "content/scenes/outreach/comics/jets_remake.json",
+      "searchTarget": "content/scenes/outreach/comics/jets_remake.json",
       "implicit": false
     },
     {
@@ -5395,6 +5491,15 @@
       "name": "Signals From Earlier",
       "path": "content/scenes/outreach/comics/signals_from_earlier.json",
       "searchTarget": "content/scenes/outreach/comics/signals_from_earlier.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/smbh_remake.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__smbh_remake",
+      "name": "Candidate, Not A Throne",
+      "path": "content/scenes/outreach/comics/smbh_remake.json",
+      "searchTarget": "content/scenes/outreach/comics/smbh_remake.json",
       "implicit": false
     },
     {
@@ -7216,6 +7321,33 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/alchemy-remake.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/alchemy-remake.md",
+      "name": "Old Alchemy, New Apparatus",
+      "path": "content/markdown/aaa/outreach/comics/alchemy-remake.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/alchemy-remake.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
+      "name": "Birthday Cake For The Observer Era",
+      "path": "content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/citation-needed.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/citation-needed.md",
+      "name": "Citation Needed",
+      "path": "content/markdown/aaa/outreach/comics/citation-needed.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/citation-needed.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/curvefit-remake.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/outreach/comics/curvefit-remake.md",
@@ -7240,6 +7372,15 @@
       "name": "Group Project Assumption",
       "path": "content/markdown/aaa/outreach/comics/group-project-assumption.md",
       "searchTarget": "content/markdown/aaa/outreach/comics/group-project-assumption.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/jets-remake.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/jets-remake.md",
+      "name": "What Counts As Evidence?",
+      "path": "content/markdown/aaa/outreach/comics/jets-remake.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/jets-remake.md",
       "implicit": false
     },
     {
@@ -7276,6 +7417,15 @@
       "name": "Signals From Earlier",
       "path": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
       "searchTarget": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/smbh-remake.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/smbh-remake.md",
+      "name": "Candidate, Not A Throne",
+      "path": "content/markdown/aaa/outreach/comics/smbh-remake.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/smbh-remake.md",
       "implicit": false
     },
     {
@@ -11686,17 +11836,38 @@
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/alchemy_remake.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/birthday_cake_observer_era.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[10]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/citation_needed.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/curvefit_remake.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/first_page_problem.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
@@ -11707,24 +11878,31 @@
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/jets_remake.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/new_theory_same_budget.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/office_hours_for_a_claim.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/show_the_residuals.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
@@ -11735,10 +11913,17 @@
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/smbh_remake.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/we_need_to_talk_remake.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/outreach/outreach.json",
@@ -13225,6 +13410,27 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/outreach/comics/alchemy_remake.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/alchemy-remake.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/alchemy_remake.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/birthday_cake_observer_era.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/birthday_cake_observer_era.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/citation_needed.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/citation-needed.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/citation_needed.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/outreach/comics/curvefit_remake.json",
       "to": "markdown_doc:content/markdown/aaa/outreach/comics/curvefit-remake.md",
       "edgeType": "markdown_doc",
@@ -13243,6 +13449,13 @@
       "to": "markdown_doc:content/markdown/aaa/outreach/comics/group-project-assumption.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/outreach/comics/group_project_assumption.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/jets_remake.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/jets-remake.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/jets_remake.json",
       "field": "scene.source.path"
     },
     {
@@ -13271,6 +13484,13 @@
       "to": "markdown_doc:content/markdown/aaa/outreach/comics/signals-from-earlier.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/outreach/comics/signals_from_earlier.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/smbh_remake.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/smbh-remake.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/smbh_remake.json",
       "field": "scene.source.path"
     },
     {

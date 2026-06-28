@@ -101,6 +101,26 @@ const EXTERNAL_SCHEMA_PROVENANCE_PREDICATE_FIELDS = [
   "external_schema_provenance.local_path_treated_as_external_evidence",
 ];
 
+const PROOF_GRADE_SCHEMA_TRACEABILITY_REQUIRED = [
+  "source_identity",
+  "source_section_or_equation_refs",
+  "sigma_hf_01_source_data_record_lock",
+  "same_record_rule_kernel_obligation_binding",
+  "same_record_payload_target_binding",
+  "same_record_schema_statement",
+  "non_reinterpretation_guard",
+  "negative_control_or_decoy_rejection",
+];
+
+const SIGMA_HF_01_SOURCE_LEAD_REF_MARKERS = [
+  "1010.2391",
+  "1406.7144",
+  "10.3934/dcds.2012.32.2607",
+  "10.1137/s1064827599363381",
+  "10.1016/j.cam.2012.02.039",
+  "10.1016/s1874-5725",
+];
+
 const EXPECTED_LOCKS = {
   packet_id: PACKET_ID,
   proof_interval: PROOF_INTERVAL,
@@ -1450,7 +1470,11 @@ function actualExternalRef(value) {
   if (typeof value !== "string") {
     return null;
   }
-  const trimmed = value.trim();
+  let trimmed = value.trim();
+  trimmed = trimmed.replace(/[.,;:]+$/u, "");
+  while ((trimmed.match(/\)/gu) ?? []).length > (trimmed.match(/\(/gu) ?? []).length) {
+    trimmed = trimmed.slice(0, -1);
+  }
   const lower = trimmed.toLowerCase();
   if (
     lower.includes("external-proof-looking") ||
@@ -1470,6 +1494,323 @@ function actualExternalRef(value) {
 
 function uniqueSorted(values) {
   return [...new Set(values)].sort();
+}
+
+function sigmaRelevantExternalRefs(refs) {
+  return refs.filter((ref) => {
+    const lower = ref.toLowerCase();
+    return SIGMA_HF_01_SOURCE_LEAD_REF_MARKERS.some((marker) => lower.includes(marker));
+  });
+}
+
+const SOURCE_LEAD_DEFAULT_SCHEMA_FIELD_GAPS = {
+  compatible_schema_role_lock: {
+    source_lead_status:
+      "source-ref text does not supply the compatible external schema role lock",
+    missing_before_acceptance:
+      `same candidate object must state ${COMPATIBLE_SCHEMA_ROLE}`,
+  },
+  compatible_proof_object_role_lock: {
+    source_lead_status:
+      "source-ref text does not supply the compatible proof-object role lock",
+    missing_before_acceptance:
+      `same candidate object must state ${COMPATIBLE_PROOF_OBJECT_ROLE}`,
+  },
+  derivation_proof_target_lock: {
+    source_lead_status:
+      "source-ref text is not bound to the live same-packet separator aggregate family",
+    missing_before_acceptance:
+      `same candidate object must bind ${DERIVATION_PROOF_TARGET}`,
+  },
+  derivation_proof_source_data_record_lock: {
+    source_lead_status:
+      "source-ref text does not lock the exact Sigma_hf_01 source-data record",
+    missing_before_acceptance:
+      "same candidate object must bind packet, proof interval, lambda branch, target slot, and F01 source-data readiness",
+  },
+  rule_kernel_obligation_binding: {
+    source_lead_status:
+      "source-ref text does not discharge derivation, soundness, and endpoint-application obligations",
+    missing_before_acceptance:
+      "same candidate object must discharge derivation_proof_obligation, soundness_proof_obligation, and endpoint_application_proof_obligation",
+  },
+  rule_kernel_derivation_payload_target_binding: {
+    source_lead_status:
+      "source-ref text does not construct and bind the rule-kernel derivation payload target",
+    missing_before_acceptance:
+      "same candidate object must bind Sigma_hf_01, declare the payload target, bind proof to the payload target, and construct the rule-kernel derivation payload",
+  },
+  proof_grade_derivation_schema_statement: {
+    source_lead_status:
+      "source-ref text does not supply a received proof-grade hypotheses / inference / conclusion schema statement",
+    missing_before_acceptance:
+      "same candidate object must carry nonempty hypotheses, inference steps, conclusion, and source-data correspondence",
+  },
+  non_reinterpretation_guard: {
+    source_lead_status:
+      "source-ref text may state a boundary, but it does not supply a candidate-object guard",
+    missing_before_acceptance:
+      "same candidate object must carry the full forbidden-reinterpretation guard against local diagnostics, target packets, source-mining packets, and absence classifiers",
+  },
+};
+
+const SOURCE_LEAD_EXTERNAL_PROVENANCE_PREDICATE_GAPS = {
+  "external_schema_provenance.provenance_class": {
+    source_lead_status:
+      "reference text is not a candidate object declaring external_proof_grade_derivation_schema_candidate provenance",
+    missing_before_acceptance:
+      "same candidate object must carry provenance_class=external_proof_grade_derivation_schema_candidate",
+  },
+  "external_schema_provenance.source_ref": {
+    source_lead_status:
+      "bibliographic refs appear as source leads, but no candidate object source_ref is received for schema validation",
+    missing_before_acceptance:
+      "same candidate object must set source_ref equal to the candidate external schema ref",
+  },
+  "external_schema_provenance.acceptance_contract_ref": {
+    source_lead_status:
+      "source-lead text does not bind itself to the Sigma_hf_01 acceptance contract as a candidate object",
+    missing_before_acceptance:
+      `same candidate object must cite ${EXTERNAL_SCHEMA_ACCEPTANCE_CONTRACT_REF}`,
+  },
+  "external_schema_provenance.received_for_schema_validation": {
+    source_lead_status:
+      "no non-local proof-grade schema object has been received for schema-validation intake",
+    missing_before_acceptance:
+      "same candidate object must set received_for_schema_validation=true",
+  },
+  "external_schema_provenance.authored_inside_local_proof_program_pool": {
+    source_lead_status:
+      "the screened record is local priority or source-mining text, not an accepted external schema object",
+    missing_before_acceptance:
+      "same candidate object must prove authored_inside_local_proof_program_pool=false",
+  },
+  "external_schema_provenance.derived_from_local_certificate_json": {
+    source_lead_status:
+      "the screened record is not allowed to derive accepted provenance from local certificate JSON",
+    missing_before_acceptance:
+      "same candidate object must prove derived_from_local_certificate_json=false",
+  },
+  "external_schema_provenance.self_authored_placeholder": {
+    source_lead_status:
+      "source-mining notes and audit packets are self-authored local material, not external placeholders accepted as proof-grade schema input",
+    missing_before_acceptance:
+      "same candidate object must prove self_authored_placeholder=false",
+  },
+  "external_schema_provenance.local_path_treated_as_external_evidence": {
+    source_lead_status:
+      "a local Markdown path or local report cannot be treated as the external evidence object",
+    missing_before_acceptance:
+      "same candidate object must prove local_path_treated_as_external_evidence=false",
+  },
+};
+
+const SOURCE_LEAD_SAME_RECORD_BINDING_GAPS = [
+  {
+    binding: "source_data_lock_to_rule_kernel_obligation_binding",
+    status: "missing",
+    missing_before_acceptance:
+      "no source-ref record binds the exact Sigma_hf_01 source-data lock to discharged derivation, soundness, and endpoint-application obligations on the same candidate object",
+  },
+  {
+    binding: "source_data_lock_to_payload_target_binding",
+    status: "missing",
+    missing_before_acceptance:
+      "no source-ref record binds the exact Sigma_hf_01 source-data lock to the declared rule-kernel derivation payload target on the same candidate object",
+  },
+  {
+    binding: "payload_target_to_schema_statement",
+    status: "missing",
+    missing_before_acceptance:
+      "no source-ref record binds the payload target to a received proof-grade hypotheses / inference / conclusion statement on the same candidate object",
+  },
+  {
+    binding: "source_section_or_equation_refs_to_schema_statement",
+    status: "missing",
+    missing_before_acceptance:
+      "no source-ref record carries source section or equation references bound to the schema statement on the same candidate object",
+  },
+];
+
+function sourceLeadExternalProvenancePredicateMap(profile) {
+  return EXTERNAL_SCHEMA_PROVENANCE_PREDICATE_FIELDS.map((field) => {
+    const defaultGap = SOURCE_LEAD_EXTERNAL_PROVENANCE_PREDICATE_GAPS[field];
+    return {
+      field,
+      accepted: false,
+      source_lead_status:
+        profile.external_provenance_status_overrides?.[field] ??
+        defaultGap.source_lead_status,
+      missing_before_acceptance: defaultGap.missing_before_acceptance,
+    };
+  });
+}
+
+function sourceLeadTraceabilityFieldMap(profile) {
+  const defaultStatuses = {
+    source_identity:
+      "source identity is source-lead metadata only; no accepted candidate object binds it to the schema statement",
+    source_section_or_equation_refs:
+      profile.source_section_or_equation_ref_status,
+    sigma_hf_01_source_data_record_lock:
+      "no candidate object binds the exact Sigma_hf_01 source-data lock to the cited source lead",
+    same_record_rule_kernel_obligation_binding:
+      "no candidate object binds source identity and Sigma_hf_01 source-data lock to discharged rule-kernel obligations",
+    same_record_payload_target_binding:
+      "no candidate object binds source identity and Sigma_hf_01 source-data lock to the rule-kernel payload target",
+    same_record_schema_statement:
+      "no candidate object binds source identity, source refs, payload target, and hypotheses / inference / conclusion on one record",
+    non_reinterpretation_guard:
+      "no candidate object carries the full forbidden-reinterpretation guard",
+    negative_control_or_decoy_rejection:
+      "local decoys are rejected globally, but no source-lead candidate object carries its own negative-control rejection",
+  };
+  return PROOF_GRADE_SCHEMA_TRACEABILITY_REQUIRED.map((field) => ({
+    field,
+    accepted: false,
+    status:
+      profile.traceability_status_overrides?.[field] ??
+      defaultStatuses[field],
+    missing_before_acceptance:
+      "same non-local candidate object must supply this traceability predicate before schema-validation intake",
+  }));
+}
+
+function sourceLeadProfileForBasename(basename) {
+  if (basename === "sigma-hf-01-sieber-engelborghs-mined-schema-packet-2026-06-28.md") {
+    return {
+      source_lead_value_retained:
+        "priority-only source-mined candidates for the three proof-grade fields from Sieber finite-root equivalence and Engelborghs-Luzyanina-in 't Hout-Roose collocation-method leads",
+      source_section_or_equation_ref_status:
+        "source identities and broad method claims are recorded, but no accepted candidate object binds exact sections or equations to the Sigma_hf_01 schema statement",
+      field_status_overrides: {
+        rule_kernel_obligation_binding:
+          "candidate source structure drafted for derivation/soundness/application obligations; no obligation is discharged for Sigma_hf_01",
+        rule_kernel_derivation_payload_target_binding:
+          "candidate finite residual/root payload target drafted; not bound to packet fresh-v10-higher-fold-12-root-rebuild-v0, proof-interval-v6, lambda0305, and Sigma_hf_01 on an accepted object",
+        proof_grade_derivation_schema_statement:
+          "candidate hypotheses / inference / conclusion language drafted; not received as a non-local proof-grade schema statement",
+        non_reinterpretation_guard:
+          "report-level non-reinterpretation boundary stated; no accepted candidate-object guard is present",
+      },
+      traceability_status_overrides: {
+        source_identity:
+          "Sieber, Engelborghs et al., and DDE-BIFTOOL identities are recorded as source leads, but not on an accepted candidate object",
+        source_section_or_equation_refs:
+          "source identities and broad method claims are recorded; exact sections or equations are not bound to a Sigma_hf_01 schema statement on an accepted candidate object",
+      },
+      non_reinterpretation_rejection_reasons: [
+        "the mined hypotheses / inference / conclusion text is local source-mining analysis, not a received non-local proof-grade schema object",
+        "the Sieber finite-root and Engelborghs collocation leads are method families until the same candidate object binds them to Sigma_hf_01 source data, obligations, payload target, and schema statement",
+        "using this packet as schema input would reinterpret a local priority note as external proof evidence",
+      ],
+    };
+  }
+  if (basename === "sigma-hf-01-external-schema-source-lead-audit-2026-06-28.md") {
+    return {
+      source_lead_value_retained:
+        "priority-only audit identifying Sieber, Engelborghs-Luzyanina-in 't Hout-Roose, De Luca-Humphries-Rodrigues, and state-dependent-delay background leads",
+      source_section_or_equation_ref_status:
+        "bibliographic source refs are present; no accepted candidate object binds sections or equations to the Sigma_hf_01 schema statement",
+      field_status_overrides: {
+        rule_kernel_obligation_binding:
+          "source-lead value only for future obligation language; no derivation, soundness, or endpoint-application obligation is discharged",
+        rule_kernel_derivation_payload_target_binding:
+          "source-lead value only for a future finite residual or collocation payload; no payload target is bound to Sigma_hf_01",
+        proof_grade_derivation_schema_statement:
+          "source-lead value only for a future schema statement; no hypotheses / inference / conclusion chain is received as a candidate object",
+      },
+      traceability_status_overrides: {
+        source_identity:
+          "bibliographic identities are recorded as source leads only; none is bound on an accepted candidate object",
+      },
+      non_reinterpretation_rejection_reasons: [
+        "the audit is a local source-lead inventory, not a non-local proof-grade derivation schema object",
+        "bibliographic source lists cannot discharge the project-specific eight-field Sigma_hf_01 schema contract",
+        "using the audit as schema input would reinterpret local reference triage as external proof evidence",
+      ],
+    };
+  }
+  if (basename === "source-mining-history.md") {
+    return {
+      source_lead_value_retained:
+        "provenance log rows naming the Sigma_hf_01 source-lead audit and mined schema packet",
+      source_section_or_equation_ref_status:
+        "history rows preserve source identity and report links only; they do not bind source sections or equations to a schema statement",
+      field_status_overrides: {},
+      traceability_status_overrides: {
+        source_identity:
+          "history rows record mined-source disposition only; they are not source identity fields on a candidate schema object",
+      },
+      non_reinterpretation_rejection_reasons: [
+        "source-mining history is a provenance log, not a candidate schema object",
+        "history rows cannot satisfy same-record binding between source data, rule-kernel obligations, payload target, and schema statement",
+        "using history as schema input would reinterpret process bookkeeping as external proof evidence",
+      ],
+    };
+  }
+  return {
+    source_lead_value_retained:
+      "reference Markdown contains Sigma_hf_01-relevant external refs only",
+    source_section_or_equation_ref_status:
+      "no accepted candidate object binds source sections or equations to a schema statement",
+    field_status_overrides: {},
+    traceability_status_overrides: {},
+    non_reinterpretation_rejection_reasons: [
+      "reference Markdown is local source-lead context, not a received external proof-grade derivation schema object",
+      "external refs in prose cannot satisfy same-record Sigma_hf_01 schema predicates by themselves",
+    ],
+  };
+}
+
+function buildSourceLeadToSchemaFailClosedPacket(record) {
+  const profile = sourceLeadProfileForBasename(record.basename);
+  const externalProvenancePredicateMap =
+    sourceLeadExternalProvenancePredicateMap(profile);
+  const traceabilityFieldMap = sourceLeadTraceabilityFieldMap(profile);
+  return {
+    source_ref_record_path: record.path,
+    source_ref_record_basename: record.basename,
+    source_kind: record.source_kind,
+    sigma_relevant_external_refs: record.sigma_relevant_external_refs,
+    status:
+      "source_lead_to_schema_fail_closed_no_accepted_external_provenance_no_same_record_schema_binding",
+    source_lead_value_retained: profile.source_lead_value_retained,
+    accepted_external_provenance: false,
+    accepted_as_external_schema_candidate: false,
+    candidate_external_schema_received: false,
+    schema_validation_intake_authorized: false,
+    row_consumption_count: 0,
+    failed_external_schema_provenance_predicate_fields:
+      EXTERNAL_SCHEMA_PROVENANCE_PREDICATE_FIELDS,
+    external_schema_provenance_predicate_map: externalProvenancePredicateMap,
+    schema_predicate_field_map: REQUIRED_FIELDS.map((field) => {
+      const defaultGap = SOURCE_LEAD_DEFAULT_SCHEMA_FIELD_GAPS[field];
+      return {
+        field,
+        accepted: false,
+        source_lead_status:
+          profile.field_status_overrides[field] ?? defaultGap.source_lead_status,
+        missing_before_acceptance: defaultGap.missing_before_acceptance,
+      };
+    }),
+    specific_missing_schema_predicate_fields: REQUIRED_FIELDS,
+    specific_missing_traceability_fields: PROOF_GRADE_SCHEMA_TRACEABILITY_REQUIRED,
+    traceability_field_map: traceabilityFieldMap,
+    same_record_binding_gaps: SOURCE_LEAD_SAME_RECORD_BINDING_GAPS,
+    source_section_or_equation_ref_status:
+      profile.source_section_or_equation_ref_status,
+    non_reinterpretation_rejection_reasons:
+      profile.non_reinterpretation_rejection_reasons,
+    remaining_acceptance_predicates: {
+      external_schema_provenance_predicate_fields:
+        EXTERNAL_SCHEMA_PROVENANCE_PREDICATE_FIELDS,
+      schema_predicate_fields: REQUIRED_FIELDS,
+      proof_grade_traceability_fields: PROOF_GRADE_SCHEMA_TRACEABILITY_REQUIRED,
+    },
+    source_lead_disposition:
+      "source lead only; useful for constructing a future non-local Sigma_hf_01 schema object, not accepted external provenance and not a schema-validation intake candidate",
+  };
 }
 
 function poolRecordCategoryFlags(entry, record, strings) {
@@ -1578,7 +1919,7 @@ function relevantReferenceText(text) {
 
 function extractExternalRefsFromText(text) {
   const refs = [];
-  for (const match of text.matchAll(/https?:\/\/[^\s)>,]+|doi:[^\s)>,]+|arXiv:[^\s)>,]+|external-proof:[A-Za-z0-9:_./-]+/gi)) {
+  for (const match of text.matchAll(/https?:\/\/[^\s<>"`]+|doi:[^\s<>"`]+|arXiv:[^\s<>"`]+|external-proof:[A-Za-z0-9:_./-]+/gi)) {
     const ref = actualExternalRef(match[0]);
     if (ref !== null) {
       refs.push(ref);
@@ -1594,6 +1935,7 @@ function compactReferenceProvenanceArtifact(filePath) {
   }
   const strings = [text];
   const actualExternalRefs = extractExternalRefsFromText(text);
+  const sigmaRelevantRefs = sigmaRelevantExternalRefs(actualExternalRefs);
   const flags = {
     local_generated_artifact:
       filePath.includes("reference/priorities/proof-programs/") &&
@@ -1601,9 +1943,9 @@ function compactReferenceProvenanceArtifact(filePath) {
     local_decoy: /external-label decoy|external_label_decoy|negative control|placeholder/i.test(text),
     source_data_partial: /source-data partial|source_data_partial|local source-data/i.test(text),
     external_looking_label: /external-looking|external_label|external-label|candidate_external_schema_ref/i.test(text),
-    actual_external_ref: actualExternalRefs.length > 0,
-    actual_external_refs: actualExternalRefs,
-    accepted_external_provenance: /accepted external provenance[^0-9]*(?:true|[1-9])/i.test(text),
+    actual_external_ref: sigmaRelevantRefs.length > 0,
+    actual_external_refs: sigmaRelevantRefs,
+    accepted_external_provenance: false,
     schema_validation_intake_candidate: false,
     field_complete_without_provenance: /8 \/ 8|required_fields_present=8/i.test(text),
     known_local_non_external_artifact: /local proof-program|local source-data|local negative control/i.test(text),
@@ -1614,6 +1956,19 @@ function compactReferenceProvenanceArtifact(filePath) {
     basename: path.basename(filePath),
     sha256: sha256File(filePath),
     category_flags: flags,
+    source_lead_ref_summary: {
+      sigma_relevant_external_refs: sigmaRelevantRefs,
+      sigma_relevant_external_ref_count: sigmaRelevantRefs.length,
+      other_external_ref_count: actualExternalRefs.length - sigmaRelevantRefs.length,
+      proof_grade_schema_traceability_required: PROOF_GRADE_SCHEMA_TRACEABILITY_REQUIRED,
+      accepted_as_external_schema_candidate: false,
+      missing_before_intake: [
+        "candidate object wrapper with accepted external_schema_provenance",
+        "source section or equation refs bound to the Sigma_hf_01 schema statement",
+        "same-record binding across source-data lock, rule-kernel obligations, payload target, and schema statement",
+        "negative-control rejection proving local proof-program artifacts are not reinterpreted as external evidence",
+      ],
+    },
     sigma_or_schema_signal: hasMarker(strings, [
       "sigma_hf_01",
       "proof-grade derivation schema",
@@ -1659,6 +2014,29 @@ export function buildExternalProvenanceSourceAudit(poolEntries, referenceArtifac
       record.category_flags.accepted_external_provenance ||
       record.category_flags.field_complete_without_provenance,
   );
+  const externalRefSourceLeadRecords = referenceArtifacts
+    .filter((record) => record.category_flags.actual_external_ref)
+    .map((record) => ({
+      path: record.path,
+      basename: record.basename,
+      source_kind: record.source_kind,
+      sha256: record.sha256,
+      sigma_relevant_external_refs:
+        record.source_lead_ref_summary?.sigma_relevant_external_refs ?? [],
+      sigma_relevant_external_ref_count:
+        record.source_lead_ref_summary?.sigma_relevant_external_ref_count ?? 0,
+      other_external_ref_count:
+        record.source_lead_ref_summary?.other_external_ref_count ?? 0,
+      external_provenance_accepted: record.external_provenance_accepted,
+      slot_result: record.slot_result,
+      accepted_as_external_schema_candidate:
+        record.source_lead_ref_summary?.accepted_as_external_schema_candidate ?? false,
+      missing_before_intake:
+        record.source_lead_ref_summary?.missing_before_intake ?? [],
+    }));
+  const sourceLeadToSchemaFailClosedPackets = externalRefSourceLeadRecords.map(
+    buildSourceLeadToSchemaFailClosedPacket,
+  );
   const firstFailure =
     schemaValidationCandidates.length > 0
       ? "post_intake_schema_validation_required_before_row_consumption"
@@ -1672,6 +2050,10 @@ export function buildExternalProvenanceSourceAudit(poolEntries, referenceArtifac
     source_data_partial_records: countFlag(allRecords, "source_data_partial"),
     external_looking_label_records: countFlag(allRecords, "external_looking_label"),
     actual_external_ref_records: countFlag(allRecords, "actual_external_ref"),
+    source_lead_to_schema_fail_closed_packets:
+      sourceLeadToSchemaFailClosedPackets.length,
+    source_ref_records_with_all_schema_predicates_present: 0,
+    source_ref_records_with_same_record_binding_complete: 0,
     accepted_external_provenance_records: acceptedExternalProvenanceRecords.length,
     schema_validation_intake_candidates_found: schemaValidationCandidates.length,
     field_complete_without_provenance_records: countFlag(
@@ -1704,6 +2086,7 @@ export function buildExternalProvenanceSourceAudit(poolEntries, referenceArtifac
     basis_contract_ref: EXTERNAL_SCHEMA_ACCEPTANCE_CONTRACT_REF,
     required_schema_predicate_fields: REQUIRED_FIELDS,
     external_schema_provenance_predicate_fields: EXTERNAL_SCHEMA_PROVENANCE_PREDICATE_FIELDS,
+    proof_grade_schema_traceability_required: PROOF_GRADE_SCHEMA_TRACEABILITY_REQUIRED,
     source_categories: {
       local_generated_artifact:
         "Repo-local proof-program or certificate artifact. It may document the intake but cannot supply accepted external provenance.",
@@ -1718,6 +2101,8 @@ export function buildExternalProvenanceSourceAudit(poolEntries, referenceArtifac
     },
     proof_program_source_records: poolRecords,
     reference_signal_records: referenceArtifacts,
+    external_ref_source_lead_records: externalRefSourceLeadRecords,
+    source_lead_to_schema_fail_closed_packets: sourceLeadToSchemaFailClosedPackets,
     focused_source_records: focusedRecords.slice(0, 24),
     summary,
     authorization_lock: {
@@ -1733,10 +2118,22 @@ export function buildExternalProvenanceSourceAudit(poolEntries, referenceArtifac
       sharpened_blocker: firstFailure,
       required_next_input:
         "one non-local external proof-grade derivation schema candidate whose external_schema_provenance is accepted and whose candidate object supplies all eight Sigma_hf_01 schema predicate fields",
+      required_traceability_fields: PROOF_GRADE_SCHEMA_TRACEABILITY_REQUIRED,
+      source_lead_disposition:
+        "external source refs may guide the next schema object, but reference text, source-mining packets, and bibliographic rows are not themselves schema-validation intake candidates",
       row_slot_policy:
         "the 11 Sigma_hf_01 row slots remain parked; this audit never consumes rows and never authorizes a live-ledger update or branch chart",
       mechanical_continuation_available: schemaValidationCandidates.length > 0,
       decision_required: schemaValidationCandidates.length === 0,
+    },
+    smallest_next_evidence_object: {
+      object_class: "non-local Sigma_hf_01 external proof-grade derivation schema object",
+      required_provenance_predicate_fields: EXTERNAL_SCHEMA_PROVENANCE_PREDICATE_FIELDS,
+      required_schema_predicate_fields: REQUIRED_FIELDS,
+      required_traceability_fields: PROOF_GRADE_SCHEMA_TRACEABILITY_REQUIRED,
+      source_lead_basis:
+        "Sieber finite algebraic-root equivalence and Engelborghs-Luzyanina-in 't Hout-Roose collocation-method family may supply source-lead structure only after a same-record schema object binds them to Sigma_hf_01",
+      first_failure_until_supplied: firstFailure,
     },
     capture_decision:
       "Priority-only. This audit does not construct or accept a proof-grade derivation schema, consumes no rows, updates no live ledger, and authorizes no branch chart.",
@@ -1756,6 +2153,28 @@ function assertExternalProvenanceSourceAuditInvariants(packet) {
     packet.authorization_lock.branch_chart_authorized === false,
     s.proof_program_json_files_screened > 0,
     s.total_provenance_source_records_screened >= s.proof_program_json_files_screened,
+    s.source_lead_to_schema_fail_closed_packets ===
+      packet.source_lead_to_schema_fail_closed_packets.length,
+    s.source_ref_records_with_all_schema_predicates_present === 0,
+    s.source_ref_records_with_same_record_binding_complete === 0,
+    packet.source_lead_to_schema_fail_closed_packets.every(
+      (entry) =>
+        entry.accepted_external_provenance === false &&
+        entry.accepted_as_external_schema_candidate === false &&
+        entry.schema_validation_intake_authorized === false &&
+        entry.external_schema_provenance_predicate_map.length ===
+          EXTERNAL_SCHEMA_PROVENANCE_PREDICATE_FIELDS.length &&
+        entry.external_schema_provenance_predicate_map.every(
+          (field) => field.accepted === false,
+        ) &&
+        entry.schema_predicate_field_map.length === REQUIRED_FIELDS.length &&
+        entry.schema_predicate_field_map.every((field) => field.accepted === false) &&
+        entry.traceability_field_map.length ===
+          PROOF_GRADE_SCHEMA_TRACEABILITY_REQUIRED.length &&
+        entry.traceability_field_map.every((field) => field.accepted === false) &&
+        entry.same_record_binding_gaps.every((gap) => gap.status === "missing") &&
+        entry.non_reinterpretation_rejection_reasons.length > 0,
+    ),
     s.row_consumption_count === 0,
     s.preledger_pass === false,
     s.updates_live_ledger === false,
@@ -2395,6 +2814,107 @@ function renderExternalProvenanceSourceAuditReport(packet) {
       return `| \`${category}\` | ${s[countKey] ?? 0} | ${description} |`;
     })
     .join("\n");
+  const externalRefRows = packet.external_ref_source_lead_records
+    .map((record) => {
+      const relevantRefs =
+        record.sigma_relevant_external_refs.length > 0
+          ? record.sigma_relevant_external_refs.map((ref) => `\`${ref}\``).join(", ")
+          : "none";
+      return [
+        `\`${record.basename}\``,
+        relevantRefs,
+        record.other_external_ref_count,
+        `\`${record.accepted_as_external_schema_candidate}\``,
+        `\`${record.slot_result}\``,
+      ];
+    })
+    .map((row) => `| ${row.join(" | ")} |`)
+    .join("\n");
+  const externalRefTable =
+    externalRefRows === ""
+      ? "| none | none | 0 | `false` | `reference_text_not_schema_intake_candidate` |"
+      : externalRefRows;
+  const sourceLeadPacketRows = packet.source_lead_to_schema_fail_closed_packets
+    .map((entry) => {
+      const missingFields = entry.specific_missing_schema_predicate_fields
+        .map((field) => `\`${field}\``)
+        .join(", ");
+      const sameRecordGaps = entry.same_record_binding_gaps
+        .map((gap) => `\`${gap.binding}\``)
+        .join(", ");
+      return [
+        `\`${entry.source_ref_record_basename}\``,
+        entry.source_lead_value_retained,
+        missingFields,
+        sameRecordGaps,
+        `\`${entry.accepted_as_external_schema_candidate}\``,
+      ];
+    })
+    .map((row) => `| ${row.join(" | ")} |`)
+    .join("\n");
+  const sourceLeadPacketTable =
+    sourceLeadPacketRows === ""
+      ? "| none | none | none | none | `false` |"
+      : sourceLeadPacketRows;
+  const sourceLeadPacketDetails = packet.source_lead_to_schema_fail_closed_packets
+    .map((entry) => {
+      const provenanceRows = entry.external_schema_provenance_predicate_map
+        .map(
+          (field) =>
+            `| \`${field.field}\` | ${field.source_lead_status} | ${field.missing_before_acceptance} | \`${field.accepted}\` |`,
+        )
+        .join("\n");
+      const fieldRows = entry.schema_predicate_field_map
+        .map(
+          (field) =>
+            `| \`${field.field}\` | ${field.source_lead_status} | ${field.missing_before_acceptance} | \`${field.accepted}\` |`,
+        )
+        .join("\n");
+      const traceabilityRowsForEntry = entry.traceability_field_map
+        .map(
+          (field) =>
+            `| \`${field.field}\` | ${field.status} | ${field.missing_before_acceptance} | \`${field.accepted}\` |`,
+        )
+        .join("\n");
+      const bindingRows = entry.same_record_binding_gaps
+        .map(
+          (gap) =>
+            `| \`${gap.binding}\` | ${gap.missing_before_acceptance} | \`${gap.status}\` |`,
+        )
+        .join("\n");
+      const nonReinterpretationRows = entry.non_reinterpretation_rejection_reasons
+        .map((reason) => `- ${reason}`)
+        .join("\n");
+      return `### \`${entry.source_ref_record_basename}\`
+
+Source-lead value retained: ${entry.source_lead_value_retained}
+
+Source section/equation refs: ${entry.source_section_or_equation_ref_status}
+
+| External provenance predicate | Source-lead status | Missing before acceptance | Accepted |
+| --- | --- | --- | --- |
+${provenanceRows}
+
+| Schema predicate field | Source-lead status | Missing before acceptance | Accepted |
+| --- | --- | --- | --- |
+${fieldRows}
+
+| Traceability predicate | Source-lead status | Missing before acceptance | Accepted |
+| --- | --- | --- | --- |
+${traceabilityRowsForEntry}
+
+| Same-record binding | Missing before acceptance | Status |
+| --- | --- | --- |
+${bindingRows}
+
+Non-reinterpretation rejection reasons:
+
+${nonReinterpretationRows}`;
+    })
+    .join("\n\n");
+  const traceabilityRows = packet.proof_grade_schema_traceability_required
+    .map((field) => `| \`${field}\` | missing before accepted schema-validation intake |`)
+    .join("\n");
   const focusedRows = packet.focused_source_records
     .map((record) => {
       const flags = Object.entries(record.category_flags)
@@ -2436,6 +2956,10 @@ ${packet.claim_level}
 - schema-validation intake candidates found: ${s.schema_validation_intake_candidates_found}
 - candidate external schema received records: ${s.candidate_external_schema_received_records}
 - field-complete without provenance records: ${s.field_complete_without_provenance_records}
+- actual external ref records: ${s.actual_external_ref_records}
+- source-lead-to-schema fail-closed packets: ${s.source_lead_to_schema_fail_closed_packets}
+- source-ref records with all schema predicates present: ${s.source_ref_records_with_all_schema_predicates_present}
+- source-ref records with same-record binding complete: ${s.source_ref_records_with_same_record_binding_complete}
 - first failure: \`${s.first_failure}\`
 
 ## Category Counts
@@ -2443,6 +2967,26 @@ ${packet.claim_level}
 | Category | Count | Meaning |
 | --- | ---: | --- |
 ${categoryRows}
+
+## External Ref Source Leads
+
+| Reference artifact | Sigma-relevant external refs | Other external refs | Accepted as schema candidate | Slot result |
+| --- | --- | ---: | --- | --- |
+${externalRefTable}
+
+These references are source leads only. They do not become accepted external
+schema provenance until one candidate object carries accepted
+\`external_schema_provenance\`, the eight \`Sigma_hf_01\` schema fields, and
+same-record traceability to the source sections or equations used by the schema
+statement.
+
+## Source-Lead To Schema Fail-Closed Packet
+
+| Source-ref record | Source-lead value retained | Missing schema predicate fields | Same-record binding gaps | Accepted as schema candidate |
+| --- | --- | --- | --- | --- |
+${sourceLeadPacketTable}
+
+${sourceLeadPacketDetails}
 
 ## Focused Source Records
 
@@ -2461,6 +3005,18 @@ ${packet.required_schema_predicate_fields.map((field) => `- \`${field}\``).join(
 Accepted provenance also requires:
 
 ${packet.external_schema_provenance_predicate_fields.map((field) => `- \`${field}\``).join("\n")}
+
+## Traceability Fields Still Missing
+
+| Field | Status |
+| --- | --- |
+${traceabilityRows}
+
+Smallest next evidence object: one non-local \`Sigma_hf_01\` external
+proof-grade derivation schema object with accepted provenance, all eight schema
+fields on the same record, section or equation traceability for the source
+claims it uses, and a non-reinterpretation guard against local diagnostics,
+target packets, source-mining packets, and absence classifiers.
 
 ## Authorization Locks
 

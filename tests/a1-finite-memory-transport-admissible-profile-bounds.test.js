@@ -540,6 +540,16 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   );
   assert.equal(
     packet.shared_interval_box_certificate_target.directed_rounding_backend
+      .runtime_identity_target_status,
+    "target_only_runtime_identity_absent_fail_closed"
+  );
+  assert.match(
+    packet.shared_interval_box_certificate_target.directed_rounding_backend
+      .runtime_identity_target_digest,
+    /^sha256:[0-9a-f]{64}$/
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.directed_rounding_backend
       .used_as_certificate,
     false
   );
@@ -592,15 +602,210 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     packet.past_profile.directed_rounding_backend_target_summary.status,
     "directed_rounding_backend_target_declared_probe_not_certificate"
   );
-  assert.equal(
+  const directedRoundingRuntimeProbe =
     packet.past_profile.directed_rounding_backend_target_summary
-      .current_runtime_probe.directed_rounding_backend_available,
+      .current_runtime_probe;
+  assert.equal(
+    directedRoundingRuntimeProbe.directed_rounding_backend_available,
     false
   );
   assert.equal(
-    packet.past_profile.directed_rounding_backend_target_summary
-      .current_runtime_probe.directed_rounding_mode_audit_trail_available,
+    directedRoundingRuntimeProbe.directed_rounding_mode_audit_trail_available,
     false
+  );
+  assert.equal(
+    directedRoundingRuntimeProbe
+      .directed_rounding_backend_availability_audit_status,
+    "directed_rounding_runtime_backend_unavailable_fail_closed"
+  );
+  assert.match(
+    directedRoundingRuntimeProbe
+      .directed_rounding_backend_availability_audit_digest,
+    /^sha256:[0-9a-f]{64}$/
+  );
+  assert.equal(
+    directedRoundingRuntimeProbe.first_unavailable_backend_object,
+    "a1_directed_rounding_interval_backend_runtime_identity.v0"
+  );
+  assert.equal(
+    directedRoundingRuntimeProbe
+      .directed_rounding_runtime_identity_target_status,
+    "target_only_runtime_identity_absent_fail_closed"
+  );
+  assert.match(
+    directedRoundingRuntimeProbe
+      .directed_rounding_runtime_identity_target_digest,
+    /^sha256:[0-9a-f]{64}$/
+  );
+  const directedRoundingAvailabilityAudit =
+    directedRoundingRuntimeProbe.directed_rounding_backend_availability_audit;
+  const requiredRuntimeIdentityFields = [
+    "backend_runtime_id",
+    "backend_version_or_build_digest",
+    "rounding_mode_transition_log_digest",
+    "source_q_derivative_composition_operation_trace_digest",
+    "shared_interval_box_family_digest",
+  ];
+  assert.equal(
+    directedRoundingAvailabilityAudit.schema,
+    "architrino.priority.master_equation_closure.a1_directed_rounding_runtime_backend_availability_audit.v0"
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.target_field,
+    "directed_rounding_backend_target.current_runtime_probe.directed_rounding_backend_available"
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.unavailable_backend_target
+      .required_method,
+    "directed_rounding_interval_arithmetic"
+  );
+  assert.deepEqual(
+    directedRoundingAvailabilityAudit.unavailable_backend_target
+      .required_rounding_modes,
+    [
+      "round_toward_negative_infinity",
+      "round_toward_positive_infinity",
+    ]
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.current_runtime_facts
+      .float64_nextafter_probe_present,
+    true
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.current_runtime_facts
+      .hardware_rounding_mode_control_available,
+    false
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.current_runtime_facts
+      .shared_runtime_rounding_mode_audit_trail_available,
+    false
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.replacement_requirement
+      .required_backend_runtime_identity_object,
+    "a1_directed_rounding_interval_backend_runtime_identity.v0"
+  );
+  const runtimeIdentityTarget =
+    directedRoundingAvailabilityAudit.runtime_identity_target;
+  assert.equal(
+    runtimeIdentityTarget.schema,
+    "architrino.priority.master_equation_closure.a1_directed_rounding_interval_backend_runtime_identity.v0"
+  );
+  assert.equal(
+    runtimeIdentityTarget.artifact_id,
+    "a1_directed_rounding_interval_backend_runtime_identity.v0"
+  );
+  assert.equal(
+    runtimeIdentityTarget.status,
+    "target_only_runtime_identity_absent_fail_closed"
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.runtime_identity_target_digest,
+    runtimeIdentityTarget.target_digest
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.directed_rounding_backend
+      .runtime_identity_target_digest,
+    runtimeIdentityTarget.target_digest
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.replacement_requirement
+      .required_backend_runtime_identity_target_digest,
+    runtimeIdentityTarget.target_digest
+  );
+  assert.deepEqual(
+    runtimeIdentityTarget.required_identity_fields,
+    requiredRuntimeIdentityFields
+  );
+  assert.deepEqual(
+    runtimeIdentityTarget.missing_identity_fields,
+    requiredRuntimeIdentityFields
+  );
+  assert.deepEqual(
+    Object.fromEntries(
+      requiredRuntimeIdentityFields.map((field) => [
+        field,
+        runtimeIdentityTarget.identity_fields[field],
+      ])
+    ),
+    Object.fromEntries(
+      requiredRuntimeIdentityFields.map((field) => [field, null])
+    )
+  );
+  assert.equal(
+    runtimeIdentityTarget.first_missing_identity_field,
+    "backend_runtime_id"
+  );
+  assert.equal(
+    runtimeIdentityTarget.required_operation_trace.composition_id,
+    "source_q_derivative_composition"
+  );
+  assert.equal(
+    runtimeIdentityTarget.required_operation_trace
+      .source_q_derivative_composition_operation_trace_digest,
+    null
+  );
+  assert.equal(
+    runtimeIdentityTarget.required_rounding_mode_transition_log
+      .rounding_mode_transition_log_digest,
+    null
+  );
+  assert.equal(
+    runtimeIdentityTarget.required_shared_interval_box_family
+      .shared_interval_box_family_digest,
+    null
+  );
+  assert.equal(runtimeIdentityTarget.runtime_identity_present, false);
+  assert.equal(runtimeIdentityTarget.used_as_certificate, false);
+  assert.equal(runtimeIdentityTarget.used_as_shared_certificate, false);
+  assert.equal(
+    runtimeIdentityTarget.negative_control
+      .float64_nextafter_probe_does_not_satisfy_runtime_identity,
+    true
+  );
+  assert.equal(
+    runtimeIdentityTarget.negative_control
+      .missing_operation_trace_digest_fails_closed,
+    true
+  );
+  assert.equal(
+    runtimeIdentityTarget.negative_control
+      .missing_shared_interval_box_family_digest_fails_closed,
+    true
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.negative_control
+      .float64_nextafter_probe_does_not_satisfy_backend_availability,
+    true
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.negative_control
+      .self_audit_rows_passed_do_not_satisfy_backend_availability,
+    true
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.used_as_certificate,
+    false
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.used_as_shared_certificate,
+    false
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.authorizes_outward_certificate,
+    false
+  );
+  assert.equal(
+    directedRoundingRuntimeProbe
+      .directed_rounding_backend_availability_audit_digest,
+    directedRoundingAvailabilityAudit.availability_audit_digest
+  );
+  assert.equal(
+    directedRoundingRuntimeProbe
+      .directed_rounding_runtime_identity_target_digest,
+    runtimeIdentityTarget.target_digest
   );
   assert.equal(
     packet.past_profile.directed_rounding_backend_target_summary
@@ -1100,7 +1305,332 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.match(formulaDependencyAudit.audit_digest, /^sha256:[0-9a-f]{64}$/);
   assert.equal(
     formulaDependencyAudit.first_missing_row,
-    "P_1_retained_root_delta_alpha_interval_box"
+    "shared_directed_rounding_audit_trail_for_source_q_derivative_composition"
+  );
+  const retainedRootDeltaAttempt =
+    formulaDependencyAudit.P_1_retained_root_delta_alpha_interval_box_attempt;
+  assert.equal(
+    retainedRootDeltaAttempt.schema,
+    "architrino.priority.master_equation_closure.a1_p1_retained_root_delta_alpha_interval_box_attempt.v0"
+  );
+  assert.equal(
+    retainedRootDeltaAttempt.artifact_id,
+    "a1_p1_retained_root_delta_alpha_interval_box_attempt.v0"
+  );
+  assert.match(retainedRootDeltaAttempt.attempt_digest, /^sha256:[0-9a-f]{64}$/);
+  assert.equal(
+    retainedRootDeltaAttempt.status,
+    "local_P_1_retained_root_delta_alpha_interval_box_present_not_shared_certificate"
+  );
+  assert.equal(retainedRootDeltaAttempt.first_failure, null);
+  assert.equal(
+    retainedRootDeltaAttempt.endpoint_sign_interval_rows
+      .endpoint_signs_certified_locally,
+    true
+  );
+  assert.equal(
+    retainedRootDeltaAttempt.endpoint_sign_interval_rows.theta_slab_count,
+    16
+  );
+  assert.equal(
+    retainedRootDeltaAttempt.endpoint_sign_interval_rows.theta_slab_rows.every(
+      (row) => row.lower_endpoint_positive && row.upper_endpoint_negative
+    ),
+    true
+  );
+  assert.equal(
+    retainedRootDeltaAttempt.jacobian_floor_interval_row
+      .jacobian_floor_certified_locally,
+    true
+  );
+  assert.ok(
+    retainedRootDeltaAttempt.jacobian_floor_interval_row
+      .abs_J_partner_interval_floor > 0
+  );
+  assert.equal(
+    retainedRootDeltaAttempt.formula_consumer_status
+      .satisfies_retained_root_delta_alpha_interval_box_locally,
+    true
+  );
+  assert.equal(
+    retainedRootDeltaAttempt.formula_consumer_status
+      .satisfies_certificate_grade_retained_root_delta_alpha_interval_box,
+    false
+  );
+  assert.equal(retainedRootDeltaAttempt.used_as_local_certificate, true);
+  assert.equal(retainedRootDeltaAttempt.used_as_shared_certificate, false);
+  const qSourceAttempt =
+    formulaDependencyAudit.P_1_q_source_alpha_interval_box_attempt;
+  assert.equal(
+    qSourceAttempt.schema,
+    "architrino.priority.master_equation_closure.a1_p1_q_source_alpha_interval_box_attempt.v0"
+  );
+  assert.equal(
+    qSourceAttempt.artifact_id,
+    "a1_p1_q_source_alpha_interval_box_attempt.v0"
+  );
+  assert.match(qSourceAttempt.attempt_digest, /^sha256:[0-9a-f]{64}$/);
+  assert.equal(
+    qSourceAttempt.status,
+    "local_P_1_q_source_alpha_interval_box_present_not_shared_certificate"
+  );
+  assert.equal(qSourceAttempt.first_failure, null);
+  assert.equal(
+    qSourceAttempt.claim_level,
+    "priority-only local P_1 q_source_alpha interval box attempt; not a shared interval-box certificate"
+  );
+  assert.equal(qSourceAttempt.source_inside_past_profile_domain, true);
+  assert.equal(
+    qSourceAttempt.all_control_point_intervals_enclose_exact,
+    true
+  );
+  assert.equal(qSourceAttempt.subdivision_depth, 12);
+  assert.equal(qSourceAttempt.subinterval_count, 4096);
+  assert.equal(qSourceAttempt.control_point_count, 61440);
+  assert.equal(
+    qSourceAttempt.proposed_interval_box.row,
+    "P_1_q_source_alpha_interval_box"
+  );
+  assert.deepEqual(
+    qSourceAttempt.proposed_interval_box.delta_alpha_interval,
+    retainedRootDeltaAttempt.proposed_interval_box.delta_alpha_interval
+  );
+  assert.deepEqual(qSourceAttempt.proposed_interval_box.theta_interval, [
+    0,
+    0.02,
+  ]);
+  assert.ok(qSourceAttempt.proposed_interval_box.q_source_alpha_interval[0] > 0.98);
+  assert.ok(
+    qSourceAttempt.proposed_interval_box.q_source_alpha_interval[1] < 1.001
+  );
+  assert.equal(
+    qSourceAttempt.proposed_interval_box.contains_sampled_q_sources,
+    true
+  );
+  assert.equal(
+    qSourceAttempt.formula_consumer_status
+      .satisfies_P_1_q_source_alpha_interval_box_locally,
+    true
+  );
+  assert.equal(
+    qSourceAttempt.formula_consumer_status
+      .satisfies_certificate_grade_P_1_q_source_alpha_interval_box,
+    false
+  );
+  assert.equal(qSourceAttempt.used_as_certificate, false);
+  assert.equal(qSourceAttempt.used_as_local_certificate, true);
+  assert.equal(qSourceAttempt.used_as_shared_certificate, false);
+  const sourceQDerivativeCompositionAudit =
+    formulaDependencyAudit
+      .shared_directed_rounding_audit_trail_for_source_q_derivative_composition;
+  assert.equal(
+    sourceQDerivativeCompositionAudit.schema,
+    "architrino.priority.master_equation_closure.a1_shared_directed_rounding_audit_trail_for_source_q_derivative_composition.v0"
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.artifact_id,
+    "a1_shared_directed_rounding_audit_trail_for_source_q_derivative_composition.v0"
+  );
+  assert.match(
+    sourceQDerivativeCompositionAudit.audit_trail_digest,
+    /^sha256:[0-9a-f]{64}$/
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.status,
+    "local_source_q_derivative_composition_readout_present_not_shared_audit_trail"
+  );
+  assert.equal(sourceQDerivativeCompositionAudit.local_readout_present, true);
+  assert.equal(
+    sourceQDerivativeCompositionAudit.shared_audit_trail_present,
+    false
+  );
+  assert.equal(sourceQDerivativeCompositionAudit.used_as_certificate, false);
+  assert.equal(
+    sourceQDerivativeCompositionAudit.used_as_shared_certificate,
+    false
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.first_failure,
+    "shared_directed_rounding_backend_or_source_box_identity_missing"
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit
+      .first_missing_shared_backend_or_source_box_identity_field,
+    "directed_rounding_backend_target.current_runtime_probe.directed_rounding_backend_available"
+  );
+  assert.deepEqual(
+    sourceQDerivativeCompositionAudit
+      .missing_shared_backend_or_source_box_identity_fields,
+    [
+      "directed_rounding_backend_target.current_runtime_probe.directed_rounding_backend_available",
+      "directed_rounding_backend_target.current_runtime_probe.directed_rounding_mode_audit_trail_available",
+      "P_1_retained_root_delta_alpha_interval_box_attempt.used_as_shared_certificate",
+      "P_1_q_source_alpha_interval_box_attempt.used_as_shared_certificate",
+      "P_1_q_source_alpha_interval_box_attempt.past_profile_certificate_used_as_shared_certificate",
+    ]
+  );
+  assert.deepEqual(
+    sourceQDerivativeCompositionAudit
+      .retained_root_delta_alpha_interval_box.delta_alpha_interval,
+    retainedRootDeltaAttempt.proposed_interval_box.delta_alpha_interval
+  );
+  assert.deepEqual(
+    sourceQDerivativeCompositionAudit.q_source_alpha_interval_box
+      .q_source_alpha_interval,
+    qSourceAttempt.proposed_interval_box.q_source_alpha_interval
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .retained_root_delta_interval_box_present_locally,
+    true
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .q_source_interval_box_present_locally,
+    true
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .source_theta_interval_inside_past_profile_domain,
+    true
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .formula_probe_available,
+    true
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .directed_rounding_backend_available,
+    false
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .directed_rounding_mode_audit_trail_available,
+    false
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .directed_rounding_backend_availability_audit_status,
+    "directed_rounding_runtime_backend_unavailable_fail_closed"
+  );
+  assert.match(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .directed_rounding_backend_availability_audit_digest,
+    /^sha256:[0-9a-f]{64}$/
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .next_required_runtime_backend_object,
+    "a1_directed_rounding_interval_backend_runtime_identity.v0"
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .directed_rounding_backend_self_audit_rows_failed,
+    0
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.backend_identity.backend_target_digest,
+    packet.past_profile.directed_rounding_backend_target_summary.target_digest
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_self_audit_digest,
+    packet.past_profile.directed_rounding_backend_self_audit_summary
+      .self_audit_digest
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.status,
+    "directed_rounding_runtime_backend_unavailable_fail_closed"
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.target_field,
+    "directed_rounding_backend_target.current_runtime_probe.directed_rounding_backend_available"
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.first_unavailable_backend_object,
+    "a1_directed_rounding_interval_backend_runtime_identity.v0"
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.digest,
+    packet.past_profile.directed_rounding_backend_target_summary
+      .current_runtime_probe
+      .directed_rounding_backend_availability_audit_digest
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.replacement_requirement
+      .required_backend_runtime_identity_object,
+    "a1_directed_rounding_interval_backend_runtime_identity.v0"
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.runtime_identity_target_status,
+    "target_only_runtime_identity_absent_fail_closed"
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.runtime_identity_target_digest,
+    runtimeIdentityTarget.target_digest
+  );
+  assert.deepEqual(
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.missing_runtime_identity_fields,
+    requiredRuntimeIdentityFields
+  );
+  assert.deepEqual(
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.runtime_identity_target
+      .missing_identity_fields,
+    requiredRuntimeIdentityFields
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.runtime_identity_status.status,
+    "target_only_runtime_identity_absent_fail_closed"
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.runtime_identity_status.target_digest,
+    runtimeIdentityTarget.target_digest
+  );
+  assert.deepEqual(
+    sourceQDerivativeCompositionAudit.runtime_identity_status
+      .missing_identity_fields,
+    requiredRuntimeIdentityFields
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.runtime_identity_status
+      .first_missing_identity_field,
+    "backend_runtime_id"
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .directed_rounding_runtime_identity_target_status,
+    "target_only_runtime_identity_absent_fail_closed"
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .directed_rounding_runtime_identity_target_digest,
+    runtimeIdentityTarget.target_digest
+  );
+  assert.deepEqual(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .missing_directed_rounding_runtime_identity_fields,
+    requiredRuntimeIdentityFields
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .first_missing_directed_rounding_runtime_identity_field,
+    "backend_runtime_id"
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.negative_control
+      .self_audit_rows_passed_do_not_satisfy_backend_availability,
+    true
   );
   assert.equal(
     formulaDependencyAudit.emits_local_formula_interval_probe,
@@ -1110,15 +1640,30 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(
     formulaDependencyAudit.delta_interval_source
       .satisfies_retained_root_delta_alpha_interval_box,
+    true
+  );
+  assert.equal(
+    formulaDependencyAudit.delta_interval_source
+      .satisfies_certificate_grade_retained_root_delta_alpha_interval_box,
     false
   );
   assert.equal(
     formulaDependencyAudit.q_source_interval_source
       .satisfies_P_1_q_source_alpha_interval_box,
+    true
+  );
+  assert.equal(
+    formulaDependencyAudit.q_source_interval_source
+      .satisfies_certificate_grade_P_1_q_source_alpha_interval_box,
     false
   );
   assert.deepEqual(
     formulaDependencyAudit.q_source_interval_source.q_interval,
+    qSourceAttempt.proposed_interval_box.q_source_alpha_interval
+  );
+  assert.deepEqual(
+    formulaDependencyAudit.q_source_interval_source
+      .global_past_profile_q_interval,
     packet.past_profile.interval_box_certificate_summary.q_interval
   );
   assert.equal(
@@ -1139,11 +1684,23 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
       formulaDependencyAudit.local_interval_formula_probe
         .partial_delta_J_partner_with_source_q_interval.upper
   );
+  assert.deepEqual(
+    sourceQDerivativeCompositionAudit.formula_rows_checked
+      .partial_delta_J_partner_with_source_q_interval_formula,
+    formulaDependencyAudit.local_interval_formula_probe
+      .partial_delta_J_partner_with_source_q_interval
+  );
   assert.ok(
     formulaDependencyAudit.local_interval_formula_probe
       .partial_T_alpha_partial_delta_alpha_interval.lower <
       formulaDependencyAudit.local_interval_formula_probe
         .partial_T_alpha_partial_delta_alpha_interval.upper
+  );
+  assert.deepEqual(
+    sourceQDerivativeCompositionAudit.formula_rows_checked
+      .partial_T_alpha_partial_delta_alpha_interval,
+    formulaDependencyAudit.local_interval_formula_probe
+      .partial_T_alpha_partial_delta_alpha_interval
   );
   assert.equal(
     formulaDependencyAudit.sampled_partial_containment
@@ -1161,6 +1718,40 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
         row.row === "partial_delta_J_partner_with_source_q_interval_formula" &&
         row.status === "local_interval_formula_present" &&
         row.used_as_certificate === false
+    )
+  );
+  assert.ok(
+    formulaDependencyAudit.dependency_rows.some(
+      (row) =>
+        row.row === "P_1_retained_root_delta_alpha_interval_box" &&
+        row.status ===
+          "local_priority_only_interval_box_present_not_shared_certificate" &&
+        row.used_as_local_certificate === true &&
+        row.used_as_shared_certificate === false
+    )
+  );
+  assert.ok(
+    formulaDependencyAudit.dependency_rows.some(
+      (row) =>
+        row.row === "P_1_q_source_alpha_interval_box" &&
+        row.status ===
+          "local_priority_only_interval_box_present_not_shared_certificate" &&
+        row.used_as_local_certificate === true &&
+        row.used_as_shared_certificate === false
+    )
+  );
+  assert.ok(
+    formulaDependencyAudit.dependency_rows.some(
+      (row) =>
+        row.row ===
+          "shared_directed_rounding_audit_trail_for_source_q_derivative_composition" &&
+        row.status ===
+          sourceQDerivativeCompositionAudit.status &&
+        row.audit_trail_digest ===
+          sourceQDerivativeCompositionAudit.audit_trail_digest &&
+        row.first_missing_shared_backend_or_source_box_identity_field ===
+          "directed_rounding_backend_target.current_runtime_probe.directed_rounding_backend_available" &&
+        row.used_as_shared_certificate === false
     )
   );
   assert.equal(
@@ -1196,7 +1787,7 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   );
   assert.equal(
     oneSlotConstructionAttempt.construction_status.first_missing_interval_input,
-    "P_1_retained_root_delta_alpha_interval_box"
+    null
   );
   assert.equal(
     oneSlotConstructionAttempt.construction_status.first_missing_formula_row,
@@ -1208,8 +1799,123 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     "shared_directed_rounding_audit_trail_for_source_q_derivative_composition"
   );
   assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .source_q_derivative_composition_audit_trail_status,
+    sourceQDerivativeCompositionAudit.status
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .source_q_derivative_composition_audit_trail_digest,
+    sourceQDerivativeCompositionAudit.audit_trail_digest
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .first_missing_shared_backend_or_source_box_identity_field,
+    "directed_rounding_backend_target.current_runtime_probe.directed_rounding_backend_available"
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .directed_rounding_backend_availability_audit_status,
+    "directed_rounding_runtime_backend_unavailable_fail_closed"
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .directed_rounding_backend_availability_audit_digest,
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.digest
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .next_required_runtime_backend_object,
+    "a1_directed_rounding_interval_backend_runtime_identity.v0"
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .runtime_identity_target_status,
+    "target_only_runtime_identity_absent_fail_closed"
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .runtime_identity_target_digest,
+    runtimeIdentityTarget.target_digest
+  );
+  assert.deepEqual(
+    oneSlotConstructionAttempt.construction_status
+      .missing_runtime_identity_fields,
+    requiredRuntimeIdentityFields
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .first_missing_runtime_identity_field,
+    "backend_runtime_id"
+  );
+  assert.equal(
     oneSlotConstructionAttempt.first_failure,
-    "one_slot_retained_root_delta_interval_source_missing"
+    "one_slot_shared_directed_rounding_audit_trail_for_source_q_derivative_composition_missing"
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap.retained_root_interval_box_for_P_1_missing,
+    false
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap.q_source_interval_box_for_P_1_missing,
+    false
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap
+      .shared_retained_root_interval_box_for_P_1_missing,
+    true
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap
+      .shared_q_source_interval_box_for_P_1_missing,
+    true
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap
+      .shared_directed_rounding_audit_trail_for_source_q_derivative_composition_missing,
+    true
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap
+      .source_q_derivative_composition_priority_readout_present,
+    true
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap
+      .first_missing_shared_backend_or_source_box_identity_field,
+    "directed_rounding_backend_target.current_runtime_probe.directed_rounding_backend_available"
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap
+      .directed_rounding_backend_availability_audit_status,
+    "directed_rounding_runtime_backend_unavailable_fail_closed"
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap
+      .directed_rounding_backend_availability_audit_digest,
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.digest
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap.next_required_runtime_backend_object,
+    "a1_directed_rounding_interval_backend_runtime_identity.v0"
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap.runtime_identity_target_status,
+    "target_only_runtime_identity_absent_fail_closed"
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap.runtime_identity_target_digest,
+    runtimeIdentityTarget.target_digest
+  );
+  assert.deepEqual(
+    oneSlotConstructionAttempt.helper_gap.missing_runtime_identity_fields,
+    requiredRuntimeIdentityFields
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap.first_missing_runtime_identity_field,
+    "backend_runtime_id"
   );
   assert.equal(oneSlotConstructionAttempt.emits_K_Q, false);
   assert.equal(oneSlotConstructionAttempt.emits_E_Q_plus_b, false);

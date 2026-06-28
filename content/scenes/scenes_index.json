@@ -1794,6 +1794,31 @@
       "id": "outreach__comics__we_need_to_talk_remake",
       "name": "We Need To Talk",
       "path": "content/scenes/outreach/comics/we_need_to_talk_remake.json"
+    },
+    {
+      "id": "outreach__comics__citation_needed",
+      "name": "Citation Needed",
+      "path": "content/scenes/outreach/comics/citation_needed.json"
+    },
+    {
+      "id": "outreach__comics__alchemy_remake",
+      "name": "Old Alchemy, New Apparatus",
+      "path": "content/scenes/outreach/comics/alchemy_remake.json"
+    },
+    {
+      "id": "outreach__comics__smbh_remake",
+      "name": "Candidate, Not A Throne",
+      "path": "content/scenes/outreach/comics/smbh_remake.json"
+    },
+    {
+      "id": "outreach__comics__birthday_cake_observer_era",
+      "name": "Birthday Cake For The Observer Era",
+      "path": "content/scenes/outreach/comics/birthday_cake_observer_era.json"
+    },
+    {
+      "id": "outreach__comics__jets_remake",
+      "name": "What Counts As Evidence?",
+      "path": "content/scenes/outreach/comics/jets_remake.json"
     }
   ]
 }

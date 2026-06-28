@@ -666,6 +666,22 @@ failure is therefore still
 pressure response, retained-branch claims, observer export, export readiness, or
 empirical mass response.
 
+The source scout also records `candidate_source_class_inspections` so the
+negative result is auditable by source class rather than only by candidate
+count. The inspected classes are `complete_same_row_target_fixture`,
+`nested_target_provenance_probe`, `provider_target_fixture`,
+`toy_pressure_replay_partial`, `a0_branch_source_frontier_partial`,
+`cross_row_bundle_negative_control`, `current_status_fixture`,
+`finite_branch_hessian_target_packet`, `a0_branch_chart_revision_contract`,
+`toy_pressure_replay_packet`, `empirical_pressure_replay_skeleton`,
+`exposure_source_theorem_target`, `noether_sea_response_probe_target`, and
+`branch_provider_boundary_report`. Each class keeps
+`accepted_non_fixture_candidate_count=0`. Fixture classes fail because their
+paths are scaffolds or negative controls; toy and empirical classes fail because
+they do not emit branch history; priority packets fail because they state
+contracts or theorem targets rather than source rows; and the provider-boundary
+class fails because it does not yet emit retained pressure-row fields.
+
 The source scout now emits a compact `failure_family_delta`. The nearest current
 contract-field candidate is
 [pressure-row-branch-intake-nested-source-status-probe.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json):
@@ -680,6 +696,98 @@ evidence on that same row. The provider-boundary candidate reads the shared
 branch-provider report as `provider_verdict=same_domain_branch_provider_missing`,
 `first_failure=accepted_non_fixture_source_missing`, and
 `provider_ready_consumer_count=0`; it is not a retained pressure-row source.
+
+The scout also emits
+`pressure_row_nearest_candidate_provenance_depth_readout/v0` for the nearest
+nested-source-status probe. The readout checks 27 retained pressure-row source
+fields and keeps `accepted_non_fixture_source_provenance_pass=false`. The first
+unaccepted required field, and the first target/probe-only required field, is
+`branch_id`: `branch_id.source_status` is still
+`target_required_not_accepted_source`. The first non-target but still
+unaccepted field is `reversible_domain.loss_channels_closed`, which is present
+as a literal boolean but carries no accepted non-fixture source provenance. This
+narrower readout does not authorize branch-derived pressure response; it only
+shows that the current nearest row must first replace target-required branch
+identity with accepted source provenance, then replace the literal
+loss-channel flag with an accepted reversible-domain source row.
+
+The provenance distribution is exact for this nearest row: 26 required fields
+are `target_or_probe_only_not_accepted_source`, no required fields are missing,
+and only `reversible_domain.loss_channels_closed` is
+`literal_or_row_value_without_source_provenance`.
+
+The scout now also emits
+`pressure_row_branch_id_source_availability_audit/v0`. It checks all 14 current
+source-scout candidates for `branch_id` provenance. Three candidates carry a
+`branch_id` value, but all three are fixtures or target/probe-only rows, and
+`accepted_branch_id_candidate_count=0`; the audit therefore keeps
+`accepted_branch_id_source_found=false`,
+`first_failure=branch_id.accepted_non_fixture_source_missing`, and
+`preserved_failure_boundary=accepted_non_fixture_source_missing`. The attached
+provider-readiness readout follows the rank-4 H39 provider candidate in
+[branch-provider-current-candidates.json](../../../scripts/solver-audits/fixtures/branch-provider-current-candidates.json)
+and keeps `provider_source_status=target_only_not_accepted_source`,
+`source_map_provider_branch_intervals_available=false`, and
+`accepted_provider_object_branch_interval_count=0`. Its named next evidence
+object is still "same-domain source-map provider-object branch intervals on
+every terminal row"; until that source family emits an accepted same-domain
+branch-provider object, the pressure-row `branch_id` must remain fail-closed.
+The smallest pressure-row-side evidence object remains one accepted non-fixture
+retained pressure row whose `branch_id` field carries accepted non-fixture
+source provenance from the same-domain branch-provider object and binds to the
+same retained pressure row as the remaining pressure-row fields.
+
+The scout also emits
+`pressure_row_branch_certificate_ref_source_availability_audit/v0`. It reads the
+current rank-4 entries in
+[branch-provider-current-candidates.json](../../../scripts/solver-audits/fixtures/branch-provider-current-candidates.json):
+`pressure-row-current-status`, `pressure-row-fe-silicate-toy-partial`,
+`pressure-row-a0-branch-source-frontier-partial`, and
+`h39-aggregate-p-provider-preaggregation-construction-attempt`. All four have
+`branch_certificate_ref=null`, so the audit reports
+`accepted_branch_certificate_ref_found=false`,
+`branch_certificate_ref_present_candidate_count=0`, and
+`first_failure=branch_certificate_ref.accepted_non_fixture_source_missing`.
+This is not a new authorization gate; it is the provider side of the same rank-4
+blocker. The next provider object must have
+`provider_source_status=accepted_non_fixture_source`, `same_domain_record_ref`,
+`branch_certificate_ref`, `active_root_or_live_ledger_identity`, and
+`branch_local_projection_or_normalization_identity`; only then can a retained
+pressure row bind `branch_id` to that certificate and to the accepted history,
+quotient chart, pressure, exposure, pressure-response, reversible-domain, and
+null-sector records on one row.
+
+The branch-certificate audit now carries
+`pressure_row_same_domain_provider_object_construction_attempt/v0`, a
+pressure-specific construction attempt over those same four rank-4 candidates.
+It finds no accepted provider object:
+`accepted_same_domain_provider_object_found=false`,
+`provider_object_ready_candidate_count=0`, and
+`first_failure=same_domain_provider_object.accepted_non_fixture_source_missing`.
+The nearest pressure-specific partial is
+`pressure-row-a0-branch-source-frontier-partial`, which supplies
+`same_domain_record_ref`, `active_root_or_live_ledger_identity`, and
+`branch_local_projection_or_normalization_identity`, but still lacks
+`provider_source_status=accepted_non_fixture_source` and `branch_certificate_ref`.
+The target fixture
+[pressure-row-branch-intake-provider-target.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-provider-target.json)
+therefore records `pressure_row_same_domain_provider_object_target/v0` as a
+priority-only fail-closed target. It forbids combining fixture, toy,
+diagnostic, target-only, or cross-candidate fields into accepted pressure
+evidence.
+
+The construction attempt now nests
+`pressure_row_provider_source_status_and_certificate_path_probe/v0` for that
+nearest partial. The exact unaccepted provider-source path is
+`scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status`,
+whose observed value is `tier0_continuation_ready_not_accepted_history` rather
+than `accepted_non_fixture_source`. The exact missing certificate path is
+`scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref`,
+whose observed value is `null`. The same candidate's populated
+`same_domain_record_ref`, `active_root_or_live_ledger_identity`, and
+`branch_local_projection_or_normalization_identity` fields remain useful
+same-row partials, but they are not accepted source provenance and do not close
+the pressure-provider blocker.
 
 Executable current-status checker:
 [pressure-row-branch-intake-report.mjs](../../../scripts/mass-map/pressure-row-branch-intake-report.mjs)

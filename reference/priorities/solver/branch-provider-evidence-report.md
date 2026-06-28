@@ -147,10 +147,83 @@ pushforward operator reference, and normalization identity reference. It keeps
 The same readout now carries the target-only
 `branch_provider_candidate_source_map_provider_object_branch_interval_target/v0`.
 That target fixes the next positive evidence object without authorizing
-provider readiness: 15 terminal rows, 30 branch rows, both
-`source_map_provider_branch_intervals` and `provider_object_branch_intervals`,
-the same four identity kinds, and same-record binding on the provider object.
-It keeps `provider_ready_authorized_by_this_target=false` and
+provider readiness: the five shared source cells `speed.0.first-y` through
+`speed.4.first-y`, terminal $h$ indexes 37, 36, and 35, and both branch rows
+`P_-` and `P_+` for every terminal row. The target therefore names exact
+terminal rows such as `speed.0.first-y:h37` and exact branch rows such as
+`speed.0.first-y:h37:P_-`, for 15 terminal rows and 30 branch rows total.
+Each branch row still needs both `source_map_provider_branch_intervals` and
+`provider_object_branch_intervals`, the same four identity kinds, and
+same-record binding across `same_domain_record_ref`, `terminal_graph_cell_id`,
+`terminal_h_index`, `branch`, `source_y_order`,
+`required_xi_derivative_order`, both interval payload fields, the $P_b$ map,
+the branch projection or alpha map, `pushforward_operator_ref`, and
+`normalization_identity_ref`.
+
+The executable target distinguishes the already available lambda terminal
+witness intervals from the still-missing provider-object branch intervals.
+Lambda terminal witness branch intervals are comparison witnesses only; they do
+not carry the same-domain source-map/provider-object branch identity. It keeps
+`provider_ready_authorized_by_this_target=false` and
+`downstream_consumer_authorization=false`.
+
+The same readout now emits
+`branch_provider_candidate_source_map_provider_object_branch_split_map_availability/v0`.
+This availability object attempts the next branch split-map object for the
+required 15 terminal rows and 30 branch rows. The current branch-provider
+manifest does not yet emit
+`source_map_provider_object_branch_split_map_available_terminal_row_count`, so
+the availability object reports
+`status=source-map-provider-object-branch-split-map-source-field-not-emitted`,
+`observed_available_terminal_row_count=0`, and
+`branch_split_map_populated=false`. It keeps
+`provider_ready_authorized_by_this_availability=false` and
+`downstream_consumer_authorization=false`.
+
+The same availability object now reads the H39 producer-side field
+`provider_object_branch_antisymmetric_equation_available_terminal_row_count`
+from the terminal-expression-level source-map provider-object branch
+antisymmetric equation extractor. That extractor is emitted, but it reports
+`available_terminal_row_count=0`, `missing_terminal_row_count=15`, and
+`all_required_terminal_rows_missing=true` for the 15 terminal rows
+`speed.{0..4}.first-y:h{37,36,35}`. This is an explicit absence readout, not
+provider acceptance. The readout now carries exact
+`missing_terminal_row_ids` for all 15 terminal rows and exact
+`missing_branch_row_ids` for all 30 required provider-object branch rows,
+including both `P_-` and `P_+` on each terminal row. The smallest next evidence
+object is still a same-domain provider-object branch antisymmetric equation
+$A_P=P_- - P_+$ or explicit expression-level `P_-` / `P_+` branch rows on all
+15 terminal rows.
+
+The same readout now emits
+`branch_provider_candidate_source_map_provider_object_branch_interval_source_field_availability_audit/v0`.
+This compact source-field audit inspects the H39 diagnostic field families that
+could feed the provider object: the expression-level producer, the
+antisymmetric equation extractor, the branch split-map underdetermination
+readout, terminal-row provider-object replay, and provider-object branch
+residual extractor. It does not materialize provider-object branch intervals.
+Its first missing provider field is
+`source_map_provider_object_branch_split_map_available_terminal_row_count`,
+with the producer-side antisymmetric equation count emitted as `0 / 15`,
+followed by the still-missing candidate/admissible/actual branch intervals, the
+two interval payloads, and the four identity families. It keeps
+`provider_ready_authorized_by_this_audit=false` and
+`downstream_consumer_authorization=false`.
+
+The same readout now carries
+`branch_provider_candidate_producer_side_same_domain_branch_row_evidence_target/v0`.
+This target names the producer-side object that is still absent: a same-domain
+expression-level provider-object branch antisymmetric equation
+$A_P=P_- - P_+$, or explicit expression-level `P_-` / `P_+` branch rows that
+determine $u_P=A_P/2$, on all 15 terminal rows. It repeats the exact terminal
+row IDs, exact branch row IDs, same-record binding fields, identity families,
+and interval payloads required for the object. Its negative control is
+`aggregate-P-provider-probe-born-aggregate-only`: aggregate `P`, lambda terminal
+witness intervals, branch-attributed source terms, and row-local branch feeds
+remain rejected unless they carry the same-record `P_-` / `P_+` provider-object
+rows, both interval payloads, the $P_b$ map, branch projection or alpha map,
+pushforward operator reference, and normalization identity. It keeps
+`provider_ready_authorized_by_this_target=false` and
 `downstream_consumer_authorization=false`.
 
 ## Authorization Boundary
@@ -176,3 +249,16 @@ pre-aggregate branch rows, labels, weights or intervals, projection map,
 pushforward operator, normalization identity, upstream source-term references,
 and aggregate-erasure negative control before provider acceptance is consumed by
 ranks 2, 4, 5, or 6.
+
+For the H39 source-map provider-object branch-interval path specifically, the
+next object is one same-domain expression-level source-map provider-object
+branch split map that emits finite `P_-` and `P_+` intervals for all 15
+terminal rows `speed.{0..4}.first-y:h{37,36,35}` and all 30 branch rows. The
+immediate producer-side blocker is now populated as an absence: the branch
+antisymmetric equation field is emitted, but reports zero available terminal
+rows and names every missing `P_-` / `P_+` branch row. The accepted provider
+packet must carry the producer-side same-domain branch-row evidence target:
+a same-domain $A_P=P_- - P_+$ equation or explicit expression-level `P_-` /
+`P_+` rows, both interval payloads, the $P_b$ map, branch projection or alpha
+map, pushforward operator reference, normalization identity reference, and the
+same-record binding fields named above.

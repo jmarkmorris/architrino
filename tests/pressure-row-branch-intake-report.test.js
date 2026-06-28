@@ -216,6 +216,41 @@ test("pressure-row branch intake report rejects target-only provider fixture", (
     "active_root_or_live_ledger_identity",
     "branch_local_projection_or_normalization_identity",
   ]);
+  assert.equal(
+    report.provider_target.same_domain_provider_object_target.schema,
+    "pressure_row_same_domain_provider_object_target/v0"
+  );
+  assert.equal(
+    report.provider_target.same_domain_provider_object_target.claim_level,
+    "priority-only fail-closed target, not provider acceptance"
+  );
+  assert.deepEqual(report.provider_target.same_domain_provider_object_target.required_provider_fields, [
+    "provider_source_status",
+    "same_domain_record_ref",
+    "branch_certificate_ref",
+    "active_root_or_live_ledger_identity",
+    "branch_local_projection_or_normalization_identity",
+  ]);
+  assert.equal(
+    report.provider_target.same_domain_provider_object_target.authorizes_pressure_response,
+    false
+  );
+  assert.equal(
+    report.provider_target.same_domain_provider_object_target.current_best_partial_source_path_probe_target.schema,
+    "pressure_row_provider_source_status_and_certificate_path_probe/v0"
+  );
+  assert.equal(
+    report.provider_target.same_domain_provider_object_target.current_best_partial_source_path_probe_target.required_provider_source_status_path,
+    "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status"
+  );
+  assert.equal(
+    report.provider_target.same_domain_provider_object_target.current_best_partial_source_path_probe_target.required_branch_certificate_ref_path,
+    "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref"
+  );
+  assert.equal(
+    report.provider_target.same_domain_provider_object_target.current_best_partial_source_path_probe_target.authorizes_pressure_response,
+    false
+  );
   assert.equal(report.branch_intake_verdict, "finite_branch_evidence_missing");
   assert.equal(report.first_failure, "finite_branch_evidence_missing");
   assert.equal(report.same_row_binding, false);
@@ -432,6 +467,49 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
     assert.equal(rejectionCodes.has(expectedCode), true);
   }
 
+  const inspectedSourceClasses = report.candidate_source_class_inspections.map(
+    (entry) => entry.candidate_kind
+  );
+  assert.deepEqual(inspectedSourceClasses, [
+    "a0_branch_chart_revision_contract",
+    "a0_branch_source_frontier_partial",
+    "branch_provider_boundary_report",
+    "complete_same_row_target_fixture",
+    "cross_row_bundle_negative_control",
+    "current_status_fixture",
+    "empirical_pressure_replay_skeleton",
+    "exposure_source_theorem_target",
+    "finite_branch_hessian_target_packet",
+    "nested_target_provenance_probe",
+    "noether_sea_response_probe_target",
+    "provider_target_fixture",
+    "toy_pressure_replay_packet",
+    "toy_pressure_replay_partial",
+  ]);
+  assert.equal(
+    report.candidate_source_class_inspections.every(
+      (entry) => entry.accepted_non_fixture_candidate_count === 0
+    ),
+    true
+  );
+  const completeSameRowClass = report.candidate_source_class_inspections.find(
+    (entry) => entry.candidate_kind === "complete_same_row_target_fixture"
+  );
+  assert.ok(completeSameRowClass);
+  assert.deepEqual(completeSameRowClass.first_failures, [
+    "accepted_non_fixture_source_missing",
+  ]);
+  assert.equal(
+    completeSameRowClass.nearest_missing_field_sets.includes("branch_id"),
+    true
+  );
+  assert.equal(
+    completeSameRowClass.nearest_missing_field_sets.includes(
+      "reversible_domain.loss_channels_closed"
+    ),
+    true
+  );
+
   const nestedProbe = report.candidates.find((candidate) =>
     candidate.path.endsWith("pressure-row-branch-intake-nested-source-status-probe.json")
   );
@@ -473,6 +551,298 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
   assert.equal(
     report.failure_family_delta.provider_boundary_candidate.path,
     "reference/priorities/solver/branch-provider-evidence-report.md"
+  );
+
+  const provenanceDepth = report.failure_family_delta.provenance_depth_readout;
+  assert.ok(provenanceDepth);
+  assert.equal(
+    provenanceDepth.schema,
+    "pressure_row_nearest_candidate_provenance_depth_readout/v0"
+  );
+  assert.equal(
+    provenanceDepth.candidate_path,
+    "scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json"
+  );
+  assert.equal(provenanceDepth.accepted_non_fixture_source_provenance_pass, false);
+  assert.equal(provenanceDepth.field_count, 27);
+  assert.equal(provenanceDepth.target_or_probe_only_required_field_count, 26);
+  assert.equal(provenanceDepth.unaccepted_required_field_count, 27);
+  assert.equal(provenanceDepth.first_unaccepted_required_field.field_path, "branch_id");
+  assert.equal(
+    provenanceDepth.first_unaccepted_required_field.source_status,
+    "target_required_not_accepted_source"
+  );
+  assert.equal(
+    provenanceDepth.first_target_or_probe_only_required_field.field_path,
+    "branch_id"
+  );
+  assert.equal(
+    provenanceDepth.first_target_or_probe_only_required_field.provenance_reading,
+    "target_or_probe_only_not_accepted_source"
+  );
+  assert.equal(
+    provenanceDepth.first_non_target_unaccepted_required_field.field_path,
+    "reversible_domain.loss_channels_closed"
+  );
+  assert.equal(
+    provenanceDepth.first_non_target_unaccepted_required_field.provenance_reading,
+    "literal_or_row_value_without_source_provenance"
+  );
+  assert.deepEqual(provenanceDepth.provenance_reading_counts, [
+    {
+      key: "target_or_probe_only_not_accepted_source",
+      count: 26,
+    },
+    {
+      key: "literal_or_row_value_without_source_provenance",
+      count: 1,
+    },
+  ]);
+  assert.equal(provenanceDepth.target_or_probe_only_required_field_paths.length, 26);
+  assert.deepEqual(provenanceDepth.missing_required_field_paths, []);
+  assert.deepEqual(provenanceDepth.literal_or_row_value_without_source_provenance_field_paths, [
+    "reversible_domain.loss_channels_closed",
+  ]);
+  assert.deepEqual(provenanceDepth.rejected_non_source_provenance_field_paths, []);
+  assert.deepEqual(provenanceDepth.unverified_source_provenance_field_paths, []);
+  assert.equal(
+    provenanceDepth.field_readouts.every((field) => field.accepted_non_fixture_source_provenance === false),
+    true
+  );
+
+  const branchIdAudit = report.failure_family_delta.branch_id_source_availability_audit;
+  assert.ok(branchIdAudit);
+  assert.equal(branchIdAudit.schema, "pressure_row_branch_id_source_availability_audit/v0");
+  assert.equal(branchIdAudit.field_path, "branch_id");
+  assert.equal(branchIdAudit.accepted_branch_id_source_found, false);
+  assert.equal(branchIdAudit.first_failure, "branch_id.accepted_non_fixture_source_missing");
+  assert.equal(branchIdAudit.preserved_failure_boundary, "accepted_non_fixture_source_missing");
+  assert.equal(
+    branchIdAudit.required_source_family,
+    "same-domain source-map provider-object branch intervals feeding retained pressure-row branch identity"
+  );
+  assert.match(
+    branchIdAudit.required_next_pressure_row,
+    /one accepted non-fixture retained pressure row/
+  );
+  assert.equal(branchIdAudit.candidate_count, 14);
+  assert.equal(branchIdAudit.branch_id_present_candidate_count, 3);
+  assert.equal(branchIdAudit.target_or_probe_only_branch_id_candidate_count, 3);
+  assert.equal(branchIdAudit.accepted_branch_id_candidate_count, 0);
+  assert.deepEqual(branchIdAudit.accepted_branch_id_candidates, []);
+  assert.equal(
+    branchIdAudit.nearest_candidate_branch_id_readout.path,
+    "scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json"
+  );
+  assert.equal(
+    branchIdAudit.nearest_candidate_branch_id_readout.branch_id.source_status,
+    "target_required_not_accepted_source"
+  );
+  assert.equal(
+    branchIdAudit.nearest_candidate_branch_id_readout.branch_id.provenance_reading,
+    "target_or_probe_only_not_accepted_source"
+  );
+  assert.equal(
+    branchIdAudit.provider_boundary_candidate.provider_report_reading.provider_verdict,
+    "same_domain_branch_provider_missing"
+  );
+  assert.equal(
+    branchIdAudit.provider_boundary_candidate.provider_report_reading.provider_ready_consumer_count,
+    "0"
+  );
+
+  const providerReadiness = branchIdAudit.provider_readiness;
+  assert.equal(providerReadiness.schema, "pressure_row_branch_id_provider_readiness_audit/v0");
+  assert.equal(providerReadiness.provider_current_candidate_available, true);
+  assert.equal(
+    providerReadiness.provider_candidate_id,
+    "h39-aggregate-p-provider-preaggregation-construction-attempt"
+  );
+  assert.equal(providerReadiness.provider_source_status, "target_only_not_accepted_source");
+  assert.equal(providerReadiness.feeds_rank4_pressure_row_branch_intake, true);
+  assert.equal(
+    providerReadiness.current_primary_missing_object_kind,
+    "source-map-provider-object-branch-intervals"
+  );
+  assert.equal(
+    providerReadiness.next_evidence_object,
+    "same-domain source-map provider-object branch intervals on every terminal row"
+  );
+  assert.equal(providerReadiness.source_map_provider_branch_intervals_available, false);
+  assert.equal(providerReadiness.provider_object_branch_intervals_present, false);
+  assert.equal(providerReadiness.accepted_provider_object_branch_interval_count, 0);
+  assert.equal(providerReadiness.required_terminal_row_count, 15);
+  assert.equal(providerReadiness.required_branch_row_count, 30);
+  assert.deepEqual(providerReadiness.required_identity_kinds, [
+    "same-domain-branch-bearing-P_b-map",
+    "branch_projection_or_alpha_map",
+    "pushforward_operator_ref",
+    "normalization_identity_ref",
+  ]);
+  assert.equal(providerReadiness.provider_ready_authorized, false);
+  assert.equal(providerReadiness.downstream_consumer_authorization, false);
+
+  const branchCertificateRefAudit =
+    report.failure_family_delta.branch_certificate_ref_source_availability_audit;
+  assert.ok(branchCertificateRefAudit);
+  assert.equal(
+    branchCertificateRefAudit.schema,
+    "pressure_row_branch_certificate_ref_source_availability_audit/v0"
+  );
+  assert.equal(branchCertificateRefAudit.field_path, "branch_certificate_ref");
+  assert.equal(branchCertificateRefAudit.accepted_branch_certificate_ref_found, false);
+  assert.equal(
+    branchCertificateRefAudit.first_failure,
+    "branch_certificate_ref.accepted_non_fixture_source_missing"
+  );
+  assert.equal(
+    branchCertificateRefAudit.preserved_failure_boundary,
+    "accepted_non_fixture_source_missing"
+  );
+  assert.equal(branchCertificateRefAudit.provider_candidate_count, 8);
+  assert.equal(branchCertificateRefAudit.rank4_provider_candidate_count, 4);
+  assert.equal(branchCertificateRefAudit.pressure_source_candidate_count, 14);
+  assert.equal(branchCertificateRefAudit.pressure_target_or_fixture_candidate_count, 7);
+  assert.equal(branchCertificateRefAudit.branch_certificate_ref_present_candidate_count, 0);
+  assert.equal(branchCertificateRefAudit.accepted_branch_certificate_ref_candidate_count, 0);
+  assert.deepEqual(branchCertificateRefAudit.accepted_branch_certificate_ref_candidates, []);
+  assert.match(
+    branchCertificateRefAudit.required_next_provider_object,
+    /provider_source_status=accepted_non_fixture_source/
+  );
+  assert.match(
+    branchCertificateRefAudit.required_next_pressure_row_binding,
+    /one accepted non-fixture retained pressure row/
+  );
+  const branchCertificateCandidateIds = branchCertificateRefAudit.candidate_readouts.map(
+    (candidate) => candidate.id
+  );
+  assert.deepEqual(branchCertificateCandidateIds, [
+    "pressure-row-current-status",
+    "pressure-row-fe-silicate-toy-partial",
+    "pressure-row-a0-branch-source-frontier-partial",
+    "h39-aggregate-p-provider-preaggregation-construction-attempt",
+  ]);
+  assert.equal(
+    branchCertificateRefAudit.candidate_readouts.every(
+      (candidate) =>
+        candidate.branch_certificate_ref_present === false &&
+        candidate.branch_certificate_ref_reading === "branch_certificate_ref_missing"
+    ),
+    true
+  );
+
+  const providerObjectAttempt =
+    branchCertificateRefAudit.same_domain_provider_object_construction_attempt;
+  assert.ok(providerObjectAttempt);
+  assert.equal(
+    providerObjectAttempt.schema,
+    "pressure_row_same_domain_provider_object_construction_attempt/v0"
+  );
+  assert.equal(
+    providerObjectAttempt.claim_scope,
+    "rank4 pressure-row branch-intake provider object"
+  );
+  assert.equal(providerObjectAttempt.required_provider_source_status, "accepted_non_fixture_source");
+  assert.deepEqual(providerObjectAttempt.required_provider_fields, [
+    "provider_source_status",
+    "same_domain_record_ref",
+    "branch_certificate_ref",
+    "active_root_or_live_ledger_identity",
+    "branch_local_projection_or_normalization_identity",
+  ]);
+  assert.equal(providerObjectAttempt.accepted_same_domain_provider_object_found, false);
+  assert.equal(
+    providerObjectAttempt.first_failure,
+    "same_domain_provider_object.accepted_non_fixture_source_missing"
+  );
+  assert.equal(
+    providerObjectAttempt.preserved_failure_boundary,
+    "accepted_non_fixture_source_missing"
+  );
+  assert.equal(providerObjectAttempt.rank4_provider_candidate_count, 4);
+  assert.equal(providerObjectAttempt.provider_object_ready_candidate_count, 0);
+  assert.deepEqual(providerObjectAttempt.missing_or_rejected_provider_field_union, [
+    "active_root_or_live_ledger_identity",
+    "branch_certificate_ref",
+    "branch_local_projection_or_normalization_identity",
+    "provider_source_status",
+    "same_domain_record_ref",
+  ]);
+  assert.deepEqual(providerObjectAttempt.nearest_pressure_specific_partial, {
+    id: "pressure-row-a0-branch-source-frontier-partial",
+    required_field_pass_count: 3,
+    missing_or_rejected_provider_fields: [
+      "provider_source_status",
+      "branch_certificate_ref",
+    ],
+    first_failure: "provider_source_status.accepted_non_fixture_source_missing",
+  });
+  assert.deepEqual(providerObjectAttempt.branch_certificate_ref_null_candidate_ids, [
+    "pressure-row-current-status",
+    "pressure-row-fe-silicate-toy-partial",
+    "pressure-row-a0-branch-source-frontier-partial",
+    "h39-aggregate-p-provider-preaggregation-construction-attempt",
+  ]);
+  const providerSourcePathProbe =
+    providerObjectAttempt.provider_source_status_and_certificate_path_probe;
+  assert.ok(providerSourcePathProbe);
+  assert.equal(
+    providerSourcePathProbe.schema,
+    "pressure_row_provider_source_status_and_certificate_path_probe/v0"
+  );
+  assert.equal(
+    providerSourcePathProbe.nearest_partial_id,
+    "pressure-row-a0-branch-source-frontier-partial"
+  );
+  assert.equal(
+    providerSourcePathProbe.nearest_partial_source_ref,
+    "scripts/mass-map/fixtures/pressure-row-branch-intake-a0-branch-source-partial.json"
+  );
+  assert.equal(
+    providerSourcePathProbe.nearest_partial_source_ref_status,
+    "fixture_source_ref_not_accepted_provenance"
+  );
+  assert.equal(providerSourcePathProbe.accepted_promotion_authorized, false);
+  assert.equal(
+    providerSourcePathProbe.same_candidate_populated_fields_are_not_source_acceptance,
+    true
+  );
+  assert.equal(
+    providerSourcePathProbe.provider_source_status_path,
+    "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status"
+  );
+  assert.equal(
+    providerSourcePathProbe.provider_source_status_observed_value,
+    "tier0_continuation_ready_not_accepted_history"
+  );
+  assert.equal(providerSourcePathProbe.provider_source_status_pass, false);
+  assert.equal(
+    providerSourcePathProbe.provider_source_status_first_failure,
+    "provider_source_status.accepted_non_fixture_source_missing"
+  );
+  assert.equal(
+    providerSourcePathProbe.branch_certificate_ref_path,
+    "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref"
+  );
+  assert.equal(providerSourcePathProbe.branch_certificate_ref_observed_value, null);
+  assert.equal(providerSourcePathProbe.branch_certificate_ref_pass, false);
+  assert.equal(
+    providerSourcePathProbe.branch_certificate_ref_first_failure,
+    "branch_certificate_ref.missing"
+  );
+  assert.deepEqual(providerSourcePathProbe.exact_missing_provider_source_paths, [
+    "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status",
+    "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref",
+  ]);
+  assert.deepEqual(providerObjectAttempt.accepted_same_domain_provider_object_candidates, []);
+  assert.equal(
+    providerObjectAttempt.candidate_readouts.every(
+      (candidate) =>
+        candidate.pressure_provider_object_ready === false &&
+        candidate.cross_candidate_join_authorized === false
+    ),
+    true
   );
 });
 
