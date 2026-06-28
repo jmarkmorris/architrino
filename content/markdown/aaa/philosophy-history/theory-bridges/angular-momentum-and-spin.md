@@ -1105,7 +1105,7 @@ $$
 
 provided the active roots stay simple through the regularized transition.
 
-The energy admissibility condition is now explicit. In the first action-angle approximation with no retained wake energy and no residual root-energy term, the source channel must satisfy
+The energy admissibility condition is explicit. In the first action-angle approximation with no retained wake energy and no residual root-energy term, the source channel must satisfy
 
 $$
 \omega_{\text{tx}}
@@ -1798,7 +1798,7 @@ h_{\mathrm{eff}},
 \mathcal{P}
 \right)
 $$
-where $\Lambda_{\text{NS}}$ is the legacy closure label, $\mathcal{A}_{\mathrm{ax}}$ is the axial inventory and axial-frame record, $h_{\mathrm{eff}}$ is the observer-level helicity when a propagation direction is present, and $\mathcal{P}$ is the provenance ledger needed to compare branches. The effective maps must first close as comparison operations:
+where $\Lambda_{\text{NS}}$ is the reduced nested shell braid closure label, $\mathcal{A}_{\mathrm{ax}}$ is the axial inventory and axial-frame record, $h_{\mathrm{eff}}$ is the observer-level helicity when a propagation direction is present, and $\mathcal{P}$ is the provenance ledger needed to compare branches. The effective maps must first close as comparison operations:
 $$
 C_{\mathrm{eff}}^2
 =
@@ -2034,7 +2034,7 @@ $$
 
 subject to the energy, angular-momentum, phase-closure, and root-admissibility equations above. This is the foundation-up version of the quantization question: energy levels are not added as external quantum labels; they are the stable return classes of the delayed nested shell braid geometry.
 
-When the only question is energy-level closure, the schematic integer-and-root ledger above is enough. When the question is spin, ordered-frame chirality, weak chirality, or any broader quantum-number recovery, the branch must instead be tracked by the reduced legacy label $\Lambda_{\text{NS}}$. That label keeps the integer windings, causal-root ledgers, inter-layer phase-lock data, and candidate chirality branch in one proof object. It does not prove the holonomy or chirality claim by definition; it prevents later quantum-number language from floating free of the braid closure data that would have to derive it.
+When the only question is energy-level closure, the schematic integer-and-root ledger above is enough. When the question is spin, ordered-frame chirality, weak chirality, or any broader quantum-number recovery, the branch must instead be tracked by the reduced nested shell braid closure label $\Lambda_{\text{NS}}$. That label keeps the integer windings, causal-root ledgers, inter-layer phase-lock data, and candidate chirality branch in one proof object. It does not prove the holonomy or chirality claim by definition; it prevents later quantum-number language from floating free of the braid closure data that would have to derive it.
 
 The candidate nested shell braid closure labels are therefore:
 

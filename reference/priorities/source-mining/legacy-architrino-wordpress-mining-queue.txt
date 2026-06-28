@@ -270,27 +270,27 @@
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/11/11/guardians-of-physics-are-an-embarassment/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/10/22/the-standard-model-of-particle-physics/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/09/29/numerology-or-insight/
-https://architrino.wordpress.com/2021/09/13/engaging-the-particle-physics-reddit/
-https://architrino.wordpress.com/2021/06/18/despondency-at-triton-station/
-https://architrino.wordpress.com/2021/06/02/bickering-with-a-guardian-of-physics/
-https://architrino.wordpress.com/2021/06/01/draw-freely-upon-your-imagination/
-https://architrino.wordpress.com/2021/05/29/lee-smolin-the-trouble-with-physics/
-https://architrino.wordpress.com/2021/05/23/dr-anna-christina-eilers-quasars/
-https://architrino.wordpress.com/2021/05/07/matthew-von-hippel-lost-and-clueless/
-https://architrino.wordpress.com/2021/05/07/pbs-space-time-dialog-with-a-dreamer/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/09/13/engaging-the-particle-physics-reddit/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/06/18/despondency-at-triton-station/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/06/02/bickering-with-a-guardian-of-physics/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/06/01/draw-freely-upon-your-imagination/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/05/29/lee-smolin-the-trouble-with-physics/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/05/23/dr-anna-christina-eilers-quasars/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/05/07/matthew-von-hippel-lost-and-clueless/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/05/07/pbs-space-time-dialog-with-a-dreamer/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/05/04/npqg-may-4-2021-quantum-ontology-and-metaphysics/
-https://architrino.wordpress.com/2021/05/04/npqg-may-4-2021-dr-sabine-hossenfelder-dark-matter/
-https://architrino.wordpress.com/2021/04/29/npqg-april-29-2021-triton-station-eerily-quiet/
-https://architrino.wordpress.com/2021/04/26/npqg-april-26-2021-how-the-universe-works/
-https://architrino.wordpress.com/2021/04/24/npqg-april-24-2021-dr-brian-keating-and-dr-carlo-rovelli/
-https://architrino.wordpress.com/2021/04/21/npqg-april-21-2021/
-https://architrino.wordpress.com/2021/04/13/triton-station-divergence/
-https://architrino.wordpress.com/2021/01/31/npqg-february-1-2021-dr-stacy-mcgaugh-triton-station/
-https://architrino.wordpress.com/2021/01/31/npqg-january-31-2021-quantum-field-theory/
-https://architrino.wordpress.com/2021/01/18/npqg-january-18-2021-decoded-standard-model/
-https://architrino.wordpress.com/2021/01/07/npqg-january-7-2020-bubbly-bubbles/
-https://architrino.wordpress.com/2021/01/06/five-gatekeepers-of-speech/
-https://architrino.wordpress.com/2021/01/02/npqg-january-2-2021/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/05/04/npqg-may-4-2021-dr-sabine-hossenfelder-dark-matter/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/04/29/npqg-april-29-2021-triton-station-eerily-quiet/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/04/26/npqg-april-26-2021-how-the-universe-works/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/04/24/npqg-april-24-2021-dr-brian-keating-and-dr-carlo-rovelli/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/04/21/npqg-april-21-2021/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/04/13/triton-station-divergence/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/01/31/npqg-february-1-2021-dr-stacy-mcgaugh-triton-station/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/01/31/npqg-january-31-2021-quantum-field-theory/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/01/18/npqg-january-18-2021-decoded-standard-model/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/01/07/npqg-january-7-2020-bubbly-bubbles/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/01/06/five-gatekeepers-of-speech/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/01/02/npqg-january-2-2021/
 https://architrino.wordpress.com/2021/01/01/dr-brian-keating-dr-max-tegmark-and-dr-eric-weinstein/
 https://architrino.wordpress.com/2020/12/31/npqg-december-31-2020-eureka/
 https://architrino.wordpress.com/2020/12/29/npqg-december-30-2020/

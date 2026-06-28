@@ -391,6 +391,8 @@ P_{\mathrm{glob}}(\theta_1)\ne P_{\mathrm{glob}}(\theta_2)
 $$
 A claim about a unique global chronology, asymptotic de Sitter state, global topology, or one-time origin is promoted only when this ambiguity indicator vanishes or when a native derivation selects that claim without using the fitted data products as the selection rule. Otherwise the corpus should retain the observational data product and classify the global statement as an effective reconstruction.
 
+Flatness constraints require the same layer discipline. CMB, BAO, lensing, and large-scale-structure fits may strongly constrain the effective curvature parameter used in observer reconstructions, but that is not by itself a proof of global topology or of the Euclidean void postulate. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Euclidean void is an ontological background claim, while $\Omega_k$ or any fitted curvature variable is a data-product coordinate exported by the effective metric and inference pipeline. A successful cosmology must therefore recover near-flat observer data without converting the data product into a topology proof.
+
 ### Interface Variables (Predicted API Surface)
 
 Each observational component exposes explicit interface variables for cross-theory mapping:
@@ -5236,6 +5238,31 @@ This quantity must be evaluated with the same $\theta_{\mathrm{sea}}$ used for B
 Reports of massive, mature galaxies at $z > 10$ (from JWST and successors) test whether the growth history permits sufficient structure formation by early times. In the Noether sea framework:
 - If $G_{\text{eff}}$ was larger at early times (medium more compliant when hotter/denser), early structure formation is enhanced relative to standard $\Lambda$CDM—potentially explaining surprisingly massive high-$z$ systems without exotic physics.
 - Conversely, if $G_{\text{eff}}$ was constant, the same tension present in standard cosmology persists and must be addressed through astrophysical channels (early star formation efficiency, AGN feedback).
+
+High-redshift quasars add the compact-source side of the same test. A massive quasar at large inferred redshift is not only a point on a distance curve; it is a joint record of seed inventory, feeding history, radiative efficiency, obscuration and selection, line-of-sight transfer, and the redshift extraction itself. A useful comparison object is
+$$
+\mathcal{R}_{\mathrm{QSO\text{-}grow}}(\theta)
+=
+d_M\!\left(
+M_{\mathrm{BH}}^{\mathrm{obs}},
+M_{\mathrm{BH}}^\theta[
+\mathcal{H}_{\mathrm{seed}},
+\mathcal{H}_{\mathrm{feed}},
+\epsilon_{\mathrm{rad}},
+\theta_{\mathrm{sea}}
+]
+\right)
++
+d_z\!\left(
+z_{\mathrm{QSO}}^{\mathrm{obs}},
+Z^\theta[
+\mathcal{S}_{E\to R},
+\Theta_{\mathrm{sel}},
+\Theta_{\mathrm{line}}
+]
+\right).
+$$
+Here the first term tests whether the shared source history can grow the compact object, while the second tests whether the same source-to-receiver and selection records support the reported redshift. A branch fails this row if quasar growth is repaired by changing the age, redshift-transfer, or Noether sea state independently of the growth, CMB, lensing, and source-history records.
 
 #### Top-Down vs Bottom-Up Discriminator
 

@@ -17,6 +17,9 @@ const SCRIPT_PATH = fileURLToPath(
 const CURRENT_FIXTURE = fileURLToPath(
   new URL("../scripts/mass-map/fixtures/pressure-row-branch-intake-current-status.json", import.meta.url)
 );
+const FE_SILICATE_PARTIAL_FIXTURE = fileURLToPath(
+  new URL("../scripts/mass-map/fixtures/pressure-row-branch-intake-fe-silicate-toy-partial.json", import.meta.url)
+);
 
 test("pressure-row branch intake report rejects current diagnostic-only status", () => {
   const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
@@ -30,7 +33,9 @@ test("pressure-row branch intake report rejects current diagnostic-only status",
   assert.equal(report.authorization.branch_derived_pressure_response, false);
   assert.equal(report.authorization.empirical_mass_response, false);
   assert.equal(report.missing_or_rejected_fields.includes("branch_id"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("pressure_record.Pi"), true);
   assert.equal(report.missing_or_rejected_fields.includes("pressure_response_record.C_chi_iso"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("null_sector_record.transport"), true);
 });
 
 test("pressure-row branch intake report accepts a complete same-row synthetic record", () => {
@@ -38,10 +43,19 @@ test("pressure-row branch intake report accepts a complete same-row synthetic re
     row_id: "synthetic-retained-pressure-row",
     branch_id: "branch:q-test",
     accepted_history_segment_id: "history:q-test:W",
+    source_path: "generated/report/q-test.json",
     quotient_chart_id: "quotient:q-test",
     residual_status: "pass",
     gap_or_stability_status: "positive_gap",
     eta_ladder_status: "not_required",
+    pressure_record: {
+      Pi: "source:Pi",
+      A: "source:A",
+      s_n: "source:s_n",
+      Q_chi_ab: "source:Qchi",
+      S_dev_ab: "source:Sdev",
+      retained_replay_direction: "source:direction"
+    },
     exposure_source_record: {
       E_internal: "source:E",
       zeta: "source:zeta",
@@ -53,6 +67,19 @@ test("pressure-row branch intake report accepts a complete same-row synthetic re
       C_chi_iso: "source:Ciso",
       C_chi_aniso: "source:Caniso",
       m_S: "source:mS"
+    },
+    reversible_domain: {
+      R_tr: "source:Rtr",
+      R_tr_star: "source:RtrStar",
+      loss_channels_closed: true
+    },
+    null_sector_record: {
+      clock_signal: "source:clock",
+      birefringence: "source:birefringence",
+      photon_dispersion: "source:photon-dispersion",
+      preferred_frame: "source:preferred-frame",
+      directional_tensor: "source:directional-tensor",
+      transport: "source:transport"
     }
   });
 
@@ -62,6 +89,40 @@ test("pressure-row branch intake report accepts a complete same-row synthetic re
   assert.equal(report.same_row_binding, true);
   assert.equal(report.authorization.branch_derived_pressure_response, true);
   assert.equal(report.authorization.retained_branch_claim, false);
+});
+
+test("pressure-row branch intake report records Fe/silicate toy row fields without accepting replay-only evidence", () => {
+  const fixture = JSON.parse(fs.readFileSync(FE_SILICATE_PARTIAL_FIXTURE, "utf8"));
+  const report = buildReport(fixture, { sourceRef: FE_SILICATE_PARTIAL_FIXTURE });
+
+  assert.deepEqual(validationErrors(report), []);
+  assert.equal(report.branch_intake_verdict, "finite_branch_evidence_missing");
+  assert.equal(report.first_failure, "finite_branch_evidence_missing");
+  assert.equal(report.same_row_binding, false);
+  assert.equal(report.authorization.branch_derived_pressure_response, false);
+  assert.equal(report.authorization.empirical_mass_response, false);
+  assert.equal(report.authorization.retained_branch_claim, false);
+
+  assert.equal(report.missing_or_rejected_fields.includes("pressure_record.Pi"), false);
+  assert.equal(report.missing_or_rejected_fields.includes("pressure_record.s_n"), false);
+  assert.equal(report.missing_or_rejected_fields.includes("pressure_response_record.C_chi_iso"), false);
+  assert.equal(report.missing_or_rejected_fields.includes("null_sector_record.birefringence"), false);
+
+  assert.equal(report.missing_or_rejected_fields.includes("branch_id"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("accepted_history_segment_id"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("quotient_chart_id"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("eta_ladder_status"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("exposure_source_record.E_internal"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("pressure_response_record.partial_P_M0_src"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("pressure_response_record.C_chi_aniso"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("reversible_domain.loss_channels_closed"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("null_sector_record.preferred_frame"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("null_sector_record.directional_tensor"), true);
+
+  const residualStatus = report.field_results.find((field) => field.path === "residual_status");
+  assert.equal(residualStatus.present, true);
+  assert.equal(residualStatus.pass, false);
+  assert.equal(residualStatus.failure_code, "pressure_row_residual_not_accepted");
 });
 
 test("pressure-row branch intake CLI emits and validates current fixture report", () => {

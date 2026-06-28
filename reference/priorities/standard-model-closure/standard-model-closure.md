@@ -116,6 +116,22 @@ $$
 $$
 Here $\mathcal{C}_{3\times3}$ is the candidate color-coupling inventory, $\Pi_{\mathrm{singlet}}$ and $\Pi_{\mathrm{octet}}$ are the singlet and octet projections, $\mathcal{R}_{\mathrm{open}}$ rejects an independent ninth open mode, and $\mathcal{R}_{\mathrm{conf}}$ checks that the same corridor record still supports confinement-scale behavior. This is a refinement of the existing quark vortex-coupling target, not a new top-level gate.
 
+### Feynman-Diagram To Event-Ledger Translation Target
+
+Feynman diagrams remain a compact observer-level grammar for external particle labels, internal comparison lines, and vertex bookkeeping. The $\mathbb{A}\mathbb{A}\mathbb{A}$ translation target is not to redraw every perturbative diagram as a literal assembly cartoon. It is to choose small curated reactions and bind each external label, exchanged comparison term, and detector-facing output to a finite assembly event ledger:
+$$
+\mathcal{F}_{\mathrm{diag}\to\mathrm{evt}}
+=
+\left(
+\mathcal{E}_{\mathrm{ext}},
+\mathcal{V}_{\mathrm{QFT}},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}},
+\mathcal{I}_{\mathrm{asm}},
+\mathcal{R}_{\mathrm{lim}}
+\right).
+$$
+Here $\mathcal{E}_{\mathrm{ext}}$ is the external particle-label inventory, $\mathcal{V}_{\mathrm{QFT}}$ is the effective vertex or operator term being recovered, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the finite event ledger, $\mathcal{I}_{\mathrm{asm}}$ records assembly association, dissociation, shielding, and Noether sea exchange, and $\mathcal{R}_{\mathrm{lim}}$ checks the ordinary QFT limit. The first use should be a curated low-complexity channel such as Compton/recoil, beta-family weak reaction, or pair threshold, not raw automatic conversion of the whole PDG catalogue.
+
 ## Scalar-Boson Acceptance Target
 
 The Higgs discovery benchmark is a required Standard Model-facing recovery target, not evidence for primitive Higgs ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$. The acceptance target is a shared scalar residual combining ATLAS mass, inclusive signal strength, channel-rate compatibility, and excluded-scalar-window pressure. The benchmark fails if the native scalar mode is fit only by mass, if production and branching channels require independent tuning, or if extra scalar strength survives in search windows where ATLAS reports no accepted resonance.

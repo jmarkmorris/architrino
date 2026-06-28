@@ -113,6 +113,13 @@ scope locks, leaves `candidate_external_schema_ref` absent, records 0 / 8
 required predicate fields present, and keeps the slot at
 `external_input_required`.
 
+Machine-checkable current record:
+[sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json](sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+and
+[report](sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+preserve the same absent-input state with 11 row slots parked and no row
+consumption, live-ledger update, or branch-chart authorization.
+
 ## Pilot Verdict
 
 Current pilot result:

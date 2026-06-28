@@ -99,7 +99,7 @@ Here $A_s$ denotes the branch-resolved wake amplitude from source segment $s$, a
 
 ## ADM/Cartan Reconstruction Surface
 
-The metric bridge should now be expressed through the same ADM/Cartan variables used by [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is
+The metric bridge should be expressed through the same ADM/Cartan variables used by [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is
 
 $$
 ds_{\rm eff}^2
@@ -725,7 +725,7 @@ A proposed recovery that supplies only $c_{\text{eff}}(\mathbf{x})$ or $\chi_{\t
 
 ## Weak-Field Geodesic Handoff (ADM Constitutive Subclass)
 
-The older scalar/disformal bridge is now a subclass of the ADM/Cartan surface. In the local Noether sea rest gauge, set
+The scalar/disformal bridge is the ADM/Cartan subclass obtained by choosing the local Noether sea rest gauge:
 $$
 u^i_{\text{sea}}=0,
 \qquad

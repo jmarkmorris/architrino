@@ -1,0 +1,77 @@
+{
+  "schema": "sigma_hf_01_external_schema_candidate_intake_record/v0",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "proof_interval": "proof-interval-v6",
+  "lambda_branch": "lambda0305",
+  "target_slot": "Sigma_hf_01",
+  "fold_interval": "F01",
+  "candidate_external_schema_ref": null,
+  "candidate_external_schema_received": false,
+  "required_fields_total": 8,
+  "required_fields_present": 0,
+  "missing_fields": [
+    "compatible_schema_role_lock",
+    "compatible_proof_object_role_lock",
+    "derivation_proof_target_lock",
+    "derivation_proof_source_data_record_lock",
+    "rule_kernel_obligation_binding",
+    "rule_kernel_derivation_payload_target_binding",
+    "proof_grade_derivation_schema_statement",
+    "non_reinterpretation_guard"
+  ],
+  "lock_mismatches": [],
+  "field_results": [
+    {
+      "field": "compatible_schema_role_lock",
+      "present": false,
+      "verdict": "external_input_required"
+    },
+    {
+      "field": "compatible_proof_object_role_lock",
+      "present": false,
+      "verdict": "external_input_required"
+    },
+    {
+      "field": "derivation_proof_target_lock",
+      "present": false,
+      "verdict": "external_input_required"
+    },
+    {
+      "field": "derivation_proof_source_data_record_lock",
+      "present": false,
+      "verdict": "external_input_required"
+    },
+    {
+      "field": "rule_kernel_obligation_binding",
+      "present": false,
+      "verdict": "external_input_required"
+    },
+    {
+      "field": "rule_kernel_derivation_payload_target_binding",
+      "present": false,
+      "verdict": "external_input_required"
+    },
+    {
+      "field": "proof_grade_derivation_schema_statement",
+      "present": false,
+      "verdict": "external_input_required"
+    },
+    {
+      "field": "non_reinterpretation_guard",
+      "present": false,
+      "verdict": "external_input_required"
+    }
+  ],
+  "slot_result": "external_input_required",
+  "row_slots_parked": 11,
+  "row_consumption_count": 0,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "branch_chart_authorized": false,
+  "authorization": {
+    "schema_validation_intake": false,
+    "row_consumption": false,
+    "accepted_source_packet": false,
+    "branch_chart": false
+  }
+}

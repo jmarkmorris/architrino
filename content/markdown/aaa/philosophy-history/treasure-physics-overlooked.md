@@ -5,7 +5,7 @@
 
 ### Opening Frame
 
-The premise of this scene is retrospective. The Architrino architecture is treated as a serious challenger whose case is still being built, but the essay provisionally grants the future vantage from which it has become widely accepted. From that vantage, the historical question is where physics and cosmology came near enough to find the Architrino architecture, why those clues were overlooked, and why the field continued along another road.
+The premise of this scene is retrospective. The Architrino architecture is treated as a serious challenger whose case is still being built, but the essay provisionally grants the future vantage from which it has become widely accepted. From that vantage, the historical question is where physics and cosmology came near enough to find the Architrino architecture, why those clues were overlooked, and why those disciplines continued along another road.
 
 The literary convention adds a second layer. When useful, a witness may be imagined as re-encountering their own work after the missing Noether sea and assembly layer has been supplied and accepted. Some sections use that device directly; others keep the witness at the level of historical interpretation. The point is not to require apology or confession. It is to ask what each body of work shows if the Architrino architecture's reconstruction makes the deeper causal object visible.
 

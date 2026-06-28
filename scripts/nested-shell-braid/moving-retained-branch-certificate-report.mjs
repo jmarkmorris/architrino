@@ -167,6 +167,7 @@ export function buildReport(candidate, options = {}) {
     schema: "moving_retained_branch_certificate_report/v0",
     source_ref: options.sourceRef ?? candidate.source_ref ?? null,
     certificate_id: candidate.certificate_id ?? candidate.id ?? "moving-retained-branch-candidate",
+    promotion_status: candidate.promotion_status ?? "priority-only",
     certificate_verdict: accepted ? "accepted_same_branch" : firstFailure,
     first_failure: accepted ? null : firstFailure,
     row_results: rowResults,
@@ -193,6 +194,9 @@ export function validationErrors(report) {
   }
   if (typeof report.certificate_verdict !== "string") {
     errors.push("certificate_verdict must be a string");
+  }
+  if (report.promotion_status !== "priority-only") {
+    errors.push("promotion_status must remain priority-only");
   }
   if (report.certificate_verdict === "accepted_same_branch" && report.first_failure !== null) {
     errors.push("accepted reports must not carry first_failure");

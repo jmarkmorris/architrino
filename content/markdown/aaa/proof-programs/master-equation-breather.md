@@ -211,7 +211,7 @@ The 1D scaffold no longer leaves the tame class abstractly nonempty. It builds a
 
 ### 4. The fixed-point capstone needs one matching domain
 
-The final Schauder route only becomes legitimate after continuity, precompactness, and the self-map property all live on one and the same closed convex tame domain. This is now explicit in the 1D manuscript and should remain explicit in every higher-dimensional formulation.
+The final Schauder route only becomes legitimate after continuity, precompactness, and the self-map property all live on one and the same closed convex tame domain. This requirement is explicit in the 1D manuscript and should remain explicit in every higher-dimensional formulation.
 
 ### 5. Parameter solvability is coupled
 
@@ -2045,7 +2045,7 @@ At this point the reduced-planar bridge layer is not treating the completely gen
 
 That distinction should remain explicit. The present bridge is the first higher-dimensional transport problem beyond the line, but it is still a reduced regime. The note has not yet advanced to arbitrary 2D delayed trajectories, arbitrary planar many-body branch topology, or the full master equation without symmetry reduction.
 
-Within this reduced planar regime, the theorem ladder now has a definite shape:
+Within this reduced planar regime, the theorem ladder has a definite shape:
 
 1. a nonempty section-side seed packet
    $$
@@ -2888,7 +2888,7 @@ This is the correct replacement object. In the reduced planar bridge the active 
 >
 > In particular, the active delayed-root topology of the unreduced planar binary is encoded by one finite graph rather than by an a priori continuum of chord directions.
 
-This proposition is the unreduced-planar replacement for the reduced planar branch-count and branch-labeling package. The main difference is not merely higher notation. It is that the theorem now has to control branch continuation across several chord types and windows, not just uniqueness inside one scalar or sector-labeled family.
+This proposition is the unreduced-planar replacement for the reduced planar branch-count and branch-labeling package. The main difference is not merely higher notation. The theorem must control branch continuation across several chord types and windows, not just uniqueness inside one scalar or sector-labeled family.
 
 #### Deep-past provenance-or-exclusion target for the unreduced planar bridge
 
@@ -6203,7 +6203,7 @@ The proof is written one local fold block at a time.
 >    =
 >    \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}}M_{\max}^{\mathrm{mb}}
 >    $$
->    controls every block on the cycle. This is now a genuine geometric transit invariant of the controlled fold alphabet, and it is exactly the ceiling consumed later by the recapture margins.
+>    controls every block on the cycle. This is a genuine geometric transit invariant of the controlled fold alphabet, and it is exactly the ceiling consumed later by the recapture margins.
 
 This is the last missing analytic bridge between finite branch combinatorics and the concrete recapture inequalities. Without it, the fold ceilings in the principal margins remain formal placeholders.
 
@@ -7212,7 +7212,7 @@ where:
   3
   $$
 
-The unresolved but now explicit theorem burden is to prove, on the recapture windows, that the opposite-sign core term dominates the same-sign and self-driven widening after all admissible fold-tube and deep-past ceilings are paid.
+The explicit unresolved theorem burden is to prove, on the recapture windows, that the opposite-sign core term dominates the same-sign and self-driven widening after all admissible fold-tube and deep-past ceilings are paid.
 
 Accordingly, a first branch-sum ceiling for the residual widening term should be written as
 $$
@@ -9630,7 +9630,7 @@ This is the correct tame-structure target because the first two Jacobi channels 
 
 This is the first honest local many-body breather target in the chapter. Everything above it is there only to make this statement legitimate.
 
-The planar-three-body bridge now has the same explicit theorem-ladder shape as the earlier binary bridges:
+The planar-three-body bridge has the same explicit theorem-ladder shape as the earlier binary bridges:
 
 - gauge-fixed section and shape-space well-posedness;
 - quantitative branch regularity and no-accumulation of delay events;

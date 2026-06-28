@@ -82,7 +82,7 @@ r_{\mathrm{growth}}
 $$
 and $r_{\mathrm{BBN}}$ should retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any Noether sea state interpretation is promoted.
 
-Redshift-facing packets must now expose the signed photon-frequency transfer row rather than treating redshift as a primitive expansion coordinate. For a line or photon family $X$, retain
+Redshift-facing packets must expose the signed photon-frequency transfer row rather than treating redshift as a primitive expansion coordinate. For a line or photon family $X$, retain
 $$
 r_{\nu\text{-}\mathrm{path}}
 \supset

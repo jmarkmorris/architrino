@@ -252,6 +252,34 @@ $$
 
 The same row must state whether the exchange is thermalizing, spectrally distorting, or coherently transported. A Sunyaev-Zeldovich-type boost is admissible only when the electron or medium record supplies the photon energy increase and when the side effects remain compatible with the CMB spectrum, anisotropy, polarization, and kSZ/tSZ observable rows. A depletion row is admissible only when the lost photon energy is routed into a named medium, recoil, remnant, or thermalization channel.
 
+For coherent redshift transport, the exchange row should also expose the response curve rather than treating frequency change as a fitted scalar. For a path segment $s$ and photon packet $\gamma$, write
+$$
+\Delta\ln\nu_{\gamma,s}
+=
+-\mathcal{Y}_{\gamma,s},
+\qquad
+\mathcal{Y}_{\gamma,s}
+=
+\int_{\gamma_s}
+\mathcal{K}_{\nu}
+\!\left(
+\Theta_{\gamma},
+\theta_{\mathrm{sea}},
+\nabla\theta_{\mathrm{sea}},
+\Theta_{\mathrm{med}}
+\right)\,ds.
+$$
+The segment-level energy closure remains
+$$
+\Delta E_{\gamma,s}
++
+\Delta E_{\mathrm{sea,path},s}
++
+\Delta E_{\mathrm{recoil/rem},s}
+=0.
+$$
+The kernel $\mathcal{K}_{\nu}$ is a derivation target, not a free redshift law. It must state whether the segment is coherent transparent transport, thermalizing exchange, spectral distortion, capture, or carrier exit, and it must preserve the same photon packet identity unless a reaction or remnant row explicitly terminates it.
+
 ## Closure Targets
 
 1. **Planar-mode threshold closure:** derive a shared threshold condition for bremsstrahlung and synchrotron photon assembly output.

@@ -29,7 +29,7 @@ The final fixed-point step is then delegated to Arzela-Ascoli compactness and a 
 
 ## Status Map
 
-This chapter now has three different status layers, and they should be read separately:
+This chapter has three different status layers, and they should be read separately:
 
 - completed local and regional lemma packages, especially for delayed-root geometry, caustic transit, inner recapture, and trimmed-apocenter outer-turn control,
 - target propositions that package those estimates into one closed convex tame self-map domain,
@@ -4976,7 +4976,7 @@ $$
 
 The first explicit velocity-class packet has moved the obstruction from candidate absence to candidate falsification. A fixed cosine candidate supplies useful null-coordinate and fold-layer diagnostics, but it fails at the parent-complement part of the pre-ledger: after accepted simple-root windows and fold-layer diagnostics are removed, some parent complements still carry equality cores or non-strict null-coordinate overlap. The next admissible route is therefore a fresh fold-adapted collocation candidate, or an equivalent certified construction, whose pre-ledger closes before any seed-chart or branch-chart row begins.
 
-There is now also a stricter sub-field-speed comparison branch. The held-release ODE segment and the exterior affine delayed-partner chart are action-generated baselines, not prescribed trajectories. They show that a normalized release from $x_0>1$ need not reach field speed during the held-source segment, and that the exterior delayed partner branch approaches $\dot x=-c_f$ only at the origin-layer limit. This does not prove a sub-field-speed breather, but it changes the proof burden: field-speed separators must be derived from the full dual-mollified dynamics or replaced by a certified sub-field return mechanism.
+A stricter sub-field-speed comparison branch is also available. The held-release ODE segment and the exterior affine delayed-partner chart are action-generated baselines, not prescribed trajectories. They show that a normalized release from $x_0>1$ need not reach field speed during the held-source segment, and that the exterior delayed partner branch approaches $\dot x=-c_f$ only at the origin-layer limit. This does not prove a sub-field-speed breather, but it changes the proof burden: field-speed separators must be derived from the full dual-mollified dynamics or replaced by a certified sub-field return mechanism.
 
 The negative-breather lesson is that even a formal expansion valid to all
 orders can miss a leakage channel outside the expansion scale. The collinear
@@ -6132,7 +6132,7 @@ P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
 $$
 is exactly the conclusion of the returned-history reentry step. Hence the invariant-envelope theorem is nonvacuous on a genuine delayed history class.
 
-This theorem closes the seed-side nonvacuity gap in the global existence program. The note now contains:
+This theorem closes the seed-side nonvacuity gap in the global existence program. The note contains:
 
 - an explicit nonempty section-side seed,
 - a propagation ladder from that seed to a nonempty tame class,
@@ -6755,7 +6755,7 @@ This lemma isolates the exact last handoff in the proof architecture. The collap
 
 ### Pre-crossing caustic-transit target
 
-The collapse-to-crossing ladder now has its kinematic part in place. The remaining hard issue is delayed geometry, but it must be framed correctly. Because the inbound speed rises from a sub-field-speed regime to a crossing speed strictly larger than $c_f$, the trajectory must pass through the hinge
+The collapse-to-crossing ladder has its kinematic part in place. The remaining hard issue is delayed geometry, but it must be framed correctly. Because the inbound speed rises from a sub-field-speed regime to a crossing speed strictly larger than $c_f$, the trajectory must pass through the hinge
 $$
 \dot x=-c_f
 $$
@@ -10600,7 +10600,7 @@ The scaffold is now coherent enough to freeze as a proof program, but the follow
 - **Origin singularity.** The shell regularization $\delta_\eta$ does not by itself remove the divergence of the amplitude factor $1/r^2$ at the origin crossing. For the current braking-dominance theorem target, an explicit core mollifier of the denominator should be treated as required rather than optional, for example by replacing $r^{-2}$ with $(r^2+\epsilon_c^2)^{-1}$ or an equivalent short-distance regularization.
 - **State-space labeling.** The theorem program is safest in true signed coordinates $x\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|x|$. Any language suggesting a rebound on the same $x>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
 - **Physical plausibility boundary.** In the collinear geometry the self term is not a centrifugal barrier. On the physically relevant post-crossing outbound branch it tends to reinforce the current radial motion. So the only plausible recapture mechanism in this model is that delayed partner attraction eventually dominates that outward self-drive on the outer leg. If the outer-turn theorem target fails, then the collinear breather should be read as a failed stabilization test rather than as an almost-closed proof.
-- **Apocenter-entry window.** Lemma 29 now supplies the strict sub-field-speed window from a coarse entry-brake margin, or else reaches the outer turn before that window is needed. The global proof still has to include the coarse entry-brake ceiling inside the coupled parameter regime rather than smuggling it in through the local z-map argument.
+- **Apocenter-entry window.** Lemma 29 supplies the strict sub-field-speed window from a coarse entry-brake margin, or else reaches the outer turn before that window is needed. The global proof still has to include the coarse entry-brake ceiling inside the coupled parameter regime rather than smuggling it in through the local z-map argument.
 - **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history.
 - **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(t)$ and therefore a lower bound on $A_p^{\rho}(t)$, not as an exact identity on the nonlinear window.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the current reduced problem, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.

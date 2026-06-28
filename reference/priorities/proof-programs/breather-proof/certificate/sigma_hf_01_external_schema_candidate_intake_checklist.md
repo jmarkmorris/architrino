@@ -37,6 +37,18 @@ object, consumes 0 rows, keeps `preledger_pass=false`, keeps
 
 Current count: 0 / 8 required fields present.
 
+Machine-checkable current record:
+[sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json](sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+and
+[report](sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md).
+The producer is
+[fresh-v10-higher-fold-sigma-hf-01-external-schema-candidate-intake-record.mjs](../../../../../scripts/proof-programs/fresh-v10-higher-fold-sigma-hf-01-external-schema-candidate-intake-record.mjs).
+It emits `external_input_required` in absent-input mode and permits a complete
+synthetic candidate only to reach
+`external_schema_input_received_for_schema_validation`; it still consumes 0
+rows, keeps `preledger_pass=false`, keeps `updates_live_ledger=false`, and
+authorizes no branch chart.
+
 ## Non-Consumption Guard
 
 The current proof-program pool may supply diagnostics, accepted-status target

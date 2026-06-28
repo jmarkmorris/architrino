@@ -332,12 +332,26 @@ $$
 where $a_N$ is the baryonic Newtonian benchmark acceleration, $a_\star$ is the environment-dependent low-acceleration transition scale, and $f$ is the ultra-low-acceleration inverse-square enhancement. For the $\mathbb{A}\mathbb{A}\mathbb{A}$ hybrid branch these are not new constants. They are observer-level summaries of a shared Noether sea state:
 
 $$
-a_\star(E)=A_\star(\Pi_E\theta_{\mathrm{sea}}),
+a_\star^\theta(E)=
+A_\star
+\left(
+\Pi_E\theta_{\mathrm{sea}},
+\rho_{\mathrm{bar}},
+\rho_A,
+\mathcal{M}_{\mathrm{sea}}^{ab},
+\mathcal{H}_{\mathrm{src/rel}},
+\mathcal{T}_{\mathrm{path}}
+\right),
 \qquad
-f(E)=F_\star(\Pi_E\theta_{\mathrm{sea}})
+f^\theta(E)=
+F_\star
+\left(
+\Pi_E\theta_{\mathrm{sea}},
+\mathcal{I}_{\mathrm{loc}}^\theta
+\right)
 $$
 
-with $E$ denoting an environment class such as spiral galaxies, pressure-supported dwarfs, clusters, or diffuse absorbers. A viable branch must reproduce the galaxy radial-acceleration relation in the middle regime while allowing clusters to fall in the ultra-low-acceleration regime without assigning a separate medium record to each class.
+with $E$ denoting an environment class such as spiral galaxies, pressure-supported dwarfs, clusters, or diffuse absorbers. $\mathcal{H}_{\mathrm{src/rel}}$ records compact-source, feedback, release, and capture history, while $\mathcal{T}_{\mathrm{path}}$ records transport loading that changes the local Noether sea state. The environment label is therefore not a private fit bucket: a viable branch must reproduce the galaxy radial-acceleration relation in the middle regime while allowing clusters to fall in the ultra-low-acceleration regime without assigning a separate medium record to each class.
 
 A compact residual is
 
@@ -348,7 +362,7 @@ $$
 \left[
 d_E\!\left(
 a_{\mathrm{obs}}(E),
-a_{\mathrm{cmp}}\big(a_N(E);A_\star(\Pi_E\theta_{\mathrm{sea}}),F_\star(\Pi_E\theta_{\mathrm{sea}})\big)
+a_{\mathrm{cmp}}\big(a_N(E);a_\star^\theta(E),f^\theta(E)\big)
 \right)
 +
 \lambda_E

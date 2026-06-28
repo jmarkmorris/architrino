@@ -169,6 +169,16 @@ Where the exact topology is not proven, we use "-like" and treat the label as a 
 
 The delay-oscillator picture is useful only as an illustration: a control parameter near $v/c_f$ can change stability, and delayed self-hit feedback can create a bifurcation surface in reduced phase space. The canonical claim is limited to that structural point. A proof must replace the toy gain and delay parameters with active causal-root ledgers, Jacobian floors, and a branch-chart closure object from the Master Equation.
 
+This is also the safe translation of symmetry-breaking language in decision-like systems. A near-threshold assembly does not need metaphysical indeterminism to produce sharp alternatives. It needs a deterministic basin boundary whose selected side depends on high-dimensional path history, local Noether sea state, and small perturbations near the field-speed or self-hit hinge. The mathematical target is therefore a basin-bifurcation map, not a new source of acausal choice:
+$$
+B_k
+=
+\left\{
+S(t_0):\Phi_{t_0\to t_1}(S(t_0))\in\mathcal{A}_k
+\right\}.
+$$
+Here $B_k$ is the basin of initial path-history states that resolve to outcome branch $\mathcal{A}_k$ over the declared window. Apparent randomness enters through observer access to the basin boundary, not through a break in absolute-time causality.
+
 #### Chaos and Effective Unpredictability
 
 Because:

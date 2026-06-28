@@ -9,10 +9,16 @@
   ],
   "branch_id": null,
   "accepted_history_segment_id": null,
+  "source_path": null,
   "quotient_chart_id": null,
   "residual_status": "diagnostic_only",
   "gap_or_stability_status": null,
   "eta_ladder_status": null,
+  "pressure_record": {},
   "exposure_source_record": {},
-  "pressure_response_record": {}
+  "pressure_response_record": {},
+  "reversible_domain": {
+    "loss_channels_closed": false
+  },
+  "null_sector_record": {}
 }

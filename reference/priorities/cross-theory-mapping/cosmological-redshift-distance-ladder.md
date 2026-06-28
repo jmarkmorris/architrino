@@ -174,6 +174,36 @@ Y_{X,E\to R}
 \exp(Y_{X,E\to R}).
 $$
 
+The path factor should be segmented before it is collapsed to one scalar. For a source-to-receiver route decomposed into ordered segments $s\in\mathcal{P}_{E\to R}$, such as source halo, void, cluster or lens region, plasma-rich region, and receiver environment, require
+$$
+Y_{X,E\to R}
+=
+\sum_{s\in\mathcal{P}_{E\to R}}
+Y_{X,s},
+\qquad
+Y_{X,s}
+=
+\int_{\gamma_s}
+\alpha_{\mathrm{prop},X}
+\!\left[
+S(t_s),
+\Theta_s
+\right]\,ds.
+$$
+The segment record
+$$
+\Theta_s
+=
+\left(
+\theta_{\mathrm{sea},s},
+\Theta_{\mathrm{plasma},s},
+\Theta_{\mathrm{lens},s},
+\Theta_{\mathrm{src/sel},s},
+\mathcal{R}_{\mathrm{coh},s}
+\right)
+$$
+keeps environmental effects explicit. A valid fixed-void redshift branch may later show that many $Y_{X,s}$ combine into an effective smooth path term, but it must first demonstrate that source-environment, void, lensing, plasma, and receiver contributions can be removed or bounded without hiding scattering, image blurring, or band-dependent frequency loss.
+
 ### Matter Assembly Redshift Consistency
 
 The source question "does matter redshift too?" should not be read as a new cosmological redshift mechanism. The useful target is stricter: the same restricted absolute record that produces photon-frequency transfer must also state what happens to nearby matter assemblies and local Noether sea cells. If a source region, receiver region, or intervening medium changes its internal cadence, branch state, or growth variables, those changes must be projections of the same $S(t)$ used by $\mathfrak T_X$, not a second cosmology state chosen after the photon record is fit.

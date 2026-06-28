@@ -1,6 +1,8 @@
 {
-  "schema": "moving_retained_branch_certificate_candidate/v0",
+  "schema": "moving_retained_branch_certificate/v0",
+  "promotion_status": "priority-only",
   "certificate_id": "current-moving-retained-branch-certificate-status-2026-06-28",
+  "first_failure": "blocked_pending_accepted_branch_chart",
   "source_ref": "reference/priorities/braid-nested-shell-causal-closure/structural-integrity-common-limit-theorem.md",
   "source_root_ledger_ref": "neutral_braid_octahedral_root_ledger.certified.v1",
   "rest_seed_ref": "A0 one-period rest diagnostic",

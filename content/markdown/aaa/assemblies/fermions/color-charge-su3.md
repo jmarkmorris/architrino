@@ -121,7 +121,7 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 ### Neutrinos: near-photon colorless neutral pairs
 
-Neutrinos are now treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether braid pairing close to the photon channel, but not fully locked into the photon mode.
+Neutrinos are treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether braid pairing close to the photon channel, but not fully locked into the photon mode.
 
 This makes the color statement sharper:
 

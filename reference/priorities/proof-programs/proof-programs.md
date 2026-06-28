@@ -53,9 +53,15 @@ payloads, consumes 0 rows, keeps `preledger_pass=false`, keeps
 proof-program action is to test one candidate external schema against the
 `Sigma_hf_01` separator slot before the 11 row slots are considered. The
 [Sigma_hf_01 external schema candidate intake checklist](./breather-proof/certificate/sigma_hf_01_external_schema_candidate_intake_checklist.md)
-now records the current fail-closed separator-slot state: the internal locks are
-fixed, `candidate_external_schema_ref` is absent, and 0 / 8 required predicate
-fields are present.
+now records the current fail-closed separator-slot state, and the generated
+[Sigma_hf_01 external schema candidate intake record](./breather-proof/certificate/sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+plus
+[report](./breather-proof/certificate/sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+make that state machine-checkable: the internal locks are fixed,
+`candidate_external_schema_ref` is absent, 0 / 8 required predicate fields are
+present, the slot result remains `external_input_required`, 11 row slots remain
+parked, row consumption is 0, `preledger_pass=false`,
+`updates_live_ledger=false`, and no branch chart is authorized.
 
 ## Task Queue
 

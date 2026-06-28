@@ -252,6 +252,20 @@ S_{\mathrm{prod}}
 $$
 Production, return, capture, decay, reclassification, and relaxation are not separate ontologies. They are bookkeeping channels for how neutral Noether braid content enters, leaves, or changes class inside the local Noether sea population. A long-time Noether sea model is credible only when these rows share one continuity ledger with the energy and reaction records.
 
+Strong-field recycling and pair-channel activity sharpen the same requirement. A compact source may be a net source, sink, or reclassifier of Noether sea content only after the local balance separates diffuse medium loading from collimated release and from visible pair-channel products. One useful source term split is
+$$
+S_{\rho}
+=
+S_{\mathrm{BH,diff}}
++S_{\mathrm{BH,col}}
++S_{\mathrm{pair}}
++S_{\mathrm{return}}
+-S_{\mathrm{capture}}
+-S_{\mathrm{reclass}}
++S_{\mathrm{relax}}.
+$$
+Here $S_{\mathrm{BH,diff}}$ denotes broad medium loading, $S_{\mathrm{BH,col}}$ denotes collimated or jet-like release that later couples back to the medium, and $S_{\mathrm{pair}}$ denotes pair-channel participation controlled by local density, cadence, excitation, and threshold state. None of these terms creates substrate from nothing. Each is a projection of architrino and Noether braid inventory through a declared reaction, release, or relaxation record.
+
 The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether braid population dynamics, causal wakes, and branch ledgers.
 
 The same guardrail applies to superfluid analogies. A Noether sea passage should use literal superfluid language only if it supplies a technical analogue such as an order parameter, transport equation, critical criterion, quantized-circulation analogue, or two-state response split. Otherwise the safe translation is medium response: density, flow, cadence, orientation, strain, delay factor, and excitation variables carried by a resolved Noether sea record.
@@ -7331,6 +7345,19 @@ This is the sense in which black holes are treated as recycling furnaces in the 
 
 The same picture implies that the effective mass of a black hole need not be interpreted as a purely isolated bookkeeping variable. If the horizon interface and interior remain constitutively coupled to the ambient Noether sea, then part of what observers infer as compact-object mass can depend on how the surrounding Noether sea loads, unloads, or stores energy around the recycling site. This does not license arbitrary mass drift. It means that the distinction between "local compact-object state" and "embedding Noether sea state" is dynamical rather than absolute.
 
+The corresponding mass statement is an exposure ledger, not a claim that mass can disappear. In a resolved strong-field window the exterior reconstruction must separate incoming energy, compact stored energy, shielding and exposure change, escaped outflow, reabsorbed content, and embedding Noether sea loading. A useful schematic form is
+
+$$
+\Delta\!\left(M_{\mathrm{app}}c_0^2\right)
+=
+\Delta E_{\mathrm{comp,exp}}
++\Delta E_{\mathrm{sea,emb}}
+-\Delta E_{\mathrm{out,esc}}
++R_{M,\mathrm{app}},
+$$
+
+with the hidden rows expanded when a release channel is being tested. The point is not that the compact object violates conservation. The point is that the observer-facing mass label is a projection of a larger strong-field, shielding, release, and medium-coupling record.
+
 #### Mass-Scale Traversal
 
 The exterior-to-core sequence is the same for black holes at every mass scale, but the relative weight of the local gradients, horizon-interface capacity, release channels, and cosmological embedding changes with mass. The useful comparison is therefore not a separate ontology for small, stellar, and supermassive black holes. It is one traversal map evaluated with different effective horizon scales.
@@ -7403,6 +7430,8 @@ For that reason, the framework uses a release-channel hierarchy:
 
 This hierarchy keeps the theory from overcommitting to a single morphology. A jet is evidence for organized outflow, not by itself proof that all recycling must emerge in collimated form.
 
+The same hierarchy also separates two recycling modes. A strong-field site may load the surrounding Noether sea diffusely without producing a narrow visible jet, or it may route part of the same processed content into a collimated assembly, photon-channel, or mixed-sector outflow. These are different channel records. The diffuse mode asks how the ambient Noether sea density, cadence, orientation, and delay-factor state are updated. The collimated mode asks how the horizon interface, disk or boundary layer, and environment select a directed outflow with definite energy, momentum, angular momentum, composition, and lifetime.
+
 The same distinction can be phrased as a sequence.
 
 1. Core processing compresses infalling content into maximum-curvature and alignment regimes.
@@ -7431,6 +7460,22 @@ The open physical question is not merely whether release occurs, but why some en
 - the ambient matter and effective magnetic-like environment through which the outflow propagates.
 
 This is the disciplined way to keep jets in the chapter: as one important release channel among several, rather than as the whole definition of recycling.
+
+Rotating compact sources add one more bridge variable. In standard comparison language, frame dragging is a metric effect around a rotating mass. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it should be recovered as an effective readout of the same angular-momentum ledger, surrounding Noether sea vorticity, and horizon-interface state that also enter release selection:
+
+$$
+\boldsymbol{\omega}_{\mathrm{eff}}
+=
+\mathcal{W}_{\mathrm{drag}}
+\left(
+\mathbf{J}_{\Omega},
+\nabla\times\mathbf{u}_{\mathrm{sea}},
+\mathcal{A}_{\mathrm{NS}},
+\mathcal{B}_{H}
+\right).
+$$
+
+This does not make the Euclidean void rotate. It states the recovery target: the observer-level dragging of local inertial frames must be reconstructed from compact-source angular momentum, Noether sea flow and anisotropy, and the same interface record used by jets or diffuse release.
 
 Observer-level jet phenomenology supplies three compact constraints on this selection problem. First, powerful collimated outflows are strongly associated with compact accretors and disks, so the native record must include an inflow, disk, or boundary-layer source of energy and angular momentum. Second, across young stellar objects, microquasars, and active galactic nuclei, the characteristic jet speed is usually of order the escape or Keplerian speed at the launch region:
 

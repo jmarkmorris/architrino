@@ -1,8 +1,8 @@
 # UI Guidelines
 
-This note is the first draft of a contributor-facing reference for reader-facing UI standards in the Architrino webapp. Its purpose is to provide one place where interface preferences can be recorded deliberately instead of being scattered across code, scenes, and ad hoc decisions.
+This document is the contributor-facing reference for reader-facing UI standards in the Architrino webapp. Its purpose is to provide one place where interface preferences can be recorded deliberately instead of being scattered across code, scenes, and ad hoc decisions.
 
-For now, this document is intentionally lightweight. It starts as a grouped inventory of UI elements and their preferred treatment, with many preferences left blank until they are explicitly decided.
+This document is intentionally lightweight. It uses a grouped inventory of UI elements and their preferred treatment, with undecided preferences left blank until they are explicitly decided.
 
 The third column is a comma-separated ledger of known web-facing docs or app surfaces that do not yet match the preferred treatment. It can remain blank until those mismatches are audited.
 

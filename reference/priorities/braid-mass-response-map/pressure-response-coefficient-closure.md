@@ -594,6 +594,35 @@ This record advances the branch-intake surface only by making the same-row
 missing fields explicit. It does not authorize an empirical mass response,
 pressure coefficient, or retained branch claim.
 
+Executable current-status checker:
+[pressure-row-branch-intake-report.mjs](../../../scripts/mass-map/pressure-row-branch-intake-report.mjs)
+checks the same `branch_intake` boundary before replay consumption. The current
+status fixture
+[pressure-row-branch-intake-current-status.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-current-status.json)
+returns `finite_branch_evidence_missing` because no retained pressure row
+supplies accepted branch identity, source path, pressure record, exposure
+source record, pressure-response record, reversible-domain row, and null-sector
+record together. A complete synthetic row may pass the checker only as
+`accepted_retained_pressure_row`; the checker still authorizes no empirical
+mass response and no retained-branch claim.
+
+The first mined partial candidate is the Fe/silicate toy row
+[pressure-row-branch-intake-fe-silicate-toy-partial.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-fe-silicate-toy-partial.json).
+It reduces the unknown set for one same-row diagnostic replay: the row carries
+toy pressure loading, packing headroom, delay/strain response entries, a
+reversible trace threshold pair, and clock/birefringence/dispersion/transport
+null-sector bounds. The checker still returns `finite_branch_evidence_missing`
+because those entries come from `fe-silicate-segregation-toy.json`, not from an
+accepted branch source. The remaining source obligations are therefore precise:
+A0 branch search must supply the accepted branch identity and accepted history
+segment, the exposure quotient must supply the quotient chart plus
+$E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, and
+$\mathcal{N}_{\mathrm{tf},ab}(A)$ on the same row, and pressure replay must
+replace the toy residual and toy coefficients with branch-emitted
+$\partial_PM_0^{\mathrm{src}}(A)$, $C_{\chi}^{\mathrm{iso}}$,
+$C_{\chi}^{\mathrm{aniso}}$, $m_S$, loss-channel closure, preferred-frame, and
+directional-tensor records.
+
 The first empirical or toy replay boundary is therefore narrow: a toy row may populate $\Pi$, $A$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, and masked $\mathcal{V}_{P,A}$ to exercise the algebra, but it must mark `pending_source_descent` until an accepted branch emits $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, $\mathcal{N}_{\mathrm{tf},ab}(A)$, and the derivative $\partial_P M_0^{\mathrm{src}}(A)$. A real Fe/Cr or Ni/Co replay can at most upgrade the status from `tf_bound_only` to a retained-span test unless the same branch-side source record is present.
 
 The pressure row also fixes the response-visible trace-free span for this specialization. At first order the pressure-visible span is contained in

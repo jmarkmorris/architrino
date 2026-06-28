@@ -391,7 +391,7 @@ These are the four points where $\mathbb{A}\mathbb{A}\mathbb{A}$ maps standard q
 >
 > Operationally, the uncertainty principle and measurement back‑action limit how precisely an observer can place the system relative to the basin boundary. This creates a **finite bracket** around the threshold. The step is real; the bracket is epistemic.
 >
-> The toy oscillator and action-bracket models are working-draft scaffolds, not derivations. The accepted statement is only that a recordable transition must be described by a declared basin boundary, an action-transfer ledger, and a finite uncertainty bracket whose width is derived from the apparatus and unresolved-history measure rather than inserted as primitive randomness.
+> The toy oscillator and action-bracket models are provisional diagnostic scaffolds, not derivations. The accepted statement is only that a recordable transition must be described by a declared basin boundary, an action-transfer ledger, and a finite uncertainty bracket whose width is derived from the apparatus and unresolved-history measure rather than inserted as primitive randomness.
 
 > ### **Branching Trees Are Epistemic, Not Ontic**
 > Many-worlds diagrams visualize the tree of **possible coarse-grained histories** near a bifurcation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ there is still **one realized trajectory** in absolute time; the "branching" reflects the observer's incomplete knowledge of microstate and wake history. The diagram is a map of epistemic alternatives, not a claim that reality splits.

@@ -3,8 +3,8 @@
 - Sources: [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), [2026 archive](https://architrino.wordpress.com/2026/), and the public WordPress API.
 - Crawled: 2026-06-27
 - Total published posts discovered: 379
-- Complete: 284
-- Open for mining: 95
+- Complete: 304
+- Open for mining: 75
 - Completion authority: local source-mining history plus this durable table and the durable queue; WordPress tags are not used.
 - Added to durable queue in this crawl: 6
 - Existing queue entries not present in library crawl: 0
@@ -205,7 +205,7 @@
 | 2021-09-25 | Dr. Justin Khoury on Dark Matter Superfluidity | complete | [link](https://architrino.wordpress.com/2021/09/25/dr-justin-khoury-on-dark-matter-superfluidity/) |
 | 2021-09-17 | The Higgs Implementation | complete | [link](https://architrino.wordpress.com/2021/09/17/physicists-fubarred-higgs-big-time/) |
 | 2021-09-16 | Creating Matter from Pure Light | complete | [link](https://architrino.wordpress.com/2021/09/16/creating-matter-from-pure-light/) |
-| 2021-09-13 | Engaging the Particle Physics Reddit | open | [link](https://architrino.wordpress.com/2021/09/13/engaging-the-particle-physics-reddit/) |
+| 2021-09-13 | Engaging the Particle Physics Reddit | complete | [link](https://architrino.wordpress.com/2021/09/13/engaging-the-particle-physics-reddit/) |
 | 2021-09-11 | Dear Particle Data Group | complete | [link](https://architrino.wordpress.com/2021/09/11/dear-particle-data-group/) |
 | 2021-09-07 | New Ideas on Galaxy Dynamics | complete | [link](https://architrino.wordpress.com/2021/09/07/new-ideas-on-galaxy-dynamics/) |
 | 2021-08-24 | Mass | complete | [link](https://architrino.wordpress.com/2021/08/24/mass/) |
@@ -215,42 +215,42 @@
 | 2021-07-11 | Mapping Observation Precision | complete | [link](https://architrino.wordpress.com/2021/07/11/mass-denial-in-the-physics-community/) |
 | 2021-07-10 | Physicists : cd ~/career rm -rf * | complete | [link](https://architrino.wordpress.com/2021/07/10/cd-career-rm-rf/) |
 | 2021-06-27 | What Really Causes the CMB? | complete | [link](https://architrino.wordpress.com/2021/06/27/what-really-causes-the-cmb/) |
-| 2021-06-18 | Triton Station : Despondency | open | [link](https://architrino.wordpress.com/2021/06/18/despondency-at-triton-station/) |
+| 2021-06-18 | Triton Station : Despondency | complete | [link](https://architrino.wordpress.com/2021/06/18/despondency-at-triton-station/) |
 | 2021-06-15 | New Physics in Pictures | complete | [link](https://architrino.wordpress.com/2021/06/15/new-physics-in-pictures/) |
-| 2021-06-02 | Bickering with a Guardian of Physics | open | [link](https://architrino.wordpress.com/2021/06/02/bickering-with-a-guardian-of-physics/) |
-| 2021-06-01 | Draw Freely Upon Your Imagination | open | [link](https://architrino.wordpress.com/2021/06/01/draw-freely-upon-your-imagination/) |
+| 2021-06-02 | Bickering with a Guardian of Physics | complete | [link](https://architrino.wordpress.com/2021/06/02/bickering-with-a-guardian-of-physics/) |
+| 2021-06-01 | Draw Freely Upon Your Imagination | complete | [link](https://architrino.wordpress.com/2021/06/01/draw-freely-upon-your-imagination/) |
 | 2021-05-31 | It’s Time to Cancel GR, QM, & ΛCDM | complete | [link](https://architrino.wordpress.com/2021/05/31/its-time-to-cancel-gr-qm-%ce%bbcdm/) |
 | 2021-05-30 | Mapping General Relativity | complete | [link](https://architrino.wordpress.com/2021/05/30/quantum-general-relativity-vs-mit-gr-1/) |
 | 2021-05-30 | General Relativity is Wrong. Long Live General Relativity. | complete | [link](https://architrino.wordpress.com/2021/05/30/general-relativity-is-wrong/) |
-| 2021-05-29 | Lee Smolin : The Trouble with Physics | open | [link](https://architrino.wordpress.com/2021/05/29/lee-smolin-the-trouble-with-physics/) |
+| 2021-05-29 | Lee Smolin : The Trouble with Physics | complete | [link](https://architrino.wordpress.com/2021/05/29/lee-smolin-the-trouble-with-physics/) |
 | 2021-05-28 | The Curled Up Dimension of Time | complete | [link](https://architrino.wordpress.com/2021/05/28/the-curled-up-dimension-of-time/) |
-| 2021-05-23 | Dr. Anna-Christina Eilers : Quasars | open | [link](https://architrino.wordpress.com/2021/05/23/dr-anna-christina-eilers-quasars/) |
+| 2021-05-23 | Dr. Anna-Christina Eilers : Quasars | complete | [link](https://architrino.wordpress.com/2021/05/23/dr-anna-christina-eilers-quasars/) |
 | 2021-05-08 | Nanosheet Technology | complete | [link](https://architrino.wordpress.com/2021/05/08/nanosheet-technology/) |
 | 2021-05-07 | Turning Physics and Cosmology Inside Out | complete | [link](https://architrino.wordpress.com/2021/05/07/turning-physics-and-cosmology-inside-out/) |
-| 2021-05-07 | Matthew von Hippel : Beyond Lost | open | [link](https://architrino.wordpress.com/2021/05/07/matthew-von-hippel-lost-and-clueless/) |
-| 2021-05-07 | Dialog with a Dreamer | open | [link](https://architrino.wordpress.com/2021/05/07/pbs-space-time-dialog-with-a-dreamer/) |
+| 2021-05-07 | Matthew von Hippel : Beyond Lost | complete | [link](https://architrino.wordpress.com/2021/05/07/matthew-von-hippel-lost-and-clueless/) |
+| 2021-05-07 | Dialog with a Dreamer | complete | [link](https://architrino.wordpress.com/2021/05/07/pbs-space-time-dialog-with-a-dreamer/) |
 | 2021-05-06 | Black Holes and Planck Cores | complete | [link](https://architrino.wordpress.com/2021/05/06/black-holes-and-planck-cores/) |
 | 2021-05-05 | Are Orbiting Point Charges the Perfect Blackbody? | complete | [link](https://architrino.wordpress.com/2021/05/05/are-orbiting-electrino-positrino-point-charges-the-perfect-blackbody/) |
 | 2021-05-04 | Quantum Ontology and Metaphysics | complete | [link](https://architrino.wordpress.com/2021/05/04/npqg-may-4-2021-quantum-ontology-and-metaphysics/) |
-| 2021-05-04 | Dr. Sabine Hossenfelder : Dark Matter | open | [link](https://architrino.wordpress.com/2021/05/04/npqg-may-4-2021-dr-sabine-hossenfelder-dark-matter/) |
-| 2021-04-29 | Triton Station : Eerily Quiet | open | [link](https://architrino.wordpress.com/2021/04/29/npqg-april-29-2021-triton-station-eerily-quiet/) |
+| 2021-05-04 | Dr. Sabine Hossenfelder : Dark Matter | complete | [link](https://architrino.wordpress.com/2021/05/04/npqg-may-4-2021-dr-sabine-hossenfelder-dark-matter/) |
+| 2021-04-29 | Triton Station : Eerily Quiet | complete | [link](https://architrino.wordpress.com/2021/04/29/npqg-april-29-2021-triton-station-eerily-quiet/) |
 | 2021-04-27 | The Closest Approach | complete | [link](https://architrino.wordpress.com/2021/04/27/npqg-april-27-2021-the-closest-approach/) |
-| 2021-04-26 | How The Universe Works | open | [link](https://architrino.wordpress.com/2021/04/26/npqg-april-26-2021-how-the-universe-works/) |
-| 2021-04-24 | Dr. Brian Keating and Dr. Carlo Rovelli | open | [link](https://architrino.wordpress.com/2021/04/24/npqg-april-24-2021-dr-brian-keating-and-dr-carlo-rovelli/) |
-| 2021-04-21 | Triton Station : Hostile Readers | open | [link](https://architrino.wordpress.com/2021/04/21/npqg-april-21-2021/) |
-| 2021-04-13 | Triton Station : Divergence | open | [link](https://architrino.wordpress.com/2021/04/13/triton-station-divergence/) |
-| 2021-01-31 | Triton Station : Ivory Tower | open | [link](https://architrino.wordpress.com/2021/01/31/npqg-february-1-2021-dr-stacy-mcgaugh-triton-station/) |
-| 2021-01-31 | Quantum Field Theory | open | [link](https://architrino.wordpress.com/2021/01/31/npqg-january-31-2021-quantum-field-theory/) |
+| 2021-04-26 | How The Universe Works | complete | [link](https://architrino.wordpress.com/2021/04/26/npqg-april-26-2021-how-the-universe-works/) |
+| 2021-04-24 | Dr. Brian Keating and Dr. Carlo Rovelli | complete | [link](https://architrino.wordpress.com/2021/04/24/npqg-april-24-2021-dr-brian-keating-and-dr-carlo-rovelli/) |
+| 2021-04-21 | Triton Station : Hostile Readers | complete | [link](https://architrino.wordpress.com/2021/04/21/npqg-april-21-2021/) |
+| 2021-04-13 | Triton Station : Divergence | complete | [link](https://architrino.wordpress.com/2021/04/13/triton-station-divergence/) |
+| 2021-01-31 | Triton Station : Ivory Tower | complete | [link](https://architrino.wordpress.com/2021/01/31/npqg-february-1-2021-dr-stacy-mcgaugh-triton-station/) |
+| 2021-01-31 | Quantum Field Theory | complete | [link](https://architrino.wordpress.com/2021/01/31/npqg-january-31-2021-quantum-field-theory/) |
 | 2021-01-19 | Planar Bosons on the Photon Train | complete | [link](https://architrino.wordpress.com/2021/01/19/npqg-january-19-2021-planar-bosons-on-the-photon-train/) |
-| 2021-01-18 | Decoded Standard Model | open | [link](https://architrino.wordpress.com/2021/01/18/npqg-january-18-2021-decoded-standard-model/) |
+| 2021-01-18 | Decoded Standard Model | complete | [link](https://architrino.wordpress.com/2021/01/18/npqg-january-18-2021-decoded-standard-model/) |
 | 2021-01-14 | Polarization and Malus’s Law | complete | [link](https://architrino.wordpress.com/2021/01/14/npqg-january-14-2021-maluss-law/) |
 | 2021-01-14 | Black Hole Recycling | complete | [link](https://architrino.wordpress.com/2021/01/14/npqg-january-14-2021-tweaking-physicsists/) |
 | 2021-01-08 | Walking the Planck | complete | [link](https://architrino.wordpress.com/2021/01/08/npqg-january-8-2021-walking-the-planck/) |
-| 2021-01-07 | Bubbly Bubbles | open | [link](https://architrino.wordpress.com/2021/01/07/npqg-january-7-2020-bubbly-bubbles/) |
-| 2021-01-06 | Five Gatekeepers of Speech | open | [link](https://architrino.wordpress.com/2021/01/06/five-gatekeepers-of-speech/) |
+| 2021-01-07 | Bubbly Bubbles | complete | [link](https://architrino.wordpress.com/2021/01/07/npqg-january-7-2020-bubbly-bubbles/) |
+| 2021-01-06 | Five Gatekeepers of Speech | complete | [link](https://architrino.wordpress.com/2021/01/06/five-gatekeepers-of-speech/) |
 | 2021-01-05 | Let’s Get On With It! | complete | [link](https://architrino.wordpress.com/2021/01/05/npqg-january-5-2021-lets-get-on-with-it/) |
 | 2021-01-03 | Time-ish | complete | [link](https://architrino.wordpress.com/2021/01/03/npqg-january-3-2021/) |
-| 2021-01-02 | Pondering Assemblies | open | [link](https://architrino.wordpress.com/2021/01/02/npqg-january-2-2021/) |
+| 2021-01-02 | Pondering Assemblies | complete | [link](https://architrino.wordpress.com/2021/01/02/npqg-january-2-2021/) |
 | 2021-01-01 | Dr. Brian Keating : Dr. Max Tegmark and Dr. Eric Weinstein | open | [link](https://architrino.wordpress.com/2021/01/01/dr-brian-keating-dr-max-tegmark-and-dr-eric-weinstein/) |
 | 2020-12-31 | December 31, 2020 : EUREKA! | open | [link](https://architrino.wordpress.com/2020/12/31/npqg-december-31-2020-eureka/) |
 | 2020-12-29 | Deciphering Nature | open | [link](https://architrino.wordpress.com/2020/12/29/npqg-december-30-2020/) |

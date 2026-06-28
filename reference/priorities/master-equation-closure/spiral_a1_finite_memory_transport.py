@@ -1139,6 +1139,74 @@ def sampled_q_bounds(coefficients: tuple[float, ...], basis_scale: float, sample
     return {"min_q": min(values), "max_q": max(values), "samples": samples}
 
 
+def power_to_bernstein_coefficients(power_coefficients: tuple[float, ...]) -> list[float]:
+    degree = len(power_coefficients) - 1
+    return [
+        sum(
+            power_coefficients[index]
+            * math.comb(k, index)
+            / math.comb(degree, index)
+            for index in range(k + 1)
+        )
+        for k in range(degree + 1)
+    ]
+
+
+def split_bernstein_coefficients(
+    coefficients: list[float],
+) -> tuple[list[float], list[float]]:
+    levels = [list(coefficients)]
+    while len(levels[-1]) > 1:
+        previous = levels[-1]
+        levels.append(
+            [0.5 * (previous[index] + previous[index + 1]) for index in range(len(previous) - 1)]
+        )
+    return [level[0] for level in levels], [level[-1] for level in reversed(levels)]
+
+
+def subdivided_bernstein_q_bounds(
+    coefficients: tuple[float, ...],
+    subdivision_depth: int,
+) -> dict:
+    if subdivision_depth < 0:
+        raise ValueError("--admissible-profile-bernstein-depth must be nonnegative")
+
+    degree = len(coefficients)
+    segments = [power_to_bernstein_coefficients((1.0, *coefficients))]
+    for _ in range(subdivision_depth):
+        next_segments = []
+        for segment in segments:
+            left, right = split_bernstein_coefficients(segment)
+            next_segments.extend((left, right))
+        segments = next_segments
+
+    raw_lower = min(min(segment) for segment in segments)
+    raw_upper = max(max(segment) for segment in segments)
+    max_control_abs = max(abs(value) for segment in segments for value in segment)
+    roundoff_padding = (
+        128.0
+        * 2.220446049250313e-16
+        * max(1.0, max_control_abs)
+        * (degree + 1)
+        * (subdivision_depth + 1)
+    )
+    lower = raw_lower - roundoff_padding
+    upper = raw_upper + roundoff_padding
+    return {
+        "method": "subdivided_bernstein_convex_hull_float64",
+        "normalized_interval": [0.0, 1.0],
+        "subdivision_depth": subdivision_depth,
+        "subinterval_count": 2**subdivision_depth,
+        "raw_lower": raw_lower,
+        "raw_upper": raw_upper,
+        "roundoff_padding": roundoff_padding,
+        "lower": lower,
+        "upper": upper,
+        "H_b": max(abs(lower - 1.0), abs(upper - 1.0)),
+        "status": "floating_bernstein_outward_attempt_not_interval_certificate",
+    }
+
+
 def retained_collar_radial_objective_value(
     args: argparse.Namespace, past_profile: PastProfileSpec
 ) -> dict:
@@ -4568,6 +4636,21 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         past_profile.basis_scale,
         args.finite_collar_positivity_samples,
     )
+    past_bernstein_bounds = subdivided_bernstein_q_bounds(
+        past_profile.coefficients,
+        args.admissible_profile_bernstein_depth,
+    )
+    future_node_bounds = {
+        "method": "piecewise_linear_transport_node_envelope_float64",
+        "node_count": len(profile.q_nodes),
+        "q_min": min(profile.q_nodes),
+        "q_max": max(profile.q_nodes),
+        "q_prime_min": min(profile.q_prime_nodes),
+        "q_prime_max": max(profile.q_prime_nodes),
+        "outward_for_emitted_piecewise_linear_profile": True,
+        "outward_for_continuous_transport_equation": False,
+        "status": "transport_node_envelope_not_interval_certificate",
+    }
 
     retained_rows_summary: list[dict] = []
     retained_failures: list[str] = []
@@ -4673,11 +4756,14 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "sample_count": past_bounds["samples"],
             "declared_q_min_convention": args.finite_collar_min_q,
             "declared_q_max_convention": args.finite_collar_max_q,
-            "outward_q_min": "absent",
-            "outward_q_max": "absent",
-            "H_b": "absent",
+            "outward_q_min": past_bernstein_bounds["lower"],
+            "outward_q_max": past_bernstein_bounds["upper"],
+            "H_b": past_bernstein_bounds["H_b"],
+            "outward_attempt": past_bernstein_bounds,
             "used_as_certificate": False,
-            "status": "sampled_seed_bounds_only_not_certified",
+            "status": (
+                "past_profile_float_bernstein_outward_attempt_not_interval_certificate"
+            ),
         },
         "future_profile_admissibility": {
             "sampled_transport_q_min": min(future_values),
@@ -4690,10 +4776,11 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "sampled_within_declared_convention": sampled_within_declared_convention,
             "outward_q_min": "absent",
             "outward_q_max": "absent",
+            "transport_node_envelope": future_node_bounds,
             "E_Q_plus_b": "absent",
             "used_as_certificate": False,
             "status": (
-                "sampled_transport_bounds_only_not_certified"
+                "transport_node_envelope_only_not_interval_certificate"
                 if sampled_within_declared_convention
                 else "sampled_transport_exits_declared_convention_not_certified"
             ),
@@ -4721,8 +4808,8 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         ),
         "first_failure": "admissible_profile_bounds",
         "blocked_rows": [
-            "outward_profile_bounds_absent",
-            "H_b_absent",
+            "past_profile_interval_certificate_absent",
+            "future_outward_profile_bounds_absent",
             "E_Q_plus_b_absent",
             "inactive_cover_id_absent",
             "source_artifact_hash_absent",
@@ -4743,10 +4830,12 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         "authorizes_outward_certificate": False,
         "authorizes_obstruction_or_channel_decision": False,
         "policy": (
-            "This diagnostic records sampled seed and transported profile bounds "
-            "for the A1 endpoint-slope-cancelled retained chart. It does not "
-            "supply outward q_min, q_max, H_b, E_Q_plus_b, inactive-cover, "
-            "branch-sum, transport, or residual-envelope constants."
+            "This diagnostic records a floating subdivided-Bernstein outward "
+            "attempt for the past endpoint-slope-cancelled profile and a node "
+            "envelope for the emitted piecewise-linear transport profile. It "
+            "does not supply an interval certificate for q_min, q_max, H_b, "
+            "E_Q_plus_b, inactive-cover, branch-sum, transport, or "
+            "residual-envelope constants."
         ),
     }
 
@@ -5542,6 +5631,15 @@ def main(argv: Iterable[str] | None = None) -> int:
         help=(
             "Declared radius for --diagnostic-mode "
             "a1_admissible_profile_bounds_attempt."
+        ),
+    )
+    parser.add_argument(
+        "--admissible-profile-bernstein-depth",
+        type=int,
+        default=12,
+        help=(
+            "Subdivisions for the floating Bernstein past-profile bound emitted "
+            "by --diagnostic-mode a1_admissible_profile_bounds_attempt."
         ),
     )
     parser.add_argument(

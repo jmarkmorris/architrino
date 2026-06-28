@@ -152,6 +152,22 @@ N_{\mathrm{neutral}},
 $$
 where $E_{\mathrm{shield}}$ records shielded energy, $N_{\mathrm{neutral}}$ neutral assembly content, $\Sigma_{\mathrm{sea}}$ Noether sea stress, $\Pi_{\mathrm{proj}}$ observer-projection effects, and $\Delta_{\mathrm{cat}}$ catalogue residuals. Treating all five as one "dark" scalar is a failure mode, not a closure.
 
+The Noether sea stress row should not remain a single undifferentiated handle once it is used in galaxy dynamics, redshift transport, or growth comparisons. A first decomposition is
+$$
+\Sigma_{\mathrm{sea}}
+=
+\Sigma_{\mathrm{mat}}
++
+\Sigma_{\mathrm{path}}
++
+\Sigma_{\mathrm{rel}}
+-
+\Sigma_{\mathrm{cap}}
++
+\Sigma_{\mathrm{relax}},
+$$
+where $\Sigma_{\mathrm{mat}}$ is ordinary-assembly response, $\Sigma_{\mathrm{path}}$ is accumulated transport deposition from photon, neutrino, or other packet paths, $\Sigma_{\mathrm{rel}}$ is compact-source or distributed release loading, $\Sigma_{\mathrm{cap}}$ is capture or reclassification out of the active Noether sea population, and $\Sigma_{\mathrm{relax}}$ is local equilibration. The same decomposition must feed rotation, lensing, CMB/growth, redshift, and dark-sector apparentness rows. If a branch changes $\Sigma_{\mathrm{path}}$ to fit redshift while changing $\Sigma_{\mathrm{mat}}$ or $\Sigma_{\mathrm{rel}}$ independently for RAR/BTFR or lensing, it has split the Noether sea stress record.
+
 ## Galaxy-Dynamics Source-Family Watchlist
 
 Legacy SMBH and galaxy-dynamics sources are useful here as observable-family prompts, not as established explanations. The priority watchlist should preserve source leads only when they can be written as controlled records:
@@ -178,11 +194,51 @@ $$
 $$
 and compare it against rotation, lensing, cluster, CMB, and growth constraints before assigning any dark-matter role. If the branch improves $V_{\mathrm{rot}}(r)$ while worsening lensing, cluster dynamics, BBN/CMB transfer, or structure growth, it remains a speculative source lead rather than a promoted dark-sector mechanism.
 
+A stronger compact-core version must expose the shielding geometry rather than treating a central object as a free missing-mass reservoir. For a compact source with surface inventory $\mathcal{A}_{\mathrm{surf}}$, interior inventory $\mathcal{V}_{\mathrm{int}}$, packing state $\mathcal{P}_{\mathrm{pack}}$, and exterior coupling map $\Pi_{\mathrm{ext}}$, define the priority-only exposure quotient
+$$
+\mathcal{Q}_{\mathrm{core}}^\theta
+=
+\frac{
+\Pi_{\mathrm{ext}}\mathcal{A}_{\mathrm{surf}}
+}{
+\mathcal{V}_{\mathrm{int}}
+}
+\,
+\Xi_{\mathrm{shield}}(
+\mathcal{P}_{\mathrm{pack}},
+\theta_{\mathrm{sea}}
+).
+$$
+The quotient asks which part of an internally stored compact-core ledger is exposed to exterior dynamics. It is high risk and remains a source lead until the same branch also passes compact-object, rotation, lensing, cluster, CMB, and growth constraints. A fit that improves a galaxy rotation curve by choosing $\mathcal{Q}_{\mathrm{core}}^\theta$ after the fact is rejected as hidden dark-sector tuning.
+
 ## Quasar Population And Redshift-Transport Decomposition
 
 Quasar redshift distributions are useful only after population and transport rows are separated. A non-uniform count distribution in $z$ can come from luminosity-function evolution, survey flux limits, color selection, obscuration, lensing, source-class changes, classification uncertainty, or the redshift-transfer map. The priority comparison should therefore start from the decomposition in the distance-ladder benchmark and ask which rows are fixed by data before any cosmology interpretation is drawn.
 
 The fail condition is symmetric: a fixed-void redshift branch fails if it treats quasar counts as direct evidence for path transport while ignoring source evolution and selection; a LambdaCDM comparison fails if it treats the same counts as settled population history while leaving unexplained transfer residuals in the photon-channel record.
+
+High-redshift quasar mass estimates add a separate growth-time pressure. For a candidate record $\theta$, compare observed black-hole mass and redshift through
+$$
+\mathcal{R}_{\mathrm{QSO\text{-}mass}}(\theta)
+=
+d_M\!\left(
+M_{\mathrm{BH}}^{\mathrm{obs}},
+M_{\mathrm{seed}}^\theta
+\exp\!\left[
+\int_{\mathcal{H}_{\mathrm{feed}}}
+\frac{1-\epsilon_{\mathrm{rad}}^\theta}{\epsilon_{\mathrm{rad}}^\theta}
+\frac{dt_{\mathrm{eff}}^\theta}{t_{\mathrm{Edd}}^\theta}
+\right]
+\right)
++
+d_z\!\left(
+z_{\mathrm{obs}},
+Z^\theta[\mathcal{S}_{E\to R}]
+\right)
++
+\mathcal{R}_{\mathrm{sel}}.
+$$
+This is not a claim that standard Eddington growth is the native mechanism. It is a bookkeeping comparison that prevents a branch from using one age/redshift record to infer the quasar and another to explain how the compact source grew.
 
 ## Controversial QSO Association Source Lead
 

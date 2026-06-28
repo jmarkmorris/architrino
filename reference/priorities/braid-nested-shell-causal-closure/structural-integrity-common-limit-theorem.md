@@ -386,6 +386,17 @@ populating `moving_retained_branch_certificate/v0`. Common-speed, photon,
 Lorentz, gravitational-wave, and observer-export rows remain blocked until a
 same-ledger moving branch exists.
 
+Executable current-status checker:
+[moving-retained-branch-certificate-report.mjs](../../../scripts/nested-shell-braid/moving-retained-branch-certificate-report.mjs)
+checks this status shell before structural-integrity residual population. The
+current status fixture
+[moving-retained-branch-certificate-current-status.json](../../../scripts/nested-shell-braid/fixtures/moving-retained-branch-certificate-current-status.json)
+is `priority-only`, reports `candidate_status_shell_only_not_population`, and
+returns first failure `blocked_pending_accepted_branch_chart`. A complete
+synthetic same-record certificate may pass only as `accepted_same_branch` for
+residual-vector population; the checker still does not accept Photon Gate A or
+authorize observer export.
+
 ## Promotion Decision
 
 - The compact theorem target is surfaced in [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), with conceptual support in [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry) and empirical speed gates in [Constraint Ledger](../../../content/markdown/aaa/validation/constraint-ledger.md).

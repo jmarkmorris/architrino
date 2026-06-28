@@ -251,6 +251,56 @@ Odd radio circles are a candidate source-family lead for the catastrophic row, n
 
 Fermi-bubble and eROSITA-bubble comparisons are a cleaner galaxy-scale release lead because they already point to bounded energy, age, axis, and environment rows. If used, the packet should record total energy, radiative and dynamical age, Galactic-center or AGN history, axis symmetry, polarization or spectrum where available, surrounding gas state, and null controls against starburst winds, ordinary AGN feedback, and projection effects. The useful question is whether one release-channel selector can connect compact-source history to large-scale medium work without becoming a free feedback term.
 
+Asymmetric jet release needs its own momentum-balance residual before it is allowed to influence host dynamics. For a compact source with two polar channels, define
+$$
+\mathcal{R}_{\mathrm{jet\text{-}recoil}}
+=
+\left\|
+\Delta\mathbf{p}_{\mathrm{BH}}
++
+\int
+\left(
+\mathbf{\Pi}_{j,+}
++
+\mathbf{\Pi}_{j,-}
++
+\mathbf{\Pi}_{\mathrm{rad}}
++
+\mathbf{\Pi}_{\mathrm{sea}}
+\right)dt
+\right\|_{\Sigma_p^{-1}}
++
+\lambda_J
+\left\|
+\Delta\mathbf{J}_{\mathrm{BH}}
++
+\Delta\mathbf{J}_{j,+}
++
+\Delta\mathbf{J}_{j,-}
++
+\Delta\mathbf{J}_{\mathrm{sea}}
+\right\|_{\Sigma_J^{-1}}.
+$$
+The residual is a source/sink ledger check, not a claim that one-sided jets explain galaxy dynamics. It asks whether asymmetric onset, shutoff, baryon loading, or dark-sector loading can be reconciled with compact-source recoil, host-galaxy motion, angular-momentum routing, and medium updates without changing the release selector per object.
+
+Resolved jet knots should be recorded as release chronology rather than generic morphology. A useful source packet is
+$$
+\mathcal{K}_{\mathrm{jet}}
+=
+\left(
+\mathbf{x}_K,
+t_K,
+\Delta t_K,
+E_K,
+\Pi_K,
+\alpha_K,
+\psi_K,
+\Theta_{\mathrm{env},K},
+\mathcal{H}_{\mathrm{rel},K}
+\right),
+$$
+where $\mathbf{x}_K$ is knot position, $t_K$ and $\Delta t_K$ are age and duration estimates, $E_K$ is bounded energy, $\Pi_K$ is polarization or polarization fraction, $\alpha_K$ is spectral index, $\psi_K$ is projected angle, $\Theta_{\mathrm{env},K}$ records local environment, and $\mathcal{H}_{\mathrm{rel},K}$ records the candidate release history. The packet is useful only when knots, lobes, shocks, and inverse-Compton or synchrotron rows consume the same source, transport, and medium state.
+
 ### MIT 8.962 Compact-Source Scaffold
 
 The MIT 8.962 sequence gives this workstream a controlled strong-field benchmark ladder without turning GR into substrate ontology. The OCW lecture summaries route compact sources through TOV stellar structure, Buchdahl compactness, black-hole horizons, black-hole orbits, light rings, post-Newtonian expansion, perturbation theory, and numerical relativity (`https://ocw.mit.edu/courses/8-962-general-relativity-spring-2020/pages/lecture-summaries/`). Hughes's typed-note index mirrors that ladder through compact sources, black holes, orbits, Kerr, post-Newtonian expansion, perturbation theory, and numerical integration (`https://web.mit.edu/sahughes/www/8.962/index.html`). The safe priority extraction is that the native horizon-interface program should pass the compact-star predecessor branch before claiming a black-hole departure.

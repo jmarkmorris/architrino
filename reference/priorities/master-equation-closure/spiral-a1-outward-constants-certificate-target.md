@@ -298,11 +298,21 @@ on the declared boxes.
 
 Current attempt artifact:
 [spiral-a1-admissible-profile-bounds.v0.json](spiral-a1-admissible-profile-bounds.v0.json)
-records the first fail-closed packet for $b=0.001$. It deliberately leaves the
-row identity, outward $q_{\min},q_{\max},H_b$, transported $Q_p$ bounds, and
-$E_Q^+(b)$ absent, so the current first failure remains
-`admissible_profile_bounds`. The reduced smoke result is carried only as
-diagnostic context with `used_as_certificate=false`.
+records the current fail-closed packet for $b=0.001$. The executable diagnostic
+mode is:
+
+```bash
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.02 --delta-steps 128 --integration-panels 16 --profile-mode tangential_transport --transport-steps 16 --past-profile endpoint_slope_cancel --endpoint-cancel-positivity-samples 101 --diagnostic-mode a1_admissible_profile_bounds_attempt --finite-collar-samples 3 --finite-collar-integration-panels 16 --finite-collar-transport-steps 16 --finite-collar-delta-steps 128 --finite-collar-positivity-samples 101
+```
+
+The sampled seed and transported $Q$ values stay inside the declared
+$0.2\le Q\le3.0$ convention on this grid, and the retained rows replay with no
+sampled retained-window failure. Those values are not outward bounds. The
+artifact still leaves outward $q_{\min},q_{\max},H_b,E_Q^+(b)$, the inactive
+cover, source artifact hash, retained-root boxes, branch-sum constants,
+transport constants, and residual envelope absent, so the current first failure
+remains `admissible_profile_bounds`. The reduced smoke result is carried only
+as diagnostic context with `used_as_certificate=false`.
 
 ## Advancement Decision
 

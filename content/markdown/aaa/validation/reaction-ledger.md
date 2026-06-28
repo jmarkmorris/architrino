@@ -436,7 +436,7 @@ So the active quark assembly sheds three $E$-type axial units and receives three
 
 ### Exposure-operator record
 
-The controlled beta channel now has a first finite-state exposure operator in [Weak-Mixing CKM](../philosophy-history/theory-bridges/weak-mixing-ckm.md). The ledger record for this channel should use that operator as the geometry gate before any rate or provenance claim is made.
+The controlled beta channel has a first finite-state exposure operator in [Weak-Mixing CKM](../philosophy-history/theory-bridges/weak-mixing-ckm.md). The ledger record for this channel should use that operator as the geometry gate before any rate or provenance claim is made.
 
 This gate inherits the unresolved spinor/helicity proof in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md). The blocked right-handed branch, antineutrino orientation, and weak-channel angular-momentum balance remain provisional until the weak-coupling-triad exposure geometry and the reaction-level angular-momentum ledger are derived from the same substrate proof.
 

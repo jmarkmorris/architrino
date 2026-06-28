@@ -8,13 +8,13 @@ This chapter uses three braid types:
 | --- | --- | --- |
 | **neutral braid** | The broad six-architrino neutral case before any required binary grouping or radial organization. | Polarity balance and causal-return bookkeeping. |
 | **shell braid** | A neutral braid whose six architrino paths remain in a controlled radial support band. | Radial support control, with near-antipodality only as an optional constraint. |
-| **nested shell braid** | A shell braid with three ordered radial support bands. | The old three-layer picture; exact binaries are an additional proof assumption, not a separate braid type. |
+| **nested shell braid** | A shell braid with three ordered radial support bands. | Ordered support-band structure; exact binaries are an additional proof assumption, not a separate braid type. |
 
 These definitions name case structure, not retained-branch existence. A neutral braid requires six-body polarity balance and causal-return bookkeeping; a shell braid adds radial support and recovery residuals; a nested shell braid adds ordered support bands. Exact binary nesting, stable all-pairs roots, and observer-export behavior are theorem targets that must be certified by the branch ledger rather than read back into the definition.
 
 The word **braid** names the six retained worldline strands together with their shared causal-return ledger. It does not by itself assert that the branch already carries a protected mathematical braid-group class. A protected braid, linking, framing, or chirality class is extra structure to be certified by the [assembly topological charge](../dynamics/assembly-topological-charge.md) program.
 
-Canonical reader-facing prose uses **Noether braid**, **nested shell braid**, and **nested binary** for this material. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers during the notation migration, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [the nested shell braid geometry chapter](nested-shell-braid-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
+Canonical reader-facing prose uses **Noether braid**, **nested shell braid**, and **nested binary** for this material. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [the nested shell braid geometry chapter](nested-shell-braid-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
 
 ## Neutral Braid
 
@@ -512,7 +512,7 @@ $$
 \frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}
 $$
 
-The legacy density symbol is retained as packing notation for this chart. It names the maximum center density of the relevant Noether braid exclusion envelopes, not a separate braid type. Therefore the packing curve inherits the radius closure:
+The density symbol functions as packing notation for this chart. It names the maximum center density of the relevant Noether braid exclusion envelopes, not a separate braid type. Therefore the packing curve inherits the radius closure:
 
 $$
 \rho_{\mathrm{NS},\max}^{\#}(N)
@@ -534,7 +534,7 @@ The scaling curve is therefore piecewise by branch. Once the branch supplies $\x
 
 ## Reduced Nested Shell Braid Closure Label
 
-For proof work, the integer phase-closure state should be packaged with the branch data that made the closure admissible. The reduced nested shell braid closure label is a branch label, not a new ontological ingredient. The symbol $\Lambda_{\text{NS}}$ is retained here as legacy notation:
+For proof work, the integer phase-closure state should be packaged with the branch data that made the closure admissible. The reduced nested shell braid closure label is a branch label, not a new ontological ingredient. The symbol $\Lambda_{\text{NS}}$ denotes this reduced closure label:
 
 $$
 \Lambda_{\text{NS}}

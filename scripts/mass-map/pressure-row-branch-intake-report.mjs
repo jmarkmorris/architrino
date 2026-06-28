@@ -15,6 +15,11 @@ const REQUIRED_FIELDS = [
     failureCode: "finite_branch_evidence_missing",
   },
   {
+    path: "source_path",
+    requirement: "Path to the priority packet or generated report that emits the accepted history segment.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
     path: "quotient_chart_id",
     requirement: "Exposure quotient chart used by the mass-facing source row.",
     failureCode: "finite_branch_evidence_missing",
@@ -36,6 +41,36 @@ const REQUIRED_FIELDS = [
     requirement: "Eta-ladder persistence status when required by the row.",
     failureCode: "pressure_row_eta_ladder_not_accepted",
     acceptedValues: ["not_required", "accepted", "persistent", "pass"],
+  },
+  {
+    path: "pressure_record.Pi",
+    requirement: "Same-row isotropic pressure-loading entry.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "pressure_record.A",
+    requirement: "Same-row anisotropic pressure-loading entry.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "pressure_record.s_n",
+    requirement: "Same-row packing-headroom entry.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "pressure_record.Q_chi_ab",
+    requirement: "Same-row delay-response tensor direction or source record.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "pressure_record.S_dev_ab",
+    requirement: "Same-row retained strain-channel source record.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "pressure_record.retained_replay_direction",
+    requirement: "Declared replay direction for retained trace-free pressure response.",
+    failureCode: "finite_branch_evidence_missing",
   },
   {
     path: "exposure_source_record.E_internal",
@@ -75,6 +110,52 @@ const REQUIRED_FIELDS = [
   {
     path: "pressure_response_record.m_S",
     requirement: "Branch-emitted medium-response coefficient for the same row.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "reversible_domain.R_tr",
+    requirement: "Same-row reversible trace residual.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "reversible_domain.R_tr_star",
+    requirement: "Declared reversible trace residual threshold.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "reversible_domain.loss_channels_closed",
+    requirement: "Loss channels must be closed for branch-derived reversible response.",
+    failureCode: "pressure_row_reversible_domain_not_accepted",
+    acceptedValues: [true],
+  },
+  {
+    path: "null_sector_record.clock_signal",
+    requirement: "Clock/signal null-sector row for the same branch intake.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "null_sector_record.birefringence",
+    requirement: "Birefringence null-sector row for the same branch intake.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "null_sector_record.photon_dispersion",
+    requirement: "Photon-dispersion null-sector row for the same branch intake.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "null_sector_record.preferred_frame",
+    requirement: "Preferred-frame null-sector row for the same branch intake.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "null_sector_record.directional_tensor",
+    requirement: "Directional-tensor null-sector row for the same branch intake.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "null_sector_record.transport",
+    requirement: "Transport-threshold null-sector row for the same branch intake.",
     failureCode: "finite_branch_evidence_missing",
   },
 ];
@@ -157,9 +238,6 @@ function present(value) {
 function acceptedStatus(value, acceptedValues) {
   if (!acceptedValues) {
     return present(value);
-  }
-  if (typeof value !== "string") {
-    return false;
   }
   return acceptedValues.includes(value);
 }
