@@ -188,6 +188,16 @@ const SOURCE_REJECTION_PATTERNS = [
   /missing/i,
 ];
 
+const SOURCE_PROVENANCE_STATUS_KEYS = new Set([
+  "provider_source_status",
+  "target_status",
+  "candidate_status",
+  "promotion_status",
+  "source_kind",
+  "diagnostic_only",
+  "source_status",
+]);
+
 function parseArgs(argv) {
   const args = {
     input: null,
@@ -291,31 +301,47 @@ function rejectedStatus(value) {
   return SOURCE_REJECTION_PATTERNS.some((pattern) => pattern.test(value));
 }
 
+function collectRejectedSourceStatusFields(value, pathPrefix = "") {
+  if (!isObject(value)) {
+    return [];
+  }
+
+  return Object.entries(value).flatMap(([key, child]) => {
+    const fieldPath = pathPrefix === "" ? key : `${pathPrefix}.${key}`;
+    const current =
+      SOURCE_PROVENANCE_STATUS_KEYS.has(key) && rejectedStatus(child)
+        ? [{ path: fieldPath, value: child }]
+        : [];
+    return current.concat(collectRejectedSourceStatusFields(child, fieldPath));
+  });
+}
+
 function evaluateAcceptedSource(candidate, options) {
   const sourceRef = options.sourceRef ?? candidate.source_ref ?? "";
-  const statusFields = [
-    ["schema", candidate.schema],
-    ["provider_source_status", candidate.provider_source_status],
-    ["target_status", candidate.target_status],
-    ["candidate_status", candidate.candidate_status],
-    ["promotion_status", candidate.promotion_status],
-    ["source_kind", candidate.source_kind],
-    ["diagnostic_only", candidate.diagnostic_only],
-  ];
-  const rejected_status_fields = statusFields
-    .filter(([, value]) => rejectedStatus(value))
-    .map(([path, value]) => ({ path, value }));
+  const rejectedStatusFields = [
+    { path: "schema", value: candidate.schema },
+    ...collectRejectedSourceStatusFields(candidate),
+  ].filter(({ value }) => rejectedStatus(value));
 
   if (typeof sourceRef === "string" && /(^|\/)fixtures\//.test(sourceRef)) {
-    rejected_status_fields.push({
+    rejectedStatusFields.push({
       path: "source_ref",
       value: sourceRef,
     });
   }
 
+  const rejected_status_fields = [
+    ...new Map(
+      rejectedStatusFields.map((field) => [
+        `${field.path}\u0000${JSON.stringify(field.value)}`,
+        field,
+      ])
+    ).values(),
+  ];
+
   return {
     requirement:
-      "Accepted non-fixture source for the retained pressure row; target-only, toy, empirical, diagnostic, partial, and negative-control sources cannot authorize pressure response.",
+      "Accepted non-fixture source for the retained pressure row; target-only, toy, empirical, diagnostic, partial, fixture, and negative-control sources cannot authorize pressure response, including when that status appears inside required field provenance.",
     pass: rejected_status_fields.length === 0,
     failure_code:
       rejected_status_fields.length === 0 ? null : "accepted_non_fixture_source_missing",

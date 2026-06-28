@@ -32,6 +32,17 @@ test("field-speed source-binding report rejects fixture-only action-increment ro
   assert.equal(report.fixture_shape_only, true);
   assert.equal(report.source_verdict, "diagnostic_rejected_endpoint_source");
   assert.equal(report.first_failure, "source_row_binding_open");
+  assert.equal(report.first_required_source_field, "transition_source_ref");
+  assert.equal(report.first_missing_or_rejected_field, "non_fixture_transition_source");
+  assert.equal(report.first_missing_or_rejected_failure_code, "fixture_shape_only_packet_not_source");
+  assert.equal(report.source_acceptance_contract.status, "blocked");
+  assert.equal(report.source_acceptance_contract.first_blocking_field, "transition_source_ref");
+  assert.equal(
+    report.source_acceptance_contract.first_blocking_failure_code,
+    "fixture_shape_only_packet_not_source"
+  );
+  assert.equal(report.source_acceptance_contract.fields[0].field, "transition_source_ref");
+  assert.equal(report.source_acceptance_contract.fields[0].verdict, "blocked");
   assert.equal(report.candidate_h_recovery_vote, "not_authorized");
   assert.equal(report.missing_or_rejected_fields.includes("non_fixture_transition_source"), true);
   assert.equal(report.action_row_hash.startsWith("sha256:"), true);
@@ -64,6 +75,10 @@ test("field-speed source-binding report can accept a non-fixture same-record sou
   assert.deepEqual(validationErrors(report), []);
   assert.equal(report.source_verdict, "accepted_transition_source");
   assert.equal(report.same_record_binding, true);
+  assert.equal(report.source_acceptance_contract.status, "satisfied");
+  assert.equal(report.source_acceptance_contract.first_blocking_field, null);
+  assert.equal(report.first_required_source_field, null);
+  assert.equal(report.first_missing_or_rejected_field, null);
   assert.equal(report.action_row_branch_certificate_ref, "branch-certificate:test");
   assert.equal(report.action_row_root_ledger_hash, "sha256:root");
   assert.equal(report.action_row_conservation_pullback_hash, "sha256:conservation");

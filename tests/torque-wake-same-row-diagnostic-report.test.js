@@ -33,10 +33,31 @@ test("torque/wake same-row diagnostic records useful rows but blocks all authori
   assert.equal(report.same_record_source_binding, false);
   assert.equal(report.first_failure, "branch_certificate_ref_missing");
   assert.deepEqual(report.retained_upgrade_required, {
-    same_retained_active_row_ids: "missing",
+    same_retained_active_row_ids: "blocked_pending_branch_certificate_ref",
     accepted_branch_chart: "missing",
     moving_branch_certificate: "missing",
   });
+  assert.equal(
+    report.retained_active_row_certificate_contract.schema,
+    "same_retained_active_row_certificate_contract/v0"
+  );
+  assert.deepEqual(report.retained_active_row_certificate_contract.feeds, [
+    "rank2.accepted_transition_source",
+    "rank6.moving_retained_branch_certificate/v0",
+  ]);
+  assert.equal(
+    report.retained_active_row_certificate_contract.first_failure,
+    "branch_certificate_ref_missing_before_same_retained_active_row_ids"
+  );
+  assert.equal(report.retained_active_row_certificate_contract.sampled_same_row_id_binding, true);
+  assert.equal(
+    report.retained_active_row_certificate_contract.same_retained_active_row_id_binding,
+    false
+  );
+  assert.equal(
+    report.retained_active_row_certificate_contract.retained_authorization,
+    false
+  );
   assert.equal(report.retained_branch, false);
   assert.equal(
     report.consumer_status.rank2_field_speed_action_self_hit_scan.status,
@@ -80,6 +101,10 @@ test("torque/wake same-row diagnostic rejects row-id mismatches even with branch
   assert.equal(report.same_row_id_binding, false);
   assert.equal(report.same_record_source_binding, false);
   assert.equal(report.first_failure, "same_row_id_mismatch");
+  assert.equal(
+    report.retained_active_row_certificate_contract.first_failure,
+    "sampled_same_row_id_mismatch"
+  );
   assert.equal(report.authorization.candidate_h_recovery, false);
   assert.equal(report.authorization.moving_retained_branch_certificate, false);
 });
@@ -95,6 +120,14 @@ test("torque/wake same-row diagnostic stays non-authorizing when all binding fie
   assert.equal(report.same_row_id_binding, true);
   assert.equal(report.same_record_source_binding, true);
   assert.equal(report.first_failure, "diagnostic_only_not_authorization_source");
+  assert.equal(
+    report.retained_active_row_certificate_contract.first_failure,
+    "same_retained_active_row_ids_missing"
+  );
+  assert.equal(
+    report.retained_active_row_certificate_contract.same_retained_active_row_ids_status,
+    "missing"
+  );
   assert.equal(report.consumer_status.rank2_field_speed_action_self_hit_scan.status, "source_row_binding_open");
   assert.equal(
     report.consumer_status.rank6_moving_retained_branch_certificate.status,

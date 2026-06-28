@@ -456,6 +456,20 @@ float64 partials, sampled root motion, and Simpson memory integrals do not
 produce outward intervals on the shared boxes. It keeps
 `emits_E_Q_plus_b=false`, `emits_K_Q=false`, and
 `authorizes_outward_certificate=false`.
+The branch-sum row now also nests
+`a1_summand_partial_interval_boxes_negative_control.v0` with negative-control
+digest `sha256:5d6453e5d9ef1debe7b455cb254ae0f810713b07c9eb232f04a79744b02b9c14`.
+That readout expands `summand_partial_interval_boxes` into 36 label/family
+slots over `P_1`, `P_2`, `P_3`, and `S_1`: tangential summand partials,
+radial summand partials, retained-root motion, and source-profile variation.
+It records 6 sampled branch-sum rows and 24 sampled summand rows, but every
+slot fails as `sampled_value_not_outward_interval_box`. The central float64
+partials, sampled root motion, sampled source-profile values, and Simpson
+memory integrals remain point-sample evidence, so the object has
+`satisfies_summand_partial_interval_boxes=false`,
+`emits_E_Q_plus_b=false`, `emits_K_Q=false`, and
+`authorizes_outward_certificate=false`. This is a priority-only negative
+control, not an interval certificate.
 
 The top-level row identity now carries
 `inactive_cover_id=inactive_cover_interval_boxes`, so the live blocker is no

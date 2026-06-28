@@ -20,6 +20,13 @@ const REQUIRED_BINDING_FIELDS = [
   "negative_control_ref",
 ];
 
+const RETAINED_ACTIVE_ROW_REQUIRED_FIELDS = [
+  "branch_certificate_ref",
+  "same_retained_active_row_ids",
+  "accepted_branch_chart_ref",
+  "moving_retained_branch_certificate_ref",
+];
+
 function parseArgs(argv) {
   const args = {
     input: null,
@@ -147,6 +154,60 @@ function computeFirstFailure(candidate, binding, missing) {
   return "diagnostic_only_not_authorization_source";
 }
 
+function buildRetainedActiveRowCertificateContract(candidate, binding) {
+  const sameRetainedRows = stringArray(candidate.same_retained_active_row_ids);
+  const missingRetainedFields = RETAINED_ACTIVE_ROW_REQUIRED_FIELDS.filter((field) => !present(candidate[field]));
+  const sameRetainedRowBinding =
+    binding.same_row_id_binding &&
+    sameRetainedRows.length > 0 &&
+    sameOrderedStrings(binding.activeRows, sameRetainedRows);
+
+  let firstFailure = "retained_rows_still_priority_only_not_authorization";
+  if (!binding.same_row_id_binding) {
+    firstFailure = "sampled_same_row_id_mismatch";
+  } else if (!present(candidate.branch_certificate_ref)) {
+    firstFailure = "branch_certificate_ref_missing_before_same_retained_active_row_ids";
+  } else if (sameRetainedRows.length === 0) {
+    firstFailure = "same_retained_active_row_ids_missing";
+  } else if (!sameRetainedRowBinding) {
+    firstFailure = "same_retained_active_row_id_mismatch";
+  } else if (!present(candidate.accepted_branch_chart_ref)) {
+    firstFailure = "accepted_branch_chart_ref_missing";
+  } else if (!present(candidate.moving_retained_branch_certificate_ref)) {
+    firstFailure = "moving_retained_branch_certificate_ref_missing";
+  }
+
+  return {
+    schema: "same_retained_active_row_certificate_contract/v0",
+    promotion_status: "priority-only",
+    feeds: ["rank2.accepted_transition_source", "rank6.moving_retained_branch_certificate/v0"],
+    required_fields: RETAINED_ACTIVE_ROW_REQUIRED_FIELDS,
+    sampled_active_row_ids: binding.activeRows,
+    same_retained_active_row_ids: sameRetainedRows,
+    sampled_same_row_id_binding: binding.same_row_id_binding,
+    same_retained_active_row_id_binding: sameRetainedRowBinding,
+    branch_certificate_ref_present: present(candidate.branch_certificate_ref),
+    accepted_branch_chart_ref_present: present(candidate.accepted_branch_chart_ref),
+    moving_retained_branch_certificate_ref_present: present(candidate.moving_retained_branch_certificate_ref),
+    missing_or_rejected_fields: [
+      ...missingRetainedFields,
+      ...(binding.same_row_id_binding ? [] : ["sampled_same_row_id_binding"]),
+      ...(sameRetainedRowBinding ? [] : ["same_retained_active_row_id_binding"]),
+    ],
+    same_retained_active_row_ids_status: present(candidate.branch_certificate_ref)
+      ? sameRetainedRows.length > 0
+        ? sameRetainedRowBinding
+          ? "sampled_rows_bound_to_same_retained_active_rows"
+          : "sampled_rows_do_not_match_same_retained_active_rows"
+        : "missing"
+      : "blocked_pending_branch_certificate_ref",
+    first_failure: firstFailure,
+    retained_authorization: false,
+    note:
+      "Sampled force/partition/torque/wake row ids are useful routing evidence only; top-six consumers need the same ids certified as retained active rows by one branch certificate and accepted branch chart.",
+  };
+}
+
 function consumerStatus(firstFailure, retainedBranch) {
   return {
     rank2_field_speed_action_self_hit_scan: {
@@ -186,6 +247,7 @@ export function buildReport(candidate, options = {}) {
   const binding = rowBinding(candidate);
   const retainedBranch = candidate.retained_branch === true;
   const firstFailure = computeFirstFailure(candidate, binding, missing);
+  const retainedActiveRowCertificateContract = buildRetainedActiveRowCertificateContract(candidate, binding);
   const sameRecordSourceBinding =
     binding.same_row_id_binding &&
     present(candidate.branch_certificate_ref) &&
@@ -227,10 +289,12 @@ export function buildReport(candidate, options = {}) {
     diagnostic_verdict: firstFailure,
     first_failure: firstFailure,
     retained_upgrade_required: {
-      same_retained_active_row_ids: "missing",
+      same_retained_active_row_ids:
+        retainedActiveRowCertificateContract.same_retained_active_row_ids_status,
       accepted_branch_chart: "missing",
       moving_branch_certificate: "missing",
     },
+    retained_active_row_certificate_contract: retainedActiveRowCertificateContract,
     consumer_status: consumerStatus(firstFailure, retainedBranch),
     authorization: {
       candidate_h_recovery: false,
@@ -275,6 +339,24 @@ export function validationErrors(report) {
   }
   if (!isObject(report.consumer_status)) {
     errors.push("consumer_status must be an object");
+  }
+  if (!isObject(report.retained_active_row_certificate_contract)) {
+    errors.push("retained_active_row_certificate_contract must be an object");
+  }
+  if (
+    report.retained_active_row_certificate_contract?.schema !==
+    "same_retained_active_row_certificate_contract/v0"
+  ) {
+    errors.push("retained_active_row_certificate_contract schema mismatch");
+  }
+  if (report.retained_active_row_certificate_contract?.promotion_status !== "priority-only") {
+    errors.push("retained_active_row_certificate_contract promotion_status must remain priority-only");
+  }
+  if (!nonemptyString(report.retained_active_row_certificate_contract?.first_failure)) {
+    errors.push("retained_active_row_certificate_contract first_failure must be a nonempty string");
+  }
+  if (report.retained_active_row_certificate_contract?.retained_authorization !== false) {
+    errors.push("retained_active_row_certificate_contract retained_authorization must remain false");
   }
   if (report.consumer_status?.rank2_field_speed_action_self_hit_scan?.candidate_h_recovery_authorized !== false) {
     errors.push("rank2 candidate_h_recovery_authorized must remain false");

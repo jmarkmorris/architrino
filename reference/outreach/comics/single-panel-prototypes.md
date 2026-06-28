@@ -429,3 +429,12 @@ Cosmology comparison rough visual prototypes:
 - [The Observable Edge Receipt](assets/observable-edge-receipt-prototype.png)
 - [Opening Scene, Not Building Permit](assets/opening-scene-not-building-permit-prototype.png)
 - [Birthday Cake For The Observer Era](assets/birthday-cake-observer-era-prototype.png)
+
+Prior-comic remake rough visual prototypes:
+
+- [Curvefit Remake](assets/curvefit-remake-prototype.png)
+- [Acknowledgements Remake](assets/acknowledgements-remake-prototype.png)
+- [We Need To Talk Remake](assets/we-need-to-talk-remake-prototype.png)
+- [Alchemy Remake](assets/alchemy-remake-prototype.png)
+- [Jets Remake](assets/jets-remake-prototype.png)
+- [SMBH Remake](assets/smbh-remake-prototype.png)

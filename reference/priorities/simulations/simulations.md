@@ -362,11 +362,16 @@ Minimum non-fixture `accepted_transition_source` object:
 | `candidate_h_recovery_vote` | May be emitted only after every row above binds on the same retained branch record. | not authorized |
 
 Current source-binding report object: `field_speed_action_self_hit_scan_source_binding_report/v0`.
+It now embeds the priority-only acceptance artifact
+`field_speed_action_self_hit_scan_source_acceptance_contract/v0`, which orders
+the same-record source requirements and reports the first blocking field before
+any scan output is interpreted.
 
 | Field | Current reading | Verdict |
 | --- | --- | --- |
-| `transition_source_ref` | `scripts/nested-shell-braid/fixtures/action-increment-packet/` | fixture-only; not a live source |
-| `branch_certificate_ref` | absent | first blocker for branch ownership |
+| `transition_source_ref` | `scripts/nested-shell-braid/fixtures/action-increment-packet/` | first required source field; blocked by `fixture_shape_only_packet_not_source` |
+| `action_increment_row_id` | fixture row `fixture-B12-B13-a` | blocked by `fixture_action_increment_row_not_source` |
+| `branch_certificate_ref` | absent | next branch-ownership blocker after a non-fixture source exists |
 | `action_row_hash` | fixture row `fixture-B12-B13-a` now hashes to `sha256:0f6bab71d0aec1882afcbd9dcbe40f97f19a90ef928f85f392ed5602160d7bb9`; absent for a non-fixture row | `source_row_binding_open` |
 | `root_ledger_hash` | absent for live binding | `source_row_binding_open` |
 | `conservation_pullback_hash` | absent for live binding | `source_row_binding_open` |
@@ -379,7 +384,10 @@ Executable report status, 2026-06-28:
 emits and validates the source-binding report object. Running it on the fixture
 packet with `--branch-row-id fixture-B12-B13-a` produces
 `source_verdict=diagnostic_rejected_endpoint_source`,
-`first_failure=source_row_binding_open`, and
+`first_failure=source_row_binding_open`,
+`first_required_source_field=transition_source_ref`,
+`first_missing_or_rejected_failure_code=fixture_shape_only_packet_not_source`,
+`source_acceptance_contract.status=blocked`, and
 `candidate_h_recovery_vote=not_authorized`.
 
 The fixture packet, blocked source-contract fixture, and rank-2 transition-source

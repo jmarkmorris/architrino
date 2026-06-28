@@ -951,6 +951,202 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
       .outward_summand_derivative_boxes_target_status,
     summandDerivativeTarget.status
   );
+  const summandPartialNegativeControl =
+    branchSumAttempt.summand_partial_interval_boxes_negative_control;
+  assert.equal(
+    summandPartialNegativeControl.schema,
+    "architrino.priority.master_equation_closure.a1_summand_partial_interval_boxes_negative_control.v0"
+  );
+  assert.equal(
+    summandPartialNegativeControl.artifact_id,
+    "a1_summand_partial_interval_boxes_negative_control.v0"
+  );
+  assert.match(
+    summandPartialNegativeControl.negative_control_digest,
+    /^sha256:[0-9a-f]{64}$/
+  );
+  assert.equal(
+    summandPartialNegativeControl.target_digest,
+    summandDerivativeTarget.target_digest
+  );
+  assert.equal(
+    summandPartialNegativeControl.target_first_missing_interval_row,
+    "summand_partial_interval_boxes"
+  );
+  assert.equal(
+    summandPartialNegativeControl.sampled_evidence_intake.sample_row_count,
+    branchSumAttempt.sample_count
+  );
+  assert.equal(
+    summandPartialNegativeControl.sampled_evidence_intake.summand_row_count,
+    branchSumAttempt.sample_count * summandDerivativeTarget.required_labels.length
+  );
+  assert.equal(summandPartialNegativeControl.required_slot_count, 36);
+  assert.equal(summandPartialNegativeControl.failed_slot_count, 36);
+  assert.equal(
+    summandPartialNegativeControl.slot_matrix.every(
+      (slot) =>
+        summandDerivativeTarget.required_labels.includes(slot.label) &&
+        slot.required_interval_row === "summand_partial_interval_boxes" &&
+        slot.slot_satisfied === false &&
+        slot.failure === "sampled_value_not_outward_interval_box"
+    ),
+    true
+  );
+  assert.equal(
+    summandPartialNegativeControl.slot_matrix.some(
+      (slot) =>
+        slot.required_partial === "partial_T_alpha_partial_delta_alpha" &&
+        slot.sampled_method ===
+          "central_float64_finite_difference_not_interval_box"
+    ),
+    true
+  );
+  assert.equal(
+    summandPartialNegativeControl.slot_matrix.some(
+      (slot) =>
+        slot.required_partial === "memory_variation_interval_operator_bound" &&
+        slot.sampled_method ===
+          "simpson_memory_integral_sample_replay_not_operator_bound"
+    ),
+    true
+  );
+  assert.equal(
+    summandPartialNegativeControl.satisfies_summand_partial_interval_boxes,
+    false
+  );
+  assert.equal(
+    summandPartialNegativeControl.first_failure,
+    "summand_partial_interval_boxes_not_interval_evidence"
+  );
+  assert.equal(summandPartialNegativeControl.emits_K_Q, false);
+  assert.equal(summandPartialNegativeControl.emits_E_Q_plus_b, false);
+  assert.equal(summandPartialNegativeControl.used_as_certificate, false);
+  assert.equal(
+    summandPartialNegativeControl.authorizes_outward_certificate,
+    false
+  );
+  assert.equal(
+    branchSumAttempt.target_only_objects
+      .summand_partial_interval_boxes_negative_control_digest,
+    summandPartialNegativeControl.negative_control_digest
+  );
+  assert.equal(
+    branchSumAttempt.target_only_objects
+      .summand_partial_interval_boxes_negative_control_status,
+    summandPartialNegativeControl.status
+  );
+  const oneSlotConstructionAttempt =
+    branchSumAttempt.summand_partial_interval_box_one_slot_construction_attempt;
+  assert.equal(
+    oneSlotConstructionAttempt.schema,
+    "architrino.priority.master_equation_closure.a1_summand_partial_interval_box_one_slot_construction_attempt.v0"
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.artifact_id,
+    "a1_summand_partial_interval_box_one_slot_construction_attempt.v0"
+  );
+  assert.match(
+    oneSlotConstructionAttempt.construction_attempt_digest,
+    /^sha256:[0-9a-f]{64}$/
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.target_digest,
+    summandDerivativeTarget.target_digest
+  );
+  assert.deepEqual(oneSlotConstructionAttempt.slot, {
+    label: "P_1",
+    kind: "partner",
+    window: [2.55, 2.69],
+    family_id: "tangential_summand_partials",
+    summand: "T_alpha",
+    required_partial: "partial_T_alpha_partial_delta_alpha",
+    required_interval_row: "summand_partial_interval_boxes",
+    required_output_row: "delta_T_alpha_interval_box",
+  });
+  assert.equal(oneSlotConstructionAttempt.attempted_slot_count, 1);
+  assert.deepEqual(oneSlotConstructionAttempt.formula_target.fixed_variables, [
+    "theta",
+    "q_source_alpha",
+  ]);
+  assert.equal(
+    oneSlotConstructionAttempt.formula_target.differentiated_variable,
+    "delta_alpha"
+  );
+  assert.ok(
+    oneSlotConstructionAttempt.formula_target.required_formula_rows.includes(
+      "partial_delta_J_partner_with_source_q_interval_formula"
+    )
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap.source_q_jacobian_interval_missing,
+    true
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap
+      .delta_partial_interval_automatic_differentiation_missing,
+    true
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.sampled_reference_readout.sampled_row_count,
+    branchSumAttempt.sample_count
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.sampled_reference_readout.sampled_rows.every(
+      (row) =>
+        row.partial_method ===
+        "central_float64_finite_difference_not_interval_box"
+    ),
+    true
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.sampled_reference_readout
+      .accepted_as_interval_evidence,
+    false
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .emits_one_slot_interval_box,
+    false
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status.satisfies_selected_slot,
+    false
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status.first_missing_interval_input,
+    "P_1_retained_root_delta_alpha_interval_box"
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status.first_missing_formula_row,
+    "partial_delta_J_partner_with_source_q_interval_formula"
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .first_missing_backend_capability,
+    "directed_rounded_interval_derivative_backend_for_branch_values_with_source_q"
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.first_failure,
+    "one_slot_interval_formula_backend_missing"
+  );
+  assert.equal(oneSlotConstructionAttempt.emits_K_Q, false);
+  assert.equal(oneSlotConstructionAttempt.emits_E_Q_plus_b, false);
+  assert.equal(oneSlotConstructionAttempt.used_as_certificate, false);
+  assert.equal(
+    oneSlotConstructionAttempt.authorizes_outward_certificate,
+    false
+  );
+  assert.equal(
+    branchSumAttempt.target_only_objects
+      .summand_partial_interval_box_one_slot_construction_attempt_digest,
+    oneSlotConstructionAttempt.construction_attempt_digest
+  );
+  assert.equal(
+    branchSumAttempt.target_only_objects
+      .summand_partial_interval_box_one_slot_construction_attempt_status,
+    oneSlotConstructionAttempt.status
+  );
   assert.equal(branchSumAttempt.target_constants.K_Q, "absent");
   assert.equal(branchSumAttempt.target_constants.E_Q_plus_b, "absent");
   assert.equal(branchSumAttempt.emits_K_Q, false);

@@ -5,6 +5,23 @@ import fs from "node:fs";
 import path from "node:path";
 
 const SCHEMA = "field_speed_action_self_hit_scan_source_binding_report/v0";
+const SOURCE_ACCEPTANCE_CONTRACT_SCHEMA =
+  "field_speed_action_self_hit_scan_source_acceptance_contract/v0";
+
+const SOURCE_FIELD_FAILURE_ORDER = [
+  "non_fixture_transition_source",
+  "accepted_action_increment_row",
+  "branch_certificate_ref",
+  "action_row_branch_certificate_ref",
+  "branch_certificate_ref_mismatch",
+  "root_ledger_hash",
+  "action_row_root_ledger_hash",
+  "root_ledger_hash_mismatch",
+  "conservation_pullback_hash",
+  "action_row_conservation_pullback_hash",
+  "conservation_pullback_hash_mismatch",
+  "negative_control_ref",
+];
 
 function parseArgs(argv) {
   const args = {
@@ -151,6 +168,25 @@ function sha256(value) {
   return crypto.createHash("sha256").update(value).digest("hex");
 }
 
+function orderedUniqueFailures(missing) {
+  const seen = new Set(missing);
+  const ordered = SOURCE_FIELD_FAILURE_ORDER.filter((code) => seen.has(code));
+  for (const code of missing) {
+    if (!ordered.includes(code)) {
+      ordered.push(code);
+    }
+  }
+  return ordered;
+}
+
+function fieldVerdict(failureCode) {
+  return failureCode === null ? "present" : "blocked";
+}
+
+function firstPresent(values) {
+  return values.find((value) => isNonemptyString(value)) ?? null;
+}
+
 function normalizeStatus(value) {
   const status = String(value ?? "").trim().toLowerCase();
   return status === "accepted" || status === "accept" || status === "pass" ? "accepted" : "rejected";
@@ -174,6 +210,128 @@ function recordMissingOrMismatch({ missing, row, field, optionValue, optionField
     missing.push(mismatchCode);
   }
   return rowValue;
+}
+
+function buildSourceAcceptanceContract({
+  packetDir,
+  selectedRow,
+  rowStatus,
+  promotionStatus,
+  fixtureShapeOnly,
+  actionRowBranchCertificateRef,
+  actionRowRootLedgerHash,
+  actionRowConservationPullbackHash,
+  options,
+}) {
+  const optionBranchCertificateRef = isNonemptyString(options.branchCertificateRef)
+    ? options.branchCertificateRef.trim()
+    : null;
+  const optionRootLedgerHash = isNonemptyString(options.rootLedgerHash) ? options.rootLedgerHash.trim() : null;
+  const optionConservationPullbackHash = isNonemptyString(options.conservationPullbackHash)
+    ? options.conservationPullbackHash.trim()
+    : null;
+  const optionNegativeControlRef = isNonemptyString(options.negativeControlRef)
+    ? options.negativeControlRef.trim()
+    : null;
+
+  const branchFailure =
+    optionBranchCertificateRef === null
+      ? "branch_certificate_ref"
+      : actionRowBranchCertificateRef === null
+        ? "action_row_branch_certificate_ref"
+        : actionRowBranchCertificateRef !== optionBranchCertificateRef
+          ? "branch_certificate_ref_mismatch"
+          : null;
+  const rootFailure =
+    optionRootLedgerHash === null
+      ? "root_ledger_hash"
+      : actionRowRootLedgerHash === null
+        ? "action_row_root_ledger_hash"
+        : actionRowRootLedgerHash !== optionRootLedgerHash
+          ? "root_ledger_hash_mismatch"
+          : null;
+  const conservationFailure =
+    optionConservationPullbackHash === null
+      ? "conservation_pullback_hash"
+      : actionRowConservationPullbackHash === null
+        ? "action_row_conservation_pullback_hash"
+        : actionRowConservationPullbackHash !== optionConservationPullbackHash
+          ? "conservation_pullback_hash_mismatch"
+          : null;
+
+  const fields = [
+    {
+      field: "transition_source_ref",
+      required_content: "non-fixture branch-emitted transition source packet",
+      current_reading: packetDir,
+      verdict: fieldVerdict(fixtureShapeOnly ? "fixture_shape_only_packet_not_source" : null),
+      failure_code: fixtureShapeOnly ? "fixture_shape_only_packet_not_source" : null,
+    },
+    {
+      field: "action_increment_row_id",
+      required_content: "named non-fixture action-increment row with accepted status",
+      current_reading: selectedRow.id,
+      verdict: fieldVerdict(
+        rowStatus !== "accepted"
+          ? "accepted_action_increment_row"
+          : fixtureShapeOnly
+            ? "fixture_action_increment_row_not_source"
+            : null
+      ),
+      failure_code:
+        rowStatus !== "accepted"
+          ? "accepted_action_increment_row"
+          : fixtureShapeOnly
+            ? "fixture_action_increment_row_not_source"
+            : null,
+    },
+    {
+      field: "branch_certificate_ref",
+      required_content: "retained branch certificate reference owned by the same action-increment row",
+      current_reading: firstPresent([actionRowBranchCertificateRef, optionBranchCertificateRef]),
+      verdict: fieldVerdict(branchFailure),
+      failure_code: branchFailure,
+    },
+    {
+      field: "root_ledger_hash",
+      required_content: "active-root ledger hash on the same action-increment row",
+      current_reading: firstPresent([actionRowRootLedgerHash, optionRootLedgerHash]),
+      verdict: fieldVerdict(rootFailure),
+      failure_code: rootFailure,
+    },
+    {
+      field: "conservation_pullback_hash",
+      required_content: "conservation-pullback hash on the same action-increment row",
+      current_reading: firstPresent([actionRowConservationPullbackHash, optionConservationPullbackHash]),
+      verdict: fieldVerdict(conservationFailure),
+      failure_code: conservationFailure,
+    },
+    {
+      field: "negative_control_ref",
+      required_content: "fail-closed control showing mismatched root or conservation hashes reject",
+      current_reading: optionNegativeControlRef,
+      verdict: fieldVerdict(optionNegativeControlRef === null ? "negative_control_ref" : null),
+      failure_code: optionNegativeControlRef === null ? "negative_control_ref" : null,
+    },
+  ];
+
+  const firstBlockingField = fields.find((field) => field.failure_code !== null) ?? null;
+
+  return {
+    schema: SOURCE_ACCEPTANCE_CONTRACT_SCHEMA,
+    claim_scope: "priority-only rank-2 source-row acceptance contract",
+    status: firstBlockingField === null ? "satisfied" : "blocked",
+    packet_promotion_status: promotionStatus,
+    first_blocking_field: firstBlockingField?.field ?? null,
+    first_blocking_failure_code: firstBlockingField?.failure_code ?? null,
+    same_record_required: true,
+    fields,
+    not_authorized: [
+      "does not create a non-fixture accepted_transition_source",
+      "does not run field_speed_action_self_hit_scan/v0",
+      "does not authorize candidate_h_recovery",
+    ],
+  };
 }
 
 function buildReport(options) {
@@ -239,7 +397,19 @@ function buildReport(options) {
     missing.push("non_fixture_transition_source");
   }
 
-  const acceptedTransitionSource = missing.length === 0;
+  const orderedMissing = orderedUniqueFailures(missing);
+  const sourceAcceptanceContract = buildSourceAcceptanceContract({
+    packetDir,
+    selectedRow,
+    rowStatus,
+    promotionStatus,
+    fixtureShapeOnly,
+    actionRowBranchCertificateRef,
+    actionRowRootLedgerHash,
+    actionRowConservationPullbackHash,
+    options,
+  });
+  const acceptedTransitionSource = orderedMissing.length === 0;
   const sourceVerdict = acceptedTransitionSource
     ? "accepted_transition_source"
     : rowStatus === "accepted"
@@ -268,7 +438,12 @@ function buildReport(options) {
     packet_promotion_status: promotionStatus,
     fixture_shape_only: fixtureShapeOnly,
     same_record_binding: acceptedTransitionSource,
-    missing_or_rejected_fields: missing,
+    source_acceptance_contract: sourceAcceptanceContract,
+    first_required_source_field: sourceAcceptanceContract.first_blocking_field,
+    first_missing_or_rejected_field: orderedMissing[0] ?? null,
+    first_missing_or_rejected_failure_code:
+      sourceAcceptanceContract.first_blocking_failure_code ?? orderedMissing[0] ?? null,
+    missing_or_rejected_fields: orderedMissing,
     candidate_h_recovery_vote: acceptedTransitionSource ? "authorized_not_computed" : "not_authorized",
     first_failure: acceptedTransitionSource ? null : "source_row_binding_open",
     strongest_claim: acceptedTransitionSource

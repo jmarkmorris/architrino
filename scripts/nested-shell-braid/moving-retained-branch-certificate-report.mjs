@@ -7,7 +7,7 @@ const REQUIRED_ROWS = [
   {
     path: "branch_certificate_ref",
     requirement:
-      "One branch label, window, separator chart, active root ledger, positive gaps, memory depth, and active wave-vector gap.",
+      "One branch label, window, separator chart, active root ledger, positive gaps, memory depth, and active wave-vector gap, all bound through same_record_identity.",
     failureCode: "blocked_pending_accepted_branch_chart",
   },
   {
@@ -42,6 +42,57 @@ const REQUIRED_ROWS = [
     path: "event_ledger_ref",
     requirement: "Same-window event ledger closes or names the first residual channel.",
     failureCode: "event.ledger_residual",
+  },
+];
+
+const SAME_RECORD_IDENTITY_ROWS = [
+  {
+    path: "same_record_identity.branch_label",
+    requirement: "Moving branch label q consumed by every structural-integrity row.",
+    missingCode: "same_record_identity_branch_label_missing",
+    proxyCode: "same_record_identity_branch_label_proxy_not_accepted",
+  },
+  {
+    path: "same_record_identity.extraction_window_id",
+    requirement: "Extraction window W shared by branch, signal, common-speed, and event-ledger rows.",
+    missingCode: "same_record_identity_extraction_window_id_missing",
+    proxyCode: "same_record_identity_extraction_window_id_proxy_not_accepted",
+  },
+  {
+    path: "same_record_identity.active_root_ledger_hash",
+    requirement: "Accepted active-root ledger identity for the retained moving branch.",
+    missingCode: "same_record_identity_active_root_ledger_hash_missing",
+    proxyCode: "same_record_identity_active_root_ledger_hash_proxy_not_accepted",
+  },
+  {
+    path: "same_record_identity.accepted_branch_chart_ref",
+    requirement: "Accepted branch-chart record, not a fixture-only or proxy branch reference.",
+    missingCode: "same_record_identity_accepted_branch_chart_ref_missing",
+    proxyCode: "same_record_identity_accepted_branch_chart_ref_proxy_not_accepted",
+  },
+  {
+    path: "same_record_identity.separator_chart_ref",
+    requirement: "Separator chart used by the accepted branch chart.",
+    missingCode: "same_record_identity_separator_chart_ref_missing",
+    proxyCode: "same_record_identity_separator_chart_ref_proxy_not_accepted",
+  },
+  {
+    path: "same_record_identity.positive_gap_record_ref",
+    requirement: "Positive stability or gap record for the same retained branch.",
+    missingCode: "same_record_identity_positive_gap_record_ref_missing",
+    proxyCode: "same_record_identity_positive_gap_record_ref_proxy_not_accepted",
+  },
+  {
+    path: "same_record_identity.memory_depth_record_ref",
+    requirement: "Memory-depth bound h_mem for the same retained branch.",
+    missingCode: "same_record_identity_memory_depth_record_ref_missing",
+    proxyCode: "same_record_identity_memory_depth_record_ref_proxy_not_accepted",
+  },
+  {
+    path: "same_record_identity.active_wave_vector_gap_ref",
+    requirement: "Active wave-vector gap Delta_k for the same retained branch.",
+    missingCode: "same_record_identity_active_wave_vector_gap_ref_missing",
+    proxyCode: "same_record_identity_active_wave_vector_gap_ref_proxy_not_accepted",
   },
 ];
 
@@ -121,11 +172,22 @@ function present(value) {
   return true;
 }
 
+function proxyValue(value) {
+  return typeof value === "string" && value.trim().startsWith("proxy:");
+}
+
 function contract() {
   return {
     schema: "moving_retained_branch_certificate_contract/v0",
     purpose:
       "Minimum same-record moving branch object before structural-integrity common-limit rows may be populated.",
+    minimum_same_record_identity_fields: SAME_RECORD_IDENTITY_ROWS.map(({ path: rowPath, requirement, missingCode, proxyCode }) => ({
+      path: rowPath,
+      requirement,
+      failure_code: "blocked_pending_accepted_branch_chart",
+      missing_field_code: missingCode,
+      proxy_field_code: proxyCode,
+    })),
     required_rows: REQUIRED_ROWS.map(({ path: rowPath, requirement, failureCode }) => ({
       path: rowPath,
       requirement,
@@ -140,8 +202,61 @@ function contract() {
   };
 }
 
+function evaluateSameRecordIdentity(candidate) {
+  const rows = SAME_RECORD_IDENTITY_ROWS.map(({ path: rowPath, requirement, missingCode, proxyCode }) => {
+    const value = getPath(candidate, rowPath);
+    const fieldPresent = present(value);
+    const proxy = proxyValue(value);
+    const pass = fieldPresent && !proxy;
+    return {
+      path: rowPath,
+      requirement,
+      present: fieldPresent,
+      proxy,
+      pass,
+      failure_code: pass ? null : proxy ? proxyCode : missingCode,
+    };
+  });
+  const failedRows = rows.filter((row) => !row.pass);
+  return {
+    pass: failedRows.length === 0,
+    rows,
+    missing_or_rejected_fields: failedRows.map((row) => row.path),
+    missing_or_rejected_field_codes: failedRows.map((row) => row.failure_code),
+  };
+}
+
 function evaluateRow(candidate, row) {
   const value = getPath(candidate, row.path);
+  if (row.path === "branch_certificate_ref") {
+    const sameRecordIdentity = evaluateSameRecordIdentity(candidate);
+    const branchReferencePresent = present(value);
+    const branchReferenceProxy = proxyValue(value);
+    const pass = branchReferencePresent && !branchReferenceProxy && sameRecordIdentity.pass;
+    return {
+      path: row.path,
+      requirement: row.requirement,
+      present: branchReferencePresent,
+      pass,
+      failure_code: pass ? null : row.failureCode,
+      accepted_branch_chart_intake: {
+        schema: "moving_retained_branch_certificate_accepted_branch_chart_intake/v0",
+        claim_boundary:
+          "Rejects proxy branch references before structural-integrity residual population; it does not authorize Photon Gate A, Lorentz rows, or observer export.",
+        branch_certificate_ref_present: branchReferencePresent,
+        branch_certificate_ref_proxy: branchReferenceProxy,
+        minimum_same_record_identity_fields: sameRecordIdentity.rows,
+        missing_or_rejected_fields: sameRecordIdentity.missing_or_rejected_fields,
+        missing_or_rejected_field_codes: sameRecordIdentity.missing_or_rejected_field_codes,
+        rejects_proxy_branch_certificate_refs: true,
+        first_missing_or_rejected_field_code:
+          (branchReferenceProxy ? "branch_certificate_ref_proxy_not_accepted" : null) ??
+          sameRecordIdentity.missing_or_rejected_field_codes[0] ??
+          null,
+        first_failure: pass ? null : row.failureCode,
+      },
+    };
+  }
   return {
     path: row.path,
     requirement: row.requirement,
@@ -162,6 +277,8 @@ export function buildReport(candidate, options = {}) {
   const statusAccepted = candidate.certificate_status === "accepted_same_branch";
   const accepted = rowsComplete && statusAccepted;
   const firstFailure = failedRows[0]?.failure_code ?? (statusAccepted ? null : "blocked_pending_accepted_branch_chart");
+  const acceptedBranchChartIntake =
+    rowResults.find((row) => row.path === "branch_certificate_ref")?.accepted_branch_chart_intake ?? null;
 
   return {
     schema: "moving_retained_branch_certificate_report/v0",
@@ -171,6 +288,11 @@ export function buildReport(candidate, options = {}) {
     certificate_verdict: accepted ? "accepted_same_branch" : firstFailure,
     first_failure: accepted ? null : firstFailure,
     row_results: rowResults,
+    accepted_branch_chart_intake: {
+      ...acceptedBranchChartIntake,
+      accepted_branch_chart: acceptedBranchChartIntake?.first_failure === null && statusAccepted,
+      certificate_status: candidate.certificate_status ?? null,
+    },
     missing_or_rejected_rows: failedRows.map((row) => row.path),
     certificate_status: candidate.certificate_status ?? null,
     authorization: {
@@ -206,6 +328,15 @@ export function validationErrors(report) {
   }
   if (!Array.isArray(report.row_results)) {
     errors.push("row_results must be an array");
+  }
+  if (!isObject(report.accepted_branch_chart_intake)) {
+    errors.push("accepted_branch_chart_intake must be an object");
+  }
+  if (report.accepted_branch_chart_intake?.schema !== "moving_retained_branch_certificate_accepted_branch_chart_intake/v0") {
+    errors.push("accepted_branch_chart_intake schema must be moving_retained_branch_certificate_accepted_branch_chart_intake/v0");
+  }
+  if (report.accepted_branch_chart_intake?.rejects_proxy_branch_certificate_refs !== true) {
+    errors.push("accepted_branch_chart_intake must reject proxy branch certificate refs");
   }
   if (!isObject(report.authorization)) {
     errors.push("authorization must be an object");

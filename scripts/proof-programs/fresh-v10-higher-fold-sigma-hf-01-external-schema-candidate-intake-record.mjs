@@ -42,6 +42,16 @@ const EXTERNAL_PROVENANCE_CONTRACT_REPLAY_STEM =
   "sigma_hf_01_external_schema_candidate.external-provenance-contract-replay.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305";
 const EXTERNAL_PROVENANCE_CONTRACT_REPLAY_JSON = `${EXTERNAL_PROVENANCE_CONTRACT_REPLAY_STEM}.json`;
 const EXTERNAL_PROVENANCE_CONTRACT_REPLAY_REPORT = `${EXTERNAL_PROVENANCE_CONTRACT_REPLAY_STEM}_report.md`;
+const EXTERNAL_LABEL_DECOY_NEGATIVE_CONTROL_STEM =
+  "sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305";
+const EXTERNAL_LABEL_DECOY_NEGATIVE_CONTROL_JSON =
+  `${EXTERNAL_LABEL_DECOY_NEGATIVE_CONTROL_STEM}.json`;
+const EXTERNAL_LABEL_DECOY_NEGATIVE_CONTROL_REPORT =
+  `${EXTERNAL_LABEL_DECOY_NEGATIVE_CONTROL_STEM}_report.md`;
+const EXTERNAL_LABEL_DECOY_RECORD_STEM =
+  "sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control-intake-record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305";
+const EXTERNAL_LABEL_DECOY_RECORD_JSON = `${EXTERNAL_LABEL_DECOY_RECORD_STEM}.json`;
+const EXTERNAL_LABEL_DECOY_RECORD_REPORT = `${EXTERNAL_LABEL_DECOY_RECORD_STEM}_report.md`;
 const EXTERNAL_SCHEMA_ACCEPTANCE_CONTRACT_REF = `${CERT_DIR}/external_proof_grade_derivation_schema_acceptance_contract.md`;
 
 const DEFAULT_SOURCE_DATA_READINESS = `${CERT_DIR}/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_source_data_readiness_classifier.${PACKET_ID}.proof-interval-v6.lambda0305.json`;
@@ -109,6 +119,7 @@ function parseArgs(argv) {
     missingProofGradeFieldsTarget: false,
     localProofProgramPoolClassifier: false,
     externalProvenanceContractReplay: false,
+    externalLabelDecoyNegativeControl: false,
     proofProgramPoolDir: CERT_DIR,
     sourceDataReadiness: DEFAULT_SOURCE_DATA_READINESS,
     schemaTarget: DEFAULT_SCHEMA_TARGET,
@@ -139,6 +150,8 @@ function parseArgs(argv) {
       args.localProofProgramPoolClassifier = true;
     } else if (arg === "--external-provenance-contract-replay") {
       args.externalProvenanceContractReplay = true;
+    } else if (arg === "--external-label-decoy-negative-control") {
+      args.externalLabelDecoyNegativeControl = true;
     } else if (arg === "--proof-program-pool-dir") {
       args.proofProgramPoolDir = argv[++i];
     } else if (arg === "--source-data-readiness") {
@@ -174,6 +187,8 @@ Options:
                     Emit a fail-closed classifier proving the local proof-program JSON pool cannot be reclassified as the Sigma_hf_01 external schema input.
   --external-provenance-contract-replay
                     Emit a fail-closed provenance contract replay proving local/self-authored artifacts cannot satisfy external schema provenance.
+  --external-label-decoy-negative-control
+                    Emit a local complete-looking negative control whose external-looking labels and 8/8 fields still fail external provenance.
   --proof-program-pool-dir PATH
                     Local proof-program JSON pool for --local-proof-program-pool-classifier or --external-provenance-contract-replay. Defaults to ${CERT_DIR}.
   --source-data-readiness PATH
@@ -466,6 +481,8 @@ function isKnownLocalNonExternalArtifact(candidate, candidateRef) {
     "current_pool_absence_classifier",
     "external-provenance-contract-replay",
     "external_provenance_contract_replay",
+    "external-label-decoy-negative-control",
+    "external_label_decoy_negative_control",
   ].some((marker) => markers.includes(marker));
 }
 
@@ -492,8 +509,8 @@ function externalSchemaProvenanceDiagnostics(candidate, candidateRef, knownLocal
     provenancePredicateResult(
       "external_schema_provenance.source_ref",
       provenance.source_ref,
-      present(provenance.source_ref),
-      "nonempty external source reference",
+      present(provenance.source_ref) && provenance.source_ref === candidateRef,
+      "source_ref equal to candidate external schema ref",
     ),
     provenancePredicateResult(
       "external_schema_provenance.acceptance_contract_ref",
@@ -619,6 +636,8 @@ export function buildRecord(candidate = null, options = {}) {
     },
     candidate_status: candidateInput.candidate_status ?? null,
     placeholder_rejection: candidateInput.placeholder_rejection ?? null,
+    external_label_decoy_negative_control:
+      candidateInput.external_label_decoy_negative_control ?? null,
     candidate_file_ref: options.candidateRef ?? null,
   };
 }
@@ -775,6 +794,98 @@ export function buildPlaceholderRejectionCandidate(sourceDataReadiness, schemaTa
       conclusion: "",
       source_data_correspondence: "",
     },
+  };
+}
+
+export function buildExternalLabelDecoyNegativeControlCandidate() {
+  const decoyRef =
+    `external-proof-looking-label:${TARGET_SLOT}:${PACKET_ID}:${PROOF_INTERVAL}:${LAMBDA_BRANCH}`;
+  return {
+    schema: "sigma_hf_01_external_schema_candidate_external_label_decoy_negative_control/v0",
+    status:
+      "sigma_hf_01_external_schema_candidate_external_label_decoy_negative_control_rejected_8_of_8_fields_external_labels_without_accepted_provenance_no_schema_validation_intake_no_row_consumption_no_live_ledger_update_no_branch_chart_authorization",
+    candidate_status:
+      "local_external_label_decoy_negative_control_not_external_proof_grade_schema",
+    packet_id: PACKET_ID,
+    proof_interval: PROOF_INTERVAL,
+    lambda_branch: LAMBDA_BRANCH,
+    target_slot: TARGET_SLOT,
+    fold_interval: FOLD_INTERVAL,
+    candidate_external_schema_ref: decoyRef,
+    candidate_origin:
+      "local_self_authored_negative_control_with_external_looking_candidate_ref_and_source_ref",
+    external_schema_provenance: {
+      provenance_class: "local_external_label_decoy_negative_control",
+      source_ref: decoyRef,
+      acceptance_contract_ref: EXTERNAL_SCHEMA_ACCEPTANCE_CONTRACT_REF,
+      received_for_schema_validation: true,
+      authored_inside_local_proof_program_pool: true,
+      derived_from_local_certificate_json: true,
+      self_authored_placeholder: true,
+      local_path_treated_as_external_evidence: true,
+    },
+    compatible_schema_role_lock: COMPATIBLE_SCHEMA_ROLE,
+    compatible_proof_object_role_lock: COMPATIBLE_PROOF_OBJECT_ROLE,
+    derivation_proof_target_lock: DERIVATION_PROOF_TARGET,
+    derivation_proof_source_data_record_lock: {
+      separator_event: TARGET_SLOT,
+      fold_interval: FOLD_INTERVAL,
+      derivation_proof_target: DERIVATION_PROOF_TARGET,
+      derivation_proof_source_data_record_declared: true,
+      derivation_proof_source_data_ready: true,
+    },
+    rule_kernel_obligation_binding: {
+      derivation_proof_obligation: "discharged",
+      soundness_proof_obligation: "discharged",
+      endpoint_application_proof_obligation: "discharged",
+      decoy_status: "structural_field_only_no_proof_rule_decision",
+    },
+    rule_kernel_derivation_payload_target_binding: {
+      slot: TARGET_SLOT,
+      payload_target_declared: true,
+      proof_binds_to_payload_target: true,
+      rule_kernel_derivation_payload_constructed: true,
+      decoy_status: "structural_field_only_no_payload_accepted",
+    },
+    proof_grade_derivation_schema_statement: {
+      hypotheses: ["local decoy hypothesis label"],
+      inference_steps: ["local decoy inference label"],
+      conclusion: "local decoy conclusion label",
+      source_data_correspondence: "local decoy source-data correspondence label",
+      decoy_status: "structural_field_only_no_external_schema_constructed",
+    },
+    non_reinterpretation_guard: {
+      guard_status: "decoy_non_reinterpretation_guard_structurally_present",
+      forbidden_reinterpretations: REQUIRED_SCHEMA_FORBIDDEN_REINTERPRETATIONS,
+      row_consumption_count: 0,
+      preledger_pass: false,
+      updates_live_ledger: false,
+      branch_chart_authorized: false,
+    },
+    external_label_decoy_negative_control: {
+      status:
+        "external_looking_labels_and_8_of_8_fields_rejected_without_accepted_external_provenance",
+      external_looking_labels_present: true,
+      required_fields_present_expected: REQUIRED_FIELDS.length,
+      external_provenance_accepted_expected: false,
+      candidate_external_schema_received_expected: false,
+      slot_result_expected: "external_input_required",
+      first_failure_expected:
+        "external_schema_provenance_required_before_schema_validation_intake",
+      local_object_marked_external: false,
+      proof_rule_or_primitive_acceptance_decision: false,
+      row_consumption: false,
+      updates_live_ledger: false,
+      branch_chart_authorized: false,
+    },
+    authorization: {
+      schema_validation_intake: false,
+      row_consumption: false,
+      accepted_source_packet: false,
+      branch_chart: false,
+    },
+    used_as_external_schema: false,
+    used_as_proof_grade_schema: false,
   };
 }
 
@@ -946,11 +1057,11 @@ function localPoolRecordClassification(record) {
   if (record.slot_result === "external_schema_input_received_for_schema_validation") {
     return "schema_validation_intake_candidate";
   }
-  if (record.candidate_known_local_non_external_artifact) {
-    return "known_local_non_external_artifact";
-  }
   if (record.required_fields_present === REQUIRED_FIELDS.length) {
     return "eight_fields_present_without_external_schema_intake";
+  }
+  if (record.candidate_known_local_non_external_artifact) {
+    return "known_local_non_external_artifact";
   }
   if (record.required_fields_present > 0) {
     return "partial_local_intake_fields_not_external_schema";
@@ -1074,7 +1185,7 @@ export function buildLocalProofProgramPoolNonReclassificationClassifier(poolEntr
       sharpened_blocker:
         "The local proof-program JSON pool contains no object that can enter Sigma_hf_01 external proof-grade schema-validation intake.",
       current_pool_closure_state:
-        "not mechanically closable from local proof-program objects; external_input_required remains because no local object supplies a compatible external schema ref plus all eight Sigma_hf_01 proof-grade fields",
+        "not mechanically closable from local proof-program objects; external_input_required remains because no local object supplies accepted external provenance plus a compatible external schema ref and all eight Sigma_hf_01 proof-grade fields",
       first_nonreclassification_blocker: summary.first_nonreclassification_blocker,
       mechanical_continuation_available: false,
       decision_required: true,
@@ -1110,8 +1221,8 @@ function assertLocalProofProgramPoolClassifierInvariants(packet) {
     s.schema_validation_intake_candidates_found === 0,
     s.external_schema_input_received_records === 0,
     s.external_provenance_accepted_records === 0,
-    s.local_eight_field_records_without_external_schema_intake === 0,
-    s.records_with_required_fields_present_8_of_8 === 0,
+    s.local_eight_field_records_without_external_schema_intake ===
+      s.records_with_required_fields_present_8_of_8,
     s.external_input_required_records === s.local_proof_program_json_files_screened,
     s.schema_validation_intake_authorized_records === 0,
     s.row_consumption_count === 0,
@@ -1371,6 +1482,33 @@ export function validationErrors(record) {
       errors.push("placeholder rejection must not authorize schema_validation_intake");
     }
   }
+  if (
+    record.external_label_decoy_negative_control?.status ===
+    "external_looking_labels_and_8_of_8_fields_rejected_without_accepted_external_provenance"
+  ) {
+    if (record.required_fields_present !== REQUIRED_FIELDS.length) {
+      errors.push("external-label decoy must structurally supply all eight required fields");
+    }
+    if (record.external_provenance_accepted !== false) {
+      errors.push("external-label decoy must not accept external provenance");
+    }
+    if (record.candidate_external_schema_received !== false) {
+      errors.push("external-label decoy must not be received as an external schema");
+    }
+    if (record.slot_result !== "external_input_required") {
+      errors.push("external-label decoy must leave slot_result external_input_required");
+    }
+    if (record.authorization?.schema_validation_intake !== false) {
+      errors.push("external-label decoy must not authorize schema_validation_intake");
+    }
+    if (
+      !record.external_provenance_diagnostics?.failed_predicate_fields?.includes(
+        "external_schema_provenance.provenance_class",
+      )
+    ) {
+      errors.push("external-label decoy must fail the provenance_class predicate");
+    }
+  }
   return errors;
 }
 
@@ -1406,6 +1544,21 @@ function renderReport(record) {
 These placeholders are local negative controls. They do not construct a proof-grade derivation schema, satisfy rule-kernel obligations, bind the payload target, consume rows, update the live ledger, or authorize a branch chart.
 `
     : "";
+  const externalLabelDecoySection = record.external_label_decoy_negative_control
+    ? `
+## External-Label Decoy Negative Control
+
+- Status: \`${record.external_label_decoy_negative_control.status}\`
+- Required fields structurally present: ${record.required_fields_present} / ${record.required_fields_total}
+- External provenance accepted: \`${record.external_provenance_accepted}\`
+- Candidate external schema received: \`${record.candidate_external_schema_received}\`
+- Expected first failure: \`${record.external_label_decoy_negative_control.first_failure_expected}\`
+
+This local negative control proves that external-looking candidate labels and
+8 / 8 structurally present fields do not authorize schema-validation intake
+without accepted external provenance.
+`
+    : "";
 
   return `# Sigma_hf_01 External Schema Candidate Intake Record
 
@@ -1434,6 +1587,7 @@ ${rows}
 Current count: ${record.required_fields_present} / ${record.required_fields_total} required fields present.
 First missing field: ${record.first_missing_field ? `\`${record.first_missing_field}\`` : "none"}.
 ${placeholderSection}
+${externalLabelDecoySection}
 
 ## External Provenance Predicate
 

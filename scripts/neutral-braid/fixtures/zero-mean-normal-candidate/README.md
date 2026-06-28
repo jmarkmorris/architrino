@@ -10,8 +10,12 @@ ideal residuals to prove that the intake can carry a
 `bounded-speed-normal-reconstruction-candidate` packet without retaining a
 branch. The after-normal packet also declares a fail-closed
 `bounded_speed_live_ledger` target whose required same-ledger rows are all
-`blocked:bounded-speed-live-ledger-open`. Every packet keeps
-`certifies_bounded_speed_live_ledger=false` and `retained_branch=false`.
+`blocked:bounded-speed-live-ledger-open`. Its nested
+`live_ledger_identity_target` records the exact identity tuple, the closed row
+already supplied by the normal candidate, and the missing downstream closed
+rows that prove the tuple is not yet a certified bounded-speed live ledger.
+Every packet keeps `certifies_bounded_speed_live_ledger=false` and
+`retained_branch=false`.
 
 Rebuild and validate the fixture artifact with:
 

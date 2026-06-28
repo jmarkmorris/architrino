@@ -144,6 +144,15 @@ pushforward operator reference, and normalization identity reference. It keeps
 `provider_ready_authorized_by_this_readout=false` and
 `downstream_consumer_authorization=false`.
 
+The same readout now carries the target-only
+`branch_provider_candidate_source_map_provider_object_branch_interval_target/v0`.
+That target fixes the next positive evidence object without authorizing
+provider readiness: 15 terminal rows, 30 branch rows, both
+`source_map_provider_branch_intervals` and `provider_object_branch_intervals`,
+the same four identity kinds, and same-record binding on the provider object.
+It keeps `provider_ready_authorized_by_this_target=false` and
+`downstream_consumer_authorization=false`.
+
 ## Authorization Boundary
 
 This report may mark a future provider row as ready for a downstream consumer

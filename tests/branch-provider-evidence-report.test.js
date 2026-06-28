@@ -400,6 +400,62 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
     ]
   );
   assert.equal(
+    sourceMapProviderObjectReadout.positive_evidence_target.schema,
+    "branch_provider_candidate_source_map_provider_object_branch_interval_target/v0"
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.positive_evidence_target.claim_level,
+    "priority-only target, not provider acceptance"
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.positive_evidence_target
+      .required_terminal_row_count,
+    15
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.positive_evidence_target
+      .required_branch_row_count,
+    30
+  );
+  assert.deepEqual(
+    sourceMapProviderObjectReadout.positive_evidence_target
+      .required_identity_kinds,
+    [
+      "same-domain-branch-bearing-P_b-map",
+      "branch_projection_or_alpha_map",
+      "pushforward_operator_ref",
+      "normalization_identity_ref",
+    ]
+  );
+  assert.deepEqual(
+    sourceMapProviderObjectReadout.positive_evidence_target
+      .required_interval_payloads,
+    [
+      "source_map_provider_branch_intervals",
+      "provider_object_branch_intervals",
+    ]
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.positive_evidence_target
+      .accepted_provider_object_branch_interval_count_required,
+    30
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.positive_evidence_target
+      .same_record_binding_required,
+    true
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.positive_evidence_target
+      .provider_ready_authorized_by_this_target,
+    false
+  );
+  assert.equal(
+    sourceMapProviderObjectReadout.positive_evidence_target
+      .downstream_consumer_authorization,
+    false
+  );
+  assert.equal(
     sourceMapProviderObjectReadout.provider_ready_authorized_by_this_readout,
     false
   );
@@ -634,6 +690,16 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
         readout.source_contract_readout?.source_provenance_refinement
           ?.current_primary_missing_object_kind ===
         "source-map-provider-object-branch-intervals"
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.source_map_provider_object_branch_interval_readout
+          ?.positive_evidence_target
+          ?.accepted_provider_object_branch_interval_count_required === 30
     ),
     true
   );

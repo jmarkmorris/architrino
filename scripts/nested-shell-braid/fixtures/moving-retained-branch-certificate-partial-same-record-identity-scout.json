@@ -1,0 +1,38 @@
+{
+  "schema": "moving_retained_branch_certificate/v0",
+  "promotion_status": "priority-only",
+  "certificate_id": "partial-same-record-identity-branch-chart-scout-2026-06-28",
+  "scout_artifact": "moving_retained_branch_certificate_partial_same_record_identity_scout/v0",
+  "first_failure": "blocked_pending_accepted_branch_chart",
+  "source_ref": "reference/priorities/braid-nested-shell-causal-closure/structural-integrity-common-limit-theorem.md",
+  "source_root_ledger_ref": "route-root-key:2856731379702547500",
+  "candidate_evidence_readout": {
+    "candidate_source": "torque_wake_same_row_diagnostic:index-ratio:f2 plus current branch-provider report",
+    "source_status": "routing_evidence_only",
+    "accepted_non_fixture_branch_chart_found": false,
+    "rejection_boundary": "partial/proxy same_record_identity cannot populate moving_retained_branch_certificate/v0"
+  },
+  "branch_certificate_ref": "candidate:branch-chart-ref-with-partial-same-record-identity",
+  "same_record_identity": {
+    "branch_label": "q:index-ratio:f2",
+    "extraction_window_id": "W:index-ratio:f2:sampled-active-row-window",
+    "active_root_ledger_hash": "route-root-key:2856731379702547500",
+    "accepted_branch_chart_ref": "proxy:accepted-branch-chart-ref-not-issued",
+    "separator_chart_ref": null,
+    "positive_gap_record_ref": null,
+    "memory_depth_record_ref": null,
+    "active_wave_vector_gap_ref": null
+  },
+  "moving_continuation_ref": "proxy:moving-continuation-row",
+  "root_boundary_ref": "proxy:root-boundary-row",
+  "deformation_generator_ref": "proxy:deformation-generator-row",
+  "common_speed_record_ref": "proxy:common-speed-row",
+  "signal_sector_refs": [
+    "proxy:photon-gate-a-row",
+    "proxy:gw-tt-row",
+    "proxy:two-way-signal-row",
+    "proxy:nondispersion-row"
+  ],
+  "event_ledger_ref": "proxy:event-ledger-row",
+  "certificate_status": "accepted_same_branch"
+}

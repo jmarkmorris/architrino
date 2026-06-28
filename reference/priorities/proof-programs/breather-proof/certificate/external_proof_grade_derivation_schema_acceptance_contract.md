@@ -43,7 +43,8 @@ schema for the live breather-certificate frontier.
 A compatible external proof-grade derivation schema must provide all eight
 fields for each admitted separator or row slot. Partial input may be staged as a
 candidate, but it cannot satisfy an obligation slot until every required field
-below is present and bound to the same record.
+below is present, bound to the same record, and accompanied by accepted external
+provenance under this contract.
 
 | Required field | Proof-grade meaning | Fail-closed rejection |
 | --- | --- | --- |
@@ -63,11 +64,16 @@ For a separator or row slot $s$, define the slot predicate
 
 1. `s` is one of the 124 declared external-input obligation slots.
 2. All scope locks in this contract match the candidate object.
-3. The candidate object supplies the eight required fields for `s`.
-4. The `proof_grade_derivation_schema_statement` proves the
+3. The candidate object carries accepted external provenance: non-local
+   `provenance_class=external_proof_grade_derivation_schema_candidate`, matching
+   `source_ref`, matching `acceptance_contract_ref`,
+   `received_for_schema_validation=true`, and false local/self-authored
+   provenance markers.
+4. The candidate object supplies the eight required fields for `s`.
+5. The `proof_grade_derivation_schema_statement` proves the
    rule-kernel derivation payload schema for `s` rather than merely naming the
    target or recording current-pool absence.
-5. The `non_reinterpretation_guard` rejects every fail-closed source already
+6. The `non_reinterpretation_guard` rejects every fail-closed source already
    rejected by the current-pool absence classifiers.
 
 Only then may the slot move from `external_input_required` to
@@ -81,7 +87,7 @@ the received schema constructs a rule-kernel derivation payload.
 | --- | --- | --- |
 | External proof-grade derivation schema satisfying this contract | Continue | This is the direct missing input named by the live blocker. |
 | External `source_packet_acceptance_rule_derivation_proof` object containing an embedded compatible schema and payload proof | Continue after schema-field extraction | It may satisfy the same frontier only if it exposes the eight schema fields and the rule-kernel derivation payload target binding per slot. |
-| Current-pool rescan without new input | Reject as non-advancing | The pool has already been scanned at 271 certificate JSON files and 37 / 37 accepted-status lane files fail-closed. |
+| Current-pool or local-pool rescan without new input | Reject as non-advancing | The current-pool classifier already scanned 271 certificate JSON files and 37 / 37 accepted-status lane files fail-closed; the `Sigma_hf_01` provenance replay separately screens 280 local proof-program JSON paths as attempted candidate refs and rejects 280 / 280 by provenance. |
 | Constructor-basis or formation-rule lane | Park unless proof-grade constructor-basis or formation-rule derivation is supplied | The constructor-basis handoff remains stopped at 0 predicate-symbol, argument-sort, judgment-codomain, endpoint-localization, soundness, derivation, formation-rule, declaration, row-consumption, and branch-chart fields. |
 | Fold-layer source-field or separator-field lane | Park unless it supplies the accepted-status schema fields above | Existing fold-layer field packets preserve source material but do not construct the proof-grade derivation schema required by the current blocker. |
 | Primitive/source-packet acceptance decision | Operator/developer decision required | This would be a proof-rule or primitive-acceptance decision, outside this priority-only contract. |
@@ -122,7 +128,7 @@ keeps the first failure at
 `external_schema_provenance_required_before_schema_validation_intake`.
 
 The next live proof-program action is not another 124-slot scan. It is to
-receive or construct one candidate external schema for the `Sigma_hf_01`
+receive one non-local candidate external schema for the `Sigma_hf_01`
 separator slot with accepted external provenance and the eight required fields
 above. If the separator slot cannot satisfy those fields, the 11 row slots
 remain parked.

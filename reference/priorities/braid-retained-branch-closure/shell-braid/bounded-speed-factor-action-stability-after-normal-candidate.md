@@ -471,7 +471,9 @@ The packet must emit:
 | --- | --- |
 | `normal_candidate_input` | source artifact id, `bounded-speed-normal-reconstruction-candidate` status, speed/clock/normal/root/support rows, force checksum, consumer checksum, and non-retention flags |
 | `live_ledger_identity` | full $\operatorname{id}\mathcal{L}_{\mathrm{live}}^{\nu}$ tuple and equality checks across normal, action, event, tail, stability, observer, and coupled rows |
-| `bounded_speed_live_ledger` | fail-closed target object with the normal-candidate ledger id, force checksum, consumer checksum, `bounded-speed-live-ledger-open`, and the required same-ledger rows for action-derived scale, action curl, speed-factor storage/exchange, Noether/event exchange, tail/refinement persistence, bounded-speed stability, observer-export eligibility, and coupled fixed point |
+| `bounded_speed_live_ledger` | fail-closed target object with the normal-candidate ledger id, force checksum, consumer checksum, `bounded-speed-live-ledger-open`, the nested `live_ledger_identity_target`, and the required same-ledger rows for action-derived scale, action curl, speed-factor storage/exchange, Noether/event exchange, tail/refinement persistence, bounded-speed stability, observer-export eligibility, and coupled fixed point |
+| `bounded_speed_live_ledger.live_ledger_identity_target` | priority-only identity target with the exact normal-candidate ledger tuple, required closed rows, current closed rows, missing closed rows, `first_missing_closed_row=action_derived_scale`, and the negative control `same-ledger-id-tuple-without-closed-downstream-rows-not-live-ledger` |
+| `bounded_speed_live_ledger.action_derived_scale_target` | priority-only target for the first missing downstream row: $\Gamma_B^{\nu}$, the action functional, scale parameter, speed-factor profile, force/action pairing, scale margin, and required same-ledger action rows; the fixture rejects by `same-ledger-tuple-without-action-scale-rows-not-action-derived-scale` |
 | `action_scale` | $\Gamma_B^{\nu}$, `gamma-action-derived` / `gamma-fitted-not-derived` / `gamma-ledger-mismatch`, inertia or scale derivation, and scale margins |
 | `action_curl` | $\omega_{\mathrm{hist}}^{\nu}$, clock-corrected variations, bounded-speed root derivatives, $\mathcal{R}_{\mathrm{curl}}^{\nu}$, and tolerance |
 | `storage_exchange` | $E_{\mathrm{spd}}^{\nu}$, $\mathcal{R}_{\mathrm{exch}}^{\nu}$, support-work assignment, Noether sea/event exchange, and window residuals |
@@ -565,6 +567,8 @@ The generated artifact reports:
 | `artifact_claim.certifies_action_stability` | `false` |
 | `artifact_claim.certifies_observer_export` | `false` |
 | `action_stability_after_normal_candidate_intake.bounded_speed_live_ledger.required_same_ledger_rows.*` | all required rows present and `blocked:bounded-speed-live-ledger-open` |
+| `action_stability_after_normal_candidate_intake.bounded_speed_live_ledger.live_ledger_identity_target` | target-only identity object whose required closed rows are the normal candidate plus eight downstream live-ledger rows, while the current packet supplies only `bounded_speed_normal_reconstruction_candidate` and lists `action_derived_scale` as the first missing closed row |
+| `action_stability_after_normal_candidate_intake.bounded_speed_live_ledger.action_derived_scale_target` | target-only object for the first missing row; it requires `action_measure_row`, `scale_derivative_row`, `force_action_pairing_row`, `normal_speed_pullback_row`, and `scale_margin_row`, and rejects the current fixture because it supplies only the normal candidate plus tuple identity |
 | `action_stability_after_normal_candidate_intake.downstream_row_statuses.*` | `blocked:bounded-speed-live-ledger-open` |
 | `result.retained_branch` | `false` |
 
@@ -574,6 +578,26 @@ failure at `bounded-speed-live-ledger-open`. It does not create a retained
 branch, certify bounded-speed live-ledger closure, or authorize
 action/Noether/event, stability, observer-export, or coupled fixed-point
 consumption.
+
+The added identity target is a negative control against over-consuming the
+fixture's matching ledger/checksum tuple. It records that the tuple is shared
+with the normal candidate, but the current artifact closes only
+`bounded_speed_normal_reconstruction_candidate`; action-derived scale, action
+curl, speed-factor storage/exchange, Noether/event exchange,
+tail/refinement persistence, bounded-speed stability, observer-export
+eligibility, and coupled fixed point are still missing closed rows. Tuple
+equality alone is therefore not a bounded-speed live ledger certificate.
+
+The executable `action_derived_scale_target` makes the first missing downstream
+row concrete without accepting it. It names the needed variables
+$\Gamma_B^{\nu}$, $A^{\nu}$, scale parameter, speed-factor profile,
+force/action pairing, and scale margin, then requires same-ledger rows for the
+action measure, scale derivative, force/action pairing, normal-speed pullback,
+and scale margin. The current fixture supplies only
+`bounded_speed_normal_reconstruction_candidate`, so it is rejected by
+`same-ledger-tuple-without-action-scale-rows-not-action-derived-scale` and keeps
+`certifies_action_derived_scale=false`,
+`certifies_bounded_speed_live_ledger=false`, and `retained_branch=false`.
 
 The smallest durable artifact is one supplied same-ledger normal candidate that
 matches the handoff's bounded-speed ledger id, force checksum, and consumer

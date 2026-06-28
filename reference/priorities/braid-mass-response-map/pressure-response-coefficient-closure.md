@@ -631,12 +631,44 @@ response, empirical mass response, retained-branch claim, observer export, and
 export readiness false. A complete-looking fixture or target row is not an
 accepted pressure-row intake.
 
+The nested-source-status probe
+[pressure-row-branch-intake-nested-source-status-probe.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json)
+sharpens the same boundary without relying on a top-level target status or a
+fixture path. It supplies every required field on one retained-pressure-row id,
+but each required field still carries `source_status:
+target_required_not_accepted_source`. The checker therefore leaves
+`same_row_binding_evidence.pass=true`, records no failed contract fields, and
+still returns `accepted_non_fixture_source_missing`. This is the narrow
+negative control for the current rank-4 blocker: same-row completeness is
+necessary, but accepted non-fixture provenance must descend through the row
+fields themselves before pressure coefficients can be branch-derived.
+
+The accepted-source scout manifest
+[pressure-row-branch-intake-source-scout-manifest.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-source-scout-manifest.json)
+and report runner
+[pressure-row-branch-intake-source-scout.mjs](../../../scripts/mass-map/pressure-row-branch-intake-source-scout.mjs)
+now enumerate the current repo candidates that look closest to an accepted
+non-fixture retained pressure-row source: the complete target fixture, the
+nested target-provenance probe, the provider target, Fe/silicate toy replay, the
+$A_0$ branch-source frontier partial, the cross-row negative control, the
+current-status fixture, the finite-branch Hessian target packet, the branch-chart
+revision contract, the Fe/Cr toy and empirical replay packets, and the exposure
+and Noether sea response theorem targets. The scout reports zero accepted
+non-fixture candidates and stable rejection codes for target-only, toy, fixture,
+diagnostic, partial, negative-control, empirical, nested-target, missing
+same-row, missing required-field, missing accepted-history, priority-packet, and
+contract-target sources. Its first failure is therefore still
+`accepted_non_fixture_source_missing`, and it does not authorize branch-derived
+pressure response, retained-branch claims, observer export, export readiness, or
+empirical mass response.
+
 Executable current-status checker:
 [pressure-row-branch-intake-report.mjs](../../../scripts/mass-map/pressure-row-branch-intake-report.mjs)
 checks the same `branch_intake` boundary before replay consumption. It reports
 `same_row_binding_evidence` separately from `accepted_source_evidence`, so a
-target-only, toy, empirical, diagnostic, partial, fixture, or negative-control
-row can prove row coherence without authorizing pressure response. The current
+target-only, toy, empirical, diagnostic, partial, fixture, nested-provenance, or
+negative-control row can prove row coherence without authorizing pressure
+response. The current
 status fixture
 [pressure-row-branch-intake-current-status.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-current-status.json)
 returns `finite_branch_evidence_missing` because no retained pressure row

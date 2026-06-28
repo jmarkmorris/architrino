@@ -7271,6 +7271,1086 @@
         "Wikidata P18 / Commons lead-image candidate selected as the best source-backed image found in this pass; local dimensions are 1471 x 2100 pixels.",
         "Commons object name: Stephen Wolfram PR."
       ]
+    },
+    {
+      "id": "black-hole-with-jet-nasa-pia22085",
+      "title": "Black Hole With Jet (Artist's Concept)",
+      "description": "Artist concept of a black hole accretion disk launching a hot-plasma jet, tied to NuSTAR and ULTRACAM measurements of jet acceleration zones.",
+      "path": "content/assets/images/astronomy/black-hole-with-jet-nasa-pia22085.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 5120,
+        "height": 2880
+      },
+      "fileSizeBytes": 1257045,
+      "sha256": "c6ff0c4776a376e3d17a5477c7f5941fdf39477fd2fa8686187509bde3a76190",
+      "dateCreated": "2017-11-02",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "NASA Image and Video Library",
+        "pageUrl": "https://images.nasa.gov/details/PIA22085",
+        "fileUrl": "https://images-assets.nasa.gov/image/PIA22085/PIA22085~orig.jpg",
+        "metadataUrl": "https://images-assets.nasa.gov/image/PIA22085/metadata.json",
+        "collectionUrl": "https://images-assets.nasa.gov/image/PIA22085/collection.json",
+        "listedSources": [
+          "https://photojournal.jpl.nasa.gov/catalog/PIA22085"
+        ],
+        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "NASA/JPL-Caltech",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "NASA media usage guidelines",
+        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
+        "requiresAttribution": true
+      },
+      "creditLine": "NASA/JPL-Caltech",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
+        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
+      ]
+    },
+    {
+      "id": "backward-black-hole-powerful-jets-nasa-pia13168",
+      "title": "Backward Black Hole Shoots Powerful Jets Artist Concept",
+      "description": "Artist concept of a supermassive black hole in a galaxy core emitting powerful radio jets.",
+      "path": "content/assets/images/astronomy/backward-black-hole-powerful-jets-nasa-pia13168.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 3000,
+        "height": 2400
+      },
+      "fileSizeBytes": 400004,
+      "sha256": "3772e96aeab8d7b84512e112e6c112066db5b5e319027087ef33c22f866510e4",
+      "dateCreated": "2010-06-01",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "NASA Image and Video Library",
+        "pageUrl": "https://images.nasa.gov/details/PIA13168",
+        "fileUrl": "https://images-assets.nasa.gov/image/PIA13168/PIA13168~orig.jpg",
+        "metadataUrl": "https://images-assets.nasa.gov/image/PIA13168/metadata.json",
+        "collectionUrl": "https://images-assets.nasa.gov/image/PIA13168/collection.json",
+        "listedSources": [
+          "https://photojournal.jpl.nasa.gov/catalog/PIA13168"
+        ],
+        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "NASA/JPL-Caltech",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "NASA media usage guidelines",
+        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
+        "requiresAttribution": true
+      },
+      "creditLine": "NASA/JPL-Caltech",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
+        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
+      ]
+    },
+    {
+      "id": "centaurus-a-black-hole-jets-composite-nasa-gsfc-e001876",
+      "title": "Best-Ever Snapshot of a Black Hole's Jets",
+      "description": "Composite visible, microwave, and X-ray view of Centaurus A showing jets and radio-emitting lobes from its central black hole.",
+      "path": "content/assets/images/astronomy/centaurus-a-black-hole-jets-composite-nasa-gsfc-e001876.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 1268,
+        "height": 838
+      },
+      "fileSizeBytes": 228274,
+      "sha256": "8e1b6737b8a66d2fa982bff2184c351c3e3b6856e0a2f0170ef7f970e391f5c2",
+      "dateCreated": "2017-12-08",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "NASA Image and Video Library",
+        "pageUrl": "https://images.nasa.gov/details/GSFC_20171208_Archive_e001876",
+        "fileUrl": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001876/GSFC_20171208_Archive_e001876~orig.jpg",
+        "metadataUrl": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001876/metadata.json",
+        "collectionUrl": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001876/collection.json",
+        "listedSources": [
+          "https://www.nasa.gov/topics/universe/features/radio-particle-jets.html"
+        ],
+        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "ESO/WFI (visible); MPIfR/ESO/APEX/A. Weiss et al. (microwave); NASA/CXC/CfA/R. Kraft et al. (X-ray)",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "NASA media usage guidelines",
+        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
+        "requiresAttribution": true
+      },
+      "creditLine": "ESO/WFI (visible); MPIfR/ESO/APEX/A. Weiss et al. (microwave); NASA/CXC/CfA/R. Kraft et al. (X-ray)",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
+        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
+      ]
+    },
+    {
+      "id": "centaurus-a-radio-lobes-black-hole-jets-nasa-gsfc-e001886",
+      "title": "Best-Ever Snapshot of a Black Hole's Jets",
+      "description": "Optical and radio composite of Centaurus A highlighting large radio lobes extending from the galaxy.",
+      "path": "content/assets/images/astronomy/centaurus-a-radio-lobes-black-hole-jets-nasa-gsfc-e001886.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 1963,
+        "height": 2570
+      },
+      "fileSizeBytes": 3170407,
+      "sha256": "60b94396c216ee929e43b6cf075cda2a0d165ac8bcd85b6a5958fc098b8f8818",
+      "dateCreated": "2017-12-08",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "NASA Image and Video Library",
+        "pageUrl": "https://images.nasa.gov/details/GSFC_20171208_Archive_e001886",
+        "fileUrl": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001886/GSFC_20171208_Archive_e001886~orig.jpg",
+        "metadataUrl": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001886/metadata.json",
+        "collectionUrl": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001886/collection.json",
+        "listedSources": [
+          "https://www.nasa.gov/topics/universe/features/radio-particle-jets.html"
+        ],
+        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Capella Observatory (optical), with radio data from Ilana Feain, Tim Cornwell, and Ron Ekers (CSIRO/ATNF), R. Morganti (ASTRON), and N. Junkes (MPIfR)",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "NASA media usage guidelines",
+        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Capella Observatory (optical), with radio data from Ilana Feain, Tim Cornwell, and Ron Ekers (CSIRO/ATNF), R. Morganti (ASTRON), and N. Junkes (MPIfR)",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
+        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
+      ]
+    },
+    {
+      "id": "cosmic-jets-coming-at-you-nasa-pia15414",
+      "title": "Cosmic Jets Coming at You Artist Concept",
+      "description": "Artist concept of an active supermassive black hole with a near-light-speed jet pointed toward the observer.",
+      "path": "content/assets/images/astronomy/cosmic-jets-coming-at-you-nasa-pia15414.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 4500,
+        "height": 3000
+      },
+      "fileSizeBytes": 1054051,
+      "sha256": "f6717845e9da2a998d6d2ca7fb153df5be529e4a74c3338c87cb9285efcd6b86",
+      "dateCreated": "2012-04-12",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "NASA Image and Video Library",
+        "pageUrl": "https://images.nasa.gov/details/PIA15414",
+        "fileUrl": "https://images-assets.nasa.gov/image/PIA15414/PIA15414~orig.jpg",
+        "metadataUrl": "https://images-assets.nasa.gov/image/PIA15414/metadata.json",
+        "collectionUrl": "https://images-assets.nasa.gov/image/PIA15414/collection.json",
+        "listedSources": [
+          "https://photojournal.jpl.nasa.gov/catalog/PIA15414"
+        ],
+        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "NASA/JPL-Caltech",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "NASA media usage guidelines",
+        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
+        "requiresAttribution": true
+      },
+      "creditLine": "NASA/JPL-Caltech",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
+        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
+      ]
+    },
+    {
+      "id": "flaring-black-hole-gx-339-4-nasa-pia14730",
+      "title": "Flaring Black Hole Artist Concept",
+      "description": "Artist concept of the flaring stellar-mass black hole GX 339-4 and the chaotic region where its jets emerge.",
+      "path": "content/assets/images/astronomy/flaring-black-hole-gx-339-4-nasa-pia14730.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 4888,
+        "height": 3300
+      },
+      "fileSizeBytes": 395400,
+      "sha256": "7323a587246e5953b7fd1f9bbf672f18a2cd72ae6f66eb357a0da3f306547bb0",
+      "dateCreated": "2011-09-20",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "NASA Image and Video Library",
+        "pageUrl": "https://images.nasa.gov/details/PIA14730",
+        "fileUrl": "https://images-assets.nasa.gov/image/PIA14730/PIA14730~orig.jpg",
+        "metadataUrl": "https://images-assets.nasa.gov/image/PIA14730/metadata.json",
+        "collectionUrl": "https://images-assets.nasa.gov/image/PIA14730/collection.json",
+        "listedSources": [
+          "https://photojournal.jpl.nasa.gov/catalog/PIA14730"
+        ],
+        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "NASA",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "NASA media usage guidelines",
+        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
+        "requiresAttribution": true
+      },
+      "creditLine": "NASA",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
+        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
+      ]
+    },
+    {
+      "id": "tidal-disruption-relativistic-jet-nasa-pia22355",
+      "title": "Black Hole vs. Star: A Tidal Disruption Event (Artist's Concept)",
+      "description": "Artist concept of a tidal disruption event in which a supermassive black hole launches a relativistic jet after disrupting a star.",
+      "path": "content/assets/images/astronomy/tidal-disruption-relativistic-jet-nasa-pia22355.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 3816,
+        "height": 2160
+      },
+      "fileSizeBytes": 1165710,
+      "sha256": "b31a1f6768a60d50e79c4243de11ae03fc44bad47ef8b5e203ad63fe2047d875",
+      "dateCreated": "2018-06-15",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "NASA Image and Video Library",
+        "pageUrl": "https://images.nasa.gov/details/PIA22355",
+        "fileUrl": "https://images-assets.nasa.gov/image/PIA22355/PIA22355~orig.jpg",
+        "metadataUrl": "https://images-assets.nasa.gov/image/PIA22355/metadata.json",
+        "collectionUrl": "https://images-assets.nasa.gov/image/PIA22355/collection.json",
+        "listedSources": [
+          "https://photojournal.jpl.nasa.gov/catalog/PIA22355"
+        ],
+        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "NRAO/AUI/NSF/NASA",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "NASA media usage guidelines",
+        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
+        "requiresAttribution": true
+      },
+      "creditLine": "NRAO/AUI/NSF/NASA",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
+        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
+      ]
+    },
+    {
+      "id": "lone-blazar-wise-nasa-pia15424",
+      "title": "Lone Blazar",
+      "description": "WISE image of a blazar, a supermassive black hole system whose jet is pointed toward Earth.",
+      "path": "content/assets/images/astronomy/lone-blazar-wise-nasa-pia15424.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 3150,
+        "height": 3150
+      },
+      "fileSizeBytes": 986423,
+      "sha256": "8be6a06fddaa00231ca65fa2e20cb0796f703c7ff1e2b825817b26163fe81ffc",
+      "dateCreated": "2012-04-12",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "NASA Image and Video Library",
+        "pageUrl": "https://images.nasa.gov/details/PIA15424",
+        "fileUrl": "https://images-assets.nasa.gov/image/PIA15424/PIA15424~orig.jpg",
+        "metadataUrl": "https://images-assets.nasa.gov/image/PIA15424/metadata.json",
+        "collectionUrl": "https://images-assets.nasa.gov/image/PIA15424/collection.json",
+        "listedSources": [
+          "https://photojournal.jpl.nasa.gov/catalog/PIA15424"
+        ],
+        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "NASA/JPL-Caltech/UCLA",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "NASA media usage guidelines",
+        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
+        "requiresAttribution": true
+      },
+      "creditLine": "NASA/JPL-Caltech/UCLA",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
+        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
+      ]
+    },
+    {
+      "id": "m87-spitzer-black-hole-jet-nasa-pia23122",
+      "title": "Spitzer Captures Messier 87",
+      "description": "Spitzer infrared view of M87, the host galaxy of the Event Horizon Telescope black hole, showing the jet region.",
+      "path": "content/assets/images/astronomy/m87-spitzer-black-hole-jet-nasa-pia23122.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 3226,
+        "height": 1814
+      },
+      "fileSizeBytes": 324544,
+      "sha256": "e50893809e50b57196c88ae7da7ae1fbce1e13306806cd62efe029b5061d93f0",
+      "dateCreated": "2019-04-25",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "NASA Image and Video Library",
+        "pageUrl": "https://images.nasa.gov/details/PIA23122",
+        "fileUrl": "https://images-assets.nasa.gov/image/PIA23122/PIA23122~orig.jpg",
+        "metadataUrl": "https://images-assets.nasa.gov/image/PIA23122/metadata.json",
+        "collectionUrl": "https://images-assets.nasa.gov/image/PIA23122/collection.json",
+        "listedSources": [
+          "https://photojournal.jpl.nasa.gov/catalog/PIA23122"
+        ],
+        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "NASA/JPL-Caltech/IPAC/Event Horizon Telescope Collaboration",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "NASA media usage guidelines",
+        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
+        "requiresAttribution": true
+      },
+      "creditLine": "NASA/JPL-Caltech/IPAC/Event Horizon Telescope Collaboration",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
+        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
+      ]
+    },
+    {
+      "id": "ngc-4258-black-hole-jets-shock-waves-nasa-pia18462",
+      "title": "Black Hole Jets Make Shock Waves",
+      "description": "Composite of NGC 4258 showing X-ray and infrared structures associated with black-hole jets and shock waves.",
+      "path": "content/assets/images/astronomy/ngc-4258-black-hole-jets-shock-waves-nasa-pia18462.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 1232,
+        "height": 960
+      },
+      "fileSizeBytes": 36402,
+      "sha256": "45da38c1011b812ee69c3808b8c3fffd51fac0d059bb364f2b8fabb403917ebc",
+      "dateCreated": "2014-07-02",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "NASA Image and Video Library",
+        "pageUrl": "https://images.nasa.gov/details/PIA18462",
+        "fileUrl": "https://images-assets.nasa.gov/image/PIA18462/PIA18462~orig.jpg",
+        "metadataUrl": "https://images-assets.nasa.gov/image/PIA18462/metadata.json",
+        "collectionUrl": "https://images-assets.nasa.gov/image/PIA18462/collection.json",
+        "listedSources": [
+          "https://photojournal.jpl.nasa.gov/catalog/PIA18462"
+        ],
+        "usageGuidelinesUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "X-ray: NASA/CXC/NASA/JPL-Caltech",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "NASA media usage guidelines",
+        "rationale": "NASA media guidelines state that NASA content is generally not subject to copyright in the United States for educational and informational uses; the source record supplies the required credit line.",
+        "requiresAttribution": true
+      },
+      "creditLine": "X-ray: NASA/CXC/NASA/JPL-Caltech",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the NASA Image and Video Library because the source record explicitly identifies a black-hole jet, relativistic jet, blazar jet, or jet-driven shock/outflow.",
+        "Imported the highest-resolution original NASA image URL exposed by the source collection when available."
+      ]
+    },
+    {
+      "id": "milky-way-mini-jet-esa-opo2162a",
+      "title": "Mini-Jet Found Near Milky Way\u2019s Supermassive Black Hole",
+      "description": "Composite view near the Milky Way center showing evidence for a mini-jet from the central supermassive black hole.",
+      "path": "content/assets/images/astronomy/milky-way-mini-jet-esa-opo2162a.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 2678,
+        "height": 3310
+      },
+      "fileSizeBytes": 3391698,
+      "sha256": "ae0863cc35b77127ffd7248dcc3b7b30fd0d3485077abe3ee1f9e7ba98b3871d",
+      "dateCreated": "2021-12-09",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "ESA/Hubble",
+        "pageUrl": "https://esahubble.org/images/opo2162a/",
+        "fileUrl": "https://cdn.esahubble.org/archives/images/large/opo2162a.jpg",
+        "originalFileUrl": "https://esahubble.org/media/archives/images/original/opo2162a.tif",
+        "sourceImageId": "opo2162a",
+        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "NASA, ESA, Gerald Cecil (UNC-Chapel Hill), J. DePasquale (STScI)",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "Creative Commons Attribution 4.0 International",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
+        "requiresAttribution": true
+      },
+      "creditLine": "NASA, ESA, Gerald Cecil (UNC-Chapel Hill), J. DePasquale (STScI)",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
+        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
+      ]
+    },
+    {
+      "id": "galaxies-with-relativistic-jets-esa-heic1511b",
+      "title": "Galaxies with relativistic jets",
+      "description": "Hubble survey image group of galaxies associated with relativistic jets from supermassive black holes.",
+      "path": "content/assets/images/astronomy/galaxies-with-relativistic-jets-esa-heic1511b.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 2237,
+        "height": 1086
+      },
+      "fileSizeBytes": 741303,
+      "sha256": "19ed2076edfd36682e92b585b10e9cd7de88d9b23fd0438dd3b84f57aa602fb8",
+      "dateCreated": "2015-05-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "ESA/Hubble",
+        "pageUrl": "https://esahubble.org/images/heic1511b/",
+        "fileUrl": "https://cdn.esahubble.org/archives/images/large/heic1511b.jpg",
+        "originalFileUrl": "https://esahubble.org/media/archives/images/original/heic1511b.tif",
+        "sourceImageId": "heic1511b",
+        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "NASA, ESA, M. Chiaberge (STScI)",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "Creative Commons Attribution 4.0 International",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
+        "requiresAttribution": true
+      },
+      "creditLine": "NASA, ESA, M. Chiaberge (STScI)",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
+        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
+      ]
+    },
+    {
+      "id": "extragalactic-jets-accretion-disk-esa-opo9943e",
+      "title": "Formation of extragalactic jets from a black hole accretion disk",
+      "description": "Illustration of extragalactic jets forming from a black-hole accretion disk.",
+      "path": "content/assets/images/astronomy/extragalactic-jets-accretion-disk-esa-opo9943e.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 1188,
+        "height": 1050
+      },
+      "fileSizeBytes": 403143,
+      "sha256": "3148dd44ec4ce6e894ed524b9367eb1abc284388013939f69f049fe839090b4d",
+      "dateCreated": "1999-10-27",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "ESA/Hubble",
+        "pageUrl": "https://esahubble.org/images/opo9943e/",
+        "fileUrl": "https://cdn.esahubble.org/archives/images/large/opo9943e.jpg",
+        "originalFileUrl": "https://esahubble.org/media/archives/images/original/opo9943e.tif",
+        "sourceImageId": "opo9943e",
+        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "NASA/ESA and Ann Feild (Space Telescope Science Institute)",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "Creative Commons Attribution 4.0 International",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
+        "requiresAttribution": true
+      },
+      "creditLine": "NASA/ESA and Ann Feild (Space Telescope Science Institute)",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
+        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
+      ]
+    },
+    {
+      "id": "quasar-3c-273-optical-jet-esa-opo9330a",
+      "title": "HST snaps optical jet of quasar 3c 273",
+      "description": "Hubble optical view of the jet in quasar 3C 273.",
+      "path": "content/assets/images/astronomy/quasar-3c-273-optical-jet-esa-opo9330a.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 3324,
+        "height": 1595
+      },
+      "fileSizeBytes": 1629554,
+      "sha256": "c028bbdaa317b336da8820b76078e22dbadd4712882c464c82675af778c8ae20",
+      "dateCreated": "1993-09-09",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "ESA/Hubble",
+        "pageUrl": "https://esahubble.org/images/opo9330a/",
+        "fileUrl": "https://cdn.esahubble.org/archives/images/large/opo9330a.jpg",
+        "originalFileUrl": "https://esahubble.org/media/archives/images/original/opo9330a.tif",
+        "sourceImageId": "opo9330a",
+        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "R.C. Thomson, IoA, Cambridge, UK;C.D. Mackay, IoA, Cambridge, UK;A.E. Wright, ATNF, Parkes, Australia",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "Creative Commons Attribution 4.0 International",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
+        "requiresAttribution": true
+      },
+      "creditLine": "R.C. Thomson, IoA, Cambridge, UK;C.D. Mackay, IoA, Cambridge, UK;A.E. Wright, ATNF, Parkes, Australia",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
+        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
+      ]
+    },
+    {
+      "id": "galaxy-m87-optical-jet-esa-opo9207a",
+      "title": "NASA/ESA Hubble Space Telescope yields clear view of optical jet in galaxy M87",
+      "description": "Hubble view of the optical jet in galaxy M87.",
+      "path": "content/assets/images/astronomy/galaxy-m87-optical-jet-esa-opo9207a.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 2612,
+        "height": 1851
+      },
+      "fileSizeBytes": 564058,
+      "sha256": "452919e631635d392f29c011ead91526d623f07077e8b91930d70cb2ef2b93f6",
+      "dateCreated": "1992-01-16",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "ESA/Hubble",
+        "pageUrl": "https://esahubble.org/images/opo9207a/",
+        "fileUrl": "https://cdn.esahubble.org/archives/images/large/opo9207a.jpg",
+        "originalFileUrl": "https://esahubble.org/media/archives/images/original/opo9207a.tif",
+        "sourceImageId": "opo9207a",
+        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "F. Duccio Macchetto/NASA/ESA",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "Creative Commons Attribution 4.0 International",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
+        "requiresAttribution": true
+      },
+      "creditLine": "F. Duccio Macchetto/NASA/ESA",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
+        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
+      ]
+    },
+    {
+      "id": "giant-radio-jet-active-galaxy-esa-opo0304b",
+      "title": "Giant Radio Jet Coming from Wrong Kind of Galaxy",
+      "description": "Hubble archive image of a giant radio jet from an active galaxy.",
+      "path": "content/assets/images/astronomy/giant-radio-jet-active-galaxy-esa-opo0304b.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 3000,
+        "height": 2400
+      },
+      "fileSizeBytes": 1080988,
+      "sha256": "73e7d83938351aa2d6d8bb562abf4e98b0c963091140abf3bb540f2c69c87293",
+      "dateCreated": "2003-01-08",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "ESA/Hubble",
+        "pageUrl": "https://esahubble.org/images/opo0304b/",
+        "fileUrl": "https://cdn.esahubble.org/archives/images/large/opo0304b.jpg",
+        "originalFileUrl": "https://esahubble.org/media/archives/images/original/opo0304b.jpg",
+        "sourceImageId": "opo0304b",
+        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "NASA/ESA, W. Keel (University of Alabama), M. Ledlow (Gemini Observatory), F. Owen (NRAO) and AUI/NSF",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "Creative Commons Attribution 4.0 International",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
+        "requiresAttribution": true
+      },
+      "creditLine": "NASA/ESA, W. Keel (University of Alabama), M. Ledlow (Gemini Observatory), F. Owen (NRAO) and AUI/NSF",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
+        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
+      ]
+    },
+    {
+      "id": "cosmic-searchlight-jet-esa-opo0020a",
+      "title": "A cosmic searchlight",
+      "description": "Hubble image of a bright jet-like cosmic searchlight associated with an active galactic nucleus.",
+      "path": "content/assets/images/astronomy/cosmic-searchlight-jet-esa-opo0020a.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 1222,
+        "height": 1276
+      },
+      "fileSizeBytes": 684869,
+      "sha256": "c2e5ed30761914b479a1eae698bc81120ad138818c569b004a982462f5f85f61",
+      "dateCreated": "2000-07-06",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "ESA/Hubble",
+        "pageUrl": "https://esahubble.org/images/opo0020a/",
+        "fileUrl": "https://cdn.esahubble.org/archives/images/large/opo0020a.jpg",
+        "originalFileUrl": "https://esahubble.org/media/archives/images/original/opo0020a.tif",
+        "sourceImageId": "opo0020a",
+        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "The Hubble Heritage Team (STScI/AURA) and NASA/ESA",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "Creative Commons Attribution 4.0 International",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
+        "requiresAttribution": true
+      },
+      "creditLine": "The Hubble Heritage Team (STScI/AURA) and NASA/ESA",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
+        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
+      ]
+    },
+    {
+      "id": "microquasar-gro-j1655-40-esa-heic0211i",
+      "title": "Microquasar GRO J1655-40 (artist's impression)",
+      "description": "Artist impression of microquasar GRO J1655-40, a stellar-mass black-hole system associated with jets.",
+      "path": "content/assets/images/astronomy/microquasar-gro-j1655-40-esa-heic0211i.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 3000,
+        "height": 2400
+      },
+      "fileSizeBytes": 377651,
+      "sha256": "da86dcfc747fdfb33b2c34f1eb978a0d7640c2ba579e46dcf99f74d09d633d05",
+      "dateCreated": "2002-11-18",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "ESA/Hubble",
+        "pageUrl": "https://esahubble.org/images/heic0211i/",
+        "fileUrl": "https://cdn.esahubble.org/archives/images/large/heic0211i.jpg",
+        "originalFileUrl": "https://esahubble.org/media/archives/images/original/heic0211i.tif",
+        "sourceImageId": "heic0211i",
+        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "European Space Agency, NASA and Felix Mirabel (the French Atomic Energy Commission & the Institute for Astronomy and Space Physics/Conicet of Argentina)",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "Creative Commons Attribution 4.0 International",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
+        "requiresAttribution": true
+      },
+      "creditLine": "European Space Agency, NASA and Felix Mirabel (the French Atomic Energy Commission & the Institute for Astronomy and Space Physics/Conicet of Argentina)",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
+        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
+      ]
+    },
+    {
+      "id": "markarian-817-black-hole-outflow-esa-heic0910n",
+      "title": "Capturing the spectacular outflow from Markarian 817",
+      "description": "Hubble archive image capturing a black-hole-driven outflow from active galaxy Markarian 817.",
+      "path": "content/assets/images/astronomy/markarian-817-black-hole-outflow-esa-heic0910n.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 2780,
+        "height": 2146
+      },
+      "fileSizeBytes": 1414022,
+      "sha256": "2a0fbc48ccb40f5efb28a3ced4c40bfe01fcfa1c34717ae4c86eb7ba93c46622",
+      "dateCreated": "2009-09-09",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "ESA/Hubble",
+        "pageUrl": "https://esahubble.org/images/heic0910n/",
+        "fileUrl": "https://cdn.esahubble.org/archives/images/large/heic0910n.jpg",
+        "originalFileUrl": "https://esahubble.org/media/archives/images/original/heic0910n.tif",
+        "sourceImageId": "heic0910n",
+        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "NASA, ESA and the Hubble SM4 ERO Team",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "Creative Commons Attribution 4.0 International",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
+        "requiresAttribution": true
+      },
+      "creditLine": "NASA, ESA and the Hubble SM4 ERO Team",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
+        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
+      ]
+    },
+    {
+      "id": "milky-way-central-outflow-esa-opo1503",
+      "title": "Probing the Milky Way's outflow",
+      "description": "Hubble image probing the Milky Way central outflow associated with activity near the Galaxy central supermassive black hole.",
+      "path": "content/assets/images/astronomy/milky-way-central-outflow-esa-opo1503.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 2794,
+        "height": 2534
+      },
+      "fileSizeBytes": 1378628,
+      "sha256": "37c7f28d29e6cccbafa72fcf2d5da780b381fa58addb86f09bcb2b1f46ead88e",
+      "dateCreated": "2015-01-08",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "astronomy",
+      "source": {
+        "name": "ESA/Hubble",
+        "pageUrl": "https://esahubble.org/images/opo1503/",
+        "fileUrl": "https://cdn.esahubble.org/archives/images/large/opo1503.jpg",
+        "originalFileUrl": "https://esahubble.org/media/archives/images/original/opo1503.jpg",
+        "sourceImageId": "opo1503",
+        "usageGuidelinesUrl": "https://esahubble.org/copyright/",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "NASA, ESA, and A. Feild (STScI)",
+          "role": "source credit line"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "Creative Commons Attribution 4.0 International",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "rationale": "ESA/Hubble publishes images under Creative Commons Attribution 4.0 unless explicitly stated otherwise, with the full source credit line required.",
+        "requiresAttribution": true
+      },
+      "creditLine": "NASA, ESA, and A. Feild (STScI)",
+      "usage": {
+        "intendedUses": [
+          "astronomy reference",
+          "image tray",
+          "scene overlay",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected from the ESA/Hubble Quasars and Black Holes archive because the source page identifies a black-hole jet, relativistic jet, quasar jet, or black-hole-driven outflow.",
+        "Imported the Large JPEG so the repo stores a browser-friendly high-resolution image while preserving the original-format URL in provenance when the source page exposes one."
+      ]
     }
   ]
 }

@@ -182,6 +182,27 @@
               "pushforward_operator_ref",
               "normalization_identity_ref"
             ],
+            "positive_evidence_target": {
+              "schema": "branch_provider_candidate_source_map_provider_object_branch_interval_target/v0",
+              "artifact_id": "h39-source-map-provider-object-branch-interval-positive-target",
+              "claim_level": "priority-only target, not provider acceptance",
+              "required_terminal_row_count": 15,
+              "required_branch_row_count": 30,
+              "required_identity_kinds": [
+                "same-domain-branch-bearing-P_b-map",
+                "branch_projection_or_alpha_map",
+                "pushforward_operator_ref",
+                "normalization_identity_ref"
+              ],
+              "required_interval_payloads": [
+                "source_map_provider_branch_intervals",
+                "provider_object_branch_intervals"
+              ],
+              "accepted_provider_object_branch_interval_count_required": 30,
+              "same_record_binding_required": true,
+              "provider_ready_authorized_by_this_target": false,
+              "downstream_consumer_authorization": false
+            },
             "provider_ready_authorized_by_this_readout": false,
             "downstream_consumer_authorization": false
           },

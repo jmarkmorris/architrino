@@ -10,6 +10,10 @@ import {
   buildReport,
   validationErrors,
 } from "../scripts/mass-map/pressure-row-branch-intake-report.mjs";
+import {
+  buildSourceScoutReport,
+  scoutValidationErrors,
+} from "../scripts/mass-map/pressure-row-branch-intake-source-scout.mjs";
 
 const SCRIPT_PATH = fileURLToPath(
   new URL("../scripts/mass-map/pressure-row-branch-intake-report.mjs", import.meta.url)
@@ -32,11 +36,26 @@ const PROVIDER_INTAKE_ARTIFACT_FIXTURE = fileURLToPath(
     import.meta.url
   )
 );
+const NESTED_SOURCE_STATUS_PROBE_FIXTURE = fileURLToPath(
+  new URL(
+    "../scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json",
+    import.meta.url
+  )
+);
 const CROSS_ROW_BUNDLE_NEGATIVE_CONTROL_FIXTURE = fileURLToPath(
   new URL(
     "../scripts/mass-map/fixtures/pressure-row-branch-intake-cross-row-bundle-negative-control.json",
     import.meta.url
   )
+);
+const SOURCE_SCOUT_MANIFEST = fileURLToPath(
+  new URL(
+    "../scripts/mass-map/fixtures/pressure-row-branch-intake-source-scout-manifest.json",
+    import.meta.url
+  )
+);
+const SOURCE_SCOUT_SCRIPT_PATH = fileURLToPath(
+  new URL("../scripts/mass-map/pressure-row-branch-intake-source-scout.mjs", import.meta.url)
 );
 
 test("pressure-row branch intake report rejects current diagnostic-only status", () => {
@@ -257,12 +276,56 @@ test("pressure-row branch intake report rejects target-only same-row provider/in
     ),
     true
   );
+  assert.equal(
+    report.accepted_source_evidence.rejected_status_fields.some(
+      (field) => field.path === "branch_id.source_status"
+    ),
+    true
+  );
+  assert.equal(
+    report.accepted_source_evidence.rejected_status_fields.some(
+      (field) => field.path === "pressure_response_record.C_chi_iso.source_status"
+    ),
+    true
+  );
   assert.deepEqual(report.missing_or_rejected_fields, ["accepted_non_fixture_source"]);
   assert.equal(report.authorization.branch_derived_pressure_response, false);
   assert.equal(report.authorization.empirical_mass_response, false);
   assert.equal(report.authorization.retained_branch_claim, false);
   assert.equal(report.authorization.observer_export, false);
   assert.equal(report.authorization.export_readiness, false);
+});
+
+test("pressure-row branch intake report rejects nested target-only provenance on complete same-row fields", () => {
+  const fixture = JSON.parse(fs.readFileSync(NESTED_SOURCE_STATUS_PROBE_FIXTURE, "utf8"));
+  const report = buildReport(fixture, { sourceRef: fixture.source_ref });
+
+  assert.deepEqual(validationErrors(report), []);
+  assert.equal(fixture.schema, "pressure_row_branch_intake_nested_source_status_probe/v0");
+  assert.equal(report.branch_intake_verdict, "finite_branch_evidence_missing");
+  assert.equal(report.first_failure, "accepted_non_fixture_source_missing");
+  assert.equal(report.same_row_binding, true);
+  assert.equal(report.same_row_binding_evidence.pass, true);
+  assert.deepEqual(report.field_results.filter((field) => !field.pass), []);
+  assert.deepEqual(report.missing_or_rejected_fields, ["accepted_non_fixture_source"]);
+  assert.equal(report.authorization.branch_derived_pressure_response, false);
+  assert.equal(report.authorization.empirical_mass_response, false);
+  assert.equal(report.authorization.retained_branch_claim, false);
+  assert.equal(report.authorization.observer_export, false);
+  assert.equal(report.authorization.export_readiness, false);
+
+  const rejectedPaths = report.accepted_source_evidence.rejected_status_fields.map(
+    (field) => field.path
+  );
+  assert.equal(rejectedPaths.includes("branch_id.source_status"), true);
+  assert.equal(rejectedPaths.includes("accepted_history_segment_id.source_status"), true);
+  assert.equal(rejectedPaths.includes("pressure_record.Pi.source_status"), true);
+  assert.equal(rejectedPaths.includes("exposure_source_record.E_internal.source_status"), true);
+  assert.equal(
+    rejectedPaths.includes("pressure_response_record.partial_P_M0_src.source_status"),
+    true
+  );
+  assert.equal(rejectedPaths.includes("null_sector_record.transport.source_status"), true);
 });
 
 test("pressure-row branch intake report rejects cross-row bundle negative control", () => {
@@ -336,4 +399,63 @@ test("pressure-row branch intake CLI emits and validates current fixture report"
   );
   assert.equal(validation.valid, true);
   assert.equal(validation.branch_intake_verdict, "finite_branch_evidence_missing");
+});
+
+test("pressure-row accepted-source scout keeps current repo candidates fail-closed", () => {
+  const manifest = JSON.parse(fs.readFileSync(SOURCE_SCOUT_MANIFEST, "utf8"));
+  const repoRoot = path.resolve(path.dirname(SOURCE_SCOUT_MANIFEST), "../../..");
+  const report = buildSourceScoutReport(manifest, { repoRoot });
+
+  assert.deepEqual(scoutValidationErrors(report), []);
+  assert.equal(report.schema, "pressure_row_branch_intake_source_scout_report/v0");
+  assert.equal(report.accepted_non_fixture_candidate_count, 0);
+  assert.equal(report.first_failure, "accepted_non_fixture_source_missing");
+  assert.equal(report.authorization.branch_derived_pressure_response, false);
+  assert.equal(report.authorization.empirical_mass_response, false);
+  assert.equal(report.authorization.retained_branch_claim, false);
+  assert.equal(report.authorization.observer_export, false);
+  assert.equal(report.authorization.export_readiness, false);
+
+  const rejectionCodes = new Set(report.candidates.flatMap((candidate) => candidate.rejection_codes));
+  for (const expectedCode of [
+    "target_only_source",
+    "toy_source",
+    "fixture_path",
+    "diagnostic_source",
+    "nested_target_provenance",
+    "empirical_source",
+  ]) {
+    assert.equal(rejectionCodes.has(expectedCode), true);
+  }
+
+  const nestedProbe = report.candidates.find((candidate) =>
+    candidate.path.endsWith("pressure-row-branch-intake-nested-source-status-probe.json")
+  );
+  assert.ok(nestedProbe);
+  assert.equal(nestedProbe.pressure_row_report.same_row_binding, true);
+  assert.equal(nestedProbe.pressure_row_report.first_failure, "accepted_non_fixture_source_missing");
+  assert.equal(nestedProbe.rejection_codes.includes("nested_target_provenance"), true);
+});
+
+test("pressure-row accepted-source scout CLI emits and validates manifest report", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "pressure-row-source-scout-"));
+  const reportPath = path.join(tempDir, "report.json");
+
+  execFileSync(
+    process.execPath,
+    [SOURCE_SCOUT_SCRIPT_PATH, "--manifest", SOURCE_SCOUT_MANIFEST, "--out", reportPath, "--pretty"],
+    { encoding: "utf8" }
+  );
+
+  const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+  assert.equal(report.accepted_non_fixture_candidate_count, 0);
+  assert.equal(report.first_failure, "accepted_non_fixture_source_missing");
+
+  const validation = JSON.parse(
+    execFileSync(process.execPath, [SOURCE_SCOUT_SCRIPT_PATH, "--validate", reportPath, "--pretty"], {
+      encoding: "utf8",
+    })
+  );
+  assert.equal(validation.valid, true);
+  assert.equal(validation.first_failure, "accepted_non_fixture_source_missing");
 });

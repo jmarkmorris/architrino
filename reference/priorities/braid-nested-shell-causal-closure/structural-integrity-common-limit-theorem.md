@@ -351,9 +351,17 @@ replayable simulation/proof artifact, but it is not accepted if it only
 improves the $A_0$ rest seed, fits a Lorentz coefficient, or supplies an
 independent photon or gravitational-wave speed row.
 
+The branch-chart part of the object is exact: `branch_certificate_ref` is not
+accepted as a free string or proxy label. It must be accompanied by
+`same_record_identity` fields for the moving branch label, extraction window,
+active-root ledger hash, accepted branch-chart reference, separator chart,
+positive gap record, memory-depth record, and active wave-vector gap. Missing
+or proxy versions of those fields fail before any structural-integrity residual
+row is populated.
+
 | Required row | Same-record binding | First-failure if absent or split |
 | --- | --- | --- |
-| `branch_certificate_ref` | One branch label $q$, window $W$, separator chart, active root ledger $\mathcal{A}_q$, positive $\nu_J^{(q)}$, $g_{\mathrm{inactive}}^{(q)}$, $h_{\mathrm{mem}}^{(q)}$, and $\Delta_{\mathbf{k}}^{(q)}$. | `blocked_pending_accepted_branch_chart` |
+| `branch_certificate_ref` plus `same_record_identity` | One branch label $q$, window $W$, accepted branch chart, separator chart, active root ledger $\mathcal{A}_q$, positive $\nu_J^{(q)}$, $g_{\mathrm{inactive}}^{(q)}$, $h_{\mathrm{mem}}^{(q)}$, and $\Delta_{\mathbf{k}}^{(q)}$. | `blocked_pending_accepted_branch_chart` |
 | `moving_continuation_ref` | Same $q$, $W$, and $\mathcal{A}_q$ with nonzero drift band $\mathcal{D}_{\beta}$ and no branch transition. | `structural.branch_split` |
 | `root_boundary_ref` | Same active-root record reports the stability-gap, inactive-root-gap, transversality-floor, or signed root-index boundary for $c_{\mathrm{mat},q}^{\mathrm{lim}}$. | `structural.root_index_unreported` |
 | `deformation_generator_ref` | One generator $K_q$ produces both the envelope coefficient row and the clock-phase row. | `structural.generator_split` |
@@ -373,6 +381,7 @@ Current status-only intake:
 | `source_root_ledger_ref` | `neutral_braid_octahedral_root_ledger.certified.v1` | source-only, `retained_branch=false` |
 | `rest_seed_ref` | A0 one-period rest diagnostic | fail-closed rest-only seed |
 | `branch_certificate_ref` | absent | `blocked_pending_accepted_branch_chart` |
+| `same_record_identity` | absent; no moving branch label, extraction window, accepted branch-chart reference, separator chart, active-root ledger hash, positive gap record, memory-depth record, or active wave-vector gap are bound on one record | `blocked_pending_accepted_branch_chart` |
 | `moving_continuation_ref` | no nonzero-drift band on the same branch chart | `blocked_pending_nonzero_drift_band` |
 | `root_boundary_ref` | no same active-root boundary for limiting speed | `blocked_pending_gap_or_root_index_boundary` |
 | `deformation_generator_ref` | no single $K_q$ shared by envelope and clock rows | `blocked_pending_single_K_q` |
@@ -396,6 +405,28 @@ returns first failure `blocked_pending_accepted_branch_chart`. A complete
 synthetic same-record certificate may pass only as `accepted_same_branch` for
 residual-vector population; the checker still does not accept Photon Gate A or
 authorize observer export.
+
+The proxy negative control
+[moving-retained-branch-certificate-branch-chart-proxy-negative-control.json](../../../scripts/nested-shell-braid/fixtures/moving-retained-branch-certificate-branch-chart-proxy-negative-control.json)
+supplies a nonempty `branch_certificate_ref` and downstream row names, but no
+`same_record_identity`. It must therefore reject with first failure
+`blocked_pending_accepted_branch_chart`; proxy branch-chart labels are not
+structural-integrity population evidence.
+
+The branch-chart scout
+[moving-retained-branch-certificate-partial-same-record-identity-scout.json](../../../scripts/nested-shell-braid/fixtures/moving-retained-branch-certificate-partial-same-record-identity-scout.json)
+checks the next narrower failure boundary. It carries the sampled torque/wake
+root-key and candidate branch/window labels, but the accepted branch-chart row is
+still a proxy and the separator-chart, positive-gap, memory-depth, and active
+wave-vector gap rows are absent. The checker keeps first failure
+`blocked_pending_accepted_branch_chart` and now emits stable field codes such as
+`same_record_identity_accepted_branch_chart_ref_proxy_not_accepted`,
+`same_record_identity_separator_chart_ref_missing`,
+`same_record_identity_positive_gap_record_ref_missing`,
+`same_record_identity_memory_depth_record_ref_missing`, and
+`same_record_identity_active_wave_vector_gap_ref_missing`. This remains a
+priority-only negative control, not a structural-integrity residual population
+row.
 
 ## Promotion Decision
 

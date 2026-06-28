@@ -2353,6 +2353,317 @@ def a1_outward_summand_derivative_boxes_target(
     }
 
 
+def a1_summand_partial_interval_boxes_negative_control(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    outward_summand_derivative_boxes_target: dict,
+    sample_rows: list[dict],
+) -> dict:
+    sample_columns = sorted({row["column"] for row in sample_rows})
+    sample_thetas = sorted({row["theta"] for row in sample_rows})
+    sampled_methods_by_partial = {
+        "partial_T_alpha_partial_delta_alpha": {
+            "sampled_value_path": "partials.tangential_delta",
+            "sampled_method": "central_float64_finite_difference_not_interval_box",
+        },
+        "partial_T_alpha_partial_q_source": {
+            "sampled_value_path": "partials.tangential_q_source",
+            "sampled_method": "central_float64_finite_difference_not_interval_box",
+        },
+        "partial_B_alpha_partial_delta_alpha": {
+            "sampled_value_path": "partials.radial_delta",
+            "sampled_method": "central_float64_finite_difference_not_interval_box",
+        },
+        "partial_B_alpha_partial_q_source": {
+            "sampled_value_path": "partials.radial_q_source",
+            "sampled_method": "central_float64_finite_difference_not_interval_box",
+        },
+        "root_denominator_interval_floor": {
+            "sampled_value_path": "root_denominator",
+            "sampled_method": "float64_root_denominator_sample_not_interval_floor",
+        },
+        "memory_variation_interval_operator_bound": {
+            "sampled_value_path": "memory_variation",
+            "sampled_method": "simpson_memory_integral_sample_replay_not_operator_bound",
+        },
+        "source_eta_interval_box": {
+            "sampled_value_path": "source_eta",
+            "sampled_method": "sampled_tangent_eta_replay_not_interval_box",
+        },
+        "source_q_prime_interval_box": {
+            "sampled_value_path": "source_q_prime",
+            "sampled_method": "profile_float64_q_prime_sample_not_interval_box",
+        },
+        "delta_Delta_alpha_interval_box": {
+            "sampled_value_path": "delta_root",
+            "sampled_method": "float64_root_motion_sample_not_interval_box",
+        },
+    }
+    active_rows = outward_summand_derivative_boxes_target["active_rows"]
+    slot_matrix: list[dict] = []
+    for active_row in active_rows:
+        for family in outward_summand_derivative_boxes_target[
+            "derivative_families"
+        ]:
+            for partial in family["required_partials"]:
+                sampled = sampled_methods_by_partial[partial]
+                slot_matrix.append(
+                    {
+                        "label": active_row["label"],
+                        "kind": active_row["kind"],
+                        "window": active_row["window"],
+                        "family_id": family["family_id"],
+                        "summand": family["summand"],
+                        "required_partial": partial,
+                        "required_output_row": family["required_output_row"],
+                        "required_interval_row": "summand_partial_interval_boxes",
+                        "sampled_value_path": sampled["sampled_value_path"],
+                        "sampled_method": sampled["sampled_method"],
+                        "slot_satisfied": False,
+                        "failure": "sampled_value_not_outward_interval_box",
+                    }
+                )
+
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_summand_partial_interval_boxes_negative_control.v0"
+        ),
+        "artifact_id": "a1_summand_partial_interval_boxes_negative_control.v0",
+        "source_artifact_hash": source_digest,
+        "method": "same_box_slot_matrix_negative_control_for_sampled_branch_sum_rows",
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "target_artifact_id": outward_summand_derivative_boxes_target[
+            "artifact_id"
+        ],
+        "target_digest": outward_summand_derivative_boxes_target[
+            "target_digest"
+        ],
+        "target_status": outward_summand_derivative_boxes_target["status"],
+        "target_first_missing_interval_row": outward_summand_derivative_boxes_target[
+            "first_missing_interval_row"
+        ],
+        "sampled_evidence_intake": {
+            "source_attempt_artifact_id": "a1_branch_sum_feedback_bound_attempt.v0",
+            "source_attempt_method": (
+                "sampled_float64_nullspace_tangent_branch_sum_feedback_screen"
+            ),
+            "sample_column_count": len(sample_columns),
+            "sample_columns": sample_columns,
+            "theta_sample_count": len(sample_thetas),
+            "theta_samples": sample_thetas,
+            "sample_row_count": len(sample_rows),
+            "summand_row_count": sum(
+                len(row["summand_rows"]) for row in sample_rows
+            ),
+            "accepted_as_interval_evidence": False,
+        },
+        "slot_matrix": slot_matrix,
+        "required_slot_count": len(slot_matrix),
+        "failed_slot_count": len(slot_matrix),
+        "missing_interval_row": "summand_partial_interval_boxes",
+        "first_failure": "summand_partial_interval_boxes_not_interval_evidence",
+        "negative_control_results": [
+            {
+                "check": "same_label_family_slot_matrix_present",
+                "result": "pass_for_target_enumeration_only",
+                "used_as_certificate": False,
+            },
+            {
+                "check": "sampled_branch_sum_rows_supply_interval_boxes",
+                "result": "fail_closed",
+                "reason": (
+                    "sampled float64 partials, root motion, source-profile "
+                    "values, and Simpson memory integrals are point samples, "
+                    "not directed-rounded interval boxes on the shared "
+                    "theta/root/inactive-cover family"
+                ),
+            },
+            {
+                "check": "all_required_slots_satisfied",
+                "result": "fail_closed",
+                "satisfied_slot_count": 0,
+                "failed_slot_count": len(slot_matrix),
+            },
+        ],
+        "satisfies_summand_partial_interval_boxes": False,
+        "bounds_outward_summand_derivative_boxes": False,
+        "emits_branch_sum_constants": False,
+        "emits_K_Q": False,
+        "emits_E_Q_plus_b": False,
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "negative_control_digest": canonical_json_digest(payload),
+        "status": (
+            "negative_control_sampled_branch_sum_rows_do_not_satisfy_"
+            "summand_partial_interval_boxes"
+        ),
+    }
+
+
+def a1_summand_partial_interval_box_one_slot_construction_attempt(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    outward_summand_derivative_boxes_target: dict,
+    sample_rows: list[dict],
+) -> dict:
+    slot = {
+        "label": "P_1",
+        "kind": "partner",
+        "window": [2.55, 2.69],
+        "family_id": "tangential_summand_partials",
+        "summand": "T_alpha",
+        "required_partial": "partial_T_alpha_partial_delta_alpha",
+        "required_interval_row": "summand_partial_interval_boxes",
+        "required_output_row": "delta_T_alpha_interval_box",
+    }
+    sampled_rows = [
+        {
+            "theta": row["theta"],
+            "theta_hex": row["theta_hex"],
+            "column": row["column"],
+            "delta": summand["delta"],
+            "delta_hex": float(summand["delta"]).hex(),
+            "q_source": summand["q_source"],
+            "q_source_hex": float(summand["q_source"]).hex(),
+            "sampled_partial": summand["partials"]["tangential_delta"],
+            "sampled_partial_hex": float(
+                summand["partials"]["tangential_delta"]
+            ).hex(),
+            "partial_method": summand["partial_method"],
+        }
+        for row in sample_rows
+        for summand in row["summand_rows"]
+        if summand["label"] == slot["label"]
+    ]
+    sampled_values = [row["sampled_partial"] for row in sampled_rows]
+    sampled_reference_enclosure = float64_nextafter_bounds(sampled_values)
+
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_summand_partial_interval_box_one_slot_construction_attempt.v0"
+        ),
+        "artifact_id": (
+            "a1_summand_partial_interval_box_one_slot_construction_attempt.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "method": (
+            "one_slot_formula_backend_probe_for_P_1_tangential_delta_partial"
+        ),
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "target_artifact_id": outward_summand_derivative_boxes_target[
+            "artifact_id"
+        ],
+        "target_digest": outward_summand_derivative_boxes_target[
+            "target_digest"
+        ],
+        "slot": slot,
+        "attempted_slot_count": 1,
+        "formula_target": {
+            "fixed_variables": ["theta", "q_source_alpha"],
+            "differentiated_variable": "delta_alpha",
+            "target_expression": (
+                "T_alpha(theta, delta_alpha, q_source_alpha) = "
+                "N_T_partner(theta, delta_alpha) / "
+                "(lambda_partner(theta, delta_alpha)^3 * "
+                "abs(J_partner(theta, delta_alpha, q_source_alpha)))"
+            ),
+            "required_partial_expression": (
+                "partial_delta_alpha T_alpha on one shared "
+                "theta/delta_alpha/q_source_alpha interval box"
+            ),
+            "required_interval_inputs": [
+                "theta_interval_boxes",
+                "P_1_retained_root_delta_alpha_interval_box",
+                "P_1_q_source_alpha_interval_box",
+                "P_1_lambda_partner_positive_interval_floor",
+                "P_1_abs_J_partner_interval_floor",
+            ],
+            "required_formula_rows": [
+                "partial_delta_tangential_numerator_interval_formula",
+                "partial_delta_lambda_partner_interval_formula",
+                "partial_delta_J_partner_with_source_q_interval_formula",
+                "abs_J_partner_sign_stability_or_interval_abs_floor",
+            ],
+        },
+        "available_interval_helpers": [
+            "spiral_branch_chart_certificate.Interval",
+            "spiral_branch_chart_certificate.rho_interval",
+            "spiral_branch_chart_certificate.lambda_interval",
+            "spiral_branch_chart_certificate.jacobian_interval",
+            "spiral_branch_chart_certificate.tangential_contribution_interval",
+            "float64_outward_interval_for_fraction",
+        ],
+        "helper_gap": {
+            "bare_spiral_interval_helpers_only": True,
+            "source_q_jacobian_interval_missing": True,
+            "delta_partial_interval_automatic_differentiation_missing": True,
+            "directed_rounding_audit_for_trig_exp_derivative_composition_missing": True,
+            "retained_root_interval_box_for_P_1_missing": True,
+        },
+        "sampled_reference_readout": {
+            "sampled_method": "central_float64_finite_difference_not_interval_box",
+            "sampled_row_count": len(sampled_rows),
+            "sampled_partial_path": "partials.tangential_delta",
+            "sampled_reference_enclosure": sampled_reference_enclosure,
+            "sampled_rows": sampled_rows,
+            "accepted_as_interval_evidence": False,
+            "reason_rejected": (
+                "The sampled enclosure only surrounds central float64 "
+                "finite-difference values at grid points; it is not an "
+                "outward directed interval over the shared theta, retained-root, "
+                "source-profile, and inactive-cover boxes."
+            ),
+        },
+        "construction_status": {
+            "emits_one_slot_interval_box": False,
+            "satisfies_selected_slot": False,
+            "satisfies_summand_partial_interval_boxes": False,
+            "first_missing_interval_input": (
+                "P_1_retained_root_delta_alpha_interval_box"
+            ),
+            "first_missing_formula_row": (
+                "partial_delta_J_partner_with_source_q_interval_formula"
+            ),
+            "first_missing_backend_capability": (
+                "directed_rounded_interval_derivative_backend_for_"
+                "branch_values_with_source_q"
+            ),
+        },
+        "first_failure": "one_slot_interval_formula_backend_missing",
+        "bounds_outward_summand_derivative_boxes": False,
+        "emits_branch_sum_constants": False,
+        "emits_K_Q": False,
+        "emits_E_Q_plus_b": False,
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "construction_attempt_digest": canonical_json_digest(payload),
+        "status": (
+            "one_slot_construction_attempt_blocked_by_interval_"
+            "formula_backend"
+        ),
+    }
+
+
 def a1_branch_sum_feedback_bound_attempt(
     source_digest: str,
     *,
@@ -2556,6 +2867,28 @@ def a1_branch_sum_feedback_bound_attempt(
             ),
         )
     )
+    summand_partial_interval_boxes_negative_control = (
+        a1_summand_partial_interval_boxes_negative_control(
+            source_digest,
+            radius_b=radius_b,
+            theta_interval=theta_interval,
+            outward_summand_derivative_boxes_target=(
+                outward_summand_derivative_boxes_target
+            ),
+            sample_rows=sample_rows,
+        )
+    )
+    summand_partial_one_slot_construction_attempt = (
+        a1_summand_partial_interval_box_one_slot_construction_attempt(
+            source_digest,
+            radius_b=radius_b,
+            theta_interval=theta_interval,
+            outward_summand_derivative_boxes_target=(
+                outward_summand_derivative_boxes_target
+            ),
+            sample_rows=sample_rows,
+        )
+    )
     payload = {
         "schema": (
             "architrino.priority.master_equation_closure."
@@ -2615,12 +2948,34 @@ def a1_branch_sum_feedback_bound_attempt(
         "outward_summand_derivative_boxes_target": (
             outward_summand_derivative_boxes_target
         ),
+        "summand_partial_interval_boxes_negative_control": (
+            summand_partial_interval_boxes_negative_control
+        ),
+        "summand_partial_interval_box_one_slot_construction_attempt": (
+            summand_partial_one_slot_construction_attempt
+        ),
         "target_only_objects": {
             "outward_summand_derivative_boxes_target_digest": (
                 outward_summand_derivative_boxes_target["target_digest"]
             ),
             "outward_summand_derivative_boxes_target_status": (
                 outward_summand_derivative_boxes_target["status"]
+            ),
+            "summand_partial_interval_boxes_negative_control_digest": (
+                summand_partial_interval_boxes_negative_control[
+                    "negative_control_digest"
+                ]
+            ),
+            "summand_partial_interval_boxes_negative_control_status": (
+                summand_partial_interval_boxes_negative_control["status"]
+            ),
+            "summand_partial_interval_box_one_slot_construction_attempt_digest": (
+                summand_partial_one_slot_construction_attempt[
+                    "construction_attempt_digest"
+                ]
+            ),
+            "summand_partial_interval_box_one_slot_construction_attempt_status": (
+                summand_partial_one_slot_construction_attempt["status"]
             ),
         },
         "target_constants": {

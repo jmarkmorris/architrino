@@ -36,6 +36,10 @@ export const OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_
   "neutral-braid-octahedral-zero-mean-bounded-speed-normal-reconstruction-candidate/v1";
 export const OCTAHEDRAL_ZERO_MEAN_ACTION_STABILITY_AFTER_NORMAL_CANDIDATE_INTAKE_SCHEMA =
   "neutral-braid-octahedral-zero-mean-bounded-speed-action-stability-after-normal-candidate-intake/v1";
+export const OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_TARGET_SCHEMA =
+  "neutral-braid-octahedral-zero-mean-bounded-speed-live-ledger-identity-target/v0";
+export const OCTAHEDRAL_ZERO_MEAN_ACTION_DERIVED_SCALE_TARGET_SCHEMA =
+  "neutral-braid-octahedral-zero-mean-bounded-speed-action-derived-scale-target/v0";
 
 const PACKET_ID = "octahedral_zero_mean_correction_intake";
 const PROMOTION_STATUS = "priority-only";
@@ -99,6 +103,34 @@ const REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_TARGET_ROWS = [
   ["observer_export_eligibility", "observer_export_eligibility"],
   ["coupled_fixed_point", "coupled_fixed_point"],
 ];
+const REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_ROWS = [
+  "bounded_speed_normal_reconstruction_candidate",
+  ...REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_TARGET_ROWS.map(([row]) => row),
+];
+const CURRENT_PACKET_LIVE_LEDGER_CLOSED_ROWS = ["bounded_speed_normal_reconstruction_candidate"];
+const MISSING_LIVE_LEDGER_CLOSED_ROWS = REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_TARGET_ROWS.map(
+  ([row]) => row
+);
+const ACTION_DERIVED_SCALE_TARGET_REQUIRED_VARIABLES = [
+  "gamma_B_nu",
+  "action_functional_A_nu",
+  "scale_parameter",
+  "speed_factor_profile_nu",
+  "force_action_pairing",
+  "scale_margin",
+];
+const ACTION_DERIVED_SCALE_TARGET_REQUIRED_ROWS = [
+  "bounded_speed_normal_reconstruction_candidate",
+  "action_measure_row",
+  "scale_derivative_row",
+  "force_action_pairing_row",
+  "normal_speed_pullback_row",
+  "scale_margin_row",
+];
+const CURRENT_ACTION_DERIVED_SCALE_TARGET_ROWS = ["bounded_speed_normal_reconstruction_candidate"];
+const MISSING_ACTION_DERIVED_SCALE_TARGET_ROWS = ACTION_DERIVED_SCALE_TARGET_REQUIRED_ROWS.filter(
+  (row) => !CURRENT_ACTION_DERIVED_SCALE_TARGET_ROWS.includes(row)
+);
 const LIVE_DERIVATIVE_DIFFERENCE_SCHEMES = new Set(["central-finite-difference"]);
 
 function formatNumber(value) {
@@ -195,6 +227,14 @@ function isRecordObject(value) {
 
 function uniqueEntries(values) {
   return new Set(values).size === values.length;
+}
+
+function sameStringArray(actual, expected) {
+  return (
+    Array.isArray(actual) &&
+    actual.length === expected.length &&
+    expected.every((value, index) => actual[index] === value)
+  );
 }
 
 function validateCandidateMatrixShape(matrix) {
@@ -2195,7 +2235,336 @@ function boundedSpeedLiveLedgerTargetValidationErrors(candidate, liveLedgerTarge
     }
   }
 
+  errors.push(
+    ...boundedSpeedLiveLedgerIdentityTargetValidationErrors(
+      candidate,
+      liveLedgerTarget?.live_ledger_identity_target
+    )
+  );
+  errors.push(
+    ...boundedSpeedActionDerivedScaleTargetValidationErrors(
+      candidate,
+      liveLedgerTarget?.action_derived_scale_target
+    )
+  );
+
   return errors;
+}
+
+function boundedSpeedLiveLedgerIdentityTargetValidationErrors(candidate, identityTarget) {
+  const errors = [];
+  const identityTuple = identityTarget?.required_identity_tuple ?? {};
+
+  assertField(
+    identityTarget?.schema === OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_TARGET_SCHEMA,
+    `bounded_speed_live_ledger identity target schema must be ${OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_TARGET_SCHEMA}`,
+    errors
+  );
+  assertField(
+    identityTarget?.claim_scope === "bounded-speed-live-ledger-identity-target-after-normal-candidate",
+    "bounded_speed_live_ledger identity target claim_scope must be bounded-speed-live-ledger-identity-target-after-normal-candidate",
+    errors
+  );
+  assertField(
+    identityTarget?.promotion_status === PROMOTION_STATUS,
+    `bounded_speed_live_ledger identity target promotion_status must be ${PROMOTION_STATUS}`,
+    errors
+  );
+  assertField(
+    identityTarget?.status === "target-only",
+    "bounded_speed_live_ledger identity target status must be target-only",
+    errors
+  );
+  assertField(
+    identityTarget?.source_normal_reconstruction_candidate_id === candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger identity target source_normal_reconstruction_candidate_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    identityTarget?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id,
+    "bounded_speed_live_ledger identity target bounded_speed_ledger_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    identityTarget?.force_checksum_id === candidate?.force_checksum_id,
+    "bounded_speed_live_ledger identity target force_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    identityTarget?.consumer_checksum_id === candidate?.consumer_checksum_id,
+    "bounded_speed_live_ledger identity target consumer_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    identityTuple?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id &&
+      identityTuple?.force_checksum_id === candidate?.force_checksum_id &&
+      identityTuple?.consumer_checksum_id === candidate?.consumer_checksum_id &&
+      identityTuple?.source_normal_reconstruction_candidate_id ===
+        candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger identity target required_identity_tuple must match the normal candidate ledger tuple",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      identityTarget?.required_closed_rows,
+      REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_ROWS
+    ),
+    "bounded_speed_live_ledger identity target required_closed_rows must declare the normal candidate plus every downstream live-ledger row",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      identityTarget?.closed_rows_supplied_by_current_packet,
+      CURRENT_PACKET_LIVE_LEDGER_CLOSED_ROWS
+    ),
+    "bounded_speed_live_ledger identity target closed_rows_supplied_by_current_packet must contain only the normal candidate row",
+    errors
+  );
+  assertField(
+    sameStringArray(identityTarget?.missing_closed_rows, MISSING_LIVE_LEDGER_CLOSED_ROWS),
+    "bounded_speed_live_ledger identity target missing_closed_rows must list every downstream live-ledger row",
+    errors
+  );
+  assertField(
+    identityTarget?.first_missing_closed_row === MISSING_LIVE_LEDGER_CLOSED_ROWS[0],
+    "bounded_speed_live_ledger identity target first_missing_closed_row must be action_derived_scale",
+    errors
+  );
+  assertField(
+    identityTarget?.negative_control_status ===
+      "same-ledger-id-tuple-without-closed-downstream-rows-not-live-ledger",
+    "bounded_speed_live_ledger identity target negative_control_status must reject tuple-only live-ledger certification",
+    errors
+  );
+  assertField(
+    identityTarget?.certifies_bounded_speed_live_ledger === false,
+    "bounded_speed_live_ledger identity target must set certifies_bounded_speed_live_ledger=false",
+    errors
+  );
+  assertField(
+    identityTarget?.retention === "not_retained",
+    "bounded_speed_live_ledger identity target retention must be not_retained",
+    errors
+  );
+  assertField(
+    identityTarget?.retained_branch === false,
+    "bounded_speed_live_ledger identity target must set retained_branch=false",
+    errors
+  );
+
+  return errors;
+}
+
+function boundedSpeedActionDerivedScaleTargetValidationErrors(candidate, actionScaleTarget) {
+  const errors = [];
+  const identityTuple = actionScaleTarget?.required_identity_tuple ?? {};
+
+  assertField(
+    isRecordObject(actionScaleTarget),
+    "bounded_speed_live_ledger must declare action_derived_scale_target",
+    errors
+  );
+  if (!isRecordObject(actionScaleTarget)) {
+    return errors;
+  }
+
+  assertField(
+    actionScaleTarget?.schema === OCTAHEDRAL_ZERO_MEAN_ACTION_DERIVED_SCALE_TARGET_SCHEMA,
+    `bounded_speed_live_ledger action_derived_scale_target schema must be ${OCTAHEDRAL_ZERO_MEAN_ACTION_DERIVED_SCALE_TARGET_SCHEMA}`,
+    errors
+  );
+  assertField(
+    actionScaleTarget?.claim_scope === "bounded-speed-action-derived-scale-target-after-normal-candidate",
+    "bounded_speed_live_ledger action_derived_scale_target claim_scope must be bounded-speed-action-derived-scale-target-after-normal-candidate",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.promotion_status === PROMOTION_STATUS,
+    `bounded_speed_live_ledger action_derived_scale_target promotion_status must be ${PROMOTION_STATUS}`,
+    errors
+  );
+  assertField(
+    actionScaleTarget?.status === "target-only",
+    "bounded_speed_live_ledger action_derived_scale_target status must be target-only",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.row === "action_derived_scale",
+    "bounded_speed_live_ledger action_derived_scale_target row must be action_derived_scale",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.downstream_row === "action_scale",
+    "bounded_speed_live_ledger action_derived_scale_target downstream_row must be action_scale",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.source_normal_reconstruction_candidate_id ===
+      candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger action_derived_scale_target source_normal_reconstruction_candidate_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id,
+    "bounded_speed_live_ledger action_derived_scale_target bounded_speed_ledger_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.force_checksum_id === candidate?.force_checksum_id,
+    "bounded_speed_live_ledger action_derived_scale_target force_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.consumer_checksum_id === candidate?.consumer_checksum_id,
+    "bounded_speed_live_ledger action_derived_scale_target consumer_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    identityTuple?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id &&
+      identityTuple?.force_checksum_id === candidate?.force_checksum_id &&
+      identityTuple?.consumer_checksum_id === candidate?.consumer_checksum_id &&
+      identityTuple?.source_normal_reconstruction_candidate_id ===
+        candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger action_derived_scale_target required_identity_tuple must match the normal candidate ledger tuple",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      actionScaleTarget?.required_variables,
+      ACTION_DERIVED_SCALE_TARGET_REQUIRED_VARIABLES
+    ),
+    "bounded_speed_live_ledger action_derived_scale_target required_variables must list the action-derived scale variables",
+    errors
+  );
+  assertField(
+    sameStringArray(actionScaleTarget?.required_rows, ACTION_DERIVED_SCALE_TARGET_REQUIRED_ROWS),
+    "bounded_speed_live_ledger action_derived_scale_target required_rows must list the action-derived scale rows",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      actionScaleTarget?.current_fixture_supplied_rows,
+      CURRENT_ACTION_DERIVED_SCALE_TARGET_ROWS
+    ),
+    "bounded_speed_live_ledger action_derived_scale_target current_fixture_supplied_rows must contain only the normal candidate",
+    errors
+  );
+  assertField(
+    sameStringArray(actionScaleTarget?.missing_rows, MISSING_ACTION_DERIVED_SCALE_TARGET_ROWS),
+    "bounded_speed_live_ledger action_derived_scale_target missing_rows must list the missing action-derived scale rows",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.first_missing_required_row === MISSING_ACTION_DERIVED_SCALE_TARGET_ROWS[0],
+    "bounded_speed_live_ledger action_derived_scale_target first_missing_required_row must be action_measure_row",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.negative_control_status ===
+      "same-ledger-tuple-without-action-scale-rows-not-action-derived-scale",
+    "bounded_speed_live_ledger action_derived_scale_target negative_control_status must reject tuple-only action-derived scale certification",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.rejected_current_fixture === true,
+    "bounded_speed_live_ledger action_derived_scale_target must reject the current fixture",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.certifies_action_derived_scale === false,
+    "bounded_speed_live_ledger action_derived_scale_target must set certifies_action_derived_scale=false",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.certifies_bounded_speed_live_ledger === false,
+    "bounded_speed_live_ledger action_derived_scale_target must set certifies_bounded_speed_live_ledger=false",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.certifies_action_stability === false,
+    "bounded_speed_live_ledger action_derived_scale_target must set certifies_action_stability=false",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.certifies_observer_export === false,
+    "bounded_speed_live_ledger action_derived_scale_target must set certifies_observer_export=false",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.retention === "not_retained",
+    "bounded_speed_live_ledger action_derived_scale_target retention must be not_retained",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.retained_branch === false,
+    "bounded_speed_live_ledger action_derived_scale_target must set retained_branch=false",
+    errors
+  );
+
+  return errors;
+}
+
+function buildBoundedSpeedLiveLedgerIdentityTarget(candidate) {
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_TARGET_SCHEMA,
+    claim_scope: "bounded-speed-live-ledger-identity-target-after-normal-candidate",
+    promotion_status: PROMOTION_STATUS,
+    status: "target-only",
+    source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+    force_checksum_id: candidate.force_checksum_id,
+    consumer_checksum_id: candidate.consumer_checksum_id,
+    required_identity_tuple: {
+      bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+      force_checksum_id: candidate.force_checksum_id,
+      consumer_checksum_id: candidate.consumer_checksum_id,
+      source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    },
+    required_closed_rows: [...REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_ROWS],
+    closed_rows_supplied_by_current_packet: [...CURRENT_PACKET_LIVE_LEDGER_CLOSED_ROWS],
+    missing_closed_rows: [...MISSING_LIVE_LEDGER_CLOSED_ROWS],
+    first_missing_closed_row: MISSING_LIVE_LEDGER_CLOSED_ROWS[0],
+    negative_control_status:
+      "same-ledger-id-tuple-without-closed-downstream-rows-not-live-ledger",
+    certifies_bounded_speed_live_ledger: false,
+    retention: "not_retained",
+    retained_branch: false,
+  };
+}
+
+function buildBoundedSpeedActionDerivedScaleTarget(candidate) {
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_ACTION_DERIVED_SCALE_TARGET_SCHEMA,
+    claim_scope: "bounded-speed-action-derived-scale-target-after-normal-candidate",
+    promotion_status: PROMOTION_STATUS,
+    status: "target-only",
+    row: "action_derived_scale",
+    downstream_row: "action_scale",
+    source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+    force_checksum_id: candidate.force_checksum_id,
+    consumer_checksum_id: candidate.consumer_checksum_id,
+    required_identity_tuple: {
+      bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+      force_checksum_id: candidate.force_checksum_id,
+      consumer_checksum_id: candidate.consumer_checksum_id,
+      source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    },
+    required_variables: [...ACTION_DERIVED_SCALE_TARGET_REQUIRED_VARIABLES],
+    required_rows: [...ACTION_DERIVED_SCALE_TARGET_REQUIRED_ROWS],
+    current_fixture_supplied_rows: [...CURRENT_ACTION_DERIVED_SCALE_TARGET_ROWS],
+    missing_rows: [...MISSING_ACTION_DERIVED_SCALE_TARGET_ROWS],
+    first_missing_required_row: MISSING_ACTION_DERIVED_SCALE_TARGET_ROWS[0],
+    negative_control_status:
+      "same-ledger-tuple-without-action-scale-rows-not-action-derived-scale",
+    rejected_current_fixture: true,
+    certifies_action_derived_scale: false,
+    certifies_bounded_speed_live_ledger: false,
+    certifies_action_stability: false,
+    certifies_observer_export: false,
+    retention: "not_retained",
+    retained_branch: false,
+  };
 }
 
 function buildBoundedSpeedLiveLedgerTarget(candidate, liveLedgerTarget) {
@@ -2217,6 +2586,8 @@ function buildBoundedSpeedLiveLedgerTarget(candidate, liveLedgerTarget) {
         },
       ])
     ),
+    live_ledger_identity_target: buildBoundedSpeedLiveLedgerIdentityTarget(candidate),
+    action_derived_scale_target: buildBoundedSpeedActionDerivedScaleTarget(candidate),
     certifies_bounded_speed_live_ledger: false,
     certifies_action_stability: false,
     certifies_observer_export: false,

@@ -66,6 +66,104 @@
         "status": "blocked:bounded-speed-live-ledger-open"
       }
     },
+    "live_ledger_identity_target": {
+      "schema": "neutral-braid-octahedral-zero-mean-bounded-speed-live-ledger-identity-target/v0",
+      "claim_scope": "bounded-speed-live-ledger-identity-target-after-normal-candidate",
+      "promotion_status": "priority-only",
+      "status": "target-only",
+      "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture",
+      "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+      "force_checksum_id": "force-checksum-fixture",
+      "consumer_checksum_id": "consumer-checksum-fixture",
+      "required_identity_tuple": {
+        "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+        "force_checksum_id": "force-checksum-fixture",
+        "consumer_checksum_id": "consumer-checksum-fixture",
+        "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture"
+      },
+      "required_closed_rows": [
+        "bounded_speed_normal_reconstruction_candidate",
+        "action_derived_scale",
+        "action_curl",
+        "speed_factor_storage_exchange",
+        "noether_event_exchange",
+        "tail_refinement_persistence",
+        "bounded_speed_stability",
+        "observer_export_eligibility",
+        "coupled_fixed_point"
+      ],
+      "closed_rows_supplied_by_current_packet": [
+        "bounded_speed_normal_reconstruction_candidate"
+      ],
+      "missing_closed_rows": [
+        "action_derived_scale",
+        "action_curl",
+        "speed_factor_storage_exchange",
+        "noether_event_exchange",
+        "tail_refinement_persistence",
+        "bounded_speed_stability",
+        "observer_export_eligibility",
+        "coupled_fixed_point"
+      ],
+      "first_missing_closed_row": "action_derived_scale",
+      "negative_control_status": "same-ledger-id-tuple-without-closed-downstream-rows-not-live-ledger",
+      "certifies_bounded_speed_live_ledger": false,
+      "retention": "not_retained",
+      "retained_branch": false
+    },
+    "action_derived_scale_target": {
+      "schema": "neutral-braid-octahedral-zero-mean-bounded-speed-action-derived-scale-target/v0",
+      "claim_scope": "bounded-speed-action-derived-scale-target-after-normal-candidate",
+      "promotion_status": "priority-only",
+      "status": "target-only",
+      "row": "action_derived_scale",
+      "downstream_row": "action_scale",
+      "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture",
+      "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+      "force_checksum_id": "force-checksum-fixture",
+      "consumer_checksum_id": "consumer-checksum-fixture",
+      "required_identity_tuple": {
+        "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+        "force_checksum_id": "force-checksum-fixture",
+        "consumer_checksum_id": "consumer-checksum-fixture",
+        "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture"
+      },
+      "required_variables": [
+        "gamma_B_nu",
+        "action_functional_A_nu",
+        "scale_parameter",
+        "speed_factor_profile_nu",
+        "force_action_pairing",
+        "scale_margin"
+      ],
+      "required_rows": [
+        "bounded_speed_normal_reconstruction_candidate",
+        "action_measure_row",
+        "scale_derivative_row",
+        "force_action_pairing_row",
+        "normal_speed_pullback_row",
+        "scale_margin_row"
+      ],
+      "current_fixture_supplied_rows": [
+        "bounded_speed_normal_reconstruction_candidate"
+      ],
+      "missing_rows": [
+        "action_measure_row",
+        "scale_derivative_row",
+        "force_action_pairing_row",
+        "normal_speed_pullback_row",
+        "scale_margin_row"
+      ],
+      "first_missing_required_row": "action_measure_row",
+      "negative_control_status": "same-ledger-tuple-without-action-scale-rows-not-action-derived-scale",
+      "rejected_current_fixture": true,
+      "certifies_action_derived_scale": false,
+      "certifies_bounded_speed_live_ledger": false,
+      "certifies_action_stability": false,
+      "certifies_observer_export": false,
+      "retention": "not_retained",
+      "retained_branch": false
+    },
     "certifies_bounded_speed_live_ledger": false,
     "certifies_action_stability": false,
     "certifies_observer_export": false,

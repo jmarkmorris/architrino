@@ -16,6 +16,8 @@ const SOURCE_PROVENANCE_EMITTER_TARGET_SCHEMA =
   "branch_provider_candidate_source_provenance_emitter_target/v0";
 const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_INTERVAL_READOUT_SCHEMA =
   "branch_provider_candidate_source_map_provider_object_branch_interval_readout/v0";
+const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_INTERVAL_TARGET_SCHEMA =
+  "branch_provider_candidate_source_map_provider_object_branch_interval_target/v0";
 
 const ACCEPTED_SOURCE_STATUS = "accepted_non_fixture_source";
 
@@ -319,6 +321,10 @@ function sourceContractReadoutValidationErrors(readout, label) {
     "pushforward_operator_ref",
     "normalization_identity_ref",
   ];
+  const expectedRequiredIntervalPayloads = [
+    "source_map_provider_branch_intervals",
+    "provider_object_branch_intervals",
+  ];
   if (!isObject(readout)) {
     return [`${label} must be an object when present`];
   }
@@ -445,6 +451,36 @@ function sourceContractReadoutValidationErrors(readout, label) {
       errors.push(
         `${label} source_map_provider_object_branch_interval_readout must stay fail-closed`
       );
+    } else {
+      const positiveEvidenceTarget =
+        sourceMapProviderObjectReadout.positive_evidence_target;
+      if (
+        !isObject(positiveEvidenceTarget) ||
+        positiveEvidenceTarget.schema !==
+          SOURCE_MAP_PROVIDER_OBJECT_BRANCH_INTERVAL_TARGET_SCHEMA ||
+        positiveEvidenceTarget.claim_level !==
+          "priority-only target, not provider acceptance" ||
+        positiveEvidenceTarget.required_terminal_row_count !== 15 ||
+        positiveEvidenceTarget.required_branch_row_count !== 30 ||
+        !sameStringSet(
+          positiveEvidenceTarget.required_identity_kinds,
+          expectedMissingIdentityKinds
+        ) ||
+        !sameStringSet(
+          positiveEvidenceTarget.required_interval_payloads,
+          expectedRequiredIntervalPayloads
+        ) ||
+        positiveEvidenceTarget
+          .accepted_provider_object_branch_interval_count_required !== 30 ||
+        positiveEvidenceTarget.same_record_binding_required !== true ||
+        positiveEvidenceTarget.provider_ready_authorized_by_this_target !==
+          false ||
+        positiveEvidenceTarget.downstream_consumer_authorization !== false
+      ) {
+        errors.push(
+          `${label} source_map_provider_object_branch_interval_readout positive_evidence_target must stay target-only`
+        );
+      }
     }
   }
   return errors;
