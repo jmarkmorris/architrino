@@ -1,14 +1,14 @@
-# External Reviewer Packet: Research Revolution
+# External Reviewer Brief: Research Revolution
 
-## Review Target
+## Review Frame
 
-Please review the research-revolution proposal as conditional institutional planning, not as a claim that the transition has already been validated. The proposal asks how funders, universities, laboratories, journals, and companies should respond if a candidate foundation-level implementation becomes technically serious enough to threaten inherited narratives while preserving much of inherited physics as benchmark machinery.
+A foundation-level transition should be judged by technical objects, evidence thresholds, and failure conditions, not by prior belief in the ontology. The central question is how funders, universities, laboratories, journals, and companies should respond if a candidate implementation becomes technically serious enough to threaten inherited narratives while preserving much of inherited physics as benchmark machinery.
 
 The useful review question is not "Do I accept the whole ontology now?" The useful question is "What technical object, evidence threshold, or failure condition would make each institutional action justified or unjustified?"
 
-## Context To Assume
+## Claim-Level Context
 
-Assume the source memo is intentionally strong because it describes a possible research-system disruption. Strong policy language should not be read as proof of technical closure. Every disruptive action is meant to be conditional on threshold movement:
+Strong policy language is appropriate only because the scenario describes a possible research-system disruption. It should not be read as proof of technical closure. Every disruptive action is conditional on threshold movement:
 
 - `signal`
 - `reviewable object`
@@ -16,7 +16,7 @@ Assume the source memo is intentionally strong because it describes a possible r
 - `transition evidence`
 - `institutional transition`
 
-The reviewer should preserve that ladder. If a recommendation seems too aggressive, the best criticism is to name the missing threshold, not merely soften the prose.
+That ladder should remain intact. If a recommendation seems too aggressive, the strongest criticism is to name the missing threshold, not merely soften the prose.
 
 ## Compact Glossary
 
@@ -24,7 +24,7 @@ The reviewer should preserve that ladder. If a recommendation seems too aggressi
 
 **Benchmark machinery:** equations, data products, detector methods, approximations, and computations that remain useful even if their surrounding ontology is reinterpreted.
 
-**Reviewable object:** a packet with primitives, update laws, equations or algorithms, assumptions, benchmark targets, and failure conditions.
+**Reviewable object:** a technical object with primitives, update laws, equations or algorithms, assumptions, benchmark targets, and failure conditions.
 
 **Translation key:** a map from candidate terminology into standard review language so skeptics can evaluate variables, equations, computations, residuals, and failure modes without accepting the ontology first.
 
@@ -38,7 +38,7 @@ The reviewer should preserve that ladder. If a recommendation seems too aggressi
 
 ## Known Burdens Already Acknowledged
 
-Please do not spend the review only rediscovering these objections. They are already part of the proposal's burden structure. Useful review sharpens the missing object, threshold, or failure mode.
+These objections are already part of the burden structure. Useful review sharpens the missing object, threshold, or failure mode instead of rediscovering the same objections.
 
 1. **Object formation.** A candidate implementation must be translated into variables, equations, algorithms, benchmark targets, and failure conditions.
 2. **Recovery pressure.** GR, QM/QFT, Standard Model, thermodynamic, conservation-law, precision-test, and Lambda-CDM-era constraints must be recovered or clearly domain-labeled.
@@ -50,9 +50,9 @@ Please do not spend the review only rediscovering these objections. They are alr
 
 ## Requested Review Focus
 
-Please prioritize these questions:
+The highest-value review questions are:
 
-1. Does the packet keep institutional disruption conditional on evidence thresholds?
+1. Does the proposal keep institutional disruption conditional on evidence thresholds?
 2. Which threshold definitions need sharper technical criteria?
 3. Where does the proposal confuse benchmark preservation with narrative authority?
 4. Which first reviewable object would most efficiently test the candidate implementation?
@@ -62,7 +62,7 @@ Please prioritize these questions:
 
 ## Suggested Review Output
 
-A useful review can be short if it is specific. Please use this structure:
+A useful technical response can be short if it is specific:
 
 1. **Strongest current contribution:** one paragraph.
 2. **Most serious overreach:** identify the section and the threshold that is missing.
@@ -73,7 +73,7 @@ A useful review can be short if it is specific. Please use this structure:
 
 ## Review Posture
 
-Treat the packet as a transition architecture. The right review posture is adversarial cooperation: reject premature claims, preserve the force of the false-prior risk where it is disciplined, and convert social objections into technical requests whenever possible.
+The right review posture is adversarial cooperation: reject premature claims, preserve the force of the false-prior risk where it is disciplined, and convert social objections into technical requests whenever possible.
 
 ## Architrino Corporation Role
 

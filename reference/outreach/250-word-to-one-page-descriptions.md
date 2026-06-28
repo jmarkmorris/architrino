@@ -1,6 +1,6 @@
 # 250-Word To One-Page Descriptions
 
-These descriptions are for places where a 50-word description is too compressed: profile pages, handouts, short articles, README excerpts, video descriptions, or early outreach packets.
+Longer copy for profile pages, handouts, short articles, README excerpts, video descriptions, and early outreach materials.
 
 ## 250-Word Description
 

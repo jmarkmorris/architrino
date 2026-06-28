@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1470
+      "sections": 1471
     }
   },
   "tocRoot": {
@@ -244,6 +244,14 @@
                 "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
                 "markdownSection": "Core Concept",
                 "sectionKey": "core concept",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Time Implementation Ladder",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time.md",
+                "markdownSection": "Time Implementation Ladder",
+                "sectionKey": "time implementation ladder",
                 "headingLevel": 2
               },
               {

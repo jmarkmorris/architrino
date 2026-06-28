@@ -97,6 +97,15 @@ $$
 $$
 where $\mathbf{w}$ is the clock assembly drift through the local Noether sea.
 
+The locally measured speed of light is therefore a co-calibrated observer readout, not a primitive identity among all speed symbols. In a weak homogeneous calibration cell $W_0$, a Physical Observer obtains the empirical value by comparing photon-channel round-trip transport against its own ruler and derived clock phase:
+$$
+c_0
+=
+\frac{2L_{\mathrm{obs}}(W_0)}
+{\Delta\tau_{\gamma,\mathrm{rt}}(W_0)}.
+$$
+The numerator is a ruler response, the denominator is a clock readout, and the photon path samples the photon-channel speed $c_\gamma$. The closure burden is to derive why $c_f$, $c_{\text{eff}}$, $c_\gamma$, and $c_0$ collapse to one weak-homogeneous measured limit within the preferred-frame leakage budget; the equality cannot be supplied by notation alone.
+
 The simple clock-budget target is that the declared channel speed splits into center-of-mass drift and transverse closure:
 $$
 c_\star^2

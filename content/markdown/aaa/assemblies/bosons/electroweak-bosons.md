@@ -506,6 +506,19 @@ This is not a new substrate interaction. It is the low-energy observer limit of 
 
 ### Effective Mass Scales
 *   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
+    For a resolved weak event $\mathsf e$ observed through an event window $\mathcal W$, the effective mass-scale target can be written schematically as
+    $$
+    M_{W/Z}^{\mathrm{eff}}(\mathsf e;\mathcal W)c_0^2
+    =
+    E_{\mathrm{corr}}^{\mathrm{app}}(\mathcal W)
+    =
+    E_{\mathrm{stiff}}^{\mathrm{corr}}(\mathcal W)
+    +
+    \Delta E_{\mathrm{sh}\to W/Z}(\mathcal W)
+    +
+    \Delta E_{\mathrm{sea}}^{\mathrm{bound}}(\mathcal W).
+    $$
+    The terms must be read inside the same event ledger as the weak-corridor payload: corridor stiffness, shielded internal energy exposed during the transition, and bounded Noether sea participation together produce the measured peak and width. The target is not a persistent assembly rest mass, and it does not allow the Standard Model value to be inserted independently of the weak-corridor provenance record.
 *   **Environment Dependence as a bounded closure target:**
     *   Because a $W/Z$ corridor is a dynamic bundle, its effective width and peak position may depend on Noether sea density, compliance, drift, and tethering stiffness only through the same medium-response record that recovers ordinary electroweak precision behavior.
     *   In calibrated collider and weak laboratory conditions, any predicted shift $\delta M_{W/Z}$ or width change must remain below the applicable precision bounds before the model can claim a new environmental effect.

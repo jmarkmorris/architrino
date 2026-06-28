@@ -2555,6 +2555,20 @@ a_{\ell,\mathrm{dress}}
 \mathcal R_{g-2}.
 $$
 
+The minimal internal-current candidate should decompose the moment before any anomaly is assigned. For a retained lepton assembly $A$, write a first moment map as
+$$
+\boldsymbol\mu_A^{\mathrm{int}}
+=
+\sum_{\ell\in\{H,M,L\}}
+\mu_\ell\,\hat{\mathbf n}_\ell
++
+\sum_{a\in\mathcal S_{\mathrm{ax}}(A)}
+\mu_a^{\mathrm{ax}}\,\hat{\mathbf n}_a
++
+\Delta\boldsymbol\mu_{\mathrm{sea}}.
+$$
+The first sum is the three Noether braid core-binary contribution, the second is the axial-layer or polar-site current contribution, and $\Delta\boldsymbol\mu_{\mathrm{sea}}$ is the Noether sea and radiation-dressing response. This map is only useful if the same ordered-frame branch supplies $\hat{\mathbf n}_\ell$, $\hat{\mathbf n}_a$, exposed mass response, charge/polarity bookkeeping, and measurement coupling. The anomaly $a_\ell$ should then be the residual dressing and response after the leading internal moment map is fixed, not a replacement for the spin ledger.
+
 ### Closure Status
 
 Score: `2`.

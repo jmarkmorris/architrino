@@ -10,8 +10,6 @@ Wonder question: Why can tiny differences matter?
 
 Discovery sentence: Near a threshold, a tiny difference can choose between lawful outcomes.
 
-Text status: text-only manuscript draft; no image prompts in this pass.
-
 ## Book Promise
 
 This book teaches:

@@ -10,8 +10,6 @@ Wonder question: What are the tiny sender-receivers in nature?
 
 Discovery sentence: An architrino is a tiny point entity that keeps a path, sends, and receives.
 
-Text status: first-draft source images generated; landscape pages and derivatives exported. QA and manual geometry review pending.
-
 ## Book Promise
 
 This first explicit architrino-facing book teaches:
@@ -44,7 +42,7 @@ Architrino, polarity, path, transmission, reception, response type.
 
 Illustration prompt:
 
-> Generate text-free 3:2 landscape source illustration for **The Tiny Transceivers**, Book 9 of **The Wonder of Nature and the Universe**. Match the Book 1 through Book 8 first-draft visual direction: Electra is a young child with medium-brown skin, dark curly hair in two small puffs, and simple white-and-lavender play clothes; Poz is a young child with light-brown skin, short straight dark hair, and simple white-and-purple play clothes. Electra and Poz are ordinary human children, not symbols, polarity figures, architrinos, or fixed personality roles.
+> Generate text-free 3:2 landscape source illustration for **The Tiny Transceivers**, Book 9 of **The Wonder of Nature and the Universe**. Use the established series visual direction: Electra is a young child with medium-brown skin, dark curly hair in two small puffs, and simple white-and-lavender play clothes; Poz is a young child with light-brown skin, short straight dark hair, and simple white-and-purple play clothes. Electra and Poz are ordinary human children, not symbols, polarity figures, architrinos, or fixed personality roles.
 >
 > Use natural skin and hair tones only for people. Draw architrinos as small luminous point transceivers: pure red for one intrinsic kind, pure blue for the other intrinsic kind, with a tiny white glint when needed for identity and clarity. Use only white, black, pure red, pure blue, and red-blue purples for lab screens, tabletop surfaces, point entities, paths, wakes, arrival cues, line-of-action cues, glow regions, shadows, floor details, play objects, clothing, and all non-human visual systems.
 >

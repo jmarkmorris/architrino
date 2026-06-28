@@ -1,12 +1,10 @@
 # Book 2 Image-Generation Brief: Roll, Turn, Again
 
-Use this brief after Book 1 review, before adding Book 2 back into `generation-manifest.json`.
-
 ## Master Style Prompt
 
 Generate text-free 3:2 landscape source illustrations for **Roll, Turn, Again**, Book 2 of **The Wonder of Nature and the Universe**.
 
-Match the Book 1 first-draft visual direction:
+Use the established early-series visual direction:
 
 - Electra is a toddler girl with medium-brown skin, dark curly hair in two small puffs, and simple white-and-lavender play clothes.
 - Poz is a toddler boy with light-brown skin, short straight dark hair, and simple white-and-purple play clothes.
@@ -66,9 +64,3 @@ Electra and Poz roll one ball again along the route. Show a calm repeating path:
 ### Backmatter Activity
 
 A clean text-free activity scene for adult-led play: Electra and Poz sit by a simple continuous purple floor-contour route with a flat start, one low rounded hill, and one shallow open dip, all aligned so a ball could roll across the same path after a gentle push. The route is a floor feature, not a separate prop. Do not make a raised slide, trough, spoon, bowl, chute, bridge, track toy, or disconnected object. A grown-up hand may be visible only as a small supporting hand placing the red ball at the flat start, but the hand must not cover the ball or become the main subject. The red and blue balls are both visible for repeating and comparing.
-
-## Notes Before Generation
-
-- Book 2 should have `12` source images: cover, 10 story spreads, and 1 backmatter activity.
-- Do not generate Book 2 until Book 1 source images and layout are reviewed.
-- After approval, add Book 2 to `tools/build_generation_manifest.py`, add production prompt blocks to `roll-turn-again.md`, rebuild the manifest, generate sources, run QA, render pages, then refresh the manifest again.

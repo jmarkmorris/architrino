@@ -1,12 +1,12 @@
 # Technical Proof-Burden Map: The Treasure Physics Overlooked
 
-This packet maps the main technical burdens behind [The Treasure Physics Overlooked](../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md). It is written for technical readers who need the proof obligations without the historical essay.
+The main technical burdens are finite enough to audit directly: Lorentz recovery, Born/Bell recovery, redshift and cosmology transport, and compact-object bridging. The useful question is what source variables, target variables, acceptance conditions, artifacts, and failure modes would convert each declared burden into written closure.
 
 ## Status Key
 
-**Written closure** means the essay states a bridge equation or ledger with source variables, target variables, fallback regime, and failure condition.
+**Written closure** means the current written work states a bridge equation or ledger with source variables, target variables, fallback regime, and failure condition.
 
-**Declared burden** means the essay names the correct acceptance condition but still owes the derivation, simulation, or proof from $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics.
+**Declared burden** means the work names the correct acceptance condition but still owes the derivation, simulation, or proof from $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics.
 
 ## 1. Lorentz Recovery
 

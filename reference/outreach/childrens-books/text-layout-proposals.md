@@ -1,6 +1,6 @@
 # Reverse Band Text Layout
 
-This note records the selected story-text placement for the $\mathbb{A}\mathbb{A}\mathbb{A}$ children's book series.
+Story text belongs in the book-layout layer, not inside generated artwork.
 
 Core rule:
 

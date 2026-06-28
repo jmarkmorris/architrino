@@ -1,8 +1,6 @@
 # Outreach Reference
 
-This directory collects draft outreach language for explaining the $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture to different audiences.
-
-These files are not app-facing corpus chapters. They are working material for testing descriptions, planning channels, and turning the open-source, zero-price offer into clear public invitations.
+Clear outreach brings the $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture to different audiences without lowering claim discipline. The materials here turn the open-source, zero-price offer into direct invitations to read, question, test, explain, and improve the work.
 
 ## Accessibility Thesis
 
@@ -19,11 +17,11 @@ The outreach path should therefore build many on-ramps: caregiver-led early lear
 - [comics/](comics/README.md): comics outreach strategy, continuity model, format families, arcs, and starter series candidates.
 - [250-word-to-one-page-descriptions.md](250-word-to-one-page-descriptions.md): longer descriptions for profiles, handouts, posts, or short pages.
 - [technical-brief-master-equation.md](technical-brief-master-equation.md): longer technical brief with the master equation, definitions, interpretation, and validation burden.
-- [treasure-physics-overlooked/](treasure-physics-overlooked/README.md): targeted review companions for the full treasure-physics essay.
-- [research-revolution/](research-revolution/README.md): targeted review companions for research-transition, governance, and proof-burden audiences.
-- [outreach-plan.md](outreach-plan.md): audience, channel, and return-on-investment planning template.
+- [treasure-physics-overlooked/](treasure-physics-overlooked/README.md): review briefs for the treasure-physics argument and its proof burdens.
+- [research-revolution/](research-revolution/README.md): review briefs for research transition, governance, and proof-burden audiences.
+- [outreach-plan.md](outreach-plan.md): audience, channel, and return-on-investment strategy.
 
-## Working Rule
+## Message Discipline
 
 Outreach language should preserve the core level distinctions:
 

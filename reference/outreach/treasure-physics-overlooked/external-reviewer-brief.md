@@ -1,20 +1,14 @@
-# External Reviewer Packet: The Treasure Physics Overlooked
+# External Reviewer Brief: The Treasure Physics Overlooked
 
-## Review Target
+## Review Frame
 
-Please review [The Treasure Physics Overlooked](../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md). The essay is a historical-epistemic case for why $\mathbb{A}\mathbb{A}\mathbb{A}$ deserves serious technical scrutiny. It is not presented as a completed proof paper.
-
-Useful companion surfaces:
-
-- [Executive And NSF Review Packet](executive-nsf-review-packet.md)
-- [Technical Proof-Burden Map](technical-proof-burden-map.md)
-- Project terminology references: [mathematics terminology](../../../content/markdown/aaa/archie/mathematics-terminology.md) and [comparative glossary](../../../content/markdown/aaa/archie/comparative-glossary.md)
+The Treasure Physics Overlooked is a historical-epistemic case for why $\mathbb{A}\mathbb{A}\mathbb{A}$ deserves serious technical scrutiny. It should be read as an architectural case with open proof burdens, not as a completed proof paper.
 
 ## Context To Assume
 
-Assume the essay is deliberately written from a retrospective convention: it asks how the history of physics would read if the architecture later earned broad acceptance. Do not treat that literary vantage as a claim that the current corpus has already proven every recovery theorem.
+The historical prose deliberately uses a retrospective convention: it asks how the history of physics would read if the architecture later earned broad acceptance. That literary vantage is not a claim that the current corpus has already proven every recovery theorem.
 
-The important review question is whether the essay states the architecture's burdens honestly and sharply while preserving the force of the case. The best criticism will identify where a claim is too strong, where a bridge map is missing, or where an acceptance condition should be made more precise.
+The important review question is whether the work states the architecture's burdens honestly and sharply while preserving the force of the case. The best criticism will identify where a claim is too strong, where a bridge map is missing, or where an acceptance condition should be made more precise.
 
 ## Compact Glossary
 
@@ -34,9 +28,9 @@ The important review question is whether the essay states the architecture's bur
 
 **Bridge map:** a controlled source-to-effective derivation that declares source variables, target variables, validity regime, error tolerance, and failure condition.
 
-**Written closure:** a bridge equation or ledger already stated with the above pieces. In the essay, the redshift energy ledger is the model case.
+**Written closure:** a bridge equation or ledger already stated with the above pieces. The redshift energy ledger is the model case.
 
-**Declared burden:** an acceptance condition the essay states but does not yet derive. Lorentz recovery, Born/Bell recovery, and compact-object bridging currently live mostly in this status.
+**Declared burden:** an acceptance condition the work states but does not yet derive. Lorentz recovery, Born/Bell recovery, and compact-object bridging currently live mostly in this status.
 
 **Preferred-frame leakage:** any observer-accessible residue of absolute time, Euclidean void, or finite primitive wake speed after embedded clocks, rulers, photon channels, and detector records are reconstructed.
 
@@ -44,7 +38,7 @@ The important review question is whether the essay states the architecture's bur
 
 ## Already Known Open Burdens
 
-Please do not spend the review merely rediscovering the following as objections. They are already acknowledged burdens. Useful review adds precision, failure modes, or the smallest artifact that could test them.
+The following are already acknowledged burdens. Useful review adds precision, failure modes, or the smallest artifact that could test them.
 
 1. **Self-hit well-posedness.** Same-source causal-root selection must preserve deterministic multistability without runaway energy growth near Jacobian zeros.
 
@@ -66,23 +60,23 @@ Please do not spend the review merely rediscovering the following as objections.
 
 ## Requested Review Focus
 
-Please prioritize these questions:
+The highest-value review questions are:
 
-1. Does the essay remain clear that $\mathbb{A}\mathbb{A}\mathbb{A}$ is a serious challenger theory with open proof burdens, rather than a completed proof system?
+1. Does the work remain clear that $\mathbb{A}\mathbb{A}\mathbb{A}$ is a serious challenger theory with open proof burdens, rather than a completed proof system?
 
 2. Are the falsification criteria strong enough to prevent retrospective storytelling from becoming unfalsifiable?
 
-3. Where does the essay still overstate a declared burden as if it were a written closure?
+3. Where does the work still overstate a declared burden as if it were a written closure?
 
 4. Which single technical burden should be converted next into a proof note, bridge equation, simulation, or numerical falsification artifact?
 
-5. Are any standard frameworks caricatured, or does the essay preserve their real domain successes before challenging their ontology?
+5. Are any standard frameworks caricatured, or does the work preserve their real domain successes before challenging their ontology?
 
-6. Which glossary terms remain unclear to a technical reader without repo access?
+6. Which glossary terms remain unclear to a technical reader?
 
 ## Review Output Format
 
-A useful review can be short if it is specific. Please use this structure:
+A useful technical response can be short if it is specific:
 
 1. **Strongest current contribution:** one paragraph.
 2. **Most serious overclaim or ambiguity:** cite the section and explain the claim-level mismatch.
@@ -90,4 +84,4 @@ A useful review can be short if it is specific. Please use this structure:
 4. **One sentence that should be added or changed:** propose exact wording if possible.
 5. **One artifact that would most improve credibility:** proof note, simulation, table, glossary entry, or short derivation.
 
-The goal is to help the essay route readers into the right technical next artifact instead of making every reviewer rediscover the same open burdens.
+The goal is to route readers into the right technical next artifact instead of making every reviewer rediscover the same open burdens.

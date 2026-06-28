@@ -1,12 +1,10 @@
 # Book 6 Image-Generation Brief: The Message That Traveled
 
-Use this brief after Book 5 review, before adding Book 6 back into `generation-manifest.json`.
-
 ## Master Style Prompt
 
 Generate text-free 3:2 landscape source illustrations for **The Message That Traveled**, Book 6 of **The Wonder of Nature and the Universe**.
 
-Match the Book 1 through Book 5 first-draft visual direction, with Book 6 focused on visible messages that begin in one place, travel through a medium, arrive later, and change what happens next.
+Use the established series visual direction, with Book 6 focused on visible messages that begin in one place, travel through a medium, arrive later, and change what happens next.
 
 - Electra is a young child with medium-brown skin, dark curly hair in two small puffs, and simple white-and-lavender play clothes.
 - Poz is a young child with light-brown skin, short straight dark hair, and simple white-and-purple play clothes.
@@ -83,9 +81,3 @@ A clean text-free adult-led activity scene for sound delay: Electra and Poz sit 
 ### Backmatter Activity 2
 
 A clean text-free adult-led activity scene for water-message arrival: Electra and Poz sit beside a shallow white tray of pale purple-blue water while a grown-up hand drops a small purple pebble into the water. A ripple travels outward and reaches a small paper leaf, moving it gently. Keep the grown-up hand small and secondary. The splash source, traveling ripple, and moved leaf arrival object must all be clear and visible. Do not use arrows, labels, numbers, rulers, grids, panels, or abstract diagrams.
-
-## Notes Before Generation
-
-- Book 6 should have `15` source images: cover, 12 story spreads, and 2 backmatter activity images.
-- Do not generate Book 6 until Book 5 source images and layout are reviewed.
-- After approval, add Book 6 to `tools/build_generation_manifest.py` with `back_matter_count` set to `2`, add production prompt blocks to `the-message-that-traveled.md`, rebuild the manifest, generate sources with the built-in `image_gen` workflow used for Books 1-5, run QA, render pages, then refresh the manifest again.

@@ -10,8 +10,6 @@ Wonder question: What do the tiny sender-receivers send?
 
 Discovery sentence: An architrino emits a traveling potential wave from an earlier position.
 
-Text status: text-only manuscript draft; no image prompts in this pass.
-
 ## Book Promise
 
 This book teaches:

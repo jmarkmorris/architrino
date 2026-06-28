@@ -1,6 +1,6 @@
 # Children's Book Series
 
-This folder develops child-facing outreach books derived from [early-learning.md](../early-learning.md). These are working manuscripts, not textbook chapters. The overall story is **The Wonder of Nature and the Universe**: Electra and Poz seek knowledge together and discover one new thing about nature or the universe in each book. The concept progression is controlled by [story-design.md](story-design.md). The visual system is controlled by [style-guide.md](style-guide.md), with approved image direction recorded in [exemplars.md](exemplars.md) and selected reverse-band story-text placement recorded in [text-layout-proposals.md](text-layout-proposals.md). Each book should keep the same three commitments:
+**The Wonder of Nature and the Universe** is the child-facing book line for $\mathbb{A}\mathbb{A}\mathbb{A}$. Electra and Poz seek knowledge together and discover one new thing about nature or the universe in each book. The concept progression is in [story-design.md](story-design.md), the visual system is in [style-guide.md](style-guide.md), approved image direction is in [exemplars.md](exemplars.md), and reverse-band story-text placement is in [text-layout-proposals.md](text-layout-proposals.md). Each book keeps the same commitments:
 
 - the story is emotionally simple enough for the target age;
 - the plot begins from a wonder question and resolves in a concrete discovery;
@@ -29,7 +29,7 @@ The line also runs in four `4`-book arcs; see [story-design.md](story-design.md#
 | Assemblies | 9-12 | Explicit architrinos, potential waves, reception, superposition, assembly behavior, and potential landscapes. |
 | Recovery | 13-16 | Clocks, rulers, records, light-like channels, mass behavior, and effective spacetime geometry become recovery targets. |
 
-A hypothetical Books `17-32` extension may later continue the numbered style into young-adult / adult research-learning books. Those books would be sequence-numbered, not age-numbered. That extension is not part of the active manuscript, source-image, or production count scope; see [story-design.md](story-design.md#hypothetical-advanced-extension-books-17-32).
+Books `17-32` can extend the numbered style into young-adult / adult research-learning. Those books are sequence-numbered, not age-numbered, and sit outside the current core line; see [story-design.md](story-design.md#hypothetical-advanced-extension-books-17-32).
 
 | Book | Developmental target | Working title | Level 1 lessons |
 | --- | --- | --- | --- |
@@ -50,7 +50,7 @@ A hypothetical Books `17-32` extension may later continue the numbered style int
 | 15 | 14-15 | [The History That Pushes Now](the-history-that-pushes-now.md) | Path-history; admissible past waves; self-action and first master-equation intuition. |
 | 16 | 15-16 | [The World We Recover](the-world-we-recover.md) | Assembly hierarchy; effective clocks/rulers/channels; effective spacetime geometry; recovery targets and claim levels. |
 
-The full teaching map and scene template live in [story-design.md](story-design.md#two-level-story-architecture).
+The full teaching map and scene structure are in [story-design.md](story-design.md#two-level-story-architecture).
 
 ## Image Count Targets
 

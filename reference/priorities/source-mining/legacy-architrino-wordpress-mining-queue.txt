@@ -71,23 +71,23 @@
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2019/06/17/unifying-the-four-forces/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/06/20/implementation-of-the-weak-nuclear-force/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/08/24/mass/
-https://architrino.wordpress.com/2019/12/25/gravity-and-time/
-https://architrino.wordpress.com/2022/05/13/how-does-nature-implement-time/
-https://architrino.wordpress.com/2021/05/28/the-curled-up-dimension-of-time/
-https://architrino.wordpress.com/2021/01/03/npqg-january-3-2021/
-https://architrino.wordpress.com/2022/04/03/how-are-fermions-assembled/
-https://architrino.wordpress.com/2022/12/21/lepton-flavor-universality/
-https://architrino.wordpress.com/2022/04/10/gluon-color-charge-assembly/
-https://architrino.wordpress.com/2022/03/18/everything-spins/
-https://architrino.wordpress.com/2019/06/16/anti-matter-mystery-solved/
-https://architrino.wordpress.com/2022/02/19/visualising-the-dynamics-of-the-electron-structure/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/12/25/gravity-and-time/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/05/13/how-does-nature-implement-time/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/05/28/the-curled-up-dimension-of-time/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/01/03/npqg-january-3-2021/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/04/03/how-are-fermions-assembled/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/12/21/lepton-flavor-universality/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/04/10/gluon-color-charge-assembly/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/18/everything-spins/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/16/anti-matter-mystery-solved/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/02/19/visualising-the-dynamics-of-the-electron-structure/
 https://architrino.wordpress.com/2022/12/19/up-charm-top-quark-assembly/
 https://architrino.wordpress.com/2022/12/19/down-strange-bottom-quark-assembly/
-https://architrino.wordpress.com/2019/06/23/neutrino-oscillation-musings/
-https://architrino.wordpress.com/2021/09/26/rethinking-neutrino-structure/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/23/neutrino-oscillation-musings/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/09/26/rethinking-neutrino-structure/
 https://architrino.wordpress.com/2022/12/19/neutrino-assembly/
-https://architrino.wordpress.com/2022/12/17/w-and-z-boson-reaction-provenance/
-https://architrino.wordpress.com/2022/01/18/is-the-patchwork-quilt-of-physics-and-cosmology-isomorphic-to-the-point-charge-universe/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/12/17/w-and-z-boson-reaction-provenance/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/01/18/is-the-patchwork-quilt-of-physics-and-cosmology-isomorphic-to-the-point-charge-universe/
 https://architrino.wordpress.com/2021/01/19/npqg-january-19-2021-planar-bosons-on-the-photon-train/
 https://architrino.wordpress.com/2020/07/14/absolute-distance-and-the-path-of-a-photon/
 https://architrino.wordpress.com/2020/05/18/a-photon-is-both-particles-and-waves/

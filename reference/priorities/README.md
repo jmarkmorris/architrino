@@ -8,6 +8,8 @@ Current priority staging should favor core geometrical theory closure: master-eq
 
 Use `proof-programs/` for active mathematical proof-program priorities that share the same theorem-target / certificate / promotion workflow.
 
+Use `aaa-path/` for priority-stage origin-history notes about the thought process, parsimony constraints, pruning decisions, failed branches, and discovery path that led to $\mathbb{A}\mathbb{A}\mathbb{A}$ theory.
+
 ## Priority-Doc Maintenance Pattern
 
 The current preferred style for live priority docs is:

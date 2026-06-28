@@ -1,8 +1,6 @@
 # Approved Visual Exemplars
 
-This page records approved image examples for the $\mathbb{A}\mathbb{A}\mathbb{A}$ children's book series. These examples should guide future prompts, revisions, and production art direction.
-
-Status: approved as style direction for further progress.
+Approved image examples define the visual direction for the $\mathbb{A}\mathbb{A}\mathbb{A}$ children's book series.
 
 ## Exemplar Set 1: Natural People, Restricted Physics Palette
 
@@ -33,7 +31,7 @@ Why it works:
 - the caregiver remains warm but secondary to the child's embodied path;
 - the palette stays simple enough for the Book 1 foundation.
 
-Use this as the exemplar for:
+Best for:
 
 - nonverbal path intuition;
 - here/there/back motion;
@@ -51,7 +49,7 @@ Why it works:
 - the child's natural skin and hair keep the scene warm without weakening the physics palette;
 - the room is simple enough for Book 3 / Book 4 source material.
 
-Use this as the exemplar for:
+Best for:
 
 - early-childhood motion trails;
 - large white space;
@@ -69,7 +67,7 @@ Why it works:
 - Noether sea specks are present but quiet;
 - the family science scene remains playful and informal.
 
-Use this as the exemplar for:
+Best for:
 
 - causal wake travel;
 - source-to-receiver direction;
@@ -87,7 +85,7 @@ Why it works:
 - tabletop play grounds the abstraction in a child activity;
 - the children are globally representative without assigning polarity meaning to identity.
 
-Use this as the exemplar for:
+Best for:
 
 - polarity;
 - line of action;
@@ -106,7 +104,7 @@ Why it works:
 - Noether sea specks sit quietly in the background;
 - the image feels more mature while retaining the same palette grammar.
 
-Use this as the exemplar for:
+Best for:
 
 - threshold behavior;
 - deterministic multistability;
@@ -125,7 +123,7 @@ Why it works:
 - the single tabletop keeps the delayed-interaction simulator concrete without cutaway subpanels;
 - older-student complexity is higher while preserving the same palette grammar.
 
-Use this as the exemplar for:
+Best for:
 
 - admissible path-history;
 - finite field-speed arrival;
@@ -144,7 +142,7 @@ Why it works:
 - observer-level recovery is shown in one continuous tabletop flow, with no inset diagram panels;
 - the students feel like older learners synthesizing the series.
 
-Use this as the exemplar for:
+Best for:
 
 - assembly hierarchy;
 - Noether sea response;
@@ -153,7 +151,7 @@ Use this as the exemplar for:
 
 ## Exemplar Prompt Addendum
 
-Future prompts should include the style-guide palette rule and this production phrase:
+Image prompts should include the style-guide palette rule and this production phrase:
 
 > Match the approved children's-book exemplar style: natural human skin and hair, informal global children-at-play energy, white paper space, black expressive linework, red/blue/purple $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry integrated into the scene, and no non-human colors outside the restricted palette.
 

@@ -62,6 +62,50 @@ A gluon is a propagating disturbance in the Noether braid assembly network that 
 - **The operator:** when a Red quark $|q_H\rangle$ interacts with a Green quark $|q_M\rangle$, the gluon acts as a bridge that mixes or swaps the exceptional-axis state between $H$ and $M$.
 - **The braid:** geometrically, this is realized as a twisting of the Noether sea flux tube: a braid segment that propagates between the cores and carries the topology required to move exceptionality from one axis sector to another.
 
+### Color-Corridor Provenance Target
+
+The axis-reconfiguration description is not complete until one resolved color-corridor event says what changed, where the balancing quantities went, and which Noether sea tube carried the open strong-sector strain. For an event $\mathsf e$ that routes exceptionality between two axis sectors, the event record should expose
+$$
+Y_{\mathsf e}^{g}
+=
+\left(
+q_{\mathrm{src}},
+q_{\mathrm{tgt}},
+a_{\mathrm{in}},
+a_{\mathrm{out}},
+\Delta A_{\mathrm{ax}},
+\mathcal Q_{\mathrm{corr}},
+\mathcal Q_{\mathrm{tube}},
+\mathcal Q_{\mathrm{recoil}}
+\right).
+$$
+Here $a_{\mathrm{in}}$ and $a_{\mathrm{out}}$ name the exceptional-axis sectors before and after the corridor acts, $\Delta A_{\mathrm{ax}}$ records any axial-inventory rerouting, $\mathcal Q_{\mathrm{corr}}$ records the corridor payload, $\mathcal Q_{\mathrm{tube}}$ records the Noether sea flux-tube strain, and $\mathcal Q_{\mathrm{recoil}}$ records the balancing response of the source, target, and surrounding hadron.
+
+For each routed quantity
+$$
+\mathcal Q
+\in
+\left\{
+E,\mathbf p,\mathbf J,\mathrm{pol},\mathrm{arch},\mathrm{path},\mathrm{tube}
+\right\},
+$$
+the closure burden is
+$$
+\mathcal L_{\mathrm{color}}(\mathsf e;\mathcal Q)
+=
+\Delta\mathcal Q_{\mathrm{src}}
++
+\Delta\mathcal Q_{\mathrm{tgt}}
++
+\Delta\mathcal Q_{\mathrm{corr}}
++
+\Delta\mathcal Q_{\mathrm{tube}}
++
+\Delta\mathcal Q_{\mathrm{recoil}}
+=0.
+$$
+This is a provenance target, not a new interaction law. It prevents the gluon story from stopping at "color changed" by requiring the same record to bind axis exceptionality, axial inventory, energy, momentum, angular momentum, polarity, path history, and flux-tube strain for one color-reconfiguration event.
+
 ### The 8 Gluon Modes (Deriving the Octet)
 
 Why are there 8 gluons?

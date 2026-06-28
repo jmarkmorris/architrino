@@ -2,11 +2,11 @@
 
 ## Audience And Scope
 
-This brief is written for advanced undergraduate physics readers, recent physics graduates, and doctoral students who can read ordinary mechanics, field-theory notation, and delayed-interaction equations. It is not a full proof of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is a compact technical orientation to the proposed substrate ontology, the master equation, the meaning of its symbols, and the validation burden that follows if the equation is taken seriously.
+For advanced undergraduate physics readers, recent physics graduates, and doctoral students who can read ordinary mechanics, field-theory notation, and delayed-interaction equations. The brief is not a full proof of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is a compact technical orientation to the proposed substrate ontology, the master equation, the meaning of its symbols, and the validation burden that follows if the equation is taken seriously.
 
-The brief deliberately avoids large-scale universe-history claims. That subject adds interpretive pressure from redshift accounting, structure formation, and model comparison. Those topics should not be the first filter for technical evaluation. The more useful first question is narrower: does the proposed microscopic dynamics form a coherent mathematical object, and can stable assembly behavior be derived from it without importing the standard effective structures as hidden assumptions?
+Large-scale universe-history claims are deliberately outside the first filter. Redshift accounting, structure formation, and model comparison add interpretive pressure before the microscopic dynamics has been judged. The sharper first question is narrower: does the proposed microscopic dynamics form a coherent mathematical object, and can stable assembly behavior be derived from it without importing the standard effective structures as hidden assumptions?
 
-For the full internal references, see the foundational ontology in [Ontology](../../content/markdown/aaa/foundations/ontology.md), the primitive entity definition in [Architrino](../../content/markdown/aaa/foundations/architrino.md), and the detailed law in [Master Equation](../../content/markdown/aaa/dynamics/master-equation.md).
+Core references: [Ontology](../../content/markdown/aaa/foundations/ontology.md), [Architrino](../../content/markdown/aaa/foundations/architrino.md), and [Master Equation](../../content/markdown/aaa/dynamics/master-equation.md).
 
 ## Core Claim
 

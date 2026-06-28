@@ -145,6 +145,36 @@ $$
 - emission source depletion, recoil, wake, remnant, and handoff rows;
 - packet momentum $\mathbf{p}_\gamma$, phase ledger, and receiver capture record.
 
+### Constituent Motion Versus Photon-Channel Speed
+
+The photon-channel speed $c_\gamma$ is the group/transport speed of the retained coaxial contra-rotating pro/anti planar pair. It should not be identified with every constituent architrino's instantaneous internal speed. A useful priority-only decomposition for constituent $a$ is
+$$
+\mathbf v_a
+=
+c_\gamma\hat{\mathbf e}
++
+\mathbf u_{a,\perp},
+\qquad
+\hat{\mathbf e}\cdot\mathbf u_{a,\perp}=0,
+$$
+with the internal transverse component represented schematically by
+$$
+\mathbf u_{a,\perp}
+=
+\sum_{\ell\in\mathcal I_\gamma}
+\omega_\ell R_\ell
+\hat{\boldsymbol\phi}_{a\ell}.
+$$
+Then
+$$
+\|\mathbf v_a\|^2
+=
+c_\gamma^2
++
+\|\mathbf u_{a,\perp}\|^2
+$$
+for the constituent path, while the packet-level null row still uses $E_\gamma=\|\mathbf p_\gamma\|c_\gamma$. This split gives `EQ-12` a sharper way to ask how frequency and energy live in the internal phase-cycle variables $(\omega_\ell,R_\ell,\phi_\ell)$ while homogeneous photon transport remains frequency-independent. A candidate branch fails if internal transverse motion leaks into free-space dispersion, creates a rest branch, or lets $c_\gamma$ be retuned separately from the same Noether sea and event ledger.
+
 ### Noether Sea Variables
 
 - $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$ for medium state;
@@ -326,7 +356,7 @@ J_{\mathrm{eff},\mu}^{\theta}
 \right].
 $$
 
-Solved Maxwell or scalar-wave families should be treated as inverse clues. Retarded Green functions constrain causal support and source provenance; plane waves and eikonal solutions constrain dispersion and phase/group velocity; cavity and boundary modes constrain mode counting and boundary readout; scattering solutions constrain phase shifts and flux ledgers. These are acceptance tests for the coarse-grained wake/photon-channel map, not substrate fields.
+Solved Maxwell or scalar-wave families should be treated as inverse clues. Causal-delay Green-function kernels constrain causal support and source provenance; plane waves and eikonal solutions constrain dispersion and phase/group velocity; cavity and boundary modes constrain mode counting and boundary readout; scattering solutions constrain phase shifts and flux ledgers. These are acceptance tests for the coarse-grained wake/photon-channel map, not substrate fields.
 
 The row should score only through a residual such as
 

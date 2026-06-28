@@ -1,12 +1,12 @@
 # Technical Proof-Burden Map: Research Revolution
 
-This packet maps the technical and governance burdens behind the research-revolution memo. It is written for readers who need to see how institutional actions are tied to evidence thresholds, proof obligations, and failure conditions.
+A responsible research transition depends on tying institutional action to evidence thresholds, proof obligations, and failure conditions. The technical burden is not only to test a candidate implementation, but to decide when governance, funding, workforce, capital, and application actions become justified.
 
 ## Status Key
 
 **Evidence threshold** means the maturity level that controls what kind of institutional action is justified.
 
-**Reviewable object** means the first technical packet that can be evaluated without accepting the candidate ontology first: primitives, update laws, equations or algorithms, assumptions, benchmark targets, and failure conditions.
+**Reviewable object** means the first technical object that can be evaluated without accepting the candidate ontology first: primitives, update laws, equations or algorithms, assumptions, benchmark targets, and failure conditions.
 
 **Proof burden** means the specific derivation, simulation, residual comparison, classification table, or negative control owed before the next threshold can be claimed.
 
@@ -42,7 +42,7 @@ This packet maps the technical and governance burdens behind the research-revolu
 - separate exact recovery, effective approximation, computation tool, and narrative replacement;
 - show negative controls where the mechanism is absent or altered;
 - preserve detector-facing records and uncertainty discipline;
-- publish benchmark packets that independent skeptics can rerun or attack.
+- publish benchmark artifacts that independent skeptics can rerun or attack.
 
 **Failure mode:** if each benchmark family needs a separate rescue mechanism, the program has not shown a deeper implementation basis.
 
@@ -113,7 +113,7 @@ This packet maps the technical and governance burdens behind the research-revolu
 - capital facilities state their benchmark, recovery, or falsification value under the candidate implementation;
 - application work remains subordinate to mechanism, safety, radiation, and governance requirements;
 - corporate and defense capital cannot define scientific acceptance;
-- public-private work keeps open benchmark packets and conflict-of-interest controls;
+- public-private work keeps open benchmark artifacts and conflict-of-interest controls;
 - far-future application horizons are labeled as conditional, not near-term promises.
 
 **Failure mode:** moving money from obsolete narratives into uncontrolled application hype repeats the same governance error in a new form.
@@ -123,7 +123,7 @@ This packet maps the technical and governance burdens behind the research-revolu
 | Burden | Threshold protected | Smallest useful artifact |
 | --- | --- | --- |
 | Object formation | `reviewable object` | Translation key with primitives, update laws, equations or algorithms, benchmark targets, and failure conditions. |
-| Benchmark recovery | `benchmark pressure` | Independent benchmark packet with residuals, negative controls, and rerunnable computation. |
+| Benchmark recovery | `benchmark pressure` | Independent benchmark artifact with residuals, negative controls, and rerunnable computation. |
 | Classification discipline | `benchmark pressure` or `transition evidence` | Particle-family or reaction-channel atlas with missing-row and failed-row accounting. |
 | Governance escalation | all thresholds | Portfolio map tying each action to evidence maturity, due process, and student protection. |
 | Workforce requalification | `transition evidence` | Retain/retrain/redeploy/sunset/separate plan with criteria and appeal path. |

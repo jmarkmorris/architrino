@@ -2,7 +2,7 @@
 
 ## Executive Frame
 
-This priority memo treats a validated future-physics and cosmology program as a research-system disruption, not only as a theory update. The intended planning audience is an NSF-scale research leader deciding how to protect scientific integrity, manage career disruption, and fund a disciplined transition if the technical case becomes strong enough.
+This priority memo treats a validated future-physics and cosmology program as a research-system disruption, not only as a theory update. The intended planning audience is science and technology leaders deciding how to protect scientific integrity, manage career disruption, and fund a disciplined transition if the technical case becomes strong enough.
 
 Status: priority-only planning material. This memo is not a public announcement, a corpus claim, or a finding that the transition has been validated. Its function is to preserve the institutional decision architecture that would be needed if the technical case crosses defined evidence thresholds.
 
@@ -22,9 +22,9 @@ The strongest management thesis is that physics may need a compassionate interve
 
 The most provocative transition risk is that particle physics and astrophysics may have built impressive, difficult, and valuable work on an early wrong prior about the vacuum, spacetime, point-charge exclusion, and field ontology. In an executive report, that should be handled as an institutional risk, not a slogan: if a deeper field-generator implementation is right, the research system needs an archive-and-pivot strategy rather than denial, panic, or performative revolution language.
 
-The first adoption failure may not be technical refutation; it may be an inability to form a shared object of review. Critics will ask for equations, classical recovery, computations, predictions, and serious papers. Advocates may respond with diagrams, primitive ontology, open notes, and claims of parsimony. An NSF-scale response would have to close that translation gap before it could judge the deeper claim.
+The first adoption failure may not be technical refutation; it may be an inability to form a shared object of review. Critics will ask for equations, classical recovery, computations, predictions, and serious papers. Advocates may respond with diagrams, primitive ontology, open notes, and claims of parsimony. A response by science and technology leaders would have to close that translation gap before it could judge the deeper claim.
 
-Credential renewal is a core management issue. If a foundation-level transition becomes credible, existing expertise remains valuable only when it is requalified against the new implementation basis. The question for an NSF-scale leader is how to make that requalification fast, prestigious, technically strict, and humane while also recognizing that some roles and programs may need to end.
+Credential renewal is a core management issue. If a foundation-level transition becomes credible, existing expertise remains valuable only when it is requalified against the new implementation basis. The question for science and technology leaders is how to make that requalification fast, prestigious, technically strict, and humane while also recognizing that some roles and programs may need to end.
 
 Funding integrity is the parallel institutional risk. A wrong paradigm is not fraud by itself; science advances through models that later fail. The risk changes when a field has credible notice that its grant narratives may depend on false priors and continues to request, review, or spend public funds without disclosing that dependency. A serious transition plan must therefore separate honest historical error, negligent non-response, and intentional misrepresentation.
 
@@ -38,7 +38,7 @@ Action ladder:
 
 ## Intervention Trigger
 
-An NSF-scale intervention would be justified only when a candidate framework meets enough evidence thresholds to make ordinary review channels insufficient. The trigger is not "a contrarian idea exists." The trigger is a structured mismatch:
+An intervention by science and technology leaders would be justified only when a candidate framework meets enough evidence thresholds to make ordinary review channels insufficient. The trigger is not "a contrarian idea exists." The trigger is a structured mismatch:
 
 - the candidate preserves major observations that existing effective theories already fit;
 - it supplies a smaller or more primitive implementation basis;
@@ -139,7 +139,7 @@ Career disruption should be managed as a portfolio issue:
 - `field-transition mentors`: senior researchers who help students and postdocs move from legacy specialization into bridge work without losing status;
 - `critical reviewers`: skeptics funded to attack the transition on technical grounds, not cultural grounds.
 
-An NSF-scale response should not incentivize career self-destruction. It should make it professionally rational for established researchers to say, "This part of my field is an effective approximation; this part may need a deeper implementation; here is the bridge problem I can help solve."
+A response by science and technology leaders should not incentivize career self-destruction. It should make it professionally rational for established researchers to say, "This part of my field is an effective approximation; this part may need a deeper implementation; here is the bridge problem I can help solve."
 
 The constructive policy response is not automatic career deletion. It is a triage system: archive the old work, label its validity domain, create prestigious roles for the people capable of translating, stress-testing, and narrowing the new framework, and sunset roles whose expertise no longer carries enough current value.
 
@@ -243,7 +243,7 @@ That translation key should answer five questions in the field's native review l
 
 The minimum threshold for institutional seriousness is clear: diagrams and essays can motivate review, but they cannot substitute for equations, computation, references, and benchmark recovery. The working posture should therefore be neither apologetic nor triumphalist. The claim may be provocative, but the review object must be ordinary: variables, equations, algorithms, residuals, papers, and failure conditions.
 
-Much pushback will occur above the ideas: credential status, tone, publication venue, social confidence, or fear of self-delusion. Those concerns are not irrelevant, but they are not decisive. An NSF-scale process should convert them into technical review questions whenever possible:
+Much pushback will occur above the ideas: credential status, tone, publication venue, social confidence, or fear of self-delusion. Those concerns are not irrelevant, but they are not decisive. A review process led by science and technology leaders should convert them into technical review questions whenever possible:
 
 - lack of credential becomes a demand for reproducible packets;
 - unconventional language becomes a demand for a translation table;
@@ -441,7 +441,7 @@ Modern physics can accurately fit observations and still lose the implementation
 
 The field-generator claim should be treated as a translation challenge. "Immutable field generators" is not enough for institutional adoption. The program needs mathematical obligations: conserved variables, source records, density limits, effective fields, benchmark predictions, and failure modes.
 
-The candidate minimal-ingredient posture should be retained as a strategic compression test, not as established doctrine. A research program claiming a Euclidean void, equal and opposite point-potential constituents, large-scale constituent density, and large-scale energy density as primitive inputs is making an auditable claim: can that small basis recover the observed complexity without hidden parameter drift? This becomes an NSF-relevant evaluation question because parsimony can justify review only if it survives recovery pressure.
+The candidate minimal-ingredient posture should be retained as a strategic compression test, not as established doctrine. A research program claiming a Euclidean void, equal and opposite point-potential constituents, large-scale constituent density, and large-scale energy density as primitive inputs is making an auditable claim: can that small basis recover the observed complexity without hidden parameter drift? This becomes a practical evaluation question for science and technology leaders because parsimony can justify review only if it survives recovery pressure.
 
 The core proof burden is ordinary: can the candidate reobtain classical Hamiltonian mechanics, electromagnetism, plasma-relevant approximations, quantum benchmarks, and detector-facing observables? This is the correct institutional filter. The program should not ask for special tolerance because the ontology is unconventional. It should ask for a defined bridge budget to show whether the ontology can reproduce the inherited machinery.
 
@@ -679,9 +679,9 @@ Action ladder:
 - `moderate`: establish a distributed transition institute with public, university, national-lab, and corporate partners; require versioned open artifacts, skeptical review, public-intake rules, and staged funding tied to benchmark milestones.
 - `aggressive`: create a large clean-sheet institute, redirect major legacy and capital budgets into it after evidence thresholds, recruit displaced and requalified researchers at scale, and suspend application programs that bypass public validation or safety governance.
 
-## NSF-Scale Operating Model
+## Science And Technology Leaders Operating Model
 
-If the program became credible enough for serious institutional response, an NSF-scale operating model would need parallel tracks:
+If the program became credible enough for serious institutional response, science and technology leaders would need parallel tracks:
 
 - `Archive`: preserve and classify inherited results by validity domain.
 - `Translate`: fund experts who can restate candidate claims in conventional notation and benchmark terms.
@@ -755,7 +755,7 @@ Program-design questions:
 Revision action ladder:
 
 - `conservative`: compress repetition section by section while preserving each action ladder and the evidence-threshold conditions attached to disruptive options.
-- `moderate`: reorganize the memo into an NSF-style instrument with evidence thresholds, decision rights, funding classes, workforce actions, company-side support, and public-accountability controls.
+- `moderate`: reorganize the memo into a leadership instrument for science and technology leaders, with evidence thresholds, decision rights, funding classes, workforce actions, company-side support, and public-accountability controls.
 - `aggressive`: convert the memo into a formal transition playbook with appendices for grant triage, facility triage, requalification, institute chartering, company implementation roles, and public-correction obligations.
 
 ## Architrino Corporation Consulting Role

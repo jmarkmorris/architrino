@@ -140,5 +140,5 @@
   "one_leaf_boundary_opening_constraint_count": 3,
   "one_leaf_min_boundary_opening_margin": 0.999753815697,
   "one_leaf_screen_level_success": "strict_boundary_opening_screen_positive",
-  "input_path": "/Users/markmorris/vibe/architrino/reference/priorities/proof-programs/breather-proof/certificate/gap_opening_fresh_v10_fold_coordinate_collocation_input.nonlinear-v0.json"
+  "input_path": "reference/priorities/proof-programs/breather-proof/certificate/gap_opening_fresh_v10_fold_coordinate_collocation_input.nonlinear-v0.json"
 }

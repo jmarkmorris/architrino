@@ -38,6 +38,11 @@ TMP_TEXT_DIR = TMP_ROOT / "clean-text"
 POSTS_JSONL = TMP_ROOT / "legacy-architrino-posts.jsonl"
 CARDS_JSONL = TMP_ROOT / "legacy-architrino-idea-cards.jsonl"
 CLUSTERS_JSON = TMP_ROOT / "legacy-architrino-clusters.json"
+TMP_ROOT_DISPLAY = "${TMPDIR:-/tmp}/architrino-archive-mining"
+TMP_TEXT_DIR_DISPLAY = f"{TMP_ROOT_DISPLAY}/clean-text"
+POSTS_JSONL_DISPLAY = f"{TMP_ROOT_DISPLAY}/legacy-architrino-posts.jsonl"
+CARDS_JSONL_DISPLAY = f"{TMP_ROOT_DISPLAY}/legacy-architrino-idea-cards.jsonl"
+CLUSTERS_JSON_DISPLAY = f"{TMP_ROOT_DISPLAY}/legacy-architrino-clusters.json"
 
 WP_API = "https://public-api.wordpress.com/wp/v2/sites/architrino.wordpress.com/posts"
 
@@ -1325,7 +1330,7 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
     lines = [
         "# Legacy Architrino Archive Mining Report",
         "",
-        "This is an archive-level source-mining triage report. It does not mark individual posts mined, does not update durable completion status, and does not promote claims into the reader-facing corpus. Full cleaned post text is kept only in `/tmp` artifacts. Website `MINED` markers, if present in legacy HTML or metadata, are retained only as non-authoritative audit metadata.",
+        "This is an archive-level source-mining triage report. It does not mark individual posts mined, does not update durable completion status, and does not promote claims into the reader-facing corpus. Full cleaned post text is kept only in platform temporary artifacts. Website `MINED` markers, if present in legacy HTML or metadata, are retained only as non-authoritative audit metadata.",
         "",
         "## Source Map",
         "",
@@ -1337,10 +1342,10 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
         f"| Posts retrieved | `{len(posts)}` |",
         f"| Idea cards | `{len(cards)}` |",
         f"| Idea clusters | `{len(clusters)}` |",
-        f"| Local post JSONL | `{POSTS_JSONL}` |",
-        f"| Local idea-card JSONL | `{CARDS_JSONL}` |",
-        f"| Local cluster JSON | `{CLUSTERS_JSON}` |",
-        f"| Local clean-text directory | `{TMP_TEXT_DIR}` |",
+        f"| Local post JSONL | `{POSTS_JSONL_DISPLAY}` |",
+        f"| Local idea-card JSONL | `{CARDS_JSONL_DISPLAY}` |",
+        f"| Local cluster JSON | `{CLUSTERS_JSON_DISPLAY}` |",
+        f"| Local clean-text directory | `{TMP_TEXT_DIR_DISPLAY}` |",
         "",
         "## Method",
         "",
@@ -1453,7 +1458,7 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
             "",
             "1. Use a candidate-gap route for an ordinary post-by-post mining batch, starting with the representative open posts.",
             "2. Use topic-sweep mode when the operator asks what the legacy archive says about one concept across many posts.",
-            "3. Use the `/tmp` JSONL artifacts as the retrieval cache, but keep durable queue and status accounting in `reference/priorities/source-mining/`.",
+            "3. Use the platform temporary JSONL artifacts as the retrieval cache, but keep durable queue and status accounting in `reference/priorities/source-mining/`.",
         ]
     )
     return "\n".join(lines) + "\n"

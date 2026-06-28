@@ -128,5 +128,5 @@
     "A feasible witness must still be integrated into a fresh same-packet candidate and interval-validated.",
     "An inconclusive result is not a proof that no gap-opening direction exists."
   ],
-  "input_path": "/Users/markmorris/vibe/architrino/reference/priorities/proof-programs/breather-proof/certificate/gap_opening_live_fold_shear_input.seed_cosine_residuals.v0.json"
+  "input_path": "reference/priorities/proof-programs/breather-proof/certificate/gap_opening_live_fold_shear_input.seed_cosine_residuals.v0.json"
 }

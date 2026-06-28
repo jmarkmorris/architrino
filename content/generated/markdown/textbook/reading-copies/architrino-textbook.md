@@ -510,6 +510,26 @@ The word **uniformly** is a dynamical normalization statement, not an extra cloc
 
 After that scale fixing, the remaining freedom is only translation by $b$. The background time line is therefore best understood as a principal homogeneous space for $(\mathbb{R},+)$: it has a global orientation and duration scale, but no marked origin. This makes the conventional status of $t=0$ precise without weakening the physical status of the affine scale chosen by the receiving law.
 
+#### Time Implementation Ladder
+
+Ordinary language often compresses three different roles into the word "time." In $\mathbb{A}\mathbb{A}\mathbb{A}$ they occupy different levels:
+
+1. **Substrate ordering:** Absolute time $t$ orders universe states. It is not directly measured by a physical clock and has no natural origin; its affine scale is fixed only after the causal-wake law and unit convention are declared.
+2. **Causal-wake implementation:** Architrino worldlines and emissions make the ordering physically operative. A source event at emission time $s$ contributes at a receiver time $t$ only when the causal wake support satisfies
+$$
+r_{ij}(t;s)=c_f(t-s).
+$$
+In this layer, temporal separation and Euclidean distance become a receiver-local interaction condition.
+3. **Assembly clock readout:** Physical clock time is an assembly-level phase extraction. A stable binary or Noether braid branch supplies repeatable internal cycles, and observer clock time is the count of those cycles relative to a reference branch, not another substrate parameter. In the notation of the clock chapters,
+$$
+d\tau_{\mathcal A}
+=
+\frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}.
+$$
+Motion through the Euclidean void and coupling to the Noether sea can retune the internal cycle, so derived clock time changes even though absolute time does not.
+
+This ladder preserves the useful intuition that cycles make clocks while preventing cycles from being confused with time itself. A moving assembly may trace a helical history through absolute timespace, and its internal cycle may slow or speed relative to $t$; the substrate ordering parameter remains the same line.
+
 #### Mathematical Description
 
 Time is modeled as the real number line:
@@ -42947,6 +42967,15 @@ $$
 $$
 where $\mathbf{w}$ is the clock assembly drift through the local Noether sea.
 
+The locally measured speed of light is therefore a co-calibrated observer readout, not a primitive identity among all speed symbols. In a weak homogeneous calibration cell $W_0$, a Physical Observer obtains the empirical value by comparing photon-channel round-trip transport against its own ruler and derived clock phase:
+$$
+c_0
+=
+\frac{2L_{\mathrm{obs}}(W_0)}
+{\Delta\tau_{\gamma,\mathrm{rt}}(W_0)}.
+$$
+The numerator is a ruler response, the denominator is a clock readout, and the photon path samples the photon-channel speed $c_\gamma$. The closure burden is to derive why $c_f$, $c_{\text{eff}}$, $c_\gamma$, and $c_0$ collapse to one weak-homogeneous measured limit within the preferred-frame leakage budget; the equality cannot be supplied by notation alone.
+
 The simple clock-budget target is that the declared channel speed splits into center-of-mass drift and transverse closure:
 $$
 c_\star^2
@@ -51828,6 +51857,19 @@ This is the charged-fermion working realization of the more general six-unit pol
 *   **Function:** This layer interacts through external effective-field channels (EM, Weak).
 *   **Association picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials associate with the Noether braid scaffold.
 
+###### Selection Ladder For The Charged-Fermion Candidate
+
+The Noether braid plus axial layer should be read as a selected stability candidate, not as an arbitrary list of parts. The working model has a ladder of rejection and selection pressures:
+
+| Candidate assembly stage | Selection pressure | Current status |
+| :--- | :--- | :--- |
+| Opposite-polarity binary | Causal-wake attraction and opposite-polarity locking make a neutral two-body branch dynamically available across many energy regimes. | Natural assembly seed, but too externally reactive to serve as a stable low-energy fermion by itself. |
+| Two-binary nest | A larger, lower-energy binary can partially shield a smaller, higher-energy binary. | Partial shielding is not enough for the charged-fermion scaffold; this branch still lacks the full three-dimensional angular-momentum accommodation required by the current model. |
+| Three-binary Noether braid | Three nested binaries supply a neutral core, retained internal causal history, a shielding hierarchy, and rotational accommodation across three spatial directions. | Working charged-fermion scaffold. Its stability, mass scale, and generation hierarchy remain derivation targets rather than asserted facts. |
+| Six-site axial layer | The binary axes provide six polar sites where a protected polarity inventory can phase-lock to the scaffold. | Working realization of charged-fermion electric bookkeeping and weak/color exposure. Non-SM low-energy inventories must still be dynamically excluded. |
+
+This makes selection a closure burden. A viable fermion branch must pass branch stability, shielding, angular-momentum accommodation, axial-inventory stability, and the null constraint that unobserved low-energy partners do not appear as stable assemblies.
+
 ###### Why Polar Sites Are Plausible Dwell Regions
 
 The current geometric picture needs a reason that the axial layer prefers the poles rather than wandering arbitrarily around the Noether braid. The most conservative working hypothesis is that each binary axis creates a **polar calm region**: a local saddle or relative minimum in the rapidly varying superposed potential generated by the surrounding binary circulation.
@@ -54051,6 +54093,35 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
 ##### Weak-Corridor Provenance
 
 The weak corridor is an event record, not a permanent container that owns the outgoing fermion inventory. Its provenance rows must identify which architrinos participate, which neutral Noether braids supply the scaffold, which payload moves through the corridor, and where the balancing recoil is stored.
+
+For a resolved weak-corridor event $\mathsf e$, the substrate record should expose the corridor row as a routed output rather than as a primitive particle mass:
+$$
+Y_{\mathsf e}^{W/Z}
+=
+\left(
+\Delta A_W,
+N_{\mathrm{NB}}^{\mathrm{corr}},
+E_{\mathrm{sh}\to W/Z},
+\mathcal Q_{\mathrm{corr}},
+\mathcal Q_{\mathrm{recoil}},
+\mathcal Q_{\mathrm{sea}}
+\right)
+$$
+Here $\Delta A_W$ is the axial-inventory payload, $N_{\mathrm{NB}}^{\mathrm{corr}}$ records any neutral Noether braid scaffold recruited into the corridor, $E_{\mathrm{sh}\to W/Z}$ records shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, and the $\mathcal Q$ rows carry energy, momentum, angular momentum, polarity, architrino inventory, path-history, and medium update terms. For each conserved or routed quantity $\mathcal Q\in\{E,\mathbf p,\mathbf J,\mathrm{pol},\mathrm{arch},\mathrm{path},\mathrm{med}\}$, closure requires a balance of the form
+$$
+\Delta\mathcal Q_{\mathrm{src}}^{0}
++
+\Delta\mathcal Q_{\mathrm{sea}}^{0}
+=
+\mathcal Q_{\mathrm{corr}}^{0}
++
+\mathcal Q_{\mathrm{products}}^{0}
++
+\mathcal Q_{\mathrm{recoil}}^{0}
++
+\mathcal Q_{\mathrm{rem}}^{0}.
+$$
+This is the local mathematical burden behind the claim that a $W/Z$ corridor can appear massive and short-lived without becoming an elementary container that manufactures outgoing fermion identity.
 
 | Corridor event | Participating architrinos | Neutral Noether braid provenance | Corridor payload | Required ledger closure |
 | --- | --- | --- | --- | --- |
@@ -68624,9 +68695,10 @@ Each reaction record should state:
 5. **Polarity and charge accounting:** how observer-level charge bookkeeping emerges from the conserved $E/P$ routing, axial-layer exposure, shielding state, Noether sea participation, and outgoing assembly routing.
 6. **Energy-momentum and angular-momentum accounting:** where kinetic energy, internal binding energy, photon assemblies, recoil, medium excitation, spin/vector ledger terms, and wake-carried angular momentum enter and exit.
 7. **Path-history provenance:** which emitted causal wakes, source identities, and delayed interactions are needed to make the reaction deterministic in absolute time.
-8. **Radiation event record, when applicable:** for emitted, absorbed, shifted, captured, or failed photon channels, attach the shared event fields from [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), including $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, and causal-wake ledger.
-9. **Hybrid Standard Model matching, when applicable:** identify the source lane for the observer-level prediction: perturbative electroweak chart, matched weak effective theory, lattice-QCD or nuclear matrix element, infrared-safe QCD observable, QED, kinetic model, or detector functional. Include the scheme, operator or observable definition, matching normalization, CKM/PMNS factor when applicable, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record when one is used.
-10. **Closure status:** baseline, provisional map, derivation target, failed map, or inherited gate.
+8. **Weak-corridor record, when applicable:** for $W^\pm$ or $Z^0$ channels, record the axial-inventory payload $\Delta A_W$, any neutral Noether braid scaffold recruited into the corridor, shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, corridor recoil, outgoing-product identity routing, and Noether sea return row.
+9. **Radiation event record, when applicable:** for emitted, absorbed, shifted, captured, or failed photon channels, attach the shared event fields from [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), including $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, and causal-wake ledger.
+10. **Hybrid Standard Model matching, when applicable:** identify the source lane for the observer-level prediction: perturbative electroweak chart, matched weak effective theory, lattice-QCD or nuclear matrix element, infrared-safe QCD observable, QED, kinetic model, or detector functional. Include the scheme, operator or observable definition, matching normalization, CKM/PMNS factor when applicable, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record when one is used.
+11. **Closure status:** baseline, provisional map, derivation target, failed map, or inherited gate.
 
 #### Record Template
 
@@ -68637,6 +68709,7 @@ Each reaction record should state:
 | Noether sea input/output | Neutral braids, axial material, or medium excitations recruited or returned |
 | Conserved inventory | $E/P$ totals and charge/polarity balance |
 | Energy-momentum and angular-momentum ledger | Internal energy, recoil, emitted assemblies, spin/vector ledger terms, wake-carried angular momentum, and medium excitation |
+| Weak-corridor record, when applicable | $\Delta A_W$, neutral Noether braid scaffold sourcing, shielded-energy exposure, corridor payload, recoil, product identity routing, and Noether sea return row |
 | Radiation event record, when applicable | Source assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, photon Gate B event residual when $E_\gamma\ne0$, and closure status |
 | Provenance data | Source identity, emission time, causal-root branch, and local Noether sea state |
 | Hybrid Standard Model matching, when applicable | Source lane, scheme, operator or observable, matching normalization, CKM/PMNS factor when applicable, matrix-element or factorization source, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record |

@@ -10,8 +10,6 @@ Wonder question: Why does the ball go that way?
 
 Discovery sentence: A rolling ball follows a path, and a turn changes the path.
 
-Text status: Book 2 source-image prompts approved for first-draft production.
-
 ## Book Promise
 
 This active toddler board book teaches:

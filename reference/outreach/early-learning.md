@@ -1,8 +1,6 @@
 # Early Learning Curriculum
 
-This note answers a specific outreach prompt: imagine a particle physicist turned child psychologist, also a mother of two, teaching children in an era when $\mathbb{A}\mathbb{A}\mathbb{A}$ has become culturally and technologically important, especially through AI-assisted learning.
-
-The short answer is that I would not begin with equations. I would begin with relationship: position, motion, memory, influence, delay, and stable pattern. Children should first feel that nature is lawful before they are asked to name the law.
+Begin with relationship, not equations: position, motion, memory, influence, delay, and stable pattern. Children should first feel that nature is lawful before they are asked to name the law.
 
 ## Teaching Premise
 
@@ -13,7 +11,7 @@ The curriculum should introduce nature's fundamentals in four slow layers:
 3. Influence travels through that history instead of acting magically.
 4. Stable assemblies and observer-level descriptions emerge from many lawful interactions.
 
-For young children, the emotional posture matters as much as the conceptual sequence. A child should experience physics as a trustworthy world of patterns they can test, not as a fog of "quantum weirdness." The children's-book version should carry this as **The Wonder of Nature and the Universe**: each story begins with wondering, follows an age-appropriate search for knowledge, and ends with one concrete discovery. AI should act as a patient modeling companion: it can animate hidden histories, generate safe simulations, adapt questions to the child, and help the child compare prediction against result. It should not replace touching, building, listening, balancing, drawing, or arguing from evidence.
+For young children, the emotional posture matters as much as the conceptual sequence. A child should experience physics as a trustworthy world of patterns they can test, not as a fog of "quantum weirdness." **The Wonder of Nature and the Universe** carries this posture: each story begins with wondering, follows an age-appropriate search for knowledge, and ends with one concrete discovery. AI should act as a patient modeling companion: it can animate hidden histories, generate safe simulations, adapt questions to the child, and help the child compare prediction against result. It should not replace touching, building, listening, balancing, drawing, or arguing from evidence.
 
 The earliest rung can begin in infancy through caregiver-led looking, listening, reaching, rolling, and return games with a real visible ball as the focus. This does not mean an infant understands formal physics. It means the same architecture can be introduced as a continuous ladder: first as felt path and return for a ball the child can see; then as visible trace and delayed message; then as simulation, notation, and claim-level discipline.
 
@@ -51,15 +49,15 @@ The same idea should be revisited at increasing resolution rather than introduce
 | Looking changes the game. | Measurement interaction | A record forms when an interaction drives a stable macroscopic branch. |
 | The map is not the territory. | Effective description | Wave functions, fields, particles, and spacetime metrics are observer-level descriptions to be recovered from substrate dynamics. |
 
-## What I Would Emphasize As A Parent
+## Parent Priorities
 
-I would protect three instincts.
+Protect three instincts.
 
-First, I would protect curiosity. A child should be allowed to ask "what is really happening?" without being told that the question is naive. In this curriculum, ontology is not an embarrassment. It is the first careful layer: what exists, what moves, what carries history, and what can influence what.
+First, protect curiosity. A child should be allowed to ask "what is really happening?" without being told that the question is naive. In this curriculum, ontology is not an embarrassment. It is the first careful layer: what exists, what moves, what carries history, and what can influence what.
 
-Second, I would protect patience. Children should not be hurried into adult abstractions before they have physical experience. A five-year-old can understand delay by shouting across a field. An eight-year-old can understand superposition by adding arrows. A twelve-year-old can understand threshold behavior by balancing a pencil. These are not watered-down versions of physics. They are the roots of the later mathematics.
+Second, protect patience. Children should not be hurried into adult abstractions before they have physical experience. A five-year-old can understand delay by shouting across a field. An eight-year-old can understand superposition by adding arrows. A twelve-year-old can understand threshold behavior by balancing a pencil. These are not watered-down versions of physics. They are the roots of the later mathematics.
 
-Third, I would protect intellectual honesty. Even in an era where $\mathbb{A}\mathbb{A}\mathbb{A}$ is influential, children should learn claim levels early. Some statements are observed. Some are simulated. Some are derived. Some are promising proof targets. Some are open. This is especially important when AI is present, because AI can make an unfinished idea sound smooth. The child should learn to ask: what did we see, what did we calculate, what did we assume, and what still needs proof?
+Third, protect intellectual honesty. Even in an era where $\mathbb{A}\mathbb{A}\mathbb{A}$ is influential, children should learn claim levels early. Some statements are observed. Some are simulated. Some are derived. Some are promising proof targets. Some are open. This is especially important when AI is present, because AI can make an unfinished idea sound smooth. The child should learn to ask: what did we see, what did we calculate, what did we assume, and what still needs proof?
 
 ## Sample Progression
 

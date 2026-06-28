@@ -1,8 +1,10 @@
-# Executive And NSF Review Packet: Research Revolution
+# Science And Technology Leaders Review: Research Revolution
 
-## Purpose
+## Executive Frame
 
-This packet turns the research-revolution memo into an executive review surface for NSF-scale leaders, public funders, university executives, national laboratories, and major research sponsors. It is not a public announcement that physics has changed. It is a conditional operating plan for what should happen if a candidate foundation-level implementation becomes strong enough that ordinary review channels cannot handle the transition alone.
+A foundation-level physics transition would be an institutional-management problem before it became a public narrative. Science and technology leaders, public funders, university executives, national laboratories, and major research sponsors would need a thresholded operating model: preserve inherited benchmark value, test the candidate implementation, protect careers and students, and prevent either legacy denial or premature revolution language from controlling the response.
+
+The decision frame is conditional. No agency should treat the transition as validated until open equations, reproducible benchmark artifacts, skeptical review, negative controls, public evidence records, and safety governance justify that threshold. The question is how to prepare for responsible action if the technical case becomes too strong for ordinary review channels to absorb alone.
 
 ## Executive Thesis
 
@@ -22,13 +24,13 @@ The executive task is therefore an archive-and-pivot strategy: keep the scientif
 
 Ordinary review works when a claim arrives in the field's standard language. A foundation-level implementation may not. The first adoption failure may be object formation: critics ask for equations, classical recovery, computations, predictions, and papers, while advocates answer with primitive ontology, diagrams, open notes, and parsimony claims.
 
-An NSF-scale intervention is justified only if the candidate can be converted into a reviewable object and if existing review channels cannot produce a written technical disposition without status filtering, venue exclusion, or cultural dismissal. The intervention does not certify the theory. It creates a controlled translation path.
+An intervention by science and technology leaders is justified only if the candidate can be converted into a reviewable object and if existing review channels cannot produce a written technical disposition without status filtering, venue exclusion, or cultural dismissal. The intervention does not certify the theory. It creates a controlled translation path.
 
 ## Evidence Thresholds
 
 | Threshold | Meaning | Appropriate executive response |
 | --- | --- | --- |
-| `signal` | A nonstandard claim, anomaly cluster, outsider packet, or false-prior critique exists. | Archive, intake, request translation, and reject by named technical reason if object formation fails. |
+| `signal` | A nonstandard claim, anomaly cluster, outsider submission, or false-prior critique exists. | Archive, intake, request translation, and reject by named technical reason if object formation fails. |
 | `reviewable object` | The candidate supplies primitives, update laws, equations or algorithms, assumptions, and failure conditions. | Fund translation grants, skeptical review, toy simulations, and benchmark-target selection. |
 | `benchmark pressure` | The candidate recovers or improves a limited set of recognized results without obvious parameter drift. | Require adversarial validation, independent replication, portfolio-risk disclosure, and limited ring-fenced funding. |
 | `transition evidence` | Multiple recoveries, simulations, classifications, or residual comparisons make old narratives materially risky. | Require requalification, restrict new grants in vulnerable areas, protect students, and reassign review authority where needed. |
@@ -52,7 +54,7 @@ The transition program should run parallel tracks:
 
 ## First Funding Priorities
 
-Fund proof conversion before public narrative. The first dollars should buy translation papers, benchmark packets, executable simulations, adversarial review, source-to-effective bridge notes, classification atlases, and workforce-renewal programs. Communication grants should follow technical packets, not lead them.
+Fund proof conversion before public narrative. The first dollars should buy translation papers, benchmark artifacts, executable simulations, adversarial review, source-to-effective bridge notes, classification atlases, and workforce-renewal programs. Communication grants should follow technical artifacts, not lead them.
 
 The highest-value early investment is option value: small disciplined programs that can fail cleanly, preserve inherited assets, and expose whether the candidate basis can recover known physics without hidden parameter drift.
 
@@ -85,12 +87,12 @@ A credential should not expire because a researcher worked in a legacy framework
 
 ## What Counts As A Responsible First Year
 
-A responsible first year would produce a launch packet, translation-key papers, a small set of adversarial benchmark attempts, a portfolio-risk map, student-protection guidance, facility bills of materials, and a public status distinction between exploratory notes, reviewable packets, accepted recoveries, rejected claims, and application horizons.
+A responsible first year would produce a launch brief, translation-key papers, a small set of adversarial benchmark attempts, a portfolio-risk map, student-protection guidance, facility bills of materials, and a public status distinction between exploratory notes, reviewable artifacts, accepted recoveries, rejected claims, and application horizons.
 
 It would not produce a premature declaration that legacy physics is cancelled, nor would it allow legacy institutions to keep controlling ontology by refusing to form a review object.
 
 ## Architrino Corporation Role
 
-Architrino Corporation should sit at the company side of this operating model. It can brief executives and boards, write transition plans, review technology claims, design applications, write technical specifications, build software and validation dashboards, configure specialized AI systems, create training programs, support publication and communication packets, and help structure public-private research partnerships.
+Architrino Corporation should sit at the company side of this operating model. It can brief executives and boards, write transition plans, review technology claims, design applications, write technical specifications, build software and validation dashboards, configure specialized AI systems, create training programs, support publication and communication materials, and help structure public-private research partnerships.
 
-Its authority remains bounded. The company can help institutions move faster, think more clearly, and implement the transition architecture, but scientific acceptance still belongs to open equations, reproducible benchmark packets, skeptical review, negative controls, public evidence packets, and safety governance.
+Its authority remains bounded. The company can help institutions move faster, think more clearly, and implement the transition architecture, but scientific acceptance still belongs to open equations, reproducible benchmark artifacts, skeptical review, negative controls, public evidence records, and safety governance.

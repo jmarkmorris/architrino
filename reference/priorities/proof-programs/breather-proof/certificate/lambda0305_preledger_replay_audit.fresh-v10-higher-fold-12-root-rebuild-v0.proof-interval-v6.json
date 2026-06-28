@@ -59,7 +59,7 @@
     "interval_min_complement_margin": "0.023967918957860748"
   },
   "ephemeral_preledger_replay": {
-    "run_directory": "/private/tmp/proof-lambda0305/preledger",
+    "run_directory": "${TMPDIR:-/tmp}/proof-lambda0305/preledger",
     "durability_policy": "Full v1-v6 ledgers were not promoted because the replay remains branch-chart blocked; this audit preserves deterministic counts and hashes for rerun comparison.",
     "v1": {
       "ledger_sha256": "3b44924b5c05793ad4216a587a2069781e26d5419c6c9b14b2382d701d8791e9",

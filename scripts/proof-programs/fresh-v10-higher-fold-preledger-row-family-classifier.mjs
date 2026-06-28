@@ -190,7 +190,9 @@ function buildLambdaReplayDelta(ledger, replay) {
   return {
     trial_lambda: replay.trial_lambda,
     topology_recertified: replay.topology_recertification?.root_count_interval_certified === true,
-    ephemeral_replay_run_directory: replay.ephemeral_preledger_replay?.run_directory ?? null,
+    ephemeral_replay_run_directory: replay.ephemeral_preledger_replay?.run_directory
+      ? "scratch preledger directory (not durable)"
+      : null,
     ephemeral_replay_ledgers_still_present: nonEmptyDirectory(replay.ephemeral_preledger_replay?.run_directory),
     comparisons: {
       v4_simple_root_subrows: {

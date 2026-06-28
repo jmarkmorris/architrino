@@ -101,6 +101,30 @@ $$
 
 This does not prove a physical shell-radius order. It says the common-frequency branch can still carry different speed and exposure rows if the retained branch supplies the effective lever-arm projection, branch return or locked-harmonic frequency certificate, phase row-set identity, and same-event ledger.
 
+## Cluster-Partition Residual Candidate
+
+The legacy coupled-oscillator intuition becomes useful only after it is reduced to a testable residual basis. A priority-only candidate is to let the residual operator act on internal partition classes of the three retained binary rows:
+$$
+\mathcal P_{\nu}
+=
+\left\{
+ABC,\,
+AB|C,\,
+AC|B,\,
+A|BC,\,
+A|B|C
+\right\}.
+$$
+The labels $A,B,C$ are raw retained-row labels, not generation labels and not an `I:M:O` role map. The partition basis says which binary rows are dynamically locked together over the neutrino propagation window after the common clock has been factored out. A reduced residual operator
+$$
+H_{\nu,\mathcal P}^{\mathrm{res}}
+=
+\Pi_{\mathcal P}
+H_{\nu}^{\mathrm{res}}
+\Pi_{\mathcal P}^{\dagger}
+$$
+is admissible only if $\Pi_{\mathcal P}$ is derived from one retained neutral-lepton branch record. The packet fails if this projection erases the two observed phase-rate gaps, if it imports PMNS as a fitted matrix, or if the partition classes require a different weak-exposure domain from the source and detector rows.
+
 ## Residual Spectrum Target
 
 Oscillation data depend on the spectrum modulo an arbitrary identity shift. The invariant object is the traceless residual

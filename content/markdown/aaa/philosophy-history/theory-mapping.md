@@ -614,7 +614,7 @@ from equilibrium.
 $$
 \Delta B \neq 0,\quad \mathrm{CP}\ \text{violation},\quad \text{out of equilibrium}
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Net matter–antimatter asymmetry may reflect subtle asymmetries in the initial architrino polarity distribution, in nested shell braid formation pathways, or in how self-hit dynamics favor certain assembly channels. Sakharov-like conditions become constraints on allowed assembly-level processes and their CP properties in the high-energy Noether sea environment.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Net matter–antimatter asymmetry should not be framed first as missing electrinos, missing positrinos, or a primitive imbalance in the fundamental polarity inventory. The sharper native question is why stable low-energy assembly channels favor matter-like pro/anti braid outcomes over accessible antimatter-like counterparts while the deeper architrino and Noether sea bookkeeping remains polarity-balanced. Sakharov-like conditions become constraints on allowed assembly-level processes, chiral branch stability, and CP-facing readouts in the high-energy Noether sea environment rather than a license to treat fundamental polarity imbalance as the mechanism.
 
 **What Still Works:** Baryogenesis / Leptogenesis remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.

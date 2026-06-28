@@ -187,7 +187,7 @@ Acquisition steps:
 1. Run `git status --short` from the repository root.
 2. Use `yt-dlp --list-subs <URL>` to find subtitles. Prefer manual English subtitles when available; otherwise use automatic English captions.
 3. Use `--write-subs` for available manual subtitles and `--write-auto-subs` when automatic captions are the only available transcript source. Use `--sub-langs` and `--sub-format` to keep language and format choices explicit.
-4. Save the caption or transcript artifact under `/tmp`, with the video id in the filename.
+4. Save the caption or transcript artifact under `${TMPDIR:-/tmp}`, with the video id in the filename.
 5. Extract metadata: title, channel, upload date, duration, video URL, description, chapter list when available, and linked references.
 6. Preserve traceability with timestamps. Do not paste the full transcript into the report.
 7. Optional outreach output: write a helpful comment suitable for the video. Teach the relevant perspective in ordinary language, without using internal project terminology.
@@ -212,7 +212,7 @@ YouTube link:
 Acquisition steps:
 - Use `yt-dlp --list-subs` to find subtitles.
 - Prefer manual English subtitles; otherwise use automatic English captions.
-- Save the transcript artifact under `/tmp` with the video id in the filename.
+- Save the transcript artifact under `${TMPDIR:-/tmp}` with the video id in the filename.
 - Extract title, channel, upload date, duration, URL, description, chapters, and linked references.
 - Preserve timestamp traceability and do not paste the full transcript.
 
@@ -271,7 +271,7 @@ Acquisition steps:
 5. Keep historical process material out of the reader-facing corpus unless it yields a current definition, equation, proof route, worked example, or reader-facing bridge.
 6. Do not preserve process-history prose in corpus drafts; rewrite promoted material as current source of truth.
 
-For long-running blog queues, preserve the normalized URL list in `reference/priorities/source-mining/`, not only in `/tmp`. A `/tmp` queue is acceptable as an active-session working copy, but before pausing or closing a mining batch, resync completed/open status into the durable queue so future passes inherit the repaired URLs, local completion accounting, and remaining worklist.
+For long-running blog queues, preserve the normalized URL list in `reference/priorities/source-mining/`, not only in platform temporary storage. A temporary queue is acceptable as an active-session working copy, but before pausing or closing a mining batch, resync completed/open status into the durable queue so future passes inherit the repaired URLs, local completion accounting, and remaining worklist.
 
 Use topic-sweep mode when the operator asks what the legacy archive says about a particular concept, mechanism, historical phrase, or source lead. Search the durable queue, local extraction artifacts, WordPress public API records, downloaded HTML, and current corpus before recommending edits. The output should be a topic map: matched posts or artifacts, dates, repaired URLs, strongest source signals, contradictions or later corrections, likely current-canon destinations, and which posts still need ordinary per-source mining. A topic sweep may identify a cluster worth mining, but do not mark a post complete unless its source signals were individually triaged and any accepted edits, source-mining-history row, and durable queue/table status update are complete.
 
@@ -310,7 +310,7 @@ Topic:
 
 Search surfaces:
 - Durable source-mining queues under `reference/priorities/source-mining/`.
-- Existing local extraction artifacts under `/tmp` when available.
+- Existing local extraction artifacts under `${TMPDIR:-/tmp}` when available.
 - WordPress public API records and downloaded HTML for candidate posts.
 - Current corpus and priority files that may already capture the topic.
 

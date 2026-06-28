@@ -1,6 +1,6 @@
 # Comics Outreach
 
-This folder develops comics as outreach working material for explaining the $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture. These comics are not textbook chapters, proof claims, or validation artifacts. They are compact public entry points that turn one idea, question, visual contrast, or proof burden into a memorable scene.
+Comics are compact public entry points for the $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture. Each comic should turn one idea, question, visual contrast, or proof burden into a memorable scene without implying theorem-level closure.
 
 The comics line should protect the same level distinctions used throughout outreach:
 
@@ -127,6 +127,22 @@ The strongest recurring themes are:
 - evidence and proof burdens are part of the story, not an embarrassment;
 - open-source work lets readers inspect the source of a claim.
 
+## Academic Spectrum Humor
+
+Use everyday academic frustration as the first joke whenever possible. The reader should be able to recognize the scene before recognizing the physics layer.
+
+Good foreground engines across the academic spectrum:
+
+- freshman: `Will this be on the exam?`, unread syllabus, office hours, unit confusion, and the first collision with a hidden assumption;
+- bachelor's student: problem-set panic, group projects where one person does all the work, lab-report cleanup, and notation that changes names halfway through;
+- doctoral student: advisor comments that begin with `quick`, proof sections that move the problem instead of solving it, and the discovery that a simple assumption was carrying the argument;
+- postdoc: too many tabs, temporary funding, benchmark churn, and turning one clean idea into six deliverables;
+- professor: grant language, committee load, referee demands, conference questions, and the art of saying `interesting` while reaching for the residuals.
+
+Shared-academic-pain jokes should also include fear of funding cuts, fear of general change, and the institutional anxiety around a `new theory`. These work best when everyone in the room has a different version of the same worry: the freshman asks whether the exam changed, the doctoral student sees a chapter rewrite, the postdoc sees a funding risk, and the professor sees a committee meeting. The $\mathbb{A}\mathbb{A}\mathbb{A}$ layer should enter as the disciplined `new theory` being tested, not as a demand that the reader already agree with it.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ layer should usually be the second read: explicit assumptions, path-history, proof burdens, parsimony, causal delay, recovery targets, and open-source inspection. If the reader needs to know publishing culture or $\mathbb{A}\mathbb{A}\mathbb{A}$ terminology before the joke works, the panel is too esoteric.
+
 ## Arc Architecture
 
 Start with short arcs that can produce both one-panel and three- or four-panel versions.
@@ -142,7 +158,7 @@ Start with short arcs that can produce both one-panel and three- or four-panel v
 
 ## Starter Series Candidates
 
-These are candidate series labels, not canonical terminology.
+Series labels are outreach handles, not canonical terminology.
 
 | Series | Format | Engine | Best use |
 | --- | --- | --- | --- |
@@ -157,20 +173,37 @@ These are candidate series labels, not canonical terminology.
 | Referee Two Finds The Ontology | Four-panel | A reviewer asks for a standard-framework rewrite, Rachel asks for the actual residual, and the last panel routes the dispute to claim levels. | Academic hidden humor, peer-review satire, serious proof-burden routing. |
 | The Seminar Question | Four-panel | A polite question slowly reveals an entire ontology dispute, notation objection, and publication-history joke. | Graduate-student and physicist-facing social posts. |
 | Future Work, Obviously | One-panel or four-panel | A claim tries to escape into `future work`; the cast pins down the smallest derivation, simulation, or falsifier needed now. | Publishing irony and discipline around open problems. |
+| Group Project Assumption | One-panel or four-panel | One hidden assumption does all the work while the rest of the theory takes credit. | Everyday academic frustration, parsimony, explicit assumptions. |
+| Office Hours For A Claim | One-panel or four-panel | A confused claim asks what it needs to become a real result. | Freshman-friendly claim-level humor. |
+| New Theory, Same Budget | One-panel or four-panel | A `new theory` seminar triggers different funding, grading, dissertation, and committee anxieties across the room. | Shared academic pain, fear of change, funding pressure, disciplined theory testing. |
 
 ## First Prototype Recommendation
 
 Begin with a small repeatable set rather than a broad random anthology:
 
-1. `Rachel Checks The Claim`: one-panel credibility comics.
-2. `Mia Draws The Mechanism`: three- or four-panel general-reader comics.
-3. `Sophia's Geometry Notes`: one-panel visual mathematics.
-4. `Julian Opens The Artifact`: four-panel open-source route comics.
-5. `Future Work, Obviously`: one-panel or four-panel academic-publishing irony.
+1. `Signals From Earlier`: one-panel public joke plus visible causal-delay geometry.
+2. `Group Project Assumption`: one-panel everyday academic frustration plus explicit-assumption discipline.
+3. `Future Work, Obviously`: one-panel public joke about the `do later` box plus proof-burden discipline.
+4. `Rachel Checks The Claim`: one-panel credibility comics.
+5. `Julian Opens The Artifact`: four-panel open-source route comics.
 
 After `10` prototypes, review which format produces the clearest reader questions, strongest sharing, and cleanest route back to the source material. Keep random or unrelated styles as a controlled experiment lane, not the main identity.
 
 First script pack: [single-panel-prototypes.md](single-panel-prototypes.md).
+
+## Going-Forward Specification
+
+Future adult/academic comic batches should use shared academic pain as the normal entry layer before the $\mathbb{A}\mathbb{A}\mathbb{A}$ layer appears.
+
+Required recurring foreground pressures:
+
+- fear of funding cuts or grant instability;
+- fear of general change, including syllabus, lab, dissertation, benchmark, committee, and institutional changes;
+- anxiety around a `new theory`, especially when different career stages hear different consequences before hearing the claims.
+
+The `new theory` joke should not ask the reader to accept $\mathbb{A}\mathbb{A}\mathbb{A}$ in advance. The scene should first make the human reaction legible: the freshman worries about the exam, the bachelor's student worries about the lab report, the doctoral student worries about a chapter rewrite, the postdoc worries about funding or benchmarks, and the professor worries about committees, grants, and review politics.
+
+The second read should then route the reaction into disciplined theory testing: what changes, what predicts, what breaks, what survives, what evidence exists, and what proof burden remains. Fear of change is allowed to be funny, but it is not a falsifier.
 
 ## Production Notes
 

@@ -1,12 +1,10 @@
 # Book 8 Image-Generation Brief: Patterns That Hold
 
-Use this brief after Book 7 review, before adding Book 8 back into `generation-manifest.json`.
-
 ## Master Style Prompt
 
 Generate text-free 3:2 landscape source illustrations for **Patterns That Hold**, Book 8 of **The Wonder of Nature and the Universe**.
 
-Match the Book 1 through Book 7 first-draft visual direction, with Book 8 focused on moving parts, timed messages, fit, stable patterns, and first assembly intuition.
+Use the established series visual direction, with Book 8 focused on moving parts, timed messages, fit, stable patterns, and first assembly intuition.
 
 - Electra is a young child with medium-brown skin, dark curly hair in two small puffs, and simple white-and-lavender play clothes.
 - Poz is a young child with light-brown skin, short straight dark hair, and simple white-and-purple play clothes.
@@ -83,9 +81,3 @@ A clean text-free adult-led bead-pattern activity: Electra and Poz sit beside a 
 ### Backmatter Activity 2
 
 A clean text-free adult-led spacing activity: Electra and Poz watch while a small grown-up hand moves one bead farther from a three-bead setup. Keep the other beads in place, show the old repeated arcs faintly, and show the newer motion trace failing to fit until the spacing is restored nearby. The activity should show that spacing matters for a stable pattern. Do not use arrows, labels, numbers, rulers, grids, panels, equations, or detached diagrams.
-
-## Notes Before Generation
-
-- Book 8 should have `15` source images: cover, 12 story spreads, and 2 backmatter activity images.
-- Do not generate Book 8 until Book 7 source images and layout are reviewed.
-- After approval, add Book 8 to `tools/build_generation_manifest.py` with `back_matter_count` set to `2`, add production prompt blocks to `patterns-that-hold.md`, rebuild the manifest, generate sources with the built-in `image_gen` workflow used for Books 1-7, run QA, render pages, then refresh the manifest again.

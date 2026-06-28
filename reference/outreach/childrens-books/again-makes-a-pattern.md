@@ -10,8 +10,6 @@ Wonder question: What happens if we do it again?
 
 Discovery sentence: Repeated paths can make a pattern.
 
-Text status: first-draft source images generated; landscape pages and derivatives exported. QA and manual geometry review pending.
-
 ## Book Promise
 
 This preschool book teaches:

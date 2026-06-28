@@ -10,8 +10,6 @@ Wonder question: How can we tell something moved?
 
 Discovery sentence: Motion can leave a trace.
 
-Text status: first-draft source images generated; landscape pages and derivatives exported. QA and manual geometry review pending.
-
 ## Book Promise
 
 This older-toddler / first-preschool book teaches:

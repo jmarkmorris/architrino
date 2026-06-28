@@ -21,25 +21,26 @@ Each prototype records:
 | --- | --- |
 | Series | `Future Work, Obviously` |
 | Main cast | Rachel Stone |
-| Surface joke | A claim tries to hide in the phrase `future work`, and Rachel refuses to let it leave the room. |
-| Hidden academic joke | `Future work` is shown as a literal escape hatch under a seminar podium. |
-| $\mathbb{A}\mathbb{A}\mathbb{A}$ point | Open proof burdens should be named directly rather than polished into vague confidence. |
+| Surface joke | An unfinished claim tries to jump into a `do later` box before doing its homework. |
+| Hidden academic joke | The `do later` box is the academic phrase `future work`, with `v67` paperwork nearby. |
+| $\mathbb{A}\mathbb{A}\mathbb{A}$ point | Open proof burdens should be named as concrete tests, derivations, or failure conditions. |
 | Claim level | Proof target. |
 
 ### Panel
 
-Rachel stands beside a whiteboard headed `Claim Level`. A large arrow points from `established` toward `future work`; Rachel has stopped it halfway at `proof target`. A trapdoor in the floor is labeled `future work`, with a stack of papers trying to slide into it.
+Rachel stands beside a simple sorting table with three large boxes: `proved`, `needs a test`, and `do later`. A stack of papers labeled `big claim` has little cartoon legs and is trying to hop into the `do later` box. Rachel gently blocks it and points to the `needs a test` box. The scene should read as a clear workplace gag before the academic labels are noticed.
 
 ### Bubble Text
 
-- Rachel speech bubble, rounded with smooth tapered tail: `Nice try. You are not "future work" until you tell us what would prove you.`
-- Paper stack thought bubble, dot trail: `Maybe if I cite three reviews...`
+- Rachel speech bubble, rounded with smooth tapered tail: `You can go in the later box after you write the test.`
+- Paper stack thought bubble, dot trail: `What if I just sound confident?`
 
 ### Background Text
 
-- Whiteboard rows: `established`, `working hypothesis`, `proof target`, `open problem`.
-- Small note on podium: `Seminar policy: unresolved claims may not use emergency exits.`
+- Whiteboard note: `A serious claim says what would prove it and what would break it.`
+- Small academic label on the `do later` box: `future work`.
 - Paper title on stack: `A Brief Note On Deferred Closure, v67`.
+- Sticky note: `Not a parking lot: write the falsifier.`
 
 ## 2. Citation Needed
 
@@ -68,31 +69,32 @@ Mia points calmly at a board showing two columns: `effective description` and `o
 - Tiny referee note attached to the label: `Major revision: define "is".`
 - Bottom margin note: `Prestige does not commute with proof.`
 
-## 3. Version 67
+## 3. Group Project Assumption
 
 | Field | Direction |
 | --- | --- |
-| Series | `The Version Number` |
-| Main cast | Sophia Calder |
-| Surface joke | The preprint has survived many revisions, but the version number is now the funniest part of the claim. |
-| Hidden academic joke | The equation stayed the same while the claim level kept moving downward. |
-| $\mathbb{A}\mathbb{A}\mathbb{A}$ point | A useful formula can remain valuable while its interpretation is corrected. |
+| Series | `Group Project Assumption` |
+| Main cast | Sophia Calder and Rachel Stone |
+| Surface joke | A group project is taking credit while one exhausted assumption did all the work. |
+| Hidden academic joke | A theory can look impressive while one unexamined primitive or assumption carries the argument. |
+| $\mathbb{A}\mathbb{A}\mathbb{A}$ point | Strong theory-building makes the load-bearing assumptions and primitives explicit, then prunes anything unnecessary. |
 | Claim level | Playful analogy plus proof-target discipline. |
 
 ### Panel
 
-Sophia studies a tablet showing a preprint timeline. The title stays fixed, but the subtitle changes from `we prove everything` to `candidate closure route`.
+Sophia and Rachel stand beside a classroom table labeled `group project`. Three cheerful folders labeled `equations`, `jargon`, and `nice diagram` pose for a presentation poster, while one tired little notebook labeled `hidden assumption` carries a huge stack of boxes labeled `explanation`, `prediction`, and `confidence`. Rachel points to the exhausted notebook. Sophia has a marker ready to move it from the floor onto the main poster under `what is doing the work?`.
 
 ### Bubble Text
 
-- Sophia speech bubble, rounded: `The equation survived. The adjectives did not.`
-- Sophia thought bubble, cloud-like with dot trail: `Honestly, that is progress.`
+- Rachel speech bubble, rounded with smooth tapered tail: `Your group project has one student doing all the work.`
+- Sophia speech bubble, rounded with smooth tapered tail: `Then that student goes on the title slide.`
+- Hidden assumption thought bubble, cloud-like with dot trail: `Finally.`
 
 ### Background Text
 
-- Tablet title: `Delayed Geometry And The Nearly Final Final Draft, v67`.
-- Version notes: `v12: "complete" removed`; `v31: "obvious" replaced by "requires lemma"`; `v67: added negative control`.
-- Tiny status stamp: `accepted by humility, pending by journal`.
+- Poster headings: `what is assumed?`, `what is derived?`, `what would break?`.
+- Tiny background note: `Parsimony rule: fewer primitives, fewer hiding places.`
+- Small wastebasket label: `decorative explanations`.
 
 ## 4. Show The Residuals
 
@@ -206,39 +208,72 @@ Rachel reads a referee report. Behind her, a stack labeled `requested comparison
 | --- | --- |
 | Series | `Signals From Earlier` |
 | Main cast | Mia Quinn and Sophia Calder |
-| Surface joke | The present scene is interrupted by the visible history it depends on. |
-| Hidden academic joke | The caption mocks instantaneous explanations that skipped the causal ledger. |
+| Surface joke | The present has an inbox, and some messages from earlier are still arriving. |
+| Hidden academic joke | The background mocks instantaneous explanations as a skipped delivery route. |
 | $\mathbb{A}\mathbb{A}\mathbb{A}$ point | The present carries path-history; earlier emissions and delayed reception matter. |
 | Claim level | Established outreach explanation of the architecture's level distinction, with technical closure still separate. |
 
 ### Panel
 
-Mia and Sophia stand beside a moving object. Behind it, translucent causal wakes show earlier positions feeding the current state. A simple effective arrow labeled `instant force` looks embarrassed beside the richer path-history drawing.
+Mia and Sophia stand beside a simple demonstration track. At the right end, a toy cart labeled `now` has a little inbox on top. Envelopes labeled `sent earlier` are arriving along soft glowing arcs from faded earlier cart positions behind it. One envelope is still mid-flight. The path-history arcs should be the main visual signal, not a dense diagram. A small plain arrow labeled `instant shortcut` waits off to the side, holding a delivery ticket.
 
 ### Bubble Text
 
-- Mia speech bubble, rounded: `What matters now includes what could arrive from earlier.`
-- Sophia speech bubble, rounded: `The little arrow is not wrong. It is just wearing a very small hat.`
-- Effective arrow thought bubble, dot trail: `I was doing my best in the textbook margin.`
+- Mia speech bubble, rounded: `The present has an inbox.`
+- Sophia speech bubble, rounded: `And some of the mail is still in transit.`
+- Instant shortcut thought bubble, dot trail: `I assumed same-day delivery.`
 
 ### Background Text
 
-- Causal wake labels: `earlier source`, `arrival now`, `admissible history`.
-- Small caption box: `Effective summaries are useful after the ledger is paid.`
+- Causal wake labels: `sent earlier`, `in transit`, `arrives now`.
+- Small caption box: `Effective summaries are useful after the route is known.`
 - Preprint note in background: `Instantaneous Intuition, revised under delay pressure, v67`.
+
+### Keeper Decision
+
+`signals-from-earlier-prototype-v2-present-inbox.png` is the selected keeper direction. It works because the public joke reads first: the present has an inbox and the mail is still arriving. The $\mathbb{A}\mathbb{A}\mathbb{A}$ causal-delay geometry then becomes the second read instead of the whole entry requirement.
+
+## 9. New Theory, Same Budget
+
+| Field | Direction |
+| --- | --- |
+| Series | `New Theory, Same Budget` |
+| Main cast | Mia Quinn, Rachel Stone, and Sophia Calder |
+| Surface joke | A `new theory` seminar makes everyone imagine the paperwork, grading, funding, and committee consequences before they hear the idea. |
+| Hidden academic joke | Academics often hear `new theory` through career-stage risk: exam changes, lab-report revisions, dissertation rewrites, funding cuts, benchmark churn, and committee work. |
+| $\mathbb{A}\mathbb{A}\mathbb{A}$ point | A new theory should be met with explicit claims, predictions, proof burdens, and failure conditions; social discomfort is not evidence against it. |
+| Claim level | Cultural satire plus theory-testing discipline. |
+
+### Panel
+
+Mia, Rachel, and Sophia stand at the front of a seminar room beside a flyer reading `new theory seminar today`. The audience spans the academic spectrum: a freshman holds an exam card, a bachelor's student clutches a lab report, a doctoral student protects a dissertation chapter, a postdoc grips a funding spreadsheet, and a professor stands beside a `change committee` sign. The cast has a calm checklist on the board: `what changes?`, `what predicts?`, `what breaks?`, `what survives?`.
+
+### Bubble Text
+
+- Professor speech bubble, rounded with smooth tapered tail: `When you say new theory, do you mean new facts, new forms, or a new committee?`
+- Mia speech bubble, rounded with smooth tapered tail: `Start with the claims. The paperwork can panic later.`
+- Postdoc thought bubble, cloud-like with dot trail: `Please let the budget be an effective description.`
+
+### Background Text
+
+- Funding notice: `Funding update: explain continuity with prior work.`
+- Syllabus note: `Subject to revision, unfortunately literal.`
+- Whiteboard note: `Change is not evidence. Fear is not a falsifier.`
+- Small seminar sign: `$\mathbb{A}\mathbb{A}\mathbb{A}$: proof burden welcome.`
 
 ## First Image-Test Candidates
 
 For image generation, start with:
 
-1. `Future Work, Obviously` because the visual trapdoor and claim-level board should be immediately readable.
-2. `Version 67` because it tests thought-bubble timing and academic hidden humor without needing a dense physics diagram.
+1. `Future Work, Obviously` because the `do later` box should make the foreground joke readable before the proof-burden layer appears.
+2. `Group Project Assumption` because the group-project gag should be readable across the academic spectrum before the explicit-assumption layer appears.
 3. `Signals From Earlier` because it tests whether $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry can be integrated into a funny panel without becoming a detached diagram.
+4. `New Theory, Same Budget` because fear of funding cuts and general change should become a shared academic-pain joke before the $\mathbb{A}\mathbb{A}\mathbb{A}$ layer appears.
 
 ## Generated Roughs
 
 First rough visual prototypes:
 
-- [Future Work, Obviously](assets/future-work-obviously-prototype-v2-rounded-bubbles.png)
-- [Version 67](assets/version-67-prototype.png)
-- [Signals From Earlier](assets/signals-from-earlier-prototype.png)
+- [Future Work, Obviously](assets/future-work-obviously-prototype-v3-public-joke.png)
+- [Group Project Assumption](assets/group-project-assumption-prototype.png)
+- [Signals From Earlier](assets/signals-from-earlier-prototype-v2-present-inbox.png)

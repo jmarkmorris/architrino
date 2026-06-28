@@ -66,7 +66,7 @@
   "lambda0305_replay_delta": {
     "trial_lambda": 0.305,
     "topology_recertified": true,
-    "ephemeral_replay_run_directory": "/private/tmp/proof-lambda0305/preledger",
+    "ephemeral_replay_run_directory": "scratch preledger directory (not durable)",
     "ephemeral_replay_ledgers_still_present": false,
     "comparisons": {
       "v4_simple_root_subrows": {

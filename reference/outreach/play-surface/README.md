@@ -1,10 +1,8 @@
 # Play Surface Merchandise Set
 
-Status: working product-design note. This is not an engineering drawing, safety certificate, or manufacturing specification.
-
 Series frame: **The Wonder of Nature and the Universe**
 
-This note captures a tenable first design for the series play-surface merchandise set. The set should let a child roll pure red and pure blue balls across modular contoured tiles while seeing path, return path, surface slope, and later potential-landscape lessons as physical play.
+The series play-surface merchandise set lets a child roll pure red and pure blue balls across modular contoured tiles while seeing path, return path, surface slope, and later potential-landscape lessons as physical play.
 
 The product should live alongside the book series without requiring the books to depict it or match it. The play surface is a separate physical activity product for caregiver-led play, classroom use, and possible merchandise.
 
@@ -367,7 +365,7 @@ First checker finding:
 
 ## Manufacturing Definition Package
 
-This note is not the manufacturing package. A manufacturer will need a controlled design-definition set.
+Manufacturing requires a controlled design-definition set.
 
 Expected handoff artifacts:
 

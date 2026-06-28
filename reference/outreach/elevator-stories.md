@@ -1,6 +1,6 @@
 # Elevator Stories
 
-These are spoken-story versions. Each one should fit a short conversation, a video opener, a social post thread, or the first paragraph of a flyer.
+Short spoken versions for conversations, video openers, social posts, and flyer openings.
 
 ## Curious Technical Reader
 

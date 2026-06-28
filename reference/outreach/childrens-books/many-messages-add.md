@@ -10,8 +10,6 @@ Wonder question: What happens when many messages arrive together?
 
 Discovery sentence: Several received influences can add into one path change.
 
-Text status: text-only manuscript draft; no image prompts in this pass.
-
 ## Book Promise
 
 This book teaches:
