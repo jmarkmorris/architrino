@@ -331,6 +331,21 @@ Current live v0 status remains `source_row_binding_open` until a non-fixture
 action-increment packet emits matching root-ledger and conservation-pullback
 hashes.
 
+Shared H39 provider boundary, 2026-06-28. The
+[branch-provider evidence report](../solver/branch-provider-evidence-report.md)
+maps the H39 aggregate-$P$ construction attempt to this rank as
+`target_only_not_accepted_source`. Its
+`branch_provider_candidate_source_contract_readout/v0` verifies the five-cell
+boundary replay and now records a non-authorizing source-provenance refinement,
+but the shared report still returns
+`provider_verdict=same_domain_branch_provider_missing` and
+`first_failure=accepted_non_fixture_source_missing`. The remaining H39
+blockers are `source_term_provider_directed_source_certification_open` and
+`source_term_provider_term_width_realization_open`; rank 2 also still requires
+`conservation_pullback_hash` on the same accepted transition source. Therefore
+this readout is not an `accepted_transition_source` and does not authorize
+`candidate_h_recovery`.
+
 Minimum non-fixture `accepted_transition_source` object:
 
 | Field | Required content | Fixture packet reading |

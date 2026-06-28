@@ -187,6 +187,126 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
     ),
     false
   );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout.schema,
+    "branch_provider_candidate_source_contract_readout/v0"
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout.status,
+    "candidate-boundary-replay-verified-source-term-provider-certification-open"
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_contract_boundary_verified,
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_contract_boundary_row_count,
+    5
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_contract_boundary_check_count,
+    17
+  );
+  assert.deepEqual(
+    h39ConstructionAttemptDetails.source_contract_readout.shared_source_cell_ids,
+    [
+      "speed.0.first-y",
+      "speed.1.first-y",
+      "speed.2.first-y",
+      "speed.3.first-y",
+      "speed.4.first-y",
+    ]
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_term_provider_probe_same_domain_contract_ready,
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_term_provider_probe_same_radius_contract_ready,
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .terminal_row_enclosure_boundary_replay_verified,
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .directed_rounded_shared_domain_provider_certified,
+    false
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_term_provider_probe_rows_certify_directed_rounded_source,
+    false
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_term_provider_probe_term_width_realization_closed,
+    false
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.schema,
+    "branch_provider_candidate_source_provenance_refinement/v0"
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement
+      .term_width_reduced_to_signed_radius_source_provenance,
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.term_width_is_primary_blocker,
+    false
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement
+      .directed_rounded_source_provenance_still_open,
+    true
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement
+      .source_provenance_certificate_fields_present,
+    false
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.source_provenance_emitter_materialized,
+    false
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement.provider_object_branch_intervals_present,
+    false
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .source_provenance_refinement
+      .provider_ready_authorized_by_this_refinement,
+    false
+  );
+  assert.deepEqual(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .open_provider_certification_blocker_kinds,
+    [
+      "source_term_provider_directed_source_certification_open",
+      "source_term_provider_term_width_realization_open",
+    ]
+  );
+  assert.equal(
+    h39ConstructionAttemptDetails.source_contract_readout
+      .provider_ready_authorized_by_this_readout,
+    false
+  );
 
   const h39Readouts =
     report.provider_object_construction_attempt.consumer_construction_attempt_readouts.filter(
@@ -235,6 +355,77 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
       (readout) =>
         readout.aggregate_erasure_negative_control_ref ===
         "aggregate-P-provider-probe-born-aggregate-only"
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.schema ===
+        "branch_provider_candidate_source_contract_readout/v0"
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.status ===
+        "candidate-boundary-replay-verified-source-term-provider-certification-open"
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_contract_boundary_verified === true
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout
+          ?.directed_rounded_shared_domain_provider_certified === false
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout
+          ?.provider_ready_authorized_by_this_readout === false
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.term_width_reduced_to_signed_radius_source_provenance === true
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.directed_rounded_source_provenance_still_open === true
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.source_provenance_emitter_materialized === false
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.source_contract_readout?.source_provenance_refinement
+          ?.provider_ready_authorized_by_this_refinement === false
     ),
     true
   );

@@ -41,7 +41,7 @@
   },
   "intake_record_summary": {
     "schema": "sigma_hf_01_external_schema_candidate_intake_record/v0",
-    "candidate_external_schema_received": true,
+    "candidate_external_schema_received": false,
     "required_fields_present": 5,
     "missing_fields": [
       "rule_kernel_obligation_binding",

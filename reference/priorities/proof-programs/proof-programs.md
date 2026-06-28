@@ -79,10 +79,21 @@ five local locks are bound, the three proof-grade fields remain required, no
 candidate external schema is received, no schema-validation intake is
 authorized, no rows are consumed, no live ledger is updated, and no branch
 chart is authorized.
+The [missing proof-grade fields derivation target](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.missing-proof-grade-fields-derivation-target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+and [report](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.missing-proof-grade-fields-derivation-target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+now narrow those three missing fields into one target-only proof object:
+`rule_kernel_obligation_binding` must discharge the derivation, soundness, and
+endpoint-application obligations;
+`rule_kernel_derivation_payload_target_binding` must bind `Sigma_hf_01` to a
+constructed rule-kernel derivation payload; and
+`proof_grade_derivation_schema_statement` must supply nonempty hypotheses,
+inference steps, conclusion, and source-data correspondence. This target is
+not a received external schema and keeps schema-validation intake, row
+consumption, live-ledger update, and branch-chart authorization false.
 
 ## Task Queue
 
-1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `sigma-hf-01-proof-object-envelope-staged`; the live continuation is one compatible external proof-grade derivation schema or derivation proof for the `Sigma_hf_01` separator slot satisfying the external schema acceptance contract, not another local placeholder, local proof-object envelope, or current-pool rescan. Depends on: none.
+1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `sigma-hf-01-missing-proof-grade-fields-target-staged`; the live continuation is one compatible external proof-grade derivation schema or derivation proof for the `Sigma_hf_01` separator slot satisfying the external schema acceptance contract, not another local placeholder, local proof-object envelope, missing-fields target, or current-pool rescan. Depends on: none.
 2. `planar_bridge` — Develop the first planar delayed-bridge closure as the higher-dimensional extension of the breather proof architecture. Status: `queued`; do not promote ahead of the collinear certificate unless that certificate fails with an explicit obstruction that the planar bridge is meant to resolve. Depends on: `breather_certificate`.
 3. `proof_program_handoff` — Keep theorem-program chapters, certificate artifacts, and downstream priority links aligned as proof targets are promoted or retired. Status: `active`. Depends on: `breather_certificate`, `planar_bridge`.
 

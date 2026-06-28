@@ -10,6 +10,8 @@ Status: `external_input_required`
 - Target slot: `Sigma_hf_01`
 - Fold interval: `F01`
 - Candidate external schema ref: `local-source-data-partial:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305`
+- Candidate external schema received: `false`
+- Candidate known local non-external artifact: `true`
 - Candidate status: `partial_local_source_data_candidate_not_external_proof_grade`
 
 ## Intake Predicate
@@ -27,6 +29,7 @@ Status: `external_input_required`
 
 Current count: 5 / 8 required fields present.
 First missing field: `rule_kernel_obligation_binding`.
+
 
 ## Authorization Locks
 

@@ -30,6 +30,10 @@ const PROOF_OBJECT_ENVELOPE_STEM =
   "sigma_hf_01_external_schema_candidate.proof-object-envelope.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305";
 const PROOF_OBJECT_ENVELOPE_JSON = `${PROOF_OBJECT_ENVELOPE_STEM}.json`;
 const PROOF_OBJECT_ENVELOPE_REPORT = `${PROOF_OBJECT_ENVELOPE_STEM}_report.md`;
+const MISSING_FIELDS_TARGET_STEM =
+  "sigma_hf_01_external_schema_candidate.missing-proof-grade-fields-derivation-target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305";
+const MISSING_FIELDS_TARGET_JSON = `${MISSING_FIELDS_TARGET_STEM}.json`;
+const MISSING_FIELDS_TARGET_REPORT = `${MISSING_FIELDS_TARGET_STEM}_report.md`;
 
 const DEFAULT_SOURCE_DATA_READINESS = `${CERT_DIR}/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_source_data_readiness_classifier.${PACKET_ID}.proof-interval-v6.lambda0305.json`;
 const DEFAULT_SCHEMA_TARGET = `${CERT_DIR}/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_target_packet.${PACKET_ID}.proof-interval-v6.lambda0305.json`;
@@ -82,6 +86,7 @@ function parseArgs(argv) {
     localSourceCandidate: false,
     placeholderRejectionCandidate: false,
     proofObjectEnvelope: false,
+    missingProofGradeFieldsTarget: false,
     sourceDataReadiness: DEFAULT_SOURCE_DATA_READINESS,
     schemaTarget: DEFAULT_SCHEMA_TARGET,
     contractSatisfaction: DEFAULT_CONTRACT_SATISFACTION,
@@ -105,6 +110,8 @@ function parseArgs(argv) {
       args.placeholderRejectionCandidate = true;
     } else if (arg === "--proof-object-envelope") {
       args.proofObjectEnvelope = true;
+    } else if (arg === "--missing-proof-grade-fields-target") {
+      args.missingProofGradeFieldsTarget = true;
     } else if (arg === "--source-data-readiness") {
       args.sourceDataReadiness = argv[++i];
     } else if (arg === "--schema-target") {
@@ -132,6 +139,8 @@ Options:
                     Emit a local missing-proof-grade-field placeholder rejection candidate plus its intake record.
   --proof-object-envelope
                     Emit a fail-closed Sigma_hf_01 proof-object envelope target.
+  --missing-proof-grade-fields-target
+                    Emit a target-only derivation packet for the three missing proof-grade fields.
   --source-data-readiness PATH
                     Source-data readiness JSON for --local-source-candidate.
   --schema-target PATH
@@ -286,12 +295,52 @@ function fieldVerdict(candidate, field) {
   };
 }
 
+function candidateTextMarkers(candidate, candidateRef) {
+  return [
+    candidate.schema,
+    candidate.status,
+    candidate.candidate_status,
+    candidate.candidate_origin,
+    candidate.artifact_id,
+    candidateRef,
+  ]
+    .filter((value) => typeof value === "string")
+    .map((value) => value.toLowerCase());
+}
+
+function isKnownLocalNonExternalArtifact(candidate, candidateRef) {
+  if (!isObject(candidate)) {
+    return false;
+  }
+  if (
+    candidate.used_as_external_schema === false ||
+    candidate.used_as_proof_grade_schema === false
+  ) {
+    return true;
+  }
+  const markers = candidateTextMarkers(candidate, candidateRef).join(" ");
+  return [
+    "not_external",
+    "local-source-data-partial",
+    "local-placeholder",
+    "placeholder-rejection",
+    "proof-object-envelope",
+    "missing-proof-grade-fields-derivation-target",
+    "current_pool_absence_classifier",
+  ].some((marker) => markers.includes(marker));
+}
+
 export function buildRecord(candidate = null, options = {}) {
   const candidateInput = candidate && isObject(candidate) ? candidate : {};
   const mismatches = lockMismatch(candidateInput);
   const candidateRef =
     candidateInput.candidate_external_schema_ref ?? candidateInput.source_ref ?? options.candidateRef ?? null;
-  const candidateReceived = candidateRef !== null && mismatches.length === 0;
+  const knownLocalNonExternalArtifact = isKnownLocalNonExternalArtifact(
+    candidateInput,
+    candidateRef,
+  );
+  const candidateReceived =
+    candidateRef !== null && mismatches.length === 0 && !knownLocalNonExternalArtifact;
   const fieldResults = REQUIRED_FIELDS.map((field) => fieldVerdict(candidateInput, field));
   const presentCount = fieldResults.filter((field) => field.present).length;
   const missingFields = fieldResults.filter((field) => !field.present).map((field) => field.field);
@@ -313,6 +362,8 @@ export function buildRecord(candidate = null, options = {}) {
     fold_interval: FOLD_INTERVAL,
     candidate_external_schema_ref: candidateRef,
     candidate_external_schema_received: candidateReceived,
+    candidate_file_screened: candidateRef !== null,
+    candidate_known_local_non_external_artifact: knownLocalNonExternalArtifact,
     required_fields_total: REQUIRED_FIELDS.length,
     required_fields_present: presentCount,
     missing_fields: missingFields,
@@ -531,6 +582,96 @@ export function buildProofObjectEnvelope(sourceDataReadiness, schemaTarget, cont
   };
 }
 
+export function buildMissingProofGradeFieldsDerivationTarget(
+  sourceDataReadiness,
+  schemaTarget,
+  contractSatisfaction,
+  sourceRefs = [],
+) {
+  const envelope = buildProofObjectEnvelope(
+    sourceDataReadiness,
+    schemaTarget,
+    contractSatisfaction,
+    sourceRefs,
+  );
+  const targetedMissingFields = [
+    {
+      field: "rule_kernel_obligation_binding",
+      status: "proof_grade_external_input_required",
+      required_predicates: [
+        "derivation_proof_obligation",
+        "soundness_proof_obligation",
+        "endpoint_application_proof_obligation",
+      ],
+      local_placeholder_satisfies_field: false,
+      current_pool_absence_satisfies_field: false,
+    },
+    {
+      field: "rule_kernel_derivation_payload_target_binding",
+      status: "proof_grade_external_input_required",
+      required_predicates: [
+        "slot=Sigma_hf_01",
+        "payload_target_declared=true",
+        "proof_binds_to_payload_target=true",
+        "rule_kernel_derivation_payload_constructed=true",
+      ],
+      local_placeholder_satisfies_field: false,
+      current_pool_absence_satisfies_field: false,
+    },
+    {
+      field: "proof_grade_derivation_schema_statement",
+      status: "proof_grade_external_input_required",
+      required_predicates: [
+        "hypotheses_nonempty",
+        "inference_steps_nonempty",
+        "conclusion_nonempty",
+        "source_data_correspondence_nonempty",
+      ],
+      local_placeholder_satisfies_field: false,
+      current_pool_absence_satisfies_field: false,
+    },
+  ];
+
+  return {
+    schema:
+      "sigma_hf_01_external_schema_candidate_missing_proof_grade_fields_derivation_target/v0",
+    status:
+      "priority-only-missing-proof-grade-fields-derivation-target-open_5_of_8_local_locks_bound_3_fields_targeted_no_external_schema_received_no_schema_validation_intake_no_row_consumption_no_live_ledger_update_no_branch_chart_authorization",
+    packet_id: PACKET_ID,
+    proof_interval: PROOF_INTERVAL,
+    lambda_branch: LAMBDA_BRANCH,
+    target_slot: TARGET_SLOT,
+    fold_interval: FOLD_INTERVAL,
+    basis_envelope_ref: `${CERT_DIR}/${PROOF_OBJECT_ENVELOPE_JSON}`,
+    basis_intake_record_ref: `${CERT_DIR}/${OUTPUT_JSON}`,
+    candidate_external_schema_received: false,
+    required_fields_total: envelope.required_fields_total,
+    required_fields_present: envelope.required_fields_present,
+    local_locks_bound: envelope.local_locks_bound,
+    targeted_missing_fields: targetedMissingFields,
+    missing_field_count: targetedMissingFields.length,
+    shared_carrier_target:
+      "source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload",
+    slot_result: envelope.slot_result,
+    row_slots_parked: envelope.row_slots_parked,
+    row_consumption_count: envelope.row_consumption_count,
+    preledger_pass: false,
+    updates_live_ledger: false,
+    branch_chart_authorized: false,
+    authorization: {
+      schema_validation_intake: false,
+      row_consumption: false,
+      accepted_source_packet: false,
+      branch_chart: false,
+    },
+    local_placeholders_satisfy_target: false,
+    current_pool_absence_satisfies_target: false,
+    used_as_external_schema: false,
+    used_as_proof_grade_schema: false,
+    source_refs: sourceRefs,
+  };
+}
+
 export function validationErrors(record) {
   const errors = [];
   if (!isObject(record)) {
@@ -638,6 +779,8 @@ Status: \`${record.slot_result}\`
 - Target slot: \`${record.target_slot}\`
 - Fold interval: \`${record.fold_interval}\`
 - Candidate external schema ref: ${record.candidate_external_schema_ref ? `\`${record.candidate_external_schema_ref}\`` : "absent"}
+- Candidate external schema received: \`${record.candidate_external_schema_received}\`
+- Candidate known local non-external artifact: \`${record.candidate_known_local_non_external_artifact}\`
 - Candidate status: ${record.candidate_status ? `\`${record.candidate_status}\`` : "absent"}
 
 ## Intake Predicate
@@ -787,6 +930,65 @@ no live ledger, and authorizes no branch chart.
 `;
 }
 
+function renderMissingProofGradeFieldsTargetReport(target) {
+  const localRows = target.local_locks_bound
+    .map((field) => `| \`${field}\` | local lock bound |`)
+    .join("\n");
+  const missingRows = target.targeted_missing_fields
+    .map((field) => {
+      const predicates = field.required_predicates.map((predicate) => `\`${predicate}\``).join(", ");
+      return `| \`${field.field}\` | ${predicates} |`;
+    })
+    .join("\n");
+
+  return `# Sigma_hf_01 Missing Proof-Grade Fields Derivation Target
+
+Status: \`${target.status}\`
+
+## Scope
+
+- Packet identity: \`${target.packet_id}\`
+- Proof interval: \`${target.proof_interval}\`
+- Lambda branch: \`${target.lambda_branch}\`
+- Target slot: \`${target.target_slot}\`
+- Fold interval: \`${target.fold_interval}\`
+- Candidate external schema received: \`${target.candidate_external_schema_received}\`
+- Basis envelope: \`${target.basis_envelope_ref}\`
+- Basis intake record: \`${target.basis_intake_record_ref}\`
+
+## Local Locks Bound
+
+| Field | Reading |
+| --- | --- |
+${localRows}
+
+Current count: ${target.required_fields_present} / ${target.required_fields_total} required fields present.
+
+## Targeted Proof-Grade Fields
+
+| Field | Required predicates |
+| --- | --- |
+${missingRows}
+
+Shared carrier target: \`${target.shared_carrier_target}\`
+
+## Authorization Locks
+
+- Slot result: \`${target.slot_result}\`
+- Row slots parked: ${target.row_slots_parked}
+- Row consumption count: ${target.row_consumption_count}
+- \`preledger_pass\`: \`${target.preledger_pass}\`
+- \`updates_live_ledger\`: \`${target.updates_live_ledger}\`
+- Branch chart authorized: \`${target.branch_chart_authorized}\`
+
+This packet is target-only. It narrows the three proof-grade fields that an
+external \`Sigma_hf_01\` derivation schema or derivation proof must supply, but
+it is not a received external schema, does not authorize schema-validation
+intake, consumes no rows, updates no live ledger, and authorizes no branch
+chart.
+`;
+}
+
 function emitLocalSourceCandidate(args) {
   const sourceDataReadiness = readJson(args.sourceDataReadiness);
   const schemaTarget = readJson(args.schemaTarget);
@@ -867,6 +1069,28 @@ function emitProofObjectEnvelope(args) {
   );
 }
 
+function emitMissingProofGradeFieldsTarget(args) {
+  const sourceDataReadiness = readJson(args.sourceDataReadiness);
+  const schemaTarget = readJson(args.schemaTarget);
+  const contractSatisfaction = readJson(args.contractSatisfaction);
+  const sourceRefs = [
+    sourceRef("source_data_readiness", args.sourceDataReadiness),
+    sourceRef("schema_target", args.schemaTarget),
+    sourceRef("contract_satisfaction", args.contractSatisfaction),
+  ];
+  const target = buildMissingProofGradeFieldsDerivationTarget(
+    sourceDataReadiness,
+    schemaTarget,
+    contractSatisfaction,
+    sourceRefs,
+  );
+  writeJson(path.join(args.outDir, MISSING_FIELDS_TARGET_JSON), target, args.pretty);
+  writeText(
+    path.join(args.outDir, MISSING_FIELDS_TARGET_REPORT),
+    renderMissingProofGradeFieldsTargetReport(target),
+  );
+}
+
 function validateAndPrint(filePath) {
   const record = readJson(filePath);
   const errors = validationErrors(record);
@@ -905,6 +1129,10 @@ function main() {
   }
   if (args.proofObjectEnvelope) {
     emitProofObjectEnvelope(args);
+    return;
+  }
+  if (args.missingProofGradeFieldsTarget) {
+    emitMissingProofGradeFieldsTarget(args);
     return;
   }
 

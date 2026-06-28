@@ -76,6 +76,7 @@ The emitted report returns:
 | `provider_object_construction_attempt.ready_candidate_count` | 0 |
 | `provider_object_construction_attempt.first_failure` | `accepted_non_fixture_source_missing` |
 | `provider_object_construction_attempt.consumer_construction_attempt_readouts` | 4 H39 readouts for ranks 2, 4, 5, and 6 |
+| `provider_object_construction_attempt.candidate_attempts[].source_contract_readout` | H39 directed-rounded shared-domain provider boundary replay verified, provider certification open, source-provenance refinement non-authorizing |
 
 The H39 aggregate-`P` construction-attempt readouts bind ranks 2, 4, 5, and 6
 to the same target-only row:
@@ -86,6 +87,40 @@ keeps `construction_attempt_ready=false`, keeps
 `provider_ready_authorized_by_this_attempt=false`, and keeps
 `downstream_consumer_authorization=false`. Rank 2 alone also records
 `consumer_specific_missing_fields=["conservation_pullback_hash"]`.
+
+## Candidate Source-Contract Readout
+
+The H39 construction attempt now carries
+`branch_provider_candidate_source_contract_readout/v0` with artifact id
+`h39-directed-rounded-shared-domain-provider-boundary-replay-source-contract-readout`.
+It records that the directed-rounded shared-domain provider boundary replay is
+verified across five shared source cells:
+`speed.0.first-y`, `speed.1.first-y`, `speed.2.first-y`,
+`speed.3.first-y`, and `speed.4.first-y`. The readout records 17 boundary
+checks, `source_term_provider_probe_same_domain_contract_ready=true`,
+`source_term_provider_probe_same_radius_contract_ready=true`, and
+`terminal_row_enclosure_boundary_replay_verified=true`.
+
+This is not provider acceptance. It keeps
+`directed_rounded_shared_domain_provider_certified=false`,
+`source_term_provider_probe_rows_certify_directed_rounded_source=false`,
+`source_term_provider_probe_term_width_realization_closed=false`, and
+`provider_ready_authorized_by_this_readout=false`. The open blocker kinds are
+`source_term_provider_directed_source_certification_open` and
+`source_term_provider_term_width_realization_open`.
+
+The readout also carries
+`branch_provider_candidate_source_provenance_refinement/v0`. This records the
+current H39 narrowing without changing the official blockers:
+`term_width_reduced_to_signed_radius_source_provenance=true`,
+`term_width_is_primary_blocker=false`,
+`directed_rounded_source_provenance_still_open=true`,
+`source_provenance_certificate_fields_present=false`,
+`source_provenance_emitter_materialized=false`, and
+`provider_object_branch_intervals_present=false`. The refinement therefore
+points the next evidence object at a directed-rounded same-domain
+source-provenance emitter or actual branch-resolved centered-residual source
+object, but keeps `provider_ready_authorized_by_this_refinement=false`.
 
 ## Authorization Boundary
 

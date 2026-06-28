@@ -381,6 +381,15 @@ maximum endpoint absolute value `0.15897364203230846`. This is a sampled
 sign-bracket success marker only: it has `used_as_certificate=false`,
 `bounds_retained_root_interval_boxes=false`, and
 `bounds_inactive_cover_interval_boxes=false`.
+The retained-root context also records
+`a1_inactive_cover_global_root_exclusion_sample_replay.v0` with replay digest
+`sha256:f1bf76712348f952e9e2678dd40ff2047ece37c42b2e8483539aadf8933776be`.
+On the same three-point $\theta$ sample grid it reports expected global
+partner/self root counts, maps all 12 sampled roots into the retained windows,
+and records `sampled_inactive_root_count=0`. This is an inactive-complement
+sample replay only: it has `used_as_certificate=false`,
+`bounds_retained_root_interval_boxes=false`, and
+`bounds_inactive_cover_interval_boxes=false`.
 The directed-rounding backend subrow now carries a digestible backend target,
 `a1_directed_rounding_backend_target.v0`, plus
 `a1_directed_rounding_backend_self_audit.v0`. The self-audit uses

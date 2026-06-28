@@ -8,6 +8,10 @@ const CONTRACT_SCHEMA = "branch_provider_evidence_contract/v0";
 const MANIFEST_SCHEMA = "branch_provider_evidence_candidates/v0";
 const CONSTRUCTION_ATTEMPT_SCHEMA =
   "same_domain_branch_provider_object_construction_attempt/v0";
+const SOURCE_CONTRACT_READOUT_SCHEMA =
+  "branch_provider_candidate_source_contract_readout/v0";
+const SOURCE_PROVENANCE_REFINEMENT_SCHEMA =
+  "branch_provider_candidate_source_provenance_refinement/v0";
 
 const ACCEPTED_SOURCE_STATUS = "accepted_non_fixture_source";
 
@@ -267,6 +271,94 @@ function fieldContractEntry({ path: fieldPath, requirement, failureCode, accepte
   };
 }
 
+function sameStringSet(left, right) {
+  return (
+    Array.isArray(left)
+    && left.length === right.length
+    && right.every((value) => left.includes(value))
+  );
+}
+
+function sourceContractReadoutValidationErrors(readout, label) {
+  if (readout === null || readout === undefined) {
+    return [];
+  }
+  const errors = [];
+  const expectedSharedSourceCellIds = [
+    "speed.0.first-y",
+    "speed.1.first-y",
+    "speed.2.first-y",
+    "speed.3.first-y",
+    "speed.4.first-y",
+  ];
+  const expectedBlockerKinds = [
+    "source_term_provider_directed_source_certification_open",
+    "source_term_provider_term_width_realization_open",
+  ];
+  if (!isObject(readout)) {
+    return [`${label} must be an object when present`];
+  }
+  if (readout.schema !== SOURCE_CONTRACT_READOUT_SCHEMA) {
+    errors.push(`${label} schema must be ${SOURCE_CONTRACT_READOUT_SCHEMA}`);
+  }
+  if (
+    readout.status !==
+    "candidate-boundary-replay-verified-source-term-provider-certification-open"
+  ) {
+    errors.push(`${label} status must keep source-term provider certification open`);
+  }
+  if (
+    readout.source_contract_boundary_verified !== true ||
+    readout.source_contract_boundary_row_count !== 5 ||
+    readout.source_contract_boundary_check_count !== 17 ||
+    !sameStringSet(readout.shared_source_cell_ids, expectedSharedSourceCellIds) ||
+    readout.provider_row_source_kind !==
+      "directed-rounded-same-domain-h38-source-map-residual-provider" ||
+    readout.source_term_provider_probe_same_domain_contract_ready !== true ||
+    readout.source_term_provider_probe_same_radius_contract_ready !== true ||
+    readout.terminal_row_enclosure_boundary_replay_verified !== true
+  ) {
+    errors.push(`${label} must verify the H39 source-contract boundary replay`);
+  }
+  if (
+    readout.directed_rounded_shared_domain_provider_certified !== false ||
+    readout.source_term_provider_probe_rows_certify_directed_rounded_source !==
+      false ||
+    readout.source_term_provider_probe_term_width_realization_closed !== false ||
+    !sameStringSet(
+      readout.open_provider_certification_blocker_kinds,
+      expectedBlockerKinds
+    ) ||
+    readout.provider_ready_authorized_by_this_readout !== false
+  ) {
+    errors.push(`${label} must keep provider certification and readiness false`);
+  }
+  const refinement = readout.source_provenance_refinement;
+  if (!isObject(refinement)) {
+    errors.push(`${label} must include source_provenance_refinement`);
+  } else if (
+    refinement.schema !== SOURCE_PROVENANCE_REFINEMENT_SCHEMA ||
+    refinement.status !==
+      "candidate-term-width-reduced-source-provenance-emitter-open" ||
+    refinement.term_width_reduced_to_signed_radius_source_provenance !== true ||
+    refinement.term_width_is_primary_blocker !== false ||
+    refinement.directed_rounded_source_provenance_still_open !== true ||
+    refinement.source_provenance_certificate_fields_present !== false ||
+    refinement.source_provenance_emitter_materialized !== false ||
+    refinement.provider_object_branch_intervals_present !== false ||
+    refinement.source_term_provider_probe_rows_certify_directed_rounded_source !==
+      false ||
+    refinement.source_term_provider_probe_term_width_realization_closed !==
+      false ||
+    refinement.provider_ready_authorized_by_this_refinement !== false ||
+    typeof refinement.current_primary_missing_object_kind !== "string" ||
+    typeof refinement.next_evidence_object !== "string"
+  ) {
+    errors.push(`${label} source_provenance_refinement must stay fail-closed`);
+  }
+  return errors;
+}
+
 function contract() {
   return {
     schema: CONTRACT_SCHEMA,
@@ -386,6 +478,9 @@ function evaluateConstructionAttemptCandidate(candidate) {
     branch_materialization_ready: branchMaterializationReady,
     first_failure: providerObjectFieldsReady ? null : failedFields[0]?.failure_code ?? "provider_candidate_absent",
     missing_or_rejected_fields: failedFields.map((field) => field.path),
+    source_contract_readout: isObject(candidate.source_contract_readout)
+      ? candidate.source_contract_readout
+      : null,
     field_results: fieldResults,
   };
 }
@@ -432,6 +527,9 @@ function buildConsumerConstructionAttemptReadouts(
             candidate.source_term_refs_upstream_of_aggregate_p ?? null,
           aggregate_erasure_negative_control_ref:
             candidate.aggregate_erasure_negative_control_ref ?? null,
+          source_contract_readout: isObject(candidate.source_contract_readout)
+            ? candidate.source_contract_readout
+            : null,
           construction_attempt_ready: attempt.provider_object_fields_ready,
           provider_ready_authorized_by_this_attempt: false,
           downstream_consumer_authorization: false,
@@ -652,6 +750,26 @@ export function validationErrors(report) {
         }
         if (readout?.downstream_consumer_authorization !== false) {
           errors.push("consumer construction-attempt readouts must not authorize downstream consumers");
+          break;
+        }
+        const readoutErrors = sourceContractReadoutValidationErrors(
+          readout?.source_contract_readout,
+          "consumer construction-attempt source-contract readout"
+        );
+        if (readoutErrors.length > 0) {
+          errors.push(...readoutErrors);
+          break;
+        }
+      }
+    }
+    if (Array.isArray(attempt.candidate_attempts)) {
+      for (const candidateAttempt of attempt.candidate_attempts) {
+        const readoutErrors = sourceContractReadoutValidationErrors(
+          candidateAttempt?.source_contract_readout,
+          "construction-attempt candidate source-contract readout"
+        );
+        if (readoutErrors.length > 0) {
+          errors.push(...readoutErrors);
           break;
         }
       }

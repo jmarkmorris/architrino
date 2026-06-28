@@ -35,7 +35,7 @@ The candidate source is suitable for a source-field map because it is versioned 
 | Existing scripts/fixtures/packets | [eq11a-gravitational-wave-source-residual.mjs](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs), [eq11a-gravitational-wave-source-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-attempt.v1.json), [EQ-11A Gravitational-Wave Source Recovery](eq-11a-gravitational-wave-source-recovery.md) |
 | Breakthrough angle | Reuse `EQ-29` source-ledger grammar and `EQ-23A` source-window identity fields, while keeping the gravitational-wave effective-metric tensor channel separate from photon radiation or explosive-source carriers. |
 | Fail-closed negative control | `gw.source_window_split`: chirp, quadrupole, strain, and ringdown rows pass numerically but use different `carrierId`, `sourceWindowId`, or detector path-history window. Expected failure: carrier split or hidden-retune failure before residual scoring. |
-| Next action | Build a checker-consumable candidate input with concrete ids and source paths for the rows below, all still `attempt`, then run the existing EQ11A checker. |
+| Next action | Replace the source-contract shell with the smallest accepted retained $\Theta_{\mathrm{GWsrc}}(W,P)$ evidence object; the shell itself must remain score-neutral. |
 
 ## Required Row Map
 
@@ -167,10 +167,73 @@ node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --inp
 
 The first command advances only to `nextBlocker=missing_accepted_chirp_mass_row`, with `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-quadrupole-source-row-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-quadrupole-source-row-mismatch-negative-control.v1.json) keeps an accepted-looking quadrupole row blocked at `missing_accepted_quadrupole_source_row` when its `sourceEvidence` names the wrong row.
 
+The score-neutral chirp-mass boundary is staged in [eq11a-gravitational-wave-source-chirp-mass-row-source-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-chirp-mass-row-source-contract.v1.json), with checker input [eq11a-gravitational-wave-source-chirp-mass-row-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-chirp-mass-row-source-contract-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-chirp-mass-row-source-contract-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-chirp-mass-row-source-contract-attempt.v1.json --summary --pretty --require-populated
+```
+
+The first command advances only to `nextBlocker=missing_accepted_peters_decay_row`, with `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-chirp-mass-row-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-chirp-mass-row-mismatch-negative-control.v1.json) keeps an accepted-looking chirp-mass row blocked at `missing_accepted_chirp_mass_row` when its `sourceEvidence` names the wrong row.
+
+The score-neutral Peters-decay boundary is staged in [eq11a-gravitational-wave-source-peters-decay-row-source-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-peters-decay-row-source-contract.v1.json), with checker input [eq11a-gravitational-wave-source-peters-decay-row-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-peters-decay-row-source-contract-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-peters-decay-row-source-contract-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-peters-decay-row-source-contract-attempt.v1.json --summary --pretty --require-populated
+```
+
+The first command advances only to `nextBlocker=missing_accepted_strain_flux_row`, with `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-peters-decay-row-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-peters-decay-row-mismatch-negative-control.v1.json) keeps an accepted-looking Peters-decay row blocked at `missing_accepted_peters_decay_row` when its `sourceEvidence` names the wrong row.
+
+The score-neutral strain-flux boundary is staged in [eq11a-gravitational-wave-source-strain-flux-row-source-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-strain-flux-row-source-contract.v1.json), with checker input [eq11a-gravitational-wave-source-strain-flux-row-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-strain-flux-row-source-contract-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-strain-flux-row-source-contract-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-strain-flux-row-source-contract-attempt.v1.json --summary --pretty --require-populated
+```
+
+The first command advances only to `nextBlocker=missing_accepted_ringdown_label_row`, with `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-strain-flux-row-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-strain-flux-row-mismatch-negative-control.v1.json) keeps an accepted-looking strain-flux row blocked at `missing_accepted_strain_flux_row` when its `sourceEvidence` names the wrong row.
+
+The score-neutral ringdown-label boundary is staged in [eq11a-gravitational-wave-source-ringdown-label-row-source-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-ringdown-label-row-source-contract.v1.json), with checker input [eq11a-gravitational-wave-source-ringdown-label-row-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-ringdown-label-row-source-contract-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-ringdown-label-row-source-contract-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-ringdown-label-row-source-contract-attempt.v1.json --summary --pretty --require-populated
+```
+
+The first command advances only to `nextBlocker=missing_accepted_detector_strain_record`, with `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-ringdown-label-row-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-ringdown-label-row-mismatch-negative-control.v1.json) keeps an accepted-looking ringdown-label row blocked at `missing_accepted_ringdown_label_row` when its `sourceEvidence` names the wrong row.
+
+The score-neutral detector-strain-record boundary is staged in [eq11a-gravitational-wave-source-detector-strain-record-source-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-detector-strain-record-source-contract.v1.json), with checker input [eq11a-gravitational-wave-source-detector-strain-record-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-detector-strain-record-source-contract-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-detector-strain-record-source-contract-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-detector-strain-record-source-contract-attempt.v1.json --summary --pretty --require-populated
+```
+
+The first command advances only to `nextBlocker=missing_accepted_source_provenance`, with `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-detector-strain-record-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-detector-strain-record-mismatch-negative-control.v1.json) keeps an accepted-looking detector-strain row blocked at `missing_accepted_detector_strain_record` when its `sourceEvidence` names the wrong row.
+
+The score-neutral source-provenance boundary is staged in [eq11a-gravitational-wave-source-source-provenance-source-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-source-provenance-source-contract.v1.json), with checker input [eq11a-gravitational-wave-source-source-provenance-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-source-provenance-source-contract-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-source-provenance-source-contract-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-source-provenance-source-contract-attempt.v1.json --summary --pretty --require-populated
+```
+
+The first command advances only to `nextBlocker=missing_accepted_no_hidden_retune_witness`, with `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-source-provenance-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-source-provenance-mismatch-negative-control.v1.json) keeps an accepted-looking source-provenance row blocked at `missing_accepted_source_provenance` when its `sourceEvidence` names the wrong row.
+
+The score-neutral no-hidden-retune-witness boundary is staged in [eq11a-gravitational-wave-source-no-hidden-retune-witness-source-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-no-hidden-retune-witness-source-contract.v1.json), with checker input [eq11a-gravitational-wave-source-no-hidden-retune-witness-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-no-hidden-retune-witness-source-contract-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-no-hidden-retune-witness-source-contract-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-no-hidden-retune-witness-source-contract-attempt.v1.json --summary --pretty --require-populated
+```
+
+The first command reports `status=blocked_source_contract_boundary`, `nextBlocker=source_contract_boundary_not_retained_evidence`, and `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-no-hidden-retune-witness-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-no-hidden-retune-witness-mismatch-negative-control.v1.json) keeps an accepted-looking no-hidden-retune row blocked at `missing_accepted_no_hidden_retune_witness` when its `sourceEvidence` names the wrong row.
+
 The checker also reports `sourceContractBoundaryRows` and blocks all-source-contract shells at `status=blocked_source_contract_boundary`, `nextBlocker=source_contract_boundary_not_retained_evidence`. Source-contract boundaries can expose blocker order, but they cannot by themselves produce `status=populated`.
 
 ## Current Disposition
 
-The source map is ready for a chirp-mass-row source-contract attempt, not a score change. A future candidate input should preserve `status: attempt` until all row bindings are source-backed, durable, and accepted by the existing checker contract.
+The source-contract ladder is complete and still not a score change. A future candidate input must replace source-contract-boundary rows with retained evidence rows before the checker can report `status=populated`.
 
 No score changes.

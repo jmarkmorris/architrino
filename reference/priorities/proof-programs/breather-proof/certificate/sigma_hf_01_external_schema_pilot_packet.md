@@ -95,6 +95,9 @@ the eight-field predicate above before any row slot is opened.
 | Intake field | Required value for first candidate | Current value |
 | --- | --- | --- |
 | `candidate_external_schema_ref` | A stable file, citation, or proof-object identifier for the external schema. | `local-source-data-partial:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305`; local source-data partial, not proof-grade external schema |
+| `candidate_file_screened` | Local files may be screened without becoming external proof-grade schema input. | `true` |
+| `candidate_external_schema_received` | `true` only for a non-local proof-grade schema object that passes the external-input role screen. | `false` |
+| `candidate_known_local_non_external_artifact` | Must be `false` before the object can count as received external schema input. | `true` |
 | `target_slot` | `Sigma_hf_01` before any `R_*` row slot is considered. | `Sigma_hf_01` selected |
 | `source_data_record_lock` | Exact binding to the `Sigma_hf_01` separator source-data record under `fresh-v10-higher-fold-12-root-rebuild-v0`, `proof-interval-v6`, and `lambda0305`. | present on local candidate |
 | `required_fields_present` | All eight predicate fields present on the same object. | `5 / 8` |
@@ -111,7 +114,8 @@ Current checklist artifact:
 [sigma_hf_01_external_schema_candidate_intake_checklist.md](sigma_hf_01_external_schema_candidate_intake_checklist.md)
 records the current fail-closed separator-slot intake. It fixes the internal
 scope locks, records the local source-data partial candidate, records 5 / 8
-required predicate fields present, and keeps the slot at
+required predicate fields present, marks the local file as screened but not
+received external schema input, and keeps the slot at
 `external_input_required` because `rule_kernel_obligation_binding`,
 `rule_kernel_derivation_payload_target_binding`, and
 `proof_grade_derivation_schema_statement` remain absent.
@@ -145,3 +149,11 @@ Smallest continuation. Receive or construct one candidate external schema for
 `Sigma_hf_01`, then test the separator slot first. If the separator slot cannot
 supply all eight fields, the 11 row slots remain parked and no row-specific
 schema validation should run.
+
+The target-only
+[missing proof-grade fields derivation target](sigma_hf_01_external_schema_candidate.missing-proof-grade-fields-derivation-target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+now names the three open `Sigma_hf_01` proof-grade fields after the local 5 / 8
+screen: `rule_kernel_obligation_binding`,
+`rule_kernel_derivation_payload_target_binding`, and
+`proof_grade_derivation_schema_statement`. It does not count as a received
+external schema and does not authorize row-slot validation.

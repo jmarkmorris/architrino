@@ -10,6 +10,8 @@ Status: `external_input_required`
 - Target slot: `Sigma_hf_01`
 - Fold interval: `F01`
 - Candidate external schema ref: `local-placeholder-rejection:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305`
+- Candidate external schema received: `false`
+- Candidate known local non-external artifact: `true`
 - Candidate status: `local_missing_proof_grade_field_placeholders_rejected_not_external_schema`
 
 ## Intake Predicate

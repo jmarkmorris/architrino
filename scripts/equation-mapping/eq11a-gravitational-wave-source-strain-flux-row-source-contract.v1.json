@@ -1,0 +1,47 @@
+{
+  "schema": "aaa-equation-map-eq11a-strain-flux-row-source-contract/v1",
+  "claimLevel": "source-contract boundary for the EQ-11A strain_flux_row; score-neutral and not accepted retained evidence by itself",
+  "sourceRole": "strain_flux_row_source_contract",
+  "supportsEquationRows": [
+    "EQ-11A"
+  ],
+  "supportsRows": [
+    "strain_flux_row"
+  ],
+  "sourceWindowId": "GW150914-v3",
+  "supportId": "H1L1_GWTC1_PE_v3",
+  "eventId": "GWTC-1-confident/GW150914/v3",
+  "requiredSameRecordBinding": {
+    "carrierId": "theta_gwsrc_strain_flux_row_source_contract_attempt_0001",
+    "sourceWindowId": "GW150914-v3",
+    "supportId": "H1L1_GWTC1_PE_v3",
+    "eventId": "GWTC-1-confident/GW150914/v3"
+  },
+  "strainFluxFields": {
+    "detectorStrainReadout": [
+      "hDotPlus",
+      "hDotCross",
+      "flux"
+    ],
+    "pathHistoryState": [
+      "distance",
+      "sourcePower",
+      "detector_strain_record"
+    ],
+    "requiredConsumers": [
+      "detector_strain_record",
+      "effective_metric_tensor_channel",
+      "source_event_ledger",
+      "peters_decay_row"
+    ]
+  },
+  "directGeometryLayer": {
+    "standardComparisonTerm": "strain flux F_GW from h_+ and h_x",
+    "aaaGeometricReadout": "detector path-history strain-flux readout for both tensor strain polarizations on the same effective-metric tensor channel",
+    "requiredCarrierOrRow": "strain_flux_row",
+    "sameRecordBinding": "the strain-flux row shares the EQ-11A carrierId, sourceWindowId, supportId, eventId, detector_strain_record, source_event_ledger, quadrupole_source_row, and effective_metric_tensor_channel before detector-flux or luminosity residuals can count",
+    "failClosedNegativeControl": "eq11a-gravitational-wave-source-strain-flux-row-mismatch-negative-control.v1.json",
+    "smallestAcceptedEvidenceObject": "source-backed strain_flux_row bound to the GW150914 detector strain record, source ledger, quadrupole row, and tensor channel; score remains neutral until ringdown, detector strain, provenance, and no-retune rows are accepted"
+  },
+  "scoreDecision": "no_score_increase"
+}

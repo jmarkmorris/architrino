@@ -1,0 +1,53 @@
+{
+  "schema": "aaa-equation-map-eq11a-detector-strain-record-source-contract/v1",
+  "claimLevel": "source-contract boundary for the EQ-11A detector_strain_record; score-neutral and not accepted retained evidence by itself",
+  "sourceRole": "detector_strain_record_source_contract",
+  "supportsEquationRows": [
+    "EQ-11A"
+  ],
+  "supportsRows": [
+    "detector_strain_record"
+  ],
+  "sourceWindowId": "GW150914-v3",
+  "supportId": "H1L1_GWTC1_PE_v3",
+  "eventId": "GWTC-1-confident/GW150914/v3",
+  "requiredSameRecordBinding": {
+    "carrierId": "theta_gwsrc_detector_strain_record_source_contract_attempt_0001",
+    "sourceWindowId": "GW150914-v3",
+    "supportId": "H1L1_GWTC1_PE_v3",
+    "eventId": "GWTC-1-confident/GW150914/v3"
+  },
+  "detectorStrainRecordFields": {
+    "detectorPathHistoryReadout": [
+      "H1_strain_file",
+      "L1_strain_file",
+      "sampleRate",
+      "analysisWindow",
+      "calibrationState",
+      "detectorMask"
+    ],
+    "strainConsumers": [
+      "strain_flux_row",
+      "effective_metric_tensor_channel",
+      "source_event_ledger",
+      "ringdown_label_row"
+    ],
+    "requiredArtifactState": [
+      "strain_file_identifier",
+      "artifact_hash",
+      "calibration_or_nuisance_row",
+      "sourceWindowId",
+      "supportId",
+      "eventId"
+    ]
+  },
+  "directGeometryLayer": {
+    "standardComparisonTerm": "detector strain record for strain flux F_GW from h_+ and h_x",
+    "aaaGeometricReadout": "H1/L1 detector path-history record supplying the strain-flux readout for both tensor polarizations on the same effective-metric tensor channel",
+    "requiredCarrierOrRow": "detector_strain_record",
+    "sameRecordBinding": "the detector_strain_record shares the EQ-11A carrierId, sourceWindowId, supportId, eventId, H1/L1 strain files, calibration/nuisance state, detector mask, path-history window, strain_flux_row, source_event_ledger, and effective_metric_tensor_channel before detector-strain or flux residuals can count",
+    "failClosedNegativeControl": "eq11a-gravitational-wave-source-detector-strain-record-mismatch-negative-control.v1.json",
+    "smallestAcceptedEvidenceObject": "source-backed detector_strain_record with H1/L1 strain file identifiers, artifact hashes, sample/window choice, calibration or nuisance row, detector mask, and source-window binding; score remains neutral until source_provenance and no_hidden_retune_witness are accepted"
+  },
+  "scoreDecision": "no_score_increase"
+}

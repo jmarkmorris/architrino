@@ -6,7 +6,9 @@
   "target_slot": "Sigma_hf_01",
   "fold_interval": "F01",
   "candidate_external_schema_ref": "local-source-data-partial:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305",
-  "candidate_external_schema_received": true,
+  "candidate_external_schema_received": false,
+  "candidate_file_screened": true,
+  "candidate_known_local_non_external_artifact": true,
   "required_fields_total": 8,
   "required_fields_present": 5,
   "missing_fields": [
@@ -14,47 +16,56 @@
     "rule_kernel_derivation_payload_target_binding",
     "proof_grade_derivation_schema_statement"
   ],
+  "supplied_but_rejected_fields": [],
   "first_missing_field": "rule_kernel_obligation_binding",
   "lock_mismatches": [],
   "field_results": [
     {
       "field": "compatible_schema_role_lock",
       "present": true,
+      "candidate_field_supplied": true,
       "verdict": "present_on_candidate_for_intake_screen"
     },
     {
       "field": "compatible_proof_object_role_lock",
       "present": true,
+      "candidate_field_supplied": true,
       "verdict": "present_on_candidate_for_intake_screen"
     },
     {
       "field": "derivation_proof_target_lock",
       "present": true,
+      "candidate_field_supplied": true,
       "verdict": "present_on_candidate_for_intake_screen"
     },
     {
       "field": "derivation_proof_source_data_record_lock",
       "present": true,
+      "candidate_field_supplied": true,
       "verdict": "present_on_candidate_for_intake_screen"
     },
     {
       "field": "rule_kernel_obligation_binding",
       "present": false,
+      "candidate_field_supplied": false,
       "verdict": "external_input_required"
     },
     {
       "field": "rule_kernel_derivation_payload_target_binding",
       "present": false,
+      "candidate_field_supplied": false,
       "verdict": "external_input_required"
     },
     {
       "field": "proof_grade_derivation_schema_statement",
       "present": false,
+      "candidate_field_supplied": false,
       "verdict": "external_input_required"
     },
     {
       "field": "non_reinterpretation_guard",
       "present": true,
+      "candidate_field_supplied": true,
       "verdict": "present_on_candidate_for_intake_screen"
     }
   ],
@@ -71,5 +82,6 @@
     "branch_chart": false
   },
   "candidate_status": "partial_local_source_data_candidate_not_external_proof_grade",
+  "placeholder_rejection": null,
   "candidate_file_ref": "reference/priorities/proof-programs/breather-proof/certificate/sigma_hf_01_external_schema_candidate.local-source-data-partial.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json"
 }

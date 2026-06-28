@@ -95,6 +95,14 @@ It freezes the separator slot and 11 row slots for `Sigma_hf_01`, preserving
 0 rule-kernel derivation payloads, 0 consumed rows, `preledger_pass=false`,
 `updates_live_ledger=false`, and no branch-chart authorization.
 
+The target-only
+[missing proof-grade fields derivation target](sigma_hf_01_external_schema_candidate.missing-proof-grade-fields-derivation-target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+narrows the local 5 / 8 state to three required proof-grade predicates for
+`Sigma_hf_01`: `rule_kernel_obligation_binding`,
+`rule_kernel_derivation_payload_target_binding`, and
+`proof_grade_derivation_schema_statement`. It is not input received and does
+not authorize schema-validation intake.
+
 The next live proof-program action is not another 124-slot scan. It is to
 receive or construct one candidate external schema for the `Sigma_hf_01`
 separator slot and test the eight required fields above. If the separator slot

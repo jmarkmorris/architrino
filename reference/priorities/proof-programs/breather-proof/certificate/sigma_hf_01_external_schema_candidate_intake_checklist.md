@@ -21,6 +21,9 @@ accept a proof object, consumes 0 rows, keeps `preledger_pass=false`, keeps
 | `proof_interval` | `proof-interval-v6` | locked |
 | `lambda_branch` | `lambda0305` | locked |
 | `candidate_external_schema_ref` | `local-source-data-partial:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305` | local source-data partial; not proof-grade external schema |
+| `candidate_file_screened` | `true` | local candidate file screened |
+| `candidate_external_schema_received` | `false` | no proof-grade external schema received |
+| `candidate_known_local_non_external_artifact` | `true` | local source-data partial cannot satisfy external input |
 
 ## Eight-Field Intake Predicate
 
@@ -50,8 +53,9 @@ The producer is
 [fresh-v10-higher-fold-sigma-hf-01-external-schema-candidate-intake-record.mjs](../../../../../scripts/proof-programs/fresh-v10-higher-fold-sigma-hf-01-external-schema-candidate-intake-record.mjs).
 It emits `external_input_required` in absent-input mode, records the
 `Sigma_hf_01` local source-data partial candidate in
-`--local-source-candidate` mode, and permits a complete synthetic candidate
-only to reach
+`--local-source-candidate` mode with `candidate_file_screened=true` and
+`candidate_external_schema_received=false`, and permits a complete synthetic
+candidate only to reach
 `external_schema_input_received_for_schema_validation`; it still consumes 0
 rows, keeps `preledger_pass=false`, keeps `updates_live_ledger=false`, and
 authorizes no branch chart.
@@ -69,3 +73,9 @@ Smallest continuation: supply `rule_kernel_obligation_binding`,
 `rule_kernel_derivation_payload_target_binding`, and
 `proof_grade_derivation_schema_statement` on one `Sigma_hf_01` proof-grade
 schema object before any row-slot sweep starts.
+
+The target-only
+[missing proof-grade fields derivation target](sigma_hf_01_external_schema_candidate.missing-proof-grade-fields-derivation-target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+records those three fields as the current proof burden. It is not a local
+placeholder, not a current-pool absence result, and not an external schema
+candidate received for validation.

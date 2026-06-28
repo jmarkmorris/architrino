@@ -107,9 +107,10 @@ function summarizeFutureProfileCertificate(certificate) {
   );
 }
 
-function withoutRetainedRootWindowBracketReplay(target) {
+function withoutAdmissibilityOnlyReplays(target) {
   const copy = structuredClone(target);
   delete copy.shared_interval_boxes.retained_root_window_bracket_replay;
+  delete copy.shared_interval_boxes.inactive_cover_exclusion_replay;
   return copy;
 }
 
@@ -363,6 +364,41 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(
     packet.shared_interval_box_certificate_target.shared_interval_boxes
       .retained_root_window_bracket_replay.used_as_certificate,
+    false
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .inactive_cover_exclusion_replay.schema,
+    "architrino.priority.master_equation_closure.a1_inactive_cover_global_root_exclusion_sample_replay.v0"
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .inactive_cover_exclusion_replay.status,
+    "sampled_inactive_cover_global_roots_excluded_not_interval_boxes"
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .inactive_cover_exclusion_replay.sampled_expected_global_counts,
+    true
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .inactive_cover_exclusion_replay.sampled_inactive_root_count,
+    0
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .inactive_cover_exclusion_replay.sampled_root_to_retained_window_matches,
+    12
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .inactive_cover_exclusion_replay.bounds_inactive_cover_interval_boxes,
+    false
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .inactive_cover_exclusion_replay.used_as_certificate,
     false
   );
   assert.equal(
@@ -816,6 +852,47 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     packet.retained_root_context.root_window_sign_bracket_replay.used_as_certificate,
     false
   );
+  assert.equal(
+    packet.retained_root_context.inactive_cover_exclusion_replay.schema,
+    "architrino.priority.master_equation_closure.a1_inactive_cover_global_root_exclusion_sample_replay.v0"
+  );
+  assert.equal(
+    packet.retained_root_context.inactive_cover_exclusion_replay.status,
+    "sampled_inactive_cover_global_roots_excluded_not_interval_boxes"
+  );
+  assert.equal(
+    packet.retained_root_context.inactive_cover_exclusion_replay.rows.length,
+    6
+  );
+  assert.equal(
+    packet.retained_root_context.inactive_cover_exclusion_replay
+      .sampled_expected_global_counts,
+    true
+  );
+  assert.equal(
+    packet.retained_root_context.inactive_cover_exclusion_replay
+      .sampled_inactive_root_count,
+    0
+  );
+  assert.equal(
+    packet.retained_root_context.inactive_cover_exclusion_replay.failures.length,
+    0
+  );
+  assert.equal(
+    packet.retained_root_context.inactive_cover_exclusion_replay
+      .roots_outside_retained_windows.length,
+    0
+  );
+  assert.equal(
+    packet.retained_root_context.inactive_cover_exclusion_replay
+      .bounds_inactive_cover_interval_boxes,
+    false
+  );
+  assert.equal(
+    packet.retained_root_context.inactive_cover_exclusion_replay
+      .used_as_certificate,
+    false
+  );
   assert.equal(packet.sampled_attempt_reading, "sampled_bounds_within_declared_convention");
   assert.equal(
     packet.retained_root_context.sampled_active_labels_match_retained_set,
@@ -899,13 +976,16 @@ test("A1 source identity diagnostic reproduces the admissible profile digest", (
   );
   assert.deepEqual(
     sourceIdentity.shared_interval_box_certificate_target,
-    withoutRetainedRootWindowBracketReplay(
-      packet.shared_interval_box_certificate_target
-    )
+    withoutAdmissibilityOnlyReplays(packet.shared_interval_box_certificate_target)
   );
   assert.equal(
     sourceIdentity.shared_interval_box_certificate_target.shared_interval_boxes
       .retained_root_window_bracket_replay,
+    undefined
+  );
+  assert.equal(
+    sourceIdentity.shared_interval_box_certificate_target.shared_interval_boxes
+      .inactive_cover_exclusion_replay,
     undefined
   );
   assert.deepEqual(

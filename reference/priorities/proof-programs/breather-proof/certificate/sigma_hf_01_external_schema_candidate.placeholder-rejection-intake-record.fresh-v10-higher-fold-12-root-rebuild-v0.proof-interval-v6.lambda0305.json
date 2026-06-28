@@ -6,7 +6,9 @@
   "target_slot": "Sigma_hf_01",
   "fold_interval": "F01",
   "candidate_external_schema_ref": "local-placeholder-rejection:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305",
-  "candidate_external_schema_received": true,
+  "candidate_external_schema_received": false,
+  "candidate_file_screened": true,
+  "candidate_known_local_non_external_artifact": true,
   "required_fields_total": 8,
   "required_fields_present": 5,
   "missing_fields": [

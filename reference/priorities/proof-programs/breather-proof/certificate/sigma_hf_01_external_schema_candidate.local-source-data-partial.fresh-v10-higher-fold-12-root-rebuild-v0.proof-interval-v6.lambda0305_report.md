@@ -26,6 +26,7 @@ Status: `partial_local_source_data_candidate_not_external_proof_grade`
 
 Current count: 5 / 8 required fields present.
 
+
 ## Missing Proof-Grade Fields
 
 | Field | Blocker | Source status |

@@ -121,6 +121,54 @@
       "normalization_identity_ref": null,
       "source_term_refs_upstream_of_aggregate_p": "source_map_residual_shared_stream_five_node_source_term_provider_probe",
       "aggregate_erasure_negative_control_ref": "aggregate-P-provider-probe-born-aggregate-only",
+      "source_contract_readout": {
+        "schema": "branch_provider_candidate_source_contract_readout/v0",
+        "artifact_id": "h39-directed-rounded-shared-domain-provider-boundary-replay-source-contract-readout",
+        "status": "candidate-boundary-replay-verified-source-term-provider-certification-open",
+        "source_contract_boundary_ref": "h39-requested-y44-directed-rounded-shared-domain-provider-boundary-replay-candidate",
+        "source_contract_boundary_schema": "neutral-braid-theta3minus-fold-pair-first-y-gd-h39-requested-y44-directed-rounded-shared-domain-provider-boundary-replay-candidate/v1",
+        "source_contract_boundary_status": "h39-requested-y44-directed-rounded-shared-domain-provider-boundary-replay-candidate-emitted",
+        "source_contract_boundary_proof_status": "candidate-boundary-replay-verified-source-term-provider-certification-open",
+        "source_contract_boundary_verified": true,
+        "source_contract_boundary_row_count": 5,
+        "source_contract_boundary_check_count": 17,
+        "shared_source_cell_ids": [
+          "speed.0.first-y",
+          "speed.1.first-y",
+          "speed.2.first-y",
+          "speed.3.first-y",
+          "speed.4.first-y"
+        ],
+        "provider_row_source_kind": "directed-rounded-same-domain-h38-source-map-residual-provider",
+        "source_term_provider_probe_same_domain_contract_ready": true,
+        "source_term_provider_probe_same_radius_contract_ready": true,
+        "terminal_row_enclosure_boundary_replay_verified": true,
+        "directed_rounded_shared_domain_provider_certified": false,
+        "source_term_provider_probe_rows_certify_directed_rounded_source": false,
+        "source_term_provider_probe_term_width_realization_closed": false,
+        "source_provenance_refinement": {
+          "schema": "branch_provider_candidate_source_provenance_refinement/v0",
+          "artifact_id": "h39-source-provenance-narrowing-readout",
+          "status": "candidate-term-width-reduced-source-provenance-emitter-open",
+          "term_width_reduced_to_signed_radius_source_provenance": true,
+          "term_width_is_primary_blocker": false,
+          "directed_rounded_source_provenance_still_open": true,
+          "source_provenance_certificate_fields_present": false,
+          "source_provenance_emitter_materialized": false,
+          "provider_object_branch_intervals_present": false,
+          "source_term_provider_probe_rows_certify_directed_rounded_source": false,
+          "source_term_provider_probe_term_width_realization_closed": false,
+          "latest_candidate_boundary": "terminal-source-covariance-lambda-provider-object-replay-audit-provider-branch-intervals-open",
+          "current_primary_missing_object_kind": "directed-rounded-same-domain-source-provenance-emitter-or-actual-branch-resolved-source-object",
+          "next_evidence_object": "directed-rounded same-domain source-provenance emitter or actual branch-resolved centered-residual source object before any same-domain branch-bearing provider row is accepted",
+          "provider_ready_authorized_by_this_refinement": false
+        },
+        "open_provider_certification_blocker_kinds": [
+          "source_term_provider_directed_source_certification_open",
+          "source_term_provider_term_width_realization_open"
+        ],
+        "provider_ready_authorized_by_this_readout": false
+      },
       "notes": "The H39 aggregate-P audit verifies that raw provider probe rows exist but the branch-bearing field hit count is zero; it is target-only evidence and does not certify actual provider-object branch rows or pushforward identity."
     }
   ]

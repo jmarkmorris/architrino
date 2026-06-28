@@ -1335,6 +1335,7 @@ def shared_interval_boxes_target_row(
     past_profile_interval_box_certificate: dict | None = None,
     future_transport_interval_box_certificate: dict | None = None,
     retained_root_window_bracket_replay: dict | None = None,
+    inactive_cover_exclusion_replay: dict | None = None,
 ) -> dict:
     required_box_ids = [
         "past_profile_interval_box",
@@ -1439,6 +1440,28 @@ def shared_interval_boxes_target_row(
                 "sampled_brackets_verified",
                 "sampled_min_endpoint_abs_value",
                 "sampled_max_endpoint_abs_value",
+                "bounds_retained_root_interval_boxes",
+                "bounds_inactive_cover_interval_boxes",
+                "used_as_certificate",
+                "used_as_local_certificate",
+                "used_as_shared_certificate",
+                "authorizes_outward_certificate",
+                "authorizes_obstruction_or_channel_decision",
+                "replay_digest",
+            )
+        }
+    if inactive_cover_exclusion_replay is not None:
+        row["inactive_cover_exclusion_replay"] = {
+            key: inactive_cover_exclusion_replay[key]
+            for key in (
+                "schema",
+                "artifact_id",
+                "method",
+                "status",
+                "sampled_expected_global_counts",
+                "sampled_inactive_root_count",
+                "sampled_root_to_retained_window_matches",
+                "sampled_min_retained_window_clearance",
                 "bounds_retained_root_interval_boxes",
                 "bounds_inactive_cover_interval_boxes",
                 "used_as_certificate",
@@ -1867,6 +1890,7 @@ def a1_shared_interval_box_certificate_target(
     directed_rounding_backend_target: dict | None = None,
     directed_rounding_backend_self_audit: dict | None = None,
     retained_root_window_bracket_replay: dict | None = None,
+    inactive_cover_exclusion_replay: dict | None = None,
 ) -> dict:
     return {
         "schema": (
@@ -1885,6 +1909,7 @@ def a1_shared_interval_box_certificate_target(
             past_profile_interval_box_certificate,
             future_transport_interval_box_certificate,
             retained_root_window_bracket_replay,
+            inactive_cover_exclusion_replay,
         ),
         "directed_rounding_backend": directed_rounding_backend_target_row(
             directed_rounding_backend_target,
@@ -2461,6 +2486,180 @@ def a1_retained_root_window_sign_bracket_sample_replay(
             "sampled_retained_root_window_sign_brackets_present_not_interval_boxes"
             if sampled_brackets_verified
             else "sampled_retained_root_window_sign_brackets_failed_not_certificate"
+        ),
+    }
+
+
+def inactive_cover_intervals_by_kind() -> dict[str, list[list[float]]]:
+    intervals_by_kind: dict[str, list[list[float]]] = {}
+    for kind in ("partner", "self"):
+        windows = sorted(
+            (
+                (window["window"][0], window["window"][1])
+                for window in RETAINED_WINDOWS
+                if window["kind"] == kind
+            ),
+            key=lambda bounds: bounds[0],
+        )
+        cursor = DELTA_CO
+        intervals: list[list[float]] = []
+        for lo, hi in windows:
+            if lo > cursor:
+                intervals.append([cursor, lo])
+            cursor = max(cursor, hi)
+        if cursor < DELTA_MAX:
+            intervals.append([cursor, DELTA_MAX])
+        intervals_by_kind[kind] = intervals
+    return intervals_by_kind
+
+
+def retained_window_for_root(kind: str, delta: float) -> dict | None:
+    for window in RETAINED_WINDOWS:
+        lo, hi = window["window"]
+        if window["kind"] == kind and lo <= delta <= hi:
+            return window
+    return None
+
+
+def a1_inactive_cover_global_root_exclusion_sample_replay(
+    source_digest: str,
+    profile: Profile,
+    theta_samples: list[float],
+    *,
+    delta_steps: int,
+    panels: int,
+) -> dict:
+    rows: list[dict] = []
+    failures: list[str] = []
+    outside_roots: list[dict] = []
+    root_to_window_matches = 0
+    min_retained_window_clearance = math.inf
+    expected_counts_by_kind = {"partner": 3, "self": 1}
+    inactive_intervals = inactive_cover_intervals_by_kind()
+
+    for theta in theta_samples:
+        for kind in ("partner", "self"):
+            roots = find_roots(
+                kind,
+                theta,
+                delta_steps=delta_steps,
+                panels=panels,
+                profile=profile,
+            )
+            matched_roots: list[dict] = []
+            roots_outside: list[dict] = []
+            for root in roots:
+                window = retained_window_for_root(kind, root)
+                if window is None:
+                    root_outside = {
+                        "theta": theta,
+                        "kind": kind,
+                        "delta": root,
+                    }
+                    roots_outside.append(root_outside)
+                    outside_roots.append(root_outside)
+                    continue
+                lo, hi = window["window"]
+                lower_clearance = root - lo
+                upper_clearance = hi - root
+                window_clearance = min(lower_clearance, upper_clearance)
+                min_retained_window_clearance = min(
+                    min_retained_window_clearance,
+                    window_clearance,
+                )
+                root_to_window_matches += 1
+                matched_roots.append(
+                    {
+                        "label": window["label"],
+                        "delta": root,
+                        "window": [lo, hi],
+                        "lower_window_clearance": lower_clearance,
+                        "upper_window_clearance": upper_clearance,
+                        "window_clearance": window_clearance,
+                    }
+                )
+            expected_count = len(roots) == expected_counts_by_kind[kind]
+            if not expected_count:
+                failures.append(
+                    f"theta={theta}: {kind} root count {len(roots)} does not match expected {expected_counts_by_kind[kind]}"
+                )
+            if roots_outside:
+                failures.append(
+                    f"theta={theta}: {kind} has {len(roots_outside)} sampled root(s) outside retained windows"
+                )
+            rows.append(
+                {
+                    "theta": theta,
+                    "kind": kind,
+                    "expected_root_count": expected_counts_by_kind[kind],
+                    "sampled_root_count": len(roots),
+                    "sampled_expected_count": expected_count,
+                    "matched_root_count": len(matched_roots),
+                    "sampled_inactive_root_count": len(roots_outside),
+                    "matched_roots": matched_roots,
+                    "roots_outside_retained_windows": roots_outside,
+                }
+            )
+
+    sampled_expected_global_counts = all(
+        row["sampled_expected_count"] for row in rows
+    )
+    sampled_inactive_root_count = sum(
+        row["sampled_inactive_root_count"] for row in rows
+    )
+    sampled_inactive_cover_excluded = (
+        sampled_expected_global_counts
+        and sampled_inactive_root_count == 0
+        and not failures
+    )
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_inactive_cover_global_root_exclusion_sample_replay.v0"
+        ),
+        "artifact_id": (
+            "a1_inactive_cover_global_root_exclusion_sample_replay.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "method": (
+            "float64_full_delta_scan_root_to_retained_window_sample_replay"
+        ),
+        "theta_interval": [theta_samples[0], theta_samples[-1]],
+        "theta_samples": len(theta_samples),
+        "theta_boxes": "sample_grid_only_not_interval_boxes",
+        "delta_domain": [DELTA_CO, DELTA_MAX],
+        "delta_steps": delta_steps,
+        "integration_panels": panels,
+        "inactive_cover_id": (
+            "sampled_complement_of_retained_windows_not_interval_cover"
+        ),
+        "inactive_cover_intervals_by_kind": inactive_intervals,
+        "sampled_expected_global_counts": sampled_expected_global_counts,
+        "sampled_inactive_root_count": sampled_inactive_root_count,
+        "sampled_root_to_retained_window_matches": root_to_window_matches,
+        "sampled_min_retained_window_clearance": (
+            min_retained_window_clearance
+            if math.isfinite(min_retained_window_clearance)
+            else None
+        ),
+        "rows": rows,
+        "roots_outside_retained_windows": outside_roots,
+        "failures": failures,
+        "bounds_retained_root_interval_boxes": False,
+        "bounds_inactive_cover_interval_boxes": False,
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "replay_digest": canonical_json_digest(payload),
+        "status": (
+            "sampled_inactive_cover_global_roots_excluded_not_interval_boxes"
+            if sampled_inactive_cover_excluded
+            else "sampled_inactive_cover_global_root_exclusion_failed_not_certificate"
         ),
     }
 
@@ -6240,6 +6439,15 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             panels=attempt_args.integration_panels,
         )
     )
+    inactive_cover_exclusion_replay = (
+        a1_inactive_cover_global_root_exclusion_sample_replay(
+            source_identity["digest"],
+            profile,
+            theta_samples,
+            delta_steps=attempt_args.delta_steps,
+            panels=attempt_args.integration_panels,
+        )
+    )
     shared_interval_target = a1_shared_interval_box_certificate_target(
         source_identity["digest"],
         coefficient_enclosure_attempt,
@@ -6249,6 +6457,7 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         directed_rounding_backend_target,
         directed_rounding_backend_self_audit,
         retained_root_window_bracket_replay=retained_root_bracket_replay,
+        inactive_cover_exclusion_replay=inactive_cover_exclusion_replay,
     )
     retained_root_replay = a1_retained_root_window_sample_replay(
         source_identity["digest"],
@@ -6477,6 +6686,7 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "rows": retained_rows_summary,
             "root_window_sign_bracket_replay": retained_root_bracket_replay,
             "root_window_sample_replay": retained_root_replay,
+            "inactive_cover_exclusion_replay": inactive_cover_exclusion_replay,
             "retained_failures": retained_failures,
             "used_as_certificate": False,
             "status": retained_root_replay["status"],
