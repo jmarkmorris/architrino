@@ -524,6 +524,300 @@
       "selectionNotes": [
         "Generated as a smaller gallery thumbnail that links to the full-size comic image."
       ]
+    },
+    {
+      "id": "new-theory-same-budget",
+      "title": "New Theory, Same Budget",
+      "description": "Single-panel outreach comic in which a new-theory seminar triggers different exam, lab, dissertation, funding, and committee anxieties.",
+      "path": "content/assets/images/outreach/comics/new-theory-same-budget.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "fileSizeBytes": 2552073,
+      "sha256": "78527437ce476ecc50986e711129eb5abd4a0eda44856153eecf9158b5e1a598",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "OpenAI image generation",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "comic direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach comics line from project direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Selected because the new-theory gag is readable as shared academic anxiety before the disciplined theory-testing layer appears."
+      ]
+    },
+    {
+      "id": "new-theory-same-budget-thumb",
+      "title": "New Theory, Same Budget Thumbnail",
+      "description": "Thumbnail derivative for the New Theory, Same Budget outreach comic gallery entry.",
+      "path": "content/assets/images/outreach/comics/thumbnails/new-theory-same-budget-thumb.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 360,
+        "height": 360
+      },
+      "fileSizeBytes": 238044,
+      "sha256": "e0fb25eb992f18a2854df7a14f9790e88af372441468879cf00d208cd87dc9fb",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic-thumbnail",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "sips derivative from new-theory-same-budget",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "thumbnail generation"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a derivative of the project-owned New Theory, Same Budget outreach comic.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic thumbnail",
+          "markdown gallery thumbnail"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Generated as a smaller gallery thumbnail that links to the full-size comic image."
+      ]
+    },
+    {
+      "id": "show-the-residuals",
+      "title": "Show The Residuals",
+      "description": "Single-panel outreach comic in which a glamorous main curve is checked against the residual plot before the claim is shared.",
+      "path": "content/assets/images/outreach/comics/show-the-residuals.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "fileSizeBytes": 2352727,
+      "sha256": "c2122ddd3491eb4a06886dd40c5dcad7bad7f121f94ae1966bd71b322eceb8e1",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "OpenAI image generation",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "comic direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach comics line from project direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Selected because the residual-plot joke routes excitement back to evidence quality before the claim is shared."
+      ]
+    },
+    {
+      "id": "show-the-residuals-thumb",
+      "title": "Show The Residuals Thumbnail",
+      "description": "Thumbnail derivative for the Show The Residuals outreach comic gallery entry.",
+      "path": "content/assets/images/outreach/comics/thumbnails/show-the-residuals-thumb.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 360,
+        "height": 360
+      },
+      "fileSizeBytes": 219529,
+      "sha256": "d68d131951b8d9c19771b568b20346ae12cfe1b66a96c706aced108973254bfa",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic-thumbnail",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "sips derivative from show-the-residuals",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "thumbnail generation"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a derivative of the project-owned Show The Residuals outreach comic.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic thumbnail",
+          "markdown gallery thumbnail"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Generated as a smaller gallery thumbnail that links to the full-size comic image."
+      ]
+    },
+    {
+      "id": "office-hours-for-a-claim",
+      "title": "Office Hours For A Claim",
+      "description": "Single-panel outreach comic in which a nervous claim asks what it needs to pass office hours.",
+      "path": "content/assets/images/outreach/comics/office-hours-for-a-claim.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "fileSizeBytes": 2405942,
+      "sha256": "8dee922094edd54fae2acedf18207938ea2b3493249293679c7bbdad32e233e7",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "OpenAI image generation",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "comic direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach comics line from project direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Selected because the office-hours gag makes claim-level discipline readable through everyday academic frustration."
+      ]
+    },
+    {
+      "id": "office-hours-for-a-claim-thumb",
+      "title": "Office Hours For A Claim Thumbnail",
+      "description": "Thumbnail derivative for the Office Hours For A Claim outreach comic gallery entry.",
+      "path": "content/assets/images/outreach/comics/thumbnails/office-hours-for-a-claim-thumb.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 360,
+        "height": 360
+      },
+      "fileSizeBytes": 229274,
+      "sha256": "9f4e35bebd278562d42f50d580a80e35b5aede1d378549cac33a526394d81003",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic-thumbnail",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "sips derivative from office-hours-for-a-claim",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "thumbnail generation"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a derivative of the project-owned Office Hours For A Claim outreach comic.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic thumbnail",
+          "markdown gallery thumbnail"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Generated as a smaller gallery thumbnail that links to the full-size comic image."
+      ]
     }
   ]
 }

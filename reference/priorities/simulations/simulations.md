@@ -331,6 +331,18 @@ Current live v0 status remains `source_row_binding_open` until a non-fixture
 action-increment packet emits matching root-ledger and conservation-pullback
 hashes.
 
+Minimum non-fixture `accepted_transition_source` object:
+
+| Field | Required content | Fixture packet reading |
+| --- | --- | --- |
+| `transition_source_ref` | Path or generated artifact id for the branch-emitted transition source. | fixture-only |
+| `branch_certificate_ref` | Retained branch certificate that owns the source row. | absent |
+| `root_ledger_hash` | Hash of the active-root ledger consumed by the action-increment row. | absent for live binding |
+| `conservation_pullback_hash` | Hash of the conservation-pullback row consumed by the same action-increment row. | absent for live binding |
+| `action_increment_row_id` | Named non-fixture action-increment row with accepted status. | fixture row only |
+| `negative_control_ref` | Fail-closed control showing mismatched root or conservation hashes reject. | absent |
+| `candidate_h_recovery_vote` | May be emitted only after every row above binds on the same retained branch record. | not authorized |
+
 The remaining promotion blockers are executable, not editorial: no current artifact has shown same-row active-root identity under refinement, a positive Jacobian floor through the approach-to-$c_f$ scan, bounded particle-plus-wake energy on the retained branch rows, delayed-Noether status above `diagnostic-only`, stable one-cluster $\Delta I_{\mathrm{ME}}$ behavior, and a failing negative control with content hashes.
 
 ## Simulation Campaign Object

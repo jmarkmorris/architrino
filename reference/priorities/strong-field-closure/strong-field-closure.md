@@ -87,6 +87,38 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
   k_B\log\left|\mathcal{M}_{\mathcal{Q}}(\Omega)\right|.
   $$
   A small $S_{\mathcal{Q}}(\Omega)$ for the interior packing record must not be confused with horizon-interface entropy, exterior observer entropy, release-channel information, or global information loss.
+- Add a packed-geometry residual before treating the maximum-curvature barrier as quantitative. If $\mathcal{B}_{\mathrm{pack}}^{(\Omega)}$ is represented by candidate local packing cells, defects, or surface layers, require
+  $$
+  \mathcal{R}_{\mathrm{pack,geom}}
+  =
+  d_{\rho}\!\left(\rho_{\mathrm{pack}},\rho_{\mathrm{max}}\right)
+  +d_{\partial}\!\left(A_{\mathrm{surf}},A_{\mathrm{exposed}}\right)
+  +d_{\mathrm{def}}\!\left(\mathcal{D}_{\mathrm{defect}},\mathcal{D}_{\mathrm{allowed}}\right)
+  +d_{\mathrm{shield}}\!\left(\Pi_{\mathrm{surf}},\Pi_{\mathrm{ext}}\right).
+  $$
+  FCC, HCP, or other familiar dense-pack labels may seed trial cell families, but no lattice label is accepted as ontology until the delayed branch dynamics supply the retained packing, defect, and exposure rows.
+- Keep angular momentum as a separate compact-core ledger. Dense packing does not remove $\mathbf{J}$; it relocates the bookkeeping into bulk rotation, surface shear, defect circulation, surrounding Noether sea response, or outbound release. A candidate core should report
+  $$
+  \mathbf{J}_{\Omega}
+  =
+  \mathbf{J}_{\mathrm{bulk}}
+  +\mathbf{J}_{\mathrm{surf}}
+  +\mathbf{J}_{\mathrm{defect}}
+  +\mathbf{J}_{\mathrm{sea}}
+  +\mathbf{J}_{\mathrm{out}},
+  $$
+  and the release selector must state which terms drain into jets, winds, diffuse release, or reabsorption.
+- Add a many-body delayed-dynamics simulation target for packed interiors. The first useful target is not another isolated binary; it is an ensemble over $N\gg1$ architrinos or reduced Noether braid cells with delayed causal wakes, finite $c_f$, density control, defect creation, surface/interface rows, and a closed $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger. The minimal parameter record is
+  $$
+  \Theta_{\mathrm{pack\text{-}sim}}
+  =
+  \left(
+  N,\rho_{\mathrm{pack}},P_v(v),\mathcal{C}_{ij}(t),
+  \mathcal{D}_{\mathrm{defect}},\partial\Omega,
+  \mathcal{L}_{E\mathbf{p}\mathbf{J}}
+  \right).
+  $$
+  Success would be a finite packed branch, surface exposure law, or failure mode, not a visual dense-cloud analogy.
 - Use the neutron-star branch as the predecessor radial test for the embedded boundary formulation: for retained radii $0\le r\le R_*$, state when $\Theta_{\mathrm{NS}}(r)=(\rho_{\text{NS}},n,\chi_{\text{sea}},\Gamma_N,S_{ij},\mathcal{M}_{\text{sea}}^{ab},\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)})$ remains a compact non-horizon branch through $0<1-v_O(r)/c_f$, finite $\mathcal{R}_H(\Omega_r)$, closed event ledgers, and candidate packing headroom $0\le s_n(r)\le1$ when a pressure-packing model is used.
 - Derive a stronger observer-level strong-field prediction set.
 - Add the Event Horizon Telescope horizon-scale imaging packet as a direct observer benchmark. The native branch record $\theta$ must project to image-domain and visibility-domain observables
@@ -109,6 +141,7 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
 - Define the horizon-interface label ensemble $\mathcal{B}_H(M,\mathbf{J},Q)$ together with a local block label family $\mathcal{L}_U^H(\theta)$, then test whether $\lim_{|U|\to\infty}|U|^{-1}\log|\mathcal{L}_U^H(\theta)|\to 1/4$ supplies the area-scaling coefficient.
 - Test any proposed horizon identification by checking that the induced identified ensemble preserves exterior readout distributions, $\mathcal{R}_{H,\mathrm{bal}}$, Page-compatible release, finite boundary data, and the standard Hawking-temperature normalization within declared tolerances.
 - Decide the release-channel selection between jets, diffuse outflow, dark-sector escape, and candidate dark-sector photon-like modes.
+- Make the release selector condition-facing. At minimum it should record spin, net polarity/charge balance, inflow rate, ingestion spikes, merger history, existing packed-core size, core growth or shrinkage, interface defect population, surrounding Noether sea loading, jetting rate, and layer-transition state. A branch that changes the selected channel without changing one of these source conditions has introduced an untracked switch.
 - For any emitted Noether sea assembly or assembly fragment, retain a release-variable packet before routing the branch into visible, dark-sector, or reabsorbed channels:
   $$
   \Theta_{\mathrm{emit}}^{(c)}
@@ -159,6 +192,8 @@ Before a strong-field branch can feed cosmology, it needs a source/sink ledger r
 This taxonomy does not add a new closure gate. It keeps `release_channel_selection` from collapsing physically different source and sink routes into one adjustable cosmology term.
 
 Odd radio circles are a candidate source-family lead for the catastrophic row, not evidence for a new class by themselves. If used, the packet should record host association, morphology, spectrum, polarization, environment, merger/AGN history, and null controls against ordinary shock, lobe, and projection explanations. A strong-field release interpretation is admissible only if the same source/sink ledger supplies the energy, angular momentum, medium loading, and exterior radiative handoff without changing the release selector per object.
+
+Fermi-bubble and eROSITA-bubble comparisons are a cleaner galaxy-scale release lead because they already point to bounded energy, age, axis, and environment rows. If used, the packet should record total energy, radiative and dynamical age, Galactic-center or AGN history, axis symmetry, polarization or spectrum where available, surrounding gas state, and null controls against starburst winds, ordinary AGN feedback, and projection effects. The useful question is whether one release-channel selector can connect compact-source history to large-scale medium work without becoming a free feedback term.
 
 ### MIT 8.962 Compact-Source Scaffold
 

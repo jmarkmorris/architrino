@@ -265,6 +265,37 @@ the full ladder, while the certificate-grade path must still emit outward
 profile, retained-root, inactive-gap, branch-sum, transport, and residual
 constants on the same boxes.
 
+## Current First-Failure Reading 2026-06-28
+
+The reduced smoke does not apply the full certificate ladder because it does
+not emit outward profile, retained-root, inactive-gap, branch-sum, and
+transport boxes. The current failure reading is therefore split by scope:
+
+| Scope | First unresolved row | Current reading |
+| --- | --- | --- |
+| Certificate-grade A1 ladder | `admissible_profile_bounds` | No outward $q_{\min},q_{\max},H_b,E_Q^+(b)$ row has been certified on the retained A1 boxes. The obstruction/channel comparison is not yet legal. |
+| Reduced finite-collar smoke | `sampled_noise_only` | The sampled residual ladder reports `sampled_remainder_constants_unstable`; its $C_2$ variation is diagnostic noise for certificate purposes, not an outward residual envelope. |
+| Promotion gate | `blocked_pending_outward_constants` | The A1 handoff remains priority-only until the same boxes carry admissibility, root/gap persistence, branch-sum, transport, and residual-envelope constants plus the pass/fail comparison. |
+
+### Next Evidence Object: `a1_admissible_profile_bounds/v0`
+
+The next evidence object is a single-radius outward admissibility packet, not
+another sampled residual ladder. It must use one declared $b$, the retained A1
+row set, the same $\Theta_i\subset I_c$ boxes, the same active windows
+$W_\alpha$, and the same inactive-complement cover used by the later root/gap
+and residual rows.
+
+| Field | Required content | Closure effect |
+| --- | --- | --- |
+| Row identity | `b`, $\Theta_i$, $W_\alpha$, inactive-cover id, retained row-set path, and source commit or artifact hash. | Prevents mixing diagnostic rows from different boxes. |
+| Past-profile bounds | Outward $q_{\min},q_{\max},H_b$ for $q_p$ on $[-\Delta_R,0]$. | If $q_{\min}\le0$, classify the first failure as `positivity_loss`. |
+| Future-profile admissibility | Outward $q_{\min},q_{\max}$ for transported $Q_p$ on $I_c$, plus the emitted or explicitly missing ingredients needed for $E_Q^+(b)$. | If transport leaves the declared bounds before $\theta_c$, classify `transport_exit`; if the bound cannot close because branch-sum feedback is missing, leave `branch_sum_constants` as the next blocked row. |
+| First-failure statement | One of `positivity_loss`, `transport_exit`, `small_gain_failure`, or `admissible_profile_bounds_passed_to_root_gap_rows`, with the failed inequality named. | Passing this object only permits retained-root and inactive-gap persistence work; it does not certify obstruction, channel existence, or A1 closure. |
+
+A sampled finite-collar smoke may be cited only as diagnostic context for this
+object. It cannot supply any field above unless the value is outward-certified
+on the declared boxes.
+
 ## Advancement Decision
 
 This packet materially narrows `a1_outward_constants_handoff` from "make the

@@ -555,6 +555,24 @@ $C_{\chi}^{\mathrm{aniso}}$, and $m_S$ on one retained pressure row.
 Therefore every Fe/Cr, Ni/Co, or toy replay remains algebraic or empirical
 screening only until the branch intake is present.
 
+The smallest accepted branch-intake object is one retained pressure row, not a
+cross-row bundle. Its required fields are:
+
+| Field | Required same-row content | Current reading |
+| --- | --- | --- |
+| `branch_id` | Accepted finite branch identity for the row. | absent |
+| `accepted_history_segment_id` | History segment emitted by the accepted branch packet or generated report. | absent |
+| `quotient_chart_id` | Exposure quotient chart used by the mass-facing source row. | absent |
+| `residual_status` | Pass/fail residual status for the same pressure row. | absent |
+| `gap_or_stability_status` | Positive branch-gap or stability status for the same row. | absent |
+| `eta_ladder_status` | Eta-ladder persistence status when the row requires it. | absent |
+| `exposure_source_record` | Branch-emitted $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, and $\mathcal{N}_{\mathrm{tf},ab}(A)$. | absent |
+| `pressure_response_record` | Branch-emitted $\partial_PM_0^{\mathrm{src}}(A)$, $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, and $m_S$. | absent |
+
+Any replay missing one row in this table remains
+`finite_branch_evidence_missing`, even if its algebraic pressure residual is
+small or its empirical trend is suggestive.
+
 The first empirical or toy replay boundary is therefore narrow: a toy row may populate $\Pi$, $A$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, and masked $\mathcal{V}_{P,A}$ to exercise the algebra, but it must mark `pending_source_descent` until an accepted branch emits $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, $\mathcal{N}_{\mathrm{tf},ab}(A)$, and the derivative $\partial_P M_0^{\mathrm{src}}(A)$. A real Fe/Cr or Ni/Co replay can at most upgrade the status from `tf_bound_only` to a retained-span test unless the same branch-side source record is present.
 
 The pressure row also fixes the response-visible trace-free span for this specialization. At first order the pressure-visible span is contained in

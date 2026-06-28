@@ -245,6 +245,21 @@ $$
 
 This estimate is not a measurement of energy in the Euclidean void. In this chapter it is a stress test for the Noether sea coupling-selection theorem target: a viable constitutive law must explain why high-frequency internal energy is shielded from the observer-level cosmological channel while the slow outer-binary and transport sectors remain exposed.
 
+The same point separates void language from packed-phase language. A very large energy density may be meaningful inside a packed maximum-curvature or Noether sea phase, where constituents, exclusion geometry, and interface exposure are part of the state. That does not make the Euclidean void itself a reservoir with the same energy density. Dark-energy comparison should therefore ask which fraction of a dense internal or packed-phase inventory projects into homogeneous cosmological stress:
+$$
+\rho_{\mathrm{exposed}}
+=
+\Pi_{\mathrm{cos}}
+\!\left[
+\rho_{\mathrm{pack}},
+\rho_{\text{NS}},
+\mathcal{D}_{\mathrm{defect}},
+\partial\Omega,
+\theta_{\mathrm{transport}}
+\right],
+$$
+not whether every internal mode contributes equally to $\rho_{\mathrm{DE,eff}}$.
+
 This reframes the usual vacuum-catastrophe problem as a sector-exposure problem. A large internal Noether sea energy inventory may be real at the substrate level while only a small projection enters the homogeneous cosmological stress channel. In schematic form,
 $$
 \rho_{\mathrm{DE,eff}}

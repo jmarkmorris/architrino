@@ -510,6 +510,25 @@ holonomy, position closure, unit-tangent residual, support margin,
 noncollision, root-ledger persistence, and normal Krawczyk rows all closed on
 one bounded-speed ledger id.
 
+### Next Evidence Object: `bounded_speed_normal_reconstruction_candidate/v0`
+
+The next admissible object is a single same-ledger normal candidate. It is not
+a speed-ODE correction, not a range/cokernel probe, and not a handoff packet
+unless every row below is emitted on one bounded-speed ledger id.
+
+| Field | Required same-ledger content | Current reading |
+| --- | --- | --- |
+| `ledger_id` | One $\mathcal{L}_{\mathrm{live}}^\nu$ identity shared by speed, clock, normal, root, support, and force rows. | absent |
+| `scalar_speed_row` | Bounded-speed scalar speed row with speed band and primitive return. | preview only |
+| `clock_length_row` | Clock and length return on the same ledger as the speed row. | preview only |
+| `normal_residual_row` | Normal reconstruction residual with tolerance and source checksum. | absent |
+| `tangent_holonomy_row` | Tangent holonomy and unit-tangent residual on the same ledger. | absent |
+| `position_closure_row` | Position closure row tied to the same active-root convention. | absent |
+| `support_noncollision_row` | Support margin, noncollision, and support-band status. | absent |
+| `root_persistence_row` | Active-root persistence and Jacobian-floor status after bounded-speed reconstruction. | absent |
+| `normal_krawczyk_row` | Krawczyk or equivalent proof-ball budget for the normal reconstruction unknowns. | absent |
+| `candidate_status` | `bounded-speed-normal-reconstruction-candidate` with `retention=not_retained` and `retained_branch=false`. | `normal-candidate-missing` |
+
 Therefore the after-normal action/stability consumer must not attempt
 $\Gamma_B^\nu$, action curl, Noether/event exchange, tail/refinement,
 stability, observer-export eligibility, or coupled fixed-point consumption yet.

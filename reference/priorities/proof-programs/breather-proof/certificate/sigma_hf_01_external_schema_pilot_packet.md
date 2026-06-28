@@ -85,6 +85,27 @@ the slot is still not consumed; it only authorizes a follow-on validation
 artifact to test whether the received schema constructs a rule-kernel
 derivation payload.
 
+## First Candidate Schema Intake Record
+
+The first candidate intake record is intentionally a separator-slot test, not a
+row-slot sweep. It must bind one external object to `Sigma_hf_01` and preserve
+the eight-field predicate above before any row slot is opened.
+
+| Intake field | Required value for first candidate | Current value |
+| --- | --- | --- |
+| `candidate_external_schema_ref` | A stable file, citation, or proof-object identifier for the external schema. | absent |
+| `target_slot` | `Sigma_hf_01` before any `R_*` row slot is considered. | `Sigma_hf_01` selected; no object received |
+| `source_data_record_lock` | Exact binding to the `Sigma_hf_01` separator source-data record under `fresh-v10-higher-fold-12-root-rebuild-v0`, `proof-interval-v6`, and `lambda0305`. | absent |
+| `required_fields_present` | All eight predicate fields present on the same object. | `0 / 8` |
+| `schema_statement_check` | Hypotheses, inference steps, conclusion, and correspondence to the payload target are explicit enough for validation. | not started |
+| `non_reinterpretation_check` | The object proves that fail-closed diagnostics, target packets, and absence classifiers are not being used as proof-grade input. | not started |
+| `slot_result` | `external_schema_input_received_for_schema_validation` only after every row above passes. | `external_input_required` |
+
+This record is the smallest acceptable next artifact for the pilot. A prose
+idea, current-pool rescan, source certificate, or target packet may be cited as
+context, but it does not move the slot unless it supplies the candidate
+external schema object and all eight required fields for `Sigma_hf_01`.
+
 ## Pilot Verdict
 
 Current pilot result:

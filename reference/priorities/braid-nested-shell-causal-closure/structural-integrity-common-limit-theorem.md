@@ -295,6 +295,19 @@ or explicitly declare a candidate branch packet that remains below
 event-ledger rows are not eligible population inputs until
 `branch_certificate_ref` exists.
 
+The minimum `branch_certificate_ref` object for this packet is:
+
+| Field | Required same-record content | Current reading |
+| --- | --- | --- |
+| `branch_label` | One retained or explicitly candidate moving branch label $q$. | absent for a retained moving branch |
+| `extraction_window` | One window $W$ shared by clock, ruler, signal, photon, gravitational-wave, and event rows. | absent |
+| `active_root_ledger_ref` | Active-root ledger $\mathcal{A}_q$ with stable identity over $W$. | absent |
+| `gap_or_stability_ref` | Positive stability gap, inactive-root gap, ledger transversality floor, or retained signed root-index boundary. | absent |
+| `moving_deformation_ref` | Moving material deformation row for clock/ruler/signal extraction. | absent |
+| `noether_sea_dressing_ref` | Reserved same-branch dressing-record placeholder for later common-speed rows; no $c_\gamma$, $c_{\mathrm{GW}}$, or $c_0$ extraction is populated until `branch_certificate_ref` passes. | absent |
+| `event_convention_ref` | Event-ledger convention, or a same-certificate no-event declaration for $W$. | absent |
+| `certificate_status` | `accepted_same_branch` only after every required Gate A and common-limit row is populated; otherwise candidate status remains below population. | `blocked_pending_accepted_branch_chart` |
+
 ## First Proof Sequence
 
 1. Fix the retained branch certificate $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ with positive gap rows and no hidden branch transition. This step is inherited from the shared branch certificate contract.
@@ -329,6 +342,29 @@ event-ledger rows are not eligible population inputs until
 The packet is blocked by the absence of an accepted moving retained branch record. The current $A_0$ seed row is a rest-branch diagnostic with $\mathcal{D}_{\beta}=\{0\}$, and its compact corrected-carrier attempt remains fail-closed on direct one-period residuals. Until a moving continuation preserves one finite causal-root ledger with positive gaps, the proof route can define residual rows and failure modes but cannot populate $\widehat{\mathcal{R}}_{\mathrm{SI}}^{(q)}$.
 
 The next admissible proof move is therefore not another wording pass. It is a branch-chart or simulation/proof artifact that supplies a moving continuation and lets the common-limit residual vector be populated.
+
+### Minimum Evidence Object: `moving_retained_branch_certificate/v0`
+
+The next acceptable object for this packet is a same-branch moving retained
+branch certificate. It may be supplied by a branch-chart proof packet or by a
+replayable simulation/proof artifact, but it is not accepted if it only
+improves the $A_0$ rest seed, fits a Lorentz coefficient, or supplies an
+independent photon or gravitational-wave speed row.
+
+| Required row | Same-record binding | First-failure if absent or split |
+| --- | --- | --- |
+| `branch_certificate_ref` | One branch label $q$, window $W$, separator chart, active root ledger $\mathcal{A}_q$, positive $\nu_J^{(q)}$, $g_{\mathrm{inactive}}^{(q)}$, $h_{\mathrm{mem}}^{(q)}$, and $\Delta_{\mathbf{k}}^{(q)}$. | `blocked_pending_accepted_branch_chart` |
+| `moving_continuation_ref` | Same $q$, $W$, and $\mathcal{A}_q$ with nonzero drift band $\mathcal{D}_{\beta}$ and no branch transition. | `structural.branch_split` |
+| `root_boundary_ref` | Same active-root record reports the stability-gap, inactive-root-gap, transversality-floor, or signed root-index boundary for $c_{\mathrm{mat},q}^{\mathrm{lim}}$. | `structural.root_index_unreported` |
+| `deformation_generator_ref` | One generator $K_q$ produces both the envelope coefficient row and the clock-phase row. | `structural.generator_split` |
+| `common_speed_record_ref` | Same weak homogeneous $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, and clock/ruler map extracts $c_{\text{eff},q}^{\mathrm{hom}}$, $c_{\gamma,q}^{\mathrm{hom}}$, $c_{\mathrm{GW},q}^{\mathrm{hom}}$, and $c_0$ without independent speed fits. | `residual.speed_conflation` |
+| `signal_sector_refs` | Photon Gate A, gravitational-wave TT row, two-way signal residual, and nondispersion rows replay on the same branch and dressing record; inactive sector rows are explicitly `not_applicable` with a certificate reason. | `tri_lorentz.photon_gate_split` or `gw.metric_split` |
+| `event_ledger_ref` | $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$ closes or names the first residual channel on the same extraction window. | `event.ledger_residual` |
+
+Passing this checklist only permits population of
+$\widehat{\mathcal{R}}_{\mathrm{SI}}^{(q)}$. It does not by itself accept
+Photon Gate A, close the Lorentz or gravitational-wave rows, or authorize
+observer export.
 
 ## Promotion Decision
 

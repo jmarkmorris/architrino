@@ -174,26 +174,26 @@
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/20/ontological-transformation-of-the-big-bang/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/06/18/particle-rain/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/25/point-charge-cosmology-rulez/
-https://architrino.wordpress.com/2020/05/14/taking-the-wind-out-of-the-sails-of-universe-expansion/
-https://architrino.wordpress.com/2020/10/23/positive-infinity-meets-negative-infinity/
-https://architrino.wordpress.com/2021/06/27/what-really-causes-the-cmb/
-https://architrino.wordpress.com/2019/07/18/the-planck-satellite-data-set/
-https://architrino.wordpress.com/2019/06/20/fresh-thinking-on-the-cosmic-microwave-background/
-https://architrino.wordpress.com/2024/07/12/globular-clusters/
-https://architrino.wordpress.com/2022/07/29/the-anthropic-principle/
-https://architrino.wordpress.com/2020/06/22/dear-one-time-inflationary-big-bangers-and-expanders/
-https://architrino.wordpress.com/2020/07/03/cosmological-metrics/
-https://architrino.wordpress.com/2021/11/21/the-%ce%b1%ce%b2%ce%b3-paper/
-https://architrino.wordpress.com/2022/07/16/black-holes/
-https://architrino.wordpress.com/2021/05/06/black-holes-and-planck-cores/
-https://architrino.wordpress.com/2020/02/14/planck-core-energy/
-https://architrino.wordpress.com/2022/03/07/planck-cores-and-asymptotic-safety/
-https://architrino.wordpress.com/2020/07/17/can-planck-cores-spin/
-https://architrino.wordpress.com/2019/07/30/black-holes-are-not-opaque/
-https://architrino.wordpress.com/2019/07/09/rethink-supermassive-black-hole-dynamics/
-https://architrino.wordpress.com/2021/09/07/new-ideas-on-galaxy-dynamics/
-https://architrino.wordpress.com/2019/06/27/can-supermassive-black-holes-explain-galaxy-rotation-curves/
-https://architrino.wordpress.com/2019/06/12/a-new-model-for-bl-lacs-with-help-from-planck-and-arp/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/05/14/taking-the-wind-out-of-the-sails-of-universe-expansion/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/10/23/positive-infinity-meets-negative-infinity/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/06/27/what-really-causes-the-cmb/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/07/18/the-planck-satellite-data-set/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/20/fresh-thinking-on-the-cosmic-microwave-background/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/07/12/globular-clusters/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/07/29/the-anthropic-principle/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/06/22/dear-one-time-inflationary-big-bangers-and-expanders/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/07/03/cosmological-metrics/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/11/21/the-%ce%b1%ce%b2%ce%b3-paper/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/07/16/black-holes/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/05/06/black-holes-and-planck-cores/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/02/14/planck-core-energy/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/07/planck-cores-and-asymptotic-safety/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/07/17/can-planck-cores-spin/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/07/30/black-holes-are-not-opaque/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/07/09/rethink-supermassive-black-hole-dynamics/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/09/07/new-ideas-on-galaxy-dynamics/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/27/can-supermassive-black-holes-explain-galaxy-rotation-curves/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/12/a-new-model-for-bl-lacs-with-help-from-planck-and-arp/
 https://architrino.wordpress.com/2019/06/15/does-a-black-hole-shrink-while-jetting-planck-plasma/
 https://architrino.wordpress.com/2020/07/09/npqg-prediction-of-smbh-jet-inflation-validated/
 https://architrino.wordpress.com/2023/03/14/do-black-holes-emit-spacetime-aether/
