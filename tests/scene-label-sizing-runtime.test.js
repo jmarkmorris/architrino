@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  estimateLabelLineCount,
   resolveSharedLabelTypography,
   resolveWrappedLabelFit,
 } from "../src/runtime/SceneLabelSizingRuntime.js";
@@ -43,7 +44,22 @@ const philosophyHistoryLabels = [
   },
 ];
 
-test("chapter-index scene labels use a smaller shared title cap", () => {
+const homeSceneLabels = [
+  { labelTitle: "Foundations", textbookChapterLabel: "Ch 1" },
+  { labelTitle: "Dynamics", textbookChapterLabel: "Ch 2" },
+  { labelTitle: "Noether Braid", textbookChapterLabel: "Ch 3" },
+  { labelTitle: "Noether Sea and Effective Spacetime", textbookChapterLabel: "Ch 4" },
+  { labelTitle: "Standard Model Assemblies", textbookChapterLabel: "Ch 5" },
+  { labelTitle: "Atomic and Nuclear Assemblies", textbookChapterLabel: "Ch 6" },
+  { labelTitle: "Reactions", textbookChapterLabel: "Ch 7" },
+  { labelTitle: "Quantum", textbookChapterLabel: "Ch 8" },
+  { labelTitle: "Cosmology", textbookChapterLabel: "Ch 9" },
+  { labelTitle: "Validation", textbookChapterLabel: "Ch 10" },
+  { labelTitle: "Philosophy-History", textbookChapterLabel: "Ch 11" },
+  { labelTitle: "Outreach" },
+];
+
+test("chapter-index scene labels use a shared sphere-scaled title cap", () => {
   const fits = philosophyHistoryLabels.map((nodeData) =>
     resolveWrappedLabelFit({
       nodeData,
@@ -56,13 +72,38 @@ test("chapter-index scene labels use a smaller shared title cap", () => {
 
   assert.ok(typography);
   assert.ok(
-    typography.titleSize <= 15.5,
+    typography.titleSize <= 19.25,
     `expected shared title size to stay within the chapter-label cap, got ${typography.titleSize}`
   );
   assert.ok(
-    typography.titleSize >= 12,
+    typography.titleSize >= 15.5,
     `expected chapter labels to remain readable, got ${typography.titleSize}`
   );
+});
+
+test("home scene labels share one larger title size and allow three-line titles", () => {
+  const fits = homeSceneLabels.map((nodeData) =>
+    resolveWrappedLabelFit({
+      nodeData,
+      diameter: 211.3,
+      maxWidth: 169,
+      clamp,
+    })
+  );
+  const typography = resolveSharedLabelTypography(fits, { clamp });
+
+  assert.ok(typography);
+  assert.ok(
+    typography.titleSize > 15.5,
+    `expected home scene shared title size to exceed the old cap, got ${typography.titleSize}`
+  );
+
+  const lineCounts = fits.map((fit) =>
+    estimateLabelLineCount(fit.labelName, typography.titleSize, fit.maxWidth, {
+      fontWeight: typography.titleWeight,
+    })
+  );
+  assert.equal(Math.max(...lineCounts), 3);
 });
 
 test("ordinary wrapped scene labels can still use the larger visual cap", () => {

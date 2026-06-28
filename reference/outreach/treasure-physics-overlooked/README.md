@@ -5,7 +5,6 @@ The Treasure Physics Overlooked needs separate review materials for executive re
 | Document | Use |
 | --- | --- |
 | [Science And Technology Leaders Review](science-technology-leaders-review.md) | A short non-historical case for why the program is worth serious review and what would count as funded progress. |
-| [Full Paper PDF](../../../output/pdf/treasure-physics-overlooked.pdf) | The standalone paper to share directly as a PDF attachment. |
 | [Technical Proof-Burden Map](technical-proof-burden-map.md) | A structured map of the four main open technical burdens: Lorentz recovery, Born/Bell recovery, redshift/cosmology, and compact-object bridging. |
 | [External Reviewer Brief](external-reviewer-brief.md) | A reviewer brief with glossary, known open burdens, and requested review focus. |
 

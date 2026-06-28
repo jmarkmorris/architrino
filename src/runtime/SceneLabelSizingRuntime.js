@@ -1,4 +1,5 @@
 const defaultClamp = (value, min, max) => Math.min(max, Math.max(min, value));
+export const SCENE_CHAPTER_MARKER_RADIUS_SCALE = 0.6;
 
 function normalizeLabelText(text) {
   return String(text ?? "").replace(/\s+/g, " ").trim();
@@ -143,7 +144,7 @@ export function resolveNodeLabelText(nodeData = {}) {
 }
 
 function resolveChapterTitleSizeCap(diameter, clamp) {
-  return clamp(diameter * 0.078, 12, 15.5);
+  return clamp(diameter * 0.09, 15.5, 19.25);
 }
 
 export function resolveWrappedLabelFit(options = {}) {
@@ -222,7 +223,9 @@ export function resolveWrappedLabelFit(options = {}) {
     const chapterBudget = hasChapterMarker
       ? Math.max(
           diameter * 0.28,
-          diameter * 0.7 - chapterSize - clamp(diameter * 0.045, 6, 10)
+          diameter * SCENE_CHAPTER_MARKER_RADIUS_SCALE -
+            chapterSize -
+            clamp(diameter * 0.045, 6, 10)
         )
       : Infinity;
     const verticalBudget = Math.min(centeredBudget, chapterBudget);

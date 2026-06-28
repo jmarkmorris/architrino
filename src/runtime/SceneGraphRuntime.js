@@ -1,4 +1,5 @@
 import { isElementScene } from "../services/SceneCapabilitiesService.js";
+import { SCENE_CHAPTER_MARKER_RADIUS_SCALE } from "./SceneLabelSizingRuntime.js";
 import {
   RING_LAYOUT_DEFAULTS,
   getRingDirectionSign,
@@ -419,7 +420,7 @@ export function createSceneGraphRuntime(deps) {
     }
     node.mesh.geometry = new deps.THREE.SphereGeometry(radius, 32, 20);
     if (node.chapterLabelObject) {
-      node.chapterLabelObject.position.set(0, -radius * 0.7, 0);
+      node.chapterLabelObject.position.set(0, -radius * SCENE_CHAPTER_MARKER_RADIUS_SCALE, 0);
     }
     if (node.outline?.geometry) {
       node.outline.geometry.dispose();

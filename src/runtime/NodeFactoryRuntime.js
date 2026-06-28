@@ -1,3 +1,5 @@
+import { SCENE_CHAPTER_MARKER_RADIUS_SCALE } from "./SceneLabelSizingRuntime.js";
+
 export function createNodeFactory(deps) {
   const { THREE, CSS2DObject, binaryStyle } = deps;
   let haloSeed = 0;
@@ -283,7 +285,11 @@ export function createNodeFactory(deps) {
     label.className = "label-chapter-marker";
     label.textContent = chapterLabel;
     const labelObject = new CSS2DObject(label);
-    labelObject.position.set(0, -Math.max(0, node.radius ?? 0) * 0.7, 0);
+    labelObject.position.set(
+      0,
+      -Math.max(0, node.radius ?? 0) * SCENE_CHAPTER_MARKER_RADIUS_SCALE,
+      0
+    );
     return labelObject;
   }
 
