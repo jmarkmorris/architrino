@@ -1265,6 +1265,105 @@
       ]
     },
     {
+      "id": "observable-edge-receipt",
+      "title": "The Observable Edge Receipt",
+      "description": "Single-panel outreach comic in which a student mistakes the observable horizon on a photon receipt for the edge of existence.",
+      "path": "content/assets/images/comics/observable-edge-receipt.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "fileSizeBytes": 2832778,
+      "sha256": "1bfc34b23fc3a450c335b277a04b392650c8dae3e99478eae084fce38b036d68",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "OpenAI image generation",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "comic direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach comics line from project direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md",
+          "content/markdown/aaa/outreach/comics/observable-edge-receipt.md"
+        ]
+      },
+      "selectionNotes": [
+        "Selected because the receipt/map joke makes observable-horizon limits public-readable while the hidden academic layer keeps visibility boundaries below ontology claims."
+      ]
+    },
+    {
+      "id": "observable-edge-receipt-thumb",
+      "title": "The Observable Edge Receipt Thumbnail",
+      "description": "Thumbnail derivative for The Observable Edge Receipt outreach comic gallery entry.",
+      "path": "content/assets/images/comics/thumbnails/observable-edge-receipt-thumb.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 360,
+        "height": 360
+      },
+      "fileSizeBytes": 166521,
+      "sha256": "e68a7bbeecc28cf477d3a0dd5e9b39cd55704ef7c3f4206ce36f4fa5953fd3f1",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic-thumbnail",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "sips derivative from observable-edge-receipt",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "thumbnail generation"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a derivative of the project-owned The Observable Edge Receipt outreach comic.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic thumbnail",
+          "markdown gallery thumbnail"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Generated as a smaller gallery thumbnail that links to the full-size comic image."
+      ]
+    },
+    {
       "id": "birthday-cake-observer-era",
       "title": "Birthday Cake For The Observer Era",
       "description": "Single-panel outreach comic in which a student asks how many candles belong on the whole universe and Rachel routes the answer to the era we can date.",
@@ -1995,6 +2094,389 @@
       "dimensions": {
         "width": 800,
         "height": 800
+      }
+    },
+    {
+      "id": "atlas-calorimeter-installation-cern-commons",
+      "title": "Installing the ATLAS Calorimeter",
+      "description": "CERN photograph of the ATLAS experiment during detector construction, with the toroid magnets surrounding the calorimeter before it was moved into the center of the detector.",
+      "path": "content/assets/images/physics/atlas-calorimeter-installation-cern-commons.jpg",
+      "mediaType": "image/jpeg",
+      "dateCreated": "2005-11-04",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "physics-photo",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Installing_the_ATLAS_Calorimeter_-_edit1.jpg",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Installing_the_ATLAS_Calorimeter_-_edit1.jpg",
+        "listedSources": [
+          "CERN Document Server record 910381: https://cds.cern.ch/record/910381"
+        ],
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Maximilien Brice, CERN",
+          "role": "photographer"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "CC BY 4.0",
+        "rationale": "Wikimedia Commons metadata marks the file as Creative Commons Attribution 4.0.",
+        "requiresAttribution": true,
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+      },
+      "creditLine": "Maximilien Brice, CERN. CC BY 4.0 via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "particle detector context",
+          "ATLAS scale reference",
+          "LHC detector construction context",
+          "markdown figure",
+          "scene overlay"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected as a high-quality official CERN ATLAS detector-scale reference to complement the CMS detector photograph.",
+        "Use as detector and measurement-context imagery, not as event-level collision evidence."
+      ],
+      "fileSizeBytes": 6245458,
+      "sha256": "dc3c8c011d424b72371a5afa6e5b1e0d73f126e4cc2b18135a31cfed57b0a61e",
+      "dimensions": {
+        "width": 2975,
+        "height": 1908
+      }
+    },
+    {
+      "id": "cern-accelerator-complex-2022-commons",
+      "title": "CERN Accelerator Complex 2022",
+      "description": "High-resolution CERN graphic overview of the accelerator complex in operation at CERN.",
+      "path": "content/assets/images/physics/cern-accelerator-complex-2022-commons.png",
+      "mediaType": "image/png",
+      "dateCreated": "2022-06-27",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "physics-diagram",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:CERN_accelerator_complex_2022.png",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/CERN_accelerator_complex_2022.png",
+        "listedSources": [
+          "CERN Document Server record 2813716: https://cds.cern.ch/record/2813716"
+        ],
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Fabienne Landua",
+          "role": "diagram author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "CC BY 4.0",
+        "rationale": "Wikimedia Commons metadata marks the file as Creative Commons Attribution 4.0.",
+        "requiresAttribution": true,
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+      },
+      "creditLine": "Fabienne Landua, CERN. CC BY 4.0 via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "particle accelerator context",
+          "CERN accelerator-chain reference",
+          "LHC context",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected as the canonical accelerator-chain context image for CERN particle-physics workflows.",
+        "The file is very large and should be used where full-size inspection is useful rather than as a small inline thumbnail."
+      ],
+      "fileSizeBytes": 7828374,
+      "sha256": "955095f753963f32b38eebda3021b0afd40d31de4d72e4fc1003d778b03c7479",
+      "dimensions": {
+        "width": 23212,
+        "height": 12184
+      }
+    },
+    {
+      "id": "gargamelle-neutral-current-bubble-chamber-commons",
+      "title": "Leptonic Event in Gargamelle Bubble Chamber",
+      "description": "CERN bubble-chamber photograph of the neutral-current event in Gargamelle, used as historic evidence for weak neutral-current interactions.",
+      "path": "content/assets/images/physics/gargamelle-neutral-current-bubble-chamber-commons.jpg",
+      "mediaType": "image/jpeg",
+      "dateCreated": "1973-01-01",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "physics-photo",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Leptonic_event_in_Gargamelle_bubble_chamber.jpg",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Leptonic_event_in_Gargamelle_bubble_chamber.jpg",
+        "listedSources": [
+          "CERN Photo Archive record 39468: https://cds.cern.ch/record/39468"
+        ],
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "CERN",
+          "role": "source archive"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "CC BY 4.0",
+        "rationale": "Wikimedia Commons metadata marks the file as Creative Commons Attribution 4.0.",
+        "requiresAttribution": true,
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+      },
+      "creditLine": "CERN. CC BY 4.0 via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "bubble chamber context",
+          "neutral-current discovery context",
+          "weak-interaction comparison",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected as a historically canonical particle-track image for weak neutral-current discovery context.",
+        "Use as standard physics evidence and historical measurement context, not as a native AAA validation artifact."
+      ],
+      "fileSizeBytes": 797619,
+      "sha256": "59672c0947da95102e50f36278bb3094ab4e6ee21c45116cab7e407a1e9c693d",
+      "dimensions": {
+        "width": 1021,
+        "height": 1506
+      }
+    },
+    {
+      "id": "first-neutrino-event-annotated-commons",
+      "title": "First Neutrino Event Annotated",
+      "description": "Annotated Argonne National Laboratory image of the first use of a hydrogen bubble chamber to detect neutrinos on November 13, 1970.",
+      "path": "content/assets/images/physics/first-neutrino-event-annotated-commons.jpg",
+      "mediaType": "image/jpeg",
+      "dateCreated": "1970-11-13",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "physics-photo",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:FirstNeutrinoEventAnnotated.jpg",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/5/57/FirstNeutrinoEventAnnotated.jpg",
+        "listedSources": [
+          "Image courtesy of Argonne National Laboratory according to Commons metadata"
+        ],
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Argonne National Laboratory",
+          "role": "source archive"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "Public domain",
+        "rationale": "Wikimedia Commons metadata marks the file as public domain.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Argonne National Laboratory. Public domain via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "bubble chamber context",
+          "neutrino detection context",
+          "particle-track annotation reference",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected for its canonical neutrino-detection history and explanatory annotations.",
+        "The image is smaller than modern detector graphics but valuable as a source-backed annotated measurement record."
+      ],
+      "fileSizeBytes": 291814,
+      "sha256": "c7075adeddb9ee47b32e6357d73a6a08d269c54ae7815bdaf1d27080c8facf06",
+      "dimensions": {
+        "width": 675,
+        "height": 506
+      }
+    },
+    {
+      "id": "beta-negative-decay-feynman-commons",
+      "title": "Beta Negative Decay Feynman Diagram",
+      "description": "Public-domain SVG Feynman diagram for beta-negative decay of a neutron into a proton, electron, and electron antineutrino.",
+      "path": "content/assets/images/physics/beta-negative-decay-feynman-commons.svg",
+      "mediaType": "image/svg+xml",
+      "dateCreated": "2007-03-09",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "physics-diagram",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Beta_Negative_Decay.svg",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/8/89/Beta_Negative_Decay.svg",
+        "listedSources": [
+          "Own work according to Commons metadata"
+        ],
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Joel Holdsworth",
+          "role": "diagram author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "Public domain",
+        "rationale": "Wikimedia Commons metadata marks the file as public domain because the diagram is ineligible for copyright.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Joel Holdsworth. Public domain via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "Feynman diagram context",
+          "weak-interaction comparison",
+          "beta-decay context",
+          "markdown figure",
+          "scene overlay"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected to fill the canonical weak-interaction diagram role that was deferred in the first particle-physics pass.",
+        "Use as a standard-model diagram; it is not a completed native assembly-geometry derivation."
+      ],
+      "fileSizeBytes": 2048,
+      "sha256": "42920319739d750b1a7151663443428950c7344c72e7df4e0f74907de9a32b00",
+      "dimensions": {
+        "width": 400,
+        "height": 400
+      }
+    },
+    {
+      "id": "electron-positron-muon-pair-feynman-commons",
+      "title": "Electron-Positron Annihilation Into Muon Pair",
+      "description": "CC0 SVG Feynman diagram for electron-positron annihilation into a muon-antimuon pair.",
+      "path": "content/assets/images/physics/electron-positron-muon-pair-feynman-commons.svg",
+      "mediaType": "image/svg+xml",
+      "dateCreated": "2017-10-19",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "physics-diagram",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Electron-positron_annihilation_into_muon-antimuon.svg",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/Electron-positron_annihilation_into_muon-antimuon.svg",
+        "listedSources": [
+          "Own work according to Commons metadata"
+        ],
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Romainbehar",
+          "role": "diagram author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "CC0",
+        "rationale": "Wikimedia Commons metadata marks the file as Creative Commons Zero public-domain dedication.",
+        "requiresAttribution": false,
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      "creditLine": "Romainbehar. CC0 via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "Feynman diagram context",
+          "QED comparison",
+          "pair-annihilation context",
+          "markdown figure",
+          "scene overlay"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected as a clean QED annihilation diagram with a visible intermediate photon line and final-state lepton pair.",
+        "Use as a standard-model diagram; it is not a native assembly reaction-provenance proof."
+      ],
+      "fileSizeBytes": 14023,
+      "sha256": "59935a5df4a8d6baa62197b2878a190266f682342baed6469f96f0ba39607334",
+      "dimensions": {
+        "width": 428,
+        "height": 276
+      }
+    },
+    {
+      "id": "feynman-gluon-radiation-commons",
+      "title": "Feynman Diagram Gluon Radiation",
+      "description": "Public-domain SVG Feynman diagram showing gluon radiation in an electron-positron annihilation context.",
+      "path": "content/assets/images/physics/feynman-gluon-radiation-commons.svg",
+      "mediaType": "image/svg+xml",
+      "dateCreated": "2007-03-09",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "physics-diagram",
+      "source": {
+        "name": "Wikimedia Commons",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:Feynman_Diagram_Gluon_Radiation.svg",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/0/00/Feynman_Diagram_Gluon_Radiation.svg",
+        "listedSources": [
+          "Non-derived SVG of Radiate_gluon.png according to Commons metadata"
+        ],
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Joel Holdsworth",
+          "role": "diagram author"
+        },
+        {
+          "name": "SilverStar",
+          "role": "original diagram author credited by Commons"
+        }
+      ],
+      "license": {
+        "rightsStatus": "public-domain",
+        "label": "Public domain",
+        "rationale": "Wikimedia Commons metadata marks the file as public domain because the diagram is a chart ineligible for copyright.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Joel Holdsworth, after SilverStar. Public domain via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "Feynman diagram context",
+          "QCD comparison",
+          "gluon-radiation context",
+          "markdown figure",
+          "scene overlay"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Selected to fill a compact QCD diagram role in the particle-physics image library.",
+        "Use as a standard-model diagram; it is not a native assembly reaction-provenance proof."
+      ],
+      "fileSizeBytes": 2486,
+      "sha256": "58f5820a7085fa09b93cdceb641ffeec56bd33415c2013e4d4bb2ebdbb739df0",
+      "dimensions": {
+        "width": 400,
+        "height": 250
       }
     },
     {

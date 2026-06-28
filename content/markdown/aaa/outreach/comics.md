@@ -20,6 +20,8 @@
 
 [![First Page Problem](../../../assets/images/comics/thumbnails/first-page-problem-thumb.png)](../../../assets/images/comics/first-page-problem.png)
 
+[![The Observable Edge Receipt](../../../assets/images/comics/thumbnails/observable-edge-receipt-thumb.png)](../../../assets/images/comics/observable-edge-receipt.png)
+
 [![Birthday Cake For The Observer Era](../../../assets/images/comics/thumbnails/birthday-cake-observer-era-thumb.png)](../../../assets/images/comics/birthday-cake-observer-era.png)
 
 [![Four Theories, One Oval](../../../assets/images/comics/thumbnails/curvefit-remake-thumb.png)](../../../assets/images/comics/curvefit-remake.png)

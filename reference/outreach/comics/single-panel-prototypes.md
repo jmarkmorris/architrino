@@ -428,7 +428,7 @@ Second rough visual prototypes:
 Cosmology comparison rough visual prototypes:
 
 - [First Page Problem](assets/first-page-problem-prototype-v4-snail-gaze.png)
-- [The Observable Edge Receipt](assets/observable-edge-receipt-prototype.png)
+- [The Observable Edge Receipt](assets/observable-edge-receipt-prototype.png) - selected keeper direction.
 - [Opening Scene, Not Building Permit v2, First Footage](assets/opening-scene-not-building-permit-prototype-v2-first-footage.png) - revised humor candidate; shifts the joke from building-permit wording to first-scene versus first-footage wording.
 - [Birthday Cake For The Observer Era](assets/birthday-cake-observer-era-prototype.png) - selected keeper direction.
 

@@ -1287,24 +1287,18 @@ function validationErrors(report) {
   ) {
     errors.push(`nearest_candidate_provenance_readiness_audit.schema must be ${NEAREST_CANDIDATE_READINESS_AUDIT_SCHEMA}`);
   }
-  if (
-    report?.nearest_candidate_provenance_readiness_audit?.source_binding_absence_record &&
-    report.nearest_candidate_provenance_readiness_audit.source_binding_absence_record.schema !==
-      SOURCE_BINDING_ABSENCE_RECORD_SCHEMA
-  ) {
-    errors.push(`source_binding_absence_record.schema must be ${SOURCE_BINDING_ABSENCE_RECORD_SCHEMA}`);
-  }
-  if (
-    report?.nearest_candidate_provenance_readiness_audit?.source_binding_absence_record?.authorization
-      ?.accepted_transition_source !== false
-  ) {
-    errors.push("source_binding_absence_record must not authorize accepted_transition_source");
-  }
-  if (
-    report?.nearest_candidate_provenance_readiness_audit?.source_binding_absence_record?.authorization
-      ?.candidate_h_recovery !== false
-  ) {
-    errors.push("source_binding_absence_record must not authorize candidate_h_recovery");
+  const sourceBindingAbsenceRecord =
+    report?.nearest_candidate_provenance_readiness_audit?.source_binding_absence_record ?? null;
+  if (sourceBindingAbsenceRecord) {
+    if (sourceBindingAbsenceRecord.schema !== SOURCE_BINDING_ABSENCE_RECORD_SCHEMA) {
+      errors.push(`source_binding_absence_record.schema must be ${SOURCE_BINDING_ABSENCE_RECORD_SCHEMA}`);
+    }
+    if (sourceBindingAbsenceRecord.authorization?.accepted_transition_source !== false) {
+      errors.push("source_binding_absence_record must not authorize accepted_transition_source");
+    }
+    if (sourceBindingAbsenceRecord.authorization?.candidate_h_recovery !== false) {
+      errors.push("source_binding_absence_record must not authorize candidate_h_recovery");
+    }
   }
   if (
     report?.nearest_candidate_provenance_readiness_audit &&

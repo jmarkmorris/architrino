@@ -26,7 +26,10 @@ artifacts and rejects each because none carries the same bounded-speed
 live-ledger tuple or an `action_measure_row`. The audit records its searched
 roots, searched terms, acceptance criteria, and per-candidate missing identity
 and action-measure fields so that branch-scope cannot be accepted by
-provenance-only reuse. Its nearest-candidate lineage readout names the
+provenance-only reuse. It also records `action_measure_field_statuses` for each
+candidate, distinguishing `branch_scope` as present only off-ledger from
+`period_rows` as conditional-blocked until branch-scope binds on the
+normal-candidate ledger. Its nearest-candidate lineage readout names the
 certified fixed-speed all-pairs root ledger as closest, but that source is
 provenance only: it has `branch_scope` while missing
 `bounded_speed_ledger_id`, `force_checksum_id`, `consumer_checksum_id`,
@@ -44,7 +47,9 @@ the normal-candidate ledger supplies only `bounded_speed_ledger_id`,
 `force_checksum_id`, `consumer_checksum_id`, and
 `source_normal_reconstruction_candidate_id`; `branch_scope`, `period_rows`,
 `action_functional`, and `root_support_event_rows` have no same-ledger binding,
-so the row remains absent and non-certifying.
+and its `field_statuses_on_normal_candidate_ledger` rows keep those four
+fields separated from the supplied identity tuple. The row remains absent and
+non-certifying.
 Every packet keeps `certifies_bounded_speed_live_ledger=false` and
 `retained_branch=false`.
 

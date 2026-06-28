@@ -54,6 +54,10 @@
         "scenePath": "content/scenes/outreach/comics/first_page_problem.json"
       },
       {
+        "nodeId": "observable_edge_receipt",
+        "scenePath": "content/scenes/outreach/comics/observable_edge_receipt.json"
+      },
+      {
         "nodeId": "birthday_cake_observer_era",
         "scenePath": "content/scenes/outreach/comics/birthday_cake_observer_era.json"
       },
@@ -157,6 +161,15 @@
       "labelTitle": "First Page Problem",
       "labelBadgeImage": "content/assets/images/comics/thumbnails/first-page-problem-thumb.png",
       "labelBadgeAlt": "First Page Problem thumbnail"
+    },
+    {
+      "id": "observable_edge_receipt",
+      "title": "The Observable Edge Receipt",
+      "radius": 1.8,
+      "color": "#536d75",
+      "labelTitle": "The Observable Edge Receipt",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/observable-edge-receipt-thumb.png",
+      "labelBadgeAlt": "The Observable Edge Receipt thumbnail"
     },
     {
       "id": "birthday_cake_observer_era",

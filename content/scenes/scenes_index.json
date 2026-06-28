@@ -1819,6 +1819,11 @@
       "id": "outreach__comics__jets_remake",
       "name": "What Counts As Evidence?",
       "path": "content/scenes/outreach/comics/jets_remake.json"
+    },
+    {
+      "id": "outreach__comics__observable_edge_receipt",
+      "name": "The Observable Edge Receipt",
+      "path": "content/scenes/outreach/comics/observable_edge_receipt.json"
     }
   ]
 }

@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 560,
-      "edges": 1313,
-      "scenes": 364,
+      "nodes": 562,
+      "edges": 1315,
+      "scenes": 365,
       "markdownIndexes": 0,
-      "markdownDocs": 183,
+      "markdownDocs": 184,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2333,6 +2333,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "outreach__comics__observable_edge_receipt",
+      "name": "The Observable Edge Receipt",
+      "path": "content/scenes/outreach/comics/observable_edge_receipt.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2786,6 +2792,12 @@
       "id": "content/markdown/aaa/outreach/comics/new-theory-same-budget.md",
       "name": "New Theory Same Budget",
       "path": "content/markdown/aaa/outreach/comics/new-theory-same-budget.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/observable-edge-receipt.md",
+      "name": "The Observable Edge Receipt",
+      "path": "content/markdown/aaa/outreach/comics/observable-edge-receipt.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5467,6 +5479,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/outreach/comics/observable_edge_receipt.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__observable_edge_receipt",
+      "name": "The Observable Edge Receipt",
+      "path": "content/scenes/outreach/comics/observable_edge_receipt.json",
+      "searchTarget": "content/scenes/outreach/comics/observable_edge_receipt.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/outreach/comics/office_hours_for_a_claim.json",
       "nodeType": "scene",
       "id": "outreach__comics__office_hours_for_a_claim",
@@ -7390,6 +7411,15 @@
       "name": "New Theory Same Budget",
       "path": "content/markdown/aaa/outreach/comics/new-theory-same-budget.md",
       "searchTarget": "content/markdown/aaa/outreach/comics/new-theory-same-budget.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/observable-edge-receipt.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/observable-edge-receipt.md",
+      "name": "The Observable Edge Receipt",
+      "path": "content/markdown/aaa/outreach/comics/observable-edge-receipt.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/observable-edge-receipt.md",
       "implicit": false
     },
     {
@@ -11846,7 +11876,7 @@
       "to": "scene:content/scenes/outreach/comics/birthday_cake_observer_era.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
@@ -11860,7 +11890,7 @@
       "to": "scene:content/scenes/outreach/comics/curvefit_remake.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
@@ -11889,6 +11919,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
       "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/observable_edge_receipt.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
@@ -11923,7 +11960,7 @@
       "to": "scene:content/scenes/outreach/comics/we_need_to_talk_remake.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/outreach/outreach.json",
@@ -13463,6 +13500,13 @@
       "to": "markdown_doc:content/markdown/aaa/outreach/comics/new-theory-same-budget.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/outreach/comics/new_theory_same_budget.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/observable_edge_receipt.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/observable-edge-receipt.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/observable_edge_receipt.json",
       "field": "scene.source.path"
     },
     {

@@ -541,7 +541,7 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(
     packet.shared_interval_box_certificate_target.directed_rounding_backend
       .runtime_identity_target_status,
-    "target_only_runtime_identity_absent_fail_closed"
+    runtimeIdentityAbsenceStatus
   );
   assert.match(
     packet.shared_interval_box_certificate_target.directed_rounding_backend
@@ -630,7 +630,17 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(
     directedRoundingRuntimeProbe
       .directed_rounding_runtime_identity_target_status,
-    "target_only_runtime_identity_absent_fail_closed"
+    runtimeIdentityAbsenceStatus
+  );
+  assert.equal(
+    directedRoundingRuntimeProbe
+      .directed_rounding_runtime_identity_absence_probe_status,
+    runtimeIdentityAbsenceProbeStatus
+  );
+  assert.match(
+    directedRoundingRuntimeProbe
+      .directed_rounding_runtime_identity_absence_probe_digest,
+    /^sha256:[0-9a-f]{64}$/
   );
   assert.match(
     directedRoundingRuntimeProbe
@@ -646,6 +656,10 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     "source_q_derivative_composition_operation_trace_digest",
     "shared_interval_box_family_digest",
   ];
+  const runtimeIdentityAbsenceStatus =
+    "runtime_identity_absence_probe_executed_backend_identity_missing_fail_closed";
+  const runtimeIdentityAbsenceProbeStatus =
+    "directed_rounding_runtime_identity_absence_probe_backend_identity_missing_fail_closed";
   assert.equal(
     directedRoundingAvailabilityAudit.schema,
     "architrino.priority.master_equation_closure.a1_directed_rounding_runtime_backend_availability_audit.v0"
@@ -699,11 +713,103 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   );
   assert.equal(
     runtimeIdentityTarget.status,
-    "target_only_runtime_identity_absent_fail_closed"
+    runtimeIdentityAbsenceStatus
+  );
+  const runtimeIdentityAbsenceProbe =
+    runtimeIdentityTarget.executable_absence_probe;
+  assert.equal(
+    runtimeIdentityTarget.absence_probe_status,
+    runtimeIdentityAbsenceProbeStatus
+  );
+  assert.equal(
+    runtimeIdentityTarget.absence_probe_digest,
+    runtimeIdentityAbsenceProbe.absence_probe_digest
+  );
+  assert.equal(
+    runtimeIdentityAbsenceProbe.schema,
+    "architrino.priority.master_equation_closure.a1_directed_rounding_interval_backend_runtime_identity_absence_probe.v0"
+  );
+  assert.equal(
+    runtimeIdentityAbsenceProbe.artifact_id,
+    "a1_directed_rounding_interval_backend_runtime_identity_absence_probe.v0"
+  );
+  assert.equal(
+    runtimeIdentityAbsenceProbe.status,
+    runtimeIdentityAbsenceProbeStatus
+  );
+  assert.equal(
+    runtimeIdentityAbsenceProbe.probe_method,
+    "python_import_spec_and_capability_symbol_probe"
+  );
+  assert.equal(runtimeIdentityAbsenceProbe.runtime_identity_present, false);
+  assert.equal(
+    runtimeIdentityAbsenceProbe.capability_status
+      .backend_runtime_identity_object_available,
+    false
+  );
+  assert.equal(
+    runtimeIdentityAbsenceProbe.capability_status
+      .backend_runtime_id_provider_present,
+    false
+  );
+  assert.equal(
+    runtimeIdentityAbsenceProbe.capability_status
+      .rounding_mode_transition_log_provider_present,
+    false
+  );
+  assert.equal(
+    runtimeIdentityAbsenceProbe.capability_status
+      .source_q_derivative_composition_operation_trace_provider_present,
+    false
+  );
+  assert.equal(
+    runtimeIdentityAbsenceProbe.capability_status
+      .shared_interval_box_family_digest_provider_present,
+    false
+  );
+  assert.equal(
+    runtimeIdentityAbsenceProbe.current_a1_helper_capabilities
+      .float64_nextafter_probe_present,
+    true
+  );
+  assert.equal(
+    runtimeIdentityAbsenceProbe.current_a1_helper_capabilities
+      .spiral_branch_chart_interval_helpers_present,
+    true
+  );
+  const spiralHelperProbe =
+    runtimeIdentityAbsenceProbe.module_probe_rows.find(
+      (row) => row.module_name === "spiral_branch_chart_certificate"
+    );
+  assert.ok(spiralHelperProbe);
+  assert.equal(
+    spiralHelperProbe.available_helper_symbols.includes("Interval"),
+    true
+  );
+  assert.equal(
+    spiralHelperProbe.required_symbol_status.backend_runtime_id,
+    false
+  );
+  assert.equal(
+    spiralHelperProbe.satisfies_runtime_identity_provider,
+    false
+  );
+  assert.equal(
+    runtimeIdentityAbsenceProbe.negative_control
+      .local_interval_helpers_do_not_satisfy_backend_identity,
+    true
   );
   assert.equal(
     directedRoundingAvailabilityAudit.runtime_identity_target_digest,
     runtimeIdentityTarget.target_digest
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.runtime_identity_absence_probe_status,
+    runtimeIdentityAbsenceProbeStatus
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.runtime_identity_absence_probe_digest,
+    runtimeIdentityAbsenceProbe.absence_probe_digest
   );
   assert.equal(
     packet.shared_interval_box_certificate_target.directed_rounding_backend
@@ -711,9 +817,19 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     runtimeIdentityTarget.target_digest
   );
   assert.equal(
+    packet.shared_interval_box_certificate_target.directed_rounding_backend
+      .runtime_identity_absence_probe_digest,
+    runtimeIdentityAbsenceProbe.absence_probe_digest
+  );
+  assert.equal(
     directedRoundingAvailabilityAudit.replacement_requirement
       .required_backend_runtime_identity_target_digest,
     runtimeIdentityTarget.target_digest
+  );
+  assert.equal(
+    directedRoundingAvailabilityAudit.replacement_requirement
+      .required_runtime_identity_absence_probe_digest,
+    runtimeIdentityAbsenceProbe.absence_probe_digest
   );
   assert.deepEqual(
     runtimeIdentityTarget.required_identity_fields,
@@ -1570,12 +1686,22 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(
     sourceQDerivativeCompositionAudit.backend_identity
       .backend_runtime_availability_audit.runtime_identity_target_status,
-    "target_only_runtime_identity_absent_fail_closed"
+    runtimeIdentityAbsenceStatus
   );
   assert.equal(
     sourceQDerivativeCompositionAudit.backend_identity
       .backend_runtime_availability_audit.runtime_identity_target_digest,
     runtimeIdentityTarget.target_digest
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.runtime_identity_absence_probe_status,
+    runtimeIdentityAbsenceProbeStatus
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.backend_identity
+      .backend_runtime_availability_audit.runtime_identity_absence_probe_digest,
+    runtimeIdentityAbsenceProbe.absence_probe_digest
   );
   assert.deepEqual(
     sourceQDerivativeCompositionAudit.backend_identity
@@ -1590,11 +1716,21 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   );
   assert.equal(
     sourceQDerivativeCompositionAudit.runtime_identity_status.status,
-    "target_only_runtime_identity_absent_fail_closed"
+    runtimeIdentityAbsenceStatus
   );
   assert.equal(
     sourceQDerivativeCompositionAudit.runtime_identity_status.target_digest,
     runtimeIdentityTarget.target_digest
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.runtime_identity_status
+      .absence_probe_status,
+    runtimeIdentityAbsenceProbeStatus
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.runtime_identity_status
+      .absence_probe_digest,
+    runtimeIdentityAbsenceProbe.absence_probe_digest
   );
   assert.deepEqual(
     sourceQDerivativeCompositionAudit.runtime_identity_status
@@ -1609,12 +1745,22 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(
     sourceQDerivativeCompositionAudit.composition_input_checks
       .directed_rounding_runtime_identity_target_status,
-    "target_only_runtime_identity_absent_fail_closed"
+    runtimeIdentityAbsenceStatus
   );
   assert.equal(
     sourceQDerivativeCompositionAudit.composition_input_checks
       .directed_rounding_runtime_identity_target_digest,
     runtimeIdentityTarget.target_digest
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .directed_rounding_runtime_identity_absence_probe_status,
+    runtimeIdentityAbsenceProbeStatus
+  );
+  assert.equal(
+    sourceQDerivativeCompositionAudit.composition_input_checks
+      .directed_rounding_runtime_identity_absence_probe_digest,
+    runtimeIdentityAbsenceProbe.absence_probe_digest
   );
   assert.deepEqual(
     sourceQDerivativeCompositionAudit.composition_input_checks
@@ -1832,12 +1978,22 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(
     oneSlotConstructionAttempt.construction_status
       .runtime_identity_target_status,
-    "target_only_runtime_identity_absent_fail_closed"
+    runtimeIdentityAbsenceStatus
   );
   assert.equal(
     oneSlotConstructionAttempt.construction_status
       .runtime_identity_target_digest,
     runtimeIdentityTarget.target_digest
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .runtime_identity_absence_probe_status,
+    runtimeIdentityAbsenceProbeStatus
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .runtime_identity_absence_probe_digest,
+    runtimeIdentityAbsenceProbe.absence_probe_digest
   );
   assert.deepEqual(
     oneSlotConstructionAttempt.construction_status
@@ -1903,11 +2059,19 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   );
   assert.equal(
     oneSlotConstructionAttempt.helper_gap.runtime_identity_target_status,
-    "target_only_runtime_identity_absent_fail_closed"
+    runtimeIdentityAbsenceStatus
   );
   assert.equal(
     oneSlotConstructionAttempt.helper_gap.runtime_identity_target_digest,
     runtimeIdentityTarget.target_digest
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap.runtime_identity_absence_probe_status,
+    runtimeIdentityAbsenceProbeStatus
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.helper_gap.runtime_identity_absence_probe_digest,
+    runtimeIdentityAbsenceProbe.absence_probe_digest
   );
   assert.deepEqual(
     oneSlotConstructionAttempt.helper_gap.missing_runtime_identity_fields,
