@@ -99,6 +99,8 @@ The probe marks only the top-level carrier and `gw_source_carrier` row as accept
 
 Current checker finding: the source-evidence probe exposes the next blocker without closing it. The default attempt remains blocked at `missing_accepted_gw_source_carrier`; the probe advances only to `missing_accepted_theta_sea`, with `6/6` negative controls passing and `scoreDecision: no_score_increase`. This confirms that the smallest score-moving object is not a single accepted-looking `gw_source_carrier`; it must include accepted `theta_sea`, effective-metric tensor, source-event ledger, detector-strain, ringdown, provenance, and no-hidden-retune rows bound to the same retained record.
 
+The checker now requires each accepted-looking row to carry a row-specific `sourceEvidence` contract in addition to a durable non-priority source path. The contract must name `supportsEquationRows=["EQ-11A"]`, include the exact row id in `supportsRows`, and bind `sourceWindowId=GW150914-v3`, `supportId=H1L1_GWTC1_PE_v3`, and `eventId=GWTC-1-confident/GW150914/v3`. This keeps a generic GWOSC/LVK source note from satisfying `theta_sea`, tensor-channel, event-ledger, or detector-strain rows unless the source explicitly supports that row on the same source record.
+
 The probe-source negative control is [eq11a-gravitational-wave-source-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-probe-source-negative-control.v1.json):
 
 ```sh
@@ -116,6 +118,20 @@ node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --inp
 ```
 
 It preserves the accepted-looking top carrier and `gw_source_carrier` row from the source-evidence probe, then marks only `theta_sea` accepted-looking while pointing that row to [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md). The expected result is `status: blocked_missing_rows`, `nextBlocker: missing_accepted_theta_sea`, `scoreDecision: no_score_increase`, and `rowStatuses.theta_sea.reason=accepted_without_evidence_source`. The same command with `--require-populated` must exit nonzero. Authored Noether sea prose can define the parent concept, but it cannot replace a retained Noether sea/effective-metric source row for `EQ-11A`.
+
+## Theta-Sea Generic-Source Negative Control
+
+The row-specific source-support control is [eq11a-gravitational-wave-source-theta-sea-generic-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-theta-sea-generic-source-negative-control.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-theta-sea-generic-source-negative-control.v1.json --summary --pretty
+```
+
+It keeps the accepted-looking carrier and `gw_source_carrier` row source-backed by the durable GWOSC/LVK mining note, then marks only `theta_sea` accepted-looking against that same durable source while giving the row a `sourceEvidence.supportsRows=["gw_source_carrier"]` contract. The expected result remains `status: blocked_missing_rows`, `nextBlocker: missing_accepted_theta_sea`, `scoreDecision: no_score_increase`, and `rowStatuses.theta_sea.reason=source_contract_row_mismatch`. The command with `--require-populated` must exit nonzero. A durable gravitational-wave source note can expose the source carrier, but it cannot stand in for the retained Noether sea/effective-metric tensor row unless the source contract names that row directly.
+
+## Smallest Next Source Object
+
+The next score-neutral row template is an accepted-looking `theta_sea` source candidate whose `sourceEvidence` names `theta_sea` support on the same `carrierId`, `sourceWindowId`, `supportId`, and `eventId` as `GW150914-v3`. It still must not move the score by itself: if it ever passes the row-specific source contract, the checker should advance only to `missing_accepted_effective_metric_tensor_channel` until the tensor channel, source event ledger, quadrupole, chirp, Peters-decay, strain-flux, ringdown, detector-strain, provenance, and no-hidden-retune rows are accepted and same-record bound.
 
 ## Current Disposition
 

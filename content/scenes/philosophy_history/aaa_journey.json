@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "philosophy_history__aaa_journey",
+    "title": "AAA Journey",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "aaa_journey_overview",
+    "layout": {
+      "type": "rings",
+      "centerNode": "aaa_journey_overview",
+      "order": "objects",
+      "direction": "clockwise"
+    },
+    "children": [
+      {
+        "nodeId": "aaa_journey_overview",
+        "scenePath": "content/scenes/philosophy_history/aaa_journey/overview.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "aaa_journey_overview",
+      "title": "AAA Journey",
+      "radius": 1.32,
+      "color": "#4f5d75",
+      "labelTitle": "AAA Journey (entire)",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "aaa_journey_search_frame",
+      "title": "Search Frame",
+      "radius": 1.32,
+      "color": "#8c5f46",
+      "labelTitle": "Search Frame",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/aaa-journey.md"
+      },
+      "view": {
+        "section": "Search Frame And Medium Intuition",
+        "columns": 1
+      }
+    },
+    {
+      "id": "aaa_journey_two_polarity",
+      "title": "Two Polarities",
+      "radius": 1.32,
+      "color": "#577590",
+      "labelTitle": "Two Polarities",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/aaa-journey.md"
+      },
+      "view": {
+        "section": "Two Polarity Primitives And First Assembly Grammar",
+        "columns": 1
+      }
+    },
+    {
+      "id": "aaa_journey_axial_layer",
+      "title": "Axial Layer",
+      "radius": 1.32,
+      "color": "#3f7d6a",
+      "labelTitle": "Axial Layer",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/aaa-journey.md"
+      },
+      "view": {
+        "section": "Noether-Core Grammar And The Axial Layer",
+        "columns": 1
+      }
+    },
+    {
+      "id": "aaa_journey_noether_strong",
+      "title": "Noether / Strong",
+      "radius": 1.32,
+      "color": "#8b6f47",
+      "labelTitle": "Noether / Strong",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/aaa-journey.md"
+      },
+      "view": {
+        "section": "Noether Naming, Clock And Ruler Roles, And Strong-Sector Linkage",
+        "columns": 1
+      }
+    },
+    {
+      "id": "aaa_journey_path_history",
+      "title": "Path History",
+      "radius": 1.32,
+      "color": "#6f5f9c",
+      "labelTitle": "Path History",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/aaa-journey.md"
+      },
+      "view": {
+        "section": "Path-History Mechanics And Strong-Sector Topology",
+        "columns": 1
+      }
+    },
+    {
+      "id": "aaa_journey_cosmology",
+      "title": "Assembly Epochs",
+      "radius": 1.32,
+      "color": "#5f7661",
+      "labelTitle": "Assembly Epochs",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/aaa-journey.md"
+      },
+      "view": {
+        "section": "Cosmology Timeline And Assembly Epoch Mapping",
+        "columns": 1
+      }
+    },
+    {
+      "id": "aaa_journey_noether_sea",
+      "title": "Noether Sea",
+      "radius": 1.32,
+      "color": "#8b4f68",
+      "labelTitle": "Noether Sea",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/aaa-journey.md"
+      },
+      "view": {
+        "section": "Binary Self-Action, Noether Sea, And Standard-Model Reframing",
+        "columns": 1
+      }
+    },
+    {
+      "id": "aaa_journey_closure",
+      "title": "Closure Work",
+      "radius": 1.32,
+      "color": "#2f6b6f",
+      "labelTitle": "Closure Work",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/aaa-journey.md"
+      },
+      "view": {
+        "section": "Effective-Theory Framing And Closure Work",
+        "columns": 1
+      }
+    },
+    {
+      "id": "aaa_journey_realization_threads",
+      "title": "Realization Threads",
+      "radius": 1.32,
+      "color": "#7a5430",
+      "labelTitle": "Realization Threads",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/aaa-journey.md"
+      },
+      "view": {
+        "section": "Seminal Realization Threads",
+        "columns": 1
+      }
+    },
+    {
+      "id": "aaa_journey_claim_discipline",
+      "title": "Claim Discipline",
+      "radius": 1.32,
+      "color": "#6a3c3c",
+      "labelTitle": "Claim Discipline",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/aaa-journey.md"
+      },
+      "view": {
+        "section": "What The Journey Does Not Prove",
+        "columns": 1
+      }
+    }
+  ]
+}

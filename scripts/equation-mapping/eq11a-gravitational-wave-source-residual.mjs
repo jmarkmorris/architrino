@@ -121,10 +121,10 @@ function writeOutput(output, parsedArgs) {
 function evaluateEq11aGravitationalWaveSource(input, inputPath) {
   const tolerances = parseTolerances(input.tolerances ?? {});
   const packet = input.packet ?? input;
-  const carrier = evaluateAcceptedEvidence(input.carrier ?? packet.carrier);
+  const carrier = evaluateAcceptedEvidence(input.carrier ?? packet.carrier, "carrier");
   const rows = packet.rows ?? {};
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedEvidence(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedEvidence(rows[rowId], rowId)]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const carrierBinding = evaluateCarrierBinding(rows, input.commonCarrierId ?? packet.id);
@@ -688,7 +688,7 @@ function evaluateCarrierBinding(rows, commonCarrierId) {
   };
 }
 
-function evaluateAcceptedEvidence(row) {
+function evaluateAcceptedEvidence(row, rowId) {
   const status = normalizeStatus(row);
   if (!ACCEPTED_STATUSES.has(status)) {
     return { accepted: false, reason: "row_not_accepted" };
@@ -697,6 +697,44 @@ function evaluateAcceptedEvidence(row) {
   const source = evaluateSourcePath(sourcePath);
   if (!source.accepted) {
     return { accepted: false, reason: source.reason };
+  }
+  const sourceEvidence = evaluateSourceEvidenceSupport(row, rowId);
+  if (!sourceEvidence.accepted) {
+    return { accepted: false, reason: sourceEvidence.reason };
+  }
+  return { accepted: true, reason: "accepted" };
+}
+
+function evaluateSourceEvidenceSupport(row, rowId) {
+  const evidence = row?.sourceEvidence;
+  if (!isPlainObject(evidence)) {
+    return { accepted: false, reason: "missing_source_evidence_contract" };
+  }
+  if (!stringOrNull(evidence.kind)) {
+    return { accepted: false, reason: "missing_source_evidence_kind" };
+  }
+  const supportsEquationRows = Array.isArray(evidence.supportsEquationRows)
+    ? evidence.supportsEquationRows
+    : [];
+  if (!supportsEquationRows.includes("EQ-11A")) {
+    return { accepted: false, reason: "source_contract_equation_mismatch" };
+  }
+  const supportsRows = Array.isArray(evidence.supportsRows) ? evidence.supportsRows : [];
+  if (!supportsRows.includes(rowId)) {
+    return { accepted: false, reason: "source_contract_row_mismatch" };
+  }
+  const missingIdentityFields = SOURCE_IDENTITY_FIELDS.filter((field) => !stringOrNull(evidence[field]));
+  if (missingIdentityFields.length > 0) {
+    return { accepted: false, reason: "source_contract_identity_missing" };
+  }
+  const mismatchedIdentityFields = SOURCE_IDENTITY_FIELDS.filter(
+    (field) =>
+      row?.[field] !== undefined &&
+      evidence[field] !== undefined &&
+      stringOrNull(row[field]) !== stringOrNull(evidence[field]),
+  );
+  if (mismatchedIdentityFields.length > 0) {
+    return { accepted: false, reason: "source_contract_identity_mismatch" };
   }
   return { accepted: true, reason: "accepted" };
 }

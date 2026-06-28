@@ -1353,6 +1353,10 @@ def shared_interval_boxes_target_row(
         local_certificate_box_ids.append(
             future_transport_interval_box_certificate["box_id"]
         )
+    present_box_ids = {
+        past_profile_interval_box_attempt["box_id"],
+        *local_certificate_box_ids,
+    }
     if (
         past_profile_interval_box_certificate is not None
         and future_transport_interval_box_certificate is not None
@@ -1369,8 +1373,7 @@ def shared_interval_boxes_target_row(
         "missing_box_ids": [
             box_id
             for box_id in required_box_ids
-            if box_id
-            not in {past_profile_interval_box_attempt["box_id"], *local_certificate_box_ids}
+            if box_id not in present_box_ids
         ],
         "past_profile_interval_box_attempt_schema": (
             past_profile_interval_box_attempt["schema"]
@@ -2181,6 +2184,162 @@ def past_profile_interval_box_certificate_summary(certificate: dict) -> dict:
             "q_interval_hex",
             "H_b_upper",
             "H_b_upper_hex",
+            "used_as_certificate",
+            "used_as_local_certificate",
+            "used_as_shared_certificate",
+            "authorizes_outward_certificate",
+            "authorizes_obstruction_or_channel_decision",
+            "certificate_digest",
+            "status",
+        )
+    }
+
+
+def future_piecewise_linear_profile_box_certificate(
+    source_digest: str,
+    past_profile_interval_box_certificate: dict,
+    profile: TransportProfile,
+) -> dict:
+    q_exact = [Fraction.from_float(value) for value in profile.q_nodes]
+    q_prime_exact = [Fraction.from_float(value) for value in profile.q_prime_nodes]
+    q_min_index = min(range(len(q_exact)), key=lambda index: q_exact[index])
+    q_max_index = max(range(len(q_exact)), key=lambda index: q_exact[index])
+    q_prime_min_index = min(
+        range(len(q_prime_exact)), key=lambda index: q_prime_exact[index]
+    )
+    q_prime_max_index = max(
+        range(len(q_prime_exact)), key=lambda index: q_prime_exact[index]
+    )
+    q_min_interval = float64_outward_interval_for_fraction(q_exact[q_min_index])
+    q_max_interval = float64_outward_interval_for_fraction(q_exact[q_max_index])
+    q_prime_min_interval = float64_outward_interval_for_fraction(
+        q_prime_exact[q_prime_min_index]
+    )
+    q_prime_max_interval = float64_outward_interval_for_fraction(
+        q_prime_exact[q_prime_max_index]
+    )
+    node_payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_future_piecewise_linear_profile_nodes.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "transport_profile_kind": profile.kind,
+        "theta_nodes_hex": [float(value).hex() for value in profile.theta_nodes],
+        "q_nodes_hex": [float(value).hex() for value in profile.q_nodes],
+        "q_prime_nodes_hex": [
+            float(value).hex() for value in profile.q_prime_nodes
+        ],
+        "interpolation_kind": "piecewise_linear_float64_nodes",
+        "q_prime_semantics": (
+            "auxiliary_transport_derivative_interpolant_not_derivative_of_"
+            "piecewise_linear_q"
+        ),
+    }
+    node_payload_digest = canonical_json_digest(node_payload)
+    certificate_payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_future_piecewise_linear_profile_box_certificate.v0"
+        ),
+        "artifact_id": "a1_future_piecewise_linear_profile_box_certificate.v0",
+        "box_id": "future_transport_interval_box",
+        "source_artifact_hash": source_digest,
+        "past_profile_certificate_digest": (
+            past_profile_interval_box_certificate["certificate_digest"]
+        ),
+        "transport_profile_kind": profile.kind,
+        "theta_interval": [profile.theta_nodes[0], profile.theta_nodes[-1]],
+        "transport_steps": len(profile.theta_nodes) - 1,
+        "node_count": len(profile.theta_nodes),
+        "theta_nodes_hex": node_payload["theta_nodes_hex"],
+        "q_nodes_hex": node_payload["q_nodes_hex"],
+        "q_prime_nodes_hex": node_payload["q_prime_nodes_hex"],
+        "node_payload_digest": node_payload_digest,
+        "node_payload_byte_count": len(canonical_json_bytes(node_payload)),
+        "method": "exact_rational_float64_node_extrema_nextafter_certificate",
+        "exact_reference_arithmetic": "fractions.Fraction.from_float",
+        "source_float64_payload_bound": True,
+        "interpolation_kind": "piecewise_linear_float64_nodes",
+        "q_prime_semantics": node_payload["q_prime_semantics"],
+        "q_interval": [q_min_interval["lower"], q_max_interval["upper"]],
+        "q_interval_hex": [q_min_interval["lower_hex"], q_max_interval["upper_hex"]],
+        "q_prime_auxiliary_interval": [
+            q_prime_min_interval["lower"],
+            q_prime_max_interval["upper"],
+        ],
+        "q_prime_auxiliary_interval_hex": [
+            q_prime_min_interval["lower_hex"],
+            q_prime_max_interval["upper_hex"],
+        ],
+        "q_min_node_index": q_min_index,
+        "q_max_node_index": q_max_index,
+        "q_prime_min_node_index": q_prime_min_index,
+        "q_prime_max_node_index": q_prime_max_index,
+        "q_min_node_hex": float(profile.q_nodes[q_min_index]).hex(),
+        "q_max_node_hex": float(profile.q_nodes[q_max_index]).hex(),
+        "q_prime_min_node_hex": float(
+            profile.q_prime_nodes[q_prime_min_index]
+        ).hex(),
+        "q_prime_max_node_hex": float(
+            profile.q_prime_nodes[q_prime_max_index]
+        ).hex(),
+        "bounds_emitted_piecewise_linear_profile": True,
+        "outward_for_emitted_piecewise_linear_profile": True,
+        "bounds_continuous_transport_equation": False,
+        "outward_for_continuous_transport_equation": False,
+        "E_Q_plus_b_for_admissible_class": "absent",
+        "used_as_certificate": True,
+        "used_as_local_certificate": True,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **certificate_payload,
+        "certificate_digest": canonical_json_digest(certificate_payload),
+        "status": (
+            "future_piecewise_linear_profile_box_local_certificate_not_shared_"
+            "transport_certificate"
+        ),
+    }
+
+
+def future_piecewise_linear_profile_box_certificate_summary(
+    certificate: dict,
+) -> dict:
+    return {
+        key: certificate[key]
+        for key in (
+            "schema",
+            "artifact_id",
+            "box_id",
+            "source_artifact_hash",
+            "past_profile_certificate_digest",
+            "transport_profile_kind",
+            "theta_interval",
+            "transport_steps",
+            "node_count",
+            "node_payload_digest",
+            "node_payload_byte_count",
+            "method",
+            "exact_reference_arithmetic",
+            "source_float64_payload_bound",
+            "interpolation_kind",
+            "q_prime_semantics",
+            "q_interval",
+            "q_interval_hex",
+            "q_prime_auxiliary_interval",
+            "q_prime_auxiliary_interval_hex",
+            "q_min_node_index",
+            "q_max_node_index",
+            "q_prime_min_node_index",
+            "q_prime_max_node_index",
+            "bounds_emitted_piecewise_linear_profile",
+            "outward_for_emitted_piecewise_linear_profile",
+            "bounds_continuous_transport_equation",
+            "outward_for_continuous_transport_equation",
+            "E_Q_plus_b_for_admissible_class",
             "used_as_certificate",
             "used_as_local_certificate",
             "used_as_shared_certificate",
@@ -5645,6 +5804,18 @@ def a1_endpoint_slope_cancel_source_identity(args: argparse.Namespace) -> dict:
             args.admissible_profile_bernstein_depth,
         )
     )
+    future_transport_interval_box_certificate = None
+    if args.profile_mode == "tangential_transport":
+        source_profile = build_tangential_transport_profile(
+            args, past_profile=past_profile
+        )
+        future_transport_interval_box_certificate = (
+            future_piecewise_linear_profile_box_certificate(
+                identity["digest"],
+                past_profile_interval_box_certificate,
+                source_profile,
+            )
+        )
     directed_rounding_backend_target = a1_directed_rounding_backend_target(
         identity["digest"],
         coefficient_enclosure_attempt,
@@ -5660,16 +5831,33 @@ def a1_endpoint_slope_cancel_source_identity(args: argparse.Namespace) -> dict:
         coefficient_enclosure_attempt,
         past_profile_interval_box_attempt,
         past_profile_interval_box_certificate,
+        future_transport_interval_box_certificate,
         directed_rounding_backend_target,
         directed_rounding_backend_self_audit,
     )
+    blocked_rows = [
+        "coefficient_interval_enclosure_attempt_not_directed_rounding_certificate",
+        "past_profile_interval_box_certificate_not_shared_certificate",
+        "directed_rounding_backend_self_audit_not_shared_certificate",
+        "E_Q_plus_b_absent_for_admissible_class",
+    ]
+    if future_transport_interval_box_certificate is None:
+        blocked_rows.append("future_outward_profile_bounds_absent")
+    else:
+        blocked_rows.extend(
+            [
+                "future_piecewise_linear_profile_box_local_certificate_not_continuous_transport_certificate",
+                "continuous_transport_equation_bounds_absent",
+            ]
+        )
     return {
         "schema": identity["schema"],
         "artifact_id": identity["artifact_id"],
         "diagnostic_mode": "a1_endpoint_slope_cancel_source_identity",
         "claim_level": (
             "priority-only source-identity payload with local past-profile "
-            "certificate; not shared interval-box certificate"
+            "and future piecewise-linear profile certificates; not shared "
+            "interval-box certificate"
         ),
         "digest": identity["digest"],
         "digest_payload_byte_count": identity["digest_payload_byte_count"],
@@ -5683,6 +5871,9 @@ def a1_endpoint_slope_cancel_source_identity(args: argparse.Namespace) -> dict:
         "past_profile_interval_box_certificate": (
             past_profile_interval_box_certificate
         ),
+        "future_piecewise_linear_profile_box_certificate": (
+            future_transport_interval_box_certificate
+        ),
         "directed_rounding_backend_target": directed_rounding_backend_target,
         "directed_rounding_backend_self_audit": (
             directed_rounding_backend_self_audit
@@ -5692,21 +5883,17 @@ def a1_endpoint_slope_cancel_source_identity(args: argparse.Namespace) -> dict:
         "authorizes_outward_certificate": False,
         "authorizes_obstruction_or_channel_decision": False,
         "status": "source_identity_payload_only_not_interval_box_certificate",
-        "blocked_rows": [
-            "coefficient_interval_enclosure_attempt_not_directed_rounding_certificate",
-            "past_profile_interval_box_certificate_not_shared_certificate",
-            "directed_rounding_backend_self_audit_not_shared_certificate",
-            "future_outward_profile_bounds_absent",
-            "E_Q_plus_b_absent",
-        ],
+        "blocked_rows": blocked_rows,
         "policy": (
             "This diagnostic emits the canonical source payload whose SHA-256 "
             "digest is recorded by a1_admissible_profile_bounds/v0. It fixes "
             "source identity and emits fail-closed float64 coefficient and "
             "past-profile interval-box attempts plus a local exact-rational "
-            "past-profile Bernstein certificate, directed-rounding backend "
-            "target, and self-audit; it does not certify shared boxes, future "
-            "transport constants, or residual-envelope constants."
+            "past-profile Bernstein certificate, local emitted future "
+            "piecewise-linear profile certificate, directed-rounding backend "
+            "target, and self-audit; it does not certify shared boxes, "
+            "continuous transport bounds, future transport constants, or "
+            "residual-envelope constants."
         ),
     }
 
@@ -5781,16 +5968,24 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         directed_rounding_backend_target,
         past_profile,
     )
+    profile = build_tangential_transport_profile(
+        attempt_args, past_profile=past_profile
+    )
+    future_transport_interval_box_certificate = (
+        future_piecewise_linear_profile_box_certificate(
+            source_identity["digest"],
+            past_profile_interval_box_certificate,
+            profile,
+        )
+    )
     shared_interval_target = a1_shared_interval_box_certificate_target(
         source_identity["digest"],
         coefficient_enclosure_attempt,
         past_profile_interval_box_attempt,
         past_profile_interval_box_certificate,
+        future_transport_interval_box_certificate,
         directed_rounding_backend_target,
         directed_rounding_backend_self_audit,
-    )
-    profile = build_tangential_transport_profile(
-        attempt_args, past_profile=past_profile
     )
     theta_samples = theta_grid(
         0.0, attempt_args.theta_hi, attempt_args.theta_samples
@@ -5803,17 +5998,11 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         past_profile.basis_scale,
         args.finite_collar_positivity_samples,
     )
-    future_node_bounds = {
-        "method": "piecewise_linear_transport_node_envelope_float64",
-        "node_count": len(profile.q_nodes),
-        "q_min": min(profile.q_nodes),
-        "q_max": max(profile.q_nodes),
-        "q_prime_min": min(profile.q_prime_nodes),
-        "q_prime_max": max(profile.q_prime_nodes),
-        "outward_for_emitted_piecewise_linear_profile": True,
-        "outward_for_continuous_transport_equation": False,
-        "status": "transport_node_envelope_not_interval_certificate",
-    }
+    future_profile_certificate_summary = (
+        future_piecewise_linear_profile_box_certificate_summary(
+            future_transport_interval_box_certificate
+        )
+    )
 
     retained_rows_summary: list[dict] = []
     retained_failures: list[str] = []
@@ -5972,13 +6161,30 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "declared_q_min_convention": args.finite_collar_min_q,
             "declared_q_max_convention": args.finite_collar_max_q,
             "sampled_within_declared_convention": sampled_within_declared_convention,
-            "outward_q_min": "absent",
-            "outward_q_max": "absent",
-            "transport_node_envelope": future_node_bounds,
+            "outward_q_min": future_transport_interval_box_certificate[
+                "q_interval"
+            ][0],
+            "outward_q_max": future_transport_interval_box_certificate[
+                "q_interval"
+            ][1],
+            "outward_q_prime_auxiliary_min": (
+                future_transport_interval_box_certificate[
+                    "q_prime_auxiliary_interval"
+                ][0]
+            ),
+            "outward_q_prime_auxiliary_max": (
+                future_transport_interval_box_certificate[
+                    "q_prime_auxiliary_interval"
+                ][1]
+            ),
+            "local_certificate": future_profile_certificate_summary,
             "E_Q_plus_b": "absent",
-            "used_as_certificate": False,
+            "E_Q_plus_b_status": "absent_for_admissible_class",
+            "used_as_certificate": True,
+            "used_as_local_certificate": True,
+            "used_as_shared_certificate": False,
             "status": (
-                "transport_node_envelope_only_not_interval_certificate"
+                "future_piecewise_linear_profile_box_local_certificate_not_shared_transport_certificate"
                 if sampled_within_declared_convention
                 else "sampled_transport_exits_declared_convention_not_certified"
             ),
@@ -6007,8 +6213,10 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         "first_failure": "admissible_profile_bounds",
         "blocked_rows": [
             "past_profile_interval_box_certificate_not_shared_certificate",
-            "future_outward_profile_bounds_absent",
-            "E_Q_plus_b_absent",
+            "future_piecewise_linear_profile_box_certificate_not_shared_certificate",
+            "future_piecewise_linear_profile_box_local_certificate_not_continuous_transport_certificate",
+            "continuous_transport_equation_bounds_absent",
+            "E_Q_plus_b_absent_for_admissible_class",
             "inactive_cover_id_absent",
             "source_identity_digest_not_shared_interval_box_certificate",
             "directed_rounding_backend_self_audit_not_shared_certificate",
@@ -6031,12 +6239,15 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         "policy": (
             "This diagnostic records a floating subdivided-Bernstein outward "
             "attempt and a local exact-rational Bernstein certificate for the "
-            "past endpoint-slope-cancelled profile, plus a node envelope for "
-            "the emitted piecewise-linear transport profile. It declares a "
-            "directed-rounding backend target and self-audit, but it does not "
-            "supply a shared interval-box certificate for future transport, "
-            "retained roots, inactive cover, branch-sum, transport, or "
-            "residual-envelope constants."
+            "past endpoint-slope-cancelled profile, plus a local exact-rational "
+            "node-extrema certificate for the emitted future piecewise-linear "
+            "transport profile. The q-prime row is an auxiliary transport-"
+            "derivative interpolant, not the derivative of piecewise-linear q. "
+            "The packet declares a directed-rounding backend target and "
+            "self-audit, but it does not supply a shared interval-box "
+            "certificate for continuous future transport, retained roots, "
+            "inactive cover, branch-sum, transport, or residual-envelope "
+            "constants."
         ),
     }
 
