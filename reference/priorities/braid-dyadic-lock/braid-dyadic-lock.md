@@ -14,6 +14,7 @@
 1. `phase_bundle_return_map` — Upgrade the finite-$\eta$ reduced return map so it retains binary signed-root complex rows $(N_s,M_p,D_{ij})$, signed-sheet labels, integer return-map degree/holonomy $(m,n)$, relative phase offsets, orbital-plane normals, $D_{\mathrm{plane}}$, branch-Jacobian floors, middle-caustic impulse rows, causal-root gluing-overlap rows, finite continuation cardinality, and any starvation-scale row for translating forward partners. The promoted branch label should report the assembly topological charge $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$ as defined in [Assembly Topological Charge](../../../content/markdown/aaa/dynamics/assembly-topological-charge.md), with $c_1=(m,n)$ for tri-binary locks and with $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$ before comparing phase entries. Status: `next`. Depends on: none.
 2. `caustic_weighted_selection_score` — Compute the caustic-weighted cancellation and residual-curvature score on the same branch chart, with the middle harmonic amplitudes derived from the regularized $1/(|J_M|+\eta_J)$ ledger rather than fitted freely. The score must separate the topological overlap requirement from the dynamical polygon-closure requirement, report the generic $A_2$ fold exponent $p_{\mathrm{fold}}=3/2$ when applicable, and choose $L_{\mathrm{eff}}$ so the tail bound $\varepsilon_L=O(L_{\mathrm{eff}}^{-2})$ is below $\frac12\Delta C_L$. Status: `pending`. Depends on: `phase_bundle_return_map`.
 3. `flat_moduli_floquet_test` — Test candidate locks, including outer-normalized `1:2:4`, by contraction off the full-chart neutral directions, holonomy-defect recurrence, preservation of the memory-corrected symplectic form $\omega_0+\omega_{\mathrm{mem}}$, and nonzero $D_{\mathrm{plane}}$ rather than by scalar frequency closure alone. A direction may be quotiented only if it is neutral for the enclosing tri-binary chart, not merely for an isolated binary subsystem; a flat-modulus direction with positive $\Theta$ exponent is lock-breaking, not symmetry. Status: `pending`. Depends on: `caustic_weighted_selection_score`.
+4. `inter_layer_phase_cadence_lock_residual` — Use layer phase offsets, integer cadence combinations, angular-momentum exchange, plane compatibility, and local event-ledger balance as the lock test before treating a nested shell braid as synchronized. Status: `priority-only`. Depends on: `phase_bundle_return_map`.
 
 ## Scope
 
@@ -69,6 +70,22 @@ Approved disposition 2026-06-23: [Noether Braid Scaling and Packing](noether-bra
 ## Breather Certificate Discipline
 
 The dyadic program should copy the breather distinction between integer closure and stable return-map closure. A candidate `1:2` or `1:2:4` ledger is only a branch label until the regularized phase-bundle return map reports finite active branches, the signed binary root-complex rows $(N_s,M_p,D_{ij})$, the promoted assembly topological charge fields $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$, positive Jacobian floors, retained caustic impulse rows, holonomy-defect recurrence, memory-corrected symplectic recurrence, nonzero $D_{\mathrm{plane}}$, a non-symmetry stability gap off the flat moduli, and finite causal-root gluing across the local branch charts. If the collinear breather fails at branch-chart, monodromy, gluing, symplectic-recurrence, or continuation-cardinality rows, the dyadic map must treat the same failure class as blocking rather than as evidence for or against dyadic selection itself.
+
+## Inter-Layer Phase/Cadence Lock Residual
+
+Source-mining intake 2026-06-28 from the December 2020 geometry posts reframes old "spin-orbit locking" and gear-ratio language as a branch residual. The useful object is not a scalar frequency ratio by itself. A lock between layers $a$ and $b$ should report
+$$
+\mathcal{R}_{\mathrm{lock}}^{ab}
+=
+\left(
+\Delta\phi_{ab},
+n_a\omega_a-n_b\omega_b,
+\Delta\mathbf J_{ab},
+D_{\mathrm{plane}}^{ab},
+\mathcal{L}_{E\mathbf p\mathbf J}^{ab}
+\right).
+$$
+Here $\Delta\phi_{ab}$ is the retained phase offset, $n_a\omega_a-n_b\omega_b$ is the integer cadence mismatch under test, $\Delta\mathbf J_{ab}$ is angular-momentum exchange or leakage, $D_{\mathrm{plane}}^{ab}$ keeps plane compatibility explicit, and $\mathcal{L}_{E\mathbf p\mathbf J}^{ab}$ is the local ledger balance. A nested shell braid may carry a frequency label only after this residual is small on the same branch chart that supplies the signed roots and phase-bundle return map.
 
 ## Immediate Next Move
 

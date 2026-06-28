@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Status: `active`
-- Scope: theory-history reconstruction, discovery-path capture, legacy archive synthesis, academic-interface lessons, and priority-only journey packets
+- Scope: theory-history reconstruction, discovery-path capture, legacy archive synthesis, and priority-only journey packets
 - Claim level: priority-stage historical reconstruction; not reader-facing canon and not proof closure
 
 ## Purpose
@@ -16,13 +16,11 @@ Use this folder for:
 - source-mined theory-history recaps from the legacy WordPress archive;
 - origin-history notes about parsimony, pruning, failed branches, and discovery method;
 - seminal realization packets for the binary, Noether braid, axial layer, fermion generations, strong-sector links, Noether sea, causal wake, and master-equation direction;
-- academic-interface and outreach lessons that should remain separate from proof packets;
 - priority-only staging before any reader-facing promotion.
 
 ## Current Files
 
 - [aaa-theory-history](aaa-theory-history.md): high-level 2018-present recap, source map, realization cards, legacy-to-current term migration, and merged origin-history captures.
-- [academic-interface-barriers](academic-interface-barriers.md): priority-stage analysis of legacy social-media and academic-interface barriers for outsider ideas.
 
 ## Capture Rules
 
@@ -43,7 +41,6 @@ Use this folder for:
 5. `noether_sea_journey_packet` - Separate legacy `spacetime aether` claims from current Noether sea constitutive-response obligations. Status: `queued`.
 6. `journey_signal_coverage_map` - Mark which journey signals are already captured in `content/markdown/aaa` and which remain priority-only. Status: `queued`.
 7. `origin_history_expansion` - Continue origin-history capture around radical parsimony, pruning, failed branches, and the Euclidean void plus architrinos starting constraint. Status: `active`.
-8. `external_claim_packet_template` - Convert academic-interface lessons into a compact external-facing claim-packet template without promoting personal journey material into proof packets. Status: `queued`.
 
 ## Promotion Policy
 
@@ -57,8 +54,13 @@ Promotion requires a separate edit pass that:
 - preserves $\mathbb{A}\mathbb{A}\mathbb{A}$ terminology;
 - and keeps `content/markdown/aaa` self-contained without links back into `reference/priorities`.
 
-Possible future promotion destinations:
+## Promotion Targets
 
-- `content/markdown/aaa/philosophy-history/`
-- `reference/outreach/`
-- founder/origin narrative material outside the textbook corpus
+Do not create a new reader-facing scene merely because a journey packet exists. Promote by topic into existing homes unless the material grows into a polished standalone chapter with enough scope to justify its own page.
+
+| Priority-stage source | User-facing destination | Promotion slice | Promotion status |
+| --- | --- | --- | --- |
+| [aaa-theory-history](aaa-theory-history.md) | [Historical Context and Missed Opportunities](../../../content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) | Discovery path, historical near-miss framing, missed openings, and why a substrate-first architecture was hard to see. | Defer with blocker: needs a focused rewrite that strips diary structure and states current claim level. |
+| [aaa-theory-history](aaa-theory-history.md) | [The Treasure Physics Overlooked](../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) | Retrospective root-cause material about why simple constituent and substrate choices were missed. | Defer with blocker: promote only defensible pattern analysis, not proof-status claims. |
+
+The distributive rule is: history and missed-opportunity material goes to philosophy-history; first-person journey material remains priority-only unless a separate outreach or founder-narrative surface is explicitly selected.

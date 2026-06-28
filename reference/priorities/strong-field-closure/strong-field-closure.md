@@ -19,6 +19,8 @@
 6. `hypothesis_bank_review` — Preserve strong-field and tri-binary hypotheses as a watchlist, and promote only hypotheses that gain a boundary condition, equation, simulation target, or observable. Status: `ongoing`. Depends on: none.
 7. `high_energy_source_sink_taxonomy` — Classify horizon release, jets, mergers, diffuse release, catastrophic candidates, reabsorption, and return channels before using strong-field events as cosmology source terms. Status: `pending`. Depends on: `release_channel_selection`.
 8. `packed_core_temperature_endpoint_residual` — Keep observer-accessible temperature, stored configuration energy, and packed-core coarse-graining separate before making any low-temperature or low-entropy interior claim. Status: `priority-only`. Depends on: [temperature](../cross-theory-mapping/temperature.md), `embedded_boundary_conditions`.
+9. `hard_em_constitutive_ceiling` — Test whether finite radius, Noether sea effective permittivity/permeability, and maximum-curvature regularity combine into a bounded electromagnetic constitutive response. Status: `priority-only`. Depends on: `embedded_boundary_conditions`.
+10. `ingress_conserved_ledger_deposition` — Route infalling conserved ledgers into horizon-interface, packed-core, Noether sea, defect, or release rows before making any assimilation or information claim. Status: `priority-only`. Depends on: `horizon_entropy_packet`, `release_channel_selection`.
 
 ## Scope
 
@@ -88,6 +90,19 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
   k_B\log\left|\mathcal{M}_{\mathcal{Q}}(\Omega)\right|.
   $$
   A small $S_{\mathcal{Q}}(\Omega)$ for the interior packing record must not be confused with horizon-interface entropy, exterior observer entropy, release-channel information, or global information loss.
+- Source-mining intake 2026-06-28 from the December 2020 strong-field posts adds a hard electromagnetic constitutive ceiling to the same maximum-curvature problem. The priority-only target is
+  $$
+  \mathcal{C}_{\mathrm{EM,max}}
+  =
+  \left(
+  R_{\min},
+  \epsilon_{\mathrm{eff}}(\mathcal I),
+  \mu_{\mathrm{eff}}(\mathcal I),
+  F_{\max},
+  \mathcal{R}_{\mathrm{ceil}}
+  \right),
+  $$
+  where $\mathcal I$ is the declared local invariant or intensity record. The ceiling is accepted only if the same Noether sea constitutive response that bounds field/self-energy also remains compatible with the packed-geometry barrier and observer-level electromagnetic recovery. A fixed lower radius, a fitted field cap, or a verbal Planck-scale appeal is not sufficient.
 - Keep isolated-binary Planck-scale rows separate from many-body packed-core rows. A free binary record such as
   $$
   \Theta_{\mathrm{free\text{-}bin}}
@@ -264,6 +279,19 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
   \right).
   $$
   Here $\mathcal{L}_{\mathrm{cons}}$ carries conserved energy, momentum, angular momentum, polarity, and identity-routing rows; $\mathcal{B}_{H}$ carries horizon-interface labels; $\mathcal{C}_{\mathrm{coarse}}$ states the declared interior coarse-graining; $\mathcal{L}_{\mathrm{out}}$ carries release records; and $R_{\mathrm{Page}}$ is the Page-compatible recovery residual. A small interior coarse-grained state count is not by itself global information destruction.
+- Before an inward assembly, photon-channel packet, or fragment is counted as assimilated into a packed region, route its conserved ledger into declared deposition channels:
+  $$
+  \mathcal{D}_{\mathrm{ingress}}
+  =
+  \left(
+  \mathcal{L}_{\mathrm{in}},
+  \mathcal{L}_{\partial\Omega},
+  \Delta\mathcal{B}_{H},
+  \Delta\mathcal{C}_{\mathrm{coarse}},
+  \mathcal{L}_{\mathrm{out/sea}}
+  \right).
+  $$
+  Here $\mathcal{L}_{\mathrm{in}}$ is the incoming conserved ledger, $\mathcal{L}_{\partial\Omega}$ is the horizon-interface crossing row, $\Delta\mathcal{B}_{H}$ is any horizon-label update, $\Delta\mathcal{C}_{\mathrm{coarse}}$ is the packed-interior coarse-graining change, and $\mathcal{L}_{\mathrm{out/sea}}$ records Noether sea, defect, recoil, or release-channel deposition. A branch that makes content disappear into the packed core without one of these rows has lost ledger provenance rather than solved the information problem.
 - Extract at least one discriminating observable relative to GR-like strong-field behavior.
 
 ### High-Energy Source/Sink Taxonomy

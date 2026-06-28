@@ -210,6 +210,20 @@ $$
 
 The neutrino benchmark is a mixing and mass-difference target. Absolute-mass rows remain separate limits: $m_{\nu_e}^{\mathrm{eff}}<0.8\,\mathrm{eV}$ at $90\%$ CL, $m_{\nu_\mu}^{\mathrm{eff}}<0.19\,\mathrm{MeV}$ at $90\%$ CL, and $m_{\nu_\tau}^{\mathrm{eff}}<18.2\,\mathrm{MeV}$ at $95\%$ CL in the current PDG rows.
 
+Source-mining intake 2026-06-28 from the December 2020 neutrino notes adds a weak-exposure consistency row. The PMNS map should consume the same exposed fraction that the near-photon neutrino chapter assigns to the weak channel:
+$$
+\mathcal{R}_{\nu W}
+=
+\left(
+\Pi_W,
+H_{\mathrm{geo}},
+E_{\nu,\mathrm{exp}},
+\mathbf U_{\mathrm{PMNS}},
+\mathcal{L}_{E\mathbf p\mathbf J}^{\mathrm{src/det}}
+\right).
+$$
+The row fails if the propagation phase, detector flavor projection, and exposed-energy bookkeeping require different weak-exposure projectors. It also fails if hidden internal energy is used as an unconstrained mass reservoir rather than as part of the retained near-photon branch ledger.
+
 ## CERN Weak, Higgs, and Flavor Event Burdens
 
 The CERN Academic Training / Yellow Report source family sharpens this packet by showing how weak, Higgs, and flavor claims enter as reconstructed event signatures. The weak-sector closure object must therefore expose not only a mass or mixing number, but also the observer channel by which that number is inferred.

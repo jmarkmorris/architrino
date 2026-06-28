@@ -1333,6 +1333,7 @@ def coefficient_interval_target_row(coefficient_enclosure_attempt: dict | None) 
 def shared_interval_boxes_target_row(
     past_profile_interval_box_attempt: dict | None,
     past_profile_interval_box_certificate: dict | None = None,
+    future_transport_interval_box_certificate: dict | None = None,
 ) -> dict:
     required_box_ids = [
         "past_profile_interval_box",
@@ -1345,19 +1346,31 @@ def shared_interval_boxes_target_row(
             "status": "absent",
             "required_box_ids": required_box_ids,
         }
-    past_profile_status = (
-        "past_profile_interval_box_certificate_present_not_shared_certificate"
-        if past_profile_interval_box_certificate is not None
-        else "past_profile_interval_box_attempt_present_not_shared_certificate"
-    )
+    local_certificate_box_ids = []
+    if past_profile_interval_box_certificate is not None:
+        local_certificate_box_ids.append(past_profile_interval_box_certificate["box_id"])
+    if future_transport_interval_box_certificate is not None:
+        local_certificate_box_ids.append(
+            future_transport_interval_box_certificate["box_id"]
+        )
+    if (
+        past_profile_interval_box_certificate is not None
+        and future_transport_interval_box_certificate is not None
+    ):
+        status = "past_and_future_interval_box_certificates_present_not_shared_certificate"
+    elif past_profile_interval_box_certificate is not None:
+        status = "past_profile_interval_box_certificate_present_not_shared_certificate"
+    else:
+        status = "past_profile_interval_box_attempt_present_not_shared_certificate"
     row = {
-        "status": past_profile_status,
+        "status": status,
         "required_box_ids": required_box_ids,
         "attempt_box_ids_present": [past_profile_interval_box_attempt["box_id"]],
         "missing_box_ids": [
             box_id
             for box_id in required_box_ids
-            if box_id != past_profile_interval_box_attempt["box_id"]
+            if box_id
+            not in {past_profile_interval_box_attempt["box_id"], *local_certificate_box_ids}
         ],
         "past_profile_interval_box_attempt_schema": (
             past_profile_interval_box_attempt["schema"]
@@ -1381,6 +1394,32 @@ def shared_interval_boxes_target_row(
                 ),
                 "past_profile_interval_box_certificate_used_locally": (
                     past_profile_interval_box_certificate["used_as_local_certificate"]
+                ),
+            }
+        )
+    if local_certificate_box_ids:
+        row["local_certificate_box_ids_present"] = local_certificate_box_ids
+    if future_transport_interval_box_certificate is not None:
+        row.update(
+            {
+                "future_transport_interval_box_certificate_schema": (
+                    future_transport_interval_box_certificate["schema"]
+                ),
+                "future_transport_interval_box_certificate_digest": (
+                    future_transport_interval_box_certificate["certificate_digest"]
+                ),
+                "future_transport_interval_box_certificate_status": (
+                    future_transport_interval_box_certificate["status"]
+                ),
+                "future_transport_interval_box_certificate_used_locally": (
+                    future_transport_interval_box_certificate[
+                        "used_as_local_certificate"
+                    ]
+                ),
+                "future_transport_outward_for_continuous_transport_equation": (
+                    future_transport_interval_box_certificate[
+                        "outward_for_continuous_transport_equation"
+                    ]
                 ),
             }
         )
@@ -1798,6 +1837,7 @@ def a1_shared_interval_box_certificate_target(
     coefficient_enclosure_attempt: dict | None = None,
     past_profile_interval_box_attempt: dict | None = None,
     past_profile_interval_box_certificate: dict | None = None,
+    future_transport_interval_box_certificate: dict | None = None,
     directed_rounding_backend_target: dict | None = None,
     directed_rounding_backend_self_audit: dict | None = None,
 ) -> dict:
@@ -1816,6 +1856,7 @@ def a1_shared_interval_box_certificate_target(
         "shared_interval_boxes": shared_interval_boxes_target_row(
             past_profile_interval_box_attempt,
             past_profile_interval_box_certificate,
+            future_transport_interval_box_certificate,
         ),
         "directed_rounding_backend": directed_rounding_backend_target_row(
             directed_rounding_backend_target,
@@ -5627,7 +5668,8 @@ def a1_endpoint_slope_cancel_source_identity(args: argparse.Namespace) -> dict:
         "artifact_id": identity["artifact_id"],
         "diagnostic_mode": "a1_endpoint_slope_cancel_source_identity",
         "claim_level": (
-            "priority-only source-identity payload; not interval certificate"
+            "priority-only source-identity payload with local past-profile "
+            "certificate; not shared interval-box certificate"
         ),
         "digest": identity["digest"],
         "digest_payload_byte_count": identity["digest_payload_byte_count"],
@@ -5823,7 +5865,8 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         "artifact_id": "a1_admissible_profile_bounds.v0",
         "diagnostic_mode": "a1_admissible_profile_bounds_attempt",
         "claim_level": (
-            "priority-only sampled admissibility attempt; not interval certificate"
+            "priority-only admissibility packet with local past-profile "
+            "certificate; not shared interval-box certificate"
         ),
         "radius_b": args.admissible_profile_radius_b,
         "row_identity": {
@@ -5903,9 +5946,13 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "sample_count": past_bounds["samples"],
             "declared_q_min_convention": args.finite_collar_min_q,
             "declared_q_max_convention": args.finite_collar_max_q,
-            "outward_q_min": past_bernstein_bounds["lower"],
-            "outward_q_max": past_bernstein_bounds["upper"],
-            "H_b": past_bernstein_bounds["H_b"],
+            "outward_q_min": past_profile_interval_box_certificate[
+                "q_interval"
+            ][0],
+            "outward_q_max": past_profile_interval_box_certificate[
+                "q_interval"
+            ][1],
+            "H_b": past_profile_interval_box_certificate["H_b_upper"],
             "outward_attempt": past_bernstein_bounds,
             "local_certificate": past_profile_interval_box_certificate_summary(
                 past_profile_interval_box_certificate

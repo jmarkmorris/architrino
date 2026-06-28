@@ -10,7 +10,7 @@ For top-six workstream sessions, begin from the current minimum evidence-object 
 
 Use `proof-programs/` for active mathematical proof-program priorities that share the same theorem-target / certificate / promotion workflow.
 
-Use `aaa-journey/aaa-journey.md` for priority-stage reconstruction of the legacy Architrino archive's ideation sequence, origin-history notes, seminal realization clusters, and legacy-to-current terminology migrations.
+Use `aaa-journey/aaa-journey.md` for priority-stage reconstruction of the legacy Architrino archive's ideation sequence, origin-history notes, seminal realization clusters, promotion routing, and legacy-to-current terminology migrations.
 
 ## Priority-Doc Maintenance Pattern
 

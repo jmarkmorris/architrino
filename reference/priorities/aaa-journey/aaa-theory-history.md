@@ -266,9 +266,11 @@ This is origin-history material. It explains how the architecture became discove
 
 Do not promote this file directly into reader-facing corpus prose. A future promotion pass should choose one destination and restate only the defensible content with current terminology, claim level, assumptions, and proof burdens.
 
-Possible promotion destinations:
+Primary promotion destinations:
 
-- `content/markdown/aaa/philosophy-history/`
-- `content/markdown/aaa/archie/` only if a terminology or style canon update is explicitly requested
-- focused priority packets under this folder
-- outreach/founder narrative material outside the textbook corpus
+- [Historical Context and Missed Opportunities](../../../content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) for discovery-path material that clarifies missed openings, historical near-misses, and why a substrate-first architecture was hard to see.
+- [The Treasure Physics Overlooked](../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) for retrospective root-cause analysis about overlooked simple ingredients, provided it is rewritten as defensible pattern analysis rather than proof-status claim.
+- focused priority packets under this folder for material that remains useful as source history but is not reader-facing yet.
+- outreach/founder narrative material outside the textbook corpus for first-person context, operator/developer journey, and human story.
+
+Avoid using [GitHub Presence and Community](../../../content/markdown/aaa/archie/github-presence-and-community.md) for this file unless the edit is explicitly about public contribution norms. Avoid Archie canon edits unless a terminology or style policy update is explicitly requested.

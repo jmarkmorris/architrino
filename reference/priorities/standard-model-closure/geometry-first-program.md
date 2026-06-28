@@ -68,6 +68,52 @@ E_{\mathrm{exp}}^{(a)},
 $$
 The rows respectively record constituent architrino inventory, retained Noether braid or nested shell braid branch identity, binary frequency/radius data at rest, axial geometry, exposure quotient, total internal energy, exposed observer-facing energy, and the resulting mass residual. This vector is priority-only until branch-derived rows exist; it prevents PDG labels from standing in for the geometry that must be derived.
 
+Source-mining intake 2026-06-28 from the December 2020 notation and geometry posts sharpens this vector in three ways. First, the binary row should be layer-resolved rather than only summarized as "frequency/radius data." For a candidate assembly $a$, use
+$$
+\mathcal{F}_{\mathrm{bin}}^{(a)}
+=
+\left\{
+\left(
+R_{\ell},
+\omega_{\ell},
+s_{\ell},
+\phi_{\ell},
+\hat{\mathbf n}_{\ell},
+E_{\ell}
+\right)
+\right\}_{\ell\in L_a},
+$$
+where $R_{\ell}$ is the layer radius, $\omega_{\ell}$ is the layer cadence, $s_{\ell}$ is the tangential speed, $\phi_{\ell}$ is the phase row, $\hat{\mathbf n}_{\ell}$ is the binary-plane normal, and $E_{\ell}$ is the retained layer energy. Diagrams, tables, and particle labels are then projections of this same branch record rather than independent conventions.
+
+Second, legacy notation tables should be treated as a finite assembly-grammar round-trip target, not as ontology. A useful priority object is
+$$
+\mathcal{G}_{\mathrm{asm}}
+=
+\left(
+\Sigma_{\mathrm{asm}},
+\mathcal{P}_{\mathrm{asm}},
+\pi_{\mathrm{branch}},
+\pi_{\mathrm{SM}},
+\mathcal{R}_{\mathrm{round}}
+\right),
+$$
+where $\Sigma_{\mathrm{asm}}$ is the allowed symbol inventory, $\mathcal{P}_{\mathrm{asm}}$ is the production or construction rule set, $\pi_{\mathrm{branch}}$ maps a finite expression into a retained branch record, $\pi_{\mathrm{SM}}$ maps the retained branch into observer-level Standard Model labels, and $\mathcal{R}_{\mathrm{round}}$ measures whether the same branch can be recovered without changing the substrate ledger. This target preserves the parsing value of the archive while rejecting literal "regular expression" or old notation language as fundamental ontology.
+
+Third, tri-binary Standard Model comparison should quotient by the symmetries that the old tables mixed together. A provisional quotient record is
+$$
+\mathcal{Q}_{\mathrm{tri}}
+=
+\left(
+\{\hat{\mathbf n}_H,\hat{\mathbf n}_M,\hat{\mathbf n}_L\},
+\chi_{\mathrm{br}},
+\Pi_{\mathrm{perm}},
+\Pi_{\mathrm{flip}},
+\Pi_{\mathrm{conj}},
+\mathcal{R}_{\mathrm{SM}}
+\right).
+$$
+Here the plane normals and braid-orientation sign are compared only after quotienting H/M/L relabeling, orientation flips, and matter/antimatter conjugation. The row is useful only if the same quotient can feed color exceptionality, weak exposure, and mass-facing response without separately tuned labels.
+
 ## QFT / Gauge / Amplitudes Comparison Scaffolds
 
 Tier 2 source mining adds comparison scaffolds from independent QFT, gauge, scattering-amplitude, positive-geometry, and topological-field sources. These are not substrate ontology. They are theorem targets for the observer-level Standard Model recovery map.
@@ -111,6 +157,20 @@ D^{\theta'}(U\Psi)-U D^\theta\Psi
 }.
 $$
 The branch passes this comparison only if $\mathcal{R}_{\mathrm{cov}}\le\varepsilon_{\mathrm{cov}}$ on the declared low-energy record domain. If covariance is achieved only by changing the underlying Noether sea state, axial inventory, or branch ledger while keeping the same observer labels, the map has confused gauge redundancy with physical variation.
+
+The same source batch also motivates a scale-compression residual for gauge recovery. Treat probe-scale gauge behavior as an observer-chart invariance question over the shrinking and retuning branch record:
+$$
+\mathcal{R}_{\mathrm{gauge\text{-}scale}}(\theta)
+=
+\operatorname{Cov}_{E}
+\left[
+R_{\ell}(E),
+\omega_{\ell}(E),
+\hat{\mathbf n}_{\ell}(E),
+A_{\mathrm{eff},\mu}^{\theta}(E)
+\right].
+$$
+The target is not to add a separate microscopic gauge field. It is to test whether the same layer-radius, cadence, orientation, and effective-connection record gives stable observer-level gauge covariance across probe scale. Failure means scale dependence and gauge covariance are being fit by different records.
 
 ### Amplitude factorization and locality-emergence target
 

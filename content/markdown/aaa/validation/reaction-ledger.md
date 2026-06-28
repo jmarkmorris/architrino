@@ -128,6 +128,21 @@ $$
 
 componentwise across the tuple. Nonzero physical recoil, medium heating, remnant excitation, outgoing product energy, or photon output is allowed only as a named term inside $Y_{\mathsf e}$; it is not allowed as an implicit loss.
 
+A reaction record should also state how the surviving assemblies restabilize after work is done. The compact restabilization record is
+$$
+\Theta_{\mathrm{restab}}
+=
+\left(
+B_{\mathrm{pre}},
+W_{\mathrm{in}},
+\Delta\mathcal A,
+B_{\mathrm{post}},
+\tau_{\mathrm{return}},
+\mathcal{L}_{E\mathbf p\mathbf J}^{\mathrm{post}}
+\right).
+$$
+Here $B_{\mathrm{pre}}$ and $B_{\mathrm{post}}$ are the retained branch records before and after the interaction, $W_{\mathrm{in}}$ is the applied work or incoming excitation, $\Delta\mathcal A$ is the branch-action change, $\tau_{\mathrm{return}}$ is the return or relaxation time when a stable branch is recovered, and $\mathcal{L}_{E\mathbf p\mathbf J}^{\mathrm{post}}$ is the post-event balance. This prevents a reaction map from closing only by label replacement while leaving the outgoing assemblies dynamically unsettled.
+
 The stronger event-balance target bundles energy, momentum, and angular momentum instead of checking photon polarization separately from the source ledger. For $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$, define source depletion by
 
 $$

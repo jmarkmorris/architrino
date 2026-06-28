@@ -314,30 +314,35 @@ VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference
 
 The sampled seed and transported $Q$ values stay inside the declared
 $0.2\le Q\le3.0$ convention on this grid, and the retained rows replay with no
-sampled retained-window failure. The packet now also emits a floating
-subdivided-Bernstein outward attempt for the past endpoint-slope-cancelled
-polynomial:
+sampled retained-window failure. The packet now also emits a local
+exact-rational subdivided-Bernstein certificate for the past
+endpoint-slope-cancelled polynomial:
 
-| Past-profile quantity | Current executable attempt |
+| Past-profile quantity | Current local certificate |
 | --- | --- |
-| $q_{\min}$ | `0.6542907673232438` |
-| $q_{\max}$ | `1.5368080736162038` |
-| $H_b$ | `0.5368080736162038` |
+| $q_{\min}$ | `0.6542907922493042` |
+| $q_{\max}$ | `1.536808073607694` |
+| $H_b$ | `0.5368080736076938` |
 
-This advances the past-profile subrow, but it is not yet an interval
+This advances the past-profile subrow, but it is not yet a shared interval-box
 certificate. The packet now records a deterministic source-identity digest for
 the endpoint-slope-cancelled homogeneous perturbation:
 `sha256:cba10155d5b54719bf7e4a48f86abd27dcabdca4fe24fd040a67b35e2c7a73b0`.
 The digest now has a reproducible source-payload diagnostic, but that payload is
 provenance only, with `used_as_certificate=false`; it is not a shared
-interval-box certificate or rounding-verified proof object. The packet also
-emits `shared_interval_box_certificate_target` as a fail-closed contract. Its
+interval-box certificate. The packet also emits
+`shared_interval_box_certificate_target` as a fail-closed contract. Its
 coefficient-enclosure subrow now carries a
 `float64_nextafter_single_ulp_enclosure` attempt with 42 intervals, but that row
 has `used_as_certificate=false` and is not a directed-rounding interval
 certificate. The past-profile interval-box subrow now also carries a float64
-subdivided-Bernstein attempt with a subdivision-tree digest, but that row also
-has `used_as_certificate=false` and is not a shared interval-box certificate.
+subdivided-Bernstein attempt with a subdivision-tree digest, plus
+`a1_past_profile_interval_box_certificate.v0`, an exact-rational
+subdivided-Bernstein float64 `nextafter` local certificate. That local
+certificate encloses 61,440 control points over 4,096 subintervals and gives
+$q_{\min}=0.6542907922493042$, $q_{\max}=1.536808073607694$, and
+$H_b=0.5368080736076938$. It has `used_as_local_certificate=true`, but
+`used_as_shared_certificate=false` and `authorizes_outward_certificate=false`.
 The directed-rounding backend subrow now carries a digestible backend target,
 `a1_directed_rounding_backend_target.v0`, plus
 `a1_directed_rounding_backend_self_audit.v0`. The self-audit uses
@@ -352,8 +357,10 @@ Bernstein subdivision control points, shared past/future/root/inactive-cover
 interval-box family, and rounding-mode audit trail for the next
 certificate-grade pass.
 The future transport interval box, retained-root interval boxes,
-inactive-cover interval boxes, Bernstein proof object, future transport
-constants, and residual-envelope constants remain absent. The transported
+inactive-cover interval boxes, future transport constants, and
+residual-envelope constants remain absent. The local past-profile Bernstein
+certificate is not a shared interval-box certificate because the future,
+retained-root, and inactive-cover boxes are still absent. The transported
 future profile has only a node envelope for the emitted
 piecewise-linear numerical profile; the certificate-grade $E_Q^+(b)$ row remains
 absent pending branch-sum and transport constants. The inactive cover,
