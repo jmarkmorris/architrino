@@ -16,6 +16,7 @@
 3. `kelvin_kb_bridge` - Route the Kelvin and $k_B$ discussion through Noether sea ensemble dynamics without treating a single Noether braid as thermodynamically hot. Status: `draft`. Depends on: `ensemble_temperature_definition`, [mass-map](../braid-mass-response-map/braid-mass-response-map.md).
 4. `blackbody_temperature_gate` - Tie Planck-spectrum recovery to Gate A, Gate B, Gate C, detailed balance, and thermalization depth. Status: `draft`. Depends on: [braid](../braid-retained-branch-closure/braid-retained-branch-closure.md).
 5. `cosmology_temperature_handoff` - Separate intrinsic Noether braid energy, local emissive ensemble temperature, and observer-inferred CMB temperature. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
+6. `high_energy_reaction_stage_temperature_split` - Separate free-architrino kinetic width, assembly apparent temperature, photon-bath temperature, and Noether sea emissive temperature in early-chronology or strong-field reaction-stage prose. Status: `draft`. Depends on: `cosmology_temperature_handoff`.
 
 ## Scope
 
@@ -217,6 +218,19 @@ The CMB chapter already marks the central distinction:
 | Observer-inferred radiation temperature | Temperature fitted from the measured photon bath after transport and redshift | Effective observable |
 
 This split should be promoted anywhere cosmology prose risks converting the observed CMB temperature into a direct intrinsic temperature of the Noether sea.
+
+### High-Energy Reaction-Stage Temperature Split
+
+Legacy cosmology posts often used one temperature label for several different records. The durable mapping is a four-way split:
+
+| Temperature-like record | What it measures | Required closure before use |
+| --- | --- | --- |
+| Free-architrino kinetic width | Distribution of unbound architrino motion in a reaction-stage window | Declare the population and show that a kinetic distribution exists |
+| Apparent assembly temperature | Effective excitation or instability scale of a Noether braid or assembly population | Separate internal excitation from thermodynamic heat |
+| Photon-bath temperature | Planck-spectrum parameter for a photon-channel ensemble | Show detailed balance, zero effective chemical potential, and thermalization depth |
+| Noether sea emissive temperature | Effective source-temperature of a medium region that releases or reprocesses radiation | Tie emissivity, absorption, release rate, and transport to one Noether sea record |
+
+This split prevents early-epoch or strong-field prose from treating a high energy scale, a hot ensemble, a photon spectrum, and a medium-emission source as the same variable.
 
 ## Promotion Map
 

@@ -729,6 +729,8 @@ G_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G (T_{\mu\nu} + T^{(C)}_{\mu\nu})
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** A truly steady large-scale state would require ongoing generation of new Noether braid assemblies from architrino-level processes to offset dilution. Any effective $T^{(C)}_{\mu\nu}$ would summarize net creation of assemblies from underlying architrino dynamics, possibly tied to self-hit-driven instabilities in high-curvature regions.
 
+The durable lesson is source provenance. A creation or recycling term is not explanatory merely because it balances an effective density equation. It must identify the source population, release rate, thermalization route, and observer-facing residuals that would let CMB blackbody quality, element yields, structure growth, and redshift-distance data face the same medium record.
+
 **What Still Works:** Steady-State / Quasi-Steady-State (Hoyle--Narlikar--Burbidge) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
 **Transition Relevance:** Transition relevance is high because cosmological inference will continue to be performed first in the legacy parameter language before any deeper substrate reconstruction is accepted.
@@ -798,6 +800,8 @@ $$
 \tilde g_{\mu\nu} = \Omega^2 g_{\mu\nu}
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Conformal matching here is an effective way of gluing together different large-scale phases of the Noether sea when mass scales (set by nested shell braid internal dynamics) become negligible. Whether an exact CCC picture arises in $\mathbb{A}\mathbb{A}\mathbb{A}$ depends on long-time evolution of assembly masses and the eventual fate of nested shell braid structures, but conformal rescaling is not a fundamental ingredient of the underlying architrino substrate.
+
+The historical caution is that serial, global narratives can hide a missing local mechanism. A cyclic or aeon-level chart may be useful, but the native burden is parallel and local: source populations, release ledgers, medium relaxation, and observer transfer must each be carried by finite records before the global story earns explanatory status.
 
 **What Still Works:** Conformal Cyclic Cosmology (Penrose) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.

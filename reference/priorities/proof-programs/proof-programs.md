@@ -33,9 +33,19 @@ row-consumption, live-ledger, or branch-chart decision has been made. The lane
 cannot close mechanically from the current certificate pool; closure now needs
 an external compatible proof-grade derivation schema or derivation proof.
 
+Priority-side routing update, 2026-06-28: the [external proof-grade derivation
+schema acceptance contract](./breather-proof/certificate/external_proof_grade_derivation_schema_acceptance_contract.md)
+turns the external-input blocker into an admissibility contract. It fixes the
+packet, proof-interval, lambda, schema role, proof-object role, derivation
+target, 12-separator / 112-row scope, eight required fields per slot, rejection
+criteria, and pivot decision table for the stopped constructor-basis and
+fold-layer lanes. The contract receives 0 schema inputs, satisfies 0 / 124
+slots, consumes 0 rows, keeps `preledger_pass=false`, keeps
+`updates_live_ledger=false`, and authorizes no branch chart.
+
 ## Task Queue
 
-1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `next`. Depends on: none.
+1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `next-external-schema-contract-required`; the live continuation is a compatible external proof-grade derivation schema or derivation proof satisfying the external schema acceptance contract, not another current-pool rescan. Depends on: none.
 2. `planar_bridge` — Develop the first planar delayed-bridge closure as the higher-dimensional extension of the breather proof architecture. Status: `queued`; do not promote ahead of the collinear certificate unless that certificate fails with an explicit obstruction that the planar bridge is meant to resolve. Depends on: `breather_certificate`.
 3. `proof_program_handoff` — Keep theorem-program chapters, certificate artifacts, and downstream priority links aligned as proof targets are promoted or retired. Status: `active`. Depends on: `breather_certificate`, `planar_bridge`.
 

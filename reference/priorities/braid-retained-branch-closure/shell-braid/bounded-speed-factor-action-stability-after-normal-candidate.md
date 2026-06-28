@@ -1,0 +1,485 @@
+# Bounded Speed Factor Action Stability After Normal Candidate
+
+Promotion status: `priority-only`. This packet consumes the
+`bounded_speed_normal_reconstruction_candidate` boundary from
+[bounded-speed-factor-speed-ode-zero-mean-correction-target.md](bounded-speed-factor-speed-ode-zero-mean-correction-target.md)
+and [bounded-speed-factor-normal-reconstruction-theorem.md](bounded-speed-factor-normal-reconstruction-theorem.md). It refines
+[bounded-speed-factor-action-stability-closure.md](bounded-speed-factor-action-stability-closure.md),
+[bounded-speed-factor-variational-noether-closure.md](bounded-speed-factor-variational-noether-closure.md),
+[bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md),
+[bounded-speed-factor-tail-cover-completeness-lemma.md](bounded-speed-factor-tail-cover-completeness-lemma.md),
+[root-ledger-floquet-stability-certificate.md](root-ledger-floquet-stability-certificate.md), and
+[observer-export-status-row.md](observer-export-status-row.md).
+
+It does not retain a branch and does not make an observer export. Its purpose is to say exactly what a bounded-speed normal-reconstruction candidate must emit next before it can become a bounded-speed live-ledger action/stability candidate.
+
+---
+
+## 1. Input Boundary
+
+The only admissible input is a same-ledger normal candidate
+
+$$
+\mathfrak{N}_{\nu}^{\mathrm{cand}}
+=
+\left(
+\mathbf{Y},
+\nu,
+\chi,
+\Lambda,
+\mathcal{A}_{\nu},
+F^{\nu},
+\Gamma_B^{\nu},
+\mathsf{Support}^{\nu},
+\mathsf{PeriodWind},
+\mathsf{Margins}^{\nu}
+\right)
+$$
+
+with status
+
+$$
+\texttt{bounded-speed-normal-reconstruction-candidate}.
+$$
+
+The candidate must already have closed the scalar speed row, primitive return, speed band, clock/length row, normal residual, tangent holonomy, position closure, unit-tangent residual, support margin, noncollision, root-ledger persistence, and normal Krawczyk rows on one bounded-speed ledger id.
+
+This packet upgrades only the next rows:
+
+$$
+\mathfrak{A}_{\nu}^{\mathrm{afterN}}
+=
+\left(
+\mathcal{L}_{\mathrm{live}}^{\nu},
+\mathcal{S}_{\mathrm{tot}}^{\nu},
+\Gamma_B^{\nu},
+\mathcal{R}_{\mathrm{curl}}^{\nu},
+\mathcal{L}_{\mathrm{exch}}^{\nu},
+\mathcal{J}_{\zeta}^{\nu},
+\mathcal{T}_{\mathrm{tail/ref}}^{\nu},
+\mathcal{P}_{\mathrm{stab}}^{\nu},
+\mathsf{ExportElig}^{\nu},
+\mathfrak{C}_{\mathrm{cpl}}^{\nu}
+\right).
+$$
+
+The output may at most become
+
+$$
+\texttt{bounded-speed-action-stability-intake-candidate},
+\qquad
+\texttt{not_retained}.
+$$
+
+It is not a retained branch because the coupled fixed-point, branch-decision, refinement, and observer-export rows still require certified downstream verdicts.
+
+---
+
+## 2. Same-Live-Ledger Requirement
+
+Every row below must use one live bounded-speed ledger
+
+$$
+\mathcal{L}_{\mathrm{live}}^{\nu}
+=
+\left(
+\mathcal{L}_{\mathrm{chart}},
+\mathcal{L}_{\mathrm{clock}},
+\mathcal{L}_{\mathrm{root}},
+\mathcal{L}_{\mathrm{force}},
+\mathcal{L}_{\mathrm{support}},
+\mathcal{L}_{\mathrm{action}},
+\mathcal{L}_{\mathrm{event}},
+\mathcal{L}_{\mathrm{der}},
+\mathcal{L}_{\mathrm{tail}},
+\mathcal{L}_{\mathrm{ref}}
+\right).
+$$
+
+The ledger identity is the tuple
+
+$$
+\operatorname{id}\mathcal{L}_{\mathrm{live}}^{\nu}
+=
+\left(
+\texttt{ledger\_convention\_id},
+\texttt{branch\_chart\_id},
+\texttt{speed\_clock\_id},
+\texttt{root\_ledger\_id},
+\texttt{force\_checksum},
+\texttt{support\_descriptor\_id},
+\texttt{action\_convention\_id},
+\texttt{event\_window\_id},
+\texttt{tail\_cover\_id},
+\texttt{consumer\_checksum}
+\right).
+$$
+
+The normal candidate, action rows, Noether/event rows, stability row, observer-export eligibility row, and coupled fixed-point object must all report this same tuple. A fixed-speed root label may appear only as source provenance. It cannot substitute for bounded-speed clocks, inverse clocks, root derivatives, Jacobian floors, tail ownership, action curl, or event exchange.
+
+If any checksum or convention differs, the first failed row is
+
+$$
+\texttt{after-normal-ledger-mismatch}.
+$$
+
+---
+
+## 3. Action-Derived Scale And Action Curl
+
+The scale consumed by the normal candidate becomes action-eligible only if it is emitted as an action-derived quantity on the same ledger:
+
+$$
+\Gamma_B^{\nu}
+=
+\Gamma_{\mathrm{act}}^{\nu}
+\left[
+\mathcal{S}_{\mathrm{tot}}^{\nu},
+\mathcal{L}_{\mathrm{live}}^{\nu}
+\right].
+$$
+
+The packet must distinguish:
+
+| Scale status | Meaning |
+| --- | --- |
+| `gamma-action-derived` | $\Gamma_B^{\nu}$ is derived from the bounded-speed action, inertia row, support action, and event convention on $\mathcal{L}_{\mathrm{live}}^{\nu}$ |
+| `gamma-fitted-not-derived` | $\Gamma_B^{\nu}$ is fitted or inherited from a diagnostic solve; it may support screening but not action/stability closure |
+| `gamma-ledger-mismatch` | the scale uses a different root, force, support, event, or clock convention |
+
+The bounded-speed history-work one-form must be the causal-time, clock-corrected form
+
+$$
+\omega_{\mathrm{hist}}^{\nu}(v)
+=
+\frac{R_*E_\epsilon(R_*)}{c_f}
+\sum_i
+\int_0^{H_*}
+\widetilde{\mathbf{F}}_i^{\nu}(u)\cdot
+\Xi_{v,i}(u)\,du
++\omega_{\mathrm{root}}^{\nu}(v),
+$$
+
+with bounded-speed root and Jacobian derivatives. The action curl row is
+
+$$
+\mathcal{R}_{\mathrm{curl}}^{\nu}
+=
+\sup_{\|v\|,\|w\|\le1}
+\frac{
+\left|
+D_v\omega_{\mathrm{hist}}^{\nu}(w)
+-D_w\omega_{\mathrm{hist}}^{\nu}(v)
+\right|
+}{
+1+\|\omega_{\mathrm{hist}}^{\nu}\|_{\mathrm{F}}
+}.
+$$
+
+The action row is eligible only when
+
+$$
+\mathcal{R}_{\mathrm{curl}}^{\nu}\le\epsilon_{\mathrm{curl}}^{\nu}.
+$$
+
+If the normal candidate reuses a fitted scale, fixed-speed curl row, frozen root derivative, or arclength-only history work after $\nu$ is active, the first failed row is one of
+
+$$
+\texttt{gamma-fitted-not-derived},
+\qquad
+\texttt{action-curl-open},
+\qquad
+\texttt{bounded-speed-factor-history-work-stale}.
+$$
+
+---
+
+## 4. Noether/Event Exchange
+
+The Noether/event row must close the speed-factor storage and coherent exchange ledger:
+
+$$
+\mathcal{R}_{\mathrm{exch},i}^{\nu}
+=
+\frac{dE_{\mathrm{spd},i}^{\nu}}{du}
+-E_\epsilon(R_*)\nu_i\mathbf{T}_i\cdot\widetilde{\mathbf{F}}_i^{\nu}
+-\mathcal{P}_{\mathrm{constr},i}^{\nu}
+-\mathcal{P}_{\mathrm{sea/event},i}^{\nu}.
+$$
+
+For every declared generator $\zeta$, the current split
+
+$$
+\mathcal{J}_{\zeta}^{\nu}
+=
+\mathcal{J}_{\zeta,Y}^{\nu}
++\mathcal{J}_{\zeta,\mathrm{hist}}^{\nu}
++\mathcal{J}_{\zeta,\mathrm{spd}}^{\nu}
++\mathcal{J}_{\zeta,\mathrm{sea/event}}^{\nu}
+$$
+
+must be evaluated on the same branch, support, event, and tail convention as the normal candidate. The packet must report conservation residuals for energy, momentum, angular momentum, charge, source provenance, and Noether sea exchange:
+
+$$
+\mathcal{R}_{\mathrm{Noether/event}}^{\nu}
+=
+\left(
+\mathcal{R}_E^{\nu},
+\mathcal{R}_{\mathbf{p}}^{\nu},
+\mathcal{R}_{\mathbf{J}}^{\nu},
+\mathcal{R}_Q^{\nu},
+\mathcal{R}_{\mathrm{src}}^{\nu},
+\mathcal{R}_{\mathrm{sea/event}}^{\nu}
+\right).
+$$
+
+If speed-factor storage, support work, event endpoint jumps, source-provenance changes, or Noether sea exchange are omitted, the first failed row is
+
+$$
+\texttt{noether-event-exchange-open}.
+$$
+
+If the row is computed on another event window or a fixed-speed ledger, the first failed row is
+
+$$
+\texttt{noether-event-mixed-ledger}.
+$$
+
+---
+
+## 5. Tail And Refinement Persistence
+
+The normal candidate must preserve the retained causal-root ledger beyond the finite sampled row. This packet requires a tail/refinement payload
+
+$$
+\mathcal{T}_{\mathrm{tail/ref}}^{\nu}
+=
+\left(
+\Omega_{\mathrm{tail}}^{\nu},
+\rho_{\mathrm{tail}}^{\nu},
+\epsilon_{\mathrm{tail}}^{\nu},
+\epsilon_{\mathrm{disc}}^{\nu},
+\epsilon_{\mathrm{alias}}^{\nu},
+\mathcal{C}_{\mathrm{ref}}^{\nu}
+\right).
+$$
+
+The tail cover must be a finite owned cover of the bounded-speed causal-time tail domain with terminal predicates `excluded`, `assimilated-root-tube`, `boundary-owned`, or `event-reset`. The refinement payload must state how the normal candidate persists under mesh, mode, quadrature, and tail refinement:
+
+$$
+\epsilon_{\mathrm{tail}}^{\nu}
++\epsilon_{\mathrm{disc}}^{\nu}
++\epsilon_{\mathrm{alias}}^{\nu}
+\le
+\tau_{\mathrm{ref}}^{\nu},
+$$
+
+and it must keep the same root labels, sign labels, source-pair policy, support descriptor, event convention, and speed-band margins on the proof ball.
+
+If only local tail predicates exist, the first failed row is
+
+$$
+\texttt{bounded-speed-tail-cover-incomplete}.
+$$
+
+If the finite-mode candidate has no persistence row under refinement, the first failed row is
+
+$$
+\texttt{refinement-persistence-open}.
+$$
+
+An `event-reset` terminal predicate stops the current certificate and sends control to the event row; it is not a tail success for retention.
+
+---
+
+## 6. Stability Row
+
+The stability row must use the bounded-speed variational state
+
+$$
+\delta X^{\nu}
+=
+\left(
+\delta\mathbf{Y},
+\delta\mathbf{T},
+\delta\nu,
+\delta\eta,
+\delta\Gamma,
+\delta\mathcal{E}
+\right)
+$$
+
+and the reduced monodromy
+
+$$
+M_B^{\nu}
+=
+\Pi_{\mathrm{ng}}^{\nu}
+\Phi_B^{\nu}(H_*)
+\Pi_{\Sigma}^{\nu}
+$$
+
+on the same root, action, exchange, and event ledger. The packet must report:
+
+1. root-dependent variational equations including $D_v\eta_r^{\nu}$ and $D_vJ_r^{\nu}$;
+2. Hessian blocks in $\mathbf{Y}$, $\nu$, and $\Gamma_B^{\nu}$;
+3. neutral-mode quotient and declared gauge directions;
+4. conservative, exchange, or dissipative classification;
+5. Krein or energy-momentum signature row when the ledger is conservative;
+6. nonlinear perturbation-recovery or rejection row.
+
+The speed sector cannot be silently treated as gauge. It must be classified as a physical neutral family, constrained exchange mode, stable transverse mode, or instability.
+
+If the row uses fixed-speed monodromy, omits $\delta\nu$, freezes roots, or lacks the conservative/exchange classification, the first failed row is
+
+$$
+\texttt{bounded-speed-stability-ledger-mismatch}
+$$
+
+or
+
+$$
+\texttt{bounded-speed-factor-monodromy-state-incomplete}.
+$$
+
+---
+
+## 7. Observer-Export Eligibility
+
+This packet may only report export eligibility, not export success. Define
+
+$$
+\mathsf{ExportElig}^{\nu}
+=
+\left(
+\mathsf{Root}^{\nu},
+\mathsf{Tail}^{\nu},
+\mathsf{Dynamics}^{\nu},
+\mathsf{Support}^{\nu},
+\mathsf{Action}^{\nu},
+\mathsf{Noether}^{\nu},
+\mathsf{Event}^{\nu},
+\mathsf{Stability}^{\nu},
+\mathsf{Inventory}^{\nu}
+\right).
+$$
+
+Observer rows may move from `blocked:<row>` to `not_computed` only when every component above exists on the same live ledger. Lorentz, photon, mass-map, color, strong-field, and cosmology rows remain downstream computed rows. A mass, Lorentz, photon, color, strong-field, or cosmology value computed from a fixed-speed or mixed ledger must report
+
+$$
+\texttt{invalid_mixed_ledger}.
+$$
+
+The passing eligibility status is
+
+$$
+\texttt{observer-export-eligible-not-computed}.
+$$
+
+It does not imply `passed` for any export row and does not retain a branch.
+
+---
+
+## 8. Coupled Fixed-Point Consumption
+
+After the action, event, tail/refinement, and stability rows close, the same data must be consumed by the coupled residual object
+
+$$
+\mathfrak{C}_{\mathrm{cpl}}^{\nu}
+=
+\left(
+\mathfrak{Z}_{\nu},
+\mathcal{R}_{\mathrm{cpl}}^{\nu},
+W_{\mathrm{cpl}},
+\mathcal{L}_{\mathrm{live}}^{\nu},
+\mathcal{D}_{\mathrm{cpl}}^{\nu},
+\mathcal{K}_{\mathrm{cpl}}^{\nu},
+\mathcal{S}_1
+\right).
+$$
+
+The coupled residual must include the speed mean, primitive, tangent dynamics, normal dynamics, unit tangent, tangent holonomy, position closure, support-radial row, support-band row, root row, root-persistence row, action/support row, and event row. Its derivative must include active columns in
+
+$$
+z=(a,b,r,\gamma,s,e)
+$$
+
+or a certified Schur replacement with the displayed implicit derivative correction from the coupled fixed-point theorem. A small residual norm is not enough; the Krawczyk budget, range/cokernel split, tail/discretization bounds, and proof-ball margins must all be emitted.
+
+The passing coupled status is
+
+$$
+\texttt{bounded-speed-coupled-fixed-point-candidate}.
+$$
+
+This still means bounded-speed dynamics/action candidate, not retained branch. Retention remains blocked until the branch-decision, refinement, observer-export status, and master-retention predicate consume this candidate without a first-failure row.
+
+---
+
+## 9. First-Failure Ladder
+
+A packet consuming `bounded_speed_normal_reconstruction_candidate` must report the first failed row in this order:
+
+1. `normal-candidate-missing`
+2. `after-normal-ledger-mismatch`
+3. `bounded-speed-live-ledger-open`
+4. `gamma-fitted-not-derived`
+5. `gamma-ledger-mismatch`
+6. `action-curl-open`
+7. `bounded-speed-factor-history-work-stale`
+8. `bounded-speed-factor-exchange-open`
+9. `noether-event-exchange-open`
+10. `noether-event-mixed-ledger`
+11. `tail-persistence-open`
+12. `bounded-speed-tail-cover-incomplete`
+13. `refinement-persistence-open`
+14. `bounded-speed-stability-ledger-mismatch`
+15. `bounded-speed-factor-monodromy-state-incomplete`
+16. `stability-classification-open`
+17. `observer-export-eligibility-open`
+18. `observer-export-eligible-not-computed`
+19. `coupled-residual-object-open`
+20. `coupled-unknown-schema-open`
+21. `coupled-derivative-matrix-open`
+22. `coupled-cokernel-open`
+23. `coupled-krawczyk-open`
+24. `bounded-speed-coupled-fixed-point-candidate`
+25. `bounded-speed-action-stability-intake-candidate`
+
+Rows 24 and 25 are candidate statuses only. They must still carry
+
+$$
+\texttt{retention=not\_retained},
+\qquad
+\texttt{retained\_branch=false}.
+$$
+
+---
+
+## 10. Output Schema
+
+The packet must emit:
+
+| Field | Required payload |
+| --- | --- |
+| `normal_candidate_input` | source artifact id, `bounded-speed-normal-reconstruction-candidate` status, speed/clock/normal/root/support rows, force checksum, consumer checksum, and non-retention flags |
+| `live_ledger_identity` | full $\operatorname{id}\mathcal{L}_{\mathrm{live}}^{\nu}$ tuple and equality checks across normal, action, event, tail, stability, observer, and coupled rows |
+| `action_scale` | $\Gamma_B^{\nu}$, `gamma-action-derived` / `gamma-fitted-not-derived` / `gamma-ledger-mismatch`, inertia or scale derivation, and scale margins |
+| `action_curl` | $\omega_{\mathrm{hist}}^{\nu}$, clock-corrected variations, bounded-speed root derivatives, $\mathcal{R}_{\mathrm{curl}}^{\nu}$, and tolerance |
+| `storage_exchange` | $E_{\mathrm{spd}}^{\nu}$, $\mathcal{R}_{\mathrm{exch}}^{\nu}$, support-work assignment, Noether sea/event exchange, and window residuals |
+| `noether_event` | Noether currents, energy/momentum/angular-momentum/charge/source-provenance residuals, event endpoint jumps, and same-event-window proof |
+| `tail_refinement_persistence` | finite tail ownership map, terminal predicates, $\rho_{\mathrm{tail}}^{\nu}$, refinement sequence or error envelope, and same-ledger persistence verdict |
+| `stability` | bounded-speed variational state, Hessian, monodromy, neutral quotient, speed-sector classification, conservative/exchange classification, and nonlinear recovery row |
+| `observer_export_eligibility` | blocked, `not_computed`, `invalid_mixed_ledger`, or `observer-export-eligible-not-computed` status for each export family |
+| `coupled_fixed_point` | $\mathfrak{C}_{\mathrm{cpl}}^{\nu}$, derivative or Schur derivative, Krawczyk budget, range/cokernel split, tail/discretization bounds, and first-failure row |
+| `status` | first failed row from the ladder above, plus `retention=not_retained` and `retained_branch=false` |
+
+Current priority status:
+
+$$
+\texttt{bounded-speed-action-stability-after-normal-candidate-open},
+\qquad
+\texttt{normal-candidate-consumer-packet-staged},
+\qquad
+\texttt{not_retained}.
+$$

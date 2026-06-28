@@ -101,8 +101,15 @@
    below the material floor through $b=0.03$, but it classifies
    `sampled_remainder_constants_unstable` because the adjacent sampled $C_2$
    change is about $0.731$; it is therefore diagnostic support only until
-   stable or outward constants close on the same A1 boxes. Depends on: none.
-3. `a1_outward_constants_handoff` — Turn the A1 sampled finite-collar remainder-constants ladder into stable or outward constants on the same retained A1 boxes before any master-equation closure claim is promoted. Status: `queued-cross-workstream-follow-up`. Notes: `spiral_a1_finite_memory_transport.py --diagnostic-mode finite_collar_remainder_constants_ladder` now reports $C_{1,\mathrm{samp}}\approx5.46\times10^{-12}$, $C_{2,\mathrm{samp}}\approx6.61\times10^{-4}$, material-floor ratios below $0.141$ through $b=0.03$, and `sampled_remainder_constants_unstable` because the adjacent sampled $C_2$ change is about $0.731$. Depends on: `spiral_branch_chart_test`.
+   stable or outward constants close on the same A1 boxes. The concrete
+   outward-constants contract is now staged in
+   [spiral-a1-outward-constants-certificate-target](spiral-a1-outward-constants-certificate-target.md):
+   it fixes the endpoint-slope-cancelled admissible perturbation class, the
+   retained A1 row set, the constants that must be emitted outward, the
+   material and theorem-grade obstruction inequalities, and the first failure
+   modes that separate inadmissibility from a legal finite-amplitude channel.
+   Depends on: none.
+3. `a1_outward_constants_handoff` — Turn the A1 sampled finite-collar remainder-constants ladder into stable or outward constants on the same retained A1 boxes before any master-equation closure claim is promoted. Status: `active-priority-artifact-staged`. Notes: [spiral-a1-outward-constants-certificate-target](spiral-a1-outward-constants-certificate-target.md) now defines the concrete certificate target: constants $q_{\min},q_{\max},\kappa_\alpha,\nu_\alpha,g_P,g_S,H_b,E_Q^+(b),E_{\Delta,\alpha}(b)$, branch-sum and transport envelopes, and $C_1,C_2$ or $E_\ast(b)$ must close on the same A1 boxes. The sampled ladder still reports $C_{1,\mathrm{samp}}\approx5.46\times10^{-12}$, $C_{2,\mathrm{samp}}\approx6.61\times10^{-4}$, material-floor ratios below $0.141$ through $b=0.03$, and `sampled_remainder_constants_unstable` because the adjacent sampled $C_2$ change is about $0.731$; no closure or branch certification is claimed. Depends on: `spiral_branch_chart_test`.
 4. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `certified_eigen_braid`.
 5. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
 6. `emission_flux_jacobian_conservation` — Prove that source-provenanced constant causal-wake emission over an expanding wake surface preserves emitted polarity weight and collapses to the current $r^{-2}|J|^{-1}$ branch law on a simple-root chart, without importing legacy potential-sphere language or treating the wake as an autonomous field substance. Status: `priority-only`. Depends on: dual-mollified law; branch promotion depends on the retained branch-chart packet.

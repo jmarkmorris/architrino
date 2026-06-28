@@ -134,6 +134,22 @@ $$
 
 Here $\hat{\mathbf{n}}$ is the line of sight, $\mathcal{E}$ denotes source and host environment, $A_\mu\hat{\mathbf{d}}_\mu$ is a possible dipolar component, $\delta\mu_{\mathrm{cal}}$ records standardization and population-evolution corrections, $\delta\mu_{\mathrm{sea}}$ records Noether sea state contributions, and $\epsilon_\mu$ is the remaining noise term. A Noether sea acceleration or relaxation claim is promotable only after the dipole, calibration, and environment terms are either bounded below the claimed effect or derived from the same medium variables used elsewhere.
 
+The isotropic acceleration term is therefore a residual inference, not the first variable to name. A useful comparison packet should expose
+$$
+\mathcal{R}_{\mathrm{iso\text{-}acc}}
+=
+\Delta\mu_{\mathrm{iso}}
+-
+\Pi_{\mathrm{flow}}
+-
+\Pi_{\mathrm{cal}}
+-
+\Pi_{\mathrm{cat}}
+-
+\Pi_{\mathrm{sea}},
+$$
+where $\Pi_{\mathrm{flow}}$ removes dipole and bulk-flow structure, $\Pi_{\mathrm{cal}}$ removes standard-candle calibration and host-population drift, $\Pi_{\mathrm{cat}}$ removes catalogue and selection effects, and $\Pi_{\mathrm{sea}}$ records the declared Noether sea transport term. A nonzero $\mathcal{R}_{\mathrm{iso\text{-}acc}}$ can motivate a dark-energy comparison only after those rows share the same medium state as lensing, BAO, CMB, and growth.
+
 For BAO and CMB distance anchors, the corresponding requirement is frame consistency. A fit that assumes a homogeneous and isotropic Friedmann-Lemaître-Robertson-Walker background must also report whether the BAO scale, source-count dipoles, and local supernova residuals remain consistent with the CMB-frame correction. If they do not, the result becomes a directional cosmology problem before it becomes a dark-energy mechanism.
 
 The historical redshift lesson is also an interpretation lesson. Hubble-style redshift-distance evidence did not by itself dictate a unique ontology; it weakened the static assumption after the redshifts were interpreted through a declared kinematic or metric model. The native comparison rule is therefore to keep the data product and its interpretation map separate:

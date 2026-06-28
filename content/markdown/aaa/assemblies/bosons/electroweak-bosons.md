@@ -457,6 +457,8 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
 
 The weak corridor is an event record, not a permanent container that owns the outgoing fermion inventory. Its provenance rows must identify which architrinos participate, which neutral Noether braids supply the scaffold, which payload moves through the corridor, and where the balancing recoil is stored.
 
+In the reaction-stage chronology, axial architrino association is the boundary at which weak-visible channels become meaningful. The photon comparison asks whether a planar-pair channel can propagate with a transverse phase ledger; the $W/Z$ comparison asks whether an axial payload can be routed through a short-lived corridor with vector directionality and finite stiffness; the Higgs comparison asks whether the Noether sea supports a scalar radial response tied to the same mass-channel ledger. These are three observer-level channel roles, not three independent substances added to the substrate.
+
 For a resolved weak-corridor event $\mathsf e$, the substrate record should expose the corridor row as a routed output rather than as a primitive particle mass:
 $$
 Y_{\mathsf e}^{W/Z}

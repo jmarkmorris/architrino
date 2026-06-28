@@ -54,6 +54,8 @@ The concrete packet shape for this subgate is defined in [Cosmology Shared Resid
 
 Claims about localized CMB features, including claims sometimes interpreted as pre-Big-Bang or cyclic-history signals, must first be handled as cross-instrument data products. The retained observable is not the external interpretation. It is the question of whether a common localized residual survives masking, foreground modeling, beam handling, and comparison between independent maps such as WMAP and Planck.
 
+Conformal-cyclic-cosmology Hawking-point or ring claims are examples of this class. They are not imported as cosmology ontology; they are localized-feature packets requiring cross-map support, mask and foreground control, and a declared look-elsewhere domain before any source interpretation is allowed.
+
 The comparison packet must record the reduction path before the residual is interpreted: sky mask, component-separation or foreground model, beam and transfer-function handling, monopole/dipole treatment, baseline subtraction, look-elsewhere domain, and any simulation ensemble used to assign significance. Without that provenance, a localized feature can be a foreground, mask, beam, or null-statistics artifact while appearing as a cosmological signal.
 
 Let $M_P(\hat{\mathbf{n}})$ and $M_W(\hat{\mathbf{n}})$ denote foreground-cleaned Planck and WMAP residual maps after a common mask and baseline $\Lambda\mathrm{CDM}$ subtraction, with the above provenance fields fixed before template search. For an angular template $T_{\theta,\hat{\mathbf{n}}}$ centered at sky direction $\hat{\mathbf{n}}$ with scale $\theta$, define the cross-map support statistic
@@ -77,6 +79,8 @@ S_{\mathrm{obs}}
 $$
 
 This statistic is a validation target, not a permission to import an external cosmology. If such a residual remains significant after foreground, mask, and look-elsewhere accounting, a viable $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology must either reproduce it from the same Noether sea state used for TT/TE/EE, blackbody behavior, lensing, BAO, and structure growth, or show why it is a foreground, systematic, or null-fluctuation artifact. A fit that explains localized features by changing the cosmology state independently from the acoustic peaks or lensing record fails the shared-state requirement.
+
+Epoch labels in the mapped chronology below are effective reaction-stage names. They translate standard cosmology milestones into local release, association, thermalization, and transport regimes; they are not literal universal eras imposed on the fixed Euclidean void.
 
 ## Pre-Cosmological Steady State ($\mathbb{A}\mathbb{A}\mathbb{A}$-Only)
 - Scope: $\mathbb{A}\mathbb{A}\mathbb{A}$-only steady-state background; $\Lambda\mathrm{CDM}$ does not define a pre-Big-Bang era.
@@ -208,6 +212,8 @@ This retention claim is a transparent-transport invariant, not a claim of contin
 **$\Lambda\mathrm{CDM}$ interpretation:** The Big Bang is a global origin of spacetime, setting the initial conditions for all subsequent evolution.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The Big Bang timeline is reinterpreted as the effective history of a large-scale recycling event sourced by SMBH environments. Dark-sector photon-like modes, recycled dark-sector assemblies, and other outbound excitations from SMBH horizon interfaces can propagate through the Noether sea, thermalize, and redshift into the observed CMB directly or after further conversion into visible channels. Jets and surface outflows remain plausible observer-level manifestations of this release, but they are not the only allowed morphology. The three intrinsic nested shell braid energy scales (outer/middle/inner) provide natural mode seeds for acoustic peaks, with coupling in the medium generating the harmonic ladder observed today. The CMB source interpretation is therefore a closure target for steady-state recycling dynamics in a fixed Euclidean void, not a singular origin event nor literal metric stretching of the container.
+
+CMB photons must remain source-and-path records. A proposed background bath has to carry release provenance, thermalization depth, coherent photon-channel transport, redshift handoff, and observer-frame reconstruction in one ledger. Treating the CMB as only a painted last-scattering sphere loses the source term; treating it as only local recycled emission loses the transfer and acoustic constraints.
 
 ### Horizon-Interface Photon Release Candidate
 

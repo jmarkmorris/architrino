@@ -56,6 +56,21 @@ $$
 
 with each term tied to the same Noether sea response variables used by the CMB, BBN, and expansion modules. This preserves the perturbation-success target of inflationary models while rejecting a free "use it, then lose it" vacuum-energy channel.
 
+The radius-growth benchmark is the local version of the same ledger. If an inflation-like segment is described as rapid effective growth, the variable is not the size of the Euclidean void. It is the relaxation of assembly spacing, shielding, exposed energy, and medium loading:
+$$
+\mathcal{R}_{\mathrm{infl}}
+=
+d_a(a_{\mathrm{eff}}^\theta,a_{\mathrm{eff}}^{\mathrm{obs}})
++
+d_E\!\left(
+\Delta E_{\mathrm{shield}\to\mathrm{exposed}}^\theta,
+\Delta E_{\mathrm{medium+radiation+locked}}^\theta
+\right)
++
+d_{\mathrm{seed}}(P_{\mathrm{seed}}^\theta,P_{\mathrm{seed}}^{\mathrm{obs}}).
+$$
+This keeps the useful inflation target--rapid smoothing and perturbation seeding--while forcing the energy accounting through shielding, release, and apparent-energy projection.
+
 ## Scalar and Tensor Benchmark
 
 Inflationary comparison remains useful only where it supplies disciplined observables. The relevant targets are not an inflaton field or a global expansion of the Euclidean void, but the scalar amplitude, scalar tilt, optional running, Gaussianity, and tensor upper bound consumed by the CMB module.

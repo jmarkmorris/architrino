@@ -76,6 +76,19 @@ $$
 
 Thus ordinary density can be weakly visible to clocks and signal paths when it is integrated over planetary or stellar length scales, while meter-scale laboratory samples require much higher density or precision. The Earth core is thermally cold on a Planck-temperature comparison, but that fact is not the limiting variable for weak gravity. Its contribution to observer-level metric response comes from the rest-energy, pressure, stress, and exposed assembly ledger distributed over a large body, projected through the same Noether sea response map that supplies $\Phi_{\text{eff}}$, $\Gamma_N$, and $\chi_{\text{sea}}$.
 
+### Alternating-Flux Constitutive Candidate
+
+One candidate route from assembly wakes to weak gravity is an RMS excitation law. If local causal-wake hits alternate in sign, direction, or branch provenance, the mean signed force can cancel while the quadratic excitation of the Noether sea remains:
+$$
+\Phi_{\mathrm{eff}}^\theta(\mathbf{x})
+\propto
+\mathcal{K}_{\mathrm{sea}}
+\left\langle
+\left(\sum_s q_s A_s(\mathbf{x},t)\right)^2
+\right\rangle_{\Delta t}^{1/2}.
+$$
+Here $A_s$ denotes the branch-resolved wake amplitude from source segment $s$, and $\mathcal{K}_{\mathrm{sea}}$ is a constitutive response coefficient to be derived, not fitted independently. The route is useful only if the same averaged excitation also supplies the lapse, spatial-compliance, lensing, Shapiro, and PPN rows.
+
 ## ADM/Cartan Reconstruction Surface
 
 The metric bridge should now be expressed through the same ADM/Cartan variables used by [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is

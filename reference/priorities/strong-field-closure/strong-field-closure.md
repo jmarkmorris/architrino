@@ -17,6 +17,7 @@
 4. `release_channel_selection` — Decide the release-channel selection between jets, diffuse outflow, dark-sector escape, and candidate dark-sector photon-like modes. Status: `pending`. Depends on: `observer_predictions`, `horizon_entropy_packet`.
 5. `discriminating_observable` — Extract at least one discriminating observable against GR-like strong-field behavior. Status: `pending`. Depends on: `release_channel_selection`.
 6. `hypothesis_bank_review` — Preserve strong-field and tri-binary hypotheses as a watchlist, and promote only hypotheses that gain a boundary condition, equation, simulation target, or observable. Status: `ongoing`. Depends on: none.
+7. `high_energy_source_sink_taxonomy` — Classify horizon release, jets, mergers, diffuse release, catastrophic candidates, reabsorption, and return channels before using strong-field events as cosmology source terms. Status: `pending`. Depends on: `release_channel_selection`.
 
 ## Scope
 
@@ -140,6 +141,22 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
   The ladder is a reporting target, not a claim that every route realizes every state. Each occupied step must carry architrino inventory, active causal-root ledgers, $E,\mathbf{p},\mathbf{J}$ balance, shielding/exposure change, Noether sea update, and the release selector that moved the record to the next step. A step may be skipped only with an explicit null route, for example direct photon-channel release, dark-sector escape, remnant capture, or reabsorption by the horizon-interface ensemble. This prevents strong-field recycling claims from jumping directly from a packed interior to a visible jet or CMB-facing output without naming the assembly reconstitution path.
 - State the Page-curve-compatible information-preservation requirement for those release channels.
 - Extract at least one discriminating observable relative to GR-like strong-field behavior.
+
+### High-Energy Source/Sink Taxonomy
+
+Before a strong-field branch can feed cosmology, it needs a source/sink ledger rather than a generic "release" label:
+
+| Class | Role | Required row |
+| --- | --- | --- |
+| Horizon-interface release | Outbound assembly, photon-channel, or dark-sector candidate from the compact boundary | Release selector, event-ledger balance, and exterior handoff |
+| Jet channel | Collimated visible or mixed-sector outflow | Jet-base environment, momentum/angular-momentum routing, and baryon loading |
+| Merger channel | Transient strong-field rearrangement of compact records | Incoming compact-source records, wave/recoil ledger, remnant state |
+| Diffuse release | Broad low-contrast medium loading or radiation bath contribution | Source density, spectrum, thermalization depth, and spatial distribution |
+| Catastrophic candidate | Rare high-energy release or branch failure under maximum-curvature pressure | Trigger condition, allowed products, negative controls |
+| Reabsorption | Outbound content captured back into the horizon-interface ensemble or local medium | Capture probability, returned inventory, entropy/information accounting |
+| Return channel | Long-path recycling into Noether sea, neutral assemblies, or visible channels | Transport history, conversion row, and final observer-facing residual |
+
+This taxonomy does not add a new closure gate. It keeps `release_channel_selection` from collapsing physically different source and sink routes into one adjustable cosmology term.
 
 ### MIT 8.962 Compact-Source Scaffold
 

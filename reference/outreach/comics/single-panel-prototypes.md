@@ -258,6 +258,33 @@ Mia, Rachel, and Sophia stand at the front of a seminar room beside a flyer read
 
 - Funding notice: `Funding update: explain continuity with prior work.`
 - Syllabus note: `Subject to revision, unfortunately literal.`
+
+## 10. Office Hours For A Claim
+
+| Field | Direction |
+| --- | --- |
+| Series | `Office Hours For A Claim` |
+| Main cast | Rachel Stone |
+| Surface joke | A nervous claim comes to office hours asking what it needs to pass. |
+| Hidden academic joke | Confidence, polish, and prestige do not substitute for assumptions, tests, and failure conditions. |
+| $\mathbb{A}\mathbb{A}\mathbb{A}$ point | Claims should be promoted only after their assumptions, evidence route, and falsifier are visible. |
+| Claim level | Freshman-friendly claim-level humor plus proof-target discipline. |
+
+### Panel
+
+Rachel sits at office hours beside a whiteboard headed `claim level ladder`: `idea`, `working hypothesis`, `proof target`, and `result`. A nervous paper labeled `interesting claim` sits in the student chair with a backpack and pencil. The scene should first read like an ordinary office-hours joke before the proof-burden layer appears.
+
+### Bubble Text
+
+- Interesting claim speech bubble, rounded with smooth tapered tail: `What do I need to pass?`
+- Rachel speech bubble, rounded with smooth tapered tail: `Show your assumptions, your test, and what would fail you.`
+- Interesting claim thought bubble, cloud-like with dot trail: `I hoped confidence counted for extra credit.`
+
+### Background Text
+
+- Office-hours sign: `Claim office hours`.
+- Syllabus note: `No theorem without work shown.`
+- Desk folder: `polished abstracts`.
 - Whiteboard note: `Change is not evidence. Fear is not a falsifier.`
 - Small seminar sign: `$\mathbb{A}\mathbb{A}\mathbb{A}$: proof burden welcome.`
 

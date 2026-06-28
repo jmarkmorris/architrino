@@ -19,6 +19,9 @@
 6. `deep_space_inventory_benchmark` — Build a deep-space component inventory for photons, neutrinos, cosmic rays, atoms, dust, and unknown Noether sea carriers before treating any sparse visible inventory as an ontology argument. Status: `deferred`. Depends on: `component_interfaces`.
 7. `quasar_population_transport_decomposition` — Separate quasar luminosity-function evolution, survey selection, obscuration, lensing, classification, and redshift-transfer law before using quasar count distributions as cosmology evidence. Status: `deferred`. Depends on: `component_interfaces`, distance-ladder transfer law, survey-selection modeling.
 8. `controversial_qso_association_audit` — Preserve older galaxy/QSO association claims only as a fail-closed source lead requiring modern selection, lensing, extinction, classification, and look-elsewhere controls. Status: `deferred`. Depends on: `quasar_population_transport_decomposition`.
+9. `distributed_release_rate_residual` — Model source-population release rate density, energy spectrum, spatial distribution, and thermalization depth before using recycling release as a CMB or expansion-equivalent source. Status: `deferred`. Depends on: `noether_sea_source_relaxation_balance`, `cmb_noether_braid_spectrum_linkage`.
+10. `nested_shell_cmb_peak_residual` — Test whether first-three-peak CMB ratios can be projected from nested shell braid energy-scale ratios without changing the transfer state used for blackbody, lensing, and growth rows. Status: `deferred`. Depends on: `predictive_pipeline`, `cmb_noether_braid_spectrum_linkage`.
+11. `dark_sector_apparentness_residual` — Separate shielded energy, neutral assemblies, Noether sea stress, projection effects, and catalogue residuals before interpreting a missing component as dark matter or dark energy. Status: `deferred`. Depends on: `deep_space_inventory_benchmark`.
 
 ## Scope
 
@@ -75,6 +78,20 @@ S_{\mathrm{prod}}
 $$
 The priority task is to tie these rows to one energy, reaction, and transport record. A cosmology branch that produces redshift, CMB thermalization, dark-energy stress, or dark-sector inventory by changing one of these rows independently has split the Noether sea state it is supposed to close.
 
+The distributed-release residual is the source-population version of this rule. For a candidate recycling branch $\theta$, the minimum record is
+$$
+\mathcal{R}_{\mathrm{release}}
+=
+d_{\dot n}\!\left(\dot n_{\mathrm{src}}^\theta,\dot n_{\mathrm{req}}\right)
++
+d_E\!\left(F_E^\theta,F_E^{\mathrm{req}}\right)
++
+d_x\!\left(P_x^\theta,P_x^{\mathrm{req}}\right)
++
+d_{\mathrm{th}}\!\left(\mathcal{D}_{\mathrm{th}}^\theta,\mathcal{D}_{\mathrm{th}}^{\mathrm{req}}\right),
+$$
+where $\dot n_{\mathrm{src}}^\theta$ is source-event density, $F_E^\theta$ is release-energy spectrum, $P_x^\theta$ is spatial distribution, and $\mathcal{D}_{\mathrm{th}}^\theta$ is thermalization depth. The residual fails if a branch fits the CMB monopole, redshift, or dark-sector inventory by changing any one of these rows without updating the shared source ledger.
+
 ## Deep-Space Inventory Benchmark
 
 The low visible density of intergalactic space should be treated as a component inventory, not as proof that the region is empty. The benchmark should record ordinary photon, neutrino, cosmic-ray, atom, plasma, and dust counts per cubic meter, then add the unresolved Noether sea carrier inventory as a separate unknown row:
@@ -93,6 +110,20 @@ f_N,
 \right).
 $$
 The useful pressure is comparative: ordinary components are sparse, while the Noether sea density must be inferred from packing, transparency, clock/ruler response, redshift transport, and effective-metric closure rather than from direct visible-particle counts.
+
+For dark-sector apparentness, the inventory should expose at least
+$$
+\mathcal{I}_{\mathrm{dark}}^\theta
+=
+\left(
+E_{\mathrm{shield}},
+N_{\mathrm{neutral}},
+\Sigma_{\mathrm{sea}},
+\Pi_{\mathrm{proj}},
+\Delta_{\mathrm{cat}}
+\right),
+$$
+where $E_{\mathrm{shield}}$ records shielded energy, $N_{\mathrm{neutral}}$ neutral assembly content, $\Sigma_{\mathrm{sea}}$ Noether sea stress, $\Pi_{\mathrm{proj}}$ observer-projection effects, and $\Delta_{\mathrm{cat}}$ catalogue residuals. Treating all five as one "dark" scalar is a failure mode, not a closure.
 
 ## Quasar Population And Redshift-Transport Decomposition
 
@@ -113,6 +144,24 @@ The first pass should keep the claim level narrow. A viable linkage requires one
 That same medium record is also shared with the Lorentz closure stack. The $\chi_{\text{sea}}(\mathbf{x},t)$ row used for redshift, transparent photon-channel transport, CMB transfer, lensing, and growth must remain the same row used for clock/ruler retuning and preferred-frame hiding. A branch that closes cosmology only by choosing a cosmology-specific delay factor, while Lorentz recovery uses a different $\chi_{\text{sea}}$, has split the response law the one-constitutive-response wall is meant to protect.
 
 The speed rows are part of that shared response. The transparent transport map acts on photon-channel packets whose group-speed row is $c_\gamma(\mathbf{x},t)$; primitive causal wakes and Noether sea exchange remain constrained by $c_f$; clock and ruler reconstruction belongs to $c_{\text{eff}}$; and $c_0$ is only the weak homogeneous calibration value. A branch that recovers redshift by changing frequency while leaving the propagation speed undefined has not closed the map. The admissible case is redshift through coherent photon-channel transport at $c_\gamma$, with the energy sink bookkept through Noether sea and causal-wake exchange without generating a detectable frequency-dependent $c_\gamma(\omega)$ residual.
+
+The nested-shell CMB peak residual belongs here only as a priority-only route. If the outer, middle, and inner nested shell braid energy scales are proposed as seed ratios for the first acoustic peaks, the comparison must still pass through the ordinary CMB transfer packet:
+$$
+\mathcal{R}_{\mathrm{peak}}
+=
+d\!\left(
+\frac{\ell_2^\theta}{\ell_1^\theta},
+\frac{\ell_2^{\mathrm{obs}}}{\ell_1^{\mathrm{obs}}}
+\right)
++
+d\!\left(
+\frac{\ell_3^\theta}{\ell_1^\theta},
+\frac{\ell_3^{\mathrm{obs}}}{\ell_1^{\mathrm{obs}}}
+\right)
++
+\mathcal{R}_{\mathrm{transfer}}.
+$$
+The route fails if the shell-ratio story fits peak locations while using a different medium state than blackbody preservation, damping, lensing, BAO, or growth.
 
 The thermalization and transparent-transport rows must remain distinct. Pre-free-streaming thermalization can drive the photon bath toward a Planck occupation law, but long-path redshift must preserve that shape by coherent scaling. For a declared path factor $\lambda$, the comparison target is
 

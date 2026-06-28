@@ -134,26 +134,26 @@
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/07/20/epr-1-spooky-action-0/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/07/05/how-nature-and-the-universe-operate/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/08/14/cosmology/
-https://architrino.wordpress.com/2021/11/25/helge-kragh-steady-state-cosmological-models/
-https://architrino.wordpress.com/2020/08/28/dr-becky-big-bang-vs-steady-state/
-https://architrino.wordpress.com/2024/03/18/the-apparent-darkness-of-cosmology/
-https://architrino.wordpress.com/2023/05/29/mapping-the-friedmann-equations/
-https://architrino.wordpress.com/2020/08/06/tensions-in-cosmology/
-https://architrino.wordpress.com/2022/04/07/rearranging-cosmology/
-https://architrino.wordpress.com/2019/06/11/physicists-debate-hawkings-idea-that-the-universe-had-no-beginning/
-https://architrino.wordpress.com/2020/06/27/discord-june-27-2020-chipping-away/
-https://architrino.wordpress.com/2024/02/14/mapping-the-cosmic-web/
-https://architrino.wordpress.com/2021/11/24/debate-alan-guth-vs-roger-penrose/
-https://architrino.wordpress.com/2022/03/26/sir-roger-ccc-m-c-escher/
-https://architrino.wordpress.com/2020/03/03/subir-sarkar-questions-evidence-for-dark-energy/
-https://architrino.wordpress.com/2023/04/22/planck-epoch-peak-density-of-energetic-point-charges/
-https://architrino.wordpress.com/2023/04/23/grand-unification-epoch-dipoles-dominate/
-https://architrino.wordpress.com/2023/04/23/inflationary-epoch-noether-cores-form/
-https://architrino.wordpress.com/2023/04/28/electroweak-epoch-personality-charges-bond-to-noether-cores/
-https://architrino.wordpress.com/2023/04/29/quark-epoch-emerging-surviving-quarks-couple-vortices/
-https://architrino.wordpress.com/2023/06/16/mapping-dipole-assembly-and-cmb/
-https://architrino.wordpress.com/2019/10/24/how-nature-implements-gravity/
-https://architrino.wordpress.com/2019/06/12/quantum-gravity/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/11/25/helge-kragh-steady-state-cosmological-models/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/08/28/dr-becky-big-bang-vs-steady-state/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/03/18/the-apparent-darkness-of-cosmology/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/05/29/mapping-the-friedmann-equations/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/08/06/tensions-in-cosmology/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/04/07/rearranging-cosmology/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/11/physicists-debate-hawkings-idea-that-the-universe-had-no-beginning/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/06/27/discord-june-27-2020-chipping-away/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/02/14/mapping-the-cosmic-web/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/11/24/debate-alan-guth-vs-roger-penrose/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/03/26/sir-roger-ccc-m-c-escher/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/03/03/subir-sarkar-questions-evidence-for-dark-energy/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/04/22/planck-epoch-peak-density-of-energetic-point-charges/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/04/23/grand-unification-epoch-dipoles-dominate/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/04/23/inflationary-epoch-noether-cores-form/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/04/28/electroweak-epoch-personality-charges-bond-to-noether-cores/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/04/29/quark-epoch-emerging-surviving-quarks-couple-vortices/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/06/16/mapping-dipole-assembly-and-cmb/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/10/24/how-nature-implements-gravity/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/12/quantum-gravity/
 https://architrino.wordpress.com/2020/01/26/gravity-and-the-temperature-of-spacetime-gas/
 https://architrino.wordpress.com/2020/05/23/forces-mass-and-gravity/
 https://architrino.wordpress.com/2020/01/21/gravity-is-both-quantum-and-continuous/

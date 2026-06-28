@@ -21,6 +21,7 @@
 8. `supersymmetry_internal_partner_comparison` — Treat supersymmetry-like organization as a comparison framework for internal branch degrees of freedom and null-result pressure, not as a prediction of external low-energy superpartner particles. Status: `pending`. Depends on: gauge-running residuals, LHC null-result bounds, and branch-record algebra.
 9. `lattice_qcd_direct_assembly_comparison` — Compare lattice-QCD benchmark observables against a future finite-assembly nucleon simulation without claiming lattice QCD is obsolete before masses, form factors, and scattering rows are recovered. Status: `pending`. Depends on: `confinement_energetics`, `nuclear_potential_derivation`, and simulations `direct_nucleon_assembly_monte_carlo`.
 10. `e8_redundancy_heuristic_audit` — Treat $248=256-8$ only as a speculative quotient/redundancy clue for algebra mapping, not as evidence that E8 is native ontology. Status: `pending`. Depends on: accepted branch-state records and gauge-record rows.
+11. `quark_vortex_coupling_simulation` — Build a finite-assembly quark-era simulation target that tests whether vortex-like wake coupling can recover confinement behavior, quark stability, and gluon-comparison observables without bypassing the color-singlet ledger. Status: `pending`. Depends on: `confinement_energetics`, `lattice_qcd_direct_assembly_comparison`.
 
 ## Scope
 
@@ -83,6 +84,23 @@ R_{\mathrm{scheme}}
 $$
 
 where the rows compare hadron masses, form factors, spin decomposition, scattering or matrix-element benchmarks, and the lattice scheme/continuum conventions being matched. The claim level is priority-only until a direct finite-assembly simulation recovers accepted hadronic observables with declared negative controls.
+
+### Quark Vortex-Coupling Simulation Target
+
+The quark-era source-mining signal is useful only as a simulation target. A candidate finite-assembly run should retain quark-like nested shell braid records with axial layers, a color-singlet constraint, and vortex-like wake-coupling rows:
+$$
+\Theta_q
+=
+\left(
+B_q,
+A_q,
+C_q,
+V_{\mathrm{wake}},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}},
+\mathcal{P}_{\mathrm{singlet}}
+\right).
+$$
+The first comparison should ask whether the retained records produce stable hadron-like bound states, confinement-scale growth with separation, and gluon-comparison transition behavior before importing QCD language as ontology. Failure modes include a stable free-quark branch, color leakage outside a singlet ledger, and a fitted force law that does not arise from the retained wake-coupling rows.
 
 ## Scalar-Boson Acceptance Target
 

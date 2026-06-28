@@ -190,6 +190,10 @@ This framework does not treat cosmology as "$\mathbb{A}\mathbb{A}\mathbb{A}$ vs 
 
 This decomposition prevents hidden dependency loops where one assumed foundation silently fixes another observable domain.
 
+### Effective Observer-Era Age Boundary
+
+The familiar $13$-$14\ \mathrm{Gyr}$ age scale is treated here as a convergence pressure on the current observer-era reconstruction, not as a primitive age assigned to the Euclidean void. Stellar ages, white-dwarf cooling, radioactive clocks, interstellar grains, CMB fits, and redshift-distance histories all have to converge in the accessible material record. A fixed-void branch may interpret that convergence as the age of the current effective observer era, dominant recycling/thermalization history, or accessible star-forming material record, but it must not silently convert the convergence into a proof that the underlying container began at that time.
+
 ## Inference-Dependency Ledger
 
 The standard cosmological fit package obtains much of its strength by combining observables inside a common Friedmann-Lemaître-Robertson-Walker limit. That limit is useful as an effective comparison layer, but it is not an ontological premise of this framework. Each observational module must therefore state which parts of its inference require large-scale homogeneity, isotropy, standard-candle or standard-ruler calibration, CMB-frame correction, and the Friedmann energy-density sum rule.

@@ -399,6 +399,125 @@ $$
 
 This equation is the subthreshold exposed-pressure trace lemma. Below $\mathcal{R}_{\text{tr},*}$, pressure changes scalar mass trace only through a quotient-visible exposed-source change $\delta_PM_{0}^{\mathrm{src}}$, the shared isotropic delay-pressure coefficient $C_{\chi}^{\mathrm{iso}}$, and the trace-free contraction of exposed anisotropy with the reversible symmetric pressure-dressed medium tensor. A pressure replay that improves the scalar mass trace by introducing an independent $\delta\mathcal{M}_0$ row, a hidden source-handle shift, or an unlogged loss term has not advanced the mass map; it has split the branch or left the reversible domain.
 
+### Branch-Conditional Coefficient Artifact
+
+The coefficient artifact consumed by a future accepted branch is the record
+
+$$
+\mathcal{C}_{P,A}
+=
+\left(
+\mathcal{I}_{P,A},
+C_{\mathrm{tr}}^{\mathrm{iso}},
+C_{\mathrm{tr}}^{\mathrm{tf}},
+\mathcal{R}_{\mathrm{nohandle}}^{P},
+\mathcal{S}_{P,A}
+\right),
+$$
+
+where $\mathcal{I}_{P,A}$ is the branch intake, $C_{\mathrm{tr}}^{\mathrm{iso}}$ is the scalar trace/isotropic pressure coefficient, $C_{\mathrm{tr}}^{\mathrm{tf}}$ is the retained trace-free pressure functional, $\mathcal{R}_{\mathrm{nohandle}}^{P}$ is the no-hidden-mass-handle residual, and $\mathcal{S}_{P,A}$ is the pass/fail status vector. This is a closure object for coefficient accounting only; it is not an empirical pressure pass, a particle-mass prediction, or a PDG score movement.
+
+The branch intake must be emitted before any replay residual is inspected:
+
+| Intake field | Required branch source |
+| --- | --- |
+| `accepted_branch_id` | accepted Noether braid branch or branch-preserving material segment |
+| `source_record` | $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, and $\mathcal{N}_{\mathrm{tf},ab}(A)$ from the exposure quotient |
+| `pressure_record` | declared $\Pi$, $A$, $s_n$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, and the retained replay direction |
+| `coefficient_record` | branch-emitted $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, $m_S$, and any masked packing or heavy-scaling columns |
+| `reversible_domain` | $\mathcal{R}_{\mathrm{tr}}<\mathcal{R}_{\text{tr},*}$ with no unlogged excitation, heating, radiation-like shedding, or branch transition |
+| `null_sector_record` | clock/signal, birefringence, photon-dispersion, preferred-frame, directional-tensor, and transport bounds |
+
+The scalar trace/isotropic coefficient is
+
+$$
+\boxed{
+C_{\mathrm{tr}}^{\mathrm{iso}}(A)
+\equiv
+\partial_{\Pi}\delta_PM_{0}^{\mathrm{src}}(A)
++
+2M_{0}^{\mathrm{src}}(A)C_{\chi}^{\mathrm{iso}}.
+}
+$$
+
+This coefficient is branch-conditional because both terms must descend from the same retained branch record. If $\partial_{\Pi}\delta_PM_{0}^{\mathrm{src}}$ is not quotient-visible, the scalar pressure coefficient is `pending_source_descent` rather than zero.
+
+The retained trace-free coefficient is the linear functional
+
+$$
+\boxed{
+C_{\mathrm{tr}}^{\mathrm{tf}}(A)[B]
+\equiv
+\frac{1}{3}
+\mathcal{N}_{\mathrm{tf},ab}(A)B^{ab},
+\qquad
+B^{ab}\in\mathcal{V}_{P,A}.
+}
+$$
+
+For the first-order pressure row, the branch supplies the argument
+
+$$
+B_P^{ab}
+=
+2C_{\chi}^{\mathrm{aniso}}Q_{\chi}^{ab}
++
+m_SS_{\mathrm{dev}}^{ab},
+$$
+
+so the pressure-visible trace-free contribution is $C_{\mathrm{tr}}^{\mathrm{tf}}(A)[B_P]A$. If the retained replay direction masks anisotropy, then $\mathcal{V}_{P,A}=\{0\}$ for this row and the artifact reports `tf_bound_only`; it must not fit a replacement tensor coefficient.
+
+The no-hidden-mass-handle residual checks that no discarded representative label $d$ changes the scalar or retained trace-free pressure coefficient:
+
+$$
+\mathcal{R}_{\mathrm{nohandle}}^{P}
+=
+\max_d
+\left[
+\frac{
+\left|
+\Delta_d C_{\mathrm{tr}}^{\mathrm{iso}}
+\right|
+}{
+\left|
+C_{\mathrm{tr}}^{\mathrm{iso}}
+\right|
++
+\epsilon_{\mathrm{tr,iso}}
+},
+\,
+\sup_{\substack{B\in\mathcal{V}_{P,A}\\ \|B\|_h\le1}}
+\frac{
+\left|
+C_{\mathrm{tr}}^{\mathrm{tf}}[B;d]
+-
+C_{\mathrm{tr}}^{\mathrm{tf}}[B]
+\right|
+}{
+\left|
+C_{\mathrm{tr}}^{\mathrm{tf}}[B]
+\right|
++
+\epsilon_{\mathrm{tr,tf}}
+}
+\right].
+$$
+
+Here the restored-label comparison is a validation diagnostic, not a construction input. A nonzero residual above tolerance means the discarded label is pressure-mass-visible; the branch must retain the label, split the branch state, or demote the scalar pressure row.
+
+The status vector is deliberately fail-closed:
+
+| Status key | Pass condition | Fail or bound-only reading |
+| --- | --- | --- |
+| `source_descent` | $M_0^{\mathrm{src}}$ and $\partial_P M_0^{\mathrm{src}}$ descend through the mass-facing exposure quotient. | `pending_source_descent` or `source_nondescent` |
+| `isotropic_trace` | $C_{\mathrm{tr}}^{\mathrm{iso}}$ is computed from branch-emitted $\partial_{\Pi}\delta_PM_0^{\mathrm{src}}$ and $C_{\chi}^{\mathrm{iso}}$. | `coefficient_fit_contamination` if either term is replay-fitted after benchmark comparison |
+| `trace_free_span` | $\mathcal{V}_{P,A}$ is declared before the replay and $B_P^{ab}\in\mathcal{V}_{P,A}$. | `tf_bound_only` when anisotropy is masked; `projection_mismatch` when directions drift |
+| `no_hidden_mass_handle` | $\mathcal{R}_{\mathrm{nohandle}}^{P}\le\epsilon_{\mathrm{nohandle}}^{P}$. | `hidden_pressure_mass_handle` |
+| `reversible_domain` | $\mathcal{R}_{\mathrm{tr}}<\mathcal{R}_{\text{tr},*}$ and loss channels are closed. | `threshold_event` or `loss_below_threshold` |
+| `null_sector` | all null-sector bounds remain below their declared budgets. | `metric_null_violation` |
+
+The first empirical or toy replay boundary is therefore narrow: a toy row may populate $\Pi$, $A$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, and masked $\mathcal{V}_{P,A}$ to exercise the algebra, but it must mark `pending_source_descent` until an accepted branch emits $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, $\mathcal{N}_{\mathrm{tf},ab}(A)$, and the derivative $\partial_P M_0^{\mathrm{src}}(A)$. A real Fe/Cr or Ni/Co replay can at most upgrade the status from `tf_bound_only` to a retained-span test unless the same branch-side source record is present.
+
 The pressure row also fixes the response-visible trace-free span for this specialization. At first order the pressure-visible span is contained in
 
 $$

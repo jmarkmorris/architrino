@@ -60,6 +60,15 @@ The recovery target is hybrid rather than a single declared finite-cutoff path i
 
 The familiar running-coupling plot is a useful bridge for this target. It says that the effective $SU(3)_c$, $SU(2)_L$, and $U(1)_Y$ interaction strengths change with observer-level probe scale, with approximate high-scale convergence in many normalizations. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not treated as proof of grand-unified ontology. It is a pressure on the mapping: the same Noether sea response, axial-layer exposure, and color axis-exceptionality bookkeeping must generate the scale-dependent effective record discussed in [Gauge Symmetries](gauge-symmetries.md#running-coupling-bridge), while the same branch record keeps non-baseline channels absent.
 
+The useful translation of "force unification" is therefore channel availability, not merger into a single primitive force:
+
+| Effective stage | Assembly channels present | What is shielded or unavailable | Observer-facing translation |
+| --- | --- | --- | --- |
+| Noether braid dominated | Neutral Noether braid binding and medium response | Axial charge exposure and free electromagnetic/weak channels | Gravity-like medium response can be active before electric or weak observability |
+| Axial association | Stable axial architrino bookkeeping begins to lock to neutral cores | Most internal causal history remains shielded | Inertial response and electroweak differentiation become meaningful |
+| Charged assembly regime | Electromagnetic, weak-corridor, and color-singlet hadronic channels can appear | Non-baseline channels remain suppressed by stability and null-result constraints | The Standard Model channel table is the recovery target |
+| High-probe comparison | Running couplings and possible approximate convergence appear in observer charts | Larger symmetry groups are not substrate ontology by default | Unification claims must explain both recovered channels and absent channels |
+
 There is a second consistency pressure that is just as important as the charge table. The Standard Model is a chiral gauge theory, so the low-energy fermion collection must cancel gauge anomalies and the $SU(2)$ Witten obstruction as a set. In this working emergence map, anomaly cancellation is read as a recovery condition on the assembly dictionary:
 $$
 \mathcal{A}_{\mathrm{SM}}^{\mathbb{A}\mathbb{A}\mathbb{A}}
