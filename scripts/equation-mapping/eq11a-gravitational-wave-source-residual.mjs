@@ -127,12 +127,16 @@ function evaluateEq11aGravitationalWaveSource(input, inputPath) {
     REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedEvidence(rows[rowId], rowId)]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
+  const sourceContractBoundaryRows = REQUIRED_ROWS.filter(
+    (rowId) => rowChecks[rowId].accepted && hasSourceContractBoundarySource(rows[rowId]),
+  );
   const carrierBinding = evaluateCarrierBinding(rows, input.commonCarrierId ?? packet.id);
   const solver = evaluateGravitationalWaveSourceSolver(packet, tolerances);
   const negativeControls = evaluateNegativeControls(packet, packet.negativeControls ?? [], tolerances);
   const status = decideStatus({
     carrier,
     missingRows,
+    sourceContractBoundaryRows,
     carrierBinding,
     solver,
     negativeControls,
@@ -164,6 +168,8 @@ function evaluateEq11aGravitationalWaveSource(input, inputPath) {
       carrierAccepted: carrier.accepted,
       carrierReason: carrier.reason,
       missingRows,
+      sourceContractBoundaryRows,
+      sourceContractBoundaryCount: sourceContractBoundaryRows.length,
       commonCarrierPass: carrierBinding.passed,
       solverResidualPass: allSolverChecksPass(solver),
       chirpMassPass: solver.chirpMass.passed,
@@ -767,6 +773,15 @@ function evaluateSourcePath(sourcePath) {
   return { accepted: true, reason: "accepted" };
 }
 
+function hasSourceContractBoundarySource(row) {
+  const sourcePath = row?.sourcePath ?? row?.source;
+  const sourceEvidenceKind = row?.sourceEvidence?.kind;
+  return (
+    (typeof sourcePath === "string" && path.basename(sourcePath).includes("source-contract")) ||
+    (typeof sourceEvidenceKind === "string" && sourceEvidenceKind.includes("source_contract"))
+  );
+}
+
 function isNonDurableSourcePath(filePath) {
   const normalized = path.normalize(filePath);
   return (
@@ -804,12 +819,15 @@ function isEvidenceSourcePath(filePath) {
   );
 }
 
-function decideStatus({ carrier, missingRows, carrierBinding, solver, negativeControls }) {
+function decideStatus({ carrier, missingRows, sourceContractBoundaryRows, carrierBinding, solver, negativeControls }) {
   if (!carrier.accepted) {
     return "blocked_missing_accepted_gw_source_carrier";
   }
   if (missingRows.length > 0) {
     return "blocked_missing_rows";
+  }
+  if (sourceContractBoundaryRows.length > 0) {
+    return "blocked_source_contract_boundary";
   }
   if (!carrierBinding.passed) {
     return "blocked_carrier_split";
@@ -832,6 +850,9 @@ function firstBlocker({ status, carrier, missingRows, carrierBinding, solver, ne
   }
   if (missingRows.length > 0) {
     return `missing_accepted_${missingRows[0]}`;
+  }
+  if (status === "blocked_source_contract_boundary") {
+    return "source_contract_boundary_not_retained_evidence";
   }
   if (!carrierBinding.passed) {
     return carrierBinding.commonCarrierId ? "carrier_split" : "missing_common_carrier";

@@ -107,6 +107,12 @@ function summarizeFutureProfileCertificate(certificate) {
   );
 }
 
+function withoutRetainedRootWindowBracketReplay(target) {
+  const copy = structuredClone(target);
+  delete copy.shared_interval_boxes.retained_root_window_bracket_replay;
+  return copy;
+}
+
 test("A1 admissible profile bounds attempt remains fail-closed and priority-only", () => {
   const packet = runA1Diagnostic("a1_admissible_profile_bounds_attempt");
   assert.equal(
@@ -327,6 +333,36 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(
     packet.shared_interval_box_certificate_target.shared_interval_boxes
       .future_transport_outward_for_continuous_transport_equation,
+    false
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .retained_root_window_bracket_replay.schema,
+    "architrino.priority.master_equation_closure.a1_retained_root_window_sign_bracket_sample_replay.v0"
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .retained_root_window_bracket_replay.status,
+    "sampled_retained_root_window_sign_brackets_present_not_interval_boxes"
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .retained_root_window_bracket_replay.sampled_bracket_count,
+    12
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .retained_root_window_bracket_replay.sampled_brackets_verified,
+    true
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .retained_root_window_bracket_replay.bounds_retained_root_interval_boxes,
+    false
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .retained_root_window_bracket_replay.used_as_certificate,
     false
   );
   assert.equal(
@@ -745,6 +781,41 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
       .authorizes_outward_certificate,
     false
   );
+  assert.equal(
+    packet.retained_root_context.root_window_sign_bracket_replay.schema,
+    "architrino.priority.master_equation_closure.a1_retained_root_window_sign_bracket_sample_replay.v0"
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sign_bracket_replay.status,
+    "sampled_retained_root_window_sign_brackets_present_not_interval_boxes"
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sign_bracket_replay.sampled_bracket_count,
+    12
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sign_bracket_replay.bracket_rows.length,
+    12
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sign_bracket_replay.failures.length,
+    0
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sign_bracket_replay.bracket_rows.every(
+      (row) => row.sign_change_or_endpoint_zero === true
+    ),
+    true
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sign_bracket_replay
+      .bounds_retained_root_interval_boxes,
+    false
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sign_bracket_replay.used_as_certificate,
+    false
+  );
   assert.equal(packet.sampled_attempt_reading, "sampled_bounds_within_declared_convention");
   assert.equal(
     packet.retained_root_context.sampled_active_labels_match_retained_set,
@@ -828,7 +899,14 @@ test("A1 source identity diagnostic reproduces the admissible profile digest", (
   );
   assert.deepEqual(
     sourceIdentity.shared_interval_box_certificate_target,
-    packet.shared_interval_box_certificate_target
+    withoutRetainedRootWindowBracketReplay(
+      packet.shared_interval_box_certificate_target
+    )
+  );
+  assert.equal(
+    sourceIdentity.shared_interval_box_certificate_target.shared_interval_boxes
+      .retained_root_window_bracket_replay,
+    undefined
   );
   assert.deepEqual(
     {

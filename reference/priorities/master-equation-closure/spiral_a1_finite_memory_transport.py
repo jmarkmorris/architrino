@@ -1864,9 +1864,9 @@ def a1_shared_interval_box_certificate_target(
     past_profile_interval_box_attempt: dict | None = None,
     past_profile_interval_box_certificate: dict | None = None,
     future_transport_interval_box_certificate: dict | None = None,
-    retained_root_window_bracket_replay: dict | None = None,
     directed_rounding_backend_target: dict | None = None,
     directed_rounding_backend_self_audit: dict | None = None,
+    retained_root_window_bracket_replay: dict | None = None,
 ) -> dict:
     return {
         "schema": (
@@ -2373,6 +2373,95 @@ def future_piecewise_linear_profile_box_certificate_summary(
             "certificate_digest",
             "status",
         )
+    }
+
+
+def a1_retained_root_window_sign_bracket_sample_replay(
+    source_digest: str,
+    profile: Profile,
+    theta_samples: list[float],
+    *,
+    panels: int,
+) -> dict:
+    bracket_rows: list[dict] = []
+    failures: list[str] = []
+    min_endpoint_abs_value = math.inf
+    max_endpoint_abs_value = 0.0
+
+    for theta in theta_samples:
+        for window in RETAINED_WINDOWS:
+            lo, hi = window["window"]
+            flo = root_function_nc(
+                window["kind"], theta, lo, panels=panels, profile=profile
+            )
+            fhi = root_function_nc(
+                window["kind"], theta, hi, panels=panels, profile=profile
+            )
+            min_endpoint_abs_value = min(
+                min_endpoint_abs_value, abs(flo), abs(fhi)
+            )
+            max_endpoint_abs_value = max(
+                max_endpoint_abs_value, abs(flo), abs(fhi)
+            )
+            sign_change = flo == 0.0 or fhi == 0.0 or flo * fhi < 0.0
+            if not sign_change:
+                failures.append(
+                    f"theta={theta}: {window['label']} window endpoints do not bracket a root"
+                )
+            bracket_rows.append(
+                {
+                    "theta": theta,
+                    "label": window["label"],
+                    "kind": window["kind"],
+                    "window": [lo, hi],
+                    "lower_endpoint_value": flo,
+                    "upper_endpoint_value": fhi,
+                    "lower_endpoint_sign": 0 if flo == 0.0 else (1 if flo > 0 else -1),
+                    "upper_endpoint_sign": 0 if fhi == 0.0 else (1 if fhi > 0 else -1),
+                    "endpoint_product": flo * fhi,
+                    "sign_change_or_endpoint_zero": sign_change,
+                }
+            )
+
+    sampled_brackets_verified = not failures and all(
+        row["sign_change_or_endpoint_zero"] for row in bracket_rows
+    )
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_retained_root_window_sign_bracket_sample_replay.v0"
+        ),
+        "artifact_id": "a1_retained_root_window_sign_bracket_sample_replay.v0",
+        "source_artifact_hash": source_digest,
+        "method": "float64_endpoint_sign_sample_grid_replay",
+        "theta_interval": [theta_samples[0], theta_samples[-1]],
+        "theta_samples": len(theta_samples),
+        "theta_boxes": "sample_grid_only_not_interval_boxes",
+        "integration_panels": panels,
+        "sampled_bracket_count": len(bracket_rows),
+        "sampled_brackets_verified": sampled_brackets_verified,
+        "sampled_min_endpoint_abs_value": (
+            min_endpoint_abs_value if math.isfinite(min_endpoint_abs_value) else None
+        ),
+        "sampled_max_endpoint_abs_value": max_endpoint_abs_value,
+        "bracket_rows": bracket_rows,
+        "failures": failures,
+        "bounds_retained_root_interval_boxes": False,
+        "bounds_inactive_cover_interval_boxes": False,
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "replay_digest": canonical_json_digest(payload),
+        "status": (
+            "sampled_retained_root_window_sign_brackets_present_not_interval_boxes"
+            if sampled_brackets_verified
+            else "sampled_retained_root_window_sign_brackets_failed_not_certificate"
+        ),
     }
 
 
@@ -6140,6 +6229,17 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             profile,
         )
     )
+    theta_samples = theta_grid(
+        0.0, attempt_args.theta_hi, attempt_args.theta_samples
+    )
+    retained_root_bracket_replay = (
+        a1_retained_root_window_sign_bracket_sample_replay(
+            source_identity["digest"],
+            profile,
+            theta_samples,
+            panels=attempt_args.integration_panels,
+        )
+    )
     shared_interval_target = a1_shared_interval_box_certificate_target(
         source_identity["digest"],
         coefficient_enclosure_attempt,
@@ -6148,9 +6248,7 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         future_transport_interval_box_certificate,
         directed_rounding_backend_target,
         directed_rounding_backend_self_audit,
-    )
-    theta_samples = theta_grid(
-        0.0, attempt_args.theta_hi, attempt_args.theta_samples
+        retained_root_window_bracket_replay=retained_root_bracket_replay,
     )
     retained_root_replay = a1_retained_root_window_sample_replay(
         source_identity["digest"],
@@ -6377,6 +6475,7 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
                 max_abs_radial_residual
             ),
             "rows": retained_rows_summary,
+            "root_window_sign_bracket_replay": retained_root_bracket_replay,
             "root_window_sample_replay": retained_root_replay,
             "retained_failures": retained_failures,
             "used_as_certificate": False,

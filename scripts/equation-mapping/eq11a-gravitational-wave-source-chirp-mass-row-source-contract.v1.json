@@ -1,0 +1,44 @@
+{
+  "schema": "aaa-equation-map-eq11a-chirp-mass-row-source-contract/v1",
+  "claimLevel": "source-contract boundary for the EQ-11A chirp_mass_row; score-neutral and not accepted retained evidence by itself",
+  "sourceRole": "chirp_mass_row_source_contract",
+  "supportsEquationRows": [
+    "EQ-11A"
+  ],
+  "supportsRows": [
+    "chirp_mass_row"
+  ],
+  "sourceWindowId": "GW150914-v3",
+  "supportId": "H1L1_GWTC1_PE_v3",
+  "eventId": "GWTC-1-confident/GW150914/v3",
+  "requiredSameRecordBinding": {
+    "carrierId": "theta_gwsrc_chirp_mass_row_source_contract_attempt_0001",
+    "sourceWindowId": "GW150914-v3",
+    "supportId": "H1L1_GWTC1_PE_v3",
+    "eventId": "GWTC-1-confident/GW150914/v3"
+  },
+  "chirpMassFields": {
+    "componentMassReadout": [
+      "m1",
+      "m2"
+    ],
+    "chirpMassReadout": [
+      "M_chirp",
+      "massPosteriorOrInterval"
+    ],
+    "requiredConsumers": [
+      "source_event_ledger",
+      "quadrupole_source_row",
+      "effective_metric_tensor_channel"
+    ]
+  },
+  "directGeometryLayer": {
+    "standardComparisonTerm": "chirp mass M_c from component masses",
+    "aaaGeometricReadout": "component-mass and chirp-mass readout from the same binary source event ledger used by quadrupole and tensor-channel rows",
+    "requiredCarrierOrRow": "chirp_mass_row",
+    "sameRecordBinding": "the chirp row shares the EQ-11A carrierId, sourceWindowId, supportId, eventId, source_event_ledger, quadrupole_source_row, and effective_metric_tensor_channel before chirp-rate or Peters-decay residuals can count",
+    "failClosedNegativeControl": "eq11a-gravitational-wave-source-chirp-mass-row-mismatch-negative-control.v1.json",
+    "smallestAcceptedEvidenceObject": "source-backed chirp_mass_row bound to the GW150914 source ledger, quadrupole row, and tensor channel; score remains neutral until Peters decay, detector strain, provenance, and no-retune rows are accepted"
+  },
+  "scoreDecision": "no_score_increase"
+}

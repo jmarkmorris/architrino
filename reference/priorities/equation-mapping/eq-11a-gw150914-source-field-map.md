@@ -149,8 +149,28 @@ node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --inp
 
 The first command advances only to `nextBlocker=missing_accepted_source_event_ledger`, with `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-effective-metric-tensor-row-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-effective-metric-tensor-row-mismatch-negative-control.v1.json) keeps an accepted-looking tensor row blocked at `missing_accepted_effective_metric_tensor_channel` when its `sourceEvidence` names the wrong row.
 
+The score-neutral source-event-ledger boundary is staged in [eq11a-gravitational-wave-source-event-ledger-source-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-event-ledger-source-contract.v1.json), with checker input [eq11a-gravitational-wave-source-event-ledger-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-event-ledger-source-contract-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-event-ledger-source-contract-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-event-ledger-source-contract-attempt.v1.json --summary --pretty --require-populated
+```
+
+The first command advances only to `nextBlocker=missing_accepted_quadrupole_source_row`, with `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-event-ledger-row-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-event-ledger-row-mismatch-negative-control.v1.json) keeps an accepted-looking source-event ledger blocked at `missing_accepted_source_event_ledger` when its `sourceEvidence` names the wrong row.
+
+The score-neutral quadrupole-source boundary is staged in [eq11a-gravitational-wave-source-quadrupole-source-row-source-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-quadrupole-source-row-source-contract.v1.json), with checker input [eq11a-gravitational-wave-source-quadrupole-source-row-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-quadrupole-source-row-source-contract-attempt.v1.json):
+
+```sh
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-quadrupole-source-row-source-contract-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-quadrupole-source-row-source-contract-attempt.v1.json --summary --pretty --require-populated
+```
+
+The first command advances only to `nextBlocker=missing_accepted_chirp_mass_row`, with `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-quadrupole-source-row-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-quadrupole-source-row-mismatch-negative-control.v1.json) keeps an accepted-looking quadrupole row blocked at `missing_accepted_quadrupole_source_row` when its `sourceEvidence` names the wrong row.
+
+The checker also reports `sourceContractBoundaryRows` and blocks all-source-contract shells at `status=blocked_source_contract_boundary`, `nextBlocker=source_contract_boundary_not_retained_evidence`. Source-contract boundaries can expose blocker order, but they cannot by themselves produce `status=populated`.
+
 ## Current Disposition
 
-The source map is ready for a source-event-ledger source-contract attempt, not a score change. A future candidate input should preserve `status: attempt` until all row bindings are source-backed, durable, and accepted by the existing checker contract.
+The source map is ready for a chirp-mass-row source-contract attempt, not a score change. A future candidate input should preserve `status: attempt` until all row bindings are source-backed, durable, and accepted by the existing checker contract.
 
 No score changes.

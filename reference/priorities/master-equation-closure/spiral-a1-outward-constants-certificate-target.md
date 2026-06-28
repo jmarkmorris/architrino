@@ -372,6 +372,15 @@ minimum retained-window clearance `0.04429899040143903`. This is a
 root-window replay only: it has `used_as_certificate=false`,
 `bounds_retained_root_interval_boxes=false`, and
 `bounds_inactive_cover_interval_boxes=false`.
+The same retained-root context now records
+`a1_retained_root_window_sign_bracket_sample_replay.v0` with replay digest
+`sha256:1fa836595fb7c2450b417e1ecab1c431d2a7af53e128395e704578f640a80d12`.
+It verifies 12 sampled endpoint sign brackets over the retained windows, with
+sampled minimum endpoint absolute value `0.03165673240831124` and sampled
+maximum endpoint absolute value `0.15897364203230846`. This is a sampled
+sign-bracket success marker only: it has `used_as_certificate=false`,
+`bounds_retained_root_interval_boxes=false`, and
+`bounds_inactive_cover_interval_boxes=false`.
 The directed-rounding backend subrow now carries a digestible backend target,
 `a1_directed_rounding_backend_target.v0`, plus
 `a1_directed_rounding_backend_self_audit.v0`. The self-audit uses
@@ -388,8 +397,8 @@ certificate-grade pass.
 The shared target row now records local certificates for
 `past_profile_interval_box` and `future_transport_interval_box`, but
 `retained_root_interval_boxes` and `inactive_cover_interval_boxes` remain
-absent. The sampled retained-root replay does not change that missing-box
-status. The local past-profile Bernstein certificate and emitted future-profile
+absent. The sampled retained-root replay and sampled sign-bracket replay do not
+change that missing-box status. The local past-profile Bernstein certificate and emitted future-profile
 certificate are not a shared interval-box certificate because the retained-root
 and inactive-cover boxes are still absent, hardware directed rounding is not
 controlled, and the continuous transport / $E_Q^+(b)$ row is still absent

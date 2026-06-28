@@ -10,6 +10,7 @@ import {
   buildRecord,
   buildLocalSourceDataCandidate,
   buildPlaceholderRejectionCandidate,
+  buildProofObjectEnvelope,
   validationErrors,
 } from "../scripts/proof-programs/fresh-v10-higher-fold-sigma-hf-01-external-schema-candidate-intake-record.mjs";
 
@@ -43,6 +44,8 @@ const FORBIDDEN_SCHEMA_REINTERPRETATIONS = [
   "source_packet_acceptance_rule_derivation_proof_object_contract_target_satisfaction_attempt_as_proof_grade_derivation_schema",
   "source_packet_acceptance_rule_kernel_binding_split_classifier_as_proof_grade_derivation_schema",
 ];
+const PROOF_OBJECT_ENVELOPE_STATUS =
+  "sigma_hf_01_external_schema_candidate_proof_object_envelope_open_5_of_8_local_locks_bound_3_proof_grade_fields_required_no_schema_validation_intake_no_row_consumption_no_live_ledger_update_no_branch_chart_authorization";
 
 function readJson(pathname) {
   return JSON.parse(fs.readFileSync(pathname, "utf8"));
@@ -140,6 +143,47 @@ test("Sigma_hf_01 local source-data candidate records exact partial fields and s
   assert.equal(record.authorization.schema_validation_intake, false);
   assert.equal(record.authorization.row_consumption, false);
   assert.equal(record.authorization.branch_chart, false);
+});
+
+test("Sigma_hf_01 proof-object envelope records 5/8 local locks without proof-grade intake", () => {
+  const sourceDataReadiness = readJson(
+    `${CERT_DIR}/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_source_data_readiness_classifier.${PACKET_ID}.${PROOF_INTERVAL}.${LAMBDA_BRANCH}.json`,
+  );
+  const schemaTarget = readJson(
+    `${CERT_DIR}/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_target_packet.${PACKET_ID}.${PROOF_INTERVAL}.${LAMBDA_BRANCH}.json`,
+  );
+  const contractSatisfaction = readJson(
+    `${CERT_DIR}/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_object_contract_target_satisfaction_attempt.${PACKET_ID}.${PROOF_INTERVAL}.${LAMBDA_BRANCH}.json`,
+  );
+  const envelope = buildProofObjectEnvelope(sourceDataReadiness, schemaTarget, contractSatisfaction);
+
+  assert.equal(envelope.schema, "sigma_hf_01_external_schema_candidate_proof_object_envelope/v0");
+  assert.equal(envelope.status, PROOF_OBJECT_ENVELOPE_STATUS);
+  assert.equal(envelope.candidate_external_schema_received, false);
+  assert.equal(envelope.required_fields_total, 8);
+  assert.equal(envelope.required_fields_present, 5);
+  assert.deepEqual(envelope.local_locks_bound, [
+    "compatible_schema_role_lock",
+    "compatible_proof_object_role_lock",
+    "derivation_proof_target_lock",
+    "derivation_proof_source_data_record_lock",
+    "non_reinterpretation_guard",
+  ]);
+  assert.deepEqual(envelope.missing_fields, [
+    "rule_kernel_obligation_binding",
+    "rule_kernel_derivation_payload_target_binding",
+    "proof_grade_derivation_schema_statement",
+  ]);
+  assert.deepEqual(envelope.proof_grade_fields_required, envelope.missing_fields);
+  assert.equal(envelope.slot_result, "external_input_required");
+  assert.equal(envelope.row_slots_parked, 11);
+  assert.equal(envelope.row_consumption_count, 0);
+  assert.equal(envelope.authorization.schema_validation_intake, false);
+  assert.equal(envelope.authorization.row_consumption, false);
+  assert.equal(envelope.authorization.accepted_source_packet, false);
+  assert.equal(envelope.authorization.branch_chart, false);
+  assert.equal(envelope.used_as_external_schema, false);
+  assert.equal(envelope.used_as_proof_grade_schema, false);
 });
 
 test("Sigma_hf_01 missing proof-grade field placeholders are supplied but rejected", () => {
@@ -268,6 +312,33 @@ test("Sigma_hf_01 intake CLI writes placeholder-rejection candidate and record",
   const validation = JSON.parse(execFileSync(process.execPath, [SCRIPT_PATH, "--validate", jsonPath], { encoding: "utf8" }));
   assert.equal(validation.valid, true);
   assert.equal(validation.required_fields_present, 5);
+});
+
+test("Sigma_hf_01 intake CLI writes fail-closed proof-object envelope", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sigma-hf-01-proof-envelope-"));
+  execFileSync(process.execPath, [SCRIPT_PATH, "--proof-object-envelope", "--out-dir", tempDir, "--pretty"], {
+    encoding: "utf8",
+  });
+
+  const jsonPath = path.join(
+    tempDir,
+    "sigma_hf_01_external_schema_candidate.proof-object-envelope.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  );
+  const reportPath = path.join(
+    tempDir,
+    "sigma_hf_01_external_schema_candidate.proof-object-envelope.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md",
+  );
+
+  assert.equal(fs.existsSync(jsonPath), true);
+  assert.equal(fs.existsSync(reportPath), true);
+  const envelope = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  assert.equal(envelope.status, PROOF_OBJECT_ENVELOPE_STATUS);
+  assert.equal(envelope.required_fields_present, 5);
+  assert.equal(envelope.slot_result, "external_input_required");
+  assert.equal(envelope.authorization.schema_validation_intake, false);
+  assert.equal(envelope.authorization.row_consumption, false);
+  assert.equal(envelope.used_as_external_schema, false);
+  assert.equal(envelope.used_as_proof_grade_schema, false);
 });
 
 test("Sigma current-pool schema absence classifier tolerates pool growth without admitting schema evidence", () => {

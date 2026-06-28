@@ -75,6 +75,17 @@ The emitted report returns:
 | `provider_object_construction_attempt.status` | `same_domain_branch_provider_object_construction_blocked` |
 | `provider_object_construction_attempt.ready_candidate_count` | 0 |
 | `provider_object_construction_attempt.first_failure` | `accepted_non_fixture_source_missing` |
+| `provider_object_construction_attempt.consumer_construction_attempt_readouts` | 4 H39 readouts for ranks 2, 4, 5, and 6 |
+
+The H39 aggregate-`P` construction-attempt readouts bind ranks 2, 4, 5, and 6
+to the same target-only row:
+`h39-requested-y44-terminal-aggregate-p-provider-preaggregation-branch-bearing-audit`.
+Each readout carries
+`aggregate_erasure_negative_control_ref=aggregate-P-provider-probe-born-aggregate-only`,
+keeps `construction_attempt_ready=false`, keeps
+`provider_ready_authorized_by_this_attempt=false`, and keeps
+`downstream_consumer_authorization=false`. Rank 2 alone also records
+`consumer_specific_missing_fields=["conservation_pullback_hash"]`.
 
 ## Authorization Boundary
 

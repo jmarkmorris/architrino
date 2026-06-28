@@ -148,6 +148,20 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
   +d_{\mathrm{shield}}\!\left(\Pi_{\mathrm{surf}},\Pi_{\mathrm{ext}}\right).
   $$
   FCC, HCP, or other familiar dense-pack labels may seed trial cell families, but no lattice label is accepted as ontology until the delayed branch dynamics supply the retained packing, defect, and exposure rows.
+- Source-mining intake 2026-06-28 from the remaining 2019-2020 strong-field posts adds an alternating-polarity packed-core trial family under the existing packed-geometry residual. This is a simulation family, not packed-core ontology:
+  $$
+  \mathcal{T}_{\mathrm{pack\text{-}pol}}
+  =
+  \left(
+  \Pi_{\pm},
+  \mathcal{L}_{\mathrm{cell}},
+  \mathcal{S}_{\mathrm{layer}},
+  \mathcal{D}_{\mathrm{defect}},
+  \mathcal{A}_{\mathrm{axis}},
+  \mathcal{L}_{E\mathbf p\mathbf J}^{(\Omega)}
+  \right).
+  $$
+  Here $\Pi_{\pm}$ is the local electrino/positrino polarity pattern, $\mathcal{L}_{\mathrm{cell}}$ is the declared cell or support basis, $\mathcal{S}_{\mathrm{layer}}$ records whether the trial family uses planar, shell, or mixed layering, $\mathcal{D}_{\mathrm{defect}}$ records defects and faults, $\mathcal{A}_{\mathrm{axis}}$ records any axis-alignment or magnetic-like exterior readout, and $\mathcal{L}_{E\mathbf p\mathbf J}^{(\Omega)}$ is the conserved compact-region ledger. A trial family is useful only if it is evaluated by the existing $\mathcal{R}_{\mathrm{pack,geom}}$, exposure, angular-momentum, and release-selector rows; it must not promote alternating charge layers, FCC/HCP labels, or a single microstate claim before the retained branch dynamics emit them.
 - Keep angular momentum as a separate compact-core ledger. Dense packing does not remove $\mathbf{J}$; it relocates the bookkeeping into bulk rotation, surface shear, defect circulation, surrounding Noether sea response, or outbound release. A candidate core should report
   $$
   \mathbf{J}_{\Omega}

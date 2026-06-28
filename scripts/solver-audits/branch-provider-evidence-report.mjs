@@ -82,6 +82,10 @@ const CONSUMERS = [
   },
 ];
 
+const CONSUMER_CONSTRUCTION_ATTEMPT_CANDIDATE_IDS = new Set([
+  "h39-aggregate-p-provider-preaggregation-construction-attempt",
+]);
+
 const PROVIDER_OBJECT_CONSTRUCTION_FIELDS = [
   {
     path: "provider_source_status",
@@ -386,8 +390,70 @@ function evaluateConstructionAttemptCandidate(candidate) {
   };
 }
 
+function consumerSpecificMissingFields(candidate, consumer) {
+  const commonFieldPaths = new Set(COMMON_REQUIRED_FIELDS.map((field) => field.path));
+  return consumer.requiredFields
+    .filter((field) => !commonFieldPaths.has(field.path))
+    .filter((field) => !evaluateField(candidate, field).pass)
+    .map((field) => field.path);
+}
+
+function constructionMissingFields(candidateAttempt) {
+  const rank2OnlyFieldPaths = new Set(
+    PROVIDER_OBJECT_CONSTRUCTION_FIELDS
+      .filter((field) => field.rank2Only === true)
+      .map((field) => field.path)
+  );
+  return candidateAttempt.missing_or_rejected_fields.filter(
+    (fieldPath) => !rank2OnlyFieldPaths.has(fieldPath)
+  );
+}
+
+function buildConsumerConstructionAttemptReadouts(
+  manifestCandidatesById,
+  candidateAttemptsById
+) {
+  return [...CONSUMER_CONSTRUCTION_ATTEMPT_CANDIDATE_IDS]
+    .flatMap((candidateId) => {
+      const candidate = manifestCandidatesById.get(candidateId);
+      const attempt = candidateAttemptsById.get(candidateId);
+      if (!candidate || !attempt) {
+        return [];
+      }
+      return CONSUMERS.filter((consumer) => candidateAppliesToConsumer(candidate, consumer))
+        .map((consumer) => ({
+          candidate_id: candidateId,
+          consumer_id: consumer.id,
+          rank: consumer.rank,
+          target: consumer.target,
+          provider_source_status: candidate.provider_source_status ?? null,
+          same_domain_record_ref: candidate.same_domain_record_ref ?? null,
+          source_term_refs_upstream_of_aggregate_p:
+            candidate.source_term_refs_upstream_of_aggregate_p ?? null,
+          aggregate_erasure_negative_control_ref:
+            candidate.aggregate_erasure_negative_control_ref ?? null,
+          construction_attempt_ready: attempt.provider_object_fields_ready,
+          provider_ready_authorized_by_this_attempt: false,
+          downstream_consumer_authorization: false,
+          first_failure:
+            evaluateCandidateForConsumer(candidate, consumer).first_failure,
+          missing_construction_fields: constructionMissingFields(attempt),
+          consumer_specific_missing_fields: consumerSpecificMissingFields(
+            candidate,
+            consumer
+          ),
+        }));
+    });
+}
+
 function buildConstructionAttempt(manifest) {
   const candidateAttempts = manifest.candidates.map(evaluateConstructionAttemptCandidate);
+  const candidateAttemptsById = new Map(
+    candidateAttempts.map((candidate) => [candidate.candidate_id, candidate])
+  );
+  const manifestCandidatesById = new Map(
+    manifest.candidates.map((candidate) => [candidate.id ?? null, candidate])
+  );
   const readyCandidateIds = candidateAttempts
     .filter((candidate) => candidate.provider_object_fields_ready)
     .map((candidate) => candidate.candidate_id)
@@ -421,6 +487,10 @@ function buildConstructionAttempt(manifest) {
       missing_or_rejected_field_union: missingFieldUnion,
     },
     candidate_attempts: candidateAttempts,
+    consumer_construction_attempt_readouts: buildConsumerConstructionAttemptReadouts(
+      manifestCandidatesById,
+      candidateAttemptsById
+    ),
     authorization: {
       provider_ready_authorized_by_this_attempt: false,
       downstream_consumer_authorization: false,
@@ -571,6 +641,20 @@ export function validationErrors(report) {
     }
     if (attempt.authorization?.downstream_consumer_authorization !== false) {
       errors.push("provider_object_construction_attempt must not authorize downstream consumers");
+    }
+    if (!Array.isArray(attempt.consumer_construction_attempt_readouts)) {
+      errors.push("provider_object_construction_attempt consumer readouts must be an array");
+    } else {
+      for (const readout of attempt.consumer_construction_attempt_readouts) {
+        if (readout?.provider_ready_authorized_by_this_attempt !== false) {
+          errors.push("consumer construction-attempt readouts must not authorize provider readiness");
+          break;
+        }
+        if (readout?.downstream_consumer_authorization !== false) {
+          errors.push("consumer construction-attempt readouts must not authorize downstream consumers");
+          break;
+        }
+      }
     }
   }
   for (const key of [

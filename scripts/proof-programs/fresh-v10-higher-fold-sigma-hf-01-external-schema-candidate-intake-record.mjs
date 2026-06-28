@@ -26,6 +26,10 @@ const PLACEHOLDER_REJECTION_RECORD_STEM =
   "sigma_hf_01_external_schema_candidate.placeholder-rejection-intake-record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305";
 const PLACEHOLDER_REJECTION_RECORD_JSON = `${PLACEHOLDER_REJECTION_RECORD_STEM}.json`;
 const PLACEHOLDER_REJECTION_RECORD_REPORT = `${PLACEHOLDER_REJECTION_RECORD_STEM}_report.md`;
+const PROOF_OBJECT_ENVELOPE_STEM =
+  "sigma_hf_01_external_schema_candidate.proof-object-envelope.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305";
+const PROOF_OBJECT_ENVELOPE_JSON = `${PROOF_OBJECT_ENVELOPE_STEM}.json`;
+const PROOF_OBJECT_ENVELOPE_REPORT = `${PROOF_OBJECT_ENVELOPE_STEM}_report.md`;
 
 const DEFAULT_SOURCE_DATA_READINESS = `${CERT_DIR}/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_source_data_readiness_classifier.${PACKET_ID}.proof-interval-v6.lambda0305.json`;
 const DEFAULT_SCHEMA_TARGET = `${CERT_DIR}/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_target_packet.${PACKET_ID}.proof-interval-v6.lambda0305.json`;
@@ -77,6 +81,7 @@ function parseArgs(argv) {
     validate: null,
     localSourceCandidate: false,
     placeholderRejectionCandidate: false,
+    proofObjectEnvelope: false,
     sourceDataReadiness: DEFAULT_SOURCE_DATA_READINESS,
     schemaTarget: DEFAULT_SCHEMA_TARGET,
     contractSatisfaction: DEFAULT_CONTRACT_SATISFACTION,
@@ -98,6 +103,8 @@ function parseArgs(argv) {
       args.localSourceCandidate = true;
     } else if (arg === "--placeholder-rejection-candidate") {
       args.placeholderRejectionCandidate = true;
+    } else if (arg === "--proof-object-envelope") {
+      args.proofObjectEnvelope = true;
     } else if (arg === "--source-data-readiness") {
       args.sourceDataReadiness = argv[++i];
     } else if (arg === "--schema-target") {
@@ -123,6 +130,8 @@ Options:
                     Emit the local source-data partial candidate plus its intake record.
   --placeholder-rejection-candidate
                     Emit a local missing-proof-grade-field placeholder rejection candidate plus its intake record.
+  --proof-object-envelope
+                    Emit a fail-closed Sigma_hf_01 proof-object envelope target.
   --source-data-readiness PATH
                     Source-data readiness JSON for --local-source-candidate.
   --schema-target PATH
@@ -468,6 +477,60 @@ export function buildPlaceholderRejectionCandidate(sourceDataReadiness, schemaTa
   };
 }
 
+export function buildProofObjectEnvelope(sourceDataReadiness, schemaTarget, contractSatisfaction, sourceRefs = []) {
+  const candidate = buildLocalSourceDataCandidate(
+    sourceDataReadiness,
+    schemaTarget,
+    contractSatisfaction,
+    sourceRefs,
+  );
+  const record = buildRecord(candidate);
+  const presentFields = record.field_results
+    .filter((field) => field.present)
+    .map((field) => field.field);
+  return {
+    schema: "sigma_hf_01_external_schema_candidate_proof_object_envelope/v0",
+    status:
+      "sigma_hf_01_external_schema_candidate_proof_object_envelope_open_5_of_8_local_locks_bound_3_proof_grade_fields_required_no_schema_validation_intake_no_row_consumption_no_live_ledger_update_no_branch_chart_authorization",
+    packet_id: PACKET_ID,
+    proof_interval: PROOF_INTERVAL,
+    lambda_branch: LAMBDA_BRANCH,
+    target_slot: TARGET_SLOT,
+    fold_interval: FOLD_INTERVAL,
+    candidate_external_schema_received: false,
+    local_source_candidate_status: candidate.candidate_status,
+    required_fields_total: record.required_fields_total,
+    required_fields_present: record.required_fields_present,
+    local_locks_bound: presentFields,
+    missing_fields: record.missing_fields,
+    proof_grade_fields_required: record.missing_fields,
+    slot_result: record.slot_result,
+    row_slots_parked: record.row_slots_parked,
+    row_consumption_count: record.row_consumption_count,
+    preledger_pass: false,
+    updates_live_ledger: false,
+    branch_chart_authorized: false,
+    authorization: {
+      schema_validation_intake: false,
+      row_consumption: false,
+      accepted_source_packet: false,
+      branch_chart: false,
+    },
+    intake_record_summary: {
+      schema: record.schema,
+      candidate_external_schema_received: record.candidate_external_schema_received,
+      required_fields_present: record.required_fields_present,
+      missing_fields: record.missing_fields,
+      supplied_but_rejected_fields: record.supplied_but_rejected_fields,
+      slot_result: record.slot_result,
+    },
+    source_readout: candidate.source_readout,
+    source_refs: sourceRefs,
+    used_as_external_schema: false,
+    used_as_proof_grade_schema: false,
+  };
+}
+
 export function validationErrors(record) {
   const errors = [];
   if (!isObject(record)) {
@@ -673,6 +736,57 @@ authorization locked false.
 `;
 }
 
+function renderProofObjectEnvelopeReport(envelope) {
+  const localRows = envelope.local_locks_bound
+    .map((field) => `| \`${field}\` | local lock bound |`)
+    .join("\n");
+  const missingRows = envelope.missing_fields
+    .map((field) => `| \`${field}\` | proof-grade external input required |`)
+    .join("\n");
+
+  return `# Sigma_hf_01 Proof-Object Envelope
+
+Status: \`${envelope.status}\`
+
+## Scope
+
+- Packet identity: \`${envelope.packet_id}\`
+- Proof interval: \`${envelope.proof_interval}\`
+- Lambda branch: \`${envelope.lambda_branch}\`
+- Target slot: \`${envelope.target_slot}\`
+- Fold interval: \`${envelope.fold_interval}\`
+- Candidate external schema received: \`${envelope.candidate_external_schema_received}\`
+
+## Local Locks Bound
+
+| Field | Reading |
+| --- | --- |
+${localRows}
+
+Current count: ${envelope.required_fields_present} / ${envelope.required_fields_total} required fields present.
+
+## Proof-Grade Fields Still Required
+
+| Field | Reading |
+| --- | --- |
+${missingRows}
+
+## Authorization Locks
+
+- Slot result: \`${envelope.slot_result}\`
+- Row slots parked: ${envelope.row_slots_parked}
+- Row consumption count: ${envelope.row_consumption_count}
+- \`preledger_pass\`: \`${envelope.preledger_pass}\`
+- \`updates_live_ledger\`: \`${envelope.updates_live_ledger}\`
+- Branch chart authorized: \`${envelope.branch_chart_authorized}\`
+
+This envelope is a fail-closed proof-object target. It records the local 5 / 8
+intake locks for \`Sigma_hf_01\`, but it is not a received proof-grade external
+schema, does not authorize schema-validation intake, consumes no rows, updates
+no live ledger, and authorizes no branch chart.
+`;
+}
+
 function emitLocalSourceCandidate(args) {
   const sourceDataReadiness = readJson(args.sourceDataReadiness);
   const schemaTarget = readJson(args.schemaTarget);
@@ -731,6 +845,28 @@ function emitPlaceholderRejectionCandidate(args) {
   writeText(recordReportPath, renderReport(record));
 }
 
+function emitProofObjectEnvelope(args) {
+  const sourceDataReadiness = readJson(args.sourceDataReadiness);
+  const schemaTarget = readJson(args.schemaTarget);
+  const contractSatisfaction = readJson(args.contractSatisfaction);
+  const sourceRefs = [
+    sourceRef("source_data_readiness", args.sourceDataReadiness),
+    sourceRef("schema_target", args.schemaTarget),
+    sourceRef("contract_satisfaction", args.contractSatisfaction),
+  ];
+  const envelope = buildProofObjectEnvelope(
+    sourceDataReadiness,
+    schemaTarget,
+    contractSatisfaction,
+    sourceRefs,
+  );
+  writeJson(path.join(args.outDir, PROOF_OBJECT_ENVELOPE_JSON), envelope, args.pretty);
+  writeText(
+    path.join(args.outDir, PROOF_OBJECT_ENVELOPE_REPORT),
+    renderProofObjectEnvelopeReport(envelope),
+  );
+}
+
 function validateAndPrint(filePath) {
   const record = readJson(filePath);
   const errors = validationErrors(record);
@@ -765,6 +901,10 @@ function main() {
   }
   if (args.placeholderRejectionCandidate) {
     emitPlaceholderRejectionCandidate(args);
+    return;
+  }
+  if (args.proofObjectEnvelope) {
+    emitProofObjectEnvelope(args);
     return;
   }
 

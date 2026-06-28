@@ -75,6 +75,7 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
     false
   );
   assert.equal(report.authorization.rank2_accepted_transition_source_ready, false);
+  assert.equal(report.authorization.rank4_pressure_row_provider_ready, false);
   assert.equal(report.authorization.rank5_bounded_speed_live_ledger_ready, false);
   assert.equal(report.authorization.rank6_moving_branch_provider_ready, false);
   assert.equal(report.authorization.candidate_h_recovery, false);
@@ -185,6 +186,107 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
       "aggregate_erasure_negative_control_ref"
     ),
     false
+  );
+
+  const h39Readouts =
+    report.provider_object_construction_attempt.consumer_construction_attempt_readouts.filter(
+      (readout) =>
+        readout.candidate_id ===
+        "h39-aggregate-p-provider-preaggregation-construction-attempt"
+    );
+  assert.equal(h39Readouts.length, 4);
+  assert.deepEqual(
+    h39Readouts.map((readout) => readout.consumer_id).sort(),
+    [
+      "rank2_field_speed_action_self_hit_scan",
+      "rank4_pressure_row_branch_intake",
+      "rank5_bounded_speed_normal_reconstruction",
+      "rank6_moving_retained_branch_certificate",
+    ]
+  );
+  assert.deepEqual(
+    h39Readouts.map((readout) => readout.rank).sort((a, b) => a - b),
+    [2, 4, 5, 6]
+  );
+  assert.equal(
+    h39Readouts.every((readout) => readout.construction_attempt_ready === false),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) => readout.provider_ready_authorized_by_this_attempt === false
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) => readout.downstream_consumer_authorization === false
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) => readout.first_failure === "accepted_non_fixture_source_missing"
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every(
+      (readout) =>
+        readout.aggregate_erasure_negative_control_ref ===
+        "aggregate-P-provider-probe-born-aggregate-only"
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every((readout) =>
+      readout.missing_construction_fields.includes("branch_certificate_ref")
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every((readout) =>
+      readout.missing_construction_fields.includes(
+        "active_root_or_live_ledger_identity"
+      )
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every((readout) =>
+      readout.missing_construction_fields.includes("branch_rows_ref")
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every((readout) =>
+      readout.missing_construction_fields.includes("projection_map_ref")
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every((readout) =>
+      readout.missing_construction_fields.includes("pushforward_operator_ref")
+    ),
+    true
+  );
+  assert.equal(
+    h39Readouts.every((readout) =>
+      readout.missing_construction_fields.includes("normalization_identity_ref")
+    ),
+    true
+  );
+  assert.deepEqual(
+    h39Readouts
+      .filter((readout) => readout.consumer_id !== "rank2_field_speed_action_self_hit_scan")
+      .flatMap((readout) => readout.consumer_specific_missing_fields),
+    []
+  );
+  assert.deepEqual(
+    h39Readouts.find(
+      (readout) => readout.consumer_id === "rank2_field_speed_action_self_hit_scan"
+    ).consumer_specific_missing_fields,
+    ["conservation_pullback_hash"]
   );
 });
 

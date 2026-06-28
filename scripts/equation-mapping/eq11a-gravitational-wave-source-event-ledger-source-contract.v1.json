@@ -1,0 +1,50 @@
+{
+  "schema": "aaa-equation-map-eq11a-source-event-ledger-source-contract/v1",
+  "claimLevel": "source-contract boundary for the EQ-11A source_event_ledger row; score-neutral and not accepted retained evidence by itself",
+  "sourceRole": "source_event_ledger_source_contract",
+  "supportsEquationRows": [
+    "EQ-11A"
+  ],
+  "supportsRows": [
+    "source_event_ledger"
+  ],
+  "sourceWindowId": "GW150914-v3",
+  "supportId": "H1L1_GWTC1_PE_v3",
+  "eventId": "GWTC-1-confident/GW150914/v3",
+  "requiredSameRecordBinding": {
+    "carrierId": "theta_gwsrc_source_event_ledger_source_contract_attempt_0001",
+    "sourceWindowId": "GW150914-v3",
+    "supportId": "H1L1_GWTC1_PE_v3",
+    "eventId": "GWTC-1-confident/GW150914/v3"
+  },
+  "sourceEventLedgerFields": {
+    "initialBinary": [
+      "m1",
+      "m2",
+      "sourceSeparationOrOrbitalState"
+    ],
+    "radiatedOutput": [
+      "radiatedEnergy",
+      "radiatedAngularMomentum"
+    ],
+    "remnant": [
+      "finalMass",
+      "finalSpin",
+      "remnantId"
+    ],
+    "detectorProvenance": [
+      "sourceWindowId",
+      "supportId",
+      "eventId"
+    ]
+  },
+  "directGeometryLayer": {
+    "standardComparisonTerm": "source/remnant ledger for E_rad, J_rad, component masses, final mass/spin, and detector provenance",
+    "aaaGeometricReadout": "binary source-event ledger binding initial component masses, radiated energy/angular momentum, final remnant labels, and detector path-history support",
+    "requiredCarrierOrRow": "source_event_ledger",
+    "sameRecordBinding": "the source event ledger shares the EQ-11A carrierId, sourceWindowId, supportId, eventId, theta_sea row, and effective_metric_tensor_channel before chirp, quadrupole, strain, and ringdown residuals can count",
+    "failClosedNegativeControl": "eq11a-gravitational-wave-source-event-ledger-row-mismatch-negative-control.v1.json",
+    "smallestAcceptedEvidenceObject": "source-backed source_event_ledger row bound to the GW150914 carrier; score remains neutral until quadrupole, chirp, detector strain, provenance, and no-retune rows are accepted"
+  },
+  "scoreDecision": "no_score_increase"
+}
