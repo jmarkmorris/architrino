@@ -281,6 +281,55 @@
       ]
     },
     {
+      "id": "noether-braid-best-effort-3d-ribbon",
+      "title": "Noether Braid Best-Effort 3D Ribbon Logo Study",
+      "description": "Repo-native SVG logo study for the Noether Braid concept, preserving the three-ellipse grammar and red positrino / blue electrino convention with ribbon highlights, shadows, and glossy Architrino markers.",
+      "path": "content/assets/images/brand/noether-braid-best-effort-3d-ribbon.svg",
+      "mediaType": "image/svg+xml",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "fileSizeBytes": 5890,
+      "sha256": "22acbb1f8e6d063c232c0b94fa73237a0542da21458f5d6dd0667717e3c0f8fc",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "manual SVG authoring",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand artwork author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native project-owned brand/source artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand source artwork",
+          "logo study",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-studies/noether-braid-best-effort-3d-ribbon.svg into the central image library on 2026-06-28.",
+        "Promoted because this source artwork is part of the public brand asset set rather than a transient reference-only export."
+      ]
+    },
+    {
       "id": "signals-from-earlier-present-inbox",
       "title": "Signals From Earlier",
       "description": "Single-panel outreach comic in which the present has an inbox and messages sent earlier are still arriving.",
@@ -1347,6 +1396,205 @@
         "rightsStatus": "project-owned",
         "label": "Project license",
         "rationale": "Created as a derivative of the project-owned The Observable Edge Receipt outreach comic.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic thumbnail",
+          "markdown gallery thumbnail"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Generated as a smaller gallery thumbnail that links to the full-size comic image."
+      ]
+    },
+    {
+      "id": "opening-scene-not-building-permit",
+      "title": "Opening Scene, Not Building Permit",
+      "description": "Single-panel outreach comic in which a student treats the first visible scene as a universe birth certificate while Mia routes the claim to first footage instead.",
+      "path": "content/assets/images/comics/opening-scene-not-building-permit.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "fileSizeBytes": 2693048,
+      "sha256": "8032249dadf08bb9459961da9f1f874dcef400ba1746c4fb4a9d0c74a6c4200d",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "OpenAI image generation",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "comic direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach comics line from project direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md",
+          "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md"
+        ]
+      },
+      "selectionNotes": [
+        "Selected because the first-footage joke makes observer-era reconstruction public-readable while the hidden academic layer keeps first visible record below absolute-origin claims."
+      ]
+    },
+    {
+      "id": "opening-scene-not-building-permit-thumb",
+      "title": "Opening Scene, Not Building Permit Thumbnail",
+      "description": "Thumbnail derivative for the Opening Scene, Not Building Permit outreach comic gallery entry.",
+      "path": "content/assets/images/comics/thumbnails/opening-scene-not-building-permit-thumb.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 360,
+        "height": 360
+      },
+      "fileSizeBytes": 155685,
+      "sha256": "a0354606b55275290e5946014ac4daf0dc98286d97f43710539f00749eb4a1df",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic-thumbnail",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "sips derivative from opening-scene-not-building-permit",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "thumbnail generation"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a derivative of the project-owned Opening Scene, Not Building Permit outreach comic.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic thumbnail",
+          "markdown gallery thumbnail"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Generated as a smaller gallery thumbnail that links to the full-size comic image."
+      ]
+    },
+    {
+      "id": "acknowledgements-remake",
+      "title": "Acknowledgements In Architrino's Room",
+      "description": "Single-panel outreach comic in which a presentation room turns acknowledgements toward the red and blue Architrinos in the room.",
+      "path": "content/assets/images/comics/acknowledgements-remake.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "fileSizeBytes": 2404078,
+      "sha256": "7d70977ca2a9b598a744ffe1b99b23e33dfbcdc629e0e3e2dc07f5db26ab9b58",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "OpenAI image generation",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "comic direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach comics line from project direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md",
+          "content/markdown/aaa/outreach/comics/acknowledgements-remake.md"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from reference/outreach/comics/assets/acknowledgements-remake-prototype-v3-architrinos-room.png as the preferred acknowledgements comic candidate.",
+        "Selected because the acknowledgement joke stays public-readable while the hidden layer keeps the slide-list obligations and red-blue Architrino cue visible inside the room."
+      ]
+    },
+    {
+      "id": "acknowledgements-remake-thumb",
+      "title": "Acknowledgements In Architrino's Room Thumbnail",
+      "description": "Thumbnail derivative for the Acknowledgements In Architrino's Room outreach comic gallery entry.",
+      "path": "content/assets/images/comics/thumbnails/acknowledgements-remake-thumb.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 360,
+        "height": 360
+      },
+      "fileSizeBytes": 234357,
+      "sha256": "93678c362f093e0d82e5eae9a579dafc95d4a54717b4dddf6039b89840e570b0",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic-thumbnail",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "sips derivative from acknowledgements-remake",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "thumbnail generation"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a derivative of the project-owned Acknowledgements In Architrino's Room outreach comic.",
         "requiresAttribution": false
       },
       "creditLine": "Created by the Architrino project, 2026.",
@@ -8878,6 +9126,78 @@
       "sha256": "1a591f961e2ec3a4c6c98e42d71a863a946c45f2dd84b48329637c3540ee1dda"
     },
     {
+      "id": "hyde-periodic-table-rsvg-friendly",
+      "title": "Hyde Periodic Table, App-Ready SVG",
+      "description": "App-ready SVG derivative of James Franklin Hyde's periodic-table layout, retained for the live interactive Hyde periodic-table overlay.",
+      "path": "content/assets/images/nuclear/hyde-periodic-table-rsvg-friendly.svg",
+      "dateCreated": "2026",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "nuclear",
+      "source": {
+        "name": "Architrino project derivative of Wikimedia Commons asset",
+        "pageUrl": "https://commons.wikimedia.org/wiki/File:The_chemical_elements_and_their_periodic_relationships.svg",
+        "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/The_chemical_elements_and_their_periodic_relationships.svg",
+        "listedSources": [
+          "Derived from content/assets/images/nuclear/hyde-periodic-table-relationships-commons.svg",
+          "James Franklin Hyde periodic-table design",
+          "Reproduced by Jeremy Sachs with permission from George and Sylvia Schuster according to Commons metadata"
+        ],
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "app-ready SVG normalization"
+        },
+        {
+          "name": "Rezmason",
+          "role": "SVG author"
+        },
+        {
+          "name": "James Franklin Hyde",
+          "role": "original periodic-table design"
+        },
+        {
+          "name": "Jeremy Sachs",
+          "role": "reproduction credited in Commons metadata"
+        }
+      ],
+      "license": {
+        "rightsStatus": "free-license",
+        "label": "CC BY-SA 4.0",
+        "rationale": "This is an app-ready derivative of the CC BY-SA 4.0 Hyde periodic-table SVG already cataloged as hyde-periodic-table-relationships-commons.",
+        "requiresAttribution": true,
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      },
+      "creditLine": "App-ready derivative by the Architrino project from Rezmason, after James Franklin Hyde's periodic-table design. CC BY-SA 4.0 via Wikimedia Commons.",
+      "usage": {
+        "intendedUses": [
+          "image library",
+          "Hyde periodic table reference",
+          "interactive periodic table overlay",
+          "scene overlay"
+        ],
+        "usedBy": [
+          "index.html",
+          "animator.html",
+          "src/apps/architrino/ArchitrinoSceneAppRuntime.js",
+          "src/runtime/PeriodicOverlayRuntime.js"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from content/assets/hyde_periodic_table.svg into the central image library on 2026-06-28 so the live app asset follows the repo image-provenance ledger.",
+        "Kept as a separate derivative from hyde-periodic-table-relationships-commons because the files are not byte-identical and this version is the runtime-facing SVG used by the app."
+      ],
+      "mediaType": "image/svg+xml",
+      "dimensions": {
+        "width": 3240,
+        "height": 2430
+      },
+      "fileSizeBytes": 3862489,
+      "sha256": "37cc36653f7073198f76b7bae974d69a3192ff3d6fdf72b569212c6678c7e349"
+    },
+    {
       "id": "electron-orbitals-commons",
       "title": "Electron Orbitals",
       "description": "Public-domain SVG chart of standard electron orbital shapes across common orbital families.",
@@ -10138,6 +10458,2343 @@
         "Added during image-ledger sync so the live image inventory is explicit without treating the asset as approved.",
         "No repo-visible source, author, prompt, or license metadata was found during image-ledger sync.",
         "Do not reference from markdown, scenes, or generated outputs until source/license review closes."
+      ]
+    },
+    {
+      "id": "here-there-back-preview",
+      "title": "Here, There, Back Preview",
+      "description": "Children's book outreach visual asset for Here, There, Back Preview.",
+      "path": "content/assets/images/outreach/childrens-books/here-there-back-preview.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "fileSizeBytes": 2668121,
+      "sha256": "36fbc1f77b5e3314ca878c542317968f4b0ed8e260f63597285e43a7578e5810",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-childrens-book",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "project visual exemplar asset",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "visual direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach children's book visual direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "children's book visual exemplar",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/childrens-books/exemplars.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/childrens-books/assets/here-there-back-preview.png into the central image library on 2026-06-28.",
+        "Promoted so children's book visual direction assets are cataloged with provenance rather than stored only under reference outreach assets."
+      ]
+    },
+    {
+      "id": "nature-remembers-motion-preview",
+      "title": "Nature Remembers Motion Preview",
+      "description": "Children's book outreach visual asset for Nature Remembers Motion Preview.",
+      "path": "content/assets/images/outreach/childrens-books/nature-remembers-motion-preview.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "fileSizeBytes": 2368458,
+      "sha256": "ab41d6b5e4514aad1ed76f4517bd2c4a39c9fd5057f237fc5bbd2b0aa65f975d",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-childrens-book",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "project visual exemplar asset",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "visual direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach children's book visual direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "children's book visual exemplar",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/childrens-books/exemplars.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/childrens-books/assets/nature-remembers-motion-preview.png into the central image library on 2026-06-28.",
+        "Promoted so children's book visual direction assets are cataloged with provenance rather than stored only under reference outreach assets."
+      ]
+    },
+    {
+      "id": "text-layout-reverse-band-clean",
+      "title": "Text Layout Reverse Band Clean",
+      "description": "Children's book outreach visual asset for Text Layout Reverse Band Clean.",
+      "path": "content/assets/images/outreach/childrens-books/text-layout-reverse-band-clean.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "fileSizeBytes": 2451064,
+      "sha256": "e2b90500ef3e956085d5cc1e2f48adc4c1e88e4773282170e2af4468becc17b6",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-childrens-book",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "project visual exemplar asset",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "visual direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach children's book visual direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "children's book visual exemplar",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/childrens-books/assets/text-layout-reverse-band-clean.png into the central image library on 2026-06-28.",
+        "Promoted so children's book visual direction assets are cataloged with provenance rather than stored only under reference outreach assets."
+      ]
+    },
+    {
+      "id": "text-layout-reverse-band-shorts-tiktok-9x16",
+      "title": "Text Layout Reverse Band Shorts TikTok 9x16",
+      "description": "Children's book outreach visual asset for Text Layout Reverse Band Shorts TikTok 9x16.",
+      "path": "content/assets/images/outreach/childrens-books/text-layout-reverse-band-shorts-tiktok-9x16.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "fileSizeBytes": 2331508,
+      "sha256": "a09da012db8c1e405dacbedd4814659674d2db6a889f14b5a3531f9771ad8efb",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-childrens-book",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "project visual exemplar asset",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "visual direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach children's book visual direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "children's book visual exemplar",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/childrens-books/assets/text-layout-reverse-band-shorts-tiktok-9x16.png into the central image library on 2026-06-28.",
+        "Promoted so children's book visual direction assets are cataloged with provenance rather than stored only under reference outreach assets."
+      ]
+    },
+    {
+      "id": "text-layout-reverse-band-social-portrait",
+      "title": "Text Layout Reverse Band Social Portrait",
+      "description": "Children's book outreach visual asset for Text Layout Reverse Band Social Portrait.",
+      "path": "content/assets/images/outreach/childrens-books/text-layout-reverse-band-social-portrait.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1080,
+        "height": 1350
+      },
+      "fileSizeBytes": 2007859,
+      "sha256": "238571a2e01f1ebe5623434ab7d316954a4b056f38845dfc051065329e6ae3f6",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-childrens-book",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "project visual exemplar asset",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "visual direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach children's book visual direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "children's book visual exemplar",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/childrens-books/assets/text-layout-reverse-band-social-portrait.png into the central image library on 2026-06-28.",
+        "Promoted so children's book visual direction assets are cataloged with provenance rather than stored only under reference outreach assets."
+      ]
+    },
+    {
+      "id": "the-balance-point-preview",
+      "title": "The Balance Point Preview",
+      "description": "Children's book outreach visual asset for The Balance Point Preview.",
+      "path": "content/assets/images/outreach/childrens-books/the-balance-point-preview.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "fileSizeBytes": 2779017,
+      "sha256": "2b9c4abd02853a5360dcc5387d18dba67060e147e0673c34951de88c139f064b",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-childrens-book",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "project visual exemplar asset",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "visual direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach children's book visual direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "children's book visual exemplar",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/childrens-books/exemplars.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/childrens-books/assets/the-balance-point-preview.png into the central image library on 2026-06-28.",
+        "Promoted so children's book visual direction assets are cataloged with provenance rather than stored only under reference outreach assets."
+      ]
+    },
+    {
+      "id": "the-history-that-pushes-now-preview",
+      "title": "The History That Pushes Now Preview",
+      "description": "Children's book outreach visual asset for The History That Pushes Now Preview.",
+      "path": "content/assets/images/outreach/childrens-books/the-history-that-pushes-now-preview.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "fileSizeBytes": 2830737,
+      "sha256": "250e4f8b12258ba99d7adbc1551b07d9602e28df0695c380aa345405f9d32bc7",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-childrens-book",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "project visual exemplar asset",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "visual direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach children's book visual direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "children's book visual exemplar",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/childrens-books/exemplars.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/childrens-books/assets/the-history-that-pushes-now-preview.png into the central image library on 2026-06-28.",
+        "Promoted so children's book visual direction assets are cataloged with provenance rather than stored only under reference outreach assets."
+      ]
+    },
+    {
+      "id": "the-message-that-traveled-preview",
+      "title": "The Message That Traveled Preview",
+      "description": "Children's book outreach visual asset for The Message That Traveled Preview.",
+      "path": "content/assets/images/outreach/childrens-books/the-message-that-traveled-preview.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "fileSizeBytes": 2874152,
+      "sha256": "73cfd37c1a45ccdf4aa7229428b4bdfa8d0ab96ab18814ac3a34b42333d9f86e",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-childrens-book",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "project visual exemplar asset",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "visual direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach children's book visual direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "children's book visual exemplar",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/childrens-books/exemplars.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/childrens-books/assets/the-message-that-traveled-preview.png into the central image library on 2026-06-28.",
+        "Promoted so children's book visual direction assets are cataloged with provenance rather than stored only under reference outreach assets."
+      ]
+    },
+    {
+      "id": "the-tiny-transceivers-preview",
+      "title": "The Tiny Transceivers Preview",
+      "description": "Children's book outreach visual asset for The Tiny Transceivers Preview.",
+      "path": "content/assets/images/outreach/childrens-books/the-tiny-transceivers-preview.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "fileSizeBytes": 2793810,
+      "sha256": "611d6967b3c049fbd87781f981e976270891245757ab86924c185a57a81fb083",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-childrens-book",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "project visual exemplar asset",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "visual direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach children's book visual direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "children's book visual exemplar",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/childrens-books/exemplars.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/childrens-books/assets/the-tiny-transceivers-preview.png into the central image library on 2026-06-28.",
+        "Promoted so children's book visual direction assets are cataloged with provenance rather than stored only under reference outreach assets."
+      ]
+    },
+    {
+      "id": "the-world-we-recover-preview",
+      "title": "The World We Recover Preview",
+      "description": "Children's book outreach visual asset for The World We Recover Preview.",
+      "path": "content/assets/images/outreach/childrens-books/the-world-we-recover-preview.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "fileSizeBytes": 3175504,
+      "sha256": "5f529b2f4a2e9963f10245e99895e6914322d38ec32ca7aabdd3fde4c34e2644",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-childrens-book",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "project visual exemplar asset",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "visual direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach children's book visual direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "children's book visual exemplar",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/childrens-books/exemplars.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/childrens-books/assets/the-world-we-recover-preview.png into the central image library on 2026-06-28.",
+        "Promoted so children's book visual direction assets are cataloged with provenance rather than stored only under reference outreach assets."
+      ]
+    },
+    {
+      "id": "play-space-5x5-rim-variety",
+      "title": "Play Space 5x5 Rim Variety",
+      "description": "Play-surface concept rendering for Play Space 5x5 Rim Variety.",
+      "path": "content/assets/images/outreach/play-surface/concepts/play-space-5x5-rim-variety.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1800,
+        "height": 1400
+      },
+      "fileSizeBytes": 480046,
+      "sha256": "5e922c0833aad7f79b14e0485fe5e580cb782ef5b44a94e77184f2e6a2793ff3",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "project concept rendering",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/play-space-5x5-rim-variety.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-corner-ridge",
+      "title": "Sine Corner Ridge",
+      "description": "Play-surface concept rendering for Sine Corner Ridge.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-corner-ridge.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 125727,
+      "sha256": "154fc6e4cfa8b68340cceeb44078c344d683e072236e0cbe132e0c1ad5c1c00f",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-corner-ridge.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-curved-valley",
+      "title": "Sine Curved Valley",
+      "description": "Play-surface concept rendering for Sine Curved Valley.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-curved-valley.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 85379,
+      "sha256": "2191209a373c5469227bf55858160a1e0f14e36da27042b6ceca260b1db9f62e",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-curved-valley.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-diagonal-saddle",
+      "title": "Sine Diagonal Saddle",
+      "description": "Play-surface concept rendering for Sine Diagonal Saddle.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-diagonal-saddle.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 246056,
+      "sha256": "7ab9e173d061ef15294badb6d7613fbd7a7fb6db51c82e2b4b0ab7b84b339179",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-diagonal-saddle.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-flat",
+      "title": "Sine Flat",
+      "description": "Play-surface concept rendering for Sine Flat.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-flat.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 32889,
+      "sha256": "4cec4fa7e0960cfcf0d02212cdcadd2927058d374aa4a457cd0cd2ef3710ce30",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-flat.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-high-dip",
+      "title": "Sine High Dip",
+      "description": "Play-surface concept rendering for Sine High Dip.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-high-dip.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 103277,
+      "sha256": "b3ea4afda0602f77c88bcd5a07f806c8629eeb774786dbb246c368dfdf221b94",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-high-dip.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-high-hill",
+      "title": "Sine High Hill",
+      "description": "Play-surface concept rendering for Sine High Hill.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-high-hill.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 103836,
+      "sha256": "7548917c50d93fd776b394d53924f959c964f4897e19f24f938f2bf13be32ce9",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-high-hill.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-low-dip",
+      "title": "Sine Low Dip",
+      "description": "Play-surface concept rendering for Sine Low Dip.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-low-dip.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 86223,
+      "sha256": "9e8dfc9d61bbd60ead98461ae7d4a6fbead0734bec2e873893a5151414e7b1cd",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-low-dip.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-low-hill",
+      "title": "Sine Low Hill",
+      "description": "Play-surface concept rendering for Sine Low Hill.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-low-hill.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 85556,
+      "sha256": "33e64d9ceaebaf27f31b8b2123dac857b26a58eeb7a43123cd12cfa4f78aaa42",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-low-hill.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-paired-hill-dip",
+      "title": "Sine Paired Hill Dip",
+      "description": "Play-surface concept rendering for Sine Paired Hill Dip.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-paired-hill-dip.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 133921,
+      "sha256": "9e9ed7a21ceafc1aa6bb38bc1a73047340f98688d24af3921af425f945ffead9",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-paired-hill-dip.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-standard-dip",
+      "title": "Sine Standard Dip",
+      "description": "Play-surface concept rendering for Sine Standard Dip.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-standard-dip.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 106566,
+      "sha256": "74281e77af8564ef075e36407fc56a1ff87197bb8505d77360c7fd59b80d6843",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-standard-dip.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-standard-hill",
+      "title": "Sine Standard Hill",
+      "description": "Play-surface concept rendering for Sine Standard Hill.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-standard-hill.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 103988,
+      "sha256": "ad10f94993667849aa534f7e0f25991f9147f9e488a10a0314314dcb7fd0e624",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-standard-hill.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-straight-ridge",
+      "title": "Sine Straight Ridge",
+      "description": "Play-surface concept rendering for Sine Straight Ridge.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-straight-ridge.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 106389,
+      "sha256": "4d977bb05f956f77a418587ea79674e87b96206f07a13d5d15c075855448f4a9",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-straight-ridge.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-wide-dip",
+      "title": "Sine Wide Dip",
+      "description": "Play-surface concept rendering for Sine Wide Dip.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-wide-dip.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 139298,
+      "sha256": "d90ef01fc09a34a28f6889d6aa602a0934be90764762621917d975fda3a71fb5",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-wide-dip.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "sine-wide-hill",
+      "title": "Sine Wide Hill",
+      "description": "Play-surface concept rendering for Sine Wide Hill.",
+      "path": "content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-wide-hill.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "fileSizeBytes": 134317,
+      "sha256": "83a067edb00ac7183d8cadf9cca84c78654be694c3c01e0f0552b33badfacecf",
+      "dateCreated": "2026-06-05",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-play-surface",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "reference/outreach/play-surface/tools/render_sine_tile_options.py",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "play-surface concept rendering"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as repo-native play-surface concept artwork without imported third-party imagery.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "play-surface concept",
+          "outreach visual",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "reference/outreach/play-surface/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/outreach/play-surface/assets/concepts/sine-curve-options/sine-wide-hill.png into the central image library on 2026-06-28.",
+        "Promoted so reusable play-surface concept images are cataloged with the central image ledger."
+      ]
+    },
+    {
+      "id": "noether-braid-all-platforms-avatar-master-1024x1024",
+      "title": "Noether Braid All Platforms Avatar Master 1024x1024",
+      "description": "Noether Braid all-platforms avatar-master brand export.",
+      "path": "content/assets/images/brand/noether-braid-all-platforms-avatar-master-1024x1024.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "fileSizeBytes": 674396,
+      "sha256": "ad9424a0452673e386fa9ceca5253eadc74759a5c4e094578f59be80c3f139a3",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-all-platforms-avatar-master-1024x1024.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-discord-circle-crop-preview-512x512",
+      "title": "Noether Braid Discord Circle Crop Preview 512x512",
+      "description": "Noether Braid discord circle-crop-preview brand export.",
+      "path": "content/assets/images/brand/noether-braid-discord-circle-crop-preview-512x512.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 512,
+        "height": 512
+      },
+      "fileSizeBytes": 237714,
+      "sha256": "bb67247070d46fbaeaa1b774f4e09b8cd89c39901e2c3a1f72e1289a15a4e17b",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-discord-circle-crop-preview-512x512.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-discord-server-banner-960x540",
+      "title": "Noether Braid Discord Server Banner 960x540",
+      "description": "Noether Braid discord server-banner brand export.",
+      "path": "content/assets/images/brand/noether-braid-discord-server-banner-960x540.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 960,
+        "height": 540
+      },
+      "fileSizeBytes": 212152,
+      "sha256": "fb1fb7a1dfcc4301dae86925cb837ff5e94bc587a4257377ab1e35362c6b3fb8",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-discord-server-banner-960x540.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-discord-server-icon-512x512",
+      "title": "Noether Braid Discord Server Icon 512x512",
+      "description": "Noether Braid discord server-icon brand export.",
+      "path": "content/assets/images/brand/noether-braid-discord-server-icon-512x512.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 512,
+        "height": 512
+      },
+      "fileSizeBytes": 216088,
+      "sha256": "bf357aae3249509cc40fde3d00bed70bc6e2fff3bd9bf303556e521fbd59055f",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-discord-server-icon-512x512.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-linkedin-circle-crop-preview-400x400",
+      "title": "Noether Braid LinkedIn Circle Crop Preview 400x400",
+      "description": "Noether Braid linkedin circle-crop-preview brand export.",
+      "path": "content/assets/images/brand/noether-braid-linkedin-circle-crop-preview-400x400.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 400,
+        "height": 400
+      },
+      "fileSizeBytes": 151745,
+      "sha256": "0716be8cf2649d12528d3e5d3e9ffa8511a0d343a3e620ee2322b26a56c3f83f",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-linkedin-circle-crop-preview-400x400.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-linkedin-company-cover-1128x191",
+      "title": "Noether Braid LinkedIn Company Cover 1128x191",
+      "description": "Noether Braid linkedin company-cover brand export.",
+      "path": "content/assets/images/brand/noether-braid-linkedin-company-cover-1128x191.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1128,
+        "height": 191
+      },
+      "fileSizeBytes": 110009,
+      "sha256": "7f3ef58a2d1d8ea673defc78e79a287df5f0242736d6a28169c38e5ba96af159",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-linkedin-company-cover-1128x191.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-linkedin-company-logo-300x300",
+      "title": "Noether Braid LinkedIn Company Logo 300x300",
+      "description": "Noether Braid linkedin company-logo brand export.",
+      "path": "content/assets/images/brand/noether-braid-linkedin-company-logo-300x300.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 300,
+        "height": 300
+      },
+      "fileSizeBytes": 84805,
+      "sha256": "837c9a49aff64f284847f147ab63ab6e3fe3bc29f0e8f0f0515777d484f42c54",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-linkedin-company-logo-300x300.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-linkedin-profile-avatar-400x400",
+      "title": "Noether Braid LinkedIn Profile Avatar 400x400",
+      "description": "Noether Braid linkedin profile-avatar brand export.",
+      "path": "content/assets/images/brand/noether-braid-linkedin-profile-avatar-400x400.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 400,
+        "height": 400
+      },
+      "fileSizeBytes": 138387,
+      "sha256": "81559d88ce82b1b2fb72adea9e3cda406756d3a492e9d5db04deecafc27693e4",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-linkedin-profile-avatar-400x400.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-linkedin-profile-background-1584x396",
+      "title": "Noether Braid LinkedIn Profile Background 1584x396",
+      "description": "Noether Braid linkedin profile-background brand export.",
+      "path": "content/assets/images/brand/noether-braid-linkedin-profile-background-1584x396.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1584,
+        "height": 396
+      },
+      "fileSizeBytes": 256259,
+      "sha256": "8ea320df87478477a44fc2d0d6a50a89720a9c9f6bc96d2bfd2b0660c8a618ba",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-linkedin-profile-background-1584x396.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-reddit-circle-crop-preview-512x512",
+      "title": "Noether Braid Reddit Circle Crop Preview 512x512",
+      "description": "Noether Braid reddit circle-crop-preview brand export.",
+      "path": "content/assets/images/brand/noether-braid-reddit-circle-crop-preview-512x512.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 512,
+        "height": 512
+      },
+      "fileSizeBytes": 237714,
+      "sha256": "bb67247070d46fbaeaa1b774f4e09b8cd89c39901e2c3a1f72e1289a15a4e17b",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-reddit-circle-crop-preview-512x512.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-reddit-community-banner-large-4000x384",
+      "title": "Noether Braid Reddit Community Banner Large 4000x384",
+      "description": "Noether Braid reddit community-banner-large brand export.",
+      "path": "content/assets/images/brand/noether-braid-reddit-community-banner-large-4000x384.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 4000,
+        "height": 384
+      },
+      "fileSizeBytes": 338619,
+      "sha256": "bae0d31d2c0be0803414c4cbe9c4569391ee4b06f53881b3752f7f879ad3367a",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-reddit-community-banner-large-4000x384.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-reddit-community-banner-medium-4000x192",
+      "title": "Noether Braid Reddit Community Banner Medium 4000x192",
+      "description": "Noether Braid reddit community-banner-medium brand export.",
+      "path": "content/assets/images/brand/noether-braid-reddit-community-banner-medium-4000x192.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 4000,
+        "height": 192
+      },
+      "fileSizeBytes": 159044,
+      "sha256": "896e85c8045ebc992dfe5ff0a1b223d4014f3fc37e9376f325e126fc9326362a",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-reddit-community-banner-medium-4000x192.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-reddit-community-banner-small-4000x128",
+      "title": "Noether Braid Reddit Community Banner Small 4000x128",
+      "description": "Noether Braid reddit community-banner-small brand export.",
+      "path": "content/assets/images/brand/noether-braid-reddit-community-banner-small-4000x128.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 4000,
+        "height": 128
+      },
+      "fileSizeBytes": 94476,
+      "sha256": "f5f2547d76039cae230cc0a754b1c100987de3ea5eb5bcccc2ee9e9ef4b8570c",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-reddit-community-banner-small-4000x128.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-reddit-community-icon-256x256",
+      "title": "Noether Braid Reddit Community Icon 256x256",
+      "description": "Noether Braid reddit community-icon brand export.",
+      "path": "content/assets/images/brand/noether-braid-reddit-community-icon-256x256.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 256,
+        "height": 256
+      },
+      "fileSizeBytes": 65148,
+      "sha256": "01b5d2bc8b0cba022f9341f43a978a85a006969819244bb5ab71f1a258b76fe7",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-reddit-community-icon-256x256.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-reddit-community-icon-512x512",
+      "title": "Noether Braid Reddit Community Icon 512x512",
+      "description": "Noether Braid reddit community-icon brand export.",
+      "path": "content/assets/images/brand/noether-braid-reddit-community-icon-512x512.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 512,
+        "height": 512
+      },
+      "fileSizeBytes": 216088,
+      "sha256": "bf357aae3249509cc40fde3d00bed70bc6e2fff3bd9bf303556e521fbd59055f",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-reddit-community-icon-512x512.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-youtube-avatar-800x800",
+      "title": "Noether Braid YouTube Avatar 800x800",
+      "description": "Noether Braid youtube avatar brand export.",
+      "path": "content/assets/images/brand/noether-braid-youtube-avatar-800x800.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 800,
+        "height": 800
+      },
+      "fileSizeBytes": 480506,
+      "sha256": "538c2d933e474b8397e554977da6d50c8a1752b812ed9247e57f76891da870bf",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-youtube-avatar-800x800.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-youtube-channel-banner-2560x1440",
+      "title": "Noether Braid YouTube Channel Banner 2560x1440",
+      "description": "Noether Braid youtube channel-banner brand export.",
+      "path": "content/assets/images/brand/noether-braid-youtube-channel-banner-2560x1440.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 2560,
+        "height": 1440
+      },
+      "fileSizeBytes": 753304,
+      "sha256": "797561aff1b87294eec4a6af5049e7bfab70726f9e66315142f3c6558972cbff",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-youtube-channel-banner-2560x1440.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-youtube-circle-crop-preview-800x800",
+      "title": "Noether Braid YouTube Circle Crop Preview 800x800",
+      "description": "Noether Braid youtube circle-crop-preview brand export.",
+      "path": "content/assets/images/brand/noether-braid-youtube-circle-crop-preview-800x800.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 800,
+        "height": 800
+      },
+      "fileSizeBytes": 526210,
+      "sha256": "2144bf504c3a1e373b65240d549109db717ccc908199c4d31914980d5277ad1b",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "platform export from noether-braid-ribbon-app-icon-1024",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-social-platforms/noether-braid-youtube-circle-crop-preview-800x800.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-ribbon-source",
+      "title": "Noether Braid Ribbon Source SVG",
+      "description": "Repo-native SVG source artwork for the Noether Braid ribbon app-icon export package.",
+      "path": "content/assets/images/brand/noether-braid-ribbon-source.svg",
+      "mediaType": "image/svg+xml",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "fileSizeBytes": 5890,
+      "sha256": "22acbb1f8e6d063c232c0b94fa73237a0542da21458f5d6dd0667717e3c0f8fc",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "manual SVG authoring",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand source artwork",
+          "logo source",
+          "app icon source"
+        ],
+        "usedBy": [
+          "reference/design/logo-exports/noether-braid-ribbon-app-icon/README.md"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-app-icon/noether-braid-ribbon-source.svg into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-ribbon-app-icon-1024",
+      "title": "Noether Braid Ribbon App Icon 1024",
+      "description": "Noether Braid ribbon app-icon 1024px review master used by QR and platform brand export tooling.",
+      "path": "content/assets/images/brand/noether-braid-ribbon-app-icon-1024.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "fileSizeBytes": 674396,
+      "sha256": "ad9424a0452673e386fa9ceca5253eadc74759a5c4e094578f59be80c3f139a3",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "raster export from noether-braid-ribbon-source",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "app icon review master",
+          "logo source for generated composites"
+        ],
+        "usedBy": [
+          "scripts/qr-codes/build-architrino-qr-assets.py",
+          "reference/design/logo-exports/noether-braid-ribbon-app-icon/README.md",
+          "reference/design/logo-exports/noether-braid-ribbon-social-platforms/manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-app-icon/noether-braid-ribbon-app-icon-1024.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
+      ]
+    },
+    {
+      "id": "noether-braid-best-effort-3d-ribbon-raster",
+      "title": "Noether Braid Best-Effort 3D Ribbon Raster Preview",
+      "description": "Raster preview export of the Noether Braid best-effort 3D ribbon logo study.",
+      "path": "content/assets/images/brand/noether-braid-best-effort-3d-ribbon.svg.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "fileSizeBytes": 674396,
+      "sha256": "ad9424a0452673e386fa9ceca5253eadc74759a5c4e094578f59be80c3f139a3",
+      "dateCreated": "2026-06-24",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "raster export from noether-braid-ribbon-source",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created from project-owned Noether Braid logo artwork and project brand export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand review",
+          "logo raster preview"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Moved from reference/design/logo-exports/noether-braid-ribbon-app-icon/noether-braid-best-effort-3d-ribbon.svg.png into the central brand image library on 2026-06-28.",
+        "Promoted so brand and logo assets are consolidated under content/assets/images/brand with central provenance records."
       ]
     }
   ]

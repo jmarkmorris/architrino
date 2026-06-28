@@ -415,27 +415,27 @@ For image generation, start with:
 
 First rough visual prototypes:
 
-- [Group Project Assumption](assets/group-project-assumption-prototype.png)
-- [Signals From Earlier](assets/signals-from-earlier-prototype-v2-present-inbox.png)
+- [Group Project Assumption](assets/group-project-assumption-prototype.png) - selected keeper direction.
+- [Signals From Earlier](assets/signals-from-earlier-prototype-v2-present-inbox.png) - selected keeper direction.
 
 Second rough visual prototypes:
 
-- [New Theory, Same Budget](assets/new-theory-same-budget-prototype.png)
+- [New Theory, Same Budget](assets/new-theory-same-budget-prototype.png) - selected keeper direction.
 - [Citation Needed](assets/citation-needed-prototype-v2-no-just.png) - selected keeper direction.
-- [Show The Residuals](assets/show-the-residuals-prototype.png)
-- [Office Hours For A Claim](assets/office-hours-for-a-claim-prototype.png)
+- [Show The Residuals](assets/show-the-residuals-prototype.png) - selected keeper direction.
+- [Office Hours For A Claim](assets/office-hours-for-a-claim-prototype.png) - selected keeper direction.
 
 Cosmology comparison rough visual prototypes:
 
-- [First Page Problem](assets/first-page-problem-prototype-v4-snail-gaze.png)
+- [First Page Problem](assets/first-page-problem-prototype-v4-snail-gaze.png) - selected keeper direction.
 - [The Observable Edge Receipt](assets/observable-edge-receipt-prototype.png) - selected keeper direction.
-- [Opening Scene, Not Building Permit v2, First Footage](assets/opening-scene-not-building-permit-prototype-v2-first-footage.png) - revised humor candidate; shifts the joke from building-permit wording to first-scene versus first-footage wording.
+- [Opening Scene, Not Building Permit v2, First Footage](assets/opening-scene-not-building-permit-prototype-v2-first-footage.png) - selected keeper direction; shifts the joke from building-permit wording to first-scene versus first-footage wording.
 - [Birthday Cake For The Observer Era](assets/birthday-cake-observer-era-prototype.png) - selected keeper direction.
 
 Prior-comic remake rough visual prototypes:
 
-- [Curvefit Remake](assets/curvefit-remake-prototype.png)
-- [Acknowledgements Remake v3, Architrinos Room](assets/acknowledgements-remake-prototype-v3-architrinos-room.png) - preferred ack candidate; uses the architrinos-in-this-room Sophia bubble, replaces the banner words with red and blue architrinos, and keeps the slide list inside the screen.
+- [Curvefit Remake](assets/curvefit-remake-prototype.png) - selected keeper direction.
+- [Acknowledgements Remake v3, Architrinos Room](assets/acknowledgements-remake-prototype-v3-architrinos-room.png) - selected keeper direction; uses the architrinos-in-this-room Sophia bubble, replaces the banner words with red and blue architrinos, and keeps the slide list inside the screen.
 - [We Need To Talk Remake](assets/we-need-to-talk-remake-prototype.png) - selected keeper direction.
 - [Alchemy Remake](assets/alchemy-remake-prototype.png) - selected keeper direction.
 - [Jets Remake](assets/jets-remake-prototype.png) - selected keeper direction.

@@ -184,16 +184,16 @@ The set is a prototype schedule, not a locked commercial bill of materials. Ever
 
 | Tile family | Count | Working contour | Concept exemplar | First-use purpose |
 | --- | ---: | --- | --- | --- |
-| Flat tile | `1` | `0"` relative change | [Flat](assets/concepts/sine-curve-options/sine-flat.png) | Rest, reset, joining space, open path. |
-| Standard offset round hill | `4` | `+1.0"` cosine-lobe peak, standard radius | [Standard hill](assets/concepts/sine-curve-options/sine-standard-hill.png) | Clear deflection, beginner slope reading. |
-| Wide offset round hill | `2` | `+1.0"` cosine-lobe peak, larger radius | [Wide hill](assets/concepts/sine-curve-options/sine-wide-hill.png) | Broader visible potential barrier. |
-| Standard offset round dip | `4` | `-1.0"` cosine-lobe low point, standard radius | [Standard dip](assets/concepts/sine-curve-options/sine-standard-dip.png) | Clear settling basin. |
-| Wide offset round dip | `2` | `-1.0"` cosine-lobe low point, larger radius | [Wide dip](assets/concepts/sine-curve-options/sine-wide-dip.png) | Broader high-contrast basin lesson. |
-| Diagonal saddle | `1` | `+/-1.0"` side-faded saddle | [Diagonal saddle](assets/concepts/sine-curve-options/sine-diagonal-saddle.png) | A balanced place where a ball may leave by different paths. |
-| Curved valley | `2` | `-1.0"` raised-cosine valley across width and length | [Curved valley](assets/concepts/sine-curve-options/sine-curved-valley.png) | A broad low route that guides without becoming a track. |
-| Straight edge/rim tile | `4` | `+1.0"` raised-cosine ridge line plus one interior feature | [Straight ridge](assets/concepts/sine-curve-options/sine-straight-ridge.png) | Gentle-roll guide, straight back-rail segment, and active edge play. |
-| Rounded corner rim tile | `4` | `+1.0"` raised-cosine corner ridge line plus one interior feature | [Corner ridge](assets/concepts/sine-curve-options/sine-corner-ridge.png) | Gentle-roll guide, soft corner, and active corner play. |
-| Paired hill-dip | `1` | `+1.0"` hill and `-1.0"` dip | [Paired hill-dip](assets/concepts/sine-curve-options/sine-paired-hill-dip.png) | Older scenes about thresholds and path choice. |
+| Flat tile | `1` | `0"` relative change | [Flat](../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-flat.png) | Rest, reset, joining space, open path. |
+| Standard offset round hill | `4` | `+1.0"` cosine-lobe peak, standard radius | [Standard hill](../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-standard-hill.png) | Clear deflection, beginner slope reading. |
+| Wide offset round hill | `2` | `+1.0"` cosine-lobe peak, larger radius | [Wide hill](../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-wide-hill.png) | Broader visible potential barrier. |
+| Standard offset round dip | `4` | `-1.0"` cosine-lobe low point, standard radius | [Standard dip](../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-standard-dip.png) | Clear settling basin. |
+| Wide offset round dip | `2` | `-1.0"` cosine-lobe low point, larger radius | [Wide dip](../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-wide-dip.png) | Broader high-contrast basin lesson. |
+| Diagonal saddle | `1` | `+/-1.0"` side-faded saddle | [Diagonal saddle](../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-diagonal-saddle.png) | A balanced place where a ball may leave by different paths. |
+| Curved valley | `2` | `-1.0"` raised-cosine valley across width and length | [Curved valley](../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-curved-valley.png) | A broad low route that guides without becoming a track. |
+| Straight edge/rim tile | `4` | `+1.0"` raised-cosine ridge line plus one interior feature | [Straight ridge](../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-straight-ridge.png) | Gentle-roll guide, straight back-rail segment, and active edge play. |
+| Rounded corner rim tile | `4` | `+1.0"` raised-cosine corner ridge line plus one interior feature | [Corner ridge](../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-corner-ridge.png) | Gentle-roll guide, soft corner, and active corner play. |
+| Paired hill-dip | `1` | `+1.0"` hill and `-1.0"` dip | [Paired hill-dip](../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-paired-hill-dip.png) | Older scenes about thresholds and path choice. |
 
 This starter-kit mix is also a packaging test case. The four corner rim tiles and four straight edge/rim tiles are important for toddler rim behavior, but they are probably the hardest tiles to nest because their ridges sit near the side zones where generic stack supports would like to land. Do not treat the commercial starter-kit count as final until the same set can pass play-value, stack-height, sealed-underside, and carton-size checks together.
 

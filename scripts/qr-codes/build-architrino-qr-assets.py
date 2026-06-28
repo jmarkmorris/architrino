@@ -20,7 +20,7 @@ CANONICAL_PAYLOAD = "https://www.architrino.com"
 CANONICAL_OUTPUT_PATH = REPO_ROOT / "reference/design/logo-exports/architrino-qr-code/qr.png"
 LOGO_SOURCE_PATH = (
     REPO_ROOT
-    / "reference/design/logo-exports/noether-braid-ribbon-app-icon/noether-braid-ribbon-app-icon-1024.png"
+    / "content/assets/images/brand/noether-braid-ribbon-app-icon-1024.png"
 )
 LOGO_COMPOSITES_OUTPUT_DIR = REPO_ROOT / "reference/design/logo-exports/noether-braid-qr-logo-composites"
 READER_FACING_BRAND_OUTPUT_DIR = REPO_ROOT / "content/assets/images/brand"

@@ -114,6 +114,11 @@ function withoutAdmissibilityOnlyReplays(target) {
   return copy;
 }
 
+const runtimeIdentityAbsenceStatus =
+  "runtime_identity_absence_probe_executed_backend_identity_missing_fail_closed";
+const runtimeIdentityAbsenceProbeStatus =
+  "directed_rounding_runtime_identity_absence_probe_backend_identity_missing_fail_closed";
+
 test("A1 admissible profile bounds attempt remains fail-closed and priority-only", () => {
   const packet = runA1Diagnostic("a1_admissible_profile_bounds_attempt");
   assert.equal(
@@ -656,10 +661,6 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     "source_q_derivative_composition_operation_trace_digest",
     "shared_interval_box_family_digest",
   ];
-  const runtimeIdentityAbsenceStatus =
-    "runtime_identity_absence_probe_executed_backend_identity_missing_fail_closed";
-  const runtimeIdentityAbsenceProbeStatus =
-    "directed_rounding_runtime_identity_absence_probe_backend_identity_missing_fail_closed";
   assert.equal(
     directedRoundingAvailabilityAudit.schema,
     "architrino.priority.master_equation_closure.a1_directed_rounding_runtime_backend_availability_audit.v0"

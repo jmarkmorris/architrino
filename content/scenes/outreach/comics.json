@@ -30,6 +30,10 @@
         "scenePath": "content/scenes/outreach/comics/alchemy_remake.json"
       },
       {
+        "nodeId": "acknowledgements_remake",
+        "scenePath": "content/scenes/outreach/comics/acknowledgements_remake.json"
+      },
+      {
         "nodeId": "smbh_remake",
         "scenePath": "content/scenes/outreach/comics/smbh_remake.json"
       },
@@ -56,6 +60,10 @@
       {
         "nodeId": "observable_edge_receipt",
         "scenePath": "content/scenes/outreach/comics/observable_edge_receipt.json"
+      },
+      {
+        "nodeId": "opening_scene_not_building_permit",
+        "scenePath": "content/scenes/outreach/comics/opening_scene_not_building_permit.json"
       },
       {
         "nodeId": "birthday_cake_observer_era",
@@ -107,6 +115,15 @@
       "labelTitle": "Old Alchemy, New Apparatus",
       "labelBadgeImage": "content/assets/images/comics/thumbnails/alchemy-remake-thumb.png",
       "labelBadgeAlt": "Old Alchemy, New Apparatus thumbnail"
+    },
+    {
+      "id": "acknowledgements_remake",
+      "title": "Acknowledgements In Architrino's Room",
+      "radius": 1.8,
+      "color": "#6e5a46",
+      "labelTitle": "Acknowledgements In Architrino's Room",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/acknowledgements-remake-thumb.png",
+      "labelBadgeAlt": "Acknowledgements In Architrino's Room thumbnail"
     },
     {
       "id": "smbh_remake",
@@ -170,6 +187,15 @@
       "labelTitle": "The Observable Edge Receipt",
       "labelBadgeImage": "content/assets/images/comics/thumbnails/observable-edge-receipt-thumb.png",
       "labelBadgeAlt": "The Observable Edge Receipt thumbnail"
+    },
+    {
+      "id": "opening_scene_not_building_permit",
+      "title": "Opening Scene, Not Building Permit",
+      "radius": 1.8,
+      "color": "#74513d",
+      "labelTitle": "Opening Scene, Not Building Permit",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/opening-scene-not-building-permit-thumb.png",
+      "labelBadgeAlt": "Opening Scene, Not Building Permit thumbnail"
     },
     {
       "id": "birthday_cake_observer_era",

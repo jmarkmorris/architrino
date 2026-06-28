@@ -21,7 +21,10 @@ TILE_SIZE = 11.0
 HALF_TILE = TILE_SIZE / 2.0
 GRID_SAMPLES = 1200
 OUT_SIZE = (1200, 1200)
-OUT_ROOT = Path(__file__).resolve().parents[1] / "assets/concepts/sine-curve-options"
+OUT_ROOT = (
+    Path(__file__).resolve().parents[4]
+    / "content/assets/images/outreach/play-surface/concepts/sine-curve-options"
+)
 
 SOURCE_CORNERS = [(0, 0), (GRID_SAMPLES, 0), (GRID_SAMPLES, GRID_SAMPLES), (0, GRID_SAMPLES)]
 TOP_QUAD = [(405, 260), (1095, 430), (750, 875), (75, 675)]

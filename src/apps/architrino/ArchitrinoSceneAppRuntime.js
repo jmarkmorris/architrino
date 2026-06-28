@@ -6838,7 +6838,7 @@ function appendCacheBust(path) {
 }
 
 if (hydePeriodicArtwork) {
-  hydePeriodicArtwork.src = appendCacheBust("content/assets/hyde_periodic_table.svg");
+  hydePeriodicArtwork.src = appendCacheBust("content/assets/images/nuclear/hyde-periodic-table-rsvg-friendly.svg");
 }
 
 async function resolveMarkdownFileSize(path) {

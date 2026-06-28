@@ -1824,6 +1824,16 @@
       "id": "outreach__comics__observable_edge_receipt",
       "name": "The Observable Edge Receipt",
       "path": "content/scenes/outreach/comics/observable_edge_receipt.json"
+    },
+    {
+      "id": "outreach__comics__opening_scene_not_building_permit",
+      "name": "Opening Scene, Not Building Permit",
+      "path": "content/scenes/outreach/comics/opening_scene_not_building_permit.json"
+    },
+    {
+      "id": "outreach__comics__acknowledgements_remake",
+      "name": "Acknowledgements In Architrino's Room",
+      "path": "content/scenes/outreach/comics/acknowledgements_remake.json"
     }
   ]
 }

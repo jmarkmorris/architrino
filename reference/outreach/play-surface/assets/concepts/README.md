@@ -10,17 +10,17 @@ The product-view portion is still a visual reference, not proof-grade CAD. For f
 
 ## Starter Set V1 Contour Families
 
-- [Flat](sine-curve-options/sine-flat.png)
-- [Standard hill](sine-curve-options/sine-standard-hill.png)
-- [Wide hill](sine-curve-options/sine-wide-hill.png)
-- [Standard dip](sine-curve-options/sine-standard-dip.png)
-- [Wide dip](sine-curve-options/sine-wide-dip.png)
-- [Diagonal saddle](sine-curve-options/sine-diagonal-saddle.png)
-- [Curved valley](sine-curve-options/sine-curved-valley.png)
-- [Straight ridge](sine-curve-options/sine-straight-ridge.png)
-- [Corner ridge](sine-curve-options/sine-corner-ridge.png)
-- [Paired hill-dip](sine-curve-options/sine-paired-hill-dip.png)
+- [Flat](../../../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-flat.png)
+- [Standard hill](../../../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-standard-hill.png)
+- [Wide hill](../../../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-wide-hill.png)
+- [Standard dip](../../../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-standard-dip.png)
+- [Wide dip](../../../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-wide-dip.png)
+- [Diagonal saddle](../../../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-diagonal-saddle.png)
+- [Curved valley](../../../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-curved-valley.png)
+- [Straight ridge](../../../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-straight-ridge.png)
+- [Corner ridge](../../../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-corner-ridge.png)
+- [Paired hill-dip](../../../../../content/assets/images/outreach/play-surface/concepts/sine-curve-options/sine-paired-hill-dip.png)
 
 ## Play-Space Layouts
 
-- [5x5 rim-and-variety play space](play-space-5x5-rim-variety.png)
+- [5x5 rim-and-variety play space](../../../../../content/assets/images/outreach/play-surface/concepts/play-space-5x5-rim-variety.png)

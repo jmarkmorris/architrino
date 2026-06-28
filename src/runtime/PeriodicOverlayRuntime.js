@@ -60,7 +60,7 @@ export function createPeriodicOverlayRuntime(deps) {
     typeof hydePeriodicSceneId === "string" && hydePeriodicSceneId
       ? hydePeriodicSceneId
       : "hyde_periodic_table";
-  const hydeArtworkPath = "content/assets/hyde_periodic_table.svg";
+  const hydeArtworkPath = "content/assets/images/nuclear/hyde-periodic-table-rsvg-friendly.svg";
   const hydeAtomicNumberToHotspotNumber = {
     1: 85,
     2: 58,

@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 562,
-      "edges": 1315,
-      "scenes": 365,
+      "nodes": 566,
+      "edges": 1319,
+      "scenes": 367,
       "markdownIndexes": 0,
-      "markdownDocs": 184,
+      "markdownDocs": 186,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2339,6 +2339,18 @@
       "nodeType": "scene"
     },
     {
+      "id": "outreach__comics__opening_scene_not_building_permit",
+      "name": "Opening Scene, Not Building Permit",
+      "path": "content/scenes/outreach/comics/opening_scene_not_building_permit.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__acknowledgements_remake",
+      "name": "Acknowledgements In Architrino's Room",
+      "path": "content/scenes/outreach/comics/acknowledgements_remake.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2747,6 +2759,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
+      "name": "Acknowledgements In Architrino's Room",
+      "path": "content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/outreach/comics/alchemy-remake.md",
       "name": "Old Alchemy, New Apparatus",
       "path": "content/markdown/aaa/outreach/comics/alchemy-remake.md",
@@ -2804,6 +2822,12 @@
       "id": "content/markdown/aaa/outreach/comics/office-hours-for-a-claim.md",
       "name": "Office Hours For A Claim",
       "path": "content/markdown/aaa/outreach/comics/office-hours-for-a-claim.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
+      "name": "Opening Scene, Not Building Permit",
+      "path": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5407,6 +5431,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/outreach/comics/acknowledgements_remake.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__acknowledgements_remake",
+      "name": "Acknowledgements In Architrino's Room",
+      "path": "content/scenes/outreach/comics/acknowledgements_remake.json",
+      "searchTarget": "content/scenes/outreach/comics/acknowledgements_remake.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/outreach/comics/alchemy_remake.json",
       "nodeType": "scene",
       "id": "outreach__comics__alchemy_remake",
@@ -5494,6 +5527,15 @@
       "name": "Office Hours For A Claim",
       "path": "content/scenes/outreach/comics/office_hours_for_a_claim.json",
       "searchTarget": "content/scenes/outreach/comics/office_hours_for_a_claim.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/opening_scene_not_building_permit.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__opening_scene_not_building_permit",
+      "name": "Opening Scene, Not Building Permit",
+      "path": "content/scenes/outreach/comics/opening_scene_not_building_permit.json",
+      "searchTarget": "content/scenes/outreach/comics/opening_scene_not_building_permit.json",
       "implicit": false
     },
     {
@@ -7342,6 +7384,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
+      "name": "Acknowledgements In Architrino's Room",
+      "path": "content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/alchemy-remake.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/outreach/comics/alchemy-remake.md",
@@ -7429,6 +7480,15 @@
       "name": "Office Hours For A Claim",
       "path": "content/markdown/aaa/outreach/comics/office-hours-for-a-claim.md",
       "searchTarget": "content/markdown/aaa/outreach/comics/office-hours-for-a-claim.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
+      "name": "Opening Scene, Not Building Permit",
+      "path": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
       "implicit": false
     },
     {
@@ -11866,6 +11926,13 @@
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/acknowledgements_remake.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/alchemy_remake.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
@@ -11876,7 +11943,7 @@
       "to": "scene:content/scenes/outreach/comics/birthday_cake_observer_era.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
@@ -11890,14 +11957,14 @@
       "to": "scene:content/scenes/outreach/comics/curvefit_remake.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[14]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/first_page_problem.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
@@ -11911,35 +11978,42 @@
       "to": "scene:content/scenes/outreach/comics/jets_remake.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/new_theory_same_budget.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/observable_edge_receipt.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/office_hours_for_a_claim.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/opening_scene_not_building_permit.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/show_the_residuals.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
@@ -11953,14 +12027,14 @@
       "to": "scene:content/scenes/outreach/comics/smbh_remake.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/we_need_to_talk_remake.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[13]"
+      "field": "scene.children[15]"
     },
     {
       "from": "scene:content/scenes/outreach/outreach.json",
@@ -13447,6 +13521,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/outreach/comics/acknowledgements_remake.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/acknowledgements_remake.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/outreach/comics/alchemy_remake.json",
       "to": "markdown_doc:content/markdown/aaa/outreach/comics/alchemy-remake.md",
       "edgeType": "markdown_doc",
@@ -13514,6 +13595,13 @@
       "to": "markdown_doc:content/markdown/aaa/outreach/comics/office-hours-for-a-claim.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/outreach/comics/office_hours_for_a_claim.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/opening_scene_not_building_permit.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/opening_scene_not_building_permit.json",
       "field": "scene.source.path"
     },
     {

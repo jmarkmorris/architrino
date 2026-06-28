@@ -8,6 +8,8 @@
 
 [![Old Alchemy, New Apparatus](../../../assets/images/comics/thumbnails/alchemy-remake-thumb.png)](../../../assets/images/comics/alchemy-remake.png)
 
+[![Acknowledgements In Architrino's Room](../../../assets/images/comics/thumbnails/acknowledgements-remake-thumb.png)](../../../assets/images/comics/acknowledgements-remake.png)
+
 [![Candidate, Not A Throne](../../../assets/images/comics/thumbnails/smbh-remake-thumb.png)](../../../assets/images/comics/smbh-remake.png)
 
 [![What Counts As Evidence?](../../../assets/images/comics/thumbnails/jets-remake-thumb.png)](../../../assets/images/comics/jets-remake.png)
@@ -21,6 +23,8 @@
 [![First Page Problem](../../../assets/images/comics/thumbnails/first-page-problem-thumb.png)](../../../assets/images/comics/first-page-problem.png)
 
 [![The Observable Edge Receipt](../../../assets/images/comics/thumbnails/observable-edge-receipt-thumb.png)](../../../assets/images/comics/observable-edge-receipt.png)
+
+[![Opening Scene, Not Building Permit](../../../assets/images/comics/thumbnails/opening-scene-not-building-permit-thumb.png)](../../../assets/images/comics/opening-scene-not-building-permit.png)
 
 [![Birthday Cake For The Observer Era](../../../assets/images/comics/thumbnails/birthday-cake-observer-era-thumb.png)](../../../assets/images/comics/birthday-cake-observer-era.png)
 

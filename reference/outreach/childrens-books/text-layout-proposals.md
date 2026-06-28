@@ -32,7 +32,7 @@ Body text should feel literary and warm, not technical. Geometry terms can appea
 
 ## Selected Layout: Reverse Band
 
-![Reverse text band](assets/text-layout-reverse-band-clean.png)
+![Reverse text band](../../../content/assets/images/outreach/childrens-books/text-layout-reverse-band-clean.png)
 
 Best for:
 
@@ -63,7 +63,7 @@ Production guidance:
 
 ## Primary Short-Video Version
 
-![Reverse band Shorts/TikTok version](assets/text-layout-reverse-band-shorts-tiktok-9x16.png)
+![Reverse band Shorts/TikTok version](../../../content/assets/images/outreach/childrens-books/text-layout-reverse-band-shorts-tiktok-9x16.png)
 
 Recommended format:
 
@@ -79,7 +79,7 @@ This should be the default export for short-video-first outreach. If a short is 
 
 ## Feed Portrait Version
 
-![Reverse band portrait social version](assets/text-layout-reverse-band-social-portrait.png)
+![Reverse band portrait social version](../../../content/assets/images/outreach/childrens-books/text-layout-reverse-band-social-portrait.png)
 
 Recommended format:
 
