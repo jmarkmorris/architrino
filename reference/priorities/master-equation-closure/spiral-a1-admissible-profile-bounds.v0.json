@@ -1,0 +1,41 @@
+{
+  "schema": "architrino.priority.master_equation_closure.a1_admissible_profile_bounds.v0",
+  "artifact_id": "a1_admissible_profile_bounds.v0",
+  "claim_level": "priority-only fail-closed admissibility attempt",
+  "radius_b": 0.001,
+  "row_identity": {
+    "retained_row_set_path": "reference/priorities/master-equation-closure/spiral-a1-outward-constants-certificate-target.md",
+    "theta_boxes": "absent",
+    "active_windows": "absent",
+    "inactive_cover_id": "absent",
+    "source_artifact_hash": "absent"
+  },
+  "past_profile_bounds": {
+    "q_min": "absent",
+    "q_max": "absent",
+    "H_b": "absent",
+    "status": "not_certified"
+  },
+  "future_profile_admissibility": {
+    "transported_q_min": "absent",
+    "transported_q_max": "absent",
+    "E_Q_plus_b": "absent",
+    "status": "not_certified"
+  },
+  "first_failure": "admissible_profile_bounds",
+  "blocked_rows": [
+    "outward_profile_bounds_absent",
+    "retained_root_boxes_absent",
+    "inactive_gap_cover_absent",
+    "branch_sum_constants_absent",
+    "transport_constants_absent",
+    "residual_envelope_absent"
+  ],
+  "reduced_smoke_context": {
+    "status": "sampled_remainder_constants_unstable",
+    "C2_sampled_stable": false,
+    "max_adjacent_C2_relative_change": 0.7060743371539325,
+    "used_as_certificate": false
+  },
+  "promotion_authorized": false
+}

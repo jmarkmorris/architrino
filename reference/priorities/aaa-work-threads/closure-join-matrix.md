@@ -73,6 +73,19 @@ before the same-record object that each local packet now requires.
 | 5 | [braid-retained-branch-closure](../braid-retained-branch-closure/braid-retained-branch-closure.md) | `bounded_speed_normal_reconstruction_candidate/v0` in the after-normal action/stability packet. | $\Gamma,\mathcal{H},\mathcal{R}$ on one bounded-speed live ledger id. | `normal-candidate-missing`. |
 | 6 | [braid-nested-shell-causal-closure](../braid-nested-shell-causal-closure/braid-nested-shell-causal-closure.md) | `moving_retained_branch_certificate/v0` in [structural-integrity-common-limit-theorem](../braid-nested-shell-causal-closure/structural-integrity-common-limit-theorem.md). | $\Gamma,\mathcal{H},\mathcal{R},\mathcal{M}_{\mathrm{sea}}^{ab},\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ on one moving branch window. | `blocked_pending_accepted_branch_chart`. |
 
+### Lower-Priority Dependency Scout 2026-06-28
+
+The lower-priority buckets below are real dependencies only as providers of the
+top-six same-record objects. None currently overrides the top-six first
+failures, and none authorizes a separate closure claim.
+
+| Dependency bucket | Feeds top-six object | Smallest useful provider object | Current disposition |
+| --- | --- | --- | --- |
+| [braid-angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md) plus residual/event-ledger rows | Rank 2 `accepted_transition_source` and rank 6 `moving_retained_branch_certificate/v0` | `torque_wake_same_row_diagnostic` with source report, selected case, route root key, retained-branch flag, same retained active-row ids, wake/energy routing fields, event-ledger convention, and first-failure code. | Priority-only candidate; `branch_certificate_ref` remains absent. |
+| [pressure-dependent Noether sea response](../braid-mass-response-map/pressure-dependent-noether-sea-constitutive-response.md) and [exposure quotient theorem](../braid-mass-response-map/exposure-quotient-theorem.md) | Rank 4 retained pressure-row branch-intake object | One same-row `exposure_source_record` plus `pressure_response_record` carrying $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, $\mathcal{N}_{\mathrm{tf},ab}(A)$, $\partial_PM_0^{\mathrm{src}}(A)$, $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, and $m_S$. | Consume inside rank 4 only; no separate pressure/exposure promotion. |
+| [braid-geometry-export-bridge](../braid-geometry-export-bridge/braid-geometry-export-bridge.md) and [solver](../solver/solver.md) | Ranks 2, 4, 5, and 6 branch/ledger identity fields | Same-domain branch-bearing provider object with `branch_certificate_ref`, active-root or live-ledger identity, conservation-pullback hash when needed, and branch-local projection or normalization identity. | Solver contracts are useful, but proof-level branch provider object remains missing. |
+| [source-mining](../source-mining/source-mining.md) | Rank 3 `Sigma_hf_01` external schema intake | One external proof-grade derivation schema object bound to `Sigma_hf_01` and evaluated against the eight-field checklist. | Local source-mining leads are context only; `candidate_external_schema_ref` remains absent. |
+
 ### Residual-Routing Contract
 
 Use this contract when a work item describes radiation, transport excitation, reaction channels, measurement records, strong-field release, or branch transition.

@@ -55,7 +55,10 @@ receives 0 / 12 external schema inputs, accepts 0 / 12 slots for validation,
 constructs 0 rule-kernel derivation payloads, consumes 0 rows, keeps
 `preledger_pass=false`, keeps `updates_live_ledger=false`, and authorizes no
 branch chart. The next live action is a candidate external schema for the
-`Sigma_hf_01` separator slot, not another whole-pool rescan.
+`Sigma_hf_01` separator slot, not another whole-pool rescan. The
+[Sigma_hf_01 external schema candidate intake checklist](./certificate/sigma_hf_01_external_schema_candidate_intake_checklist.md)
+is the current fail-closed slot state: internal locks fixed, no
+`candidate_external_schema_ref`, and 0 / 8 required predicate fields present.
 
 ## Task Queue
 

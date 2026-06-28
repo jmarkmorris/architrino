@@ -106,6 +106,13 @@ idea, current-pool rescan, source certificate, or target packet may be cited as
 context, but it does not move the slot unless it supplies the candidate
 external schema object and all eight required fields for `Sigma_hf_01`.
 
+Current checklist artifact:
+[sigma_hf_01_external_schema_candidate_intake_checklist.md](sigma_hf_01_external_schema_candidate_intake_checklist.md)
+records the current fail-closed separator-slot intake. It fixes the internal
+scope locks, leaves `candidate_external_schema_ref` absent, records 0 / 8
+required predicate fields present, and keeps the slot at
+`external_input_required`.
+
 ## Pilot Verdict
 
 Current pilot result:

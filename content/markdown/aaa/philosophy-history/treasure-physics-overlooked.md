@@ -440,6 +440,8 @@ The rational miss is therefore easy to understand. Heisenberg was reacting again
 
 In the Architrino architecture's retrospective reading, Heisenberg would not need to apologize for the observable discipline. He would see that it purified the data. But he would also see the missed second step: after the false orbit is removed, one must still ask what assembly process produces the allowed records, the forbidden joint resolutions, and the stable quantum outputs.
 
+His later high-energy emphasis points in the same direction without becoming proof of the Architrino architecture. High-energy physics forced the question of how new particle records arise from an interaction environment rather than from a fixed low-energy catalogue. The durable historical signal is that energy became a generative parameter: at sufficiently concentrated scales, the reaction window can reorganize which particle records are available. In the Architrino reading, that intuition becomes an assembly and provenance target. The event ledger must explain how incoming energy, shielding change, Noether sea participation, and retained geometry open or close outgoing particle branches.
+
 Heisenberg's place in the chain is operational restraint without operational finality. The historical track toward the Architrino architecture required preserving his discipline while refusing to let it become a wall between successful record calculus and the Noether sea and assembly process that makes records possible.
 
 ### Chapter Twenty-Four. Wolfgang Pauli: Exclusion Became A Law Before It Became Geometry

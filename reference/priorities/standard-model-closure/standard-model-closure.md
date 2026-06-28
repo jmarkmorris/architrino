@@ -230,6 +230,22 @@ $$
 
 Here $\Theta$ denotes already-declared $\mathbb{A}\mathbb{A}\mathbb{A}$ branch, shielding, exposure, and medium-response data. A benchmark row with a PDG scale factor, asymmetric uncertainty, confidence limit, or mixed statistical/systematic uncertainty must carry that convention into the likelihood or residual definition rather than being symmetrized silently. The 2024 statistics review gives the matching convention for fit reporting: likelihood or $\chi^2$ combinations should state nuisance parameters, covariance/correlation structure, limits and confidence levels, and whether a quoted one-standard-deviation interval comes from $\Delta\chi^2=1$ rather than a literal $68.3\%$ probability statement.
 
+The PDG benchmark also needs event-provenance rows before reaction claims are treated as closed. For a benchmark reaction or inferred particle property, attach a provenance packet
+$$
+\Theta_{\mathrm{PDG,event}}
+=
+\left(
+\mathfrak{L}_{\mathrm{in}},
+\mathfrak{L}_{\mathrm{vis,out}},
+\mathfrak{L}_{\mathrm{hidden/out}},
+\Delta E_{\mathrm{shield/exp}},
+\mathcal{R}_{\mathrm{recoil/rem}},
+\mathcal{D}_{\mathrm{det}},
+\mathcal{U}_{\mathrm{stat/syst}}
+\right).
+$$
+Here the visible outgoing row carries tracks, showers, photons, leptons, hadrons, or reconstructed objects; the hidden/outgoing row carries neutrino, Noether sea, low-apparent-energy, dark-sector, or unresolved medium participation; $\Delta E_{\mathrm{shield/exp}}$ carries shielding and exposure change; $\mathcal{R}_{\mathrm{recoil/rem}}$ carries recoil and remnant balance; and $\mathcal{D}_{\mathrm{det}}$ plus $\mathcal{U}_{\mathrm{stat/syst}}$ preserve detector provenance and uncertainty conventions. A PDG match is therefore not closed by naming products alone.
+
 ## Hydrogen Boundary Closure Object
 
 The current scaffold separates three objects that must not be collapsed:

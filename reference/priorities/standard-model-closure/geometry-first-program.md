@@ -51,6 +51,23 @@ The reader-facing color chapter should summarize the accepted algebra and confin
 - Test whether the CP phase can be recovered as a holonomy or torsion consequence, including the current closure target $\cos\delta = s_{13}/(s_{12}s_{23})$.
 - Derive confinement-scale behavior from topological or strain energetics of flux tubes, braids, or other line defects, aiming for linear tension $V \propto r$ or $\sigma_{\mathrm{eff}} L$ and finite relaxed bounds for closed color-singlet configurations.
 
+The geometry-first program should also define a per-particle property vector before comparing to PDG rows:
+$$
+\Theta_{\mathrm{part}}^{(a)}
+=
+\left(
+\mathcal{N}_{\mathrm{arch}}^{(a)},
+\mathcal{B}_{\mathrm{NSB}}^{(a)},
+\mathcal{F}_{\mathrm{bin}}^{(a)},
+\mathcal{G}_{\mathrm{axial}}^{(a)},
+\zeta^{(a)}_{\mathrm{exp}},
+E_{\mathrm{tot}}^{(a)},
+E_{\mathrm{exp}}^{(a)},
+\mathcal{R}_{m}^{(a)}
+\right).
+$$
+The rows respectively record constituent architrino inventory, retained Noether braid or nested shell braid branch identity, binary frequency/radius data at rest, axial geometry, exposure quotient, total internal energy, exposed observer-facing energy, and the resulting mass residual. This vector is priority-only until branch-derived rows exist; it prevents PDG labels from standing in for the geometry that must be derived.
+
 ## QFT / Gauge / Amplitudes Comparison Scaffolds
 
 Tier 2 source mining adds comparison scaffolds from independent QFT, gauge, scattering-amplitude, positive-geometry, and topological-field sources. These are not substrate ontology. They are theorem targets for the observer-level Standard Model recovery map.

@@ -53,6 +53,27 @@ $$
 
 The proof burden is to derive or constrain the signs, range, and saturation behavior of these terms from hadronic assembly geometry, meson-like corridor formation, and local Noether sea polarization. It is not enough to borrow the nuclear-force shape and relabel it.
 
+## Reaction-Provenance Worked Example
+
+Pu-238 radioisotope power is a useful downstream worked example once the alpha-channel and heat-channel rows are ready. The target is not a new gate; it is a concrete provenance exercise:
+
+$$
+\Theta_{\mathrm{Pu238\to RTG}}
+=
+\left(
+\mathcal{A}_{\mathrm{Pu238}},
+\mathcal{A}_{\alpha},
+\mathcal{A}_{\mathrm{U234}},
+\mathcal{R}_{\mathrm{recoil}},
+\mathcal{H}_{\mathrm{heat}},
+\mathcal{S}_{\gamma},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}},
+\mathcal{H}_{\mathrm{path}}
+\right).
+$$
+
+The row asks the nuclear packet to trace the parent assembly, alpha output, daughter assembly, recoil, thermalization channel, any photon rows, conserved ledger, and path-history provenance through one familiar engineering-facing reaction chain. It should be attempted only after the hadronic and alpha-like cluster rows can supply a credible branch record.
+
 ## Promotion Targets
 
 | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ file | Promotion condition |

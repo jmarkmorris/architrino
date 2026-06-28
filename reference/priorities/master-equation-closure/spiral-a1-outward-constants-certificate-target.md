@@ -296,6 +296,14 @@ A sampled finite-collar smoke may be cited only as diagnostic context for this
 object. It cannot supply any field above unless the value is outward-certified
 on the declared boxes.
 
+Current attempt artifact:
+[spiral-a1-admissible-profile-bounds.v0.json](spiral-a1-admissible-profile-bounds.v0.json)
+records the first fail-closed packet for $b=0.001$. It deliberately leaves the
+row identity, outward $q_{\min},q_{\max},H_b$, transported $Q_p$ bounds, and
+$E_Q^+(b)$ absent, so the current first failure remains
+`admissible_profile_bounds`. The reduced smoke result is carried only as
+diagnostic context with `used_as_certificate=false`.
+
 ## Advancement Decision
 
 This packet materially narrows `a1_outward_constants_handoff` from "make the

@@ -108,6 +108,20 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
   +\mathbf{J}_{\mathrm{out}},
   $$
   and the release selector must state which terms drain into jets, winds, diffuse release, or reabsorption.
+- If the packed region is modeled as layered rather than homogeneous, the angular-momentum row must remain layer resolved:
+  $$
+  \mathbf{J}_{\Omega}
+  =
+  \sum_{\ell}
+  \left(
+  \mathbf{J}_{\ell,\mathrm{bulk}}
+  +\mathbf{J}_{\ell,\mathrm{shear}}
+  +\mathbf{J}_{\ell,\mathrm{defect}}
+  \right)
+  +\mathbf{J}_{\mathrm{sea}}
+  +\mathbf{J}_{\mathrm{out}}.
+  $$
+  A jet, diffuse release, or dark-sector escape branch that drains angular momentum from only one layer must identify that layer and its transition state rather than using a single compact-object spin label.
 - Add a many-body delayed-dynamics simulation target for packed interiors. The first useful target is not another isolated binary; it is an ensemble over $N\gg1$ architrinos or reduced Noether braid cells with delayed causal wakes, finite $c_f$, density control, defect creation, surface/interface rows, and a closed $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger. The minimal parameter record is
   $$
   \Theta_{\mathrm{pack\text{-}sim}}
@@ -142,6 +156,35 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
 - Test any proposed horizon identification by checking that the induced identified ensemble preserves exterior readout distributions, $\mathcal{R}_{H,\mathrm{bal}}$, Page-compatible release, finite boundary data, and the standard Hawking-temperature normalization within declared tolerances.
 - Decide the release-channel selection between jets, diffuse outflow, dark-sector escape, and candidate dark-sector photon-like modes.
 - Make the release selector condition-facing. At minimum it should record spin, net polarity/charge balance, inflow rate, ingestion spikes, merger history, existing packed-core size, core growth or shrinkage, interface defect population, surrounding Noether sea loading, jetting rate, and layer-transition state. A branch that changes the selected channel without changing one of these source conditions has introduced an untracked switch.
+- Make the selector time dependent across launch, sustain, propagation, and shutoff. A minimal selector packet is
+  $$
+  \Theta_{\mathrm{rel}}(t)
+  =
+  \left(
+  M,\mathbf{J},Q_{\mathrm{eff}},
+  \dot M_{\mathrm{in}},
+  \delta I_{\mathrm{spike}},
+  H_{\mathrm{merge}},
+  \mathcal{D}_{\mathrm{defect}},
+  \mathcal{A}_{\mathrm{NS}},
+  \mathcal{L}_{\mathrm{layer}},
+  \Xi_{\mathrm{env}}
+  \right),
+  $$
+  with $\Pi_{\mathrm{rel}}[\Theta_{\mathrm{rel}}(t)]$ returning the active channel, outflow rates, and shutoff condition. A branch that explains launch but not maintenance or termination has not closed the release selector.
+- Track apparent compact-object mass as an observer-facing ledger rather than as a primitive isolated scalar. Over a resolved window,
+  $$
+  \Delta\!\left(M_{\mathrm{app}}c_0^2\right)
+  =
+  \Delta E_{\mathrm{in}}
+  +\Delta E_{\mathrm{shield\to exp}}
+  -\Delta E_{\mathrm{exp\to shield}}
+  -\Delta E_{\mathrm{out,esc}}
+  +\Delta E_{\mathrm{sea,emb}}
+  -\Delta E_{\mathrm{reabs,out}}
+  +R_{M,\mathrm{app}}.
+  $$
+  The signs are observer-facing: they ask what an exterior reconstruction counts as compact-source mass after shielding/exposure change, escaped release, reabsorbed outbound content, and embedding Noether sea loading are declared. This row is a diagnostic for shrinkage, growth, or coupling claims, not a license for arbitrary mass drift.
 - For any emitted Noether sea assembly or assembly fragment, retain a release-variable packet before routing the branch into visible, dark-sector, or reabsorbed channels:
   $$
   \Theta_{\mathrm{emit}}^{(c)}
@@ -173,6 +216,19 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
   $$
   The ladder is a reporting target, not a claim that every route realizes every state. Each occupied step must carry architrino inventory, active causal-root ledgers, $E,\mathbf{p},\mathbf{J}$ balance, shielding/exposure change, Noether sea update, and the release selector that moved the record to the next step. A step may be skipped only with an explicit null route, for example direct photon-channel release, dark-sector escape, remnant capture, or reabsorption by the horizon-interface ensemble. This prevents strong-field recycling claims from jumping directly from a packed interior to a visible jet or CMB-facing output without naming the assembly reconstitution path.
 - State the Page-curve-compatible information-preservation requirement for those release channels.
+- Separate information claims into conserved ledgers, accessible observer records, interior coarse-graining, and release accounting before making any destruction or preservation claim:
+  $$
+  \mathcal{I}_{H}
+  =
+  \left(
+  \mathcal{L}_{\mathrm{cons}},
+  \mathcal{B}_{H},
+  \mathcal{C}_{\mathrm{coarse}},
+  \mathcal{L}_{\mathrm{out}},
+  R_{\mathrm{Page}}
+  \right).
+  $$
+  Here $\mathcal{L}_{\mathrm{cons}}$ carries conserved energy, momentum, angular momentum, polarity, and identity-routing rows; $\mathcal{B}_{H}$ carries horizon-interface labels; $\mathcal{C}_{\mathrm{coarse}}$ states the declared interior coarse-graining; $\mathcal{L}_{\mathrm{out}}$ carries release records; and $R_{\mathrm{Page}}$ is the Page-compatible recovery residual. A small interior coarse-grained state count is not by itself global information destruction.
 - Extract at least one discriminating observable relative to GR-like strong-field behavior.
 
 ### High-Energy Source/Sink Taxonomy

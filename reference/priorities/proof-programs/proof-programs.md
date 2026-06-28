@@ -51,7 +51,11 @@ accepts 0 / 12 slots for validation, constructs 0 rule-kernel derivation
 payloads, consumes 0 rows, keeps `preledger_pass=false`, keeps
 `updates_live_ledger=false`, and authorizes no branch chart. The next live
 proof-program action is to test one candidate external schema against the
-`Sigma_hf_01` separator slot before the 11 row slots are considered.
+`Sigma_hf_01` separator slot before the 11 row slots are considered. The
+[Sigma_hf_01 external schema candidate intake checklist](./breather-proof/certificate/sigma_hf_01_external_schema_candidate_intake_checklist.md)
+now records the current fail-closed separator-slot state: the internal locks are
+fixed, `candidate_external_schema_ref` is absent, and 0 / 8 required predicate
+fields are present.
 
 ## Task Queue
 

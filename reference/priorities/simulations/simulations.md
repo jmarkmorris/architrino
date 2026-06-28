@@ -343,6 +343,26 @@ Minimum non-fixture `accepted_transition_source` object:
 | `negative_control_ref` | Fail-closed control showing mismatched root or conservation hashes reject. | absent |
 | `candidate_h_recovery_vote` | May be emitted only after every row above binds on the same retained branch record. | not authorized |
 
+Current source-binding report object: `field_speed_action_self_hit_scan_source_binding_report/v0`.
+
+| Field | Current reading | Verdict |
+| --- | --- | --- |
+| `transition_source_ref` | `scripts/nested-shell-braid/fixtures/action-increment-packet/` | fixture-only; not a live source |
+| `branch_certificate_ref` | absent | first blocker for branch ownership |
+| `action_row_hash` | absent for a non-fixture row | `source_row_binding_open` |
+| `root_ledger_hash` | absent for live binding | `source_row_binding_open` |
+| `conservation_pullback_hash` | absent for live binding | `source_row_binding_open` |
+| `source_verdict` | fixture rows have `status=accepted`, but `promotion_status=fixture-shape-only` | `diagnostic_rejected_endpoint_source` for closure purposes |
+| `negative_control_ref` | absent | fail-closed hash mismatch control still required |
+| `candidate_h_recovery_vote` | not authorized | no simulation vote |
+
+The fixture packet and blocked source-contract fixture can test parser and
+failure-code behavior, but they do not populate the source-binding report
+object. The first executable closure move is a non-fixture action-increment row
+with a retained branch certificate, matching active-root and
+conservation-pullback hashes, and a failing negative control for mismatched
+hashes.
+
 The remaining promotion blockers are executable, not editorial: no current artifact has shown same-row active-root identity under refinement, a positive Jacobian floor through the approach-to-$c_f$ scan, bounded particle-plus-wake energy on the retained branch rows, delayed-Noether status above `diagnostic-only`, stable one-cluster $\Delta I_{\mathrm{ME}}$ behavior, and a failing negative control with content hashes.
 
 ## Simulation Campaign Object

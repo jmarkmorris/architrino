@@ -573,6 +573,27 @@ Any replay missing one row in this table remains
 `finite_branch_evidence_missing`, even if its algebraic pressure residual is
 small or its empirical trend is suggestive.
 
+### Current Fail-Closed Branch-Intake Record
+
+The current branch-intake record is diagnostic-only. It preserves the fields
+that a future retained pressure row must populate without allowing current A0,
+Hessian, Fe/Cr, or Ni/Co material to stand in for accepted branch evidence.
+
+| Field | Current source reading | Verdict |
+| --- | --- | --- |
+| `branch_id` | A0 rest diagnostic and toy rows only | absent for retained pressure row |
+| `accepted_history_segment_id` | no accepted finite pressure-row history segment | `finite_branch_evidence_missing` |
+| `quotient_chart_id` | no branch-local exposure quotient chart for the same row | absent |
+| `residual_status` | algebraic or toy residuals only | diagnostic-only |
+| `gap_or_stability_status` | no same-row positive branch-gap or stability status | absent |
+| `eta_ladder_status` | no same-row eta-ladder persistence record | absent |
+| `exposure_source_record` | $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, and $\mathcal{N}_{\mathrm{tf},ab}(A)$ not branch-emitted on one row | absent |
+| `pressure_response_record` | $\partial_PM_0^{\mathrm{src}}(A)$, $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, and $m_S$ not branch-emitted on one row | absent |
+
+This record advances the branch-intake surface only by making the same-row
+missing fields explicit. It does not authorize an empirical mass response,
+pressure coefficient, or retained branch claim.
+
 The first empirical or toy replay boundary is therefore narrow: a toy row may populate $\Pi$, $A$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, and masked $\mathcal{V}_{P,A}$ to exercise the algebra, but it must mark `pending_source_descent` until an accepted branch emits $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, $\mathcal{N}_{\mathrm{tf},ab}(A)$, and the derivative $\partial_P M_0^{\mathrm{src}}(A)$. A real Fe/Cr or Ni/Co replay can at most upgrade the status from `tf_bound_only` to a retained-span test unless the same branch-side source record is present.
 
 The pressure row also fixes the response-visible trace-free span for this specialization. At first order the pressure-visible span is contained in

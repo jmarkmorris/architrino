@@ -389,6 +389,8 @@ P_{\mathrm{glob}}(\theta_1)\ne P_{\mathrm{glob}}(\theta_2)
 $$
 A claim about a unique global chronology, asymptotic de Sitter state, global topology, or one-time origin is promoted only when this ambiguity indicator vanishes or when a native derivation selects that claim without using the fitted data products as the selection rule. Otherwise the corpus should retain the observational data product and classify the global statement as an effective reconstruction.
 
+Flatness constraints require the same layer discipline. CMB, BAO, lensing, and large-scale-structure fits may strongly constrain the effective curvature parameter used in observer reconstructions, but that is not by itself a proof of global topology or of the Euclidean void postulate. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Euclidean void is an ontological background claim, while $\Omega_k$ or any fitted curvature variable is a data-product coordinate exported by the effective metric and inference pipeline. A successful cosmology must therefore recover near-flat observer data without converting the data product into a topology proof.
+
 ## Interface Variables (Predicted API Surface)
 
 Each observational component exposes explicit interface variables for cross-theory mapping:

@@ -529,6 +529,25 @@ unless every row below is emitted on one bounded-speed ledger id.
 | `normal_krawczyk_row` | Krawczyk or equivalent proof-ball budget for the normal reconstruction unknowns. | absent |
 | `candidate_status` | `bounded-speed-normal-reconstruction-candidate` with `retention=not_retained` and `retained_branch=false`. | `normal-candidate-missing` |
 
+Current candidate-source boundary:
+
+| Source row | Current reading | Consumption rule |
+| --- | --- | --- |
+| Frozen fixed-speed root ledger | certified only for rigid octahedral fixed-speed roots; `retained_branch=false` | provenance only |
+| Frozen speed-ODE diagnostic | fails `sampled-speed-ode-zero-mean-failed` with no bounded-speed live ledger | provenance only |
+| Zero-mean correction intake schema | can accept supplied normal-candidate packets | schema support only |
+| Normal-reconstruction handoff | not currently emitted on one bounded-speed ledger id with force and consumer checksums | first missing prerequisite |
+| Supplied normal candidate | absent | keeps `normal-candidate-missing` |
+| Downstream action/stability rows | not reached | keep `retention=not_retained` and `retained_branch=false` |
+
+The smallest durable artifact is one supplied same-ledger normal candidate that
+matches the handoff's bounded-speed ledger id, force checksum, and consumer
+checksum, then closes normal residual, tangent holonomy, position closure,
+unit-tangent, support margin, noncollision, root persistence, and normal
+Krawczyk rows. Even if that artifact passes, it may only set
+`bounded-speed-normal-reconstruction-candidate`; it still does not retain a
+branch or certify bounded-speed live-ledger closure.
+
 Therefore the after-normal action/stability consumer must not attempt
 $\Gamma_B^\nu$, action curl, Noether/event exchange, tail/refinement,
 stability, observer-export eligibility, or coupled fixed-point consumption yet.

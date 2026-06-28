@@ -366,6 +366,26 @@ $\widehat{\mathcal{R}}_{\mathrm{SI}}^{(q)}$. It does not by itself accept
 Photon Gate A, close the Lorentz or gravitational-wave rows, or authorize
 observer export.
 
+Current status-only intake:
+
+| Intake field | Current source reading | Certificate verdict |
+| --- | --- | --- |
+| `source_root_ledger_ref` | `neutral_braid_octahedral_root_ledger.certified.v1` | source-only, `retained_branch=false` |
+| `rest_seed_ref` | A0 one-period rest diagnostic | fail-closed rest-only seed |
+| `branch_certificate_ref` | absent | `blocked_pending_accepted_branch_chart` |
+| `moving_continuation_ref` | no nonzero-drift band on the same branch chart | `blocked_pending_nonzero_drift_band` |
+| `root_boundary_ref` | no same active-root boundary for limiting speed | `blocked_pending_gap_or_root_index_boundary` |
+| `deformation_generator_ref` | no single $K_q$ shared by envelope and clock rows | `blocked_pending_single_K_q` |
+| `common_speed_record_ref` | not reached because branch identity is absent | `blocked_unreached_branch_identity_absent` |
+| `signal_sector_refs` | not reached because branch identity is absent | `blocked_unreached_branch_identity_absent` |
+| `event_ledger_ref` | no same-window $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$ replay | `event.ledger_residual` |
+| `certificate_status` | status shell only | `candidate_status_shell_only_not_population` |
+
+This table allows existing rest and rigid-root evidence to be cited without
+populating `moving_retained_branch_certificate/v0`. Common-speed, photon,
+Lorentz, gravitational-wave, and observer-export rows remain blocked until a
+same-ledger moving branch exists.
+
 ## Promotion Decision
 
 - The compact theorem target is surfaced in [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), with conceptual support in [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry) and empirical speed gates in [Constraint Ledger](../../../content/markdown/aaa/validation/constraint-ledger.md).

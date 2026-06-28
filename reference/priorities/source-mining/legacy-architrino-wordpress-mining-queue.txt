@@ -194,31 +194,31 @@
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/09/07/new-ideas-on-galaxy-dynamics/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/27/can-supermassive-black-holes-explain-galaxy-rotation-curves/
 # COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/12/a-new-model-for-bl-lacs-with-help-from-planck-and-arp/
-https://architrino.wordpress.com/2019/06/15/does-a-black-hole-shrink-while-jetting-planck-plasma/
-https://architrino.wordpress.com/2020/07/09/npqg-prediction-of-smbh-jet-inflation-validated/
-https://architrino.wordpress.com/2023/03/14/do-black-holes-emit-spacetime-aether/
-https://architrino.wordpress.com/2022/07/16/reasoning-on-the-universes-shape/
-https://architrino.wordpress.com/2019/06/29/nature-destroys-information/
-https://architrino.wordpress.com/2018/01/12/how-i-envision-black-holes/
-https://architrino.wordpress.com/2021/01/14/npqg-january-14-2021-tweaking-physicsists/
-https://architrino.wordpress.com/2020/02/07/the-joy-of-x-priya-natarajan/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/15/does-a-black-hole-shrink-while-jetting-planck-plasma/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/07/09/npqg-prediction-of-smbh-jet-inflation-validated/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/03/14/do-black-holes-emit-spacetime-aether/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/07/16/reasoning-on-the-universes-shape/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/06/29/nature-destroys-information/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2018/01/12/how-i-envision-black-holes/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/01/14/npqg-january-14-2021-tweaking-physicsists/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/02/07/the-joy-of-x-priya-natarajan/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/10/12/the-false-narratives-of-physics-and-cosmology/
-https://architrino.wordpress.com/2019/10/11/will-earths-intelligent-life-spread-or-be-snuffed/
-https://architrino.wordpress.com/2021/12/06/bohr-and-heisenberg-plasma-ten/
-https://architrino.wordpress.com/2022/06/07/radioactivity-and-the-drake-equation/
-https://architrino.wordpress.com/2024/10/27/ai-needs-a-symmetry-breaking-point/
-https://architrino.wordpress.com/2023/08/02/in-the-midst-of-experiment-1-phase-1/
-https://architrino.wordpress.com/2023/08/08/fermion-architecture-animation/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2019/10/11/will-earths-intelligent-life-spread-or-be-snuffed/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/12/06/bohr-and-heisenberg-plasma-ten/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/06/07/radioactivity-and-the-drake-equation/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2024/10/27/ai-needs-a-symmetry-breaking-point/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/08/02/in-the-midst-of-experiment-1-phase-1/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/08/08/fermion-architecture-animation/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/10/11/are-we-ai/
-https://architrino.wordpress.com/2022/01/19/dear-pdg-lets-talk/
-https://architrino.wordpress.com/2021/09/11/dear-particle-data-group/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/01/19/dear-pdg-lets-talk/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2021/09/11/dear-particle-data-group/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/01/19/how-will-point-charge-provenance-benefit-science-and-technology/
-https://architrino.wordpress.com/2023/05/06/depicting-assemblies-and-reactions-as-paths/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2023/05/06/depicting-assemblies-and-reactions-as-paths/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2022/04/17/what-is-next-for-npqg/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/07/19/daydreaming-about-an-npqg-research-institute/
-https://architrino.wordpress.com/2020/08/11/planck-shell-memory-and-computation/
-https://architrino.wordpress.com/2020/02/22/predictions-of-npqg/
-https://architrino.wordpress.com/2022/09/07/innovation-contest/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/08/11/planck-shell-memory-and-computation/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2020/02/22/predictions-of-npqg/
+# COMPLETE 2026-06-28 https://architrino.wordpress.com/2022/09/07/innovation-contest/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2020/07/15/t-3-2-1-npqg-liftoff/
 # COMPLETE 2026-06-27 https://architrino.wordpress.com/2021/01/05/npqg-january-5-2021-lets-get-on-with-it/
 https://architrino.wordpress.com/2021/05/08/nanosheet-technology/

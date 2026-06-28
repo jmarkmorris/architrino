@@ -260,6 +260,21 @@ Allowed deep-index families:
 
 Deep indices may be built after chunks reach warm or cold storage. They must never become the authoritative path record. A deep-index miss can reject a fast query path only when the index declares a complete coverage guarantee for that query family; otherwise it must fall back to authoritative chunk replay.
 
+Visualization output should be a projection of the path-history stream, not a second source of truth. A display packet may contain path trails, causal wake segments, speed-regime color bands, reaction labels, logarithmic radius labels, and event-density overlays, but it must keep references to authoritative stream rows:
+$$
+\mathcal{V}_{\mathrm{path}}
+=
+\Pi_{\mathrm{viz}}
+\left(
+\mathcal{H}_{\mathrm{path}},
+\mathcal{H}_{\mathrm{wake}},
+\mathcal{E}_{\mathrm{event}},
+\mathcal{S}_{\mathrm{speed}},
+\mathcal{L}_{\mathrm{label}}
+\right).
+$$
+Here $\Pi_{\mathrm{viz}}$ is a lossy projection for human inspection. It may support mining, debugging, and animation, but replay, conservation checks, and promotion evidence must still point back to $\mathcal{H}_{\mathrm{path}}$ and the committed chunk ids.
+
 ## Fast Spill
 
 Fast spill is the write path from hot active history to durable chunk bytes. It must support long runs without blocking the solver on per-row JSON, per-row allocation, or full-run rewrites.
