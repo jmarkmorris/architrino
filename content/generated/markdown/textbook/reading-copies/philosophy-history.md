@@ -24,7 +24,7 @@ Do not use this lane as the primary home for:
 
 ### Reading Order
 
-Start with [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) for a compact comparison of inherited frameworks. Use [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md) when a reader needs to know which inherited concepts are carried forward as mathematics, benchmarks, effective limits, or directional comparison pressure rather than as ontology. Use [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md) when a concept needs explicit stack placement and relation-type classification. Use [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) when a reader needs the philosophical distinction between primitive substance, causal wake structure, Euclidean void, Noether sea, and effective description. Use [Geometry and Ontology](../../../../markdown/aaa/philosophy-history/geometry-and-ontology.md) when a reader needs the distinction between fundamental Euclidean geometry, generated causal and assembly geometry, and recovered effective metric geometry. Use [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), and [Historical Context and Missed Opportunities](../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) to understand why closure targets matter. Use [The Treasure Physics Overlooked](../../../../markdown/aaa/philosophy-history/treasure-physics-overlooked.md) for a retrospective root-cause account of why the deeper architecture was missed. Use [Philosophy of Science](../../../../markdown/aaa/philosophy-history/philosophy-of-science.md), [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md), and [Agency and Internal Causation](../../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md) for methodological and interpretive discipline.
+Start with [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) for a compact comparison of inherited frameworks. Use [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md) when a reader needs to know which inherited concepts are carried forward as mathematics, benchmarks, effective limits, or directional comparison pressure rather than as ontology. Use [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md) when a concept needs explicit stack placement and relation-type classification. Use [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) when a reader needs the philosophical distinction between primitive substance, causal wake structure, Euclidean void, Noether sea, and effective description. Use [Geometry and Ontology](../../../../markdown/aaa/philosophy-history/geometry-and-ontology.md) when a reader needs the distinction between fundamental Euclidean geometry, generated causal and assembly geometry, and recovered effective metric geometry. Use [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), and [Historical Context and Missed Opportunities](../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) to understand why closure targets matter. Use [$\mathbb{A}\mathbb{A}\mathbb{A}$ Journey](../../../../markdown/aaa/philosophy-history/aaa-journey.md) for the internal history of how the binary, Noether braid, axial layer, fermion-generation, strong-sector, Noether sea, and causal-wake motifs assembled into the current proof program. Use [The Treasure Physics Overlooked](../../../../markdown/aaa/philosophy-history/treasure-physics-overlooked.md) for a retrospective root-cause account of why the deeper architecture was missed. Use [Philosophy of Science](../../../../markdown/aaa/philosophy-history/philosophy-of-science.md), [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md), and [Agency and Internal Causation](../../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md) for methodological and interpretive discipline.
 
 ### Local Discipline
 
@@ -2098,6 +2098,8 @@ One compact way to read this chapter is as a set of ontological relocations. The
 
 A parsimony test belongs at this level. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not become simpler merely by rejecting inherited theories; it becomes simpler only if one substrate architecture recovers many of their successful higher-level equations, conventions, and fitted parameters as projections of a smaller ledger. The Occam-style claim is therefore a parameter-burden claim: anthropic or fine-tuning explanations lose force only where masses, couplings, redshift variables, effective metric terms, and statistical rules are derived from common assembly and Noether sea records rather than assigned as unrelated constants.
 
+Computational and graph-rule programs are useful comparison frameworks when they emphasize local update rules, emergent continuum behavior, and observer-level geometry from lower-level records. The $\mathbb{A}\mathbb{A}\mathbb{A}$ difference is carrier discipline: the rule system must be carried by architrino worldlines, causal-wake source histories, event ledgers, and Noether sea response rather than by an abstract graph with no physical transceiver. Such programs are therefore comparison scaffolds, not substrate ontology.
+
 ##### Four Interactions As Sector Projections
 
 The same relocation discipline applies to the inherited four-interaction language. Electromagnetism, weak interaction, strong interaction, and gravity are not four primitive substances in $\mathbb{A}\mathbb{A}\mathbb{A}$; they are observer-level sectors that project different parts of the assembly, causal-wake, event-ledger, and Noether sea record. The unification target is therefore not to erase their differences, but to derive each effective sector from one substrate architecture without giving any sector an independent hidden ontology.
@@ -2201,6 +2203,9 @@ $$
 The standard electron-positron annihilation example is therefore a channel reconfiguration, not literal disappearance into energy. A closed event account would name the incoming electron and positron assemblies, the outgoing photon-channel packets, any recoil or remnant terms, and the energy, momentum, polarity, and medium-update terms that make the transformation ledger close.
 
 **What Still Works:** Quantum Field Theory (QFT) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model. Its precision comparisons with experiment, renormalized perturbation methods, lattice calculations where applicable, effective actions, and operator language are benchmark successes that any replacement must recover in the regimes where practitioners currently use them. That success does not by itself settle the ontology of continuum fields, vacuum structure, or creation and annihilation operators; it fixes a recovery burden.
+
+The useful reader-facing distinction is that a QFT field label is an effective species grammar over stable record classes, not automatic proof that each field is a substrate entity. Electron, photon, quark, gluon, Higgs, or neutrino fields remain valid operator languages for preparing, propagating, and reconstructing observer-level records. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the deeper question is which assembly association, dissociation, shielding change, source history, and Noether sea response make those record classes stable enough that the field grammar works.
+
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, field operators, vacuum summaries, particle-number changes, symmetries, and couplings are treated as effective descriptors of assembly association, dissociation, normal-mode changes, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
@@ -9188,7 +9193,7 @@ Decoherence is the continuous loss of path-history coherence due to unresolved f
 * **Transition-Record Matrix Recovery:** A Heisenberg-style matrix $\widehat M_\theta$ is admissible only when its entries are recovered as finite-window basin measures for calibrated transition records. The sequence residual $\Delta_{\mathrm{seq}}(A,B;\theta)$ should reproduce order dependence for benchmark noncommuting observables without importing matrix ontology as a primitive layer.
 * **Quantization-Domain Residual:** In any regime claimed to recover quantum operators from a classical or coarse-grained chart, the admissible observable set $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ and residual $\Delta_{\mathrm{qmap}}$ must be reported. A global bracket-to-commutator claim over all smooth functions is rejected by the no-go ledger rather than treated as an open $\mathbb{A}\mathbb{A}\mathbb{A}$ obligation.
 * **Observable-Domain Residual:** When two effective descriptions are claimed to be equivalent, the declared observable set and residual $\Delta_{\mathrm{obs}}$ must be reported. A small value licenses only record-channel equivalence on that apparatus window, not a substrate claim about auxiliary dimensions or continuum field objects.
-* **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with the legacy physical density variable $\rho_{\text{NS}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
+* **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with the physical Noether braid density variable $\rho_{\text{NS}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ##### Statistical Measure and the Born Rule Emergence
 While the trajectory of a single nested shell braid under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether sea.
@@ -10364,7 +10369,7 @@ $$
 
 provided the active roots stay simple through the regularized transition.
 
-The energy admissibility condition is now explicit. In the first action-angle approximation with no retained wake energy and no residual root-energy term, the source channel must satisfy
+The energy admissibility condition is explicit. In the first action-angle approximation with no retained wake energy and no residual root-energy term, the source channel must satisfy
 
 $$
 \omega_{\text{tx}}
@@ -11057,7 +11062,7 @@ h_{\mathrm{eff}},
 \mathcal{P}
 \right)
 $$
-where $\Lambda_{\text{NS}}$ is the legacy closure label, $\mathcal{A}_{\mathrm{ax}}$ is the axial inventory and axial-frame record, $h_{\mathrm{eff}}$ is the observer-level helicity when a propagation direction is present, and $\mathcal{P}$ is the provenance ledger needed to compare branches. The effective maps must first close as comparison operations:
+where $\Lambda_{\text{NS}}$ is the reduced nested shell braid closure label, $\mathcal{A}_{\mathrm{ax}}$ is the axial inventory and axial-frame record, $h_{\mathrm{eff}}$ is the observer-level helicity when a propagation direction is present, and $\mathcal{P}$ is the provenance ledger needed to compare branches. The effective maps must first close as comparison operations:
 $$
 C_{\mathrm{eff}}^2
 =
@@ -11293,7 +11298,7 @@ $$
 
 subject to the energy, angular-momentum, phase-closure, and root-admissibility equations above. This is the foundation-up version of the quantization question: energy levels are not added as external quantum labels; they are the stable return classes of the delayed nested shell braid geometry.
 
-When the only question is energy-level closure, the schematic integer-and-root ledger above is enough. When the question is spin, ordered-frame chirality, weak chirality, or any broader quantum-number recovery, the branch must instead be tracked by the reduced legacy label $\Lambda_{\text{NS}}$. That label keeps the integer windings, causal-root ledgers, inter-layer phase-lock data, and candidate chirality branch in one proof object. It does not prove the holonomy or chirality claim by definition; it prevents later quantum-number language from floating free of the braid closure data that would have to derive it.
+When the only question is energy-level closure, the schematic integer-and-root ledger above is enough. When the question is spin, ordered-frame chirality, weak chirality, or any broader quantum-number recovery, the branch must instead be tracked by the reduced nested shell braid closure label $\Lambda_{\text{NS}}$. That label keeps the integer windings, causal-root ledgers, inter-layer phase-lock data, and candidate chirality branch in one proof object. It does not prove the holonomy or chirality claim by definition; it prevents later quantum-number language from floating free of the braid closure data that would have to derive it.
 
 The candidate nested shell braid closure labels are therefore:
 
@@ -13735,7 +13740,7 @@ $$
 
 If $\Delta_{\mathrm{prod}}$ vanishes in the completed record table, the expression has reduced to an ordinary measurement-independent Bell-local hidden-variable integral and the Bell gate fails.
 
-The threshold-pullback warning is now sharp. A deterministic one-wing basin kernel can reproduce its local probability law after pushing forward an invariant record-window measure, but two independent one-wing kernels over a setting-independent source measure imply the usual CHSH bound. If
+The threshold-pullback warning is sharp. A deterministic one-wing basin kernel can reproduce its local probability law after pushing forward an invariant record-window measure, but two independent one-wing kernels over a setting-independent source measure imply the usual CHSH bound. If
 
 $$
 K_{ab}^{AB}
@@ -15564,7 +15569,7 @@ then the bridge fails. The theory must not tune the ruler, clock, momentum, and 
 
 ##### Status
 
-Return-Cycle Lorentz Quantization is a derivation and simulation target, not a completed theorem. The current corpus has the closed-return axis-ratio derivation, the geometry projection, and the all-layer branch ledger scaffold. The next closure step is to solve an explicit translating branch family from the master delayed law, extract $\mathcal{L}_{\mathrm{root}}^{(q)}(v)$, and verify that the same branch gives the clock factor, ruler factor, and two-way leakage bound.
+Return-Cycle Lorentz Quantization is a derivation and simulation target, not a completed theorem. The corpus has the closed-return axis-ratio derivation, the geometry projection, and the all-layer branch ledger scaffold. The next closure step is to solve an explicit translating branch family from the master delayed law, extract $\mathcal{L}_{\mathrm{root}}^{(q)}(v)$, and verify that the same branch gives the clock factor, ruler factor, and two-way leakage bound.
 
 If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether braid geometry.
 
@@ -15684,7 +15689,7 @@ For a Noether sea comparison to become superfluid-like rather than merely medium
 
 | Required object | Mathematical form to look for | What it would buy |
 | --- | --- | --- |
-| Order parameter | A native $\Psi_{\text{sea}}=\sqrt{\rho_s}e^{i\theta}$ analogue or a replacement with the same phase/stiffness role. | Coherence is no longer just prose; it has phase and amplitude data. |
+| Order parameter | A native $\Psi_{\text{sea}}=\sqrt{\rho_s}e^{i\theta}$ analogue or a replacement with the same phase/stiffness role. | Coherence has phase and amplitude data. |
 | Excitation spectrum | A phonon-like branch $\omega(k)$, roton-like gap, or other collective-mode dispersion. | Transport and radiation comparisons become testable. |
 | Critical threshold | A Landau-like bound $v_c=\min_k \omega(k)/k$ or a native residual threshold. | "No drag below threshold" becomes a derivable condition rather than an analogy. |
 | Two-component split | A superfluid/normal fraction analogue or phase-mixture model. | Environment-dependent behavior can differ between galaxies, clusters, and cosmology without changing ontology. |
@@ -16250,7 +16255,7 @@ $$
 \text{weak-reaction provenance}
 $$
 
-This is stronger than a loose analogy among chapters, but it is still a derivation target. The current accepted synthesis is that weak `V-A` selection, flavor mixing, and weak-corridor bookkeeping are three readouts of the same exposure problem. To close the route, the corpus needs one operator-level model that does four jobs without changing definitions between them:
+This is stronger than a loose analogy among chapters, but it is still a derivation target. The accepted synthesis is that weak `V-A` selection, flavor mixing, and weak-corridor bookkeeping are three readouts of the same exposure problem. To close the route, the corpus needs one operator-level model that does four jobs without changing definitions between them:
 
 - identify which polar sites are exposed to a charged corridor for a moving assembly,
 - suppress right-handed charged-current docking in the same geometry that allows left-handed docking,
@@ -16689,7 +16694,7 @@ so once $(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert)$ are cali
 - weak-coupling triad & shielding definitions: [assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md) (Sections on weak isospin, generation hierarchy).
 - Gauge-boson couplings: [assemblies/bosons/electroweak-bosons.md](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) (W/Z corridors acting on the weak-coupling triad).
 
-_Status: accepted closure route, not a completed derivation. The chapter now treats exposure, overlap, and holonomy as one weak-sector proof target. Provenance language below is illustrative only until a reaction ledger supplies the participating braids, architrino inventory, corridor payload, and event residuals._
+_Status: accepted closure route, not a completed derivation. The chapter treats exposure, overlap, and holonomy as one weak-sector proof target. Provenance language below is illustrative only until a reaction ledger supplies the participating braids, architrino inventory, corridor payload, and event residuals._
 
 ##### Future Capability Illustration: Weak-Reaction Provenance
 
@@ -17499,13 +17504,13 @@ Template conformance test protocol for each episode section:
 4. Confirm `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ is classified as direct, partial, cautionary, or open.
 5. Confirm a concrete closure criterion is stated under `What Would Count As Recovery`.
 
-### Timeline of Near Misses
+#### Timeline of Near Misses
 
-#### Overview
+##### Overview
 
 **Episode:** Timeline of Near Misses. **Short Name:** Near-Miss Timeline. **Period:** 1687 through the 2020s across mechanics, electrodynamics, relativity, quantum theory, field theory, and cosmology. The near-miss thesis of this section is synthetic rather than local: the history of physics contains repeated moments where substrate-first or assembly-first interpretation was available in principle, but a different narrative lock-in achieved dominance. The point of the timeline is not to homogenize those episodes. It is to show that the same interpretive pattern recurs under different technical conditions.
 
-#### Where The Opening Appeared
+##### Where The Opening Appeared
 
 What physics already had at each moment was never trivial. Newtonian mechanics supplied exact time and lawful dynamics. Maxwellian electrodynamics supplied finite propagation and wave structure. Lorentz and the Michelson-Morley era supplied transformation structure compatible with emergent invariance. General relativity supplied metric closure of gravitation. Quantum theory supplied rich statistics with unresolved outcome structure. Renormalized field theory supplied predictive control with ultraviolet discomfort. Precision cosmology supplied long-baseline observation with increasingly layered inference.
 
@@ -17532,27 +17537,27 @@ Another recurring pattern is failure to revisit earlier assumption sets after la
 | 2000s-2020s (Dark matter null detections vs gravity evidence) | Strong gravitational evidence, weak direct particle confirmation | Neutral assembly sectors + medium response hybrid possibilities | WIMP-first then piecemeal model proliferation delayed unified substrate reinterpretation |
 | 2010s-2020s (Hubble and $S_8$ tensions) | Persistent background-vs-growth mismatches | One medium-history explanation for both expansion and growth channels | Tensions were often treated as separate parameter patches instead of shared ontology failures |
 
-#### What Current Physics Still Gets Right
+##### What Current Physics Still Gets Right
 
 What still works across the timeline is substantial. The victorious interpretations were often locally rational because they enabled calculation, unification, and empirical progress. Special relativity simplified kinematics and disciplined inertial reasoning. General relativity delivered precise gravitational predictions. Copenhagen-style quantum practice stabilized a workable formal culture. Renormalization allowed quantum field theory to become one of the most successful predictive structures in science. Precision cosmology organized immense observational archives into tractable models.
 
-#### Where Interpretation Locked In
+##### Where Interpretation Locked In
 
 The recurring lock-in mechanism was not stupidity or conspiracy. It was explanatory triage under real pressure. Physics typically favored the interpretation that preserved computation, reduced visible metaphysical burden, and integrated fastest with active research practice. When an unobservable substrate and an elegant effective principle competed, the effective principle usually won because it was cleaner, more portable, and easier to mathematize.
 
-#### What Was Left Unfinished
+##### What Was Left Unfinished
 
 What was occluded was not a finished architrino theory waiting to be discovered. What was occluded was the willingness to keep the substrate question open and active. Once effective variables were promoted to ontology, the burden of proof for deeper constitutive interpretation became culturally much heavier. The unfinished residue is therefore historical process guidance: strong formal success can close inquiry around the wrong layer.
 
-#### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+##### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly supportive** at the level of pattern recognition. Transition relevance is high because the timeline shows that repeated local rationality can still produce long-term ontological lock-in. The lesson is not that history guarantees the architrino view. It is that history repeatedly rewarded formal closure before constitutive closure.
 
-#### Recovery Target
+##### Recovery Target
 
 The long-term relevance of this section is as permanent process guidance. Recovery would consist in reopening these episodes with modern constraints and asking, case by case, whether a substrate-first reinterpretation can now do empirical work that earlier versions could not. The timeline is justified only if it sharpens present derivation targets rather than serving as retrospective mythology.
 
-#### Compositeness Programs as Contrast, Not Precursor
+##### Compositeness Programs as Contrast, Not Precursor
 
 Another historical pattern worth naming explicitly is the recurring attempt to replace Standard Model finality with some deeper compositeness or reductionist layer. Preon and rishon models, early quark-lepton compositeness proposals, technicolor, extended or walking technicolor, composite-Higgs programs, partial compositeness, top-condensation ideas, and topological braid-style schemes all belong to that broad family. Their historical importance is real, but it is mostly historical and contrastive rather than directly preparatory for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
@@ -19719,7 +19724,7 @@ But parallels are not identities. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not grou
 
 The strongest comparative overlap lies in traditions that allow beginningless or cyclic order rather than one-time creation. Here Hinduism, Buddhism, and Daoism provide imaginative precedents for a cosmos that does not need a singular creator event. Still, these traditions usually tie such views to metaphysical or soteriological claims that a scientific theory must not inherit uncritically.
 
-Religious origin and end-state images are useful only at this comparative level. A mythic descent into heat, ascent into cold heaven, renewal after death, or repeated world-cycle can help a reader notice why source/release history, recycling, and open-ended transformation are familiar narrative patterns. It does not count as evidence for Architrino cosmology and should not be used to name mechanisms. The current theory must still state the physical record: architrino assemblies, Noether sea state, causal-wake history, source/release channels, thermodynamic transfer, and observer-level clock reconstruction.
+Religious origin and end-state images are useful only at this comparative level. A mythic descent into heat, ascent into cold heaven, renewal after death, or repeated world-cycle can help a reader notice why source/release history, recycling, and open-ended transformation are familiar narrative patterns. It does not count as evidence for Architrino cosmology and should not be used to name mechanisms. The theory must still state the physical record: architrino assemblies, Noether sea state, causal-wake history, source/release channels, thermodynamic transfer, and observer-level clock reconstruction.
 
 ##### Architrino Contrast Summary
 
@@ -19970,7 +19975,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the central question is whether informatio
 
 This page is indexed by subjects rather than by biography. Related people-centered material remains in [major-thinkers.md](../../../../markdown/aaa/philosophy-history/major-thinkers.md).
 
-The current architrino position is this: physical entities and causal dynamics are primary, while information and computation are derived descriptions of organized states, constraints, and update structure.
+The architrino position is this: physical entities and causal dynamics are primary, while information and computation are derived descriptions of organized states, constraints, and update structure.
 
 At the software-modeling edge of that claim, it also interfaces with [Simulation, Modeling, and Computability Limits](#simulation-modeling-and-computability-limits).
 

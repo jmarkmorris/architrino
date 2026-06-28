@@ -762,15 +762,15 @@ tests azimuthal single-valuedness, $\Delta_{\Omega}$ tests the angular operator 
 
 ## Nucleon Structure
 
-This chapter fixes the current proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time. It is the baryon-side bridge between [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Mesons](../../../../markdown/aaa/assemblies/mesons/mesons.md).
+This chapter fixes the proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time. It is the baryon-side bridge between [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Mesons](../../../../markdown/aaa/assemblies/mesons/mesons.md).
 
 ### Purpose
 
-This chapter fixes the canonical proton and neutron picture used by the nuclear branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is the coarse-grained baryon chapter: not a full QCD replacement, but a precise statement of what a nucleon is in the current assembly language and which geometric features matter most for nuclear physics.
+This chapter fixes the canonical proton and neutron picture used by the nuclear branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is the coarse-grained baryon chapter: not a full QCD replacement, but a precise statement of what a nucleon is in assembly language and which geometric features matter most for nuclear physics.
 
 ### Core Claim
 
-A nucleon is a confined three-quark color-singlet assembly built from three Generation-I Noether braids linked by shared strong-sector flux structure. In the present architecture:
+A nucleon is a confined three-quark color-singlet assembly built from three Generation-I Noether braids linked by shared strong-sector flux structure. In this architecture:
 
 - a **proton** is the ground-state `uud` nested shell braid,
 - a **neutron** is the ground-state `udd` nested shell braid.
@@ -826,7 +826,7 @@ $$
 3\otimes 3\otimes 3 \supset 1
 $$
 
-In the present geometric language:
+In geometric language:
 
 - each quark contributes one exceptional axis,
 - the three exceptional axes occur once each across the nested shell braid,
@@ -1104,7 +1104,7 @@ up to bounded CP-odd perturbations in the same branch record that recovers the n
 
 ### Effective Internal Geometry
 
-The current nucleon picture has three structural layers.
+The nucleon picture has three structural layers.
 
 #### 1. Noether braids
 
@@ -1129,7 +1129,7 @@ At nuclear scales, the nucleon is seen as one composite hadronic assembly with:
 
 ### Spin and Magnetic-Moment Expectations
 
-The current repo does not yet contain a full proton spin decomposition, but the nucleon chapter can still state the minimal closure picture. This section is downstream of the core ledger in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md): it uses observer-level spin labels and hadron-level bookkeeping targets, not an independent derivation of spin.
+The nucleon chapter does not yet contain a full proton spin decomposition, but it can still state the minimal closure picture. This section is downstream of the core ledger in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md): it uses observer-level spin labels and hadron-level bookkeeping targets, not an independent derivation of spin.
 
 #### Spin
 
@@ -1218,7 +1218,7 @@ Those are now downstream derivations, not missing definitions.
 
 ## Nuclear Binding
 
-This chapter gives the first effective-level nuclear-binding picture for the nuclear branch. Its purpose is to say what the binding ingredients are, what level of coarse-graining is being used, and what kinds of nuclear questions the current language is meant to support before any precision model exists.
+This chapter gives the first effective-level nuclear-binding picture for the nuclear branch. Its purpose is to say what the binding ingredients are, what level of coarse-graining is being used, and what kinds of nuclear questions the shared language is meant to support before any precision model exists.
 
 ### Purpose
 
@@ -1240,6 +1240,26 @@ From the $\mathbb{A}\mathbb{A}\mathbb{A}$ perspective, the released energy was h
 
 For that reason, ordinary fission and fusion should not be treated as direct releases of the deeply shielded internal energy of Standard Model particle assemblies. The shielded internal energy and far-field leakage pattern of each surviving proton or neutron mostly carry through the reaction. What changes is the higher-level nuclear binding ledger and the surrounding Noether sea response of the nuclear assembly. A reaction that actually opened, destroyed, or changed the internal branch of a nucleon would be a different claim and would require its own particle-level provenance and shielding ledger.
 
+The same accounting applies to fission. The mass defect is exposed nuclear-assembly energy because the daughter arrangement has a cheaper corridor, Coulomb, shell, deformation, and Noether sea polarization ledger than the parent arrangement. A schematic fission ledger is
+
+$$
+\Delta E_{\mathrm{fis}}
+=
+\left(
+M_{\mathrm{parent}}
+-\sum_d M_d
+-\sum_b M_b
+\right)c_{\text{eff}}^2
+=
+K_{\mathrm{frag}}
++E_\gamma
++\Delta E_{\mathrm{heat}}
++\Delta E_{\mathrm{recoil}}
++\Delta E_{\mathrm{sea}},
+$$
+
+where the daughter masses $M_d$, emitted branch masses $M_b$, fragment kinetic energy, photon output, medium heating, recoil, and local Noether sea update all belong to the exposed nuclear ledger. That accounting is different from claiming that ordinary fission releases the shielded internal branch energy of the surviving nucleons.
+
 #### Fusion Reaction Ledger Benchmark
 
 The deuterium-tritium reaction is a compact benchmark for this distinction:
@@ -1250,7 +1270,7 @@ $$
 {}^4\mathrm{He}+n+\Delta E.
 $$
 
-In the current interpretation, $\Delta E$ is the difference between two nuclear assembly ledgers, not a literal conversion of nucleon substance into energy. The event should be recorded as
+In this interpretation, $\Delta E$ is the difference between two nuclear assembly ledgers, not a literal conversion of nucleon substance into energy. The event should be recorded as
 
 $$
 \Delta E_{\mathrm{DT}}
@@ -1314,7 +1334,7 @@ Binding requires the negative medium-plus-residual-strong terms to outweigh the 
 
 #### Residual strong attraction
 
-The dominant attractive channel is expected to come from meson-like exchange and shared polarization corridors between neighboring nucleons. In the current repo picture, pions are the lightest and therefore longest-range residual exchange packets.
+The dominant attractive channel is expected to come from meson-like exchange and shared polarization corridors between neighboring nucleons. In the residual-exchange picture, pions are the lightest and therefore longest-range residual exchange packets.
 
 So, at coarse level,
 $$
@@ -1378,7 +1398,7 @@ $$
 d = p+n
 $$
 
-In the present language, the deuteron should exist if the proton-neutron channel admits
+In this language, the deuteron should exist if the proton-neutron channel admits
 $$
 E_{pn}^{\text{bound}}
 <
@@ -1412,7 +1432,7 @@ $$
 
 ### Why Alpha-Like Structures Should Be Special
 
-A four-nucleon cluster with two protons and two neutrons is expected to be especially favorable in the current assembly picture because it combines:
+A four-nucleon cluster with two protons and two neutrons is expected to be especially favorable in the assembly picture because it combines:
 
 - charge balance,
 - multiple proton-neutron attractive channels,
@@ -1446,7 +1466,7 @@ This chapter will count as successful only if a later quantitative version can r
 4. special alpha-like stability,
 5. the qualitative valley of beta stability.
 
-If the effective nuclear potential cannot even satisfy the sign structure needed for those five features, the current coarse-grained hadronic picture is inadequate.
+If the effective nuclear potential cannot even satisfy the sign structure needed for those five features, the coarse-grained hadronic picture is inadequate.
 
 ### Relation to Mesons
 
@@ -1701,7 +1721,7 @@ This residual keeps the spectral benchmark tied to the envelope calculation. It 
 
 The coefficient row version of the same benchmark is the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md). Its input variables are the shared hydrogen channel ledger, the line set $\mathcal L_{\mathrm H}^{0}$, the envelope gaps, the observer frequencies, the clock-facing deformation record $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, and the declared residual budgets. The scan accepts only rows that preserve $b_\xi=1$, satisfy the weak static endpoint constraint, and use the same $C_N=\Gamma_N^{-1}$ clock-rate conversion for every selected transition. It therefore turns the Rydberg benchmark into a coefficient row constraint rather than a per-line fitting surface.
 
-The first executable scaffold for that scan keeps the hydrogen labels theory-facing while the envelope solver remains open. It derives $\Lambda_{ab}$ from recovered principal labels, sets the normalized observer-frequency entries to that line factor, derives the replay envelope gaps from one shared line-inferred cadence stretch, and carries two $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ records with different density/delay/scale/core splits. Those entries are placeholders only where the current corpus has not yet supplied the native calculation: the envelope calculation must later replace the scaffolded cadence stretch with computed gap entries, the hydrogen response map must replace the $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ entries, and the static response calculation must replace the declared $(a_n,a_\chi,a_\lambda,a_R)$ row without changing the line-by-line clock factor.
+The first executable scaffold for that scan keeps the hydrogen labels theory-facing while the envelope solver remains open. It derives $\Lambda_{ab}$ from recovered principal labels, sets the normalized observer-frequency entries to that line factor, derives the replay envelope gaps from one shared line-inferred cadence stretch, and carries two $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ records with different density/delay/scale/core splits. Those entries are placeholders only where the corpus has not yet supplied the native calculation: the envelope calculation must later replace the scaffolded cadence stretch with computed gap entries, the hydrogen response map must replace the $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ entries, and the static response calculation must replace the declared $(a_n,a_\chi,a_\lambda,a_R)$ row without changing the line-by-line clock factor.
 
 The scaffold is therefore a coefficient-row constraint, not a completed hydrogen spectral derivation. The derivation closes only when the hydrogen branch supplies the envelope gaps, $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, observer frequencies, and static response row from the same spectral channel ledger and Noether sea cell.
 
@@ -2016,7 +2036,7 @@ Spin and Pauli language in this chapter is downstream of [Angular Momentum and S
 
 This chapter states the first working closure target for molecular geometry in $\mathbb{A}\mathbb{A}\mathbb{A}$. It does not yet derive molecular shape from the master equation. It fixes the ingredients that a later derivation must combine.
 
-### Current Framing
+### Framing
 
 Molecular geometry should emerge from the coupled equilibrium of atomic-scale assemblies, directional bonding corridors, and delayed path-history constraints that favor particular angular arrangements and bond lengths.
 

@@ -32,6 +32,48 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, and s
   assert.equal(report.first_failure, "accepted_non_fixture_source_missing");
   assert.equal(report.summary.candidate_count, 7);
   assert.equal(report.summary.provider_ready_consumer_count, 0);
+  assert.equal(
+    report.provider_object_construction_attempt.schema,
+    "same_domain_branch_provider_object_construction_attempt/v0"
+  );
+  assert.equal(
+    report.provider_object_construction_attempt.status,
+    "same_domain_branch_provider_object_construction_blocked"
+  );
+  assert.equal(
+    report.provider_object_construction_attempt.claim_level,
+    "priority-only construction attempt, not provider acceptance"
+  );
+  assert.equal(
+    report.provider_object_construction_attempt.first_failure,
+    "accepted_non_fixture_source_missing"
+  );
+  assert.equal(
+    report.provider_object_construction_attempt.summary.ready_candidate_count,
+    0
+  );
+  assert.equal(
+    report.provider_object_construction_attempt.summary.missing_or_rejected_field_union.includes(
+      "branch_rows_ref"
+    ),
+    true
+  );
+  assert.equal(
+    report.provider_object_construction_attempt.summary.missing_or_rejected_field_union.includes(
+      "aggregate_erasure_negative_control_ref"
+    ),
+    true
+  );
+  assert.equal(
+    report.provider_object_construction_attempt.authorization
+      .provider_ready_authorized_by_this_attempt,
+    false
+  );
+  assert.equal(
+    report.provider_object_construction_attempt.authorization
+      .downstream_consumer_authorization,
+    false
+  );
   assert.equal(report.authorization.rank2_accepted_transition_source_ready, false);
   assert.equal(report.authorization.rank5_bounded_speed_live_ledger_ready, false);
   assert.equal(report.authorization.rank6_moving_branch_provider_ready, false);
@@ -98,6 +140,15 @@ test("branch-provider evidence report can accept a complete non-fixture provider
   assert.equal(report.authorization.candidate_h_recovery, false);
   assert.equal(report.authorization.retained_branch_claim, false);
   assert.equal(report.summary.provider_ready_consumer_count, 2);
+  assert.equal(
+    report.provider_object_construction_attempt.status,
+    "same_domain_branch_provider_object_construction_blocked"
+  );
+  assert.equal(
+    report.provider_object_construction_attempt.authorization
+      .provider_ready_authorized_by_this_attempt,
+    false
+  );
 });
 
 test("branch-provider evidence CLI emits and validates current fixture report", () => {
@@ -113,6 +164,10 @@ test("branch-provider evidence CLI emits and validates current fixture report", 
   const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
   assert.equal(report.provider_verdict, "same_domain_branch_provider_missing");
   assert.equal(report.authorization.rank2_accepted_transition_source_ready, false);
+  assert.equal(
+    report.provider_object_construction_attempt.status,
+    "same_domain_branch_provider_object_construction_blocked"
+  );
 
   const validation = JSON.parse(
     execFileSync(process.execPath, [SCRIPT_PATH, "--validate", reportPath, "--pretty"], { encoding: "utf8" })

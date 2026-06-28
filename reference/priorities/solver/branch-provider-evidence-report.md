@@ -20,6 +20,26 @@ provider fields:
 | `branch_local_projection_or_normalization_identity` | Branch-local projection, source-map, quotient, or normalization identity |
 | `conservation_pullback_hash` | Required by the rank 2 `accepted_transition_source` consumer |
 
+The same executable report now also emits
+`same_domain_branch_provider_object_construction_attempt/v0`. That construction
+attempt is a priority-only field inventory for the same-domain branch-bearing
+provider object; it is not provider acceptance. It keeps
+`provider_ready_authorized_by_this_attempt=false` and
+`downstream_consumer_authorization=false`.
+
+The construction attempt additionally requires:
+
+| Field | Requirement |
+| --- | --- |
+| `branch_rows_ref` | Explicit branch rows such as `P_-` / `P_+` or `P_b` before any aggregate `P` erases branch identity |
+| `branch_labels` | Branch labels for the explicit branch rows |
+| `branch_weights_or_intervals` | Branch weights or intervals for the explicit branch rows |
+| `projection_map_ref` | Projection-map reference for the same-domain branch-bearing row |
+| `pushforward_operator_ref` | Pushforward operator reference for the same-domain row |
+| `normalization_identity_ref` | Normalization identity reference before aggregate `P` is consumed |
+| `source_term_refs_upstream_of_aggregate_p` | Source-term references upstream of aggregate `P` |
+| `aggregate_erasure_negative_control_ref` | Negative control showing aggregate-only `P` is rejected when branch identity is erased |
+
 ## Current Executable Result
 
 Executable artifact:
@@ -51,6 +71,9 @@ The emitted report returns:
 | `first_failure` | `accepted_non_fixture_source_missing` |
 | `candidate_count` | 7 |
 | `provider_ready_consumer_count` | 0 |
+| `provider_object_construction_attempt.status` | `same_domain_branch_provider_object_construction_blocked` |
+| `provider_object_construction_attempt.ready_candidate_count` | 0 |
+| `provider_object_construction_attempt.first_failure` | `accepted_non_fixture_source_missing` |
 
 ## Authorization Boundary
 
@@ -69,4 +92,9 @@ The smallest positive object is one candidate row with
 `same_domain_record_ref`, `branch_certificate_ref`,
 `active_root_or_live_ledger_identity`, and
 `branch_local_projection_or_normalization_identity`. Rank 2 additionally needs
-`conservation_pullback_hash` on the same record.
+`conservation_pullback_hash` on the same record. The construction attempt makes
+the branch-materialization burden explicit: the same row must also carry the
+pre-aggregate branch rows, labels, weights or intervals, projection map,
+pushforward operator, normalization identity, upstream source-term references,
+and aggregate-erasure negative control before provider acceptance is consumed by
+ranks 2, 4, 5, or 6.

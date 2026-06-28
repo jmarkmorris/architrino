@@ -62,6 +62,51 @@ function runA1Diagnostic(diagnosticMode) {
   return JSON.parse(output);
 }
 
+const futureProfileCertificateSummaryKeys = [
+  "schema",
+  "artifact_id",
+  "box_id",
+  "source_artifact_hash",
+  "past_profile_certificate_digest",
+  "transport_profile_kind",
+  "theta_interval",
+  "transport_steps",
+  "node_count",
+  "node_payload_digest",
+  "node_payload_byte_count",
+  "method",
+  "exact_reference_arithmetic",
+  "source_float64_payload_bound",
+  "interpolation_kind",
+  "q_prime_semantics",
+  "q_interval",
+  "q_interval_hex",
+  "q_prime_auxiliary_interval",
+  "q_prime_auxiliary_interval_hex",
+  "q_min_node_index",
+  "q_max_node_index",
+  "q_prime_min_node_index",
+  "q_prime_max_node_index",
+  "bounds_emitted_piecewise_linear_profile",
+  "outward_for_emitted_piecewise_linear_profile",
+  "bounds_continuous_transport_equation",
+  "outward_for_continuous_transport_equation",
+  "E_Q_plus_b_for_admissible_class",
+  "used_as_certificate",
+  "used_as_local_certificate",
+  "used_as_shared_certificate",
+  "authorizes_outward_certificate",
+  "authorizes_obstruction_or_channel_decision",
+  "certificate_digest",
+  "status",
+];
+
+function summarizeFutureProfileCertificate(certificate) {
+  return Object.fromEntries(
+    futureProfileCertificateSummaryKeys.map((key) => [key, certificate[key]])
+  );
+}
+
 test("A1 admissible profile bounds attempt remains fail-closed and priority-only", () => {
   const packet = runA1Diagnostic("a1_admissible_profile_bounds_attempt");
   assert.equal(
@@ -76,7 +121,9 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(packet.authorizes_obstruction_or_channel_decision, false);
   assert.equal(packet.past_profile_bounds.used_as_certificate, true);
   assert.equal(packet.past_profile_bounds.used_as_shared_certificate, false);
-  assert.equal(packet.future_profile_admissibility.used_as_certificate, false);
+  assert.equal(packet.future_profile_admissibility.used_as_certificate, true);
+  assert.equal(packet.future_profile_admissibility.used_as_local_certificate, true);
+  assert.equal(packet.future_profile_admissibility.used_as_shared_certificate, false);
   assert.equal(packet.retained_root_context.used_as_certificate, false);
   assert.match(
     packet.row_identity.source_artifact_hash,
@@ -225,7 +272,7 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   );
   assert.equal(
     packet.shared_interval_box_certificate_target.shared_interval_boxes.status,
-    "past_profile_interval_box_certificate_present_not_shared_certificate"
+    "past_and_future_interval_box_certificates_present_not_shared_certificate"
   );
   assert.deepEqual(
     packet.shared_interval_box_certificate_target.shared_interval_boxes
@@ -235,11 +282,12 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.deepEqual(
     packet.shared_interval_box_certificate_target.shared_interval_boxes
       .missing_box_ids,
-    [
-      "future_transport_interval_box",
-      "retained_root_interval_boxes",
-      "inactive_cover_interval_boxes",
-    ]
+    ["retained_root_interval_boxes", "inactive_cover_interval_boxes"]
+  );
+  assert.deepEqual(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .local_certificate_box_ids_present,
+    ["past_profile_interval_box", "future_transport_interval_box"]
   );
   assert.equal(
     packet.shared_interval_box_certificate_target.shared_interval_boxes
@@ -255,6 +303,31 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     packet.shared_interval_box_certificate_target.shared_interval_boxes
       .past_profile_interval_box_certificate_used_locally,
     true
+  );
+  assert.match(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .future_transport_interval_box_certificate_digest,
+    /^sha256:[0-9a-f]{64}$/
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .future_transport_interval_box_certificate_digest,
+    packet.future_profile_admissibility.local_certificate.certificate_digest
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .future_transport_interval_box_certificate_status,
+    "future_piecewise_linear_profile_box_local_certificate_not_shared_transport_certificate"
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .future_transport_interval_box_certificate_used_locally,
+    true
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .future_transport_outward_for_continuous_transport_equation,
+    false
   );
   assert.equal(
     packet.shared_interval_box_certificate_target.shared_interval_boxes
@@ -493,19 +566,184 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(packet.past_profile_bounds.used_as_shared_certificate, false);
   assert.equal(
     packet.future_profile_admissibility.status,
-    "transport_node_envelope_only_not_interval_certificate"
+    "future_piecewise_linear_profile_box_local_certificate_not_shared_transport_certificate"
+  );
+  assert.deepEqual(packet.future_profile_admissibility.local_certificate.q_interval, [
+    packet.future_profile_admissibility.outward_q_min,
+    packet.future_profile_admissibility.outward_q_max,
+  ]);
+  assert.deepEqual(
+    packet.future_profile_admissibility.local_certificate
+      .q_prime_auxiliary_interval,
+    [
+      packet.future_profile_admissibility.outward_q_prime_auxiliary_min,
+      packet.future_profile_admissibility.outward_q_prime_auxiliary_max,
+    ]
   );
   assert.equal(
-    packet.future_profile_admissibility.transport_node_envelope.status,
-    "transport_node_envelope_not_interval_certificate"
+    packet.future_profile_admissibility.local_certificate.schema,
+    "architrino.priority.master_equation_closure.a1_future_piecewise_linear_profile_box_certificate.v0"
   );
   assert.equal(
-    packet.future_profile_admissibility.transport_node_envelope.outward_for_continuous_transport_equation,
+    packet.future_profile_admissibility.local_certificate.artifact_id,
+    "a1_future_piecewise_linear_profile_box_certificate.v0"
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate.box_id,
+    "future_transport_interval_box"
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate
+      .past_profile_certificate_digest,
+    packet.past_profile.interval_box_certificate_summary.certificate_digest
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate.transport_profile_kind,
+    "retained_memory_tangential_transport_sampled"
+  );
+  assert.deepEqual(
+    packet.future_profile_admissibility.local_certificate.theta_interval,
+    packet.row_identity.theta_interval
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate.transport_steps,
+    16
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate.node_count,
+    17
+  );
+  assert.match(
+    packet.future_profile_admissibility.local_certificate.node_payload_digest,
+    /^sha256:[0-9a-f]{64}$/
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate.interpolation_kind,
+    "piecewise_linear_float64_nodes"
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate.q_prime_semantics,
+    "auxiliary_transport_derivative_interpolant_not_derivative_of_piecewise_linear_q"
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate
+      .bounds_emitted_piecewise_linear_profile,
+    true
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate
+      .outward_for_emitted_piecewise_linear_profile,
+    true
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate
+      .bounds_continuous_transport_equation,
+    false
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate
+      .outward_for_continuous_transport_equation,
+    false
+  );
+  assert.equal(packet.future_profile_admissibility.E_Q_plus_b, "absent");
+  assert.equal(
+    packet.future_profile_admissibility.E_Q_plus_b_status,
+    "absent_for_admissible_class"
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate
+      .E_Q_plus_b_for_admissible_class,
+    "absent"
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate.used_as_certificate,
+    true
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate
+      .used_as_local_certificate,
+    true
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate
+      .used_as_shared_certificate,
+    false
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate
+      .authorizes_outward_certificate,
+    false
+  );
+  assert.equal(
+    packet.future_profile_admissibility.local_certificate
+      .authorizes_obstruction_or_channel_decision,
     false
   );
   assert.equal(
     packet.retained_root_context.status,
-    "sampled_retained_context_only_not_root_persistence_row"
+    "sampled_retained_root_window_replay_not_interval_box_certificate"
+  );
+  assert.equal(
+    packet.retained_root_context.sampled_global_counts_3_plus_1,
+    true
+  );
+  assert.ok(packet.retained_root_context.sampled_min_retained_window_clearance > 0);
+  assert.equal(
+    packet.retained_root_context.root_window_sample_replay.schema,
+    "architrino.priority.master_equation_closure.a1_retained_root_window_sample_replay.v0"
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sample_replay.artifact_id,
+    "a1_retained_root_window_sample_replay.v0"
+  );
+  assert.match(
+    packet.retained_root_context.root_window_sample_replay.replay_digest,
+    /^sha256:[0-9a-f]{64}$/
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sample_replay.status,
+    packet.retained_root_context.status
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sample_replay.theta_samples,
+    3
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sample_replay.retained_rows.length,
+    12
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sample_replay.global_counts.length,
+    3
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sample_replay
+      .sampled_active_labels_match_retained_set,
+    true
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sample_replay
+      .sampled_global_counts_3_plus_1,
+    true
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sample_replay
+      .bounds_retained_root_interval_boxes,
+    false
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sample_replay
+      .bounds_inactive_cover_interval_boxes,
+    false
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sample_replay.used_as_certificate,
+    false
+  );
+  assert.equal(
+    packet.retained_root_context.root_window_sample_replay
+      .authorizes_outward_certificate,
+    false
   );
   assert.equal(packet.sampled_attempt_reading, "sampled_bounds_within_declared_convention");
   assert.equal(
@@ -519,8 +757,22 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
       "past_profile_interval_box_certificate_not_shared_certificate"
     )
   );
-  assert.ok(packet.blocked_rows.includes("future_outward_profile_bounds_absent"));
-  assert.ok(packet.blocked_rows.includes("E_Q_plus_b_absent"));
+  assert.ok(
+    packet.blocked_rows.includes(
+      "future_piecewise_linear_profile_box_certificate_not_shared_certificate"
+    )
+  );
+  assert.ok(
+    packet.blocked_rows.includes(
+      "future_piecewise_linear_profile_box_local_certificate_not_continuous_transport_certificate"
+    )
+  );
+  assert.ok(
+    packet.blocked_rows.includes("continuous_transport_equation_bounds_absent")
+  );
+  assert.ok(
+    packet.blocked_rows.includes("E_Q_plus_b_absent_for_admissible_class")
+  );
   assert.ok(
     packet.blocked_rows.includes(
       "source_identity_digest_not_shared_interval_box_certificate"
@@ -761,6 +1013,47 @@ test("A1 source identity diagnostic reproduces the admissible profile digest", (
     },
     packet.past_profile.interval_box_certificate_summary
   );
+  assert.deepEqual(
+    summarizeFutureProfileCertificate(
+      sourceIdentity.future_piecewise_linear_profile_box_certificate
+    ),
+    packet.future_profile_admissibility.local_certificate
+  );
+  assert.equal(
+    sourceIdentity.future_piecewise_linear_profile_box_certificate
+      .theta_nodes_hex.length,
+    17
+  );
+  assert.equal(
+    sourceIdentity.future_piecewise_linear_profile_box_certificate
+      .q_nodes_hex.length,
+    17
+  );
+  assert.equal(
+    sourceIdentity.future_piecewise_linear_profile_box_certificate
+      .q_prime_nodes_hex.length,
+    17
+  );
+  assert.equal(
+    sourceIdentity.future_piecewise_linear_profile_box_certificate
+      .q_prime_semantics,
+    "auxiliary_transport_derivative_interpolant_not_derivative_of_piecewise_linear_q"
+  );
+  assert.equal(
+    sourceIdentity.future_piecewise_linear_profile_box_certificate
+      .E_Q_plus_b_for_admissible_class,
+    "absent"
+  );
+  assert.equal(
+    sourceIdentity.future_piecewise_linear_profile_box_certificate
+      .bounds_continuous_transport_equation,
+    false
+  );
+  assert.equal(
+    sourceIdentity.future_piecewise_linear_profile_box_certificate
+      .used_as_shared_certificate,
+    false
+  );
   assert.equal(
     sourceIdentity.coefficient_interval_enclosure_attempt.rows.length,
     3
@@ -806,8 +1099,17 @@ test("A1 source identity diagnostic reproduces the admissible profile digest", (
   );
   assert.ok(
     sourceIdentity.blocked_rows.includes(
-      "future_outward_profile_bounds_absent"
+      "future_piecewise_linear_profile_box_local_certificate_not_continuous_transport_certificate"
     )
   );
-  assert.ok(sourceIdentity.blocked_rows.includes("E_Q_plus_b_absent"));
+  assert.ok(
+    sourceIdentity.blocked_rows.includes(
+      "continuous_transport_equation_bounds_absent"
+    )
+  );
+  assert.ok(
+    sourceIdentity.blocked_rows.includes(
+      "E_Q_plus_b_absent_for_admissible_class"
+    )
+  );
 });

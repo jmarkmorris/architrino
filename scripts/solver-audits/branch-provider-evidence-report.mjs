@@ -6,6 +6,8 @@ import path from "node:path";
 const SCHEMA = "branch_provider_evidence_report/v0";
 const CONTRACT_SCHEMA = "branch_provider_evidence_contract/v0";
 const MANIFEST_SCHEMA = "branch_provider_evidence_candidates/v0";
+const CONSTRUCTION_ATTEMPT_SCHEMA =
+  "same_domain_branch_provider_object_construction_attempt/v0";
 
 const ACCEPTED_SOURCE_STATUS = "accepted_non_fixture_source";
 
@@ -77,6 +79,88 @@ const CONSUMERS = [
     target: "moving_retained_branch_certificate",
     requiredFields: COMMON_REQUIRED_FIELDS,
     authorizationKey: "rank6_moving_branch_provider_ready",
+  },
+];
+
+const PROVIDER_OBJECT_CONSTRUCTION_FIELDS = [
+  {
+    path: "provider_source_status",
+    requirement:
+      "Provider source status remains non-accepted until one non-fixture same-domain source record is accepted.",
+    failureCode: "accepted_non_fixture_source_missing",
+    acceptedValues: [ACCEPTED_SOURCE_STATUS],
+  },
+  {
+    path: "same_domain_record_ref",
+    requirement:
+      "Stable same-domain record that carries all provider-object fields before aggregate P is formed.",
+    failureCode: "same_domain_record_ref_missing",
+  },
+  {
+    path: "branch_certificate_ref",
+    requirement: "Retained branch certificate reference for the same provider row.",
+    failureCode: "branch_certificate_ref_missing",
+  },
+  {
+    path: "active_root_or_live_ledger_identity",
+    requirement:
+      "Active-root ledger or bounded-speed live-ledger identity bound to the same provider row.",
+    failureCode: "active_root_or_live_ledger_identity_missing",
+  },
+  {
+    path: "branch_local_projection_or_normalization_identity",
+    requirement:
+      "Branch-local projection, source-map, quotient, or normalization identity on the same provider row.",
+    failureCode: "branch_local_projection_or_normalization_identity_missing",
+  },
+  {
+    path: "branch_rows_ref",
+    requirement:
+      "Explicit branch rows such as P_- / P_+ or P_b before any aggregate P erases branch identity.",
+    failureCode: "branch_rows_ref_missing",
+  },
+  {
+    path: "branch_labels",
+    requirement: "Branch labels for the explicit branch rows.",
+    failureCode: "branch_labels_missing",
+  },
+  {
+    path: "branch_weights_or_intervals",
+    requirement: "Branch weights or intervals for the explicit branch rows.",
+    failureCode: "branch_weights_or_intervals_missing",
+  },
+  {
+    path: "projection_map_ref",
+    requirement: "Projection-map reference for the same-domain branch-bearing row.",
+    failureCode: "projection_map_ref_missing",
+  },
+  {
+    path: "pushforward_operator_ref",
+    requirement: "Pushforward operator reference for the same-domain row.",
+    failureCode: "pushforward_operator_ref_missing",
+  },
+  {
+    path: "normalization_identity_ref",
+    requirement: "Normalization identity reference before aggregate P is consumed.",
+    failureCode: "normalization_identity_ref_missing",
+  },
+  {
+    path: "source_term_refs_upstream_of_aggregate_p",
+    requirement: "Source-term references upstream of aggregate P.",
+    failureCode: "source_term_refs_upstream_of_aggregate_p_missing",
+  },
+  {
+    path: "aggregate_erasure_negative_control_ref",
+    requirement:
+      "Negative control showing aggregate-only P is rejected when branch identity is erased.",
+    failureCode: "aggregate_erasure_negative_control_ref_missing",
+  },
+  {
+    path: "conservation_pullback_hash",
+    requirement:
+      "Conservation-pullback hash when the provider is consumed as rank 2 accepted_transition_source evidence.",
+    failureCode: "conservation_pullback_hash_missing",
+    rank2Only: true,
   },
 ];
 
@@ -169,32 +253,40 @@ function unique(values) {
   return [...new Set(values)];
 }
 
+function fieldContractEntry({ path: fieldPath, requirement, failureCode, acceptedValues, rank2Only }) {
+  return {
+    path: fieldPath,
+    requirement,
+    failure_code: failureCode,
+    accepted_values: acceptedValues ?? null,
+    rank2_only: rank2Only === true,
+  };
+}
+
 function contract() {
   return {
     schema: CONTRACT_SCHEMA,
     purpose:
       "Minimum same-domain branch-bearing provider fields before top-six consumers may treat a candidate row as provider-ready.",
     accepted_source_status: ACCEPTED_SOURCE_STATUS,
-    common_required_fields: COMMON_REQUIRED_FIELDS.map(({ path: fieldPath, requirement, failureCode, acceptedValues }) => ({
-      path: fieldPath,
-      requirement,
-      failure_code: failureCode,
-      accepted_values: acceptedValues ?? null,
-    })),
+    common_required_fields: COMMON_REQUIRED_FIELDS.map(fieldContractEntry),
     consumers: CONSUMERS.map((consumer) => ({
       id: consumer.id,
       rank: consumer.rank,
       workstream: consumer.workstream,
       target: consumer.target,
-      required_fields: consumer.requiredFields.map(({ path: fieldPath, requirement, failureCode, acceptedValues }) => ({
-        path: fieldPath,
-        requirement,
-        failure_code: failureCode,
-        accepted_values: acceptedValues ?? null,
-      })),
+      required_fields: consumer.requiredFields.map(fieldContractEntry),
     })),
+    provider_object_construction_attempt: {
+      schema: CONSTRUCTION_ATTEMPT_SCHEMA,
+      claim_level: "priority-only construction attempt, not provider acceptance",
+      target:
+        "same-domain branch-bearing provider object before aggregate P is consumed",
+      required_fields: PROVIDER_OBJECT_CONSTRUCTION_FIELDS.map(fieldContractEntry),
+    },
     authorization_boundary: {
       provider_ready_is_not_downstream_closure: true,
+      construction_attempt_authorizes_provider_ready: false,
       candidate_h_recovery_authorized_by_this_report: false,
       pressure_coefficient_authorized_by_this_report: false,
       structural_integrity_residual_vector_authorized_by_this_report: false,
@@ -254,6 +346,92 @@ function evaluateCandidate(candidate) {
   };
 }
 
+function constructionFieldsForCandidate(candidate) {
+  const feedsRank2 = Array.isArray(candidate.feeds)
+    && candidate.feeds.includes("rank2_field_speed_action_self_hit_scan");
+  return PROVIDER_OBJECT_CONSTRUCTION_FIELDS.filter(
+    (field) => field.rank2Only !== true || feedsRank2
+  );
+}
+
+function evaluateConstructionAttemptCandidate(candidate) {
+  const fieldResults = constructionFieldsForCandidate(candidate).map((field) =>
+    evaluateField(candidate, field)
+  );
+  const failedFields = fieldResults.filter((field) => !field.pass);
+  const providerObjectFieldsReady = failedFields.length === 0;
+  const branchMaterializationFields = [
+    "branch_rows_ref",
+    "branch_labels",
+    "branch_weights_or_intervals",
+    "projection_map_ref",
+    "pushforward_operator_ref",
+    "normalization_identity_ref",
+    "source_term_refs_upstream_of_aggregate_p",
+    "aggregate_erasure_negative_control_ref",
+  ];
+  const branchMaterializationReady = branchMaterializationFields.every((fieldPath) =>
+    fieldResults.find((field) => field.path === fieldPath)?.pass === true
+  );
+
+  return {
+    candidate_id: candidate.id ?? null,
+    feeds: Array.isArray(candidate.feeds) ? candidate.feeds : [],
+    provider_source_status: candidate.provider_source_status ?? null,
+    provider_object_fields_ready: providerObjectFieldsReady,
+    branch_materialization_ready: branchMaterializationReady,
+    first_failure: providerObjectFieldsReady ? null : failedFields[0]?.failure_code ?? "provider_candidate_absent",
+    missing_or_rejected_fields: failedFields.map((field) => field.path),
+    field_results: fieldResults,
+  };
+}
+
+function buildConstructionAttempt(manifest) {
+  const candidateAttempts = manifest.candidates.map(evaluateConstructionAttemptCandidate);
+  const readyCandidateIds = candidateAttempts
+    .filter((candidate) => candidate.provider_object_fields_ready)
+    .map((candidate) => candidate.candidate_id)
+    .filter(Boolean);
+  const missingFieldUnion = unique(
+    candidateAttempts.flatMap((candidate) => candidate.missing_or_rejected_fields)
+  );
+  const firstFailure =
+    readyCandidateIds.length > 0
+      ? null
+      : candidateAttempts.find((candidate) => candidate.first_failure)?.first_failure
+        ?? "provider_candidate_absent";
+
+  return {
+    schema: CONSTRUCTION_ATTEMPT_SCHEMA,
+    claim_level: "priority-only construction attempt, not provider acceptance",
+    source_ref: manifest.source_ref ?? null,
+    target:
+      "same-domain branch-bearing provider object before aggregate P is consumed",
+    status:
+      readyCandidateIds.length > 0
+        ? "same_domain_branch_provider_object_fields_populated_review_required"
+        : "same_domain_branch_provider_object_construction_blocked",
+    first_failure: firstFailure,
+    accepted_source_status_required: ACCEPTED_SOURCE_STATUS,
+    required_fields: PROVIDER_OBJECT_CONSTRUCTION_FIELDS.map(fieldContractEntry),
+    summary: {
+      candidate_count: candidateAttempts.length,
+      ready_candidate_count: readyCandidateIds.length,
+      ready_candidate_ids: readyCandidateIds,
+      missing_or_rejected_field_union: missingFieldUnion,
+    },
+    candidate_attempts: candidateAttempts,
+    authorization: {
+      provider_ready_authorized_by_this_attempt: false,
+      downstream_consumer_authorization: false,
+      candidate_h_recovery: false,
+      pressure_coefficient: false,
+      structural_integrity_residual_vector: false,
+      retained_branch_claim: false,
+    },
+  };
+}
+
 export function buildReport(manifest, options = {}) {
   if (!isObject(manifest)) {
     throw new Error("Branch-provider evidence manifest must be a JSON object.");
@@ -309,6 +487,7 @@ export function buildReport(manifest, options = {}) {
     manifest_schema: manifest.schema ?? null,
     report_id: manifest.report_id ?? "branch-provider-evidence-current-candidates",
     promotion_status: "priority-only",
+    provider_object_construction_attempt: buildConstructionAttempt(manifest),
     provider_verdict:
       providerReadyConsumerCount > 0
         ? "provider_ready_for_one_or_more_consumers"
@@ -370,6 +549,29 @@ export function validationErrors(report) {
   }
   if (!isObject(report.authorization)) {
     errors.push("authorization must be an object");
+  }
+  if (!isObject(report.provider_object_construction_attempt)) {
+    errors.push("provider_object_construction_attempt must be an object");
+  } else {
+    const attempt = report.provider_object_construction_attempt;
+    if (attempt.schema !== CONSTRUCTION_ATTEMPT_SCHEMA) {
+      errors.push(`provider_object_construction_attempt schema must be ${CONSTRUCTION_ATTEMPT_SCHEMA}`);
+    }
+    if (attempt.claim_level !== "priority-only construction attempt, not provider acceptance") {
+      errors.push("provider_object_construction_attempt claim_level must remain priority-only");
+    }
+    if (![
+      "same_domain_branch_provider_object_construction_blocked",
+      "same_domain_branch_provider_object_fields_populated_review_required",
+    ].includes(attempt.status)) {
+      errors.push("provider_object_construction_attempt status is invalid");
+    }
+    if (attempt.authorization?.provider_ready_authorized_by_this_attempt !== false) {
+      errors.push("provider_object_construction_attempt must not authorize provider readiness");
+    }
+    if (attempt.authorization?.downstream_consumer_authorization !== false) {
+      errors.push("provider_object_construction_attempt must not authorize downstream consumers");
+    }
   }
   for (const key of [
     "candidate_h_recovery",

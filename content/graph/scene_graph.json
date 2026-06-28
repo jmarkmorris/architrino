@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 533,
-      "edges": 1287,
+      "nodes": 534,
+      "edges": 1288,
       "scenes": 351,
       "markdownIndexes": 0,
-      "markdownDocs": 169,
+      "markdownDocs": 170,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2660,6 +2660,12 @@
       "id": "content/markdown/aaa/outreach/comics.md",
       "name": "Outreach Comics",
       "path": "content/markdown/aaa/outreach/comics.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/aaa-journey.md",
+      "name": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Journey",
+      "path": "content/markdown/aaa/philosophy-history/aaa-journey.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -7039,6 +7045,15 @@
       "name": "Outreach Comics",
       "path": "content/markdown/aaa/outreach/comics.md",
       "searchTarget": "content/markdown/aaa/outreach/comics.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/aaa-journey.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/aaa-journey.md",
+      "name": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Journey",
+      "path": "content/markdown/aaa/philosophy-history/aaa-journey.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/aaa-journey.md",
       "implicit": false
     },
     {
@@ -12975,6 +12990,13 @@
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/overview.json",
       "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/aaa-journey.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "aaa_journey.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_of_science.json",

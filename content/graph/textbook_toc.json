@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1473
+      "sections": 1472
     }
   },
   "tocRoot": {
@@ -12653,14 +12653,6 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
                 "markdownSection": "Overview",
                 "sectionKey": "overview",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Timeline of Near Misses",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Timeline of Near Misses",
-                "sectionKey": "timeline of near misses",
                 "headingLevel": 2
               },
               {

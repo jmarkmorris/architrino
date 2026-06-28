@@ -316,7 +316,8 @@ The sampled seed and transported $Q$ values stay inside the declared
 $0.2\le Q\le3.0$ convention on this grid, and the retained rows replay with no
 sampled retained-window failure. The packet now also emits a local
 exact-rational subdivided-Bernstein certificate for the past
-endpoint-slope-cancelled polynomial:
+endpoint-slope-cancelled polynomial and a local exact-rational node-extrema
+certificate for the emitted future piecewise-linear transport profile:
 
 | Past-profile quantity | Current local certificate |
 | --- | --- |
@@ -324,9 +325,22 @@ endpoint-slope-cancelled polynomial:
 | $q_{\max}$ | `1.536808073607694` |
 | $H_b$ | `0.5368080736076938` |
 
-This advances the past-profile subrow, but it is not yet a shared interval-box
-certificate. The packet now records a deterministic source-identity digest for
-the endpoint-slope-cancelled homogeneous perturbation:
+| Future emitted profile quantity | Current local certificate |
+| --- | --- |
+| $Q_{\min}$ | `1.0` |
+| $Q_{\max}$ | `1.0152046296486557` |
+| Auxiliary $Q'$ interval | `[0.720598851445857, 0.8023571583642308]` |
+| Node payload digest | `sha256:4d4183edadf3bd20775d6f1ce8bafa5d74386a1886f014ed13dc3ee64b262951` |
+
+The future certificate is `a1_future_piecewise_linear_profile_box_certificate.v0`.
+It has `bounds_emitted_piecewise_linear_profile=true` and
+`outward_for_continuous_transport_equation=false`. Its $Q'$ row is explicitly
+`auxiliary_transport_derivative_interpolant_not_derivative_of_piecewise_linear_q`,
+so it must not be consumed as a derivative certificate for the emitted
+piecewise-linear $Q$. These local certificates advance the past-profile and
+emitted-profile subrows, but they are not yet a shared interval-box certificate.
+The packet now records a deterministic source-identity digest for the
+endpoint-slope-cancelled homogeneous perturbation:
 `sha256:cba10155d5b54719bf7e4a48f86abd27dcabdca4fe24fd040a67b35e2c7a73b0`.
 The digest now has a reproducible source-payload diagnostic, but that payload is
 provenance only, with `used_as_certificate=false`; it is not a shared
@@ -343,6 +357,21 @@ certificate encloses 61,440 control points over 4,096 subintervals and gives
 $q_{\min}=0.6542907922493042$, $q_{\max}=1.536808073607694$, and
 $H_b=0.5368080736076938$. It has `used_as_local_certificate=true`, but
 `used_as_shared_certificate=false` and `authorizes_outward_certificate=false`.
+The future-profile subrow carries the local emitted-profile certificate above,
+with certificate digest
+`sha256:420d8460230e9dc97463d5dd374c3625f0f8a09b2cbc12fa70c5c685d911f51a`.
+It has `used_as_local_certificate=true`, but
+`used_as_shared_certificate=false`, `authorizes_outward_certificate=false`, and
+does not supply $E_Q^+(b)$ for the admissible class.
+The retained-root context now also emits
+`a1_retained_root_window_sample_replay.v0` with replay digest
+`sha256:f17e6495fa4f91631f26d9b5c8e39dd9573f73b5bf320ab95924452614ed9c5e`.
+On the three-point $\theta$ sample grid it reports the retained labels in the
+declared order, sampled global `3+1` partner/self root counts, and sampled
+minimum retained-window clearance `0.04429899040143903`. This is a
+root-window replay only: it has `used_as_certificate=false`,
+`bounds_retained_root_interval_boxes=false`, and
+`bounds_inactive_cover_interval_boxes=false`.
 The directed-rounding backend subrow now carries a digestible backend target,
 `a1_directed_rounding_backend_target.v0`, plus
 `a1_directed_rounding_backend_self_audit.v0`. The self-audit uses
@@ -356,18 +385,19 @@ family. The target records the required outward-rounded coefficient rows,
 Bernstein subdivision control points, shared past/future/root/inactive-cover
 interval-box family, and rounding-mode audit trail for the next
 certificate-grade pass.
-The future transport interval box, retained-root interval boxes,
-inactive-cover interval boxes, future transport constants, and
-residual-envelope constants remain absent. The local past-profile Bernstein
-certificate is not a shared interval-box certificate because the future,
-retained-root, and inactive-cover boxes are still absent. The transported
-future profile has only a node envelope for the emitted
-piecewise-linear numerical profile; the certificate-grade $E_Q^+(b)$ row remains
-absent pending branch-sum and transport constants. The inactive cover,
-retained-root boxes, branch-sum constants, transport constants, and residual
-envelope are also still absent, so the current first failure remains
-`admissible_profile_bounds`. The reduced smoke result is carried only as
-diagnostic context with `used_as_certificate=false`.
+The shared target row now records local certificates for
+`past_profile_interval_box` and `future_transport_interval_box`, but
+`retained_root_interval_boxes` and `inactive_cover_interval_boxes` remain
+absent. The sampled retained-root replay does not change that missing-box
+status. The local past-profile Bernstein certificate and emitted future-profile
+certificate are not a shared interval-box certificate because the retained-root
+and inactive-cover boxes are still absent, hardware directed rounding is not
+controlled, and the continuous transport / $E_Q^+(b)$ row is still absent
+pending branch-sum and transport constants. The branch-sum constants, transport
+constants, and residual envelope are also still absent, so the current first
+failure remains `admissible_profile_bounds`. The reduced smoke result and
+retained-root replay are carried only as diagnostic context with
+`used_as_certificate=false`.
 
 ## Advancement Decision
 

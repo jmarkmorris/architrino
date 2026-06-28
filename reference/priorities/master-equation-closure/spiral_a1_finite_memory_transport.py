@@ -2351,6 +2351,143 @@ def future_piecewise_linear_profile_box_certificate_summary(
     }
 
 
+def a1_retained_root_window_sample_replay(
+    source_digest: str,
+    profile: Profile,
+    theta_samples: list[float],
+    *,
+    delta_steps: int,
+    panels: int,
+) -> dict:
+    retained_rows_out: list[dict] = []
+    retained_failures: list[str] = []
+    global_counts: list[dict] = []
+    min_abs_j = math.inf
+    min_window_clearance = math.inf
+    retained_label_order = [window["label"] for window in RETAINED_WINDOWS]
+
+    for theta in theta_samples:
+        try:
+            rows = retained_rows(theta, panels=panels, profile=profile)
+            for window, row in zip(RETAINED_WINDOWS, rows):
+                lower_clearance = row.delta - window["window"][0]
+                upper_clearance = window["window"][1] - row.delta
+                window_clearance = min(lower_clearance, upper_clearance)
+                min_abs_j = min(min_abs_j, abs(row.jacobian))
+                min_window_clearance = min(min_window_clearance, window_clearance)
+                retained_rows_out.append(
+                    {
+                        "theta": theta,
+                        "label": row.label,
+                        "kind": row.kind,
+                        "delta": row.delta,
+                        "window": list(window["window"]),
+                        "lower_window_clearance": lower_clearance,
+                        "upper_window_clearance": upper_clearance,
+                        "window_clearance": window_clearance,
+                        "jacobian": row.jacobian,
+                        "abs_jacobian": abs(row.jacobian),
+                    }
+                )
+        except ValueError as exc:
+            retained_failures.append(f"theta={theta}: {exc}")
+
+        partner_roots = find_roots(
+            "partner",
+            theta,
+            delta_steps=delta_steps,
+            panels=panels,
+            profile=profile,
+        )
+        self_roots = find_roots(
+            "self",
+            theta,
+            delta_steps=delta_steps,
+            panels=panels,
+            profile=profile,
+        )
+        global_counts.append(
+            {
+                "theta": theta,
+                "partner_count": len(partner_roots),
+                "self_count": len(self_roots),
+                "partner_roots": partner_roots,
+                "self_roots": self_roots,
+                "expected_3_plus_1": (
+                    len(partner_roots) == 3 and len(self_roots) == 1
+                ),
+            }
+        )
+
+    retained_labels_by_theta: dict[float, list[str]] = {}
+    for row in retained_rows_out:
+        retained_labels_by_theta.setdefault(row["theta"], []).append(row["label"])
+    sampled_active_labels_match_retained_set = (
+        all(
+            retained_labels_by_theta.get(theta) == retained_label_order
+            for theta in theta_samples
+        )
+        and len(retained_rows_out) == len(theta_samples) * len(retained_label_order)
+        and not retained_failures
+    )
+    sampled_global_counts_3_plus_1 = all(
+        row["expected_3_plus_1"] for row in global_counts
+    )
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_retained_root_window_sample_replay.v0"
+        ),
+        "artifact_id": "a1_retained_root_window_sample_replay.v0",
+        "source_artifact_hash": source_digest,
+        "method": "float64_bisection_simpson_sample_grid_replay",
+        "theta_interval": [theta_samples[0], theta_samples[-1]],
+        "theta_samples": len(theta_samples),
+        "theta_boxes": "sample_grid_only_not_interval_boxes",
+        "delta_steps": delta_steps,
+        "integration_panels": panels,
+        "active_windows": [
+            {
+                "label": window["label"],
+                "kind": window["kind"],
+                "window": list(window["window"]),
+            }
+            for window in RETAINED_WINDOWS
+        ],
+        "retained_label_order": retained_label_order,
+        "sampled_active_labels_match_retained_set": (
+            sampled_active_labels_match_retained_set
+        ),
+        "sampled_global_counts_3_plus_1": sampled_global_counts_3_plus_1,
+        "sampled_min_abs_retained_jacobian": (
+            min_abs_j if math.isfinite(min_abs_j) else None
+        ),
+        "sampled_min_retained_window_clearance": (
+            min_window_clearance if math.isfinite(min_window_clearance) else None
+        ),
+        "retained_rows": retained_rows_out,
+        "global_counts": global_counts,
+        "retained_failures": retained_failures,
+        "bounds_retained_root_interval_boxes": False,
+        "bounds_inactive_cover_interval_boxes": False,
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "replay_digest": canonical_json_digest(payload),
+        "status": (
+            "sampled_retained_root_window_replay_not_interval_box_certificate"
+            if sampled_active_labels_match_retained_set
+            and sampled_global_counts_3_plus_1
+            else "sampled_retained_root_window_replay_failed_not_certificate"
+        ),
+    }
+
+
 def past_profile_interval_box_attempt_summary(attempt: dict) -> dict:
     return {
         key: attempt[key]
@@ -5990,6 +6127,13 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
     theta_samples = theta_grid(
         0.0, attempt_args.theta_hi, attempt_args.theta_samples
     )
+    retained_root_replay = a1_retained_root_window_sample_replay(
+        source_identity["digest"],
+        profile,
+        theta_samples,
+        delta_steps=attempt_args.delta_steps,
+        panels=attempt_args.integration_panels,
+    )
     future_values = [profile.q(theta) for theta in theta_samples]
     future_prime_values = [profile.q_prime(theta) for theta in theta_samples]
     retained_label_order = [window["label"] for window in RETAINED_WINDOWS]
@@ -6055,7 +6199,8 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         "diagnostic_mode": "a1_admissible_profile_bounds_attempt",
         "claim_level": (
             "priority-only admissibility packet with local past-profile "
-            "certificate; not shared interval-box certificate"
+            "and future piecewise-linear profile certificates; not shared "
+            "interval-box certificate"
         ),
         "radius_b": args.admissible_profile_radius_b,
         "row_identity": {
@@ -6195,15 +6340,22 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
                 for row in retained_rows_summary
             )
             and not retained_failures,
+            "sampled_global_counts_3_plus_1": retained_root_replay[
+                "sampled_global_counts_3_plus_1"
+            ],
             "sampled_min_abs_J": min_abs_j if retained_rows_summary else None,
+            "sampled_min_retained_window_clearance": retained_root_replay[
+                "sampled_min_retained_window_clearance"
+            ],
             "max_abs_tangential_residual": max_abs_tangential_residual,
             "max_abs_radial_residual_tangential_substituted": (
                 max_abs_radial_residual
             ),
             "rows": retained_rows_summary,
+            "root_window_sample_replay": retained_root_replay,
             "retained_failures": retained_failures,
             "used_as_certificate": False,
-            "status": "sampled_retained_context_only_not_root_persistence_row",
+            "status": retained_root_replay["status"],
         },
         "sampled_attempt_reading": (
             "sampled_bounds_within_declared_convention"
