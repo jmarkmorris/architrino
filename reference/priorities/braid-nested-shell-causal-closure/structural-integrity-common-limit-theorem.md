@@ -8,7 +8,7 @@ The compact theorem target is surfaced in the $\mathbb{A}\mathbb{A}\mathbb{A}$ c
 
 - Kind: `priority-detail`
 - Workstream item: `structural_integrity_common_limit`
-- Current status: `proof-route-scaffolded; branch-population-blocked`
+- Current status: `proof-route-scaffolded; gate-a-population-intake-defined; first-failure-branch-certificate-ref-absent`
 - Upstream dependencies: `shared_branch_certificate_contract`, `photon_gate_a_kinematics`, `lorentz_residual_packet`, `lorentz_gr_bridge`
 - Corpus-facing target: [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure) owns the compact theorem target; [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry) owns the conceptual structural-integrity explanation; [Constraint Ledger](../../../content/markdown/aaa/validation/constraint-ledger.md#gw-speed) owns the empirical gravitational-wave speed gate.
 - Remaining promotion target: theorem proof, full dependency graph, residual-population material, and failure-map refinements may promote only after one retained branch supplies clock, ruler, matter-limit, photon, gravitational-wave, two-way signal, and Noether sea dressing rows together.
@@ -22,7 +22,7 @@ The compact theorem target is surfaced in the $\mathbb{A}\mathbb{A}\mathbb{A}$ c
 | [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md#moving-branch-clock-retuning-target) | The moving-clock row is not sufficient in isolation; the same branch must also produce moving-ruler deformation and photon synchronization. |
 | [Electroweak Bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md#gate-a-theorem-scaffold-kinematics-and-optics) | Photon Gate A is the photon side of the common-limit condition and cannot tune $c_\gamma$ separately from the clock/ruler $c_{\text{eff}}$ row. |
 | [Lorentz Test Residual Handoff](../master-equation-closure/lorentz-test-residual-handoff.md) | Residual export already requires shared branch, clock, ruler, signal, speed, medium-response, frame-projection, and null-row discipline. |
-| [Shared Branch Certificate Contract](braid-nested-shell-causal-closure.md#shared-branch-certificate-contract) | The accepted branch package already carries $c_f$, $c_{\text{eff}}$, $c_\gamma$, $c_0$, active-root ledger, stability gaps, Lorentz residual, photon rows, medium response, and event ledger. |
+| [Shared Branch Certificate Contract](braid-nested-shell-causal-closure.md#shared-branch-certificate-contract) | The shared branch certificate contract defines the retained-branch package that must carry $c_f$, $c_{\text{eff}}$, $c_\gamma$, $c_0$, active-root ledger, stability gaps, Lorentz residual, photon rows, medium response, and event ledger. |
 
 ## Theorem Target
 

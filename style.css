@@ -3,9 +3,8 @@
 }
 
 :root {
-  --scene-background-base: #252139;
-  --scene-background:
-    radial-gradient(circle at 50% 42%, #36304f 0%, #28243d 52%, #181425 100%);
+  --scene-background-base: #3a2357;
+  --scene-background: #3a2357;
 }
 
 html,

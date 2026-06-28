@@ -100,6 +100,22 @@ N_{\mathrm{eff}}^\theta,\,
 $$
 is propagated through the same source window that produces the yields. A source story that changes the photon loading, neutron fraction, entropy per baryon, or relativistic-species count independently of the light-element network has not supplied a BBN mechanism; it has assigned separate fit parameters to the outputs.
 
+The multi-channel reading is useful only when it is made provenance-explicit. High-energy compact-object release, supernova-like processing, jet channels, quasar or blazar environments, and ordinary stellar processing may all be source leads for later abundance history, but none of them replaces the BBN comparison surface unless it enters a declared source-window record
+$$
+\Theta_{\mathrm{BBN,src}}^\theta
+=
+\left(
+\mathcal{W}_s,
+T_s(t),
+\rho_s(t),
+n_{b,s}(t),
+n_{\gamma,s}(t),
+n_{\nu,s}(t),
+\mathcal{E}_{i,s}
+\right)_s.
+$$
+The yields are then acceptable only if D/H, $Y_p$, lithium, $\eta_{b\gamma}$, and $N_{\text{eff}}$ are all computed from the same channel-weighted record. A branch that treats one source family as an explanation for helium, another as an explanation for lithium, and a third as a photon-loading fix without a shared source-window ledger has not improved on the one-time-origin story; it has split the provenance.
+
 The standard freeze-out scalings should remain explicit because they are the hard targets for any SMBH-local or transport-cooling replacement. In a radiation-dominated comparison packet,
 $$
 t

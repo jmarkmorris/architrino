@@ -224,6 +224,14 @@ certificate work because repeated retained-root bisection dominates each
 candidate transport. A reduced deterministic smoke therefore uses the
 finite-collar knobs directly:
 
+Operational note. The finite-collar remainder diagnostic rebuilds its objective
+arguments from `--finite-collar-samples`,
+`--finite-collar-integration-panels`, `--finite-collar-transport-steps`, and
+`--finite-collar-delta-steps`. Lowering only the outer `--theta-samples`,
+`--integration-panels`, or `--transport-steps` flags does not make the
+certificate-adjacent ladder a fast smoke, because the analytic tangent and
+candidate-vector loops still call the finite-collar objective settings.
+
 ```bash
 VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.02 --delta-steps 256 --integration-panels 32 --profile-mode tangential_transport --transport-steps 40 --past-profile endpoint_slope_cancel --endpoint-cancel-positivity-samples 201 --diagnostic-mode finite_collar_remainder_constants_ladder --finite-collar-samples 3 --finite-collar-integration-panels 16 --finite-collar-transport-steps 16 --finite-collar-delta-steps 128 --finite-collar-positivity-samples 101 --finite-collar-remainder-ray-count 1 --finite-collar-second-order-steps 0.01,0.02 --finite-collar-remainder-radii 0.001,0.003,0.01
 ```

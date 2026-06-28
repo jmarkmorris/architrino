@@ -276,6 +276,13 @@ $$
 
 and it must keep the same root labels, sign labels, source-pair policy, support descriptor, event convention, and speed-band margins on the proof ball.
 
+If causal-time tail exclusion or assimilation is unresolved before local cover
+predicates can be checked, the first failed row is
+
+$$
+\texttt{tail-persistence-open}.
+$$
+
 If only local tail predicates exist, the first failed row is
 
 $$

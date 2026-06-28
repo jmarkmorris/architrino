@@ -702,6 +702,18 @@ The working picture has four parts:
 - the horizon interface mediates which excitations remain trapped, which are delayed, and which can be re-expressed as outbound channels;
 - re-emergence may occur through jets, radiative outflows, dark-sector photon-channel-adjacent modes, or other medium excitations, depending on the local state of the core and interface.
 
+The corresponding interior-state ladder is a claim-level map, not a proof that every compact object realizes every rung:
+
+| Layer | Native record | Observer-facing pressure |
+| --- | --- | --- |
+| Ordinary infall | matter, radiation, and Noether sea assemblies entering the compact region | accretion luminosity, disk state, and inflow angular momentum |
+| Compact-matter predecessor | dense nuclear, quark, or mixed assembly support before horizon-interface exit | mass-radius, equation-of-state, and tidal-deformability constraints |
+| Maximum-curvature packing | finite packed assembly and Noether braid records with self-hit-dominant closure | singularity replacement and finite-boundary-data regularity |
+| Horizon-interface selection | alignment-compatible labels, trapped and outbound channel decisions | entropy capacity, release-channel selection, and exterior ring/jet observables |
+| Outbound reconstitution | released assembly, photon-channel, dark-sector, or medium-excitation routes | jets, winds, diffuse release, dark-sector signatures, or reabsorption |
+
+The ladder keeps interior discussion from jumping directly from generic infall to visible jets or cosmological source terms. Each occupied rung must carry energy, momentum, angular momentum, polarity, provenance, shielding/exposure, and Noether sea update rows.
+
 This is the sense in which black holes are treated as recycling furnaces in the cosmology chapters. The claim is not that every specific ejecta channel has already been derived. The claim is that the interior is an energy-partition and reprocessing regime, not a terminal ontic sink.
 
 The same picture implies that the effective mass of a black hole need not be interpreted as a purely isolated bookkeeping variable. If the horizon interface and interior remain constitutively coupled to the ambient Noether sea, then part of what observers infer as compact-object mass can depend on how the surrounding Noether sea loads, unloads, or stores energy around the recycling site. This does not license arbitrary mass drift. It means that the distinction between "local compact-object state" and "embedding Noether sea state" is dynamical rather than absolute.

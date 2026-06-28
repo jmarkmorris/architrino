@@ -92,6 +92,19 @@ d_{\mathrm{th}}\!\left(\mathcal{D}_{\mathrm{th}}^\theta,\mathcal{D}_{\mathrm{th}
 $$
 where $\dot n_{\mathrm{src}}^\theta$ is source-event density, $F_E^\theta$ is release-energy spectrum, $P_x^\theta$ is spatial distribution, and $\mathcal{D}_{\mathrm{th}}^\theta$ is thermalization depth. The residual fails if a branch fits the CMB monopole, redshift, or dark-sector inventory by changing any one of these rows without updating the shared source ledger.
 
+The blackbody negative control is strict. A distributed-source branch may not claim that many redshifted stellar, AGN, jet, or compact-object spectra simply average into the CMB Planck curve. The admissible route must identify a detailed-balance or thermalization mechanism before free streaming, then show that the later transparent transport preserves the occupation shape. A compact failure row is
+$$
+\mathcal{R}_{\mathrm{mix\to BB}}
+=
+\left\|
+\sum_s w_s\,\mathcal{T}_{s\to R}I_s(\nu)
+-B_\nu(T)
+\right\|_{C^{-1}}
++
+\mathcal{R}_{\mathrm{side}},
+$$
+where $I_s$ are declared source spectra, $\mathcal{T}_{s\to R}$ are their transport maps, and $\mathcal{R}_{\mathrm{side}}$ carries spectral-distortion, image-sharpness, anisotropy, and polarization side effects. The route fails if the Planck curve is recovered only by averaging arbitrary spectra without the same source, thermalization, transport, and CMB-transfer record.
+
 ## Deep-Space Inventory Benchmark
 
 The low visible density of intergalactic space should be treated as a component inventory, not as proof that the region is empty. The benchmark should record ordinary photon, neutrino, cosmic-ray, atom, plasma, and dust counts per cubic meter, then add the unresolved Noether sea carrier inventory as a separate unknown row:
@@ -125,6 +138,32 @@ N_{\mathrm{neutral}},
 $$
 where $E_{\mathrm{shield}}$ records shielded energy, $N_{\mathrm{neutral}}$ neutral assembly content, $\Sigma_{\mathrm{sea}}$ Noether sea stress, $\Pi_{\mathrm{proj}}$ observer-projection effects, and $\Delta_{\mathrm{cat}}$ catalogue residuals. Treating all five as one "dark" scalar is a failure mode, not a closure.
 
+## Galaxy-Dynamics Source-Family Watchlist
+
+Legacy SMBH and galaxy-dynamics sources are useful here as observable-family prompts, not as established explanations. The priority watchlist should preserve source leads only when they can be written as controlled records:
+$$
+\mathcal{O}_{\mathrm{gal-src}}
+=
+\left(
+\mathbf{A}_{\mathrm{jet}},
+\mathcal{B}_{\mathrm{bubble}},
+\mathcal{M}_{\mathrm{morph}},
+V_{\mathrm{rot}},
+\mathcal{G}_{\mathrm{cluster}},
+\mathcal{H}_{\mathrm{SMBH}}
+\right),
+$$
+where $\mathbf{A}_{\mathrm{jet}}$ records jet-axis geometry and precession, $\mathcal{B}_{\mathrm{bubble}}$ records bubble or lobe energy and age, $\mathcal{M}_{\mathrm{morph}}$ records spiral/bar/elliptical morphology, $V_{\mathrm{rot}}$ records rotation-curve and lensing data, $\mathcal{G}_{\mathrm{cluster}}$ records globular-cluster age, metallicity, orbit, and central-compact-object context, and $\mathcal{H}_{\mathrm{SMBH}}$ records the black-hole growth, spin, and release history. A source-family claim fails if it uses one of these rows as direct evidence for the others without a shared source, transport, and selection record.
+
+Shielded compact-core energy can remain a dark-sector residual only under strong controls. For a galaxy branch $\theta$, write an exposure contribution
+$$
+\Delta\Phi_{\mathrm{core}}^\theta(r)
+=
+\Phi_{\mathrm{exposed}}^\theta(r)
+-\Phi_{\mathrm{shielded}}^\theta(r),
+$$
+and compare it against rotation, lensing, cluster, CMB, and growth constraints before assigning any dark-matter role. If the branch improves $V_{\mathrm{rot}}(r)$ while worsening lensing, cluster dynamics, BBN/CMB transfer, or structure growth, it remains a speculative source lead rather than a promoted dark-sector mechanism.
+
 ## Quasar Population And Redshift-Transport Decomposition
 
 Quasar redshift distributions are useful only after population and transport rows are separated. A non-uniform count distribution in $z$ can come from luminosity-function evolution, survey flux limits, color selection, obscuration, lensing, source-class changes, classification uncertainty, or the redshift-transfer map. The priority comparison should therefore start from the decomposition in the distance-ladder benchmark and ask which rows are fixed by data before any cosmology interpretation is drawn.
@@ -134,6 +173,8 @@ The fail condition is symmetric: a fixed-void redshift branch fails if it treats
 ## Controversial QSO Association Source Lead
 
 Older QSO/galaxy-association claims can remain in this workstream only as a source lead. They do not become evidence for intrinsic redshift, source ejection, fixed-void redshift, or any other cosmology interpretation by citation alone. A usable audit would need a modern survey packet with predeclared galaxy/QSO samples, angular and redshift selection functions, lensing and extinction corrections, spectroscopic/photometric classification quality, catalog masks, and a look-elsewhere correction. If those controls are absent, the material is historical pressure to be careful about inference pipelines, not a corpus claim.
+
+BL Lac and companion-galaxy association claims belong in the same fail-closed family. A useful modern audit would need jet-axis geometry, host and companion catalogues, spectroscopic quality, radio/X-ray selection functions, lensing and extinction controls, and null tests against ordinary chance alignment and survey-depth effects. The only retained value of the legacy claim is source-family pressure: do not collapse source evolution, jet morphology, and redshift-transfer interpretation into one conclusion before the observation pipeline has separated them.
 
 ## CMB Spectrum / Noether Braid Linkage
 
@@ -162,6 +203,8 @@ d\!\left(
 \mathcal{R}_{\mathrm{transfer}}.
 $$
 The route fails if the shell-ratio story fits peak locations while using a different medium state than blackbody preservation, damping, lensing, BAO, or growth.
+
+The same rule applies to broader Noether-braid ensemble peak stories. If formation epochs, source-network cadence, or nested shell braid energy scales are proposed as inputs to the acoustic features, they must enter as a source side of $\mathcal{R}_{\mathrm{transfer}}$, not as a bypass around the photon-baryon transfer calculation. The source ensemble can seed phase structure only after the same state also preserves near-Planck occupation, damping, lensing, and the TT/TE/EE phase relations.
 
 The thermalization and transparent-transport rows must remain distinct. Pre-free-streaming thermalization can drive the photon bath toward a Planck occupation law, but long-path redshift must preserve that shape by coherent scaling. For a declared path factor $\lambda$, the comparison target is
 
@@ -199,6 +242,14 @@ $$
 \right)
 $$
 for blackbody shape, image sharpness, observed $(1+z)$ time dilation, and polarization transfer. The admissible fixed-void redshift route is coherent photon-channel transport with a closed Noether sea energy row, not untracked photon attrition.
+
+Low-energy photon endpoint speculation is useful only as a boundary condition, not as a redshift mechanism. If a photon-channel packet loses the geometry needed for coherent transparent transport, the branch should route it into capture, medium excitation, reaction, or assembly reclassification, and then remove it from the transparent CMB/redshift carrier population. It must not be allowed to drift continuously as a tired-light term. A candidate endpoint row should therefore ask whether
+$$
+G_{\gamma}^{\mathrm{A/B}}(\theta_{\gamma},\theta_{\mathrm{sea}})
+\ge
+\epsilon_{\gamma}
+$$
+still holds for the transported packet, where $G_{\gamma}^{\mathrm{A/B}}$ denotes the photon-channel geometry and coherence conditions being tested. Failure of this condition is a carrier-exit event with an energy and remnant ledger, not an untracked cosmological redshift increment.
 
 Absolute time also makes the redshift-energy row non-optional. A fixed-void branch cannot let the photon's missing energy disappear into expansion bookkeeping; it must close the finite-window ledger through Noether sea update, source/release or remnant rows, recoil/exchange rows, and declared boundary flux. The global target behind that finite-window row is
 

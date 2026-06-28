@@ -1263,6 +1263,18 @@ $$
 
 The useful first question is whether local voids, filaments, clusters, galaxy halos, and strong-source recycling environments share one $\alpha_{\mathcal{E},X}$ within tolerance after endpoint cadence, launch geometry, and source-branch factors have been removed. If they do not, a single all-sky $H_0$ is a lossy summary of distinct redshift-transfer environments.
 
+For a resolved line of sight, the environment version should be additive in the logarithmic transfer variable rather than averaged only at the end. If the path is divided into segments $j$ with environment labels $\mathcal{E}_j$, write
+$$
+Y_{X,E\to R}
+=
+Y_{\mathrm{endpoint},X}
++Y_{\mathrm{source},X}
++Y_{\mathrm{launch},X}
++\sum_{j=1}^{N}
+\Delta Y_{X,j}(\mathcal{E}_j,\theta_{\mathrm{sea},j}),
+$$
+with each $\Delta Y_{X,j}$ allowed to be positive, negative, or negligible only when its energy, medium-update, and coherence rows close in the same transport record. This segment form is the mathematical place for galaxy-local expansion-like regions, contraction-like regions, cluster crossings, void paths, and strong-source recycling environments. A fitted Hubble-like slope is then a coarse derivative of this path sum, not a primitive universal constant.
+
 ### $\Lambda\mathrm{CDM}$ Reference Curve
 
 The standard curved-spacetime model remains useful as a reference curve. For a chosen comparison parameter record $\Theta_{\Lambda\mathrm{CDM}}$, define

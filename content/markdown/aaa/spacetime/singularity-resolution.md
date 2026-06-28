@@ -108,6 +108,20 @@ $$
 $$
 together with the horizon-interface condition $F_H=0$ and a finite Noether braid closure-label ensemble. This is a theorem target, not a definition of success: the strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
 
+The packed-state replacement must also keep interior storage distinct from interface exposure. A dense interior may carry a large finite energy inventory while only the surface, defect, or horizon-interface rows couple efficiently to exterior clock, ruler, lensing, release, or dark-sector readouts. For a compact region $\Omega$, write the exposed response schematically as
+$$
+E_{\mathrm{ext}}(\Omega)
+=
+\Pi_{\mathrm{surf}}
+\!\left[
+E_{\mathrm{pack}}(\Omega),
+\partial\Omega,
+\mathcal{D}_{\mathrm{defect}},
+\theta_{\mathrm{sea}}
+\right],
+$$
+where $\Pi_{\mathrm{surf}}$ is an exposure projection rather than an energy source. The closure burden is to derive this projection from packing, interface, and Noether sea boundary data. Without that split, a model risks counting hidden packed energy as ordinary exterior mass in one paragraph and shielding it in the next.
+
 A sharper endpoint criterion is that those same finite data admit a continuation map
 $$
 \mathcal{T}_{\Omega}:

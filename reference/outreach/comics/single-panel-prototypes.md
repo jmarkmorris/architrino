@@ -65,7 +65,7 @@ Mia points calmly at a board showing two columns: `effective description` and `o
 
 ### Background Text
 
-- Drifting sentence: `Spacetime just is the stage.`
+- Drifting sentence: `Spacetime is the stage.`
 - Tiny referee note attached to the label: `Major revision: define "is".`
 - Bottom margin note: `Prestige does not commute with proof.`
 
@@ -307,6 +307,6 @@ First rough visual prototypes:
 Second rough visual prototypes:
 
 - [New Theory, Same Budget](assets/new-theory-same-budget-prototype.png)
-- [Citation Needed](assets/citation-needed-prototype.png)
+- [Citation Needed](assets/citation-needed-prototype-v2-no-just.png)
 - [Show The Residuals](assets/show-the-residuals-prototype.png)
 - [Office Hours For A Claim](assets/office-hours-for-a-claim-prototype.png)

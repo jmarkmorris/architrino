@@ -56,6 +56,8 @@ Claims about localized CMB features, including claims sometimes interpreted as p
 
 Conformal-cyclic-cosmology Hawking-point or ring claims are examples of this class. They are not imported as cosmology ontology; they are localized-feature packets requiring cross-map support, mask and foreground control, and a declared look-elsewhere domain before any source interpretation is allowed.
 
+The same discipline applies to the all-sky Planck products themselves. A Planck map is a calibrated microwave/far-infrared temperature, intensity, and polarization data product over declared frequency channels, masks, beams, foreground models, and covariance assumptions. It is not, by itself, an ontology claim about a unique global origin event. The origin story enters only through the model that projects a candidate Noether sea, photon-channel, and source-history record into the same band-limited observables.
+
 The comparison packet must record the reduction path before the residual is interpreted: sky mask, component-separation or foreground model, beam and transfer-function handling, monopole/dipole treatment, baseline subtraction, look-elsewhere domain, and any simulation ensemble used to assign significance. Without that provenance, a localized feature can be a foreground, mask, beam, or null-statistics artifact while appearing as a cosmological signal.
 
 Let $M_P(\hat{\mathbf{n}})$ and $M_W(\hat{\mathbf{n}})$ denote foreground-cleaned Planck and WMAP residual maps after a common mask and baseline $\Lambda\mathrm{CDM}$ subtraction, with the above provenance fields fixed before template search. For an angular template $T_{\theta,\hat{\mathbf{n}}}$ centered at sky direction $\hat{\mathbf{n}}$ with scale $\theta$, define the cross-map support statistic
@@ -670,6 +672,19 @@ Interpretation and microphysical origin are re-grounded in assembly dynamics whi
 Whether the background is read through a primarily primordial-origin interpretation or a distributed-emission interpretation, the prediction layer is one shared parameterization of the same observables.
 
 So source narrative is an interpretation layer, not a change in the prediction target: TT/TE/EE structure, damping behavior, and blackbody character remain part of one coherent readout.
+
+The useful decomposition is therefore row-based rather than slogan-based. A candidate CMB history must specify
+$$
+\Theta_{\mathrm{CMB,src}}
+=
+\left(
+\mathcal{S}_{\gamma},
+\mathcal{D}_{\mathrm{th}},
+\mathcal{T}_{\gamma},
+\mathcal{P}_{\mathrm{TT/TE/EE}}
+\right),
+$$
+where $\mathcal{S}_{\gamma}$ is the photon-channel source and release record, $\mathcal{D}_{\mathrm{th}}$ is the thermalization-depth record, $\mathcal{T}_{\gamma}$ is the coherent photon-channel transport record, and $\mathcal{P}_{\mathrm{TT/TE/EE}}$ is the transfer record for temperature and polarization spectra. A distributed-source or recycling interpretation is admissible only if these four rows are restrictions of one Noether sea and source-history record. It is not enough to fit the monopole with one story and then import acoustic peaks, damping, lensing, or polarization from a different state record.
 
 ### Redshift and Clock Link
 
