@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 546,
-      "edges": 1299,
-      "scenes": 357,
+      "nodes": 548,
+      "edges": 1301,
+      "scenes": 358,
       "markdownIndexes": 0,
-      "markdownDocs": 176,
+      "markdownDocs": 177,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2291,6 +2291,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "outreach__comics__curvefit_remake",
+      "name": "Four Theories, One Oval",
+      "path": "content/scenes/outreach/comics/curvefit_remake.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2696,6 +2702,12 @@
       "id": "content/markdown/aaa/outreach/comics.md",
       "name": "Outreach Comics",
       "path": "content/markdown/aaa/outreach/comics.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/curvefit-remake.md",
+      "name": "Four Theories, One Oval",
+      "path": "content/markdown/aaa/outreach/comics/curvefit-remake.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5311,6 +5323,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/outreach/comics/curvefit_remake.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__curvefit_remake",
+      "name": "Four Theories, One Oval",
+      "path": "content/scenes/outreach/comics/curvefit_remake.json",
+      "searchTarget": "content/scenes/outreach/comics/curvefit_remake.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/outreach/comics/first_page_problem.json",
       "nodeType": "scene",
       "id": "outreach__comics__first_page_problem",
@@ -7171,6 +7192,15 @@
       "name": "Outreach Comics",
       "path": "content/markdown/aaa/outreach/comics.md",
       "searchTarget": "content/markdown/aaa/outreach/comics.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/curvefit-remake.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/curvefit-remake.md",
+      "name": "Four Theories, One Oval",
+      "path": "content/markdown/aaa/outreach/comics/curvefit-remake.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/curvefit-remake.md",
       "implicit": false
     },
     {
@@ -11626,6 +11656,13 @@
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/curvefit_remake.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
       "to": "scene:content/scenes/outreach/comics/first_page_problem.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
@@ -13148,6 +13185,13 @@
       "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/nuclear/nucleon_structure.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/curvefit_remake.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/curvefit-remake.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/curvefit_remake.json",
       "field": "scene.source.path"
     },
     {

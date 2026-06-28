@@ -402,6 +402,26 @@ row with a retained branch certificate, matching active-root and
 conservation-pullback hashes, and a failing negative control for mismatched
 hashes.
 
+Candidate-intake scanner status, 2026-06-28:
+`scripts/nested-shell-braid/field-speed-action-self-hit-scan-source-binding-candidate-intake-report.mjs`
+emits `field_speed_action_self_hit_scan_source_candidate_intake_report/v0`.
+It enumerates four current candidate paths and six rank-2 candidate rows: the
+fixture action-increment packet, the rank-2 transition-source attempt, the
+blocked source-contract fixture, and the three branch-provider manifest rows
+that feed rank 2 (`field-speed-action-increment-fixture-source`,
+`tri-binary-torque-wake-same-row-diagnostic`, and
+`h39-aggregate-p-provider-preaggregation-construction-attempt`). The report
+finds zero accepted transition-source candidates, returns
+`report_status=source_row_binding_open`,
+`first_candidate_failure_code=fixture_shape_only_packet_not_source`, and keeps
+`first_required_source_field=transition_source_ref`. The source-contract attempt
+fails as `accepted_transition_source_absent_in_current_repo_pool`; the
+branch-provider rows fail as `accepted_non_fixture_source_missing` because they
+are fixture, proxy-diagnostic, or target-only surfaces rather than non-fixture
+same-record action-increment sources. This scanner is priority-only candidate
+intake: it does not run `field_speed_action_self_hit_scan/v0`, does not accept
+synthetic or proxy rows, and keeps `candidate_h_recovery_vote=not_authorized`.
+
 Related torque/wake diagnostic status, 2026-06-28:
 `scripts/nested-shell-braid/torque-wake-same-row-diagnostic-report.mjs` emits
 and validates `torque_wake_same_row_diagnostic_report/v0` for the angular

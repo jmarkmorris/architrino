@@ -1784,6 +1784,11 @@
       "id": "outreach__comics__signals_from_earlier",
       "name": "Signals From Earlier",
       "path": "content/scenes/outreach/comics/signals_from_earlier.json"
+    },
+    {
+      "id": "outreach__comics__curvefit_remake",
+      "name": "Four Theories, One Oval",
+      "path": "content/scenes/outreach/comics/curvefit_remake.json"
     }
   ]
 }

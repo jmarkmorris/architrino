@@ -95,13 +95,18 @@ not a received external schema and keeps schema-validation intake, row
 consumption, live-ledger update, and branch-chart authorization false.
 The
 [local proof-program pool non-reclassification classifier](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.local-proof-program-pool-nonreclassification-classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
-now screens 280 local certificate JSON objects and records 0 accepted external
+now screens 282 local certificate JSON objects and records 0 accepted external
 provenance records, 0 schema-validation intake candidates, 0 local objects
-reclassified as external schema, 0 records with 8 / 8 required fields, and
-0 external schema inputs received. The
+reclassified as external schema, 1 local record with 8 / 8 required fields but
+no external provenance, and 0 external schema inputs received. The
+[external-label decoy negative control](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+is that complete-looking local record: it supplies external-looking labels and
+8 / 8 structurally present fields, but the intake record rejects it before
+schema-validation intake because accepted external provenance is absent. The
 [external provenance contract replay](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.external-provenance-contract-replay.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
-then replays those 280 local JSON paths as attempted candidate refs, rejects
-all 280 by provenance, and makes the first failure
+then replays those 282 local JSON paths as attempted candidate refs, rejects
+all 282 by provenance, records 1 field-complete but provenance-rejected record,
+and makes the first failure
 `external_schema_provenance_required_before_schema_validation_intake`. This
 does not construct proof evidence, authorize schema-validation intake, consume
 rows, update the live ledger, or authorize a branch chart.
@@ -528,10 +533,10 @@ primitive-acceptance, or source-packet acceptance decision, consumes 0 rows,
 and leaves `preledger_pass=false`, `updates_live_ledger=false`, and
 branch-chart authorization false. The follow-on `Sigma_hf_01` local
 proof-program pool non-reclassification classifier then applies the same
-eight-field external schema intake predicate to 279 local certificate JSON
+eight-field external schema intake predicate to 282 local certificate JSON
 objects and finds 0 schema-validation intake candidates, 0 local objects
-reclassified as external schema, 0 records with 8 / 8 required fields, and
-0 external schema inputs received. The blocker remains
+reclassified as external schema, 1 local record with 8 / 8 required fields but
+no external provenance, and 0 external schema inputs received. The blocker remains
 `source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_external_input_required`.
 
 Promotion-gate update: the ref/value non-domain carrier-pair theorem attempt is

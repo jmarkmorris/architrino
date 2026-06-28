@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">AdS/CFT Bulk Boundary Schematic</title>
+  <desc id="desc">A project-owned schematic showing a conformal field theory on a boundary linked to an anti-de Sitter bulk gravity description.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10161f"/>
+      <stop offset="0.55" stop-color="#17242f"/>
+      <stop offset="1" stop-color="#111820"/>
+    </linearGradient>
+    <linearGradient id="bulk" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2f7da8" stop-opacity="0.95"/>
+      <stop offset="0.52" stop-color="#71b8c8" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#f0d986" stop-opacity="0.86"/>
+    </linearGradient>
+    <linearGradient id="boundary" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6f0c6"/>
+      <stop offset="1" stop-color="#71c7b4"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#f5d66d"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity="0.35">
+    <circle cx="144" cy="118" r="2" fill="#ffffff"/>
+    <circle cx="306" cy="206" r="1.5" fill="#ffffff"/>
+    <circle cx="782" cy="104" r="1.7" fill="#ffffff"/>
+    <circle cx="1265" cy="168" r="2.1" fill="#ffffff"/>
+    <circle cx="1468" cy="372" r="1.4" fill="#ffffff"/>
+    <circle cx="196" cy="738" r="1.5" fill="#ffffff"/>
+    <circle cx="1174" cy="770" r="1.2" fill="#ffffff"/>
+  </g>
+  <text x="86" y="94" fill="#f8fbff" font-family="Inter, Helvetica, Arial, sans-serif" font-size="43" font-weight="700">AdS/CFT bulk-boundary schematic</text>
+  <text x="88" y="136" fill="#b9c8d2" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22">One boundary field theory description can correspond to a higher-dimensional bulk gravity description.</text>
+  <g transform="translate(120 194)" filter="url(#shadow)">
+    <rect x="0" y="0" width="1360" height="606" fill="#f8fafc" opacity="0.96"/>
+    <g transform="translate(108 82)">
+      <path d="M70 32 L294 0 L294 432 L70 464 Z" fill="url(#boundary)" stroke="#1d5160" stroke-width="4"/>
+      <g stroke="#1d5160" stroke-width="1.5" opacity="0.45">
+        <path d="M108 27 L108 458"/>
+        <path d="M146 22 L146 453"/>
+        <path d="M184 16 L184 448"/>
+        <path d="M222 11 L222 442"/>
+        <path d="M260 5 L260 437"/>
+        <path d="M70 86 L294 54"/>
+        <path d="M70 150 L294 118"/>
+        <path d="M70 214 L294 182"/>
+        <path d="M70 278 L294 246"/>
+        <path d="M70 342 L294 310"/>
+        <path d="M70 406 L294 374"/>
+      </g>
+      <text x="182" y="520" fill="#1e2b34" font-family="Inter, Helvetica, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="middle">CFT boundary</text>
+      <text x="182" y="552" fill="#52616d" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" text-anchor="middle">lower-dimensional field theory</text>
+    </g>
+    <g transform="translate(720 54)">
+      <path d="M158 0 C84 90 42 200 42 316 C42 390 74 462 158 520 C242 462 274 390 274 316 C274 200 232 90 158 0 Z" fill="url(#bulk)" stroke="#184052" stroke-width="4"/>
+      <ellipse cx="158" cy="97" rx="86" ry="30" fill="none" stroke="#f9f2c8" stroke-width="3" opacity="0.85"/>
+      <ellipse cx="158" cy="184" rx="122" ry="42" fill="none" stroke="#f9f2c8" stroke-width="3" opacity="0.72"/>
+      <ellipse cx="158" cy="282" rx="154" ry="56" fill="none" stroke="#f9f2c8" stroke-width="3" opacity="0.62"/>
+      <ellipse cx="158" cy="394" rx="113" ry="43" fill="none" stroke="#f9f2c8" stroke-width="3" opacity="0.58"/>
+      <path d="M158 0 C132 128 132 392 158 520" fill="none" stroke="#184052" stroke-width="2" opacity="0.44"/>
+      <path d="M158 0 C190 130 190 392 158 520" fill="none" stroke="#184052" stroke-width="2" opacity="0.38"/>
+      <circle cx="158" cy="280" r="35" fill="#15232b" stroke="#f5d66d" stroke-width="4"/>
+      <path d="M124 280 H192" stroke="#f5d66d" stroke-width="7"/>
+      <path d="M158 246 V314" stroke="#f5d66d" stroke-width="7"/>
+      <text x="158" y="574" fill="#1e2b34" font-family="Inter, Helvetica, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="middle">AdS bulk</text>
+      <text x="158" y="606" fill="#52616d" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" text-anchor="middle">higher-dimensional gravity model</text>
+    </g>
+    <path d="M466 244 C560 164 626 156 704 219" fill="none" stroke="#f5d66d" stroke-width="6" marker-end="url(#arrow)"/>
+    <path d="M704 362 C608 444 542 448 466 380" fill="none" stroke="#f5d66d" stroke-width="6" marker-end="url(#arrow)"/>
+    <text x="585" y="206" fill="#2e3a43" font-family="Inter, Helvetica, Arial, sans-serif" font-size="23" font-weight="700" text-anchor="middle">dictionary</text>
+    <text x="585" y="400" fill="#2e3a43" font-family="Inter, Helvetica, Arial, sans-serif" font-size="23" font-weight="700" text-anchor="middle">same observables</text>
+  </g>
+  <text x="126" y="850" fill="#9fb1bf" font-family="Inter, Helvetica, Arial, sans-serif" font-size="17">Project-owned schematic; intended as a clean provenance replacement for an untracked AdS/CFT PNG.</text>
+</svg>

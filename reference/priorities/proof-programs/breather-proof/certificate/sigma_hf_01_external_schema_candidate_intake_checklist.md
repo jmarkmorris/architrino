@@ -73,18 +73,21 @@ The local proof-program pool non-reclassification classifier
 [report](sigma_hf_01_external_schema_candidate.local-proof-program-pool-nonreclassification-classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
 and
 [JSON](sigma_hf_01_external_schema_candidate.local-proof-program-pool-nonreclassification-classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
-applies the same eight-field intake predicate to 280 local certificate JSON
+applies the same eight-field intake predicate to 282 local certificate JSON
 objects. It finds 0 accepted external provenance records, 0 schema-validation
-intake candidates, 0 local objects reclassified as external schema, 0 records
-with 8 / 8 required fields, and 0 external schema inputs received. The focused
-local partial and placeholder records remain 5 / 8 and
-`external_input_required`.
+intake candidates, 0 local objects reclassified as external schema, 1 local
+record with 8 / 8 required fields but no external provenance, and 0 external
+schema inputs received. The focused local partial and placeholder records
+remain 5 / 8 and `external_input_required`; the
+[external-label decoy negative control](sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+is the complete-looking local record and remains `external_input_required`.
 
 The
 [external provenance contract replay](sigma_hf_01_external_schema_candidate.external-provenance-contract-replay.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
-screens those 280 local JSON paths as attempted candidate refs. It rejects all
-280 by provenance, accepts 0 external provenance records, authorizes 0
-schema-validation intake candidates, and keeps the first failure at
+screens those 282 local JSON paths as attempted candidate refs. It rejects all
+282 by provenance, records 1 field-complete but provenance-rejected record,
+accepts 0 external provenance records, authorizes 0 schema-validation intake
+candidates, and keeps the first failure at
 `external_schema_provenance_required_before_schema_validation_intake`.
 
 Smallest continuation: supply accepted external provenance plus

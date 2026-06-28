@@ -470,6 +470,22 @@ memory integrals remain point-sample evidence, so the object has
 `emits_E_Q_plus_b=false`, `emits_K_Q=false`, and
 `authorizes_outward_certificate=false`. This is a priority-only negative
 control, not an interval certificate.
+A narrower one-slot construction attempt is now nested beside that matrix:
+`a1_summand_partial_interval_box_one_slot_construction_attempt.v0` with digest
+`sha256:9923d206a71ae997f0da417e2e73345fc1ad9809871ddbf15e2a3ba980fefd63`.
+It targets only `P_1` / `tangential_summand_partials` /
+`partial_T_alpha_partial_delta_alpha` and fixes the intended formula row as
+`partial_delta_alpha T_alpha(theta, delta_alpha, q_source_alpha)` with
+`theta` and `q_source_alpha` held fixed. The attempt does not emit a slot
+interval box: its first missing interval input is
+`P_1_retained_root_delta_alpha_interval_box`, its first missing formula row is
+`partial_delta_J_partner_with_source_q_interval_formula`, and its missing
+backend capability is
+`directed_rounded_interval_derivative_backend_for_branch_values_with_source_q`.
+It records the central-float64 `P_1` sampled partials only as rejected
+diagnostic reference values, so `satisfies_selected_slot=false`,
+`emits_E_Q_plus_b=false`, `emits_K_Q=false`, and
+`authorizes_outward_certificate=false`.
 
 The top-level row identity now carries
 `inactive_cover_id=inactive_cover_interval_boxes`, so the live blocker is no

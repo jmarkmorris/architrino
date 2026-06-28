@@ -63,14 +63,19 @@ is the current fail-closed slot state: the local source-data partial fixes
 three proof-grade fields remain absent.
 The
 [Sigma_hf_01 local proof-program pool non-reclassification classifier](./certificate/sigma_hf_01_external_schema_candidate.local-proof-program-pool-nonreclassification-classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
-now applies that same eight-field intake predicate to 280 local certificate
+now applies that same eight-field intake predicate to 282 local certificate
 JSON objects and finds 0 accepted external provenance records, 0
 schema-validation intake candidates, 0 local objects reclassified as external
-schema, 0 records with 8 / 8 required fields, and 0 external schema inputs
-received. The
+schema, 1 local record with 8 / 8 required fields but no external provenance,
+and 0 external schema inputs received. The
+[Sigma_hf_01 external-label decoy negative control](./certificate/sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+is that complete-looking local record: it supplies external-looking labels and
+8 / 8 structurally present fields, but the intake record rejects it at
+`external_schema_provenance_required` before schema-validation intake. The
 [Sigma_hf_01 external provenance contract replay](./certificate/sigma_hf_01_external_schema_candidate.external-provenance-contract-replay.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
-then replays all 280 local JSON paths as attempted candidate refs, rejects all
-280 by provenance, and keeps the first failure at
+then replays all 282 local JSON paths as attempted candidate refs, rejects all
+282 by provenance, records 1 field-complete but provenance-rejected record, and
+keeps the first failure at
 `external_schema_provenance_required_before_schema_validation_intake`. The
 result remains priority-only and keeps `external_input_required`, 0 row
 consumption, `preledger_pass=false`, `updates_live_ledger=false`, and no

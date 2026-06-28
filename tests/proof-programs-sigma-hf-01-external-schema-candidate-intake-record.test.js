@@ -14,6 +14,7 @@ import {
   buildMissingProofGradeFieldsDerivationTarget,
   buildLocalProofProgramPoolNonReclassificationClassifier,
   buildExternalSchemaProvenanceContractReplay,
+  buildExternalLabelDecoyNegativeControlCandidate,
   scanLocalProofProgramPool,
   validationErrors,
 } from "../scripts/proof-programs/fresh-v10-higher-fold-sigma-hf-01-external-schema-candidate-intake-record.mjs";
@@ -54,6 +55,8 @@ const PROOF_OBJECT_ENVELOPE_STATUS =
   "sigma_hf_01_external_schema_candidate_proof_object_envelope_open_5_of_8_local_locks_bound_3_proof_grade_fields_required_no_schema_validation_intake_no_row_consumption_no_live_ledger_update_no_branch_chart_authorization";
 const MISSING_FIELDS_TARGET_STATUS =
   "priority-only-missing-proof-grade-fields-derivation-target-open_5_of_8_local_locks_bound_3_fields_targeted_no_external_schema_received_no_schema_validation_intake_no_row_consumption_no_live_ledger_update_no_branch_chart_authorization";
+const EXTERNAL_LABEL_DECOY_STATUS =
+  "sigma_hf_01_external_schema_candidate_external_label_decoy_negative_control_rejected_8_of_8_fields_external_labels_without_accepted_provenance_no_schema_validation_intake_no_row_consumption_no_live_ledger_update_no_branch_chart_authorization";
 
 function readJson(pathname) {
   return JSON.parse(fs.readFileSync(pathname, "utf8"));
@@ -159,6 +162,32 @@ test("Sigma_hf_01 intake rejects eight fields without accepted external provenan
   assert.equal(record.authorization.row_consumption, false);
   assert.equal(record.updates_live_ledger, false);
   assert.equal(record.branch_chart_authorized, false);
+});
+
+test("Sigma_hf_01 external-label decoy supplies 8 fields but fails provenance intake", () => {
+  const candidate = buildExternalLabelDecoyNegativeControlCandidate();
+  const record = buildRecord(candidate);
+
+  assert.deepEqual(validationErrors(record), []);
+  assert.equal(candidate.status, EXTERNAL_LABEL_DECOY_STATUS);
+  assert.equal(candidate.external_label_decoy_negative_control.local_object_marked_external, false);
+  assert.equal(record.required_fields_present, 8);
+  assert.deepEqual(record.missing_fields, []);
+  assert.equal(record.external_provenance_accepted, false);
+  assert.equal(record.candidate_external_schema_received, false);
+  assert.equal(record.candidate_known_local_non_external_artifact, true);
+  assert.equal(record.slot_result, "external_input_required");
+  assert.equal(record.authorization.schema_validation_intake, false);
+  assert.equal(record.authorization.row_consumption, false);
+  assert.equal(record.updates_live_ledger, false);
+  assert.equal(record.branch_chart_authorized, false);
+  assert.deepEqual(record.external_provenance_diagnostics.failed_predicate_fields, [
+    "external_schema_provenance.provenance_class",
+    "external_schema_provenance.authored_inside_local_proof_program_pool",
+    "external_schema_provenance.derived_from_local_certificate_json",
+    "external_schema_provenance.self_authored_placeholder",
+    "external_schema_provenance.local_path_treated_as_external_evidence",
+  ]);
 });
 
 test("Sigma_hf_01 local source-data candidate records exact partial fields and stays fail-closed", () => {
@@ -503,6 +532,47 @@ test("Sigma_hf_01 intake CLI writes placeholder-rejection candidate and record",
   assert.equal(validation.required_fields_present, 5);
 });
 
+test("Sigma_hf_01 intake CLI writes external-label decoy negative control", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sigma-hf-01-external-label-decoy-"));
+  execFileSync(
+    process.execPath,
+    [SCRIPT_PATH, "--external-label-decoy-negative-control", "--out-dir", tempDir, "--pretty"],
+    { encoding: "utf8" },
+  );
+
+  const candidatePath = path.join(
+    tempDir,
+    "sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  );
+  const candidateReportPath = path.join(
+    tempDir,
+    "sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md",
+  );
+  const jsonPath = path.join(
+    tempDir,
+    "sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control-intake-record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  );
+  const reportPath = path.join(
+    tempDir,
+    "sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control-intake-record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md",
+  );
+
+  assert.equal(fs.existsSync(candidatePath), true);
+  assert.equal(fs.existsSync(candidateReportPath), true);
+  assert.equal(fs.existsSync(jsonPath), true);
+  assert.equal(fs.existsSync(reportPath), true);
+  const record = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  assert.equal(record.required_fields_present, 8);
+  assert.equal(record.external_provenance_accepted, false);
+  assert.equal(record.candidate_external_schema_received, false);
+  assert.equal(record.slot_result, "external_input_required");
+  assert.equal(record.authorization.schema_validation_intake, false);
+
+  const validation = JSON.parse(execFileSync(process.execPath, [SCRIPT_PATH, "--validate", jsonPath], { encoding: "utf8" }));
+  assert.equal(validation.valid, true);
+  assert.equal(validation.required_fields_present, 8);
+});
+
 test("Sigma_hf_01 intake CLI writes fail-closed proof-object envelope", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sigma-hf-01-proof-envelope-"));
   execFileSync(process.execPath, [SCRIPT_PATH, "--proof-object-envelope", "--out-dir", tempDir, "--pretty"], {
@@ -606,13 +676,16 @@ test("Sigma_hf_01 local proof-program pool classifier rejects local reclassifica
   const localSourceDataPartial = packet.local_partial_or_known_non_external_records.find((record) =>
     record.basename.includes("local-source-data-partial"),
   );
+  const externalLabelDecoy = packet.local_partial_or_known_non_external_records.find((record) =>
+    record.basename.includes("external-label-decoy-negative-control."),
+  );
 
   assert.equal(packet.target_slot, "Sigma_hf_01");
   assert.ok(summary.local_proof_program_json_files_screened > 0);
   assert.equal(summary.schema_validation_intake_candidates_found, 0);
   assert.equal(summary.local_proof_program_json_files_reclassified_as_external_schema, 0);
   assert.equal(summary.external_schema_input_received_records, 0);
-  assert.equal(summary.records_with_required_fields_present_8_of_8, 0);
+  assert.ok(summary.records_with_required_fields_present_8_of_8 >= 1);
   assert.equal(summary.schema_validation_intake_authorized_records, 0);
   assert.equal(
     summary.external_input_required_records,
@@ -621,6 +694,13 @@ test("Sigma_hf_01 local proof-program pool classifier rejects local reclassifica
   assert.equal(localSourceDataPartial.required_fields_present, 5);
   assert.equal(localSourceDataPartial.slot_result, "external_input_required");
   assert.equal(localSourceDataPartial.candidate_known_local_non_external_artifact, true);
+  assert.equal(externalLabelDecoy.required_fields_present, 8);
+  assert.equal(externalLabelDecoy.external_provenance_accepted, false);
+  assert.equal(externalLabelDecoy.schema_validation_intake_authorized, false);
+  assert.equal(
+    externalLabelDecoy.classification,
+    "eight_fields_present_without_external_schema_intake",
+  );
   assert.equal(packet.authorization_lock.schema_validation_intake, false);
   assert.equal(packet.authorization_lock.row_consumption, false);
   assert.equal(packet.authorization_lock.preledger_pass, false);
@@ -648,6 +728,7 @@ test("Sigma_hf_01 external provenance contract replay rejects local candidate re
   assert.equal(summary.external_provenance_accepted_records, 0);
   assert.equal(summary.schema_validation_intake_candidates_found, 0);
   assert.equal(summary.external_schema_inputs_received, 0);
+  assert.ok(summary.field_complete_but_provenance_rejected_records >= 1);
   assert.equal(summary.local_path_candidate_refs_rejected, summary.local_proof_program_json_files_screened_as_candidate_refs);
   assert.equal(summary.first_failure, "external_schema_provenance_required_before_schema_validation_intake");
   assert.equal(packet.authorization_lock.schema_validation_intake, false);
@@ -683,7 +764,7 @@ test("Sigma_hf_01 intake CLI writes local proof-program pool classifier", () => 
   assert.equal(fs.existsSync(reportPath), true);
   const packet = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
   assert.equal(packet.summary.schema_validation_intake_candidates_found, 0);
-  assert.equal(packet.summary.records_with_required_fields_present_8_of_8, 0);
+  assert.ok(packet.summary.records_with_required_fields_present_8_of_8 >= 1);
   assert.equal(packet.authorization_lock.schema_validation_intake, false);
   assert.equal(packet.authorization_lock.row_consumption, false);
   assert.equal(packet.authorization_lock.branch_chart_authorized, false);

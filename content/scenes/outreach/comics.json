@@ -36,6 +36,10 @@
       {
         "nodeId": "first_page_problem",
         "scenePath": "content/scenes/outreach/comics/first_page_problem.json"
+      },
+      {
+        "nodeId": "curvefit_remake",
+        "scenePath": "content/scenes/outreach/comics/curvefit_remake.json"
       }
     ]
   },
@@ -93,6 +97,15 @@
       "labelTitle": "First Page Problem",
       "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/first-page-problem-thumb.png",
       "labelBadgeAlt": "First Page Problem thumbnail"
+    },
+    {
+      "id": "curvefit_remake",
+      "title": "Four Theories, One Oval",
+      "radius": 1.8,
+      "color": "#6c4f8d",
+      "labelTitle": "Four Theories, One Oval",
+      "labelBadgeImage": "content/assets/images/outreach/comics/thumbnails/curvefit-remake-thumb.png",
+      "labelBadgeAlt": "Four Theories, One Oval thumbnail"
     }
   ]
 }

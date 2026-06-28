@@ -918,6 +918,105 @@
       ]
     },
     {
+      "id": "curvefit-remake",
+      "title": "Four Theories, One Oval",
+      "description": "Single-panel outreach comic in which multiple theory curves fit the same oval data cloud while the residuals decide which model survives.",
+      "path": "content/assets/images/outreach/comics/curvefit-remake.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "fileSizeBytes": 2444705,
+      "sha256": "05c7920d02f177b9ab1909b4e2e0eb6a83c48517c39bdbd42e169a820969e5ba",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "OpenAI image generation",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "comic direction and prompt authoring"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for the Architrino outreach comics line from project direction without imported third-party artwork.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic",
+          "markdown figure"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md",
+          "content/markdown/aaa/outreach/comics/curvefit-remake.md"
+        ]
+      },
+      "selectionNotes": [
+        "Selected because the surface joke about curve fitting stays friendly while the hidden academic layer routes model preference to residuals and falsification."
+      ]
+    },
+    {
+      "id": "curvefit-remake-thumb",
+      "title": "Four Theories, One Oval Thumbnail",
+      "description": "Thumbnail derivative for the Four Theories, One Oval outreach comic gallery entry.",
+      "path": "content/assets/images/outreach/comics/thumbnails/curvefit-remake-thumb.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 360,
+        "height": 360
+      },
+      "fileSizeBytes": 226830,
+      "sha256": "36f2f2bce80e8940125af47e716aa6d21d9a2db6b4353729dedd18131d183598",
+      "dateCreated": "2026-06-28",
+      "dateImported": "2026-06-28",
+      "status": "approved",
+      "category": "outreach-comic-thumbnail",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": null,
+        "fileUrl": null,
+        "generator": "sips derivative from curvefit-remake",
+        "accessedDate": "2026-06-28"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "thumbnail generation"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created as a derivative of the project-owned Four Theories, One Oval outreach comic.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "outreach comic thumbnail",
+          "markdown gallery thumbnail"
+        ],
+        "usedBy": [
+          "content/markdown/aaa/outreach/comics.md"
+        ]
+      },
+      "selectionNotes": [
+        "Generated as a smaller gallery thumbnail that links to the full-size comic image."
+      ]
+    },
+    {
       "id": "albert-einstein-head-cleaned",
       "title": "Albert Einstein Portrait, 1947",
       "description": "Cleaned Library of Congress portrait of Albert Einstein by Orren Jack Turner, used as a free-source facsimile for the EPR portrait composite.",

@@ -8,12 +8,12 @@ priority-only Sigma_hf_01 external provenance contract replay; screens local pro
 
 ## Replay Summary
 
-- local proof-program JSON paths screened as attempted candidate refs: 280
+- local proof-program JSON paths screened as attempted candidate refs: 282
 - external provenance accepted records: 0
 - schema-validation intake candidates found: 0
-- local path candidate refs rejected: 280
-- local or self-authored candidate refs rejected: 280
-- field-complete but provenance-rejected records: 0
+- local path candidate refs rejected: 282
+- local or self-authored candidate refs rejected: 282
+- field-complete but provenance-rejected records: 1
 - external schema inputs received: 0
 - first failure: `external_schema_provenance_required_before_schema_validation_intake`
 
@@ -49,6 +49,8 @@ priority-only Sigma_hf_01 external provenance contract replay; screens local pro
 | --- | --- | --- | --- | --- |
 | `higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_current_pool_absence_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json` | 0 / 8 | `external_schema_provenance_required` | `external_schema_provenance.provenance_class` | `external_input_required` |
 | `higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_object_current_pool_absence_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json` | 0 / 8 | `external_schema_provenance_required` | `external_schema_provenance.provenance_class` | `external_input_required` |
+| `sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control-intake-record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json` | 0 / 8 | `external_schema_provenance_required` | `external_schema_provenance.provenance_class` | `external_input_required` |
+| `sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json` | 8 / 8 | `external_schema_provenance_required` | `external_schema_provenance.provenance_class` | `external_input_required` |
 | `sigma_hf_01_external_schema_candidate.local-missing-proof-grade-placeholders-rejected.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json` | 5 / 8 | `external_schema_provenance_required` | `external_schema_provenance.provenance_class` | `external_input_required` |
 | `sigma_hf_01_external_schema_candidate.local-source-data-partial.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json` | 5 / 8 | `external_schema_provenance_required` | `external_schema_provenance.provenance_class` | `external_input_required` |
 | `sigma_hf_01_external_schema_candidate.missing-proof-grade-fields-derivation-target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json` | 0 / 8 | `external_schema_provenance_required` | `external_schema_provenance.provenance_class` | `external_input_required` |

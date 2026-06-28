@@ -188,7 +188,7 @@ export function buildSourceScoutReport(manifest, options = {}) {
     rejection_code_legend: REJECTION_CODE_LEGEND,
     candidates,
     authorization: {
-      branch_derived_pressure_response: acceptedCandidates.length > 0,
+      branch_derived_pressure_response: false,
       empirical_mass_response: false,
       retained_branch_claim: false,
       observer_export: false,
@@ -277,8 +277,8 @@ Options:
   --help             Show this help.
 
 This is a priority-only scout for accepted non-fixture retained pressure-row
-sources. It does not authorize branch-derived pressure response unless a
-candidate passes the pressure-row intake checker without rejection codes.`);
+sources. It does not authorize branch-derived pressure response, retained-branch
+claims, observer export, export readiness, or empirical mass response.`);
 }
 
 function writeOutput(value, args) {

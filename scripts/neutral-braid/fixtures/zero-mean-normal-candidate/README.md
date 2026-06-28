@@ -13,7 +13,10 @@ branch. The after-normal packet also declares a fail-closed
 `blocked:bounded-speed-live-ledger-open`. Its nested
 `live_ledger_identity_target` records the exact identity tuple, the closed row
 already supplied by the normal candidate, and the missing downstream closed
-rows that prove the tuple is not yet a certified bounded-speed live ledger.
+rows that prove the tuple is not yet a certified bounded-speed live ledger. Its
+`action_derived_scale_target` makes the first missing downstream row executable
+and rejects this fixture by
+`same-ledger-tuple-without-action-scale-rows-not-action-derived-scale`.
 Every packet keeps `certifies_bounded_speed_live_ledger=false` and
 `retained_branch=false`.
 

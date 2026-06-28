@@ -1686,6 +1686,82 @@ authorization locked false.
 `;
 }
 
+function renderExternalLabelDecoyNegativeControlReport(candidate, record) {
+  const fieldRows = record.field_results
+    .map((field) => {
+      const reading = field.present
+        ? "present"
+        : field.candidate_field_supplied
+          ? "supplied but rejected"
+          : "absent";
+      return `| \`${field.field}\` | ${reading} | \`${field.verdict}\` |`;
+    })
+    .join("\n");
+  const provenanceRows = record.external_provenance_diagnostics.predicate_results
+    .map((field) => {
+      const actual =
+        typeof field.actual === "string" || typeof field.actual === "boolean"
+          ? `\`${field.actual}\``
+          : "absent";
+      const verdict = field.present ? "present" : "external provenance required";
+      return `| \`${field.field}\` | ${actual} | \`${verdict}\` |`;
+    })
+    .join("\n");
+
+  return `# Sigma_hf_01 External-Label Decoy Negative Control
+
+Status: \`${candidate.status}\`
+
+## Claim Level
+
+Priority-only negative control. This local packet supplies external-looking
+candidate labels and 8 / 8 structurally present schema fields, then proves that
+the \`Sigma_hf_01\` separator slot still cannot enter schema-validation intake
+unless the accepted external provenance predicate succeeds.
+
+## Scope
+
+- Packet identity: \`${candidate.packet_id}\`
+- Proof interval: \`${candidate.proof_interval}\`
+- Lambda branch: \`${candidate.lambda_branch}\`
+- Target slot: \`${candidate.target_slot}\`
+- Fold interval: \`${candidate.fold_interval}\`
+- Candidate ref: \`${candidate.candidate_external_schema_ref}\`
+- Candidate status: \`${candidate.candidate_status}\`
+
+## Candidate Field Screen
+
+| Required field | Candidate reading | Verdict |
+| --- | --- | --- |
+${fieldRows}
+
+Current count: ${record.required_fields_present} / ${record.required_fields_total} required fields present.
+
+## External Provenance Predicate
+
+| Provenance field | Current reading | Verdict |
+| --- | --- | --- |
+${provenanceRows}
+
+External provenance accepted: \`${record.external_provenance_accepted}\`.
+First failed provenance field: ${record.external_provenance_diagnostics.failed_predicate_fields[0] ? `\`${record.external_provenance_diagnostics.failed_predicate_fields[0]}\`` : "none"}.
+
+## Authorization Locks
+
+- Slot result after intake: \`${record.slot_result}\`
+- Candidate external schema received: \`${record.candidate_external_schema_received}\`
+- Row slots parked: ${record.row_slots_parked}
+- Row consumption count: ${record.row_consumption_count}
+- \`preledger_pass\`: \`${record.preledger_pass}\`
+- \`updates_live_ledger\`: \`${record.updates_live_ledger}\`
+- Branch chart authorized: \`${record.branch_chart_authorized}\`
+
+This negative control does not construct or accept an external schema, does not
+make a proof-rule or primitive-acceptance decision, consumes no rows, updates
+no live ledger, and authorizes no branch chart.
+`;
+}
+
 function renderProofObjectEnvelopeReport(envelope) {
   const localRows = envelope.local_locks_bound
     .map((field) => `| \`${field}\` | local lock bound |`)
@@ -2004,6 +2080,23 @@ function emitPlaceholderRejectionCandidate(args) {
   writeText(recordReportPath, renderReport(record));
 }
 
+function emitExternalLabelDecoyNegativeControl(args) {
+  const candidate = buildExternalLabelDecoyNegativeControlCandidate();
+  const candidatePath = path.join(args.outDir, EXTERNAL_LABEL_DECOY_NEGATIVE_CONTROL_JSON);
+  const candidateReportPath = path.join(args.outDir, EXTERNAL_LABEL_DECOY_NEGATIVE_CONTROL_REPORT);
+  const recordPath = path.join(args.outDir, EXTERNAL_LABEL_DECOY_RECORD_JSON);
+  const recordReportPath = path.join(args.outDir, EXTERNAL_LABEL_DECOY_RECORD_REPORT);
+  const record = buildRecord(candidate, { candidateRef: candidatePath });
+  const errors = validationErrors(record);
+  if (errors.length > 0) {
+    throw new Error(`Generated invalid external-label decoy record: ${errors.join("; ")}`);
+  }
+  writeJson(candidatePath, candidate, args.pretty);
+  writeText(candidateReportPath, renderExternalLabelDecoyNegativeControlReport(candidate, record));
+  writeJson(recordPath, record, args.pretty);
+  writeText(recordReportPath, renderReport(record));
+}
+
 function emitProofObjectEnvelope(args) {
   const sourceDataReadiness = readJson(args.sourceDataReadiness);
   const schemaTarget = readJson(args.schemaTarget);
@@ -2121,6 +2214,10 @@ function main() {
   }
   if (args.externalProvenanceContractReplay) {
     emitExternalProvenanceContractReplay(args);
+    return;
+  }
+  if (args.externalLabelDecoyNegativeControl) {
+    emitExternalLabelDecoyNegativeControl(args);
     return;
   }
 
