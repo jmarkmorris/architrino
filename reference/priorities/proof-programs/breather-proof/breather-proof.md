@@ -11,7 +11,7 @@
 
 ## Receiver-Normal Restart Notice
 
-The active Master EOM branch-strength law is the receiver-normal factor
+The receiver-normal Master EOM branch-strength law is the receiver-normal factor
 $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. Breather proof packets, pass/fail
 rows, and certificate reports are closure evidence only when their force/action
 rows carry that factor on the same retained branch record. Root topology,

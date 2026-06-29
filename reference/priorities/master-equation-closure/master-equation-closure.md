@@ -11,7 +11,7 @@
 
 ## Receiver-Normal Restart Rule
 
-The active Master EOM branch-strength row is the receiver-normal factor
+The receiver-normal Master EOM branch-strength row is the receiver-normal factor
 $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. The restart ledger is
 [receiver-normal-master-equation-restart-ledger.md](receiver-normal-master-equation-restart-ledger.md),
 and the local identity packet is
@@ -167,7 +167,7 @@ outward constants, radial closure, or tangential transport be redriven.
 - Transfer-operator and invariant-measure control for Born-rule emergence.
 - Exact 6-body core stability and shielding extraction for the first-principles mass program.
 - Binary perturbation-response classification: on a retained binary chart, decide whether a finite perturbation is absorbed as same-branch phase response, same-regime radius/cadence retuning, or a branch transition.
-- Emission-flux/Jacobian conservation: show that constant source-provenanced causal-wake emission over a wake surface supplies the source-normal denominator on simple-root charts while preserving emitted polarity weight; the active Master EOM branch row then uses $W^{\mathrm{rec}}/r^2$.
+- Emission-flux/Jacobian conservation: show that constant source-provenanced causal-wake emission over a wake surface supplies the source-normal denominator on simple-root charts while preserving emitted polarity weight; the receiver-normal Master EOM branch row then uses $W^{\mathrm{rec}}/r^2$.
 
 ## Emission-Flux / Jacobian Conservation Target
 
@@ -318,8 +318,8 @@ no-go, existence result, or non-circular baseline obstruction.
 1. Preserve the checked root-bracket inclusion rows and inactive-gap ledger as topology diagnostics.
 2. Recompute every partner and self branch with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$.
 3. Rebuild circular radial and tangential residuals from receiver-normal rows only.
-4. Do not import circular finite-band passes or tail constants into the current
-   Master EOM.
+4. Do not import circular finite-band passes or tail constants into the
+   receiver-normal Master EOM.
 5. Use the rebuilt circular result as a baseline only after the receiver-normal row passes negative controls.
 
 ## Circular Derivative-Sensitive Branch-History Packet

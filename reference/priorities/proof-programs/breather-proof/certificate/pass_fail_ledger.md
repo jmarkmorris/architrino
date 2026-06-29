@@ -5,8 +5,8 @@
 Receiver-normal restart notice: this ledger is invalid as closure evidence for
 any row that lacks receiver-normal branch strength. It remains useful as a
 history of fail-closed certificate attempts and as topology/provenance context,
-but it cannot pass, fail, or authorize a branch chart under the current Master
-EOM until the consumed force/action rows are redriven with
+but it cannot pass, fail, or authorize a branch chart as receiver-normal Master
+EOM evidence until the consumed force/action rows are redriven with
 $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the same retained record.
 
 This ledger records the current finite certificate packet for the collinear-breather proof program. It is a status ledger only: it does not add a gate, does not certify a branch chart, and does not promote the conditional Schauder theorem.

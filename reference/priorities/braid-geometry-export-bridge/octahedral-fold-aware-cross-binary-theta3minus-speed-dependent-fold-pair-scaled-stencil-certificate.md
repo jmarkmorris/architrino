@@ -14,7 +14,7 @@ $$
 
 Receiver-normal status: restart target. The scaled root geometry still records
 bounded $p,z,J$ rows for the coalescing roots, but the old source-denominator
-$G,D$ quotient evidence is no longer active Master EOM evidence.
+$G,D$ quotient evidence is not receiver-normal Master EOM force/action evidence.
 
 ## Scaled Fold-Pair Rows
 

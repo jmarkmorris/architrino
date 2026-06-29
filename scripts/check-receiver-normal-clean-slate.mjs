@@ -38,7 +38,10 @@ const TEXT_EXTENSIONS = new Set([
 const FORBIDDEN_SNIPPETS = [
   "current-law",
   "current Master EOM",
+  "active Master EOM",
   "under the current Master EOM",
+  "current Master-Equation",
+  "active Master-Equation",
   "under the current law",
   "current per-hit EOM",
   "current-law baseline",
@@ -98,6 +101,17 @@ const FORBIDDEN_SNIPPETS = [
 
 const FORBIDDEN_CODE_PATTERNS = [
   {
+    pattern: /\b(?:current|active)\s+Master\s+EOM\b/g,
+    snippet: "current/active Master EOM",
+    reason: "temporal Master EOM wording forbidden by receiver-normal changeover",
+  },
+  {
+    pattern: /\b(?:current|active)\s+Master-Equation\b/g,
+    snippet: "current/active Master-Equation",
+    reason:
+      "temporal Master-Equation wording forbidden by receiver-normal changeover",
+  },
+  {
     pattern: /certified\s+positive\s+speed-ratio\s+zero\s+enclosure/g,
     snippet: "certified positive speed-ratio zero enclosure",
     reason: "stale theta3minus quotient evidence must be historical diagnostic only",
@@ -121,7 +135,7 @@ const FORBIDDEN_CODE_PATTERNS = [
 ];
 
 function reasonForSnippet(snippet) {
-  if (snippet.includes("current")) {
+  if (snippet.includes("current") || snippet.includes("active Master")) {
     return "temporal EOM wording forbidden by receiver-normal changeover";
   }
   if (snippet.includes("J") || snippet.includes("source-normal")) {

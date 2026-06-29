@@ -14,7 +14,8 @@ $$
 
 Receiver-normal status: restart target. This packet still has value as a
 directed-rounded root-geometry replay in the scaled $z$ coordinate, but its old
-pair $G,D$ quotient rows are not active Master EOM evidence.
+pair $G,D$ quotient rows are not receiver-normal Master EOM force/action
+evidence.
 
 ## Sampled-Node Interval Row
 

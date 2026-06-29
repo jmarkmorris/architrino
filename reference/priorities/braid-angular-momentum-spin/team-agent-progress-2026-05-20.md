@@ -1,8 +1,8 @@
 # Team-Agent Progress 2026-05-20: Angular-Momentum Spin Proof Packets
 
-This packet supports [Angular Momentum and Spin Closure](braid-angular-momentum-spin.md). It is priority material, not a completed theorem. Its purpose is to convert the current angular-momentum, spinor, photon, measurement, and Bell scaffolds into branch-chart objects with pass/fail rows that can be evaluated by proof work or simulations.
+This packet supports [Angular Momentum and Spin Closure](braid-angular-momentum-spin.md). It is priority material, not a completed theorem. Its purpose is to convert the angular-momentum, spinor, photon, measurement, and Bell scaffolds into branch-chart objects with pass/fail rows that can be evaluated by proof work or simulations.
 
-The packet consumes the current Master-Equation handoff: downstream angular-momentum work must pull the Noether wake-history increments back to a retained branch chart rather than treating missing torque as an informal correction. The immediate target is therefore a retained-chart conservation test for $\mathbf J$, followed by separate spinor and measurement gates.
+The packet consumes the receiver-normal Master-Equation handoff: downstream angular-momentum work must pull the Noether wake-history increments back to a retained branch chart rather than treating missing torque as an informal correction. The immediate target is therefore a retained-chart conservation test for $\mathbf J$, followed by separate spinor and measurement gates.
 
 ## Branch-Chart Conservation Pullback
 
