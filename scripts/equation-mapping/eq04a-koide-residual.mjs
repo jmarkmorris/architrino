@@ -599,6 +599,7 @@ function isEvidenceSourcePath(filePath) {
   return !(
     lowerBasename.includes("attempt") ||
     lowerBasename.includes("toy") ||
+    lowerBasename.includes("source-contract") ||
     lowerBasename.includes("source-evidence-probe") ||
     lowerBasename.includes("probe") ||
     lowerBasename.includes("mock") ||

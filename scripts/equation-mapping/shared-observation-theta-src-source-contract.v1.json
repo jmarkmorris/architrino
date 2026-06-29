@@ -1,0 +1,58 @@
+{
+  "schema": "aaa-equation-map-shared-observation-theta-src-source-contract/v1",
+  "claimLevel": "score-neutral shared-observation theta_src source-contract boundary; contract metadata only, not retained evidence",
+  "row": "EQ-21/EQ-22/EQ-23",
+  "purpose": "Name the durable source-backed theta_src boundary before BBN, CMB, growth, thermal provenance, readout, event-ledger, or no-hidden-retune rows can count.",
+  "evidenceBoundary": {
+    "ordinaryFirstBlocker": "missing_accepted_theta_obs",
+    "focusedThetaSrcBlocker": "missing_accepted_theta_src",
+    "boundaryExercisedBy": "scripts/equation-mapping/shared-observation-theta-src-source-contract-attempt.v1.json",
+    "expectedSummaryStatus": "blocked_missing_rows",
+    "expectedSummaryNextBlocker": "missing_accepted_theta_obs",
+    "expectedFocusedThetaSrcReason": "source_contract_path",
+    "scoreDecision": "no_score_increase",
+    "acceptedEvidenceObjectLanded": false
+  },
+  "sourceIdentity": {
+    "sourceObjectKind": "theta_src",
+    "sourceSupport": [
+      "EQ-21",
+      "EQ-22",
+      "EQ-23",
+      "Theta_src"
+    ],
+    "sourceWindowId": "W_src_theta_src_source_contract_0001",
+    "eventLedgerId": "L_EpJ_theta_src_source_contract_0001",
+    "thetaSrcId": "Theta_src_source_contract_0001",
+    "noHiddenRetuneWitnessId": "S_retune_theta_src_source_contract_0001"
+  },
+  "directGeometryLayer": [
+    {
+      "standardComparisonTerm": "shared source window for BBN, CMB, and growth",
+      "aaaGeometricReadout": "theta_src as one retained source-window record carrying source loading, event-ledger, and readout handoff identity",
+      "requiredCarrierOrRow": "theta_src",
+      "sameRecordBinding": "same sourceWindowId, eventLedgerId, thetaSrcId, and noHiddenRetuneWitnessId across every shared-observation consumer",
+      "failClosedNegativeControl": "source_contract_path and accepted_without_evidence_source",
+      "smallestAcceptedEvidenceObject": "durable non-priority theta_src evidence object with explicit EQ-21/EQ-22/EQ-23 source support and shared event-ledger identity"
+    },
+    {
+      "standardComparisonTerm": "projection families",
+      "aaaGeometricReadout": "BBN, CMB, and growth projections consume the source window rather than defining private source windows",
+      "requiredCarrierOrRow": "projection families plus shared keys",
+      "sameRecordBinding": "same thetaSrcId, sourceWindowId, eventLedgerId, thermal-provenance handoff, and readout clock",
+      "failClosedNegativeControl": "source_window_split and hidden_retune shared-key mismatch",
+      "smallestAcceptedEvidenceObject": "accepted projection-family rows whose source keys are consumed from the accepted theta_src record"
+    }
+  ],
+  "nonEvidenceSources": [
+    "priority prose",
+    "authored AAA prose",
+    "generated files",
+    "attempt fixtures",
+    "mocks",
+    "probes",
+    "negative controls",
+    "self-source shells",
+    "source-contract shells"
+  ]
+}

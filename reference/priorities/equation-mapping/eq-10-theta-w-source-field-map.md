@@ -24,7 +24,7 @@ No score changes.
 | Row | `EQ-10` |
 | Current score and closure driver | Score `3`; proper-time/geodesic benchmarks are present, but action-to-acceleration and null/eikonal rows need one branch-derived weak-field record. |
 | Primary AAA carrier | `theta_W`: one weak-field effective-metric record carrying lapse, drift, spatial compliance, signal delay, cadence, weak-clock, redshift, Shapiro, lensing, acceleration, PPN, null/eikonal, and geodesic-action rows. |
-| Smallest score-moving evidence object | One accepted source-backed `theta_W` record with accepted row bindings for all required weak-field rows, common carrier id, shared keys, source provenance, and no-hidden-retune witness. |
+| Smallest accepted evidence object | One accepted source-backed `theta_W` record with accepted row bindings for all required weak-field rows, common carrier id, shared keys, source provenance, and no-hidden-retune witness. |
 | Exact first blocker | `missing_accepted_theta_W`. |
 | Existing scripts/fixtures/packets found | The weak-field checker and attempt fixture listed above; [Equation Closure Pass 2026-06-23 AJ](equation-closure-pass-2026-06-23-aj.md); the parent effective-metric/cosmology packet. |
 | Candidate breakthrough angle | Use `EQ-10` as the variational consistency consumer: once `EQ-07` through `EQ-09` supply a single metric projection, `EQ-10` should ask whether the same record also makes the null/eikonal and action-to-acceleration residuals vanish, rather than introducing a separate geodesic fit. |
@@ -71,7 +71,7 @@ Required rows on one `commonCarrierId`:
 
 ## Direct Geometry Layer
 
-| Standard comparison term | AAA geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Weak-field carrier identity | `theta_W` retained weak-field record, not a geodesic-only or PPN-only fit | `theta_W` | Same `commonCarrierId`, retained window, source path, Noether sea cell, constitutive response, and metric projection across `EQ-07` through `EQ-10` | Coordination-source guard; `hidden_metric_retune` | Durable source-backed `theta_W` row with explicit support for `EQ-07` through `EQ-10` and accepted row bindings. |
 | Noether sea constitutive response | Shared response vector/tensor producing lapse, drift, spatial compliance, signal delay, cadence, and PPN coefficients | `noether_sea_cell`, `constitutive_response`, `metric_projection` | Same Noether sea cell, response coefficients, metric projection, and carrier id as all weak-field observables | `hidden_metric_retune`; `clock_signal_split` | Accepted response/metric rows that feed clock, signal, spatial, acceleration, PPN, null/eikonal, and geodesic rows without per-observable changes. |

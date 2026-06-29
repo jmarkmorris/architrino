@@ -12,6 +12,14 @@
 - Claim level: smallest accepted retained-domain evidence object for `EQ-02` through `EQ-04`
 - Promotion status: priority-only
 
+## Equation Attack Card
+
+- Current score effect: no score change; this is a priority-only retained-domain evidence-object contract.
+- Exact first blocker: `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
+- First accepted route: source-backed positive-width invariant-cell source report for `S_eq`, with matching `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId: "S_eq"` across support, row bindings, witnesses, coframe extraction, and retained-record consumption.
+- Smallest accepted evidence object: one durable retained-geometry evidence object whose raw-row, invariant-cell, refinement-step, connection, residual, and negative-control provenance is accepted by the producer, same-branch checker, and retained-record evaluator on the same carrier.
+- Score-neutral exclusions: priority prose, generated files, mocks, attempt fixtures, negative controls, synthetic provenance shells, and accepted-looking row labels are not accepted retained evidence.
+
 ## Coordinator Decision
 
 The 2026-06-25 bucket review chose Bucket A as the single implementation target. The chosen object is not another checker, score row, or broad report. It is the minimum source-backed retained-domain packet that can replace the attempt fixture for `S_eq` and make the existing same-branch and retained-record evaluators consume accepted evidence without changing their acceptance rules.
@@ -30,14 +38,14 @@ B_N,\Sigma_N,P_N,\mathcal K_{P_N}
 \Theta_{02\text{-}04}^{\mathrm{bin}}(u_k).
 $$
 
-Here $B_N\subset\Sigma_N$ must be a positive-width invariant cell in the truncated delay-state space, not a single sampled crossing. The retained-domain packet is score-moving only when all accepted row bindings, witnesses, and coframe extraction rows resolve to durable source evidence on the same `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId: "S_eq"`.
+Here $B_N\subset\Sigma_N$ must be a positive-width invariant cell in the truncated delay-state space, not a single sampled crossing. The retained-domain packet becomes score-review eligible only when all accepted row bindings, witnesses, and coframe extraction rows resolve to durable source evidence on the same `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId: "S_eq"`.
 
 ## Bucket Merge
 
 | Bucket | Smallest proposed evidence object | First blocker | Coordinator disposition |
 | --- | --- | --- | --- |
-| A | Source-backed `S_eq` retained-domain fixture for `EQ-02` through `EQ-04`. | `missing_accepted_raw_labeled_rows_preserved_on_retained_history` | Chosen. This is the highest-priority score-moving carrier and tests the common retained-domain acceptance vector directly. |
-| B | Retained $\Theta_{\mathrm{sea}}^{(\ell,W)}$ density-compression coefficient bundle with $\delta c_X^2$ and stress/strain output first. | `missing_accepted_theta_sea_rho_NS` | Defer. Safe as a packet, but lower priority than the retained-domain carrier and currently score-moving first only for `EQ-24` review. |
+| A | Source-backed `S_eq` retained-domain fixture for `EQ-02` through `EQ-04`. | `missing_accepted_raw_labeled_rows_preserved_on_retained_history` | Chosen. This is the highest-priority accepted-evidence carrier and tests the common retained-domain acceptance vector directly. |
+| B | Retained $\Theta_{\mathrm{sea}}^{(\ell,W)}$ density-compression coefficient bundle with $\delta c_X^2$ and stress/strain output first. | `missing_accepted_theta_sea_rho_NS` | Defer. Safe as a packet, but lower priority than the retained-domain carrier and currently first accepted-evidence route only for `EQ-24` review. |
 | C | Native Compton/recoil event packet on `eventId: "e_gamma_e_0"`. | `missing_accepted_photon_gate_A_input_output` | Defer. Strong second target; it should follow Bucket A unless the solver lane produces native event rows first. |
 | D | Finite-window statistical carrier $\mathcal C_{\mathrm{stat}}^{W,T}$ for probability, entropy, scattering, and resonance rows. | `missing_accepted_W` | Defer. Safe as a packet, but it still needs a retained window and refinement/cocycle source evidence. |
 | E | Shared observation record $\mathcal R_{\mathrm{obs}}(\Theta_{\mathrm{obs}})$. | `missing_accepted_theta_obs` plus upstream `missing_accepted_theta_sea_rho_NS` | Blocked on Bucket B. Do not create a private observation ledger before the Noether sea coefficient extraction exists. |
@@ -46,7 +54,7 @@ No scores change. None of the bucket reports supplied accepted retained evidence
 
 ## Exact First Blocker
 
-The first score-moving blocker is:
+The first score-review blocker is:
 
 ```text
 missing_accepted_raw_labeled_rows_preserved_on_retained_history
@@ -82,7 +90,7 @@ The accepted-looking row-binding negative control still reports `status: blocked
 
 ### First Row Object Contract
 
-The first score-moving row object is eligible only if both the source producer and same-branch checker accept the same row identity. For `raw_labeled_rows_preserved_on_retained_history`, that means the row object must satisfy the current executable checks below; satisfying only the prose meaning of the row is not enough.
+The first score-review-eligible row object is eligible only if both the source producer and same-branch checker accept the same row identity. For `raw_labeled_rows_preserved_on_retained_history`, that means the row object must satisfy the current executable checks below; satisfying only the prose meaning of the row is not enough.
 
 | Check | Required value |
 | --- | --- |
@@ -230,7 +238,7 @@ The 2026-06-26 overnight team-agent run found no accepted retained evidence obje
 | D | Source-backed finite-window statistical carrier family headed by accepted `W`. | `missing_accepted_W`; `EQ-25` also reports `missing_accepted_theta_therm` | Defer. The existing finite-window fixtures are toy or attempt carriers, even where numeric diagnostics pass. |
 | E | Shared observation record $\Theta_{\mathrm{obs}}$ with accepted projection families and shared keys. | `missing_accepted_theta_obs` plus upstream `missing_accepted_theta_sea_rho_NS` for `EQ-32` | Blocked on Bucket B. Do not create a private observation ledger before the retained Noether sea coefficient and `delta_a_star` projection exist. |
 
-The implemented artifact in this pass is this precise closure packet, not a score row. The first score-moving implementation remains the Bucket A source report described below: one durable source-backed positive-width invariant-cell evidence object whose accepted row bindings satisfy the executable producer, same-branch checker, and retained-record evaluator on the same carrier.
+The implemented artifact in this pass is this precise closure packet, not a score row. The first accepted-retained-evidence implementation remains the Bucket A source report described below: one durable source-backed positive-width invariant-cell evidence object whose accepted row bindings satisfy the executable producer, same-branch checker, and retained-record evaluator on the same carrier.
 
 ## Required Source-Backed Fields
 
@@ -248,7 +256,7 @@ The accepted retained-domain fixture must include these top-level fields:
 
 Every accepted row binding must include concrete `rowId`, `status`, matching `retainedRowSetId`, matching `commonCarrierId`, matching `domainId`, matching `supportId`, and a durable source reference that resolves to an evidence file in the repository.
 
-The producer now distinguishes a durable source reference from an evidence source reference. A retained-domain source path is not evidence if it lives under `reference/priorities/`, `reference/entourage/`, or `content/markdown/aaa/`, or if the basename marks an attempt, toy, probe, mock, or negative control. It is also not evidence when a support field, row binding, or refinement step points back to the source report being evaluated; self-referential source shells fail with `source_path_is_input_report` rather than counting their own accepted-looking fields as retained geometry. Separate JSON files are not enough either: backing sources for support fields, row bindings, and refinement steps must be retained-geometry evidence records with their own raw-row, invariant-cell, and refinement-step provenance records rather than arbitrary durable provider shells or syntactic payloads. This preserves focused negative-control fixtures while preventing an accepted-looking shell from passing merely because its JSON file exists.
+The producer now distinguishes a durable source reference from an evidence source reference. A retained-domain source path is not evidence if it lives under `reference/priorities/`, `reference/entourage/`, or `content/markdown/aaa/`, or if the basename marks an attempt, toy, probe, mock, or negative control. It is also not evidence when a support field, row binding, or refinement step points back to the source report being evaluated; self-referential source shells fail with `source_path_is_input_report` rather than counting their own accepted-looking fields as retained geometry. Separate JSON files are not enough either: backing sources for support fields, row bindings, and refinement steps must be retained-geometry evidence records with their own raw-row, invariant-cell, and refinement-step provenance records rather than arbitrary durable provider shells, syntactic payloads, or provenance records that identify themselves as synthetic, fixture, shell, attempt, toy, probe, mock, negative-control, score-neutral, or not evidence. This preserves focused negative-control fixtures while preventing an accepted-looking shell from passing merely because its JSON file exists.
 
 ## Missing Accepted Rows
 
@@ -315,11 +323,11 @@ node scripts/equation-mapping/produce-eq02-04-coframe-extraction-certificate.mjs
 | `eq02-04-invariant-cell-coframe-source-external-provider-shell.v1.json` | `blocked` | `source_support_field_evidence_sources` |
 | `eq02-04-invariant-cell-coframe-source-source-evidence-negative-control.v1.json` | `blocked` | `source_path_evidence` |
 
-Before the source-evidence guard, [eq02-04-invariant-cell-coframe-source-source-evidence-negative-control.v1.json](../../../scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-source-evidence-negative-control.v1.json) returned `status: accepted`, `failedChecks: []`, and `nextBlocker: null` even though every support, row-binding, and refinement-step source path pointed at a negative-control file. After the guard, the same command returns `status: blocked`, `nextBlocker: source_path_evidence`, and `sourceEvidenceReferenceExists: false` while the older gamma, refinement, and holonomy controls keep their intended first blockers.
+Historical false-positive replay: before the content-aware source/provenance guards, [eq02-04-invariant-cell-coframe-source-source-evidence-negative-control.v1.json](../../../scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-source-evidence-negative-control.v1.json) returned accepted-looking checker statuses even though every support, row-binding, and refinement-step source path pointed at a negative-control file. Current hardened behavior is blocked, with the producer blocker propagated; these shells are fail-closed controls, not retained evidence.
 
 The next producer loophole was a rename/self-source shell: [eq02-04-invariant-cell-coframe-source-durable-source-shell.v1.json](../../../scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-durable-source-shell.v1.json) used accepted statuses, concrete ids, populated invariant-cell fields, accepted row bindings, accepted refinement steps, zero connection residuals, and source paths that all pointed back to the same source report. Before the self-reference guard, the producer returned `status: accepted`, `failedChecks: []`, and `nextBlocker: null`. After the guard, it returns `status: blocked`, `nextBlocker: source_support_field_evidence_sources`, with support-field source details reporting `sourceSelfReference: true` and `reason: source_path_is_input_report`.
 
-The next shell class was a non-self external provider: [eq02-04-invariant-cell-coframe-source-external-provider-shell.v1.json](../../../scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-external-provider-shell.v1.json) points all support fields, row bindings, and refinement steps to [eq02-04-retained-geometry-provider-shell.v1.json](../../../scripts/equation-mapping/eq02-04-retained-geometry-provider-shell.v1.json). Before content-aware source validation, the producer returned `status: accepted`, `failedChecks: []`, and `nextBlocker: null`; [same-branch-retained-domain-external-provider-shell.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-external-provider-shell.v1.json) also returned `status: accepted`, `retainedBranchClaim: true`, and `nextBlocker: null`. The provider was then sharpened to use the retained-geometry source schema, accepted identity fields, accepted-looking raw retained rows, positive-width invariant-cell fields, and three refinement steps. Before the provenance guard, that syntactic payload again made the producer and same-branch checker accept the route. The provider was then pointed at [eq02-04-retained-geometry-provenance-shell.v1.json](../../../scripts/equation-mapping/eq02-04-retained-geometry-provenance-shell.v1.json), which uses the retained-geometry provenance schema and accepted identity fields but has no target-specific provenance records. Before provenance-payload hardening, that shell again let the route accept. After hardening, the producer returns `status: blocked`, `nextBlocker: source_support_field_evidence_sources`, and source details report `reason: source_retained_geometry_provenance_payload_missing`. The same-branch packet now returns `status: blocked_missing_retained_event_or_domain`, `nextBlocker: missing_accepted_raw_labeled_rows_preserved_on_retained_history`, and propagates the producer blocker `source_support_field_evidence_sources`.
+The next shell class was a non-self external provider: [eq02-04-invariant-cell-coframe-source-external-provider-shell.v1.json](../../../scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-external-provider-shell.v1.json) points all support fields, row bindings, and refinement steps to [eq02-04-retained-geometry-provider-shell.v1.json](../../../scripts/equation-mapping/eq02-04-retained-geometry-provider-shell.v1.json). Before content-aware source validation, the producer returned `status: accepted`, `failedChecks: []`, and `nextBlocker: null`; [same-branch-retained-domain-external-provider-shell.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-external-provider-shell.v1.json) also returned `status: accepted`, `retainedBranchClaim: true`, and `nextBlocker: null`. The provider was then sharpened to use the retained-geometry source schema, accepted identity fields, accepted-looking raw retained rows, positive-width invariant-cell fields, and three refinement steps. Before the provenance guard, that syntactic payload again made the producer and same-branch checker accept the route. The provider was then pointed at [eq02-04-retained-geometry-provenance-shell.v1.json](../../../scripts/equation-mapping/eq02-04-retained-geometry-provenance-shell.v1.json), which uses the retained-geometry provenance schema and accepted identity fields. An empty version of that provenance shell failed at `source_retained_geometry_provenance_payload_missing`; after the shell was sharpened with accepted-looking target-specific provenance records, the producer again returned `status: accepted`, `failedChecks: []`, and `nextBlocker: null`, and the same-branch packet again returned `status: accepted`, `retainedBranchClaim: true`, and `nextBlocker: null`. After disclaimed/synthetic provenance hardening, the producer returns `status: blocked`, `nextBlocker: source_support_field_evidence_sources`, and source details report `reason: source_provenance_payload_disclaimed_or_synthetic`. The same-branch packet now returns `status: blocked_missing_retained_event_or_domain`, `nextBlocker: missing_accepted_raw_labeled_rows_preserved_on_retained_history`, and propagates the producer blocker `source_support_field_evidence_sources`.
 
 This sweep confirms that the accepted-looking row objects inside the negative controls are not retained evidence. They remain useful only as fail-closed controls for the future positive-width `S_eq` invariant-cell fixture.
 
@@ -327,9 +335,9 @@ The same-branch source-evidence guardrail is separate from the producer sweep. T
 
 The sibling fixture [same-branch-retained-domain-durable-source-shell.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-durable-source-shell.v1.json) proves that the same-branch checker cannot accept an otherwise accepted-looking `S_eq` packet merely because its rows point to a JSON source report under `scripts/equation-mapping/`. Before the producer-backed source check, that fixture returned `status: accepted`, `retainedBranchClaim: true`, and `nextBlocker: null`. After hardening, it returns `status: blocked_missing_retained_event_or_domain` and `nextBlocker: missing_accepted_raw_labeled_rows_preserved_on_retained_history`; the blocker detail reports `sourceEvidenceReason: source_report_not_producer_accepted` and `sourceEvidenceProducerNextBlocker: source_support_field_evidence_sources`.
 
-## Score-Moving Evidence
+## Accepted Retained Evidence Route
 
-The first score-moving event is not the creation of this packet. It is a future source-backed fixture that makes both commands pass on the same carrier:
+The first score-review-eligible event is not the creation of this packet. It is a future source-backed fixture that makes both commands pass on the same carrier:
 
 ```sh
 node scripts/equation-mapping/check-same-branch-chart-identity.mjs \
@@ -343,14 +351,14 @@ node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs \
   --summary --pretty --require-populated
 ```
 
-The minimum score-moving result must report:
+The minimum accepted-retained-evidence result must report:
 
 - accepted invariant support, raw row identity, row bindings, overlap preimage, zero split witness, zero hidden-retune witness, and lane residual on one retained domain;
 - accepted gamma-free coframe extraction and $W_{\mathrm{hol}}=0$ on the same support;
 - calibrated negative controls that fail above the declared accept band;
 - no private speed convention, branch label, Noether sea state, exposure coefficient, detector/readout kernel, or fitted residual per row.
 
-Only then should `EQ-02`, `EQ-03`, or `EQ-04` be reviewed for score movement. `EQ-04A` remains downstream and cannot use Koide as an input to this acceptance object.
+Only then should `EQ-02`, `EQ-03`, or `EQ-04` be reviewed for score review. `EQ-04A` remains downstream and cannot use Koide as an input to this acceptance object.
 
 ## No-Score-Change Statement
 

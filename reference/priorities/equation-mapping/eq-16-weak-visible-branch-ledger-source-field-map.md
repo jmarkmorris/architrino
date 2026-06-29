@@ -29,12 +29,12 @@ No score changes.
 | Row | `EQ-16` |
 | Current score and closure driver | Score `2`; recover gauge and Standard Model-facing equations as sector-visible projections with reaction provenance. |
 | Primary AAA carrier | `weak_visible_branch_ledger` on one fixed weak-visible retained domain. |
-| Smallest score-moving evidence object | One accepted weak-visible branch ledger with projection, quotient, exposure, `V-A`, CKM/PMNS readouts, provenance, covariance, reaction-event, Noether sea rows, and no-retune on the same domain. |
+| Smallest accepted evidence object | One accepted weak-visible branch ledger with projection, quotient, exposure, `V-A`, CKM/PMNS readouts, provenance, covariance, reaction-event, Noether sea rows, and no-retune on the same domain. |
 | Exact first blocker | `missing_accepted_weak_visible_branch_ledger`. |
 | Existing scripts/fixtures/packets | [weak-gauge-exposure-domain.mjs](../../../scripts/equation-mapping/weak-gauge-exposure-domain.mjs), [weak-gauge-exposure-domain-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json), [weak-gauge-exposure-domain-source-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json), [weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json), [weak-gauge-exposure-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-split-negative-control.v1.json), and [weak-gauge-exposure-domain-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-priority-source-negative-control.v1.json). |
 | Candidate breakthrough angle | Use `EQ-16A` PMNS/common-clock as a consumer clue only; PMNS must read from the same weak-exposure domain, but the neutral-lepton branch cannot substitute for the weak-visible ledger. |
 | Fail-closed negative control | Durable-source numeric rows with `pmns_overlap_readout.domainId` on a different domain must fail before score review at hidden domain split. |
-| Smaller next action | Replace the ledger-only source-attempt and carrier-shell boundary with one durable non-priority `weak_visible_branch_ledger` row on `D_weak_visible_attempt_0001` / `A_weak_attempt_0001`, then require the checker to advance only to `missing_accepted_weak_projection` with no score movement. |
+| Smaller next action | Replace the ledger-only source-attempt and carrier-shell boundary with one durable non-priority `weak_visible_branch_ledger` row on `D_weak_visible_attempt_0001` / `A_weak_attempt_0001`, then require the checker to advance only to `missing_accepted_weak_projection` with no score change. |
 
 ## Accepted-Object Contract
 
@@ -74,7 +74,7 @@ Gauge and residual requirements:
 
 ## Direct Geometry Layer
 
-| Standard comparison term | AAA geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Weak-visible sector identity | `weak_visible_branch_ledger` on one retained weak-visible domain, not a free Standard Model sector label | `weak_visible_branch_ledger` | Same `domainId`, `branchRecordId`, and gauge chart across every weak/gauge row | `accepted_without_evidence_source`; `weak.hidden_domain_split` after durable evidence exists | Durable non-priority `weak_visible_branch_ledger` source with explicit `EQ-16` support, fixed `domainId`, fixed `branchRecordId`, and event/source provenance. |
 | Gauge projection and quotient terms | `weak_projection` and `weak_quotient` as projections from the retained domain and quotient construction | `weak_projection`, `weak_quotient`, `effective_gauge_covariance_witness` | Same gauge chart, branch record, domain, and covariance witness as the ledger row | `weak.hidden_domain_split` | Accepted projection/quotient rows whose covariance residual is computed on the same domain as the ledger. |
@@ -106,9 +106,10 @@ The carrier-shell source-contract boundary is staged at [weak-gauge-exposure-dom
 
 ```sh
 node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equation-mapping/weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equation-mapping/weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json --summary --pretty --require-populated
 ```
 
-The expected boundary run reports `status: blocked_missing_rows`, `nextBlocker: missing_accepted_weak_projection`, `sourceEvidencePass: true`, and `scoreDecision: no_score_increase`. This does not land retained evidence. It only proves that once the parent weak-visible ledger is source-backed, the checker advances to the first child row instead of using numeric `V-A`, CKM, PMNS, provenance, or covariance residuals as score evidence.
+The expected normal boundary run reports `status: blocked_missing_rows`, `nextBlocker: missing_accepted_weak_projection`, `sourceEvidencePass: true`, and `scoreDecision: no_score_increase`; the `--require-populated` form must exit nonzero because projection, quotient, exposure, `V-A`, CKM/PMNS, provenance, covariance, reaction-event, and Noether sea rows remain absent. This does not land retained evidence. It only proves that once the parent weak-visible ledger is source-backed, the checker advances to the first child row instead of using numeric `V-A`, CKM, PMNS, provenance, or covariance residuals as score evidence.
 
 ## Next Action
 

@@ -51,7 +51,7 @@ First blockers remain unchanged: `EQ-27` still blocks at `missing_accepted_order
 
 ## Equation Attack Cards
 
-| Row | Current score | Primary carrier | Exact first blocker | Smallest blocker-moving object |
+| Row | Current score | Primary carrier | Exact first blocker | Smallest accepted evidence route |
 | --- | ---: | --- | --- | --- |
 | `EQ-15` | `2` | Retained ordered-frame spinor-label pullback on one branch record. | `missing_accepted_ordered_frame_loop` | One accepted, durable, non-gauge `ordered_frame_loop` proving nontrivial $\mathbb Z/2$ holonomy, $4\pi$ restoration, gauge-control, and same-record angular-momentum residuals. |
 | `EQ-27` | `2` | Same ordered-frame/exposure quotient plus moment-map magnetic row. | `missing_accepted_ordered_frame_loop` | Same accepted `ordered_frame_loop`, then same-record `moment_map_magnetic` from $\boldsymbol\mu=\int_{\mathfrak D_R}(\mathbf r\times\mathbf j_{\mathrm{exp}})\,d\mathcal E_S$, not assigned spin notation. |
@@ -129,7 +129,7 @@ Required rows on one `sameRecordId`:
 
 Use `visible_so3_closure_import_without_non_gauge_lift`: a fixture supplies a closed visible $SO(3)$ loop and maybe $g_{\mathrm{lead}}=2$, but lacks accepted nontrivial $\mathbb Z/2$ holonomy, same-record gauge-control probes, or computes `moment_map_magnetic` from $g(q/2m)\mathbf S$ instead of the exposure-current moment map.
 
-The expected result is no score movement: first `missing_accepted_ordered_frame_loop`; after an accepted-looking but empty loop, `spin_lift_not_odd`, `gauge_residual`, `missing_moment_map`, or `eq27.assigned_spin_label`.
+The expected result is no score review: first `missing_accepted_ordered_frame_loop`; after an accepted-looking but empty loop, `spin_lift_not_odd`, `gauge_residual`, `missing_moment_map`, or `eq27.assigned_spin_label`.
 
 The fixture `eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json` isolates the source-evidence branch: all rows are accepted-looking and numerically pass same-record, gauge, angular-momentum, nonzero moment-map, and $g_{\mathrm{lead}}=2$ checks, but every row points back to this priority map. The checker must return `blocked_source_evidence`, `nextBlocker: accepted_without_evidence_source`, and `sourceEvidenceFailureCount: 7`.
 

@@ -17,7 +17,7 @@ This shell defines the smallest source-backed $\Theta_\gamma$ object that can re
 | Current scores | `EQ-12` score `3`; `EQ-12A`, `EQ-22A`, and `EQ-26A` score `2` |
 | Closure driver | Replace attempt-level photon/action support rows with one source-backed photon packet carrier. |
 | Primary AAA carrier | $\Theta_\gamma(W;E,R)$, a finite-window photon packet transfer record. |
-| Smallest score-moving evidence object | Accepted retained rows for `theta_gamma_packet`, `photon_branch_packet`, Gate A/B/C, source/path/receiver, event balance, Noether sea path, provenance, and no-hidden-retune on one carrier. |
+| Smallest accepted evidence object | Accepted retained rows for `theta_gamma_packet`, `photon_branch_packet`, Gate A/B/C, source/path/receiver, event balance, Noether sea path, provenance, and no-hidden-retune on one carrier. |
 | Exact first blocker | `missing_accepted_theta_gamma_packet` |
 | Existing scripts/fixtures/packets | [photon-packet-transfer-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-attempt.v1.json), [photon-packet-transfer-source-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-source-attempt.v1.json), [photon-packet-transfer-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-priority-source-negative-control.v1.json), [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json), [EQ-12 Through EQ-16A Photon, Quantum, Gauge, And Neutrino Packet](eq-12-16a-photon-quantum-gauge-neutrino-packet.md), [Equation Closure Pass 2026-06-23 AM](equation-closure-pass-2026-06-23-am.md) |
 | Breakthrough angle | Treat solved-wave families as acceptance tests for causal support, dispersion, mode counting, and scattering consistency, while keeping the native carrier in photon packet and Noether sea rows. |
@@ -120,7 +120,7 @@ These tests fail closed if they are imported as the photon packet ontology witho
 
 ## Current Disposition
 
-The current attempt fixtures already pass arithmetic packet checks and negative controls, but every required row remains attempt-level. The next score-moving work is not another numeric fixture; it is one source-backed row map that can populate the checker rows above with concrete ids and durable provenance.
+The current attempt fixtures already pass arithmetic packet checks and negative controls, but every required row remains attempt-level. The next accepted-retained-evidence work is not another numeric fixture; it is one source-backed row map that can populate the checker rows above with concrete ids and durable provenance.
 
 No score changes.
 
@@ -129,3 +129,12 @@ No score changes.
 [photon-packet-transfer-source-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-source-attempt.v1.json) is the first checker-consumable row map for one candidate photon event window `W_gamma_0_source_candidate_0001`. It adds candidate source-path slots, stable row ids, source/receiver/window identity fields, and common event-ledger/provenance keys while keeping every row at `status: attempt`.
 
 The expected checker result remains `missing_accepted_theta_gamma_packet`; this fixture exists to make the next evidence search concrete, not to move the score.
+
+Run the source-attempt fixture and priority-source negative control before treating the photon packet route as advanced:
+
+```sh
+node scripts/equation-mapping/photon-packet-transfer-residual.mjs --input scripts/equation-mapping/photon-packet-transfer-source-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/photon-packet-transfer-residual.mjs --input scripts/equation-mapping/photon-packet-transfer-priority-source-negative-control.v1.json --summary --pretty
+```
+
+Both must remain score-neutral at `missing_accepted_theta_gamma_packet`; the source-attempt proves row shape only, and the priority-source control proves priority packets, probes, mocks, generated files, and authored prose cannot serve as retained photon evidence.

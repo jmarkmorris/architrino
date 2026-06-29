@@ -73,8 +73,16 @@ This is not a substrate metric claim. It is an observer-level recovery target fo
 - Current score snapshot: `EQ-02`, `EQ-03`, and `EQ-04` are each recommended at score `4` in this packet. This pass does not update [equation.md](equation.md).
 - Closure driver: one retained branch record must produce the same Lorentz factor in clock phase, ruler/envelope geometry, two-way signal behavior, energy-momentum response, rest-invariance, and Noether sea response.
 - Exact first blocker: the solver-facing route is now source-backed retained support plus the Cartan witness split $W_{\mathrm{supp}}/W_{\mathrm{hol}}$; the live same-branch check blocks at `missing_accepted_raw_labeled_rows_preserved_on_retained_history`, and the coframe source attempt remains blocked by source status until accepted retained support exists.
-- First implementation target for this packet: priority packet refinement only, making the Direct Geometry Layer explicit while leaving accepted-support construction to the translating-binary and coframe checker lane.
-- Smallest later score-moving target: one source-backed retained support carrying raw labeled rows, same-branch chart identity, extracted coframe legs, holonomy witness, clock/envelope rows, energy-momentum rows, rest-invariance row, and Noether sea response row on one branch record.
+- First implementation target for this packet: harden the translating-binary and coframe checker lane around a source-backed retained support that preserves raw labeled rows, same-branch chart identity, support/coframe bindings, and holonomy witnesses. No score change follows until that retained support is accepted from durable source evidence.
+- Smallest accepted evidence object: one source-backed retained support carrying raw labeled rows, same-branch chart identity, extracted coframe legs, holonomy witness, clock/envelope rows, energy-momentum rows, rest-invariance row, and Noether sea response row on one branch record.
+- Smallest next artifact: one retained-support source object for `S_eq` whose raw labels, support id, coframe-source id, holonomy id, and retained-record row ids can be consumed by both the same-branch checker and retained-record runner.
+- Runnable route: run the retained-domain and retained-record attempts; both must remain blocked at the retained-evidence boundary until accepted `S_eq` support lands.
+
+```sh
+node scripts/equation-mapping/check-same-branch-chart-identity.mjs --input scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs --summary --pretty
+node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs --summary --pretty --require-populated
+```
 
 ## Direct Geometry Layer
 
@@ -316,7 +324,7 @@ with the error budget allocated to named causal-root features, Noether sea dress
 
 ## First Mathematical Object To Add Next
 
-Current supersession note: the residual vector below remains useful grammar, but it is no longer the next acceptance object by itself. The current solver-facing boundary is source-backed retained support plus the Cartan witness split $W_{\mathrm{supp}}/W_{\mathrm{hol}}$. A common residual vector can become score-moving only after the rows are extracted on the same source-backed support and the holonomy witness rules out row-by-row retuning.
+Current supersession note: the residual vector below remains useful grammar, but it is no longer the next acceptance object by itself. The current solver-facing boundary is source-backed retained support plus the Cartan witness split $W_{\mathrm{supp}}/W_{\mathrm{hol}}$. A common residual vector becomes score-review eligible only after the rows are extracted on the same source-backed support and the holonomy witness rules out row-by-row retuning.
 
 Add the residual definition `lorentz_mass_shell_common_branch_residual` as a priority-side theorem target:
 

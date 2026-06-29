@@ -29,7 +29,7 @@ No score changes.
 | Row | `EQ-26A` |
 | Current score and closure driver | Score `2`; derive $\alpha(\mu)$ as a scale-dependent coupling projection from one electromagnetic exposure domain rather than a fixed fitted constant. |
 | Primary $\mathbb{A}\mathbb{A}\mathbb{A}$ carrier | $\Theta_\alpha=(q_{\mathrm{obs}},h_\vartheta,c_\gamma,\mathcal E_S,\mathcal K_{\mathrm{EM}},I_\mu)$ with fixed action period, charge exposure, photon speed, gauge domain, and Noether sea state across low-energy, atomic, and running anchors. |
-| Smallest score-moving evidence object | One accepted source-backed `theta_alpha` packet rooted in a scheme-pinned `charge_exposure_row`, then `alpha_coupling_row`, photon speed, gauge covariance, threshold inventory, running row, source provenance, and no-hidden-retune rows. |
+| Smallest accepted evidence object | One accepted source-backed `theta_alpha` packet rooted in a scheme-pinned `charge_exposure_row`, then `alpha_coupling_row`, photon speed, gauge covariance, threshold inventory, running row, source provenance, and no-hidden-retune rows. |
 | Exact first blocker | Parent: `missing_accepted_theta_gamma_packet`; current checker-order alpha child: `missing_accepted_alpha_coupling_row`; source-field first row: `missing_accepted_charge_exposure_row`. |
 | Existing scripts/fixtures/packets found | The Planck/alpha runner and fixture listed above; [EQ-16 Weak-Visible Branch Ledger Source-Field Map](eq-16-weak-visible-branch-ledger-source-field-map.md); `EQ-26` hydrogen source-field route. |
 | Candidate breakthrough angle | Reuse the `EQ-16` weak-visible exposure-domain contract as a source clue, not a substitute. Pin $q_{\mathrm{obs}}$, place scale dependence in $\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}})$ and $I_\mu$, and let the single-period $h_\vartheta$ test catch circular alpha-fitting. |
@@ -83,7 +83,7 @@ accepted evidence:
 | `expectedFirstBlocker` | `missing_accepted_theta_gamma_packet` |
 | `localFirstChildBlocker` | `missing_accepted_charge_exposure_row` |
 
-Checker-contract finding: [planck-alpha-braid-theta-alpha-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-alpha-source-attempt.v1.json) already exercises this contract. The current run is score-neutral: it reports `status=blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`, `scoreDecision=no_score_increase`, `alphaRunningPass=true`, and `15/15` negative controls passing. The local charge exposure, alpha coupling, wake/dressing, running, source-provenance, and no-hidden-retune rows remain `attempt`, so no score movement follows from the alpha arithmetic or the source-attempt shape.
+Checker-contract finding: [planck-alpha-braid-theta-alpha-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-alpha-source-attempt.v1.json) already exercises this contract. The current run is score-neutral: it reports `status=blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`, `scoreDecision=no_score_increase`, `alphaRunningPass=true`, and `15/15` negative controls passing. The local charge exposure, alpha coupling, wake/dressing, running, source-provenance, and no-hidden-retune rows remain `attempt`, so no score change follows from the alpha arithmetic or the source-attempt shape.
 
 ## Direct Geometry Layer
 
@@ -122,7 +122,7 @@ Expected result: `blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gam
 `scoreDecision=no_score_increase`, `alphaRunningPass=true`, and all 15 negative controls
 passing. The same command with `--require-populated` must exit nonzero.
 
-Until parent photon/action support and local charge/coupling rows are accepted, the correct result remains no score movement.
+Until parent photon/action support and local charge/coupling rows are accepted, the correct result remains no score change.
 
 The shared Planck/alpha runner now rejects priority packets, authored AAA prose,
 generated files, attempt files, toy files, probe files, source-evidence-probe

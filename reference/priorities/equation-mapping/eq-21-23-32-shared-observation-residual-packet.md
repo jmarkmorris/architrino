@@ -30,6 +30,7 @@ The second-round residual should make hidden retuning visible. A branch may proj
 - Closure driver: one retained $\Theta_{\mathrm{obs}}$ record must bind source-window, readout, thermal/provenance, galaxy, and energy-momentum-angular-momentum ledger rows before growth, CMB, BBN, Planck blackbody, or RAR/BTFR comparisons can count as evidence.
 - Exact first blocker: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) blocks at `missing_accepted_theta_obs`; the upstream effective-FRW handoff still blocks at `missing_accepted_theta_cos`; the `EQ-32` consumer remains additionally blocked by `missing_accepted_theta_sea_rho_NS` and `delta_a_star`.
 - First implementation target for this packet: a source-backed retained $\Theta_{\mathrm{obs}}$ parent row with accepted subrecord identities for $\Theta_{\mathrm{src}}$, $\Theta_{\mathrm{read}}$, $\Theta_{\mathrm{therm/prov}}$, $\Theta_{\mathrm{gal}}$, and $\mathcal{L}_{E\mathbf p\mathbf J}$.
+- Smallest next artifact: one durable `theta_obs` source object whose growth, CMB, BBN, RAR/BTFR, readout, thermal/provenance, and event-ledger subrecords share one observation carrier and one no-hidden-retune witness.
 - Safe pass action: priority packet refinement only. The current checker and numeric rows remain score-neutral until accepted retained evidence exists and the upstream carrier blockers clear.
 
 ## Retained Shared Record
@@ -592,6 +593,10 @@ The upstream effective-FRW producer is [effective-frw-handoff-residual.mjs](../.
 
 The current attempt fixture [shared-observation-residual-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-residual-attempt.v1.json) declares all expected shared keys and computes a residual vector, but every source-bearing row is still `attempt`. The run is therefore:
 
+```bash
+node scripts/equation-mapping/shared-observation-residual.mjs --input scripts/equation-mapping/shared-observation-residual-attempt.v1.json --summary --pretty
+```
+
 ```text
 status: blocked_missing_rows
 scoreDecision: no_score_increase
@@ -604,6 +609,14 @@ nextBlockerDetails.sourceReferenceExists: false
 ```
 
 This is the intended disposition. The checker is a residual-ledger guardrail, not a cosmology fit and not score evidence until one retained branch populates an accepted, durable-source $\Theta_{\mathrm{obs}}$ row.
+
+The priority-source negative control proves that accepted-looking rows sourced only to coordination material still cannot populate the packet:
+
+```bash
+node scripts/equation-mapping/shared-observation-residual.mjs --input scripts/equation-mapping/shared-observation-priority-source-negative-control.v1.json --summary --pretty
+```
+
+Expected result: `status=blocked_missing_rows`, `scoreDecision=no_score_increase`, `nextBlocker=missing_accepted_theta_obs`, and `sourceEvidenceFailureCount=26`. Running the same fixture with `--require-populated` must exit nonzero.
 
 The shared-observation lane is also downstream of the Noether sea coefficient lane. `EQ-32` cannot honestly populate $a_\star^\theta(E)$ while the local Noether sea density-compression carrier still blocks at `missing_accepted_theta_sea_rho_NS`; the low-acceleration projection needs accepted $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, $\mathbf u_{\mathrm{sea}}$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, baryonic density, and assembly-density keys from the same source-backed record. Therefore the first accepted object for this packet remains $\Theta_{\mathrm{obs}}$, but `EQ-32` remains blocked on the Bucket B retained coefficient row even after the parent observation row exists.
 

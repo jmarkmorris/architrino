@@ -135,6 +135,10 @@ function evaluateEq28aPathFrequencyExchange(input, inputPath) {
     solver,
     negativeControls,
   });
+  const nextBlocker = firstBlocker({ status, carrier, missingRows, carrierBinding, solver, negativeControls });
+  const solverDiagnosticBlocker = firstSolverBlocker(solver, negativeControls);
+  const solverDiagnosticMaskedByRetainedEvidence =
+    solverDiagnosticBlocker !== null && (!carrier.accepted || missingRows.length > 0);
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -151,14 +155,15 @@ function evaluateEq28aPathFrequencyExchange(input, inputPath) {
       solverTarget: "inverse_compton_sz_path_frequency_exchange",
       supportedRows: ["EQ-12", "EQ-17", "EQ-22", "EQ-22A", "EQ-28", "EQ-29"],
       claimLevel:
-        "score-neutral solver-style path-frequency exchange residual; accepted photon/path/medium retained evidence is required before score movement",
+        "score-neutral solver-style path-frequency exchange residual; accepted photon/path/medium retained evidence is required before score review",
     },
     tolerances,
     summary: {
       status,
       scoreDecision: SCORE_DECISION,
-      nextBlocker: firstBlocker({ status, carrier, missingRows, carrierBinding, solver, negativeControls }),
-      solverNextBlocker: firstSolverBlocker(solver, negativeControls),
+      nextBlocker,
+      solverDiagnosticBlocker,
+      solverDiagnosticMaskedByRetainedEvidence,
       carrierAccepted: carrier.accepted,
       carrierReason: carrier.reason,
       missingRows,
@@ -610,6 +615,7 @@ function isEvidenceSourcePath(filePath) {
   return !(
     lowerBasename.includes("attempt") ||
     lowerBasename.includes("toy") ||
+    lowerBasename.includes("source-contract") ||
     lowerBasename.includes("source-evidence-probe") ||
     lowerBasename.includes("probe") ||
     lowerBasename.includes("mock") ||

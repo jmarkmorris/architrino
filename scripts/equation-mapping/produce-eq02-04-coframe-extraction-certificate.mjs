@@ -18,6 +18,10 @@ const RETAINED_GEOMETRY_PROVENANCE_SCHEMA =
 const DEFAULT_RETAINED_RECORD =
   "scripts/equation-mapping/eq02-04-translating-binary-retained-record-attempt.v1.json";
 const ACCEPTED_STATUSES = new Set(["accepted", "populated", "passed"]);
+const RETAINED_EVIDENCE_DISCLAIMER_PATTERN =
+  /\b(not evidence|not retained evidence|not retained geometry evidence|score-neutral|negative control|attempt|toy|probe|mock|shell)\b/;
+const RETAINED_PROVENANCE_DISCLAIMER_PATTERN =
+  /\b(not evidence|not retained evidence|not retained geometry evidence|score-neutral|negative control|attempt|toy|probe|mock|shell|synthetic|fixture)\b/;
 const EPSILON = 1e-12;
 const REQUIRED_ROW_BINDINGS = [
   "raw_labeled_rows_preserved_on_retained_history",
@@ -580,6 +584,44 @@ function concreteNonPlaceholderString(value) {
   );
 }
 
+function sourceClaimText(record) {
+  return [
+    record?.claimLevel,
+    record?.claim,
+    record?.description,
+    ...(Array.isArray(record?.notes) ? record.notes : []),
+  ]
+    .filter((item) => typeof item === "string")
+    .join(" ")
+    .toLowerCase();
+}
+
+function sourceClaimDisclaimsRetainedEvidence(record) {
+  return RETAINED_EVIDENCE_DISCLAIMER_PATTERN.test(sourceClaimText(record));
+}
+
+function sourceClaimDisclaimsRetainedProvenance(record) {
+  return RETAINED_PROVENANCE_DISCLAIMER_PATTERN.test(sourceClaimText(record));
+}
+
+function collectStringValues(value) {
+  if (typeof value === "string") {
+    return [value];
+  }
+  if (Array.isArray(value)) {
+    return value.flatMap((item) => collectStringValues(item));
+  }
+  if (value && typeof value === "object") {
+    return Object.values(value).flatMap((item) => collectStringValues(item));
+  }
+  return [];
+}
+
+function provenanceRecordDisclaimsRetainedGeometry(record) {
+  const text = collectStringValues(record).join(" ").toLowerCase();
+  return RETAINED_PROVENANCE_DISCLAIMER_PATTERN.test(text);
+}
+
 function durableSourcePath(filePath) {
   if (!concreteString(filePath)) {
     return false;
@@ -792,20 +834,7 @@ function retainedGeometryEvidenceRecordStatus(filePath, expectedIds) {
       detail: String(error?.message ?? error),
     };
   }
-  const claimText = [
-    parsed.claimLevel,
-    parsed.claim,
-    parsed.description,
-    ...(Array.isArray(parsed.notes) ? parsed.notes : []),
-  ]
-    .filter((item) => typeof item === "string")
-    .join(" ")
-    .toLowerCase();
-  if (
-    /\b(not evidence|not retained evidence|not retained geometry evidence|score-neutral|negative control|attempt|toy|probe|mock|shell)\b/.test(
-      claimText,
-    )
-  ) {
+  if (sourceClaimDisclaimsRetainedEvidence(parsed)) {
     return {
       accepted: false,
       reason: "source_claim_disclaims_retained_evidence",
@@ -1016,6 +1045,14 @@ function retainedGeometryProvenanceStatus(filePath, targetId, expectedIds) {
       details: identityChecks,
     };
   }
+  if (sourceClaimDisclaimsRetainedProvenance(parsed)) {
+    return {
+      accepted: false,
+      reason: "source_provenance_payload_disclaimed_or_synthetic",
+      schema: parsed.schema ?? null,
+      details: { targetId },
+    };
+  }
   const records =
     parsed.provenanceRecords ??
     parsed.retainedGeometryProvenance?.records ??
@@ -1027,6 +1064,14 @@ function retainedGeometryProvenanceStatus(filePath, targetId, expectedIds) {
         return id === targetId && ACCEPTED_STATUSES.has(normalizeStatus(record));
       })
     : null;
+  if (matchingRecord && provenanceRecordDisclaimsRetainedGeometry(matchingRecord)) {
+    return {
+      accepted: false,
+      reason: "source_provenance_payload_disclaimed_or_synthetic",
+      schema: parsed.schema ?? null,
+      details: { targetId },
+    };
+  }
   const hasPayload =
     matchingRecord &&
     concreteNonPlaceholderString(

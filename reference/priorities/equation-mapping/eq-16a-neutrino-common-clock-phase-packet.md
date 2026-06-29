@@ -379,8 +379,9 @@ Here $r_{\mathrm{atm/sol}}$ is the updateable atmospheric-to-solar gap benchmark
 | Current equation-inventory score | `3` |
 | Closure driver | Factor the common hidden clock while deriving two independent observed phase-rate gaps from one retained neutral-lepton branch and one weak-exposure readout domain. |
 | Primary carrier | $\Theta_{\nu,16A}$ with retained branch $B_{3B}^{(\nu)}$, equal-frequency row set $S_{\mathrm{eq}}$, residual operator, weak-domain readout, matter correction, cancellation row, and event ledger. |
-| Smallest score-moving evidence object | Accepted retained `neutral_lepton_retained_branch` plus accepted `s_eq`, common-clock, residual-operator, phase-gap, spectrum-shape, PMNS-readout, weak-domain, matter-correction, cancellation, and event-ledger rows bound to one branch/domain record. |
+| Smallest accepted evidence object | Accepted retained `neutral_lepton_retained_branch` plus accepted `s_eq`, common-clock, residual-operator, phase-gap, spectrum-shape, PMNS-readout, weak-domain, matter-correction, cancellation, and event-ledger rows bound to one branch/domain record. |
 | Exact first blocker | `missing_accepted_neutral_lepton_retained_branch`; inherited `S_eq` blocker: `missing_accepted_raw_labeled_rows_preserved_on_retained_history`. |
+| Smallest next artifact | Replace the neutral-lepton source-attempt shell with one durable retained-branch source that binds $S_{\mathrm{eq}}$, common clock, residual operator, weak-domain readout, matter correction, cancellation, and event ledger to one branch/domain record. |
 | Existing scripts/fixtures/packets | [neutrino-common-clock-phase-operator.mjs](../../../scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs), [neutrino-common-clock-phase-attempt.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json), [neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json), [neutrino-common-clock-phase-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-priority-source-negative-control.v1.json), [neutrino-common-clock-phase-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-domain-split-negative-control.v1.json) |
 | Fail-closed control | `weak_hidden_domain_split` remains a diagnostic split-domain control, but source evidence guards now fire first when accepted-looking rows point at attempts or priority prose; the current domain-split fixture reports `missing_accepted_neutral_lepton_retained_branch` while `weakDomainIdentityPass: false` records the split. |
 | Safe implementation target | Priority-packet refinement now; accepted-source semantics already reject priority prose, authored AAA prose, generated files, attempts, mocks, toys, probes, negative controls, and temporary paths before any source-attempt row can be treated as retained evidence. |
@@ -405,6 +406,15 @@ The smallest accepted evidence object is therefore not the `(f,f,f)` numeric pha
 ## Executable Phase-Operator Checker Status
 
 [neutrino-common-clock-phase-operator.mjs](../../../scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs) now implements the score-neutral checker for $\Theta_{\nu,16A}$. It consumes the retained neutral-lepton branch, $S_{\mathrm{eq}}$, common clock, residual operator, phase gaps, spectrum shape, PMNS readout, weak domain, matter correction, cancellation, and event-ledger rows.
+
+Run the attempt, source-attempt, priority-source control, and domain-split control as the current score-neutral route:
+
+```sh
+node scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs --input scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs --input scripts/equation-mapping/neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs --input scripts/equation-mapping/neutrino-common-clock-phase-priority-source-negative-control.v1.json --summary --pretty
+node scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs --input scripts/equation-mapping/neutrino-common-clock-phase-domain-split-negative-control.v1.json --summary --pretty
+```
 
 The current attempt fixture [neutrino-common-clock-phase-attempt.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json) has the intended `(f,f,f)` common-clock and residual-gap numeric shape: the equal clock factors out, $\bar H_{\nu}^{\mathrm{res}}$ is traceless and nonzero, $\Delta\lambda_{31}=\Delta\lambda_{32}+\Delta\lambda_{21}$, the atmospheric-to-solar schematic ratio is $32.5$, the spectrum is doublet-plus-singlet, and cancellation does not erase the residual operator.
 

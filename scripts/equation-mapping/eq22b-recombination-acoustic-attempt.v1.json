@@ -1,6 +1,6 @@
 {
   "schema": "aaa-equation-map-eq22b-recombination-acoustic-input/v1",
-  "claimLevel": "score-neutral recombination/acoustic attempt; accepted shared thermal/provenance/readout evidence is required before score movement",
+  "claimLevel": "score-neutral recombination/acoustic attempt; accepted shared thermal/provenance/readout evidence is required before score review",
   "residualId": "R_22B_recombination_acoustic_attempt_0001",
   "commonCarrierId": "theta_rec_ac_attempt_0001",
   "carrier": {

@@ -105,7 +105,7 @@ The first geometry-facing follow-up is therefore not another astrophysical summa
 
 ## Compact-Region Variable Dictionary
 
-The first score-moving object is a variable dictionary, not another checker:
+The first accepted-evidence object is a variable dictionary, not another checker:
 
 | Variable or row | Role in `EQ-07A` | Required native attachment |
 | --- | --- | --- |
@@ -150,11 +150,12 @@ Here $\mathcal B_{\mathrm{std}}^{\mathrm{cs}}$ carries the observer-level compac
 | Current score | `2` |
 | Closure driver | Recover Fermi support scaling, composition dependence, TOV compact-support comparison, reaction inventory, material scale compression, and metric compliance from one compact-region retained record. |
 | Primary carrier | $\Theta_{\mathrm{cs}}^{07A}(\Omega,W)$ with compact region $\Omega$ and absolute-time window $W$. |
-| Smallest score-moving evidence object | Accepted source-backed `compact_region_carrier` plus accepted bindings for all `EQ-07A` required rows in one compact-region record. |
+| Smallest accepted evidence object | Accepted source-backed `compact_region_carrier` plus accepted bindings for all `EQ-07A` required rows in one compact-region record. |
 | Exact first blocker | `missing_accepted_compact_region_carrier` |
+| Smallest next artifact | Produce one source-backed compact-region carrier with mass profile, pressure profile, compactness, support-balance row, collapse-scale row, source provenance, and no-hidden-retune witness on one record. |
 | Existing scripts/fixtures/packets | [eq07a-compact-region-carrier-residual.mjs](../../../scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs), [eq07a-compact-region-carrier-attempt.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-attempt.v1.json), [eq07a-chandrasekhar-scaling-residual.mjs](../../../scripts/equation-mapping/eq07a-chandrasekhar-scaling-residual.mjs), [eq07a-tov-compact-support-residual.mjs](../../../scripts/equation-mapping/eq07a-tov-compact-support-residual.mjs) |
 | Fail-closed controls | Coordination-source, metadata-missing, probe-source mutation, hidden-retune, pressure-regime, level-separation, Chandrasekhar, and TOV controls must reject priority packets, probe artifacts, split carriers, and collapsed scale levels. |
-| Safe implementation target | Existing script/fixture improvement: harden the `standard_benchmark_row` source contract after the parent carrier probe, without score movement. |
+| Safe implementation target | Existing script/fixture improvement: harden the `standard_benchmark_row` source contract after the parent carrier probe, without score change. |
 
 ## Direct Geometry Layer
 
@@ -351,7 +352,7 @@ The checker computes, rather than merely labels, the following attempt-level qua
 - the composition boundary $M_{\mathrm{Ch}}\propto Y_e^2$;
 - source-provenance, no-hidden-retune, and level-separation witnesses.
 
-The current run returns `schemaOk: true`, `status: blocked_missing_accepted_compact_region_carrier`, `scoreDecision: no_score_increase`, `solverResidualPass: true`, and `solverNextBlocker: null`. The state-counting, nonrelativistic pressure-scaling, relativistic pressure-scaling, mass-radius, composition-scaling, source-provenance, hidden-retune, level-separation, and all four negative-control diagnostics pass. They remain attempt-level diagnostics because the compact-region carrier and row bindings are still `status: attempt`.
+The current run returns `schemaOk: true`, `status: blocked_missing_accepted_compact_region_carrier`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_compact_region_carrier`, `solverResidualPass: true`, `solverDiagnosticBlocker: null`, and `solverDiagnosticMaskedByRetainedEvidence: false`. The state-counting, nonrelativistic pressure-scaling, relativistic pressure-scaling, mass-radius, composition-scaling, source-provenance, hidden-retune, level-separation, and all four negative-control diagnostics pass. They remain attempt-level diagnostics because the compact-region carrier and row bindings are still `status: attempt`.
 
 ## TOV Compact-Support Solver Residual
 
@@ -369,7 +370,7 @@ The checker computes, rather than merely labels, the following attempt-level qua
 - radial-support monotonicity, compactness denominator, and compact-region ledger checks;
 - source-provenance and no-hidden-retune witnesses.
 
-The current run returns `schemaOk: true`, `status: blocked_missing_accepted_compact_region_carrier`, `scoreDecision: no_score_increase`, `solverResidualPass: true`, and `solverNextBlocker: null`. The TOV pressure-gradient, mass-continuity, EOS-projection, radial-support, metric-compactness, compact-ledger, source-provenance, hidden-retune, and all four negative-control diagnostics pass. They remain attempt-level diagnostics because the compact-region carrier and row bindings are still `status: attempt`.
+The current run returns `schemaOk: true`, `status: blocked_missing_accepted_compact_region_carrier`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_compact_region_carrier`, `solverResidualPass: true`, `solverDiagnosticBlocker: null`, and `solverDiagnosticMaskedByRetainedEvidence: false`. The TOV pressure-gradient, mass-continuity, EOS-projection, radial-support, metric-compactness, compact-ledger, source-provenance, hidden-retune, and all four negative-control diagnostics pass. They remain attempt-level diagnostics because the compact-region carrier and row bindings are still `status: attempt`.
 
 ## Score-Lift Path
 

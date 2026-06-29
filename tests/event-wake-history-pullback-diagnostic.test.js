@@ -39,6 +39,41 @@ test("event wake-history pullback diagnostic emits a priority-only closed bounda
   assert.equal(rowById(artifact, "momentum_wake").status, "pass");
   assert.equal(rowById(artifact, "angular_momentum_wake").status, "pass");
   assert.equal(rowById(artifact, "medium_update").status, "pass");
+  assert.equal(
+    artifact.accepted_evidence_summary.counts_by_evidence_level
+      .source_record_event_ledger_declared,
+    4
+  );
+  assert.equal(artifact.accepted_evidence_summary.accepted_row_count, 0);
+  assert.equal(artifact.accepted_evidence_summary.accepted_for_wake_history_closure, false);
+  assert.equal(artifact.result.accepted_event_evidence_for_closure, false);
+});
+
+test("event wake-history accepted label without evidence id stays non-accepted", () => {
+  const input = buildDefaultEventWakeHistoryPullbackInput();
+  input.event_evidence_rows = [
+    {
+      row_id: "energy_wake",
+      evidence_level: "accepted_for_wake_history_closure",
+      accepted_for_wake_history_closure: true,
+      source_record_id: input.source_record_id,
+      event_ledger_id: input.event_ledger.ledger_id,
+    },
+  ];
+  const artifact = buildEventWakeHistoryPullbackDiagnostic(input);
+  const energyEvidence = artifact.accepted_evidence_summary.row_evidence.find(
+    (row) => row.row_id === "energy_wake"
+  );
+
+  assert.deepEqual(validateEventWakeHistoryPullbackArtifact(artifact), []);
+  assert.equal(artifact.boundary_status, "closed");
+  assert.equal(energyEvidence.accepted_evidence_contract_attempted, true);
+  assert.equal(energyEvidence.accepted_for_wake_history_closure, false);
+  assert.deepEqual(energyEvidence.accepted_evidence_mismatches, [
+    "event_evidence.accepted_evidence_id",
+  ]);
+  assert.equal(artifact.accepted_evidence_summary.accepted_row_count, 0);
+  assert.equal(artifact.result.accepted_event_evidence_for_closure, false);
 });
 
 test("event wake-history pullback diagnostic fails missing angular momentum rows", () => {
@@ -84,5 +119,12 @@ test("event wake-history pullback diagnostic CLI writes, validates, and reports 
 
   const schema = JSON.parse(execFileSync(process.execPath, [scriptPath, "--schema"], { encoding: "utf8" }));
   assert.equal(schema.artifact_schema, EVENT_WAKE_HISTORY_PULLBACK_SCHEMA);
+  assert.deepEqual(schema.accepted_evidence_summary, [
+    "row_evidence",
+    "counts_by_evidence_level",
+    "accepted_evidence_contract_attempted",
+    "accepted_evidence_mismatches",
+    "accepted_for_wake_history_closure",
+  ]);
   assert.deepEqual(schema.controls, ["missing-angular-momentum-row", "source-record-mismatch"]);
 });

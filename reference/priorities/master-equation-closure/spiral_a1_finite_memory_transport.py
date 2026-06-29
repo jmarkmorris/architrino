@@ -1362,6 +1362,7 @@ def shared_interval_boxes_target_row(
     retained_root_window_bracket_replay: dict | None = None,
     inactive_cover_exclusion_replay: dict | None = None,
     retained_root_inactive_cover_interval_box_target: dict | None = None,
+    retained_root_interval_box_certificate_bridge: dict | None = None,
     inactive_cover_interval_box_certificate_bridge: dict | None = None,
 ) -> dict:
     required_box_ids = [
@@ -1382,6 +1383,10 @@ def shared_interval_boxes_target_row(
     if future_transport_interval_box_certificate is not None:
         local_certificate_box_ids.append(
             future_transport_interval_box_certificate["box_id"]
+        )
+    if retained_root_interval_box_certificate_bridge is not None:
+        local_bridge_box_ids.append(
+            retained_root_interval_box_certificate_bridge["box_id"]
         )
     if inactive_cover_interval_box_certificate_bridge is not None:
         local_bridge_box_ids.append(
@@ -1511,6 +1516,31 @@ def shared_interval_boxes_target_row(
         row["retained_root_inactive_cover_interval_box_target"] = (
             retained_root_inactive_cover_interval_box_target
         )
+    if retained_root_interval_box_certificate_bridge is not None:
+        row["retained_root_interval_box_certificate_bridge"] = {
+            key: retained_root_interval_box_certificate_bridge[key]
+            for key in (
+                "schema",
+                "artifact_id",
+                "box_id",
+                "method",
+                "claim_level",
+                "status",
+                "theta_interval",
+                "retained_root_window_count",
+                "min_endpoint_signed_gap",
+                "min_abs_jacobian_floor",
+                "all_windows_endpoint_sign_bracketed",
+                "all_windows_jacobian_floor_certified",
+                "bounds_fixed_a1_sidecar_retained_root_interval_boxes",
+                "bounds_selected_finite_collar_retained_root_interval_boxes",
+                "same_box_retained_root_binding_present",
+                "used_as_certificate",
+                "used_as_local_certificate",
+                "used_as_shared_certificate",
+                "certificate_digest",
+            )
+        }
     if inactive_cover_interval_box_certificate_bridge is not None:
         row["inactive_cover_interval_box_certificate_bridge"] = {
             key: inactive_cover_interval_box_certificate_bridge[key]
@@ -5187,7 +5217,7 @@ def a1_p1_source_q_derivative_composition_shared_audit_candidate(
         ),
         "inactive_cover_no_root_interval_boxes_present": False,
         "same_box_inactive_cover_binding_present": False,
-        "blocked_by": "inactive_cover_interval_boxes_absent",
+        "blocked_by": "same_box_inactive_cover_binding_absent",
         "sample_replay_accepted_as_interval_evidence": False,
         "bounds_inactive_cover_interval_boxes": False,
         "bounds_retained_root_interval_boxes": False,
@@ -6310,6 +6340,7 @@ def a1_shared_interval_box_certificate_target(
     retained_root_window_bracket_replay: dict | None = None,
     inactive_cover_exclusion_replay: dict | None = None,
     retained_root_inactive_cover_interval_box_target: dict | None = None,
+    retained_root_interval_box_certificate_bridge: dict | None = None,
     inactive_cover_interval_box_certificate_bridge: dict | None = None,
 ) -> dict:
     return {
@@ -6331,6 +6362,7 @@ def a1_shared_interval_box_certificate_target(
             retained_root_window_bracket_replay,
             inactive_cover_exclusion_replay,
             retained_root_inactive_cover_interval_box_target,
+            retained_root_interval_box_certificate_bridge,
             inactive_cover_interval_box_certificate_bridge,
         ),
         "directed_rounding_backend": directed_rounding_backend_target_row(
@@ -6406,6 +6438,10 @@ def a1_certificate_composition_readiness(
             ),
             "local_certificate_box_ids_present": (
                 shared_boxes["local_certificate_box_ids_present"]
+            ),
+            "local_bridge_box_ids_present": shared_boxes.get(
+                "local_bridge_box_ids_present",
+                [],
             ),
         },
         "target_only_objects": {
@@ -7171,6 +7207,197 @@ def a1_retained_root_inactive_cover_interval_box_target(
         "target_digest": canonical_json_digest(payload),
         "status": (
             "target_only_retained_root_inactive_cover_interval_boxes_absent"
+        ),
+    }
+
+
+def a1_retained_root_interval_box_certificate_bridge(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+) -> dict:
+    theta_box = fixed.Interval(theta_interval[0], theta_interval[1])
+    bridge_rows: list[dict] = []
+    failures: list[dict] = []
+    min_endpoint_signed_gap = math.inf
+    min_abs_jacobian_floor = math.inf
+
+    for window in RETAINED_WINDOWS:
+        kind = window["kind"]
+        label = window["label"]
+        window_lo, window_hi = window["window"]
+        lower_endpoint_box = fixed.outward(window_lo, window_lo)
+        upper_endpoint_box = fixed.outward(window_hi, window_hi)
+        lower_root_interval = fixed.root_function_interval(
+            kind,
+            theta_box,
+            lower_endpoint_box,
+        )
+        upper_root_interval = fixed.root_function_interval(
+            kind,
+            theta_box,
+            upper_endpoint_box,
+        )
+        lower_sign = fixed.strict_interval_sign(lower_root_interval)
+        upper_sign = fixed.strict_interval_sign(upper_root_interval)
+        lower_gap = (
+            lower_root_interval.lo
+            if lower_sign > 0
+            else (-lower_root_interval.hi if lower_sign < 0 else 0.0)
+        )
+        upper_gap = (
+            upper_root_interval.lo
+            if upper_sign > 0
+            else (-upper_root_interval.hi if upper_sign < 0 else 0.0)
+        )
+        endpoint_sign_bracketed = lower_sign * upper_sign < 0
+        jacobian_interval = fixed.jacobian_interval(
+            kind,
+            theta_box,
+            fixed.Interval(window_lo, window_hi),
+        )
+        abs_jacobian = fixed.abs_away_from_zero(jacobian_interval)
+        jacobian_floor_certified = abs_jacobian is not None
+        if endpoint_sign_bracketed:
+            min_endpoint_signed_gap = min(
+                min_endpoint_signed_gap,
+                lower_gap,
+                upper_gap,
+            )
+        else:
+            failures.append(
+                {
+                    "label": label,
+                    "kind": kind,
+                    "window": list(window["window"]),
+                    "failure": "retained_window_endpoint_sign_change_missing",
+                    "lower_endpoint_strict_interval_sign": lower_sign,
+                    "upper_endpoint_strict_interval_sign": upper_sign,
+                }
+            )
+        if jacobian_floor_certified:
+            min_abs_jacobian_floor = min(min_abs_jacobian_floor, abs_jacobian.lo)
+        else:
+            failures.append(
+                {
+                    "label": label,
+                    "kind": kind,
+                    "window": list(window["window"]),
+                    "failure": "retained_window_jacobian_floor_missing",
+                    "jacobian_interval": interval_row(jacobian_interval),
+                }
+            )
+        bridge_rows.append(
+            {
+                "label": label,
+                "kind": kind,
+                "window": list(window["window"]),
+                "theta_interval": theta_interval,
+                "lower_endpoint_root_function_interval": interval_row(
+                    lower_root_interval
+                ),
+                "lower_endpoint_strict_interval_sign": lower_sign,
+                "lower_endpoint_signed_gap": lower_gap,
+                "upper_endpoint_root_function_interval": interval_row(
+                    upper_root_interval
+                ),
+                "upper_endpoint_strict_interval_sign": upper_sign,
+                "upper_endpoint_signed_gap": upper_gap,
+                "endpoint_sign_bracketed": endpoint_sign_bracketed,
+                "jacobian_interval": interval_row(jacobian_interval),
+                "abs_jacobian_interval": (
+                    interval_row(abs_jacobian) if abs_jacobian is not None else None
+                ),
+                "abs_jacobian_interval_floor": (
+                    abs_jacobian.lo if abs_jacobian is not None else None
+                ),
+                "jacobian_floor_certified": jacobian_floor_certified,
+            }
+        )
+
+    all_windows_endpoint_sign_bracketed = all(
+        row["endpoint_sign_bracketed"] for row in bridge_rows
+    )
+    all_windows_jacobian_floor_certified = all(
+        row["jacobian_floor_certified"] for row in bridge_rows
+    )
+    bounds_fixed_a1_sidecar_retained_root_interval_boxes = (
+        all_windows_endpoint_sign_bracketed
+        and all_windows_jacobian_floor_certified
+        and not failures
+    )
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_retained_root_interval_box_certificate_bridge.v0"
+        ),
+        "artifact_id": "a1_retained_root_interval_box_certificate_bridge.v0",
+        "box_id": "retained_root_interval_boxes",
+        "source_artifact_hash": source_digest,
+        "method": (
+            "fixed_a1_sidecar_retained_window_endpoint_and_jacobian_interval_bridge"
+        ),
+        "claim_level": (
+            "local fixed-A1 sidecar retained-root interval bridge; not a "
+            "shared finite-collar same-box certificate"
+        ),
+        "source_evidence": {
+            "path": (
+                "reference/priorities/master-equation-closure/"
+                "spiral-a1-root-window-certificate.md"
+            ),
+            "row": "active_windows",
+            "reading": (
+                "imports fixed-history A1 active windows and confirms endpoint "
+                "sign changes plus Jacobian floors by local interval arithmetic "
+                "over the selected theta interval"
+            ),
+        },
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "retained_root_window_rows": bridge_rows,
+        "retained_root_window_count": len(bridge_rows),
+        "min_endpoint_signed_gap": (
+            min_endpoint_signed_gap
+            if math.isfinite(min_endpoint_signed_gap)
+            else None
+        ),
+        "min_abs_jacobian_floor": (
+            min_abs_jacobian_floor
+            if math.isfinite(min_abs_jacobian_floor)
+            else None
+        ),
+        "all_windows_endpoint_sign_bracketed": (
+            all_windows_endpoint_sign_bracketed
+        ),
+        "all_windows_jacobian_floor_certified": (
+            all_windows_jacobian_floor_certified
+        ),
+        "bounds_fixed_a1_sidecar_retained_root_interval_boxes": (
+            bounds_fixed_a1_sidecar_retained_root_interval_boxes
+        ),
+        "bounds_selected_finite_collar_retained_root_interval_boxes": False,
+        "same_box_retained_root_binding_present": False,
+        "failures": failures,
+        "negative_control": {
+            "fixed_sidecar_retained_root_bridge_does_not_satisfy_finite_collar_same_box_binding": True,
+            "local_interval_bridge_does_not_satisfy_shared_backend_identity": True,
+            "missing_runtime_identity_still_fails_shared_family": True,
+        },
+        "used_as_certificate": False,
+        "used_as_local_certificate": True,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "certificate_digest": canonical_json_digest(payload),
+        "status": (
+            "local_fixed_a1_sidecar_retained_root_interval_bridge_present_not_shared_finite_collar_certificate"
+            if bounds_fixed_a1_sidecar_retained_root_interval_boxes
+            else "local_fixed_a1_sidecar_retained_root_interval_bridge_failed_not_certificate"
         ),
     }
 
@@ -11129,6 +11356,20 @@ def a1_endpoint_slope_cancel_source_identity(args: argparse.Namespace) -> dict:
             theta_interval=[0.0, args.theta_hi],
         )
     )
+    retained_root_interval_box_certificate_bridge = (
+        a1_retained_root_interval_box_certificate_bridge(
+            identity["digest"],
+            radius_b=args.admissible_profile_radius_b,
+            theta_interval=[0.0, args.theta_hi],
+        )
+    )
+    inactive_cover_interval_box_certificate_bridge = (
+        a1_inactive_cover_interval_box_certificate_bridge(
+            identity["digest"],
+            radius_b=args.admissible_profile_radius_b,
+            theta_interval=[0.0, args.theta_hi],
+        )
+    )
     shared_interval_target = a1_shared_interval_box_certificate_target(
         identity["digest"],
         args.admissible_profile_radius_b,
@@ -11142,6 +11383,12 @@ def a1_endpoint_slope_cancel_source_identity(args: argparse.Namespace) -> dict:
         directed_rounding_backend_self_audit,
         retained_root_inactive_cover_interval_box_target=(
             retained_root_inactive_cover_interval_box_target
+        ),
+        retained_root_interval_box_certificate_bridge=(
+            retained_root_interval_box_certificate_bridge
+        ),
+        inactive_cover_interval_box_certificate_bridge=(
+            inactive_cover_interval_box_certificate_bridge
         ),
     )
     certificate_composition_readiness = a1_certificate_composition_readiness(
@@ -11193,6 +11440,12 @@ def a1_endpoint_slope_cancel_source_identity(args: argparse.Namespace) -> dict:
         "directed_rounding_backend_target": directed_rounding_backend_target,
         "directed_rounding_backend_self_audit": (
             directed_rounding_backend_self_audit
+        ),
+        "retained_root_interval_box_certificate_bridge": (
+            retained_root_interval_box_certificate_bridge
+        ),
+        "inactive_cover_interval_box_certificate_bridge": (
+            inactive_cover_interval_box_certificate_bridge
         ),
         "shared_interval_box_certificate_target": shared_interval_target,
         "certificate_composition_readiness": certificate_composition_readiness,
@@ -11322,6 +11575,13 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             theta_interval=[0.0, attempt_args.theta_hi],
         )
     )
+    retained_root_interval_box_certificate_bridge = (
+        a1_retained_root_interval_box_certificate_bridge(
+            source_identity["digest"],
+            radius_b=args.admissible_profile_radius_b,
+            theta_interval=[0.0, attempt_args.theta_hi],
+        )
+    )
     branch_sum_feedback_bound_attempt = a1_branch_sum_feedback_bound_attempt(
         source_identity["digest"],
         radius_b=args.admissible_profile_radius_b,
@@ -11383,6 +11643,9 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         inactive_cover_exclusion_replay=inactive_cover_exclusion_replay,
         retained_root_inactive_cover_interval_box_target=(
             retained_root_inactive_cover_interval_box_target
+        ),
+        retained_root_interval_box_certificate_bridge=(
+            retained_root_interval_box_certificate_bridge
         ),
         inactive_cover_interval_box_certificate_bridge=(
             inactive_cover_interval_box_certificate_bridge
@@ -11501,6 +11764,9 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             future_continuous_transport_bounds_attempt
         ),
         "branch_sum_feedback_bound_attempt": branch_sum_feedback_bound_attempt,
+        "retained_root_interval_box_certificate_bridge": (
+            retained_root_interval_box_certificate_bridge
+        ),
         "inactive_cover_interval_box_certificate_bridge": (
             inactive_cover_interval_box_certificate_bridge
         ),
@@ -11695,7 +11961,7 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "source_identity_digest_not_shared_interval_box_certificate",
             "directed_rounding_runtime_identity_absent",
             "directed_rounding_backend_self_audit_not_shared_certificate",
-            "retained_root_boxes_absent",
+            "same_box_retained_root_binding_absent",
             "inactive_gap_cover_absent",
             "branch_sum_constants_absent",
             "transport_constants_absent",

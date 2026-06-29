@@ -31,6 +31,19 @@ test("topological causal-root ledger checker emits the requested priority rows",
   assert.equal(artifact.causal_root_ledger.summary.pair_contact_min_root_count >= 1, true);
   assert.equal(artifact.causal_root_ledger.summary.self_hit_root_count >= 1, true);
   assert.equal(artifact.causal_root_ledger.summary.winding_owner_present, true);
+  assert.equal(artifact.source_record_contract.source_record_id, "theta_sea_branch_q0_v0");
+  assert.equal(artifact.source_record_contract.retained_chart_id, "torus_root_ledger_q0");
+  assert.deepEqual(artifact.source_record_contract.retained_window, {
+    id: "W0",
+    h: artifact.scenario.retained_history_window,
+    memory_depth: artifact.scenario.retained_history_window,
+  });
+  assert.equal(
+    artifact.source_record_contract.active_root_ledger.root_row_count,
+    artifact.causal_root_ledger.summary.root_row_count
+  );
+  assert.equal(artifact.source_record_contract.event_ledger_id, "L_EpJ_q0");
+  assert.equal(artifact.source_record_contract.response_object_id, "M_sea_q0");
   assert.equal(artifact.source_point_vs_eta_segment.row_count, artifact.causal_root_ledger.root_rows.length);
   assert.ok(
     artifact.photon_constituent_speed_split.rows.some(

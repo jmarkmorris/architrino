@@ -9,6 +9,7 @@
 - Source runner: [compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs)
 - Source fixture: [compton-recoil-native-event-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json)
 - Source-attempt fixture: [compton-recoil-gate-a-source-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-source-attempt.v1.json)
+- Source-object contract control: [compton-recoil-gate-a-source-contract-missing-metadata-negative-control.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-source-contract-missing-metadata-negative-control.v1.json)
 - Rows served: `EQ-13` and `EQ-28`
 - Claim level: candidate source-field map and attack card
 - Promotion status: priority-only
@@ -27,7 +28,7 @@ No score changes.
 | --- | --- |
 | Current score and closure driver | Score `3`; recover Maxwell and wave-equation behavior as continuum summaries of wake superposition and photon-channel packet transport. |
 | Primary AAA carrier | $\Pi_{13}\mathsf e_{\gamma e}^{0}$, the effective EM gate projection on the Compton/recoil event carrier. |
-| Smallest score-moving evidence object | An accepted source-backed event carrier whose Gate A/B/C, effective charge/current continuity, stress/Poynting, gauge witness, energy/momentum/angular-momentum ledger, Noether sea row, medium/remnant support, and no-hidden-retune rows bind to `e_gamma_e_0`. |
+| Smallest accepted evidence object | An accepted source-backed event carrier whose Gate A/B/C, effective charge/current continuity, stress/Poynting, gauge witness, energy/momentum/angular-momentum ledger, Noether sea row, medium/remnant support, and no-hidden-retune rows bind to `e_gamma_e_0`. |
 | Exact first blocker | `missing_accepted_photon_gate_A_input_output`. |
 | Existing scripts, fixtures, and packets found | The Compton/recoil runner and fixture listed above, plus [Equation Closure Pass 2026-06-23 AC](equation-closure-pass-2026-06-23-ac.md). |
 | Candidate breakthrough angle | Solved Maxwell, Green-function, and eikonal families can become inverse tests for causal support, continuity, gauge residual, and Poynting balance after the event ledger exists. They must not bypass Gate A/B/C and recoil rows. |
@@ -38,7 +39,7 @@ No score changes.
 | --- | --- |
 | Current score and closure driver | Score `3`; close Compton, photoelectric, pair-threshold, and recoil equations through one event ledger. |
 | Primary AAA carrier | $\mathsf e_{\gamma e}^{0}$, the weak homogeneous Compton/recoil event ledger. |
-| Smallest score-moving evidence object | An accepted native `e_gamma_e_0` event bundle with seven native rows plus accepted medium and remnant support rows, including explicit zero `delta_E` and `delta_p` in the weak homogeneous case. |
+| Smallest accepted evidence object | An accepted native `e_gamma_e_0` event bundle with seven native rows plus accepted medium and remnant support rows, including explicit zero `delta_E` and `delta_p` in the weak homogeneous case. |
 | Exact first blocker | `missing_accepted_photon_gate_A_input_output`. |
 | Existing scripts, fixtures, and packets found | The Compton/recoil runner and fixture listed above, plus [Equation Closure Pass 2026-06-23 I](equation-closure-pass-2026-06-23-i.md). |
 | Candidate breakthrough angle | The inverse-energy Compton residual can discipline Gate A: the same $h$, $c_\gamma$, exposed electron mass, recoil convention, and `eventId` must survive across `EQ-26` and `EQ-28` before wavelength shift counts as native event evidence. |
@@ -104,6 +105,14 @@ priority map. The replay must still return `missing_accepted_photon_gate_A_input
 with `accepted_without_evidence_source`, because a coordination packet is not retained
 event evidence.
 
+The source-object metadata control is
+[compton-recoil-gate-a-source-contract-missing-metadata-negative-control.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-source-contract-missing-metadata-negative-control.v1.json).
+It marks `photon_gate_A_input_output` as accepted-looking against an evidence-class
+runner path while omitting `sourceObjectKind`, `sourceSupport`, and `evidenceFamily`.
+The replay must still return `missing_accepted_photon_gate_A_input_output` with
+`accepted_without_source_object_contract`; an evidence-class path alone is not a
+retained Gate A row.
+
 The current source-attempt payload is
 [compton-recoil-gate-a-source-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-source-attempt.v1.json).
 It adds concrete incoming/outgoing photon packet ids, frequency and wavelength rows,
@@ -114,11 +123,11 @@ for `eventId=e_gamma_e_0`, but every row remains `attempt`.
 
 The first native row object contract remains controlled by [EQ-26 And EQ-31 Observation-First Precision Packet](eq-26-31-observation-first-precision-packet.md). A Gate A source object must be a structured retained row object, not the string `accepted`; it must use an accepted status, concrete `rowId`, durable resolving source reference, and `eventId=e_gamma_e_0`.
 
-The durable source must supply incoming and outgoing photon-channel records, $E_\gamma$, $\mathbf p_\gamma$, direction, frequency or wavelength, Gate A null-branch status, and the shared $h$ and $c_\gamma$ rows consumed by the event. This row is not sufficient for score movement by itself. It is the first accepted row on the event carrier; the full event still needs Gate B, target branch, recoil branch, angular-momentum ledger, Noether sea state, energy/momentum event ledger, medium/remnant support, and no-hidden-retune rows on the same event.
+The durable source must supply incoming and outgoing photon-channel records, $E_\gamma$, $\mathbf p_\gamma$, direction, frequency or wavelength, Gate A null-branch status, and the shared $h$ and $c_\gamma$ rows consumed by the event. It must also declare `sourceObjectKind: "photon_gate_A_input_output"`, `sourceSupport: ["EQ-13", "EQ-28", "Gate A", "e_gamma_e_0"]`, and `evidenceFamily: "native_compton_recoil_event"`; toy, probe, source-contract shell, priority, authored-prose, generated, attempt, mock, and negative-control paths remain non-evidence. This row is not sufficient for score review by itself. It is the first accepted row on the event carrier; the full event still needs Gate B, target branch, recoil branch, angular-momentum ledger, Noether sea state, energy/momentum event ledger, medium/remnant support, and no-hidden-retune rows on the same event.
 
 ## Direct Geometry Layer
 
-| Standard comparison term | AAA geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Photon Gate A input/output relation | Event-bound `photon_gate_A_input_output` row on $\mathsf e_{\gamma e}^{0}$, not an imported Compton formula | `photon_gate_A_input_output` | Same `eventId=e_gamma_e_0`, incoming/outgoing packet ids, $h$, $c_\gamma$, source path, and null-branch status | `event_id_mismatch`; `accepted_without_retained_reference`; `source_self_reference` | Durable source-backed Gate A row with concrete row id, accepted status, source evidence, photon packet ids, frequency/wavelength rows, momentum rows, and Gate A residual fields. |
 | Compton/recoil event closure | Native event ledger over $\mathsf e_{\gamma e}^{0}$ with Gate A/B, target branch, recoil branch, angular momentum, Noether sea, and energy-momentum rows | Seven native event rows plus `medium` and `remnant` support rows | Same event id, recoil convention, $h$, $c_\gamma$, exposed electron mass, medium/remnant support, and no-hidden-retune witness | `support_rows_omitted`; `event_id_mismatch`; `accepted_without_retained_reference` | Accepted native event bundle with Gate A first, then Gate B, target, recoil, angular-momentum, Noether sea, energy-momentum, medium, and remnant rows on one event. |
@@ -137,6 +146,7 @@ The durable source must supply incoming and outgoing photon-channel records, $E_
 
 - `event_id_mismatch`: an otherwise accepted row with `eventId` other than `e_gamma_e_0` must fail.
 - `accepted_without_retained_reference`: a bare accepted string or row without concrete `rowId` and source evidence must fail.
+- `source_object_contract_missing`: an accepted-looking Gate A row with an evidence-class path but no `sourceObjectKind`, `sourceSupport`, or `evidenceFamily` must fail.
 - `source_self_reference`: this map, a closure-pass note, or the attempt fixture is not retained event evidence.
 - `support_rows_omitted`: the weak homogeneous medium and remnant rows must remain explicit zero rows, not silently absent.
 - `source_channel_collapse`: a radiation source mechanism cannot be treated as the photon Gate A row.
@@ -160,6 +170,12 @@ To check the source-attempt payload, run:
 
 ```sh
 node scripts/equation-mapping/compton-recoil-event-replay.mjs --input scripts/equation-mapping/compton-recoil-gate-a-source-attempt.v1.json --summary --pretty
+```
+
+To check the source-object metadata control, run:
+
+```sh
+node scripts/equation-mapping/compton-recoil-event-replay.mjs --input scripts/equation-mapping/compton-recoil-gate-a-source-contract-missing-metadata-negative-control.v1.json --summary --pretty
 ```
 
 Expected result: `comparison_replay_closed_native_rows_missing`,

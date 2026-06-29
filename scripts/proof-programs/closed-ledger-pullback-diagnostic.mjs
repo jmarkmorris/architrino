@@ -24,6 +24,25 @@ import {
   buildActionBoundaryPullbackDiagnostic,
   buildDefaultActionBoundaryPullbackInput,
 } from "./action-boundary-pullback-diagnostic.mjs";
+import {
+  CLOSED_LEDGER_SOURCE_RECORD_CONTRACT_SCHEMA,
+  buildClosedLedgerSourceRecordContractDiagnostic,
+  validateClosedLedgerSourceRecordContractArtifact,
+} from "./closed-ledger-source-record-contract-diagnostic.mjs";
+import {
+  PHOTON_CONSTITUENT_ROOT_ROUTE_SCHEMA,
+  buildDefaultPhotonConstituentRootRouteInput,
+  buildPhotonConstituentRootRouteDiagnostic,
+  buildSelfHitReplayPhotonConstituentRootRouteInput,
+  validatePhotonConstituentRootRouteArtifact,
+} from "./photon-constituent-root-route-diagnostic.mjs";
+import {
+  MIDDLE_HINGE_ROOT_STATUS_SCHEMA,
+  buildDefaultMiddleHingeRootStatusInput,
+  buildMiddleHingeRootStatusDiagnostic,
+  buildThresholdReplayMiddleHingeRootStatusInput,
+  validateMiddleHingeRootStatusArtifact,
+} from "./middle-hinge-root-status-diagnostic.mjs";
 
 const SCRIPT_PATH = fileURLToPath(import.meta.url);
 
@@ -33,6 +52,7 @@ export const CLOSED_LEDGER_PULLBACK_SCHEMA =
 const PACKET_ID = "closed_ledger_pullback_diagnostic";
 const PROMOTION_STATUS = "priority-only diagnostic";
 const REQUIRED_ROW_IDS = [
+  "source_record_contract",
   "partial_R_act",
   "partial_L_EpJ",
   "partial_S_B_eta",
@@ -41,6 +61,9 @@ const REQUIRED_ROW_IDS = [
 ];
 const ACTION_PULLBACK_SCHEMA = ACTION_BOUNDARY_PULLBACK_SCHEMA;
 const EVENT_PULLBACK_SCHEMA = EVENT_WAKE_HISTORY_PULLBACK_SCHEMA;
+const SOURCE_RECORD_CONTRACT_SCHEMA = CLOSED_LEDGER_SOURCE_RECORD_CONTRACT_SCHEMA;
+const PHOTON_ROUTE_SCHEMA = PHOTON_CONSTITUENT_ROOT_ROUTE_SCHEMA;
+const MIDDLE_HINGE_ROUTE_SCHEMA = MIDDLE_HINGE_ROOT_STATUS_SCHEMA;
 
 function deepClone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -74,38 +97,193 @@ function artifactSummary(artifact) {
   };
 }
 
+function routeEvidenceSummaries(photonRoute, middleHingeRoute) {
+  return {
+    photon_route: photonRoute?.route_evidence_summary ?? null,
+    middle_hinge_route: middleHingeRoute?.route_evidence_summary ?? null,
+  };
+}
+
+function acceptedRouteEvidenceStatus(routeSummaries) {
+  const summaries = Object.values(routeSummaries);
+  if (summaries.some((summary) => !summary)) {
+    return "route_evidence_summary_missing";
+  }
+  return summaries.every((summary) => summary.accepted_for_branch_retention === true)
+    ? "accepted_for_branch_retention"
+    : "not_accepted_for_branch_retention";
+}
+
+function acceptedActionEvidenceStatus(actionPullback) {
+  if (!actionPullback?.accepted_evidence_summary) {
+    return "action_evidence_summary_missing";
+  }
+  return actionPullback.accepted_evidence_summary.accepted_for_action_closure === true
+    ? "accepted_for_action_closure"
+    : "not_accepted_for_action_closure";
+}
+
+function acceptedEventEvidenceStatus(eventPullback) {
+  if (!eventPullback?.accepted_evidence_summary) {
+    return "event_evidence_summary_missing";
+  }
+  return eventPullback.accepted_evidence_summary.accepted_for_wake_history_closure === true
+    ? "accepted_for_wake_history_closure"
+    : "not_accepted_for_wake_history_closure";
+}
+
+function acceptedMediumResponseEvidenceStatus(noether) {
+  if (!noether?.accepted_evidence_summary) {
+    return "medium_response_evidence_summary_missing";
+  }
+  return noether.accepted_evidence_summary.accepted_for_medium_response_closure === true
+    ? "accepted_for_medium_response_closure"
+    : "not_accepted_for_medium_response_closure";
+}
+
 export function buildDefaultClosedLedgerPullbackInput(options = {}) {
   const noetherInput = buildDefaultNoetherSeaCompatibilityHandoffInput();
   const noetherControlledInput = options.noetherControl
     ? applyNoetherSeaCompatibilityControl(noetherInput, options.noetherControl)
     : noetherInput;
+  const topological = buildTopologicalCausalRootLedgerArtifact({
+    subdivisions: options.subdivisions ?? 300,
+    windingRadius: options.windingRadius ?? 1,
+  });
+  const noether = buildNoetherSeaCompatibilityHandoffDiagnostic(noetherControlledInput);
+  const photonRoute =
+    options.photonRoute ??
+    buildPhotonConstituentRootRouteDiagnostic(
+      options.routeReplayFixtures
+        ? buildSelfHitReplayPhotonConstituentRootRouteInput()
+        : buildDefaultPhotonConstituentRootRouteInput()
+    );
+  const middleHingeRoute =
+    options.middleHingeRoute ??
+    buildMiddleHingeRootStatusDiagnostic(
+      options.routeReplayFixtures
+        ? buildThresholdReplayMiddleHingeRootStatusInput()
+        : buildDefaultMiddleHingeRootStatusInput()
+    );
+  const eventInput = buildDefaultEventWakeHistoryPullbackInput();
+  const eventPullback =
+    options.eventPullback ??
+    buildEventWakeHistoryPullbackDiagnostic(eventInput);
+  const actionInput = buildDefaultActionBoundaryPullbackInput();
+  const actionPullback =
+    options.actionPullback ??
+    buildActionBoundaryPullbackDiagnostic(actionInput);
   return {
-    topological: buildTopologicalCausalRootLedgerArtifact({
-      subdivisions: options.subdivisions ?? 300,
-      windingRadius: options.windingRadius ?? 1,
-    }),
-    noether: buildNoetherSeaCompatibilityHandoffDiagnostic(noetherControlledInput),
-    action_pullback:
-      options.actionPullback ??
-      buildActionBoundaryPullbackDiagnostic(buildDefaultActionBoundaryPullbackInput()),
-    event_pullback:
-      options.eventPullback ??
-      buildEventWakeHistoryPullbackDiagnostic(buildDefaultEventWakeHistoryPullbackInput()),
+    topological,
+    noether,
+    source_record_contract:
+      options.sourceRecordContract ??
+      buildClosedLedgerSourceRecordContractDiagnostic({
+        topological,
+        noether_input: noetherControlledInput,
+        noether,
+        photon_route: photonRoute,
+        middle_hinge_route: middleHingeRoute,
+        event_input: eventInput,
+        event_pullback: eventPullback,
+        action_input: actionInput,
+        action_pullback: actionPullback,
+      }),
+    photon_route: photonRoute,
+    middle_hinge_route: middleHingeRoute,
+    action_pullback: actionPullback,
+    event_pullback: eventPullback,
   };
 }
 
-function evaluateTopological(topological) {
+function evaluateSourceRecordContract(sourceRecordContract) {
+  const validationErrors = validateClosedLedgerSourceRecordContractArtifact(sourceRecordContract);
+  const passed = validationErrors.length === 0 && statusPassed(sourceRecordContract);
+  return row(
+    "source_record_contract",
+    "\\Theta_{\\mathrm{sea}}(\\mathfrak B)",
+    "root topology, Noether handoff, route artifacts, event pullback, and action pullback share one retained source-record contract",
+    passed,
+    sourceRecordContract?.result?.failure_code ?? "residual.retained_history_mismatch",
+    {
+      artifact: artifactSummary(sourceRecordContract),
+      validation_errors: validationErrors,
+    }
+  );
+}
+
+function retainedSourceChecks(topological, photonRoute, middleHingeRoute, sourceRecordId) {
+  return [
+    {
+      field: "topological.source_record_contract.source_record_id",
+      ok: topological?.source_record_contract?.source_record_id === sourceRecordId,
+    },
+    { field: "photon_route.source_record_id", ok: photonRoute?.source_record_id === sourceRecordId },
+    {
+      field: "photon_route.source_record_contract.source_record_id",
+      ok: photonRoute?.source_record_contract?.source_record_id === sourceRecordId,
+    },
+    ...routeSampleSourceChecks("photon_route", photonRoute, sourceRecordId),
+    { field: "middle_hinge_route.source_record_id", ok: middleHingeRoute?.source_record_id === sourceRecordId },
+    {
+      field: "middle_hinge_route.source_record_contract.source_record_id",
+      ok: middleHingeRoute?.source_record_contract?.source_record_id === sourceRecordId,
+    },
+    ...routeSampleSourceChecks("middle_hinge_route", middleHingeRoute, sourceRecordId),
+  ];
+}
+
+function routeSampleSourceChecks(routeKey, routeArtifact, sourceRecordId) {
+  const samples = Array.isArray(routeArtifact?.sample_rows) ? routeArtifact.sample_rows : [];
+  return [
+    { field: `${routeKey}.sample_rows_present`, ok: samples.length > 0 },
+    ...samples.map((sample) => ({
+      field: `${routeKey}.sample_${sample.sample_index}.source_record_id`,
+      ok: sample.source_record_id === sourceRecordId,
+    })),
+  ];
+}
+
+function evaluateTopological(topological, photonRoute, middleHingeRoute, sourceRecordId) {
   const validationErrors = validateTopologicalCausalRootLedgerArtifact(topological);
-  const passed = validationErrors.length === 0 && statusPassed(topological);
+  const photonValidationErrors = validatePhotonConstituentRootRouteArtifact(photonRoute);
+  const middleHingeValidationErrors = validateMiddleHingeRootStatusArtifact(middleHingeRoute);
+  const routeSummaries = routeEvidenceSummaries(photonRoute, middleHingeRoute);
+  const sourceChecks = retainedSourceChecks(topological, photonRoute, middleHingeRoute, sourceRecordId);
+  const sourceOk = sourceChecks.every((check) => check.ok);
+  const passed =
+    validationErrors.length === 0 &&
+    photonValidationErrors.length === 0 &&
+    middleHingeValidationErrors.length === 0 &&
+    sourceOk &&
+    statusPassed(topological) &&
+    statusPassed(photonRoute) &&
+    statusPassed(middleHingeRoute);
+  const topologicalFailed = validationErrors.length > 0 || !statusPassed(topological);
+  const failureCode = topologicalFailed
+    ? topological?.result?.first_failure_status ?? "residual.provenance_gap"
+    : !sourceOk
+    ? "residual.retained_history_mismatch"
+    : photonRoute?.result?.failure_code ??
+      middleHingeRoute?.result?.failure_code ??
+      "residual.provenance_gap";
   return row(
     "partial_R_act",
     "\\partial\\mathcal{R}^{\\mathrm{act}}",
-    "active causal-root rows are executable, winding-owned, and separated from caustic candidates",
+    "active causal-root rows are executable, winding-owned, separated from caustic candidates, and route photon/middle-hinge topological boundary samples",
     passed,
-    topological?.result?.first_failure_status ?? "residual.provenance_gap",
+    failureCode,
     {
       artifact: artifactSummary(topological),
+      photon_route: artifactSummary(photonRoute),
+      middle_hinge_route: artifactSummary(middleHingeRoute),
+      required_source_record_id: sourceRecordId,
+      source_record_checks: sourceChecks,
+      route_evidence_summary: routeSummaries,
+      accepted_route_evidence_status: acceptedRouteEvidenceStatus(routeSummaries),
       validation_errors: validationErrors,
+      photon_route_validation_errors: photonValidationErrors,
+      middle_hinge_route_validation_errors: middleHingeValidationErrors,
       blocker:
         passed && topological?.result?.first_failure_status
           ? topological.result.first_failure_status
@@ -132,6 +310,8 @@ function evaluateEventPullback(eventPullback, sourceRecordId) {
     {
       artifact: artifactSummary(eventPullback),
       required_source_record_id: sourceRecordId,
+      accepted_evidence_summary: eventPullback?.accepted_evidence_summary ?? null,
+      accepted_event_evidence_status: acceptedEventEvidenceStatus(eventPullback),
       checks: [
         { field: "artifact_present", ok: present },
         { field: "artifact_schema", ok: schemaOk },
@@ -161,6 +341,9 @@ function evaluateActionPullback(actionPullback, sourceRecordId) {
     {
       artifact: artifactSummary(actionPullback),
       required_source_record_id: sourceRecordId,
+      evidence_level_summary: actionPullback?.evidence_level_summary ?? null,
+      accepted_evidence_summary: actionPullback?.accepted_evidence_summary ?? null,
+      accepted_action_evidence_status: acceptedActionEvidenceStatus(actionPullback),
       checks: [
         { field: "artifact_present", ok: present },
         { field: "artifact_schema", ok: schemaOk },
@@ -183,6 +366,8 @@ function evaluateNoether(noether) {
     noether?.result?.failure_code ?? "residual.medium_response_missing",
     {
       artifact: artifactSummary(noether),
+      accepted_evidence_summary: noether?.accepted_evidence_summary ?? null,
+      accepted_medium_response_evidence_status: acceptedMediumResponseEvidenceStatus(noether),
       validation_errors: validationErrors,
     }
   );
@@ -210,13 +395,19 @@ export function buildClosedLedgerPullbackDiagnostic(input = buildDefaultClosedLe
   const noether = deepClone(input.noether);
   const sourceRecordId = sourceRecordIdFromNoether(noether);
   const boundaryRows = [
-    evaluateTopological(topological),
+    evaluateSourceRecordContract(input.source_record_contract ?? null),
+    evaluateTopological(topological, input.photon_route ?? null, input.middle_hinge_route ?? null, sourceRecordId),
     evaluateEventPullback(input.event_pullback ?? null, sourceRecordId),
     evaluateActionPullback(input.action_pullback ?? null, sourceRecordId),
     evaluateNoether(noether),
   ];
   boundaryRows.push(evaluateCrossSector(boundaryRows));
   const failedRows = boundaryRows.filter((entry) => entry.status === "fail");
+  const blockerOrder = boundaryRows.map((entry) => ({
+    row_id: entry.row_id,
+    status: entry.status,
+    failure_code: entry.failure_code,
+  }));
 
   return {
     schema: CLOSED_LEDGER_PULLBACK_SCHEMA,
@@ -226,14 +417,28 @@ export function buildClosedLedgerPullbackDiagnostic(input = buildDefaultClosedLe
       "diagnostic-only priority artifact; does not prove the closed-ledger conjecture, retain a branch, or update a validation gate",
     input_summary: {
       topological: artifactSummary(topological),
+      photon_route: artifactSummary(input.photon_route),
+      middle_hinge_route: artifactSummary(input.middle_hinge_route),
+      route_evidence_summary: routeEvidenceSummaries(
+        input.photon_route,
+        input.middle_hinge_route
+      ),
+      source_record_contract: artifactSummary(input.source_record_contract),
       noether: artifactSummary(noether),
+      noether_accepted_evidence_summary:
+        noether?.accepted_evidence_summary ?? null,
       action_pullback: artifactSummary(input.action_pullback),
+      action_accepted_evidence_summary:
+        input.action_pullback?.accepted_evidence_summary ?? null,
       event_pullback: artifactSummary(input.event_pullback),
+      event_accepted_evidence_summary:
+        input.event_pullback?.accepted_evidence_summary ?? null,
       source_record_id: sourceRecordId,
     },
     boundary_equation:
       "\\partial\\mathcal{R}^{\\mathrm{act}}+\\partial\\mathcal{L}_{E\\mathbf{p}\\mathbf{J}}+\\partial S_{\\mathfrak B}^{(\\eta)}+\\partial\\mathcal{M}_{\\mathrm{sea}}=0",
     boundary_rows: boundaryRows,
+    blocker_order: blockerOrder,
     result: {
       diagnostic_status: failedRows.length === 0 ? "diagnostic_passed_priority_only" : "diagnostic_failed",
       retained_branch: false,
@@ -311,9 +516,13 @@ function usage() {
     "Options:",
     "  --topological <path>       Read topological causal-root diagnostic JSON",
     "  --noether <path>           Read Noether sea compatibility diagnostic JSON",
+    "  --source-record-contract <path> Read source-record contract diagnostic JSON",
+    "  --photon-route <path>      Read photon constituent route diagnostic JSON",
+    "  --middle-hinge-route <path> Read middle-hinge route diagnostic JSON",
     "  --action-pullback <path>   Read action boundary pullback JSON",
     "  --event-pullback <path>    Read wake-history event pullback JSON",
     "  --noether-control <name>   Build default Noether diagnostic with a negative control",
+    "  --route-replay-fixtures    Build photon self-hit and middle-hinge threshold replay fixtures",
     "  --out <path>               Write artifact JSON to path instead of stdout",
     "  --validate <path>          Validate an existing diagnostic artifact JSON file",
     "  --schema                   Print the artifact schema identifier",
@@ -326,9 +535,13 @@ function parseArgs(argv) {
   const args = {
     topological: null,
     noether: null,
+    sourceRecordContract: null,
+    photonRoute: null,
+    middleHingeRoute: null,
     actionPullback: null,
     eventPullback: null,
     noetherControl: null,
+    routeReplayFixtures: false,
     out: null,
     validate: null,
     schema: false,
@@ -342,12 +555,20 @@ function parseArgs(argv) {
       args.topological = argv[++index];
     } else if (arg === "--noether") {
       args.noether = argv[++index];
+    } else if (arg === "--source-record-contract") {
+      args.sourceRecordContract = argv[++index];
+    } else if (arg === "--photon-route") {
+      args.photonRoute = argv[++index];
+    } else if (arg === "--middle-hinge-route") {
+      args.middleHingeRoute = argv[++index];
     } else if (arg === "--action-pullback") {
       args.actionPullback = argv[++index];
     } else if (arg === "--event-pullback") {
       args.eventPullback = argv[++index];
     } else if (arg === "--noether-control") {
       args.noetherControl = argv[++index];
+    } else if (arg === "--route-replay-fixtures") {
+      args.routeReplayFixtures = true;
     } else if (arg === "--out") {
       args.out = argv[++index];
     } else if (arg === "--validate") {
@@ -384,6 +605,14 @@ function main() {
           artifact_schema: CLOSED_LEDGER_PULLBACK_SCHEMA,
           action_pullback_schema: ACTION_PULLBACK_SCHEMA,
           event_pullback_schema: EVENT_PULLBACK_SCHEMA,
+          source_record_contract_schema: SOURCE_RECORD_CONTRACT_SCHEMA,
+          photon_route_schema: PHOTON_ROUTE_SCHEMA,
+          middle_hinge_route_schema: MIDDLE_HINGE_ROUTE_SCHEMA,
+          route_replay_fixtures: ["photon-self-hit-replay", "middle-hinge-threshold-replay"],
+          route_evidence_summary: ["photon_route", "middle_hinge_route"],
+          noether_accepted_evidence_summary: true,
+          event_accepted_evidence_summary: true,
+          action_accepted_evidence_summary: true,
           promotion_status: PROMOTION_STATUS,
           packet_id: PACKET_ID,
         },
@@ -412,10 +641,14 @@ function main() {
 
   const defaults = buildDefaultClosedLedgerPullbackInput({
     noetherControl: args.noetherControl,
+    routeReplayFixtures: args.routeReplayFixtures,
   });
   const input = {
     topological: readJsonIfPath(args.topological) ?? defaults.topological,
     noether: readJsonIfPath(args.noether) ?? defaults.noether,
+    source_record_contract: readJsonIfPath(args.sourceRecordContract) ?? defaults.source_record_contract,
+    photon_route: readJsonIfPath(args.photonRoute) ?? defaults.photon_route,
+    middle_hinge_route: readJsonIfPath(args.middleHingeRoute) ?? defaults.middle_hinge_route,
     action_pullback: readJsonIfPath(args.actionPullback) ?? defaults.action_pullback,
     event_pullback: readJsonIfPath(args.eventPullback) ?? defaults.event_pullback,
   };

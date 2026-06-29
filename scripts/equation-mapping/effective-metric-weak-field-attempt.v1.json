@@ -1,6 +1,6 @@
 {
   "schema": "aaa-equation-map-effective-metric-weak-field-input/v1",
-  "claimLevel": "score-neutral weak-field effective-metric attempt; accepted retained rows are required before score movement",
+  "claimLevel": "score-neutral weak-field effective-metric attempt; accepted retained rows are required before score review",
   "residualId": "R_07-10_static_weak_attempt_0001",
   "commonCarrierId": "theta_W_static_weak_attempt_0001",
   "tolerances": {

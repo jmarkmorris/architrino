@@ -186,12 +186,13 @@ function evaluateConservationResidual(input, inputPath) {
       row: "EQ-05",
       supportedRows: ["EQ-01", "EQ-05"],
       claimLevel:
-        "score-neutral finite-window conservation residual; accepted retained rows are required before score movement",
+        "score-neutral finite-window conservation residual; accepted retained rows are required before score review",
     },
     tolerances,
     summary: {
       status,
-      scoreDecision: status === "populated" ? "score_review_required" : SCORE_DECISION,
+      scoreDecision: SCORE_DECISION,
+      scoreReviewPreconditionsMet: status === "populated",
       missingRows,
       nextBlocker: firstBlocker({
         status,

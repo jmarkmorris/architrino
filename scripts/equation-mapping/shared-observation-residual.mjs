@@ -207,13 +207,13 @@ function evaluateSharedObservationResidual(input, inputPath) {
       row: "EQ-21/EQ-22/EQ-23/EQ-32",
       supportedRows: ["EQ-21", "EQ-22", "EQ-23", "EQ-32"],
       claimLevel:
-        "score-neutral shared-observation residual; accepted retained rows are required before score movement",
+        "score-neutral shared-observation residual; accepted retained rows are required before score review",
     },
     tolerances,
     summary: {
       status,
-      scoreDecision:
-        status === "populated" ? "score_review_required" : SCORE_DECISION,
+      scoreDecision: SCORE_DECISION,
+      scoreReviewPreconditionsMet: status === "populated",
       missingRows,
       missingProjectionFamilies: projections.missingProjectionFamilies,
       missingSharedKeys: sharedKeys.missingSharedKeys,
@@ -774,10 +774,13 @@ function sourceEvidenceReason(value) {
     basename.includes("mock") ||
     basename.includes("toy") ||
     basename.includes("probe") ||
+    basename.includes("source-contract") ||
     basename.includes("negative-control") ||
     basename.includes(".tmp")
   ) {
-    return "control_or_attempt_source_path";
+    return basename.includes("source-contract")
+      ? "source_contract_path"
+      : "control_or_attempt_source_path";
   }
   return "accepted";
 }

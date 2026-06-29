@@ -161,7 +161,7 @@ function evaluateEq29RadiationSourceLedger(input, inputPath) {
       supportedRows: ["EQ-12", "EQ-13", "EQ-28", "EQ-29"],
       sourceMechanism: sourceLedger.mechanism,
       claimLevel:
-        "score-neutral radiation source-ledger residual; accepted retained rows are required before score movement",
+        "score-neutral radiation source-ledger residual; accepted retained rows are required before score review",
     },
     tolerances,
     summary: {
@@ -715,7 +715,7 @@ function firstBlocker({ status, missingRows, sourceEvidence, carrierBinding, sou
   if (failedControl) {
     return `negative_control_${failedControl.id}_did_not_fail`;
   }
-  return status === "populated" ? "none" : status;
+  return status === "populated" ? null : status;
 }
 
 function relativeResidual(observed, expected, epsilon) {

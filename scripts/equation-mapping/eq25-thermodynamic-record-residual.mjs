@@ -196,7 +196,7 @@ function evaluateEq25ThermodynamicRecord(input, inputPath) {
       row: "EQ-25",
       supportedRows: ["EQ-05", "EQ-06", "EQ-22", "EQ-23", "EQ-25", "EQ-31"],
       claimLevel:
-        "score-neutral finite-window thermodynamic record residual; accepted retained rows are required before score movement",
+        "score-neutral finite-window thermodynamic record residual; accepted retained rows are required before score review",
     },
     tolerances,
     summary: {
@@ -715,6 +715,9 @@ function sourceEvidenceReason(resolvedPath) {
     return "authored_prose_source_path";
   }
   const basename = path.basename(resolvedPath).toLowerCase();
+  if (basename.includes("source-contract")) {
+    return "source_contract_path";
+  }
   if (
     basename.includes("attempt") ||
     basename.includes("mock") ||
@@ -810,7 +813,7 @@ function firstBlocker({ status, missingRows, carrierBinding, sourceIdentity, sou
   if (failedControl) {
     return `negative_control_failed_${failedControl.id}`;
   }
-  return "unknown_blocker";
+  return status;
 }
 
 function firstBlockerDetails({

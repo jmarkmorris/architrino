@@ -1,6 +1,6 @@
 {
   "schema": "aaa-equation-map-eq26-hydrogen-spectral-carrier-source-contract/v1",
-  "claimLevel": "score-neutral theta_H_spec carrier-shell source-support contract; not accepted retained evidence and not a score-moving object",
+  "claimLevel": "score-neutral theta_H_spec carrier-shell source-support contract; not accepted retained evidence and not accepted retained evidence",
   "row": "EQ-26",
   "contractId": "theta_H_spec_carrier_shell_source_contract_0001",
   "carrierId": "theta_H_spec_carrier_shell_source_contract_0001",

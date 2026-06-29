@@ -102,6 +102,7 @@ The certificate must report the following constants outward, not sampled:
 | $q_{\min},q_{\max}$ | Lower and upper bounds for $q_p$ on the past collar and transported $Q_p$ on $I_c$. | Sample convention only: $0.2\le q_p,Q_p\le3.0$. |
 | $\kappa_\alpha$ | Seed-root clearance from $\Delta_{\alpha,0}(\theta)$ to the endpoints of $W_\alpha$. | Not outward on the endpoint-slope-cancelled finite collar. |
 | $\nu_\alpha$ | Source-speed Jacobian floor on $I_c\times W_\alpha$. | Fixed-history sidecar has a floor; nonconstant finite-collar class needs its own outward row. |
+| $D_{t,\alpha}^{-},D_{t,\alpha}^{+}$ | Receiver-crossing bounds $c_f-\hat{\mathbf r}_\alpha\cdot\mathbf v_i$ for action/wake-history pullback on $I_c\times W_\alpha$. | Newly required for action-ready rows; absent for current A1 outward constants. |
 | $g_P,g_S$ | Partner and self inactive-complement gaps on the finite collar. | Fixed-history sidecar has gaps; nonconstant class needs its own outward row. |
 | $H_b$ | Past-profile perturbation envelope on $[-\Delta_R,0]$. | Algebraic target from $N$ and $b$, not yet outward-certified with positivity. |
 | $E_Q^+(b)$ | Transported future-profile envelope on $I_c$. | Conditional on branch-sum and transport bounds. |
@@ -114,7 +115,19 @@ The certificate must report the following constants outward, not sampled:
 
 All constants must be emitted for the same radius $b$, the same collar boxes
 $\Theta_i\subset I_c$, the same active windows $W_\alpha$, and the same inactive
-complement cover. A row computed on different boxes is diagnostic-only.
+complement cover. A row computed on different boxes is diagnostic-only. If the
+certificate is consumed as an action or wake-history row, the same-box family
+must also bind the receiver-crossing factor
+$$
+\frac{ds_\alpha}{d\theta}
+\quad\text{or equivalently}\quad
+\frac{ds_\alpha}{dt}
+=
+\frac{c_f-\hat{\mathbf r}_\alpha\cdot\mathbf v_i}
+{c_f-\hat{\mathbf r}_\alpha\cdot\mathbf v_j}
+$$
+for each retained label, or else state why the event-local force row is being
+used without action-rate promotion.
 
 ## Pass Conditions
 
@@ -565,7 +578,7 @@ the first missing shared backend/source-box identity field
 The same selected-slot attempt now also records the strongest safe shared-audit
 candidate currently available:
 `a1_p1_source_q_derivative_composition_shared_audit_candidate.v0` with digest
-`sha256:1eb3f217c4d6ce0daf846b518fa7539a8700d990d44b9720e6e442bd34ab45f7`
+`sha256:b755c3b9b4438b098510fda8a99db9f03719d6c51ac9e13bdfea95b3c8d895a0`
 and status
 `local_P_1_source_q_derivative_composition_shared_audit_candidate_present_backend_runtime_identity_missing`.
 That candidate packages three fail-closed subrows and now exposes the
@@ -580,14 +593,31 @@ and records the local formula-operation sequence for
 rounding trace and it does not fill
 `source_q_derivative_composition_operation_trace_digest` in the runtime identity
 row. The local shared interval-box-family candidate has digest
-`sha256:a2bc226849698f7f1837ae3c83d649e682610df109c332d2118ac48f1714b5e5`
+`sha256:984a7e4745f8af58fe0af84a1028f7fc4b0e17f4e1e5f21436745455cf7d0764`
 and binds the current local `P_1` delta, q-source, control-point, and
 summand-partial row digests under the same source digest, radius, and
-$\theta$ interval; it does not satisfy the real `shared_interval_box_family_digest`
-field. The same-box inactive-cover absence row has digest
-`sha256:0801839c64c2923217dd43e23dfc0afcca4579c2f6f14ca1001ff9ff67ecd08e`
-and records `inactive_cover_interval_boxes_absent` with
-`same_box_inactive_cover_binding_present=false`.
+$\theta$ interval, plus the local retained-root bridge digest
+`sha256:9874b7418681498ee81e1ea030cf2aeaebdc9040aae43034d8fad4d482ddefb8`
+and local inactive-cover bridge digest
+`sha256:12be5929249e2e59d4c6e35ce096dc2c79894c712b4ad4f42977f4e396665f10`;
+it does not satisfy the real `shared_interval_box_family_digest` field. The
+same-box inactive-cover absence row has digest
+`sha256:927b63360d9b8382c00042102fd6c59f54450522cf4239d79bb17959a3e69347`
+and records `same_box_inactive_cover_binding_absent` with
+`same_box_inactive_cover_binding_present=false`. Its local bridge is
+`a1_inactive_cover_interval_box_certificate_bridge.v0`, which signs 384
+fixed-A1 sidecar subboxes with minimum signed gap
+`0.011837068222509071`, but records
+`bounds_selected_finite_collar_inactive_cover_interval_boxes=false` and
+`used_as_shared_certificate=false`.
+The retained-root bridge is
+`a1_retained_root_interval_box_certificate_bridge.v0` with digest
+`sha256:9874b7418681498ee81e1ea030cf2aeaebdc9040aae43034d8fad4d482ddefb8`;
+it signs the four fixed-A1 active windows with minimum endpoint signed gap
+`0.023743565835518284` and minimum absolute Jacobian floor
+`0.8201857463114794`, but records
+`bounds_selected_finite_collar_retained_root_interval_boxes=false` and
+`used_as_shared_certificate=false`.
 The dependency audit also nests
 `a1_shared_directed_rounding_audit_trail_for_source_q_derivative_composition.v0`
 with digest
@@ -623,9 +653,10 @@ Even with the named row and the shared-audit candidate, the attempt still does
 not emit a selected-slot interval box: the first missing dependency row remains
 `shared_directed_rounding_audit_trail_for_source_q_derivative_composition`.
 The backend row, audit-trail row, named summand-partial row, operation-trace
-manifest candidate, interval-box-family candidate, and inactive-cover absence
-row remain local fail-closed readouts, not shared directed-rounding audit trails
-over shared retained-root, source-profile, and inactive-cover boxes. They record
+manifest candidate, interval-box-family candidate, retained-root bridge,
+inactive-cover bridge, and inactive-cover absence row remain local fail-closed
+readouts, not shared directed-rounding audit trails over shared retained-root,
+source-profile, and inactive-cover boxes. They record
 the central-float64 `P_1` sampled partials only as rejected diagnostic reference
 values, so
 `satisfies_selected_slot=false`, `emits_E_Q_plus_b=false`, `emits_K_Q=false`,
@@ -645,19 +676,23 @@ branch-sum constant row; they do not certify A1 obstruction, channel existence,
 or the outward certificate.
 
 The top-level row identity now carries
-`inactive_cover_id=inactive_cover_interval_boxes`, so the live blocker is no
-longer an absent cover id; it is the absent `inactive_cover_interval_boxes`
-certificate. The sampled retained-root replay, sampled sign-bracket replay,
-sampled inactive-cover replay, computed transport-defect attempt, branch-sum
-feedback attempt, and target-only obligation objects do not change that
-missing-box status. The local past-profile Bernstein certificate and emitted
-future-profile certificate are not a shared interval-box certificate because
-the retained-root and inactive-cover boxes are still absent, hardware directed
-rounding is not controlled, and the $E_Q^+(b)$ row is still missing pending
-branch-sum and transport constants.
+`inactive_cover_id=inactive_cover_interval_boxes`, and the shared-box target
+now records both `retained_root_interval_boxes` and
+`inactive_cover_interval_boxes` under `local_bridge_box_ids_present`, with
+`missing_box_ids=[]`. The live same-box blockers are no longer absent cover ids;
+they are the absent selected finite-collar same-box retained-root and
+inactive-cover bindings. The sampled retained-root replay, sampled sign-bracket
+replay, sampled inactive-cover replay, computed transport-defect attempt,
+branch-sum feedback attempt, local retained-root bridge, local inactive-cover
+bridge, and target-only obligation objects do not turn the row into a shared
+certificate. The local past-profile Bernstein certificate and emitted
+future-profile certificate are not a shared interval-box certificate because the
+retained-root and inactive-cover bridges are local fixed-A1 sidecar evidence
+only, hardware directed rounding is not controlled, and the $E_Q^+(b)$ row is
+still missing pending branch-sum and transport constants.
 
 The packet now adds `a1_certificate_composition_readiness.v0` with readiness
-digest `sha256:50bb230a9f01ed7b3cefcc67b5188ee86c6800c608356e4fd0ecb06ffcaaebc8`.
+digest `sha256:d4ec0af77b005042f080f6cd9704c5cf4de67402a898ab375c3893c0ed0d1fff`.
 This row composes the local past/future certificate digests with the
 continuous-transport target and retained-root/inactive-cover target, then names
 the still-missing certificate-grade objects:

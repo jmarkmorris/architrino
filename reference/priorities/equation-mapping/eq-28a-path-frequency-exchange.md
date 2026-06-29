@@ -28,9 +28,10 @@ The row is not a claim that all cosmological redshift is Sunyaev-Zeldovich scatt
 | Current score | `2` |
 | Closure driver | Recover inverse-Compton, signed path-frequency exchange, thermal SZ, and kinematic SZ as one photon path-history exchange ledger rather than frequency-loss bookkeeping, void expansion, source emission, or private thermal calibration. |
 | Exact first blocker | `missing_accepted_path_frequency_exchange_carrier` in the ordinary attempt. |
-| Deepest current boundary | The carrier-shell source-contract attempt accepts only the top `carrier` and `path_frequency_exchange_carrier` row, then advances to `missing_accepted_theta_gamma_packet` with `scoreDecision: no_score_increase`. |
+| Deepest current boundary | The carrier-shell source-contract attempt marks only the top carrier and `path_frequency_exchange_carrier` row as accepted-looking for boundary testing; the checker still blocks at `missing_accepted_theta_gamma_packet` with `scoreDecision: no_score_increase`, so no retained evidence or score-change review follows. |
 | Child-row source guard | [eq28a-path-frequency-exchange-theta-gamma-source-negative-control.v1.json](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-theta-gamma-source-negative-control.v1.json) marks `theta_gamma_packet` accepted-looking while sourcing it only to a source-attempt fixture; the checker remains blocked with `rowStatuses.theta_gamma_packet.reason=accepted_without_evidence_source`. |
-| Smallest score-moving evidence object | A source-backed $\Theta_{\nu\text{-}\mathrm{ex}}(W)$ carrier whose photon packet, Gate A/B handoff, electron-medium population, Noether sea path history, exchange event ledger, inverse-Compton row, SZ rows, recoil/remnant row, finite-window thermal record, source provenance, and no-hidden-retune witness are accepted and same-record bound. |
+| Smallest accepted evidence object | A source-backed $\Theta_{\nu\text{-}\mathrm{ex}}(W)$ carrier whose photon packet, Gate A/B handoff, electron-medium population, Noether sea path history, exchange event ledger, inverse-Compton row, SZ rows, recoil/remnant row, finite-window thermal record, source provenance, and no-hidden-retune witness are accepted and same-record bound. |
+| Smallest next artifact | Replace the carrier-shell source-contract attempt with one durable path-frequency exchange carrier that preserves the accepted photon-packet dependency and same-record event ledger. |
 | Next safe implementation target | Replace the carrier-shell contract or `theta_gamma_packet` attempt source with an actual retained source object; until that exists, keep all checker passes score-neutral. |
 
 ## Standard Benchmark
@@ -227,7 +228,7 @@ Potential later targets:
 
 ## Next Evidence Object
 
-The next score-moving artifact is not another normalized fixture. It is a source-backed $\Theta_{\nu\text{-}\mathrm{ex}}(W)$ carrier whose row bindings are accepted and whose path ledger keeps photon packet identity, frequency exchange, electron-medium state, recoil/remnant rows, and finite-window thermal state on one record.
+The next accepted-retained-evidence artifact is not another normalized fixture. It is a source-backed $\Theta_{\nu\text{-}\mathrm{ex}}(W)$ carrier whose row bindings are accepted and whose path ledger keeps photon packet identity, frequency exchange, electron-medium state, recoil/remnant rows, and finite-window thermal state on one record.
 
 The source-field contract for that carrier is staged in [EQ-28A Theta-Nu-Ex Source-Field Map](eq-28a-theta-nu-ex-source-field-map.md). It keeps `Theta_nu-ex` distinct from `theta_gamma_packet`, `theta_therm`, and `Theta_rec/ac`, and preserves `missing_accepted_path_frequency_exchange_carrier` as the ordinary first blocker.
 That source-field map now carries the Direct Geometry Layer for the concrete `Theta_nu-ex` source object, including source-object ids, same-record bindings, fail-closed controls, and the smallest accepted evidence object.

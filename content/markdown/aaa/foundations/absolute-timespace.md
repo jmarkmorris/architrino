@@ -408,6 +408,21 @@ $$
 $$
 Failure of this floor marks a caustic-like or degenerate wake-root regime; it is a branch-chart failure condition, not an ordinary small perturbation.
 
+On a smooth retained branch $s=s_\ell(t)$, differentiating
+$F_{ij}(t,s_\ell(t))=0$ gives the receiver-path pullback
+$$
+\frac{ds_\ell}{dt}
+=
+\frac{c_f-\hat{\mathbf{r}}_{ij}(t,s_\ell)\cdot\mathbf{v}_i(t)}
+{c_f-\hat{\mathbf{r}}_{ij}(t,s_\ell)\cdot\mathbf{v}_j(s_\ell)}
+$$
+This identity is not a new coupling constant. It distinguishes the source-side
+causal-root Jacobian from the rate at which a moving receiver path samples the
+same emitted causal wake sequence. A stationary receiver in the Euclidean-void
+rest frame sets the numerator to $c_f$; radial receiver motion changes the
+receiver-path action or wake-history rate and must be recorded when a proof
+uses accumulated action rather than only an event-local force row.
+
 The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](absolute-time.md#causality-and-finite-propagation-speed): it is a declared branch-chart or certificate lower bound, not a universal coupling constant, coordinate parameter, or regularization width.
 
 The causal wake geometry does not forbid a point architrino from having $\|\mathbf{v}\|>c_f$. It forbids backward-time influence. This separates kinematic freedom from dynamical stability: the Euclidean substrate places no kinematic speed limit on a point architrino, but that freedom does not imply that an assembly can be carried through the same regime intact.

@@ -1,6 +1,6 @@
 {
   "schema": "aaa-equation-map-eq07a-tov-compact-support-input/v1",
-  "claimLevel": "score-neutral EQ-07A TOV compact-support solver attempt; accepted compact-region retained evidence is required before score movement",
+  "claimLevel": "score-neutral EQ-07A TOV compact-support solver attempt; accepted compact-region retained evidence is required before score review",
   "residualId": "R_07A_tov_compact_support_attempt_0001",
   "commonCarrierId": "Theta_cs_07A_compact_region_attempt_0001",
   "tolerances": {

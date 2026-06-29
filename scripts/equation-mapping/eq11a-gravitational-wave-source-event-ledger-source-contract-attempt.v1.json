@@ -1,6 +1,6 @@
 {
   "schema": "aaa-equation-map-eq11a-gravitational-wave-source-input/v1",
-  "claimLevel": "score-neutral EQ-11A source_event_ledger source-contract boundary; carrier, gw_source_carrier, theta_sea, effective_metric_tensor_channel, and source_event_ledger are accepted-looking, downstream rows remain attempts",
+  "claimLevel": "score-neutral EQ-11A source_event_ledger source-contract boundary attempt; carrier, gw_source_carrier, theta_sea, effective_metric_tensor_channel, and source_event_ledger are accepted-looking for boundary testing only; downstream rows remain attempts; not retained evidence",
   "residualId": "R_11A_gw_source_event_ledger_source_contract_attempt_0001",
   "commonCarrierId": "theta_gwsrc_source_event_ledger_source_contract_attempt_0001",
   "carrier": {

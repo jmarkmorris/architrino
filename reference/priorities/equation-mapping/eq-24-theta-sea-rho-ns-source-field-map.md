@@ -24,7 +24,7 @@ No score changes.
 | Row | `EQ-24` |
 | Current score and closure driver | Score `3`; acoustic, elastic, stress-strain, and medium equations must be derived as low-moment Noether sea response projections. |
 | Primary AAA carrier | $\Theta_{\mathrm{sea}}^{(\ell,W)}$ for one retained density-compression window, with `theta_sea_rho_NS` as the first source-backed row. |
-| Smallest score-moving evidence object | A source-backed same-window density-compression bundle: accepted $\rho_{\text{NS}}$, $n$, $\mathbf u_{\mathrm{sea}}$, $e_{\mathrm{sea}}$, $\boldsymbol\theta_{\mathrm{sea}}$, $f_N$, event ledger, channel declaration, speed row, stress/strain row, delayed-support or $\mathcal R_{\mathrm{KK}}$ row, correlation row, acoustic/elastic agreement row, refinement family, and zero-retune witness. |
+| Smallest accepted evidence object | A source-backed same-window density-compression bundle: accepted $\rho_{\text{NS}}$, $n$, $\mathbf u_{\mathrm{sea}}$, $e_{\mathrm{sea}}$, $\boldsymbol\theta_{\mathrm{sea}}$, $f_N$, event ledger, channel declaration, speed row, stress/strain row, delayed-support or $\mathcal R_{\mathrm{KK}}$ row, correlation row, acoustic/elastic agreement row, refinement family, and zero-retune witness. |
 | Exact first blocker | `missing_accepted_theta_sea_rho_NS`. |
 | Existing scripts, fixtures, and packets found | The Noether sea density-compression surface-slice runner, retained-attempt fixture, and continuum-medium packet listed above. |
 | Candidate breakthrough angle | `EQ-24` is the narrowest Noether sea coefficient discriminator because it can accept speed plus bulk stress/strain without first claiming metric, pressure, or low-acceleration outputs. A retained `theta_sea_rho_NS` source row would also become the first concrete input for `EQ-20` and `EQ-32`, and a later consumer for `EQ-11`. |
@@ -112,7 +112,7 @@ $$
 
 with a durable source file that identifies the retained Noether braid inventory, the smoothing window, the event ledger, and the refinement family. That row can then anchor the accepted $n$, $\mathbf u_{\mathrm{sea}}$, $e_{\mathrm{sea}}$, $\boldsymbol\theta_{\mathrm{sea}}$, and $f_N$ rows without splitting the carrier.
 
-The smallest score-moving bundle adds speed plus stress/strain from the same window:
+The smallest accepted evidence bundle adds speed plus stress/strain from the same window:
 
 $$
 \left|
@@ -148,9 +148,9 @@ The most direct downstream consumer is `EQ-20`, because its pressure and effecti
 - `status_flip`: an accepted-looking row with the same pending source path must continue to fail at source concreteness.
 - `self_reference`: this map, the retained-attempt fixture, and the continuum-medium packet are coordination artifacts, not retained evidence for $\rho_{\text{NS}}$.
 - `authored_prose_source`: authored Noether sea prose defines variables and doctrine, but it is not retained-window coefficient evidence for $\rho_{\text{NS}}$.
-- `attempt_source_copy`: copying the fixture fields into a new source note without retained-window derivation must not satisfy the source-backed requirement.
+- `attempt_source_copy`: copying the fixture fields into a new source note without retained-window derivation must not satisfy the source-backed requirement; this is a design/falsifier requirement until a standalone fixture exists.
 - `missing_output_substitution`: using `delta_N`, `delta_gamma_ij`, `delta_G_eff`, `delta_P_eff`, or `delta_a_star` as if they were derived must fail until those outputs are projected from the same row.
-- `speed_without_stress`: a speed row without a same-window stress/strain or metric-compliance row must remain below score-moving evidence.
+- `speed_without_stress`: a speed row without a same-window stress/strain or metric-compliance row must remain below accepted evidence; this is a design/falsifier requirement until a standalone fixture exists.
 
 The coordination-source and authored-prose controls are executable:
 
@@ -174,10 +174,13 @@ The fixture names `theta-sea-density-compression-rho-ns-source-attempt-0001`, `e
 
 ## Next Action
 
-Create one durable source-backed `rho_NS` retained-window row, then run:
+Create one durable source-backed `rho_NS` retained-window row, then run the retained-attempt, source-attempt, and source-guard routes:
 
 ```sh
 node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-surface-slice-retained-attempt.v1.json --summary --pretty
+node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-rho-ns-source-attempt.v1.json --summary --pretty
+node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-coordination-source-negative-control.v1.json --summary --pretty
+node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-authored-prose-source-negative-control.v1.json --summary --pretty
 ```
 
-If the row is only a status relabel or a placeholder source, the correct outcome remains `missing_accepted_theta_sea_rho_NS`.
+The retained-attempt and source-attempt routes must remain blocked at `missing_accepted_theta_sea_rho_NS` until a durable retained-window source exists. Coordination and authored-prose controls must report `accepted_without_evidence_source`; if the row is only a status relabel or a placeholder source, the correct outcome remains `missing_accepted_theta_sea_rho_NS`.

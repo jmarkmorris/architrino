@@ -2949,6 +2949,23 @@ S_{ij}
 {r_{ij}(t;t_0)\,\left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|}
 $$
 
+This branch-resolved form is written per receiver time after the source-time
+delta has been integrated out. It should not be silently reused as a
+receiver-path action-rate measure. On a retained smooth root $t_0=t_\ell(t)$,
+the causal constraint also gives
+$$
+\frac{dt_\ell}{dt}
+=
+\frac{c_f-\hat{\mathbf{r}}_{ij}(t;t_\ell)\cdot\mathbf{v}_i(t)}
+{c_f-\hat{\mathbf{r}}_{ij}(t;t_\ell)\cdot\mathbf{v}_j(t_\ell)}
+$$
+Therefore a source-emission cadence pulled back onto a moving receiver path
+carries a receiver-crossing numerator in addition to the source-side Jacobian
+denominator. The canonical event-local force row below remains the source-side
+Jacobian-weighted line-of-action target; action, power, wake-history, and
+finite-window conservation rows must state whether they consume the event-local
+force measure or the receiver-path pullback measure.
+
 ##### Variation and line-of-action forces
 
 The branch law targeted by the action-level variation is:

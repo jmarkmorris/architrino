@@ -173,7 +173,7 @@ function evaluatePlanckAlphaBraid(input, inputPath) {
       rows: ["EQ-12A", "EQ-22A", "EQ-26A"],
       supportedRows: ["EQ-12", "EQ-22", "EQ-25", "EQ-26", "EQ-27", "EQ-29"],
       claimLevel:
-        "score-neutral Planck/alpha braid residual over constant-delay retained orbit, Poincare/monodromy reduction, and sea-state fibration; accepted retained rows are required before score movement",
+        "score-neutral Planck/alpha braid residual over constant-delay retained orbit, Poincare/monodromy reduction, and sea-state fibration; accepted retained rows are required before score review",
     },
     tolerances,
     summary: {
@@ -963,7 +963,7 @@ function firstBlocker({ status, missingRows, carrierBinding, residual, negativeC
   if (failedControl) {
     return `negative_control_${failedControl.id}_did_not_fail`;
   }
-  return status === "populated" ? "none" : status;
+  return status === "populated" ? null : status;
 }
 
 function relativeResidual(observedValue, expectedValue, epsilonValue = 0) {

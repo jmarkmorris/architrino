@@ -165,12 +165,13 @@ function evaluateSignedFrequencyTransfer(input, inputPath) {
       row: "EQ-17",
       supportedRows: ["EQ-12", "EQ-17", "EQ-22", "EQ-26", "EQ-28", "EQ-29"],
       claimLevel:
-        "score-neutral signed frequency-transfer ledger; accepted retained rows are required before score movement",
+        "score-neutral signed frequency-transfer ledger; accepted retained rows are required before score review",
     },
     tolerances,
     summary: {
       status,
-      scoreDecision: status === "populated" ? "score_review_required" : SCORE_DECISION,
+      scoreDecision: SCORE_DECISION,
+      scoreReviewPreconditionsMet: status === "populated",
       missingRows,
       nextBlocker: firstBlocker({
         status,

@@ -16,8 +16,18 @@ This packet ties the native causal wake equation to Noether-style conservation l
 - Current score snapshot: `EQ-01` remains score `5`; `EQ-05` remains score `4`. This pass does not update [equation.md](equation.md).
 - Closure driver: the native per-hit causal wake row can support finite-window conservation only when force, action, wake-history charge, event ledger, boundary flux, and residual rows use the same retained branch chart and causal-root signature.
 - Exact first blocker: [finite-window-conservation-residual.mjs](../../../scripts/equation-mapping/finite-window-conservation-residual.mjs) blocks at `missing_accepted_branch_chart`; the attempt fixture has the residual grammar but no accepted branch chart, event, boundary, or wake-history rows.
-- First implementation target for this packet: priority packet refinement only, making the Direct Geometry Layer explicit for the native root row and `EQ-05` conservation route.
-- Smallest later score-moving target: one source-backed retained branch chart $\mathfrak B$ with certified active roots, inactive gaps, Jacobian floor, memory convention, endpoint convention, event ledger, boundary flux, wake-energy crosswalk, and same-root checksum rows.
+- First implementation target for this packet: replace the priority-only conservation attempt with a durable retained branch-chart source object, then advance the same-root checksum and event-ledger rows under the checker. No score change follows until those rows are accepted from durable source evidence.
+- Smallest accepted evidence object: one source-backed retained branch chart $\mathfrak B$ with certified active roots, inactive gaps, Jacobian floor, memory convention, endpoint convention, event ledger, boundary flux, wake-energy crosswalk, and same-root checksum rows.
+- Smallest next artifact: one durable retained branch-chart source shell with active-root, Jacobian-floor, endpoint, event-ledger, and boundary-flux source paths that the finite-window conservation checker can reject or advance without changing scores.
+- Runnable route: run the attempt and negative controls below; they must remain score-neutral until a source-backed retained branch chart exists.
+
+```sh
+node scripts/equation-mapping/finite-window-conservation-residual.mjs --input scripts/equation-mapping/finite-window-conservation-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/finite-window-conservation-residual.mjs --input scripts/equation-mapping/finite-window-conservation-root-signature-split-negative-control.v1.json --summary --pretty
+node scripts/equation-mapping/finite-window-conservation-residual.mjs --input scripts/equation-mapping/finite-window-conservation-coordination-source-negative-control.v1.json --summary --pretty
+node scripts/equation-mapping/finite-window-conservation-residual.mjs --input scripts/equation-mapping/finite-window-conservation-wake-crosswalk-split-negative-control.v1.json --summary --pretty --require-populated
+node scripts/equation-mapping/finite-window-conservation-residual.mjs --input scripts/equation-mapping/finite-window-conservation-no-double-count-negative-control.v1.json --summary --pretty --require-populated
+```
 
 ## Direct Geometry Layer
 
@@ -483,6 +493,14 @@ Promotion should wait until one retained branch calculation demonstrates the sam
 
 - Completed now: one priority-only packet tying the native per-hit causal wake equation to finite-window Noether conservation residuals.
 - Executable now: [finite-window-conservation-residual.mjs](../../../scripts/equation-mapping/finite-window-conservation-residual.mjs) evaluates the residual grammar and reports first blockers.
+- Runnable now:
+
+```sh
+node scripts/equation-mapping/finite-window-conservation-residual.mjs --input scripts/equation-mapping/finite-window-conservation-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/finite-window-conservation-residual.mjs --input scripts/equation-mapping/finite-window-conservation-wake-crosswalk-split-negative-control.v1.json --summary --pretty --require-populated
+node scripts/equation-mapping/finite-window-conservation-residual.mjs --input scripts/equation-mapping/finite-window-conservation-no-double-count-negative-control.v1.json --summary --pretty --require-populated
+```
+
 - Reusable common equations named now: same-root checksum, event-ledger balance, flux-boundary balance, finite-window conservation residual, same-source self-hit policy, wake-energy crosswalk residual, and ledger-transition gauge matching.
 - Open blocker: no accepted branch calculation currently populates $\mathcal{R}_{01-05}^{\mathfrak{B}}(W)$ with source-backed event, boundary, and wake-history rows.
 - Next mathematical object: replace the attempt fixture with an accepted branch chart carrying certified active roots and a declared action or work-integral route.

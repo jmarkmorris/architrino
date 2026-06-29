@@ -1,0 +1,102 @@
+{
+  "schema": "aaa-equation-map-finite-window-statistical-carrier-input/v1",
+  "claimLevel": "accepted-looking EQ-14 Born-current W source-missing negative control; score-neutral and not retained evidence",
+  "constants": {
+    "hbar": 1
+  },
+  "tolerances": {
+    "massClosure": 1e-12,
+    "invariance": 0.001,
+    "retune": 1e-12,
+    "recordContinuity": 0.001,
+    "densityReference": 0.001,
+    "currentReference": 0.001
+  },
+  "carrier": {
+    "id": "C_stat_WT_eq14_record_current_w_source_missing_negative_control_0001",
+    "row": "EQ-14",
+    "retainedStatus": "attempt",
+    "window": {
+      "id": "W_eq14_record_current_w_source_missing_negative_control_0001",
+      "kind": "record_current_measurement_window_source_missing_negative_control",
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/missing-eq14-record-current-window-source.md"
+    },
+    "duration": 2,
+    "transitionMap": {
+      "id": "Phi_T_eq14_record_current_w_source_missing_negative_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "finiteMeasure": {
+      "id": "mu_star_T_eq14_record_current_w_source_missing_negative_control_0001",
+      "totalMass": 1,
+      "invarianceResidual": 0.0002,
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "coarseGraining": {
+      "id": "Q_eq14_record_current_w_source_missing_negative_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "detectorKernel": {
+      "id": "K_det_eq14_record_current_w_source_missing_negative_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "outcomePartition": {
+      "id": "B_eq14_record_current_w_source_missing_negative_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md",
+      "classes": [
+        "left_record_cell",
+        "right_record_cell"
+      ]
+    },
+    "noHiddenRetuneWitness": {
+      "id": "S_retune_eq14_record_current_w_source_missing_negative_control_0001",
+      "residual": 0,
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "recordCurrentProjection": {
+      "id": "Theta_rhoJ_eq14_record_current_w_source_missing_negative_control_0001",
+      "positionProjectionId": "pi_x_eq14_record_current_w_source_missing_negative_control_0001",
+      "densityMeasureId": "mu_star_T_eq14_record_current_w_source_missing_negative_control_0001",
+      "currentMeasureId": "mu_star_T_eq14_record_current_w_source_missing_negative_control_0001",
+      "densityFlowId": "Phi_T_eq14_record_current_w_source_missing_negative_control_0001",
+      "currentFlowId": "Phi_T_eq14_record_current_w_source_missing_negative_control_0001",
+      "retainedStatus": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+    },
+    "recordCurrentSamples": [
+      {
+        "id": "left_record_cell_eq14_w_source_missing_negative_control_0001",
+        "densityBefore": 0.5,
+        "densityAfter": 0.48,
+        "deltaT": 1,
+        "currentDivergence": 0.02,
+        "densityRecord": 0.48,
+        "densityReference": 0.4804,
+        "currentRecord": 0.12,
+        "currentReference": 0.1203,
+        "retainedStatus": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+      },
+      {
+        "id": "right_record_cell_eq14_w_source_missing_negative_control_0001",
+        "densityBefore": 0.3,
+        "densityAfter": 0.31,
+        "deltaT": 1,
+        "currentDivergence": -0.01,
+        "densityRecord": 0.31,
+        "densityReference": 0.3097,
+        "currentRecord": -0.08,
+        "currentReference": -0.0796,
+        "retainedStatus": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+      }
+    ]
+  }
+}

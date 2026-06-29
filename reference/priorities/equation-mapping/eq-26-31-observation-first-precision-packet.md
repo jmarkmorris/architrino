@@ -15,7 +15,8 @@ This packet groups the observation-first precision rows that discipline atomic s
 - Current score snapshot: `EQ-26` score `3`, `EQ-26A` score `2`, `EQ-27` score `2`, `EQ-28` score `3`, `EQ-29` score `3`, `EQ-30` score `2`, and `EQ-31` score `2` in this packet's score recommendation table. This pass does not update [equation.md](equation.md).
 - Closure driver: every precision comparison must consume one retained event or observation record $\mathsf e$ with branch/source state, path-history record, local Noether sea tuple, finite channel set, outgoing rows, detector/readout row, and no-hidden-retune witness.
 - Exact first blockers: `EQ-26` still needs the candidate `missing_accepted_theta_H_spec` row; `EQ-26A` inherits `missing_accepted_theta_gamma_packet` before the local charge-exposure row can move; `EQ-27` blocks at `missing_accepted_ordered_frame_loop`; `EQ-28` blocks at `missing_accepted_photon_gate_A_input_output`; `EQ-29` blocks at `missing_accepted_radiation_source_carrier`; `EQ-30` and `EQ-31` share the finite-window blocker `missing_accepted_W` before their top-carrier and projection rows can count.
-- First implementation target for this packet: packet-level priority refinement only, tying the row-specific source-field maps back to one Direct Geometry Layer over $\mathsf e$. No accepted retained evidence object is created here.
+- First implementation target for this packet: choose one row-specific lane and replace its source-attempt or source-contract shell with a durable non-priority carrier that the relevant checker can evaluate under one event or observation record $\mathsf e$. No score change follows until the checker accepts the carrier, row-specific source contract, and same-record bindings from durable source evidence.
+- Smallest next artifact: choose one lane among hydrogen spectra, alpha/charge exposure, ordered frame-loop, Compton replay, radiation source, `EQ-30`, or `EQ-31`, then replace its source-attempt or source-contract shell with one durable carrier source consumed by the existing checker.
 - Safe evidence target after this pass: a source-backed retained carrier for one row-specific lane, with `theta_H_spec`, `ordered_frame_loop`, `photon_gate_A_input_output`, `radiation_source_carrier`, or finite-window `W` accepted only after the relevant checker confirms durable source evidence and same-record binding.
 
 ## Score Recommendations
@@ -772,7 +773,7 @@ The direct native-event attempt packet is [compton-recoil-native-event-attempt.v
 node scripts/equation-mapping/compton-recoil-event-replay.mjs --input scripts/equation-mapping/compton-recoil-native-event-attempt.v1.json --summary --pretty
 ```
 
-It returns `comparison_replay_closed_native_rows_missing`, `scoreDecision=no_score_increase`, `nativeLedgerStatus=native_rows_missing`, and `nextBlocker=missing_accepted_photon_gate_A_input_output`; the `nativeRowStatuses` map reports all seven required rows as `attempt`, and the `eventLedgerSupportStatuses` map reports `medium=attempt` and `remnant=attempt`. Running the same input with `--require-native-closed` exits nonzero. The packet therefore fixes the retained event-ledger shape while leaving the score-moving burden exactly where it belongs: accepted photon Gate A/B, target branch, recoil branch, angular-momentum delta, Noether sea state, energy-momentum ledger, and explicit medium/remnant support rows on the same $\mathsf e_{\gamma e}^{0}$ record.
+It returns `comparison_replay_closed_native_rows_missing`, `scoreDecision=no_score_increase`, `nativeLedgerStatus=native_rows_missing`, and `nextBlocker=missing_accepted_photon_gate_A_input_output`; the `nativeRowStatuses` map reports all seven required rows as `attempt`, and the `eventLedgerSupportStatuses` map reports `medium=attempt` and `remnant=attempt`. Running the same input with `--require-native-closed` exits nonzero. The packet therefore fixes the retained event-ledger shape while leaving the accepted-evidence burden exactly where it belongs: accepted photon Gate A/B, target branch, recoil branch, angular-momentum delta, Noether sea state, energy-momentum ledger, and explicit medium/remnant support rows on the same $\mathsf e_{\gamma e}^{0}$ record.
 
 The compact replay summary now also reports `nextBlockerDetails`. For the native attempt, the first blocker detail is `id=photon_gate_A_input_output`, `status=attempt`, `rowId=photon-gate-A-input-output-attempt`, `sourcePath=reference/priorities/equation-mapping/eq-26-31-observation-first-precision-packet.md`, `sourceReferenceExists=true`, `eventId=e_gamma_e_0`, and `eventIdMatches=true`. This confirms that the carrier wiring is present but still not score evidence: the first row must be promoted from `attempt` to an accepted retained row by source-backed Gate A evidence, not by the comparison replay.
 
@@ -780,7 +781,7 @@ The compact replay summary now also reports `nextBlockerDetails`. For the native
 
 #### First Native Row Object Contract
 
-The first score-moving native row is `photon_gate_A_input_output`. The replay runner accepts that row only when the row object satisfies the current native-row boundary below. These checks are necessary for the runner to close; they do not by themselves prove the Gate A physics unless the referenced source file also contains the photon input/output evidence.
+The first accepted native row is `photon_gate_A_input_output`. The replay runner accepts that row only when the row object satisfies the current native-row boundary below. These checks are necessary for the runner to close; they do not by themselves prove the Gate A physics unless the referenced source file also contains the photon input/output evidence.
 
 | Check | Required value |
 | --- | --- |
@@ -811,7 +812,7 @@ Negative controls for the first accepted row are:
 - source row that changes $h$, $c_\gamma$, or the recoil convention relative to `EQ-26` must fail the shared-row anti-retune check before the Compton residual is interpreted;
 - source row that permits a rest branch, frequency-dependent weak-homogeneous free-space dispersion, or a longitudinal free photon channel must fail Gate A/B handoff rather than advancing the event ledger.
 
-Score-moving condition: only after the row is backed by such a durable accepted source should the attempt fixture replace `status: "attempt"` with an accepted status for `photon_gate_A_input_output`. The expected first advancement is not full native-event closure; it is a runner summary whose `nativeRowStatuses.photon_gate_A_input_output` is `accepted` and whose `nextBlocker` advances to `missing_accepted_photon_gate_B_transverse_handoff`, with `scoreDecision` still `no_score_increase` until all required native rows and weak-homogeneous medium/remnant support rows close.
+Accepted-evidence condition: only after the row is backed by such a durable accepted source should the attempt fixture replace `status: "attempt"` with an accepted status for `photon_gate_A_input_output`. The expected first advancement is not full native-event closure; it is a runner summary whose `nativeRowStatuses.photon_gate_A_input_output` is `accepted` and whose `nextBlocker` advances to `missing_accepted_photon_gate_B_transverse_handoff`, with `scoreDecision` still `no_score_increase` until all required native rows and weak-homogeneous medium/remnant support rows close.
 
 ### Failure Mode
 
@@ -1147,7 +1148,7 @@ node scripts/equation-mapping/finite-window-statistical-carrier.mjs \
   --summary --pretty
 ```
 
-This is an executable shape check only. Score movement still requires accepted, source-backed parent carrier rows `W`, `Phi_T`, `mu_star_T`, `Q`, `K_det`, `B`, and `S_retune`, followed by accepted `EQ-30` rows for `Gamma_a`, `Phi_in`, detected class measures, cross-section comparisons, $\rho_{\mathrm{exp}}$, form-factor samples, and elastic-regime purity.
+This is an executable shape check only. Score review still requires accepted, source-backed parent carrier rows `W`, `Phi_T`, `mu_star_T`, `Q`, `K_det`, `B`, and `S_retune`, followed by accepted `EQ-30` rows for `Gamma_a`, `Phi_in`, detected class measures, cross-section comparisons, $\rho_{\mathrm{exp}}$, form-factor samples, and elastic-regime purity.
 
 ### Failure Mode
 

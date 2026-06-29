@@ -212,6 +212,14 @@ function evaluateEq11aGravitationalWaveSource(input, inputPath) {
     solver,
     negativeControls,
   });
+  const nextBlocker = firstBlocker({ status, carrier, missingRows, carrierBinding, solver, negativeControls });
+  const solverDiagnosticBlocker = firstSolverBlocker(solver, negativeControls);
+  const solverDiagnosticMaskedByRetainedEvidence =
+    solverDiagnosticBlocker !== null &&
+    (!carrier.accepted ||
+      missingRows.length > 0 ||
+      sourceContractBoundaryRows.length > 0 ||
+      sourceArtifactHashMissingRows.length > 0);
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -228,14 +236,15 @@ function evaluateEq11aGravitationalWaveSource(input, inputPath) {
       solverTarget: "gravitational_wave_source_recovery",
       supportedRows: ["EQ-07", "EQ-09", "EQ-10", "EQ-11", "EQ-20", "EQ-29"],
       claimLevel:
-        "score-neutral solver-style gravitational-wave source residual; accepted source-carrier retained evidence is required before score movement",
+        "score-neutral solver-style gravitational-wave source residual; accepted source-carrier retained evidence is required before score review",
     },
     tolerances,
     summary: {
       status,
       scoreDecision: SCORE_DECISION,
-      nextBlocker: firstBlocker({ status, carrier, missingRows, carrierBinding, solver, negativeControls }),
-      solverNextBlocker: firstSolverBlocker(solver, negativeControls),
+      nextBlocker,
+      solverDiagnosticBlocker,
+      solverDiagnosticMaskedByRetainedEvidence,
       carrierAccepted: carrier.accepted,
       carrierReason: carrier.reason,
       missingRows,

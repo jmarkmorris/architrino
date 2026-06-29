@@ -60,6 +60,11 @@ const REQUIRED_NATIVE_ROWS = [
   "energy_momentum_event_ledger",
 ];
 
+const GATE_A_ROW = "photon_gate_A_input_output";
+const GATE_A_SOURCE_OBJECT_KIND = "photon_gate_A_input_output";
+const GATE_A_EVIDENCE_FAMILY = "native_compton_recoil_event";
+const GATE_A_SOURCE_SUPPORT = ["EQ-13", "EQ-28", "Gate A", EVENT_ID];
+
 const REQUIRED_EVENT_LEDGER_SUPPORT = ["medium", "remnant"];
 const REQUIRED_EM_GATE_ROWS = [
   "effective_charge_current_continuity",
@@ -549,7 +554,7 @@ function evaluateNativeRows(nativeRows, eventId) {
   const details = {};
   for (const rowName of REQUIRED_NATIVE_ROWS) {
     const row = nativeRows[rowName];
-    const status = normalizeNativeRowStatus(row, eventId);
+    const status = normalizeNativeRowStatus(row, eventId, rowName);
     statuses[rowName] = status;
     details[rowName] = summarizeNativeRow(rowName, row, status, eventId);
     if (status === "accepted") {
@@ -676,7 +681,7 @@ function evaluateEmGateRows(emGateRows, eventId) {
   const details = {};
   for (const rowName of REQUIRED_EM_GATE_ROWS) {
     const row = emGateRows[rowName];
-    const status = normalizeNativeRowStatus(row, eventId);
+    const status = normalizeNativeRowStatus(row, eventId, rowName);
     statuses[rowName] = status;
     details[rowName] = summarizeNativeRow(rowName, row, status, eventId);
     if (status === "accepted") {
@@ -713,6 +718,9 @@ function summarizeNativeRow(rowName, row, status, eventId) {
     sourceEvidenceReferenceExists: sourceEvidenceReferenceExists(sourcePath),
     eventId: row.eventId ?? null,
     eventIdMatches: row.eventId === eventId,
+    sourceObjectKind: row.sourceObjectKind ?? null,
+    evidenceFamily: row.evidenceFamily ?? null,
+    sourceSupport: Array.isArray(row.sourceSupport) ? row.sourceSupport : null,
     retainedReferencePresent:
       concreteString(row.rowId) &&
       concreteString(sourcePath) &&
@@ -843,7 +851,7 @@ function normalizeLedgerSupportStatus(row, eventId) {
   return "accepted";
 }
 
-function normalizeNativeRowStatus(row, eventId) {
+function normalizeNativeRowStatus(row, eventId, rowName = null) {
   if (row === undefined || row === null) {
     return "missing";
   }
@@ -874,9 +882,25 @@ function normalizeNativeRowStatus(row, eventId) {
     if (row.eventId !== eventId) {
       return "accepted_event_id_mismatch";
     }
+    if (rowName === GATE_A_ROW && !hasGateASourceObjectContract(row)) {
+      return "accepted_without_source_object_contract";
+    }
     return "accepted";
   }
   return "invalid";
+}
+
+function hasGateASourceObjectContract(row) {
+  if (row.sourceObjectKind !== GATE_A_SOURCE_OBJECT_KIND) {
+    return false;
+  }
+  if (row.evidenceFamily !== GATE_A_EVIDENCE_FAMILY) {
+    return false;
+  }
+  if (!Array.isArray(row.sourceSupport)) {
+    return false;
+  }
+  return GATE_A_SOURCE_SUPPORT.every((entry) => row.sourceSupport.includes(entry));
 }
 
 function firstNativeBlocker(nativeRows, eventLedgerSupport) {
@@ -1061,6 +1085,9 @@ function isEvidenceSourcePath(filePath) {
   return !(
     lowerBasename.includes("attempt") ||
     lowerBasename.includes("mock") ||
+    lowerBasename.includes("toy") ||
+    lowerBasename.includes("probe") ||
+    lowerBasename.includes("source-contract") ||
     lowerBasename.includes("negative-control")
   );
 }

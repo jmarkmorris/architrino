@@ -156,6 +156,7 @@ export function buildDefaultNoetherSeaCompatibilityHandoffInput() {
         },
       },
     },
+    accepted_medium_response_evidence: null,
   };
 }
 
@@ -377,6 +378,101 @@ function evaluateSpeedConvention(source, handoff) {
   );
 }
 
+function acceptedMediumResponseAttempted(evidence) {
+  return (
+    evidence?.accepted_for_medium_response_closure === true ||
+    evidence?.evidence_level === "accepted_for_medium_response_closure"
+  );
+}
+
+function acceptedMediumResponseMismatches(source, handoff, evidence) {
+  const medium = handoff.medium_response ?? {};
+  const sourceWindow = source.retained_window ?? {};
+  const sourceRegulator = source.regulator_state ?? {};
+  const evidenceRegulator = evidence?.regulator_state ?? {};
+  const checks = [
+    {
+      field: "accepted_medium_response_evidence.accepted_for_medium_response_closure",
+      ok: evidence?.accepted_for_medium_response_closure === true,
+    },
+    {
+      field: "accepted_medium_response_evidence.evidence_level",
+      ok: evidence?.evidence_level === "accepted_for_medium_response_closure",
+    },
+    {
+      field: "accepted_medium_response_evidence.accepted_evidence_id",
+      ok:
+        typeof evidence?.accepted_evidence_id === "string" &&
+        evidence.accepted_evidence_id.length > 0,
+    },
+    {
+      field: "accepted_medium_response_evidence.source_record_id",
+      ok: evidence?.source_record_id === source.record_id,
+    },
+    {
+      field: "accepted_medium_response_evidence.response_object_id",
+      ok: evidence?.response_object_id === medium.response_object_id,
+    },
+    {
+      field: "accepted_medium_response_evidence.branch_class",
+      ok: evidence?.branch_class === source.branch_class,
+    },
+    {
+      field: "accepted_medium_response_evidence.retained_chart_id",
+      ok: evidence?.retained_chart_id === source.retained_chart_id,
+    },
+    {
+      field: "accepted_medium_response_evidence.retained_window_id",
+      ok: evidence?.retained_window_id === sourceWindow.id,
+    },
+    {
+      field: "accepted_medium_response_evidence.regulator_state.eta",
+      ok: sameNumber(evidenceRegulator.eta, sourceRegulator.eta),
+    },
+    {
+      field: "accepted_medium_response_evidence.regulator_state.epsilon_c",
+      ok: sameNumber(evidenceRegulator.epsilon_c, sourceRegulator.epsilon_c),
+    },
+    {
+      field: "accepted_medium_response_evidence.regulator_state.status",
+      ok: evidenceRegulator.status === sourceRegulator.status,
+    },
+  ];
+  return collectMismatches(checks);
+}
+
+function acceptedMediumResponseEvidenceSummary(source, handoff, declaredEvidence = null) {
+  const evidence = declaredEvidence ?? handoff.accepted_medium_response_evidence ?? null;
+  const attempted = acceptedMediumResponseAttempted(evidence);
+  const mismatches = attempted ? acceptedMediumResponseMismatches(source, handoff, evidence) : [];
+  const accepted = attempted && mismatches.length === 0;
+  const evidenceLevel = accepted
+    ? "accepted_for_medium_response_closure"
+    : attempted
+    ? "accepted_evidence_contract_mismatch"
+    : handoff.medium_response?.row_id
+    ? "source_record_medium_response_declared"
+    : "missing";
+  return {
+    required_response_count: 1,
+    accepted_response_count: accepted ? 1 : 0,
+    accepted_for_medium_response_closure: accepted,
+    counts_by_evidence_level: {
+      [evidenceLevel]: 1,
+    },
+    response_evidence: [
+      {
+        row_id: handoff.medium_response?.row_id ?? "medium_response",
+        response_object_id: handoff.medium_response?.response_object_id ?? null,
+        evidence_level: evidenceLevel,
+        accepted_evidence_contract_attempted: attempted,
+        accepted_evidence_mismatches: mismatches,
+        accepted_for_medium_response_closure: accepted,
+      },
+    ],
+  };
+}
+
 export function buildNoetherSeaCompatibilityHandoffDiagnostic(input = buildDefaultNoetherSeaCompatibilityHandoffInput()) {
   assertObject(input, "input");
   assertObject(input.retained_branch_source_record, "retained_branch_source_record");
@@ -395,6 +491,11 @@ export function buildNoetherSeaCompatibilityHandoffDiagnostic(input = buildDefau
     evaluateSpeedConvention(source, handoff),
   ];
   const failedRows = rows.filter((entry) => entry.status === "fail");
+  const acceptedSummary = acceptedMediumResponseEvidenceSummary(
+    source,
+    handoff,
+    input.accepted_medium_response_evidence ?? null
+  );
 
   return {
     schema: NOETHER_SEA_COMPATIBILITY_HANDOFF_SCHEMA,
@@ -409,6 +510,7 @@ export function buildNoetherSeaCompatibilityHandoffDiagnostic(input = buildDefau
       medium_response_row: handoff.medium_response?.row_id ?? null,
       response_object_id: handoff.medium_response?.response_object_id ?? null,
     },
+    accepted_evidence_summary: acceptedSummary,
     boundary_rows: rows,
     negative_controls: {
       retained_history_mismatch: "residual.retained_history_mismatch",
@@ -419,6 +521,8 @@ export function buildNoetherSeaCompatibilityHandoffDiagnostic(input = buildDefau
       diagnostic_status: failedRows.length === 0 ? "diagnostic_passed_priority_only" : "diagnostic_failed",
       retained_branch: false,
       updates_live_validation_gate: false,
+      accepted_medium_response_evidence_for_closure:
+        acceptedSummary.accepted_for_medium_response_closure,
       failure_code: failedRows[0]?.failure_code ?? null,
       first_failed_row: failedRows[0]?.row_id ?? null,
       first_failure_status:
@@ -555,6 +659,13 @@ function main() {
           input_schema: INPUT_SCHEMA,
           promotion_status: PROMOTION_STATUS,
           packet_id: PACKET_ID,
+          accepted_evidence_summary: [
+            "response_evidence",
+            "counts_by_evidence_level",
+            "accepted_evidence_contract_attempted",
+            "accepted_evidence_mismatches",
+            "accepted_for_medium_response_closure",
+          ],
           controls: ["retained-history-mismatch", "speed-conflation", "hidden-tuning"],
         },
         args.pretty

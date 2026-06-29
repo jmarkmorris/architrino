@@ -22,21 +22,21 @@ No score changes.
 | --- | --- |
 | Current score and closure driver | Score `3`; effective FRW is scoped as observer-level projection of evolving Noether sea, clock comparison, and transport records, not expansion of the Euclidean void. |
 | Primary AAA carrier | `theta_cos` / `Theta_cos_FRW_handoff`, one homogeneous observer-readout carrier. |
-| Smallest score-moving evidence object | Accepted, durable, source-backed `theta_cos` homogeneous window with `pi_frw`, scale-factor row, Hubble row, `theta_read`, fixed-void witness, shared keys, provenance, and no-retune witness on the same carrier. |
+| Smallest accepted evidence object | Accepted, durable, source-backed `theta_cos` homogeneous window with `pi_frw`, scale-factor row, Hubble row, `theta_read`, fixed-void witness, shared keys, provenance, and no-retune witness on the same carrier. |
 | Exact first blocker | `missing_accepted_theta_cos`. |
 | Existing scripts, fixtures, and packets found | The effective-FRW handoff runner and fixture listed above, plus the effective-metric/cosmology packet. |
 | Candidate breakthrough angle | Use `EQ-17` redshift factorization inversely: $a_{\mathrm{eff}}$ should be the homogeneous readout of endpoint cadence and path-history transport, not an independently fitted FRW scale. |
-| Fail-closed negative control | `void_expansion_level_collapse`: any route treating $a_{\mathrm{eff}}$ as Euclidean void expansion must fail before score movement. |
+| Fail-closed negative control | `void_expansion_level_collapse`: any route treating $a_{\mathrm{eff}}$ as Euclidean void expansion must fail before score review. |
 | Smaller-than-report next action | Source-map one homogeneous `theta_cos` window with $\tau_c$, `aBefore`, `aAfter`, $a_{\mathrm{eff}}$, and $H_{\mathrm{eff}}$ provenance. |
 
 | Coordinate | `EQ-19` |
 | --- | --- |
 | Current score and closure driver | Score `3`; Friedmann-like bookkeeping must remain fixed-void accounting with provenance-bearing source and residual rows. |
 | Primary AAA carrier | The same `theta_cos`, with row-specific pressure on $R_H$, $R_\rho$, $\rho_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, $G_{\mathrm{eff}}$, $\Lambda_{\mathrm{eff}}$, $k$, and $S_{\mathrm{eff}}$. |
-| Smallest score-moving evidence object | Accepted `theta_cos` with accepted Friedmann residual, continuity residual, effective density/pressure/coupling/lambda rows, curvature row, source-term row, provenance, fixed-void witness, and no-retune witness. |
+| Smallest accepted evidence object | Accepted `theta_cos` with accepted Friedmann residual, continuity residual, effective density/pressure/coupling/lambda rows, curvature row, source-term row, provenance, fixed-void witness, and no-retune witness. |
 | Exact first blocker | `missing_accepted_theta_cos`. |
 | Existing scripts, fixtures, and packets found | The same effective-FRW handoff runner, fixture, and packet. |
-| Candidate breakthrough angle | Treat the continuity equation's $\mathcal S_{\mathrm{eff}}$ as the inverse clue: the first score-moving object is source provenance from transport, recycling, assembly exchange, or Noether sea exchange, not a cleaner Friedmann formula. |
+| Candidate breakthrough angle | Treat the continuity equation's $\mathcal S_{\mathrm{eff}}$ as the inverse clue: the first accepted evidence object is source provenance from transport, recycling, assembly exchange, or Noether sea exchange, not a cleaner Friedmann formula. |
 | Fail-closed negative control | `theta_cos.window_split`: shared numbers with split carrier ids or source-window ids must fail at shared-key, hidden-retune, or FRW-handoff split checks. |
 | Smaller-than-report next action | Source-audit only `source_term_row` plus `source_provenance` for `theta_cos` before touching the rest of the FRW fixture. |
 
@@ -80,11 +80,11 @@ The first accepted object is a source-backed `theta_cos` row:
 }
 ```
 
-That row alone should only advance the first blocker inside the checker. `EQ-18` and `EQ-19` still need the rest of the same-carrier rows before any score movement: `cosmology_carrier`, `noether_sea_window`, `assembly_provenance_record`, `metric_projection`, `redshift_transfer_handoff`, `pi_frw`, `theta_read`, `scale_factor_row`, `hubble_row`, effective density/pressure/coupling/lambda rows, curvature row, source-term row, Friedmann residual, continuity residual, source provenance, and no-hidden-retune witness.
+That row alone should only advance the first blocker inside the checker. `EQ-18` and `EQ-19` still need the rest of the same-carrier rows before any score review: `cosmology_carrier`, `noether_sea_window`, `assembly_provenance_record`, `metric_projection`, `redshift_transfer_handoff`, `pi_frw`, `theta_read`, `scale_factor_row`, `hubble_row`, effective density/pressure/coupling/lambda rows, curvature row, source-term row, Friedmann residual, continuity residual, source provenance, and no-hidden-retune witness.
 
 ## Direct Geometry Layer
 
-| Standard comparison term | AAA geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Homogeneous cosmology carrier identity | `theta_cos` homogeneous observer-readout carrier, not Euclidean void expansion | `theta_cos`, `cosmology_carrier`, `noether_sea_window` | Same carrier id, homogeneous Noether sea window, source path, `tauClockId`, fixed-void witness, and shared keys across `EQ-18` and `EQ-19` | `status_flip`; `self_reference`; `theta_cos.window_split` | Durable source-backed `theta_cos` retained-window row with accepted carrier/window identity and fixed-void witness. |
 | Effective FRW scale factor and Hubble readouts | $a_{\mathrm{eff}}$ and $H_{\mathrm{eff}}$ as readouts of clock comparison, path-history transport, and medium evolution | `pi_frw`, `theta_read`, `scale_factor_row`, `hubble_row`, `redshift_transfer_handoff` | Same carrier, $\tau_c$, `aBefore`, `aAfter`, $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}$, transport provenance, and readout handoff | `void_expansion_level_collapse`; `theta_cos.window_split` | Accepted FRW handoff rows whose scale and Hubble residuals consume one `theta_cos` record rather than a fitted expansion level. |
@@ -98,7 +98,7 @@ That row alone should only advance the first blocker inside the checker. `EQ-18`
 - `status_flip`: a row promoted from `attempt` to `accepted` while retaining `pending-retained-source` must fail source concreteness.
 - `self_reference`: this map, the attempt fixture, or the parent packet is not retained cosmology evidence.
 - `void_expansion_level_collapse`: treating $a_{\mathrm{eff}}$ as Euclidean void expansion fails the fixed-void witness.
-- `theta_cos.window_split`: putting `pi_frw`, `source_term_row`, `friedmann_residual`, or `continuity_residual` on a different carrier id must fail before score movement.
+- `theta_cos.window_split`: putting `pi_frw`, `source_term_row`, `friedmann_residual`, or `continuity_residual` on a different carrier id must fail before score review.
 - `hidden_source_term`: nonzero or fitted $\mathcal S_{\mathrm{eff}}$ without transport, recycling, assembly-exchange, or Noether sea provenance is not accepted evidence.
 
 ## Next Action
@@ -107,6 +107,10 @@ Create one durable source-backed `theta_cos` retained-window row, then run:
 
 ```sh
 node scripts/equation-mapping/effective-frw-handoff-residual.mjs --input scripts/equation-mapping/effective-frw-handoff-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/effective-frw-handoff-residual.mjs --input scripts/equation-mapping/effective-frw-handoff-priority-source-negative-control.v1.json --summary --pretty
+node scripts/equation-mapping/effective-frw-handoff-residual.mjs --input scripts/equation-mapping/effective-frw-handoff-status-flip-negative-control.v1.json --summary --pretty
+node scripts/equation-mapping/effective-frw-handoff-residual.mjs --input scripts/equation-mapping/effective-frw-handoff-self-reference-negative-control.v1.json --summary --pretty
+node scripts/equation-mapping/effective-frw-handoff-residual.mjs --input scripts/equation-mapping/effective-frw-handoff-self-reference-negative-control.v1.json --summary --pretty --require-populated
 ```
 
-Until that row exists, the correct outcome remains `missing_accepted_theta_cos`.
+The attempt fixture must stay score-neutral at `missing_accepted_theta_cos`. The priority-source control must report `accepted_without_evidence_source` with `sourceEvidenceFailureCount` nonzero. The status-flip control must keep an accepted-looking `theta_cos` row blocked by `missing_source_path`, and the self-reference control must report `accepted_without_evidence_source` with `sourceReason=self_referential_source`; the `--require-populated` form must exit nonzero. These controls cover source concreteness and self-reference now. The remaining useful runnable controls are narrower `void_expansion_level_collapse`, `theta_cos.window_split`, and `hidden_source_term` fixtures, all of which must stay score-neutral until a durable `theta_cos` retained-window source exists.

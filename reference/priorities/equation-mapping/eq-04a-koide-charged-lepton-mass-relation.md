@@ -129,7 +129,7 @@ where $\mathcal E_{\ell}$ is the exposed charged-lepton sector record and $\math
 
 ## Dependency On Retained Mass-Shell Evidence
 
-The first score-moving dependency is not the Koide number. It is the accepted mass-shell carrier that makes the charged-lepton mass readouts lawful:
+The first accepted-evidence dependency is not the Koide number. It is the accepted mass-shell carrier that makes the charged-lepton mass readouts lawful:
 
 $$
 \Theta_{\ell}^{04A}
@@ -179,6 +179,7 @@ is produced by the same mass response that already passed the `EQ-04` shell and 
 | Existing checker surface | [eq04a-koide-residual.mjs](../../../scripts/equation-mapping/eq04a-koide-residual.mjs) with the default attempt fixture plus direct-fit, split-generation, and priority-source negative controls. |
 | Safe implementation target for this packet | Current pass added the carrier-shell source-contract boundary for the inherited `S_eq` mass-shell carrier. The next safe target is a source-backed charged-lepton mass-map row template that still preserves `no_score_increase` until generation rows are accepted on the same record. |
 | Smallest accepted evidence object | A source-backed positive-width `S_eq` retained-domain row object that first accepts `raw_labeled_rows_preserved_on_retained_history` on the same `commonCarrierId`, `domainId`, `supportId`, and `retainedRowSetId`, then binds `mass_shell_row`, `rest_mass_row`, `medium_response_row`, one frozen charged-lepton mass map, and three generation rows before Koide is evaluated. |
+| Smallest next artifact | Populate the inherited `S_eq` retained-domain support first; only after that, add one source-backed charged-lepton mass-map row family for $e$, $\mu$, and $\tau$. |
 | Score decision | No score change; the current attempt and negative controls are score-neutral until accepted retained evidence exists. |
 
 ## Direct Geometry Layer
@@ -377,7 +378,7 @@ $$
 \right),
 $$
 
-with score movement allowed only when $\mathcal S_{04A}^{\mathrm{retune}}=0$ in the declared equivalence class. In plain terms: the electron, muon, tau, and Koide check must use the same retained branch family and the same exposure/shielding/sea-response map.
+with score review allowed only when $\mathcal S_{04A}^{\mathrm{retune}}=0$ in the declared equivalence class. In plain terms: the electron, muon, tau, and Koide check must use the same retained branch family and the same exposure/shielding/sea-response map.
 
 ## Why Charged Leptons First
 
@@ -419,7 +420,7 @@ To move toward `5`, the same branch family must derive the mass triplet and the 
 
 ## First Concrete Artifact
 
-Build a small fail-closed `EQ-04A` residual packet that consumes three charged-lepton masses from the same generation-by-shielding record, computes $\mathcal R_{04A}^{\mathrm{Koide}}$ and $\mathcal R_{04A}^{\mathrm{angle}}$, propagates the mass-readout uncertainty to $\cos^2\theta_{\ell}$, and always reports `no_score_increase`. Any later score movement requires a separate score review after the masses come from a declared non-Koide mass map with an accepted `EQ-04` mass-shell carrier.
+Build a small fail-closed `EQ-04A` residual packet that consumes three charged-lepton masses from the same generation-by-shielding record, computes $\mathcal R_{04A}^{\mathrm{Koide}}$ and $\mathcal R_{04A}^{\mathrm{angle}}$, propagates the mass-readout uncertainty to $\cos^2\theta_{\ell}$, and always reports `no_score_increase`. Any later score review requires a separate score review after the masses come from a declared non-Koide mass map with an accepted `EQ-04` mass-shell carrier.
 
 The first useful result is a disciplined miss or hit. A disciplined miss weakens the idea that generation lifting alone tightly fixes the charged-lepton triplet. A disciplined hit would make Koide a strong clue that the exposure map has hidden geometric rigidity, especially if the $45^\circ$ mass-root angle is produced by branch geometry rather than by tuning the masses.
 

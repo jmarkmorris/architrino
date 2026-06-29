@@ -166,7 +166,7 @@ function evaluatePhotonPacketTransfer(input, inputPath) {
       row: "EQ-12",
       supportedRows: ["EQ-12", "EQ-13", "EQ-17", "EQ-28", "EQ-29"],
       claimLevel:
-        "score-neutral photon packet-transfer residual; accepted retained rows are required before score movement",
+        "score-neutral photon packet-transfer residual; accepted retained rows are required before score review",
     },
     tolerances,
     weights,
@@ -567,7 +567,7 @@ function firstBlocker({ status, missingRows, carrierBinding, packetResidual, neg
   if (failedControl) {
     return `negative_control_${failedControl.id}_did_not_fail`;
   }
-  return status === "populated" ? "none" : status;
+  return status === "populated" ? null : status;
 }
 
 function finiteNumber(value, label) {

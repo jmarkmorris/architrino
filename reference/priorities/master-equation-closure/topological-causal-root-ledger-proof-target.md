@@ -581,6 +581,7 @@ certificate. It samples a small neutral path inventory on $T_L^3$ and emits:
 | `simple_root_floor_min` | Simple roots report a positive Jacobian floor. |
 | `caustic_candidate_count` | Near-zero $J$ events are separated from ordinary force rows. |
 | `self_hit_root_count` | Same-source roots are reported separately from partner roots. |
+| `source_record_contract` | Root topology declares the retained source-record identity consumed by pullback diagnostics. |
 | `compact_only_rows` | Rows that disappear when fixed $h$ and $L\to\infty$ are flagged. |
 | `source_point_vs_eta_segment` | Distinguish sharp source-history points from finite-$\eta$ path neighborhoods. |
 | `photon_constituent_speed_split` | Report centerline $c_\gamma$ and constituent absolute speed ranges. |
@@ -591,6 +592,69 @@ The checker currently reports the requested rows and then stops at
 the correct fail-closed boundary: root topology is now executable at toy level,
 but action, wake-history, Noether sea, and cross-sector pullbacks are still the
 open proof burden.
+
+The photon constituent route diagnostic now lives at
+`scripts/proof-programs/photon-constituent-root-route-diagnostic.mjs`, with
+coverage in `tests/photon-constituent-root-route-diagnostic.test.js`. It
+consumes the topological checker's `photon_constituent_speed_split` rows and
+turns the super-field-speed constituent case into an explicit fail-closed route
+contract:
+
+| Output | Requirement |
+| --- | --- |
+| `speed_symbol_distinction` | Keep $c_f$, $c_\gamma$, $c_{\text{eff}}$, and $c_0$ distinct. |
+| `absolute_velocity_split` | Recompute constituent absolute speed from $c_\gamma$ and transverse speed. |
+| `sample_source_record_identity` | Every photon constituent route sample names the same retained source record as the causal-root topology. |
+| `super_field_speed_route` | Every $\|\mathbf v_a\|>c_f$ sample has a self-hit, partner-hit, caustic, or inactive-root route. |
+| `centerline_not_constituent_route` | A legal centerline $c_\gamma\le c_f$ does not by itself route the constituent absolute history. |
+
+The default artifact fails closed on `super_field_speed_route`, because the
+current packet exposes a super-field-speed constituent sample but has not
+replayed it through a photon-specific root ledger. A synthetic routed fixture
+exists only to test route logic; it is not a proof of photon closure. A
+stronger toy replay fixture, `--self-hit-replay`, models the constituent as a
+helical path with $c_\gamma<c_f<\|\mathbf v_a\|$ and finds a non-endpoint
+same-source root by sign change over one transverse period. For the current
+sample it emits a self-hit route near $\tau=2.06024718621$. This is a
+priority-only route witness for the toy constituent model, not photon closure,
+Gate A/B/C closure, or branch retention. The artifact now also emits
+`route_evidence_summary`, which distinguishes missing route evidence,
+synthetic row logic, toy self-hit replay, and any future
+`accepted_for_branch_retention` evidence. The current default, synthetic, and
+toy fixtures all report `accepted_for_branch_retention: false`. A future
+accepted route cannot be supplied by a bare label; the route evidence must also
+match the same source record, retained chart, retained window, and regulator
+state carried by the source-record contract.
+
+The near-$c_f$ middle-hinge route diagnostic now lives at
+`scripts/proof-programs/middle-hinge-root-status-diagnostic.mjs`, with coverage
+in `tests/middle-hinge-root-status-diagnostic.test.js`. It consumes the
+topological checker's `middle_hinge_root_count_word` rows and treats the
+sequence as a root-status word:
+
+| Output | Requirement |
+| --- | --- |
+| `speed_residual_word` | Recompute the word from $\operatorname{sign}(v_M^{\mathrm{rel}}-c_f)$, with `C` reserved for tangent or finite-$\eta$ routing. |
+| `sample_source_record_identity` | Every middle-hinge route sample names the same retained source record as the causal-root topology. |
+| `super_field_root_replay_route` | Every `1` sample has a self-hit or inactive-root replay route. |
+| `caustic_finite_eta_route` | Every `C` sample has a caustic or finite-$\eta$ route. |
+| `transition_rows` | Adjacent word samples emit classified threshold transitions such as `0->1`, `1->C`, and `C->0`, with the corresponding route obligation. |
+| `not_literal_communication` | The word is root-status routing, not literal communication. |
+
+The default artifact fails closed on missing routes for the `1` and `C`
+samples and on transition rows whose route obligations are unpopulated. A
+synthetic routed fixture exists only to test row logic. A toy
+`--threshold-replay` fixture instead populates the current `1` samples with
+self-hit threshold replay evidence and the current `C` sample with finite-$\eta$
+threshold evidence. It is still priority-only route evidence, not a proof of a
+middle-hinge action increment, controlled Switch / Decider behavior, or
+communication mechanism. The artifact also emits `route_evidence_summary`,
+splitting missing route evidence, synthetic row logic, toy threshold self-hit
+routes, toy threshold finite-$\eta$ routes, and any future
+`accepted_for_branch_retention` evidence. The current synthetic and toy
+fixtures remain non-accepted for branch retention. The summary records
+`accepted_evidence_mismatches` when an accepted route is asserted without the
+same-record evidence fields required by the source-record contract.
 
 The companion Noether sea compatibility diagnostic is
 `scripts/proof-programs/noether-sea-compatibility-handoff-diagnostic.mjs`. It
@@ -611,13 +675,45 @@ $\Theta_{\mathrm{sea}}(\mathfrak B)$ record:
 
 This second checker is also priority-only. A passing artifact reports
 handoff compatibility only; it still leaves `lorentz_gr_bridge` blocked until a
-closed upstream bridge populates the residual rows.
+closed upstream bridge populates the residual rows. It now emits
+`accepted_evidence_summary` for the medium-response row. The default
+`medium_response` row is `source_record_medium_response_declared`, not
+accepted medium-response closure; accepted closure must carry an
+`accepted_evidence_id`, the source record, response object, retained chart,
+retained window, and regulator state.
+
+The same-retained-history contract now has an explicit diagnostic at
+`scripts/proof-programs/closed-ledger-source-record-contract-diagnostic.mjs`,
+with coverage in `tests/closed-ledger-source-record-contract-diagnostic.test.js`.
+It compares the topological root-ledger artifact, the Noether sea handoff, the
+photon constituent route artifact, the middle-hinge route artifact, the
+wake-history event pullback, and the action-boundary pullback against one
+declared source record before the closed-ledger boundary equation is evaluated:
+
+| Output | Requirement |
+| --- | --- |
+| `source_record_identity` | Root topology, Noether handoff, photon route artifact and sample rows, middle-hinge route artifact and sample rows, event pullback, and action pullback name the same retained source record. |
+| `branch_chart_identity` | Root topology, route artifacts, and Noether sea response use the same branch class and retained chart. |
+| `retained_window` | Root topology, route artifacts, source record, and medium response use the same retained window and memory depth. |
+| `regulator_state` | Root topology, route artifacts, Noether handoff, and action boundary packet use the same $\eta$ and $\epsilon_c$ regulator state. |
+| `active_root_ledger` | Root topology and Noether handoff name the same active root ledger and a positive Jacobian floor. |
+| `event_ledger` | Root topology, Noether handoff, and event pullback name the same wake-history event ledger. |
+| `response_object` | Root topology and Noether handoff name the same Noether sea response object. |
+
+This diagnostic can pass even when the action-boundary pullback remains
+fail-closed, because it checks identity and provenance rather than action
+closure. Its negative controls make hidden topological, photon-route artifact,
+photon-route sample, middle-hinge-route artifact, middle-hinge-route sample,
+event-pullback, regulator, and response-object drift fail before a
+sector-specific residual can be mistaken for a shared closed-ledger row.
 
 The closed-ledger pullback compositor now lives at
 `scripts/proof-programs/closed-ledger-pullback-diagnostic.mjs`, with focused
 coverage in `tests/closed-ledger-pullback-diagnostic.test.js`. It consumes the
 topological causal-root diagnostic, the Noether sea compatibility diagnostic,
-and optional action / wake-history pullback artifacts, then emits the boundary
+the photon and middle-hinge route diagnostics, the source-record contract
+diagnostic, and optional action / wake-history pullback artifacts, then emits
+the boundary
 rows
 $$
 \partial\mathcal{R}^{\mathrm{act}},\quad
@@ -626,29 +722,105 @@ $$
 \partial\mathcal{M}_{\mathrm{sea}},\quad
 \mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}.
 $$
-Its default fixture now consumes the root-topology, Noether handoff,
-wake-history event, and action-boundary diagnostics. The root-topology,
-Noether handoff, and wake-history event rows pass at diagnostic level, while the
-action-boundary row fails closed. That is the precise current blocker: the
-closed-ledger equation is executable as a compositor, but not populated by an
-accepted action-boundary artifact on the same retained history record.
+Its default fixture now consumes the root-topology, photon route, middle-hinge
+route, source-record contract, Noether handoff, wake-history event, and
+action-boundary diagnostics. The source-record contract, Noether handoff, and
+wake-history event rows pass at diagnostic level, while
+$\partial\mathcal{R}^{\mathrm{act}}$ fails closed on missing photon and
+middle-hinge route population. The compositor also rechecks that the route
+artifacts and route sample rows it is actually handed name the same retained
+source record as the Noether/source contract, so a stale or swapped route artifact fails
+$\partial\mathcal{R}^{\mathrm{act}}$ even if a previously built
+`source_record_contract` artifact still passes. A synthetic fully populated priority-only
+fixture can pass the compositor row logic, but it is not a retained branch or
+an action proof. The precise current blocker is therefore active-root route
+population first, with accepted action-boundary rows still required downstream.
+The $\partial\mathcal{R}^{\mathrm{act}}$ row now carries the photon and
+middle-hinge `route_evidence_summary` payloads and an
+`accepted_route_evidence_status` field, so a route-populated toy fixture is
+visibly `not_accepted_for_branch_retention` even when the row logic passes.
 
 The wake-history side now has its own priority-only population diagnostic at
 `scripts/proof-programs/event-wake-history-pullback-diagnostic.mjs`, with
 coverage in `tests/event-wake-history-pullback-diagnostic.test.js`. It checks
 that `energy_wake`, `momentum_wake`, `angular_momentum_wake`, and
 `medium_update` rows are present on the same retained event ledger. This
-narrows the next open compositor blocker to the action boundary unless a future
-event artifact fails one of the same-source or missing-row negative controls.
+keeps the wake-history side from being the current default blocker unless a
+future event artifact fails one of the same-source or missing-row negative
+controls. It now emits `accepted_evidence_summary` as well: present event
+ledger rows count as `source_record_event_ledger_declared`, not accepted
+wake-history closure. A row must carry `accepted_for_wake_history_closure`,
+an `accepted_evidence_id`, the retained source record, and the retained event
+ledger id before the compositor can report accepted wake-history evidence.
 
 The action side now has a fail-closed population diagnostic at
 `scripts/proof-programs/action-boundary-pullback-diagnostic.mjs`, with coverage
 in `tests/action-boundary-pullback-diagnostic.test.js`. It names the required
 `action_endpoint_row`, `action_multiplier_row`, `eta_regulator_row`, and
-`epsilon_c_core_row` entries for $\partial S_{\mathfrak B}^{(\eta)}$. Its
-default artifact fails with `residual.provenance_gap`, because those rows are
-not accepted action-boundary evidence yet. A synthetic closed fixture exists
-only to test row logic; it is not a proof of action closure.
+`epsilon_c_core_row` entries for $\partial S_{\mathfrak B}^{(\eta)}$. Each
+row is now a structured row contract rather than a presence flag: it must name
+the retained source record, retained chart, retained window, regulator state,
+and the expected boundary symbol for that action contribution. Its default
+artifact fails with `residual.provenance_gap`, because those rows are not
+accepted action-boundary evidence yet. A synthetic closed fixture exists only to
+test row logic; it is not a proof of action closure. A partial
+`--regulator-only` fixture populates only `eta_regulator_row` and
+`epsilon_c_core_row` from the declared same-record regulator state. That
+fixture is useful for separating regulator provenance from action closure, but
+it still fails on `action_endpoint_row` and `action_multiplier_row`.
+Action artifacts now also emit `evidence_level_summary`, so synthetic row-logic
+fixtures, source-record regulator declarations, and missing endpoint/multiplier
+rows cannot be confused. They now also emit `accepted_evidence_summary`; a row
+counts as accepted for action closure only when it has an
+`accepted_evidence_id`, declares `accepted_for_action_closure`, and still
+matches the same source record, retained chart, retained window, regulator
+state, and boundary symbol. Synthetic action rows and regulator-only rows
+therefore remain `not_accepted_for_action_closure` even when their row contracts
+pass.
+
+## Current Executable Frontier
+
+The executable chain now separates same-record compatibility, active-root
+routing, wake-history rows, action rows, and Noether sea handoff rows. The
+default fixture has the following blocker order:
+
+| Diagnostic row | Default status | Next accepted evidence needed |
+| --- | --- | --- |
+| `source_record_contract` | pass | None at diagnostic level; it is still only a shared identity contract. |
+| $\partial\mathcal{R}^{\mathrm{act}}$ | fail | Promote or replace the toy photon self-hit route and toy middle-hinge threshold replay routes as accepted same-record evidence; the current route summaries report zero accepted route samples. |
+| $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | pass | None at diagnostic row-population level; accepted branch evidence still has to supply accepted wake-history rows with evidence ids on the same retained event ledger. |
+| $\partial S_{\mathfrak B}^{(\eta)}$ | fail | The regulator-only fixture can populate `eta_regulator_row` and `epsilon_c_core_row`; real closure still needs `action_endpoint_row` and `action_multiplier_row` evidence with the same source record, retained chart, retained window, regulator state, boundary symbols, and accepted evidence ids. |
+| $\partial\mathcal{M}_{\mathrm{sea}}$ | pass | None at handoff-population level; Lorentz/GR closure still needs accepted medium-response evidence with a derived Noether sea response id and the same retained source record. |
+| $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ | fail | All upstream rows must pass on accepted evidence, not only synthetic row-logic fixtures. |
+
+Thus the next mathematical artifact should not try to promote the closed-ledger
+equation. It should replace one toy active-root route row or populate one
+action-boundary row with accepted, same-record evidence, then rerun the
+compositor.
+
+The compositor tests now include that second case explicitly: when the photon
+route is supplied by the toy self-hit replay, the middle-hinge route is supplied
+by the toy `--threshold-replay` fixture, and the action side uses the `--regulator-only`
+fixture, $\partial\mathcal{R}^{\mathrm{act}}$ passes while
+$\partial S_{\mathfrak B}^{(\eta)}$ fails. That verifies the blocker order:
+active-root route population first, then endpoint and multiplier action rows.
+The compositor CLI can also build the active-root route replay frontier with
+`--route-replay-fixtures`, which combines the photon self-hit replay and
+middle-hinge threshold replay fixtures while leaving action closure fail-closed.
+The compositor artifact also emits `blocker_order`, a compact ordered list of
+boundary-row statuses and failure codes for handoff into the next proof pass.
+With route replay fixtures, the same artifact reports
+`accepted_route_evidence_status: not_accepted_for_branch_retention`, preserving
+the proof burden after the executable row population blocker is isolated. The
+action row similarly reports `accepted_action_evidence_status:
+not_accepted_for_action_closure` until endpoint and multiplier rows carry
+accepted same-record action evidence rather than synthetic row logic. The
+wake-history row reports `accepted_event_evidence_status:
+not_accepted_for_wake_history_closure` until the event ledger rows are backed
+by accepted evidence ids rather than declared source-record population alone.
+The Noether sea row reports `accepted_medium_response_evidence_status:
+not_accepted_for_medium_response_closure` until the medium-response handoff is
+backed by accepted evidence rather than same-record compatibility alone.
 
 ## What This Could Advance
 

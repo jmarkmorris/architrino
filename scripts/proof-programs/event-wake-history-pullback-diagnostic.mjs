@@ -16,6 +16,7 @@ export const EVENT_WAKE_HISTORY_PULLBACK_SCHEMA =
 const PACKET_ID = "event_wake_history_pullback_diagnostic";
 const PROMOTION_STATUS = "priority-only diagnostic";
 const REQUIRED_EVENT_ROWS = ["energy_wake", "momentum_wake", "angular_momentum_wake", "medium_update"];
+const REQUIRED_SOURCE_RECORD_ID = "theta_sea_branch_q0_v0";
 
 function deepClone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -42,6 +43,7 @@ export function buildDefaultEventWakeHistoryPullbackInput() {
   return {
     source_record_id: sourceRecord.record_id,
     event_ledger: deepClone(sourceRecord.event_ledger),
+    event_evidence_rows: [],
     expected_rows: REQUIRED_EVENT_ROWS,
   };
 }
@@ -62,24 +64,119 @@ export function applyEventWakeHistoryControl(input, controlName) {
   throw new Error(`unknown control: ${controlName}`);
 }
 
+function eventEvidenceById(input, rowId) {
+  return (input.event_evidence_rows ?? []).find((entry) => entry?.row_id === rowId) ?? null;
+}
+
+function acceptedEvidenceAttempted(evidence) {
+  return (
+    evidence?.accepted_for_wake_history_closure === true ||
+    evidence?.evidence_level === "accepted_for_wake_history_closure"
+  );
+}
+
+function acceptedEvidenceMismatches(input, rowId, rowPresent) {
+  const evidence = eventEvidenceById(input, rowId);
+  const checks = [
+    { field: "row_present", ok: rowPresent },
+    {
+      field: "event_evidence.accepted_for_wake_history_closure",
+      ok: evidence?.accepted_for_wake_history_closure === true,
+    },
+    {
+      field: "event_evidence.evidence_level",
+      ok: evidence?.evidence_level === "accepted_for_wake_history_closure",
+    },
+    {
+      field: "event_evidence.accepted_evidence_id",
+      ok:
+        typeof evidence?.accepted_evidence_id === "string" &&
+        evidence.accepted_evidence_id.length > 0,
+    },
+    {
+      field: "event_evidence.source_record_id",
+      ok: evidence?.source_record_id === REQUIRED_SOURCE_RECORD_ID,
+    },
+    {
+      field: "event_evidence.event_ledger_id",
+      ok: evidence?.event_ledger_id === input.event_ledger?.ledger_id,
+    },
+  ];
+  return checks.filter((entry) => !entry.ok).map((entry) => entry.field);
+}
+
+function eventEvidenceSummaryForRow(input, rowId, rowPresent) {
+  const evidence = eventEvidenceById(input, rowId);
+  const attempted = acceptedEvidenceAttempted(evidence);
+  const mismatches = attempted ? acceptedEvidenceMismatches(input, rowId, rowPresent) : [];
+  const accepted = attempted && mismatches.length === 0;
+  return {
+    evidence_level: accepted
+      ? "accepted_for_wake_history_closure"
+      : attempted
+      ? "accepted_evidence_contract_mismatch"
+      : rowPresent
+      ? "source_record_event_ledger_declared"
+      : "missing",
+    accepted_evidence_contract_attempted: attempted,
+    accepted_evidence_mismatches: mismatches,
+    accepted_for_wake_history_closure: accepted,
+  };
+}
+
 function evaluateRows(input) {
   const rows = input.event_ledger?.rows ?? [];
-  return REQUIRED_EVENT_ROWS.map((rowId) =>
-    row(
+  return REQUIRED_EVENT_ROWS.map((rowId) => {
+    const rowPresent = rows.includes(rowId);
+    const evidenceSummary = eventEvidenceSummaryForRow(input, rowId, rowPresent);
+    return row(
       rowId,
       `${rowId} is present in the retained event ledger`,
-      rows.includes(rowId),
+      rowPresent,
       "event.ledger_residual",
       {
         event_ledger_id: input.event_ledger?.ledger_id ?? null,
+        ...evidenceSummary,
       }
-    )
-  );
+    );
+  });
+}
+
+function acceptedEvidenceSummary(eventRows) {
+  const rowEvidence = REQUIRED_EVENT_ROWS.map((rowId) => {
+    const eventRow = eventRows.find((entry) => entry.row_id === rowId);
+    return {
+      row_id: rowId,
+      evidence_level: eventRow?.evidence_level ?? "missing",
+      accepted_evidence_contract_attempted:
+        eventRow?.accepted_evidence_contract_attempted === true,
+      accepted_evidence_mismatches:
+        eventRow?.accepted_evidence_mismatches ?? [],
+      accepted_for_wake_history_closure:
+        eventRow?.accepted_for_wake_history_closure === true,
+    };
+  });
+  const countsByEvidenceLevel = {};
+  for (const entry of rowEvidence) {
+    countsByEvidenceLevel[entry.evidence_level] =
+      (countsByEvidenceLevel[entry.evidence_level] ?? 0) + 1;
+  }
+  const acceptedRowCount = rowEvidence.filter(
+    (entry) => entry.accepted_for_wake_history_closure
+  ).length;
+  return {
+    required_row_count: REQUIRED_EVENT_ROWS.length,
+    accepted_row_count: acceptedRowCount,
+    accepted_for_wake_history_closure:
+      acceptedRowCount === REQUIRED_EVENT_ROWS.length,
+    counts_by_evidence_level: countsByEvidenceLevel,
+    row_evidence: rowEvidence,
+  };
 }
 
 export function buildEventWakeHistoryPullbackDiagnostic(input = buildDefaultEventWakeHistoryPullbackInput()) {
   const eventRows = evaluateRows(input);
-  const sourceRecordOk = input.source_record_id === "theta_sea_branch_q0_v0";
+  const sourceRecordOk = input.source_record_id === REQUIRED_SOURCE_RECORD_ID;
   const expectedRowsOk = sameArray(input.expected_rows, REQUIRED_EVENT_ROWS);
   const eventRowsOk = eventRows.every((entry) => entry.status === "pass");
   const failedRows = eventRows.filter((entry) => entry.status === "fail");
@@ -90,6 +187,7 @@ export function buildEventWakeHistoryPullbackDiagnostic(input = buildDefaultEven
     failedRows.unshift({ row_id: "expected_rows", failure_code: "event.ledger_residual" });
   }
   const boundaryClosed = sourceRecordOk && expectedRowsOk && eventRowsOk;
+  const acceptedSummary = acceptedEvidenceSummary(eventRows);
 
   return {
     schema: EVENT_WAKE_HISTORY_PULLBACK_SCHEMA,
@@ -103,13 +201,14 @@ export function buildEventWakeHistoryPullbackDiagnostic(input = buildDefaultEven
     boundary_status: boundaryClosed ? "closed" : "failed",
     residual_norm: boundaryClosed ? 0 : null,
     row_refs: input.event_ledger?.rows ?? [],
+    accepted_evidence_summary: acceptedSummary,
     event_rows: [
       row(
         "source_record_id",
         "event wake-history rows use the retained Noether sea source record",
         sourceRecordOk,
         "residual.provenance_gap",
-        { required_source_record_id: "theta_sea_branch_q0_v0" }
+        { required_source_record_id: REQUIRED_SOURCE_RECORD_ID }
       ),
       row(
         "expected_rows",
@@ -124,6 +223,8 @@ export function buildEventWakeHistoryPullbackDiagnostic(input = buildDefaultEven
       diagnostic_status: boundaryClosed ? "diagnostic_passed_priority_only" : "diagnostic_failed",
       retained_branch: false,
       updates_live_validation_gate: false,
+      accepted_event_evidence_for_closure:
+        acceptedSummary.accepted_for_wake_history_closure,
       failure_code: failedRows[0]?.failure_code ?? null,
       first_failed_row: failedRows[0]?.row_id ?? null,
       first_failure_status:
@@ -245,6 +346,13 @@ function main() {
           artifact_schema: EVENT_WAKE_HISTORY_PULLBACK_SCHEMA,
           promotion_status: PROMOTION_STATUS,
           packet_id: PACKET_ID,
+          accepted_evidence_summary: [
+            "row_evidence",
+            "counts_by_evidence_level",
+            "accepted_evidence_contract_attempted",
+            "accepted_evidence_mismatches",
+            "accepted_for_wake_history_closure",
+          ],
           controls: ["missing-angular-momentum-row", "source-record-mismatch"],
         },
         args.pretty

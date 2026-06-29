@@ -174,7 +174,7 @@ function evaluateEq07aCompactRegionCarrier(input, inputPath) {
       row: "EQ-07A",
       supportedRows: ["EQ-07A", "EQ-07", "EQ-08", "EQ-09", "EQ-10", "EQ-11"],
       claimLevel:
-        "score-neutral compact-region carrier residual; accepted compact-region retained evidence is required before score movement",
+        "score-neutral compact-region carrier residual; accepted compact-region retained evidence is required before score review",
     },
     tolerances,
     summary: {
@@ -654,7 +654,7 @@ function firstBlocker({ status, carrier, missingRows, carrierBinding, variableDi
   if (failedControl) {
     return `negative_control_failed_${failedControl.id}`;
   }
-  return carrier.reason ?? "unknown_blocker";
+  return carrier.reason ?? status;
 }
 
 function normalizeStatus(row) {

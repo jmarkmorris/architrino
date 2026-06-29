@@ -34,6 +34,14 @@ test("Noether sea handoff diagnostic emits all priority-only boundary rows", () 
   assert.equal(artifact.result.retained_branch, false);
   assert.equal(artifact.result.updates_live_validation_gate, false);
   assert.equal(artifact.result.failure_code, null);
+  assert.equal(
+    artifact.accepted_evidence_summary.counts_by_evidence_level
+      .source_record_medium_response_declared,
+    1
+  );
+  assert.equal(artifact.accepted_evidence_summary.accepted_response_count, 0);
+  assert.equal(artifact.accepted_evidence_summary.accepted_for_medium_response_closure, false);
+  assert.equal(artifact.result.accepted_medium_response_evidence_for_closure, false);
   assert.deepEqual(
     artifact.boundary_rows.map((row) => row.row_id),
     [
@@ -48,6 +56,34 @@ test("Noether sea handoff diagnostic emits all priority-only boundary rows", () 
     ]
   );
   assert.equal(artifact.boundary_rows.every((row) => row.status === "pass"), true);
+});
+
+test("Noether sea accepted medium-response label without evidence id stays non-accepted", () => {
+  const input = buildDefaultNoetherSeaCompatibilityHandoffInput();
+  const source = input.retained_branch_source_record;
+  input.accepted_medium_response_evidence = {
+    evidence_level: "accepted_for_medium_response_closure",
+    accepted_for_medium_response_closure: true,
+    source_record_id: source.record_id,
+    response_object_id: input.handoff.medium_response.response_object_id,
+    branch_class: source.branch_class,
+    retained_chart_id: source.retained_chart_id,
+    retained_window_id: source.retained_window.id,
+    regulator_state: source.regulator_state,
+  };
+  const artifact = buildNoetherSeaCompatibilityHandoffDiagnostic(input);
+  const responseEvidence = artifact.accepted_evidence_summary.response_evidence[0];
+
+  assert.deepEqual(validateNoetherSeaCompatibilityHandoffArtifact(artifact), []);
+  assert.equal(artifact.result.diagnostic_status, "diagnostic_passed_priority_only");
+  assert.equal(responseEvidence.evidence_level, "accepted_evidence_contract_mismatch");
+  assert.equal(responseEvidence.accepted_evidence_contract_attempted, true);
+  assert.equal(responseEvidence.accepted_for_medium_response_closure, false);
+  assert.deepEqual(responseEvidence.accepted_evidence_mismatches, [
+    "accepted_medium_response_evidence.accepted_evidence_id",
+  ]);
+  assert.equal(artifact.accepted_evidence_summary.accepted_response_count, 0);
+  assert.equal(artifact.result.accepted_medium_response_evidence_for_closure, false);
 });
 
 test("Noether sea handoff diagnostic CLI writes, validates, and reports schema", () => {
@@ -67,6 +103,13 @@ test("Noether sea handoff diagnostic CLI writes, validates, and reports schema",
 
   const schema = JSON.parse(execFileSync(process.execPath, [scriptPath, "--schema"], { encoding: "utf8" }));
   assert.equal(schema.artifact_schema, NOETHER_SEA_COMPATIBILITY_HANDOFF_SCHEMA);
+  assert.deepEqual(schema.accepted_evidence_summary, [
+    "response_evidence",
+    "counts_by_evidence_level",
+    "accepted_evidence_contract_attempted",
+    "accepted_evidence_mismatches",
+    "accepted_for_medium_response_closure",
+  ]);
   assert.deepEqual(schema.controls, ["retained-history-mismatch", "speed-conflation", "hidden-tuning"]);
 });
 

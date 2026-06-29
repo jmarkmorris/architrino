@@ -163,13 +163,13 @@ function evaluateNeutrinoPhaseOperator(input, inputPath) {
       row: "EQ-16A",
       supportedRows: ["EQ-16A"],
       claimLevel:
-        "score-neutral neutrino common-clock residual-phase operator; accepted retained rows are required before score movement",
+        "score-neutral neutrino common-clock residual-phase operator; accepted retained rows are required before score review",
     },
     tolerances,
     summary: {
       status,
-      scoreDecision:
-        status === "populated" ? "score_review_required" : SCORE_DECISION,
+      scoreDecision: SCORE_DECISION,
+      scoreReviewPreconditionsMet: status === "populated",
       missingRows,
       nextBlocker: firstBlocker({
         status,

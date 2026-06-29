@@ -192,7 +192,7 @@ function evaluateEq20PressureEffectiveLambda(input, inputPath) {
       row: "EQ-20",
       supportedRows: ["EQ-06", "EQ-11", "EQ-18", "EQ-19", "EQ-20", "EQ-24", "EQ-32"],
       claimLevel:
-        "score-neutral pressure/effective-Lambda residual; accepted retained rows are required before score movement",
+        "score-neutral pressure/effective-Lambda residual; accepted retained rows are required before score review",
     },
     constants,
     tolerances,

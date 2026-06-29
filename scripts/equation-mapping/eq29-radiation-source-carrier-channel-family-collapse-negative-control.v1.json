@@ -56,7 +56,7 @@
           "radiation_source_carrier",
           "synchrotron source"
         ],
-        "claimLevel": "accepted-looking collapsed-family control; generic EQ-29 radiation-source carrier support is not photon-channel output family evidence"
+        "claimLevel": "accepted-looking collapsed-family control; generic EQ-29 radiation-source carrier support is not photon-channel output family evidence; negative control only, no score change"
       },
       "source_mechanism_row": {
         "id": "source-mechanism-synchrotron-source-candidate-0001",

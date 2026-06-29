@@ -121,6 +121,9 @@ const runtimeIdentityAbsenceProbeStatus =
 
 test("A1 admissible profile bounds attempt remains fail-closed and priority-only", () => {
   const packet = runA1Diagnostic("a1_admissible_profile_bounds_attempt");
+  const inactiveCoverBridge = packet.inactive_cover_interval_box_certificate_bridge;
+  const retainedRootBridge =
+    packet.retained_root_interval_box_certificate_bridge;
   assert.equal(
     packet.schema,
     "architrino.priority.master_equation_closure.a1_admissible_profile_bounds.v0"
@@ -137,6 +140,59 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(packet.future_profile_admissibility.used_as_local_certificate, true);
   assert.equal(packet.future_profile_admissibility.used_as_shared_certificate, false);
   assert.equal(packet.retained_root_context.used_as_certificate, false);
+  assert.equal(
+    inactiveCoverBridge.schema,
+    "architrino.priority.master_equation_closure.a1_inactive_cover_interval_box_certificate_bridge.v0"
+  );
+  assert.equal(
+    inactiveCoverBridge.status,
+    "local_fixed_a1_sidecar_inactive_cover_interval_bridge_present_not_shared_finite_collar_certificate"
+  );
+  assert.match(inactiveCoverBridge.certificate_digest, /^sha256:[0-9a-f]{64}$/);
+  assert.equal(inactiveCoverBridge.theta_slab_count, 4);
+  assert.equal(inactiveCoverBridge.delta_slab_count_per_inactive_interval, 16);
+  assert.equal(inactiveCoverBridge.inactive_cover_interval_row_count, 6);
+  assert.equal(inactiveCoverBridge.subbox_count, 384);
+  assert.equal(inactiveCoverBridge.all_subboxes_strictly_signed, true);
+  assert.ok(inactiveCoverBridge.min_signed_gap > 0);
+  assert.equal(
+    inactiveCoverBridge.bounds_fixed_a1_sidecar_inactive_cover_interval_boxes,
+    true
+  );
+  assert.equal(
+    inactiveCoverBridge.bounds_selected_finite_collar_inactive_cover_interval_boxes,
+    false
+  );
+  assert.equal(inactiveCoverBridge.same_box_inactive_cover_binding_present, false);
+  assert.equal(inactiveCoverBridge.used_as_certificate, false);
+  assert.equal(inactiveCoverBridge.used_as_local_certificate, true);
+  assert.equal(inactiveCoverBridge.used_as_shared_certificate, false);
+  assert.equal(
+    retainedRootBridge.schema,
+    "architrino.priority.master_equation_closure.a1_retained_root_interval_box_certificate_bridge.v0"
+  );
+  assert.equal(
+    retainedRootBridge.status,
+    "local_fixed_a1_sidecar_retained_root_interval_bridge_present_not_shared_finite_collar_certificate"
+  );
+  assert.match(retainedRootBridge.certificate_digest, /^sha256:[0-9a-f]{64}$/);
+  assert.equal(retainedRootBridge.retained_root_window_count, 4);
+  assert.equal(retainedRootBridge.all_windows_endpoint_sign_bracketed, true);
+  assert.equal(retainedRootBridge.all_windows_jacobian_floor_certified, true);
+  assert.ok(retainedRootBridge.min_endpoint_signed_gap > 0);
+  assert.ok(retainedRootBridge.min_abs_jacobian_floor > 0);
+  assert.equal(
+    retainedRootBridge.bounds_fixed_a1_sidecar_retained_root_interval_boxes,
+    true
+  );
+  assert.equal(
+    retainedRootBridge.bounds_selected_finite_collar_retained_root_interval_boxes,
+    false
+  );
+  assert.equal(retainedRootBridge.same_box_retained_root_binding_present, false);
+  assert.equal(retainedRootBridge.used_as_certificate, false);
+  assert.equal(retainedRootBridge.used_as_local_certificate, true);
+  assert.equal(retainedRootBridge.used_as_shared_certificate, false);
   assert.match(
     packet.row_identity.source_artifact_hash,
     /^sha256:[0-9a-f]{64}$/
@@ -294,12 +350,17 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.deepEqual(
     packet.shared_interval_box_certificate_target.shared_interval_boxes
       .missing_box_ids,
-    ["retained_root_interval_boxes", "inactive_cover_interval_boxes"]
+    []
   );
   assert.deepEqual(
     packet.shared_interval_box_certificate_target.shared_interval_boxes
       .local_certificate_box_ids_present,
     ["past_profile_interval_box", "future_transport_interval_box"]
+  );
+  assert.deepEqual(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .local_bridge_box_ids_present,
+    ["retained_root_interval_boxes", "inactive_cover_interval_boxes"]
   );
   assert.equal(
     packet.shared_interval_box_certificate_target.shared_interval_boxes
@@ -339,6 +400,36 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(
     packet.shared_interval_box_certificate_target.shared_interval_boxes
       .future_transport_outward_for_continuous_transport_equation,
+    false
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .retained_root_interval_box_certificate_bridge.certificate_digest,
+    retainedRootBridge.certificate_digest
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .retained_root_interval_box_certificate_bridge.used_as_certificate,
+    false
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .retained_root_interval_box_certificate_bridge.used_as_shared_certificate,
+    false
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .inactive_cover_interval_box_certificate_bridge.certificate_digest,
+    inactiveCoverBridge.certificate_digest
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .inactive_cover_interval_box_certificate_bridge.used_as_certificate,
+    false
+  );
+  assert.equal(
+    packet.shared_interval_box_certificate_target.shared_interval_boxes
+      .inactive_cover_interval_box_certificate_bridge.used_as_shared_certificate,
     false
   );
   assert.equal(
@@ -467,7 +558,7 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.deepEqual(
     packet.shared_interval_box_certificate_target.shared_interval_boxes
       .missing_box_ids,
-    ["retained_root_interval_boxes", "inactive_cover_interval_boxes"]
+    []
   );
   assert.equal(
     packet.shared_interval_box_certificate_target.shared_interval_boxes
@@ -2107,6 +2198,55 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     true
   );
   assert.equal(
+    oneSlotConstructionAttempt.inactive_cover_interval_box_certificate_bridge
+      .certificate_digest,
+    inactiveCoverBridge.certificate_digest
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.inactive_cover_interval_box_certificate_bridge
+      .used_as_shared_certificate,
+    false
+  );
+  assert.equal(
+    oneSlotConstructionAttempt.construction_status
+      .inactive_cover_interval_box_bridge_digest,
+    inactiveCoverBridge.certificate_digest
+  );
+  assert.equal(
+    sharedAuditCandidate.shared_interval_box_family_candidate.bound_rows
+      .inactive_cover_interval_box_certificate_bridge_digest,
+    inactiveCoverBridge.certificate_digest
+  );
+  assert.equal(
+    sharedAuditCandidate.shared_interval_box_family_candidate.same_box_status
+      .inactive_cover_interval_box_bridge_present_locally,
+    true
+  );
+  assert.equal(
+    sharedAuditCandidate.shared_interval_box_family_candidate.same_box_status
+      .inactive_cover_interval_box_bridge_used_as_shared_certificate,
+    false
+  );
+  assert.equal(
+    sharedAuditCandidate.same_box_inactive_cover_binding_absence_row
+      .inactive_cover_interval_box_certificate_bridge_digest,
+    inactiveCoverBridge.certificate_digest
+  );
+  assert.equal(
+    sharedAuditCandidate.same_box_inactive_cover_binding_absence_row
+      .inactive_cover_interval_box_bridge_scope,
+    "fixed_A1_sidecar_only_not_selected_finite_collar_same_box_binding"
+  );
+  assert.equal(
+    sharedAuditCandidate.same_box_inactive_cover_binding_absence_row.blocked_by,
+    "same_box_inactive_cover_binding_absent"
+  );
+  assert.equal(
+    sharedAuditCandidate.shared_interval_box_family_candidate.negative_control
+      .local_fixed_sidecar_inactive_cover_bridge_does_not_satisfy_same_box_binding,
+    true
+  );
+  assert.equal(
     oneSlotConstructionAttempt.first_failure,
     "one_slot_shared_directed_rounding_audit_trail_for_source_q_derivative_composition_missing"
   );
@@ -2249,6 +2389,11 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     packet.certificate_composition_readiness.local_certificate_inputs
       .local_certificate_box_ids_present,
     ["past_profile_interval_box", "future_transport_interval_box"]
+  );
+  assert.deepEqual(
+    packet.certificate_composition_readiness.local_certificate_inputs
+      .local_bridge_box_ids_present,
+    ["retained_root_interval_boxes", "inactive_cover_interval_boxes"]
   );
   assert.deepEqual(
     packet.certificate_composition_readiness.missing_certificate_grade_objects,
@@ -2638,7 +2783,15 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     false
   );
   assert.ok(
-    packet.blocked_rows.includes("inactive_cover_interval_boxes_absent")
+    packet.blocked_rows.includes("same_box_inactive_cover_binding_absent")
+  );
+  assert.ok(
+    packet.blocked_rows.includes("same_box_retained_root_binding_absent")
+  );
+  assert.equal(packet.blocked_rows.includes("retained_root_boxes_absent"), false);
+  assert.equal(
+    packet.blocked_rows.includes("inactive_cover_interval_boxes_absent"),
+    false
   );
   assert.equal(packet.blocked_rows.includes("inactive_cover_id_absent"), false);
   assert.ok(

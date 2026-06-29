@@ -99,7 +99,7 @@ The carrier requires:
 | $\mathcal S_{\mathrm{rad}}$ | Radiation and high-energy output rows. | Photon, synchrotron, Compton, hadronic, pair-cascade, cosmic-ray, and neutrino channels as comparison outputs. |
 | $\mathcal F_{\mathrm{fb}}$ | Environmental feedback row. | Heating, cavities, cocoons, bubbles, and duty-cycle work bound to the same release history. |
 
-The first score-moving carrier should be source-backed as one accepted `agn_accretion_release_carrier`. A packet that accepts only jet power, only radio lobes, or only horizon entropy does not populate `EQ-07B`.
+The first accepted-evidence carrier should be source-backed as one accepted `agn_accretion_release_carrier`. A packet that accepts only jet power, only radio lobes, or only horizon entropy does not populate `EQ-07B`.
 
 ## Release Residual
 
@@ -229,11 +229,11 @@ This object can test whether launch speed, collimation, radiation, baryon loadin
 | `agn.perpetual_recycling` | Outward release appears as free energy rather than redistribution from infalling matter, radiation, or pre-existing medium energy. |
 | `agn.radiation_child_promoted_to_parent` | A downstream EQ-29-style radiation carrier is promoted into the parent AGN release carrier while inflow, jet, horizon label, Noether sea loading, and feedback remain private or missing. |
 
-## Attack Card Summary
+## Equation Attack Card
 
 - Current score and closure driver: unscored; prove or fail one accretion-to-release residual over $\Theta_{\mathrm{AGN}}$ before adding `EQ-07B` to the main score table.
 - Primary $\mathbb{A}\mathbb{A}\mathbb{A}$ carrier: $\Theta_{\mathrm{AGN}}(W,T)$ plus $\theta_W$, $\mathcal L_{E\mathbf p\mathbf J}$, Noether sea loading, release-channel rows, and $\mathcal B_H$.
-- Smallest score-moving evidence object: accepted `agn_accretion_release_carrier` with source-backed inflow, accretion, jet, radiation, feedback, horizon-label, event-ledger, and no-retune rows.
+- Smallest accepted evidence object: accepted `agn_accretion_release_carrier` with source-backed inflow, accretion, jet, radiation, feedback, horizon-label, event-ledger, and no-retune rows.
 - Exact first blocker: `missing_accepted_agn_accretion_release_carrier`.
 - Existing scripts/fixtures/packets found: [eq07b-agn-accretion-release-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-source-attempt.v1.json) is the score-neutral identity shell, and [eq07b-agn-accretion-release-carrier-identity-check.mjs](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs) enforces AGN source/release identity before residual arithmetic; related consumers include effective-metric, pressure/effective-$\Lambda$, radiation source-ledger, and finite-window thermodynamic runners.
 - Direct Geometry Layer: present in this packet; it binds strong-field support, inflow/accretion, radiation, jet, wind/sheath, Noether sea loading, feedback, horizon interface, event ledger, provenance, and no-hidden-retune witness to one AGN source/release identity.

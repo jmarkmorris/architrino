@@ -1,0 +1,184 @@
+{
+  "schema": "aaa-equation-map-compton-recoil-event-input/v1",
+  "claimLevel": "Gate A source-object contract missing-metadata negative control; accepted-looking Gate A row uses an evidence-class path but omits required source-object metadata, so it is score-neutral and not retained evidence",
+  "constants": {
+    "h": 1,
+    "c_gamma": 1,
+    "M_e_exp": 1
+  },
+  "eq26_reference": {
+    "h": 1,
+    "c_gamma": 1,
+    "M_e_exp": 1,
+    "recoil_convention": "relativistic_elastic_recoil"
+  },
+  "event": {
+    "id": "e_gamma_e_0",
+    "label": "native-compton-recoil-gate-a-source-contract-missing-metadata-negative-control",
+    "recoil_convention": "relativistic_elastic_recoil",
+    "incident_photon": {
+      "id": "gamma_in_e_gamma_e_0_gate_a_source_contract_missing_metadata_control",
+      "energy": 2,
+      "frequency": 2,
+      "wavelength": 0.5,
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "momentum": [
+        2,
+        0,
+        0
+      ]
+    },
+    "outgoing_photon": {
+      "id": "gamma_out_e_gamma_e_0_gate_a_source_contract_missing_metadata_control",
+      "energy": 1,
+      "frequency": 1,
+      "wavelength": 1,
+      "theta_degrees": 60,
+      "direction": [
+        0.5,
+        0.8660254037844386,
+        0
+      ],
+      "momentum": [
+        0.5,
+        0.8660254037844386,
+        0
+      ]
+    },
+    "medium": {
+      "status": "attempt",
+      "rowId": "medium-ledger-zero-gate-a-source-contract-missing-metadata-control",
+      "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+      "eventId": "e_gamma_e_0",
+      "delta_E": 0,
+      "delta_p": [
+        0,
+        0,
+        0
+      ]
+    },
+    "remnant": {
+      "status": "attempt",
+      "rowId": "remnant-ledger-zero-gate-a-source-contract-missing-metadata-control",
+      "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+      "eventId": "e_gamma_e_0",
+      "delta_E": 0,
+      "delta_p": [
+        0,
+        0,
+        0
+      ]
+    },
+    "native_rows": {
+      "photon_gate_A_input_output": {
+        "status": "accepted",
+        "rowId": "photon-gate-A-input-output-source-contract-missing-metadata-negative-control",
+        "sourcePath": "scripts/equation-mapping/compton-recoil-event-replay.mjs",
+        "eventId": "e_gamma_e_0",
+        "incomingPhotonPacketId": "gamma_in_e_gamma_e_0_gate_a_source_contract_missing_metadata_control",
+        "outgoingPhotonPacketId": "gamma_out_e_gamma_e_0_gate_a_source_contract_missing_metadata_control",
+        "hRowId": "h_gate_a_source_contract_missing_metadata_control",
+        "cGammaRowId": "c_gamma_gate_a_source_contract_missing_metadata_control",
+        "nullBranchStatus": "weak_homogeneous_source_contract_missing_metadata_control",
+        "frequencyRows": {
+          "incomingFrequency": 2,
+          "outgoingFrequency": 1,
+          "incomingWavelength": 0.5,
+          "outgoingWavelength": 1
+        },
+        "momentumRows": {
+          "incomingMomentum": [
+            2,
+            0,
+            0
+          ],
+          "outgoingMomentum": [
+            0.5,
+            0.8660254037844386,
+            0
+          ]
+        },
+        "gateAResiduals": {
+          "energyFrequencyResidual": 0,
+          "momentumWavelengthResidual": 0,
+          "nullMassShellResidual": 0,
+          "packetIdentityResidual": 0,
+          "retuneResidual": 0
+        }
+      },
+      "photon_gate_B_transverse_handoff": {
+        "status": "attempt",
+        "rowId": "photon-gate-B-transverse-handoff-gate-a-source-contract-missing-metadata-control",
+        "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+        "eventId": "e_gamma_e_0"
+      },
+      "target_retained_branch": {
+        "status": "attempt",
+        "rowId": "target-retained-branch-gate-a-source-contract-missing-metadata-control",
+        "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+        "eventId": "e_gamma_e_0"
+      },
+      "recoil_branch": {
+        "status": "attempt",
+        "rowId": "recoil-branch-gate-a-source-contract-missing-metadata-control",
+        "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+        "eventId": "e_gamma_e_0"
+      },
+      "angular_momentum_ledger_delta_J": {
+        "status": "attempt",
+        "rowId": "angular-momentum-ledger-delta-J-gate-a-source-contract-missing-metadata-control",
+        "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+        "eventId": "e_gamma_e_0"
+      },
+      "noether_sea_state_row": {
+        "status": "attempt",
+        "rowId": "noether-sea-state-row-gate-a-source-contract-missing-metadata-control",
+        "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+        "eventId": "e_gamma_e_0"
+      },
+      "energy_momentum_event_ledger": {
+        "status": "attempt",
+        "rowId": "energy-momentum-event-ledger-gate-a-source-contract-missing-metadata-control",
+        "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+        "eventId": "e_gamma_e_0"
+      }
+    },
+    "em_gate_rows": {
+      "effective_charge_current_continuity": {
+        "status": "attempt",
+        "rowId": "effective-charge-current-continuity-gate-a-source-contract-missing-metadata-control",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "eventId": "e_gamma_e_0"
+      },
+      "em_stress_poynting_control_volume": {
+        "status": "attempt",
+        "rowId": "em-stress-poynting-control-volume-gate-a-source-contract-missing-metadata-control",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "eventId": "e_gamma_e_0"
+      },
+      "effective_gauge_chart_witness": {
+        "status": "attempt",
+        "rowId": "effective-gauge-chart-witness-gate-a-source-contract-missing-metadata-control",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "eventId": "e_gamma_e_0"
+      },
+      "photon_gate_C_compton_vertex_handoff": {
+        "status": "attempt",
+        "rowId": "photon-gate-C-compton-vertex-handoff-gate-a-source-contract-missing-metadata-control",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "eventId": "e_gamma_e_0"
+      }
+    },
+    "em_gate_residuals": {
+      "continuityResidual": 0,
+      "angularMomentumResidual": 0,
+      "gaugeResidual": 0,
+      "shareResidual": 0,
+      "retuneResidual": 0
+    }
+  }
+}

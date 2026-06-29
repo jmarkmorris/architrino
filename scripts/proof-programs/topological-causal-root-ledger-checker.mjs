@@ -17,6 +17,13 @@ const ROOT_EPSILON = 1e-8;
 const ROOT_TOLERANCE = 1e-10;
 const DUPLICATE_ROOT_TOLERANCE = 1e-6;
 const DEFAULT_CAUSTIC_TOLERANCE = 1e-4;
+const DEFAULT_SOURCE_RECORD_ID = "theta_sea_branch_q0_v0";
+const DEFAULT_BRANCH_CLASS = "q0";
+const DEFAULT_RETAINED_CHART_ID = "torus_root_ledger_q0";
+const DEFAULT_RETAINED_WINDOW_ID = "W0";
+const DEFAULT_ACTIVE_ROOT_LEDGER_ID = "R_act_q0";
+const DEFAULT_EVENT_LEDGER_ID = "L_EpJ_q0";
+const DEFAULT_RESPONSE_OBJECT_ID = "M_sea_q0";
 
 function vecAdd(left, right) {
   return left.map((value, index) => value + right[index]);
@@ -381,6 +388,38 @@ function middleHingeAudit(hinge) {
   };
 }
 
+function sourceRecordContract(scenario, ledgerSummary) {
+  return {
+    source_record_id: DEFAULT_SOURCE_RECORD_ID,
+    branch_class: DEFAULT_BRANCH_CLASS,
+    retained_chart_id: DEFAULT_RETAINED_CHART_ID,
+    retained_window: {
+      id: DEFAULT_RETAINED_WINDOW_ID,
+      h: scenario.retained_history_window,
+      memory_depth: scenario.retained_history_window,
+    },
+    regulator_state: {
+      eta: scenario.eta,
+      epsilon_c: scenario.epsilon_c,
+      status: "declared",
+    },
+    active_root_ledger: {
+      ledger_id: DEFAULT_ACTIVE_ROOT_LEDGER_ID,
+      root_row_count: ledgerSummary.root_row_count,
+      partner_summary_row_count: ledgerSummary.ordered_partner_pair_count,
+      self_summary_row_count: ledgerSummary.self_row_count,
+      winding_owner_present: ledgerSummary.winding_owner_present,
+      jacobian_floor: ledgerSummary.simple_root_floor_min,
+      caustic_candidate_count: ledgerSummary.caustic_candidate_count,
+      source_identity_rows: ["partner-hit", "self-hit"],
+    },
+    event_ledger_id: DEFAULT_EVENT_LEDGER_ID,
+    response_object_id: DEFAULT_RESPONSE_OBJECT_ID,
+    contract_status:
+      "declared_same_record_priority_default; not retained-branch certification",
+  };
+}
+
 export function buildTopologicalCausalRootLedgerArtifact(options = {}) {
   const scenario = defaultScenario();
   const subdivisions = Number.parseInt(options.subdivisions ?? DEFAULT_SUBDIVISIONS, 10);
@@ -401,6 +440,17 @@ export function buildTopologicalCausalRootLedgerArtifact(options = {}) {
   const pairContactMinRootCount = finiteMin(pairRootCounts);
   const selfHitRootCount = selfRootCounts.reduce((sum, count) => sum + count, 0);
   const simpleRootFloorMin = finiteMin(absJacobians);
+  const ledgerSummary = {
+    path_count: scenario.paths.length,
+    ordered_partner_pair_count: ledger.pairRows.length,
+    self_row_count: ledger.selfRows.length,
+    pair_contact_min_root_count: Number.isFinite(pairContactMinRootCount) ? pairContactMinRootCount : null,
+    self_hit_root_count: selfHitRootCount,
+    root_row_count: ledger.rows.length,
+    winding_owner_present: allRootsHaveWindingOwners,
+    simple_root_floor_min: formatNumber(simpleRootFloorMin),
+    caustic_candidate_count: causticCount,
+  };
 
   return {
     schema: TOPOLOGICAL_CAUSAL_ROOT_LEDGER_SCHEMA,
@@ -412,6 +462,8 @@ export function buildTopologicalCausalRootLedgerArtifact(options = {}) {
       box_length: scenario.box_length,
       c_f: scenario.c_f,
       retained_history_window: scenario.retained_history_window,
+      eta: scenario.eta,
+      epsilon_c: scenario.epsilon_c,
       torus_diameter: formatNumber(scenario.compact_lab.torus_diameter),
       compact_pair_contact_condition: scenario.compact_lab.compact_pair_contact_condition,
       compact_pair_contact_condition_holds: scenario.compact_lab.compact_pair_contact_condition_holds,
@@ -422,6 +474,7 @@ export function buildTopologicalCausalRootLedgerArtifact(options = {}) {
         speed: formatNumber(entry.speed ?? 0),
       })),
     },
+    source_record_contract: sourceRecordContract(scenario, ledgerSummary),
     numerical_method: {
       root_domain_tau: [ROOT_EPSILON, scenario.retained_history_window],
       subdivisions,
@@ -431,16 +484,7 @@ export function buildTopologicalCausalRootLedgerArtifact(options = {}) {
       retained_time: 0,
     },
     causal_root_ledger: {
-      summary: {
-        path_count: scenario.paths.length,
-        ordered_partner_pair_count: ledger.pairRows.length,
-        self_row_count: ledger.selfRows.length,
-        pair_contact_min_root_count: Number.isFinite(pairContactMinRootCount) ? pairContactMinRootCount : null,
-        self_hit_root_count: selfHitRootCount,
-        winding_owner_present: allRootsHaveWindingOwners,
-        simple_root_floor_min: formatNumber(simpleRootFloorMin),
-        caustic_candidate_count: causticCount,
-      },
+      summary: ledgerSummary,
       pair_rows: ledger.pairRows,
       self_rows: ledger.selfRows,
       root_rows: ledger.rows,
@@ -504,8 +548,45 @@ export function validateTopologicalCausalRootLedgerArtifact(artifact) {
   const summary = artifact.causal_root_ledger?.summary ?? {};
   assertField(summary.pair_contact_min_root_count >= 1, "partner rows must have at least one sampled root", errors);
   assertField(summary.self_hit_root_count >= 1, "self-hit rows must contain at least one sampled root", errors);
+  assertField(summary.root_row_count === artifact.causal_root_ledger?.root_rows?.length, "summary.root_row_count must match root_rows", errors);
   assertField(summary.winding_owner_present === true, "all roots must carry winding ownership", errors);
   assertField(summary.simple_root_floor_min > 0, "simple root floor must be positive", errors);
+
+  const sourceRecord = artifact.source_record_contract ?? {};
+  assertField(sourceRecord.source_record_id === DEFAULT_SOURCE_RECORD_ID, `source_record_id must be ${DEFAULT_SOURCE_RECORD_ID}`, errors);
+  assertField(sourceRecord.branch_class === DEFAULT_BRANCH_CLASS, `branch_class must be ${DEFAULT_BRANCH_CLASS}`, errors);
+  assertField(
+    sourceRecord.retained_chart_id === DEFAULT_RETAINED_CHART_ID,
+    `retained_chart_id must be ${DEFAULT_RETAINED_CHART_ID}`,
+    errors
+  );
+  assertField(
+    sourceRecord.retained_window?.h === artifact.scenario?.retained_history_window,
+    "source_record_contract retained_window.h must match scenario retained_history_window",
+    errors
+  );
+  assertField(sourceRecord.regulator_state?.eta === artifact.scenario?.eta, "source_record_contract eta must match scenario eta", errors);
+  assertField(
+    sourceRecord.regulator_state?.epsilon_c === artifact.scenario?.epsilon_c,
+    "source_record_contract epsilon_c must match scenario epsilon_c",
+    errors
+  );
+  assertField(
+    sourceRecord.active_root_ledger?.ledger_id === DEFAULT_ACTIVE_ROOT_LEDGER_ID,
+    `active_root_ledger.ledger_id must be ${DEFAULT_ACTIVE_ROOT_LEDGER_ID}`,
+    errors
+  );
+  assertField(
+    sourceRecord.active_root_ledger?.root_row_count === summary.root_row_count,
+    "source_record_contract root_row_count must match root ledger summary",
+    errors
+  );
+  assertField(sourceRecord.event_ledger_id === DEFAULT_EVENT_LEDGER_ID, `event_ledger_id must be ${DEFAULT_EVENT_LEDGER_ID}`, errors);
+  assertField(
+    sourceRecord.response_object_id === DEFAULT_RESPONSE_OBJECT_ID,
+    `response_object_id must be ${DEFAULT_RESPONSE_OBJECT_ID}`,
+    errors
+  );
 
   const rootRows = artifact.causal_root_ledger?.root_rows ?? [];
   assertField(Array.isArray(rootRows) && rootRows.length > 0, "root_rows must be a nonempty array", errors);

@@ -27,7 +27,7 @@ No score changes.
 | Row | `EQ-25` |
 | Current score and closure driver | Score `3`; derive Boltzmann-like operator, entropy production, fluctuation, and thermalization from deterministic finite-window coarse-grained pushforward. |
 | Primary AAA carrier | Accepted `theta_therm`, specifically the CMB window candidate `theta_therm_CMB_attempt_0001`; not `W` alone and not a generic entropy carrier. |
-| Smallest score-moving evidence object | One source-backed accepted `theta_therm` finite-window record with state space, coarse-graining, measure, pushforward, projection, collision operator, entropy balance, thermalization depth, fluctuation, event ledger, shared Noether sea row, source provenance, and no-hidden-retune witness on one carrier. |
+| Smallest accepted evidence object | One source-backed accepted `theta_therm` finite-window record with state space, coarse-graining, measure, pushforward, projection, collision operator, entropy balance, thermalization depth, fluctuation, event ledger, shared Noether sea row, source provenance, and no-hidden-retune witness on one carrier. |
 | Exact first blocker | `missing_accepted_theta_therm`. |
 | Existing scripts, fixtures, and packets found | The `EQ-25` thermodynamic record runner and fixture listed above, the continuum-medium packet, the shared-observation packet, and the recombination/acoustic suffix packet as an adjacent thermal/provenance consumer. |
 | Candidate breakthrough angle | Use CMB, BBN, recombination, and local-radiation thermal/provenance records as inverse clues for `theta_therm` row fields, especially event ledger, channel-decomposed thermalization depth, zero effective photon chemical potential, and shared Noether sea keys. |
@@ -57,7 +57,9 @@ The CMB source-chain attempt fixture [eq25-thermodynamic-record-cmb-source-chain
 
 ## Source Inventory
 
-| Required row | Candidate source path | Current status | Same-carrier id | First reason not accepted | Smaller next action |
+Candidate paths in this table are conceptual source clues, not durable source objects. A durable `theta_therm_CMB` source object must be non-priority, non-authored, non-generated, non-source-contract, non-attempt/probe/mock/control evidence declaring `sourceObjectKind: "theta_therm_CMB"`, `sourceSupport: ["EQ-25", "theta_therm", "CMB thermalization"]`, `sourceWindowId`, `thermalProvenanceId`, `eventLedgerId`, and `transportPathId`.
+
+| Required row | Conceptual source clue, not durable source object | Current status | Same-carrier id | First reason not accepted | Smaller next action |
 | --- | --- | --- | --- | --- | --- |
 | `theta_therm` | [eq-06-24-25-continuum-medium-thermo-packet.md](eq-06-24-25-continuum-medium-thermo-packet.md) | `attempt` | `theta_therm_CMB_attempt_0001` | `row_not_accepted`; first blocker `missing_accepted_theta_therm` | Bind this row to existing `Theta_therm/prov` fields in the shared-observation packet. |
 | `state_space_row` | [entropy.md](../../../content/markdown/aaa/dynamics/entropy.md) | `attempt` | same | General entropy minimum spec exists, but no accepted CMB `W`, `Q`, `mu` row exists. | Name one source-to-decoupling window `W_CMB` and its retained variables. |
@@ -90,7 +92,7 @@ The first source-backed CMB thermalization object should list, without fitting n
 
 ## Direct Geometry Layer
 
-| Standard comparison term | AAA geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | CMB thermal carrier identity | Accepted `theta_therm` finite-window record on `theta_therm_CMB_attempt_0001`, not a generic entropy or Boltzmann postulate | `theta_therm` | Same `commonCarrierId`, `thetaThermId`, `sourceWindowId`, `thermalProvenanceId`, and event ledger across every row | `theta_therm_CMB_coordination_source`; `theta_therm_CMB_source_window_split`; `theta_therm_private_W` | Durable source-backed `theta_therm` CMB carrier row with explicit `EQ-25` support and source-to-decoupling identity fields. |
 | State space, coarse-graining, and measure terms | Finite-window state-space readout over one `W_CMB`, one `Q_CMB`, and one retained measure row | `state_space_row`, `coarse_graining_row`, `measure_row` | Same source window, coarse-graining id, carrier id, shared Noether sea row, and source provenance as the thermal carrier | `theta_therm_private_W`; source-window split checks | Accepted state-space/coarse-graining/measure rows for the same CMB source-to-decoupling window. |
@@ -108,11 +110,12 @@ The first source-backed CMB thermalization object should list, without fitting n
 - `hidden_thermo_retune`: changing Noether sea keys between CMB, BBN, recombination, and local-radiation rows fails no-retune.
 - `theta_therm_private_W`: a CMB thermal row that does not embed or reference the same accepted finite-window family headed by `W` cannot be treated as the `EQ-25` carrier.
 - `theta_therm_CMB_source_window_split`: accepted-looking rows may pass numeric thermodynamic residuals, but if one row changes `sourceWindowId`, `eventLedgerId`, `thermalProvenanceId`, or transport identity, the checker must return `blocked_source_window_split` before any populated result.
-- `theta_therm_CMB_coordination_source`: accepted-looking rows may share carrier, source identity, shared keys, and numeric residuals, but if their `sourcePath` values point only to priority packets, attempt fixtures, mock fixtures, or negative-control fixtures, the checker must return `blocked_source_evidence` with `accepted_without_evidence_source` before any populated result.
+- `theta_therm_CMB_coordination_source`: accepted-looking rows may share carrier, source identity, shared keys, and numeric residuals, but if their `sourcePath` values point only to priority packets, attempt fixtures, mock fixtures, or negative-control fixtures, the checker must keep the summary blocked at the ordinary `missing_accepted_theta_therm` row ladder while carrying the source failure in `nextBlockerDetails.reason=coordination_source_path`.
+- `theta_therm_CMB_source_contract_path`: a source-contract shell path is not retained thermodynamic evidence; accepted-looking rows with such paths must report `source_contract_path` before any populated result.
 
 ## 2026-06-26 Source-Evidence Guard
 
-The checker now separates resolving source paths from retained evidence paths. A row can still report `sourceReferenceExists=true` when its path exists in the repository, but accepted rows also need `sourceEvidenceReferenceExists=true` before the packet can populate. Priority packets and attempt/control fixtures are coordination material, not retained thermodynamic evidence.
+The checker now separates resolving source paths from retained evidence paths. A row can still report `sourceReferenceExists=true` when its path exists in the repository, but accepted rows also need `sourceEvidenceReferenceExists=true` before the packet can populate. Priority packets, source-contract shells, and attempt/control fixtures are coordination material, not retained thermodynamic evidence.
 
 The coordination-source negative control verifies the new gate:
 
@@ -120,15 +123,16 @@ The coordination-source negative control verifies the new gate:
 node scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs --input scripts/equation-mapping/eq25-thermodynamic-record-coordination-source-negative-control.v1.json --summary --pretty
 ```
 
-Expected result: `status=blocked_source_evidence`, `nextBlocker=accepted_without_evidence_source`, `sourceIdentityAccepted=true`, `thermodynamicNumericPass=true`, and `sourceEvidenceFailureCount=14`. Running the same fixture with `--require-populated` must exit nonzero.
+Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_theta_therm`, `nextBlockerDetails.reason=coordination_source_path`, `sourceIdentityAccepted=true`, `thermodynamicNumericPass=true`, and `sourceEvidenceFailureCount=14`. Running the same fixture with `--require-populated` must exit nonzero.
 
 ## Next Action
 
-Create one durable source-backed `theta_therm` CMB carrier row, then run:
+Create one durable source-backed `theta_therm` CMB carrier row only after the source-chain attempt and source-evidence controls preserve no score review:
 
 ```sh
 node scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs --input scripts/equation-mapping/eq25-thermodynamic-record-cmb-source-chain-attempt.v1.json --summary --pretty
-node scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs --summary --pretty
+node scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs --input scripts/equation-mapping/eq25-thermodynamic-record-coordination-source-negative-control.v1.json --summary --pretty
+node scripts/equation-mapping/eq25-thermodynamic-record-residual.mjs --input scripts/equation-mapping/eq25-thermodynamic-record-source-window-split-negative-control.v1.json --summary --pretty
 ```
 
-Until that row exists, the correct result remains `missing_accepted_theta_therm`.
+The coordination-source control must keep `nextBlocker=missing_accepted_theta_therm` with `nextBlockerDetails.reason=coordination_source_path`. The source-window split control must block before any populated result if `sourceWindowId`, `eventLedgerId`, `thermalProvenanceId`, or transport identity changes. Until a durable source-backed carrier row exists, the correct result remains `missing_accepted_theta_therm`.

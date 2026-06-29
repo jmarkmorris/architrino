@@ -149,8 +149,9 @@ The carrier requires:
 | Current score | `2` |
 | Closure driver | Recover recombination kinetics, Thomson visibility, sound horizon, Silk damping, acoustic transfer, shared thermal/provenance, and observation readout from one recombination/acoustic carrier. |
 | Primary carrier | $\Theta_{\mathrm{rec/ac}}$ with shared observation source window, thermal/provenance record, and readout record. |
-| Smallest score-moving evidence object | Accepted source-backed `recombination_acoustic_carrier` plus accepted bindings for all `EQ-22B` required rows in one shared observation record. |
+| Smallest accepted evidence object | Accepted source-backed `recombination_acoustic_carrier` plus accepted bindings for all `EQ-22B` required rows in one shared observation record. |
 | Exact first blocker | `missing_accepted_recombination_acoustic_carrier` |
+| Smallest next artifact | Replace the recombination/acoustic source attempt with one durable carrier source whose `theta_src`, thermal/provenance/readout rows, photon/neutrino handoffs, event ledger, and no-hidden-retune witness share one source window. |
 | Probe-exposed next blocker | `missing_accepted_theta_src` after the carrier-shell probe marks only the top carrier accepted-looking. |
 | Existing scripts/fixtures/packets | [eq22b-recombination-acoustic-residual.mjs](../../../scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs), [eq22b-recombination-acoustic-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-attempt.v1.json), [eq22b-recombination-acoustic-source-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-source-attempt.v1.json), [eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json) |
 | Fail-closed controls | Generic/source and `theta_src` coordination-source controls reject priority packets, authored prose, fixture files, private source windows, split readout clocks, and child-row source substitutions. |
@@ -234,7 +235,7 @@ node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --summar
 
 The expected attempt run returns `schemaOk: true`, `status: blocked_missing_accepted_recombination_acoustic_carrier`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_recombination_acoustic_carrier`. The normalized sample's Saha, Peebles, Thomson/visibility, sound-horizon, Silk-damping, acoustic-transfer, source-provenance, hidden-retune, and negative-control diagnostics should pass. They do not count as accepted retained evidence because the recombination/acoustic carrier and every row binding remain `status: attempt`.
 
-The runner also reports a compact `sourceAudit` for the required rows. The default attempt keeps every row source path resolving, but this is only provenance hygiene: row status remains `attempt`. Priority packets, authored AAA prose, generated files, attempt fixtures, mocks, probes, and negative controls are not accepted retained evidence sources. Accepted-looking rows with those source paths fail before score movement with `accepted_without_evidence_source`.
+The runner also reports `nextBlockerDetails` and a compact `sourceAudit` for the required rows. The default attempt keeps every row source path resolving, but this is only provenance hygiene: row status remains `attempt`, and `nextBlockerDetails` points to the unaccepted carrier. Priority packets, authored AAA prose, generated files, attempt fixtures, mocks, probes, and negative controls are not accepted retained evidence sources. Accepted-looking rows with those source paths fail before score review with `accepted_without_evidence_source`, with `nextBlockerDetails` naming the first rejected row and its source reason.
 
 ## Source-Attempt Fixture
 
@@ -287,6 +288,10 @@ Candidate finite source window: `W_src_BBN_CMB_rec_ac_0001`, a single BBN-to-CMB
 
 The matching fail-closed control is [eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json). It clones the carrier-shell probe, mutates only `packet.rows.theta_src` to `status: accepted`, gives it `sourceKind: source_window_record`, and points `theta_src.sourcePath` back to [EQ-21/EQ-22/EQ-23 $\Theta_{\mathrm{src}}$ Source-Field Map](eq-21-22-23-theta-src-source-field-map.md). The checker reports `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: accepted_without_evidence_source`, and `sourceEvidenceFailureCount: 1`; the `--require-populated` form exits nonzero. This prevents a coordination packet from satisfying the shared observation source window.
 
+```sh
+node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input scripts/equation-mapping/eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json --summary --pretty --require-populated
+```
+
 ## Promotion Disposition
 
 Classification: `priority-only`.
@@ -301,4 +306,4 @@ Potential later targets:
 
 ## Next Evidence Object
 
-The next score-moving artifact is not another normalized fixture. It is a source-backed $\Theta_{\mathrm{rec/ac}}$ carrier whose row bindings are accepted and whose thermal/provenance/readout record keeps recombination, visibility, sound horizon, damping, acoustic transfer, BBN handoff, and observation readout on one record.
+The next accepted-retained-evidence artifact is not another normalized fixture. It is a source-backed $\Theta_{\mathrm{rec/ac}}$ carrier whose row bindings are accepted and whose thermal/provenance/readout record keeps recombination, visibility, sound horizon, damping, acoustic transfer, BBN handoff, and observation readout on one record.

@@ -48,7 +48,7 @@
         "status": "accepted",
         "carrierId": "radiation_source_carrier_W_syn_0_channel_family_metadata_missing_control_0001",
         "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
-        "claimLevel": "accepted-looking second row with durable source path but no row support metadata"
+        "claimLevel": "accepted-looking second row with durable source path but no row support metadata; negative control only, no score change"
       },
       "source_mechanism_row": {
         "id": "source-mechanism-synchrotron-source-candidate-0001",

@@ -159,13 +159,13 @@ function evaluateCertificate(input, inputPath) {
       row: "EQ-15/EQ-27",
       supportedRows: ["EQ-15", "EQ-27"],
       claimLevel:
-        "score-neutral spinor-to-magnetic-moment certificate; accepted retained rows are required before score movement",
+        "score-neutral spinor-to-magnetic-moment certificate; accepted retained rows are required before score review",
     },
     tolerances,
     summary: {
       status,
-      scoreDecision:
-        status === "populated" ? "score_review_required" : "no_score_increase",
+      scoreDecision: "no_score_increase",
+      scoreReviewPreconditionsMet: status === "populated",
       missingRows,
       sourceEvidenceFailureCount: sourceEvidence.failures.length,
       nextBlocker: firstBlocker({
@@ -612,6 +612,7 @@ function isEvidenceSourcePath(filePath) {
     !basename.includes(".tmp") &&
     !basename.includes("attempt") &&
     !basename.includes("toy") &&
+    !basename.includes("source-contract") &&
     !basename.includes("source-evidence-probe") &&
     !basename.includes("probe") &&
     !basename.includes("mock") &&

@@ -1,0 +1,373 @@
+{
+  "schema": "aaa-equation-map-shared-observation-residual-input/v1",
+  "claimLevel": "score-neutral shared-observation theta_src source-contract boundary attempt; only theta_src is accepted-looking and the source-contract shell is not retained evidence",
+  "residualId": "R_obs_theta_src_source_contract_attempt_0001",
+  "sourceAttemptId": "Theta_src_source_contract_attempt_0001",
+  "tolerances": {
+    "residual": 1,
+    "retune": 1e-12,
+    "handoff": 1e-12,
+    "provenance": 1e-12,
+    "sharedKey": 1e-12
+  },
+  "observationRecord": {
+    "id": "Theta_obs_theta_src_source_contract_attempt_0001",
+    "rowId": "theta_obs_theta_src_source_contract_attempt_row",
+    "status": "attempt",
+    "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md",
+    "sourceAttempt": {
+      "expectedSummaryBlocker": "missing_accepted_theta_obs",
+      "expectedFocusedThetaSrcBlocker": "missing_accepted_theta_src",
+      "expectedFocusedThetaSrcReason": "source_contract_path"
+    },
+    "subrecords": {
+      "theta_src": {
+        "id": "Theta_src_source_contract_0001",
+        "rowId": "theta_src_source_contract_attempt_row",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+        "sourceObjectKind": "theta_src",
+        "sourceSupport": [
+          "EQ-21",
+          "EQ-22",
+          "EQ-23",
+          "Theta_src"
+        ],
+        "sourceWindowId": "W_src_theta_src_source_contract_0001",
+        "eventLedgerId": "L_EpJ_theta_src_source_contract_0001",
+        "thetaSrcId": "Theta_src_source_contract_0001",
+        "noHiddenRetuneWitnessId": "S_retune_theta_src_source_contract_0001",
+        "sourceKeys": {
+          "BBN": [
+            "W_src",
+            "T_theta",
+            "rho_theta",
+            "eta",
+            "N_eff",
+            "Y_p",
+            "photon_loading",
+            "neutrino_energy",
+            "theta_therm_prov_ref",
+            "event_ledger_ref",
+            "H_eff"
+          ],
+          "CMB": [
+            "W_src",
+            "eta",
+            "N_eff",
+            "Y_p",
+            "photon_loading",
+            "thermal_depth",
+            "neutrino_energy",
+            "theta_gamma_packet_ref",
+            "theta_rec_ac_ref",
+            "theta_therm_prov_ref",
+            "theta_read_ref",
+            "event_ledger_ref",
+            "H_eff",
+            "a_eff"
+          ],
+          "growth": [
+            "W_src",
+            "rho_NS",
+            "n",
+            "chi_sea",
+            "Gamma_N",
+            "M_sea_ab",
+            "rho_bar",
+            "rho_A",
+            "P_seed",
+            "Pi_lin_theta_sea",
+            "theta_read_ref",
+            "H_eff",
+            "a_eff"
+          ]
+        }
+      },
+      "theta_read": {
+        "id": "Theta_read_theta_src_source_contract_attempt_0001",
+        "rowId": "theta_read_theta_src_source_contract_attempt_row",
+        "status": "attempt",
+        "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json"
+      },
+      "theta_therm_prov": {
+        "id": "Theta_therm_prov_theta_src_source_contract_attempt_0001",
+        "rowId": "theta_therm_prov_theta_src_source_contract_attempt_row",
+        "status": "attempt",
+        "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json"
+      },
+      "theta_gal": {
+        "id": "Theta_gal_theta_src_source_contract_attempt_0001",
+        "rowId": "theta_gal_theta_src_source_contract_attempt_row",
+        "status": "attempt",
+        "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json"
+      },
+      "event_ledger": {
+        "id": "L_EpJ_theta_src_source_contract_attempt_0001",
+        "rowId": "event_ledger_theta_src_source_contract_attempt_row",
+        "status": "attempt",
+        "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json"
+      }
+    },
+    "frwHandoff": {
+      "id": "R_FRW_to_obs_theta_src_source_contract_attempt_0001",
+      "rowId": "frw_handoff_theta_src_source_contract_attempt_row",
+      "status": "attempt",
+      "residual": 0,
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json"
+    },
+    "thermalProvenanceLedger": {
+      "id": "R_therm_prov_theta_src_source_contract_attempt_0001",
+      "rowId": "thermal_provenance_ledger_theta_src_source_contract_attempt_row",
+      "status": "attempt",
+      "residual": 0,
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json"
+    },
+    "noHiddenRetuneWitness": {
+      "id": "S_retune_theta_src_source_contract_0001",
+      "rowId": "no_hidden_retune_theta_src_source_contract_attempt_row",
+      "status": "attempt",
+      "residual": 0,
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json"
+    }
+  },
+  "projections": {
+    "BBN": {
+      "id": "Pi_BBN_theta_src_source_contract_attempt_0001",
+      "rowId": "projection_BBN_theta_src_source_contract_attempt_row",
+      "status": "attempt",
+      "residual": 0.02,
+      "consumedKeys": [
+        "rho_NS",
+        "n",
+        "chi_sea",
+        "eta",
+        "N_eff",
+        "Y_p",
+        "H_eff"
+      ],
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json"
+    },
+    "CMB": {
+      "id": "Pi_CMB_theta_src_source_contract_attempt_0001",
+      "rowId": "projection_CMB_theta_src_source_contract_attempt_row",
+      "status": "attempt",
+      "residual": 0.03,
+      "consumedKeys": [
+        "rho_NS",
+        "n",
+        "chi_sea",
+        "eta",
+        "N_eff",
+        "Y_p",
+        "H_eff",
+        "a_eff"
+      ],
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json"
+    },
+    "growth": {
+      "id": "Pi_growth_theta_src_source_contract_attempt_0001",
+      "rowId": "projection_growth_theta_src_source_contract_attempt_row",
+      "status": "attempt",
+      "residual": 0.04,
+      "consumedKeys": [
+        "rho_NS",
+        "n",
+        "chi_sea",
+        "Gamma_N",
+        "M_sea_ab",
+        "rho_bar",
+        "rho_A",
+        "H_eff",
+        "a_eff"
+      ],
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json"
+    },
+    "RAR": {
+      "id": "Pi_RAR_theta_src_source_contract_attempt_0001",
+      "rowId": "projection_RAR_theta_src_source_contract_attempt_row",
+      "status": "attempt",
+      "residual": 0.05,
+      "consumedKeys": [
+        "rho_NS",
+        "n",
+        "chi_sea",
+        "u_sea",
+        "M_sea_ab",
+        "rho_bar",
+        "rho_A"
+      ],
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json"
+    }
+  },
+  "sharedKeys": [
+    {
+      "key": "rho_NS",
+      "status": "attempt",
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+      "projectionValues": {
+        "BBN": 1,
+        "CMB": 1,
+        "growth": 1,
+        "RAR": 1
+      }
+    },
+    {
+      "key": "n",
+      "status": "attempt",
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+      "projectionValues": {
+        "BBN": 1,
+        "CMB": 1,
+        "growth": 1,
+        "RAR": 1
+      }
+    },
+    {
+      "key": "chi_sea",
+      "status": "attempt",
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+      "projectionValues": {
+        "BBN": 1,
+        "CMB": 1,
+        "growth": 1,
+        "RAR": 1
+      }
+    },
+    {
+      "key": "Gamma_N",
+      "status": "attempt",
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+      "projectionValues": {
+        "BBN": 0.1,
+        "CMB": 0.1,
+        "growth": 0.1,
+        "RAR": 0.1
+      }
+    },
+    {
+      "key": "u_sea",
+      "status": "attempt",
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+      "projectionValues": {
+        "BBN": 0,
+        "CMB": 0,
+        "growth": 0,
+        "RAR": 0
+      }
+    },
+    {
+      "key": "M_sea_ab",
+      "status": "attempt",
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+      "projectionValues": {
+        "BBN": 1,
+        "CMB": 1,
+        "growth": 1,
+        "RAR": 1
+      }
+    },
+    {
+      "key": "rho_bar",
+      "status": "attempt",
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+      "projectionValues": {
+        "BBN": 0.05,
+        "CMB": 0.05,
+        "growth": 0.05,
+        "RAR": 0.05
+      }
+    },
+    {
+      "key": "rho_A",
+      "status": "attempt",
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+      "projectionValues": {
+        "BBN": 0.2,
+        "CMB": 0.2,
+        "growth": 0.2,
+        "RAR": 0.2
+      }
+    },
+    {
+      "key": "eta",
+      "status": "attempt",
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+      "projectionValues": {
+        "BBN": 0.01,
+        "CMB": 0.01
+      }
+    },
+    {
+      "key": "N_eff",
+      "status": "attempt",
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+      "projectionValues": {
+        "BBN": 3,
+        "CMB": 3
+      }
+    },
+    {
+      "key": "Y_p",
+      "status": "attempt",
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+      "projectionValues": {
+        "BBN": 0.25,
+        "CMB": 0.25
+      }
+    },
+    {
+      "key": "H_eff",
+      "status": "attempt",
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+      "projectionValues": {
+        "BBN": 0.1,
+        "CMB": 0.1,
+        "growth": 0.1
+      }
+    },
+    {
+      "key": "a_eff",
+      "status": "attempt",
+      "sourcePath": "scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json",
+      "projectionValues": {
+        "CMB": 1,
+        "growth": 1
+      }
+    }
+  ],
+  "residualComponents": {
+    "BBN": {
+      "value": 0.02,
+      "weight": 1
+    },
+    "CMB": {
+      "value": 0.03,
+      "weight": 1
+    },
+    "FRW_to_obs": {
+      "value": 0,
+      "weight": 1
+    },
+    "growth": {
+      "value": 0.04,
+      "weight": 1
+    },
+    "handoff": {
+      "value": 0,
+      "weight": 1
+    },
+    "RAR_BTFR": {
+      "value": 0.05,
+      "weight": 1
+    },
+    "S_retune": {
+      "value": 0,
+      "weight": 1
+    },
+    "therm_prov": {
+      "value": 0,
+      "weight": 1
+    }
+  }
+}

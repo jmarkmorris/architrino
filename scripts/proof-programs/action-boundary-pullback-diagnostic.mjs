@@ -21,6 +21,24 @@ const REQUIRED_ACTION_ROWS = [
   "eta_regulator_row",
   "epsilon_c_core_row",
 ];
+const REQUIRED_ACTION_ROW_CONTRACTS = {
+  action_endpoint_row: {
+    boundary_symbol: "\\partial_{\\mathrm{end}}S_{\\mathfrak B}^{(\\eta)}",
+    contract_role: "endpoint exclusions and retained-window endpoint terms",
+  },
+  action_multiplier_row: {
+    boundary_symbol: "\\lambda\\,\\partial G_{ij,n}",
+    contract_role: "root-constraint multiplier work on the retained root ledger",
+  },
+  eta_regulator_row: {
+    boundary_symbol: "\\partial_{\\eta}S_{\\mathfrak B}^{(\\eta)}",
+    contract_role: "finite-eta source-path neighborhood contribution",
+  },
+  epsilon_c_core_row: {
+    boundary_symbol: "\\partial_{\\epsilon_c}S_{\\mathfrak B}^{(\\eta)}",
+    contract_role: "core/collision regularization contribution",
+  },
+};
 
 function deepClone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -40,6 +58,28 @@ function sameNumber(left, right, tolerance = 1e-12) {
   return Number.isFinite(left) && Number.isFinite(right) && Math.abs(left - right) <= tolerance;
 }
 
+function deepRegulator(regulator) {
+  return {
+    eta: regulator.eta,
+    epsilon_c: regulator.epsilon_c,
+    status: regulator.status,
+  };
+}
+
+function buildActionRowContract(rowId, sourceRecord, evidenceLevel = "synthetic_row_logic") {
+  const contract = REQUIRED_ACTION_ROW_CONTRACTS[rowId];
+  return {
+    row_id: rowId,
+    evidence_level: evidenceLevel,
+    source_record_id: sourceRecord.record_id,
+    retained_chart_id: sourceRecord.retained_chart_id,
+    retained_window_id: sourceRecord.retained_window.id,
+    regulator_state: deepRegulator(sourceRecord.regulator_state),
+    boundary_symbol: contract.boundary_symbol,
+    contract_role: contract.contract_role,
+  };
+}
+
 export function buildDefaultActionBoundaryPullbackInput() {
   const sourceRecord = buildDefaultNoetherSeaCompatibilityHandoffInput().retained_branch_source_record;
   return {
@@ -52,9 +92,23 @@ export function buildDefaultActionBoundaryPullbackInput() {
 
 export function buildSyntheticActionBoundaryPullbackInput() {
   const input = buildDefaultActionBoundaryPullbackInput();
+  const sourceRecord = buildDefaultNoetherSeaCompatibilityHandoffInput().retained_branch_source_record;
   return {
     ...input,
-    action_rows: REQUIRED_ACTION_ROWS,
+    action_rows: REQUIRED_ACTION_ROWS.map((rowId) =>
+      buildActionRowContract(rowId, sourceRecord, "synthetic_row_logic")
+    ),
+  };
+}
+
+export function buildRegulatorOnlyActionBoundaryPullbackInput() {
+  const input = buildDefaultActionBoundaryPullbackInput();
+  const sourceRecord = buildDefaultNoetherSeaCompatibilityHandoffInput().retained_branch_source_record;
+  return {
+    ...input,
+    action_rows: ["eta_regulator_row", "epsilon_c_core_row"].map((rowId) =>
+      buildActionRowContract(rowId, sourceRecord, "source_record_regulator_declared")
+    ),
   };
 }
 
@@ -72,27 +126,140 @@ export function applyActionBoundaryControl(input, controlName) {
     return packet;
   }
   if (controlName === "missing-multiplier-row") {
-    packet.action_rows = packet.action_rows.filter((rowId) => rowId !== "action_multiplier_row");
+    packet.action_rows = packet.action_rows.filter((actionRow) => actionRow.row_id !== "action_multiplier_row");
+    return packet;
+  }
+  if (controlName === "endpoint-source-record-mismatch") {
+    const endpoint = packet.action_rows.find((actionRow) => actionRow.row_id === "action_endpoint_row");
+    if (endpoint) {
+      endpoint.source_record_id = "theta_sea_branch_q1_v0";
+    }
+    return packet;
+  }
+  if (controlName === "eta-row-regulator-mismatch") {
+    const etaRow = packet.action_rows.find((actionRow) => actionRow.row_id === "eta_regulator_row");
+    if (etaRow) {
+      etaRow.regulator_state.eta = 0.04;
+    }
+    return packet;
+  }
+  if (controlName === "epsilon-c-row-regulator-mismatch") {
+    const epsilonRow = packet.action_rows.find((actionRow) => actionRow.row_id === "epsilon_c_core_row");
+    if (epsilonRow) {
+      epsilonRow.regulator_state.epsilon_c = 0.02;
+    }
     return packet;
   }
   throw new Error(`unknown control: ${controlName}`);
 }
 
-function evaluateRows(input) {
-  const declaredRows = input.action_rows ?? [];
-  return REQUIRED_ACTION_ROWS.map((rowId) =>
-    row(
-      rowId,
-      `${rowId} is present in the retained action boundary packet`,
-      declaredRows.includes(rowId),
-      "residual.provenance_gap"
-    )
+function actionRowById(input, rowId) {
+  return (input.action_rows ?? []).find((actionRow) => actionRow?.row_id === rowId) ?? null;
+}
+
+function evaluateActionRowContract(input, sourceRecord, rowId) {
+  const declaredRow = actionRowById(input, rowId);
+  const contract = REQUIRED_ACTION_ROW_CONTRACTS[rowId];
+  const regulator = declaredRow?.regulator_state ?? {};
+  const checks = [
+    { field: "row_present", ok: Boolean(declaredRow) },
+    { field: "evidence_level", ok: typeof declaredRow?.evidence_level === "string" },
+    { field: "source_record_id", ok: declaredRow?.source_record_id === sourceRecord.record_id },
+    { field: "retained_chart_id", ok: declaredRow?.retained_chart_id === sourceRecord.retained_chart_id },
+    { field: "retained_window_id", ok: declaredRow?.retained_window_id === sourceRecord.retained_window.id },
+    { field: "regulator_state.eta", ok: sameNumber(regulator.eta, sourceRecord.regulator_state.eta) },
+    {
+      field: "regulator_state.epsilon_c",
+      ok: sameNumber(regulator.epsilon_c, sourceRecord.regulator_state.epsilon_c),
+    },
+    { field: "regulator_state.status", ok: regulator.status === sourceRecord.regulator_state.status },
+    { field: "boundary_symbol", ok: declaredRow?.boundary_symbol === contract.boundary_symbol },
+  ];
+  const mismatches = checks.filter((entry) => !entry.ok).map((entry) => entry.field);
+  const acceptedAttempted =
+    declaredRow?.accepted_for_action_closure === true ||
+    declaredRow?.evidence_level === "accepted_for_action_closure";
+  const acceptedMismatches = acceptedAttempted
+    ? [
+        ...mismatches,
+        ...(declaredRow?.accepted_for_action_closure === true
+          ? []
+          : ["accepted_for_action_closure"]),
+        ...(declaredRow?.evidence_level === "accepted_for_action_closure"
+          ? []
+          : ["evidence_level"]),
+        ...(typeof declaredRow?.accepted_evidence_id === "string" &&
+        declaredRow.accepted_evidence_id.length > 0
+          ? []
+          : ["accepted_evidence_id"]),
+      ]
+    : [];
+  return row(
+    rowId,
+    `${rowId} matches the retained action boundary row contract`,
+    mismatches.length === 0,
+    "residual.provenance_gap",
+    {
+      boundary_symbol: contract.boundary_symbol,
+      contract_role: contract.contract_role,
+      evidence_level: declaredRow?.evidence_level ?? null,
+      accepted_evidence_contract_attempted: acceptedAttempted,
+      accepted_evidence_mismatches: acceptedMismatches,
+      accepted_for_action_closure:
+        acceptedAttempted && acceptedMismatches.length === 0,
+      mismatches,
+      checks,
+    }
   );
+}
+
+function evaluateRows(input, sourceRecord) {
+  return REQUIRED_ACTION_ROWS.map((rowId) => evaluateActionRowContract(input, sourceRecord, rowId));
+}
+
+function evidenceLevelSummary(actionRows) {
+  return Object.fromEntries(
+    REQUIRED_ACTION_ROWS.map((rowId) => {
+      const actionRow = actionRows.find((entry) => entry.row_id === rowId);
+      return [rowId, actionRow?.evidence_level ?? "missing"];
+    })
+  );
+}
+
+function acceptedEvidenceSummary(actionRows) {
+  const rowEvidence = REQUIRED_ACTION_ROWS.map((rowId) => {
+    const actionRow = actionRows.find((entry) => entry.row_id === rowId);
+    return {
+      row_id: rowId,
+      evidence_level: actionRow?.evidence_level ?? "missing",
+      accepted_evidence_contract_attempted:
+        actionRow?.accepted_evidence_contract_attempted === true,
+      accepted_evidence_mismatches:
+        actionRow?.accepted_evidence_mismatches ?? [],
+      accepted_for_action_closure:
+        actionRow?.accepted_for_action_closure === true,
+    };
+  });
+  const countsByEvidenceLevel = {};
+  for (const entry of rowEvidence) {
+    countsByEvidenceLevel[entry.evidence_level] =
+      (countsByEvidenceLevel[entry.evidence_level] ?? 0) + 1;
+  }
+  const acceptedRowCount = rowEvidence.filter(
+    (entry) => entry.accepted_for_action_closure
+  ).length;
+  return {
+    required_row_count: REQUIRED_ACTION_ROWS.length,
+    accepted_row_count: acceptedRowCount,
+    accepted_for_action_closure: acceptedRowCount === REQUIRED_ACTION_ROWS.length,
+    counts_by_evidence_level: countsByEvidenceLevel,
+    row_evidence: rowEvidence,
+  };
 }
 
 export function buildActionBoundaryPullbackDiagnostic(input = buildDefaultActionBoundaryPullbackInput()) {
   const sourceRecord = buildDefaultNoetherSeaCompatibilityHandoffInput().retained_branch_source_record;
-  const actionRows = evaluateRows(input);
+  const actionRows = evaluateRows(input, sourceRecord);
   const sourceRecordOk = input.source_record_id === sourceRecord.record_id;
   const etaOk = sameNumber(input.regulator_state?.eta, sourceRecord.regulator_state.eta);
   const epsilonOk = sameNumber(input.regulator_state?.epsilon_c, sourceRecord.regulator_state.epsilon_c);
@@ -127,6 +294,7 @@ export function buildActionBoundaryPullbackDiagnostic(input = buildDefaultAction
     ...actionRows,
   ];
   const failedRows = diagnosticRows.filter((entry) => entry.status === "fail");
+  const acceptedSummary = acceptedEvidenceSummary(actionRows);
 
   return {
     schema: ACTION_BOUNDARY_PULLBACK_SCHEMA,
@@ -138,12 +306,16 @@ export function buildActionBoundaryPullbackDiagnostic(input = buildDefaultAction
     source_record_id: input.source_record_id,
     boundary_status: boundaryClosed ? "closed" : "failed",
     residual_norm: boundaryClosed ? 0 : null,
-    row_refs: input.action_rows ?? [],
+    row_refs: (input.action_rows ?? []).map((entry) => entry.row_id),
+    evidence_level_summary: evidenceLevelSummary(actionRows),
+    accepted_evidence_summary: acceptedSummary,
     action_rows: diagnosticRows,
     result: {
       diagnostic_status: boundaryClosed ? "diagnostic_passed_priority_only" : "diagnostic_failed",
       retained_branch: false,
       updates_live_validation_gate: false,
+      accepted_action_evidence_for_closure:
+        acceptedSummary.accepted_for_action_closure,
       failure_code: failedRows[0]?.failure_code ?? null,
       first_failed_row: failedRows[0]?.row_id ?? null,
       first_failure_status:
@@ -192,6 +364,13 @@ export function validateActionBoundaryPullbackArtifact(artifact) {
       "result.failure_code must match first failed row",
       errors
     );
+    for (const rowId of REQUIRED_ACTION_ROWS) {
+      const actionRow = artifact.action_rows.find((entry) => entry.row_id === rowId);
+      assertField(typeof actionRow?.boundary_symbol === "string", `${rowId} must include boundary_symbol`, errors);
+      assertField(Object.hasOwn(actionRow ?? {}, "evidence_level"), `${rowId} must include evidence_level`, errors);
+      assertField(Array.isArray(actionRow?.mismatches), `${rowId} must include mismatches`, errors);
+      assertField(Array.isArray(actionRow?.checks), `${rowId} must include checks`, errors);
+    }
   }
 
   return errors;
@@ -203,8 +382,9 @@ function usage() {
     "",
     "Options:",
     "  --input <path>       Read action boundary input JSON instead of the default fail-closed fixture",
-    "  --control <name>     Apply a negative control: source-record-mismatch, regulator-mismatch, missing-multiplier-row",
+    "  --control <name>     Apply a negative control: source-record-mismatch, regulator-mismatch, missing-multiplier-row, endpoint-source-record-mismatch, eta-row-regulator-mismatch, epsilon-c-row-regulator-mismatch",
     "  --synthetic-closed   Build a synthetic closed fixture for row-logic tests",
+    "  --regulator-only     Build a partial fixture with only eta and epsilon_c regulator rows",
     "  --out <path>         Write artifact JSON to path instead of stdout",
     "  --validate <path>    Validate an existing diagnostic artifact JSON file",
     "  --schema             Print the artifact schema identifier",
@@ -218,6 +398,7 @@ function parseArgs(argv) {
     input: null,
     control: null,
     syntheticClosed: false,
+    regulatorOnly: false,
     out: null,
     validate: null,
     schema: false,
@@ -233,6 +414,8 @@ function parseArgs(argv) {
       args.control = argv[++index];
     } else if (arg === "--synthetic-closed") {
       args.syntheticClosed = true;
+    } else if (arg === "--regulator-only") {
+      args.regulatorOnly = true;
     } else if (arg === "--out") {
       args.out = argv[++index];
     } else if (arg === "--validate") {
@@ -269,7 +452,22 @@ function main() {
           artifact_schema: ACTION_BOUNDARY_PULLBACK_SCHEMA,
           promotion_status: PROMOTION_STATUS,
           packet_id: PACKET_ID,
-          controls: ["source-record-mismatch", "regulator-mismatch", "missing-multiplier-row"],
+          fixtures: ["regulator-only", "synthetic-closed"],
+          accepted_evidence_summary: [
+            "row_evidence",
+            "counts_by_evidence_level",
+            "accepted_evidence_contract_attempted",
+            "accepted_evidence_mismatches",
+            "accepted_for_action_closure",
+          ],
+          controls: [
+            "source-record-mismatch",
+            "regulator-mismatch",
+            "missing-multiplier-row",
+            "endpoint-source-record-mismatch",
+            "eta-row-regulator-mismatch",
+            "epsilon-c-row-regulator-mismatch",
+          ],
         },
         args.pretty
       )
@@ -296,7 +494,9 @@ function main() {
 
   const baseInput = args.input
     ? JSON.parse(fs.readFileSync(args.input, "utf8"))
-    : args.syntheticClosed
+    : args.regulatorOnly
+      ? buildRegulatorOnlyActionBoundaryPullbackInput()
+      : args.syntheticClosed
       ? buildSyntheticActionBoundaryPullbackInput()
       : buildDefaultActionBoundaryPullbackInput();
   const input = args.control ? applyActionBoundaryControl(baseInput, args.control) : baseInput;

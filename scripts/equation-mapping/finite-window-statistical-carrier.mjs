@@ -269,7 +269,7 @@ function evaluateCarrier(input) {
       row: carrier.row ?? null,
       retainedStatus: carrier.retainedStatus ?? null,
       claimLevel:
-        "score-neutral carrier evaluator; accepted row statuses are required before score movement",
+        "score-neutral carrier evaluator; accepted row statuses are required before score review",
     },
     constants,
     tolerances,
@@ -2549,6 +2549,7 @@ function isEvidenceSourcePath(filePath) {
   return !(
     lowerBasename.includes("attempt") ||
     lowerBasename.includes("toy") ||
+    lowerBasename.includes("source-contract") ||
     lowerBasename.includes("source-evidence-probe") ||
     lowerBasename.includes("probe") ||
     lowerBasename.includes("mock") ||

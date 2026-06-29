@@ -24,10 +24,10 @@ No score changes.
 | Current score | `2` |
 | Carrier | Retained action-period carrier: $\gamma_0\to\mathcal U\to h_\vartheta$, refined by locked equal-frequency `S_eq` tri-binary evidence. |
 | Distinct support | `theta_gamma_packet` remains photon support, not the action-period carrier. |
-| Dedicated checker first blocker | `missing_accepted_retained_orbit_reduction_row` |
+| Exact first blocker | `missing_accepted_retained_orbit_reduction_row` |
 | Shared photon-support blocker | `missing_accepted_theta_gamma_packet` |
-| Positive evidence object | One source-backed retained equal-frequency tri-binary branch with integer winding plateau, same-branch four-readout coincidence, and positive Floquet margin. |
-| Score-moving condition | Accepted retained rows, durable source paths, no `attempt` row identities, no carrier split, and no hidden retune. |
+| Smallest accepted evidence object | One source-backed retained equal-frequency tri-binary branch with integer winding plateau, same-branch four-readout coincidence, and positive Floquet margin. |
+| Accepted-evidence condition | Accepted retained rows, durable source paths, no `attempt` row identities, no carrier split, and no hidden retune. |
 
 ## Smallest Accepted-Object Contract
 

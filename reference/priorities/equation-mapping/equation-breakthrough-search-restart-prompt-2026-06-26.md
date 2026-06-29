@@ -10,7 +10,7 @@ Use the prior artifacts as score-neutral starting artifacts and search context, 
 
 ```text
 Closure goal:
-Run a corrected nine-hour, multi-agent equation-mapping breakthrough restart that resumes from the interrupted 2026-06-26 run, starts with unfinished/unscored and low-score rows, preserves already landed score-neutral artifacts, and pushes toward concrete accepted retained evidence, native carriers, checker-backed source objects, or cross-row eureka candidates.
+Run a corrected nine-hour, multi-agent equation-mapping breakthrough restart that resumes from the interrupted 2026-06-26 run, starts with unfinished/unscored and low-score rows, preserves already landed score-neutral artifacts, and pushes first toward concrete accepted retained evidence. When accepted retained evidence does not land, record native-carrier candidates, checker-backed blocker diagnostics, source-contract boundaries, or cross-row eureka candidates as score-neutral search output only.
 
 Use the AAA corpus advancement skill in team-agent mode.
 
@@ -43,7 +43,7 @@ Previously landed score-neutral work to preserve:
 - `EQ-14`/`EQ-30`/`EQ-31` finite-window work now rejects missing, coordination, and self-referential sources; it still blocks at `missing_accepted_W`.
 - `EQ-24`/Noether sea density-compression rejects coordination and authored-prose false positives; it still blocks at `missing_accepted_theta_sea_rho_NS`.
 - `EQ-25` has CMB thermal source-window and coordination-source negative controls; it still blocks at `missing_accepted_theta_therm`.
-- `EQ-26` has a two-line `theta_H_spec` identity checker, source-attempt fixture, carrier-shell boundary, and fail-closed observer-Rydberg, priority-source, and support-carrier substitution controls; it still blocks at `missing_accepted_theta_H_spec`, with a carrier-shell boundary only advancing to `missing_accepted_recovered_label_rows`. No score movement follows.
+- `EQ-26` has a two-line `theta_H_spec` identity checker, source-attempt fixture, carrier-shell boundary, and fail-closed observer-Rydberg, priority-source, and support-carrier substitution controls; it still blocks at `missing_accepted_theta_H_spec`, with a carrier-shell boundary only advancing to `missing_accepted_recovered_label_rows`. No score change follows.
 - Recent findability clarifications landed with no score changes:
   - Malus law routes to `EQ-12` / Gate B analyzer evidence, not a standalone row.
   - MOND routes to `EQ-32` as observer-level RAR/BTFR comparison, not substrate ontology.
@@ -89,7 +89,7 @@ Restart priorities for the first two coordinator cycles:
 1. Correct the prior runtime record and create this restart prompt/checkpoint.
 2. Re-attack the highest-value remaining evidence objects:
    - `theta_sea_rho_NS` retained-window evidence source for `EQ-24`, `EQ-20`, `EQ-11`, and `EQ-32`, with `EQ-06` consuming the same density/cadence projection route.
-   - `theta_transfer` for signed-frequency / `EQ-17`, `theta_cos` for effective-FRW / `EQ-18` and `EQ-19`, `neutral_lepton_retained_branch` for `EQ-16A`, `theta_obs` for shared-observation rows, `branch_chart` for `EQ-05`, and `theta_gamma_packet` for photon rows; keep these as live first blockers, not score-moving evidence.
+   - `theta_transfer` for signed-frequency / `EQ-17`, `theta_cos` for effective-FRW / `EQ-18` and `EQ-19`, `neutral_lepton_retained_branch` for `EQ-16A`, `theta_obs` for shared-observation rows, `branch_chart` for `EQ-05`, and `theta_gamma_packet` for photon rows; keep these as live first blockers, not accepted retained evidence.
    - finite-window `W` for `EQ-31`, especially the charged-pion route from guard-passing source paths.
    - compact-region `Theta_cs_07A` source-attempt fixture and source-evidence guard.
    - `EQ-12A` retained action-period source-attempt fixture and dedicated source-evidence guard.
@@ -103,13 +103,13 @@ Per-equation minimum:
 - Each equation must produce or update an Equation Attack Card with:
   - current score and closure driver;
   - primary AAA carrier;
-  - smallest score-moving evidence object;
+  - smallest accepted evidence object;
   - exact first blocker;
   - existing scripts/fixtures/packets found;
   - one candidate breakthrough angle;
   - one fail-closed negative control;
   - one next action smaller than “write a broad report.”
-- Each Equation Attack Card must also include or point to a packet-level Direct Geometry Layer with these fields before the row is treated as materially advanced:
+- Each Equation Attack Card must also include or point to a packet-level Direct Geometry Layer with these fields before the row is treated as having a complete blocker route. The Direct Geometry Layer is routing evidence only; a row is score-review-ready only after the named accepted evidence object actually lands with durable source evidence and checker support:
   - comparison term;
   - $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout;
   - required carrier or row;
@@ -154,7 +154,7 @@ Breakthrough search posture:
 - Preserve candidate-level status. A promising synthesis is a breakthrough candidate, not canon, until evidence lands.
 
 No-score-change rule:
-- Scores may change only if accepted retained evidence actually lands and validation/checkers support the score movement.
+- Scores may change only if accepted retained evidence actually lands and validation/checkers support score review.
 - If only contracts, packets, attempt fixtures, toy fixtures, or closure cards are added, state `no score changes`.
 - Priority prose, authored AAA prose, generated files/copies, mocks, toys, attempts, probes, source-evidence probes, negative controls, temporary paths, directory paths, self-source shells, and source-contract shells do not count as accepted retained evidence.
 

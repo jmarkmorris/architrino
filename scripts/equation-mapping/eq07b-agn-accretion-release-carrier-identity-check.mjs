@@ -607,6 +607,7 @@ function evaluateSourcePath(sourcePath) {
     normalized.startsWith("content/markdown/aaa/") ||
     basename.includes("attempt") ||
     basename.includes("toy") ||
+    basename.includes("source-contract") ||
     basename.includes("source-evidence-probe") ||
     basename.includes("probe") ||
     basename.includes("mock") ||

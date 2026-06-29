@@ -112,9 +112,9 @@
 3. `a1_outward_constants_handoff` — Emit the A1 outward-constants contract and same-box pass/fail comparison before any master-equation closure claim is promoted. Status: `active-priority-artifact-staged; reduced-smoke-unstable-not-outward`. Notes: [spiral-a1-outward-constants-certificate-target](spiral-a1-outward-constants-certificate-target.md) now defines the concrete certificate target: constants $q_{\min},q_{\max},\kappa_\alpha,\nu_\alpha,g_P,g_S,H_b,E_Q^+(b),E_{\Delta,\alpha}(b)$, branch-sum and transport envelopes, and $C_1,C_2$ or $E_\ast(b)$ must close on the same A1 boxes. The sampled ladder still reports $C_{1,\mathrm{samp}}\approx5.46\times10^{-12}$, $C_{2,\mathrm{samp}}\approx6.61\times10^{-4}$, material-floor ratios below $0.141$ through $b=0.03$, and `sampled_remainder_constants_unstable` because the adjacent sampled $C_2$ change is about $0.731$; no closure or branch certification is claimed. A reduced 2026-06-28 smoke with three finite-collar samples, one deterministic coordinate ray, and two amplitudes preserves the same unstable classification with $\max|\Delta C_2|/|C_2|\approx0.706$, so it is a turnaround diagnostic only and not an outward-constant row. Depends on: `spiral_branch_chart_test`.
 4. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `certified_eigen_braid`.
 5. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
-6. `emission_flux_jacobian_conservation` — Prove that source-provenanced constant causal-wake emission over an expanding wake surface preserves emitted polarity weight and collapses to the current $r^{-2}|J|^{-1}$ branch law on a simple-root chart, without importing legacy potential-sphere language or treating the wake as an autonomous field substance. Status: `priority-only`. Depends on: dual-mollified law; branch promotion depends on the retained branch-chart packet.
+6. `emission_flux_jacobian_conservation` — Prove that source-provenanced constant causal-wake emission over an expanding wake surface preserves emitted polarity weight and collapses to the current $r^{-2}|J|^{-1}$ branch law on a simple-root chart, without importing legacy potential-sphere language or treating the wake as an autonomous field substance. Status: `priority-only; receiver-path action-pullback audit added`. Notes: event-local force rows still use the source-side Jacobian, but accumulated action, power, and wake-history rows must now declare the receiver-path pullback factor $ds_\ell/dt=(c_f-\hat{\mathbf r}\cdot\mathbf v_i)/(c_f-\hat{\mathbf r}\cdot\mathbf v_j)$ or prove a stationary/constant-normalization exemption; see [receiver-path-wake-action-pullback](receiver-path-wake-action-pullback.md). Depends on: dual-mollified law; branch promotion depends on the retained branch-chart packet.
 7. `binary_perturbation_projection_classifier` — Split finite binary perturbations into radial and tangential projection rows, then decide whether the response is same-branch phase, radius/cadence retuning, or branch transition. Status: `priority-only`. Depends on: `certified_eigen_braid`.
-8. `topological_causal_root_ledger_proof_target` — Work out whether causal-root topology on a neutral 3-torus can supply a closed-ledger admissibility theorem that ties pair contact, multi-hit, self-hit, branch-chart boundaries, action residuals, Noether wake-history charges, Noether sea response, and cross-sector acceptance to one retained history record. Status: `priority-only theorem target; executable-diagnostic-chain-active`. The current chain has separate priority-only diagnostics for topological roots, Noether sea handoff compatibility, wake-history event pullback, action-boundary pullback, and the closed-ledger compositor. The compositor now passes root-topology, Noether handoff, and wake-history event rows, then fails closed on the missing accepted action-boundary rows for $\partial S_{\mathfrak B}^{(\eta)}$; see [topological-causal-root-ledger-proof-target](topological-causal-root-ledger-proof-target.md). Depends on: Master Equation branch-chart closure grammar; branch promotion still depends on `certified_eigen_braid`.
+8. `topological_causal_root_ledger_proof_target` — Work out whether causal-root topology on a neutral 3-torus can supply a closed-ledger admissibility theorem that ties pair contact, multi-hit, self-hit, branch-chart boundaries, action residuals, Noether wake-history charges, Noether sea response, and cross-sector acceptance to one retained history record. Status: `priority-only theorem target; executable-diagnostic-chain-active`. The current chain has separate priority-only diagnostics for topological roots, photon constituent root routing, near-$c_f$ middle-hinge root-status routing, same-retained-history source-record contract, Noether sea handoff compatibility, wake-history event pullback, action-boundary pullback, and the closed-ledger compositor. The source-record contract checks that root topology, Noether handoff, photon route artifact and sample rows, middle-hinge route artifact and sample rows, event pullback, and action pullback name the same retained history before the boundary equation is evaluated; the photon route diagnostic fails closed until every constituent absolute speed above $c_f$ has a self-hit, partner-hit, caustic, or inactive-root route on the same retained source record; the middle-hinge diagnostic fails closed until every `1` or `C` word sample has a same-record self-hit/inactive-root or caustic/finite-$\eta$ route without literal-communication semantics. Both route diagnostics now emit `route_evidence_summary` so missing, synthetic, toy, and accepted-for-branch-retention route evidence stay distinct. The compositor now fails first on $\partial\mathcal{R}^{\mathrm{act}}$ route population in the default fixture; `--route-replay-fixtures` advances that row to action-boundary blockers only at priority-only fixture level and reports `accepted_route_evidence_status: not_accepted_for_branch_retention`; wake-history, action, and Noether medium-response rows now expose `accepted_evidence_summary` and remain `not_accepted_for_wake_history_closure`, `not_accepted_for_action_closure`, and `not_accepted_for_medium_response_closure` until their rows carry same-record accepted evidence ids; see [topological-causal-root-ledger-proof-target](topological-causal-root-ledger-proof-target.md). Depends on: Master Equation branch-chart closure grammar; branch promotion still depends on `certified_eigen_braid`.
 
 ## Scope
 
@@ -257,7 +257,7 @@ q_j\,
 {r_{ij}^2(t,s)+\epsilon_c^2}
 \,ds.
 $$
-The local proof target is to show that, on a simple-root chart with
+The local event-force proof target is to show that, on a simple-root chart with
 $$
 \left|\partial_s g_{ij}(t,s_\ell)\right|\ge c_f\nu_J>0,
 $$
@@ -269,6 +269,20 @@ q_j\,
 {r_{ij}^2(t,s_\ell)\left|\partial_s g_{ij}(t,s_\ell)\right|}
 $$
 up to the same normalization convention that absorbs the factor of $c_f$ into $\kappa$. This is the source-side conservation meaning of the branch law: constant emission cadence is not a separate force assumption, while source motion changes the received density through the causal-root Jacobian.
+
+Receiver-path action audit. The branch density above is not by itself the
+receiver-worldline action rate. On a retained smooth branch $s=s_\ell(t)$,
+$$
+\frac{ds_\ell}{dt}
+=
+\frac{c_f-\hat{\mathbf r}_{ij}(t,s_\ell)\cdot\mathbf v_i(t)}
+{c_f-\hat{\mathbf r}_{ij}(t,s_\ell)\cdot\mathbf v_j(s_\ell)}
+$$
+so a source-emission cadence pulled back to a moving receiver path carries a
+receiver-crossing numerator. Rows that consume action, power, wake-history
+charge, or finite-window conservation must either include this factor on the
+same retained branch chart or prove that the stationary/constant-normalization
+case applies.
 
 Promotion conditions:
 
