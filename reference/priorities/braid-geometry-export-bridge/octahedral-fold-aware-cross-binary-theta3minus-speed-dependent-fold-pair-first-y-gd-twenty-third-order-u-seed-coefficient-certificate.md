@@ -2,7 +2,7 @@
 
 Promotion status: `diagnostic-only; receiver-normal restart required`.
 
-Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record   and ^{\mathrm{rec}} are regenerated and accepted.
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet continues the finite $\operatorname{Shift}_{25}$ $E_\varepsilon$
 root-tail tube and the twenty-second-order post-seed coefficient row. It
@@ -37,8 +37,7 @@ $Q_{G,23}$ and $Q_{D,23}$. It is not a finite
 $U_\varepsilon(y,\nu)$ tube, not a continuous quotient-tail enclosure, and not
 full $\theta_{3-}^{-}$ collar closure.
 
-No fixed speed band is imposed. The certificate uses only the certified positive
-speed-ratio zero enclosure
+No fixed speed band is imposed. The certificate uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 \nu\in[3.02156,3.02157],

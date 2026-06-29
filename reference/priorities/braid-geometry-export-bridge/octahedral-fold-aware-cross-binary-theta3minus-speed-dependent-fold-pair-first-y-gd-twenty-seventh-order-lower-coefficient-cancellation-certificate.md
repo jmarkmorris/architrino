@@ -2,7 +2,7 @@
 
 Promotion status: `diagnostic-only; receiver-normal restart required`.
 
-Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record   and ^{\mathrm{rec}} are regenerated and accepted.
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet records a coefficient-preserving lower-numerator cancellation
 certificate for the next $C^1$ twenty-seventh-order first-y $G,D$ route. It
@@ -11,8 +11,7 @@ uses the existing
 and proves the lower numerator coefficients through $y^{28}$ contain zero
 before any $y^{29}$ division.
 
-No fixed speed band is imposed. The certificate uses only the certified
-positive speed-ratio zero enclosure
+No fixed speed band is imposed. The certificate uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 \nu\in[3.02156,3.02157],

@@ -2,7 +2,7 @@
 
 Promotion status: `diagnostic-only; receiver-normal restart required`.
 
-Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record   and ^{\mathrm{rec}} are regenerated and accepted.
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet continues [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.md). The predecessor proves the fold-pair root tubes, the $h_\varepsilon$ root graph, and the $J_\varepsilon$ signs on the finite speed/y cell cover. This packet lifts the $G$ quotient and the direct source-derivative $D$ quotient onto that certified $h$ root graph for every cell with $y>0$. The successor [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness.md) now supplies the sampled analytic first-y cancellation witness.
 

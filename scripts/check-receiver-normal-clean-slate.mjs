@@ -98,6 +98,11 @@ const FORBIDDEN_SNIPPETS = [
 
 const FORBIDDEN_CODE_PATTERNS = [
   {
+    pattern: /certified\s+positive\s+speed-ratio\s+zero\s+enclosure/g,
+    snippet: "certified positive speed-ratio zero enclosure",
+    reason: "stale theta3minus quotient evidence must be historical diagnostic only",
+  },
+  {
     pattern: /pair\.force_sign\s*\/\s*\([^;]*Math\.abs\(jacobian\)[^;]*\)/gs,
     snippet: "pair.force_sign / (... Math.abs(jacobian) ...)",
     reason: "source-normal Jacobian cannot be used as force/action branch strength",

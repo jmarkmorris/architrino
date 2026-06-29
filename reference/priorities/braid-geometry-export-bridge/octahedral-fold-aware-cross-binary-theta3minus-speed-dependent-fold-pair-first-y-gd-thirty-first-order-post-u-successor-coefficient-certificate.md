@@ -2,7 +2,7 @@
 
 Promotion status: `diagnostic-only; receiver-normal restart required`.
 
-Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record   and ^{\mathrm{rec}} are regenerated and accepted.
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet continues the thirtieth-order post-$U$ successor coefficient row.
 It certifies the next zero-touching seed coefficient, $h_{31,\varepsilon}$,
@@ -11,8 +11,7 @@ $Q_{D,31}$. It converts the constant term of the thirty-first-order quotient
 tail into a directed-rounded coefficient row; the remaining quotient tail
 begins at order $32$.
 
-No fixed speed band is imposed. The certificate uses only the certified positive
-speed-ratio zero enclosure
+No fixed speed band is imposed. The certificate uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 \nu\in[3.02156,3.02157],
